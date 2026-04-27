@@ -1,0 +1,39 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+/* Fix for all the white backgrounds and inputs in Dark Mode universally */
+.dark .bg-white,
+.dark .bg-white:hover { 
+  background-color: var(--color-slate-900, #0f172a) !important; 
+}
+.dark .bg-slate-50,
+.dark .bg-slate-100 { 
+  background-color: var(--color-slate-800, #1e293b) !important; 
+}
+.dark .border-slate-100,
+.dark .border-slate-200 { 
+  border-color: var(--color-slate-800, #1e293b) !important; 
+}
+.dark .border-slate-300 { 
+  border-color: var(--color-slate-700, #334155) !important; 
+}
+.dark .text-slate-900 { 
+  color: var(--color-slate-100, #f1f5f9) !important; 
+}
+.dark .text-slate-800 { 
+  color: var(--color-slate-200, #e2e8f0) !important; 
+}
+.dark .text-slate-700 { 
+  color: var(--color-slate-300, #cbd5e1) !important; 
+}
+.dark .text-slate-600 { 
+  color: var(--color-slate-400, #94a3b8) !important; 
+}
+.dark .text-slate-500 { 
+  color: var(--color-slate-400, #94a3b8) !important; 
+}
+
+/* Base override to ensure inputs have proper contrast even if not using classes above */
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+  @apply text-slate-900 dark:text-slate-100 dark:bg-slate-950 dark:border-slate-700;
+}

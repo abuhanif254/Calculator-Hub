@@ -1,0 +1,1199 @@
+import { CalculatorDef } from "../types";
+
+export const calculators: CalculatorDef[] = [
+  {
+    slug: "retirement-calculator",
+    slugs: {
+      en: "retirement-calculator",
+      es: "calculadora-de-jubilacion",
+      de: "rentenrechner",
+      fr: "calculatrice-de-retraite"
+    },
+    title: "Retirement Calculator",
+    category: "Financial",
+    description: "Calculate how much you need to save to retire comfortably.",
+    meta: {
+      title: "Retirement Calculator | Plan Your Financial Future",
+      description: "Estimate your retirement savings, see the power of compound interest, and plan your financial future with our free and highly accurate Retirement Calculator.",
+      keywords: "retirement calculator, retirement planning, savings calculator, compound interest"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "amortization-calculator",
+    slugs: {
+      en: "amortization-calculator",
+      es: "calculadora-de-amortizacion",
+      de: "tilgungsrechner",
+      fr: "calculatrice-amortissement"
+    },
+    title: "Amortization Calculator",
+    category: "Financial",
+    description: "Generate a complete amortization schedule for your loan.",
+    meta: {
+      title: "Amortization Calculator | Free Loan Schedule Generator",
+      description: "Calculate your monthly payments and generate a complete loan amortization schedule. See exactly how much goes to principal and interest over time.",
+      keywords: "amortization calculator, loan schedule, amortization table, principal and interest, payoff schedule"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "investment-calculator",
+    slugs: {
+      en: "investment-calculator",
+      es: "calculadora-de-inversiones",
+      de: "investmentanlage-rechner",
+      fr: "calculatrice-investissement"
+    },
+    title: "Investment Calculator",
+    category: "Financial",
+    description: "Calculate the future value of your investment and see compound growth over time.",
+    meta: {
+      title: "Investment Calculator | Track Future Wealth Projection",
+      description: "Explore how your money can grow over time with compound interest. Calculate starting principles, monthly contributions, and estimated returns.",
+      keywords: "investment calculator, compounding interest, future value of money, investment growth, earnings calculator"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "inflation-calculator",
+    slugs: {
+      en: "inflation-calculator",
+      es: "calculadora-de-inflacion",
+      de: "inflationsrechner",
+      fr: "calculatrice-inflation"
+    },
+    title: "Inflation Calculator",
+    category: "Financial",
+    description: "Calculate the impact of inflation on your purchasing power and future costs.",
+    meta: {
+      title: "Inflation Calculator | Forward Projection & Purchasing Power",
+      description: "Estimate how much inflation will impact your savings and calculate the true future cost of living with our free Inflation Calculator.",
+      keywords: "inflation calculator, purchasing power, future cost, inflation rate, value of money over time, CPI"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "finance-calculator",
+    slugs: {
+      en: "finance-calculator",
+      es: "calculadora-financiera",
+      de: "finanzrechner",
+      fr: "calculatrice-financiere"
+    },
+    title: "Finance Calculator",
+    category: "Financial",
+    description: "Perform comprehensive Time Value of Money (TVM) and financial projections.",
+    meta: {
+      title: "Finance Calculator | Time Value of Money & TVM Projection",
+      description: "Calculate present value, future value, interest, and periodic payments with our powerful TVM Finance Calculator.",
+      keywords: "finance calculator, time value of money, TVM calculator, future value, present value, financial planning"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "income-tax-calculator",
+    slugs: {
+      en: "income-tax-calculator",
+      es: "calculadora-de-impuestos",
+      de: "einkommensteuer-rechner",
+      fr: "calculatrice-impot-revenu"
+    },
+    title: "Income Tax Calculator",
+    category: "Financial",
+    description: "Estimate your net take-home pay by factoring in gross income, deductions, and tax rates.",
+    meta: {
+      title: "Income Tax Calculator | Global Take-Home Pay Estimator",
+      description: "Calculate your net take-home pay, total taxes paid, and effective tax rate with our universally adaptable income tax calculator.",
+      keywords: "income tax calculator, net pay, take home pay, salary calculator, tax deductions, effective tax rate"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "compound-interest-calculator",
+    slugs: {
+      en: "compound-interest-calculator",
+      es: "calculadora-interes-compuesto",
+      de: "zinseszinsrechner",
+      fr: "calculatrice-interets-composes"
+    },
+    title: "Compound Interest Calculator",
+    category: "Financial",
+    description: "Discover how your money grows over time with the power of compound interest.",
+    meta: {
+      title: "Compound Interest Calculator | Growth & Returns Estimator",
+      description: "Calculate how your savings and investments will grow with our advanced Compound Interest Calculator. Model different frequencies and contributions.",
+      keywords: "compound interest calculator, investment growth, APY calculator, interest compounding, simple vs compound interest"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "salary-calculator",
+    slugs: {
+      en: "salary-calculator",
+      es: "calculadora-de-salario",
+      de: "gehaltsrechner",
+      fr: "calculatrice-de-salaire"
+    },
+    title: "Salary Calculator",
+    category: "Financial",
+    description: "Convert your salary across hourly, daily, weekly, monthly, and annual ranges.",
+    meta: {
+      title: "Salary Calculator | Hourly to Annual Income Converter",
+      description: "Easily convert your wage between hourly, daily, weekly, monthly, and annual amounts with our global Salary Calculator.",
+      keywords: "salary calculator, wage converter, hourly to salary, monthly income calculator, annual pay, paycheck calculator"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "interest-rate-calculator",
+    slugs: {
+      en: "interest-rate-calculator",
+      es: "calculadora-tasa-de-interes",
+      de: "zinssatzrechner",
+      fr: "calculatrice-taux-interet"
+    },
+    title: "Interest Rate Calculator",
+    category: "Financial",
+    description: "Calculate the exact interest rate required to reach your financial goals.",
+    meta: {
+      title: "Interest Rate Calculator | Find Required Rate of Return",
+      description: "Discover the specific annual interest rate you need to grow your starting principal into a target future value. Real-world financial planning tool.",
+      keywords: "interest rate calculator, calculate ROI, required rate of return, target savings calculator, compound interest rate formula"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "sales-tax-calculator",
+    slugs: {
+      en: "sales-tax-calculator",
+      es: "calculadora-impuesto-ventas",
+      de: "umsatzsteuerrechner",
+      fr: "calculatrice-taxe-de-vente"
+    },
+    title: "Sales Tax Calculator",
+    category: "Financial",
+    description: "Calculate sales tax, GST, or VAT to find the total cost or pre-tax price of an item.",
+    meta: {
+      title: "Sales Tax / VAT Calculator | Add & Reverse Tax",
+      description: "Quickly add sales tax to a price, or reverse-calculate to extract the pre-tax net amount and total tax paid. Works for VAT and GST globally.",
+      keywords: "sales tax calculator, vat calculator, reverse sales tax, calculate gst, gross price, net price"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "graphing-calculator",
+    slugs: {
+      en: "graphing-calculator",
+      es: "calculadora-grafica",
+      de: "grafikrechner",
+      fr: "calculatrice-graphique"
+    },
+    title: "Graphing Calculator",
+    category: "Math",
+    description: "Plot equations, analyze functions, and visualize mathematically across a customizable interactive grid.",
+    meta: {
+      title: "Free Online Graphing Calculator | Math Visualizer",
+      description: "Interactive online graphing calculator. Plot functions, explore math equations, intersect points, and visualize math visually with our free visual graph toolkit.",
+      keywords: "graphing calculator, function plotter, graph equation, visual math"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "scientific-calculator",
+    slugs: {
+      en: "scientific-calculator",
+      es: "calculadora-cientifica",
+      de: "wissenschaftlicher-taschenrechner",
+      fr: "calculatrice-scientifique"
+    },
+    title: "Scientific Calculator",
+    category: "Math",
+    description: "Advanced scientific calculator for complex mathematical operations, trigonometry, and logarithms.",
+    meta: {
+      title: "Scientific Calculator | Advanced Online Math Tool",
+      description: "Free online scientific calculator with advanced math functions like trigonometry, logarithms, exponentiation, and more.",
+      keywords: "scientific calculator, online math calculator, trigonometry, scientific notation calculator, pi, exponents"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "math"
+  },
+  {
+    slug: "percentage-calculator",
+    slugs: {
+      en: "percentage-calculator",
+      es: "calculadora-de-porcentajes",
+      de: "prozentrechner",
+      fr: "calculatrice-de-pourcentage"
+    },
+    title: "Percentage Calculator",
+    category: "Math",
+    description: "Easily find percentages, calculate percentage increases or decreases, and find what percent a number is of another.",
+    meta: {
+      title: "Percentage Calculator | Find Percent Increase/Decrease",
+      description: "Free online percentage calculator. Find percent of a number, percentage change (increase/decrease), and what percent a number is of another.",
+      keywords: "percentage calculator, what percent, percent increase calculator, percent decrease, find percentage, math calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "random-number-generator",
+    slugs: {
+      en: "random-number-generator",
+      es: "generador-de-numeros-aleatorios",
+      de: "zufallszahlengenerator",
+      fr: "generateur-de-nombres-aleatoires"
+    },
+    title: "Random Number Generator",
+    category: "Math",
+    description: "Generate truly random numbers instantly. Set custom minimum and maximum ranges, and choose to allow or prevent duplicate numbers.",
+    meta: {
+      title: "Random Number Generator | Free Number Picker",
+      description: "Free online random number generator (RNG). Create single or multiple random numbers sets with custom min/max ranges. No duplicates option available.",
+      keywords: "random number generator, rng, random picker, number generator, generate random number, math tools"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "triangle-calculator",
+    slugs: {
+      en: "triangle-calculator",
+      es: "calculadora-de-triangulos",
+      de: "dreiecksrechner",
+      fr: "calculatrice-de-triangle"
+    },
+    title: "Triangle Calculator",
+    category: "Math",
+    description: "Solve any triangle instantly. Find missing sides, angles, area, and perimeter using SSS, SAS, or Base and Height methods.",
+    meta: {
+      title: "Triangle Calculator | Find Angles, Sides & Area",
+      description: "Free online triangle calculator. Solve triangles using 3 sides (SSS), 2 sides and an angle (SAS), or calculate area with base and height.",
+      keywords: "triangle calculator, solve triangle, triangle area calculator, calculate triangle sides, SSS, SAS, geometry calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "standard-deviation-calculator",
+    slugs: {
+      en: "standard-deviation-calculator",
+      es: "calculadora-de-desviacion-estandar",
+      de: "standardabweichungs-rechner",
+      fr: "calculatrice-decart-type"
+    },
+    title: "Standard Deviation Calculator",
+    category: "Math",
+    description: "Calculate standard deviation, variance, mean, count, and sum. Supports population and sample data sets.",
+    meta: {
+      title: "Standard Deviation Calculator | Population & Sample",
+      description: "Free online standard deviation calculator. Instantly find the sample and population standard deviation, mean, variance, and count from any data set.",
+      keywords: "standard deviation calculator, sample standard deviation, population standard deviation, variance calculator, mean calculator, stats calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "calorie-calculator",
+    slugs: {
+      en: "calorie-calculator",
+      es: "calculadora-de-calorias",
+      de: "kalorienrechner",
+      fr: "calculateur-de-calories"
+    },
+    title: "Calorie Calculator",
+    category: "Health",
+    description: "Calculate your daily calorie needs based on age, weight, height, and activity level. Discover calories required for weight loss or maintenance.",
+    meta: {
+      title: "Calorie Calculator | TDEE & BMR Target Finder",
+      description: "Free online calorie calculator to find your Total Daily Energy Expenditure (TDEE). Calculate exactly how many calories you need to lose, maintain, or gain weight.",
+      keywords: "calorie calculator, TDEE calculator, BMR calculator, daily calories, weight loss calculator, maintenance calories, macro calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "body-fat-calculator",
+    slugs: {
+      en: "body-fat-calculator",
+      es: "calculadora-de-grasa-corporal",
+      de: "koerperfettanteil-rechner",
+      fr: "calculatrice-indice-masse-grasse"
+    },
+    title: "Body Fat Calculator",
+    category: "Health",
+    description: "Calculate your body fat percentage, lean body mass, and fat mass using the highly accurate U.S. Navy Method based on your measurements.",
+    meta: {
+      title: "Body Fat Calculator | Find Your Body Fat Percentage",
+      description: "Free online body fat calculator using the U.S. Navy method. Calculate your lean body mass, fat mass, and body fat category instantly with your waist and neck measurements.",
+      keywords: "body fat calculator, calculate body fat percentage, US Navy method, lean body mass, fat mass, body fat category, fitness calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "bmr-calculator",
+    slugs: {
+      en: "bmr-calculator",
+      es: "calculadora-de-tmb",
+      de: "grundumsatzrechner",
+      fr: "calculateur-de-metabolisme-de-base"
+    },
+    title: "BMR Calculator",
+    category: "Health",
+    description: "Calculate your Basal Metabolic Rate (BMR) instantly. Determine exactly how many calories your body burns at complete rest.",
+    meta: {
+      title: "BMR Calculator | Calculate Basal Metabolic Rate",
+      description: "Free online BMR calculator. Use the Mifflin-St Jeor equation to calculate your Basal Metabolic Rate (BMR) accurately in metric or imperial units.",
+      keywords: "bmr calculator, basal metabolic rate, resting metabolic rate, rmr calculator, calories burned resting, metabolism calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "ideal-weight-calculator",
+    slugs: {
+      en: "ideal-weight-calculator",
+      es: "calculadora-de-peso-ideal",
+      de: "idealgewicht-rechner",
+      fr: "calculateur-de-poids-ideal"
+    },
+    title: "Ideal Weight Calculator",
+    category: "Health",
+    description: "Discover your Ideal Body Weight (IBW) using scientifically proven clinical formulas including Robinson, Miller, Hamwi, and Devine.",
+    meta: {
+      title: "Ideal Weight Calculator | Find Your Healthy IBW",
+      description: "Free online ideal weight calculator. Calculate your perfect healthy body weight range based on your exact height and gender using medical formulas.",
+      keywords: "ideal weight calculator, perfect weight, IBW calculator, healthy weight calculator, Robinson formula, Devine formula, body weight"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "pace-calculator",
+    slugs: {
+      en: "pace-calculator",
+      es: "calculadora-de-ritmo",
+      de: "pace-rechner",
+      fr: "calculateur-allure"
+    },
+    title: "Pace Calculator",
+    category: "Sports",
+    description: "Calculate your running pace, total time, or distance. Perfect for runners training for a 5K, 10K, half-marathon, or full marathon.",
+    meta: {
+      title: "Pace Calculator | Running Pace, Time & Distance",
+      description: "Free online running pace calculator. Enter your distance and time to find your pace, or use pace and distance to predict your race finish time.",
+      keywords: "pace calculator, running pace, marathon pace, distance calculator, finish time calculator, 5k pace, half marathon pace"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "ovulation-calculator",
+    slugs: {
+      en: "ovulation-calculator",
+      es: "calculadora-de-ovulacion",
+      de: "eisprungrechner",
+      fr: "calculateur-d-ovulation"
+    },
+    title: "Ovulation Calculator",
+    category: "Health",
+    description: "Calculate your exact ovulation day and fertile window based on your menstrual cycle.",
+    meta: {
+      title: "Ovulation Calculator | Find Your Fertile Window",
+      description: "Free online ovulation calculator. Instantly discover your most fertile days, exact ovulation date, and expected next period to maximize conception chances.",
+      keywords: "ovulation calculator, fertile window, when do I ovulate, getting pregnant, menstrual cycle calculator, fertility calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "pregnancy-calculator",
+    slugs: {
+      en: "pregnancy-calculator",
+      es: "calculadora-de-embarazo",
+      de: "schwangerschaftsrechner",
+      fr: "calculateur-de-grossesse"
+    },
+    title: "Pregnancy Calculator",
+    category: "Health",
+    description: "Calculate your estimated due date, current trimester, and exact weeks of pregnancy using your Last Menstrual Period (LMP), Conception Date, or IVF Transfer.",
+    meta: {
+      title: "Pregnancy Calculator | Calculate Your Due Date",
+      description: "Free online pregnancy due date calculator. Instantly discover your baby's estimated due date, your current trimester, and pregnancy timeline.",
+      keywords: "pregnancy calculator, due date calculator, estimated due date, EDD calculator, weeks pregnant, baby due date, ivf due date"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "pregnancy-conception-calculator",
+    slugs: {
+      en: "pregnancy-conception-calculator",
+      es: "calculadora-de-concepcion",
+      de: "empfaengnisrechner",
+      fr: "calculateur-de-date-de-conception"
+    },
+    title: "Pregnancy Conception",
+    category: "Health",
+    description: "Calculate your exact date of conception and fertility window based on your due date, last menstrual period, or ultrasound scan.",
+    meta: {
+      title: "Conception Calculator | Find Out When You Conceived",
+      description: "Free online pregnancy conception calculator. Reverse calculate exactly when you got pregnant based on your EDD, LMP, or clinical ultrasound.",
+      keywords: "conception calculator, fertility window, pregnancy math, when did i get pregnant, date of conception"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "due-date-calculator",
+    slugs: {
+      en: "due-date-calculator",
+      es: "calculadora-de-fecha-de-parto",
+      de: "geburtsterminrechner",
+      fr: "calculateur-de-date-d-accouchement"
+    },
+    title: "Due Date Calculator",
+    category: "Health",
+    description: "Calculate your estimated baby due date using your last menstrual period (LMP), conception date, or IVF transfer.",
+    meta: {
+      title: "Due Date Calculator | Calculate EDD, Zodiac & More",
+      description: "Free online due date calculator. Quickly and accurately determine your estimated due date, fetal milestones, expected zodiac sign, and birthstone.",
+      keywords: "due date calculator, baby due date, EDD calculator, calculate my due date, expected delivery date, pregnancy calculator, baby zodiac sign"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "date-calculator",
+    slugs: {
+      en: "date-calculator",
+      es: "calculadora-de-fechas",
+      de: "datumsrechner",
+      fr: "calculateur-de-date"
+    },
+    title: "Date Calculator",
+    category: "Math",
+    description: "Calculate the exact number of days, months, and years between two dates, or add/subtract time from a specific date with our free Date Calculator.",
+    meta: {
+      title: "Date Calculator | Add, Subtract & Find Days Between Dates",
+      description: "Free online date calculator. Calculate the exact duration between two dates, or add/subtract days, weeks, months, and years to a specific starting date.",
+      keywords: "date calculator, days between dates, time calculator, add days to date, subtract days from date, duration calculator"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "time-calculator",
+    slugs: {
+      en: "time-calculator",
+      es: "calculadora-de-tiempo",
+      de: "zeitrechner",
+      fr: "calculateur-de-temps"
+    },
+    title: "Time Calculator",
+    category: "Math",
+    description: "Calculate the exact difference between two clock times, or add and subtract days, hours, minutes, and seconds with our free Time Calculator.",
+    meta: {
+      title: "Time Calculator | Add, Subtract & Find Time Difference",
+      description: "Free online time calculator. Easily calculate the duration between two times, or add and subtract hours, minutes, and seconds from a total duration.",
+      keywords: "time calculator, calculate time, time difference, add time, subtract time, hours between times, time math"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "hours-calculator",
+    slugs: {
+      en: "hours-calculator",
+      es: "calculadora-de-horas",
+      de: "stundenrechner",
+      fr: "calculateur-d-heures"
+    },
+    title: "Hours Calculator",
+    category: "Math",
+    description: "Calculate your total work hours by entering your start time, end time, and break duration. Instantly convert to decimal hours.",
+    meta: {
+      title: "Hours Calculator | Calculate Work & Timesheet Hours",
+      description: "Free online hours calculator. Calculate total time worked, deduct lunch breaks, and convert to standardized decimal hours for payroll and wages.",
+      keywords: "hours calculator, calculate work hours, timesheet calculator, payroll calculator, decimal hours, time card, work hours"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "gpa-calculator",
+    slugs: {
+      en: "gpa-calculator",
+      es: "calculadora-de-gpa",
+      de: "gpa-rechner",
+      fr: "calculateur-de-gpa"
+    },
+    title: "GPA Calculator",
+    category: "Math",
+    description: "Calculate your high school or college GPA easily. Add your courses, grades, credits, and class weights to find your exact Grade Point Average (GPA).",
+    meta: {
+      title: "GPA Calculator | Calculate High School & College GPA",
+      description: "Free online GPA Calculator. Calculate your Grade Point Average on a 4.0 scale. Include AP, IB, and Honors courses to calculate weighted and unweighted GPA.",
+      keywords: "gpa calculator, grade point average, college gpa, high school gpa, weighted gpa, unweighted gpa, grading scale"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "grade-calculator",
+    slugs: {
+      en: "grade-calculator",
+      es: "calculadora-de-calificaciones",
+      de: "notenrechner",
+      fr: "calculateur-de-notes"
+    },
+    title: "Grade Calculator",
+    category: "Math",
+    description: "Calculate your current class grade, weighted average, and exactly what you need to score on your final exam to pass or get an A in the class.",
+    meta: {
+      title: "Grade Calculator | Weighted Class & Final Exam Calculator",
+      description: "Free online grade calculator. Easily calculate your current weighted class grade or find out exactly what you need on your final exam to reach your target grade.",
+      keywords: "grade calculator, class grade, final exam calculator, weighted grade, current grade, passing grade, high school grade, college grade"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "concrete-calculator",
+    slugs: {
+      en: "concrete-calculator",
+      es: "calculadora-de-concreto",
+      de: "betonrechner",
+      fr: "calculateur-de-beton"
+    },
+    title: "Concrete Calculator",
+    category: "Math",
+    description: "Calculate the exact amount of concrete needed for your project in cubic yards and cubic meters. Estimate bags required for slabs, footings, and columns.",
+    meta: {
+      title: "Concrete Calculator | Calculate Cubic Yards & Bags",
+      description: "Free online concrete calculator. Calculate the exact volume of concrete you need for slabs, columns, and footings in cubic yards, meters, and premixed bags.",
+      keywords: "concrete calculator, cubic yards of concrete, calculate concrete slabs, concrete bags calculator, volume calculator, cement calculator, footing calculation"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "subnet-calculator",
+    slugs: {
+      en: "subnet-calculator",
+      es: "calculadora-de-subredes",
+      de: "subnetz-rechner",
+      fr: "calculateur-de-sous-reseau"
+    },
+    title: "Subnet Calculator",
+    category: "Other",
+    description: "Calculate IPv4 subnets, network addresses, broadcast addresses, and usable host ranges based on IP address and CIDR block.",
+    meta: {
+      title: "Subnet Calculator | IPv4, CIDR, & IP Range Calculator",
+      description: "Free online IP Subnet Calculator. Easily calculate subnets, network masks, broadcast addresses, and usable host ranges using CIDR notation.",
+      keywords: "subnet calculator, ip calculator, cidr calculator, network address, broadcast address, ipv4 subnetting, usable ip range, network mask"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "subnet-calculator",
+    slugs: {
+      en: "subnet-calculator",
+      es: "calculadora-de-subredes",
+      de: "subnetz-rechner",
+      fr: "calculateur-de-sous-reseau"
+    },
+    title: "Subnet Calculator",
+    category: "Other",
+    description: "Calculate IPv4 subnets, network addresses, broadcast addresses, and usable host ranges based on IP address and CIDR block.",
+    meta: {
+      title: "Subnet Calculator | IPv4, CIDR, & IP Range Calculator",
+      description: "Free online IP Subnet Calculator. Easily calculate subnets, network masks, broadcast addresses, and usable host ranges using CIDR notation.",
+      keywords: "subnet calculator, ip calculator, cidr calculator, network address, broadcast address, ipv4 subnetting, usable ip range, network mask"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "password-generator",
+    slugs: {
+      en: "password-generator",
+      es: "generador-de-contrasenas",
+      fr: "generateur-de-mots-de-passe",
+      de: "passwort-generator"
+    },
+    title: "Password Generator",
+    category: "Other",
+    description: "Generate highly secure, random passwords online to protect your accounts. Customize length, numbers, symbols, and casing.",
+    meta: {
+      title: "Secure Password Generator | Create Strong Random Passwords",
+      description: "Free online password generator. Instantly create highly secure, random passwords with custom lengths and character types to protect your online identity.",
+      keywords: "password generator, secure password, random password maker, strong password, create password, cybersecurity"
+    },
+    fields: [],
+    logicModule: "other"
+  },
+  {
+    slug: "conversion-calculator",
+    slugs: {
+      en: "conversion-calculator",
+      es: "calculadora-de-conversiones",
+      fr: "convertisseur-d-unites",
+      de: "einheitenumrechner"
+    },
+    title: "Conversion Calculator",
+    category: "Other",
+    description: "Quickly convert between metric and imperial units. Use our free conversion calculator for length, weight, temperature, volume, and more.",
+    meta: {
+       title: "Conversion Calculator | Fast & Accurate Unit Converter",
+       description: "Free online conversion calculator. Instantly convert metric to imperial and vice versa. Supports length, weight, temperature, and volume conversions.",
+       keywords: "conversion calculator, unit converter, metric conversion, imperial conversion, length converter, weight converter, temperature conversion"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "currency-calculator",
+    slugs: {
+      en: "currency-calculator",
+      es: "calculadora-de-divisas",
+      fr: "convertisseur-de-devises",
+      de: "waehrungsrechner"
+    },
+    title: "Currency Calculator",
+    category: "Financial",
+    description: "Convert between global currencies with our free online currency converter. Instantly get up-to-date exchange rates.",
+    meta: {
+       title: "Currency Calculator | Live Exchange Rates & Converter",
+       description: "Free online currency calculator. Instantly convert between global currencies using live exchange rates. perfect for travel, business, and finance.",
+       keywords: "currency calculator, currency converter, exchange rates, foreign exchange, money converter"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "rent-calculator",
+    slugs: {
+      en: "rent-calculator",
+      es: "calculadora-de-alquiler",
+      fr: "calculateur-de-loyer",
+      de: "mietrechner"
+    },
+    title: "Rent Calculator",
+    category: "Financial",
+    description: "Calculate how much rent you can afford based on your income. Our free rent affordability calculator uses the 30% rule.",
+    meta: {
+       title: "Rent Affordability Calculator | How Much Rent Can I Afford?",
+       description: "Free online rent calculator. Instantly figure out how much rent you can afford based on your annual or monthly salary.",
+       keywords: "rent calculator, rent affordability, how much rent can i afford, 30 percent rule, apartment budget, housing calculator"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "social-security-calculator",
+    slugs: {
+      en: "social-security-calculator",
+      es: "calculadora-de-seguro-social",
+      fr: "calculateur-de-securite-sociale",
+      de: "rentenrechner"
+    },
+    title: "Social Security Calculator",
+    category: "Financial",
+    description: "Estimate your retirement benefits with our free Social Security Calculator based on your age, salary, and retirement goals.",
+    meta: {
+       title: "Social Security Calculator | Estimate Retirement Benefits",
+       description: "Free online Social Security Calculator. Accurately estimate your monthly retirement benefits based on your current age, income, and expected retirement age.",
+       keywords: "social security calculator, retirement benefits, calculate social security, retirement calculator, retirement age, monthly benefit estimate"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "credit-cards-payoff",
+    slugs: {
+      en: "credit-cards-payoff",
+      es: "pago-tarjetas-de-credito",
+      fr: "remboursement-cartes-de-credit",
+      de: "kreditkarten-abbezahlen"
+    },
+    title: "Credit Cards Payoff",
+    category: "Financial",
+    description: "Calculate how long it will take to pay off your credit card debt, and discover how extra payments can save you thousands in interest.",
+    meta: {
+       title: "Credit Card Payoff Calculator | Calculate Debt Freedom Date",
+       description: "Free online credit card payoff calculator. Find out exactly when you will be debt-free and see how much interest you will pay over time.",
+       keywords: "credit card payoff calculator, debt payoff, credit card calculator, pay off debt, compound interest, financial calculator"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "scientific-notation-calculator",
+    slugs: {
+      en: "scientific-notation-calculator",
+      es: "calculadora-de-notacion-cientifica",
+      de: "wissenschaftliche-schreibweise-rechner",
+      fr: "calculatrice-de-notation-scientifique"
+    },
+    title: "Scientific Notation Calculator",
+    category: "Math",
+    description: "Convert numbers to scientific notation, e-notation, and perform mathematical operations.",
+    meta: {
+      title: "Scientific Notation Calculator | Converter & Math",
+      description: "Free scientific notation calculator. Convert decimal numbers to scientific e-notation, or perform addition, subtraction, multiplication, and division on scientific notation.",
+      keywords: "scientific notation calculator, e notation converter, standard form to scientific notation, scientific notation math"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "statistics-calculator",
+    slugs: {
+      en: "statistics-calculator",
+      es: "calculadora-estadistica",
+      de: "statistik-rechner",
+      fr: "calculatrice-statistique"
+    },
+    title: "Statistics Calculator",
+    category: "Math",
+    description: "Calculate mean, median, mode, variance, standard deviation, quartiles, skewness, and more.",
+    meta: {
+      title: "Statistics Calculator | Mean, Variance, Std Dev",
+      description: "Powerful statistics calculator with step-by-step solutions, box plots, histograms, and normal distribution charts.",
+      keywords: "statistics calculator, mean median mode, standard deviation calculator, variance, step by step stats"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "fraction-calculator",
+    slugs: {
+      en: "fraction-calculator",
+      es: "calculadora-de-fracciones",
+      de: "bruchrechner",
+      fr: "calculatrice-de-fractions"
+    },
+    title: "Fraction Calculator",
+    category: "Math",
+    description: "Add, subtract, multiply, and divide fractions easily. Includes mixed numbers and simplification.",
+    meta: {
+      title: "Fraction Calculator | Add, Subtract & Multiply Fractions",
+      description: "Free online fraction calculator. Easily solve fraction problems, simplify mixed numbers, and find common denominators.",
+      keywords: "fraction calculator, add fractions, multiply fractions, simplify fractions, common denominator, mixed numbers"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "math"
+  },
+  {
+    slug: "age-calculator",
+    slugs: {
+      en: "age-calculator",
+      es: "calculadora-de-edad",
+      de: "alter-rechner",
+      fr: "calculatrice-age"
+    },
+    title: "Age Calculator",
+    category: "Other",
+    description: "Calculate exact age in years, months, weeks, and days globally utilizing strict localization formatting.",
+    meta: {
+      title: "Age Calculator | Precise localized date format testing",
+      description: "Find out exactly how old you are down to the day. This age calculator uses localized components to handle MM/DD/YYYY and DD/MM/YYYY formatting seamlessly for international users.",
+      keywords: "age calculator, exact age calculator, birthday calculator, chronological age"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "time",
+    seoContent: `
+## Why Date Formatting Breaks the Internet
+
+If you've ever tried to sign up for a service online and input your birthday, you might have received an error telling you your date is completely invalid—or worse, it accepted the date but swapped the days and months! 
+
+This is the classic **MM/DD/YYYY vs DD/MM/YYYY** problem.
+
+### Global Localization at the Engine Level
+Americans process dates by Month, then Day. Almost the entire rest of the human population processes dates strictly by Day, then Month. Trying to execute backend calculations (like chronological age computation) on a raw string like \`04/05/1990\` is an architectural disaster waiting to happen. Is the user in Germany meaning May 4th, or is the user in Texas meaning April 5th?
+
+### How CalculatorCentral Fixes This
+To engineer a flawless cross-border data transfer:
+1. **Intl.DateTimeFormat API**: Under the hood, this Age Calculator identifies your current browser locale immediately. 
+2. **Abstracted Execution**: The backend math relies purely on mathematical ISO UTC timestamps. It never sees a \`/\` or a \`-\`.
+3. **Region-Rendered Views**: The UI you interact with directly wraps the internal UTC engine into your home country's specific date format dynamically using the \`react-day-picker\` localization schema injection.
+    `
+  },
+  {
+    slug: "auto-loan-calculator",
+    slugs: {
+      en: "auto-loan-calculator",
+      es: "calculadora-prestamo-auto",
+      de: "autokreditrechner",
+      fr: "calculatrice-pret-auto"
+    },
+    title: "Auto Loan Calculator",
+    category: "Financial",
+    description: "Calculate your monthly car payment and see the amortization schedule.",
+    meta: {
+      title: "Auto Loan Calculator | Estimate Car Payments",
+      description: "Use our free auto loan calculator to estimate your monthly car payments. Includes total interest and total vehicle cost estimations.",
+      keywords: "auto loan, car payment calculator, vehicle financing, auto financing"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "payment-calculator",
+    slugs: {
+      en: "payment-calculator",
+      es: "calculadora-de-pagos",
+      de: "zahlungsrechner",
+      fr: "calculatrice-de-paiement"
+    },
+    title: "Payment Calculator",
+    category: "Financial",
+    description: "Calculate your monthly payments for any fixed-term loan.",
+    meta: {
+      title: "Payment Calculator | Estimate Monthly Loan Payments",
+      description: "Quickly calculate monthly loan payments for auto, personal, or business loans. See exactly how much interest you will pay over time.",
+      keywords: "payment calculator, loan payment calculator, calculate monthly payment, amortization"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "interest-calculator",
+    slugs: {
+      en: "interest-calculator",
+      es: "calculadora-de-interes",
+      de: "zinsrechner",
+      fr: "calculatrice-interets"
+    },
+    title: "Interest Calculator",
+    category: "Financial",
+    description: "Calculate simple and compound interest over time.",
+    meta: {
+      title: "Interest Calculator | Accurately Calculate Compound Interest",
+      description: "Easily compute total interest, compound totals, and principal over time with our free Interest Calculator. Works with monthly, daily, and annual compounding.",
+      keywords: "interest calculator, compound interest, simple interest, investment calculator"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
+    slug: "mortgage-calculator",
+    slugs: {
+      en: "mortgage-calculator",
+      es: "calculadora-de-hipotecas",
+      de: "hypothekenrechner",
+      fr: "calculatrice-hypothecaire"
+    },
+    title: "Mortgage Calculator",
+    category: "Financial",
+    description: "Calculate your monthly mortgage payment and amortization schedule.",
+    meta: {
+      title: "Mortgage Calculator - Estimate Your Monthly Payments",
+      description: "Use our free mortgage calculator to estimate your monthly mortgage payments. Includes taxes, insurance, and an amortization schedule.",
+      keywords: "mortgage calculator, home loan, amortization schedule",
+    },
+    fields: [
+      {
+        id: "homePrice",
+        label: "Home Price",
+        type: "currency",
+        defaultValue: 400000,
+        min: 0,
+        step: 1000,
+      },
+      {
+        id: "downPayment",
+        label: "Down Payment",
+        type: "currency",
+        defaultValue: 80000,
+        min: 0,
+        step: 100,
+      },
+      {
+        id: "loanTerm",
+        label: "Loan Term (Years)",
+        type: "years",
+        defaultValue: 30,
+        options: [
+          { label: "30 Years", value: "30" },
+          { label: "20 Years", value: "20" },
+          { label: "15 Years", value: "15" },
+          { label: "10 Years", value: "10" },
+        ],
+      },
+      {
+        id: "interestRate",
+        label: "Interest Rate (%)",
+        type: "percent",
+        defaultValue: 6.5,
+        min: 0,
+        max: 30,
+        step: 0.1,
+      },
+      {
+        id: "propertyTax",
+        label: "Annual Property Tax",
+        type: "currency",
+        defaultValue: 4800,
+      },
+      {
+        id: "homeInsurance",
+        label: "Annual Home Insurance",
+        type: "currency",
+        defaultValue: 1200,
+      },
+      {
+        id: "hoaFees",
+        label: "Monthly HOA Fees",
+        type: "currency",
+        defaultValue: 0,
+      },
+    ],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Mortgage Calculator
+Buying a home is one of the most significant financial decisions you'll ever make. This free mortgage calculator makes it easy to estimate your monthly payments and see how different factors affect your budget.
+
+### Factors That Affect Your Payment
+*   **Home Price:** The total purchase price of the home you want to buy.
+*   **Down Payment:** The upfront cash you pay toward the purchase. A higher down payment reduces your loan amount and can lower your interest rate.
+*   **Loan Term:** The number of years you have to repay the loan. A 30-year term offers lower monthly payments, while a 15-year term saves you money on interest over the life of the loan.
+*   **Interest Rate:** The percentage the lender charges you to borrow the money.
+*   **Property Taxes & Insurance:** These are often included in your monthly payment (escrow). Our calculator allows you to estimate these for a more accurate picture of your total housing cost.
+    `,
+  },
+  {
+    slug: "canadian-mortgage-calculator",
+    slugs: {
+      en: "canadian-mortgage-calculator",
+      es: "calculadora-de-hipotecas-canadiense",
+      de: "kanadischer-hypothekenrechner",
+      fr: "calculatrice-hypothecaire-canadienne"
+    },
+    title: "Canadian Mortgage Calculator",
+    category: "Financial",
+    description: "Calculate your Canadian mortgage with mandated semi-annual compounding rules.",
+    meta: {
+      title: "Canadian Mortgage Calculator | Semi-Annual Compounding",
+      description: "Free Canadian mortgage calculator that correctly applies Canada's legal semi-annual compounding requirements to estimate your exact monthly payments.",
+      keywords: "canadian mortgage calculator, semi-annual compounding, canada home loan",
+    },
+    fields: [
+      {
+        id: "homePrice",
+        label: "Home Price (CAD)",
+        type: "currency",
+        defaultValue: 600000,
+        min: 0,
+        step: 1000,
+      },
+      {
+        id: "downPayment",
+        label: "Down Payment",
+        type: "currency",
+        defaultValue: 120000,
+        min: 0,
+        step: 100,
+      },
+      {
+        id: "loanTerm",
+        label: "Amortization Period",
+        type: "years",
+        defaultValue: 25,
+        options: [
+          { label: "30 Years", value: "30" },
+          { label: "25 Years", value: "25" },
+          { label: "20 Years", value: "20" },
+          { label: "15 Years", value: "15" },
+        ],
+      },
+      {
+        id: "interestRate",
+        label: "Interest Rate (%)",
+        type: "percent",
+        defaultValue: 5.25,
+        min: 0,
+        max: 30,
+        step: 0.1,
+      },
+      {
+        id: "propertyTax",
+        label: "Annual Property Tax",
+        type: "currency",
+        defaultValue: 6000,
+      },
+      {
+        id: "homeInsurance",
+        label: "Annual Home Insurance",
+        type: "currency",
+        defaultValue: 1500,
+      },
+      {
+        id: "hoaFees",
+        label: "Monthly Condo/Strata Fees",
+        type: "currency",
+        defaultValue: 0,
+      },
+    ],
+    logicModule: "financial",
+    seoContent: `
+## Canadian Mortgage Rules Are Different
+
+If you live in Canada, you cannot use a standard US mortgage calculator. By Canadian law (under the Interest Act), fixed-rate mortgages **must be compounded semi-annually**, not monthly. This small mathematical difference changes the effective interest rate you actually pay.
+
+### The Math Behind Semi-Annual Compounding
+
+In the US, an annual rate of 5% is simply divided by 12 (0.416% per month). In Canada, that 5% rate is compounded twice a year. The formula to figure out the effective monthly rate becomes:
+
+\`\`\`
+Effective Monthly Rate = ((1 + (Annual Rate / 2)) ^ (2 / 12)) - 1
+\`\`\`
+
+If you were to plug a 5% rate into both calculators, the Canadian mortgage will actually spit out a slightly **lower** monthly payment because the compounding happens less frequently against the principal!
+
+### Minimum Down Payments in Canada
+*   **Under $500,000:** Minimum 5% down payment.
+*   **$500,000 to $999,999:** 5% on the first $500k, and 10% on the remainder.
+*   **$1,000,000 or more:** Minimum 20% down payment is required.
+
+Use this specialized calculator to ensure your financial modeling matches the real-world legalities of Canadian bank loans.
+    `,
+  },
+  {
+    slug: "loan-calculator",
+    slugs: {
+      en: "loan-calculator",
+      es: "calculadora-de-prestamos",
+      de: "kreditrechner",
+      fr: "calculatrice-de-pret"
+    },
+    title: "Loan Calculator",
+    category: "Financial",
+    description: "Calculate amortized loans, deferred payment loans, and bonds.",
+    meta: {
+      title: "Loan Calculator - Amortized, Deferred, and Bond Approximations",
+      description: "Use our free loan calculator to estimate amortized loan payments, deferred payment maturity values, and bond yields.",
+      keywords: "loan calculator, amortized loan, deferred payment loan, bond calculator",
+    },
+    fields: [], // Unused for custom pages, but required by type
+    logicModule: "financial", // Unused
+    seoContent: `
+A loan is a contract between a borrower and a lender in which the borrower receives an amount of money (principal) that they are obligated to pay back in the future. Most loans can be categorized into one of three categories:
+
+1. **Amortized Loan:** Fixed payments paid periodically until loan maturity.
+2. **Deferred Payment Loan:** Single lump sum paid at loan maturity.
+3. **Bond:** Predetermined lump sum paid at loan maturity (the face or par value of a bond)
+
+### Amortized Loan: Fixed Amount Paid Periodically
+Many consumer loans fall into this category of loans that have regular payments that are amortized uniformly over their lifetime. Routine payments are made on principal and interest until the loan reaches maturity (is entirely paid off). Some of the most familiar amortized loans include mortgages, car loans, student loans, and personal loans. The word "loan" will probably refer to this type in everyday conversation.
+
+Below are links to calculators related to loans that fall under this category, which can provide more information or allow specific calculations involving each type of loan. Instead of using this Loan Calculator, it may be more useful to use any of the following for each specific need:
+- [Mortgage Calculator](/calculators/mortgage-calculator)
+- Auto Loan Calculator
+- Student Loan Calculator
+- Personal Loan Calculator
+
+### Deferred Payment Loan: Single Lump Sum Due at Loan Maturity
+Many commercial loans or short-term loans are in this category. Unlike the first calculation, which is amortized with payments spread uniformly over their lifetimes, these loans have a single, large lump sum due at maturity. Some loans, such as balloon loans, can also have smaller routine payments during their lifetimes, but this calculation only works for loans with a single payment of all principal and interest due at maturity.
+
+### Bond: Predetermined Lump Sum Paid at Loan Maturity
+This kind of loan is rarely made except in the form of bonds. Technically, bonds operate differently from more conventional loans in that borrowers make a predetermined payment at maturity. The face, or par value of a bond, is the amount paid by the issuer (borrower) when the bond matures, assuming the borrower doesn't default. Face value denotes the amount received at maturity.
+
+### Loan Basics for Borrowers
+
+**Interest Rate**
+Nearly all loan structures include interest, which is the profit that banks or lenders make on loans. Interest rate is the percentage of a loan paid by borrowers to lenders. For most loans, interest is paid in addition to principal repayment. Loan interest is usually expressed in APR, or annual percentage rate, which includes both interest and fees. 
+
+**Compounding Frequency**
+Compound interest is interest that is earned not only on the initial principal but also on accumulated interest from previous periods. Generally, the more frequently compounding occurs, the higher the total amount due on the loan. In most loans, compounding occurs monthly.
+
+**Loan Term**
+A loan term is the duration of the loan, given that required minimum payments are made each month. The term of the loan can affect the structure of the loan in many ways. Generally, the longer the term, the more interest will be accrued over time, raising the total cost of the loan for borrowers, but reducing the periodic payments.
+    `,
+  },
+  {
+    slug: "bmi-calculator",
+    slugs: {
+      en: "bmi-calculator",
+      es: "calculadora-de-imc",
+      de: "bmi-rechner",
+      fr: "calculatrice-imc"
+    },
+    title: "BMI Calculator",
+    category: "Health & Fitness",
+    description: "Calculate your Body Mass Index (BMI) effortlessly, powered by seamless global unit conversions.",
+    meta: {
+      title: "BMI Calculator | Metric & Imperial Conversions",
+      description: "Fast, accurate Body Mass Index (BMI) calculator. Seamlessly flip between Imperial and Metric units instantly based on your required region.",
+      keywords: "bmi calculator, body mass index, health metrics, ideal weight calculator"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "health",
+    seoContent: `
+## Understanding Body Mass Index (BMI)
+
+Body Mass Index (BMI) is a simple, globally recognized mathematical formula used by doctors to broadly categorize human weight against height. It provides a standardized method to determine if an individual falls into a healthy weight range or is at cardiovascular risk due to being Underweight or Obese.
+
+### The BMI Formula
+The fundamental formula for BMI was developed in the 19th Century by Adolphe Quetelet. It natively runs entirely on **Metric** geometry:
+
+\`\`\`
+BMI = Weight (kg) / Height (m)²
+\`\`\`
+
+Because this formula is strict, international health organizations like the WHO rely on it exclusively. If you use Imperial units (lbs/inches), the math requires a conversion multiplier of **703**:
+
+\`\`\`
+BMI = [Weight (lbs) / Height (inches)²] × 703
+\`\`\`
+
+*Note on Global Architecture: CalculatorCentral natively wraps its backend processing engine in Metric execution arrays. When you flip the Global Unit Toggle to "Imperial", we intercept the rendering component, seamlessly translating inches to centimeters in the background instantly!*
+    `,
+  },
+  {
+    slug: "p-value-calculator",
+    slugs: {
+      en: "p-value-calculator",
+      es: "calculadora-de-valor-p",
+      de: "p-wert-rechner",
+      fr: "calculateur-de-valeur-p"
+    },
+    title: "P-Value Calculator",
+    category: "Math",
+    description: "Calculate the p-value for Z, T, Chi-Square, and F tests to determine statistical significance.",
+    meta: {
+      title: "P-Value Calculator | Z-test, T-test, Chi-square, F-test",
+      description: "Free online p-value calculator. Find out if your results are statistically significant by calculating the p-value from Z, T, F, and Chi-square statistics.",
+      keywords: "p-value calculator, p value, z test p value, t test p value, chi square p value, f test p value, statistical significance"
+    },
+    fields: [],
+    logicModule: "math"
+  }
+];
+
+export const getCalculatorBySlug = (slug: string): CalculatorDef | undefined => {
+  return calculators.find((c) => {
+    // Check main slug (english/internal)
+    if (c.slug === slug) return true;
+    // Check all localized slugs
+    if (c.slugs) {
+      return Object.values(c.slugs).includes(slug);
+    }
+    return false;
+  });
+};
