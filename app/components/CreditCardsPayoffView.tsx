@@ -407,7 +407,7 @@ export function CreditCardsPayoffView({ calcDef }: CreditCardsPayoffViewProps) {
                                     axisLine={false}
                                 />
                                 <RechartsTooltip 
-                                    formatter={(value: number, name: string) => [`${currencySymbol}${value.toFixed(2)}`, name === 'balance' ? 'Remaining Balance' : 'Cumulative Interest']}
+                                    formatter={(value: any, name: any) => [`${currencySymbol}${Number(value).toFixed(2)}`, name === 'balance' ? 'Remaining Balance' : 'Cumulative Interest']}
                                     labelFormatter={(label) => `Month ${label}`}
                                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)' }}
                                     itemStyle={{ fontWeight: 'bold' }}
