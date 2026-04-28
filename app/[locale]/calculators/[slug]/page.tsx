@@ -52,8 +52,10 @@ import { RentCalculatorView } from "@/app/components/RentCalculatorView";
 import { SocialSecurityCalculatorView } from "@/app/components/SocialSecurityCalculatorView";
 import { CreditCardsPayoffView } from "@/app/components/CreditCardsPayoffView";
 import ReactMarkdown from "react-markdown";
+import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
+import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { Link, routing } from "@/i18n/routing";
-import { Search, ChevronRight } from "lucide-react";
+import { Search, ChevronRight, CalculatorIcon } from "lucide-react";
 
 import { setRequestLocale } from 'next-intl/server';
 
@@ -377,6 +379,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <Calculator calcDef={calc} />
           )}
 
+          <ExportResultsPanel />
+          <CalculatorMath slug={calc.slug} category={calc.category} />
+
           {/* Ad Placeholder below calculator (Main Content) */}
           <div className="my-10 w-full h-[90px] md:h-[250px] bg-slate-100 border border-slate-200 border-dashed rounded-lg flex items-center justify-center text-slate-400">
             <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Advertisement</span>
@@ -427,31 +432,6 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Advertisement Space</span>
           </div>
 
-          {/* Related / Category Links */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="text-lg font-bold text-slate-900 mb-4 pb-4 border-b border-slate-100">Related Calculators</h3>
-            <ul className="space-y-3">
-              {relatedLinks.map((linkTitle) => {
-                const targetCalc = calculators.find(c => c.title === linkTitle);
-                const linkHref = targetCalc ? `/calculators/${targetCalc.slug}` : "/sitemap";
-                return (
-                  <li key={linkTitle}>
-                    <Link 
-                      href={linkHref as any} 
-                      className="group flex items-center text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors"
-                    >
-                      <ChevronRight className="h-4 w-4 me-2 rtl:rotate-180 text-slate-300 group-hover:text-blue-500 transition-colors" />
-                      {linkTitle}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <Link href="/sitemap" className="inline-block mt-6 text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline">
-              View all {activeCategory.title.toLowerCase()} <span className="inline-block rtl:rotate-180">→</span>
-            </Link>
-          </div>
-
           {/* Page Links / Quick Navigation */}
           <div className="bg-slate-900 rounded-2xl shadow-sm border border-slate-800 p-6 text-white">
             <h3 className="text-lg font-bold mb-4 pb-4 border-b border-slate-800">Quick Links</h3>
@@ -481,6 +461,37 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </div>
 
         </aside>
+      </div>
+
+      {/* Related Calculators - Moved to bottom */}
+      <div className="mt-16 border-t border-slate-200 pt-16">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl font-bold text-slate-900">Related Calculators</h2>
+          <Link href="/sitemap" className="text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline inline-flex items-center">
+            View all {activeCategory.title.toLowerCase()} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {relatedLinks.slice(0, 4).map((linkTitle) => {
+            const targetCalc = calculators.find(c => c.title === linkTitle);
+            const linkHref = targetCalc ? `/calculators/${targetCalc.slug}` : "/sitemap";
+            return (
+              <Link 
+                key={linkTitle}
+                href={linkHref as any} 
+                className="group flex flex-col bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all"
+              >
+                <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <CalculatorIcon className="w-5 h-5" />
+                </div>
+                <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{linkTitle}</h3>
+                <p className="text-sm text-slate-500 line-clamp-2">
+                  {targetCalc ? targetCalc.description : "Free online utility tool."}
+                </p>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </main>
   );

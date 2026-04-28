@@ -280,7 +280,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 <Star className="fill-current w-5 h-5" />
                 <Star className="fill-current w-5 h-5" />
               </div>
-              <p className="text-slate-700 italic mb-6">"{testimonial.text}"</p>
+              <p className="text-slate-700 italic mb-6">&quot;{testimonial.text}&quot;</p>
               <div>
                 <p className="font-semibold text-slate-900">{testimonial.name}</p>
                 <p className="text-sm text-slate-500">{testimonial.role}</p>
