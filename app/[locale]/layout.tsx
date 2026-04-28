@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import '../../app/globals.css'; // Global styles
 import { Link } from '../../i18n/routing';
 import { Navbar } from '../../app/components/Navbar';
+import { Footer } from '../../app/components/Footer';
 import { GlobalSettingsBar } from '../../app/components/GlobalSettingsBar';
 import { SettingsProvider } from '../../app/context/SettingsContext';
 import { ThemeProvider } from '../../app/components/ThemeProvider';
@@ -89,23 +90,7 @@ export default async function RootLayout({
               <div className="flex-1">
                 {children}
               </div>
-              <footer className="bg-slate-100 border-t border-slate-200 py-8 mt-auto dark:bg-slate-900 dark:border-slate-800">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-center md:justify-between text-sm text-slate-500 gap-4 md:gap-3">
-                <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-2">
-                  <Link href="/about-us" className="hover:text-blue-600 hover:underline transition-all">about us</Link>
-                  <span className="text-slate-300">|</span>
-                  <Link href="/sitemap" className="hover:text-blue-600 hover:underline transition-all">sitemap</Link>
-                  <span className="text-slate-300">|</span>
-                  <Link href="/terms-of-use" className="hover:text-blue-600 hover:underline transition-all">terms of use</Link>
-                  <span className="text-slate-300">|</span>
-                  <Link href="/privacy-policy" className="hover:text-blue-600 hover:underline transition-all">privacy policy</Link>
-                </div>
-                <div className="flex items-center gap-1.5 ms-0 md:ms-4">
-                  <span>&copy; {new Date().getFullYear()}</span>
-                  <Link href="/" className="font-semibold text-slate-700 hover:text-blue-600 hover:underline transition-colors shrink-0">CalculatorCentral</Link>
-                </div>
-              </div>
-            </footer>
+              <Footer />
             </SettingsProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
