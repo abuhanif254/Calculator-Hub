@@ -1,6 +1,6 @@
 import { Link } from "../../i18n/routing";
 import Image from "next/image";
-import { PlayCircle, Calculator } from "lucide-react";
+import { PlayCircle, Calculator, ShieldCheck, LineChart, Activity } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from 'next';
 import { routing } from '../../i18n/routing';
@@ -61,6 +61,33 @@ const categoryData = [
       "GPA Calculator", "Grade Calculator", "Concrete Calculator", "Subnet Calculator",
       "Password Generator", "Conversion Calculator"
     ]
+  }
+];
+
+const informationalContent = [
+  {
+    title: "Precision in Financial Planning",
+    description: "Whether you're estimating mortgage payments or projecting compound interest, accuracy is paramount. Our financial tools employ standard banking formulas to ensure your long-term planning is built on solid, reliable figures.",
+    icon: LineChart,
+    color: "text-blue-600",
+    bgColor: "bg-blue-50/50",
+    borderColor: "border-blue-100",
+  },
+  {
+    title: "Data-Driven Health Insights",
+    description: "Understanding your body starts with accurate metrics. From BMI calculations to customized calorie goals based on the Harris-Benedict equation, we provide scientifically-backed insights to support your wellness journey.",
+    icon: Activity,
+    color: "text-rose-600",
+    bgColor: "bg-rose-50/50",
+    borderColor: "border-rose-100",
+  },
+  {
+    title: "Secure & Reliable Computations",
+    description: "We prioritize your privacy and data security. All calculations are performed instantly in your browser—no sensitive financial or personal health variables are ever stored or transmitted to external servers.",
+    icon: ShieldCheck,
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-50/50",
+    borderColor: "border-emerald-100",
   }
 ];
 
@@ -176,6 +203,23 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           All Calculators
           <PlayCircle className="fill-white/80 text-[#518231]" size={24} />
         </Link>
+      </div>
+
+      <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {informationalContent.map((info, idx) => {
+          const Icon = info.icon;
+          return (
+            <div key={idx} className={`rounded-2xl border ${info.borderColor} ${info.bgColor} p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-1`}>
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center bg-white shadow-sm mb-6 ${info.color}`}>
+                <Icon size={24} />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-900 mb-3">{info.title}</h3>
+              <p className="text-slate-600 leading-relaxed">
+                {info.description}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </main>
   );
