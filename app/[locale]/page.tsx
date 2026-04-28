@@ -1,6 +1,6 @@
 import { Link } from "../../i18n/routing";
 import Image from "next/image";
-import { PlayCircle, Calculator, ShieldCheck, LineChart, Activity } from "lucide-react";
+import { PlayCircle, Calculator, ShieldCheck, LineChart, Activity, Search, MousePointerClick, Zap, Star, ChevronDown, Mail, ArrowRight } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from 'next';
 import { routing } from '../../i18n/routing';
@@ -220,6 +220,131 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </div>
           );
         })}
+      </div>
+
+      {/* How It Works Section */}
+      <div className="mt-32">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">The Workflow</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">Getting the answers you need is a seamless, friction-free experience.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-0.5 bg-slate-200 -z-10 -translate-y-1/2" />
+          
+          <div className="flex flex-col items-center text-center">
+            <div className="w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center mb-6 relative">
+              <Search className="text-slate-700 w-8 h-8" />
+              <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center border-4 border-white">1</div>
+            </div>
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">Select a Tool</h3>
+            <p className="text-slate-600">Browse our extensive library of specialized calculators to find exactly what you need.</p>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <div className="w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center mb-6 relative">
+              <MousePointerClick className="text-slate-700 w-8 h-8" />
+              <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center border-4 border-white">2</div>
+            </div>
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">Input Variables</h3>
+            <p className="text-slate-600">Enter your specific numbers into our intuitive, easy-to-use interfaces.</p>
+          </div>
+
+          <div className="flex flex-col items-center text-center">
+            <div className="w-16 h-16 rounded-2xl bg-white border border-slate-200 shadow-sm flex items-center justify-center mb-6 relative">
+              <Zap className="text-slate-700 w-8 h-8" />
+              <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-purple-100 text-purple-700 font-bold flex items-center justify-center border-4 border-white">3</div>
+            </div>
+            <h3 className="text-xl font-semibold text-slate-900 mb-2">Get Instant Results</h3>
+            <p className="text-slate-600">Receive accurate, easy-to-understand calculations immediately on-screen.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials */}
+      <div className="mt-32 bg-slate-50 rounded-[2.5rem] p-8 md:p-16 border border-slate-100">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Trusted By Thousands</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">Professionals and individuals rely on Calculator Central daily.</p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { name: "Sarah J.", role: "Financial Advisor", text: "The most reliable mortgage and amortization tools I've found online. Clean interface and always accurate." },
+            { name: "Michael T.", role: "Fitness Coach", text: "I point all my clients to the calorie and BMI calculators here. It's incredibly straightforward and helpful." },
+            { name: "Elena R.", role: "Student", text: "The scientific calculator saved me during finals week. I appreciate the clean layout without distracting ads." }
+          ].map((testimonial, i) => (
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+              <div className="flex gap-1 mb-4 text-amber-400">
+                <Star className="fill-current w-5 h-5" />
+                <Star className="fill-current w-5 h-5" />
+                <Star className="fill-current w-5 h-5" />
+                <Star className="fill-current w-5 h-5" />
+                <Star className="fill-current w-5 h-5" />
+              </div>
+              <p className="text-slate-700 italic mb-6">"{testimonial.text}"</p>
+              <div>
+                <p className="font-semibold text-slate-900">{testimonial.name}</p>
+                <p className="text-sm text-slate-500">{testimonial.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* FAQ Accordion */}
+      <div className="mt-32 max-w-3xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+          <p className="text-lg text-slate-600">Everything you need to know about our calculators and tools.</p>
+        </div>
+        <div className="space-y-4">
+          {[
+            { q: "Are my financial inputs saved?", a: "No, all calculations are performed entirely in your browser. We do not store, save, or transmit any of the numbers you input on our site, ensuring your absolute privacy." },
+            { q: "How often are the tools updated?", a: "Our team regularly updates formulas, tax boundaries, and logic to reflect the latest standards. Any critical changes to financial or health formulas are deployed immediately." },
+            { q: "Can I request a new calculator?", a: "Absolutely! We love building tools our users need. Use our contact form to suggest a new specific calculator, and our engineers will evaluate building it." },
+            { q: "Are these tools free to use?", a: "Yes, all calculators on Calculator Central are 100% free with no limits on usage. We aim to provide high-quality utility for everyone." }
+          ].map((faq, i) => (
+            <details key={i} className="group border border-slate-200 rounded-xl bg-white overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex items-center justify-between cursor-pointer p-6 font-semibold text-slate-900 hover:text-[#518231] transition-colors">
+                {faq.q}
+                <span className="transition group-open:rotate-180 text-slate-400">
+                  <ChevronDown className="w-5 h-5" />
+                </span>
+              </summary>
+              <div className="px-6 pb-6 text-slate-600 leading-relaxed">
+                {faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      {/* Newsletter CTA */}
+      <div className="mt-32 mb-16 relative rounded-[2.5rem] bg-slate-900 overflow-hidden px-4 md:px-6 py-16 md:py-24 text-center border border-slate-800">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#518231]/20 via-transparent to-transparent opacity-50" />
+        <div className="relative z-10 max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Stay Updated</h2>
+          <p className="text-slate-300 text-lg mb-10">Join our newsletter to be the first to know when new specialized calculators and advanced tools are deployed to the platform.</p>
+          <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" action="#">
+            <div className="relative flex-grow">
+              <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+              <input 
+                type="email" 
+                name="email"
+                placeholder="Enter your email" 
+                className="w-full bg-white/10 border border-white/20 text-white placeholder-slate-400 rounded-xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-transparent transition-all"
+                required
+              />
+            </div>
+            <button 
+              type="submit" 
+              className="bg-[#518231] hover:bg-[#436a28] text-white px-8 py-4 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2 shrink-0"
+            >
+              Subscribe
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </form>
+          <p className="text-slate-400 text-sm mt-4">We care about your data in our privacy policy.</p>
+        </div>
       </div>
     </main>
   );
