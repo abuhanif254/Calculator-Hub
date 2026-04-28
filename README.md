@@ -110,7 +110,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-Author: MD Abu Hanif Mia
-Email: mohammadbitullah@gmail.com 
+Author: Your Name
+Email: your.email@example.com
 
 Project Link: [https://github.com/your-username/calculator-central](https://github.com/your-username/calculator-central)

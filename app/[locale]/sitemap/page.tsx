@@ -52,8 +52,17 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1">
                   {category.links.map((link) => {
-                    const slug = link.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-                    const href = link === "Mortgage Calculator" ? "/calculators/mortgage-calculator" : `/calculators/${slug}`;
+                    let slug = link.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+                    
+                    // Slug overrides for specific cases
+                    const slugOverrides: Record<string, string> = {
+                      "mortgage-calculator": "mortgage-calculator",
+                      "credit-cards-payoff-calculator": "credit-cards-payoff",
+                    };
+                    
+                    slug = slugOverrides[slug] || slug;
+                    
+                    const href = `/calculators/${slug}`;
                     return (
                       <Link 
                         key={link} 

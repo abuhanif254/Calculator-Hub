@@ -9,7 +9,13 @@ export function Footer() {
   // Create simplified URLs mapping for the footer links to point correctly where possible
   // Many links might fallback to /sitemap until individual pages are created
   const getHref = (link: string) => {
-    const defaultSlug = link.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    let defaultSlug = link.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+    
+    // Slug overrides
+    if (defaultSlug === "credit-cards-payoff-calculator") {
+      defaultSlug = "credit-cards-payoff";
+    }
+    
     const knownSupportedSlugs = [
       "mortgage-calculator", "canadian-mortgage-calculator", "loan-calculator", "amortization-calculator", 
       "compound-interest-calculator", "finance-calculator", "graphing-calculator", "income-tax-calculator", 
