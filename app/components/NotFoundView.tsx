@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { Search, Compass, Calculator, Frown } from 'lucide-react';
-import { Link } from '@/i18n/routing';
+import Link from 'next/link';
 
 const popularCalculators = [
   { title: "Mortgage Calculator", href: "/calculators/mortgage-calculator" },
