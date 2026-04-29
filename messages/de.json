@@ -63,6 +63,25 @@
     "obesity": "Adipositas",
     "invalidInput": "Ungültige Eingabe"
   },
+  "DepreciationCalculator": {
+    "title": "Abschreibungsrechner",
+    "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",
+    "assetCost": "Anschaffungskosten",
+    "salvageValue": "Restwert",
+    "usefulLife": "Nutzungsdauer (Jahre)",
+    "method": "Abschreibungsmethode",
+    "straightLine": "Lineare Abschreibung",
+    "decliningBalance": "Degressive Abschreibung (150%)",
+    "doubleDeclining": "Doppelt Degressive Abschreibung",
+    "syd": "Digitale Abschreibung",
+    "depreciableCost": "Abschreibungsfähige Kosten",
+    "firstYearDepreciation": "Abschreibung im 1. Jahr",
+    "scheduleTitle": "Abschreibungsplan",
+    "year": "Jahr",
+    "depreciationExpense": "Abschreibungsbetrag",
+    "accumulated": "Kumulierte Abschreibung",
+    "bookValue": "Buchwert"
+  },
   "RMDCalculator": {
     "title": "RMD-Rechner",
     "desc": "Berechnen Sie Ihre erforderliche Mindestausschüttung (RMD) von Rentenkonten.",

@@ -63,6 +63,25 @@
     "obesity": "Obesity",
     "invalidInput": "Invalid input"
   },
+  "DepreciationCalculator": {
+    "title": "Depreciation Calculator",
+    "desc": "Calculate asset depreciation over time.",
+    "assetCost": "Asset Cost",
+    "salvageValue": "Salvage Value",
+    "usefulLife": "Useful Life (Years)",
+    "method": "Depreciation Method",
+    "straightLine": "Straight-Line",
+    "decliningBalance": "Declining Balance (150%)",
+    "doubleDeclining": "Double Declining Balance",
+    "syd": "Sum of the Years' Digits",
+    "depreciableCost": "Depreciable Cost",
+    "firstYearDepreciation": "Year 1 Depreciation",
+    "scheduleTitle": "Depreciation Schedule",
+    "year": "Year",
+    "depreciationExpense": "Depreciation Expense",
+    "accumulated": "Accumulated Depreciation",
+    "bookValue": "Book Value"
+  },
   "RMDCalculator": {
     "title": "RMD Calculator",
     "desc": "Calculate your Required Minimum Distribution (RMD) from retirement accounts.",

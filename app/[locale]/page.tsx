@@ -172,6 +172,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 if (link === "Student Loan Calculator") href = "/calculators/student-loan-calculator";
                 if (link === "Bond Calculator") href = "/calculators/bond-calculator";
                 if (link === "RMD Calculator") href = "/calculators/rmd-calculator";
+                if (link === "Depreciation Calculator") href = "/calculators/depreciation-calculator";
                 if (link === "Calorie Calculator") href = "/calculators/calorie-calculator";
                 if (link === "Body Fat Calculator") href = "/calculators/body-fat-calculator";
                 if (link === "BMR Calculator") href = "/calculators/bmr-calculator";

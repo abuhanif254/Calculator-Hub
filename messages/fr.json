@@ -63,6 +63,25 @@
     "obesity": "Obésité",
     "invalidInput": "Entrée invalide"
   },
+  "DepreciationCalculator": {
+    "title": "Calculateur d'Amortissement",
+    "desc": "Calculez l'amortissement des actifs au fil du temps.",
+    "assetCost": "Coût de l'Actif",
+    "salvageValue": "Valeur de Récupération",
+    "usefulLife": "Durée de Vie Utile (Années)",
+    "method": "Méthode d'Amortissement",
+    "straightLine": "Linéaire",
+    "decliningBalance": "Amortissement Dégressif (150%)",
+    "doubleDeclining": "Amortissement Dégressif Double",
+    "syd": "Somme des Années",
+    "depreciableCost": "Coût Amortissable",
+    "firstYearDepreciation": "Amortissement Année 1",
+    "scheduleTitle": "Tableau d'Amortissement",
+    "year": "Année",
+    "depreciationExpense": "Dotation aux Amortissements",
+    "accumulated": "Amortissement Cumulés",
+    "bookValue": "Valeur Comptable"
+  },
   "RMDCalculator": {
     "title": "Calculateur RMD",
     "desc": "Calculez votre distribution minimale requise (RMD) des comptes de retraite.",

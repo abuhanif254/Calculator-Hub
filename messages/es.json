@@ -63,6 +63,25 @@
     "obesity": "Obesidad",
     "invalidInput": "Entrada inválida"
   },
+  "DepreciationCalculator": {
+    "title": "Calculadora de Depreciación",
+    "desc": "Calcule la depreciación de los activos con el tiempo.",
+    "assetCost": "Costo del Activo",
+    "salvageValue": "Valor de Rescate",
+    "usefulLife": "Vida Útil (Años)",
+    "method": "Método de Depreciación",
+    "straightLine": "Línea Recta",
+    "decliningBalance": "Saldo Decreciente (150%)",
+    "doubleDeclining": "Doble Saldo Decreciente",
+    "syd": "Suma de los Dígitos de los Años",
+    "depreciableCost": "Costo Depreciable",
+    "firstYearDepreciation": "Depreciación del Año 1",
+    "scheduleTitle": "Tabla de Depreciación",
+    "year": "Año",
+    "depreciationExpense": "Gasto de Depreciación",
+    "accumulated": "Depreciación Acumulada",
+    "bookValue": "Valor en Libros"
+  },
   "RMDCalculator": {
     "title": "Calculadora RMD",
     "desc": "Calcule su Distribución Mínima Requerida (RMD) de las cuentas de jubilación.",

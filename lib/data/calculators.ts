@@ -1234,6 +1234,45 @@ Paying off student loans is a major financial goal for many graduates. This stud
     `,
   },
   {
+    slug: "depreciation-calculator",
+    slugs: {
+      en: "depreciation-calculator",
+      es: "calculadora-depreciacion",
+      de: "abschreibungsrechner",
+      fr: "calculateur-amortissement"
+    },
+    title: "Depreciation Calculator",
+    category: "Financial",
+    description: "Calculate asset depreciation over time using straight-line and declining balance methods.",
+    meta: {
+      title: "Depreciation Calculator | Straight-Line & Declining Balance",
+      description: "Free depreciation calculator. Calculate the depreciation of business assets using the straight-line method, declining balance method, or sum of the years' digits.",
+      keywords: "depreciation calculator, straight-line depreciation, declining balance, asset depreciation, accounting calculator, salvage value"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Depreciation Calculator
+
+Depreciation is an accounting method used to allocate the cost of a tangible or physical asset over its useful life. This calculator helps businesses and accountants determine how much of an asset's value has been used up.
+
+### Common Depreciation Methods
+
+1. **Straight-Line Depreciation:** The most common and simplest method. It distributes the cost of the asset evenly over its useful life.
+2. **Declining Balance Depreciation:** An accelerated depreciation method that records larger depreciation expenses during the earlier years of an asset's useful life.
+3. **Double-Declining Balance:** Similar to declining balance but at twice the straight-line rate. This highlights the rapid loss of value some assets (like vehicles or tech equipment) experience initially.
+4. **Sum-of-the-Years' Digits (SYD):** Another accelerated method that applies a decreasing fraction to the depreciable base each year.
+
+### Key Terms Explained
+
+- **Asset Cost:** The initial purchase price of the asset, including any additional costs for installation or transportation.
+- **Salvage Value:** The estimated residual value of the asset at the end of its useful life.
+- **Useful Life:** The estimated number of years the asset will remain productive.
+
+By using this calculator, you can effectively plan for tax deductions, manage capital expenditures, and maintain accurate financial records conforming to international accounting standards.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",
