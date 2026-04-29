@@ -63,6 +63,16 @@
     "obesity": "Obesity",
     "invalidInput": "Invalid input"
   },
+  "RMDCalculator": {
+    "title": "RMD Calculator",
+    "desc": "Calculate your Required Minimum Distribution (RMD) from retirement accounts.",
+    "currentAge": "Current Age",
+    "accountBalance": "Account Balance",
+    "requiredDistribution": "Required Distribution (RMD)",
+    "lifeExpectancyFactor": "Life Expectancy Factor",
+    "balanceAfterRmd": "Balance After RMD",
+    "disclaimer": "Note: This calculator uses the standard IRS Uniform Lifetime Table (typically for unmarried owners, or owners whose spouse is not more than 10 years younger). Consult a qualified tax professional to ensure compliance with current laws."
+  },
   "BondCalculator": {
     "title": "Bond Calculator",
     "desc": "Calculate Bond Price, Current Yield, and Yield to Maturity.",

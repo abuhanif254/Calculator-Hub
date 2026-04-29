@@ -53,6 +53,7 @@ import { SocialSecurityCalculatorView } from "@/app/components/SocialSecurityCal
 import { CreditCardsPayoffView } from "@/app/components/CreditCardsPayoffView";
 import { StudentLoanCalculatorView } from "@/app/components/StudentLoanCalculatorView";
 import { BondCalculatorView } from "@/app/components/BondCalculatorView";
+import { RMDCalculatorView } from "@/app/components/RMDCalculatorView";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
@@ -341,6 +342,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <StudentLoanCalculatorView calcDef={calc} />
           ) : calc.slug === 'bond-calculator' ? (
             <BondCalculatorView calcDef={calc} />
+          ) : calc.slug === 'rmd-calculator' ? (
+            <RMDCalculatorView calcDef={calc} />
           ) : calc.slug === 'scientific-notation-calculator' ? (
             <ScientificNotationCalculatorView calcDef={calc} />
           ) : calc.slug === 'p-value-calculator' ? (

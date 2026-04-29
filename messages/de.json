@@ -63,6 +63,16 @@
     "obesity": "Adipositas",
     "invalidInput": "Ungültige Eingabe"
   },
+  "RMDCalculator": {
+    "title": "RMD-Rechner",
+    "desc": "Berechnen Sie Ihre erforderliche Mindestausschüttung (RMD) von Rentenkonten.",
+    "currentAge": "Aktuelles Alter",
+    "accountBalance": "Kontostand",
+    "requiredDistribution": "Erforderliche Ausschüttung (RMD)",
+    "lifeExpectancyFactor": "Lebenserwartungsfaktor",
+    "balanceAfterRmd": "Saldo nach RMD",
+    "disclaimer": "Hinweis: Dieser Rechner verwendet die Standardtabelle der US-Steuerbehörde (IRS). Bitte konsultieren Sie einen qualifizierten Steuerberater für internationale Regelungen."
+  },
   "BondCalculator": {
     "title": "Anleihenrechner",
     "desc": "Berechnen Sie Anleihepreis, aktuelle Rendite und Rendite bis zur Fälligkeit.",

@@ -63,6 +63,16 @@
     "obesity": "Obesidad",
     "invalidInput": "Entrada inválida"
   },
+  "RMDCalculator": {
+    "title": "Calculadora RMD",
+    "desc": "Calcule su Distribución Mínima Requerida (RMD) de las cuentas de jubilación.",
+    "currentAge": "Edad Actual",
+    "accountBalance": "Saldo de la Cuenta",
+    "requiredDistribution": "Distribución Requerida (RMD)",
+    "lifeExpectancyFactor": "Factor de Esperanza de Vida",
+    "balanceAfterRmd": "Saldo después del RMD",
+    "disclaimer": "Nota: Esta calculadora utiliza la tabla estándar uniforme de esperanza de vida del IRS (típicamente para solteros, o dueños de cuentas cuyo cónyuge no es más de 10 años menor). Consulte a un profesional de impuestos."
+  },
   "BondCalculator": {
     "title": "Calculadora de Bonos",
     "desc": "Calcule el precio del bono, el rendimiento actual y el rendimiento al vencimiento.",

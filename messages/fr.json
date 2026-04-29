@@ -63,6 +63,16 @@
     "obesity": "Obésité",
     "invalidInput": "Entrée invalide"
   },
+  "RMDCalculator": {
+    "title": "Calculateur RMD",
+    "desc": "Calculez votre distribution minimale requise (RMD) des comptes de retraite.",
+    "currentAge": "Âge actuel",
+    "accountBalance": "Solde du compte",
+    "requiredDistribution": "Distribution Requise (RMD)",
+    "lifeExpectancyFactor": "Facteur d'espérance de vie",
+    "balanceAfterRmd": "Solde après le RMD",
+    "disclaimer": "Note: Ce calculateur utilise la table standard d'espérance de vie de l'IRS américain. Veuillez consulter un conseiller fiscal qualifié pour garantir la conformité aux lois de votre juridiction."
+  },
   "BondCalculator": {
     "title": "Calculateur d'Obligations",
     "desc": "Calculez le prix de l'obligation, le rendement actuel et le rendement à l'échéance.",

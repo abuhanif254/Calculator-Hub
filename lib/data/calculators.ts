@@ -1234,6 +1234,44 @@ Paying off student loans is a major financial goal for many graduates. This stud
     `,
   },
   {
+    slug: "rmd-calculator",
+    slugs: {
+      en: "rmd-calculator",
+      es: "calculadora-rmd",
+      de: "rmd-rechner",
+      fr: "calculateur-rmd"
+    },
+    title: "RMD Calculator",
+    category: "Financial",
+    description: "Calculate your Required Minimum Distribution (RMD) from retirement accounts.",
+    meta: {
+      title: "RMD Calculator | Required Minimum Distribution",
+      description: "Free RMD calculator. Easily estimate your Required Minimum Distribution for your retirement accounts based on your age and account balance.",
+      keywords: "rmd calculator, required minimum distribution, retirement calculator, ira withdrawal calculator, 401k rmd"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the RMD Calculator
+
+A Required Minimum Distribution (RMD) is the legal minimum amount that a retirement account owner must withdraw annually upon reaching a certain age. In the United States, this applies to traditional IRAs, 401(k)s, and other tax-deferred retirement accounts.
+
+### Key Factors for Your RMD
+
+1. **Current Age:** RMDs usually begin at age 73 (or 75 depending on your birth year, per recent laws). Your age dictates the statistical life expectancy factor used for the calculation.
+2. **Account Balance:** The total value of your retirement account(s) at the end of the previous calendar year (December 31st).
+3. **Distribution Period (Life Expectancy Factor):** Found in uniform lifetime tables provided by tax authorities (like the IRS). 
+
+### How RMD is Calculated
+
+The math is relatively simple:
+**RMD = Account Balance / Distribution Period**
+
+### Why Are RMDs Important?
+Failing to withdraw your RMD can result in severe tax penalties. While this calculator uses standard uniform lifetime estimations, rules can vary internationally or if your spouse is significantly younger than you and is your sole beneficiary. Always consult with a qualified tax professional regarding compliance.
+    `
+  },
+  {
     slug: "bond-calculator",
     slugs: {
       en: "bond-calculator",
