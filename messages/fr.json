@@ -63,6 +63,20 @@
     "obesity": "Obésité",
     "invalidInput": "Entrée invalide"
   },
+  "StudentLoanCalculator": {
+    "title": "Remboursement de Prêt Étudiant",
+    "desc": "Estimez vos mensualités et les intérêts totaux pour un prêt étudiant.",
+    "loanAmount": "Montant du Prêt",
+    "loanTerm": "Durée du prêt",
+    "years": "Années",
+    "months": "Mois",
+    "interestRate": "Taux d'intérêt",
+    "monthlyPayment": "Paiement Mensuel",
+    "totalPayments": "Paiements Totaux",
+    "totalInterest": "Intérêt Total",
+    "principal": "Principal",
+    "interest": "Intérêt"
+  },
   "AutoLoanCalculator": {
     "vehiclePrice": "Prix du Véhicule",
     "downPayment": "Acompte",

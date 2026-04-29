@@ -1075,6 +1075,40 @@ Use this specialized calculator to ensure your financial modeling matches the re
     `,
   },
   {
+    slug: "student-loan-calculator",
+    slugs: {
+      en: "student-loan-calculator",
+      es: "calculadora-prestamos-estudiantiles",
+      de: "studienkredit-rechner",
+      fr: "calculatrice-pret-etudiant"
+    },
+    title: "Student Loan Calculator",
+    category: "Financial",
+    description: "Calculate your student loan payoff details, including monthly payment and total interest.",
+    meta: {
+      title: "Student Loan Calculator - Estimate Payoff and Interest",
+      description: "Quickly estimate your monthly student loan payments, total interest costs, and payoff timelines with our free calculator. Supports both public and private loans.",
+      keywords: "student loan calculator, student debt payoff, interest calculator, monthly loan payment, college loan"
+    },
+    fields: [], // Custom UI
+    logicModule: "financial", // Handled by custom hook/view
+    seoContent: `
+## How to Use the Student Loan Calculator
+
+Paying off student loans is a major financial goal for many graduates. This student loan calculator helps you estimate the monthly payments and total interest required to pay off your student loans over a specified time period.
+
+### Understanding the Inputs:
+1. **Loan Amount:** The total student loan balance you owe, or the amount you plan to borrow.
+2. **Interest Rate:** Your loan's annual interest rate. Federal student loan interest rates are typically fixed, while private student loans can be fixed or variable.
+3. **Loan Term:** The amount of time you have to pay off the loan. Standard federal student loans have a 10-year term, but you may have the option to choose terms ranging from 5 to 25 years.
+
+### Strategies to Pay Off Student Loans Faster
+- **Make Extra Payments:** Applying any extra cash you have towards your loan principal significantly reduces the interest you pay and speeds up your payoff date.
+- **Refinance:** If you have high-interest private loans, refinancing them to a lower rate could reduce your payments and save you money in interest. Note that refinancing federal loans turns them into private loans, making them ineligible for federal benefits such as income-driven repayment or forgiveness.
+- **Bi-weekly Payments:** Alternatively, you can split your monthly payment in half and pay it every two weeks. This leads to making one extra full payment per year, which shortens your term and lowers long-term interest.
+    `,
+  },
+  {
     slug: "loan-calculator",
     slugs: {
       en: "loan-calculator",

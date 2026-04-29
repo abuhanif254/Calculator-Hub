@@ -63,6 +63,20 @@
     "obesity": "Obesity",
     "invalidInput": "Invalid input"
   },
+  "StudentLoanCalculator": {
+    "title": "Student Loan Repayment",
+    "desc": "Estimate your monthly payments and total interest for a student loan.",
+    "loanAmount": "Loan Amount",
+    "loanTerm": "Loan Term",
+    "years": "Years",
+    "months": "Months",
+    "interestRate": "Interest Rate",
+    "monthlyPayment": "Monthly Payment",
+    "totalPayments": "Total Payments",
+    "totalInterest": "Total Interest",
+    "principal": "Principal",
+    "interest": "Interest"
+  },
   "AutoLoanCalculator": {
     "vehiclePrice": "Vehicle Price",
     "downPayment": "Down Payment",

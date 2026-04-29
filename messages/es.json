@@ -63,6 +63,20 @@
     "obesity": "Obesidad",
     "invalidInput": "Entrada inválida"
   },
+  "StudentLoanCalculator": {
+    "title": "Reembolso del Préstamo Estudiantil",
+    "desc": "Estime sus pagos mensuales y el interés total de un préstamo estudiantil.",
+    "loanAmount": "Monto del Préstamo",
+    "loanTerm": "Plazo del préstamo",
+    "years": "Años",
+    "months": "Meses",
+    "interestRate": "Tasa de Interés",
+    "monthlyPayment": "Pago Mensual",
+    "totalPayments": "Pagos Totales",
+    "totalInterest": "Interés Total",
+    "principal": "Principal",
+    "interest": "Interés"
+  },
   "AutoLoanCalculator": {
     "vehiclePrice": "Precio del Vehículo",
     "downPayment": "Pago Inicial",

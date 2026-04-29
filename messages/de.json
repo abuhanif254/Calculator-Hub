@@ -63,6 +63,20 @@
     "obesity": "Adipositas",
     "invalidInput": "Ungültige Eingabe"
   },
+  "StudentLoanCalculator": {
+    "title": "Studienkreditrückzahlung",
+    "desc": "Schätzen Sie Ihre monatlichen Zahlungen und die Gesamtzinsen für einen Studienkredit.",
+    "loanAmount": "Kreditbetrag",
+    "loanTerm": "Kreditlaufzeit",
+    "years": "Jahre",
+    "months": "Monate",
+    "interestRate": "Zinssatz",
+    "monthlyPayment": "Monatliche Rate",
+    "totalPayments": "Gesamtzahlungen",
+    "totalInterest": "Gesamtzinsen",
+    "principal": "Kapital",
+    "interest": "Zinsen"
+  },
   "AutoLoanCalculator": {
     "vehiclePrice": "Fahrzeugpreis",
     "downPayment": "Anzahlung",
