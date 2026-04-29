@@ -63,6 +63,27 @@
     "obesity": "Obésité",
     "invalidInput": "Entrée invalide"
   },
+  "BondCalculator": {
+    "title": "Calculateur d'Obligations",
+    "desc": "Calculez le prix de l'obligation, le rendement actuel et le rendement à l'échéance.",
+    "faceValue": "Valeur Nominale",
+    "couponRate": "Taux du Coupon Annuel (%)",
+    "yearsToMaturity": "Années jusqu'à Échéance",
+    "paymentFrequency": "Fréquence de Paiement",
+    "annual": "Annuel",
+    "semiAnnual": "Semestriel",
+    "quarterly": "Trimestriel",
+    "monthly": "Mensuel",
+    "ytmOrPrice": "Résoudre pour",
+    "solveForPrice": "Prix de l'Obligation (via le Rendement)",
+    "solveForYtm": "Rendement (via le Prix)",
+    "marketPrice": "Prix Actuel du Marché",
+    "yieldToMaturityInput": "Rendement à l'Échéance (%)",
+    "calculatedPrice": "Prix Calculé de l'Obligation",
+    "calculatedYTM": "Rendement à l'Échéance Calculé",
+    "currentYield": "Rendement Actuel",
+    "annualCouponPayment": "Paiement de Coupon Annuel"
+  },
   "StudentLoanCalculator": {
     "title": "Remboursement de Prêt Étudiant",
     "desc": "Estimez vos mensualités et les intérêts totaux pour un prêt étudiant.",

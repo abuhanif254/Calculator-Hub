@@ -63,6 +63,27 @@
     "obesity": "Adipositas",
     "invalidInput": "Ungültige Eingabe"
   },
+  "BondCalculator": {
+    "title": "Anleihenrechner",
+    "desc": "Berechnen Sie Anleihepreis, aktuelle Rendite und Rendite bis zur Fälligkeit.",
+    "faceValue": "Nennwert",
+    "couponRate": "Jährlicher Kuponzins (%)",
+    "yearsToMaturity": "Jahre bis Fälligkeit",
+    "paymentFrequency": "Zahlungsfrequenz",
+    "annual": "Jährlich",
+    "semiAnnual": "Halbjährlich",
+    "quarterly": "Vierteljährlich",
+    "monthly": "Monatlich",
+    "ytmOrPrice": "Berechne",
+    "solveForPrice": "Anleihepreis (gegeben YTM)",
+    "solveForYtm": "YTM (gegeben Preis)",
+    "marketPrice": "Aktueller Marktpreis",
+    "yieldToMaturityInput": "Rendite bis Fälligkeit (YTM) (%)",
+    "calculatedPrice": "Berechneter Anleihepreis",
+    "calculatedYTM": "Berechnete Rendite bis Fälligkeit",
+    "currentYield": "Aktuelle Rendite",
+    "annualCouponPayment": "Jährliche Kuponzahlung"
+  },
   "StudentLoanCalculator": {
     "title": "Studienkreditrückzahlung",
     "desc": "Schätzen Sie Ihre monatlichen Zahlungen und die Gesamtzinsen für einen Studienkredit.",

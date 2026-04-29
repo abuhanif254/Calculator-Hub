@@ -63,6 +63,27 @@
     "obesity": "Obesidad",
     "invalidInput": "Entrada inválida"
   },
+  "BondCalculator": {
+    "title": "Calculadora de Bonos",
+    "desc": "Calcule el precio del bono, el rendimiento actual y el rendimiento al vencimiento.",
+    "faceValue": "Valor Nominal (Valor a Par)",
+    "couponRate": "Tasa de Cupón Anual (%)",
+    "yearsToMaturity": "Años hasta el Vencimiento",
+    "paymentFrequency": "Frecuencia de Pago",
+    "annual": "Anual",
+    "semiAnnual": "Semestral",
+    "quarterly": "Trimestral",
+    "monthly": "Mensual",
+    "ytmOrPrice": "Resolver para",
+    "solveForPrice": "Precio del Bono (Dado el YTM)",
+    "solveForYtm": "YTM (Dado el Precio)",
+    "marketPrice": "Precio de Mercado Actual",
+    "yieldToMaturityInput": "Rendimiento al Vencimiento (%)",
+    "calculatedPrice": "Precio del Bono Calculado",
+    "calculatedYTM": "Rendimiento al Vencimiento Calculado",
+    "currentYield": "Rendimiento Actual",
+    "annualCouponPayment": "Pago de Cupón Anual"
+  },
   "StudentLoanCalculator": {
     "title": "Reembolso del Préstamo Estudiantil",
     "desc": "Estime sus pagos mensuales y el interés total de un préstamo estudiantil.",

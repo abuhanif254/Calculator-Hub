@@ -63,6 +63,27 @@
     "obesity": "Obesity",
     "invalidInput": "Invalid input"
   },
+  "BondCalculator": {
+    "title": "Bond Calculator",
+    "desc": "Calculate Bond Price, Current Yield, and Yield to Maturity.",
+    "faceValue": "Face Value (Par Value)",
+    "couponRate": "Annual Coupon Rate (%)",
+    "yearsToMaturity": "Years to Maturity",
+    "paymentFrequency": "Payment Frequency",
+    "annual": "Annual",
+    "semiAnnual": "Semi-Annual",
+    "quarterly": "Quarterly",
+    "monthly": "Monthly",
+    "ytmOrPrice": "Solve For",
+    "solveForPrice": "Bond Price (Given YTM)",
+    "solveForYtm": "YTM (Given Price)",
+    "marketPrice": "Current Market Price",
+    "yieldToMaturityInput": "Yield to Maturity (%)",
+    "calculatedPrice": "Calculated Bond Price",
+    "calculatedYTM": "Calculated Yield to Maturity",
+    "currentYield": "Current Yield",
+    "annualCouponPayment": "Annual Coupon Payment"
+  },
   "StudentLoanCalculator": {
     "title": "Student Loan Repayment",
     "desc": "Estimate your monthly payments and total interest for a student loan.",

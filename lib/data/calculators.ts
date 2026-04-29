@@ -1200,6 +1200,82 @@ BMI = [Weight (lbs) / Height (inches)²] × 703
     `,
   },
   {
+    slug: "student-loan-calculator",
+    slugs: {
+      en: "student-loan-calculator",
+      es: "calculadora-prestamos-estudiantiles",
+      de: "studienkredit-rechner",
+      fr: "calculatrice-pret-etudiant"
+    },
+    title: "Student Loan Calculator",
+    category: "Financial",
+    description: "Calculate your student loan payoff details, including monthly payment and total interest.",
+    meta: {
+      title: "Student Loan Calculator - Estimate Payoff and Interest",
+      description: "Quickly estimate your monthly student loan payments, total interest costs, and payoff timelines with our free calculator. Supports both public and private loans.",
+      keywords: "student loan calculator, student debt payoff, interest calculator, monthly loan payment, college loan"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Student Loan Calculator
+
+Paying off student loans is a major financial goal for many graduates. This student loan calculator helps you estimate the monthly payments and total interest required to pay off your student loans over a specified time period.
+
+### Understanding the Inputs:
+1. **Loan Amount:** The total student loan balance you owe, or the amount you plan to borrow.
+2. **Interest Rate:** Your loan's annual interest rate. Federal student loan interest rates are typically fixed, while private student loans can be fixed or variable.
+3. **Loan Term:** The amount of time you have to pay off the loan. Standard federal student loans have a 10-year term, but you may have the option to choose terms ranging from 5 to 25 years.
+
+### Strategies to Pay Off Student Loans Faster
+- **Make Extra Payments:** Applying any extra cash you have towards your loan principal significantly reduces the interest you pay and speeds up your payoff date.
+- **Refinance:** If you have high-interest private loans, refinancing them to a lower rate could reduce your payments and save you money in interest. Note that refinancing federal loans turns them into private loans, making them ineligible for federal benefits such as income-driven repayment or forgiveness.
+- **Bi-weekly Payments:** Alternatively, you can split your monthly payment in half and pay it every two weeks. This leads to making one extra full payment per year, which shortens your term and lowers long-term interest.
+    `,
+  },
+  {
+    slug: "bond-calculator",
+    slugs: {
+      en: "bond-calculator",
+      es: "calculadora-de-bonos",
+      de: "anleihenrechner",
+      fr: "calculateur-d-obligations"
+    },
+    title: "Bond Calculator",
+    category: "Financial",
+    description: "Calculate bond price, yield to maturity, and current yield for fixed-income securities.",
+    meta: {
+      title: "Bond Calculator | Calculate Bond Price & Yield to Maturity",
+      description: "Free online bond calculator. Estimate the price, current yield, and yield to maturity (YTM) of a bond using its face value, coupon rate, and maturity date.",
+      keywords: "bond calculator, bond price calculator, yield to maturity, ytm calculator, current yield, fixed income calculator, coupon rate math"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Bond Calculator
+
+A bond is a fixed-income instrument that represents a loan made by an investor to a borrower (typically corporate or governmental). This calculator helps you determine the key metrics used to evaluate a bond's profitability and current market value.
+
+### Understanding Bond Terminology
+
+1. **Face Value (Par Value):** The amount the bond will be worth at its maturity. It's the base amount used to calculate the coupon payments.
+2. **Coupon Rate:** The annual interest rate paid by the bond issuer on the bond's face value.
+3. **Yield to Maturity (YTM):** The anticipated total return on a bond if the bond is held until it matures. YTM is considered a long-term bond yield expressed as an annual rate.
+4. **Current Price:** The amount a bond is currently trading for on the market.
+5. **Years to Maturity:** The remaining duration until the bond issuer repays the original face value to the bondholder.
+
+### Key Bond Calculations
+
+Our bond calculator allows you to compute the following critical insights:
+
+- **Bond Price:** Assuming you know the required yield to maturity, calculating the present value of all future coupon payments plus the face value at maturity.
+- **Yield to Maturity (YTM):** If you know the bond's current market price, calculating the internal rate of return (IRR) the bond will generate if held to maturity.
+- **Current Yield:** A simpler calculation taking the annual coupon payment divided by the current bond price, giving you a snapshot of the bond's short-term return.
+
+Because bond prices and yields move in opposite directions, understanding the relationship between the two is key for any investor navigating the fixed-income market. Use this calculator as a reliable guide for pricing corporate, municipal, and government bonds globally.
+    `
+  },
+  {
     slug: "p-value-calculator",
     slugs: {
       en: "p-value-calculator",

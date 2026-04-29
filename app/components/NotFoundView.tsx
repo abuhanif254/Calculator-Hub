@@ -6,6 +6,8 @@ import Link from 'next/link';
 const popularCalculators = [
   { title: "Mortgage Calculator", href: "/calculators/mortgage-calculator" },
   { title: "Loan Calculator", href: "/calculators/loan-calculator" },
+  { title: "Student Loan Calculator", href: "/calculators/student-loan-calculator" },
+  { title: "Bond Calculator", href: "/calculators/bond-calculator" },
   { title: "Finance Calculator", href: "/calculators/finance-calculator" },
   { title: "BMI Calculator", href: "/calculators/bmi-calculator" },
   { title: "Calorie Calculator", href: "/calculators/calorie-calculator" },
