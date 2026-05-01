@@ -183,6 +183,20 @@
     "pvFromPMT": "VA de l'Annuité (Paiements)",
     "totalFutureAmount": "Montant Nominal Total"
   },
+  "PercentOffCalculator": {
+    "title": "Calculateur de Pourcentage de Réduction",
+    "desc": "Calculez le prix final après une réduction, incluant les taxes optionnelles.",
+    "originalPrice": "Prix d'Origine",
+    "discountPercent": "Pourcentage de Réduction (%)",
+    "salesTax": "Taxe de Vente (%)",
+    "optional": "Optionnel",
+    "finalPrice": "Prix Final",
+    "youSave": "Vous économisez",
+    "breakdown": "Répartition du Prix",
+    "discountAmount": "Montant de la Réduction",
+    "priceBeforeTax": "Prix Hors Taxes",
+    "taxAmount": "Montant de la Taxe"
+  },
   "DepreciationCalculator": {
     "title": "Calculateur d'Amortissement",
     "desc": "Calculez l'amortissement des actifs au fil du temps.",

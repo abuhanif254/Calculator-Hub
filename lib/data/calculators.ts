@@ -1499,6 +1499,40 @@ Understanding Present Value is crucial for evaluating investments, businesses, f
     `
   },
   {
+    slug: "percent-off-calculator",
+    slugs: {
+      en: "percent-off-calculator",
+      es: "calculadora-descuento",
+      de: "prozentsatz-rabatt-rechner",
+      fr: "calculateur-pourcentage-reduction"
+    },
+    title: "Percent Off Calculator",
+    category: "Financial",
+    description: "Calculate the discount amount and final price after a percentage off, optionally including sales tax.",
+    meta: {
+      title: "Percent Off Calculator | Discount & Sales Tax",
+      description: "Free percent off calculator. Quickly find out the final price after applying a percentage discount, and see the impact of sales tax on your purchase.",
+      keywords: "percent off calculator, discount calculator, sale price calculator, sales tax calculator, final price, calculate discount"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Percent Off Calculator
+
+Whether you're shopping in a store during a big sale or buying items online with a promo code, figuring out exactly how much you will pay can sometimes be confusing. The Percent Off Calculator takes the guesswork out of discounts.
+
+### Calculating Discounts and Taxes
+
+1. **Original Price:** Enter the sticker price or original cost of the item before any discounts are applied.
+2. **Discount Percentage:** Enter the percent off (e.g., 20 for a 20% off sale). The calculator will instantly show the amount saved and the new discounted price.
+3. **Sales Tax (Optional):** If applicable, enter your local sales tax percentage. The calculator will figure out the tax amount based on the *discounted* price and add it to give you the exact final amount you need to pay at checkout.
+
+### The Value of Knowing the Real Price
+
+Understanding the final cost helps you budget effectively and compare different deals. Sometimes a "Buy One Get One 50% Off" deal might be better or worse than a straight "25% Off" standard discount depending on your needs. Use this calculator on the go to ensure you are getting the value you expect.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",

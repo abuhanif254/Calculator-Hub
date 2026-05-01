@@ -183,6 +183,20 @@
     "pvFromPMT": "PV of Annuity (Payments)",
     "totalFutureAmount": "Total Nominal Amount"
   },
+  "PercentOffCalculator": {
+    "title": "Percent Off Calculator",
+    "desc": "Calculate the final price after a discount, including optional sales tax.",
+    "originalPrice": "Original Price",
+    "discountPercent": "Discount Percent (%)",
+    "salesTax": "Sales Tax (%)",
+    "optional": "Optional",
+    "finalPrice": "Final Price",
+    "youSave": "You save",
+    "breakdown": "Price Breakdown",
+    "discountAmount": "Discount Amount",
+    "priceBeforeTax": "Price Before Tax",
+    "taxAmount": "Tax Amount"
+  },
   "DepreciationCalculator": {
     "title": "Depreciation Calculator",
     "desc": "Calculate asset depreciation over time.",

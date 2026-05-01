@@ -183,6 +183,20 @@
     "pvFromPMT": "VP de la Anualidad (Pagos)",
     "totalFutureAmount": "Cantidad Nominal Total"
   },
+  "PercentOffCalculator": {
+    "title": "Calculadora de Descuento",
+    "desc": "Calcule el precio final después de un descuento, incluyendo impuestos de ventas opcionales.",
+    "originalPrice": "Precio Original",
+    "discountPercent": "Porcentaje de Descuento (%)",
+    "salesTax": "Impuesto sobre las Ventas (%)",
+    "optional": "Opcional",
+    "finalPrice": "Precio Final",
+    "youSave": "Ahorras",
+    "breakdown": "Desglose de Precio",
+    "discountAmount": "Cantidad de Descuento",
+    "priceBeforeTax": "Precio antes de Impuestos",
+    "taxAmount": "Cantidad de Impuestos"
+  },
   "DepreciationCalculator": {
     "title": "Calculadora de Depreciación",
     "desc": "Calcule la depreciación de los activos con el tiempo.",

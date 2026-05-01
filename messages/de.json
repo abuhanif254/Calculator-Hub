@@ -183,6 +183,20 @@
     "pvFromPMT": "Barwert der Annuität (Zahlungen)",
     "totalFutureAmount": "Gesamter Nominalbetrag"
   },
+  "PercentOffCalculator": {
+    "title": "Prozent-Rabatt-Rechner",
+    "desc": "Berechnen Sie den Endpreis nach einem Rabatt, inklusive optionaler Mehrwertsteuer.",
+    "originalPrice": "Ursprünglicher Preis",
+    "discountPercent": "Rabatt in Prozent (%)",
+    "salesTax": "Mehrwertsteuer (%)",
+    "optional": "Optional",
+    "finalPrice": "Endpreis",
+    "youSave": "Sie sparen",
+    "breakdown": "Preisaufschlüsselung",
+    "discountAmount": "Rabattbetrag",
+    "priceBeforeTax": "Preis vor Steuern",
+    "taxAmount": "Steuerbetrag"
+  },
   "DepreciationCalculator": {
     "title": "Abschreibungsrechner",
     "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",
