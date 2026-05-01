@@ -437,8 +437,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           <CalculatorMath slug={calc.slug} category={calc.category} />
 
           {/* Ad Placeholder below calculator (Main Content) */}
-          <div className="my-10 w-full h-[90px] md:h-[250px] bg-slate-100 border border-slate-200 border-dashed rounded-lg flex items-center justify-center text-slate-400">
-            <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Advertisement</span>
+          <div className="my-10 w-full h-[90px] md:h-[250px]">
           </div>
 
           {seoContent && (
@@ -482,8 +481,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </div>
 
           {/* Ad Space - Top Sidebar */}
-          <div className="w-full h-[250px] bg-slate-100 border border-slate-200 border-dashed rounded-2xl flex items-center justify-center">
-            <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Advertisement Space</span>
+          <div className="w-full h-[250px]">
           </div>
 
           {/* Page Links / Quick Navigation */}
@@ -510,8 +508,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </div>
 
           {/* Ad Space - Bottom Sidebar (Sticky option) */}
-          <div className="sticky top-8 w-full h-[600px] bg-slate-100 border border-slate-200 border-dashed rounded-2xl flex items-center justify-center">
-            <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Sidebar Promo / Ad</span>
+          <div className="sticky top-8 w-full h-[600px]">
           </div>
 
         </aside>

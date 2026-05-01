@@ -104,12 +104,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
         <aside className="w-full lg:w-[300px] flex-shrink-0 pt-12">
           <div className="sticky top-24 space-y-8">
             {/* Ad Placeholder container */}
-            <div className="w-full bg-slate-50 border border-slate-200 rounded p-4 flex flex-col items-center justify-center min-h-[250px] md:min-h-[600px] text-center shadow-sm">
-              <span className="text-slate-400 text-sm font-medium uppercase tracking-widest mb-2">Advertisement</span>
-              <p className="text-slate-500 text-sm">Your ad content goes here.</p>
-              <div className="mt-4 w-full h-full min-h-[200px] md:min-h-[500px] bg-slate-200 border border-dashed border-slate-300 flex items-center justify-center">
-                 <span className="text-slate-400 text-xs text-balance">Space preserved for Google AdSense (e.g. 300x600 responsive ad)</span>
-              </div>
+            <div className="w-full min-h-[250px] md:min-h-[600px]">
             </div>
 
             {/* Custom Search Box */}
