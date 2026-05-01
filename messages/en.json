@@ -218,6 +218,26 @@
     "growthChart": "Projected Growth Over Time",
     "projectedBalance": "Projected Balance"
   },
+  "MarriageTaxCalculator": {
+    "title": "Marriage Tax Calculator",
+    "desc": "Estimate if filing jointly yields a tax bonus or penalty.",
+    "incomeInput": "Annual Incomes",
+    "partner1Income": "Partner 1 Income",
+    "partner2Income": "Partner 2 Income",
+    "disclaimer": "Note: This is an estimation based on generalized progressive tax brackets (simulating US 2024 standards). Real-world outcomes may vary based on exact tax codes, local state taxes, and other deductions.",
+    "totalIncome": "Combined Total Income",
+    "marriageBonus": "Marriage Bonus",
+    "marriagePenalty": "Marriage Penalty",
+    "neutral": "No Difference",
+    "bonusDesc": "Filing jointly saves you money compared to filing single.",
+    "penaltyDesc": "Filing jointly costs more than filing separately as singles.",
+    "neutralDesc": "There is no tax difference.",
+    "taxComparison": "Tax Comparison",
+    "filingSingle": "If Filing Single (Combined)",
+    "effectiveRate": "effective rate",
+    "filingJointly": "If Filing Jointly",
+    "singleBreakdown": "Single Filing Breakdown"
+  },
   "DepreciationCalculator": {
     "title": "Depreciation Calculator",
     "desc": "Calculate asset depreciation over time.",

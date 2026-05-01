@@ -218,6 +218,26 @@
     "growthChart": "Croissance Projetée dans le Temps",
     "projectedBalance": "Solde Projeté"
   },
+  "MarriageTaxCalculator": {
+    "title": "Calculateur d'Impôt sur le Mariage",
+    "desc": "Estimez si une déclaration commune donne droit à un bonus ou à une pénalité fiscale.",
+    "incomeInput": "Revenus Annuels",
+    "partner1Income": "Revenu du Partenaire 1",
+    "partner2Income": "Revenu du Partenaire 2",
+    "disclaimer": "Remarque : Ceci est une estimation basée sur des tranches d'imposition progressives (simulant les normes américaines 2024). Les résultats réels peuvent varier.",
+    "totalIncome": "Revenu Total Combiné",
+    "marriageBonus": "Bonus de Mariage",
+    "marriagePenalty": "Pénalité de Mariage",
+    "neutral": "Pas de Différence",
+    "bonusDesc": "Faire une déclaration commune vous fait économiser de l'argent par rapport aux déclarations individuelles.",
+    "penaltyDesc": "Une déclaration commune coûte plus cher que des déclarations séparées.",
+    "neutralDesc": "Il n'y a aucune différence fiscale.",
+    "taxComparison": "Comparaison Fiscale",
+    "filingSingle": "Si Déclaration Séparée (Combinée)",
+    "effectiveRate": "taux effectif",
+    "filingJointly": "Si Déclaration Commune",
+    "singleBreakdown": "Répartition Déclaration Séparée"
+  },
   "DepreciationCalculator": {
     "title": "Calculateur d'Amortissement",
     "desc": "Calculez l'amortissement des actifs au fil du temps.",

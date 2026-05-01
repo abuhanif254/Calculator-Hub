@@ -218,6 +218,26 @@
     "growthChart": "Prognostiziertes Wachstum im Zeitverlauf",
     "projectedBalance": "Prognostiziertes Guthaben"
   },
+  "MarriageTaxCalculator": {
+    "title": "Heiratsstrafe-Rechner",
+    "desc": "Schätzen Sie, ob die gemeinsame Veranlagung zu einem Bonus oder einer Strafe führt.",
+    "incomeInput": "Jahreseinkommen",
+    "partner1Income": "Einkommen Partner 1",
+    "partner2Income": "Einkommen Partner 2",
+    "disclaimer": "Hinweis: Dies ist eine Schätzung basierend auf allgemeinen progressiven Steuertarifen (simuliert die US-Standards von 2024). Die tatsächlichen Ergebnisse können abweichen.",
+    "totalIncome": "Gemeinsames Gesamteinkommen",
+    "marriageBonus": "Heiratsbonus",
+    "marriagePenalty": "Heiratsstrafe",
+    "neutral": "Kein Unterschied",
+    "bonusDesc": "Ehegattensplitting spart Ihnen Geld im Vergleich zur Einzelveranlagung.",
+    "penaltyDesc": "Die gemeinsame Veranlagung kostet mehr als die Einzelveranlagung.",
+    "neutralDesc": "Es gibt keinen steuerlichen Unterschied.",
+    "taxComparison": "Steuervergleich",
+    "filingSingle": "Bei Einzelveranlagung (Kombiniert)",
+    "effectiveRate": "effektiver Steuersatz",
+    "filingJointly": "Bei gemeinsamer Veranlagung",
+    "singleBreakdown": "Aufschlüsselung Einzelveranlagung"
+  },
   "DepreciationCalculator": {
     "title": "Abschreibungsrechner",
     "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",

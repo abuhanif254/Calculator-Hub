@@ -1568,6 +1568,42 @@ Input your current age, planned retirement age, current salary, and contribution
     `
   },
   {
+    slug: "marriage-tax-calculator",
+    slugs: {
+      en: "marriage-tax-calculator",
+      es: "calculadora-impuesto-matrimonio",
+      de: "heiratsstrafe-rechner",
+      fr: "calculateur-impot-mariage"
+    },
+    title: "Marriage Tax Calculator",
+    category: "Financial",
+    description: "Determine if getting married will result in a tax penalty or a tax bonus based on your combined incomes.",
+    meta: {
+      title: "Marriage Tax Calculator | Penalty or Bonus?",
+      description: "Free Marriage Tax Calculator. Check if filing taxes jointly will result in a marriage tax penalty or bonus based on combined progressive tax brackets.",
+      keywords: "marriage tax calculator, marriage penalty calculate, marriage bonus, filing jointly vs separately, tax brackets marriage"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## Understanding the Marriage Tax Penalty and Bonus
+
+When a couple gets married and files their taxes jointly, their combined income may push them into a different tax situation than if they filed as two singles. Depending on how much each partner earns and the specific tax brackets of their country, this can result in either a "Marriage Bonus" or a "Marriage Penalty."
+
+### What is a Marriage Penalty?
+
+A marriage penalty occurs when a married couple pays more in income taxes filing jointly than they would have paid if they each remained single and filed individual returns. This often happens structurally in progressive tax systems when both spouses earn similar incomes, pushing their combined income into a disproportionately higher tax bracket.
+
+### What is a Marriage Bonus?
+
+Conversely, a marriage bonus happens when a married couple pays less in taxes filing jointly than they would have if they stayed single. This scenario is most common when one spouse earns significantly more than the other. The jointly filed return allows the higher earner to essentially "use" some of the lower earner's lower tax brackets, bringing their overall tax burden down.
+
+### Using the Calculator
+
+Enter the annual income for both Partner 1 and Partner 2. The calculator will estimate the total taxes owed if both partners filed as single individuals and compare it to the estimated taxes if they file jointly. It will immediately show you whether you can expect a tax bonus or penalty. Please note this provides a generalized estimation based on standard progressive bracket models to help international visitors conceptualize this financial consideration.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",

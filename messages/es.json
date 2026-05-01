@@ -218,6 +218,26 @@
     "growthChart": "Crecimiento Proyectado con el Tiempo",
     "projectedBalance": "Saldo Proyectado"
   },
+  "MarriageTaxCalculator": {
+    "title": "Calculadora de Impuestos por Matrimonio",
+    "desc": "Estime si presentar una declaración conjunta genera un bono o una penalización fiscal.",
+    "incomeInput": "Ingresos Anuales",
+    "partner1Income": "Ingresos del Socio 1",
+    "partner2Income": "Ingresos del Socio 2",
+    "disclaimer": "Nota: Esta es una estimación basada en tramos de impuestos progresivos generalizados (simulando los estándares de EE. UU. 2024). Los resultados reales pueden variar.",
+    "totalIncome": "Ingreso Total Combinado",
+    "marriageBonus": "Bono de Matrimonio",
+    "marriagePenalty": "Penalización de Matrimonio",
+    "neutral": "Sin Diferencia",
+    "bonusDesc": "Presentar una declaración conjunta le ahorra dinero en comparación con las declaraciones individuales.",
+    "penaltyDesc": "Presentar una declaración conjunta cuesta más que presentar las declaraciones por separado.",
+    "neutralDesc": "No hay diferencia en los impuestos.",
+    "taxComparison": "Comparación de Impuestos",
+    "filingSingle": "Si Declaran Individualmente (Combinado)",
+    "effectiveRate": "tasa efectiva",
+    "filingJointly": "Si Declaran Conjuntamente",
+    "singleBreakdown": "Desglose Individual"
+  },
   "DepreciationCalculator": {
     "title": "Calculadora de Depreciación",
     "desc": "Calcule la depreciación de los activos con el tiempo.",
