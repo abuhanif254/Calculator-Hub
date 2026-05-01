@@ -9,6 +9,7 @@ const popularCalculators = [
   { title: "Student Loan Calculator", href: "/calculators/student-loan-calculator" },
   { title: "Business Loan Calculator", href: "/calculators/business-loan-calculator" },
   { title: "Personal Loan Calculator", href: "/calculators/personal-loan-calculator" },
+  { title: "Budget Calculator", href: "/calculators/budget-calculator" },
   { title: "Bond Calculator", href: "/calculators/bond-calculator" },
   { title: "RMD Calculator", href: "/calculators/rmd-calculator" },
   { title: "Depreciation Calculator", href: "/calculators/depreciation-calculator" },

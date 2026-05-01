@@ -1350,6 +1350,44 @@ By calculating your potential monthly payments and total interest, you can make 
     `
   },
   {
+    slug: "budget-calculator",
+    slugs: {
+      en: "budget-calculator",
+      es: "calculadora-presupuesto",
+      de: "budgetrechner",
+      fr: "calculateur-budget"
+    },
+    title: "Budget Calculator",
+    category: "Financial",
+    description: "Plan your monthly budget, track your income and expenses, and apply the 50/30/20 rule to meet your financial goals.",
+    meta: {
+      title: "Budget Calculator | Monthly Budget Planner & 50/30/20 Rule",
+      description: "Free monthly budget calculator. Track income, categorize expenses, and plan your savings with our interactive budget planner and 50/30/20 rule breakdown.",
+      keywords: "budget calculator, monthly budget planner, 50/30/20 rule, personal finance, expense tracker, savings calculator, family budget"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Monthly Budget Calculator
+
+A solid budget is the foundation of personal financial success. Whether you are living paycheck to paycheck or trying to save for a major purchase, tracking where your money goes is crucial. This budget calculator helps you organize your monthly income and expenses to ensure you're meeting your financial goals.
+
+### The 50/30/20 Rule
+
+This calculator includes a helpful breakdown based on the popular 50/30/20 budgeting rule, which suggests dividing your after-tax income into three main categories:
+
+1. **50% for Needs:** Essential expenses that you must pay to live and work. This includes housing (rent/mortgage), groceries, basic utilities, healthcare, and minimum debt payments.
+2. **30% for Wants:** Flexible spending on things you enjoy but don't strictly need. This covers dining out, entertainment, hobbies, vacations, and subscription services.
+3. **20% for Savings and Debt Repayment:** Money put towards your future financial security. This includes emergency fund contributions, retirement investments, and extra payments to pay down high-interest debt faster.
+
+### Tips for Successful Budgeting
+
+- **Be Realistic:** Track your actual spending for a month before setting your target budget. Trying to cut expenses too drastically often leads to frustration.
+- **Pay Yourself First:** Treat your savings contributions like a mandatory bill. Automating transfers to your savings or investment accounts can make this easier.
+- **Review Regularly:** Your income and expenses will change over time. Revisit your budget every few months or whenever you experience a major life event.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",
