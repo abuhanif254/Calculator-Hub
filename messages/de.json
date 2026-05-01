@@ -307,6 +307,24 @@
     "yearLabel": "Jahr",
     "disclaimer": "Investitionen in Investmentfonds unterliegen Marktrisiken. Die Wertentwicklung in der Vergangenheit ist kein verlässlicher Indikator für zukünftige Erträge. Der Rechner liefert Schätzungen basierend auf Ihrer erwarteten Rendite."
   },
+  "VatCalculator": {
+    "title": "Mehrwertsteuer-Rechner",
+    "desc": "Berechnen Sie die Mehrwertsteuer (MwSt.), indem Sie sie zu einem Nettobetrag addieren oder von einem Bruttobetrag abziehen.",
+    "calculationType": "Was möchten Sie tun?",
+    "addVatTitle": "MwSt. hinzufügen",
+    "addVatDesc": "Ich habe den Nettobetrag (vor Steuern) und benötige den Endpreis.",
+    "removeVatTitle": "MwSt. abziehen",
+    "removeVatDesc": "Ich habe den Bruttobetrag (nach Steuern) und muss den Grundpreis ermitteln.",
+    "amountNet": "Nettobetrag (Preis ohne MwSt.)",
+    "amountGross": "Bruttobetrag (Preis mit MwSt.)",
+    "vatRate": "MwSt.-Satz (%)",
+    "totalGross": "Bruttobetrag (Gesamtpreis)",
+    "totalNet": "Nettobetrag (Grundpreis)",
+    "originalNet": "Nettobetrag",
+    "originalGross": "Bruttobetrag",
+    "vatAmount": "MwSt.-Betrag",
+    "breakdown": "Visuelle Aufschlüsselung"
+  },
   "DepreciationCalculator": {
     "title": "Abschreibungsrechner",
     "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",

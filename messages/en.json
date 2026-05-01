@@ -307,6 +307,24 @@
     "yearLabel": "Year",
     "disclaimer": "Mutual fund investments are subject to market risks. Past performance is not indicative of future returns. The calculator provides estimates based on your expected return rate."
   },
+  "VatCalculator": {
+    "title": "VAT Calculator",
+    "desc": "Calculate Value Added Tax (VAT) by adding it to a net amount or extracting it from a gross amount.",
+    "calculationType": "What do you want to do?",
+    "addVatTitle": "Add VAT",
+    "addVatDesc": "I have the net amount (before tax) and need the final price.",
+    "removeVatTitle": "Remove VAT",
+    "removeVatDesc": "I have the gross amount (after tax) and need to find the base price.",
+    "amountNet": "Net Amount (Price without VAT)",
+    "amountGross": "Gross Amount (Price with VAT)",
+    "vatRate": "VAT Rate (%)",
+    "totalGross": "Gross Amount (Total Price)",
+    "totalNet": "Net Amount (Base Price)",
+    "originalNet": "Net Amount",
+    "originalGross": "Gross Amount",
+    "vatAmount": "VAT Amount",
+    "breakdown": "Visual Breakdown"
+  },
   "DepreciationCalculator": {
     "title": "Depreciation Calculator",
     "desc": "Calculate asset depreciation over time.",

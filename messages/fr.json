@@ -307,6 +307,24 @@
     "yearLabel": "Année",
     "disclaimer": "Les investissements en fonds communs de placement sont soumis aux risques du marché. Les performances passées ne préjugent pas des rendements futurs. Le calculateur fournit des estimations basées sur votre taux de rendement prévu."
   },
+  "VatCalculator": {
+    "title": "Calculateur de TVA",
+    "desc": "Calculez la Taxe sur la Valeur Ajoutée (TVA) en l'ajoutant à un montant net ou en l'extrayant d'un montant brut.",
+    "calculationType": "Que voulez-vous faire ?",
+    "addVatTitle": "Ajouter la TVA",
+    "addVatDesc": "Je n'ai que le montant net (hors taxes) et j'ai besoin du prix final.",
+    "removeVatTitle": "Déduire la TVA",
+    "removeVatDesc": "J'ai le montant brut (TTC) et je dois trouver le prix de base.",
+    "amountNet": "Montant Net (Prix hors TVA)",
+    "amountGross": "Montant Brut (Prix TTC)",
+    "vatRate": "Taux de TVA (%)",
+    "totalGross": "Montant Brut (Prix Total)",
+    "totalNet": "Montant Net (Prix de base)",
+    "originalNet": "Montant Net",
+    "originalGross": "Montant Brut",
+    "vatAmount": "Montant de la TVA",
+    "breakdown": "Répartition Visuelle"
+  },
   "DepreciationCalculator": {
     "title": "Calculateur d'Amortissement",
     "desc": "Calculez l'amortissement des actifs au fil du temps.",

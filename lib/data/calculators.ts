@@ -1745,6 +1745,44 @@ The secret ingredient of mutual fund investing is compound interest—earning in
     `
   },
   {
+    slug: "vat-calculator",
+    slugs: {
+      en: "vat-calculator",
+      es: "calculadora-iva",
+      de: "mehrwertsteuer-rechner",
+      fr: "calculateur-tva"
+    },
+    title: "VAT Calculator",
+    category: "Financial",
+    description: "Calculate Value Added Tax (VAT) to add to or remove from a price.",
+    meta: {
+      title: "VAT Calculator | Value Added Tax",
+      description: "Free VAT Calculator. Easily add VAT to a net amount or extract VAT from a gross amount.",
+      keywords: "vat calculator, value added tax, calculate vat, add vat, remove vat, gross net calculation"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## What is VAT (Value Added Tax)?
+
+Value Added Tax (VAT) is a consumption tax placed on a product whenever value is added at each stage of the supply chain, from production to the point of sale. The amount of VAT that the user pays is on the cost of the product, less any of the costs of materials used in the product that have already been taxed.
+
+### Adding VAT (Net to Gross)
+
+When you know the base price of a product or service before tax (the net amount) and need to calculate the final price to charge a customer, you add VAT. 
+**Formula:** Gross Amount = Net Amount + (Net Amount × (VAT Rate / 100))
+
+### Removing VAT (Gross to Net)
+
+When you have the final price of a product or service that already includes tax (the gross amount) and need to find out how much of that price is tax versus the base price, you remove or extract VAT.
+**Formula:** Net Amount = Gross Amount / (1 + (VAT Rate / 100))
+
+### Using the VAT Calculator
+
+This calculator allows you to quickly perform both calculations. Simply enter your amount, provide the applicable VAT rate for your country or region, and select whether you want to Add VAT (start with net amount) or Remove VAT (start with gross amount). The calculator will display the VAT amount and the corresponding net/gross figures instantly.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",

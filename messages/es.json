@@ -307,6 +307,24 @@
     "yearLabel": "Año",
     "disclaimer": "Las inversiones en fondos mutuos están sujetas a riesgos de mercado. El rendimiento pasado no es indicativo de rendimientos futuros. La calculadora proporciona estimaciones basadas en su tasa de rendimiento esperada."
   },
+  "VatCalculator": {
+    "title": "Calculadora de IVA",
+    "desc": "Calcule el Impuesto sobre el Valor Añadido (IVA) sumándolo a un monto neto o extrayéndolo de un monto bruto.",
+    "calculationType": "¿Qué desea hacer?",
+    "addVatTitle": "Añadir IVA",
+    "addVatDesc": "Tengo el monto neto (antes de impuestos) y necesito el precio final.",
+    "removeVatTitle": "Quitar IVA",
+    "removeVatDesc": "Tengo el monto bruto (después de impuestos) y necesito encontrar el precio base.",
+    "amountNet": "Monto Neto (Precio sin IVA)",
+    "amountGross": "Monto Bruto (Precio con IVA)",
+    "vatRate": "Tasa de IVA (%)",
+    "totalGross": "Monto Bruto (Precio Total)",
+    "totalNet": "Monto Neto (Precio Base)",
+    "originalNet": "Monto Neto",
+    "originalGross": "Monto Bruto",
+    "vatAmount": "Monto de IVA",
+    "breakdown": "Desglose Visual"
+  },
   "DepreciationCalculator": {
     "title": "Calculadora de Depreciación",
     "desc": "Calcule la depreciación de los activos con el tiempo.",
