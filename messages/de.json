@@ -166,6 +166,23 @@
     "drawInterest": "Zinsen der Ziehungsphase",
     "repaymentInterest": "Zinsen der Rückzahlungsphase"
   },
+  "PresentValueCalculator": {
+    "title": "Barwertrechner",
+    "desc": "Berechnen Sie den Barwert einer zukünftigen Summe oder von Zahlungsströmen.",
+    "futureValue": "Zukünftiger Wert (FV)",
+    "periodicPayment": "Regelmäßige Zahlung (PMT)",
+    "pmtHelp": "Optional. Regelmäßige Zahlung, die in jedem Zeitraum eingeht.",
+    "paymentTiming": "Zeitpunkt der Zahlung",
+    "endOfPeriod": "Ende der Periode",
+    "beginningOfPeriod": "Beginn der Periode",
+    "discountRate": "Diskontsatz (%)",
+    "periods": "Anzahl der Perioden",
+    "totalPresentValue": "Gesamter Barwert",
+    "breakdown": "Wertaufschlüsselung",
+    "pvFromFV": "Barwert des zukünftigen Wertes",
+    "pvFromPMT": "Barwert der Annuität (Zahlungen)",
+    "totalFutureAmount": "Gesamter Nominalbetrag"
+  },
   "DepreciationCalculator": {
     "title": "Abschreibungsrechner",
     "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",

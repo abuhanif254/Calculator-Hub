@@ -166,6 +166,23 @@
     "drawInterest": "Draw Period Interest",
     "repaymentInterest": "Repayment Period Interest"
   },
+  "PresentValueCalculator": {
+    "title": "Present Value Calculator",
+    "desc": "Calculate the present value of a future sum or cash flows.",
+    "futureValue": "Future Value (FV)",
+    "periodicPayment": "Periodic Payment (PMT)",
+    "pmtHelp": "Optional. Regular payment received each period.",
+    "paymentTiming": "Payment Timing",
+    "endOfPeriod": "End of Period",
+    "beginningOfPeriod": "Beginning of Period",
+    "discountRate": "Discount Rate (%)",
+    "periods": "Number of Periods",
+    "totalPresentValue": "Total Present Value",
+    "breakdown": "Value Breakdown",
+    "pvFromFV": "PV of Future Value",
+    "pvFromPMT": "PV of Annuity (Payments)",
+    "totalFutureAmount": "Total Nominal Amount"
+  },
   "DepreciationCalculator": {
     "title": "Depreciation Calculator",
     "desc": "Calculate asset depreciation over time.",

@@ -166,6 +166,23 @@
     "drawInterest": "Intérêts (Tirage)",
     "repaymentInterest": "Intérêts (Remboursement)"
   },
+  "PresentValueCalculator": {
+    "title": "Calculateur de Valeur Actuelle",
+    "desc": "Calculez la valeur actuelle d'une somme future ou de flux de trésorerie.",
+    "futureValue": "Valeur Future (FV)",
+    "periodicPayment": "Paiement Périodique (PMT)",
+    "pmtHelp": "Optionnel. Paiement régulier reçu chaque période.",
+    "paymentTiming": "Moment du Paiement",
+    "endOfPeriod": "Fin de Période",
+    "beginningOfPeriod": "Début de Période",
+    "discountRate": "Taux d'Actualisation (%)",
+    "periods": "Nombre de Périodes",
+    "totalPresentValue": "Valeur Actuelle Totale",
+    "breakdown": "Répartition de la Valeur",
+    "pvFromFV": "VA de la Valeur Future",
+    "pvFromPMT": "VA de l'Annuité (Paiements)",
+    "totalFutureAmount": "Montant Nominal Total"
+  },
   "DepreciationCalculator": {
     "title": "Calculateur d'Amortissement",
     "desc": "Calculez l'amortissement des actifs au fil du temps.",

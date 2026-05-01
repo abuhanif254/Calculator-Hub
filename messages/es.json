@@ -166,6 +166,23 @@
     "drawInterest": "Interés de Disposición",
     "repaymentInterest": "Interés de Reembolso"
   },
+  "PresentValueCalculator": {
+    "title": "Calculadora de Valor Presente",
+    "desc": "Calcule el valor presente de una suma futura o flujos de efectivo.",
+    "futureValue": "Valor Futuro (FV)",
+    "periodicPayment": "Pago Periódico (PMT)",
+    "pmtHelp": "Opcional. Pago regular recibido cada período.",
+    "paymentTiming": "Momento del Pago",
+    "endOfPeriod": "Fin del Período",
+    "beginningOfPeriod": "Inicio del Período",
+    "discountRate": "Tasa de Descuento (%)",
+    "periods": "Número de Períodos",
+    "totalPresentValue": "Valor Presente Total",
+    "breakdown": "Desglose de Valor",
+    "pvFromFV": "VP del Valor Futuro",
+    "pvFromPMT": "VP de la Anualidad (Pagos)",
+    "totalFutureAmount": "Cantidad Nominal Total"
+  },
   "DepreciationCalculator": {
     "title": "Calculadora de Depreciación",
     "desc": "Calcule la depreciación de los activos con el tiempo.",

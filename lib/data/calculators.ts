@@ -1462,6 +1462,43 @@ Understanding both phases is critical to ensure you can afford the loan over its
     `
   },
   {
+    slug: "present-value-calculator",
+    slugs: {
+      en: "present-value-calculator",
+      es: "calculadora-valor-presente",
+      de: "barwertrechner",
+      fr: "calculateur-valeur-actuelle"
+    },
+    title: "Present Value Calculator",
+    category: "Financial",
+    description: "Calculate the present value of a future sum of money or stream of cash flows given a specified rate of return.",
+    meta: {
+      title: "Present Value Calculator | PV of Future Cash Flows",
+      description: "Free Present Value (PV) calculator. Determine the current worth of a future sum of money or stream of cash flows given a specific rate of return.",
+      keywords: "present value calculator, pv calculator, discount rate, time value of money, net present value, future value, finance calculator"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## What is Present Value (PV)?
+
+Present Value is the current worth of a future sum of money or stream of cash flows given a specified rate of return. It is based on the premise that money today is worth more than the same amount in the future (the time value of money) because it can be invested and earn a return.
+
+### How to Use the Present Value Calculator
+
+This calculator helps you determine how much a future sum (or a series of payments) is worth in today's dollars. 
+
+1. **Future Value / Cash Flow:** The amount of money you expect to receive in the future.
+2. **Periodic Payment (Annuity):** A regular amount added or received each period.
+3. **Discount Rate:** The expected rate of return (interest rate). The higher the discount rate, the lower the present value.
+4. **Number of Periods:** The time until the future sum is received.
+
+### Why Present Value Matters
+
+Understanding Present Value is crucial for evaluating investments, businesses, financial modeling, and everyday financial decisions. Whether you're comparing investment opportunities or deciding between receiving a lump sum now versus payments over time, the Present Value formula gives you a standardized way to compare values.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",
