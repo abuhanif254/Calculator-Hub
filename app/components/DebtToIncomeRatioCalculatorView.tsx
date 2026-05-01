@@ -46,7 +46,7 @@ export function DebtToIncomeRatioCalculatorView({ calcDef }: DebtToIncomeRatioCa
   };
 
   const addIncome = () => {
-    setIncomes([...incomes, { id: \`inc-\${Date.now()}\`, name: "Other Income", amount: "0" }]);
+    setIncomes([...incomes, { id: `inc-${Date.now()}`, name: "Other Income", amount: "0" }]);
   };
 
   const removeIncome = (id: string) => {
@@ -60,7 +60,7 @@ export function DebtToIncomeRatioCalculatorView({ calcDef }: DebtToIncomeRatioCa
   };
 
   const addDebt = () => {
-    setDebts([...debts, { id: \`debt-\${Date.now()}\`, name: "Other Debt", amount: "0", icon: Banknote }]);
+    setDebts([...debts, { id: `debt-${Date.now()}`, name: "Other Debt", amount: "0", icon: Banknote }]);
   };
 
   const removeDebt = (id: string) => {
@@ -149,9 +149,9 @@ export function DebtToIncomeRatioCalculatorView({ calcDef }: DebtToIncomeRatioCa
                     <button
                       onClick={() => removeIncome(inc.id)}
                       disabled={incomes.length === 1}
-                      className={\`w-10 h-10 flex items-center justify-center rounded-lg transition-colors \${
+                      className={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors ${
                         incomes.length === 1 ? "text-slate-300 cursor-not-allowed" : "text-red-400 hover:bg-red-50"
-                      }\`}
+                      }`}
                     >
                       <Trash2 size={18} />
                     </button>
@@ -239,7 +239,7 @@ export function DebtToIncomeRatioCalculatorView({ calcDef }: DebtToIncomeRatioCa
                 <h4 className="text-slate-400 font-semibold mb-2 uppercase tracking-widest text-xs">Debt-to-Income Ratio</h4>
                 
                 <div className="flex items-end gap-3 mb-2">
-                  <span className={\`text-6xl font-black \${totalIncome > 0 ? getStatusColor(dtiRatio) : "text-white"}\`}>
+                  <span className={`text-6xl font-black ${totalIncome > 0 ? getStatusColor(dtiRatio) : "text-white"}`}>
                     {totalIncome > 0 ? dtiRatio.toFixed(1) : "0"}
                   </span>
                   <span className="text-2xl font-bold text-slate-400 pb-1">%</span>
@@ -261,15 +261,15 @@ export function DebtToIncomeRatioCalculatorView({ calcDef }: DebtToIncomeRatioCa
                 {totalIncome > 0 && (
                   <div className="mt-6">
                     <div className="h-2 w-full bg-slate-700 rounded-full overflow-hidden flex">
-                      <div className="h-full bg-emerald-500" style={{ width: \`35%\` }}></div>
-                      <div className="h-full bg-blue-500" style={{ width: \`8%\` }}></div>
-                      <div className="h-full bg-amber-500" style={{ width: \`6%\` }}></div>
-                      <div className="h-full bg-red-500" style={{ width: \`51%\` }}></div>
+                      <div className="h-full bg-emerald-500" style={{ width: `35%` }}></div>
+                      <div className="h-full bg-blue-500" style={{ width: `8%` }}></div>
+                      <div className="h-full bg-amber-500" style={{ width: `6%` }}></div>
+                      <div className="h-full bg-red-500" style={{ width: `51%` }}></div>
                     </div>
                     <div className="relative w-full h-4 mt-2">
                       <div 
                         className="absolute top-0 transition-all duration-500" 
-                        style={{ left: \`\${Math.min(dtiRatio, 100)}%\`, transform: 'translateX(-50%)' }}
+                        style={{ left: `${Math.min(dtiRatio, 100)}%`, transform: 'translateX(-50%)' }}
                       >
                         <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-l-transparent border-r-transparent border-b-white mx-auto"></div>
                       </div>
@@ -306,11 +306,11 @@ export function DebtToIncomeRatioCalculatorView({ calcDef }: DebtToIncomeRatioCa
                           dataKey="value"
                         >
                           {chartData.map((entry, index) => (
-                            <Cell key={\`cell-\${index}\`} fill={entry.color} />
+                            <Cell key={`cell-${index}`} fill={entry.color} />
                           ))}
                         </Pie>
                         <Tooltip 
-                          formatter={(value: number) => \`$\${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\`}
+                          formatter={(value: number) => `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
                           contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                         />
                       </PieChart>
