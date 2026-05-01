@@ -197,6 +197,27 @@
     "priceBeforeTax": "Prix Hors Taxes",
     "taxAmount": "Montant de la Taxe"
   },
+  "Plan401kCalculator": {
+    "title": "Calculateur de Retraite 401(k)",
+    "desc": "Estimez votre épargne retraite en fonction de votre salaire, de vos cotisations et de la contribution de votre employeur.",
+    "personalInfo": "Informations Personnelles",
+    "currentAge": "Âge Actuel",
+    "retirementAge": "Âge de Retraite",
+    "currentBalance": "Solde Actuel du 401(k)",
+    "currentSalary": "Salaire Annuel Actuel",
+    "salaryIncrease": "Augmentation Annuelle du Salaire (%)",
+    "expectedReturn": "Rendement Annuel Prévu (%)",
+    "contributions": "Cotisations et Contribution de l'Employeur",
+    "yourContribution": "Votre Cotisation (% du salaire)",
+    "employerMatch": "Contribution de l'Employeur (%)",
+    "matchLimit": "Limite de Contribution (% du salaire)",
+    "matchHelp": "Ex. Égale à 50 % de vos contributions jusqu'à 6 % de votre salaire.",
+    "estimatedBalance": "Solde Estimé à la Retraite",
+    "totalContributions": "Total de Vos Cotisations",
+    "totalEmployerMatch": "Total de la Contribution de l'Employeur",
+    "growthChart": "Croissance Projetée dans le Temps",
+    "projectedBalance": "Solde Projeté"
+  },
   "DepreciationCalculator": {
     "title": "Calculateur d'Amortissement",
     "desc": "Calculez l'amortissement des actifs au fil du temps.",

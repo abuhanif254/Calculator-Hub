@@ -14,6 +14,7 @@ const popularCalculators = [
   { title: "HELOC Calculator", href: "/calculators/heloc-calculator" },
   { title: "Present Value Calculator", href: "/calculators/present-value-calculator" },
   { title: "Percent Off Calculator", href: "/calculators/percent-off-calculator" },
+  { title: "401(k) Calculator", href: "/calculators/401k-calculator" },
   { title: "Bond Calculator", href: "/calculators/bond-calculator" },
   { title: "RMD Calculator", href: "/calculators/rmd-calculator" },
   { title: "Depreciation Calculator", href: "/calculators/depreciation-calculator" },

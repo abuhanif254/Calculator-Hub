@@ -197,6 +197,27 @@
     "priceBeforeTax": "Precio antes de Impuestos",
     "taxAmount": "Cantidad de Impuestos"
   },
+  "Plan401kCalculator": {
+    "title": "Calculadora de Jubilación 401(k)",
+    "desc": "Estima tus ahorros para la jubilación en función de tu salario, aportes y la contrapartida del empleador.",
+    "personalInfo": "Información Personal",
+    "currentAge": "Edad Actual",
+    "retirementAge": "Edad de Jubilación",
+    "currentBalance": "Saldo Actual del 401(k)",
+    "currentSalary": "Salario Anual Actual",
+    "salaryIncrease": "Aumento Salarial Anual (%)",
+    "expectedReturn": "Rendimiento Anual Esperado (%)",
+    "contributions": "Contribuciones y Contrapartida",
+    "yourContribution": "Tu Contribución (% del salario)",
+    "employerMatch": "Contrapartida del Empleador (%)",
+    "matchLimit": "Límite de Contrapartida (% del salario)",
+    "matchHelp": "Ej., Iguala el 50% de tus contribuciones hasta el 6% de tu salario.",
+    "estimatedBalance": "Saldo Estimado a la Jubilación",
+    "totalContributions": "Tus Contribuciones Totales",
+    "totalEmployerMatch": "Contrapartida Total del Empleador",
+    "growthChart": "Crecimiento Proyectado con el Tiempo",
+    "projectedBalance": "Saldo Proyectado"
+  },
   "DepreciationCalculator": {
     "title": "Calculadora de Depreciación",
     "desc": "Calcule la depreciación de los activos con el tiempo.",

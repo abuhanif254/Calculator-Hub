@@ -197,6 +197,27 @@
     "priceBeforeTax": "Preis vor Steuern",
     "taxAmount": "Steuerbetrag"
   },
+  "Plan401kCalculator": {
+    "title": "401(k) Altersvorsorgerechner",
+    "desc": "Schätzen Sie Ihre Altersvorsorge basierend auf Ihrem Gehalt, Ihren Beiträgen und dem Arbeitgeberzuschuss.",
+    "personalInfo": "Persönliche Informationen",
+    "currentAge": "Aktuelles Alter",
+    "retirementAge": "Rentenalter",
+    "currentBalance": "Aktuelles 401(k) Guthaben",
+    "currentSalary": "Aktuelles Jahresgehalt",
+    "salaryIncrease": "Jährliche Gehaltserhöhung (%)",
+    "expectedReturn": "Erwartete jährliche Rendite (%)",
+    "contributions": "Beiträge & Zuschuss",
+    "yourContribution": "Ihr Beitrag (% vom Gehalt)",
+    "employerMatch": "Arbeitgeberzuschuss (%)",
+    "matchLimit": "Zuschusslimit (% vom Gehalt)",
+    "matchHelp": "Z.B., bezuschusst 50% Ihrer Beiträge bis zu 6% Ihres Gehalts.",
+    "estimatedBalance": "Geschätztes Guthaben bei Renteneintritt",
+    "totalContributions": "Ihre gesamten Beiträge",
+    "totalEmployerMatch": "Gesamter Arbeitgeberzuschuss",
+    "growthChart": "Prognostiziertes Wachstum im Zeitverlauf",
+    "projectedBalance": "Prognostiziertes Guthaben"
+  },
   "DepreciationCalculator": {
     "title": "Abschreibungsrechner",
     "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",

@@ -197,6 +197,27 @@
     "priceBeforeTax": "Price Before Tax",
     "taxAmount": "Tax Amount"
   },
+  "Plan401kCalculator": {
+    "title": "401(k) Retirement Calculator",
+    "desc": "Estimate your retirement savings based on your salary, contributions, and employer match.",
+    "personalInfo": "Personal Information",
+    "currentAge": "Current Age",
+    "retirementAge": "Retirement Age",
+    "currentBalance": "Current 401(k) Balance",
+    "currentSalary": "Current Annual Salary",
+    "salaryIncrease": "Annual Salary Increase (%)",
+    "expectedReturn": "Expected Annual Return (%)",
+    "contributions": "Contributions & Match",
+    "yourContribution": "Your Contribution (% of salary)",
+    "employerMatch": "Employer Match (%)",
+    "matchLimit": "Match Limit (% of salary)",
+    "matchHelp": "e.g., Matches 50% of your contributions up to 6% of your salary.",
+    "estimatedBalance": "Estimated Balance at Retirement",
+    "totalContributions": "Total Your Contributions",
+    "totalEmployerMatch": "Total Employer Match",
+    "growthChart": "Projected Growth Over Time",
+    "projectedBalance": "Projected Balance"
+  },
   "DepreciationCalculator": {
     "title": "Depreciation Calculator",
     "desc": "Calculate asset depreciation over time.",

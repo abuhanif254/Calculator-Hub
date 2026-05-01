@@ -1533,6 +1533,41 @@ Understanding the final cost helps you budget effectively and compare different 
     `
   },
   {
+    slug: "401k-calculator",
+    slugs: {
+      en: "401k-calculator",
+      es: "calculadora-401k",
+      de: "401k-rechner",
+      fr: "calculateur-401k"
+    },
+    title: "401(k) Calculator",
+    category: "Financial",
+    description: "Estimate your 401(k) or employer-sponsored retirement plan balance at retirement based on your contributions and company match.",
+    meta: {
+      title: "401(k) Calculator | Retirement Savings Planner",
+      description: "Free 401(k) calculator. Estimate your retirement savings, factor in company match, salary increases, and investment returns to plan for your future.",
+      keywords: "401k calculator, retirement calculator, company match, retirement savings plan, investment growth, retirement planning"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## What is a 401(k) Plan?
+
+A 401(k) is a popular employer-sponsored retirement savings plan in the United States, allowing workers to save and invest a piece of their paycheck before taxes are taken out. For international visitors, the math in this calculator applies to any defined-contribution pension plan or employer-matched retirement saving scheme.
+
+### How to Maximize Your Retirement Savings
+
+1. **Start Early:** The earlier you start saving, the more time your investments have to grow through compound interest.
+2. **Get the Employer Match:** If your employer offers a matching contribution (e.g., matching 100% of your contributions up to 5% of your salary), make sure you contribute at least enough to get the full match. It's essentially free money added to your retirement account!
+3. **Increase Contributions Over Time:** As your salary increases, try to increase your contribution percentage. Our calculator assumes an annual salary increase to help you model this growth.
+4. **Understand Your Rate of Return:** Your expected rate of return depends on what you invest in (stocks, bonds, mutual funds). A balanced portfolio typically aims for an average annual return around 6% to 8% before inflation.
+
+### Using the 401(k) Calculator
+
+Input your current age, planned retirement age, current salary, and contribution rates. The calculator projects your salary growth each year, calculates your contribution and your employer's match, and applies your anticipated rate of return to project the estimated balance of your retirement account when you reach your retirement age.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",
