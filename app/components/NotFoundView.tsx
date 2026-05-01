@@ -20,6 +20,7 @@ const popularCalculators = [
   { title: "Debt Payoff Calculator", href: "/calculators/debt-payoff-calculator" },
   { title: "Average Return Calculator", href: "/calculators/average-return-calculator" },
   { title: "Debt-to-Income Ratio Calculator", href: "/calculators/debt-to-income-ratio-calculator" },
+  { title: "Boat Loan Calculator", href: "/calculators/boat-loan-calculator" },
   { title: "College Cost Calculator", href: "/calculators/college-cost-calculator" },
   { title: "Mutual Fund Calculator", href: "/calculators/mutual-fund-calculator" },
   { title: "VAT Calculator", href: "/calculators/vat-calculator" },

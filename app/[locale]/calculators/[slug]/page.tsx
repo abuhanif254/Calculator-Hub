@@ -71,6 +71,7 @@ import { RMDCalculatorView } from "@/app/components/RMDCalculatorView";
 import { DepreciationCalculatorView } from "@/app/components/DepreciationCalculatorView";
 import { AverageReturnCalculatorView } from "@/app/components/AverageReturnCalculatorView";
 import { DebtToIncomeRatioCalculatorView } from "@/app/components/DebtToIncomeRatioCalculatorView";
+import { BoatLoanCalculatorView } from "@/app/components/BoatLoanCalculatorView";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
@@ -397,6 +398,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <AverageReturnCalculatorView calcDef={calc} />
           ) : calc.slug === 'debt-to-income-ratio-calculator' ? (
             <DebtToIncomeRatioCalculatorView calcDef={calc} />
+          ) : calc.slug === 'boat-loan-calculator' ? (
+            <BoatLoanCalculatorView calcDef={calc} />
           ) : calc.slug === 'p-value-calculator' ? (
             <PValueCalculatorView calcDef={calc} />
           ) : calc.slug === 'fraction-calculator' ? (

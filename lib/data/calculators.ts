@@ -1956,6 +1956,34 @@ If your DTI is higher than you'd like, you have two primary levers to improve it
 1.  **Reduce your monthly debt:** Pay off loans, reduce credit card balances, or consolidate debt for lower monthly payments.
 2.  **Increase your gross income:** A side hustle, promotion, or new job with a higher salary will directly improve your ratio (assuming your debt stays the same).
     `
+  },
+  {
+    slug: "boat-loan-calculator",
+    slugs: {
+      en: "boat-loan-calculator",
+      es: "calculadora-prestamo-barco",
+      de: "bootskredit-rechner",
+      fr: "calculateur-pret-bateau"
+    },
+    title: "Boat Loan Calculator",
+    category: "Financial",
+    description: "Calculate your monthly payments and total interest for a boat or yacht loan.",
+    meta: {
+      title: "Boat Loan Calculator | Estimate Marine Financing",
+      description: "Free online Boat Loan Calculator. Estimate your monthly marine financing payments, total interest, and payoff schedule.",
+      keywords: "boat loan calculator, marine financing calculator, yacht loan calculator"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Boat Loan Calculator
+
+Buying a boat is an exciting milestone, but understanding the financing is crucial before you set sail. This Boat Loan Calculator helps you estimate your monthly payments, total interest, and the overall cost of your marine loan.
+
+### Understanding Boat Financing
+
+Boat loans are similar to auto loans but often have longer terms and different interest rate structures. 
+    `
   }
 ];
 
