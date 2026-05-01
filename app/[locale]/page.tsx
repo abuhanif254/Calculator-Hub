@@ -179,6 +179,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 if (link === "Percent Off Calculator") href = "/calculators/percent-off-calculator";
                 if (link === "401(k) Calculator") href = "/calculators/401k-calculator";
                 if (link === "Marriage Tax Calculator") href = "/calculators/marriage-tax-calculator";
+                if (link === "Annuity Calculator") href = "/calculators/annuity-calculator";
+                if (link === "Debt Payoff Calculator") href = "/calculators/debt-payoff-calculator";
+                if (link === "College Cost Calculator") href = "/calculators/college-cost-calculator";
+                if (link === "Mutual Fund Calculator") href = "/calculators/mutual-fund-calculator";
                 if (link === "Bond Calculator") href = "/calculators/bond-calculator";
                 if (link === "RMD Calculator") href = "/calculators/rmd-calculator";
                 if (link === "Depreciation Calculator") href = "/calculators/depreciation-calculator";

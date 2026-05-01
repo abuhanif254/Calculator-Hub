@@ -1604,6 +1604,147 @@ Enter the annual income for both Partner 1 and Partner 2. The calculator will es
     `
   },
   {
+    slug: "annuity-calculator",
+    slugs: {
+      en: "annuity-calculator",
+      es: "calculadora-anualidad",
+      de: "rentenrechner",
+      fr: "calculateur-rente"
+    },
+    title: "Annuity Calculator",
+    category: "Financial",
+    description: "Calculate the future or present value of an annuity, representing a series of equal payments at regular intervals.",
+    meta: {
+      title: "Annuity Calculator | Calculate Present and Future Value",
+      description: "Free Annuity Calculator. Discover the future value of a current annuity or the present value required to generate specific future payments.",
+      keywords: "annuity calculator, future value of annuity, present value of annuity, retirement income, investment calculator"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## What is an Annuity?
+
+An annuity is a series of equal payments made at regular intervals. In finance, annuities are often used for retirement purposes, where you either pay a lump sum today to receive a steady stream of income later, or you make regular contributions to build up a large sum for the future.
+
+### Present Value vs. Future Value of an Annuity
+
+*   **Present Value (PV) of an Annuity:** This tells you how much a future series of payments is worth today. This is useful if you want to know how much you need to invest now to guarantee a specific income stream in retirement.
+*   **Future Value (FV) of an Annuity:** This calculates how much a series of regular payments will be worth at a specific point in the future. This is helpful for understanding how your regular savings or investments will grow over time with compound interest.
+
+### Ordinary Annuity vs. Annuity Due
+
+*   **Ordinary Annuity:** Payments are made at the *end* of each period (e.g., standard loan payments).
+*   **Annuity Due:** Payments are made at the *beginning* of each period (e.g., rent payments). Because payments are made earlier, an annuity due will have a higher present and future value than an ordinary annuity.
+
+### How to Use the Annuity Calculator
+
+Use this calculator to find the payout or the required investment for your financial goals. Simply enter the payment amount, the interest rate, the number of periods, and choose when the payment is made to calculate your results instantly.
+    `
+  },
+  {
+    slug: "debt-payoff-calculator",
+    slugs: {
+      en: "debt-payoff-calculator",
+      es: "calculadora-pago-deudas",
+      de: "schulden-tilgungs-rechner",
+      fr: "calculateur-remboursement-dette"
+    },
+    title: "Debt Payoff Calculator",
+    category: "Financial",
+    description: "Determine how long it will take to pay off your debt and how much interest you will pay.",
+    meta: {
+      title: "Debt Payoff Calculator | Calculate Debt Freedom Date",
+      description: "Free Debt Payoff Calculator. See how fast you can become debt-free and how much interest you can save by making extra payments.",
+      keywords: "debt payoff calculator, debt free date, credit card payoff, loan payoff calculator, interest savings"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## Strategies to Pay Off Debt
+
+Paying off debt effectively requires a plan. Using a Debt Payoff Calculator helps you visualize your timeline and see the impact of making extra payments.
+
+### The Debt Snowball vs. Debt Avalanche
+
+If you have multiple debts, you might consider one of these popular approaches:
+1.  **Debt Snowball:** Pay off debts from smallest balance to largest balance, regardless of interest rate. This builds momentum and psychological wins.
+2.  **Debt Avalanche:** Pay off debts from highest interest rate to lowest interest rate. This saves you the most money mathematically over time.
+
+### Why Extra Payments Matter
+
+Making just the minimum payment on a loan or credit card mostly covers the interest, meaning your principal balance shrinks very slowly. By making an extra payment each month, you attack the principal directly. This not only shortens the time it takes to become debt-free but also significantly reduces the total amount of interest you will pay over the life of the debt. Use this calculator to see exactly how much you could save!
+    `
+  },
+  {
+    slug: "college-cost-calculator",
+    slugs: {
+      en: "college-cost-calculator",
+      es: "calculadora-costo-universidad",
+      de: "studienkostenrechner",
+      fr: "calculateur-cout-etudes"
+    },
+    title: "College Cost Calculator",
+    category: "Financial",
+    description: "Estimate the total cost of a college education, including tuition, room and board, books, and inflation over time.",
+    meta: {
+      title: "College Cost Calculator | Estimate University Expenses",
+      description: "Free College Cost Calculator. Project the total expense of a university degree taking into account tuition fees, living expenses, and historical education inflation rates.",
+      keywords: "college cost calculator, university fee estimator, education savings, college tuition inflation, room and board cost"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## Planning for College Education Costs
+
+Whether you are planning for your own future or saving for a child's education, understanding the true cost of a university degree is essential. A college cost calculator helps you factor in the various expenses beyond just tuition to give you a realistic target for your savings.
+
+### The Hidden Costs of Higher Education
+
+When budgeting for a degree, remember that tuition is only one part of the equation. You must also consider:
+*   **Room and Board:** Housing and food can sometimes equal or exceed the cost of tuition itself.
+*   **Books and Supplies:** Textbooks, laptops, and specialized materials for certain majors add up quickly.
+*   **Personal Expenses and Transportation:** Daily living costs, travel back home during holidays, and local transportation.
+
+### The Impact of College Inflation
+
+Education costs generally rise faster than standard economic inflation. If a student will not begin college for several years, it is critical to factor in a college inflation rate (often estimated between 3% to 5% annually). This calculator projects your current estimates into the future so you are not caught off guard when enrollment day finally arrives. By inputting your current savings and expected contributions, you can see if you are on track or if you need to adjust your savings strategy today.
+    `
+  },
+  {
+    slug: "mutual-fund-calculator",
+    slugs: {
+      en: "mutual-fund-calculator",
+      es: "calculadora-fondos-mutuos",
+      de: "investmentfonds-rechner",
+      fr: "calculateur-fonds-communs"
+    },
+    title: "Mutual Fund Calculator",
+    category: "Financial",
+    description: "Calculate the future value of your mutual fund investments with SIP (Systematic Investment Plan) or Lumpsum options.",
+    meta: {
+      title: "Mutual Fund Calculator | SIP & Lumpsum Returns Matrix",
+      description: "Free Mutual Fund Calculator. Estimate your investment returns over time with regular SIP contributions or a one-time Lumpsum investment to achieve your financial goals.",
+      keywords: "mutual fund calculator, SIP calculator, lumpsum calculator, investment returns, compounding returns, systematic investment plan"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How Mutual Funds Work
+
+Mutual funds pool money from many investors to purchase a diversified portfolio of stocks, bonds, or other securities. For international investors, this provides an easy way to achieve diversification without managing individual assets.
+
+### SIP (Systematic Investment Plan) vs Lumpsum
+
+When investing in mutual funds, you generally have two main approaches:
+*   **SIP (Systematic Investment Plan):** You invest a fixed amount regularly (e.g., monthly). This leverages "rupee/dollar-cost averaging" because you buy more units when prices are low and fewer when prices are high, smoothing out market volatility over time.
+*   **Lumpsum:** You invest a large amount of money all at once. This strategy aims to maximize the time your money is in the market to benefit from long-term compound growth.
+
+### The Power of Compounding
+
+The secret ingredient of mutual fund investing is compound interest—earning interest on your interest. The longer you stay invested, the more pronounced the compounding effect becomes. Use this mutual fund calculator to simulate how different expected rates of return and investment timeframes can snowball your wealth into a substantial corpus for retirement, buying a house, or other financial goals.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",
