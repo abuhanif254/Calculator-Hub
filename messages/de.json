@@ -145,6 +145,27 @@
     "totalInterest": "Gesamtzinsen",
     "upfrontFees": "Vorabgebühren"
   },
+  "HELOCCalculator": {
+    "title": "HELOC Rechner",
+    "desc": "Berechnen Sie Ihre geschätzten Zahlungen für einen Rahmenkredit auf Ihr Eigenheim während der Ziehungs- und Rückzahlungsphase.",
+    "initialDraw": "In Anspruch genommener Betrag",
+    "available": "Verfügbar",
+    "interestRate": "Zinssatz (%)",
+    "drawPeriod": "Ziehungsphase",
+    "repaymentPeriod": "Rückzahlungsphase",
+    "years": "Jahre",
+    "yearsLong": "Jahre",
+    "summaryTitle": "HELOC Zusammenfassung",
+    "totalInterest": "Gesamtzinsen",
+    "totalCost": "Gesamtkosten über die Laufzeit",
+    "drawPeriodPayment": "Zahlung in der Ziehungsphase",
+    "interestOnly": "Nur Zinsen",
+    "repaymentPayment": "Rückzahlung",
+    "principalAndInterest": "Kapital und Zinsen",
+    "principal": "Kapital (gezogener Betrag)",
+    "drawInterest": "Zinsen der Ziehungsphase",
+    "repaymentInterest": "Zinsen der Rückzahlungsphase"
+  },
   "DepreciationCalculator": {
     "title": "Abschreibungsrechner",
     "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",

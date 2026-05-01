@@ -145,6 +145,27 @@
     "totalInterest": "Intérêts Totaux",
     "upfrontFees": "Frais Initiaux"
   },
+  "HELOCCalculator": {
+    "title": "Calculateur HELOC",
+    "desc": "Calculez vos paiements estimés de Marge de Crédit Hypothécaire pendant les périodes de tirage et de remboursement.",
+    "initialDraw": "Montant Tiré",
+    "available": "Disponible",
+    "interestRate": "Taux d'Intérêt (%)",
+    "drawPeriod": "Période de Tirage",
+    "repaymentPeriod": "Période de Remboursement",
+    "years": "ans",
+    "yearsLong": "ans",
+    "summaryTitle": "Résumé HELOC",
+    "totalInterest": "Intérêts Totaux",
+    "totalCost": "Coût Total à Vie",
+    "drawPeriodPayment": "Paiement en Période de Tirage",
+    "interestOnly": "Intérêts Uniquement",
+    "repaymentPayment": "Paiement de Remboursement",
+    "principalAndInterest": "Capital et Intérêts",
+    "principal": "Capital (Montant Tiré)",
+    "drawInterest": "Intérêts (Tirage)",
+    "repaymentInterest": "Intérêts (Remboursement)"
+  },
   "DepreciationCalculator": {
     "title": "Calculateur d'Amortissement",
     "desc": "Calculez l'amortissement des actifs au fil du temps.",

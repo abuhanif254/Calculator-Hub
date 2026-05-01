@@ -145,6 +145,27 @@
     "totalInterest": "Interés Total",
     "upfrontFees": "Tarifas Iniciales"
   },
+  "HELOCCalculator": {
+    "title": "Calculadora de HELOC",
+    "desc": "Calcule sus pagos estimados para la Línea de Crédito con Garantía Hipotecaria durante los períodos de disposición y reembolso.",
+    "initialDraw": "Monto Dispuesto",
+    "available": "Disponible",
+    "interestRate": "Tasa de Interés (%)",
+    "drawPeriod": "Período de Disposición",
+    "repaymentPeriod": "Período de Reembolso",
+    "years": "años",
+    "yearsLong": "años",
+    "summaryTitle": "Resumen de HELOC",
+    "totalInterest": "Interés Total",
+    "totalCost": "Costo Total de Vida",
+    "drawPeriodPayment": "Pago del Período de Disposición",
+    "interestOnly": "Solo Intereses",
+    "repaymentPayment": "Pago de Reembolso",
+    "principalAndInterest": "Principal e Interés",
+    "principal": "Principal (Monto Dispuesto)",
+    "drawInterest": "Interés de Disposición",
+    "repaymentInterest": "Interés de Reembolso"
+  },
   "DepreciationCalculator": {
     "title": "Calculadora de Depreciación",
     "desc": "Calcule la depreciación de los activos con el tiempo.",

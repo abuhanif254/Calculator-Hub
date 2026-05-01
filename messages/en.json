@@ -145,6 +145,27 @@
     "totalInterest": "Total Interest",
     "upfrontFees": "Upfront Fees"
   },
+  "HELOCCalculator": {
+    "title": "HELOC Calculator",
+    "desc": "Calculate your estimated Home Equity Line of Credit payments during the draw and repayment periods.",
+    "initialDraw": "Drawn Amount",
+    "available": "Available",
+    "interestRate": "Interest Rate (%)",
+    "drawPeriod": "Draw Period",
+    "repaymentPeriod": "Repayment Period",
+    "years": "yrs",
+    "yearsLong": "years",
+    "summaryTitle": "HELOC Summary",
+    "totalInterest": "Total Interest",
+    "totalCost": "Total Lifetime Cost",
+    "drawPeriodPayment": "Draw Period Payment",
+    "interestOnly": "Interest Only",
+    "repaymentPayment": "Repayment Payment",
+    "principalAndInterest": "Principal & Interest",
+    "principal": "Principal (Amount Drawn)",
+    "drawInterest": "Draw Period Interest",
+    "repaymentInterest": "Repayment Period Interest"
+  },
   "DepreciationCalculator": {
     "title": "Depreciation Calculator",
     "desc": "Calculate asset depreciation over time.",

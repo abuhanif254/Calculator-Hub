@@ -11,6 +11,7 @@ const popularCalculators = [
   { title: "Personal Loan Calculator", href: "/calculators/personal-loan-calculator" },
   { title: "Budget Calculator", href: "/calculators/budget-calculator" },
   { title: "APR Calculator", href: "/calculators/apr-calculator" },
+  { title: "HELOC Calculator", href: "/calculators/heloc-calculator" },
   { title: "Bond Calculator", href: "/calculators/bond-calculator" },
   { title: "RMD Calculator", href: "/calculators/rmd-calculator" },
   { title: "Depreciation Calculator", href: "/calculators/depreciation-calculator" },

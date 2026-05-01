@@ -1425,6 +1425,43 @@ By comparing the APRs of different lending offers rather than just their stated 
     `
   },
   {
+    slug: "heloc-calculator",
+    slugs: {
+      en: "heloc-calculator",
+      es: "calculadora-heloc",
+      de: "heloc-rechner",
+      fr: "calculateur-heloc"
+    },
+    title: "HELOC Calculator",
+    category: "Financial",
+    description: "Calculate your Home Equity Line of Credit (HELOC) payments during the draw and repayment periods.",
+    meta: {
+      title: "HELOC Calculator | Home Equity Line of Credit Payments",
+      description: "Free HELOC calculator. Estimate your monthly payments during both the draw period (interest-only) and the repayment period (principal and interest) for a Home Equity Line of Credit.",
+      keywords: "heloc calculator, home equity line of credit, draw period, repayment period, interest only payments, home equity loans"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## Understanding HELOC (Home Equity Line of Credit)
+
+A Home Equity Line of Credit (HELOC) allows you to borrow against the equity in your home. It functions like a credit card: you have a maximum credit limit and can draw funds as needed. 
+
+### The Two Phases of a HELOC
+
+1. **The Draw Period:** During this phase (typically 5 to 10 years), you can access your available credit. Monthly payments are usually **interest-only**, based on the amount you have drawn, not the total credit limit. You can choose to pay towards the principal, but it is not required.
+2. **The Repayment Period:** Once the draw period ends, you can no longer borrow money. The repayment period begins (often 10 to 20 years), and your monthly payments will now include both principal and interest designed to pay off the remaining balance by the end of the term. Payments during this phase are usually significantly higher.
+
+### Using the HELOC Calculator
+
+Our HELOC calculator helps you estimate both phases of your line of credit. 
+- Input your **Total Drawn Amount** to see the estimated interest payments during the draw period.
+- See the amortized **Repayment Period Payments** to prepare for the jump in monthly costs once the draw period ends.
+
+Understanding both phases is critical to ensure you can afford the loan over its entire lifespan. Always factor in potential interest rate changes, as HELOCs typically have variable rates.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",
