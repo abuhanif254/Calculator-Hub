@@ -24,32 +24,6 @@ export function AverageReturnCalculatorView({ calcDef }: AverageReturnCalculator
   const [cagrResult, setCagrResult] = useState<number | null>(null);
   const [totalReturn, setTotalReturn] = useState<number | null>(null);
 
-  // Auto-calculate
-  useEffect(() => {
-    if (activeTab === "sequence") {
-      calculateSequence();
-    } else {
-      calculateCagr();
-    }
-  }, [returns, initialValue, finalValue, years, activeTab]);
-
-  const updateReturn = (index: number, value: string) => {
-    const newReturns = [...returns];
-    newReturns[index] = value;
-    setReturns(newReturns);
-  };
-
-  const addReturnField = () => {
-    setReturns([...returns, "0"]);
-  };
-
-  const removeReturnField = (index: number) => {
-    if (returns.length > 1) {
-      const newReturns = returns.filter((_, i) => i !== index);
-      setReturns(newReturns);
-    }
-  };
-
   const calculateSequence = () => {
     const validReturns = returns.map(r => parseFloat(r)).filter(r => !isNaN(r));
 
@@ -99,6 +73,32 @@ export function AverageReturnCalculatorView({ calcDef }: AverageReturnCalculator
     } else {
       setCagrResult(null);
       setTotalReturn(null);
+    }
+  };
+
+  // Auto-calculate
+  useEffect(() => {
+    if (activeTab === "sequence") {
+      calculateSequence();
+    } else {
+      calculateCagr();
+    }
+  }, [returns, initialValue, finalValue, years, activeTab]);
+
+  const updateReturn = (index: number, value: string) => {
+    const newReturns = [...returns];
+    newReturns[index] = value;
+    setReturns(newReturns);
+  };
+
+  const addReturnField = () => {
+    setReturns([...returns, "0"]);
+  };
+
+  const removeReturnField = (index: number) => {
+    if (returns.length > 1) {
+      const newReturns = returns.filter((_, i) => i !== index);
+      setReturns(newReturns);
     }
   };
 

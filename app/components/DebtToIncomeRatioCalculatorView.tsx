@@ -310,7 +310,10 @@ export function DebtToIncomeRatioCalculatorView({ calcDef }: DebtToIncomeRatioCa
                           ))}
                         </Pie>
                         <Tooltip 
-                          formatter={(value: number) => `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+                          formatter={(value: any) => {
+                            const numericValue = Number(value);
+                            return !isNaN(numericValue) ? `$${numericValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : value;
+                          }}
                           contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
                         />
                       </PieChart>
