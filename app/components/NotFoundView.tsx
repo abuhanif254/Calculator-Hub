@@ -18,6 +18,8 @@ const popularCalculators = [
   { title: "Marriage Tax Calculator", href: "/calculators/marriage-tax-calculator" },
   { title: "Annuity Calculator", href: "/calculators/annuity-calculator" },
   { title: "Debt Payoff Calculator", href: "/calculators/debt-payoff-calculator" },
+  { title: "Average Return Calculator", href: "/calculators/average-return-calculator" },
+  { title: "Debt-to-Income Ratio Calculator", href: "/calculators/debt-to-income-ratio-calculator" },
   { title: "College Cost Calculator", href: "/calculators/college-cost-calculator" },
   { title: "Mutual Fund Calculator", href: "/calculators/mutual-fund-calculator" },
   { title: "VAT Calculator", href: "/calculators/vat-calculator" },

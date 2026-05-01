@@ -33,7 +33,8 @@ const categoryData = [
       "Mortgage Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
       "Payment Calculator", "Retirement Calculator", "Amortization Calculator", "Investment Calculator",
       "Inflation Calculator", "Finance Calculator", "Income Tax Calculator", "Compound Interest Calculator",
-      "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator"
+      "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator", "Average Return Calculator", 
+      "Debt-to-Income Ratio Calculator"
     ]
   },
   {
@@ -192,6 +193,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 if (link === "BMR Calculator") href = "/calculators/bmr-calculator";
                 if (link === "Ideal Weight Calculator") href = "/calculators/ideal-weight-calculator";
                 if (link === "Pace Calculator") href = "/calculators/pace-calculator";
+                if (link === "Average Return Calculator") href = "/calculators/average-return-calculator";
+                if (link === "Debt-to-Income Ratio Calculator") href = "/calculators/debt-to-income-ratio-calculator";
                 if (link === "Pregnancy Calculator") href = "/calculators/pregnancy-calculator";
                 if (link === "Pregnancy Conception Calculator") href = "/calculators/pregnancy-conception-calculator";
                 if (link === "Due Date Calculator") href = "/calculators/due-date-calculator";

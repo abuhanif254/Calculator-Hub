@@ -20,8 +20,22 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
             </ul>
           </>
         );
+      case 'debt-to-income-ratio-calculator':
+        return (
+          <>
+            <p className="mb-4">The Debt-to-Income (DTI) ratio formula is a straightforward percentage calculation:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-center text-lg mb-4 shadow-inner border border-slate-200">
+              DTI Ratio = (Total Monthly Debt) / (Gross Monthly Income) × 100
+            </div>
+            <ul className="list-disc pl-6 space-y-2 text-slate-600">
+              <li><strong>Total Monthly Debt:</strong> Sum of recurring minimum debt payments.</li>
+              <li><strong>Gross Monthly Income:</strong> Total income earned before taxes and other payroll deductions.</li>
+            </ul>
+          </>
+        );
       case 'compound-interest-calculator':
       case 'investment-calculator':
+      case 'average-return-calculator':
         return (
           <>
             <p className="mb-4">The core of investment projection relies on the compound interest formula:</p>

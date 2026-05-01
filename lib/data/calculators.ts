@@ -1880,6 +1880,82 @@ Because bond prices and yields move in opposite directions, understanding the re
     },
     fields: [],
     logicModule: "math"
+  },
+  {
+    slug: "average-return-calculator",
+    slugs: {
+      en: "average-return-calculator",
+      es: "calculadora-rendimiento-promedio",
+      de: "durchschnittliche-rendite-rechner",
+      fr: "calculateur-rendement-moyen"
+    },
+    title: "Average Return Calculator",
+    category: "Financial",
+    description: "Calculate Arithmetic Average Return and Geometric (CAGR) Return for an investment portfolio globally.",
+    meta: {
+      title: "Average Return Calculator | Arithmetic vs Geometric",
+      description: "Free online Average Return Calculator. Calculate simple Arithmetic Mean and the precise Geometric Mean (CAGR) of your portfolio to evaluate investment performance.",
+      keywords: "average return calculator, geometric mean return, arithmetic average return, investment return, cagr calculator, portfolio return"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Average Return Calculator
+
+When analyzing the performance of an investment portfolio over several periods, the term "average" can be misleading if you don't know which type of average is being used. This calculator computes both the Arithmetic Average Return and the Geometric Average Return (often called Compound Annual Growth Rate, or CAGR), allowing you to accurately assess your returns.
+
+### Arithmetic vs. Geometric Mean
+
+1. **Arithmetic Average:** This is a simple average of the periodic returns. While it is easy to calculate, it often overstates true investment compounding, especially when there's high volatility.
+2. **Geometric Average (CAGR):** The geometric mean considers the exact compounding effect period-over-period. It represents the single, steady rate of return that would have grown the initial capital to the final capital. The geometric average is the most accurate way to evaluate long-term, multi-year investment growth.
+
+### Why Does It Matter?
+
+If your portfolio goes up 50% one year and down 50% the next, your arithmetic average return is 0% \`((50 - 50) / 2)\`. However, if you start with $100, a 50% gain takes you to $150, and a 50% loss takes you down to $75. Your actual geometric return is negative. Utilizing true geometric calculation prevents you from being misguided by volatility.
+    `
+  },
+  {
+    slug: "debt-to-income-ratio-calculator",
+    slugs: {
+      en: "debt-to-income-ratio-calculator",
+      es: "calculadora-ratio-deuda-ingreso",
+      de: "schulden-einkommens-verhaeltnis-rechner",
+      fr: "calculateur-ratio-endettement"
+    },
+    title: "Debt-to-Income Ratio Calculator",
+    category: "Financial",
+    description: "Calculate your Debt-to-Income (DTI) ratio to evaluate your financial health and borrowing power globally.",
+    meta: {
+      title: "Debt-to-Income Ratio (DTI) Calculator",
+      description: "Free online Debt-to-Income (DTI) ratio calculator. Calculate your percentage of income that goes toward paying debts to assess mortgage or loan readiness.",
+      keywords: "debt to income ratio calculator, dti calculator, calculate debt to income, mortgage dti, personal finance calculator, borrowing capacity"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## Understanding Your Debt-to-Income (DTI) Ratio
+
+Your Debt-to-Income (DTI) ratio is one of the most critical metrics used by financial institutions, particularly mortgage lenders, to determine your borrowing capacity and financial health. This calculator provides a comprehensive breakdown of your DTI so you can understand where you stand globally.
+
+### What is Debt-to-Income Ratio?
+
+The Debt-to-Income ratio compares how much you owe each month to how much you earn. Specifically, it's the percentage of your gross monthly income (before taxes) that goes towards paying debts like your rent, mortgage, credit cards, or other loans.
+
+### What is a Good DTI Ratio?
+
+Lenders evaluate your DTI to assess the risk of lending you money. In general:
+
+*   **Below 36%:** Excellent. You have a healthy balance between debt and income, making you a strong candidate for favorable loan terms.
+*   **36% to 43%:** Good/Fair. This is often the upper limit for most conventional mortgages. You can typically still secure loans, but perhaps with closer scrutiny.
+*   **44% to 49%:** High. You may struggle to get approval for new loans or mortgages. Lenders see you at greater risk of default.
+*   **50% and above:** Very High. A significant portion of your income goes towards debt. You should focus on debt reduction strategies before applying for new credit.
+
+### How to Improve Your DTI
+
+If your DTI is higher than you'd like, you have two primary levers to improve it:
+1.  **Reduce your monthly debt:** Pay off loans, reduce credit card balances, or consolidate debt for lower monthly payments.
+2.  **Increase your gross income:** A side hustle, promotion, or new job with a higher salary will directly improve your ratio (assuming your debt stays the same).
+    `
   }
 ];
 
