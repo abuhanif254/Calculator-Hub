@@ -55,6 +55,7 @@ import { StudentLoanCalculatorView } from "@/app/components/StudentLoanCalculato
 import { BusinessLoanCalculatorView } from "@/app/components/BusinessLoanCalculatorView";
 import { PersonalLoanCalculatorView } from "@/app/components/PersonalLoanCalculatorView";
 import { BudgetCalculatorView } from "@/app/components/BudgetCalculatorView";
+import { APRCalculatorView } from "@/app/components/APRCalculatorView";
 import { BondCalculatorView } from "@/app/components/BondCalculatorView";
 import { RMDCalculatorView } from "@/app/components/RMDCalculatorView";
 import { DepreciationCalculatorView } from "@/app/components/DepreciationCalculatorView";
@@ -350,6 +351,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <PersonalLoanCalculatorView calcDef={calc} />
           ) : calc.slug === 'budget-calculator' ? (
             <BudgetCalculatorView calcDef={calc} />
+          ) : calc.slug === 'apr-calculator' ? (
+            <APRCalculatorView calcDef={calc} />
           ) : calc.slug === 'bond-calculator' ? (
             <BondCalculatorView calcDef={calc} />
           ) : calc.slug === 'rmd-calculator' ? (

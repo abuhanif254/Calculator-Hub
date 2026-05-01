@@ -127,6 +127,24 @@
     "savingsGoal": "Ahorros (20%)",
     "target": "Objetivo"
   },
+  "APRCalculator": {
+    "title": "Calculadora de TAE (APR)",
+    "desc": "Calcule la Tasa Anual Equivalente para descubrir el costo real de un préstamo.",
+    "loanAmount": "Monto del Préstamo",
+    "interestRate": "Tasa de Interés Declarada (%)",
+    "upfrontFeesLabel": "Tarifas Iniciales Totales",
+    "upfrontFeesHelp": "Tarifas de originación, costos de cierre, cargos administrativos, etc.",
+    "loanTerm": "Plazo del Préstamo",
+    "years": "Años",
+    "months": "Meses",
+    "trueApr": "TAE Real (APR)",
+    "monthlyPayment": "Pago Mensual",
+    "netReceived": "Monto Neto Recibido",
+    "totalCost": "Costo Total (Intereses + Tarifas)",
+    "principal": "Monto Neto del Préstamo",
+    "totalInterest": "Interés Total",
+    "upfrontFees": "Tarifas Iniciales"
+  },
   "DepreciationCalculator": {
     "title": "Calculadora de Depreciación",
     "desc": "Calcule la depreciación de los activos con el tiempo.",

@@ -1388,6 +1388,43 @@ This calculator includes a helpful breakdown based on the popular 50/30/20 budge
     `
   },
   {
+    slug: "apr-calculator",
+    slugs: {
+      en: "apr-calculator",
+      es: "calculadora-tae",
+      de: "effektivzins-rechner",
+      fr: "calculateur-taeg"
+    },
+    title: "APR Calculator",
+    category: "Financial",
+    description: "Calculate the Annual Percentage Rate (APR) to find the true cost of a loan including upfront fees and interest.",
+    meta: {
+      title: "APR Calculator | Calculate True Loan Cost & APR",
+      description: "Free APR calculator. Determine the real cost of borrowing by calculating the Annual Percentage Rate (APR) based on loan amount, interest rate, term, and hidden fees.",
+      keywords: "apr calculator, effective interest rate, annual percentage rate, true cost of loan, loan fees, compare loans, apr vs interest rate"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the APR Calculator
+
+The Annual Percentage Rate (APR) is one of the most important numbers to look at when comparing loans. Unlike the stated interest rate, the APR includes the various fees and charges you pay to get the loan, giving you a more accurate picture of its true cost. Our APR Calculator makes it easy to uncover this true cost.
+
+### Why APR Matters
+
+When a lender offers you a loan, they will quote an interest rate, but they often charge upfront fees like origination fees, closing costs, or administrative fees. Since these fees reduce the actual amount of money you receive while your payments are based on the full loan amount, the real cost of borrowing (the APR) is higher than the stated interest rate.
+
+### Key Terms
+
+1. **Loan Amount:** The total amount you are borrowing before fees are deducted.
+2. **Stated Interest Rate:** The nominal annual interest rate quoted by the lender, without fees.
+3. **Upfront Fees:** Also known as hidden fees or closing costs. These are deducted from the loan amount or added to your balance.
+4. **APR (Annual Percentage Rate):** The effective annual rate that reflects the total cost of borrowing, factoring in the interest and the upfront fees over the loan term.
+
+By comparing the APRs of different lending offers rather than just their stated interest rates, you can make smarter borrowing decisions and avoid costly surprises.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",

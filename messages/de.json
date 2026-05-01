@@ -127,6 +127,24 @@
     "savingsGoal": "Sparen (20%)",
     "target": "Ziel"
   },
+  "APRCalculator": {
+    "title": "Effektivzins-Rechner (APR)",
+    "desc": "Berechnen Sie den effektiven Jahreszins, um die wahren Kosten eines Kredits zu ermitteln.",
+    "loanAmount": "Kreditbetrag",
+    "interestRate": "Sollzinssatz (%)",
+    "upfrontFeesLabel": "Gesamte Vorabgebühren",
+    "upfrontFeesHelp": "Bearbeitungsgebühren, Abschlusskosten, etc.",
+    "loanTerm": "Kreditlaufzeit",
+    "years": "Jahre",
+    "months": "Monate",
+    "trueApr": "Effektiver Jahreszins",
+    "monthlyPayment": "Monatliche Rate",
+    "netReceived": "Auszahlungsbetrag",
+    "totalCost": "Gesamtkosten (Zinsen + Gebühren)",
+    "principal": "Netto-Kreditbetrag",
+    "totalInterest": "Gesamtzinsen",
+    "upfrontFees": "Vorabgebühren"
+  },
   "DepreciationCalculator": {
     "title": "Abschreibungsrechner",
     "desc": "Berechnen Sie die Abschreibung von Vermögenswerten über die Zeit.",

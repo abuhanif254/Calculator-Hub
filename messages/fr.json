@@ -127,6 +127,24 @@
     "savingsGoal": "Épargne (20%)",
     "target": "Cible"
   },
+  "APRCalculator": {
+    "title": "Calculateur TAEG (APR)",
+    "desc": "Calculez le Taux Annuel Effectif Global pour découvrir le coût réel d'un prêt.",
+    "loanAmount": "Montant du Prêt",
+    "interestRate": "Taux d'Intérêt Nominal (%)",
+    "upfrontFeesLabel": "Total des Frais Initiaux",
+    "upfrontFeesHelp": "Frais de dossier, frais de clôture, frais administratifs, etc.",
+    "loanTerm": "Durée du Prêt",
+    "years": "Années",
+    "months": "Mois",
+    "trueApr": "TAEG Réel",
+    "monthlyPayment": "Paiement Mensuel",
+    "netReceived": "Montant Net Reçu",
+    "totalCost": "Coût Total (Intérêts + Frais)",
+    "principal": "Montant Net du Prêt",
+    "totalInterest": "Intérêts Totaux",
+    "upfrontFees": "Frais Initiaux"
+  },
   "DepreciationCalculator": {
     "title": "Calculateur d'Amortissement",
     "desc": "Calculez l'amortissement des actifs au fil du temps.",

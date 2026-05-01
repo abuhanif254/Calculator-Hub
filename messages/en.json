@@ -127,6 +127,24 @@
     "savingsGoal": "Savings (20%)",
     "target": "Target"
   },
+  "APRCalculator": {
+    "title": "APR Calculator",
+    "desc": "Calculate the Annual Percentage Rate to discover the true cost of a loan.",
+    "loanAmount": "Loan Amount",
+    "interestRate": "Stated Interest Rate (%)",
+    "upfrontFeesLabel": "Total Upfront Fees",
+    "upfrontFeesHelp": "Origination fees, closing costs, administrative fees, etc.",
+    "loanTerm": "Loan Term",
+    "years": "Years",
+    "months": "Months",
+    "trueApr": "True APR",
+    "monthlyPayment": "Monthly Payment",
+    "netReceived": "Net Amount Received",
+    "totalCost": "Total Cost (Interest + Fees)",
+    "principal": "Net Loan Amount",
+    "totalInterest": "Total Interest",
+    "upfrontFees": "Upfront Fees"
+  },
   "DepreciationCalculator": {
     "title": "Depreciation Calculator",
     "desc": "Calculate asset depreciation over time.",
