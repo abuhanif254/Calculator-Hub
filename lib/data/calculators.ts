@@ -1273,6 +1273,83 @@ By using this calculator, you can effectively plan for tax deductions, manage ca
     `
   },
   {
+    slug: "business-loan-calculator",
+    slugs: {
+      en: "business-loan-calculator",
+      es: "calculadora-prestamos-comerciales",
+      de: "firmenkredit-rechner",
+      fr: "calculateur-pret-professionnel"
+    },
+    title: "Business Loan Calculator",
+    category: "Financial",
+    description: "Calculate your monthly business loan payments, total interest, and amortization schedule.",
+    meta: {
+      title: "Business Loan Calculator | Estimate Payments & Interest",
+      description: "Free business loan calculator. Estimate monthly payments, view your amortization schedule, and calculate total interest for small business loans, SBA loans, and commercial financing.",
+      keywords: "business loan calculator, commercial loan calculator, SBA loan calculator, small business financing, amortization schedule, business debt"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Business Loan Calculator
+
+Whether you're expanding operations, purchasing new equipment, or managing cash flow, understanding your financing costs is crucial. This business loan calculator helps business owners estimate their monthly monthly payments and total interest costs.
+
+### Essential Inputs
+
+1. **Loan Amount (Principal):** The total amount of money you are borrowing.
+2. **Interest Rate:** The annual percentage rate (APR) charged by the lender. Business loans can have fixed or variable rates depending on the lender and loan type (e.g., SBA loans vs. alternative lenders).
+3. **Loan Term:** The amount of time you have to repay the loan. Short-term loans might last 6-24 months, while commercial real estate loans or SBA 504 loans can extend up to 25 years.
+
+### Business Loan Types
+
+- **Term Loans:** A lump sum of capital repaid over a set period with fixed payments.
+- **SBA Loans:** Backed by the Small Business Administration, offering favorable terms but strict qualification requirements.
+- **Equipment Financing:** Loans specifically used to purchase business equipment, where the equipment serves as collateral.
+- **Business Lines of Credit:** Flexible financing where you only pay interest on the funds you draw down. (Note: standard amortization calculators approximate term loans better than revolving lines of credit).
+
+Use this calculator to compare financing offers, plan your monthly budget, and ensure that the cost of capital aligns with your business's projected return on investment (ROI).
+    `
+  },
+  {
+    slug: "personal-loan-calculator",
+    slugs: {
+      en: "personal-loan-calculator",
+      es: "calculadora-prestamos-personales",
+      de: "privatkredit-rechner",
+      fr: "calculateur-pret-personnel"
+    },
+    title: "Personal Loan Calculator",
+    category: "Financial",
+    description: "Calculate monthly payments and total interest for personal loans, debt consolidation, or home improvements.",
+    meta: {
+      title: "Personal Loan Calculator | Monthly Payments & Interest",
+      description: "Free personal loan calculator. Estimate monthly payments, view the amortization schedule, and calculate total interest for personal loans, debt consolidation, and home improvements.",
+      keywords: "personal loan calculator, monthly payment calculator, debt consolidation, unsecured loan, personal finance, amortization schedule"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Personal Loan Calculator
+
+A personal loan can be a versatile tool for consolidating high-interest debt, funding home improvements, or covering unexpected expenses. This personal loan calculator helps you estimate your monthly payments and total interest costs before you apply.
+
+### Key Factors in Personal Loans
+
+1. **Loan Amount:** The total sum you plan to borrow. Keep in mind that borrowing more increases both your monthly payment and total interest paid over time.
+2. **Interest Rate (APR):** Personal loans often have fixed interest rates. The rate you qualify for depends heavily on your credit score, income, and the lender's policies.
+3. **Loan Term:** The length of time you have to repay the loan (often 12 to 60 months). A longer term lowers your monthly payment but increases the total interest paid over the life of the loan.
+
+### Smart Borrowing Tips
+
+- **Check Your Credit:** Ensure your credit report is accurate before applying, as a higher score can secure a lower interest rate.
+- **Compare Offers:** Shop around with multiple lenders (banks, credit unions, and online lenders) to find the best rate and terms.
+- **Beware of Fees:** Look out for origination fees or prepayment penalties which can add to the cost of borrowing.
+
+By calculating your potential monthly payments and total interest, you can make informed decisions and choose a loan that fits comfortably within your budget.
+    `
+  },
+  {
     slug: "rmd-calculator",
     slugs: {
       en: "rmd-calculator",
