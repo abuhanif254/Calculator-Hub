@@ -2170,6 +2170,44 @@ An amortization schedule is a complete table of periodic loan payments. It provi
 *   **Test Interest Rates:** A small difference in your interest rate can save or cost you tens of thousands of dollars over the life of your mortgage.
 *   **Evaluate Loan Terms:** Compare a 15-year mortgage against a 30-year mortgage. A 15-year term will have higher monthly payments, but you'll pay dramatically less interest overall and own your home free and clear in half the time.
     `
+  },
+  {
+    slug: "house-affordability-calculator",
+    slugs: {
+      en: "house-affordability-calculator",
+      es: "calculadora-asequibilidad-vivienda",
+      de: "haus-erschwinglichkeits-rechner",
+      fr: "calculateur-abordabilite-maison"
+    },
+    title: "House Affordability Calculator",
+    category: "Financial",
+    description: "Determine how much house you can afford based on your income, debts, and down payment.",
+    meta: {
+      title: "House Affordability Calculator | How Much House Can I Afford?",
+      description: "Free online House Affordability Calculator. Estimate your maximum home price and mortgage amount based on your income, monthly debts, and DTI ratio.",
+      keywords: "house affordability calculator, how much house can i afford, mortgage affordability, home affordability, DTI ratio"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## Meaning of House Affordability
+
+Buying a house is one of the most significant financial decisions you'll ever make. An essential first step is understanding your budget. A **House Affordability Calculator** provides an estimate of the maximum home price you can afford based on your financial health.
+
+### How is Affordability Calculated?
+
+Lenders use specific criteria to determine the maximum loan they will offer you. Affordability primarily comes down to your debt-to-income (DTI) ratio.
+
+*   **Gross Income:** Your total annual income before taxes.
+*   **Monthly Debts:** The total amount you pay each month for existing obligations (auto loans, student loans, minimum credit card payments).
+*   **The 28/36 Rule:** Many lenders follow the 28/36 rule. A household should spend a maximum of 28% of its gross monthly income on total housing expenses, and no more than 36% on total debt service (housing expenses plus other debt).
+
+### Crucial Variables You Should Consider
+
+1.  **Down Payment:** A larger down payment significantly increases the price of the home you can afford, reduces your monthly payment, and can help you avoid Private Mortgage Insurance (PMI).
+2.  **Interest Rate:** A seemingly small change in your interest rate dramatically shifts both your monthly payment and your maximum affordable home price.
+3.  **Property Taxes and Homeowners Insurance:** Many first-time buyers do not account for these recurring costs, which are bundled into your monthly mortgage payment and directly impact your DTI limit.
+    `
   }
 ];
 

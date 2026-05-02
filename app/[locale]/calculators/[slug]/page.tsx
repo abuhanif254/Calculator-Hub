@@ -77,6 +77,7 @@ import { FHALoanCalculatorView } from "@/app/components/FHALoanCalculatorView";
 import { DownPaymentCalculatorView } from "@/app/components/DownPaymentCalculatorView";
 import { FutureValueCalculatorView } from "@/app/components/FutureValueCalculatorView";
 import { MortgageAmortizationCalculatorView } from "@/app/components/MortgageAmortizationCalculatorView";
+import { HouseAffordabilityCalculatorView } from "@/app/components/HouseAffordabilityCalculatorView";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
@@ -415,6 +416,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <FutureValueCalculatorView calcDef={calc} />
           ) : calc.slug === 'mortgage-amortization-calculator' ? (
             <MortgageAmortizationCalculatorView calcDef={calc} />
+          ) : calc.slug === 'house-affordability-calculator' ? (
+            <HouseAffordabilityCalculatorView calcDef={calc} />
           ) : calc.slug === 'p-value-calculator' ? (
             <PValueCalculatorView calcDef={calc} />
           ) : calc.slug === 'fraction-calculator' ? (

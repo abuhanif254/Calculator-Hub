@@ -26,6 +26,7 @@ const popularCalculators = [
   { title: "Down Payment Calculator", href: "/calculators/down-payment-calculator" },
   { title: "Future Value Calculator", href: "/calculators/future-value-calculator" },
   { title: "Mortgage Amortization Calculator", href: "/calculators/mortgage-amortization-calculator" },
+  { title: "House Affordability Calculator", href: "/calculators/house-affordability-calculator" },
   { title: "College Cost Calculator", href: "/calculators/college-cost-calculator" },
   { title: "Mutual Fund Calculator", href: "/calculators/mutual-fund-calculator" },
   { title: "VAT Calculator", href: "/calculators/vat-calculator" },
