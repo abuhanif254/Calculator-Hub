@@ -75,6 +75,7 @@ import { BoatLoanCalculatorView } from "@/app/components/BoatLoanCalculatorView"
 import { RentalPropertyCalculatorView } from "@/app/components/RentalPropertyCalculatorView";
 import { FHALoanCalculatorView } from "@/app/components/FHALoanCalculatorView";
 import { DownPaymentCalculatorView } from "@/app/components/DownPaymentCalculatorView";
+import { FutureValueCalculatorView } from "@/app/components/FutureValueCalculatorView";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
@@ -409,6 +410,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <FHALoanCalculatorView calcDef={calc} />
           ) : calc.slug === 'down-payment-calculator' ? (
             <DownPaymentCalculatorView calcDef={calc} />
+          ) : calc.slug === 'future-value-calculator' ? (
+            <FutureValueCalculatorView calcDef={calc} />
           ) : calc.slug === 'p-value-calculator' ? (
             <PValueCalculatorView calcDef={calc} />
           ) : calc.slug === 'fraction-calculator' ? (
