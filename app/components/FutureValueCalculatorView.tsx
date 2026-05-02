@@ -285,8 +285,8 @@ export function FutureValueCalculatorView({ calcDef }: FutureValueCalculatorView
                       dx={-10}
                     />
                     <Tooltip 
-                      formatter={(value: number, name: string) => [
-                        `$${value.toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+                      formatter={(value: any, name: any) => [
+                        `$${Number(value).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
                         name === 'invested' ? 'Total Invested' : 'Total Interest'
                       ]}
                       labelFormatter={(label) => `Year ${label}`}

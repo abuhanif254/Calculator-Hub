@@ -253,8 +253,8 @@ export function MortgageAmortizationCalculatorView({ calcDef }: MortgageAmortiza
                       dx={-10}
                     />
                     <Tooltip 
-                      formatter={(value: number, name: string) => [
-                        `$${value.toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
+                      formatter={(value: any, name: any) => [
+                        `$${Number(value).toLocaleString(undefined, { maximumFractionDigits: 0 })}`,
                         name === 'balance' ? 'Remaining Balance' : name === 'accPrincipal' ? 'Principal Paid' : 'Interest Paid'
                       ]}
                       labelFormatter={(label) => `Year ${label}`}
