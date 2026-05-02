@@ -1984,6 +1984,110 @@ Buying a boat is an exciting milestone, but understanding the financing is cruci
 
 Boat loans are similar to auto loans but often have longer terms and different interest rate structures. 
     `
+  },
+  {
+    slug: "rental-property-calculator",
+    slugs: {
+      en: "rental-property-calculator",
+      es: "calculadora-propiedad-alquiler",
+      de: "mietobjekt-rechner",
+      fr: "calculateur-propriete-locative"
+    },
+    title: "Rental Property Calculator",
+    category: "Financial",
+    description: "Evaluate your real estate investment by calculating cash flow, cap rate, ROI, and mortgage payments.",
+    meta: {
+      title: "Rental Property Calculator | Cash Flow & ROI Estimator",
+      description: "Free online Rental Property Calculator. Analyze real estate investments by calculating monthly cash flow, cap rate, return on investment (ROI), and more.",
+      keywords: "rental property calculator, real estate investment calculator, ROI calculator real estate, cap rate calculator, cash flow calculator"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Rental Property Calculator
+
+Investing in real estate can be a lucrative endeavor, but success depends on solid financial analysis. This Rental Property Calculator is designed to aid property investors in quickly estimating the potential return on a rental property.
+
+### Essential Real Estate Metrics
+
+When evaluating a rental property, focus on these key figures:
+
+*   **Cash Flow:** The net amount of cash moving in and out of the investment each month. Positive cash flow means your rental income exceeds all expenses.
+*   **Capitalization Rate (Cap Rate):** Indicates the rate of return on the real estate investment property based on the income the property is expected to generate. It is calculated by dividing Net Operating Income (NOI) by the property's current market value.
+*   **Cash on Cash Return (ROI):** Measures the annual return the investor makes on the property in relation to the amount of mortgage paid during the same year. It is considered one of the most important metrics for real estate investors.
+
+### Key Factors to Consider
+When entering data, do not forget variables such as vacancy rates, property management fees, maintenance costs, property taxes, and home insurance. Accurately assessing these operating expenses is the key to identifying profitable real estate investments.
+    `
+  },
+  {
+    slug: "fha-loan-calculator",
+    slugs: {
+      en: "fha-loan-calculator",
+      es: "calculadora-prestamo-fha",
+      de: "fha-kredit-rechner",
+      fr: "calculateur-pret-fha"
+    },
+    title: "FHA Loan Calculator",
+    category: "Financial",
+    description: "Calculate your estimated FHA mortgage payments, including upfront and annual mortgage insurance premiums.",
+    meta: {
+      title: "FHA Loan Calculator | Estimate FHA Mortgage & MIP",
+      description: "Free online FHA Loan Calculator. Estimate your monthly mortgage payments, including upfront and annual Mortgage Insurance Premiums (MIP), property taxes, and insurance.",
+      keywords: "fha loan calculator, fha mortgage calculator, fha mip calculator, fha loan payment"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the FHA Loan Calculator
+
+This FHA Loan Calculator helps first-time homebuyers and existing owners estimate their monthly payments under the Federal Housing Administration (FHA) loan program. FHA loans are popular because they require lower minimum down payments and credit scores than many conventional loans.
+
+### Key FHA Loan Components
+
+* **Purchase Price:** The total cost of the home you plan to buy.
+* **Down Payment:** FHA loans allow for down payments as low as 3.5% if your credit score is at least 580.
+* **Interest Rate:** Your expected mortgage interest rate. Rates can vary by lender and based on your credit profile.
+* **Upfront MIP:** FHA loans require an Upfront Mortgage Insurance Premium (UFMIP), currently standard at 1.75% of the base loan amount. This can be paid in cash or rolled into your loan balance.
+* **Annual MIP:** A yearly mortgage insurance premium (usually around 0.55% of the loan amount, depending on the term and down payment fraction), normally divided by 12 and paid monthly.    
+    `
+  },
+  {
+    slug: "down-payment-calculator",
+    slugs: {
+      en: "down-payment-calculator",
+      es: "calculadora-pago-inicial",
+      de: "anzahlung-rechner",
+      fr: "calculateur-apport-initial"
+    },
+    title: "Down Payment Calculator",
+    category: "Financial",
+    description: "Calculate your ideal down payment for a house, car, or other purchase, and see how it affects your loan.",
+    meta: {
+      title: "Down Payment Calculator | Estimate Your Deposit",
+      description: "Free online Down Payment Calculator. Find out how much you need to save for a house or car down payment and how it impacts your monthly mortgage or auto loan payments.",
+      keywords: "down payment calculator, house down payment, car down payment, deposit calculator, mortgage deposit"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## How to Use the Down Payment Calculator
+
+Whether you're buying a house, a car, or any other large purchase requiring financing, your down payment plays a critical role in your overall loan terms. This Down Payment Calculator helps you determine how much money you need upfront and how different down payment amounts will affect your monthly payments.
+
+### Why Your Down Payment Matters
+
+The down payment is the initial, upfront portion of the total cost that you pay out of pocket. 
+
+*   **Lower Monthly Payments:** A larger down payment reduces the principal amount you need to borrow, which directly lowers your monthly payments.
+*   **Less Interest Paid:** Because you're borrowing less money, you will pay less total interest over the life of the loan.
+*   **Better Interest Rates:** Lenders often offer lower interest rates to borrowers who can put down a larger deposit, as it reduces the lender's risk.
+*   **Avoiding PMI:** In real estate, putting down at least 20% of the home's purchase price usually allows you to avoid paying Private Mortgage Insurance (PMI), which can save you thousands of dollars over time.
+
+### Saving for a Down Payment
+
+Saving a significant amount of money takes time and discipline. Consider setting up a dedicated savings account or automating your savings to steadily build your down payment fund over time.
+    `
   }
 ];
 

@@ -72,6 +72,9 @@ import { DepreciationCalculatorView } from "@/app/components/DepreciationCalcula
 import { AverageReturnCalculatorView } from "@/app/components/AverageReturnCalculatorView";
 import { DebtToIncomeRatioCalculatorView } from "@/app/components/DebtToIncomeRatioCalculatorView";
 import { BoatLoanCalculatorView } from "@/app/components/BoatLoanCalculatorView";
+import { RentalPropertyCalculatorView } from "@/app/components/RentalPropertyCalculatorView";
+import { FHALoanCalculatorView } from "@/app/components/FHALoanCalculatorView";
+import { DownPaymentCalculatorView } from "@/app/components/DownPaymentCalculatorView";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
@@ -400,6 +403,12 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <DebtToIncomeRatioCalculatorView calcDef={calc} />
           ) : calc.slug === 'boat-loan-calculator' ? (
             <BoatLoanCalculatorView calcDef={calc} />
+          ) : calc.slug === 'rental-property-calculator' ? (
+            <RentalPropertyCalculatorView calcDef={calc} />
+          ) : calc.slug === 'fha-loan-calculator' ? (
+            <FHALoanCalculatorView calcDef={calc} />
+          ) : calc.slug === 'down-payment-calculator' ? (
+            <DownPaymentCalculatorView calcDef={calc} />
           ) : calc.slug === 'p-value-calculator' ? (
             <PValueCalculatorView calcDef={calc} />
           ) : calc.slug === 'fraction-calculator' ? (
