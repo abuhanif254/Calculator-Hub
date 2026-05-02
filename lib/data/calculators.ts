@@ -2129,6 +2129,47 @@ Use our calculator to test different scenarios:
 *   Compare the growth difference between a 5% vs. an 8% annual return.
 *   Visualize how starting to invest 5 years earlier dramatically changes your final balance.
     `
+  },
+  {
+    slug: "mortgage-amortization-calculator",
+    slugs: {
+      en: "mortgage-amortization-calculator",
+      es: "calculadora-amortizacion-hipoteca",
+      de: "hypothekentilgung-rechner",
+      fr: "calculateur-amortissement-hypothecaire"
+    },
+    title: "Mortgage Amortization Calculator",
+    category: "Financial",
+    description: "Calculate your monthly mortgage payment and see the full amortization schedule.",
+    meta: {
+      title: "Mortgage Amortization Calculator | Payment Schedule",
+      description: "Free online Mortgage Amortization Calculator. Determine your mortgage payment and view a year-by-year and month-by-month breakdown of principal and interest.",
+      keywords: "mortgage amortization calculator, mortgage payment, loan amortization, amortization schedule, principal and interest"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## Understanding Mortgage Amortization
+
+Amortization is the process of paying off a loan with regular, predictable payments over a set period. A **Mortgage Amortization Calculator** helps you understand precisely how each payment is split between the initial amount you borrowed (the principal) and the cost of borrowing that money (the interest).
+
+### How a Mortgage Payment is Calculated
+
+Your standard monthly mortgage payment is calculated using your loan amount, the interest rate, and the loan term (how long you have to pay it off). In the beginning years of a standard mortgage, a large portion of your monthly payment goes toward the interest. Over time, as your principal balance decreases, the interest charges also decrease, and a larger portion of your payment goes toward reducing the principal.
+
+### The Value of an Amortization Schedule
+
+An amortization schedule is a complete table of periodic loan payments. It provides a roadmap of your loan from the very first payment to the last. Here’s why it’s invaluable:
+
+1.  **Transparency:** It shows you exactly how much interest you will pay over the life of the loan. Often, this number can be nearly as much as the home itself!
+2.  **Tracking Principal:** You can see how long it takes to build substantial equity in your home. This is particularly useful if you plan to move after a few years.
+3.  **Planning for the Future:** Knowing your balance at any given point in the future can help when considering refinancing or taking out a home equity loan.
+
+### Make the Calculator Work for You
+
+*   **Test Interest Rates:** A small difference in your interest rate can save or cost you tens of thousands of dollars over the life of your mortgage.
+*   **Evaluate Loan Terms:** Compare a 15-year mortgage against a 30-year mortgage. A 15-year term will have higher monthly payments, but you'll pay dramatically less interest overall and own your home free and clear in half the time.
+    `
   }
 ];
 

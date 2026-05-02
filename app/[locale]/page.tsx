@@ -35,7 +35,7 @@ const categoryData = [
       "Inflation Calculator", "Finance Calculator", "Income Tax Calculator", "Compound Interest Calculator",
       "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator", "Average Return Calculator", 
       "Debt-to-Income Ratio Calculator", "Boat Loan Calculator", "Rental Property Calculator", "FHA Loan Calculator",
-      "Down Payment Calculator", "Future Value Calculator"
+      "Down Payment Calculator", "Future Value Calculator", "Mortgage Amortization Calculator"
     ]
   },
   {
@@ -201,6 +201,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 if (link === "FHA Loan Calculator") href = "/calculators/fha-loan-calculator";
                 if (link === "Down Payment Calculator") href = "/calculators/down-payment-calculator";
                 if (link === "Future Value Calculator") href = "/calculators/future-value-calculator";
+                if (link === "Mortgage Amortization Calculator") href = "/calculators/mortgage-amortization-calculator";
                 if (link === "Pregnancy Calculator") href = "/calculators/pregnancy-calculator";
                 if (link === "Pregnancy Conception Calculator") href = "/calculators/pregnancy-conception-calculator";
                 if (link === "Due Date Calculator") href = "/calculators/due-date-calculator";
