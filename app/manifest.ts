@@ -1,9 +1,9 @@
 import { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
-  const baseUrl = process.env.APP_URL || 'https://calculatorcentral.com';
+  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
   return {
-    name: 'CalculatorCentral',
+    name: 'Nexus Calculator',
     short_name: 'Calculators',
     description: 'Fast, accurate online calculators for financial, health, and math needs.',
     start_url: '/',

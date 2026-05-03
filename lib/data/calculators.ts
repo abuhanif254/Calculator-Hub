@@ -97,6 +97,25 @@ export const calculators: CalculatorDef[] = [
     logicModule: "financial"
   },
   {
+    slug: "estate-tax-calculator",
+    slugs: {
+      en: "estate-tax-calculator",
+      es: "calculadora-de-impuestos-sucesorios",
+      de: "erbschaftssteuerrechner",
+      fr: "calculateur-droits-de-succession"
+    },
+    title: "Estate Tax Calculator",
+    category: "Financial",
+    description: "Estimate potential estate tax liability and plan your legacy distribution.",
+    meta: {
+      title: "Estate Tax Calculator | Estimate Inheritance Tax Liability",
+      description: "Calculate your estimated estate tax liability based on assets, deductions, and exemptions. Expert tools for inheritance planning and wealth preservation.",
+      keywords: "estate tax calculator, inheritance tax, death tax, estate planning, wealth tax, probate costs"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
     slug: "income-tax-calculator",
     slugs: {
       en: "income-tax-calculator",
@@ -827,7 +846,7 @@ This is the classic **MM/DD/YYYY vs DD/MM/YYYY** problem.
 ### Global Localization at the Engine Level
 Americans process dates by Month, then Day. Almost the entire rest of the human population processes dates strictly by Day, then Month. Trying to execute backend calculations (like chronological age computation) on a raw string like \`04/05/1990\` is an architectural disaster waiting to happen. Is the user in Germany meaning May 4th, or is the user in Texas meaning April 5th?
 
-### How CalculatorCentral Fixes This
+### How Nexus Calculator Fixes This
 To engineer a flawless cross-border data transfer:
 1. **Intl.DateTimeFormat API**: Under the hood, this Age Calculator identifies your current browser locale immediately. 
 2. **Abstracted Execution**: The backend math relies purely on mathematical ISO UTC timestamps. It never sees a \`/\` or a \`-\`.
@@ -1196,7 +1215,7 @@ Because this formula is strict, international health organizations like the WHO 
 BMI = [Weight (lbs) / Height (inches)²] × 703
 \`\`\`
 
-*Note on Global Architecture: CalculatorCentral natively wraps its backend processing engine in Metric execution arrays. When you flip the Global Unit Toggle to "Imperial", we intercept the rendering component, seamlessly translating inches to centimeters in the background instantly!*
+*Note on Global Architecture: Nexus Calculator natively wraps its backend processing engine in Metric execution arrays. When you flip the Global Unit Toggle to "Imperial", we intercept the rendering component, seamlessly translating inches to centimeters in the background instantly!*
     `,
   },
   {

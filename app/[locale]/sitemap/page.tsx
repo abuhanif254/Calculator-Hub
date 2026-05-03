@@ -16,8 +16,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 
   return {
-    title: 'Sitemap | CalcDash',
-    description: 'Complete list of all calculators available on CalcDash including financial, fitness, math, and more.',
+    title: 'Sitemap | Nexus Calculator',
+    description: 'Complete list of all calculators available on Nexus Calculator including financial, fitness, math, and more.',
     alternates: {
       canonical: `/${locale}/sitemap`,
       languages,
@@ -109,7 +109,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
 
             {/* Custom Search Box */}
             <div className="bg-slate-50 p-4 border border-slate-200 rounded shadow-sm">
-               <h3 className="text-slate-700 font-semibold mb-3 text-sm">Search CalcDash</h3>
+               <h3 className="text-slate-700 font-semibold mb-3 text-sm">Search Nexus Calculator</h3>
                <form className="flex" action={`/${resolvedParams.locale}/search`} method="GET">
                  <input 
                     name="q"

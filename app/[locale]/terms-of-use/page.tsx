@@ -15,23 +15,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 
   return {
-    title: 'Terms of Use & Legal Disclaimer | CalculatorCentral',
-    description: 'Review the comprehensive international Terms of Use, legal disclaimers, and service guidelines for CalculatorCentral. Clear, transparent policies for our global user base.',
-    keywords: ['terms of use', 'legal disclaimer', 'terms of service', 'calculatorcentral policy', 'international terms'],
+    title: 'Terms of Use & Legal Disclaimer | Nexus Calculator',
+    description: 'Review the comprehensive international Terms of Use, legal disclaimers, and service guidelines for Nexus Calculator. Clear, transparent policies for our global user base.',
+    keywords: ['terms of use', 'legal disclaimer', 'terms of service', 'nexus calculator policy', 'international terms'],
     alternates: {
       canonical: `/${locale}/terms-of-use`,
       languages,
     },
     openGraph: {
       type: 'website',
-      title: 'Terms of Use | CalculatorCentral',
-      description: 'Understanding our commitments and your responsibilities while using CalculatorCentral across the globe.',
-      siteName: 'CalculatorCentral',
+      title: 'Terms of Use | Nexus Calculator',
+      description: 'Understanding our commitments and your responsibilities while using Nexus Calculator across the globe.',
+      siteName: 'Nexus Calculator',
     },
     twitter: {
       card: 'summary',
-      title: 'Terms of Use | CalculatorCentral',
-      description: 'Review the terms governing the use of CalculatorCentral\'s tools internationally.',
+      title: 'Terms of Use | Nexus Calculator',
+      description: 'Review the terms governing the use of Nexus Calculator\'s tools internationally.',
     }
   };
 }
@@ -48,15 +48,15 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Terms of Use - CalculatorCentral",
-            "description": "Read the Terms of Use and legal disclaimers for CalculatorCentral, outlining user rights and platform rules.",
-            "url": "https://www.calculatorcentral.com/terms-of-use",
+            "name": "Terms of Use - Nexus Calculator",
+            "description": "Read the Terms of Use and legal disclaimers for Nexus Calculator, outlining user rights and platform rules.",
+            "url": "https://nexuscalculator.net/terms-of-use",
             "publisher": {
               "@type": "Organization",
-              "name": "CalculatorCentral",
+              "name": "Nexus Calculator",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.calculatorcentral.com/logo.png"
+                "url": "https://nexuscalculator.net/logo.png"
               }
             }
           })
@@ -82,7 +82,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Terms of Use</h1>
         </div>
         <p className="text-xl text-slate-600 leading-relaxed max-w-3xl">
-          Please review these Terms carefully. By accessing or utilizing CalculatorCentral&apos;s suite of computational tools, you agree to be bound by these internationally applicable terms and conditions.
+          Please review these Terms carefully. By accessing or utilizing Nexus Calculator&apos;s suite of computational tools, you agree to be bound by these internationally applicable terms and conditions.
         </p>
         <div className="mt-6 inline-flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
           <RefreshCcw size={16} className="text-slate-500" />
@@ -121,7 +121,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
               Acceptance of Terms
             </h2>
             <p>
-              By accessing the website at <strong>CalculatorCentral.com</strong> (&quot;the Website&quot;, &quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree to abide by these Terms of Service, all applicable laws and regulations, and agree that you are solely responsible for compliance with any applicable local laws in your jurisdiction.
+              By accessing the website at <strong>NexusCalculator.net</strong> (&quot;the Website&quot;, &quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree to abide by these Terms of Service, all applicable laws and regulations, and agree that you are solely responsible for compliance with any applicable local laws in your jurisdiction.
             </p>
             <p>
               If you do not agree with any of these terms, you are explicitly prohibited from using or accessing this site. The computational tools and materials contained on this website are protected by applicable copyright and trademark laws globally.
@@ -139,7 +139,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
                 <div>
                   <h3 className="font-bold text-amber-900 mb-1">Informational Purposes Only</h3>
                   <p className="text-amber-800 text-sm leading-relaxed">
-                    All calculators, charts, and associated outputs provided on CalculatorCentral are strictly for broad, educational, and informational purposes. They do <strong>not</strong> constitute, and should not be construed as, professional advice.
+                    All calculators, charts, and associated outputs provided on Nexus Calculator are strictly for broad, educational, and informational purposes. They do <strong>not</strong> constitute, and should not be construed as, professional advice.
                   </p>
                 </div>
               </div>
@@ -150,7 +150,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
             <ul>
               <li><strong>Finance & Legal:</strong> Our loan, mortgage, and tax calculators provide estimations based on standard mathematical formulas. They do not account for hidden local fees, complex tax code nuances, fluctuating market conditions, or personal credit variances. Always consult a Certified Financial Planner (CFP) or Tax Attorney.</li>
               <li><strong>Health & Medical:</strong> BMI, BMR, Pregnancy, and Caloric calculators use established biometric baselines (e.g., Mifflin-St Jeor equation). These are population-based averages. They do not diagnose conditions, account for bone density, or factor in specific diseases. Never substitute these preliminary calculations for the diagnosis of a licensed Medical Doctor (MD).</li>
-              <li><strong>No Fiduciary Duty:</strong> CalculatorCentral does not establish any client-fiduciary, patient-doctor, or professional relationship with its users.</li>
+              <li><strong>No Fiduciary Duty:</strong> Nexus Calculator does not establish any client-fiduciary, patient-doctor, or professional relationship with its users.</li>
             </ul>
           </section>
 
@@ -160,7 +160,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
               Limited License & Interface Use
             </h2>
             <p>
-              CalculatorCentral grants you a personal, non-exclusive, non-transferable, and revocable license to use our web-based calculators for non-commercial transitory viewing and computational operations. Under this limited license constraint, you may <strong>not</strong>:
+              Nexus Calculator grants you a personal, non-exclusive, non-transferable, and revocable license to use our web-based calculators for non-commercial transitory viewing and computational operations. Under this limited license constraint, you may <strong>not</strong>:
             </p>
             <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 not-prose">
               <ul className="space-y-3 relative z-10">
@@ -168,7 +168,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
                   "Systematically scrape, mine, or extract calculation endpoints via automated bots or scripts.",
                   "Reverse engineer, decompile, or obfuscate the proprietary React/Next.js client-side architectures.",
                   "Frame or \"mirror\" our proprietary calculators on external domains without explicit written consent.",
-                  "Utilize our tools for establishing commercial services that compete directly with CalculatorCentral."
+                  "Utilize our tools for establishing commercial services that compete directly with Nexus Calculator."
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 items-start">
                     <span className="text-rose-500 font-bold shrink-0 mt-0.5">✖</span>
@@ -185,7 +185,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
               Accuracy, Metrics, and Standards
             </h2>
             <p>
-              While we pride ourselves on utilizing high-performance algorithms, the materials appearing on CalculatorCentral&apos;s website may include technical, typographical, or scientific deviations. CalculatorCentral does not warrant that any of the materials on its website are perpetually accurate, complete, or reflective of the absolute latest scientific literature.
+              While we pride ourselves on utilizing high-performance algorithms, the materials appearing on Nexus Calculator&apos;s website may include technical, typographical, or scientific deviations. Nexus Calculator does not warrant that any of the materials on its website are perpetually accurate, complete, or reflective of the absolute latest scientific literature.
             </p>
             <p>
               We occasionally update algorithms to reflect changes in international consensus (e.g., WHO guidelines for BMI, global banking standards for amortization). However, we are under no explicit obligation to update the materials uniformly or instantaneously.
@@ -198,7 +198,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
               Limitation of Liability
             </h2>
             <p>
-              In no event, under no legal theory (whether in tort, contract, strict liability, or otherwise) shall CalculatorCentral, its engineers, partners, or its suppliers be liable for any damages arising from the use or inability to use the materials on this platform.
+              In no event, under no legal theory (whether in tort, contract, strict liability, or otherwise) shall Nexus Calculator, its engineers, partners, or its suppliers be liable for any damages arising from the use or inability to use the materials on this platform.
             </p>
             <p>
               This includes, without limitation, damages for loss of data, loss of anticipated profits, business interruption, or adverse health events resulting from reliance on our outputs. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you in their entirety.
@@ -214,7 +214,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
               <div className="flex items-start gap-4">
                 <GlobeLock className="text-blue-400 shrink-0" size={28} />
                 <p className="text-slate-300 text-sm leading-relaxed">
-                  CalculatorCentral operates infrastructure globally. However, if you are accessing these tools from regions with specific localized regulations regarding financial projections, health data (e.g., GDPR, HIPAA, UK DPA), or algorithmic transparency, it is your responsibility to ensure your usage complies with your local sovereign laws.
+                  Nexus Calculator operates infrastructure globally. However, if you are accessing these tools from regions with specific localized regulations regarding financial projections, health data (e.g., GDPR, HIPAA, UK DPA), or algorithmic transparency, it is your responsibility to ensure your usage complies with your local sovereign laws.
                 </p>
               </div>
             </div>
@@ -229,7 +229,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
               Modifications to the Service and Terms
             </h2>
             <p>
-              CalculatorCentral reserves the absolute right to revise these terms of service, append new restrictions, or alter the computational logic of any calculator without prior notice. By continuing to use this website subsequent to any changes, you implicitly agree to be bound by the then-current revised version of these Terms of Use.
+              Nexus Calculator reserves the absolute right to revise these terms of service, append new restrictions, or alter the computational logic of any calculator without prior notice. By continuing to use this website subsequent to any changes, you implicitly agree to be bound by the then-current revised version of these Terms of Use.
             </p>
           </section>
 
@@ -238,9 +238,9 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
             <p className="mb-6">
               If you require clarification on any of the stipulations above or have a formal legal inquiry, our compliance team is available.
             </p>
-            <a href="mohammadbitullah@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
+            <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
               <Mail size={18} />
-              mohammadbitullah@gmail.com
+              nexuscalculator@gmail.com
             </a>
           </section>
 

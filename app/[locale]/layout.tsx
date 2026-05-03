@@ -28,33 +28,33 @@ export const viewport: Viewport = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.APP_URL || 'https://calculatorcentral.com';
+  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
   
   return {
     metadataBase: new URL(baseUrl),
-    applicationName: 'CalculatorCentral',
+    applicationName: 'Nexus Calculator',
     appleWebApp: {
       capable: true,
       statusBarStyle: 'default',
-      title: 'CalculatorCentral',
+      title: 'Nexus Calculator',
     },
     title: {
-      default: 'CalculatorCentral | Fast & Accurate Online Calculators',
-      template: '%s | CalculatorCentral'
+      default: 'Nexus Calculator | Fast & Accurate Online Calculators',
+      template: '%s | Nexus Calculator'
     },
     description: 'Hundreds of highly accurate, high-performance calculators for financial, health, math, and everyday needs designed for global standards.',
     keywords: 'calculator, online calculator, financial calculator, health calculator, math calculator, free calculator',
     openGraph: {
-      title: 'CalculatorCentral | Fast & Accurate Online Calculators',
+      title: 'Nexus Calculator | Fast & Accurate Online Calculators',
       description: 'Hundreds of highly accurate calculators for everyday needs.',
       url: `${baseUrl}/${locale}`,
-      siteName: 'CalculatorCentral',
+      siteName: 'Nexus Calculator',
       locale: locale,
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'CalculatorCentral | Fast & Accurate Online Calculators',
+      title: 'Nexus Calculator | Fast & Accurate Online Calculators',
       description: 'Hundreds of highly accurate calculators for everyday needs.',
     },
     alternates: {

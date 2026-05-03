@@ -15,22 +15,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 
   return {
-    title: 'Privacy Policy & Data Security | CalculatorCentral',
-    description: 'Detailed Privacy Policy for CalculatorCentral. Learn how we prioritize data minimalization, utilize ephemeral processing, and comply with GDPR, CCPA, and global privacy standards.',
-    keywords: ['privacy policy', 'data security', 'gdpr compliance', 'ccpa compliance', 'calculatorcentral privacy', 'international privacy guidelines'],
+    title: 'Privacy Policy & Data Security | Nexus Calculator',
+    description: 'Detailed Privacy Policy for Nexus Calculator. Learn how we prioritize data minimalization, utilize ephemeral processing, and comply with GDPR, CCPA, and global privacy standards.',
+    keywords: ['privacy policy', 'data security', 'gdpr compliance', 'ccpa compliance', 'nexus calculator privacy', 'international privacy guidelines'],
     alternates: {
       canonical: `/${locale}/privacy-policy`,
       languages,
     },
     openGraph: {
       type: 'website',
-      title: 'Privacy Policy | CalculatorCentral',
+      title: 'Privacy Policy | Nexus Calculator',
       description: 'Understanding how we protect your data footprint across our international computational platform.',
-      siteName: 'CalculatorCentral',
+      siteName: 'Nexus Calculator',
     },
     twitter: {
       card: 'summary',
-      title: 'Privacy Policy | CalculatorCentral',
+      title: 'Privacy Policy | Nexus Calculator',
       description: 'Review our commitment to your privacy and international data protection standards.',
     }
   };
@@ -48,15 +48,15 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Privacy Policy - CalculatorCentral",
-            "description": "Read the CalculatorCentral Privacy Policy. Learn about our strict data handling procedures and global compliance standards.",
-            "url": "https://www.calculatorcentral.com/privacy-policy",
+            "name": "Privacy Policy - Nexus Calculator",
+            "description": "Read the Nexus Calculator Privacy Policy. Learn about our strict data handling procedures and global compliance standards.",
+            "url": "https://nexuscalculator.net/privacy-policy",
             "publisher": {
               "@type": "Organization",
-              "name": "CalculatorCentral",
+              "name": "Nexus Calculator",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.calculatorcentral.com/logo.png"
+                "url": "https://nexuscalculator.net/logo.png"
               }
             }
           })
@@ -126,13 +126,13 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
                 <div>
                   <h3 className="font-bold text-emerald-900 mb-1">Ephemeral Processing</h3>
                   <p className="text-emerald-800 text-sm leading-relaxed">
-                    CalculatorCentral is fundamentally designed to function without requiring user accounts or storing personal identities. We process your inputs locally in your browser or ephemerally on edge servers. No calculation data is persistently mapped to your identity.
+                    Nexus Calculator is fundamentally designed to function without requiring user accounts or storing personal identities. We process your inputs locally in your browser or ephemerally on edge servers. No calculation data is persistently mapped to your identity.
                   </p>
                 </div>
               </div>
             </div>
             <p>
-              Welcome to CalculatorCentral (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are committed to protecting your privacy and ensuring you have a secure experience on our international platform. This Policy applies to all our computational tools and governs our global data practices.
+              Welcome to Nexus Calculator (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are committed to protecting your privacy and ensuring you have a secure experience on our international platform. This Policy applies to all our computational tools and governs our global data practices.
             </p>
           </section>
 
@@ -172,7 +172,7 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
               Third-Party Advertisers
             </h2>
             <p>
-              To maintain our tier-1 infrastructure completely free of charge, CalculatorCentral utilizes managed ad networks, primarily Google AdSense.
+              To maintain our tier-1 infrastructure completely free of charge, Nexus Calculator utilizes managed ad networks, primarily Google AdSense.
             </p>
             <p>
               Google uses advertising cookies to serve ads to users based on their prior visits to this and other websites. Google&apos;s deployment of the DART cookie enables it and its affiliates to establish interest profiles. 
@@ -192,7 +192,7 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
               <div className="flex items-start gap-4">
                 <GlobeLock className="text-blue-400 shrink-0" size={28} />
                 <p className="text-slate-300 text-sm leading-relaxed">
-                  As an internationally scaled utility, CalculatorCentral acknowledges localized sovereign data rights. We adhere to frameworks mitigating unauthorized extraction of Personally Identifiable Information (PII).
+                  As an internationally scaled utility, Nexus Calculator acknowledges localized sovereign data rights. We adhere to frameworks mitigating unauthorized extraction of Personally Identifiable Information (PII).
                 </p>
               </div>
             </div>
@@ -219,7 +219,7 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
               Children&apos;s Privacy
             </h2>
             <p>
-              CalculatorCentral implements mathematical tools utilized across all age groups, including students. However, our advertising frameworks and technical telemetry are not designed to knowingly harvest PII from individuals under the age of 13. Should a guardian discover anomalous data collection from a minor, they are instructed to engage our DPO immediately.
+              Nexus Calculator implements mathematical tools utilized across all age groups, including students. However, our advertising frameworks and technical telemetry are not designed to knowingly harvest PII from individuals under the age of 13. Should a guardian discover anomalous data collection from a minor, they are instructed to engage our DPO immediately.
             </p>
           </section>
 
@@ -229,7 +229,7 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
               For elevated inquiries demanding the attention of our Data Protection Officer (DPO), or to initiate a formal &quot;Right to Forget&quot; protocol, please utilize the encrypted channel below.
             </p>
             <div className="flex gap-4">
-              <a href="mohammadbitullah@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
+              <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
                 <Mail size={18} />
                 E-Mail
               </a>

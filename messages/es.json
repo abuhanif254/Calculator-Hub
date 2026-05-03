@@ -1,6 +1,40 @@
 {
   "Index": {
-    "title": "Bienvenido a CalculatorCentral"
+    "title": "Bienvenido a Nexus Calculator"
+  },
+  "EstateTaxCalculator": {
+    "assetsTitle": "Activos (Patrimonio Bruto)",
+    "realEstate": "Bienes Raíces",
+    "cashAccounts": "Efectivo y Cuentas Bancarias",
+    "investments": "Inversiones",
+    "assetName": "Nombre del Activo",
+    "assetPlaceholder": "ej. Acciones",
+    "value": "Valor",
+    "totalGrossEstate": "Patrimonio Bruto Total",
+    "exemptionsTitle": "Exenciones y Deducciones",
+    "debts": "Deudas e Hipotecas",
+    "debtsTooltip": "Cualquier deuda pendiente (hipotecas, préstamos bancarios) del patrimonio.",
+    "charitable": "Donaciones Caritativas",
+    "charitableTooltip": "Valor de los bienes dejados a organizaciones caritativas calificadas.",
+    "exclusionLimit": "Límite de Exclusión Federal",
+    "exclusionTooltip": "La cantidad del patrimonio que está exenta de impuestos federales.",
+    "taxRate": "Tasa de Impuesto Sucesorio",
+    "taxRateTooltip": "El porcentaje máximo cobrado sobre el valor que excede el límite de exclusión.",
+    "breakdownTitle": "Desglose Calculado",
+    "exclusion": "Exención (Libre de Impuestos)",
+    "estTax": "Impuesto Sucesorio Estimado",
+    "netToHeirs": "Neto para los Herederos",
+    "deductions": "Deducciones Totales",
+    "taxableEstate": "Patrimonio Imponible",
+    "planningTipTitle": "Consejo de Planificación",
+    "planningTipText": "Los grandes patrimonios pueden reducir su carga fiscal mediante estrategias de donación y fideicomisos. Consulte a un abogado.",
+    "guideTitle": "Guía Experta: Entendiendo los Impuestos Sucesorios",
+    "guide1Title": "¿Quién paga?",
+    "guide1Text": "En la mayoría de las jurisdicciones, el impuesto lo paga la propia herencia antes de la distribución.",
+    "guide2Title": "¿Qué está exento?",
+    "guide2Text": "La deducción matrimonial permite heredar a los cónyuges sin impuestos.",
+    "guide3Title": "¿Herencia vs Sucesión?",
+    "guide3Text": "El impuesto sucesorio recae sobre el patrimonio; el impuesto a la herencia sobre el beneficiario."
   },
   "AgeCalculator": {
     "selectDates": "Seleccionar Fechas",

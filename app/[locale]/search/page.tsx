@@ -9,7 +9,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   const { q } = await searchParams;
   
   return {
-    title: q ? `Search results for "${q}" | CalcDash` : 'Search | CalcDash',
+    title: q ? `Search results for "${q}" | Nexus Calculator` : 'Search | Nexus Calculator',
     description: 'Find the right calculator for your needs.',
   };
 }

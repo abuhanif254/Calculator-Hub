@@ -1,6 +1,40 @@
 {
   "Index": {
-    "title": "Willkommen bei CalculatorCentral"
+    "title": "Willkommen bei Nexus Calculator"
+  },
+  "EstateTaxCalculator": {
+    "assetsTitle": "Vermögenswerte (Bruttonachlass)",
+    "realEstate": "Immobilien",
+    "cashAccounts": "Bargeld & Bankkonten",
+    "investments": "Investitionen",
+    "assetName": "Name des Vermögenswerts",
+    "assetPlaceholder": "z.B. Aktien",
+    "value": "Wert",
+    "totalGrossEstate": "Gesamter Bruttonachlass",
+    "exemptionsTitle": "Freibeträge & Abzüge",
+    "debts": "Schulden & Hypotheken",
+    "debtsTooltip": "Alle ausstehenden Schulden des Nachlasses.",
+    "charitable": "Wohltätige Schenkungen",
+    "charitableTooltip": "Wert der an gemeinnützige Organisationen hinterlassenen Güter.",
+    "exclusionLimit": "Freibetrag",
+    "exclusionTooltip": "Der Betrag des Nachlasses, der steuerfrei ist.",
+    "taxRate": "Erbschaftssteuersatz",
+    "taxRateTooltip": "Der maximale Prozentsatz auf den Wert oberhalb des Freibetrags.",
+    "breakdownTitle": "Berechnete Aufschlüsselung",
+    "exclusion": "Freibetrag (Steuerfrei)",
+    "estTax": "Geschätzte Erbschaftssteuer",
+    "netToHeirs": "Netto für Erben",
+    "deductions": "Gesamte Abzüge",
+    "taxableEstate": "Steuerpflichtiger Nachlass",
+    "planningTipTitle": "Planungstipp",
+    "planningTipText": "Große Nachlässe können die Steuerlast durch Schenkungen reduzieren. Konsultieren Sie einen Anwalt.",
+    "guideTitle": "Experten-Leitfaden: Erbschaftssteuern verstehen",
+    "guide1Title": "Wer zahlt?",
+    "guide1Text": "In den meisten Ländern wird die Steuer vom Nachlass selbst vor der Verteilung gezahlt.",
+    "guide2Title": "Was ist befreit?",
+    "guide2Text": "Ehegatten können oft unbegrenzt steuerfrei erben.",
+    "guide3Title": "Erbschaft vs Nachlass?",
+    "guide3Text": "Die Erbschaftssteuer wird auf das Vermögen erhoben; die Erbanfallsteuer auf den Empfänger."
   },
   "AgeCalculator": {
     "selectDates": "Daten Auswählen",

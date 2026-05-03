@@ -4,7 +4,7 @@ import { calculators } from '../lib/data/calculators';
 import { routing } from '../i18n/routing';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.APP_URL || 'https://calculatorcentral.com';
+  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
 
   const routes: MetadataRoute.Sitemap = [];
 

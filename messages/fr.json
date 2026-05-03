@@ -1,6 +1,40 @@
 {
   "Index": {
-    "title": "Bienvenue sur CalculatorCentral"
+    "title": "Bienvenue sur Nexus Calculator"
+  },
+  "EstateTaxCalculator": {
+    "assetsTitle": "Actifs (Patrimoine Brut)",
+    "realEstate": "Immobilier",
+    "cashAccounts": "Espèces et Comptes Bancaires",
+    "investments": "Investissements",
+    "assetName": "Nom de l'actif",
+    "assetPlaceholder": "ex. Actions",
+    "value": "Valeur",
+    "totalGrossEstate": "Total du Patrimoine Brut",
+    "exemptionsTitle": "Exonérations et Déductions",
+    "debts": "Dettes et Hypothèques",
+    "debtsTooltip": "Toutes les dettes en suspens (hypothèques, prêts) dues par la succession.",
+    "charitable": "Dons de Bienfaisance",
+    "charitableTooltip": "Valeur des biens laissés à des organismes de bienfaisance qualifiés.",
+    "exclusionLimit": "Limite d'Exclusion",
+    "exclusionTooltip": "Le montant de la succession qui est exonéré d'impôt.",
+    "taxRate": "Taux d'Imposition",
+    "taxRateTooltip": "Le pourcentage maximum prélevé sur la valeur dépassant la limite d'exclusion.",
+    "breakdownTitle": "Répartition Calculée",
+    "exclusion": "Exonération (Hors Taxes)",
+    "estTax": "Estimation des Droits de Succession",
+    "netToHeirs": "Net pour les Héritiers",
+    "deductions": "Total des Déductions",
+    "taxableEstate": "Patrimoine Imposable",
+    "planningTipTitle": "Conseil de Planification",
+    "planningTipText": "Les grands patrimoines peuvent réduire leurs taxes par des dons et des trusts. Consultez un notaire.",
+    "guideTitle": "Guide Expert : Comprendre les Droits de Succession",
+    "guide1Title": "Qui paie ?",
+    "guide1Text": "Dans la plupart des pays, la taxe est payée par la succession elle-même avant distribution.",
+    "guide2Title": "Qu'est-ce qui est exonéré ?",
+    "guide2Text": "La déduction matrimoniale permet aux conjoints d'hériter sans taxe.",
+    "guide3Title": "Héritage vs Succession ?",
+    "guide3Text": "La taxe de succession porte sur le patrimoine; la taxe sur l'héritage sur le bénéficiaire."
   },
   "AgeCalculator": {
     "selectDates": "Sélectionnez les Dates",

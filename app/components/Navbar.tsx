@@ -22,7 +22,7 @@ export function Navbar() {
                 <Calculator size={20} strokeWidth={2.5} className="animate-[spin_15s_linear_infinite]" />
               </div>
               <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
-                Calculator<span className="text-[#518231]">Central</span>
+                Nexus<span className="text-[#518231]">Calculator</span>
               </span>
             </Link>
           </div>

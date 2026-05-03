@@ -19,17 +19,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   });
 
   return {
-    title: 'About Us | CalculatorCentral - Your Trusted Global Calculator Platform',
-    description: 'Discover the story behind CalculatorCentral. Learn about our mission to provide accurate, high-performance, and accessible calculators for users worldwide, and meet our lead developer.',
+    title: 'About Us | Nexus Calculator - Your Trusted Global Calculator Platform',
+    description: 'Discover the story behind Nexus Calculator. Learn about our mission to provide accurate, high-performance, and accessible calculators for users worldwide, and meet our lead developer.',
     alternates: {
       canonical: `/${locale}/about-us`,
       languages,
     },
     openGraph: {
       type: 'website',
-      title: 'About Us | CalculatorCentral',
-      description: 'CalculatorCentral provides world-class computational tools for finance, health, math, and more. Meet the minds that built this high-performance platform.',
-      siteName: 'CalculatorCentral',
+      title: 'About Us | Nexus Calculator',
+      description: 'Nexus Calculator provides world-class computational tools for finance, health, math, and more. Meet the minds that built this high-performance platform.',
+      siteName: 'Nexus Calculator',
     },
   };
 }
@@ -49,7 +49,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
       <header className="mb-16 text-center max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">Empowering Your Decisions with Precision</h1>
         <p className="text-xl text-slate-600 leading-relaxed">
-          CalculatorCentral represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free computational tools directly to your browser.
+          Nexus Calculator represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free computational tools directly to your browser.
         </p>
       </header>
 
@@ -58,13 +58,13 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
         <section className="prose prose-slate prose-lg max-w-none">
           <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Our Vision & Philosophy</h2>
           <p>
-            In an increasingly complex world, making informed decisions on personal finance, health metrics, and academic problems requires more than just guesswork. It requires precision. CalculatorCentral was conceived from a fundamental philosophy: <strong>powerful analytical tools should be universally accessible</strong>.
+            In an increasingly complex world, making informed decisions on personal finance, health metrics, and academic problems requires more than just guesswork. It requires precision. Nexus Calculator was conceived from a fundamental philosophy: <strong>powerful analytical tools should be universally accessible</strong>.
           </p>
           <p>
             We recognize that whether you are a small business owner in Tokyo calculating loan amortizations, a student in London exploring geometric theorems, or a fitness enthusiast in New York estimating a BMI trajectory, you demand accuracy. Our platform bridges the gap between complex mathematical algorithms and an intuitive, user-centric interface. By leveraging international standards and verified computational models, we ensure that every result produced by our system can be trusted implicitly.
           </p>
           <p>
-            Traditional offline applications and archaic web tools are often fraught with slow load times, invasive tracking, and cluttered advertisements. We chose a different path. CalculatorCentral is built upon a high-performance, modern tech stack that relies on serverless edge computing to guarantee minimal latency and exceptional reliability, no matter where you are in the world.
+            Traditional offline applications and archaic web tools are often fraught with slow load times, invasive tracking, and cluttered advertisements. We chose a different path. Nexus Calculator is built upon a high-performance, modern tech stack that relies on serverless edge computing to guarantee minimal latency and exceptional reliability, no matter where you are in the world.
           </p>
         </section>
 
@@ -118,7 +118,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
         <section className="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden mt-16">
           <div className="bg-slate-800 text-white p-8 md:p-10">
             <h2 className="text-3xl font-bold mb-2">Developer Identity</h2>
-            <p className="text-slate-300">The engineering mind behind CalculatorCentral.</p>
+            <p className="text-slate-300">The engineering mind behind Nexus Calculator.</p>
           </div>
           
           <div className="p-8 md:p-10 flex flex-col lg:flex-row gap-10 items-start">
@@ -164,7 +164,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
                   </div>
                   <div>
                     <span className="block text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Email Address</span>
-                    <a href="mohammadbitullah@gmail.com" className="text-lg text-slate-800 hover:text-blue-600 transition-colors font-medium">mohammadbitullah@gmail.com</a>
+                    <a href="mailto:nexuscalculator@gmail.com" className="text-lg text-slate-800 hover:text-blue-600 transition-colors font-medium">nexuscalculator@gmail.com</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -203,7 +203,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Our Another Websites</h2>
           <p className="text-slate-600 mb-8 prose prose-lg">
-            Beyond CalculatorCentral, our engineering team cultivates a broader ecosystem of premium digital experiences. Explore our expanding portfolio of professional web platforms below.
+            Beyond Nexus Calculator, our engineering team cultivates a broader ecosystem of premium digital experiences. Explore our expanding portfolio of professional web platforms below.
           </p>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -239,7 +239,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
           <p className="mb-6">
             The web is not static, and neither are we. We are constantly expanding our library of tools, refining our algorithms, and responding to the evolving needs of our international audience.
           </p>
-          <a href="mohammadbitullah@gmail.com" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl transition-colors no-underline">
+          <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl transition-colors no-underline">
             Reach Out to Our Team
           </a>
         </section>

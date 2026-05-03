@@ -1,6 +1,40 @@
 {
   "Index": {
-    "title": "Welcome to CalculatorCentral"
+    "title": "Welcome to Nexus Calculator"
+  },
+  "EstateTaxCalculator": {
+    "assetsTitle": "Assets (Gross Estate)",
+    "realEstate": "Real Estate",
+    "cashAccounts": "Cash & Bank Accounts",
+    "investments": "Investments",
+    "assetName": "Asset Name",
+    "assetPlaceholder": "e.g. Stocks",
+    "value": "Value",
+    "totalGrossEstate": "Total Gross Estate",
+    "exemptionsTitle": "Exemptions & Deductions",
+    "debts": "Debts & Mortgages",
+    "debtsTooltip": "Any outstanding debts (mortgages, bank loans) owed by the estate.",
+    "charitable": "Charitable Gifts",
+    "charitableTooltip": "Value of gifts left to qualifying charitable organizations.",
+    "exclusionLimit": "Federal Exclusion Limit",
+    "exclusionTooltip": "The amount of the estate that is exempt from federal estate tax.",
+    "taxRate": "Estate Tax Rate",
+    "taxRateTooltip": "The maximum percentage charged on the estate value exceeding the exclusion limit.",
+    "breakdownTitle": "Calculated Breakdown",
+    "exclusion": "Exemption (Tax-Free)",
+    "estTax": "Estimated Estate Tax",
+    "netToHeirs": "Net to Heirs",
+    "deductions": "Total Deductions",
+    "taxableEstate": "Taxable Estate",
+    "planningTipTitle": "Planning Tip",
+    "planningTipText": "Large estates can significantly reduce their tax burden through lifetime gifting strategies, life insurance trusts, and specific charitable vehicles. Consult with an estate attorney to optimize your legacy.",
+    "guideTitle": "Expert Guide: Understanding Estate Taxes",
+    "guide1Title": "Who pays?",
+    "guide1Text": "In most jurisdictions, the tax is paid by the estate itself before distribution to heirs. It's often called a 'death tax' and generally affects only very high-net-worth individuals due to large exclusion limits.",
+    "guide2Title": "What is exempt?",
+    "guide2Text": "The 'Marital Deduction' usually allows spouses to inherit unlimited assets tax-free. Additionally, most estates fall below the government's standard exclusion threshold (e.g., ~$13.6M in the US for 2024).",
+    "guide3Title": "Inheritance vs Estate?",
+    "guide3Text": "Estate tax is levied on the total value of the deceased's assets. Inheritance tax is paid by the individual receiving the assets. Some states or countries may impose both."
   },
   "AgeCalculator": {
     "selectDates": "Select Dates",

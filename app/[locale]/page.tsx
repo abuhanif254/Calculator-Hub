@@ -35,7 +35,7 @@ const categoryData = [
       "Inflation Calculator", "Finance Calculator", "Income Tax Calculator", "Compound Interest Calculator",
       "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator", "Average Return Calculator", 
       "Debt-to-Income Ratio Calculator", "Boat Loan Calculator", "Rental Property Calculator", "FHA Loan Calculator",
-      "Down Payment Calculator", "Future Value Calculator", "Mortgage Amortization Calculator", "House Affordability Calculator"
+      "Down Payment Calculator", "Future Value Calculator", "Mortgage Amortization Calculator", "House Affordability Calculator", "Estate Tax Calculator"
     ]
   },
   {
@@ -203,6 +203,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 if (link === "Future Value Calculator") href = "/calculators/future-value-calculator";
                 if (link === "Mortgage Amortization Calculator") href = "/calculators/mortgage-amortization-calculator";
                 if (link === "House Affordability Calculator") href = "/calculators/house-affordability-calculator";
+                if (link === "Estate Tax Calculator") href = "/calculators/estate-tax-calculator";
                 if (link === "Pregnancy Calculator") href = "/calculators/pregnancy-calculator";
                 if (link === "Pregnancy Conception Calculator") href = "/calculators/pregnancy-conception-calculator";
                 if (link === "Due Date Calculator") href = "/calculators/due-date-calculator";
@@ -293,7 +294,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <div className="mt-32 bg-slate-50 rounded-[2.5rem] p-8 md:p-16 border border-slate-100">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Trusted By Thousands</h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">Professionals and individuals rely on Calculator Central daily.</p>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">Professionals and individuals rely on Nexus Calculator daily.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
@@ -330,7 +331,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             { q: "Are my financial inputs saved?", a: "No, all calculations are performed entirely in your browser. We do not store, save, or transmit any of the numbers you input on our site, ensuring your absolute privacy." },
             { q: "How often are the tools updated?", a: "Our team regularly updates formulas, tax boundaries, and logic to reflect the latest standards. Any critical changes to financial or health formulas are deployed immediately." },
             { q: "Can I request a new calculator?", a: "Absolutely! We love building tools our users need. Use our contact form to suggest a new specific calculator, and our engineers will evaluate building it." },
-            { q: "Are these tools free to use?", a: "Yes, all calculators on Calculator Central are 100% free with no limits on usage. We aim to provide high-quality utility for everyone." }
+            { q: "Are these tools free to use?", a: "Yes, all calculators on Nexus Calculator are 100% free with no limits on usage. We aim to provide high-quality utility for everyone." }
           ].map((faq, i) => (
             <details key={i} className="group border border-slate-200 rounded-xl bg-white overflow-hidden [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex items-center justify-between cursor-pointer p-6 font-semibold text-slate-900 hover:text-[#518231] transition-colors">

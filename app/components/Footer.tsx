@@ -50,15 +50,15 @@ export function Footer() {
                 <Calculator size={24} strokeWidth={2.5} className="animate-[spin_20s_linear_infinite]" />
               </div>
               <span className="font-extrabold text-2xl tracking-tight text-white inline-flex items-center">
-                Calculator<span className="text-[#518231]">Central</span>
+                Nexus<span className="text-[#518231]">Calculator</span>
               </span>
             </Link>
             <p className="text-slate-400 mb-8 max-w-sm leading-relaxed">
               Hundreds of highly accurate, high-performance calculators for financial, health, math, and everyday needs. Built for global standards and reliability.
             </p>
             <div className="flex flex-col gap-3 text-sm">
-              <a href="mohammadbitullah@gmail.com" className="hover:text-white transition-colors duration-200">
-                mohammadbitullah@gmail.com 
+              <a href="mailto:nexuscalculator@gmail.com" className="hover:text-white transition-colors duration-200">
+                nexuscalculator@gmail.com 
               </a>
               <p className="text-slate-500">
                 2300 Kishoreganj Sadar, Dhaka, Bangladesh
@@ -98,7 +98,7 @@ export function Footer() {
             <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
           </div>
           <div className="text-sm text-slate-500 text-center md:text-right">
-            &copy; {currentYear} CalculatorCentral. All Rights Reserved.
+            &copy; {currentYear} Nexus Calculator. All Rights Reserved.
           </div>
         </div>
       </div>

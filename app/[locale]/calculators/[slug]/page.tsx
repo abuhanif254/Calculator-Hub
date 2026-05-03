@@ -78,6 +78,7 @@ import { DownPaymentCalculatorView } from "@/app/components/DownPaymentCalculato
 import { FutureValueCalculatorView } from "@/app/components/FutureValueCalculatorView";
 import { MortgageAmortizationCalculatorView } from "@/app/components/MortgageAmortizationCalculatorView";
 import { HouseAffordabilityCalculatorView } from "@/app/components/HouseAffordabilityCalculatorView";
+import { EstateTaxCalculatorView } from "@/app/components/EstateTaxCalculatorView";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
@@ -208,7 +209,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const activeCategory = sitemapCategories.find(c => c.title.toLowerCase().includes(calc.category.toLowerCase())) || sitemapCategories[0];
   const relatedLinks = activeCategory.links.slice(0, 8); // Top 8 related links
 
-  const baseUrl = "https://calculatorcentral.com"; // Change to production domain when live
+  const baseUrl = "https://nexuscalculator.net"; // Change to production domain when live
   const canonicalUrl = `${baseUrl}/${resolvedParams.locale}/calculators/${resolvedParams.slug}`;
   
   // SoftwareApplication JSON-LD Schema
@@ -418,6 +419,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <MortgageAmortizationCalculatorView calcDef={calc} />
           ) : calc.slug === 'house-affordability-calculator' ? (
             <HouseAffordabilityCalculatorView calcDef={calc} />
+          ) : calc.slug === 'estate-tax-calculator' ? (
+            <EstateTaxCalculatorView />
           ) : calc.slug === 'p-value-calculator' ? (
             <PValueCalculatorView calcDef={calc} />
           ) : calc.slug === 'fraction-calculator' ? (

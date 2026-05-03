@@ -1,6 +1,6 @@
-# Calculator Central 🧮
+# Nexus Calculator 🧮
 
-Welcome to **Calculator Central**, a comprehensive and modern web application offering a wide variety of interactive calculators. Built with performance, accessibility, and internationalization in mind, Calculator Central aims to be your one-stop destination for all your calculation needs, whether financial, mathematical, or scientific.
+Welcome to **Nexus Calculator**, a comprehensive and modern web application offering a wide variety of interactive calculators. Built with performance, accessibility, and internationalization in mind, Nexus Calculator aims to be your one-stop destination for all your calculation needs, whether financial, mathematical, or scientific.
 
 ## ✨ Features
 
@@ -31,8 +31,8 @@ Make sure you have Node.js installed on your machine. We recommend Node.js v18 o
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/calculator-central.git
-   cd calculator-central
+   git clone https://github.com/your-username/nexus-calculator.git
+   cd nexus-calculator
    ```
 
 2. **Install dependencies:**
@@ -57,7 +57,7 @@ Make sure you have Node.js installed on your machine. We recommend Node.js v18 o
 ## 📂 Project Structure
 
 ```text
-calculator-central/
+nexus-calculator/
 ├── app/                  # Next.js App Router root
 │   ├── [locale]/         # Internationalized route groups
 │   ├── components/       # Reusable standalone React components
@@ -113,4 +113,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 Author: Your Name
 Email: your.email@example.com
 
-Project Link: [https://github.com/your-username/calculator-central](https://github.com/your-username/calculator-central)
+Project Link: [https://github.com/your-username/nexus-calculator](https://github.com/your-username/nexus-calculator)

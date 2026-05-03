@@ -1,6 +1,6 @@
 {
-  "name": "Calculator Platform",
-  "description": "A data-driven, highly performant calculator platform built with Next.js App Router.",
+  "name": "Nexus Calculator",
+  "description": "Comprehensive suite of powerful, accurate online calculators for all your needs.",
   "requestFramePermissions": [],
   "majorCapabilities": []
 }
