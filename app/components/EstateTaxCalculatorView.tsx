@@ -11,9 +11,44 @@ import {
   Percent,
   Plus
 } from 'lucide-react';
-import { InputGroup } from './InputGroup';
 import { ResultDisplay } from './ResultDisplay';
 import { motion, AnimatePresence } from 'motion/react';
+
+interface LocalInputProps {
+  label: string;
+  value: number;
+  onChange: (val: number) => void;
+  type?: string;
+  prefix?: string;
+  suffix?: string;
+  tooltip?: string;
+}
+
+const LocalInputGroup = ({ label, value, onChange, prefix, suffix, tooltip }: LocalInputProps) => (
+  <div className="space-y-2">
+    <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+      {label}
+      {tooltip && (
+        <div className="group relative">
+          <HelpCircle size={14} className="text-slate-400 cursor-help" />
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-slate-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+            {tooltip}
+          </div>
+        </div>
+      )}
+    </label>
+    <div className="relative">
+      {prefix && <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">{prefix}</span>}
+      <input 
+        type="number" 
+        value={value} 
+        onChange={(e) => onChange(Number(e.target.value))}
+        className={`w-full h-11 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 px-4 font-semibold text-slate-700 ${prefix ? 'pl-7' : ''} ${suffix ? 'pr-8' : ''}`}
+      />
+      {suffix && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 font-bold">{suffix}</span>}
+    </div>
+  </div>
+);
 import { 
   PieChart, 
   Pie, 
@@ -157,7 +192,7 @@ export function EstateTaxCalculatorView() {
               {t('exemptionsTitle')}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <InputGroup
+              <LocalInputGroup
                 label={t('debts')}
                 type="number"
                 value={debts}
@@ -165,7 +200,7 @@ export function EstateTaxCalculatorView() {
                 prefix="$"
                 tooltip={t('debtsTooltip')}
               />
-              <InputGroup
+              <LocalInputGroup
                 label={t('charitable')}
                 type="number"
                 value={charitableGifts}
@@ -173,7 +208,7 @@ export function EstateTaxCalculatorView() {
                 onChange={setCharitableGifts}
                 tooltip={t('charitableTooltip')}
               />
-              <InputGroup
+              <LocalInputGroup
                 label={t('exclusionLimit')}
                 type="number"
                 value={exclusionLimit}
@@ -181,7 +216,7 @@ export function EstateTaxCalculatorView() {
                 onChange={setExclusionLimit}
                 tooltip={t('exclusionTooltip')}
               />
-              <InputGroup
+              <LocalInputGroup
                 label={t('taxRate')}
                 type="number"
                 value={taxRate}
