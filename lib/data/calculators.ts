@@ -1712,6 +1712,55 @@ Taxation varies by jurisdiction. Generally, a portion of each payout representin
     `
   },
   {
+    slug: "debt-consolidation-calculator",
+    slugs: {
+      en: "debt-consolidation-calculator",
+      es: "calculadora-de-consolidacion-de-deuda",
+      de: "schuldenkonsolidierungsrechner",
+      fr: "calculateur-de-consolidation-de-dettes"
+    },
+    title: "Debt Consolidation Calculator",
+    category: "Financial",
+    description: "Compare your current debt payments with a consolidated loan to see how much you can save in interest and time.",
+    meta: {
+      title: "Debt Consolidation Calculator | Save Money on Interest",
+      description: "Use our Debt Consolidation Calculator to see if combining your debts into one loan saves you money. Compare monthly payments and total interest costs.",
+      keywords: "debt consolidation calculator, consolidate debt, credit card consolidation, loan comparison, debt management, interest savings"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## What is Debt Consolidation?
+
+Debt consolidation is the process of combining multiple high-interest debts—such as credit cards, medical bills, or personal loans—into a single, lower-interest loan. The primary goals are to simplify your monthly bills, reduce your interest rate, and pay off your debt faster.
+
+### How this Calculator Helps
+
+Our Debt Consolidation Calculator allows you to list your current debts, their balances, and interest rates. It then compares your total combined monthly payment and interest cost against a new consolidated loan. This quantitative comparison shows you precisely how much you stand to save over the life of the loan.
+
+### Benefits of Consolidating Your Debt
+
+*   **Single Monthly Payment:** Instead of tracking multiple due dates, you have one streamlined payment.
+*   **Lower Interest Rates:** By moving high-interest credit card debt (often 20%+) to a personal loan (typically 8-15%), more of your money goes toward the principal.
+*   **Fixed Repayment Schedule:** Unlike credit cards, which can take decades to pay off with minimum payments, a consolidation loan has a fixed end date.
+*   **Improved Credit Score:** Lowering your credit utilization ratio by paying off cards can provide a significant boost to your credit score.
+
+### Frequently Asked Questions (FAQ)
+
+**1. Is debt consolidation always the best option?**
+Not necessarily. It only makes sense if the interest rate on the new loan is lower than the weighted average of your current debts, or if the fees (like origination fees) don't outweigh the interest savings.
+
+**2. Will it hurt my credit score?**
+Initially, you might see a small dip due to the hard inquiry and the new account opening. However, in the long term, reducing your debt and improving your payment history will likely increase your score.
+
+**3. What is an origination fee?**
+Some lenders charge a fee to process a new loan, typically 1% to 8% of the loan amount. Our calculator accounts for these fees to give you a true cost comparison.
+
+**4. Can I consolidate all types of debt?**
+Most unsecured debts, like credit cards, personal loans, and medical bills, can be consolidated. Secured debts like mortgages or auto loans are usually kept separate unless you are doing a cash-out refinance.
+    `
+  },
+  {
     slug: "debt-payoff-calculator",
     slugs: {
       en: "debt-payoff-calculator",
