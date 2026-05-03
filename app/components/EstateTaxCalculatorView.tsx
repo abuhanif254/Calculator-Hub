@@ -291,7 +291,7 @@ export function EstateTaxCalculatorView() {
                     ))}
                   </Pie>
                   <RechartsTooltip 
-                    formatter={(val: number) => `$${val.toLocaleString()}`}
+                    formatter={(value: any) => `$${value.toLocaleString()}`}
                   />
                   <Legend />
                 </PieChart>
