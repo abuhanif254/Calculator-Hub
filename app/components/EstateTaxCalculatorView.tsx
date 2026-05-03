@@ -11,8 +11,26 @@ import {
   Percent,
   Plus
 } from 'lucide-react';
-import { ResultDisplay } from './ResultDisplay';
+import { ResultDisplay as GlobalResultDisplay } from './ResultDisplay';
 import { motion, AnimatePresence } from 'motion/react';
+
+interface LocalResultProps {
+  label: string;
+  value: number;
+  type?: 'currency' | 'number';
+  primary?: boolean;
+}
+
+const LocalResultDisplay = ({ label, value, type = 'currency', primary = false }: LocalResultProps) => (
+  <div className={`p-4 rounded-xl border ${primary ? 'bg-blue-600 border-blue-700 text-white shadow-lg shadow-blue-200' : 'bg-slate-50 border-slate-200 text-slate-900'} transition-all hover:scale-[1.02]`}>
+    <p className={`text-[10px] uppercase font-bold mb-1 ${primary ? 'text-blue-100' : 'text-slate-400'}`}>
+      {label}
+    </p>
+    <p className={`text-2xl font-black ${primary ? 'text-white' : 'text-slate-900'}`}>
+      {type === 'currency' ? `$${value.toLocaleString()}` : value.toLocaleString()}
+    </p>
+  </div>
+);
 
 interface LocalInputProps {
   label: string;
@@ -236,19 +254,19 @@ export function EstateTaxCalculatorView() {
             </h3>
 
             <div className="grid grid-cols-1 gap-4 mb-8">
-              <ResultDisplay
+              <LocalResultDisplay
                 label={t('estTax')}
                 value={estimatedTax}
                 type="currency"
                 primary
               />
               <div className="grid grid-cols-2 gap-4">
-                <ResultDisplay
+                <LocalResultDisplay
                   label={t('taxableEstate')}
                   value={taxableEstate}
                   type="currency"
                 />
-                <ResultDisplay
+                <LocalResultDisplay
                   label={t('netToHeirs')}
                   value={netEstateToHeirs}
                   type="currency"
