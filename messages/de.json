@@ -338,6 +338,22 @@
     "consolidateTip": "Eine Konsolidierung könnte Ihnen Geld sparen und Ihr Leben vereinfachen.",
     "stayTip": "Eine Konsolidierung könnte Sie mehr Zinsen kosten. Überprüfen Sie Ihre Sätze sorgfältig."
   },
+  "SimpleInterestCalculator": {
+    "title": "Einfacher Zinsrechner",
+    "desc": "Berechnen Sie Zinsen auf Kredite oder Investitionen ohne Zinseszins.",
+    "principal": "Kapitalbetrag",
+    "interestRate": "Jährlicher Zinssatz (%)",
+    "time": "Zeitraum",
+    "years": "Jahre",
+    "months": "Monate",
+    "totalInterest": "Gesamtzinsen",
+    "totalBalance": "Gesamtsaldo",
+    "interestEarned": "Zinsertrag",
+    "interestPaid": "Gezahlte Zinsen",
+    "visualSummary": "Visuelle Zusammenfassung",
+    "principalLabel": "Kapital",
+    "interestLabel": "Zinsen"
+  },
   "DebtPayoffCalculator": {
     "title": "Schulden-Tilgungs-Rechner",
     "desc": "Ermitteln Sie, wie lange es dauert, Ihre Schulden abzubezahlen, und wie viel Zinsen Sie zahlen werden.",

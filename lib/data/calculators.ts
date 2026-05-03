@@ -1712,6 +1712,66 @@ Taxation varies by jurisdiction. Generally, a portion of each payout representin
     `
   },
   {
+    slug: "simple-interest-calculator",
+    slugs: {
+      en: "simple-interest-calculator",
+      es: "calculadora-de-interes-simple",
+      de: "einfacher-zinsrechner",
+      fr: "calculateur-d-interet-simple"
+    },
+    title: "Simple Interest Calculator",
+    category: "Financial",
+    description: "Calculate the interest on a loan or investment without compounding. Fast, accurate, and easy to use.",
+    meta: {
+      title: "Simple Interest Calculator | Calculate Principal & Interest",
+      description: "Free Simple Interest Calculator. Calculate interest earned or paid on a principal amount over time. Perfect for loans and basic investments.",
+      keywords: "simple interest calculator, calculate interest, loan interest, principal and interest, interest formula, investment growth"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## What is Simple Interest?
+
+Simple interest is a quick and easy method of calculating the interest charge on a loan. Simple interest is determined by multiplying the daily interest rate by the principal by the number of days that elapse between payments.
+
+### The Basic Formula
+
+The formula for simple interest is:
+**I = P × r × t**
+
+Where:
+*   **I** is the Interest Amount.
+*   **P** is the Principal Amount (the initial sum of money).
+*   **r** is the Annual Interest Rate (decimal).
+*   **t** is the Time (expressed in years).
+
+### Simple Interest vs. Compound Interest
+
+Unlike compound interest, where interest is calculated on the principal plus any accumulated interest from previous periods, simple interest is only calculated on the initial principal. This makes it much easier to predict the total cost of a loan or the growth of a basic savings account.
+
+### How to Use the Simple Interest Calculator
+
+1.  **Enter the Principal:** The starting amount of your loan or investment.
+2.  **Set the Interest Rate:** Your expected annual percentage rate.
+3.  **Define the Time:** How long the money will be borrowed or invested (in years or months).
+4.  **View Results:** Instantly see your total interest earned and the final balance.
+
+### Frequently Asked Questions (FAQ)
+
+**1. When is simple interest commonly used?**
+It's often used for short-term loans, auto loans, and certain types of consumer credit where interest doesn't compound.
+
+**2. Can I calculate interest for months instead of years?**
+Yes, our calculator allows you to input time in months, which it internally converts to years (e.g., 6 months = 0.5 years) to ensure accuracy.
+
+**3. Is simple interest better for borrowers?**
+Generally, yes. Because interest doesn't build on top of interest, the total amount paid back is usually less than a compound interest loan with the same terms.
+
+**4. How does inflation affect simple interest?**
+Simple interest values are "nominal." Over long periods, the purchasing power of the final balance may be affected by inflation, though the mathematical total remains the same.
+    `
+  },
+  {
     slug: "debt-consolidation-calculator",
     slugs: {
       en: "debt-consolidation-calculator",

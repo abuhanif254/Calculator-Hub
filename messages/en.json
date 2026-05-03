@@ -338,6 +338,22 @@
     "consolidateTip": "Consolidating could save you money and simplify your life.",
     "stayTip": "Consolidating may cost you more in interest. Check your rates carefully."
   },
+  "SimpleInterestCalculator": {
+    "title": "Simple Interest Calculator",
+    "desc": "Calculate interest on loans or investments without compounding.",
+    "principal": "Principal Amount",
+    "interestRate": "Annual Interest Rate (%)",
+    "time": "Time Period",
+    "years": "Years",
+    "months": "Months",
+    "totalInterest": "Total Interest",
+    "totalBalance": "Total Balance",
+    "interestEarned": "Interest Earned",
+    "interestPaid": "Interest Paid",
+    "visualSummary": "Visual Summary",
+    "principalLabel": "Principal",
+    "interestLabel": "Interest"
+  },
   "DebtPayoffCalculator": {
     "title": "Debt Payoff Calculator",
     "desc": "Determine how long it will take to pay off your debt and how much interest you will pay.",

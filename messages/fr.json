@@ -338,6 +338,22 @@
     "consolidateTip": "La consolidation pourrait vous faire économiser de l'argent et vous simplifier la vie.",
     "stayTip": "La consolidation pourrait vous coûter plus d'intérêts. Vérifiez attentivement vos taux."
   },
+  "SimpleInterestCalculator": {
+    "title": "Calculateur d'Intérêt Simple",
+    "desc": "Calculez l'intérêt sur les prêts ou les investissements sans capitalisation.",
+    "principal": "Montant du Capital",
+    "interestRate": "Taux d'Intérêt Annuel (%)",
+    "time": "Période",
+    "years": "Ans",
+    "months": "Mois",
+    "totalInterest": "Intérêt Total",
+    "totalBalance": "Solde Total",
+    "interestEarned": "Intérêt Gagné",
+    "interestPaid": "Intérêt Payé",
+    "visualSummary": "Résumé Visuel",
+    "principalLabel": "Capital",
+    "interestLabel": "Intérêt"
+  },
   "DebtPayoffCalculator": {
     "title": "Calculateur de Remboursement de Dette",
     "desc": "Déterminez combien de temps il vous faudra pour rembourser votre dette et combien d'intérêts vous paierez.",

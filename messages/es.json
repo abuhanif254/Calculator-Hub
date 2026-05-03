@@ -338,6 +338,22 @@
     "consolidateTip": "Consolidar podría ahorrarle dinero y simplificar su vida.",
     "stayTip": "La consolidación podría costarle más en intereses. Revise sus tasas cuidadosamente."
   },
+  "SimpleInterestCalculator": {
+    "title": "Calculadora de Interés Simple",
+    "desc": "Calcule el interés en préstamos o inversiones sin capitalización.",
+    "principal": "Monto del Capital",
+    "interestRate": "Tasa de Interés Anual (%)",
+    "time": "Período de Tiempo",
+    "years": "Años",
+    "months": "Meses",
+    "totalInterest": "Interés Total",
+    "totalBalance": "Saldo Total",
+    "interestEarned": "Interés Ganado",
+    "interestPaid": "Interés Pagado",
+    "visualSummary": "Resumen Visual",
+    "principalLabel": "Capital",
+    "interestLabel": "Interés"
+  },
   "DebtPayoffCalculator": {
     "title": "Calculadora de Pago de Deudas",
     "desc": "Determine cuánto tiempo tardará en pagar su deuda y cuánto interés pagará.",

@@ -66,6 +66,7 @@ import { DebtPayoffCalculatorView } from "@/app/components/DebtPayoffCalculatorV
 import { CollegeCostCalculatorView } from "@/app/components/CollegeCostCalculatorView";
 import { AnnuityPayoutCalculatorView } from "@/app/components/AnnuityPayoutCalculatorView";
 import { DebtConsolidationCalculatorView } from "@/app/components/DebtConsolidationCalculatorView";
+import { SimpleInterestCalculatorView } from "@/app/components/SimpleInterestCalculatorView";
 import { MutualFundCalculatorView } from "@/app/components/MutualFundCalculatorView";
 import { VatCalculatorView } from "@/app/components/VatCalculatorView";
 import { BondCalculatorView } from "@/app/components/BondCalculatorView";
@@ -391,6 +392,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <AnnuityPayoutCalculatorView />
           ) : calc.slug === 'debt-consolidation-calculator' ? (
             <DebtConsolidationCalculatorView />
+          ) : calc.slug === 'simple-interest-calculator' ? (
+            <SimpleInterestCalculatorView />
           ) : calc.slug === 'debt-payoff-calculator' ? (
             <DebtPayoffCalculatorView calcDef={calc} />
           ) : calc.slug === 'college-cost-calculator' ? (
