@@ -1661,6 +1661,57 @@ Use this calculator to find the payout or the required investment for your finan
     `
   },
   {
+    slug: "annuity-payout-calculator",
+    slugs: {
+      en: "annuity-payout-calculator",
+      es: "calculadora-de-pagos-de-anualidades",
+      de: "rentenauszahlungsrechner",
+      fr: "calculateur-de-versement-de-rente"
+    },
+    title: "Annuity Payout Calculator",
+    category: "Financial",
+    description: "Determine how much you can withdraw periodically from a lump sum over a set duration or how long your savings will last.",
+    meta: {
+      title: "Annuity Payout Calculator | Retirement Income Estimator",
+      description: "Calculate your periodic annuity payout from a lump sum. Estimate how long your retirement savings will last with our high-performance Annuity Payout Calculator.",
+      keywords: "annuity payout calculator, retirement income, annuity distribution, lump sum payout, retirement savings, monthly annuity"
+    },
+    fields: [],
+    logicModule: "financial",
+    seoContent: `
+## What is an Annuity Payout?
+
+An annuity payout is a structured series of payments made to an individual, typically during retirement, from a lump sum of principal. This calculator helps individuals understand how much monthly or annual income they can generate from a specific investment amount while accounting for interest growth.
+
+### Fixed Period vs. Fixed Amount
+
+*   **Fixed Period:** In this model, you decide how many years you want the income to last (e.g., 20 years). The calculator determines the payout amount based on the principal and interest rate.
+*   **Fixed Amount:** You decide how much you need per month. The calculator determines how many years your savings will last until the principal is exhausted.
+
+### The Impact of Interest Rates on Payouts
+
+Because your principal continues to earn interest while you take withdrawals, a higher interest rate significantly extends the life of your annuity or increases the amount of each payout. Even small differences in rates can result in thousands of dollars over a long retirement period.
+
+### Using the Annuity Payout Calculator
+
+This tool is essential for retirement planning. By entering your starting principal, expected annual return, and desired term, you can visualize your financial future and ensure your legacy is well-managed and sustainable.
+
+### Frequently Asked Questions (FAQ)
+
+**1. How is an annuity payout calculated?**
+The payout is calculated by taking your initial principal and amortizing it over the payout term, adding interest earned on the remaining balance each period. The formula used is the standard PMT (Payment) formula from financial mathematics.
+
+**2. Can I change my payout frequency?**
+Yes, our calculator supports Monthly, Quarterly, and Annual payout cycles, allowing you to tailor the income stream to your lifestyle.
+
+**3. Does the principal run out?**
+In a standard annuity payout model, the goal is often to exhaust the principal by the end of the term. If you choose a "Fixed Amount" that is lower than the interest earned, your principal will theoretically never run out.
+
+**4. Is annuity income taxable?**
+Taxation varies by jurisdiction. Generally, a portion of each payout representing the return of your initial investment is tax-free, while the portion representing interest earnings is taxable. Consult a tax professional in your region.
+    `
+  },
+  {
     slug: "debt-payoff-calculator",
     slugs: {
       en: "debt-payoff-calculator",
