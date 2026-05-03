@@ -11,7 +11,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: 'swap', preload: true, });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: 'swap', weight: ['400', '500', '600'], preload: true,  });
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({locale}));
