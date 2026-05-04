@@ -2,6 +2,25 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "cash-back-vs-low-interest-calculator",
+    slugs: {
+      en: "cash-back-vs-low-interest-calculator",
+      es: "calculadora-reembolso-vs-bajo-interes",
+      de: "cashback-oder-niedriger-zinssatz-rechner",
+      fr: "calculatrice-remise-en-argent-ou-taux-bas"
+    },
+    title: "Cash Back or Low Interest Calculator",
+    category: "Financial",
+    description: "Compare auto loan financing options. Determine whether a cash-back rebate or a low-interest financing offer saves you more money.",
+    meta: {
+      title: "Cash Back vs Low Interest Calculator | Compare Auto Loans",
+      description: "Compare auto dealer cash back rebates vs 0% or low-interest financing. See where you save more money.",
+      keywords: "cash back vs low interest, auto loan calculator, car financing comparison"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
     slug: "roth-ira-calculator",
     slugs: {
       en: "roth-ira-calculator",

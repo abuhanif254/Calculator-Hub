@@ -11,6 +11,7 @@ import { InterestCalculatorView } from "@/app/components/InterestCalculatorView"
 import { PaymentCalculatorView } from "@/app/components/PaymentCalculatorView";
 import { RetirementCalculatorView } from "@/app/components/RetirementCalculatorView";
 import { RothIraCalculatorView } from "@/app/components/RothIraCalculatorView";
+import { CashBackLowInterestCalculatorView } from "@/app/components/CashBackLowInterestCalculatorView";
 import { AmortizationCalculatorView } from "@/app/components/AmortizationCalculatorView";
 import { InvestmentCalculatorView } from "@/app/components/InvestmentCalculatorView";
 import { InflationCalculatorView } from "@/app/components/InflationCalculatorView";
@@ -128,7 +129,11 @@ export async function generateStaticParams() {
   
   routing.locales.forEach((locale) => {
     calculators.forEach((calc) => {
-      params.push({ slug: calc.slug, locale });
+      let slugToUse = calc.slug;
+      if (calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
+        slugToUse = calc.slugs[locale as keyof typeof calc.slugs];
+      }
+      params.push({ slug: slugToUse, locale });
     });
   });
 
@@ -311,7 +316,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             </p>
           </header>
 
-          {calc.slug === 'roth-ira-calculator' ? (
+          {calc.slug === 'cash-back-vs-low-interest-calculator' ? (
+            <CashBackLowInterestCalculatorView calcDef={calc} />
+          ) : calc.slug === 'roth-ira-calculator' ? (
             <RothIraCalculatorView calcDef={calc} />
           ) : calc.slug === 'payment-calculator' ? (
             <PaymentCalculatorView calcDef={calc} />

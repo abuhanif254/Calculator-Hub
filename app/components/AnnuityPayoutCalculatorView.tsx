@@ -99,10 +99,6 @@ export function AnnuityPayoutCalculatorView() {
     chartData: [] as any[],
   });
 
-  useEffect(() => {
-    calculateResults();
-  }, [principal, annualRate, years, payoutAmount, frequency, mode]);
-
   function calculateResults() {
     const freqFactor = frequency === 'monthly' ? 12 : frequency === 'quarterly' ? 4 : 1;
     const r = (annualRate / 100) / freqFactor;
@@ -187,7 +183,11 @@ export function AnnuityPayoutCalculatorView() {
         chartData,
       });
     }
-  };
+  }
+
+  useEffect(() => {
+    calculateResults();
+  }, [principal, annualRate, years, payoutAmount, frequency, mode]);
 
   const COLORS = ['#3b82f6', '#10b981'];
 

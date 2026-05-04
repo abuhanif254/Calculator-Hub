@@ -53,6 +53,7 @@ export function Navbar() {
                          if (link === "Compound Interest Calculator") href = "/calculators/compound-interest-calculator";
                          if (link === "Finance Calculator") href = "/calculators/finance-calculator";
                          if (link === "Graphing Calculator") href = "/calculators/graphing-calculator";
+                         if (link === "Cash Back or Low Interest Calculator") href = "/calculators/cash-back-vs-low-interest-calculator";
                          if (link === "Income Tax Calculator") href = "/calculators/income-tax-calculator";
                          if (link === "Interest Rate Calculator") href = "/calculators/interest-rate-calculator";
                          if (link === "Inflation Calculator") href = "/calculators/inflation-calculator";
@@ -166,6 +167,7 @@ export function Navbar() {
                      if (link === "Compound Interest Calculator") href = "/calculators/compound-interest-calculator";
                      if (link === "Finance Calculator") href = "/calculators/finance-calculator";
                      if (link === "Graphing Calculator") href = "/calculators/graphing-calculator";
+                         if (link === "Cash Back or Low Interest Calculator") href = "/calculators/cash-back-vs-low-interest-calculator";
                      if (link === "Income Tax Calculator") href = "/calculators/income-tax-calculator";
                      if (link === "Interest Rate Calculator") href = "/calculators/interest-rate-calculator";
                      if (link === "Inflation Calculator") href = "/calculators/inflation-calculator";

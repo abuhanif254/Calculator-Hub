@@ -1210,5 +1210,25 @@
     "totalInterest": "Crecimiento Total Ganado",
     "contributions": "Contribuciones",
     "interest": "Crecimiento"
+  },
+  "CashBackLowInterest": {
+    "vehiclePrice": "Precio del Vehículo/Compra",
+    "cashBackAmount": "Oferta de Reembolso",
+    "lowInterestRate": "Tasa de Interés Baja (%)",
+    "standardInterestRate": "Tasa de Interés Estándar (%)",
+    "loanTerm": "Plazo del Préstamo (Meses)",
+    "downPayment": "Pago Inicial",
+    "tradeIn": "Valor de Intercambio",
+    "calculate": "Comparar Opciones",
+    "resultsTitle": "Resultados de la Comparación",
+    "takeCashBack": "Tomar el Reembolso",
+    "takeLowInterest": "Tomar el Interés Bajo",
+    "monthlyPayment": "Pago Mensual",
+    "totalInterest": "Interés Total Pagado",
+    "totalCost": "Costo Total del Préstamo",
+    "cashBackOption": "Opción de Reembolso",
+    "lowInterestOption": "Opción de Interés Bajo",
+    "savings": "¡Ahorras {amount} al elegir {option}!",
+    "principal": "Monto Principal"
   }
 }

@@ -1210,5 +1210,25 @@
     "totalInterest": "Gesamtes Erzieltes Wachstum",
     "contributions": "Beiträge",
     "interest": "Wachstum"
+  },
+  "CashBackLowInterest": {
+    "vehiclePrice": "Fahrzeug-/Kaufpreis",
+    "cashBackAmount": "Cashback-Angebot",
+    "lowInterestRate": "Niedriger Zinssatz (%)",
+    "standardInterestRate": "Standardzinssatz (%)",
+    "loanTerm": "Kreditlaufzeit (Monate)",
+    "downPayment": "Anzahlung",
+    "tradeIn": "Inzahlungnahme",
+    "calculate": "Optionen Vergleichen",
+    "resultsTitle": "Vergleichsergebnisse",
+    "takeCashBack": "Cashback Nehmen",
+    "takeLowInterest": "Niedrigen Zins Nehmen",
+    "monthlyPayment": "Monatliche Zahlung",
+    "totalInterest": "Gezahlte Gesamtzinsen",
+    "totalCost": "Gesamtkosten des Kredits",
+    "cashBackOption": "Cashback-Option",
+    "lowInterestOption": "Niedrigzins-Option",
+    "savings": "Sie sparen {amount}, indem Sie {option} wählen!",
+    "principal": "Darlehensbetrag"
   }
 }

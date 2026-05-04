@@ -58,6 +58,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                     const slugOverrides: Record<string, string> = {
                       "mortgage-calculator": "mortgage-calculator",
                       "credit-cards-payoff-calculator": "credit-cards-payoff",
+                      "cash-back-or-low-interest-calculator": "cash-back-vs-low-interest-calculator",
                     };
                     
                     slug = slugOverrides[slug] || slug;

@@ -1210,5 +1210,25 @@
     "totalInterest": "Total Earned Growth",
     "contributions": "Contributions",
     "interest": "Growth"
+  },
+  "CashBackLowInterest": {
+    "vehiclePrice": "Vehicle/Purchase Price",
+    "cashBackAmount": "Cash Back Offer",
+    "lowInterestRate": "Low Interest Rate (%)",
+    "standardInterestRate": "Standard Interest Rate (%)",
+    "loanTerm": "Loan Term (Months)",
+    "downPayment": "Down Payment",
+    "tradeIn": "Trade-In Value",
+    "calculate": "Compare Options",
+    "resultsTitle": "Comparison Results",
+    "takeCashBack": "Take the Cash Back",
+    "takeLowInterest": "Take the Low Interest",
+    "monthlyPayment": "Monthly Payment",
+    "totalInterest": "Total Interest Paid",
+    "totalCost": "Total Cost of Loan",
+    "cashBackOption": "Cash Back Option",
+    "lowInterestOption": "Low Interest Option",
+    "savings": "You save {amount} by choosing {option}!",
+    "principal": "Principal Amount"
   }
 }
