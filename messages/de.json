@@ -1196,5 +1196,19 @@
     "totalInterest": "Gesamtzinsen",
     "totalPaid": "Gesamt Gezahlt",
     "errorPaymentTooLow": "Ihre Zahlung ist niedriger als die monatlichen Zinsen. Sie werden die Schulden so nie abbezahlen."
+  },
+  "RothIraCalculator": {
+    "currentAge": "Aktuelles Alter",
+    "expectedRetirementAge": "Erwartetes Renteneintrittsalter",
+    "currentBalance": "Aktueller Roth IRA Saldo",
+    "annualContribution": "Jährlicher Beitrag",
+    "expectedReturn": "Erwartete Jährliche Rendite (%)",
+    "calculateButton": "Berechnen",
+    "resultsTitle": "Rentenprojektion",
+    "endBalance": "Gesamtsaldo bei Renteneintritt",
+    "totalContributions": "Gesamte Beiträge",
+    "totalInterest": "Gesamtes Erzieltes Wachstum",
+    "contributions": "Beiträge",
+    "interest": "Wachstum"
   }
 }

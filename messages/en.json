@@ -1196,5 +1196,19 @@
     "totalInterest": "Total Interest",
     "totalPaid": "Total Amount Paid",
     "errorPaymentTooLow": "Your monthly payment is lower than the monthly interest charge. You will never pay off this debt with this payment amount."
+  },
+  "RothIraCalculator": {
+    "currentAge": "Current Age",
+    "expectedRetirementAge": "Expected Retirement Age",
+    "currentBalance": "Current Roth IRA Balance",
+    "annualContribution": "Annual Contribution",
+    "expectedReturn": "Expected Annual Rate of Return (%)",
+    "calculateButton": "Calculate",
+    "resultsTitle": "Retirement Projection",
+    "endBalance": "Total Balance at Retirement",
+    "totalContributions": "Total Contributions",
+    "totalInterest": "Total Earned Growth",
+    "contributions": "Contributions",
+    "interest": "Growth"
   }
 }

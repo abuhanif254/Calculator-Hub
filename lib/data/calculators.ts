@@ -2,6 +2,25 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "roth-ira-calculator",
+    slugs: {
+      en: "roth-ira-calculator",
+      es: "calculadora-roth-ira",
+      de: "roth-ira-rechner",
+      fr: "calculatrice-roth-ira"
+    },
+    title: "Roth IRA Calculator",
+    category: "Financial",
+    description: "Calculate your estimated Roth IRA balance at retirement and track tax-free growth.",
+    meta: {
+      title: "Roth IRA Calculator | Tax-Free Retirement Growth",
+      description: "Estimate your Roth IRA savings and see the power of tax-free compound interest with our free calculating tool.",
+      keywords: "roth ira calculator, retirement calculator, tax-free growth, roth ira contribution, ira investment"
+    },
+    fields: [], // Handled by custom view
+    logicModule: "financial"
+  },
+  {
     slug: "retirement-calculator",
     slugs: {
       en: "retirement-calculator",

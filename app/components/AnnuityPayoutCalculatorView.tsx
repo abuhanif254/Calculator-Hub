@@ -103,7 +103,7 @@ export function AnnuityPayoutCalculatorView() {
     calculateResults();
   }, [principal, annualRate, years, payoutAmount, frequency, mode]);
 
-  const calculateResults = () => {
+  function calculateResults() {
     const freqFactor = frequency === 'monthly' ? 12 : frequency === 'quarterly' ? 4 : 1;
     const r = (annualRate / 100) / freqFactor;
     

@@ -1196,5 +1196,19 @@
     "totalInterest": "Interés Total",
     "totalPaid": "Monto Total Pagado",
     "errorPaymentTooLow": "Su pago es menor que el cargo por interés. Nunca pagará la deuda con esta cantidad."
+  },
+  "RothIraCalculator": {
+    "currentAge": "Edad Actual",
+    "expectedRetirementAge": "Edad de Jubilación Esperada",
+    "currentBalance": "Saldo Actual de Roth IRA",
+    "annualContribution": "Contribución Anual",
+    "expectedReturn": "Tasa de Rendimiento Anual Esperada (%)",
+    "calculateButton": "Calcular",
+    "resultsTitle": "Proyección de Jubilación",
+    "endBalance": "Saldo Total en Jubilación",
+    "totalContributions": "Contribuciones Totales",
+    "totalInterest": "Crecimiento Total Ganado",
+    "contributions": "Contribuciones",
+    "interest": "Crecimiento"
   }
 }

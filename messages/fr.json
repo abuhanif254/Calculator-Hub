@@ -1196,5 +1196,19 @@
     "totalInterest": "Intérêts Totaux",
     "totalPaid": "Montant Total Payé",
     "errorPaymentTooLow": "Votre paiement mensuel est inférieur aux intérêts. Vous ne rembourserez jamais cette dette ainsi."
+  },
+  "RothIraCalculator": {
+    "currentAge": "Âge Actuel",
+    "expectedRetirementAge": "Âge de Retraite Prévu",
+    "currentBalance": "Solde Actuel Roth IRA",
+    "annualContribution": "Contribution Annuelle",
+    "expectedReturn": "Taux de Rendement Annuel Prévu (%)",
+    "calculateButton": "Calculer",
+    "resultsTitle": "Projection de Retraite",
+    "endBalance": "Solde Total à la Retraite",
+    "totalContributions": "Contributions Totales",
+    "totalInterest": "Croissance Totale Gagnée",
+    "contributions": "Contributions",
+    "interest": "Croissance"
   }
 }

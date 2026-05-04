@@ -10,6 +10,7 @@ import { AutoLoanCalculatorView } from "@/app/components/AutoLoanCalculatorView"
 import { InterestCalculatorView } from "@/app/components/InterestCalculatorView";
 import { PaymentCalculatorView } from "@/app/components/PaymentCalculatorView";
 import { RetirementCalculatorView } from "@/app/components/RetirementCalculatorView";
+import { RothIraCalculatorView } from "@/app/components/RothIraCalculatorView";
 import { AmortizationCalculatorView } from "@/app/components/AmortizationCalculatorView";
 import { InvestmentCalculatorView } from "@/app/components/InvestmentCalculatorView";
 import { InflationCalculatorView } from "@/app/components/InflationCalculatorView";
@@ -310,7 +311,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             </p>
           </header>
 
-          {calc.slug === 'payment-calculator' ? (
+          {calc.slug === 'roth-ira-calculator' ? (
+            <RothIraCalculatorView calcDef={calc} />
+          ) : calc.slug === 'payment-calculator' ? (
             <PaymentCalculatorView calcDef={calc} />
           ) : calc.slug === 'amortization-calculator' ? (
             <AmortizationCalculatorView calcDef={calc} />
