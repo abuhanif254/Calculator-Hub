@@ -2,6 +2,25 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "margin-calculator",
+    slugs: {
+      en: "margin-calculator",
+      es: "calculadora-de-margen",
+      de: "margenrechner",
+      fr: "calculatrice-de-marge"
+    },
+    title: "Margin Calculator",
+    category: "Financial",
+    description: "Calculate your profit margin, markup, revenue, and profit based on cost and margin percentage.",
+    meta: {
+      title: "Margin Calculator | Calculate Profit Margin & Markup",
+      description: "Free online margin calculator to find gross profit margin, markup, revenue, and profit. Ideal for business, retail, and sales.",
+      keywords: "margin calculator, profit margin calculator, gross margin calculator, markup calculator, retail margin"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
     slug: "cash-back-vs-low-interest-calculator",
     slugs: {
       en: "cash-back-vs-low-interest-calculator",
