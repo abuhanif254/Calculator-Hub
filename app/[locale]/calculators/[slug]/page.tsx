@@ -13,6 +13,7 @@ import { RetirementCalculatorView } from "@/app/components/RetirementCalculatorV
 import { RothIraCalculatorView } from "@/app/components/RothIraCalculatorView";
 import { CashBackLowInterestCalculatorView } from "@/app/components/CashBackLowInterestCalculatorView";
 import { MarginCalculatorView } from "@/app/components/MarginCalculatorView";
+import { RealEstateCalculatorView } from "@/app/components/RealEstateCalculatorView";
 import { AmortizationCalculatorView } from "@/app/components/AmortizationCalculatorView";
 import { InvestmentCalculatorView } from "@/app/components/InvestmentCalculatorView";
 import { InflationCalculatorView } from "@/app/components/InflationCalculatorView";
@@ -423,6 +424,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <ScientificNotationCalculatorView calcDef={calc} />
           ) : calc.slug === 'margin-calculator' ? (
             <MarginCalculatorView calcDef={calc} />
+          ) : calc.slug === 'real-estate-calculator' ? (
+            <RealEstateCalculatorView calcDef={calc} />
           ) : calc.slug === 'average-return-calculator' ? (
             <AverageReturnCalculatorView calcDef={calc} />
           ) : calc.slug === 'debt-to-income-ratio-calculator' ? (

@@ -2,6 +2,25 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "real-estate-calculator",
+    slugs: {
+      en: "real-estate-calculator",
+      es: "calculadora-bienes-raices",
+      de: "immobilienrechner",
+      fr: "calculatrice-immobilier"
+    },
+    title: "Real Estate Calculator",
+    category: "Financial",
+    description: "Calculate mortgage, cap rate, ROI, and total returns for real estate investments.",
+    meta: {
+      title: "Real Estate Calculator | Calculate Cap Rate & ROI",
+      description: "Free online real estate calculator to evaluate investment properties, cash on cash return, cap rate, and mortgage payments.",
+      keywords: "real estate calculator, cap rate calculator, roi calculator real estate, cash on cash return, mortgage calculator"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
     slug: "margin-calculator",
     slugs: {
       en: "margin-calculator",
