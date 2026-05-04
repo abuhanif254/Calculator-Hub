@@ -14,6 +14,7 @@ import { RothIraCalculatorView } from "@/app/components/RothIraCalculatorView";
 import { CashBackLowInterestCalculatorView } from "@/app/components/CashBackLowInterestCalculatorView";
 import { MarginCalculatorView } from "@/app/components/MarginCalculatorView";
 import { RealEstateCalculatorView } from "@/app/components/RealEstateCalculatorView";
+import { LeaseCalculatorView } from "@/app/components/LeaseCalculatorView";
 import { AmortizationCalculatorView } from "@/app/components/AmortizationCalculatorView";
 import { InvestmentCalculatorView } from "@/app/components/InvestmentCalculatorView";
 import { InflationCalculatorView } from "@/app/components/InflationCalculatorView";
@@ -426,6 +427,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <MarginCalculatorView calcDef={calc} />
           ) : calc.slug === 'real-estate-calculator' ? (
             <RealEstateCalculatorView calcDef={calc} />
+          ) : calc.slug === 'lease-calculator' ? (
+            <LeaseCalculatorView calcDef={calc} />
           ) : calc.slug === 'average-return-calculator' ? (
             <AverageReturnCalculatorView calcDef={calc} />
           ) : calc.slug === 'debt-to-income-ratio-calculator' ? (

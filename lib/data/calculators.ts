@@ -2,6 +2,25 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "lease-calculator",
+    slugs: {
+      en: "lease-calculator",
+      es: "calculadora-de-arrendamiento",
+      de: "leasingrechner",
+      fr: "calculatrice-de-location"
+    },
+    title: "Lease Calculator",
+    category: "Financial",
+    description: "Calculate your monthly car lease payments, including taxes and depreciation.",
+    meta: {
+      title: "Lease Calculator | Calculate Car Lease Payments",
+      description: "Free online lease calculator to estimate your monthly auto lease payments based on vehicle price, residual value, money factor, and term.",
+      keywords: "lease calculator, car lease calculator, auto lease calculator, money factor calculator, lease payment calculator"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
     slug: "real-estate-calculator",
     slugs: {
       en: "real-estate-calculator",
