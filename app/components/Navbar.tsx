@@ -125,7 +125,7 @@ export function Navbar() {
             ))}
 
             <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700">
-              <Link href="/search" className="text-slate-400 hover:text-[#518231] transition-colors dark:text-slate-500 dark:hover:text-[#518231]">
+              <Link href="/search" className="p-2 text-slate-400 hover:text-[#518231] transition-colors dark:text-slate-500 dark:hover:text-[#518231] inline-flex items-center justify-center min-h-[48px] min-w-[48px]">
                 <span className="sr-only">Search calculators</span>
                 <Search size={20} />
               </Link>
@@ -134,12 +134,13 @@ export function Navbar() {
 
           {/* Right: Mobile menu button */}
           <div className="flex items-center lg:hidden">
-            <Link href="/search" className="p-2 me-2 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300">
+            <Link href="/search" className="p-2 me-2 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 inline-flex items-center justify-center min-h-[48px] min-w-[48px]">
+               <span className="sr-only">Search</span>
                <Search size={20} />
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#518231] dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800"
+              className="inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#518231] dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 min-h-[48px] min-w-[48px]"
               aria-expanded={isMobileMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
@@ -224,7 +225,7 @@ export function Navbar() {
                         <Link 
                           key={link} 
                           href={href as any}
-                          className="block px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] rounded-md dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
+                          className="block px-3 py-3 text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] rounded-md dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {link}
@@ -233,7 +234,7 @@ export function Navbar() {
                   })}
                   <Link 
                     href="/sitemap"
-                    className="block px-3 py-2 text-sm font-bold text-[#518231] hover:bg-green-50 rounded-md dark:hover:bg-slate-800"
+                    className="block px-3 py-3 text-sm font-bold text-[#518231] hover:bg-green-50 rounded-md dark:hover:bg-slate-800"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     View All {category.title}

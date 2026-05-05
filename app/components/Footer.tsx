@@ -57,7 +57,7 @@ export function Footer() {
               Hundreds of highly accurate, high-performance calculators for financial, health, math, and everyday needs. Built for global standards and reliability.
             </p>
             <div className="flex flex-col gap-3 text-sm">
-              <a href="mailto:nexuscalculator@gmail.com" className="hover:text-white transition-colors duration-200">
+              <a href="mailto:nexuscalculator@gmail.com" className="hover:text-white transition-colors duration-200 inline-block py-2">
                 nexuscalculator@gmail.com 
               </a>
               <p className="text-slate-500">
@@ -73,13 +73,13 @@ export function Footer() {
                <ul className="space-y-4">
                  {category.links.slice(0, 7).map((link) => (
                    <li key={link}>
-                     <Link href={getHref(link) as any} className="hover:text-[#518231] hover:translate-x-1 inline-block transition-all duration-200">
+                     <Link href={getHref(link) as any} className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200">
                        {link}
                      </Link>
                    </li>
                  ))}
                  <li>
-                   <Link href="/sitemap" className="text-[#518231] hover:text-[#7bb052] font-semibold flex items-center gap-1 mt-2">
+                   <Link href="/sitemap" className="text-[#518231] hover:text-[#7bb052] font-semibold flex items-center gap-1 mt-2 py-2">
                      See all <span className="text-lg leading-none">&rarr;</span>
                    </Link>
                  </li>
@@ -91,11 +91,11 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-wrap justify-center md:justify-start gap-x-8 gap-y-4 text-sm font-medium">
-            <Link href="/about-us" className="hover:text-white transition-colors">About Us</Link>
-            <Link href="/terms-of-use" className="hover:text-white transition-colors">Terms of Use</Link>
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
+          <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm font-medium">
+            <Link href="/about-us" className="hover:text-white transition-colors p-2">About Us</Link>
+            <Link href="/terms-of-use" className="hover:text-white transition-colors p-2">Terms of Use</Link>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors p-2">Privacy Policy</Link>
+            <Link href="/sitemap" className="hover:text-white transition-colors p-2">Sitemap</Link>
           </div>
           <div className="text-sm text-slate-500 text-center md:text-right">
             &copy; {currentYear} Nexus Calculator. All Rights Reserved.

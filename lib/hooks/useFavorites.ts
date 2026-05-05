@@ -1,66 +1,77 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useSyncExternalStore } from 'react';
 
 export interface FavoriteCalc {
   title: string;
   href: string;
 }
 
-export function useFavorites() {
-  const [favorites, setFavorites] = useState<FavoriteCalc[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+class FavoritesStore {
+  private favorites: FavoriteCalc[] = [];
+  private isLoaded = false;
+  private listeners: Set<() => void> = new Set();
 
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem('calc_favorites');
-      if (stored) {
-        setFavorites(JSON.parse(stored));
-      }
-    } catch (e) {
-      console.error('Failed to load favorites', e);
-    }
-    setIsLoaded(true);
-  }, []);
-
-  const toggleFavorite = (calc: FavoriteCalc) => {
-    let newFavorites: FavoriteCalc[] = [];
-    setFavorites(prev => {
-      if (prev.some(f => f.href === calc.href)) {
-        newFavorites = prev.filter(f => f.href !== calc.href);
-      } else {
-        newFavorites = [...prev, calc];
-      }
-      try {
-        localStorage.setItem('calc_favorites', JSON.stringify(newFavorites));
-      } catch (e) {
-        console.error('Failed to save favorites', e);
-      }
-      return newFavorites;
-    });
-    // Dispatch outside the state updater
-    window.dispatchEvent(new Event('favorites-updated'));
-  };
-
-  // Listen to custom event to cross-sync between different components
-  useEffect(() => {
-    const handleSync = () => {
+  constructor() {
+    if (typeof window !== 'undefined') {
       try {
         const stored = localStorage.getItem('calc_favorites');
         if (stored) {
-          setFavorites(JSON.parse(stored));
-        } else {
-          setFavorites([]);
+          this.favorites = JSON.parse(stored);
         }
       } catch (e) {
-        // ignore
+        console.error('Failed to load favorites', e);
       }
-    };
-    window.addEventListener('favorites-updated', handleSync);
-    return () => window.removeEventListener('favorites-updated', handleSync);
+      this.isLoaded = true;
+    }
+  }
+
+  subscribe = (listener: () => void) => {
+    this.listeners.add(listener);
+    return () => this.listeners.delete(listener);
+  };
+
+  getSnapshot = () => {
+    return this.favorites;
+  };
+
+  getIsLoaded = () => {
+    return this.isLoaded;
+  };
+
+  toggleFavorite = (calc: FavoriteCalc) => {
+    const exists = this.favorites.some(f => f.href === calc.href);
+    if (exists) {
+      this.favorites = this.favorites.filter(f => f.href !== calc.href);
+    } else {
+      this.favorites = [...this.favorites, calc];
+    }
+    
+    try {
+      localStorage.setItem('calc_favorites', JSON.stringify(this.favorites));
+    } catch (e) {
+      console.error('Failed to save favorites', e);
+    }
+    
+    this.listeners.forEach(l => l());
+  };
+}
+
+const store = new FavoritesStore();
+
+export function useFavorites() {
+  const favorites = useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(store.getIsLoaded());
   }, []);
 
-  const isFavorite = (href: string) => {
+  const toggleFavorite = useCallback((calc: FavoriteCalc) => {
+    store.toggleFavorite(calc);
+  }, []);
+
+  const isFavorite = useCallback((href: string) => {
     return favorites.some(f => f.href === href);
-  };
+  }, [favorites]);
 
   return { favorites, toggleFavorite, isFavorite, isLoaded };
 }

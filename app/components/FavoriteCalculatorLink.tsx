@@ -8,13 +8,8 @@ import { useEffect, useState } from 'react';
 
 export function FavoriteCalculatorLink({ title, href }: { title: string; href: string }) {
   const { toggleFavorite, isFavorite, isLoaded } = useFavorites();
-  const [hydrated, setHydrated] = useState(false);
 
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
-
-  const favorite = isFavorite(href);
+  const favorite = isLoaded ? isFavorite(href) : false;
 
   return (
     <div className="flex items-center justify-between group">
@@ -23,13 +18,13 @@ export function FavoriteCalculatorLink({ title, href }: { title: string; href: s
       </Link>
       
       {/* Favorite Button */}
-      {hydrated && isLoaded && (
+      {isLoaded && (
         <button
           onClick={(e) => {
             e.preventDefault();
             toggleFavorite({ title, href });
           }}
-          className="p-1 rounded-full hover:bg-slate-100 text-slate-300 transition-colors focus:outline-none flex-shrink-0"
+          className="p-1 rounded-full hover:bg-slate-100 text-slate-300 transition-colors focus:outline-none flex-shrink-0 min-h-[44px] min-w-[44px] flex items-center justify-center sm:min-h-0 sm:min-w-0"
           aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
         >
           <Star 

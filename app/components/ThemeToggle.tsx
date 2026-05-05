@@ -21,7 +21,7 @@ export function ThemeToggle() {
       <div className="flex items-center bg-slate-800 rounded p-0.5">
         <button
           onClick={() => setTheme("light")}
-          className={`p-1 flex items-center justify-center rounded transition-colors ${theme === "light" ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`}
+          className={`h-9 w-9 sm:h-auto sm:w-auto p-1 flex items-center justify-center rounded transition-colors ${theme === "light" ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`}
           aria-label="Light theme"
           title="Light theme"
         >
@@ -29,7 +29,7 @@ export function ThemeToggle() {
         </button>
         <button
           onClick={() => setTheme("system")}
-          className={`p-1 flex items-center justify-center rounded transition-colors ${theme === "system" ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`}
+          className={`h-9 w-9 sm:h-auto sm:w-auto p-1 flex items-center justify-center rounded transition-colors ${theme === "system" ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`}
           aria-label="System theme"
           title="System match"
         >
@@ -37,7 +37,7 @@ export function ThemeToggle() {
         </button>
         <button
           onClick={() => setTheme("dark")}
-          className={`p-1 flex items-center justify-center rounded transition-colors ${theme === "dark" || (!theme && resolvedTheme === "dark") ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`}
+          className={`h-9 w-9 sm:h-auto sm:w-auto p-1 flex items-center justify-center rounded transition-colors ${theme === "dark" || (!theme && resolvedTheme === "dark") ? "bg-slate-600 text-white" : "text-slate-400 hover:text-slate-200"}`}
           aria-label="Dark theme"
           title="Dark theme"
         >
