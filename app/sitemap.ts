@@ -36,6 +36,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       
       languages[locale] = `${baseUrl}${relativePath}`;
     });
+    
+    languages['x-default'] = languages['en'] || `${baseUrl}/en${pathnameKey.replace('[slug]', genericSlug || '')}`;
 
     // We output the default "en" url as the primary <loc> because 
     // google requires a primary link, while the alternates handle the translations

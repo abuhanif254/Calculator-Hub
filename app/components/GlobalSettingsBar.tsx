@@ -41,7 +41,7 @@ export function GlobalSettingsBar() {
           id="unit-selector"
           value={unitSystem}
           onChange={(e) => setUnitSystem(e.target.value as 'metric' | 'imperial')}
-          className="bg-slate-800 border-none text-slate-100 text-sm sm:text-[11px] py-1.5 sm:py-0.5 px-2 rounded focus:ring-1 focus:ring-blue-500 outline-none cursor-pointer min-h-[44px] sm:min-h-0"
+          className="bg-white border-none text-slate-100 text-sm sm:text-[11px] py-1.5 sm:py-0.5 px-2 rounded focus:ring-1 focus:ring-blue-500 outline-none cursor-pointer min-h-[44px] sm:min-h-0"
         >
           <option value="imperial">Imperial (US)</option>
           <option value="metric">Metric (Global)</option>
@@ -58,7 +58,7 @@ export function GlobalSettingsBar() {
             const match = CURRENCIES.find(c => c.code === e.target.value);
             if (match) setCurrencyAndLocale(match.code as any, match.locale as any);
           }}
-          className="bg-slate-800 border-none text-slate-100 text-sm sm:text-[11px] py-1.5 sm:py-0.5 px-2 rounded focus:ring-1 focus:ring-blue-500 outline-none cursor-pointer min-h-[44px] sm:min-h-0"
+          className="bg-white border-none text-slate-100 text-sm sm:text-[11px] py-1.5 sm:py-0.5 px-2 rounded focus:ring-1 focus:ring-blue-500 outline-none cursor-pointer min-h-[44px] sm:min-h-0"
         >
           {CURRENCIES.map(c => (
             <option key={c.code} value={c.code}>{c.label}</option>
