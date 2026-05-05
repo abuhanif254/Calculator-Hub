@@ -2,6 +2,25 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "irr-calculator",
+    slugs: {
+      en: "irr-calculator",
+      es: "calculadora-tir",
+      de: "irr-rechner",
+      fr: "calculatrice-tri"
+    },
+    title: "IRR Calculator",
+    category: "Financial",
+    description: "Calculate the Internal Rate of Return (IRR) for your investments to evaluate profitability.",
+    meta: {
+      title: "IRR Calculator | Calculate Internal Rate of Return",
+      description: "Free online IRR calculator to compute the Internal Rate of Return for business investments and cash flows.",
+      keywords: "irr calculator, internal rate of return calculator, return on investment, financial calculator IRR"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
     slug: "lease-calculator",
     slugs: {
       en: "lease-calculator",
