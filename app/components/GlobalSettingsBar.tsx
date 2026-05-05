@@ -15,6 +15,18 @@ const CURRENCIES = [
 
 export function GlobalSettingsBar() {
   const { currency, unitSystem, setCurrencyAndLocale, setUnitSystem } = useSettings();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="bg-slate-900 border-b border-slate-800 text-white py-1.5 px-4 sm:px-6 lg:px-8 flex justify-end gap-6 items-center min-h-[36px]">
+      </div>
+    );
+  }
 
   return (
     <div className="bg-slate-900 border-b border-slate-800 text-white text-[11px] font-sans py-1.5 px-4 sm:px-6 lg:px-8 flex justify-end gap-6 items-center">
