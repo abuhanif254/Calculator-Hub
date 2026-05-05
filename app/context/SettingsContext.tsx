@@ -29,6 +29,53 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
          
         setSettings(JSON.parse(stored)); 
       } catch (e) {}
+    } else {
+      // Auto-detect settings based on region (timeZone or language)
+      let defaultCurrency: CurrencyCode = 'USD';
+      let defaultLocale: LocaleCode = 'en-US';
+      let defaultUnitSystem: UnitSystem = 'metric';
+
+      try {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        const langLower = (navigator.languages?.[0] || navigator.language || '').toLowerCase();
+
+        if (timeZone.startsWith('America/New_York') || timeZone.startsWith('America/Chicago') || timeZone.startsWith('America/Denver') || timeZone.startsWith('America/Los_Angeles') || timeZone.startsWith('America/Phoenix') || timeZone.startsWith('America/Anchorage') || timeZone.startsWith('America/Boise') || timeZone.startsWith('America/Indiana/')) {
+           defaultUnitSystem = 'imperial';
+           defaultCurrency = 'USD';
+           defaultLocale = 'en-US';
+        } else if (timeZone.startsWith('Europe/London') || langLower.includes('en-gb')) {
+           defaultCurrency = 'GBP';
+           defaultLocale = 'en-GB';
+           defaultUnitSystem = 'metric';
+        } else if (timeZone.startsWith('Europe/') || langLower.includes('de-de') || langLower.includes('fr-fr') || langLower.includes('es-es')) {
+           defaultCurrency = 'EUR';
+           defaultLocale = 'de-DE';
+           defaultUnitSystem = 'metric';
+        } else if (timeZone.startsWith('Asia/Tokyo') || langLower.includes('ja-jp')) {
+           defaultCurrency = 'JPY';
+           defaultLocale = 'ja-JP';
+           defaultUnitSystem = 'metric';
+        } else if (timeZone.startsWith('Asia/Calcutta') || timeZone.startsWith('Asia/Kolkata') || langLower.includes('en-in')) {
+           defaultCurrency = 'INR';
+           defaultLocale = 'en-IN';
+           defaultUnitSystem = 'metric';
+        } else if (timeZone.startsWith('America/Toronto') || timeZone.startsWith('America/Vancouver') || timeZone.startsWith('America/Edmonton') || timeZone.startsWith('America/Winnipeg') || timeZone.startsWith('America/Halifax') || langLower.includes('en-ca')) {
+           defaultCurrency = 'CAD';
+           defaultLocale = 'en-CA';
+           defaultUnitSystem = 'metric';
+        } else if (timeZone.startsWith('Australia/') || langLower.includes('en-au')) {
+           defaultCurrency = 'AUD';
+           defaultLocale = 'en-AU';
+           defaultUnitSystem = 'metric';
+        } else {
+           // Fallback to US if imperial is requested by language, otherwise keep default metric/USD
+           if (langLower === 'en-us') {
+             defaultUnitSystem = 'imperial';
+           }
+        }
+      } catch(e) {}
+
+      setSettings({ currency: defaultCurrency, locale: defaultLocale, unitSystem: defaultUnitSystem });
     }
      
     setMounted(true);
