@@ -95,7 +95,13 @@
     "underweight": "Untergewicht",
     "overweight": "Übergewicht",
     "obesity": "Adipositas",
-    "invalidInput": "Ungültige Eingabe"
+    "invalidInput": "Ungültige Eingabe",
+    "age": "Alter",
+    "gender": "Geschlecht",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "bfp": "Geschätztes Körperfett",
+    "ponderalIndex": "Ponderal-Index"
   },
   "BusinessLoanCalculator": {
     "title": "Firmenkreditrechner",

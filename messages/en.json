@@ -95,7 +95,13 @@
     "underweight": "Underweight",
     "overweight": "Overweight",
     "obesity": "Obesity",
-    "invalidInput": "Invalid input"
+    "invalidInput": "Invalid input",
+    "age": "Age",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "bfp": "Est. Body Fat",
+    "ponderalIndex": "Ponderal Index"
   },
   "BusinessLoanCalculator": {
     "title": "Business Loan Calculator",

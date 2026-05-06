@@ -95,7 +95,13 @@
     "underweight": "Bajo peso",
     "overweight": "Sobrepeso",
     "obesity": "Obesidad",
-    "invalidInput": "Entrada inválida"
+    "invalidInput": "Entrada inválida",
+    "age": "Edad",
+    "gender": "Género",
+    "male": "Hombre",
+    "female": "Mujer",
+    "bfp": "Grasa corporal est.",
+    "ponderalIndex": "Índice Ponderal"
   },
   "BusinessLoanCalculator": {
     "title": "Calculadora de Préstamos Comerciales",

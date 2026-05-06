@@ -95,7 +95,13 @@
     "underweight": "Insuffisance pondérale",
     "overweight": "Surpoids",
     "obesity": "Obésité",
-    "invalidInput": "Entrée invalide"
+    "invalidInput": "Entrée invalide",
+    "age": "Âge",
+    "gender": "Genre",
+    "male": "Homme",
+    "female": "Femme",
+    "bfp": "Masse grasse est.",
+    "ponderalIndex": "Indice Pondéral"
   },
   "BusinessLoanCalculator": {
     "title": "Calculateur de Prêt Professionnel",
