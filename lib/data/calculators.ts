@@ -1319,9 +1319,9 @@ A loan term is the duration of the loan, given that required minimum payments ar
     category: "Health & Fitness",
     description: "Calculate your Body Mass Index (BMI) effortlessly, powered by seamless global unit conversions.",
     meta: {
-      title: "BMI Calculator | Metric & Imperial Conversions",
-      description: "Fast, accurate Body Mass Index (BMI) calculator. Seamlessly flip between Imperial and Metric units instantly based on your required region.",
-      keywords: "bmi calculator, body mass index, health metrics, ideal weight calculator"
+      title: "BMI Calculator | Free & Accurate Body Mass Index Calculator",
+      description: "Use our free online BMI Calculator to check your Body Mass Index instantly. Discover your healthy weight range, understand BMI charts, and evaluate your health risks. Accurate for both men and women using metric and imperial units.",
+      keywords: "bmi calculator, body mass index calculator, calculate bmi, bmi chart, bmi formula, ideal weight, normal bmi, overweight, obese, healthy weight range, how to calculate bmi, bmi for men and women"
     },
     fields: [], // Handled by custom view
     logicModule: "health",
