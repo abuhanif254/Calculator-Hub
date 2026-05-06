@@ -5,6 +5,8 @@ export interface MortgageResult {
   monthlyPropertyTax: number;
   monthlyHomeInsurance: number;
   monthlyHOA: number;
+  monthlyPMI?: number;
+  extraMonthlyPayment?: number;
   totalMonthlyPayment: number;
   totalInterestPaid: number;
   totalCostOfLoan: number;
