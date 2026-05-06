@@ -241,9 +241,9 @@ export const calculators: CalculatorDef[] = [
     category: "Financial",
     description: "Estimate your net take-home pay by factoring in gross income, deductions, and tax rates.",
     meta: {
-      title: "Income Tax Calculator | Global Take-Home Pay Estimator",
-      description: "Calculate your net take-home pay, total taxes paid, and effective tax rate with our universally adaptable income tax calculator.",
-      keywords: "income tax calculator, net pay, take home pay, salary calculator, tax deductions, effective tax rate"
+      title: "Free Online Income Tax Calculator | Accurate Tax Estimator",
+      description: "Calculate your income tax, net take-home pay, and effective tax rate with our free online Income Tax Calculator. Get accurate tax bracket estimations.",
+      keywords: "income tax calculator, free tax calculator, take home pay calculator, net pay estimator, calculate income tax, tax bracket calculator, salary after tax, paycheck calculator, how much tax will i pay, income tax calculation online"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
