@@ -51,7 +51,8 @@
     "totalMonths": "Total des Mois",
     "totalWeeks": "Total des Semaines",
     "totalDays": "Total des Jours",
-    "daysToNextBirthday": "Jours avant le prochain anniversaire"
+    "daysToNextBirthday": "Jours avant le prochain anniversaire",
+    "today": "Aujourd'hui"
   },
   "LoanCalculator": {
     "amortizedTitle": "Prêt Amorti : Remboursement d'un Montant Fixe Périodiquement",

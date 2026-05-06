@@ -25,19 +25,49 @@ export const AgeCalculatorView: React.FC<Props> = ({ calcDef }) => {
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200">
           <h2 className="text-xl font-bold text-slate-800 mb-6">{t("selectDates")}</h2>
           
-          <LocalizedDatePicker 
-            label={t("dateOfBirth")}
-            selectedDate={birthDate}
-            onSelect={setBirthDate}
-          />
+          <div className="flex flex-col gap-2">
+            <label className="block text-sm font-semibold text-slate-700 mb-1">{t("dateOfBirth")}</label>
+            <input 
+              type="date" 
+              value={birthDate ? birthDate.toISOString().split('T')[0] : ''}
+              onChange={(e) => {
+                const date = e.target.valueAsDate;
+                if (date) {
+                  setBirthDate(new Date(date.getTime() + date.getTimezoneOffset() * 60000));
+                } else {
+                  setBirthDate(undefined);
+                }
+              }}
+              className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:bg-slate-100 transition-colors"
+            />
+          </div>
 
           <div className="my-6 border-b border-slate-100"></div>
 
-          <LocalizedDatePicker 
-            label={t("targetDate")}
-            selectedDate={targetDate}
-            onSelect={setTargetDate}
-          />
+          <div className="flex flex-col gap-2">
+            <label className="block text-sm font-semibold text-slate-700 mb-1">{t("targetDate")}</label>
+            <div className="flex items-center gap-3">
+              <input 
+                type="date" 
+                value={targetDate ? targetDate.toISOString().split('T')[0] : ''}
+                onChange={(e) => {
+                  const date = e.target.valueAsDate;
+                  if (date) {
+                    setTargetDate(new Date(date.getTime() + date.getTimezoneOffset() * 60000));
+                  } else {
+                    setTargetDate(undefined);
+                  }
+                }}
+                className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:bg-slate-100 transition-colors"
+              />
+              <button 
+                onClick={() => setTargetDate(new Date())}
+                className="px-4 py-3.5 bg-blue-50 text-blue-700 font-semibold rounded-xl whitespace-nowrap hover:bg-blue-100 transition-colors"
+              >
+                {t("today")}
+              </button>
+            </div>
+          </div>
           
         </div>
 

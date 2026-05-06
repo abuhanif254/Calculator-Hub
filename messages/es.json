@@ -51,7 +51,8 @@
     "totalMonths": "Meses Totales",
     "totalWeeks": "Semanas Totales",
     "totalDays": "Días Totales",
-    "daysToNextBirthday": "Días para el Próximo Cumpleaños"
+    "daysToNextBirthday": "Días para el Próximo Cumpleaños",
+    "today": "Hoy"
   },
   "LoanCalculator": {
     "amortizedTitle": "Préstamo Amortizado: Devolución de una Cantidad Fija Periódicamente",

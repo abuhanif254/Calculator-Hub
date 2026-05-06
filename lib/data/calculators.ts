@@ -944,9 +944,9 @@ export const calculators: CalculatorDef[] = [
     category: "Other",
     description: "Calculate exact age in years, months, weeks, and days globally utilizing strict localization formatting.",
     meta: {
-      title: "Age Calculator | Precise localized date format testing",
-      description: "Find out exactly how old you are down to the day. This age calculator uses localized components to handle MM/DD/YYYY and DD/MM/YYYY formatting seamlessly for international users.",
-      keywords: "age calculator, exact age calculator, birthday calculator, chronological age"
+      title: "Age Calculator | Precise Online Chronological Age Calculator",
+      description: "Calculate your exact age accurately with our free online Age Calculator. Find out your age in years, months, weeks, days, and hours instantly based on your date of birth.",
+      keywords: "age calculator, calculate age from date of birth, exact age calculator, chronological age calculator, age difference calculator, birthday calculator, how old am i, date of birth calculator, age calculator online"
     },
     fields: [], // Handled by custom view
     logicModule: "time",
@@ -1319,9 +1319,9 @@ A loan term is the duration of the loan, given that required minimum payments ar
     category: "Health & Fitness",
     description: "Calculate your Body Mass Index (BMI) effortlessly, powered by seamless global unit conversions.",
     meta: {
-      title: "BMI Calculator | Free & Accurate Body Mass Index Calculator",
-      description: "Use our free online BMI Calculator to check your Body Mass Index instantly. Discover your healthy weight range, understand BMI charts, and evaluate your health risks. Accurate for both men and women using metric and imperial units.",
-      keywords: "bmi calculator, body mass index calculator, calculate bmi, bmi chart, bmi formula, ideal weight, normal bmi, overweight, obese, healthy weight range, how to calculate bmi, bmi for men and women"
+      title: "BMI Calculator | Metric & Imperial Conversions",
+      description: "Fast, accurate Body Mass Index (BMI) calculator. Seamlessly flip between Imperial and Metric units instantly based on your required region.",
+      keywords: "bmi calculator, body mass index, health metrics, ideal weight calculator"
     },
     fields: [], // Handled by custom view
     logicModule: "health",

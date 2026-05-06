@@ -51,7 +51,8 @@
     "totalMonths": "Monate Insgesamt",
     "totalWeeks": "Wochen Insgesamt",
     "totalDays": "Tage Insgesamt",
-    "daysToNextBirthday": "Tage bis zum nächsten Geburtstag"
+    "daysToNextBirthday": "Tage bis zum nächsten Geburtstag",
+    "today": "Heute"
   },
   "LoanCalculator": {
     "amortizedTitle": "Amortisiertes Darlehen: Rückzahlung eines festen Betrags in regelmäßigen Abständen",

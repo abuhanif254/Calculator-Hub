@@ -51,7 +51,8 @@
     "totalMonths": "Total Months",
     "totalWeeks": "Total Weeks",
     "totalDays": "Total Days",
-    "daysToNextBirthday": "Days to Next Birthday"
+    "daysToNextBirthday": "Days to Next Birthday",
+    "today": "Today"
   },
   "LoanCalculator": {
     "amortizedTitle": "Amortized Loan: Paying Back a Fixed Amount Periodically",

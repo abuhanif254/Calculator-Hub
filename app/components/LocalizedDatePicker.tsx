@@ -74,6 +74,9 @@ export const LocalizedDatePicker: React.FC<Props> = ({ selectedDate, onSelect, l
               }
             }}
             defaultMonth={selectedDate}
+            captionLayout="dropdown"
+            startMonth={new Date(1900, 0)}
+            endMonth={new Date(2100, 11)}
             locale={getSupportedDateLocale(locale as string)}
             className="w-full"
             classNames={{
