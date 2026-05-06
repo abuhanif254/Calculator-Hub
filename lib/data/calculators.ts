@@ -1060,14 +1060,11 @@ To engineer a flawless cross-border data transfer:
       {
         id: "loanTerm",
         label: "Loan Term (Years)",
-        type: "years",
+        type: "number",
         defaultValue: 30,
-        options: [
-          { label: "30 Years", value: "30" },
-          { label: "20 Years", value: "20" },
-          { label: "15 Years", value: "15" },
-          { label: "10 Years", value: "10" },
-        ],
+        min: 1,
+        max: 50,
+        step: 1,
       },
       {
         id: "interestRate",
@@ -1166,14 +1163,11 @@ To get the absolute most accurate results from this tool, gather the necessary f
       {
         id: "loanTerm",
         label: "Amortization Period",
-        type: "years",
+        type: "number",
         defaultValue: 25,
-        options: [
-          { label: "30 Years", value: "30" },
-          { label: "25 Years", value: "25" },
-          { label: "20 Years", value: "20" },
-          { label: "15 Years", value: "15" },
-        ],
+        min: 1,
+        max: 50,
+        step: 1,
       },
       {
         id: "interestRate",

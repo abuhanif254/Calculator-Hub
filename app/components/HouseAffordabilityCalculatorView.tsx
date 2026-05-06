@@ -216,16 +216,16 @@ export function HouseAffordabilityCalculatorView({ calcDef }: HouseAffordability
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700 block">Loan Term</label>
+                  <label className="text-sm font-bold text-slate-700 block">Loan Term (Years)</label>
                   <div className="relative">
-                    <select 
+                    <input 
+                      type="number"
+                      min="1"
+                      max="50"
+                      step="1"
                       value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)}
-                      className="w-full h-12 pl-4 pr-8 font-semibold rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 bg-white"
-                    >
-                      <option value="15">15 Years</option>
-                      <option value="20">20 Years</option>
-                      <option value="30">30 Years</option>
-                    </select>
+                      className="w-full h-12 px-4 font-semibold rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500 bg-white"
+                    />
                   </div>
                 </div>
               </div>
