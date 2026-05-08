@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const addRoute = (pathnameKey: string, changeFrequency: any, priority: number, genericSlug?: string) => {
     // 1) Find the route mapped in next-intl
-    // 2) Construct the hreflang alternates for Next.js
+    // 2) Construct the hreflang alternates for Next.js (important)
 
     const languages: Record<string, string> = {};
     const routeMapping = (routing.pathnames as any)[pathnameKey];
