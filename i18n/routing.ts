@@ -111,7 +111,10 @@ export const routing = defineRouting({
       es: '/calculadoras/[slug]',
       fr: '/calculatrices/[slug]',
       de: '/rechner/[slug]'
-    }
+    },
+    '/community': '/community',
+    '/community/new': '/community/new',
+    '/community/[slug]': '/community/[slug]'
   }
 });
 
