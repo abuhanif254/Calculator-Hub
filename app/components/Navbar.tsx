@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Link } from "../../i18n/routing";
 import { Menu, X, Calculator, Search, ChevronDown } from "lucide-react";
 import { sitemapCategories } from "../../lib/data/sitemapData";
+import { AuthButton } from "./AuthButton";
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -124,7 +125,11 @@ export function Navbar() {
               </div>
             ))}
 
-            <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700">
+            <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700 flex items-center space-x-4">
+              <Link href="/community" className="text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+                Community
+              </Link>
+              <AuthButton />
               <Link href="/search" className="p-2 text-slate-400 hover:text-[#518231] transition-colors dark:text-slate-500 dark:hover:text-[#518231] inline-flex items-center justify-center min-h-[48px] min-w-[48px]">
                 <span className="sr-only">Search calculators</span>
                 <Search size={20} />

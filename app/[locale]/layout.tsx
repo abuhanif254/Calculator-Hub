@@ -70,6 +70,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+import { AuthProvider } from '../../app/components/AuthProvider';
+
 export default async function RootLayout({
   children,
   params
@@ -88,14 +90,16 @@ export default async function RootLayout({
       <body className={`${inter.variable} font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-slate-950 dark:text-slate-100`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <SettingsProvider>
-              <GlobalSettingsBar />
-              <Navbar />
-              <div className="flex-1">
-                {children}
-              </div>
-              <Footer />
-            </SettingsProvider>
+            <AuthProvider>
+              <SettingsProvider>
+                <GlobalSettingsBar />
+                <Navbar />
+                <div className="flex-1">
+                  {children}
+                </div>
+                <Footer />
+              </SettingsProvider>
+            </AuthProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

@@ -1,0 +1,72 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Phase 3: Primitive Definition
+    function isValidId(id) { 
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); 
+    }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isSignedIn() { return request.auth != null; }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['createdAt']) 
+          && data.keys().size() <= 3
+          && (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100))
+          && (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 500))
+          && data.createdAt is timestamp;
+    }
+
+    function isValidPost(data) {
+      return data.keys().hasAll(['slug', 'title', 'content', 'authorId', 'createdAt', 'updatedAt'])
+          && data.keys().size() == 6
+          && data.slug is string && data.slug.size() > 0 && data.slug.size() <= 200 && data.slug.matches('^[a-z0-9\\-]+$')
+          && data.title is string && data.title.size() > 0 && data.title.size() <= 200
+          && data.content is string && data.content.size() > 0 && data.content.size() <= 50000
+          && data.authorId is string && data.authorId == request.auth.uid
+          && data.createdAt is timestamp
+          && data.updatedAt is timestamp;
+    }
+
+    match /users/{userId} {
+      // Allow read public user profiles
+      allow read: if true; 
+      
+      allow create: if isSignedIn() && request.auth.uid == userId
+                    && isValidUser(incoming())
+                    && incoming().createdAt == request.time;
+                    
+      allow update: if isSignedIn() && request.auth.uid == userId
+                    && isValidUser(incoming())
+                    && incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL']);
+                    
+      allow delete: if false; // Users shouldn't be hard-deleted directly this way
+    }
+
+    match /posts/{postId} {
+      // Allow everyone to read posts
+      allow read: if true; 
+      
+      allow create: if isSignedIn() 
+                    && isValidId(postId)
+                    && isValidPost(incoming())
+                    && incoming().createdAt == request.time
+                    && incoming().updatedAt == request.time
+                    && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+                    
+      allow update: if isSignedIn() 
+                    && request.auth.uid == existing().authorId
+                    && isValidId(postId)
+                    && isValidPost(incoming())
+                    && incoming().updatedAt == request.time
+                    && incoming().diff(existing()).affectedKeys().hasOnly(['title', 'slug', 'content', 'updatedAt']);
+                    
+      allow delete: if isSignedIn() && request.auth.uid == existing().authorId;
+    }
+  }
+}
