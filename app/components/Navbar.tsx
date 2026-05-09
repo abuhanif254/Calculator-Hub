@@ -133,6 +133,11 @@ const devToolsColumns = [
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [menuClicked, setMenuClicked] = useState(false);
+
+  const handleLinkClick = () => {
+    setMenuClicked(true);
+  };
 
   // Exclude 'Calculators for Your Site' from main top-nav for a cleaner look
   const navCategories = sitemapCategories.filter(cat => cat.id !== "site-calculators");
@@ -156,7 +161,7 @@ export function Navbar() {
           {/* Center/Right: Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-1">
             {/* Developer Tools Mega Menu */}
-            <div className="group px-3 py-2">
+            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
               <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
                 <Code size={16} className="text-[#518231]" />
                 Developer Tools
@@ -164,7 +169,7 @@ export function Navbar() {
               </button>
               
               {/* Full Width Dropdown */}
-              <div className="absolute top-full left-0 w-full pt-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-out z-50">
+              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <div className="grid grid-cols-4 gap-8">
@@ -181,7 +186,7 @@ export function Navbar() {
                                <ul className="space-y-1">
                                  {category.items.map(item => (
                                    <li key={item.name}>
-                                     <Link href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}` as any} className="block px-3 py-2 text-sm rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 group/link relative border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50">
+                                     <Link href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}` as any} onClick={handleLinkClick} className="block px-3 py-2 text-sm rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 group/link relative border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50">
                                        <div className="text-slate-600 dark:text-slate-300 group-hover/link:text-[#518231] font-medium transition-colors">{item.name}</div>
                                        <div className="text-[12px] leading-tight text-slate-400 dark:text-slate-500 max-h-0 overflow-hidden opacity-0 group-hover/link:max-h-10 group-hover/link:opacity-100 group-hover/link:mt-1 transition-all duration-300 ease-in-out">
                                          {item.desc}
@@ -201,14 +206,14 @@ export function Navbar() {
             </div>
 
             {navCategories.map((category) => (
-              <div key={category.id} className="relative group px-3 py-2">
+              <div key={category.id} className="relative group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
                 <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
                   {category.title.replace(" Calculators", "")}
                   <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
                 </button>
                 
                 {/* Desktop Dropdown */}
-                <div className="absolute top-full start-1/2 -translate-x-1/2 rtl:translate-x-1/2 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out z-50 w-64">
+                <div className={`absolute top-full start-1/2 -translate-x-1/2 rtl:translate-x-1/2 pt-2 opacity-0 invisible transition-all duration-200 ease-out z-50 w-64 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
                   <div className="bg-white border border-slate-200 shadow-xl rounded-xl overflow-hidden py-2 dark:bg-slate-900 dark:border-slate-700">
                     <div className="px-4 py-2 bg-slate-50 border-b border-slate-100 mb-2 dark:bg-slate-800/50 dark:border-slate-800">
                       <span className="text-xs font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400">{category.title}</span>
@@ -277,6 +282,7 @@ export function Navbar() {
                            <li key={link}>
                              <Link 
                                href={href as any} 
+                               onClick={handleLinkClick}
                                className="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] transition-colors dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
                              >
                                {link}
@@ -285,7 +291,7 @@ export function Navbar() {
                          );
                       })}
                       <li>
-                        <Link href="/sitemap" className="block px-4 py-2 text-sm font-semibold text-[#518231] hover:bg-green-50 transition-colors mt-1 dark:hover:bg-slate-800">
+                        <Link href="/sitemap" onClick={handleLinkClick} className="block px-4 py-2 text-sm font-semibold text-[#518231] hover:bg-green-50 transition-colors mt-1 dark:hover:bg-slate-800">
                           View all in {category.title.replace(" Calculators", "")} <span className="inline-block rtl:rotate-180">&rarr;</span>
                         </Link>
                       </li>
