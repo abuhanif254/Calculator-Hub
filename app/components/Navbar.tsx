@@ -181,7 +181,7 @@ export function Navbar() {
                                <ul className="space-y-1">
                                  {category.items.map(item => (
                                    <li key={item.name}>
-                                     <Link href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}`} className="block px-3 py-2 text-sm rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 group/link relative border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50">
+                                     <Link href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}` as any} className="block px-3 py-2 text-sm rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 group/link relative border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50">
                                        <div className="text-slate-600 dark:text-slate-300 group-hover/link:text-[#518231] font-medium transition-colors">{item.name}</div>
                                        <div className="text-[12px] leading-tight text-slate-400 dark:text-slate-500 max-h-0 overflow-hidden opacity-0 group-hover/link:max-h-10 group-hover/link:opacity-100 group-hover/link:mt-1 transition-all duration-300 ease-in-out">
                                          {item.desc}
@@ -347,7 +347,7 @@ export function Navbar() {
                    </summary>
                    <div className="pl-9 pr-3 py-2 space-y-1 bg-slate-50/50 dark:bg-slate-800/20 rounded-b-md -mt-1 mb-1">
                      {category.items.map(item => (
-                       <Link key={item.name} href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}`} className="block py-2 group/moblink" onClick={() => setIsMobileMenuOpen(false)}>
+                       <Link key={item.name} href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}` as any} className="block py-2 group/moblink" onClick={() => setIsMobileMenuOpen(false)}>
                          <div className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231] transition-colors">{item.name}</div>
                          <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
                        </Link>
