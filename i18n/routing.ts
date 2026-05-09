@@ -114,7 +114,13 @@ export const routing = defineRouting({
     },
     '/community': '/community',
     '/community/new': '/community/new',
-    '/community/[slug]': '/community/[slug]'
+    '/community/[slug]': '/community/[slug]',
+    '/tools/[slug]': {
+      en: '/tools/[slug]',
+      es: '/herramientas/[slug]',
+      fr: '/outils/[slug]',
+      de: '/werkzeuge/[slug]'
+    }
   }
 });
 
