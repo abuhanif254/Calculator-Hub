@@ -79,7 +79,7 @@ export default function CommunityIndex() {
           </div>
         ) : (
           posts.map(post => (
-            <Link key={post.id} href={`/community/${post.slug} as any `} className="block bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-md transition-shadow group">
+            <Link key={post.id} href={`/community/${post.slug} ` as any} className="block bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-md transition-shadow group">
               <h2 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors mb-2">
                 {post.title}
               </h2>
