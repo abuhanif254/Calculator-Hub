@@ -86,5 +86,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
+  // Developer Tools Routes for SEO
+  const developerTools = [
+    "JSON Formatter", "JSON Validator", "HTML Formatter", "CSS Beautifier", "JavaScript Beautifier", "XML Formatter", "Markdown Previewer", "SQL Formatter", "YAML Formatter", "CSV Viewer", "Diff Checker",
+    "Base64 Encode", "Base64 Decode", "URL Encoder", "URL Decoder", "JWT Decoder", "Hash Generator", "MD5 Generator", "SHA256 Generator", "Password Generator", "HMAC Generator", "QR Code Generator",
+    "UUID Generator", "Slug Generator", "Lorem Ipsum Generator", "Fake User Data Generator", "Random Number Generator", "Random String Generator", "Username Generator", "API Mock Data Generator", "Strong Password Generator", "HTML Table Generator",
+    "HEX to RGB", "RGB to HEX", "Color Picker", "Gradient Generator", "Tailwind Color Palette", "CSS Shadow Generator", "Glassmorphism Generator", "Neumorphism Generator", "Contrast Checker", "Color Palette Generator",
+    "Meta Tag Generator", "Open Graph Generator", "Twitter Card Generator", "robots.txt Generator", "sitemap.xml Generator", ".htaccess Generator", "CSS Minifier", "JS Minifier", "HTML Minifier", "Responsive Screen Tester", "HTTP Header Checker", "Redirect Checker", "Website Screenshot Tool", "DNS Lookup", "IP Lookup", "User Agent Parser", "MIME Type Checker",
+    "Latest Discussions", "Ask a Question", "Share Code Snippets", "Tool Requests", "Bug Reports", "React Discussions", "Next.js Discussions", "Firebase Discussions", "SEO Discussions", "API Discussions",
+    "Most Used Today", "Recently Added", "Popular Among Developers", "Editor’s Picks"
+  ];
+
+  developerTools.forEach((toolName) => {
+    const slug = toolName.toLowerCase().replace(/ /g, '-');
+    addRoute('/tools/[slug]', 'weekly', 0.8, slug);
+  });
+
   return routes;
 }
