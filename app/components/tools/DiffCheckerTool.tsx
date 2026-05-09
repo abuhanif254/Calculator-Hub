@@ -8,13 +8,17 @@ export function DiffCheckerTool() {
   const [left, setLeft] = useState("");
   const [right, setRight] = useState("");
   const [hasCompared, setHasCompared] = useState(false);
+  const [source, setSource] = useState("json-formatter");
 
   useEffect(() => {
     // Pick up data sent from JSON Formatter or other tools via localStorage
     const savedLeft = localStorage.getItem("diff_checker_left");
     const savedRight = localStorage.getItem("diff_checker_right");
+    const savedSource = localStorage.getItem("diff_checker_source");
+    
     if (savedLeft) setLeft(savedLeft);
     if (savedRight) setRight(savedRight);
+    if (savedSource) setSource(savedSource);
     
     // Auto-compare if we came from another tool with data
     if (savedLeft || savedRight) {
@@ -68,8 +72,8 @@ export function DiffCheckerTool() {
       {/* Top Bar Actions */}
       <div className="flex flex-wrap items-center justify-between gap-4 bg-slate-50 dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex flex-wrap items-center gap-3">
-          <Link href={"/tools/json-formatter" as any} className="px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm shadow-sm">
-            <ArrowLeft size={16} /> <span className="hidden sm:inline">Back to JSON Formatter</span>
+          <Link href={(`/tools/${source}`) as any} className="px-3 py-2 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg font-medium transition-colors flex items-center gap-2 text-sm shadow-sm">
+            <ArrowLeft size={16} /> <span className="hidden sm:inline">Back to {source === "html-formatter" ? "HTML" : "JSON"} Formatter</span>
           </Link>
           <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1 hidden sm:block"></div>
           {!hasCompared ? (

@@ -39,23 +39,23 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: 'Nexus Calculator',
     },
     title: {
-      default: 'Nexus Calculator | Fast & Accurate Online Calculators',
-      template: '%s | Nexus Calculator'
+      default: 'Nexus | Ultimate Calculators & Developer Tools Platform',
+      template: '%s | Nexus'
     },
-    description: 'Hundreds of highly accurate, high-performance calculators for financial, health, math, and everyday needs designed for global standards.',
-    keywords: 'calculator, online calculator, financial calculator, health calculator, math calculator, free calculator',
+    description: 'The ultimate web platform featuring hundreds of highly accurate online calculators alongside professional-grade developer tools, code formatters, and utilities for modern workflows.',
+    keywords: 'online calculators, financial calculators, health calculators, developer tools, free web tools, json formatter, html beautifier, code formatter, developer utilities',
     openGraph: {
-      title: 'Nexus Calculator | Fast & Accurate Online Calculators',
-      description: 'Hundreds of highly accurate calculators for everyday needs.',
+      title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
+      description: 'The ultimate web platform featuring hundreds of highly accurate online calculators alongside professional-grade developer tools, code formatters, and utilities.',
       url: `${baseUrl}/${locale}`,
-      siteName: 'Nexus Calculator',
+      siteName: 'Nexus',
       locale: locale,
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Nexus Calculator | Fast & Accurate Online Calculators',
-      description: 'Hundreds of highly accurate calculators for everyday needs.',
+      title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
+      description: 'The ultimate web platform featuring hundreds of highly accurate online calculators alongside professional-grade developer tools, code formatters, and utilities.',
     },
     alternates: {
       canonical: `${baseUrl}/${locale}`,
