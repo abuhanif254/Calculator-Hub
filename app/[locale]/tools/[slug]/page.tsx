@@ -3,13 +3,15 @@ import { notFound } from 'next/navigation';
 import { getToolConfig } from '../../../../lib/data/tools';
 import { JsonFormatterTool } from '../../../components/tools/JsonFormatterTool';
 import { DiffCheckerTool } from '../../../components/tools/DiffCheckerTool';
+import { HtmlFormatterTool } from '../../../components/tools/HtmlFormatterTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers } from 'lucide-react';
 
 const toolComponents: Record<string, React.ComponentType> = {
   "json-formatter": JsonFormatterTool,
-  "diff-checker": DiffCheckerTool
+  "diff-checker": DiffCheckerTool,
+  "html-formatter": HtmlFormatterTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {

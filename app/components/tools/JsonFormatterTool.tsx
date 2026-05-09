@@ -329,6 +329,7 @@ export function JsonFormatterTool() {
   const handleCompare = () => {
     localStorage.setItem("diff_checker_left", input);
     localStorage.setItem("diff_checker_right", output || input);
+    localStorage.setItem("diff_checker_source", "json-formatter");
   };
 
   const loadSample = (type: 1 | 2) => {
