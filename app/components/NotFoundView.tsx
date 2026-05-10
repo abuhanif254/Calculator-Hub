@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { Search, Compass, Calculator, Frown } from 'lucide-react';
-import { Link } from '../../i18n/routing';
+import { Link, resolveIntlHref } from '../../i18n/routing';
 
 const popularItems = [
   { title: "Mortgage Calculator", href: "/calculators/mortgage-calculator" },
@@ -100,7 +100,7 @@ export function NotFoundView() {
             {filteredItems.map((item, i) => (
               <Link 
                 key={i} 
-                href={item.href as any}
+                href={resolveIntlHref(item.href)}
                 className="group flex flex-col p-4 border border-slate-100 dark:border-slate-800 hover:border-[#518231] hover:bg-green-50 dark:hover:bg-[#518231]/10 rounded-xl transition-all"
               >
                 <span className="font-semibold text-slate-700 dark:text-slate-300 group-hover:text-[#518231]">

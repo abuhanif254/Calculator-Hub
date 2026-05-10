@@ -150,3 +150,32 @@ export const routing = defineRouting({
 });
 
 export const {Link, redirect, usePathname, useRouter} = createNavigation(routing);
+
+/**
+ * Resolves flat string URLs into next-intl compatible objects for dynamic routes.
+ * Prevents the "Cannot destructure property 'pathname' of 'e'" error when passing
+ * strings to dynamic catch-all paths.
+ */
+export function resolveIntlHref(hrefStr: string): any {
+  if (!hrefStr || typeof hrefStr !== 'string') return hrefStr;
+  
+  if (hrefStr.startsWith('/calculators/category/')) {
+    return { pathname: '/calculators/category/[category]', params: { category: hrefStr.replace('/calculators/category/', '') } };
+  }
+  if (hrefStr.startsWith('/calculators/')) {
+    // Check if it's explicitly statically mapped first?
+    // It's safer to just use the dynamic pattern since they resolve identically.
+    return { pathname: '/calculators/[slug]', params: { slug: hrefStr.replace('/calculators/', '') } };
+  }
+  if (hrefStr.startsWith('/tools/')) {
+    return { pathname: '/tools/[slug]', params: { slug: hrefStr.replace('/tools/', '') } };
+  }
+  if (hrefStr.startsWith('/collections/')) {
+    return { pathname: '/collections/[slug]', params: { slug: hrefStr.replace('/collections/', '') } };
+  }
+  if (hrefStr.startsWith('/compare/')) {
+    return { pathname: '/compare/[slug]', params: { slug: hrefStr.replace('/compare/', '') } };
+  }
+  
+  return hrefStr;
+}

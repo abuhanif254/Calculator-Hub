@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Link } from "../../i18n/routing";
+import { Link, resolveIntlHref } from "../../i18n/routing";
 import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell } from "lucide-react";
 import { sitemapCategories } from "../../lib/data/sitemapData";
 import { resolveHref } from "../../lib/utils/linkResolver";
@@ -187,7 +187,7 @@ export function Navbar() {
                                <ul className="space-y-1">
                                  {category.items.map(item => (
                                    <li key={item.name}>
-                                     <Link href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}` as any} onClick={handleLinkClick} className="block px-3 py-2 text-sm rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 group/link relative border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50">
+                                     <Link href={resolveIntlHref(`/tools/${item.name.toLowerCase().replace(/ /g, '-')}`)} onClick={handleLinkClick} className="block px-3 py-2 text-sm rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 group/link relative border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50">
                                        <div className="text-slate-600 dark:text-slate-300 group-hover/link:text-[#518231] font-medium transition-colors">{item.name}</div>
                                        <div className="text-[12px] leading-tight text-slate-400 dark:text-slate-500 max-h-0 overflow-hidden opacity-0 group-hover/link:max-h-10 group-hover/link:opacity-100 group-hover/link:mt-1 transition-all duration-300 ease-in-out">
                                          {item.desc}
@@ -223,7 +223,7 @@ export function Navbar() {
                       {category.links.slice(0, 10).map((link) => (
                            <li key={link}>
                              <Link 
-                               href={resolveHref(link) as any} 
+                               href={resolveIntlHref(resolveHref(link))} 
                                onClick={handleLinkClick}
                                className="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] transition-colors dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
                              >
@@ -302,7 +302,7 @@ export function Navbar() {
                    </summary>
                    <div className="pl-9 pr-3 py-2 space-y-1 bg-slate-50/50 dark:bg-slate-800/20 rounded-b-md -mt-1 mb-1">
                      {category.items.map(item => (
-                       <Link key={item.name} href={`/tools/${item.name.toLowerCase().replace(/ /g, '-')}` as any} className="block py-2 group/moblink" onClick={() => setIsMobileMenuOpen(false)}>
+                       <Link key={item.name} href={resolveIntlHref(`/tools/${item.name.toLowerCase().replace(/ /g, '-')}`)} className="block py-2 group/moblink" onClick={() => setIsMobileMenuOpen(false)}>
                          <div className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231] transition-colors">{item.name}</div>
                          <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
                        </Link>
@@ -322,7 +322,7 @@ export function Navbar() {
                   {category.links.slice(0, 5).map(link => (
                         <Link 
                           key={link} 
-                          href={resolveHref(link) as any}
+                          href={resolveIntlHref(resolveHref(link))}
                           className="block px-3 py-3 text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] rounded-md dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >

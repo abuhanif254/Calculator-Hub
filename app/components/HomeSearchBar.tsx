@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Search, Calculator, Code, ArrowRight } from "lucide-react";
-import { useRouter } from "../../i18n/routing";
+import { useRouter, resolveIntlHref } from "../../i18n/routing";
 import { sitemapCategories } from "../../lib/data/sitemapData";
 
 // Extract all tools and categories
@@ -91,7 +91,7 @@ export function HomeSearchBar() {
                     type="button"
                     className="w-full text-left px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center justify-between border-b border-slate-50 dark:border-slate-700/50 last:border-0 transition-colors"
                     onClick={() => {
-                      router.push(getHref(item) as any);
+                      router.push(resolveIntlHref(getHref(item)));
                       setIsFocused(false);
                       setQuery("");
                     }}

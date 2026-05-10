@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@/i18n/routing';
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { Star } from 'lucide-react';
 import { useFavorites } from '@/lib/hooks/useFavorites';
 import { cn } from '@/lib/utils';
@@ -13,7 +13,7 @@ export function FavoriteCalculatorLink({ title, href }: { title: string; href: s
 
   return (
     <div className="flex items-center justify-between group">
-      <Link href={href as any} className="text-[15px] text-[#0066cc] hover:underline flex-grow pr-2">
+      <Link href={resolveIntlHref(href)} className="text-[15px] text-[#0066cc] hover:underline flex-grow pr-2">
         {title}
       </Link>
       
