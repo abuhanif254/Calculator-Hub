@@ -3,7 +3,7 @@ import Image from "next/image";
 import { PlayCircle, Calculator, ShieldCheck, LineChart, Activity, Search, MousePointerClick, Zap, Star, ChevronDown, Mail, ArrowRight, Code, Clock, TrendingUp, Layers, CheckCircle2, MessageSquare, Flame, Smartphone, Lock, UserX, Users, Rocket, FolderOpen, History, ThumbsUp } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from 'next';
-import { routing } from '../../i18n/routing';
+import { routing, resolveIntlHref } from '../../i18n/routing';
 import { FavoriteCalculatorLink } from "../components/FavoriteCalculatorLink";
 import { FavoritesSection } from "../components/FavoritesSection";
 import { HomeSearchBar } from "../components/HomeSearchBar";
@@ -237,7 +237,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   { name: "Diff Checker", href: "/tools/diff-checker" }
                 ].map((tool, i) => (
                   <li key={i}>
-                    <Link href={tool.href as any} className="flex items-center justify-between group">
+                    <Link href={resolveIntlHref(tool.href)} className="flex items-center justify-between group">
                        <span className="text-slate-600 dark:text-slate-300 font-medium group-hover:text-[#518231] transition-colors">{tool.name}</span>
                        <span className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 px-2 py-1 rounded">Popular</span>
                     </Link>
@@ -260,7 +260,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   { name: "Diff Checker", href: "/tools/diff-checker" }
                 ].map((tool, i) => (
                   <li key={i}>
-                    <Link href={tool.href as any} className="flex items-center justify-between group">
+                    <Link href={resolveIntlHref(tool.href)} className="flex items-center justify-between group">
                        <span className="text-slate-600 dark:text-slate-300 font-medium group-hover:text-[#518231] transition-colors">{tool.name}</span>
                        <span className="text-xs bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 px-2 py-1 rounded">Updated</span>
                     </Link>
@@ -287,7 +287,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                  { name: "HTML Format", href: "/tools/html-formatter" },
                  { name: "Calorie", href: "/calculators/calorie-calculator" }
                ].map((tag, i) => (
-                 <Link key={i} href={tag.href as any} className="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-sm rounded-lg border border-slate-200 dark:border-slate-700 transition-colors">
+                 <Link key={i} href={resolveIntlHref(tag.href)} className="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-sm rounded-lg border border-slate-200 dark:border-slate-700 transition-colors">
                    {tag.name}
                  </Link>
                ))}
@@ -314,7 +314,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                { name: "Diff Checker", icon: Layers, desc: "Compare two blocks of text or code to find differences.", href: "/tools/diff-checker" },
                { name: "Scientific Calculator", icon: Code, desc: "Advanced math with trigonometry, logarithms, and more.", href: "/calculators/scientific-calculator" }
              ].map((tool, i) => (
-               <Link key={i} href={tool.href as any} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all group">
+               <Link key={i} href={resolveIntlHref(tool.href)} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all group">
                  <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#518231]/10 transition-colors">
                    <tool.icon className="text-slate-600 dark:text-slate-400 group-hover:text-[#518231] transition-colors" size={24} />
                  </div>
@@ -345,7 +345,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   <ul className="space-y-2 mb-4">
                     {category.links.slice(0, 4).map((link) => (
                       <li key={link.name}>
-                         <Link href={link.href as any} className="text-sm text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#518231] font-medium transition-colors flex items-center gap-2">
+                         <Link href={resolveIntlHref(link.href)} className="text-sm text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#518231] font-medium transition-colors flex items-center gap-2">
                            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600" />
                            {link.name}
                          </Link>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useToolHistory } from '@/lib/hooks/useRetention';
-import { Link } from '@/i18n/routing';
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { Clock, ArrowRight, Calculator, Code2 } from 'lucide-react';
 
 // ═══════════════════════════════════════════════════════
@@ -45,7 +45,7 @@ export function ContinueWhereYouLeftOff() {
         {recent.map((entry) => (
           <Link
             key={entry.slug}
-            href={entry.href as any}
+            href={resolveIntlHref(entry.href)}
             className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 hover:border-[#518231]/30 hover:shadow-md transition-all"
           >
             <div className="flex items-center gap-3 mb-2">

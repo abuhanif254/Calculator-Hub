@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '../../i18n/routing';
+import { Link, resolveIntlHref } from '../../i18n/routing';
 import { Calculator } from 'lucide-react';
 import { sitemapCategories } from '../../lib/data/sitemapData';
 import { resolveHref } from '../../lib/utils/linkResolver';
@@ -42,7 +42,7 @@ export function Footer() {
                <ul className="space-y-4">
                  {category.links.slice(0, 7).map((link) => (
                    <li key={link}>
-                     <Link href={resolveHref(link) as any} className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200 text-sm">
+                     <Link href={resolveIntlHref(resolveHref(link))} className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200 text-sm">
                        {link}
                      </Link>
                    </li>
