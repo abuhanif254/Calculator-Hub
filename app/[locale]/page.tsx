@@ -7,6 +7,7 @@ import { routing } from '../../i18n/routing';
 import { FavoriteCalculatorLink } from "../components/FavoriteCalculatorLink";
 import { FavoritesSection } from "../components/FavoritesSection";
 import { HomeSearchBar } from "../components/HomeSearchBar";
+import { ContinueWhereYouLeftOff } from "../components/ContinueWhereYouLeftOff";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -29,7 +30,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 const categoryData = [
   {
     title: "Financial Calculators",
-    image: "https://picsum.photos/seed/financial/150/150",
+    icon: LineChart,
+    bgColor: "bg-blue-50 dark:bg-blue-900/20",
+    iconColor: "text-blue-500",
     count: "45+ Tools",
     desc: "Mortgage, loans, investments, taxes",
     links: [
@@ -43,7 +46,9 @@ const categoryData = [
   },
   {
     title: "Fitness & Health",
-    image: "https://picsum.photos/seed/fitness/150/150",
+    icon: Activity,
+    bgColor: "bg-amber-50 dark:bg-amber-900/20",
+    iconColor: "text-amber-500",
     count: "15+ Tools",
     desc: "BMI, calories, pregnancy, pace",
     links: [
@@ -57,7 +62,9 @@ const categoryData = [
   },
   {
     title: "Math & Science",
-    image: "https://picsum.photos/seed/math/150/150",
+    icon: Calculator,
+    bgColor: "bg-emerald-50 dark:bg-emerald-900/20",
+    iconColor: "text-emerald-500",
     count: "20+ Tools",
     desc: "Scientific, fractions, geometry",
     links: [
@@ -71,16 +78,18 @@ const categoryData = [
   },
   {
     title: "Developer Tools",
-    image: "https://picsum.photos/seed/dev/150/150",
+    icon: Code,
+    bgColor: "bg-purple-50 dark:bg-purple-900/20",
+    iconColor: "text-purple-500",
     count: "60+ Utilities",
     desc: "Formatters, encoders, generators",
     links: [
       { name: "JSON Formatter", href: "/tools/json-formatter" },
-      { name: "Base64 Encoder", href: "/tools/base64-encode" },
-      { name: "UUID Generator", href: "/tools/uuid-generator" },
-      { name: "Hash Generator", href: "/tools/hash-generator" },
-      { name: "Color Picker", href: "/tools/color-picker" },
-      { name: "Diff Checker", href: "/tools/diff-checker" }
+      { name: "HTML Formatter", href: "/tools/html-formatter" },
+      { name: "Diff Checker", href: "/tools/diff-checker" },
+      { name: "Subnet Calculator", href: "/calculators/subnet-calculator" },
+      { name: "Password Generator", href: "/calculators/password-generator" },
+      { name: "Conversion Calculator", href: "/calculators/conversion-calculator" }
     ]
   }
 ];
@@ -199,6 +208,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </div>
       </section>
 
+      {/* Retention Widget: Continue Where You Left Off */}
+      <ContinueWhereYouLeftOff />
+
       {/* Global Search Section */}
       <section className="relative z-20 -mt-10 max-w-[900px] mx-auto px-4 sm:px-6 w-full">
         <HomeSearchBar />
@@ -221,8 +233,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   { name: "JSON Formatter", href: "/tools/json-formatter" },
                   { name: "Mortgage Calculator", href: "/calculators/mortgage-calculator" },
                   { name: "BMI Calculator", href: "/calculators/bmi-calculator" },
-                  { name: "UUID Generator", href: "/tools/uuid-generator" },
-                  { name: "Base64 Encoder", href: "/tools/base64-encode" }
+                  { name: "HTML Formatter", href: "/tools/html-formatter" },
+                  { name: "Diff Checker", href: "/tools/diff-checker" }
                 ].map((tool, i) => (
                   <li key={i}>
                     <Link href={tool.href as any} className="flex items-center justify-between group">
@@ -242,7 +254,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
              <ul className="space-y-4">
                 {[
                   { name: "Income Tax Calculator 2024", href: "/calculators/income-tax-calculator" },
-                  { name: "CSS Beautifier", href: "/tools/css-beautifier" },
+                  { name: "Compound Interest", href: "/calculators/compound-interest-calculator" },
                   { name: "HTML Formatter", href: "/tools/html-formatter" },
                   { name: "Credit Card Payoff", href: "/calculators/credit-cards-payoff" },
                   { name: "Diff Checker", href: "/tools/diff-checker" }
@@ -267,13 +279,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                  { name: "BMI", href: "/calculators/bmi-calculator" },
                  { name: "Mortgage", href: "/calculators/mortgage-calculator" },
                  { name: "JSON", href: "/tools/json-formatter" },
-                 { name: "Base64", href: "/tools/base64-encode" },
-                 { name: "URL Encode", href: "/tools/url-encoder" },
+                 { name: "Loan", href: "/calculators/loan-calculator" },
+                 { name: "Retirement", href: "/calculators/retirement-calculator" },
                  { name: "Age calc", href: "/calculators/age-calculator" },
                  { name: "GPA", href: "/calculators/gpa-calculator" },
-                 { name: "Lorem Ipsum", href: "/tools/lorem-ipsum-generator" },
-                 { name: "QR Code", href: "/tools/qr-code-generator" },
-                 { name: "Color picker", href: "/tools/color-picker" }
+                 { name: "Diff Checker", href: "/tools/diff-checker" },
+                 { name: "HTML Format", href: "/tools/html-formatter" },
+                 { name: "Calorie", href: "/calculators/calorie-calculator" }
                ].map((tag, i) => (
                  <Link key={i} href={tag.href as any} className="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-sm rounded-lg border border-slate-200 dark:border-slate-700 transition-colors">
                    {tag.name}
@@ -298,9 +310,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
              {[
                { name: "JSON Formatter", icon: Code, desc: "Format, validate, and minify JSON data instantly.", href: "/tools/json-formatter" },
-               { name: "Base64 Encoder", icon: ShieldCheck, desc: "Encode and decode strings or files to Base64.", href: "/tools/base64-encode" },
+               { name: "HTML Formatter", icon: ShieldCheck, desc: "Beautify and format raw HTML code with proper indentation.", href: "/tools/html-formatter" },
                { name: "Diff Checker", icon: Layers, desc: "Compare two blocks of text or code to find differences.", href: "/tools/diff-checker" },
-               { name: "Meta Tag Generator", icon: Code, desc: "Generate SEO-optimized HTML meta tags.", href: "/tools/meta-tag-generator" }
+               { name: "Scientific Calculator", icon: Code, desc: "Advanced math with trigonometry, logarithms, and more.", href: "/calculators/scientific-calculator" }
              ].map((tool, i) => (
                <Link key={i} href={tool.href as any} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all group">
                  <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#518231]/10 transition-colors">
@@ -321,14 +333,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <div key={category.title} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
                 <div className="p-6">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-14 h-14 relative rounded-xl overflow-hidden shrink-0 border border-slate-100 dark:border-slate-700">
-                      <Image 
-                        src={category.image} 
-                        alt={category.title}
-                        fill
-                        className="object-cover"
-                        referrerPolicy="no-referrer"
-                      />
+                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 dark:border-slate-700 ${category.bgColor}`}>
+                      <category.icon className={category.iconColor} size={28} />
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight mb-1">{category.title}</h3>

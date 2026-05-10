@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { CalculatorDef } from "../../lib/types";
 import { InputGroup } from "./InputGroup";
 import { ResultDisplay } from "./ResultDisplay";
+import { useUrlObjectState } from "../../lib/hooks/useUrlState";
 
 // This simulates the dynamic import of our math logic.
 // In a real 200+ calculator app, we would use next/dynamic or an async import map here
@@ -23,7 +24,8 @@ export const Calculator: React.FC<CalculatorProps> = ({ calcDef }) => {
     return vals;
   }, [calcDef]);
 
-  const [values, setValues] = useState<Record<string, string | number>>(initialValues);
+  const [values, setValues] = useUrlObjectState<Record<string, string | number>>(initialValues);
+  
   const result = useMemo(() => {
     if (calcDef.logicModule === "financial") {
       if (calcDef.slug === "mortgage-calculator") {
@@ -37,10 +39,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ calcDef }) => {
   }, [values, calcDef]);
 
   const handleChange = (id: string, value: string | number) => {
-    setValues((prev) => ({
-      ...prev,
-      [id]: value,
-    }));
+    setValues(id, value);
   };
 
   return (
