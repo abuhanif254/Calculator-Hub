@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Link } from "../../i18n/routing";
-import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code } from "lucide-react";
+import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell } from "lucide-react";
 import { sitemapCategories } from "../../lib/data/sitemapData";
 import { AuthButton } from "./AuthButton";
 
@@ -143,7 +143,7 @@ export function Navbar() {
   const navCategories = sitemapCategories.filter(cat => cat.id !== "site-calculators");
 
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-50 dark:bg-slate-900 dark:border-slate-800">
+    <header className="bg-white border-b border-slate-200 dark:bg-slate-900 dark:border-slate-800 relative z-40">
       <nav className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
         <div className="flex justify-between h-16">
           {/* Left: Logo */}
@@ -301,15 +301,23 @@ export function Navbar() {
               </div>
             ))}
 
-            <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700 flex items-center space-x-4">
+            <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700 flex items-center space-x-3">
               <Link href="/community" className="text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
                 Community
               </Link>
-              <AuthButton />
-              <Link href="/search" className="p-2 text-slate-400 hover:text-[#518231] transition-colors dark:text-slate-500 dark:hover:text-[#518231] inline-flex items-center justify-center min-h-[48px] min-w-[48px]">
-                <span className="sr-only">Search calculators</span>
-                <Search size={20} />
+              
+              <Link href="/search" className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full transition-colors dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-400">
+                <Search size={14} />
+                <span className="text-sm font-medium">Search...</span>
+                <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-bold text-slate-400 bg-white border border-slate-200 rounded dark:bg-slate-900 dark:border-slate-700">Ctrl K</kbd>
               </Link>
+
+              <button className="p-2 text-slate-400 hover:text-[#518231] transition-colors dark:text-slate-500 dark:hover:text-[#518231] relative" title="Notifications">
+                <Bell size={20} />
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
+              </button>
+              
+              <AuthButton />
             </div>
           </div>
 
