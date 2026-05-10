@@ -6,6 +6,8 @@ import { DiffCheckerTool } from '../../../components/tools/DiffCheckerTool';
 import { HtmlFormatterTool } from '../../../components/tools/HtmlFormatterTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
+import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
+import { FavoriteButton } from '../../../components/FavoriteButton';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers } from 'lucide-react';
 
 const toolComponents: Record<string, React.ComponentType> = {
@@ -110,7 +112,22 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400">
             {config.shortDescription}
           </p>
+          <div className="flex items-center justify-center gap-3 pt-2">
+            <FavoriteButton
+              slug={config.slug}
+              title={config.title}
+              type="developer-tool"
+              href={`/tools/${config.slug}`}
+            />
+          </div>
         </section>
+
+        <ToolVisitTracker
+          slug={config.slug}
+          title={config.title}
+          type="developer-tool"
+          href={`/tools/${config.slug}`}
+        />
 
         {/* Main Tool Interface */}
         <section className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-2 sm:p-6 lg:p-8">

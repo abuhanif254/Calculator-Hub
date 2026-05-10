@@ -105,6 +105,13 @@ export const routing = defineRouting({
       fr: '/calculatrices/remboursement-cartes-de-credit',
       de: '/rechner/kreditkarten-abbezahlen'
     },
+    // Category landing pages (pillar pages for topical authority)
+    '/calculators/category/[category]': {
+      en: '/calculators/category/[category]',
+      es: '/calculadoras/categoria/[category]',
+      fr: '/calculatrices/categorie/[category]',
+      de: '/rechner/kategorie/[category]'
+    },
     // Anything dynamically hit that isn't mapped explicitly gets a generic translation of "calculators":
     '/calculators/[slug]': {
       en: '/calculators/[slug]',
@@ -120,6 +127,24 @@ export const routing = defineRouting({
       es: '/herramientas/[slug]',
       fr: '/outils/[slug]',
       de: '/werkzeuge/[slug]'
+    },
+    '/dashboard': {
+      en: '/dashboard',
+      es: '/panel',
+      fr: '/tableau-de-bord',
+      de: '/dashboard'
+    },
+    '/collections/[slug]': {
+      en: '/collections/[slug]',
+      es: '/colecciones/[slug]',
+      fr: '/collections/[slug]',
+      de: '/sammlungen/[slug]'
+    },
+    '/compare/[slug]': {
+      en: '/compare/[slug]',
+      es: '/comparar/[slug]',
+      fr: '/comparer/[slug]',
+      de: '/vergleichen/[slug]'
     }
   }
 });

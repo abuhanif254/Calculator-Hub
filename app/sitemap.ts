@@ -1,6 +1,9 @@
 import { MetadataRoute } from 'next';
 import { sitemapCategories } from '../lib/data/sitemapData';
 import { calculators } from '../lib/data/calculators';
+import { categories } from '../lib/data/categories';
+import { collections } from '../lib/data/collections';
+import { comparisons } from '../lib/data/comparisons';
 import { routing } from '../i18n/routing';
 
 // ─────────────────────────────────────────────────────────
@@ -22,36 +25,17 @@ import { routing } from '../i18n/routing';
 // ─────────────────────────────────────────────────────────
 
 // ═══════════════════════════════════════════════════════
-// Developer Tools Registry (actual routable tool slugs)
+// Developer Tools Registry (ONLY routable/implemented tools)
+// ═══════════════════════════════════════════════════════
+// IMPORTANT: Only add a slug here AFTER its component exists
+// in app/components/tools/ AND its config exists in
+// lib/data/tools/. Listing unbuilt tools causes Google to
+// crawl 404s, wasting crawl budget and hurting domain quality.
 // ═══════════════════════════════════════════════════════
 const developerToolSlugs: string[] = [
-  // Text & Formatting
-  'json-formatter', 'json-validator', 'html-formatter', 'css-beautifier',
-  'javascript-beautifier', 'xml-formatter', 'markdown-previewer', 'sql-formatter',
-  'yaml-formatter', 'csv-viewer', 'diff-checker',
-
-  // Encoding & Security
-  'base64-encode', 'base64-decode', 'url-encoder', 'url-decoder',
-  'jwt-decoder', 'hash-generator', 'md5-generator', 'sha256-generator',
-  'password-generator', 'hmac-generator', 'qr-code-generator',
-
-  // Generators
-  'uuid-generator', 'slug-generator', 'lorem-ipsum-generator',
-  'fake-user-data-generator', 'random-number-generator', 'random-string-generator',
-  'username-generator', 'api-mock-data-generator', 'strong-password-generator',
-  'html-table-generator',
-
-  // Color Tools
-  'hex-to-rgb', 'rgb-to-hex', 'color-picker', 'gradient-generator',
-  'tailwind-color-palette', 'css-shadow-generator', 'glassmorphism-generator',
-  'neumorphism-generator', 'contrast-checker', 'color-palette-generator',
-
-  // Web Dev Utilities
-  'meta-tag-generator', 'open-graph-generator', 'twitter-card-generator',
-  'robots.txt-generator', 'sitemap.xml-generator', '.htaccess-generator',
-  'css-minifier', 'js-minifier', 'html-minifier', 'responsive-screen-tester',
-  'http-header-checker', 'redirect-checker', 'website-screenshot-tool',
-  'dns-lookup', 'ip-lookup', 'user-agent-parser', 'mime-type-checker',
+  'json-formatter',
+  'diff-checker',
+  'html-formatter',
 ];
 
 // ═══════════════════════════════════════════════════════
@@ -137,6 +121,18 @@ export default async function sitemap({
       buildEntry('/about-us', 'monthly', 0.5),
       buildEntry('/privacy-policy', 'yearly', 0.3),
       buildEntry('/terms-of-use', 'yearly', 0.3),
+      // Category pillar pages (high priority for topical authority)
+      ...categories.map((cat) =>
+        buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)
+      ),
+      // Collection bundle pages
+      ...collections.map((collection) =>
+        buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)
+      ),
+      // Comparison pages
+      ...comparisons.map((comparison) =>
+        buildEntry('/compare/[slug]', 'monthly', 0.8, comparison.slug)
+      ),
     ];
   }
 

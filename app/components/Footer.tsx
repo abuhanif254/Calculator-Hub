@@ -2,41 +2,10 @@ import React from 'react';
 import { Link } from '../../i18n/routing';
 import { Calculator } from 'lucide-react';
 import { sitemapCategories } from '../../lib/data/sitemapData';
+import { resolveHref } from '../../lib/utils/linkResolver';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
-
-  // Create simplified URLs mapping for the footer links to point correctly where possible
-  // Many links might fallback to /sitemap until individual pages are created
-  const getHref = (link: string) => {
-    let defaultSlug = link.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-    
-    // Slug overrides
-    if (defaultSlug === "credit-cards-payoff-calculator") {
-      defaultSlug = "credit-cards-payoff";
-    }
-    
-    const knownSupportedSlugs = [
-      "mortgage-calculator", "canadian-mortgage-calculator", "loan-calculator", "amortization-calculator", 
-      "compound-interest-calculator", "finance-calculator", "graphing-calculator", "income-tax-calculator", 
-      "interest-rate-calculator", "inflation-calculator", "investment-calculator", "salary-calculator", 
-      "sales-tax-calculator", "scientific-calculator", "fraction-calculator", "percentage-calculator", 
-      "random-number-generator", "triangle-calculator", "scientific-notation-calculator", "p-value-calculator", 
-      "standard-deviation-calculator", "statistics-calculator", "date-calculator", "time-calculator", 
-      "hours-calculator", "gpa-calculator", "grade-calculator", "concrete-calculator", "subnet-calculator", 
-      "password-generator", "conversion-calculator", "currency-calculator", "rent-calculator", 
-      "social-security-calculator", "credit-cards-payoff", "calorie-calculator", "body-fat-calculator", 
-      "bmr-calculator", "ideal-weight-calculator", "pace-calculator", "ovulation-calculator", 
-      "pregnancy-calculator", "pregnancy-conception-calculator", "due-date-calculator", 
-      "retirement-calculator", "auto-loan-calculator", "interest-calculator", "payment-calculator", 
-      "bmi-calculator", "age-calculator"
-    ];
-
-    if (knownSupportedSlugs.includes(defaultSlug)) {
-        return `/calculators/${defaultSlug}`;
-    }
-    return "/sitemap";
-  }
 
   return (
     <footer className="bg-slate-900 text-slate-300 py-16 lg:py-20 border-t border-slate-800 dark:bg-slate-950 mt-auto">
@@ -73,7 +42,7 @@ export function Footer() {
                <ul className="space-y-4">
                  {category.links.slice(0, 7).map((link) => (
                    <li key={link}>
-                     <Link href={getHref(link) as any} className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200 text-sm">
+                     <Link href={resolveHref(link) as any} className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200 text-sm">
                        {link}
                      </Link>
                    </li>

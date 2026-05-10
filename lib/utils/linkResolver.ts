@@ -1,0 +1,73 @@
+import { calculators } from '@/lib/data/calculators';
+
+// ═══════════════════════════════════════════════════════
+// LINK RESOLVER — Single source of truth for title→href mapping.
+// Replaces the 170+ hardcoded if-statements duplicated across
+// Navbar.tsx (desktop + mobile) and Footer.tsx.
+// ═══════════════════════════════════════════════════════
+
+// Build the slug map once at module load time
+const titleToHrefMap = new Map<string, string>();
+
+calculators.forEach((calc) => {
+  titleToHrefMap.set(calc.title, `/calculators/${calc.slug}`);
+});
+
+// Handle edge cases where sitemapData.ts titles don't exactly match calculator titles
+const titleOverrides: Record<string, string> = {
+  "Credit Cards Payoff Calculator": "/calculators/credit-cards-payoff",
+  "Credit Cards Payoff": "/calculators/credit-cards-payoff",
+  "Cash Back or Low Interest Calculator": "/calculators/cash-back-vs-low-interest-calculator",
+  "401K Calculator": "/calculators/401k-calculator",
+  "Roth IRA Calculator": "/calculators/roth-ira-calculator",
+};
+
+Object.entries(titleOverrides).forEach(([title, href]) => {
+  titleToHrefMap.set(title, href);
+});
+
+/**
+ * Resolves a calculator/tool title string to its internal href.
+ * Falls back to `/sitemap` for unrecognized titles.
+ *
+ * Usage:
+ *   resolveHref("Mortgage Calculator") → "/calculators/mortgage-calculator"
+ *   resolveHref("JSON Formatter")      → "/tools/json-formatter" (via toolTitles)
+ *   resolveHref("Unknown Tool")        → "/sitemap"
+ */
+export function resolveHref(title: string): string {
+  // Check calculator map first
+  const calcHref = titleToHrefMap.get(title);
+  if (calcHref) return calcHref;
+
+  // Check title overrides
+  const overrideHref = titleOverrides[title];
+  if (overrideHref) return overrideHref;
+
+  // Auto-generate slug from title as a best-effort fallback
+  // This handles cases where sitemapData.ts has titles like "BMI Calculator"
+  // that we haven't manually mapped
+  const generatedSlug = title
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+
+  // Check if a calculator exists with this generated slug
+  const calcBySlug = calculators.find(c => c.slug === generatedSlug);
+  if (calcBySlug) {
+    return `/calculators/${generatedSlug}`;
+  }
+
+  return '/sitemap';
+}
+
+/**
+ * Batch-resolve an array of titles. Useful for rendering nav/footer link lists.
+ */
+export function resolveHrefs(titles: string[]): { title: string; href: string }[] {
+  return titles.map((title) => ({
+    title,
+    href: resolveHref(title),
+  }));
+}

@@ -743,25 +743,6 @@ export const calculators: CalculatorDef[] = [
     logicModule: "math"
   },
   {
-    slug: "subnet-calculator",
-    slugs: {
-      en: "subnet-calculator",
-      es: "calculadora-de-subredes",
-      de: "subnetz-rechner",
-      fr: "calculateur-de-sous-reseau"
-    },
-    title: "Subnet Calculator",
-    category: "Other",
-    description: "Calculate IPv4 subnets, network addresses, broadcast addresses, and usable host ranges based on IP address and CIDR block.",
-    meta: {
-      title: "Subnet Calculator | IPv4, CIDR, & IP Range Calculator",
-      description: "Free online IP Subnet Calculator. Easily calculate subnets, network masks, broadcast addresses, and usable host ranges using CIDR notation.",
-      keywords: "subnet calculator, ip calculator, cidr calculator, network address, broadcast address, ipv4 subnetting, usable ip range, network mask"
-    },
-    fields: [],
-    logicModule: "math"
-  },
-  {
     slug: "password-generator",
     slugs: {
       en: "password-generator",

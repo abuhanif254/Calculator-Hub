@@ -2,95 +2,13 @@ import React from "react";
 import { notFound } from "next/navigation";
 import { calculators, getCalculatorBySlug } from "@/lib/data/calculators";
 import { sitemapCategories, generalLinks } from "@/lib/data/sitemapData";
-import { Calculator } from "@/app/components/Calculator";
-import { LoanCalculatorView } from "@/app/components/LoanCalculatorView";
-import { BmiCalculatorView } from "@/app/components/BmiCalculatorView";
-import { AgeCalculatorView } from "@/app/components/AgeCalculatorView";
-import { AutoLoanCalculatorView } from "@/app/components/AutoLoanCalculatorView";
-import { InterestCalculatorView } from "@/app/components/InterestCalculatorView";
-import { PaymentCalculatorView } from "@/app/components/PaymentCalculatorView";
-import { RetirementCalculatorView } from "@/app/components/RetirementCalculatorView";
-import { RothIraCalculatorView } from "@/app/components/RothIraCalculatorView";
-import { CashBackLowInterestCalculatorView } from "@/app/components/CashBackLowInterestCalculatorView";
-import { MarginCalculatorView } from "@/app/components/MarginCalculatorView";
-import { RealEstateCalculatorView } from "@/app/components/RealEstateCalculatorView";
-import { LeaseCalculatorView } from "@/app/components/LeaseCalculatorView";
-import { IrrCalculatorView } from "@/app/components/IrrCalculatorView";
-import { AmortizationCalculatorView } from "@/app/components/AmortizationCalculatorView";
-import { InvestmentCalculatorView } from "@/app/components/InvestmentCalculatorView";
-import { InflationCalculatorView } from "@/app/components/InflationCalculatorView";
-import { FinanceCalculatorView } from "@/app/components/FinanceCalculatorView";
-import { IncomeTaxCalculatorView } from "@/app/components/IncomeTaxCalculatorView";
-import { CompoundInterestCalculatorView } from "@/app/components/CompoundInterestCalculatorView";
-import { SalaryCalculatorView } from "@/app/components/SalaryCalculatorView";
-import { InterestRateCalculatorView } from "@/app/components/InterestRateCalculatorView";
-import { SalesTaxCalculatorView } from "@/app/components/SalesTaxCalculatorView";
-import { ScientificCalculatorView } from "@/app/components/ScientificCalculatorView";
-import { ScientificNotationCalculatorView } from "@/app/components/ScientificNotationCalculatorView";
-import { PValueCalculatorView } from "@/app/components/PValueCalculatorView";
-import { FractionCalculatorView } from "@/app/components/FractionCalculatorView";
-import { StatisticsCalculatorView } from "@/app/components/StatisticsCalculatorView";
-import { PercentageCalculatorView } from "@/app/components/PercentageCalculatorView";
-import { RandomNumberGeneratorView } from "@/app/components/RandomNumberGeneratorView";
-import { TriangleCalculatorView } from "@/app/components/TriangleCalculatorView";
-import { StandardDeviationCalculatorView } from "@/app/components/StandardDeviationCalculatorView";
-import GraphingCalculatorView from "@/app/components/GraphingCalculatorView";
-import { CalorieCalculatorView } from "@/app/components/CalorieCalculatorView";
-import { BodyFatCalculatorView } from "@/app/components/BodyFatCalculatorView";
-import { BMRCalculatorView } from "@/app/components/BMRCalculatorView";
-import { OvulationCalculatorView } from "@/app/components/OvulationCalculatorView";
-import { IdealWeightCalculatorView } from "@/app/components/IdealWeightCalculatorView";
-import { PaceCalculatorView } from "@/app/components/PaceCalculatorView";
-import { PregnancyCalculatorView } from "@/app/components/PregnancyCalculatorView";
-import { PregnancyConceptionCalculatorView } from "@/app/components/PregnancyConceptionCalculatorView";
-import { DueDateCalculatorView } from "@/app/components/DueDateCalculatorView";
-import { DateCalculatorView } from "@/app/components/DateCalculatorView";
-import { TimeCalculatorView } from "@/app/components/TimeCalculatorView";
-import { HoursCalculatorView } from "@/app/components/HoursCalculatorView";
-import { GpaCalculatorView } from "@/app/components/GpaCalculatorView";
-import { GradeCalculatorView } from "@/app/components/GradeCalculatorView";
-import { ConcreteCalculatorView } from "@/app/components/ConcreteCalculatorView";
-import { SubnetCalculatorView } from "@/app/components/SubnetCalculatorView";
-import { PasswordGeneratorView } from "@/app/components/PasswordGeneratorView";
-import { ConversionCalculatorView } from "@/app/components/ConversionCalculatorView";
-import { CurrencyCalculatorView } from "@/app/components/CurrencyCalculatorView";
-import { RentCalculatorView } from "@/app/components/RentCalculatorView";
-import { SocialSecurityCalculatorView } from "@/app/components/SocialSecurityCalculatorView";
-import { CreditCardsPayoffView } from "@/app/components/CreditCardsPayoffView";
-import { StudentLoanCalculatorView } from "@/app/components/StudentLoanCalculatorView";
-import { BusinessLoanCalculatorView } from "@/app/components/BusinessLoanCalculatorView";
-import { PersonalLoanCalculatorView } from "@/app/components/PersonalLoanCalculatorView";
-import { BudgetCalculatorView } from "@/app/components/BudgetCalculatorView";
-import { APRCalculatorView } from "@/app/components/APRCalculatorView";
-import { HELOCCalculatorView } from "@/app/components/HELOCCalculatorView";
-import { PresentValueCalculatorView } from "@/app/components/PresentValueCalculatorView";
-import { PercentOffCalculatorView } from "@/app/components/PercentOffCalculatorView";
-import { Plan401kCalculatorView } from "@/app/components/Plan401kCalculatorView";
-import { MarriageTaxCalculatorView } from "@/app/components/MarriageTaxCalculatorView";
-import { AnnuityCalculatorView } from "@/app/components/AnnuityCalculatorView";
-import { DebtPayoffCalculatorView } from "@/app/components/DebtPayoffCalculatorView";
-import { CollegeCostCalculatorView } from "@/app/components/CollegeCostCalculatorView";
-import { AnnuityPayoutCalculatorView } from "@/app/components/AnnuityPayoutCalculatorView";
-import { DebtConsolidationCalculatorView } from "@/app/components/DebtConsolidationCalculatorView";
-import { SimpleInterestCalculatorView } from "@/app/components/SimpleInterestCalculatorView";
-import { MutualFundCalculatorView } from "@/app/components/MutualFundCalculatorView";
-import { VatCalculatorView } from "@/app/components/VatCalculatorView";
-import { BondCalculatorView } from "@/app/components/BondCalculatorView";
-import { RMDCalculatorView } from "@/app/components/RMDCalculatorView";
-import { DepreciationCalculatorView } from "@/app/components/DepreciationCalculatorView";
-import { AverageReturnCalculatorView } from "@/app/components/AverageReturnCalculatorView";
-import { DebtToIncomeRatioCalculatorView } from "@/app/components/DebtToIncomeRatioCalculatorView";
-import { BoatLoanCalculatorView } from "@/app/components/BoatLoanCalculatorView";
-import { RentalPropertyCalculatorView } from "@/app/components/RentalPropertyCalculatorView";
-import { FHALoanCalculatorView } from "@/app/components/FHALoanCalculatorView";
-import { DownPaymentCalculatorView } from "@/app/components/DownPaymentCalculatorView";
-import { FutureValueCalculatorView } from "@/app/components/FutureValueCalculatorView";
-import { MortgageAmortizationCalculatorView } from "@/app/components/MortgageAmortizationCalculatorView";
-import { HouseAffordabilityCalculatorView } from "@/app/components/HouseAffordabilityCalculatorView";
-import { EstateTaxCalculatorView } from "@/app/components/EstateTaxCalculatorView";
+import { getRelatedCalculators } from "@/lib/data/calculatorRelationships";
+import { getCalculatorComponent } from "@/lib/componentRegistry";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
+import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
+import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { Link, routing } from "@/i18n/routing";
 import { Search, ChevronRight, CalculatorIcon } from "lucide-react";
 
@@ -218,9 +136,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     }
   ];
 
-  // Find related calculators or category for the sidebar
+  // Find related calculators for the sidebar and bottom section
+  const relatedTools = getRelatedCalculators(calc.slug, 8);
   const activeCategory = sitemapCategories.find(c => c.title.toLowerCase().includes(calc.category.toLowerCase())) || sitemapCategories[0];
-  const relatedLinks = activeCategory.links.slice(0, 8); // Top 8 related links
 
   const baseUrl = "https://nexuscalculator.net"; // Change to production domain when live
   const canonicalUrl = `${baseUrl}/${resolvedParams.locale}/calculators/${resolvedParams.slug}`;
@@ -309,9 +227,17 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         {/* Main Content Area (Left/Top) */}
         <div className="flex-1 w-full max-w-4xl min-w-0">
           <header className="mb-10">
-            <span className="inline-block px-3 py-1 bg-blue-50 border border-blue-100 text-blue-800 rounded-full text-xs font-bold tracking-wider uppercase mb-4 shadow-sm">
-              {calc.category}
-            </span>
+            <div className="flex items-center gap-3 mb-4 flex-wrap">
+              <span className="inline-block px-3 py-1 bg-blue-50 border border-blue-100 text-blue-800 rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
+                {calc.category}
+              </span>
+              <FavoriteButton
+                slug={calc.slug}
+                title={calc.title}
+                type="calculator"
+                href={`/calculators/${calc.slug}`}
+              />
+            </div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
               {pageTitle}
             </h1>
@@ -320,179 +246,17 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             </p>
           </header>
 
-          {calc.slug === 'cash-back-vs-low-interest-calculator' ? (
-            <CashBackLowInterestCalculatorView calcDef={calc} />
-          ) : calc.slug === 'roth-ira-calculator' ? (
-            <RothIraCalculatorView calcDef={calc} />
-          ) : calc.slug === 'payment-calculator' ? (
-            <PaymentCalculatorView calcDef={calc} />
-          ) : calc.slug === 'amortization-calculator' ? (
-            <AmortizationCalculatorView calcDef={calc} />
-          ) : calc.slug === 'percentage-calculator' ? (
-            <PercentageCalculatorView calcDef={calc} />
-          ) : calc.slug === 'random-number-generator' ? (
-            <RandomNumberGeneratorView calcDef={calc} />
-          ) : calc.slug === 'triangle-calculator' ? (
-            <TriangleCalculatorView calcDef={calc} />
-          ) : calc.slug === 'standard-deviation-calculator' ? (
-            <StandardDeviationCalculatorView calcDef={calc} />
-          ) : calc.slug === 'calorie-calculator' ? (
-            <CalorieCalculatorView calcDef={calc} />
-          ) : calc.slug === 'body-fat-calculator' ? (
-            <BodyFatCalculatorView calcDef={calc} />
-          ) : calc.slug === 'bmr-calculator' ? (
-            <BMRCalculatorView calcDef={calc} />
-          ) : calc.slug === 'ideal-weight-calculator' ? (
-            <IdealWeightCalculatorView calcDef={calc} />
-          ) : calc.slug === 'pace-calculator' ? (
-            <PaceCalculatorView calcDef={calc} />
-          ) : calc.slug === 'ovulation-calculator' ? (
-            <OvulationCalculatorView calcDef={calc} locale={resolvedParams.locale} />
-          ) : calc.slug === 'pregnancy-calculator' ? (
-            <PregnancyCalculatorView calcDef={calc} />
-          ) : calc.slug === 'pregnancy-conception-calculator' ? (
-            <PregnancyConceptionCalculatorView calcDef={calc} />
-          ) : calc.slug === 'due-date-calculator' ? (
-            <DueDateCalculatorView calcDef={calc} />
-          ) : calc.slug === 'date-calculator' ? (
-            <DateCalculatorView calcDef={calc} />
-          ) : calc.slug === 'time-calculator' ? (
-            <TimeCalculatorView calcDef={calc} />
-          ) : calc.slug === 'hours-calculator' ? (
-            <HoursCalculatorView calcDef={calc} />
-          ) : calc.slug === 'gpa-calculator' ? (
-            <GpaCalculatorView calcDef={calc} />
-          ) : calc.slug === 'grade-calculator' ? (
-            <GradeCalculatorView calcDef={calc} />
-          ) : calc.slug === 'concrete-calculator' ? (
-            <ConcreteCalculatorView calcDef={calc} />
-          ) : calc.slug === 'subnet-calculator' ? (
-            <SubnetCalculatorView calcDef={calc} />
-          ) : calc.slug === 'password-generator' ? (
-            <PasswordGeneratorView calcDef={calc} />
-          ) : calc.slug === 'conversion-calculator' ? (
-            <ConversionCalculatorView calcDef={calc} />
-          ) : calc.slug === 'currency-calculator' ? (
-            <CurrencyCalculatorView calcDef={calc} />
-          ) : calc.slug === 'rent-calculator' ? (
-            <RentCalculatorView calcDef={calc} />
-          ) : calc.slug === 'social-security-calculator' ? (
-            <SocialSecurityCalculatorView calcDef={calc} />
-          ) : calc.slug === 'credit-cards-payoff' ? (
-            <CreditCardsPayoffView calcDef={calc} />
-          ) : calc.slug === 'student-loan-calculator' ? (
-            <StudentLoanCalculatorView calcDef={calc} />
-          ) : calc.slug === 'business-loan-calculator' ? (
-            <BusinessLoanCalculatorView calcDef={calc} />
-          ) : calc.slug === 'personal-loan-calculator' ? (
-            <PersonalLoanCalculatorView calcDef={calc} />
-          ) : calc.slug === 'budget-calculator' ? (
-            <BudgetCalculatorView calcDef={calc} />
-          ) : calc.slug === 'apr-calculator' ? (
-            <APRCalculatorView calcDef={calc} />
-          ) : calc.slug === 'heloc-calculator' ? (
-            <HELOCCalculatorView calcDef={calc} />
-          ) : calc.slug === 'present-value-calculator' ? (
-            <PresentValueCalculatorView calcDef={calc} />
-          ) : calc.slug === 'percent-off-calculator' ? (
-            <PercentOffCalculatorView calcDef={calc} />
-          ) : calc.slug === '401k-calculator' ? (
-            <Plan401kCalculatorView calcDef={calc} />
-          ) : calc.slug === 'marriage-tax-calculator' ? (
-            <MarriageTaxCalculatorView calcDef={calc} />
-          ) : calc.slug === 'annuity-calculator' ? (
-            <AnnuityCalculatorView calcDef={calc} />
-          ) : calc.slug === 'annuity-payout-calculator' ? (
-            <AnnuityPayoutCalculatorView />
-          ) : calc.slug === 'debt-consolidation-calculator' ? (
-            <DebtConsolidationCalculatorView />
-          ) : calc.slug === 'simple-interest-calculator' ? (
-            <SimpleInterestCalculatorView />
-          ) : calc.slug === 'debt-payoff-calculator' ? (
-            <DebtPayoffCalculatorView calcDef={calc} />
-          ) : calc.slug === 'college-cost-calculator' ? (
-            <CollegeCostCalculatorView calcDef={calc} />
-          ) : calc.slug === 'mutual-fund-calculator' ? (
-            <MutualFundCalculatorView calcDef={calc} />
-          ) : calc.slug === 'vat-calculator' ? (
-            <VatCalculatorView calcDef={calc} />
-          ) : calc.slug === 'bond-calculator' ? (
-            <BondCalculatorView calcDef={calc} />
-          ) : calc.slug === 'rmd-calculator' ? (
-            <RMDCalculatorView calcDef={calc} />
-          ) : calc.slug === 'depreciation-calculator' ? (
-            <DepreciationCalculatorView calcDef={calc} />
-          ) : calc.slug === 'scientific-notation-calculator' ? (
-            <ScientificNotationCalculatorView calcDef={calc} />
-          ) : calc.slug === 'margin-calculator' ? (
-            <MarginCalculatorView calcDef={calc} />
-          ) : calc.slug === 'real-estate-calculator' ? (
-            <RealEstateCalculatorView calcDef={calc} />
-          ) : calc.slug === 'lease-calculator' ? (
-            <LeaseCalculatorView calcDef={calc} />
-          ) : calc.slug === 'irr-calculator' ? (
-            <IrrCalculatorView calcDef={calc} />
-          ) : calc.slug === 'average-return-calculator' ? (
-            <AverageReturnCalculatorView calcDef={calc} />
-          ) : calc.slug === 'debt-to-income-ratio-calculator' ? (
-            <DebtToIncomeRatioCalculatorView calcDef={calc} />
-          ) : calc.slug === 'boat-loan-calculator' ? (
-            <BoatLoanCalculatorView calcDef={calc} />
-          ) : calc.slug === 'rental-property-calculator' ? (
-            <RentalPropertyCalculatorView calcDef={calc} />
-          ) : calc.slug === 'fha-loan-calculator' ? (
-            <FHALoanCalculatorView calcDef={calc} />
-          ) : calc.slug === 'down-payment-calculator' ? (
-            <DownPaymentCalculatorView calcDef={calc} />
-          ) : calc.slug === 'future-value-calculator' ? (
-            <FutureValueCalculatorView calcDef={calc} />
-          ) : calc.slug === 'mortgage-amortization-calculator' ? (
-            <MortgageAmortizationCalculatorView calcDef={calc} />
-          ) : calc.slug === 'house-affordability-calculator' ? (
-            <HouseAffordabilityCalculatorView calcDef={calc} />
-          ) : calc.slug === 'estate-tax-calculator' ? (
-            <EstateTaxCalculatorView />
-          ) : calc.slug === 'p-value-calculator' ? (
-            <PValueCalculatorView calcDef={calc} />
-          ) : calc.slug === 'fraction-calculator' ? (
-            <FractionCalculatorView calcDef={calc} />
-          ) : calc.slug === 'statistics-calculator' ? (
-            <StatisticsCalculatorView calcDef={calc} />
-          ) : calc.slug === 'graphing-calculator' ? (
-            <GraphingCalculatorView calcDef={calc} />
-          ) : calc.slug === 'scientific-calculator' ? (
-            <ScientificCalculatorView calcDef={calc} />
-          ) : calc.slug === 'sales-tax-calculator' ? (
-            <SalesTaxCalculatorView calcDef={calc} />
-          ) : calc.slug === 'interest-rate-calculator' ? (
-            <InterestRateCalculatorView calcDef={calc} />
-          ) : calc.slug === 'salary-calculator' ? (
-            <SalaryCalculatorView calcDef={calc} />
-          ) : calc.slug === 'compound-interest-calculator' ? (
-            <CompoundInterestCalculatorView calcDef={calc} />
-          ) : calc.slug === 'income-tax-calculator' ? (
-            <IncomeTaxCalculatorView calcDef={calc} />
-          ) : calc.slug === 'finance-calculator' ? (
-            <FinanceCalculatorView calcDef={calc} />
-          ) : calc.slug === 'inflation-calculator' ? (
-            <InflationCalculatorView calcDef={calc} />
-          ) : calc.slug === 'investment-calculator' ? (
-            <InvestmentCalculatorView calcDef={calc} />
-          ) : calc.slug === 'retirement-calculator' ? (
-            <RetirementCalculatorView calcDef={calc} />
-          ) : calc.slug === 'interest-calculator' ? (
-            <InterestCalculatorView calcDef={calc} />
-          ) : calc.slug === 'auto-loan-calculator' ? (
-            <AutoLoanCalculatorView calcDef={calc} />
-          ) : calc.slug === 'loan-calculator' ? (
-            <LoanCalculatorView calcDef={calc} />
-          ) : calc.slug === 'bmi-calculator' ? (
-            <BmiCalculatorView calcDef={calc} />
-          ) : calc.slug === 'age-calculator' ? (
-            <AgeCalculatorView calcDef={calc} />
-          ) : (
-            <Calculator calcDef={calc} />
-          )}
+          <ToolVisitTracker
+            slug={calc.slug}
+            title={calc.title}
+            type="calculator"
+            href={`/calculators/${calc.slug}`}
+          />
+
+          {(() => {
+            const CalculatorView = getCalculatorComponent(calc.slug);
+            return <CalculatorView calcDef={calc} locale={resolvedParams.locale} />;
+          })()}
 
           <ExportResultsPanel />
           <CalculatorMath slug={calc.slug} category={calc.category} />
@@ -584,21 +348,21 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {relatedLinks.slice(0, 4).map((linkTitle) => {
-            const targetCalc = calculators.find(c => c.title === linkTitle);
-            const linkHref = targetCalc ? `/calculators/${targetCalc.slug}` : "/sitemap";
+          {relatedTools.slice(0, 4).map((toolSlug) => {
+            const targetCalc = getCalculatorBySlug(toolSlug);
+            if (!targetCalc) return null;
             return (
               <Link
-                key={linkTitle}
-                href={linkHref as any}
+                key={toolSlug}
+                href={`/calculators/${toolSlug}` as any}
                 className="group flex flex-col bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all"
               >
                 <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <CalculatorIcon className="w-5 h-5" />
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{linkTitle}</h3>
+                <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{targetCalc.title}</h3>
                 <p className="text-sm text-slate-500 line-clamp-2">
-                  {targetCalc ? targetCalc.description : "Free online utility tool."}
+                  {targetCalc.description}
                 </p>
               </Link>
             );

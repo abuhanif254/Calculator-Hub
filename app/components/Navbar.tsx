@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Link } from "../../i18n/routing";
 import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell } from "lucide-react";
 import { sitemapCategories } from "../../lib/data/sitemapData";
+import { resolveHref } from "../../lib/utils/linkResolver";
 import { AuthButton } from "./AuthButton";
 
 const developerToolsMenu = [
@@ -219,77 +220,17 @@ export function Navbar() {
                       <span className="text-xs font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400">{category.title}</span>
                     </div>
                     <ul className="max-h-[300px] overflow-y-auto custom-scrollbar">
-                      {category.links.slice(0, 10).map((link) => {
-                         // Build dynamic links for the top ones we made, fallback to sitemap
-                         let href = "/sitemap";
-                         if (link === "Mortgage Calculator") href = "/calculators/mortgage-calculator";
-                         if (link === "Canadian Mortgage Calculator") href = "/calculators/canadian-mortgage-calculator";
-                         if (link === "Loan Calculator") href = "/calculators/loan-calculator";
-                         if (link === "Margin Calculator") href = "/calculators/margin-calculator";
-                         if (link === "Real Estate Calculator") href = "/calculators/real-estate-calculator";
-                         if (link === "Lease Calculator") href = "/calculators/lease-calculator";
-                         if (link === "IRR Calculator") href = "/calculators/irr-calculator";
-                         if (link === "Amortization Calculator") href = "/calculators/amortization-calculator";
-                         if (link === "Compound Interest Calculator") href = "/calculators/compound-interest-calculator";
-                         if (link === "Finance Calculator") href = "/calculators/finance-calculator";
-                         if (link === "Graphing Calculator") href = "/calculators/graphing-calculator";
-                         if (link === "Cash Back or Low Interest Calculator") href = "/calculators/cash-back-vs-low-interest-calculator";
-                         if (link === "Income Tax Calculator") href = "/calculators/income-tax-calculator";
-                         if (link === "Interest Rate Calculator") href = "/calculators/interest-rate-calculator";
-                         if (link === "Inflation Calculator") href = "/calculators/inflation-calculator";
-                         if (link === "Investment Calculator") href = "/calculators/investment-calculator";
-                         if (link === "Salary Calculator") href = "/calculators/salary-calculator";
-                         if (link === "Sales Tax Calculator") href = "/calculators/sales-tax-calculator";
-                         if (link === "Scientific Calculator") href = "/calculators/scientific-calculator";
-                         if (link === "Fraction Calculator") href = "/calculators/fraction-calculator";
-                         if (link === "Percentage Calculator") href = "/calculators/percentage-calculator";
-                         if (link === "Random Number Generator") href = "/calculators/random-number-generator";
-                         if (link === "Triangle Calculator") href = "/calculators/triangle-calculator";
-                         if (link === "Scientific Notation Calculator") href = "/calculators/scientific-notation-calculator";
-                         if (link === "P-Value Calculator") href = "/calculators/p-value-calculator";
-                         if (link === "Standard Deviation Calculator") href = "/calculators/standard-deviation-calculator";
-                         if (link === "Statistics Calculator") href = "/calculators/statistics-calculator";
-                         if (link === "Date Calculator") href = "/calculators/date-calculator";
-                         if (link === "Time Calculator") href = "/calculators/time-calculator";
-                         if (link === "Hours Calculator") href = "/calculators/hours-calculator";
-                         if (link === "GPA Calculator") href = "/calculators/gpa-calculator";
-                         if (link === "Grade Calculator") href = "/calculators/grade-calculator";
-                         if (link === "Concrete Calculator") href = "/calculators/concrete-calculator";
-                         if (link === "Subnet Calculator") href = "/calculators/subnet-calculator";
-                         if (link === "Password Generator") href = "/calculators/password-generator";
-                         if (link === "Conversion Calculator") href = "/calculators/conversion-calculator";
-                         if (link === "Currency Calculator") href = "/calculators/currency-calculator";
-                         if (link === "Rent Calculator") href = "/calculators/rent-calculator";
-                         if (link === "Social Security Calculator") href = "/calculators/social-security-calculator";
-                         if (link === "Credit Cards Payoff") href = "/calculators/credit-cards-payoff";
-                         if (link === "Calorie Calculator") href = "/calculators/calorie-calculator";
-                         if (link === "Body Fat Calculator") href = "/calculators/body-fat-calculator";
-                         if (link === "BMR Calculator") href = "/calculators/bmr-calculator";
-                         if (link === "Ideal Weight Calculator") href = "/calculators/ideal-weight-calculator";
-                         if (link === "Pace Calculator") href = "/calculators/pace-calculator";
-                         if (link === "Ovulation Calculator") href = "/calculators/ovulation-calculator";
-                         if (link === "Pregnancy Calculator") href = "/calculators/pregnancy-calculator";
-                         if (link === "Pregnancy Conception Calculator") href = "/calculators/pregnancy-conception-calculator";
-                         if (link === "Due Date Calculator") href = "/calculators/due-date-calculator";
-                         if (link === "Retirement Calculator") href = "/calculators/retirement-calculator";
-                         if (link === "Auto Loan Calculator") href = "/calculators/auto-loan-calculator";
-                         if (link === "Interest Calculator") href = "/calculators/interest-calculator";
-                         if (link === "Payment Calculator") href = "/calculators/payment-calculator";
-                         if (link === "BMI Calculator") href = "/calculators/bmi-calculator";
-                         if (link === "Age Calculator") href = "/calculators/age-calculator";
-                         
-                         return (
+                      {category.links.slice(0, 10).map((link) => (
                            <li key={link}>
                              <Link 
-                               href={href as any} 
+                               href={resolveHref(link) as any} 
                                onClick={handleLinkClick}
                                className="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] transition-colors dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
                              >
                                {link}
                              </Link>
                            </li>
-                         );
-                      })}
+                      ))}
                       <li>
                         <Link href="/sitemap" onClick={handleLinkClick} className="block px-4 py-2 text-sm font-semibold text-[#518231] hover:bg-green-50 transition-colors mt-1 dark:hover:bg-slate-800">
                           View all in {category.title.replace(" Calculators", "")} <span className="inline-block rtl:rotate-180">&rarr;</span>
@@ -378,75 +319,16 @@ export function Navbar() {
                  {category.title}
                </div>
                <div className="grid grid-cols-1 gap-1">
-                  {category.links.slice(0, 5).map(link => {
-                     let href = "/sitemap";
-                     if (link === "Mortgage Calculator") href = "/calculators/mortgage-calculator";
-                     if (link === "Canadian Mortgage Calculator") href = "/calculators/canadian-mortgage-calculator";
-                     if (link === "Loan Calculator") href = "/calculators/loan-calculator";
-                         if (link === "Margin Calculator") href = "/calculators/margin-calculator";
-                         if (link === "Real Estate Calculator") href = "/calculators/real-estate-calculator";
-                         if (link === "Lease Calculator") href = "/calculators/lease-calculator";
-                         if (link === "IRR Calculator") href = "/calculators/irr-calculator";
-                     if (link === "Amortization Calculator") href = "/calculators/amortization-calculator";
-                     if (link === "Compound Interest Calculator") href = "/calculators/compound-interest-calculator";
-                     if (link === "Finance Calculator") href = "/calculators/finance-calculator";
-                     if (link === "Graphing Calculator") href = "/calculators/graphing-calculator";
-                         if (link === "Cash Back or Low Interest Calculator") href = "/calculators/cash-back-vs-low-interest-calculator";
-                     if (link === "Income Tax Calculator") href = "/calculators/income-tax-calculator";
-                     if (link === "Interest Rate Calculator") href = "/calculators/interest-rate-calculator";
-                     if (link === "Inflation Calculator") href = "/calculators/inflation-calculator";
-                     if (link === "Investment Calculator") href = "/calculators/investment-calculator";
-                     if (link === "Salary Calculator") href = "/calculators/salary-calculator";
-                     if (link === "Sales Tax Calculator") href = "/calculators/sales-tax-calculator";
-                     if (link === "Scientific Calculator") href = "/calculators/scientific-calculator";
-                     if (link === "Fraction Calculator") href = "/calculators/fraction-calculator";
-                     if (link === "Percentage Calculator") href = "/calculators/percentage-calculator";
-                     if (link === "Random Number Generator") href = "/calculators/random-number-generator";
-                     if (link === "Triangle Calculator") href = "/calculators/triangle-calculator";
-                     if (link === "Scientific Notation Calculator") href = "/calculators/scientific-notation-calculator";
-                     if (link === "P-Value Calculator") href = "/calculators/p-value-calculator";
-                     if (link === "Standard Deviation Calculator") href = "/calculators/standard-deviation-calculator";
-                     if (link === "Statistics Calculator") href = "/calculators/statistics-calculator";
-                     if (link === "Date Calculator") href = "/calculators/date-calculator";
-                     if (link === "Time Calculator") href = "/calculators/time-calculator";
-                     if (link === "Hours Calculator") href = "/calculators/hours-calculator";
-                     if (link === "GPA Calculator") href = "/calculators/gpa-calculator";
-                     if (link === "Grade Calculator") href = "/calculators/grade-calculator";
-                     if (link === "Concrete Calculator") href = "/calculators/concrete-calculator";
-                     if (link === "Subnet Calculator") href = "/calculators/subnet-calculator";
-                     if (link === "Password Generator") href = "/calculators/password-generator";
-                     if (link === "Conversion Calculator") href = "/calculators/conversion-calculator";
-                     if (link === "Currency Calculator") href = "/calculators/currency-calculator";
-                     if (link === "Rent Calculator") href = "/calculators/rent-calculator";
-                     if (link === "Social Security Calculator") href = "/calculators/social-security-calculator";
-                     if (link === "Credit Cards Payoff") href = "/calculators/credit-cards-payoff";
-                     if (link === "Calorie Calculator") href = "/calculators/calorie-calculator";
-                     if (link === "Body Fat Calculator") href = "/calculators/body-fat-calculator";
-                     if (link === "BMR Calculator") href = "/calculators/bmr-calculator";
-                     if (link === "Ideal Weight Calculator") href = "/calculators/ideal-weight-calculator";
-                     if (link === "Pace Calculator") href = "/calculators/pace-calculator";
-                     if (link === "Ovulation Calculator") href = "/calculators/ovulation-calculator";
-                     if (link === "Pregnancy Calculator") href = "/calculators/pregnancy-calculator";
-                     if (link === "Pregnancy Conception Calculator") href = "/calculators/pregnancy-conception-calculator";
-                     if (link === "Due Date Calculator") href = "/calculators/due-date-calculator";
-                     if (link === "Retirement Calculator") href = "/calculators/retirement-calculator";
-                     if (link === "Auto Loan Calculator") href = "/calculators/auto-loan-calculator";
-                     if (link === "Interest Calculator") href = "/calculators/interest-calculator";
-                     if (link === "Payment Calculator") href = "/calculators/payment-calculator";
-                     if (link === "BMI Calculator") href = "/calculators/bmi-calculator";
-                     if (link === "Age Calculator") href = "/calculators/age-calculator";
-                     
-                     return (
+                  {category.links.slice(0, 5).map(link => (
                         <Link 
                           key={link} 
-                          href={href as any}
+                          href={resolveHref(link) as any}
                           className="block px-3 py-3 text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] rounded-md dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {link}
                         </Link>
-                     );
-                  })}
+                  ))}
                   <Link 
                     href="/sitemap"
                     className="block px-3 py-3 text-sm font-bold text-[#518231] hover:bg-green-50 rounded-md dark:hover:bg-slate-800"
