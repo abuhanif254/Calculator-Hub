@@ -163,13 +163,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const metaDescription = mdData?.data?.metaDescription || calc.meta.description;
   const metaKeywords = mdData?.data?.metaKeywords || calc.meta.keywords;
 
-  const languages: Record<string, string> = {
-    'x-default': `/en/calculators/${slug}`,
-  };
-  
+  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+
+  // Build absolute hreflang URLs for every locale
+  const languages: Record<string, string> = {};
   routing.locales.forEach((l) => {
-    languages[l] = `/${l}/calculators/${slug}`;
+    languages[l] = `${baseUrl}/${l}/calculators/${slug}`;
   });
+  languages['x-default'] = `${baseUrl}/en/calculators/${slug}`;
 
   return {
     title: metaTitle,
@@ -179,9 +180,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: metaTitle,
       description: metaDescription,
       type: "website",
+      url: `${baseUrl}/${locale}/calculators/${slug}`,
+      siteName: 'Nexus Calculator',
+    },
+    twitter: {
+      card: 'summary_large_image' as const,
+      title: metaTitle,
+      description: metaDescription,
     },
     alternates: {
-      canonical: `/${locale}/calculators/${slug}`,
+      canonical: `${baseUrl}/${locale}/calculators/${slug}`,
       languages,
     },
   };
