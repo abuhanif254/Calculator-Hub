@@ -67,25 +67,57 @@ export function Footer() {
           </div>
 
           {/* Dynamic Link Columns */}
-          {sitemapCategories.slice(0, 3).map((category, index) => (
+          {sitemapCategories.slice(0, 2).map((category, index) => (
              <div key={category.id}>
                <h3 className="text-white font-bold mb-6 text-lg tracking-tight">{category.title}</h3>
                <ul className="space-y-4">
                  {category.links.slice(0, 7).map((link) => (
                    <li key={link}>
-                     <Link href={getHref(link) as any} className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200">
+                     <Link href={getHref(link) as any} className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200 text-sm">
                        {link}
                      </Link>
                    </li>
                  ))}
                  <li>
-                   <Link href="/sitemap" className="text-[#518231] hover:text-[#7bb052] font-semibold flex items-center gap-1 mt-2 py-2">
+                   <Link href="/sitemap" className="text-[#518231] hover:text-[#7bb052] font-semibold flex items-center gap-1 mt-2 py-2 text-sm">
                      See all <span className="text-lg leading-none">&rarr;</span>
                    </Link>
                  </li>
                </ul>
              </div>
           ))}
+
+          {/* Ecosystem Column */}
+          <div>
+            <h3 className="text-white font-bold mb-6 text-lg tracking-tight">Ecosystem</h3>
+            <ul className="space-y-4 text-sm">
+              <li>
+                <Link href="/search" className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200">
+                  Developer Tools
+                </Link>
+              </li>
+              <li>
+                <Link href="/sitemap" className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200">
+                  Collections
+                </Link>
+              </li>
+              <li>
+                <Link href="/community" className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200">
+                  Community
+                </Link>
+              </li>
+              <li>
+                <Link href="/search" className="hover:text-[#518231] hover:translate-x-1 inline-block py-1.5 transition-all duration-200">
+                  Guides
+                </Link>
+              </li>
+              <li>
+                <span className="text-slate-500 inline-block py-1.5 cursor-not-allowed" title="Coming soon">
+                  API (Coming Soon)
+                </span>
+              </li>
+            </ul>
+          </div>
 
         </div>
 

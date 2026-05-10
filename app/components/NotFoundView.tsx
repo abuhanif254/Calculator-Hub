@@ -1,52 +1,49 @@
 "use client";
 import React, { useState } from 'react';
 import { Search, Compass, Calculator, Frown } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '../../i18n/routing';
 
-const popularCalculators = [
+const popularItems = [
   { title: "Mortgage Calculator", href: "/calculators/mortgage-calculator" },
-  { title: "Loan Calculator", href: "/calculators/loan-calculator" },
-  { title: "Student Loan Calculator", href: "/calculators/student-loan-calculator" },
-  { title: "Business Loan Calculator", href: "/calculators/business-loan-calculator" },
-  { title: "Personal Loan Calculator", href: "/calculators/personal-loan-calculator" },
-  { title: "Budget Calculator", href: "/calculators/budget-calculator" },
-  { title: "APR Calculator", href: "/calculators/apr-calculator" },
-  { title: "HELOC Calculator", href: "/calculators/heloc-calculator" },
-  { title: "Present Value Calculator", href: "/calculators/present-value-calculator" },
-  { title: "Percent Off Calculator", href: "/calculators/percent-off-calculator" },
-  { title: "401(k) Calculator", href: "/calculators/401k-calculator" },
-  { title: "Marriage Tax Calculator", href: "/calculators/marriage-tax-calculator" },
-  { title: "Annuity Calculator", href: "/calculators/annuity-calculator" },
-  { title: "Debt Payoff Calculator", href: "/calculators/debt-payoff-calculator" },
-  { title: "Average Return Calculator", href: "/calculators/average-return-calculator" },
-  { title: "Debt-to-Income Ratio Calculator", href: "/calculators/debt-to-income-ratio-calculator" },
-  { title: "Boat Loan Calculator", href: "/calculators/boat-loan-calculator" },
-  { title: "Rental Property Calculator", href: "/calculators/rental-property-calculator" },
-  { title: "FHA Loan Calculator", href: "/calculators/fha-loan-calculator" },
-  { title: "Down Payment Calculator", href: "/calculators/down-payment-calculator" },
-  { title: "Future Value Calculator", href: "/calculators/future-value-calculator" },
-  { title: "Mortgage Amortization Calculator", href: "/calculators/mortgage-amortization-calculator" },
-  { title: "House Affordability Calculator", href: "/calculators/house-affordability-calculator" },
-  { title: "College Cost Calculator", href: "/calculators/college-cost-calculator" },
-  { title: "Mutual Fund Calculator", href: "/calculators/mutual-fund-calculator" },
-  { title: "VAT Calculator", href: "/calculators/vat-calculator" },
-  { title: "Bond Calculator", href: "/calculators/bond-calculator" },
-  { title: "RMD Calculator", href: "/calculators/rmd-calculator" },
-  { title: "Depreciation Calculator", href: "/calculators/depreciation-calculator" },
-  { title: "Finance Calculator", href: "/calculators/finance-calculator" },
+  { title: "JSON Formatter", href: "/tools/json-formatter" },
   { title: "BMI Calculator", href: "/calculators/bmi-calculator" },
+  { title: "Base64 Encoder", href: "/tools/base64-encode" },
+  { title: "Loan Calculator", href: "/calculators/loan-calculator" },
+  { title: "Diff Checker", href: "/tools/diff-checker" },
+  { title: "Student Loan Calculator", href: "/calculators/student-loan-calculator" },
+  { title: "Color Picker", href: "/tools/color-picker" },
+  { title: "Business Loan Calculator", href: "/calculators/business-loan-calculator" },
+  { title: "UUID Generator", href: "/tools/uuid-generator" },
+  { title: "Personal Loan Calculator", href: "/calculators/personal-loan-calculator" },
+  { title: "Hash Generator", href: "/tools/hash-generator" },
+  { title: "Budget Calculator", href: "/calculators/budget-calculator" },
+  { title: "Meta Tag Generator", href: "/tools/meta-tag-generator" },
+  { title: "APR Calculator", href: "/calculators/apr-calculator" },
+  { title: "Password Generator", href: "/tools/password-generator" },
+  { title: "Present Value Calculator", href: "/calculators/present-value-calculator" },
+  { title: "URL Encoder", href: "/tools/url-encoder" },
+  { title: "401(k) Calculator", href: "/calculators/401k-calculator" },
+  { title: "CSS Beautifier", href: "/tools/css-beautifier" },
+  { title: "Average Return Calculator", href: "/calculators/average-return-calculator" },
+  { title: "HTML Formatter", href: "/tools/html-formatter" },
+  { title: "House Affordability Calculator", href: "/calculators/house-affordability-calculator" },
+  { title: "QR Code Generator", href: "/tools/qr-code-generator" },
+  { title: "Finance Calculator", href: "/calculators/finance-calculator" },
   { title: "Calorie Calculator", href: "/calculators/calorie-calculator" },
   { title: "Age Calculator", href: "/calculators/age-calculator" },
   { title: "Scientific Calculator", href: "/calculators/scientific-calculator" },
   { title: "Percentage Calculator", href: "/calculators/percentage-calculator" },
+  { title: "Date Calculator", href: "/calculators/date-calculator" },
+  { title: "Time Calculator", href: "/calculators/time-calculator" },
+  { title: "GPA Calculator", href: "/calculators/gpa-calculator" }
 ];
 
 export function NotFoundView() {
   const [query, setQuery] = useState("");
 
-  const filteredCalculators = query
-    ? popularCalculators.filter(calc => calc.title.toLowerCase().includes(query.toLowerCase()))
-    : popularCalculators;
+  const filteredItems = query
+    ? popularItems.filter(item => item.title.toLowerCase().includes(query.toLowerCase()))
+    : popularItems;
 
   return (
     <div className="flex-1 flex flex-col items-center justify-center min-h-[70vh] px-4 py-16 text-center">
@@ -59,7 +56,7 @@ export function NotFoundView() {
       </h1>
       
       <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mb-10">
-        It looks like the calculator or page you were trying to reach doesn&apos;t exist. 
+        It looks like the calculator or tool you were trying to reach doesn&apos;t exist. 
         Perhaps you can find what you&apos;re looking for by searching below.
       </p>
 
@@ -79,7 +76,7 @@ export function NotFoundView() {
             name="q"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search for a calculator (e.g. Mortgage, BMI)..." 
+            placeholder="Search for a tool or calculator (e.g. Mortgage, JSON)..." 
             className="w-full pl-12 pr-32 py-4 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-lg focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-[#518231] shadow-sm transition-all"
           />
           <button 
@@ -91,23 +88,23 @@ export function NotFoundView() {
         </form>
       </div>
 
-      {/* Popular Calculators */}
+      {/* Popular Calculators and Tools */}
       <div className="w-full max-w-4xl text-left bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8 rounded-2xl shadow-sm">
         <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-6 flex items-center gap-2 border-b border-slate-100 dark:border-slate-800 pb-4">
           <Calculator className="text-[#518231]" size={24} />
-          {query ? "Search Results" : "Our Most Popular Calculators"}
+          {query ? "Search Results" : "Our Most Popular Calculators and Tools"}
         </h2>
         
-        {filteredCalculators.length > 0 ? (
+        {filteredItems.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {filteredCalculators.map((calc, i) => (
+            {filteredItems.map((item, i) => (
               <Link 
                 key={i} 
-                href={calc.href as any}
+                href={item.href as any}
                 className="group flex flex-col p-4 border border-slate-100 dark:border-slate-800 hover:border-[#518231] hover:bg-green-50 dark:hover:bg-[#518231]/10 rounded-xl transition-all"
               >
                 <span className="font-semibold text-slate-700 dark:text-slate-300 group-hover:text-[#518231]">
-                  {calc.title}
+                  {item.title}
                 </span>
               </Link>
             ))}

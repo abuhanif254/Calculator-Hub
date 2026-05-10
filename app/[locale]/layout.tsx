@@ -92,8 +92,10 @@ export default async function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AuthProvider>
               <SettingsProvider>
-                <GlobalSettingsBar />
-                <Navbar />
+                <div className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
+                  <GlobalSettingsBar />
+                  <Navbar />
+                </div>
                 <div className="flex-1">
                   {children}
                 </div>
