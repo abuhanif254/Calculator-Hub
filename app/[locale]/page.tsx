@@ -89,9 +89,45 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
   const t = await getTranslations("Index");
+  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+
+  // WebSite schema — enables Google Sitelinks Search Box
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Nexus Calculator",
+    "url": baseUrl,
+    "description": "The ultimate ecosystem for calculators and developer tools.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": `${baseUrl}/en/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  // Organization schema — establishes brand entity
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Nexus Calculator",
+    "url": baseUrl,
+    "logo": `${baseUrl}/icons/icon-512x512.png`,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "nexuscalculator@gmail.com",
+      "contactType": "customer service"
+    },
+    "sameAs": []
+  };
 
   return (
     <main className="w-full">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 pt-16 pb-24 lg:pt-24 lg:pb-32">
         <div className="absolute inset-0 bg-gradient-to-br from-[#518231]/10 via-transparent to-[#518231]/5 -z-10" />

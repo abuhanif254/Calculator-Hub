@@ -10,7 +10,8 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   
   return {
     title: q ? `Search results for "${q}" | Nexus Calculator` : 'Search | Nexus Calculator',
-    description: 'Find the right calculator for your needs.',
+    description: 'Find the right calculator or developer tool for your needs.',
+    robots: { index: false, follow: true },
   };
 }
 
