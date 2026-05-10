@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { Copy, Download, Trash2, Upload, FileJson, CheckCircle, AlertTriangle, FileCode2, Search, Table, Code, ChevronRight, ChevronDown, History, X, GitCompare, WrapText, Clipboard, Wand2 } from "lucide-react";
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { Copy, Download, Trash2, Upload, FileJson, CheckCircle, AlertTriangle, FileCode2, Search, Table, Code, ChevronRight, ChevronDown, History, X, GitCompare, WrapText, Clipboard, Wand2, Keyboard } from "lucide-react";
 import { Link } from "../../../i18n/routing";
+import { useToolShortcuts } from "../../../lib/hooks/useToolShortcuts";
+import { addToHistory as addToGlobalHistory } from "../../../lib/hooks/useToolHistory";
 
 // --- Helpers ---
 const escapeRegExp = (string: string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -171,10 +173,16 @@ export function JsonFormatterTool() {
   const [showHistory, setShowHistory] = useState(false);
   const [indent, setIndent] = useState<number>(2);
   const [wordWrap, setWordWrap] = useState<boolean>(false);
+  const [showShortcuts, setShowShortcuts] = useState(false);
   
   const fileInputRef = useRef<HTMLInputElement>(null);
   const inputScrollRef = useRef<HTMLTextAreaElement>(null);
   const linesScrollRef = useRef<HTMLDivElement>(null);
+
+  // Track tool usage in global history for dashboard/retention
+  useEffect(() => {
+    addToGlobalHistory({ slug: 'json-formatter', title: 'JSON Formatter', type: 'tool' });
+  }, []);
 
   // Sync scroll for line numbers
   const handleInputScroll = () => {
@@ -316,7 +324,7 @@ export function JsonFormatterTool() {
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
-  const handleClear = () => {
+  const handleClear = useCallback(() => {
     setInput("");
     setOutput("");
     setParsedObj(null);
@@ -324,13 +332,24 @@ export function JsonFormatterTool() {
     setErrorLine(null);
     setSuccessMsg(null);
     setSearchTerm("");
-  };
+  }, []);
 
   const handleCompare = () => {
     localStorage.setItem("diff_checker_left", input);
     localStorage.setItem("diff_checker_right", output || input);
     localStorage.setItem("diff_checker_source", "json-formatter");
   };
+
+  // ─── Keyboard Shortcuts ────────────────────────────
+  const shortcuts = useMemo(() => [
+    { key: 'Enter', ctrl: true, action: () => processJson('format'), label: 'Format JSON' },
+    { key: 'm', ctrl: true, shift: true, action: () => processJson('minify'), label: 'Minify JSON' },
+    { key: 'b', ctrl: true, shift: true, action: () => processJson('validate'), label: 'Validate JSON' },
+    { key: 's', ctrl: true, action: handleDownload, label: 'Download Output' },
+    { key: 'l', ctrl: true, shift: true, action: handleClear, label: 'Clear All' },
+  ], [indent, input, output, parsedObj]);
+
+  useToolShortcuts(shortcuts);
 
   const loadSample = (type: 1 | 2) => {
     if (type === 1) setInput(`{\n  "users": [\n    {"id": 1, "name": "Alice", "active": true},\n    {"id": 2, "name": "Bob", "active": false}\n  ],\n  "total": 2\n}`);
@@ -342,7 +361,7 @@ export function JsonFormatterTool() {
   return (
     <div className="w-full flex flex-col gap-4">
       {/* Top Bar Actions */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative">
         
         {/* Left Actions */}
         <div className="flex flex-wrap items-center gap-2">
@@ -406,8 +425,30 @@ export function JsonFormatterTool() {
           <button onClick={handleClear} className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors dark:text-red-400" title="Clear">
             <Trash2 size={18} />
           </button>
+          <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1"></div>
+          <button onClick={() => setShowShortcuts(!showShortcuts)} className={`p-2 rounded-lg transition-colors flex items-center gap-1 text-sm ${showShortcuts ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300' : 'text-slate-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800'}`} title="Keyboard Shortcuts">
+            <Keyboard size={18} />
+          </button>
         </div>
       </div>
+
+      {/* Keyboard Shortcuts Panel */}
+      {showShortcuts && (
+        <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800/30 rounded-xl p-4 shadow-sm relative">
+          <button onClick={() => setShowShortcuts(false)} className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"><X size={16} /></button>
+          <h4 className="font-semibold text-amber-900 dark:text-amber-300 mb-3 flex items-center gap-2"><Keyboard size={16} /> Keyboard Shortcuts</h4>
+          <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+            {shortcuts.map((s, i) => (
+              <div key={i} className="flex items-center justify-between p-2 bg-white dark:bg-slate-800 border border-amber-100 dark:border-amber-800/50 rounded text-sm">
+                <span className="text-slate-700 dark:text-slate-300">{s.label}</span>
+                <kbd className="text-xs font-mono bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-600">
+                  {s.ctrl ? 'Ctrl+' : ''}{s.shift ? 'Shift+' : ''}{s.key === 'Enter' ? '↵' : s.key.toUpperCase()}
+                </kbd>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* History Panel */}
       {showHistory && history.length > 0 && (

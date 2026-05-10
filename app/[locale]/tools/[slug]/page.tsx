@@ -4,7 +4,7 @@ import { getToolConfig } from '../../../../lib/data/tools';
 import { JsonFormatterTool } from '../../../components/tools/JsonFormatterTool';
 import { DiffCheckerTool } from '../../../components/tools/DiffCheckerTool';
 import { HtmlFormatterTool } from '../../../components/tools/HtmlFormatterTool';
-import { Link, routing } from '../../../../i18n/routing';
+import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers } from 'lucide-react';
 
@@ -14,62 +14,27 @@ const toolComponents: Record<string, React.ComponentType> = {
   "html-formatter": HtmlFormatterTool
 };
 
-export async function generateStaticParams() {
-  const { allToolsConfig } = await import('../../../../lib/data/tools');
-  const params: { slug: string; locale: string }[] = [];
-  routing.locales.forEach((locale) => {
-    Object.keys(allToolsConfig).forEach((slug) => {
-      params.push({ slug, locale });
-    });
-  });
-  return params;
-}
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
-  const { locale, slug } = await params;
-  const config = getToolConfig(slug);
+  const resolvedParams = await params;
+  const config = getToolConfig(resolvedParams.slug);
   if (!config) return {};
 
-  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
-
-  // Build hreflang alternates for every locale
-  const languages: Record<string, string> = {};
-  routing.locales.forEach((l) => {
-    const toolPathname = (routing.pathnames as any)['/tools/[slug]'];
-    const locPath = typeof toolPathname === 'object' && toolPathname[l]
-      ? toolPathname[l]
-      : `/tools/${slug}`;
-    languages[l] = `${baseUrl}/${l}${locPath.replace('[slug]', slug)}`;
-  });
-  languages['x-default'] = languages['en'] || `${baseUrl}/en/tools/${slug}`;
-
   return {
-    title: `${config.title} | Developer Tools`,
+    title: `${config.title} | Developer Tools | Nexus Calculator`,
     description: config.shortDescription,
-    keywords: config.keywords.join(', '),
+    keywords: config.keywords.join(", "),
     openGraph: {
       title: config.title,
       description: config.shortDescription,
       type: 'website',
-      url: `${baseUrl}/${locale}/tools/${slug}`,
-      siteName: 'Nexus Calculator',
-    },
-    twitter: {
-      card: 'summary_large_image' as const,
-      title: config.title,
-      description: config.shortDescription,
-    },
-    alternates: {
-      canonical: `${baseUrl}/${locale}/tools/${slug}`,
-      languages,
-    },
+    }
   };
 }
 
 export default async function ToolPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const resolvedParams = await params;
   const config = getToolConfig(resolvedParams.slug);
-  
+
   if (!config) {
     notFound();
   }

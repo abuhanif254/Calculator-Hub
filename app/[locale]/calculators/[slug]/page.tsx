@@ -108,7 +108,7 @@ export const revalidate = 86400; // once a day
 function getMarkdownContent(slug: string, locale: string) {
   try {
     const filePath = path.join(process.cwd(), "content", locale, `${slug}.md`);
-    
+
     // Fallback to english if language file is missing
     if (!fs.existsSync(filePath)) {
       const fallbackPath = path.join(process.cwd(), "content", "en", `${slug}.md`);
@@ -118,7 +118,7 @@ function getMarkdownContent(slug: string, locale: string) {
       }
       return null;
     }
-    
+
     const fileContent = fs.readFileSync(filePath, "utf-8");
     return matter(fileContent);
   } catch (e) {
@@ -130,7 +130,7 @@ function getMarkdownContent(slug: string, locale: string) {
 // Dynamic routing parameter generation
 export async function generateStaticParams() {
   const params: { slug: string; locale: string }[] = [];
-  
+
   routing.locales.forEach((locale) => {
     calculators.forEach((calc) => {
       let slugToUse = calc.slug;
@@ -157,20 +157,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   const mdData = getMarkdownContent(slug, locale);
-  
+
   // Use markdown matter if available, fallback to hardcoded
   const metaTitle = mdData?.data?.metaTitle || calc.meta.title;
   const metaDescription = mdData?.data?.metaDescription || calc.meta.description;
   const metaKeywords = mdData?.data?.metaKeywords || calc.meta.keywords;
 
-  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+  const languages: Record<string, string> = {
+    'x-default': `/en/calculators/${slug}`,
+  };
 
-  // Build absolute hreflang URLs for every locale
-  const languages: Record<string, string> = {};
   routing.locales.forEach((l) => {
-    languages[l] = `${baseUrl}/${l}/calculators/${slug}`;
+    languages[l] = `/${l}/calculators/${slug}`;
   });
-  languages['x-default'] = `${baseUrl}/en/calculators/${slug}`;
 
   return {
     title: metaTitle,
@@ -180,16 +179,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: metaTitle,
       description: metaDescription,
       type: "website",
-      url: `${baseUrl}/${locale}/calculators/${slug}`,
-      siteName: 'Nexus Calculator',
-    },
-    twitter: {
-      card: 'summary_large_image' as const,
-      title: metaTitle,
-      description: metaDescription,
     },
     alternates: {
-      canonical: `${baseUrl}/${locale}/calculators/${slug}`,
+      canonical: `/${locale}/calculators/${slug}`,
       languages,
     },
   };
@@ -205,7 +197,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   }
 
   const mdData = getMarkdownContent(resolvedParams.slug, resolvedParams.locale);
-  
+
   // Replace defaults with markdown data
   const pageTitle = mdData?.data?.title || calc.title;
   const pageDesc = mdData?.data?.description || calc.description;
@@ -232,16 +224,16 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
   const baseUrl = "https://nexuscalculator.net"; // Change to production domain when live
   const canonicalUrl = `${baseUrl}/${resolvedParams.locale}/calculators/${resolvedParams.slug}`;
-  
+
   // SoftwareApplication JSON-LD Schema
   const softwareAppSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": pageTitle,
     "description": pageDesc,
-    "applicationCategory": calc.category === "Financial" ? "FinanceApplication" : 
-                           calc.category === "Health & Fitness" ? "HealthApplication" : 
-                           "UtilityApplication",
+    "applicationCategory": calc.category === "Financial" ? "FinanceApplication" :
+      calc.category === "Health & Fitness" ? "HealthApplication" :
+        "UtilityApplication",
     "operatingSystem": "All",
     "browserRequirements": "Requires JavaScript",
     "url": canonicalUrl,
@@ -297,7 +289,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      
+
       {/* Breadcrumbs for SEO */}
       <nav aria-label="Breadcrumb" className="mb-6 font-sans text-sm text-slate-500">
         <ol className="flex items-center space-x-2">
@@ -531,7 +523,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
         {/* Sidebar Area (Right/Bottom) */}
         <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0 flex flex-col gap-8">
-          
+
           {/* Search Box */}
           <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
             <h3 className="text-lg font-bold text-slate-900 mb-4">Find a Calculator</h3>
@@ -564,8 +556,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 if (link === "About Us") href = "/about-us";
                 return (
                   <li key={link}>
-                    <Link 
-                      href={href} 
+                    <Link
+                      href={href}
                       className="text-sm font-medium text-slate-400 hover:text-white transition-colors"
                     >
                       {link}
@@ -596,9 +588,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             const targetCalc = calculators.find(c => c.title === linkTitle);
             const linkHref = targetCalc ? `/calculators/${targetCalc.slug}` : "/sitemap";
             return (
-              <Link 
+              <Link
                 key={linkTitle}
-                href={linkHref as any} 
+                href={linkHref as any}
                 className="group flex flex-col bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all"
               >
                 <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">

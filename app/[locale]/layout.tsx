@@ -1,4 +1,4 @@
-import type {Metadata, Viewport} from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Inter } from "next/font/google";
 import '../../app/globals.css'; // Global styles
 import { Link } from '../../i18n/routing';
@@ -11,10 +11,10 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: 'swap', weight: ['400', '500', '600'], preload: true,  });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: 'swap', weight: ['400', '500', '600'], preload: true, });
 
 export function generateStaticParams() {
-  return routing.locales.map((locale) => ({locale}));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export const viewport: Viewport = {
@@ -29,7 +29,7 @@ export const viewport: Viewport = {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
-  
+
   return {
     metadataBase: new URL(baseUrl),
     applicationName: 'Nexus Calculator',
@@ -60,10 +60,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: `${baseUrl}/${locale}`,
       languages: {
+        'en': `${baseUrl}/en`,
         ...Object.fromEntries(
           routing.locales.map((l) => [l, `${baseUrl}/${l}`])
         ),
-        'x-default': `${baseUrl}/en`,
+        'x-default': `${baseUrl}/en`
       },
     },
   };
@@ -79,7 +80,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  
+
   // Enable static rendering
   setRequestLocale(locale);
   const messages = await getMessages();
