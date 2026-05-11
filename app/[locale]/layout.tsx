@@ -71,6 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 import { AuthProvider } from '../../app/components/AuthProvider';
+import { CommandPalette } from '../../app/components/CommandPalette';
 import Script from 'next/script';
 
 export default async function RootLayout({
@@ -116,6 +117,7 @@ export default async function RootLayout({
                 <div id="global-footer">
                   <Footer />
                 </div>
+                <CommandPalette />
               </SettingsProvider>
             </AuthProvider>
           </ThemeProvider>
