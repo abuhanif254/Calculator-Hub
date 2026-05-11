@@ -56,7 +56,7 @@ export function ExportResultsPanel({ targetId = "calculator-export-target", file
         useCORS: true,
         logging: false,
         backgroundColor: document.documentElement.classList.contains('dark') ? '#0f172a' : '#ffffff', // match dark/light mode bg
-      });
+      } as any);
       
       element.classList.remove("pdf-exporting");
 
