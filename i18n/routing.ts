@@ -140,6 +140,8 @@ export const routing = defineRouting({
       fr: '/collections/[slug]',
       de: '/sammlungen/[slug]'
     },
+    '/embed/calculators/[slug]': '/embed/calculators/[slug]',
+    '/embed/tools/[slug]': '/embed/tools/[slug]',
     '/compare/[slug]': {
       en: '/compare/[slug]',
       es: '/comparar/[slug]',
