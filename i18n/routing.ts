@@ -157,7 +157,9 @@ export const {Link, redirect, usePathname, useRouter} = createNavigation(routing
  * strings to dynamic catch-all paths.
  */
 export function resolveIntlHref(hrefStr: string): any {
-  if (!hrefStr || typeof hrefStr !== 'string') return hrefStr;
+  // If hrefStr is missing (e.g. corrupted localStorage data missing the href property),
+  // fallback to root to prevent next-intl's Link from crashing during destructuring.
+  if (!hrefStr || typeof hrefStr !== 'string') return '/';
   
   // If the exact path is explicitly statically mapped in routing.pathnames,
   // we MUST return the string directly. Using the dynamic object catch-all

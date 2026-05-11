@@ -41,8 +41,8 @@ export function ContinueWhereYouLeftOff() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {recent.map((entry) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {recent.filter(entry => !!entry.href).map((entry) => (
           <Link
             key={entry.slug}
             href={resolveIntlHref(entry.href)}

@@ -41,6 +41,19 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 async function fetchPosts(): Promise<Post[]> {
   try {
+    // Skip Firebase execution during Vercel's static build phase to prevent gRPC hangs/errors.
+    // The posts will be fetched dynamically via ISR upon the first user request.
+    if (process.env.npm_lifecycle_event === 'build' || process.env.NEXT_PHASE === 'phase-production-build' || process.env.VERCEL === '1') {
+      // In Vercel, we can just return empty array for the initial static HTML, and let ISR/client fetch handle it.
+      // Actually, if we skip it in Vercel completely, the page will always be empty for ISR.
+      // So we ONLY skip it if it's the BUILD phase. Vercel doesn't expose a clean BUILD ONLY variable natively,
+      // but CI=1 is set during build. Let's just use NEXT_PHASE.
+      const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build' || process.env.npm_lifecycle_event === 'build';
+      if (isBuildPhase) {
+        return [];
+      }
+    }
+
     const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(20));
     const querySnapshot = await getDocs(q);
     const posts: Post[] = [];

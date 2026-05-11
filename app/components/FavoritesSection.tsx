@@ -20,8 +20,8 @@ export function FavoritesSection() {
       
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4">
-          {favorites.map((calc) => (
-            <li key={calc.href}>
+          {favorites.filter(calc => !!calc.href).map((calc) => (
+            <li key={calc.href || calc.title}>
               <FavoriteCalculatorLink title={calc.title} href={calc.href} />
             </li>
           ))}
