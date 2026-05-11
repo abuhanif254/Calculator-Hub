@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next';
-import { sitemapCategories } from '../lib/data/sitemapData';
 import { calculators } from '../lib/data/calculators';
 import { categories } from '../lib/data/categories';
 import { collections } from '../lib/data/collections';
 import { comparisons } from '../lib/data/comparisons';
 import { routing } from '../i18n/routing';
+import { allToolsConfig } from '../lib/data/tools/index';
 
 // ─────────────────────────────────────────────────────────
 // SITEMAP INDEX ARCHITECTURE
@@ -32,13 +32,7 @@ import { routing } from '../i18n/routing';
 // lib/data/tools/. Listing unbuilt tools causes Google to
 // crawl 404s, wasting crawl budget and hurting domain quality.
 // ═══════════════════════════════════════════════════════
-const developerToolSlugs: string[] = [
-  'json-formatter',
-  'diff-checker',
-  'html-formatter',
-  'css-beautifier',
-  'js-beautifier',
-];
+const developerToolSlugs: string[] = Object.keys(allToolsConfig);
 
 // ═══════════════════════════════════════════════════════
 // Hreflang URL Builder
@@ -83,7 +77,7 @@ function buildEntry(
 
   return {
     url: languages['en'] || `${baseUrl}/en${pathnameKey.replace('[slug]', genericSlug || '')}`,
-    lastModified: lastMod || new Date(),
+    ...(lastMod ? { lastModified: lastMod } : {}),
     changeFrequency,
     priority,
     alternates: { languages },
@@ -117,16 +111,17 @@ export default async function sitemap({
     return [
       buildEntry('/', 'daily', 1.0),
       buildEntry('/sitemap', 'weekly', 0.8),
-      buildEntry('/search', 'weekly', 0.6),
       buildEntry('/community', 'daily', 0.7),
       buildEntry('/community/new', 'monthly', 0.4),
       buildEntry('/about-us', 'monthly', 0.5),
       buildEntry('/privacy-policy', 'yearly', 0.3),
       buildEntry('/terms-of-use', 'yearly', 0.3),
       // Category pillar pages (high priority for topical authority)
-      ...categories.map((cat) =>
-        buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)
-      ),
+      ...categories
+        .filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category)))
+        .map((cat) =>
+          buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)
+        ),
       // Collection bundle pages
       ...collections.map((collection) =>
         buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)
@@ -151,19 +146,6 @@ export default async function sitemap({
       }
     });
 
-    // 2) SitemapData directory calculators (lower priority)
-    sitemapCategories.forEach((category) => {
-      category.links.forEach((link) => {
-        const slug = link
-          .toLowerCase()
-          .replace(/[^\w\s-]/g, '')
-          .replace(/\s+/g, '-');
-        if (!processedSlugs.has(slug)) {
-          allCalcSlugs.push({ slug, priority: 0.7 });
-          processedSlugs.add(slug);
-        }
-      });
-    });
 
     // Sort alphabetically for deterministic output
     allCalcSlugs.sort((a, b) => a.slug.localeCompare(b.slug));
