@@ -16,7 +16,7 @@ const developerToolsMenu = [
       { name: "JSON Validator", desc: "Validate your JSON strings" },
       { name: "HTML Formatter", desc: "Format HTML code" },
       { name: "CSS Beautifier", desc: "Beautify CSS styles" },
-      { name: "JavaScript Beautifier", desc: "Format JS code" },
+      { name: "JS Beautifier", desc: "Format JS code" },
       { name: "XML Formatter", desc: "Format XML documents" },
       { name: "Markdown Previewer", desc: "Preview Markdown instantly" },
       { name: "SQL Formatter", desc: "Format SQL queries" },

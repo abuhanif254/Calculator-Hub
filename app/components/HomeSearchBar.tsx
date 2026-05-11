@@ -11,7 +11,7 @@ const allCalculators = sitemapCategories.flatMap(cat =>
 );
 
 const developerTools = [
-  "JSON Formatter", "JSON Validator", "HTML Formatter", "CSS Beautifier", "JavaScript Beautifier",
+  "JSON Formatter", "JSON Validator", "HTML Formatter", "CSS Beautifier", "JS Beautifier",
   "XML Formatter", "Markdown Previewer", "SQL Formatter", "YAML Formatter", "CSV Viewer", "Diff Checker",
   "Base64 Encode", "Base64 Decode", "URL Encoder", "URL Decoder", "JWT Decoder", "Hash Generator",
   "MD5 Generator", "SHA256 Generator", "Password Generator", "HMAC Generator", "QR Code Generator",
