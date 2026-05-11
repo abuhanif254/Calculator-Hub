@@ -159,6 +159,13 @@ export const {Link, redirect, usePathname, useRouter} = createNavigation(routing
 export function resolveIntlHref(hrefStr: string): any {
   if (!hrefStr || typeof hrefStr !== 'string') return hrefStr;
   
+  // If the exact path is explicitly statically mapped in routing.pathnames,
+  // we MUST return the string directly. Using the dynamic object catch-all
+  // for a statically mapped path causes next-intl to crash.
+  if (hrefStr in routing.pathnames) {
+    return hrefStr;
+  }
+  
   if (hrefStr.startsWith('/calculators/category/')) {
     return { pathname: '/calculators/category/[category]', params: { category: hrefStr.replace('/calculators/category/', '') } };
   }
