@@ -53,7 +53,7 @@ export function HomeSearchBar() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      router.push(`/search?q=${encodeURIComponent(query.trim())}` as any);
+      router.push({ pathname: '/search', query: { q: query.trim() } } as any);
       setIsFocused(false);
     }
   };
