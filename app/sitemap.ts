@@ -97,10 +97,10 @@ function buildEntry(
 // ═══════════════════════════════════════════════════════
 export async function generateSitemaps() {
   return [
-    { id: 0 },  // Static & core pages
-    { id: 1 },  // Calculators A–L
-    { id: 2 },  // Calculators M–Z
-    { id: 3 },  // Developer tools
+    { id: '0' },  // Static & core pages
+    { id: '1' },  // Calculators A–L
+    { id: '2' },  // Calculators M–Z
+    { id: '3' },  // Developer tools
   ];
 }
 
