@@ -41,7 +41,7 @@ const developerToolSlugs: string[] = Object.keys(allToolsConfig);
 // international SEO — Google uses these to serve the
 // correct language variant in search results.
 // ═══════════════════════════════════════════════════════
-const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
 
 function buildEntry(
   pathnameKey: string,
@@ -60,23 +60,30 @@ function buildEntry(
       relativePath = `/${locale}`;
     } else if (routeMapping && typeof routeMapping === 'object' && routeMapping[locale]) {
       relativePath = `/${locale}${routeMapping[locale]}`;
-      if (genericSlug) relativePath = relativePath.replace('[slug]', genericSlug);
     } else if (routeMapping && typeof routeMapping === 'string') {
       relativePath = `/${locale}${routeMapping}`;
-      if (genericSlug) relativePath = relativePath.replace('[slug]', genericSlug);
     } else {
       relativePath = `/${locale}${pathnameKey}`;
-      if (genericSlug) relativePath = relativePath.replace('[slug]', genericSlug);
+    }
+
+    if (genericSlug) {
+      relativePath = relativePath
+        .replace('[slug]', genericSlug)
+        .replace('[category]', genericSlug);
     }
 
     languages[locale] = `${baseUrl}${relativePath}`;
   });
 
+  const defaultPath = pathnameKey
+    .replace('[slug]', genericSlug || '')
+    .replace('[category]', genericSlug || '');
+
   languages['x-default'] =
-    languages['en'] || `${baseUrl}/en${pathnameKey.replace('[slug]', genericSlug || '')}`;
+    languages['en'] || `${baseUrl}/en${defaultPath}`;
 
   return {
-    url: languages['en'] || `${baseUrl}/en${pathnameKey.replace('[slug]', genericSlug || '')}`,
+    url: languages['en'] || `${baseUrl}/en${defaultPath}`,
     ...(lastMod ? { lastModified: lastMod } : {}),
     changeFrequency,
     priority,
@@ -103,11 +110,13 @@ export async function generateSitemaps() {
 export default async function sitemap({
   id,
 }: {
-  id: number;
+  id: number | string;
 }): Promise<MetadataRoute.Sitemap> {
+  const sitemapId = Number(id);
+
 
   // ─── SITEMAP 0: Static & Core Pages ──────────────
-  if (id === 0) {
+  if (sitemapId === 0) {
     return [
       buildEntry('/', 'daily', 1.0),
       buildEntry('/sitemap', 'weekly', 0.8),
@@ -134,7 +143,7 @@ export default async function sitemap({
   }
 
   // ─── SITEMAP 1 & 2: Calculator Pages ─────────────
-  if (id === 1 || id === 2) {
+  if (sitemapId === 1 || sitemapId === 2) {
     const allCalcSlugs: { slug: string; priority: number }[] = [];
     const processedSlugs = new Set<string>();
 
@@ -154,7 +163,7 @@ export default async function sitemap({
     const midpoint = allCalcSlugs.findIndex((c) => c.slug >= 'm');
     const splitIndex = midpoint === -1 ? Math.ceil(allCalcSlugs.length / 2) : midpoint;
 
-    const subset = id === 1
+    const subset = sitemapId === 1
       ? allCalcSlugs.slice(0, splitIndex)
       : allCalcSlugs.slice(splitIndex);
 
@@ -170,7 +179,7 @@ export default async function sitemap({
   }
 
   // ─── SITEMAP 3: Developer Tools ──────────────────
-  if (id === 3) {
+  if (sitemapId === 3) {
     const processedTools = new Set<string>();
 
     return developerToolSlugs
