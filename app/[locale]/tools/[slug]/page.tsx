@@ -8,6 +8,7 @@ import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
 import { FavoriteButton } from '../../../components/FavoriteButton';
+import { AdSenseContainer } from '../../../components/AdSenseContainer';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers } from 'lucide-react';
 
 const toolComponents: Record<string, React.ComponentType> = {
@@ -250,6 +251,11 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                   </Link>
                 ))}
               </div>
+            </div>
+
+            {/* Ad Placement Sidebar */}
+            <div className="sticky top-24 pt-4">
+              <AdSenseContainer slot="tools_sidebar" />
             </div>
           </div>
         </div>

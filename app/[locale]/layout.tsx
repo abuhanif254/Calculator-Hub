@@ -71,6 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 import { AuthProvider } from '../../app/components/AuthProvider';
+import Script from 'next/script';
 
 export default async function RootLayout({
   children,
@@ -85,21 +86,36 @@ export default async function RootLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
 
+  // Retrieve AdSense Client ID
+  const adClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+
   return (
     <html lang={locale} dir={['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning>
+      <head>
+        {adClientId && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClientId}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
+      </head>
       <body className={`${inter.variable} font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-slate-950 dark:text-slate-100`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AuthProvider>
               <SettingsProvider>
-                <div className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
+                <div id="global-header" className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
                   <GlobalSettingsBar />
                   <Navbar />
                 </div>
-                <div className="flex-1">
+                <div id="global-content" className="flex-1">
                   {children}
                 </div>
-                <Footer />
+                <div id="global-footer">
+                  <Footer />
+                </div>
               </SettingsProvider>
             </AuthProvider>
           </ThemeProvider>

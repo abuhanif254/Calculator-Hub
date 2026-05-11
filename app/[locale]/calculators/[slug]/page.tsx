@@ -9,6 +9,7 @@ import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
+import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { Link, routing } from "@/i18n/routing";
 import { Search, ChevronRight, CalculatorIcon } from "lucide-react";
 
@@ -253,16 +254,19 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             href={`/calculators/${calc.slug}`}
           />
 
-          {(() => {
-            const CalculatorView = getCalculatorComponent(calc.slug);
-            return <CalculatorView calcDef={calc} locale={resolvedParams.locale} />;
-          })()}
+          <div id="calculator-export-target" className="print-target">
+            {(() => {
+              const CalculatorView = getCalculatorComponent(calc.slug);
+              return <CalculatorView calcDef={calc} locale={resolvedParams.locale} />;
+            })()}
+          </div>
 
-          <ExportResultsPanel />
+          <ExportResultsPanel targetId="calculator-export-target" fileName={`${calc.slug}-results`} />
           <CalculatorMath slug={calc.slug} category={calc.category} />
 
-          {/* Ad Placeholder below calculator (Main Content) */}
-          <div className="my-10 w-full h-[90px] md:h-[250px]">
+          {/* Ad Placement below calculator (Main Content) */}
+          <div className="my-10 w-full">
+            <AdSenseContainer slot="calculator_content_bottom" style={{ minHeight: '90px' }} format="auto" />
           </div>
 
           {seoContent && (
@@ -306,7 +310,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </div>
 
           {/* Ad Space - Top Sidebar */}
-          <div className="w-full h-[250px]">
+          <div className="w-full">
+            <AdSenseContainer slot="calculator_sidebar_top" style={{ minHeight: '250px' }} />
           </div>
 
           {/* Page Links / Quick Navigation */}
@@ -333,7 +338,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </div>
 
           {/* Ad Space - Bottom Sidebar (Sticky option) */}
-          <div className="sticky top-8 w-full h-[600px]">
+          <div className="sticky top-24 w-full">
+            <AdSenseContainer slot="calculator_sidebar_sticky" style={{ minHeight: '600px' }} />
           </div>
 
         </aside>
