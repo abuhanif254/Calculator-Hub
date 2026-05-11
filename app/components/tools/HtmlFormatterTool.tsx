@@ -335,9 +335,9 @@ export function HtmlFormatterTool() {
         {/* Right Actions */}
         <div className="flex flex-wrap items-center gap-2">
           <input type="file" accept=".html,.htm,text/html" className="hidden" ref={fileInputRef} onChange={handleFileUpload} />
-          <Link href={"/tools/diff-checker" as any} onClick={handleCompare} className="p-2 text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-2 text-sm dark:text-slate-400" title="Compare HTML">
+          <button onClick={() => { handleCompare(); window.location.href = `/${document.documentElement.lang || 'en'}/tools/diff-checker`; }} className="p-2 text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-2 text-sm dark:text-slate-400" title="Compare HTML">
             <LinkIcon size={18} /> <span className="hidden lg:inline">Compare</span>
-          </Link>
+          </button>
           <button onClick={() => fileInputRef.current?.click()} className="p-2 text-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-2 text-sm dark:text-slate-400" title="Upload File">
             <Upload size={18} /> <span className="hidden lg:inline">Upload</span>
           </button>

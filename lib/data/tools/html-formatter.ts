@@ -90,6 +90,7 @@ Whether you are formatting sensitive corporate web pages or debugging local proj
 
   relatedTools: [
     { name: "JSON Formatter", slug: "json-formatter" },
-    { name: "Diff Checker", slug: "diff-checker" }
+    { name: "Diff Checker", slug: "diff-checker" },
+    { name: "CSS Beautifier", slug: "css-beautifier" }
   ]
 };

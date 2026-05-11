@@ -4,6 +4,7 @@ import { getToolConfig } from '../../../../lib/data/tools';
 import { JsonFormatterTool } from '../../../components/tools/JsonFormatterTool';
 import { DiffCheckerTool } from '../../../components/tools/DiffCheckerTool';
 import { HtmlFormatterTool } from '../../../components/tools/HtmlFormatterTool';
+import { CssBeautifierTool } from '../../../components/tools/CssBeautifierTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -14,7 +15,8 @@ import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers } fr
 const toolComponents: Record<string, React.ComponentType> = {
   "json-formatter": JsonFormatterTool,
   "diff-checker": DiffCheckerTool,
-  "html-formatter": HtmlFormatterTool
+  "html-formatter": HtmlFormatterTool,
+  "css-beautifier": CssBeautifierTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
