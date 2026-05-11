@@ -10,7 +10,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/api/',         // Internal API endpoints
-          '/_next/',       // Next.js build assets
           '/private/',     // Future admin / internal routes
         ],
       },
