@@ -72,6 +72,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 import { AuthProvider } from '../../app/components/AuthProvider';
 import { CommandPalette } from '../../app/components/CommandPalette';
+import { InstallPrompt } from '../../app/components/InstallPrompt';
 import Script from 'next/script';
 
 export default async function RootLayout({
@@ -93,6 +94,10 @@ export default async function RootLayout({
   return (
     <html lang={locale} dir={['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning>
       <head>
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Nexus" />
         {adClientId && (
           <Script
             async
@@ -118,6 +123,7 @@ export default async function RootLayout({
                   <Footer />
                 </div>
                 <CommandPalette />
+                <InstallPrompt />
               </SettingsProvider>
             </AuthProvider>
           </ThemeProvider>
