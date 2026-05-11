@@ -37,6 +37,7 @@ const developerToolSlugs: string[] = [
   'diff-checker',
   'html-formatter',
   'css-beautifier',
+  'js-beautifier',
 ];
 
 // ═══════════════════════════════════════════════════════

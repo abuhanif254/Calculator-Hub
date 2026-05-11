@@ -5,6 +5,7 @@ import { JsonFormatterTool } from '../../../components/tools/JsonFormatterTool';
 import { DiffCheckerTool } from '../../../components/tools/DiffCheckerTool';
 import { HtmlFormatterTool } from '../../../components/tools/HtmlFormatterTool';
 import { CssBeautifierTool } from '../../../components/tools/CssBeautifierTool';
+import { JsBeautifierTool } from '../../../components/tools/JsBeautifierTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -16,7 +17,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "json-formatter": JsonFormatterTool,
   "diff-checker": DiffCheckerTool,
   "html-formatter": HtmlFormatterTool,
-  "css-beautifier": CssBeautifierTool
+  "css-beautifier": CssBeautifierTool,
+  "js-beautifier": JsBeautifierTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
