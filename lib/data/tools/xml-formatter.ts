@@ -3,12 +3,14 @@ import { ToolConfig } from './types';
 export const xmlFormatterConfig: ToolConfig = {
   slug: "xml-formatter",
   title: "XML Formatter & Beautifier",
-  shortDescription: "Format, beautify, and minify your XML documents instantly. Validate XML structure, auto-indent tags, and identify syntax errors with this fast client-side tool.",
+  shortDescription: "Format, beautify, minify, validate, and convert XML documents instantly. Features syntax highlighting, tree view, XPath testing, XML-to-JSON conversion, and format presets — all client-side.",
   category: "Text & Formatting",
   keywords: [
     "xml formatter", "xml beautifier", "xml pretty print", "xml minifier", "format xml online",
     "xml parser", "xml validator", "beautify xml", "minify xml", "xml syntax checker",
-    "format xml", "clean xml", "xml to single line", "online xml editor"
+    "format xml", "clean xml", "xml to single line", "online xml editor",
+    "xml to json converter", "xpath tester", "xml tree viewer", "xml syntax highlighting",
+    "xml validation tool", "xml format presets", "xml url import"
   ],
 
   longDescription: `
@@ -18,10 +20,22 @@ Working with raw, unformatted XML can be incredibly frustrating. Whether you are
 XML (eXtensible Markup Language) relies heavily on nested tags to represent data structures. When this nesting loses its indentation, the code becomes nearly impossible to read. A reliable XML Formatter restructures your document by adding appropriate line breaks and indentation level for every parent and child element. It reconstructs the visual hierarchy so you can easily trace data flows and locate specific nodes.
 
 ### Powerful XML Validation
-Our formatter doesn't just make your code look pretty; it actively checks it for correctness. Built-in validation parses your XML in real-time, instantly detecting malformed tags, unclosed elements, or invalid characters. If an error is found, the tool highlights it so you can fix your syntax before deploying your configuration or sending your payload.
+Our formatter doesn't just make your code look pretty; it actively checks it for correctness. Built-in validation parses your XML in real-time, instantly detecting malformed tags, unclosed elements, or invalid characters. If an error is found, the tool highlights the exact line and column so you can fix your syntax before deploying your configuration or sending your payload.
 
 ### Fast XML Minification
 Sometimes you need the opposite of beautification. When transmitting XML over a network or storing it in a database, extra spaces and line breaks just consume unnecessary bandwidth and storage. This tool includes a robust **XML Minifier** that safely strips out all extraneous whitespace between tags, compressing your XML into a single dense string without corrupting the data structure.
+
+### XML to JSON Conversion
+Need to transform your XML data into JSON format? Our built-in **XML to JSON Converter** parses your XML document and outputs clean, properly formatted JSON. This is invaluable when migrating between data formats, integrating with REST APIs, or when you simply prefer JSON's more lightweight syntax.
+
+### Interactive Tree View
+Visualize the hierarchical structure of your XML with our **Tree View** mode. Every element, attribute, and text node is displayed in an expandable/collapsible tree, making it easy to navigate deeply nested documents and understand complex data relationships at a glance.
+
+### XPath Query Tester
+Test XPath expressions against your XML documents in real-time. Our **XPath Tester** lets you write queries, instantly see matching nodes, and debug your selectors — perfect for web scraping, XSLT development, and data extraction workflows.
+
+### Format Presets
+Choose from predefined formatting styles — Compact, Readable, Pretty Print, 2 Spaces, 4 Spaces, or Tabs — to match your project's coding standards without manual configuration.
 
 ### 100% Client-Side and Secure
 Privacy is critical when working with proprietary data feeds, API keys, or enterprise configurations. That's why our XML Formatter processes everything directly within your web browser. Your data is never transmitted to or stored on any external servers. You get instant, secure formatting with zero latency.
@@ -30,13 +44,17 @@ Privacy is critical when working with proprietary data feeds, API keys, or enter
   features: [
     "Instant XML beautification with configurable indentation (2 spaces, 4 spaces, or tabs)",
     "XML Minification to compress payloads and reduce file size",
-    "Real-time XML validation that detects syntax errors and malformed tags",
-    "Preservation of XML declarations, attributes, and CDATA sections",
-    "Format-on-paste support for a seamless workflow",
-    "Side-by-side editor layout for clear input/output comparison",
-    "Built-in file upload and download capabilities",
-    "Keyboard shortcuts (Ctrl+Enter to format, Ctrl+Shift+M to minify)",
-    "Dark mode support and responsive design",
+    "Real-time XML validation with line and column error reporting",
+    "Professional code editor with full XML syntax highlighting (Monaco Editor)",
+    "Interactive Tree View for visual XML hierarchy exploration",
+    "XML to JSON conversion with copy and download support",
+    "XPath query tester with live result matching",
+    "Format presets: Compact, Readable, Pretty, 2-Space, 4-Space, Tabs",
+    "Import XML from URL with CORS-safe fetching",
+    "Undo/Redo support and Word Wrap toggle",
+    "File upload and download capabilities",
+    "Dark mode and light mode support",
+    "Keyboard accessible with ARIA labels",
     "100% Client-side processing for absolute data privacy and security"
   ],
 
@@ -45,17 +63,21 @@ Privacy is critical when working with proprietary data feeds, API keys, or enter
     "Cleaning up auto-generated sitemaps or RSS feeds for manual review",
     "Minifying large XML configuration files before application deployment",
     "Validating manually edited XML to ensure there are no unclosed tags",
-    "Standardizing indentation across a team's configuration repositories",
+    "Converting XML data to JSON for use in modern JavaScript applications",
+    "Testing XPath expressions for web scraping and XSLT transformations",
+    "Visualizing complex XML hierarchies in tree view for documentation",
     "Extracting and reading XML payloads embedded within log files"
   ],
 
   howToSteps: [
-    "Paste your raw or minified XML into the 'Input' editor on the left, or use the 'Upload' button to load an .xml file.",
-    "Select your preferred indentation size (2 spaces, 4 spaces, or tabs) from the dropdown menu.",
-    "Click the 'Beautify' button to format the XML with proper nesting and line breaks.",
-    "To compress the XML, click the 'Minify' button to strip out all unnecessary whitespace.",
-    "If your XML contains syntax errors, the tool will display an alert with details about the malformed structure.",
-    "Once formatted or minified, use the 'Copy' or 'Download' buttons to save your processed XML."
+    "Paste your raw or minified XML into the 'Input' editor on the left, or use the 'Upload' button to load an .xml file, or import from a URL.",
+    "The tool instantly validates your XML and displays a status badge — green for valid, red for errors with line/column details.",
+    "Select your preferred indentation size or format preset from the dropdown menu.",
+    "Click 'Format' to beautify or 'Minify' to compress the XML.",
+    "Switch to 'Tree View' to visually explore the XML hierarchy with expand/collapse controls.",
+    "Use the 'XML to JSON' tab to convert your document to JSON format.",
+    "Use the 'XPath Tester' tab to query specific nodes in your XML.",
+    "Copy or download the output using the toolbar buttons."
   ],
 
   examples: [
@@ -75,30 +97,32 @@ Privacy is critical when working with proprietary data feeds, API keys, or enter
 
   faq: [
     {
-      question: "Is my XML data sent to a server for formatting?",
-      answer: "No. All formatting, minification, and validation are performed locally in your browser. We do not store, track, or intercept any of your XML data."
+      question: "What is an XML formatter?",
+      answer: "An XML formatter is a tool that takes raw, minified, or poorly indented XML code and restructures it with proper indentation, line breaks, and nesting to make it easy to read and debug. It can also minify XML by removing unnecessary whitespace."
     },
     {
-      question: "Can this tool handle very large XML files?",
-      answer: "Yes, because it runs entirely in your browser, it can handle large files up to the memory limits of your device. However, extremely large files (e.g., hundreds of megabytes) might cause your browser to slow down."
+      question: "Is this XML formatter safe?",
+      answer: "Yes, absolutely. All formatting, validation, conversion, and querying are performed locally in your web browser using client-side JavaScript. Your XML data is never sent to any server, ensuring complete privacy and security."
     },
     {
-      question: "Does the minifier remove XML comments?",
-      answer: "Standard minification typically removes unnecessary whitespace between tags but preserves the tags themselves. You can configure options to strip comments if needed."
+      question: "How do I validate XML?",
+      answer: "Simply paste your XML into the editor. The tool automatically validates your XML in real-time using the browser's native DOMParser. If any errors are found, a detailed error message is displayed with the exact line number and column number of the issue."
     },
     {
-      question: "What happens if my XML is invalid?",
-      answer: "The tool uses your browser's native XML parser to validate the document. If it encounters a syntax error (like a missing closing tag), it will display an error message and prevent formatting until the issue is resolved."
+      question: "Can I minify XML?",
+      answer: "Yes. Click the 'Minify' button in the toolbar to strip all unnecessary whitespace and line breaks from your XML, compressing it into a single dense line. This is useful for reducing payload size in API transmissions and storage."
     },
     {
-      question: "Does it support CDATA sections?",
-      answer: "Yes, CDATA sections (<![CDATA[ ... ]]>) are fully supported and will be preserved exactly as they are during formatting and minification."
+      question: "Does this tool work offline?",
+      answer: "Yes. Since all processing happens client-side in your browser, the XML Formatter works fully offline once the page is loaded. No internet connection is required for formatting, validation, or conversion operations."
     }
   ],
 
   relatedTools: [
     { name: "JSON Formatter", slug: "json-formatter" },
     { name: "HTML Formatter", slug: "html-formatter" },
+    { name: "CSS Beautifier", slug: "css-beautifier" },
+    { name: "JavaScript Beautifier", slug: "js-beautifier" },
     { name: "Diff Checker", slug: "diff-checker" }
   ]
 };
