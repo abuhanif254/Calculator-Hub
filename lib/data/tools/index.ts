@@ -5,6 +5,7 @@ import { htmlFormatterConfig } from './html-formatter';
 import { cssBeautifierConfig } from './css-beautifier';
 import { jsBeautifierConfig } from './js-beautifier';
 import { xmlFormatterConfig } from './xml-formatter';
+import { markdownPreviewerConfig } from './markdown-previewer';
 
 export * from './types';
 
@@ -15,9 +16,9 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [cssBeautifierConfig.slug]: cssBeautifierConfig,
   [jsBeautifierConfig.slug]: jsBeautifierConfig,
   [xmlFormatterConfig.slug]: xmlFormatterConfig,
+  [markdownPreviewerConfig.slug]: markdownPreviewerConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
   return allToolsConfig[slug];
 }
-
