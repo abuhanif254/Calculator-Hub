@@ -6,6 +6,7 @@ import { cssBeautifierConfig } from './css-beautifier';
 import { jsBeautifierConfig } from './js-beautifier';
 import { xmlFormatterConfig } from './xml-formatter';
 import { markdownPreviewerConfig } from './markdown-previewer';
+import { sqlFormatterConfig } from './sql-formatter';
 
 export * from './types';
 
@@ -17,6 +18,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [jsBeautifierConfig.slug]: jsBeautifierConfig,
   [xmlFormatterConfig.slug]: xmlFormatterConfig,
   [markdownPreviewerConfig.slug]: markdownPreviewerConfig,
+  [sqlFormatterConfig.slug]: sqlFormatterConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
