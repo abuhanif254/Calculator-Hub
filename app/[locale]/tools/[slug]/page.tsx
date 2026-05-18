@@ -8,6 +8,7 @@ import { CssBeautifierTool } from '../../../components/tools/CssBeautifierTool';
 import { JsBeautifierTool } from '../../../components/tools/JsBeautifierTool';
 import { XmlFormatterTool } from '../../../components/tools/XmlFormatterTool';
 import { MarkdownPreviewerTool } from '../../../components/tools/MarkdownPreviewerTool';
+import { SqlFormatterTool } from '../../../components/tools/SqlFormatterTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -22,7 +23,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "css-beautifier": CssBeautifierTool,
   "js-beautifier": JsBeautifierTool,
   "xml-formatter": XmlFormatterTool,
-  "markdown-previewer": MarkdownPreviewerTool
+  "markdown-previewer": MarkdownPreviewerTool,
+  "sql-formatter": SqlFormatterTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
