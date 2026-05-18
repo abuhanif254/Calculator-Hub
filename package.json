@@ -20,6 +20,7 @@
     "date-fns": "^4.1.0",
     "firebase": "^12.13.0",
     "gray-matter": "^4.0.3",
+    "highlight.js": "^11.11.1",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
@@ -40,6 +41,9 @@
     "react-katex": "^3.1.0",
     "react-markdown": "^10.1.0",
     "recharts": "^3.8.1",
+    "rehype-highlight": "^7.0.2",
+    "rehype-raw": "^7.0.0",
+    "remark-gfm": "^4.0.1",
     "serwist": "^9.5.11",
     "tailwind-merge": "^3.3.1",
     "terser": "^5.47.1"
