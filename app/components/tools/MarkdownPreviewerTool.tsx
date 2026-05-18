@@ -242,7 +242,7 @@ export function MarkdownPreviewerTool() {
     try {
       const html2canvas = (await import("html2canvas")).default;
       const jsPDF = (await import("jspdf")).default;
-      const canvas = await html2canvas(previewRef.current, { scale: 2, useCORS: true });
+      const canvas = await html2canvas(previewRef.current, { scale: 2, useCORS: true } as any);
       const imgData = canvas.toDataURL("image/png");
       const pdf = new jsPDF("p", "mm", "a4");
       const pageW = pdf.internal.pageSize.getWidth();
