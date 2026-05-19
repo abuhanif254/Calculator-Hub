@@ -11,6 +11,7 @@ import { yamlFormatterConfig } from './yaml-formatter';
 import { csvViewerConfig } from './csv-viewer';
 import { base64EncodeConfig } from './base64-encode';
 import { base64DecodeConfig } from './base64-decode';
+import { urlEncoderConfig } from './url-encoder';
 
 export * from './types';
 
@@ -27,6 +28,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [csvViewerConfig.slug]: csvViewerConfig,
   [base64EncodeConfig.slug]: base64EncodeConfig,
   [base64DecodeConfig.slug]: base64DecodeConfig,
+  [urlEncoderConfig.slug]: urlEncoderConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
