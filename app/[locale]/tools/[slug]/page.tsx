@@ -11,6 +11,7 @@ import { MarkdownPreviewerTool } from '../../../components/tools/MarkdownPreview
 import { SqlFormatterTool } from '../../../components/tools/SqlFormatterTool';
 import { YamlFormatterTool } from '../../../components/tools/YamlFormatterTool';
 import { CsvViewerTool } from '../../../components/tools/CsvViewerTool';
+import { Base64EncodeTool } from '../../../components/tools/Base64EncodeTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -28,7 +29,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "markdown-previewer": MarkdownPreviewerTool,
   "sql-formatter": SqlFormatterTool,
   "yaml-formatter": YamlFormatterTool,
-  "csv-viewer": CsvViewerTool
+  "csv-viewer": CsvViewerTool,
+  "base64-encode": Base64EncodeTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {

@@ -9,6 +9,7 @@ import { markdownPreviewerConfig } from './markdown-previewer';
 import { sqlFormatterConfig } from './sql-formatter';
 import { yamlFormatterConfig } from './yaml-formatter';
 import { csvViewerConfig } from './csv-viewer';
+import { base64EncodeConfig } from './base64-encode';
 
 export * from './types';
 
@@ -23,6 +24,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [sqlFormatterConfig.slug]: sqlFormatterConfig,
   [yamlFormatterConfig.slug]: yamlFormatterConfig,
   [csvViewerConfig.slug]: csvViewerConfig,
+  [base64EncodeConfig.slug]: base64EncodeConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
