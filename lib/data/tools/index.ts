@@ -8,6 +8,7 @@ import { xmlFormatterConfig } from './xml-formatter';
 import { markdownPreviewerConfig } from './markdown-previewer';
 import { sqlFormatterConfig } from './sql-formatter';
 import { yamlFormatterConfig } from './yaml-formatter';
+import { csvViewerConfig } from './csv-viewer';
 
 export * from './types';
 
@@ -21,6 +22,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [markdownPreviewerConfig.slug]: markdownPreviewerConfig,
   [sqlFormatterConfig.slug]: sqlFormatterConfig,
   [yamlFormatterConfig.slug]: yamlFormatterConfig,
+  [csvViewerConfig.slug]: csvViewerConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
