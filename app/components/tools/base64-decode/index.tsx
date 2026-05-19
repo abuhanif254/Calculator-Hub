@@ -8,7 +8,7 @@ import {
 import { useTheme } from "next-themes";
 import {
   decodeBase64ToText, isValidBase64, copyToClipboard, downloadFile,
-  formatBytes, base64ToBytes, encodeTextToBase64
+  formatBytes, base64ToBytes, encodeTextToBase64, bytesToBase64
 } from "../base64-encode/utils";
 
 // Detects image mime type from magic bytes
