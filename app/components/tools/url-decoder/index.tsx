@@ -9,13 +9,13 @@ import {
   encodeUrlString, decodeUrlString, parseQueryParams,
   buildQueryString, copyToClipboard, downloadFile,
   countReservedChars
-} from "./utils";
-import type { EncodingMode } from "./utils";
+} from "../url-encoder/utils";
+import type { EncodingMode } from "../url-encoder/utils";
 
 type ToolMode = "encode" | "decode";
 
-export function UrlEncoderTool() {
-  const [mode, setMode] = useState<ToolMode>("encode");
+export function UrlDecoderTool() {
+  const [mode, setMode] = useState<ToolMode>("decode");
   const [encodeMode, setEncodeMode] = useState<EncodingMode>("component");
   const [input, setInput] = useState<string>("");
   const [output, setOutput] = useState<string>("");
@@ -29,7 +29,7 @@ export function UrlEncoderTool() {
 
   // Load from local storage
   useEffect(() => {
-    const saved = localStorage.getItem("url_encoder_input");
+    const saved = localStorage.getItem("url_decoder_input");
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -43,7 +43,7 @@ export function UrlEncoderTool() {
   // Save to local storage
   useEffect(() => {
     const timer = setTimeout(() => {
-      localStorage.setItem("url_encoder_input", JSON.stringify({ input, mode, encodeMode }));
+      localStorage.setItem("url_decoder_input", JSON.stringify({ input, mode, encodeMode }));
     }, 500);
     return () => clearTimeout(timer);
   }, [input, mode, encodeMode]);
@@ -104,7 +104,7 @@ export function UrlEncoderTool() {
     setOutput("");
     setError(null);
     setQueryParams([]);
-    localStorage.removeItem("url_encoder_input");
+    localStorage.removeItem("url_decoder_input");
     showToast("Cleared");
   };
 
@@ -120,13 +120,7 @@ export function UrlEncoderTool() {
       const text = await navigator.clipboard.readText();
       if (text) {
         setInput(text);
-        // Smart detect: if contains %20 or %22 etc, probably should decode
-        if (/%[0-9A-Fa-f]{2}/.test(text) && mode === "encode") {
-          setMode("decode");
-          showToast("Detected encoded string - Switched to Decode");
-        } else {
-          showToast("Pasted from clipboard");
-        }
+        showToast("Pasted from clipboard");
       }
     } catch {
       showToast("Could not paste from clipboard");
@@ -206,13 +200,13 @@ export function UrlEncoderTool() {
         
         <div className="flex items-center gap-2">
           <div className="bg-slate-100 dark:bg-slate-800 p-1 rounded-lg flex items-center">
-            <button onClick={() => setMode("encode")}
-              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors \${mode === "encode" ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"}`}>
-              Encode
-            </button>
             <button onClick={() => setMode("decode")}
-              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors \${mode === "decode" ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"}`}>
+              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${mode === "decode" ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"}`}>
               Decode
+            </button>
+            <button onClick={() => setMode("encode")}
+              className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${mode === "encode" ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"}`}>
+              Encode
             </button>
           </div>
           <button onClick={swapModes} title="Swap Mode & Content" className="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
@@ -224,13 +218,13 @@ export function UrlEncoderTool() {
           
           <div className="flex items-center bg-slate-50 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
              <button onClick={() => setEncodeMode('component')}
-               className={`px-3 py-1.5 rounded text-xs font-medium transition-colors \${encodeMode === 'component' ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"}`}
-               title="encodeURIComponent - Encodes slashes and question marks (Best for query params)">
+               className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${encodeMode === 'component' ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"}`}
+               title="decodeURIComponent - Decodes strictly, including structure (Best for parameters)">
                Component Mode
              </button>
              <button onClick={() => setEncodeMode('uri')}
-               className={`px-3 py-1.5 rounded text-xs font-medium transition-colors \${encodeMode === 'uri' ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"}`}
-               title="encodeURI - Leaves slashes and structure intact (Best for full URLs)">
+               className={`px-3 py-1.5 rounded text-xs font-medium transition-colors ${encodeMode === 'uri' ? "bg-white dark:bg-slate-700 shadow-sm text-slate-900 dark:text-white" : "text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"}`}
+               title="decodeURI - Decodes full URLs correctly">
                Full URL Mode
              </button>
           </div>
@@ -264,7 +258,7 @@ export function UrlEncoderTool() {
           <div className="flex-1 relative">
             <textarea 
               value={input} onChange={e => setInput(e.target.value)}
-              placeholder={mode === "encode" ? "Paste URL or text here to safely percent-encode it..." : "Paste encoded %20 string here..."}
+              placeholder={mode === "encode" ? "Paste text here to encode..." : "Paste encoded %20 string here to decode..."}
               className="absolute inset-0 w-full h-full p-4 resize-none outline-none bg-transparent text-slate-800 dark:text-slate-200 font-mono text-sm custom-scrollbar break-all"
               spellCheck={false}
             />
@@ -300,6 +294,7 @@ export function UrlEncoderTool() {
               <div className="flex flex-col items-center justify-center h-full p-6 text-center text-red-500">
                 <AlertTriangle size={32} className="mb-2 opacity-80" />
                 <p className="font-medium text-sm">{error}</p>
+                <p className="text-xs mt-2 opacity-70">Check if your string contains invalid '%' signs.</p>
               </div>
             ) : (
               <textarea 
