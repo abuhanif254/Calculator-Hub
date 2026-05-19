@@ -92,7 +92,7 @@ export function Base64DecodeTool() {
   const handleDownloadBinary = () => {
     if (!imageData) return;
     const ext = imageData.mime.split('/')[1] || 'bin';
-    const blob = new Blob([imageData.rawBytes], { type: imageData.mime });
+    const blob = new Blob([imageData.rawBytes as any], { type: imageData.mime });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
