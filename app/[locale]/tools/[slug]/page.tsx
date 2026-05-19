@@ -14,6 +14,7 @@ import { CsvViewerTool } from '../../../components/tools/CsvViewerTool';
 import { Base64EncodeTool } from '../../../components/tools/Base64EncodeTool';
 import { Base64DecodeTool } from '../../../components/tools/Base64DecodeTool';
 import { UrlEncoderTool } from '../../../components/tools/UrlEncoderTool';
+import { UrlDecoderTool } from '../../../components/tools/UrlDecoderTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -34,7 +35,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "csv-viewer": CsvViewerTool,
   "base64-encode": Base64EncodeTool,
   "base64-decode": Base64DecodeTool,
-  "url-encoder": UrlEncoderTool
+  "url-encoder": UrlEncoderTool,
+  "url-decoder": UrlDecoderTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
