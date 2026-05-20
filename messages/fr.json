@@ -1257,5 +1257,9 @@
     "fileUpload": "Charger un fichier",
     "fileDrop": "Cliquez pour charger ou glissez-déposez un fichier ici",
     "fileSelected": "Fichier sélectionné"
+  },
+  "QrCodeGenerator": {
+    "title": "Générateur & Concepteur de Code QR",
+    "subtitle": "Générez et personnalisez des codes QR de manière dynamique et hors ligne pour les URL, le Wi-Fi, les contacts, les e-mails et la crypto."
   }
 }

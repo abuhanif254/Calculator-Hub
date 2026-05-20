@@ -1257,5 +1257,9 @@
     "fileUpload": "Datei-Upload",
     "fileDrop": "Klicken Sie zum Hochladen oder ziehen Sie eine Datei hierher",
     "fileSelected": "Datei ausgewählt"
+  },
+  "QrCodeGenerator": {
+    "title": "QR-Code-Generator & Designer",
+    "subtitle": "Erstellen und gestalten Sie personalisierte QR-Codes offline für URLs, WLAN, Kontakte, E-Mails und Krypto."
   }
 }

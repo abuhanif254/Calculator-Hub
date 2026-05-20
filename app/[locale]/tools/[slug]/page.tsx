@@ -21,6 +21,7 @@ import { Md5GeneratorTool } from '../../../components/tools/Md5GeneratorTool';
 import { Sha256GeneratorTool } from '../../../components/tools/Sha256GeneratorTool';
 import { PasswordGeneratorTool } from '../../../components/tools/PasswordGeneratorTool';
 import { HmacGeneratorTool } from '../../../components/tools/HmacGeneratorTool';
+import { QrCodeGeneratorTool } from '../../../components/tools/QrCodeGeneratorTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -48,7 +49,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "md5-generator": Md5GeneratorTool,
   "sha256-generator": Sha256GeneratorTool,
   "password-generator": PasswordGeneratorTool,
-  "hmac-generator": HmacGeneratorTool
+  "hmac-generator": HmacGeneratorTool,
+  "qr-code-generator": QrCodeGeneratorTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
