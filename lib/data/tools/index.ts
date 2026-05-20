@@ -14,6 +14,7 @@ import { base64DecodeConfig } from './base64-decode';
 import { urlEncoderConfig } from './url-encoder';
 import { urlDecoderConfig } from './url-decoder';
 import { jwtDecoderConfig } from './jwt-decoder';
+import { hashGeneratorConfig } from './hash-generator';
 
 export * from './types';
 
@@ -33,6 +34,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [urlEncoderConfig.slug]: urlEncoderConfig,
   [urlDecoderConfig.slug]: urlDecoderConfig,
   [jwtDecoderConfig.slug]: jwtDecoderConfig,
+  [hashGeneratorConfig.slug]: hashGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
