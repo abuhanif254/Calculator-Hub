@@ -181,6 +181,7 @@ Our Advanced MD5 Generator processes everything 100% locally within your browser
   ],
 
   relatedTools: [
+    { name: "HMAC Generator", slug: "hmac-generator" },
     { name: "Password Generator", slug: "password-generator" },
     { name: "Hash Generator", slug: "hash-generator" },
     { name: "SHA256 Generator", slug: "sha256-generator" },

@@ -1238,5 +1238,24 @@
     "lowInterestOption": "Low Interest Option",
     "savings": "You save {amount} by choosing {option}!",
     "principal": "Principal Amount"
+  },
+  "HmacGenerator": {
+    "title": "HMAC Generator & Verifier",
+    "subtitle": "Securely sign messages and files using HMAC (SHA256, SHA512, SHA1, MD5) completely client-side.",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "download": "Download",
+    "secretKey": "Secret Key",
+    "message": "Message/Payload",
+    "algorithm": "HMAC Algorithm",
+    "outputCase": "Output Signature Case",
+    "lowercase": "lowercase",
+    "uppercase": "UPPERCASE",
+    "clear": "Clear",
+    "compare": "Compare Signature",
+    "history": "Signature History Log",
+    "fileUpload": "File Upload",
+    "fileDrop": "Click to upload or drag & drop file",
+    "fileSelected": "File selected"
   }
 }

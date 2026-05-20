@@ -1238,5 +1238,24 @@
     "lowInterestOption": "Option de Taux Bas",
     "savings": "Vous économisez {amount} en choisissant {option}!",
     "principal": "Montant Principal"
+  },
+  "HmacGenerator": {
+    "title": "Générateur & Vérificateur HMAC",
+    "subtitle": "Signez des messages et des fichiers en toute sécurité avec HMAC (SHA256, SHA512, SHA1, MD5) entièrement côté client.",
+    "copy": "Copier",
+    "copied": "Copié !",
+    "download": "Télécharger",
+    "secretKey": "Clé Secrète",
+    "message": "Message / Charge utile",
+    "algorithm": "Algorithme HMAC",
+    "outputCase": "Casse de la signature",
+    "lowercase": "minuscule",
+    "uppercase": "MAJUSCULE",
+    "clear": "Effacer",
+    "compare": "Comparer la signature",
+    "history": "Journal d'historique des signatures",
+    "fileUpload": "Charger un fichier",
+    "fileDrop": "Cliquez pour charger ou glissez-déposez un fichier ici",
+    "fileSelected": "Fichier sélectionné"
   }
 }

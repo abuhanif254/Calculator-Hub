@@ -225,6 +225,7 @@ Our Advanced Password Generator tool operates with **absolute local execution**:
   ],
 
   relatedTools: [
+    { name: "HMAC Generator", slug: "hmac-generator" },
     { name: "SHA256 Generator", slug: "sha256-generator" },
     { name: "MD5 Generator", slug: "md5-generator" },
     { name: "Hash Generator", slug: "hash-generator" },
