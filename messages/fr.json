@@ -1102,6 +1102,7 @@
     "resIpClass": "Classe du Réseau"
   },
   "PasswordGenerator": {
+    "title": "Générateur de Mots de Passe",
     "subtitle": "Généré localement pour votre vie privée.",
     "copy": "Copier",
     "copied": "Copié !",

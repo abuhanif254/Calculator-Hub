@@ -189,6 +189,7 @@ Our Advanced Hash Generator processes everything 100% locally within your browse
   ],
 
   relatedTools: [
+    { name: "Password Generator", slug: "password-generator" },
     { name: "SHA256 Generator", slug: "sha256-generator" },
     { name: "JWT Decoder Tool", slug: "jwt-decoder" },
     { name: "Base64 Encode Tool", slug: "base64-encode" },
