@@ -21,6 +21,7 @@ import { passwordGeneratorConfig } from './password-generator';
 import { hmacGeneratorConfig } from './hmac-generator';
 import { qrCodeGeneratorConfig } from './qr-code-generator';
 import { metaTagGeneratorConfig } from './meta-tag-generator';
+import { openGraphGeneratorConfig } from './open-graph-generator';
 
 export * from './types';
 
@@ -47,6 +48,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [hmacGeneratorConfig.slug]: hmacGeneratorConfig,
   [qrCodeGeneratorConfig.slug]: qrCodeGeneratorConfig,
   [metaTagGeneratorConfig.slug]: metaTagGeneratorConfig,
+  [openGraphGeneratorConfig.slug]: openGraphGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
