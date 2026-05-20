@@ -20,6 +20,7 @@ import { sha256GeneratorConfig } from './sha256-generator';
 import { passwordGeneratorConfig } from './password-generator';
 import { hmacGeneratorConfig } from './hmac-generator';
 import { qrCodeGeneratorConfig } from './qr-code-generator';
+import { metaTagGeneratorConfig } from './meta-tag-generator';
 
 export * from './types';
 
@@ -45,6 +46,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [passwordGeneratorConfig.slug]: passwordGeneratorConfig,
   [hmacGeneratorConfig.slug]: hmacGeneratorConfig,
   [qrCodeGeneratorConfig.slug]: qrCodeGeneratorConfig,
+  [metaTagGeneratorConfig.slug]: metaTagGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
