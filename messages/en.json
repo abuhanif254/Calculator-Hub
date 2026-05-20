@@ -1102,6 +1102,7 @@
     "resIpClass": "Network Class"
   },
   "PasswordGenerator": {
+    "title": "Advanced Password Generator",
     "subtitle": "Client-side generation limits data exposure.",
     "copy": "Copy",
     "copied": "Copied!",

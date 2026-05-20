@@ -1102,6 +1102,7 @@
     "resIpClass": "Netzwerkklasse"
   },
   "PasswordGenerator": {
+    "title": "Passwort-Generator",
     "subtitle": "Im Browser generiert für maximalen Datenschutz.",
     "copy": "Kopieren",
     "copied": "Kopiert!",

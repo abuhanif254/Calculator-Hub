@@ -234,6 +234,7 @@ Our Advanced SHA256 Generator tool is built with a **security-first mindset**:
   ],
 
   relatedTools: [
+    { name: "Password Generator", slug: "password-generator" },
     { name: "MD5 Generator", slug: "md5-generator" },
     { name: "Hash Generator", slug: "hash-generator" },
     { name: "Base64 Encode", slug: "base64-encode" },

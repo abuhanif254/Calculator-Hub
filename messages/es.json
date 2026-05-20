@@ -1102,6 +1102,7 @@
     "resIpClass": "Clase de Red"
   },
   "PasswordGenerator": {
+    "title": "Generador de Contraseñas",
     "subtitle": "Generación local para la privacidad total.",
     "copy": "Copiar",
     "copied": "¡Copiada!",
