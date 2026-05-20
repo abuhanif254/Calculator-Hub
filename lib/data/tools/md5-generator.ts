@@ -182,6 +182,7 @@ Our Advanced MD5 Generator processes everything 100% locally within your browser
 
   relatedTools: [
     { name: "Hash Generator", slug: "hash-generator" },
+    { name: "SHA256 Generator", slug: "sha256-generator" },
     { name: "Base64 Encode", slug: "base64-encode" },
     { name: "Base64 Decode", slug: "base64-decode" },
     { name: "JWT Decoder", slug: "jwt-decoder" },
