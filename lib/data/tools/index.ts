@@ -19,6 +19,7 @@ import { md5GeneratorConfig } from './md5-generator';
 import { sha256GeneratorConfig } from './sha256-generator';
 import { passwordGeneratorConfig } from './password-generator';
 import { hmacGeneratorConfig } from './hmac-generator';
+import { qrCodeGeneratorConfig } from './qr-code-generator';
 
 export * from './types';
 
@@ -43,6 +44,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [sha256GeneratorConfig.slug]: sha256GeneratorConfig,
   [passwordGeneratorConfig.slug]: passwordGeneratorConfig,
   [hmacGeneratorConfig.slug]: hmacGeneratorConfig,
+  [qrCodeGeneratorConfig.slug]: qrCodeGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

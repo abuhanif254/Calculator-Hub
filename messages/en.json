@@ -1257,5 +1257,9 @@
     "fileUpload": "File Upload",
     "fileDrop": "Click to upload or drag & drop file",
     "fileSelected": "File selected"
+  },
+  "QrCodeGenerator": {
+    "title": "QR Code Generator & Designer",
+    "subtitle": "Generate fully customizable QR codes dynamically offline for URLs, WiFi, contacts, emails, and crypto."
   }
 }

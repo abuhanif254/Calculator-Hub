@@ -191,12 +191,12 @@ Our Advanced Hash Generator processes everything 100% locally within your browse
   relatedTools: [
     { name: "HMAC Generator", slug: "hmac-generator" },
     { name: "Password Generator", slug: "password-generator" },
+    { name: "QR Code Generator", slug: "qr-code-generator" },
     { name: "SHA256 Generator", slug: "sha256-generator" },
     { name: "JWT Decoder Tool", slug: "jwt-decoder" },
     { name: "Base64 Encode Tool", slug: "base64-encode" },
     { name: "Base64 Decode Tool", slug: "base64-decode" },
     { name: "URL Encoder", slug: "url-encoder" },
-    { name: "JSON Formatter", slug: "json-formatter" },
-    { name: "Hash Generator", slug: "hash-generator" }
+    { name: "JSON Formatter", slug: "json-formatter" }
   ]
 };

@@ -227,11 +227,12 @@ Our Advanced Password Generator tool operates with **absolute local execution**:
   relatedTools: [
     { name: "HMAC Generator", slug: "hmac-generator" },
     { name: "SHA256 Generator", slug: "sha256-generator" },
+    { name: "QR Code Generator", slug: "qr-code-generator" },
     { name: "MD5 Generator", slug: "md5-generator" },
     { name: "Hash Generator", slug: "hash-generator" },
-    { name: "JWT Decoder", slug: "jwt-decoder" },
     { name: "Base64 Encode", slug: "base64-encode" },
     { name: "Base64 Decode", slug: "base64-decode" },
+    { name: "JWT Decoder", slug: "jwt-decoder" },
     { name: "URL Encoder", slug: "url-encoder" },
     { name: "URL Decoder", slug: "url-decoder" }
   ]

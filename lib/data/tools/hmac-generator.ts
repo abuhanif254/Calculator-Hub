@@ -232,6 +232,7 @@ To maintain high cryptographic security, follow these best practices in your app
     { name: "MD5 Generator", slug: "md5-generator" },
     { name: "Hash Generator", slug: "hash-generator" },
     { name: "Password Generator", slug: "password-generator" },
+    { name: "QR Code Generator", slug: "qr-code-generator" },
     { name: "JWT Decoder", slug: "jwt-decoder" },
     { name: "Base64 Encode", slug: "base64-encode" },
     { name: "Base64 Decode", slug: "base64-decode" },
