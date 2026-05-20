@@ -18,6 +18,7 @@ import { hashGeneratorConfig } from './hash-generator';
 import { md5GeneratorConfig } from './md5-generator';
 import { sha256GeneratorConfig } from './sha256-generator';
 import { passwordGeneratorConfig } from './password-generator';
+import { hmacGeneratorConfig } from './hmac-generator';
 
 export * from './types';
 
@@ -41,6 +42,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [md5GeneratorConfig.slug]: md5GeneratorConfig,
   [sha256GeneratorConfig.slug]: sha256GeneratorConfig,
   [passwordGeneratorConfig.slug]: passwordGeneratorConfig,
+  [hmacGeneratorConfig.slug]: hmacGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
