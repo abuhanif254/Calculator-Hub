@@ -17,6 +17,7 @@ import { UrlEncoderTool } from '../../../components/tools/UrlEncoderTool';
 import { UrlDecoderTool } from '../../../components/tools/UrlDecoderTool';
 import { JwtDecoderTool } from '../../../components/tools/JwtDecoderTool';
 import { HashGeneratorTool } from '../../../components/tools/HashGeneratorTool';
+import { Md5GeneratorTool } from '../../../components/tools/Md5GeneratorTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -40,7 +41,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "url-encoder": UrlEncoderTool,
   "url-decoder": UrlDecoderTool,
   "jwt-decoder": JwtDecoderTool,
-  "hash-generator": HashGeneratorTool
+  "hash-generator": HashGeneratorTool,
+  "md5-generator": Md5GeneratorTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {

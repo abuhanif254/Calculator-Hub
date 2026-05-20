@@ -15,6 +15,7 @@ import { urlEncoderConfig } from './url-encoder';
 import { urlDecoderConfig } from './url-decoder';
 import { jwtDecoderConfig } from './jwt-decoder';
 import { hashGeneratorConfig } from './hash-generator';
+import { md5GeneratorConfig } from './md5-generator';
 
 export * from './types';
 
@@ -35,6 +36,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [urlDecoderConfig.slug]: urlDecoderConfig,
   [jwtDecoderConfig.slug]: jwtDecoderConfig,
   [hashGeneratorConfig.slug]: hashGeneratorConfig,
+  [md5GeneratorConfig.slug]: md5GeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
