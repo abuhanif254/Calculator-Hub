@@ -22,6 +22,7 @@ import { hmacGeneratorConfig } from './hmac-generator';
 import { qrCodeGeneratorConfig } from './qr-code-generator';
 import { metaTagGeneratorConfig } from './meta-tag-generator';
 import { openGraphGeneratorConfig } from './open-graph-generator';
+import { twitterCardGeneratorConfig } from './twitter-card-generator';
 
 export * from './types';
 
@@ -49,6 +50,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [qrCodeGeneratorConfig.slug]: qrCodeGeneratorConfig,
   [metaTagGeneratorConfig.slug]: metaTagGeneratorConfig,
   [openGraphGeneratorConfig.slug]: openGraphGeneratorConfig,
+  [twitterCardGeneratorConfig.slug]: twitterCardGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

@@ -24,6 +24,7 @@ import { HmacGeneratorTool } from '../../../components/tools/HmacGeneratorTool';
 import { QrCodeGeneratorTool } from '../../../components/tools/QrCodeGeneratorTool';
 import { MetaTagGeneratorTool } from '../../../components/tools/meta-tag-generator';
 import { OpenGraphGeneratorTool } from '../../../components/tools/open-graph-generator';
+import { TwitterCardGeneratorTool } from '../../../components/tools/twitter-card-generator';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -54,7 +55,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "hmac-generator": HmacGeneratorTool,
   "qr-code-generator": QrCodeGeneratorTool,
   "meta-tag-generator": MetaTagGeneratorTool,
-  "open-graph-generator": OpenGraphGeneratorTool
+  "open-graph-generator": OpenGraphGeneratorTool,
+  "twitter-card-generator": TwitterCardGeneratorTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
