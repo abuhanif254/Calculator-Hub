@@ -16,6 +16,7 @@ import { Base64DecodeTool } from '../../../components/tools/Base64DecodeTool';
 import { UrlEncoderTool } from '../../../components/tools/UrlEncoderTool';
 import { UrlDecoderTool } from '../../../components/tools/UrlDecoderTool';
 import { JwtDecoderTool } from '../../../components/tools/JwtDecoderTool';
+import { HashGeneratorTool } from '../../../components/tools/HashGeneratorTool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -38,7 +39,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "base64-decode": Base64DecodeTool,
   "url-encoder": UrlEncoderTool,
   "url-decoder": UrlDecoderTool,
-  "jwt-decoder": JwtDecoderTool
+  "jwt-decoder": JwtDecoderTool,
+  "hash-generator": HashGeneratorTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
