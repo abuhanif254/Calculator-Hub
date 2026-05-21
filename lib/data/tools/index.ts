@@ -24,6 +24,7 @@ import { metaTagGeneratorConfig } from './meta-tag-generator';
 import { openGraphGeneratorConfig } from './open-graph-generator';
 import { twitterCardGeneratorConfig } from './twitter-card-generator';
 import { robotsTxtGeneratorConfig } from './robots-txt-generator';
+import { sitemapXmlGeneratorConfig } from './sitemap-xml-generator';
 
 export * from './types';
 
@@ -53,6 +54,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [openGraphGeneratorConfig.slug]: openGraphGeneratorConfig,
   [twitterCardGeneratorConfig.slug]: twitterCardGeneratorConfig,
   [robotsTxtGeneratorConfig.slug]: robotsTxtGeneratorConfig,
+  [sitemapXmlGeneratorConfig.slug]: sitemapXmlGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
