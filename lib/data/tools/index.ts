@@ -27,6 +27,7 @@ import { robotsTxtGeneratorConfig } from './robots-txt-generator';
 import { sitemapXmlGeneratorConfig } from './sitemap-xml-generator';
 import { htaccessGeneratorConfig } from './htaccess-generator';
 import { responsiveScreenTesterConfig } from './responsive-screen-tester';
+import { httpHeaderCheckerConfig } from './http-header-checker';
 
 export * from './types';
 
@@ -59,6 +60,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [sitemapXmlGeneratorConfig.slug]: sitemapXmlGeneratorConfig,
   [htaccessGeneratorConfig.slug]: htaccessGeneratorConfig,
   [responsiveScreenTesterConfig.slug]: responsiveScreenTesterConfig,
+  [httpHeaderCheckerConfig.slug]: httpHeaderCheckerConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
