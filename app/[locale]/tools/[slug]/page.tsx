@@ -33,6 +33,7 @@ import { HttpHeaderCheckerTool } from '../../../components/tools/http-header-che
 import { RedirectCheckerTool } from '../../../components/tools/redirect-checker';
 import { WebsiteScreenshotTool } from '../../../components/tools/website-screenshot-tool';
 import { DnsLookupTool } from '../../../components/tools/dns-lookup';
+import { IpLookupTool } from '../../../components/tools/ip-lookup';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -72,7 +73,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "http-header-checker": HttpHeaderCheckerTool,
   "redirect-checker": RedirectCheckerTool,
   "website-screenshot-tool": WebsiteScreenshotTool,
-  "dns-lookup": DnsLookupTool
+  "dns-lookup": DnsLookupTool,
+  "ip-lookup": IpLookupTool
 };
 
 

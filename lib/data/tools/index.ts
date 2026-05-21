@@ -31,6 +31,7 @@ import { httpHeaderCheckerConfig } from './http-header-checker';
 import { redirectCheckerConfig } from './redirect-checker';
 import { websiteScreenshotToolConfig } from './website-screenshot-tool';
 import { dnsLookupConfig } from './dns-lookup';
+import { ipLookupConfig } from './ip-lookup';
 
 export * from './types';
 
@@ -67,6 +68,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [redirectCheckerConfig.slug]: redirectCheckerConfig,
   [websiteScreenshotToolConfig.slug]: websiteScreenshotToolConfig,
   [dnsLookupConfig.slug]: dnsLookupConfig,
+  [ipLookupConfig.slug]: ipLookupConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
