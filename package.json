@@ -56,7 +56,8 @@
     "serwist": "^9.5.11",
     "sql-formatter": "^15.8.0",
     "tailwind-merge": "^3.3.1",
-    "terser": "^5.47.1"
+    "terser": "^5.47.1",
+    "ua-parser-js": "^2.0.10"
   },
   "devDependencies": {
     "@firebase/eslint-plugin-security-rules": "^0.0.2",

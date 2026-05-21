@@ -32,6 +32,7 @@ import { redirectCheckerConfig } from './redirect-checker';
 import { websiteScreenshotToolConfig } from './website-screenshot-tool';
 import { dnsLookupConfig } from './dns-lookup';
 import { ipLookupConfig } from './ip-lookup';
+import { userAgentParserConfig } from './user-agent-parser';
 
 export * from './types';
 
@@ -69,6 +70,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [websiteScreenshotToolConfig.slug]: websiteScreenshotToolConfig,
   [dnsLookupConfig.slug]: dnsLookupConfig,
   [ipLookupConfig.slug]: ipLookupConfig,
+  [userAgentParserConfig.slug]: userAgentParserConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

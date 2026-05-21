@@ -34,6 +34,7 @@ import { RedirectCheckerTool } from '../../../components/tools/redirect-checker'
 import { WebsiteScreenshotTool } from '../../../components/tools/website-screenshot-tool';
 import { DnsLookupTool } from '../../../components/tools/dns-lookup';
 import { IpLookupTool } from '../../../components/tools/ip-lookup';
+import { UserAgentParserTool } from '../../../components/tools/user-agent-parser';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -74,7 +75,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "redirect-checker": RedirectCheckerTool,
   "website-screenshot-tool": WebsiteScreenshotTool,
   "dns-lookup": DnsLookupTool,
-  "ip-lookup": IpLookupTool
+  "ip-lookup": IpLookupTool,
+  "user-agent-parser": UserAgentParserTool
 };
 
 
