@@ -1,4 +1,4 @@
-import { calculators } from '@/lib/data/calculators';
+import { allTools } from '@/lib/registry';
 
 // ═══════════════════════════════════════════════════════
 // LINK RESOLVER — Single source of truth for title→href mapping.
@@ -9,8 +9,9 @@ import { calculators } from '@/lib/data/calculators';
 // Build the slug map once at module load time
 const titleToHrefMap = new Map<string, string>();
 
-calculators.forEach((calc) => {
-  titleToHrefMap.set(calc.title, `/calculators/${calc.slug}`);
+allTools.forEach((tool) => {
+  titleToHrefMap.set(tool.title, tool.href);
+  titleToHrefMap.set(tool.slug, tool.href);
 });
 
 // Handle edge cases where sitemapData.ts titles don't exactly match calculator titles
@@ -46,17 +47,20 @@ export function resolveHref(title: string): string {
 
   // Auto-generate slug from title as a best-effort fallback
   // This handles cases where sitemapData.ts has titles like "BMI Calculator"
-  // that we haven't manually mapped
+  // that we haven't manually mapped.
+  // We replace dots with dashes first to correctly handle robots.txt and sitemap.xml.
   const generatedSlug = title
     .toLowerCase()
+    .replace(/\./g, '-')
     .replace(/[^a-z0-9\s-]/g, '')
     .replace(/\s+/g, '-')
-    .replace(/(^-|-$)+/g, '');
+    .replace(/(^-|-$)+/g, '')
+    .replace(/-+/g, '-');
 
-  // Check if a calculator exists with this generated slug
-  const calcBySlug = calculators.find(c => c.slug === generatedSlug);
-  if (calcBySlug) {
-    return `/calculators/${generatedSlug}`;
+  // Check if a tool exists with this generated slug
+  const toolBySlug = allTools.find((t) => t.slug === generatedSlug);
+  if (toolBySlug) {
+    return toolBySlug.href;
   }
 
   return '/sitemap';

@@ -23,6 +23,7 @@ import { qrCodeGeneratorConfig } from './qr-code-generator';
 import { metaTagGeneratorConfig } from './meta-tag-generator';
 import { openGraphGeneratorConfig } from './open-graph-generator';
 import { twitterCardGeneratorConfig } from './twitter-card-generator';
+import { robotsTxtGeneratorConfig } from './robots-txt-generator';
 
 export * from './types';
 
@@ -51,6 +52,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [metaTagGeneratorConfig.slug]: metaTagGeneratorConfig,
   [openGraphGeneratorConfig.slug]: openGraphGeneratorConfig,
   [twitterCardGeneratorConfig.slug]: twitterCardGeneratorConfig,
+  [robotsTxtGeneratorConfig.slug]: robotsTxtGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
