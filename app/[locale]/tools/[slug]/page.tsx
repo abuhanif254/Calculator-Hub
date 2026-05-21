@@ -27,6 +27,7 @@ import { OpenGraphGeneratorTool } from '../../../components/tools/open-graph-gen
 import { TwitterCardGeneratorTool } from '../../../components/tools/twitter-card-generator';
 import { RobotsTxtGeneratorTool } from '../../../components/tools/robots-txt-generator';
 import { SitemapXmlGeneratorTool } from '../../../components/tools/sitemap-xml-generator';
+import { HtaccessGeneratorTool } from '../../../components/tools/htaccess-generator';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -60,7 +61,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "open-graph-generator": OpenGraphGeneratorTool,
   "twitter-card-generator": TwitterCardGeneratorTool,
   "robots-txt-generator": RobotsTxtGeneratorTool,
-  "sitemap-xml-generator": SitemapXmlGeneratorTool
+  "sitemap-xml-generator": SitemapXmlGeneratorTool,
+  "htaccess-generator": HtaccessGeneratorTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {

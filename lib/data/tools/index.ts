@@ -25,6 +25,7 @@ import { openGraphGeneratorConfig } from './open-graph-generator';
 import { twitterCardGeneratorConfig } from './twitter-card-generator';
 import { robotsTxtGeneratorConfig } from './robots-txt-generator';
 import { sitemapXmlGeneratorConfig } from './sitemap-xml-generator';
+import { htaccessGeneratorConfig } from './htaccess-generator';
 
 export * from './types';
 
@@ -55,8 +56,10 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [twitterCardGeneratorConfig.slug]: twitterCardGeneratorConfig,
   [robotsTxtGeneratorConfig.slug]: robotsTxtGeneratorConfig,
   [sitemapXmlGeneratorConfig.slug]: sitemapXmlGeneratorConfig,
+  [htaccessGeneratorConfig.slug]: htaccessGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
   return allToolsConfig[slug];
 }
+
