@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Link, resolveIntlHref } from "../../i18n/routing";
-import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell } from "lucide-react";
+import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell, DollarSign, Heart, Hash, Grid3X3 } from "lucide-react";
 import { sitemapCategories } from "../../lib/data/sitemapData";
 import { resolveHref } from "../../lib/utils/linkResolver";
 import { AuthButton } from "./AuthButton";
@@ -120,20 +120,25 @@ const developerToolsMenu = [
       { name: "Most Used Today", desc: "Popular tools today" },
       { name: "Recently Added", desc: "Newest tools" },
       { name: "Popular Among Developers", desc: "Developer favorites" },
-      { name: "Editor’s Picks", desc: "Curated tools" },
+      { name: "Editor's Picks", desc: "Curated tools" },
     ]
   }
 ];
 
-const devToolsColumns = [
-  [developerToolsMenu[0], developerToolsMenu[6]], // Text & Formatting, Trending Tools
-  [developerToolsMenu[1], developerToolsMenu[3]], // Encoding & Security, Color Tools
-  [developerToolsMenu[4]], // Web Dev Utilities
-  [developerToolsMenu[2], developerToolsMenu[5]]  // Generators, Developer Community
-];
+// Calculator category icons mapping
+const calcCategoryIcons: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
+  "financial": DollarSign,
+  "fitness": Heart,
+  "math": Hash,
+  "other": Grid3X3,
+};
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileCalcOpen, setMobileCalcOpen] = useState(false);
+  const [mobileDevOpen, setMobileDevOpen] = useState(false);
+  const [mobileCalcCategory, setMobileCalcCategory] = useState<string | null>(null);
+  const [mobileDevCategory, setMobileDevCategory] = useState<string | null>(null);
   const [menuClicked, setMenuClicked] = useState(false);
 
   const handleLinkClick = () => {
@@ -161,86 +166,101 @@ export function Navbar() {
 
           {/* Center/Right: Desktop Menu */}
           <div className="hidden lg:flex items-center space-x-1">
-            {/* Developer Tools Mega Menu */}
+
+            {/* ── Developer Tools Mega Menu ── */}
             <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
               <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
                 <Code size={16} className="text-[#518231]" />
                 Developer Tools
                 <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
               </button>
-              
-              {/* Full Width Dropdown */}
+
+              {/* Dev Tools: Full-width dropdown — 5-column compact layout */}
               <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
-                  <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="grid grid-cols-4 gap-8">
-                      {devToolsColumns.map((col, idx) => (
-                        <div key={idx} className="flex flex-col gap-8">
-                          {col.map(category => (
-                            <div key={category.title}>
-                               <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-100 dark:border-slate-800">
-                                 <div className="p-1.5 bg-slate-50 dark:bg-slate-800 rounded-md">
-                                    <category.icon size={16} className="text-[#518231]" />
-                                 </div>
-                                 <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100">{category.title}</h3>
-                               </div>
-                               <ul className="space-y-1">
-                                 {category.items.map(item => (
-                                   <li key={item.name}>
-                                     <Link href={resolveIntlHref(resolveHref(item.name))} onClick={handleLinkClick} className="block px-3 py-2 text-sm rounded-lg transition-all hover:bg-slate-50 dark:hover:bg-slate-800/50 group/link relative border border-transparent hover:border-slate-100 dark:hover:border-slate-700/50">
-                                       <div className="text-slate-600 dark:text-slate-300 group-hover/link:text-[#518231] font-medium transition-colors">{item.name}</div>
-                                       <div className="text-[12px] leading-tight text-slate-400 dark:text-slate-500 max-h-0 overflow-hidden opacity-0 group-hover/link:max-h-10 group-hover/link:opacity-100 group-hover/link:mt-1 transition-all duration-300 ease-in-out">
-                                         {item.desc}
-                                       </div>
-                                     </Link>
-                                   </li>
-                                 ))}
-                               </ul>
-                            </div>
-                          ))}
-                        </div>
-                      ))}
+                  <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                    <div className="grid grid-cols-5 gap-x-5 gap-y-0">
+
+                      {/* Col 1: Text & Formatting */}
+                      <DevMenuColumn category={developerToolsMenu[0]} handleLinkClick={handleLinkClick} />
+                      {/* Col 2: Encoding & Security */}
+                      <DevMenuColumn category={developerToolsMenu[1]} handleLinkClick={handleLinkClick} />
+                      {/* Col 3: Web Dev Utilities — tall column, scrollable */}
+                      <DevMenuColumn category={developerToolsMenu[4]} handleLinkClick={handleLinkClick} />
+                      {/* Col 4: Generators + Color Tools stacked */}
+                      <div className="flex flex-col gap-5">
+                        <DevMenuColumn category={developerToolsMenu[2]} handleLinkClick={handleLinkClick} compact />
+                        <DevMenuColumn category={developerToolsMenu[3]} handleLinkClick={handleLinkClick} compact />
+                      </div>
+                      {/* Col 5: Community + Trending stacked */}
+                      <div className="flex flex-col gap-5">
+                        <DevMenuColumn category={developerToolsMenu[5]} handleLinkClick={handleLinkClick} compact />
+                        <DevMenuColumn category={developerToolsMenu[6]} handleLinkClick={handleLinkClick} compact />
+                      </div>
+
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {navCategories.map((category) => (
-              <div key={category.id} className="relative group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
-                <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
-                  {category.title.replace(" Calculators", "")}
-                  <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
-                </button>
-                
-                {/* Desktop Dropdown */}
-                <div className={`absolute top-full start-1/2 -translate-x-1/2 rtl:translate-x-1/2 pt-2 opacity-0 invisible transition-all duration-200 ease-out z-50 w-64 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
-                  <div className="bg-white border border-slate-200 shadow-xl rounded-xl overflow-hidden py-2 dark:bg-slate-900 dark:border-slate-700">
-                    <div className="px-4 py-2 bg-slate-50 border-b border-slate-100 mb-2 dark:bg-slate-800/50 dark:border-slate-800">
-                      <span className="text-xs font-bold text-slate-500 uppercase tracking-wider dark:text-slate-400">{category.title}</span>
+            {/* ── Calculators Unified Mega Menu ── */}
+            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
+              <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+                <Calculator size={16} className="text-[#518231]" />
+                Calculators
+                <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
+              </button>
+
+              {/* Calculators: Full-width 4-column mega menu */}
+              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
+                <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
+                  <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                    <div className="grid grid-cols-4 gap-x-6">
+                      {navCategories.map((category) => {
+                        const IconComp = calcCategoryIcons[category.id] || Calculator;
+                        return (
+                          <div key={category.id}>
+                            {/* Category header */}
+                            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-slate-100 dark:border-slate-800">
+                              <div className="p-1.5 bg-slate-50 dark:bg-slate-800 rounded-md">
+                                <IconComp size={14} className="text-[#518231]" />
+                              </div>
+                              <h3 className="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wide">
+                                {category.title.replace(" Calculators", "")}
+                              </h3>
+                            </div>
+                            {/* Links */}
+                            <ul className="space-y-0.5 max-h-[340px] overflow-y-auto custom-scrollbar pr-1">
+                              {category.links.slice(0, 12).map((link) => (
+                                <li key={link}>
+                                  <Link
+                                    href={resolveIntlHref(resolveHref(link))}
+                                    onClick={handleLinkClick}
+                                    className="block px-2 py-1.5 text-sm text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-all"
+                                  >
+                                    {link}
+                                  </Link>
+                                </li>
+                              ))}
+                              <li>
+                                <Link
+                                  href="/sitemap"
+                                  onClick={handleLinkClick}
+                                  className="block px-2 py-1.5 text-sm font-semibold text-[#518231] hover:bg-green-50 dark:hover:bg-slate-800 rounded-lg transition-colors mt-1"
+                                >
+                                  View all {category.title.replace(" Calculators", "")} →
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                        );
+                      })}
                     </div>
-                    <ul className="max-h-[300px] overflow-y-auto custom-scrollbar">
-                      {category.links.slice(0, 10).map((link) => (
-                           <li key={link}>
-                             <Link 
-                               href={resolveIntlHref(resolveHref(link))} 
-                               onClick={handleLinkClick}
-                               className="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] transition-colors dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
-                             >
-                               {link}
-                             </Link>
-                           </li>
-                      ))}
-                      <li>
-                        <Link href="/sitemap" onClick={handleLinkClick} className="block px-4 py-2 text-sm font-semibold text-[#518231] hover:bg-green-50 transition-colors mt-1 dark:hover:bg-slate-800">
-                          View all in {category.title.replace(" Calculators", "")} <span className="inline-block rtl:rotate-180">&rarr;</span>
-                        </Link>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
 
             <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700 flex items-center space-x-3">
               <Link href="/community" className="text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
@@ -287,60 +307,155 @@ export function Navbar() {
       {/* Mobile Menu Overlay */}
       <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "max-h-[calc(100vh-64px)] border-b border-slate-200 dark:border-slate-800 overflow-y-auto" : "max-h-0 overflow-hidden"} bg-white dark:bg-slate-900 custom-scrollbar`}>
         <div className="px-4 pt-2 pb-6 space-y-1">
+
           {/* Developer Tools Mobile Accordion */}
-          <div className="py-2">
-            <div className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 px-3 dark:text-slate-200">
-              Developer Tools
-            </div>
-            <div className="grid grid-cols-1 gap-1">
-              {developerToolsMenu.map(category => (
-                 <details key={category.title} className="group/details">
-                   <summary className="flex items-center gap-2 px-3 py-3 text-base font-medium text-slate-700 dark:text-slate-300 cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md list-none [&::-webkit-details-marker]:hidden">
-                     <category.icon size={18} className="text-[#518231]" />
-                     {category.title}
-                     <ChevronDown size={16} className="ml-auto text-slate-400 group-open/details:rotate-180 transition-transform" />
-                   </summary>
-                   <div className="pl-9 pr-3 py-2 space-y-1 bg-slate-50/50 dark:bg-slate-800/20 rounded-b-md -mt-1 mb-1">
-                     {category.items.map(item => (
-                       <Link key={item.name} href={resolveIntlHref(resolveHref(item.name))} className="block py-2 group/moblink" onClick={() => setIsMobileMenuOpen(false)}>
-                         <div className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231] transition-colors">{item.name}</div>
-                         <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
-                       </Link>
-                     ))}
-                   </div>
-                 </details>
-              ))}
-            </div>
+          <div className="py-1">
+            <button
+              onClick={() => setMobileDevOpen(!mobileDevOpen)}
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-200 uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+            >
+              <span className="flex items-center gap-2">
+                <Code size={16} className="text-[#518231]" />
+                Developer Tools
+              </span>
+              <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobileDevOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {mobileDevOpen && (
+              <div className="mt-1 space-y-1 pl-1">
+                {developerToolsMenu.map(category => (
+                  <div key={category.title}>
+                    <button
+                      onClick={() => setMobileDevCategory(mobileDevCategory === category.title ? null : category.title)}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+                    >
+                      <category.icon size={16} className="text-[#518231] shrink-0" />
+                      <span className="flex-1 text-left">{category.title}</span>
+                      <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileDevCategory === category.title ? 'rotate-180' : ''}`} />
+                    </button>
+                    {mobileDevCategory === category.title && (
+                      <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
+                        {category.items.map(item => (
+                          <Link
+                            key={item.name}
+                            href={resolveIntlHref(resolveHref(item.name))}
+                            className="block py-2 group/moblink"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            <div className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231] transition-colors">{item.name}</div>
+                            <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
-          {navCategories.map((category) => (
-             <div key={category.id} className="py-2">
-               <div className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-2 px-3 dark:text-slate-200">
-                 {category.title}
-               </div>
-               <div className="grid grid-cols-1 gap-1">
-                  {category.links.slice(0, 5).map(link => (
-                        <Link 
-                          key={link} 
-                          href={resolveIntlHref(resolveHref(link))}
-                          className="block px-3 py-3 text-base font-medium text-slate-600 hover:bg-slate-50 hover:text-[#0066cc] rounded-md dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-[#4299e1]"
-                          onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                          {link}
-                        </Link>
-                  ))}
-                  <Link 
-                    href="/sitemap"
-                    className="block px-3 py-3 text-sm font-bold text-[#518231] hover:bg-green-50 rounded-md dark:hover:bg-slate-800"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    View All {category.title}
-                  </Link>
-               </div>
-             </div>
-          ))}
+          {/* Calculators Mobile Accordion */}
+          <div className="py-1">
+            <button
+              onClick={() => setMobileCalcOpen(!mobileCalcOpen)}
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-200 uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+            >
+              <span className="flex items-center gap-2">
+                <Calculator size={16} className="text-[#518231]" />
+                Calculators
+              </span>
+              <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobileCalcOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {mobileCalcOpen && (
+              <div className="mt-1 space-y-1 pl-1">
+                {navCategories.map((category) => {
+                  const IconComp = calcCategoryIcons[category.id] || Calculator;
+                  return (
+                    <div key={category.id}>
+                      <button
+                        onClick={() => setMobileCalcCategory(mobileCalcCategory === category.id ? null : category.id)}
+                        className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+                      >
+                        <IconComp size={16} className="text-[#518231] shrink-0" />
+                        <span className="flex-1 text-left">{category.title}</span>
+                        <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileCalcCategory === category.id ? 'rotate-180' : ''}`} />
+                      </button>
+                      {mobileCalcCategory === category.id && (
+                        <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
+                          {category.links.slice(0, 10).map(link => (
+                            <Link
+                              key={link}
+                              href={resolveIntlHref(resolveHref(link))}
+                              className="block py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#518231] transition-colors"
+                              onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                              {link}
+                            </Link>
+                          ))}
+                          <Link
+                            href="/sitemap"
+                            className="block py-2 text-sm font-semibold text-[#518231]"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            View All {category.title} →
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
         </div>
       </div>
     </header>
+  );
+}
+
+// ── Reusable Dev Menu Column Sub-component ──
+interface DevMenuCategoryItem {
+  name: string;
+  desc: string;
+}
+interface DevMenuCat {
+  title: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  items: DevMenuCategoryItem[];
+}
+
+function DevMenuColumn({
+  category,
+  handleLinkClick,
+  compact = false
+}: {
+  category: DevMenuCat;
+  handleLinkClick: () => void;
+  compact?: boolean;
+}) {
+  return (
+    <div>
+      <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-slate-100 dark:border-slate-800">
+        <div className="p-1 bg-slate-50 dark:bg-slate-800 rounded-md shrink-0">
+          <category.icon size={13} className="text-[#518231]" />
+        </div>
+        <h3 className="text-[11px] font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wide leading-tight">
+          {category.title}
+        </h3>
+      </div>
+      <ul className={`space-y-0 ${compact ? 'max-h-[200px]' : 'max-h-[360px]'} overflow-y-auto custom-scrollbar`}>
+        {category.items.map(item => (
+          <li key={item.name}>
+            <Link
+              href={resolveIntlHref(resolveHref(item.name))}
+              onClick={handleLinkClick}
+              className="block px-2 py-1.5 text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md transition-all leading-tight"
+            >
+              {item.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
