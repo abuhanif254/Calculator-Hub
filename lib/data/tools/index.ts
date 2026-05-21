@@ -30,6 +30,7 @@ import { responsiveScreenTesterConfig } from './responsive-screen-tester';
 import { httpHeaderCheckerConfig } from './http-header-checker';
 import { redirectCheckerConfig } from './redirect-checker';
 import { websiteScreenshotToolConfig } from './website-screenshot-tool';
+import { dnsLookupConfig } from './dns-lookup';
 
 export * from './types';
 
@@ -65,9 +66,11 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [httpHeaderCheckerConfig.slug]: httpHeaderCheckerConfig,
   [redirectCheckerConfig.slug]: redirectCheckerConfig,
   [websiteScreenshotToolConfig.slug]: websiteScreenshotToolConfig,
+  [dnsLookupConfig.slug]: dnsLookupConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
   return allToolsConfig[slug];
 }
+
 

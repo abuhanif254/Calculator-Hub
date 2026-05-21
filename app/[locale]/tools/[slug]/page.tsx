@@ -32,6 +32,7 @@ import { ResponsiveScreenTesterTool } from '../../../components/tools/responsive
 import { HttpHeaderCheckerTool } from '../../../components/tools/http-header-checker';
 import { RedirectCheckerTool } from '../../../components/tools/redirect-checker';
 import { WebsiteScreenshotTool } from '../../../components/tools/website-screenshot-tool';
+import { DnsLookupTool } from '../../../components/tools/dns-lookup';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -70,8 +71,10 @@ const toolComponents: Record<string, React.ComponentType> = {
   "responsive-screen-tester": ResponsiveScreenTesterTool,
   "http-header-checker": HttpHeaderCheckerTool,
   "redirect-checker": RedirectCheckerTool,
-  "website-screenshot-tool": WebsiteScreenshotTool
+  "website-screenshot-tool": WebsiteScreenshotTool,
+  "dns-lookup": DnsLookupTool
 };
+
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const resolvedParams = await params;
