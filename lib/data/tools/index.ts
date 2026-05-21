@@ -28,6 +28,7 @@ import { sitemapXmlGeneratorConfig } from './sitemap-xml-generator';
 import { htaccessGeneratorConfig } from './htaccess-generator';
 import { responsiveScreenTesterConfig } from './responsive-screen-tester';
 import { httpHeaderCheckerConfig } from './http-header-checker';
+import { redirectCheckerConfig } from './redirect-checker';
 
 export * from './types';
 
@@ -61,6 +62,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [htaccessGeneratorConfig.slug]: htaccessGeneratorConfig,
   [responsiveScreenTesterConfig.slug]: responsiveScreenTesterConfig,
   [httpHeaderCheckerConfig.slug]: httpHeaderCheckerConfig,
+  [redirectCheckerConfig.slug]: redirectCheckerConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
