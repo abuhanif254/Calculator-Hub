@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Search, Calculator, Code, ArrowRight } from "lucide-react";
 import { useRouter, resolveIntlHref } from "../../i18n/routing";
 import { sitemapCategories } from "../../lib/data/sitemapData";
+import { resolveHref } from "../../lib/utils/linkResolver";
 
 // Extract all tools and categories
 const allCalculators = sitemapCategories.flatMap(cat => 
@@ -17,21 +18,18 @@ const developerTools = [
   "MD5 Generator", "SHA256 Generator", "Password Generator", "HMAC Generator", "QR Code Generator",
   "UUID Generator", "Slug Generator", "Lorem Ipsum Generator", "Random Number Generator",
   "HEX to RGB", "RGB to HEX", "Color Picker", "Gradient Generator", "Meta Tag Generator",
-  "Open Graph Generator", "CSS Minifier", "JS Minifier", "HTML Minifier"
+  "Open Graph Generator", "Twitter Card Generator", "robots.txt Generator", "sitemap.xml Generator",
+  "CSS Minifier", "JS Minifier", "HTML Minifier"
 ].map(name => ({ name, category: "Developer Tools", type: "dev-tool" }));
 
 const categories = sitemapCategories.map(cat => ({ name: cat.title, category: "Category", type: "category" }));
 
 const allSearchableItems = [...allCalculators, ...developerTools, ...categories];
 
-// Create slugs dynamically
+// Create slugs dynamically via linkResolver
 const getHref = (item: any) => {
   if (item.type === "category") return "/sitemap";
-  if (item.type === "dev-tool") return `/tools/${item.name.toLowerCase().replace(/ /g, '-')}`;
-  
-  let defaultSlug = item.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-  if (defaultSlug === "credit-cards-payoff-calculator") defaultSlug = "credit-cards-payoff";
-  return `/calculators/${defaultSlug}`;
+  return resolveHref(item.name);
 };
 
 export function HomeSearchBar() {

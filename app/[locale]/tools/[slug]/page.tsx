@@ -25,6 +25,11 @@ import { QrCodeGeneratorTool } from '../../../components/tools/QrCodeGeneratorTo
 import { MetaTagGeneratorTool } from '../../../components/tools/meta-tag-generator';
 import { OpenGraphGeneratorTool } from '../../../components/tools/open-graph-generator';
 import { TwitterCardGeneratorTool } from '../../../components/tools/twitter-card-generator';
+import { RobotsTxtGeneratorTool } from '../../../components/tools/robots-txt-generator';
+import { SitemapXmlGeneratorTool } from '../../../components/tools/sitemap-xml-generator';
+import { HtaccessGeneratorTool } from '../../../components/tools/htaccess-generator';
+import { ResponsiveScreenTesterTool } from '../../../components/tools/responsive-screen-tester';
+import { HttpHeaderCheckerTool } from '../../../components/tools/http-header-checker';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -56,7 +61,12 @@ const toolComponents: Record<string, React.ComponentType> = {
   "qr-code-generator": QrCodeGeneratorTool,
   "meta-tag-generator": MetaTagGeneratorTool,
   "open-graph-generator": OpenGraphGeneratorTool,
-  "twitter-card-generator": TwitterCardGeneratorTool
+  "twitter-card-generator": TwitterCardGeneratorTool,
+  "robots-txt-generator": RobotsTxtGeneratorTool,
+  "sitemap-xml-generator": SitemapXmlGeneratorTool,
+  "htaccess-generator": HtaccessGeneratorTool,
+  "responsive-screen-tester": ResponsiveScreenTesterTool,
+  "http-header-checker": HttpHeaderCheckerTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {

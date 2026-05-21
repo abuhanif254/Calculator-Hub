@@ -23,6 +23,11 @@ import { qrCodeGeneratorConfig } from './qr-code-generator';
 import { metaTagGeneratorConfig } from './meta-tag-generator';
 import { openGraphGeneratorConfig } from './open-graph-generator';
 import { twitterCardGeneratorConfig } from './twitter-card-generator';
+import { robotsTxtGeneratorConfig } from './robots-txt-generator';
+import { sitemapXmlGeneratorConfig } from './sitemap-xml-generator';
+import { htaccessGeneratorConfig } from './htaccess-generator';
+import { responsiveScreenTesterConfig } from './responsive-screen-tester';
+import { httpHeaderCheckerConfig } from './http-header-checker';
 
 export * from './types';
 
@@ -51,8 +56,14 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [metaTagGeneratorConfig.slug]: metaTagGeneratorConfig,
   [openGraphGeneratorConfig.slug]: openGraphGeneratorConfig,
   [twitterCardGeneratorConfig.slug]: twitterCardGeneratorConfig,
+  [robotsTxtGeneratorConfig.slug]: robotsTxtGeneratorConfig,
+  [sitemapXmlGeneratorConfig.slug]: sitemapXmlGeneratorConfig,
+  [htaccessGeneratorConfig.slug]: htaccessGeneratorConfig,
+  [responsiveScreenTesterConfig.slug]: responsiveScreenTesterConfig,
+  [httpHeaderCheckerConfig.slug]: httpHeaderCheckerConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
   return allToolsConfig[slug];
 }
+
