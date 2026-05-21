@@ -30,6 +30,12 @@ import { SitemapXmlGeneratorTool } from '../../../components/tools/sitemap-xml-g
 import { HtaccessGeneratorTool } from '../../../components/tools/htaccess-generator';
 import { ResponsiveScreenTesterTool } from '../../../components/tools/responsive-screen-tester';
 import { HttpHeaderCheckerTool } from '../../../components/tools/http-header-checker';
+import { RedirectCheckerTool } from '../../../components/tools/redirect-checker';
+import { WebsiteScreenshotTool } from '../../../components/tools/website-screenshot-tool';
+import { DnsLookupTool } from '../../../components/tools/dns-lookup';
+import { IpLookupTool } from '../../../components/tools/ip-lookup';
+import { UserAgentParserTool } from '../../../components/tools/user-agent-parser';
+import { MimeTypeCheckerTool } from '../../../components/tools/mime-type-checker';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -66,8 +72,15 @@ const toolComponents: Record<string, React.ComponentType> = {
   "sitemap-xml-generator": SitemapXmlGeneratorTool,
   "htaccess-generator": HtaccessGeneratorTool,
   "responsive-screen-tester": ResponsiveScreenTesterTool,
-  "http-header-checker": HttpHeaderCheckerTool
+  "http-header-checker": HttpHeaderCheckerTool,
+  "redirect-checker": RedirectCheckerTool,
+  "website-screenshot-tool": WebsiteScreenshotTool,
+  "dns-lookup": DnsLookupTool,
+  "ip-lookup": IpLookupTool,
+  "user-agent-parser": UserAgentParserTool,
+  "mime-type-checker": MimeTypeCheckerTool
 };
+
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const resolvedParams = await params;

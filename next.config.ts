@@ -39,13 +39,37 @@ const nextConfig: NextConfig = {
   transpilePackages: ['motion'],
   webpack: (config, { dev }) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
-    // Do not modifyâfile watching is disabled to prevent flickering during agent edits.
+    // Do not modify—file watching is disabled to prevent flickering during agent edits.
     if (dev && process.env.DISABLE_HMR === 'true') {
       config.watchOptions = {
         ignored: /.*/,
       };
     }
     return config;
+  },
+  async redirects() {
+    return [
+      {
+        source: '/en/calculators/credit-cards-payoff-calculator',
+        destination: '/en/calculators/credit-cards-payoff',
+        permanent: true,
+      },
+      {
+        source: '/es/calculadoras/credit-cards-payoff-calculator',
+        destination: '/es/calculadoras/pago-tarjetas-de-credito',
+        permanent: true,
+      },
+      {
+        source: '/fr/calculatrices/credit-cards-payoff-calculator',
+        destination: '/fr/calculatrices/remboursement-cartes-de-credit',
+        permanent: true,
+      },
+      {
+        source: '/de/rechner/credit-cards-payoff-calculator',
+        destination: '/de/rechner/kreditkarten-abbezahlen',
+        permanent: true,
+      },
+    ];
   },
 };
 
