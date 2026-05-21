@@ -33,6 +33,7 @@ import { websiteScreenshotToolConfig } from './website-screenshot-tool';
 import { dnsLookupConfig } from './dns-lookup';
 import { ipLookupConfig } from './ip-lookup';
 import { userAgentParserConfig } from './user-agent-parser';
+import { mimeTypeCheckerConfig } from './mime-type-checker';
 
 export * from './types';
 
@@ -71,6 +72,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [dnsLookupConfig.slug]: dnsLookupConfig,
   [ipLookupConfig.slug]: ipLookupConfig,
   [userAgentParserConfig.slug]: userAgentParserConfig,
+  [mimeTypeCheckerConfig.slug]: mimeTypeCheckerConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

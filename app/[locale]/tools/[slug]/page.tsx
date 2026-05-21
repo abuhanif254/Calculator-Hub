@@ -35,6 +35,7 @@ import { WebsiteScreenshotTool } from '../../../components/tools/website-screens
 import { DnsLookupTool } from '../../../components/tools/dns-lookup';
 import { IpLookupTool } from '../../../components/tools/ip-lookup';
 import { UserAgentParserTool } from '../../../components/tools/user-agent-parser';
+import { MimeTypeCheckerTool } from '../../../components/tools/mime-type-checker';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -76,7 +77,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "website-screenshot-tool": WebsiteScreenshotTool,
   "dns-lookup": DnsLookupTool,
   "ip-lookup": IpLookupTool,
-  "user-agent-parser": UserAgentParserTool
+  "user-agent-parser": UserAgentParserTool,
+  "mime-type-checker": MimeTypeCheckerTool
 };
 
 
