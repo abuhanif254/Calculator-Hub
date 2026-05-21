@@ -29,6 +29,7 @@ import { htaccessGeneratorConfig } from './htaccess-generator';
 import { responsiveScreenTesterConfig } from './responsive-screen-tester';
 import { httpHeaderCheckerConfig } from './http-header-checker';
 import { redirectCheckerConfig } from './redirect-checker';
+import { websiteScreenshotToolConfig } from './website-screenshot-tool';
 
 export * from './types';
 
@@ -63,6 +64,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [responsiveScreenTesterConfig.slug]: responsiveScreenTesterConfig,
   [httpHeaderCheckerConfig.slug]: httpHeaderCheckerConfig,
   [redirectCheckerConfig.slug]: redirectCheckerConfig,
+  [websiteScreenshotToolConfig.slug]: websiteScreenshotToolConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

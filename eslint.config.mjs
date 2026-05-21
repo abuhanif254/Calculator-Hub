@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig([
   {
-    ignores: ["dist/**/*", ".next/**/*"] // Make sure to ignore build files
+    ignores: ["dist/**/*", ".next/**/*", "public/sw.js", "public/sw.js.map"] // Make sure to ignore build files
   },
   {
     extends: [...next],

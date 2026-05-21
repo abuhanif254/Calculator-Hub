@@ -31,6 +31,7 @@ import { HtaccessGeneratorTool } from '../../../components/tools/htaccess-genera
 import { ResponsiveScreenTesterTool } from '../../../components/tools/responsive-screen-tester';
 import { HttpHeaderCheckerTool } from '../../../components/tools/http-header-checker';
 import { RedirectCheckerTool } from '../../../components/tools/redirect-checker';
+import { WebsiteScreenshotTool } from '../../../components/tools/website-screenshot-tool';
 import { Link } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -68,7 +69,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "htaccess-generator": HtaccessGeneratorTool,
   "responsive-screen-tester": ResponsiveScreenTesterTool,
   "http-header-checker": HttpHeaderCheckerTool,
-  "redirect-checker": RedirectCheckerTool
+  "redirect-checker": RedirectCheckerTool,
+  "website-screenshot-tool": WebsiteScreenshotTool
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
