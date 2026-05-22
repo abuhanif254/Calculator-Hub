@@ -35,6 +35,7 @@ import { ipLookupConfig } from './ip-lookup';
 import { userAgentParserConfig } from './user-agent-parser';
 import { mimeTypeCheckerConfig } from './mime-type-checker';
 import { colorPickerConfig } from './color-picker';
+import { hexToRgbConfig } from './hex-to-rgb';
 
 export * from './types';
 
@@ -75,6 +76,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [userAgentParserConfig.slug]: userAgentParserConfig,
   [mimeTypeCheckerConfig.slug]: mimeTypeCheckerConfig,
   [colorPickerConfig.slug]: colorPickerConfig,
+  [hexToRgbConfig.slug]: hexToRgbConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

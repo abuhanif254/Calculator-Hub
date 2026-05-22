@@ -1,42 +1,45 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { getToolConfig, allToolsConfig } from '../../../../lib/data/tools';
-import { JsonFormatterTool } from '../../../components/tools/JsonFormatterTool';
-import { DiffCheckerTool } from '../../../components/tools/DiffCheckerTool';
-import { HtmlFormatterTool } from '../../../components/tools/HtmlFormatterTool';
-import { CssBeautifierTool } from '../../../components/tools/CssBeautifierTool';
-import { JsBeautifierTool } from '../../../components/tools/JsBeautifierTool';
-import { XmlFormatterTool } from '../../../components/tools/XmlFormatterTool';
-import { MarkdownPreviewerTool } from '../../../components/tools/MarkdownPreviewerTool';
-import { SqlFormatterTool } from '../../../components/tools/SqlFormatterTool';
-import { YamlFormatterTool } from '../../../components/tools/YamlFormatterTool';
-import { CsvViewerTool } from '../../../components/tools/CsvViewerTool';
-import { Base64EncodeTool } from '../../../components/tools/Base64EncodeTool';
-import { Base64DecodeTool } from '../../../components/tools/Base64DecodeTool';
-import { UrlEncoderTool } from '../../../components/tools/UrlEncoderTool';
-import { UrlDecoderTool } from '../../../components/tools/UrlDecoderTool';
-import { JwtDecoderTool } from '../../../components/tools/JwtDecoderTool';
-import { HashGeneratorTool } from '../../../components/tools/HashGeneratorTool';
-import { Md5GeneratorTool } from '../../../components/tools/Md5GeneratorTool';
-import { Sha256GeneratorTool } from '../../../components/tools/Sha256GeneratorTool';
-import { PasswordGeneratorTool } from '../../../components/tools/PasswordGeneratorTool';
-import { HmacGeneratorTool } from '../../../components/tools/HmacGeneratorTool';
-import { QrCodeGeneratorTool } from '../../../components/tools/QrCodeGeneratorTool';
-import { MetaTagGeneratorTool } from '../../../components/tools/meta-tag-generator';
-import { OpenGraphGeneratorTool } from '../../../components/tools/open-graph-generator';
-import { TwitterCardGeneratorTool } from '../../../components/tools/twitter-card-generator';
-import { RobotsTxtGeneratorTool } from '../../../components/tools/robots-txt-generator';
-import { SitemapXmlGeneratorTool } from '../../../components/tools/sitemap-xml-generator';
-import { HtaccessGeneratorTool } from '../../../components/tools/htaccess-generator';
-import { ResponsiveScreenTesterTool } from '../../../components/tools/responsive-screen-tester';
-import { HttpHeaderCheckerTool } from '../../../components/tools/http-header-checker';
-import { RedirectCheckerTool } from '../../../components/tools/redirect-checker';
-import { WebsiteScreenshotTool } from '../../../components/tools/website-screenshot-tool';
-import { DnsLookupTool } from '../../../components/tools/dns-lookup';
-import { IpLookupTool } from '../../../components/tools/ip-lookup';
-import { UserAgentParserTool } from '../../../components/tools/user-agent-parser';
-import { MimeTypeCheckerTool } from '../../../components/tools/mime-type-checker';
-import { ColorPickerTool } from '../../../components/tools/color-picker';
+import dynamic from 'next/dynamic';
+
+const JsonFormatterTool = dynamic(() => import('../../../components/tools/JsonFormatterTool').then(m => m.JsonFormatterTool));
+const DiffCheckerTool = dynamic(() => import('../../../components/tools/DiffCheckerTool').then(m => m.DiffCheckerTool));
+const HtmlFormatterTool = dynamic(() => import('../../../components/tools/HtmlFormatterTool').then(m => m.HtmlFormatterTool));
+const CssBeautifierTool = dynamic(() => import('../../../components/tools/CssBeautifierTool').then(m => m.CssBeautifierTool));
+const JsBeautifierTool = dynamic(() => import('../../../components/tools/JsBeautifierTool').then(m => m.JsBeautifierTool));
+const XmlFormatterTool = dynamic(() => import('../../../components/tools/XmlFormatterTool').then(m => m.XmlFormatterTool));
+const MarkdownPreviewerTool = dynamic(() => import('../../../components/tools/MarkdownPreviewerTool').then(m => m.MarkdownPreviewerTool));
+const SqlFormatterTool = dynamic(() => import('../../../components/tools/SqlFormatterTool').then(m => m.SqlFormatterTool));
+const YamlFormatterTool = dynamic(() => import('../../../components/tools/YamlFormatterTool').then(m => m.YamlFormatterTool));
+const CsvViewerTool = dynamic(() => import('../../../components/tools/CsvViewerTool').then(m => m.CsvViewerTool));
+const Base64EncodeTool = dynamic(() => import('../../../components/tools/Base64EncodeTool').then(m => m.Base64EncodeTool));
+const Base64DecodeTool = dynamic(() => import('../../../components/tools/Base64DecodeTool').then(m => m.Base64DecodeTool));
+const UrlEncoderTool = dynamic(() => import('../../../components/tools/UrlEncoderTool').then(m => m.UrlEncoderTool));
+const UrlDecoderTool = dynamic(() => import('../../../components/tools/UrlDecoderTool').then(m => m.UrlDecoderTool));
+const JwtDecoderTool = dynamic(() => import('../../../components/tools/JwtDecoderTool').then(m => m.JwtDecoderTool));
+const HashGeneratorTool = dynamic(() => import('../../../components/tools/HashGeneratorTool').then(m => m.HashGeneratorTool));
+const Md5GeneratorTool = dynamic(() => import('../../../components/tools/Md5GeneratorTool').then(m => m.Md5GeneratorTool));
+const Sha256GeneratorTool = dynamic(() => import('../../../components/tools/Sha256GeneratorTool').then(m => m.Sha256GeneratorTool));
+const PasswordGeneratorTool = dynamic(() => import('../../../components/tools/PasswordGeneratorTool').then(m => m.PasswordGeneratorTool));
+const HmacGeneratorTool = dynamic(() => import('../../../components/tools/HmacGeneratorTool').then(m => m.HmacGeneratorTool));
+const QrCodeGeneratorTool = dynamic(() => import('../../../components/tools/QrCodeGeneratorTool').then(m => m.QrCodeGeneratorTool));
+const MetaTagGeneratorTool = dynamic(() => import('../../../components/tools/meta-tag-generator').then(m => m.MetaTagGeneratorTool));
+const OpenGraphGeneratorTool = dynamic(() => import('../../../components/tools/open-graph-generator').then(m => m.OpenGraphGeneratorTool));
+const TwitterCardGeneratorTool = dynamic(() => import('../../../components/tools/twitter-card-generator').then(m => m.TwitterCardGeneratorTool));
+const RobotsTxtGeneratorTool = dynamic(() => import('../../../components/tools/robots-txt-generator').then(m => m.RobotsTxtGeneratorTool));
+const SitemapXmlGeneratorTool = dynamic(() => import('../../../components/tools/sitemap-xml-generator').then(m => m.SitemapXmlGeneratorTool));
+const HtaccessGeneratorTool = dynamic(() => import('../../../components/tools/htaccess-generator').then(m => m.HtaccessGeneratorTool));
+const ResponsiveScreenTesterTool = dynamic(() => import('../../../components/tools/responsive-screen-tester').then(m => m.ResponsiveScreenTesterTool));
+const HttpHeaderCheckerTool = dynamic(() => import('../../../components/tools/http-header-checker').then(m => m.HttpHeaderCheckerTool));
+const RedirectCheckerTool = dynamic(() => import('../../../components/tools/redirect-checker').then(m => m.RedirectCheckerTool));
+const WebsiteScreenshotTool = dynamic(() => import('../../../components/tools/website-screenshot-tool').then(m => m.WebsiteScreenshotTool));
+const DnsLookupTool = dynamic(() => import('../../../components/tools/dns-lookup').then(m => m.DnsLookupTool));
+const IpLookupTool = dynamic(() => import('../../../components/tools/ip-lookup').then(m => m.IpLookupTool));
+const UserAgentParserTool = dynamic(() => import('../../../components/tools/user-agent-parser').then(m => m.UserAgentParserTool));
+const MimeTypeCheckerTool = dynamic(() => import('../../../components/tools/mime-type-checker').then(m => m.MimeTypeCheckerTool));
+const ColorPickerTool = dynamic(() => import('../../../components/tools/color-picker').then(m => m.ColorPickerTool));
+const HexToRgbTool = dynamic(() => import('../../../components/tools/hex-to-rgb').then(m => m.HexToRgbTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -80,7 +83,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "ip-lookup": IpLookupTool,
   "user-agent-parser": UserAgentParserTool,
   "mime-type-checker": MimeTypeCheckerTool,
-  "color-picker": ColorPickerTool
+  "color-picker": ColorPickerTool,
+  "hex-to-rgb": HexToRgbTool
 };
 
 

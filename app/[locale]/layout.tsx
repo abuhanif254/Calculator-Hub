@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from "next/font/google";
 import '../../app/globals.css'; // Global styles
 import { Link } from '../../i18n/routing';
 import { Navbar } from '../../app/components/Navbar';
@@ -11,7 +10,11 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: 'swap', weight: ['400', '500', '600'], preload: true, });
+// Offline-safe font configuration falling back to system-ui sans-serif fonts
+const inter = {
+  variable: '--font-sans',
+  className: 'font-sans',
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
