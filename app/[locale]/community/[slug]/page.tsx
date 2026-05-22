@@ -24,7 +24,7 @@ interface UserProfile {
 
 export default function PostPage() {
   const params = useParams();
-  const slug = params.slug as string;
+  const slug = (params?.slug || "") as string;
   
   const [post, setPost] = useState<Post | null>(null);
   const [author, setAuthor] = useState<UserProfile | null>(null);

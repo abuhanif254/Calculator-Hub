@@ -25,21 +25,23 @@ export function useUrlObjectState<T extends Record<string, any>>(
     const newState = { ...initialValues };
     let hasUrlParams = false;
 
-    Object.keys(initialValues).forEach((key) => {
-      const param = searchParams.get(key);
-      if (param !== null) {
-        hasUrlParams = true;
-        const originalType = typeof initialValues[key];
-        if (originalType === 'number') {
-          const num = Number(param);
-          (newState as any)[key] = isNaN(num) ? initialValues[key] : num;
-        } else if (originalType === 'boolean') {
-          (newState as any)[key] = param === 'true';
-        } else {
-          (newState as any)[key] = param;
+    if (searchParams) {
+      Object.keys(initialValues).forEach((key) => {
+        const param = searchParams.get(key);
+        if (param !== null) {
+          hasUrlParams = true;
+          const originalType = typeof initialValues[key];
+          if (originalType === 'number') {
+            const num = Number(param);
+            (newState as any)[key] = isNaN(num) ? initialValues[key] : num;
+          } else if (originalType === 'boolean') {
+            (newState as any)[key] = param === 'true';
+          } else {
+            (newState as any)[key] = param;
+          }
         }
-      }
-    });
+      });
+    }
 
     return newState;
   });
