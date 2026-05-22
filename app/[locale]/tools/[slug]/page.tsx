@@ -36,6 +36,7 @@ import { DnsLookupTool } from '../../../components/tools/dns-lookup';
 import { IpLookupTool } from '../../../components/tools/ip-lookup';
 import { UserAgentParserTool } from '../../../components/tools/user-agent-parser';
 import { MimeTypeCheckerTool } from '../../../components/tools/mime-type-checker';
+import { ColorPickerTool } from '../../../components/tools/color-picker';
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -78,7 +79,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "dns-lookup": DnsLookupTool,
   "ip-lookup": IpLookupTool,
   "user-agent-parser": UserAgentParserTool,
-  "mime-type-checker": MimeTypeCheckerTool
+  "mime-type-checker": MimeTypeCheckerTool,
+  "color-picker": ColorPickerTool
 };
 
 
