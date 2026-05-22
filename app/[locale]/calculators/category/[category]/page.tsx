@@ -104,6 +104,47 @@ export default async function CategoryPage({
     },
   };
 
+  // JSON-LD: FAQPage — unlocks FAQ rich results for high-volume category queries
+  // Built from real category data so answers are always accurate and specific
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `What are ${cat.title}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: cat.seoDescription,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `How many ${cat.title} are available on Nexus Calculator?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Nexus Calculator offers ${categoryCalcs.length} free ${cat.title.toLowerCase()} covering ${cat.description} All tools run entirely in your browser with no signup required.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Are the ${cat.title} free to use?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Yes, all ${categoryCalcs.length} ${cat.title.toLowerCase()} on Nexus Calculator are completely free. There are no paywalls, no limits on usage, and no account required. Every calculation runs locally in your browser, so your data never leaves your device.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `How do I use the ${cat.title} on Nexus Calculator?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `Simply select any calculator from the list on this page, enter your values into the input fields, and get instant results. All ${cat.title.toLowerCase()} update in real time as you type, with no need to press a submit button.`,
+        },
+      },
+    ],
+  };
+
   return (
     <>
       <script
@@ -116,6 +157,12 @@ export default async function CategoryPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(collectionSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
         }}
       />
 

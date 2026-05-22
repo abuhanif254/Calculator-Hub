@@ -51,11 +51,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       siteName: 'Nexus',
       locale: locale,
       type: 'website',
+      images: [
+        {
+          url: `${baseUrl}/icons/icon-512x512.png`,
+          width: 512,
+          height: 512,
+          alt: 'Nexus Calculator — Calculators & Developer Tools Platform',
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
       description: 'The ultimate web platform featuring hundreds of highly accurate online calculators alongside professional-grade developer tools, code formatters, and utilities.',
+      images: [`${baseUrl}/icons/icon-512x512.png`],
     },
     alternates: {
       canonical: `${baseUrl}/${locale}`,
