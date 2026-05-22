@@ -110,7 +110,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📧 Contact
 
-Author: Your Name
-Email: your.email@example.com
+Author: MD Abu Hanif Mia
+Email: mohammadbitullah@gmail.com
 
-Project Link: [https://github.com/your-username/nexus-calculator](https://github.com/your-username/nexus-calculator)
+Project Link: [https://github.com/your-username/nexus-calculator](https://github.com/abuhanif254/Calculator-Hub)
