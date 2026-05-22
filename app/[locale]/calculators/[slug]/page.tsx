@@ -82,12 +82,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const metaDescription = mdData?.data?.metaDescription || calc.meta.description;
   const metaKeywords = mdData?.data?.metaKeywords || calc.meta.keywords;
 
+  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
+
   const languages: Record<string, string> = {
-    'x-default': `/en/calculators/${slug}`,
+    'x-default': `${baseUrl}/en/calculators/${slug}`,
   };
 
   routing.locales.forEach((l) => {
-    languages[l] = `/${l}/calculators/${slug}`;
+    languages[l] = `${baseUrl}/${l}/calculators/${slug}`;
   });
 
   return {
@@ -100,7 +102,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       type: "website",
     },
     alternates: {
-      canonical: `/${locale}/calculators/${slug}`,
+      canonical: `${baseUrl}/${locale}/calculators/${slug}`,
       languages,
     },
   };

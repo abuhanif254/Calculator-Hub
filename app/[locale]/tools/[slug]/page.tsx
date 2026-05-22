@@ -1,6 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { getToolConfig } from '../../../../lib/data/tools';
+import { getToolConfig, allToolsConfig } from '../../../../lib/data/tools';
 import { JsonFormatterTool } from '../../../components/tools/JsonFormatterTool';
 import { DiffCheckerTool } from '../../../components/tools/DiffCheckerTool';
 import { HtmlFormatterTool } from '../../../components/tools/HtmlFormatterTool';
@@ -36,7 +36,7 @@ import { DnsLookupTool } from '../../../components/tools/dns-lookup';
 import { IpLookupTool } from '../../../components/tools/ip-lookup';
 import { UserAgentParserTool } from '../../../components/tools/user-agent-parser';
 import { MimeTypeCheckerTool } from '../../../components/tools/mime-type-checker';
-import { Link } from '../../../../i18n/routing';
+import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
 import { FavoriteButton } from '../../../components/FavoriteButton';
@@ -82,10 +82,43 @@ const toolComponents: Record<string, React.ComponentType> = {
 };
 
 
+// Locale-specific path segments for /tools/[slug] as defined in i18n/routing.ts
+const toolPathSegments: Record<string, string> = {
+  en: 'tools',
+  es: 'herramientas',
+  fr: 'outils',
+  de: 'werkzeuge',
+};
+
+// ISR: revalidate tool pages once per day (matches calculator page behaviour)
+export const revalidate = 86400;
+
+// SSG: pre-render every locale × tool slug combination at build time
+// This produces static HTML served from CDN edge — much better LCP than SSR
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    Object.keys(allToolsConfig).map((slug) => ({ locale, slug }))
+  );
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const resolvedParams = await params;
-  const config = getToolConfig(resolvedParams.slug);
+  const { locale, slug } = resolvedParams;
+  const config = getToolConfig(slug);
   if (!config) return {};
+
+  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
+
+  // Build absolute hreflang map for all supported locales
+  const languages: Record<string, string> = {
+    'x-default': `${baseUrl}/en/tools/${slug}`,
+  };
+  routing.locales.forEach((l) => {
+    const segment = toolPathSegments[l] || 'tools';
+    languages[l] = `${baseUrl}/${l}/${segment}/${slug}`;
+  });
+
+  const localeSegment = toolPathSegments[locale] || 'tools';
 
   return {
     title: `${config.title} | Developer Tools | Nexus Calculator`,
@@ -95,7 +128,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: config.title,
       description: config.shortDescription,
       type: 'website',
-    }
+    },
+    alternates: {
+      canonical: `${baseUrl}/${locale}/${localeSegment}/${slug}`,
+      languages,
+    },
   };
 }
 
@@ -151,12 +188,29 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     }
   };
 
+  // HowTo schema — unlocks step-by-step rich results in Google Search
+  // Source: config.howToSteps already rendered as a numbered list on the page
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": `How to Use ${config.title}`,
+    "description": config.shortDescription,
+    "url": `https://nexuscalculator.net/en/tools/${config.slug}`,
+    "step": config.howToSteps.map((stepText, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": `Step ${index + 1}`,
+      "text": stepText
+    }))
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       {/* Schemas */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
 
       {/* Breadcrumb */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
