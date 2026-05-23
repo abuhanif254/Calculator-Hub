@@ -35,11 +35,13 @@ import { ipLookupConfig } from './ip-lookup';
 import { userAgentParserConfig } from './user-agent-parser';
 import { mimeTypeCheckerConfig } from './mime-type-checker';
 import { colorPickerConfig } from './color-picker';
+
 import { hexToRgbConfig } from './hex-to-rgb';
 import { uuidGeneratorConfig } from './uuid-generator';
 import { slugGeneratorConfig } from './slug-generator';
 import { loremIpsumGeneratorConfig } from './lorem-ipsum-generator';
 import { fakeUserDataGeneratorConfig } from './fake-user-data-generator';
+import { randomNumberGeneratorConfig } from './random-number-generator';
 
 export * from './types';
 
@@ -85,6 +87,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [slugGeneratorConfig.slug]: slugGeneratorConfig,
   [loremIpsumGeneratorConfig.slug]: loremIpsumGeneratorConfig,
   [fakeUserDataGeneratorConfig.slug]: fakeUserDataGeneratorConfig,
+  [randomNumberGeneratorConfig.slug]: randomNumberGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

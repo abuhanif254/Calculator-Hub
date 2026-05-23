@@ -44,6 +44,7 @@ const UuidGeneratorTool = dynamic(() => import('../../../components/tools/UuidGe
 const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGeneratorTool').then(m => m.SlugGeneratorTool));
 const LoremIpsumGeneratorTool = dynamic(() => import('../../../components/tools/LoremIpsumGeneratorTool').then(m => m.LoremIpsumGeneratorTool));
 const FakeUserDataGeneratorTool = dynamic(() => import('../../../components/tools/FakeUserDataGeneratorTool').then(m => m.FakeUserDataGeneratorTool));
+const RandomNumberGeneratorTool = dynamic(() => import('../../../components/tools/RandomNumberGeneratorTool').then(m => m.RandomNumberGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -92,7 +93,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "uuid-generator": UuidGeneratorTool,
   "slug-generator": SlugGeneratorTool,
   "lorem-ipsum-generator": LoremIpsumGeneratorTool,
-  "fake-user-data-generator": FakeUserDataGeneratorTool
+  "fake-user-data-generator": FakeUserDataGeneratorTool,
+  "random-number-generator": RandomNumberGeneratorTool
 };
 
 
