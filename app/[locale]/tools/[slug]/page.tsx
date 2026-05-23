@@ -41,6 +41,7 @@ const MimeTypeCheckerTool = dynamic(() => import('../../../components/tools/mime
 const ColorPickerTool = dynamic(() => import('../../../components/tools/color-picker').then(m => m.ColorPickerTool));
 const HexToRgbTool = dynamic(() => import('../../../components/tools/hex-to-rgb').then(m => m.HexToRgbTool));
 const UuidGeneratorTool = dynamic(() => import('../../../components/tools/UuidGeneratorTool').then(m => m.UuidGeneratorTool));
+const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGeneratorTool').then(m => m.SlugGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -86,7 +87,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "mime-type-checker": MimeTypeCheckerTool,
   "color-picker": ColorPickerTool,
   "hex-to-rgb": HexToRgbTool,
-  "uuid-generator": UuidGeneratorTool
+  "uuid-generator": UuidGeneratorTool,
+  "slug-generator": SlugGeneratorTool
 };
 
 
