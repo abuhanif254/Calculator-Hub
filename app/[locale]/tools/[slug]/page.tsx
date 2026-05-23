@@ -45,6 +45,7 @@ const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGe
 const LoremIpsumGeneratorTool = dynamic(() => import('../../../components/tools/LoremIpsumGeneratorTool').then(m => m.LoremIpsumGeneratorTool));
 const FakeUserDataGeneratorTool = dynamic(() => import('../../../components/tools/FakeUserDataGeneratorTool').then(m => m.FakeUserDataGeneratorTool));
 const RandomNumberGeneratorTool = dynamic(() => import('../../../components/tools/RandomNumberGeneratorTool').then(m => m.RandomNumberGeneratorTool));
+const ApiMockDataGeneratorTool = dynamic(() => import('../../../components/tools/ApiMockDataGeneratorTool').then(m => m.ApiMockDataGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -94,7 +95,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "slug-generator": SlugGeneratorTool,
   "lorem-ipsum-generator": LoremIpsumGeneratorTool,
   "fake-user-data-generator": FakeUserDataGeneratorTool,
-  "random-number-generator": RandomNumberGeneratorTool
+  "random-number-generator": RandomNumberGeneratorTool,
+  "api-mock-data-generator": ApiMockDataGeneratorTool
 };
 
 
