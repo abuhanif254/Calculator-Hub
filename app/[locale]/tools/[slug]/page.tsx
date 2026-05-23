@@ -40,6 +40,12 @@ const UserAgentParserTool = dynamic(() => import('../../../components/tools/user
 const MimeTypeCheckerTool = dynamic(() => import('../../../components/tools/mime-type-checker').then(m => m.MimeTypeCheckerTool));
 const ColorPickerTool = dynamic(() => import('../../../components/tools/color-picker').then(m => m.ColorPickerTool));
 const HexToRgbTool = dynamic(() => import('../../../components/tools/hex-to-rgb').then(m => m.HexToRgbTool));
+const UuidGeneratorTool = dynamic(() => import('../../../components/tools/UuidGeneratorTool').then(m => m.UuidGeneratorTool));
+const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGeneratorTool').then(m => m.SlugGeneratorTool));
+const LoremIpsumGeneratorTool = dynamic(() => import('../../../components/tools/LoremIpsumGeneratorTool').then(m => m.LoremIpsumGeneratorTool));
+const FakeUserDataGeneratorTool = dynamic(() => import('../../../components/tools/FakeUserDataGeneratorTool').then(m => m.FakeUserDataGeneratorTool));
+const RandomNumberGeneratorTool = dynamic(() => import('../../../components/tools/RandomNumberGeneratorTool').then(m => m.RandomNumberGeneratorTool));
+const ApiMockDataGeneratorTool = dynamic(() => import('../../../components/tools/ApiMockDataGeneratorTool').then(m => m.ApiMockDataGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -84,7 +90,13 @@ const toolComponents: Record<string, React.ComponentType> = {
   "user-agent-parser": UserAgentParserTool,
   "mime-type-checker": MimeTypeCheckerTool,
   "color-picker": ColorPickerTool,
-  "hex-to-rgb": HexToRgbTool
+  "hex-to-rgb": HexToRgbTool,
+  "uuid-generator": UuidGeneratorTool,
+  "slug-generator": SlugGeneratorTool,
+  "lorem-ipsum-generator": LoremIpsumGeneratorTool,
+  "fake-user-data-generator": FakeUserDataGeneratorTool,
+  "random-number-generator": RandomNumberGeneratorTool,
+  "api-mock-data-generator": ApiMockDataGeneratorTool
 };
 
 

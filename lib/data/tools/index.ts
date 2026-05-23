@@ -35,7 +35,14 @@ import { ipLookupConfig } from './ip-lookup';
 import { userAgentParserConfig } from './user-agent-parser';
 import { mimeTypeCheckerConfig } from './mime-type-checker';
 import { colorPickerConfig } from './color-picker';
+
 import { hexToRgbConfig } from './hex-to-rgb';
+import { uuidGeneratorConfig } from './uuid-generator';
+import { slugGeneratorConfig } from './slug-generator';
+import { loremIpsumGeneratorConfig } from './lorem-ipsum-generator';
+import { fakeUserDataGeneratorConfig } from './fake-user-data-generator';
+import { randomNumberGeneratorConfig } from './random-number-generator';
+import { apiMockDataGeneratorConfig } from './api-mock-data-generator';
 
 export * from './types';
 
@@ -77,10 +84,14 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [mimeTypeCheckerConfig.slug]: mimeTypeCheckerConfig,
   [colorPickerConfig.slug]: colorPickerConfig,
   [hexToRgbConfig.slug]: hexToRgbConfig,
+  [uuidGeneratorConfig.slug]: uuidGeneratorConfig,
+  [slugGeneratorConfig.slug]: slugGeneratorConfig,
+  [loremIpsumGeneratorConfig.slug]: loremIpsumGeneratorConfig,
+  [fakeUserDataGeneratorConfig.slug]: fakeUserDataGeneratorConfig,
+  [randomNumberGeneratorConfig.slug]: randomNumberGeneratorConfig,
+  [apiMockDataGeneratorConfig.slug]: apiMockDataGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
   return allToolsConfig[slug];
 }
-
-
