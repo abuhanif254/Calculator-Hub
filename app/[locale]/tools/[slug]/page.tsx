@@ -42,6 +42,7 @@ const ColorPickerTool = dynamic(() => import('../../../components/tools/color-pi
 const HexToRgbTool = dynamic(() => import('../../../components/tools/hex-to-rgb').then(m => m.HexToRgbTool));
 const UuidGeneratorTool = dynamic(() => import('../../../components/tools/UuidGeneratorTool').then(m => m.UuidGeneratorTool));
 const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGeneratorTool').then(m => m.SlugGeneratorTool));
+const LoremIpsumGeneratorTool = dynamic(() => import('../../../components/tools/LoremIpsumGeneratorTool').then(m => m.LoremIpsumGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -88,7 +89,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "color-picker": ColorPickerTool,
   "hex-to-rgb": HexToRgbTool,
   "uuid-generator": UuidGeneratorTool,
-  "slug-generator": SlugGeneratorTool
+  "slug-generator": SlugGeneratorTool,
+  "lorem-ipsum-generator": LoremIpsumGeneratorTool
 };
 
 

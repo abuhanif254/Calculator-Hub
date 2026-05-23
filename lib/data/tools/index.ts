@@ -38,6 +38,7 @@ import { colorPickerConfig } from './color-picker';
 import { hexToRgbConfig } from './hex-to-rgb';
 import { uuidGeneratorConfig } from './uuid-generator';
 import { slugGeneratorConfig } from './slug-generator';
+import { loremIpsumGeneratorConfig } from './lorem-ipsum-generator';
 
 export * from './types';
 
@@ -81,6 +82,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [hexToRgbConfig.slug]: hexToRgbConfig,
   [uuidGeneratorConfig.slug]: uuidGeneratorConfig,
   [slugGeneratorConfig.slug]: slugGeneratorConfig,
+  [loremIpsumGeneratorConfig.slug]: loremIpsumGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
