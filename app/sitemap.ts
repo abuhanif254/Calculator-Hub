@@ -122,6 +122,7 @@ export default async function sitemap({
       buildEntry('/sitemap', 'weekly', 0.8),
       buildEntry('/community', 'daily', 0.7),
       buildEntry('/community/new', 'monthly', 0.4),
+      buildEntry('/search', 'weekly', 0.6),
       buildEntry('/about-us', 'monthly', 0.5),
       buildEntry('/privacy-policy', 'yearly', 0.3),
       buildEntry('/terms-of-use', 'yearly', 0.3),
