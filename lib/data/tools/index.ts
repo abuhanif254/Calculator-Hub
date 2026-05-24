@@ -44,6 +44,7 @@ import { fakeUserDataGeneratorConfig } from './fake-user-data-generator';
 import { randomNumberGeneratorConfig } from './random-number-generator';
 import { apiMockDataGeneratorConfig } from './api-mock-data-generator';
 import { htmlTableGeneratorConfig } from './html-table-generator';
+import { usernameGeneratorConfig } from './username-generator';
 
 export * from './types';
 
@@ -92,6 +93,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [randomNumberGeneratorConfig.slug]: randomNumberGeneratorConfig,
   [apiMockDataGeneratorConfig.slug]: apiMockDataGeneratorConfig,
   [htmlTableGeneratorConfig.slug]: htmlTableGeneratorConfig,
+  [usernameGeneratorConfig.slug]: usernameGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

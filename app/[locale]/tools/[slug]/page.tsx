@@ -47,6 +47,7 @@ const FakeUserDataGeneratorTool = dynamic(() => import('../../../components/tool
 const RandomNumberGeneratorTool = dynamic(() => import('../../../components/tools/RandomNumberGeneratorTool').then(m => m.RandomNumberGeneratorTool));
 const ApiMockDataGeneratorTool = dynamic(() => import('../../../components/tools/ApiMockDataGeneratorTool').then(m => m.ApiMockDataGeneratorTool));
 const HtmlTableGeneratorTool = dynamic(() => import('../../../components/tools/HtmlTableGeneratorTool').then(m => m.HtmlTableGeneratorTool));
+const UsernameGeneratorTool = dynamic(() => import('../../../components/tools/UsernameGeneratorTool').then(m => m.UsernameGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -98,7 +99,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "fake-user-data-generator": FakeUserDataGeneratorTool,
   "random-number-generator": RandomNumberGeneratorTool,
   "api-mock-data-generator": ApiMockDataGeneratorTool,
-  "html-table-generator": HtmlTableGeneratorTool
+  "html-table-generator": HtmlTableGeneratorTool,
+  "username-generator": UsernameGeneratorTool
 };
 
 
