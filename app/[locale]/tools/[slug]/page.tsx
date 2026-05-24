@@ -176,11 +176,16 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ToolPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const resolvedParams = await params;
-  const config = getToolConfig(resolvedParams.slug);
+  const { locale, slug: resolvedSlug } = resolvedParams;
+  const config = getToolConfig(resolvedSlug);
 
   if (!config) {
     notFound();
   }
+
+  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
+  const localeSegment = toolPathSegments[locale] || 'tools';
+  const canonicalUrl = `${baseUrl}/${locale}/${localeSegment}/${config.slug}`;
 
   const ToolComponent = toolComponents[config.slug];
 
@@ -193,9 +198,9 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nexuscalculator.net" },
-      { "@type": "ListItem", "position": 2, "name": "Developer Tools", "item": "https://nexuscalculator.net/sitemap" },
-      { "@type": "ListItem", "position": 3, "name": config.title, "item": `https://nexuscalculator.net/tools/${config.slug}` }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+      { "@type": "ListItem", "position": 2, "name": "Developer Tools", "item": `${baseUrl}/${locale}/sitemap` },
+      { "@type": "ListItem", "position": 3, "name": config.title, "item": canonicalUrl }
     ]
   };
 
@@ -219,6 +224,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web",
     "description": config.shortDescription,
+    "url": canonicalUrl,
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -227,13 +233,12 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   };
 
   // HowTo schema — unlocks step-by-step rich results in Google Search
-  // Source: config.howToSteps already rendered as a numbered list on the page
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": `How to Use ${config.title}`,
     "description": config.shortDescription,
-    "url": `https://nexuscalculator.net/en/tools/${config.slug}`,
+    "url": canonicalUrl,
     "step": config.howToSteps.map((stepText, index) => ({
       "@type": "HowToStep",
       "position": index + 1,

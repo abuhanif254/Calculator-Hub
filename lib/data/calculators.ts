@@ -1,4 +1,4 @@
-import { CalculatorDef } from "../types";
+﻿import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
@@ -15,7 +15,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "IRR Calculator | Calculate Internal Rate of Return",
       description: "Free online IRR calculator to compute the Internal Rate of Return for business investments and cash flows.",
-      keywords: "irr calculator, internal rate of return calculator, return on investment, financial calculator IRR"
+      keywords: "irr calculator, internal rate of return calculator, return on investment, financial calculator IRR",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -34,7 +35,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Lease Calculator | Calculate Car Lease Payments",
       description: "Free online lease calculator to estimate your monthly auto lease payments based on vehicle price, residual value, money factor, and term.",
-      keywords: "lease calculator, car lease calculator, auto lease calculator, money factor calculator, lease payment calculator"
+      keywords: "lease calculator, car lease calculator, auto lease calculator, money factor calculator, lease payment calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -53,7 +55,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Real Estate Calculator | Calculate Cap Rate & ROI",
       description: "Free online real estate calculator to evaluate investment properties, cash on cash return, cap rate, and mortgage payments.",
-      keywords: "real estate calculator, cap rate calculator, roi calculator real estate, cash on cash return, mortgage calculator"
+      keywords: "real estate calculator, cap rate calculator, roi calculator real estate, cash on cash return, mortgage calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -72,7 +75,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Margin Calculator | Calculate Profit Margin & Markup",
       description: "Free online margin calculator to find gross profit margin, markup, revenue, and profit. Ideal for business, retail, and sales.",
-      keywords: "margin calculator, profit margin calculator, gross margin calculator, markup calculator, retail margin"
+      keywords: "margin calculator, profit margin calculator, gross margin calculator, markup calculator, retail margin",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -91,7 +95,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Cash Back vs Low Interest Calculator | Compare Auto Loans",
       description: "Compare auto dealer cash back rebates vs 0% or low-interest financing. See where you save more money.",
-      keywords: "cash back vs low interest, auto loan calculator, car financing comparison"
+      keywords: "cash back vs low interest, auto loan calculator, car financing comparison",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -110,7 +115,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Roth IRA Calculator | Tax-Free Retirement Growth",
       description: "Estimate your Roth IRA savings and see the power of tax-free compound interest with our free calculating tool.",
-      keywords: "roth ira calculator, retirement calculator, tax-free growth, roth ira contribution, ira investment"
+      keywords: "roth ira calculator, retirement calculator, tax-free growth, roth ira contribution, ira investment",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -129,7 +135,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Retirement Calculator | Plan Your Financial Future",
       description: "Estimate your retirement savings, see the power of compound interest, and plan your financial future with our free and highly accurate Retirement Calculator.",
-      keywords: "retirement calculator, retirement planning, savings calculator, compound interest"
+      keywords: "retirement calculator, retirement planning, savings calculator, compound interest",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -148,7 +155,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Amortization Calculator | Free Loan Schedule Generator",
       description: "Calculate your monthly payments and generate a complete loan amortization schedule. See exactly how much goes to principal and interest over time.",
-      keywords: "amortization calculator, loan schedule, amortization table, principal and interest, payoff schedule"
+      keywords: "amortization calculator, loan schedule, amortization table, principal and interest, payoff schedule",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -167,7 +175,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Investment Calculator | Track Future Wealth Projection",
       description: "Explore how your money can grow over time with compound interest. Calculate starting principles, monthly contributions, and estimated returns.",
-      keywords: "investment calculator, compounding interest, future value of money, investment growth, earnings calculator"
+      keywords: "investment calculator, compounding interest, future value of money, investment growth, earnings calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -186,7 +195,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Inflation Calculator | Forward Projection & Purchasing Power",
       description: "Estimate how much inflation will impact your savings and calculate the true future cost of living with our free Inflation Calculator.",
-      keywords: "inflation calculator, purchasing power, future cost, inflation rate, value of money over time, CPI"
+      keywords: "inflation calculator, purchasing power, future cost, inflation rate, value of money over time, CPI",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -205,7 +215,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Finance Calculator | Time Value of Money & TVM Projection",
       description: "Calculate present value, future value, interest, and periodic payments with our powerful TVM Finance Calculator.",
-      keywords: "finance calculator, time value of money, TVM calculator, future value, present value, financial planning"
+      keywords: "finance calculator, time value of money, TVM calculator, future value, present value, financial planning",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -224,7 +235,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Estate Tax Calculator | Estimate Inheritance Tax Liability",
       description: "Calculate your estimated estate tax liability based on assets, deductions, and exemptions. Expert tools for inheritance planning and wealth preservation.",
-      keywords: "estate tax calculator, inheritance tax, death tax, estate planning, wealth tax, probate costs"
+      keywords: "estate tax calculator, inheritance tax, death tax, estate planning, wealth tax, probate costs",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -283,7 +295,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Salary Calculator | Hourly to Annual Income Converter",
       description: "Easily convert your wage between hourly, daily, weekly, monthly, and annual amounts with our global Salary Calculator.",
-      keywords: "salary calculator, wage converter, hourly to salary, monthly income calculator, annual pay, paycheck calculator"
+      keywords: "salary calculator, wage converter, hourly to salary, monthly income calculator, annual pay, paycheck calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -302,7 +315,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Interest Rate Calculator | Find Required Rate of Return",
       description: "Discover the specific annual interest rate you need to grow your starting principal into a target future value. Real-world financial planning tool.",
-      keywords: "interest rate calculator, calculate ROI, required rate of return, target savings calculator, compound interest rate formula"
+      keywords: "interest rate calculator, calculate ROI, required rate of return, target savings calculator, compound interest rate formula",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -321,7 +335,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Sales Tax / VAT Calculator | Add & Reverse Tax",
       description: "Quickly add sales tax to a price, or reverse-calculate to extract the pre-tax net amount and total tax paid. Works for VAT and GST globally.",
-      keywords: "sales tax calculator, vat calculator, reverse sales tax, calculate gst, gross price, net price"
+      keywords: "sales tax calculator, vat calculator, reverse sales tax, calculate gst, gross price, net price",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -340,7 +355,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Free Online Graphing Calculator | Math Visualizer",
       description: "Interactive online graphing calculator. Plot functions, explore math equations, intersect points, and visualize math visually with our free visual graph toolkit.",
-      keywords: "graphing calculator, function plotter, graph equation, visual math"
+      keywords: "graphing calculator, function plotter, graph equation, visual math",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -359,7 +375,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Scientific Calculator | Advanced Online Math Tool",
       description: "Free online scientific calculator with advanced math functions like trigonometry, logarithms, exponentiation, and more.",
-      keywords: "scientific calculator, online math calculator, trigonometry, scientific notation calculator, pi, exponents"
+      keywords: "scientific calculator, online math calculator, trigonometry, scientific notation calculator, pi, exponents",
+      lastUpdated: "2025-01-01"
     },
     fields: [], // Handled by custom view
     logicModule: "math"
@@ -378,7 +395,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Percentage Calculator | Find Percent Increase/Decrease",
       description: "Free online percentage calculator. Find percent of a number, percentage change (increase/decrease), and what percent a number is of another.",
-      keywords: "percentage calculator, what percent, percent increase calculator, percent decrease, find percentage, math calculator"
+      keywords: "percentage calculator, what percent, percent increase calculator, percent decrease, find percentage, math calculator",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -400,7 +418,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Triangle Calculator | Find Angles, Sides & Area",
       description: "Free online triangle calculator. Solve triangles using 3 sides (SSS), 2 sides and an angle (SAS), or calculate area with base and height.",
-      keywords: "triangle calculator, solve triangle, triangle area calculator, calculate triangle sides, SSS, SAS, geometry calculator"
+      keywords: "triangle calculator, solve triangle, triangle area calculator, calculate triangle sides, SSS, SAS, geometry calculator",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -419,7 +438,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Standard Deviation Calculator | Population & Sample",
       description: "Free online standard deviation calculator. Instantly find the sample and population standard deviation, mean, variance, and count from any data set.",
-      keywords: "standard deviation calculator, sample standard deviation, population standard deviation, variance calculator, mean calculator, stats calculator"
+      keywords: "standard deviation calculator, sample standard deviation, population standard deviation, variance calculator, mean calculator, stats calculator",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -438,7 +458,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Calorie Calculator | TDEE & BMR Target Finder",
       description: "Free online calorie calculator to find your Total Daily Energy Expenditure (TDEE). Calculate exactly how many calories you need to lose, maintain, or gain weight.",
-      keywords: "calorie calculator, TDEE calculator, BMR calculator, daily calories, weight loss calculator, maintenance calories, macro calculator"
+      keywords: "calorie calculator, TDEE calculator, BMR calculator, daily calories, weight loss calculator, maintenance calories, macro calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "math"
@@ -457,7 +478,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Body Fat Calculator | Find Your Body Fat Percentage",
       description: "Free online body fat calculator using the U.S. Navy method. Calculate your lean body mass, fat mass, and body fat category instantly with your waist and neck measurements.",
-      keywords: "body fat calculator, calculate body fat percentage, US Navy method, lean body mass, fat mass, body fat category, fitness calculator"
+      keywords: "body fat calculator, calculate body fat percentage, US Navy method, lean body mass, fat mass, body fat category, fitness calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "math"
@@ -476,7 +498,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "BMR Calculator | Calculate Basal Metabolic Rate",
       description: "Free online BMR calculator. Use the Mifflin-St Jeor equation to calculate your Basal Metabolic Rate (BMR) accurately in metric or imperial units.",
-      keywords: "bmr calculator, basal metabolic rate, resting metabolic rate, rmr calculator, calories burned resting, metabolism calculator"
+      keywords: "bmr calculator, basal metabolic rate, resting metabolic rate, rmr calculator, calories burned resting, metabolism calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "math"
@@ -495,7 +518,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Ideal Weight Calculator | Find Your Healthy IBW",
       description: "Free online ideal weight calculator. Calculate your perfect healthy body weight range based on your exact height and gender using medical formulas.",
-      keywords: "ideal weight calculator, perfect weight, IBW calculator, healthy weight calculator, Robinson formula, Devine formula, body weight"
+      keywords: "ideal weight calculator, perfect weight, IBW calculator, healthy weight calculator, Robinson formula, Devine formula, body weight",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "math"
@@ -514,7 +538,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Pace Calculator | Running Pace, Time & Distance",
       description: "Free online running pace calculator. Enter your distance and time to find your pace, or use pace and distance to predict your race finish time.",
-      keywords: "pace calculator, running pace, marathon pace, distance calculator, finish time calculator, 5k pace, half marathon pace"
+      keywords: "pace calculator, running pace, marathon pace, distance calculator, finish time calculator, 5k pace, half marathon pace",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -533,7 +558,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Ovulation Calculator | Find Your Fertile Window",
       description: "Free online ovulation calculator. Instantly discover your most fertile days, exact ovulation date, and expected next period to maximize conception chances.",
-      keywords: "ovulation calculator, fertile window, when do I ovulate, getting pregnant, menstrual cycle calculator, fertility calculator"
+      keywords: "ovulation calculator, fertile window, when do I ovulate, getting pregnant, menstrual cycle calculator, fertility calculator",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -552,7 +578,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Pregnancy Calculator | Calculate Your Due Date",
       description: "Free online pregnancy due date calculator. Instantly discover your baby's estimated due date, your current trimester, and pregnancy timeline.",
-      keywords: "pregnancy calculator, due date calculator, estimated due date, EDD calculator, weeks pregnant, baby due date, ivf due date"
+      keywords: "pregnancy calculator, due date calculator, estimated due date, EDD calculator, weeks pregnant, baby due date, ivf due date",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -571,7 +598,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Conception Calculator | Find Out When You Conceived",
       description: "Free online pregnancy conception calculator. Reverse calculate exactly when you got pregnant based on your EDD, LMP, or clinical ultrasound.",
-      keywords: "conception calculator, fertility window, pregnancy math, when did i get pregnant, date of conception"
+      keywords: "conception calculator, fertility window, pregnancy math, when did i get pregnant, date of conception",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -590,7 +618,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Due Date Calculator | Calculate EDD, Zodiac & More",
       description: "Free online due date calculator. Quickly and accurately determine your estimated due date, fetal milestones, expected zodiac sign, and birthstone.",
-      keywords: "due date calculator, baby due date, EDD calculator, calculate my due date, expected delivery date, pregnancy calculator, baby zodiac sign"
+      keywords: "due date calculator, baby due date, EDD calculator, calculate my due date, expected delivery date, pregnancy calculator, baby zodiac sign",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -609,7 +638,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Date Calculator | Add, Subtract & Find Days Between Dates",
       description: "Free online date calculator. Calculate the exact duration between two dates, or add/subtract days, weeks, months, and years to a specific starting date.",
-      keywords: "date calculator, days between dates, time calculator, add days to date, subtract days from date, duration calculator"
+      keywords: "date calculator, days between dates, time calculator, add days to date, subtract days from date, duration calculator",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -628,7 +658,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Time Calculator | Add, Subtract & Find Time Difference",
       description: "Free online time calculator. Easily calculate the duration between two times, or add and subtract hours, minutes, and seconds from a total duration.",
-      keywords: "time calculator, calculate time, time difference, add time, subtract time, hours between times, time math"
+      keywords: "time calculator, calculate time, time difference, add time, subtract time, hours between times, time math",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -647,7 +678,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Hours Calculator | Calculate Work & Timesheet Hours",
       description: "Free online hours calculator. Calculate total time worked, deduct lunch breaks, and convert to standardized decimal hours for payroll and wages.",
-      keywords: "hours calculator, calculate work hours, timesheet calculator, payroll calculator, decimal hours, time card, work hours"
+      keywords: "hours calculator, calculate work hours, timesheet calculator, payroll calculator, decimal hours, time card, work hours",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -666,7 +698,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "GPA Calculator | Calculate High School & College GPA",
       description: "Free online GPA Calculator. Calculate your Grade Point Average on a 4.0 scale. Include AP, IB, and Honors courses to calculate weighted and unweighted GPA.",
-      keywords: "gpa calculator, grade point average, college gpa, high school gpa, weighted gpa, unweighted gpa, grading scale"
+      keywords: "gpa calculator, grade point average, college gpa, high school gpa, weighted gpa, unweighted gpa, grading scale",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -685,7 +718,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Grade Calculator | Weighted Class & Final Exam Calculator",
       description: "Free online grade calculator. Easily calculate your current weighted class grade or find out exactly what you need on your final exam to reach your target grade.",
-      keywords: "grade calculator, class grade, final exam calculator, weighted grade, current grade, passing grade, high school grade, college grade"
+      keywords: "grade calculator, class grade, final exam calculator, weighted grade, current grade, passing grade, high school grade, college grade",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -704,7 +738,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Concrete Calculator | Calculate Cubic Yards & Bags",
       description: "Free online concrete calculator. Calculate the exact volume of concrete you need for slabs, columns, and footings in cubic yards, meters, and premixed bags.",
-      keywords: "concrete calculator, cubic yards of concrete, calculate concrete slabs, concrete bags calculator, volume calculator, cement calculator, footing calculation"
+      keywords: "concrete calculator, cubic yards of concrete, calculate concrete slabs, concrete bags calculator, volume calculator, cement calculator, footing calculation",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -723,7 +758,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Subnet Calculator | IPv4, CIDR, & IP Range Calculator",
       description: "Free online IP Subnet Calculator. Easily calculate subnets, network masks, broadcast addresses, and usable host ranges using CIDR notation.",
-      keywords: "subnet calculator, ip calculator, cidr calculator, network address, broadcast address, ipv4 subnetting, usable ip range, network mask"
+      keywords: "subnet calculator, ip calculator, cidr calculator, network address, broadcast address, ipv4 subnetting, usable ip range, network mask",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -745,7 +781,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
        title: "Conversion Calculator | Fast & Accurate Unit Converter",
        description: "Free online conversion calculator. Instantly convert metric to imperial and vice versa. Supports length, weight, temperature, and volume conversions.",
-       keywords: "conversion calculator, unit converter, metric conversion, imperial conversion, length converter, weight converter, temperature conversion"
+       keywords: "conversion calculator, unit converter, metric conversion, imperial conversion, length converter, weight converter, temperature conversion",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "math"
@@ -764,7 +801,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
        title: "Currency Calculator | Live Exchange Rates & Converter",
        description: "Free online currency calculator. Instantly convert between global currencies using live exchange rates. perfect for travel, business, and finance.",
-       keywords: "currency calculator, currency converter, exchange rates, foreign exchange, money converter"
+       keywords: "currency calculator, currency converter, exchange rates, foreign exchange, money converter",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -783,7 +821,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
        title: "Rent Affordability Calculator | How Much Rent Can I Afford?",
        description: "Free online rent calculator. Instantly figure out how much rent you can afford based on your annual or monthly salary.",
-       keywords: "rent calculator, rent affordability, how much rent can i afford, 30 percent rule, apartment budget, housing calculator"
+       keywords: "rent calculator, rent affordability, how much rent can i afford, 30 percent rule, apartment budget, housing calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -802,7 +841,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
        title: "Social Security Calculator | Estimate Retirement Benefits",
        description: "Free online Social Security Calculator. Accurately estimate your monthly retirement benefits based on your current age, income, and expected retirement age.",
-       keywords: "social security calculator, retirement benefits, calculate social security, retirement calculator, retirement age, monthly benefit estimate"
+       keywords: "social security calculator, retirement benefits, calculate social security, retirement calculator, retirement age, monthly benefit estimate",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -841,7 +881,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Scientific Notation Calculator | Converter & Math",
       description: "Free scientific notation calculator. Convert decimal numbers to scientific e-notation, or perform addition, subtraction, multiplication, and division on scientific notation.",
-      keywords: "scientific notation calculator, e notation converter, standard form to scientific notation, scientific notation math"
+      keywords: "scientific notation calculator, e notation converter, standard form to scientific notation, scientific notation math",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "math"
@@ -860,7 +901,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Statistics Calculator | Mean, Variance, Std Dev",
       description: "Powerful statistics calculator with step-by-step solutions, box plots, histograms, and normal distribution charts.",
-      keywords: "statistics calculator, mean median mode, standard deviation calculator, variance, step by step stats"
+      keywords: "statistics calculator, mean median mode, standard deviation calculator, variance, step by step stats",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "math"
@@ -879,7 +921,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Fraction Calculator | Add, Subtract & Multiply Fractions",
       description: "Free online fraction calculator. Easily solve fraction problems, simplify mixed numbers, and find common denominators.",
-      keywords: "fraction calculator, add fractions, multiply fractions, simplify fractions, common denominator, mixed numbers"
+      keywords: "fraction calculator, add fractions, multiply fractions, simplify fractions, common denominator, mixed numbers",
+      lastUpdated: "2025-01-01"
     },
     fields: [], // Handled by custom view
     logicModule: "math"
@@ -898,7 +941,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Age Calculator | Precise Online Chronological Age Calculator",
       description: "Calculate your exact age accurately with our free online Age Calculator. Find out your age in years, months, weeks, days, and hours instantly based on your date of birth.",
-      keywords: "age calculator, calculate age from date of birth, exact age calculator, chronological age calculator, age difference calculator, birthday calculator, how old am i, date of birth calculator, age calculator online"
+      keywords: "age calculator, calculate age from date of birth, exact age calculator, chronological age calculator, age difference calculator, birthday calculator, how old am i, date of birth calculator, age calculator online",
+      lastUpdated: "2025-01-01"
     },
     fields: [], // Handled by custom view
     logicModule: "time",
@@ -933,7 +977,8 @@ To engineer a flawless cross-border data transfer:
     meta: {
       title: "Auto Loan Calculator | Estimate Car Payments",
       description: "Use our free auto loan calculator to estimate your monthly car payments. Includes total interest and total vehicle cost estimations.",
-      keywords: "auto loan, car payment calculator, vehicle financing, auto financing"
+      keywords: "auto loan, car payment calculator, vehicle financing, auto financing",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -952,7 +997,8 @@ To engineer a flawless cross-border data transfer:
     meta: {
       title: "Payment Calculator | Estimate Monthly Loan Payments",
       description: "Quickly calculate monthly loan payments for auto, personal, or business loans. See exactly how much interest you will pay over time.",
-      keywords: "payment calculator, loan payment calculator, calculate monthly payment, amortization"
+      keywords: "payment calculator, loan payment calculator, calculate monthly payment, amortization",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial"
@@ -971,7 +1017,8 @@ To engineer a flawless cross-border data transfer:
     meta: {
       title: "Interest Calculator | Accurately Calculate Compound Interest",
       description: "Easily compute total interest, compound totals, and principal over time with our free Interest Calculator. Works with monthly, daily, and annual compounding.",
-      keywords: "interest calculator, compound interest, simple interest, investment calculator"
+      keywords: "interest calculator, compound interest, simple interest, investment calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -991,6 +1038,7 @@ To engineer a flawless cross-border data transfer:
       title: "Mortgage Calculator - Estimate Your Monthly Payments",
       description: "Use our free mortgage calculator to estimate your monthly mortgage payments. Includes taxes, insurance, and an amortization schedule.",
       keywords: "mortgage calculator, home loan, amortization schedule",
+      lastUpdated: "2025-03-01"
     },
     fields: [
       {
@@ -1094,6 +1142,7 @@ To get the absolute most accurate results from this tool, gather the necessary f
       title: "Canadian Mortgage Calculator | Semi-Annual Compounding",
       description: "Free Canadian mortgage calculator that correctly applies Canada's legal semi-annual compounding requirements to estimate your exact monthly payments.",
       keywords: "canadian mortgage calculator, semi-annual compounding, canada home loan",
+      lastUpdated: "2025-01-01"
     },
     fields: [
       {
@@ -1187,7 +1236,8 @@ Use this specialized calculator to ensure your financial modeling matches the re
     meta: {
       title: "Student Loan Calculator - Estimate Payoff and Interest",
       description: "Quickly estimate your monthly student loan payments, total interest costs, and payoff timelines with our free calculator. Supports both public and private loans.",
-      keywords: "student loan calculator, student debt payoff, interest calculator, monthly loan payment, college loan"
+      keywords: "student loan calculator, student debt payoff, interest calculator, monthly loan payment, college loan",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Custom UI
     logicModule: "financial", // Handled by custom hook/view
@@ -1222,6 +1272,7 @@ Paying off student loans is a major financial goal for many graduates. This stud
       title: "Loan Calculator - Amortized, Deferred, and Bond Approximations",
       description: "Use our free loan calculator to estimate amortized loan payments, deferred payment maturity values, and bond yields.",
       keywords: "loan calculator, amortized loan, deferred payment loan, bond calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Unused for custom pages, but required by type
     logicModule: "financial", // Unused
@@ -1273,7 +1324,8 @@ A loan term is the duration of the loan, given that required minimum payments ar
     meta: {
       title: "BMI Calculator | Metric & Imperial Conversions",
       description: "Fast, accurate Body Mass Index (BMI) calculator. Seamlessly flip between Imperial and Metric units instantly based on your required region.",
-      keywords: "bmi calculator, body mass index, health metrics, ideal weight calculator"
+      keywords: "bmi calculator, body mass index, health metrics, ideal weight calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [], // Handled by custom view
     logicModule: "health",
@@ -1314,7 +1366,8 @@ BMI = [Weight (lbs) / Height (inches)²] × 703
     meta: {
       title: "Depreciation Calculator | Straight-Line & Declining Balance",
       description: "Free depreciation calculator. Calculate the depreciation of business assets using the straight-line method, declining balance method, or sum of the years' digits.",
-      keywords: "depreciation calculator, straight-line depreciation, declining balance, asset depreciation, accounting calculator, salvage value"
+      keywords: "depreciation calculator, straight-line depreciation, declining balance, asset depreciation, accounting calculator, salvage value",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1353,7 +1406,8 @@ By using this calculator, you can effectively plan for tax deductions, manage ca
     meta: {
       title: "Business Loan Calculator | Estimate Payments & Interest",
       description: "Free business loan calculator. Estimate monthly payments, view your amortization schedule, and calculate total interest for small business loans, SBA loans, and commercial financing.",
-      keywords: "business loan calculator, commercial loan calculator, SBA loan calculator, small business financing, amortization schedule, business debt"
+      keywords: "business loan calculator, commercial loan calculator, SBA loan calculator, small business financing, amortization schedule, business debt",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1392,7 +1446,8 @@ Use this calculator to compare financing offers, plan your monthly budget, and e
     meta: {
       title: "Personal Loan Calculator | Monthly Payments & Interest",
       description: "Free personal loan calculator. Estimate monthly payments, view the amortization schedule, and calculate total interest for personal loans, debt consolidation, and home improvements.",
-      keywords: "personal loan calculator, monthly payment calculator, debt consolidation, unsecured loan, personal finance, amortization schedule"
+      keywords: "personal loan calculator, monthly payment calculator, debt consolidation, unsecured loan, personal finance, amortization schedule",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1430,7 +1485,8 @@ By calculating your potential monthly payments and total interest, you can make 
     meta: {
       title: "Budget Calculator | Monthly Budget Planner & 50/30/20 Rule",
       description: "Free monthly budget calculator. Track income, categorize expenses, and plan your savings with our interactive budget planner and 50/30/20 rule breakdown.",
-      keywords: "budget calculator, monthly budget planner, 50/30/20 rule, personal finance, expense tracker, savings calculator, family budget"
+      keywords: "budget calculator, monthly budget planner, 50/30/20 rule, personal finance, expense tracker, savings calculator, family budget",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1468,7 +1524,8 @@ This calculator includes a helpful breakdown based on the popular 50/30/20 budge
     meta: {
       title: "APR Calculator | Calculate True Loan Cost & APR",
       description: "Free APR calculator. Determine the real cost of borrowing by calculating the Annual Percentage Rate (APR) based on loan amount, interest rate, term, and hidden fees.",
-      keywords: "apr calculator, effective interest rate, annual percentage rate, true cost of loan, loan fees, compare loans, apr vs interest rate"
+      keywords: "apr calculator, effective interest rate, annual percentage rate, true cost of loan, loan fees, compare loans, apr vs interest rate",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1505,7 +1562,8 @@ By comparing the APRs of different lending offers rather than just their stated 
     meta: {
       title: "HELOC Calculator | Home Equity Line of Credit Payments",
       description: "Free HELOC calculator. Estimate your monthly payments during both the draw period (interest-only) and the repayment period (principal and interest) for a Home Equity Line of Credit.",
-      keywords: "heloc calculator, home equity line of credit, draw period, repayment period, interest only payments, home equity loans"
+      keywords: "heloc calculator, home equity line of credit, draw period, repayment period, interest only payments, home equity loans",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1542,7 +1600,8 @@ Understanding both phases is critical to ensure you can afford the loan over its
     meta: {
       title: "Present Value Calculator | PV of Future Cash Flows",
       description: "Free Present Value (PV) calculator. Determine the current worth of a future sum of money or stream of cash flows given a specific rate of return.",
-      keywords: "present value calculator, pv calculator, discount rate, time value of money, net present value, future value, finance calculator"
+      keywords: "present value calculator, pv calculator, discount rate, time value of money, net present value, future value, finance calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1579,7 +1638,8 @@ Understanding Present Value is crucial for evaluating investments, businesses, f
     meta: {
       title: "Percent Off Calculator | Discount & Sales Tax",
       description: "Free percent off calculator. Quickly find out the final price after applying a percentage discount, and see the impact of sales tax on your purchase.",
-      keywords: "percent off calculator, discount calculator, sale price calculator, sales tax calculator, final price, calculate discount"
+      keywords: "percent off calculator, discount calculator, sale price calculator, sales tax calculator, final price, calculate discount",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1613,7 +1673,8 @@ Understanding the final cost helps you budget effectively and compare different 
     meta: {
       title: "401(k) Calculator | Retirement Savings Planner",
       description: "Free 401(k) calculator. Estimate your retirement savings, factor in company match, salary increases, and investment returns to plan for your future.",
-      keywords: "401k calculator, retirement calculator, company match, retirement savings plan, investment growth, retirement planning"
+      keywords: "401k calculator, retirement calculator, company match, retirement savings plan, investment growth, retirement planning",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1648,7 +1709,8 @@ Input your current age, planned retirement age, current salary, and contribution
     meta: {
       title: "Marriage Tax Calculator | Penalty or Bonus?",
       description: "Free Marriage Tax Calculator. Check if filing taxes jointly will result in a marriage tax penalty or bonus based on combined progressive tax brackets.",
-      keywords: "marriage tax calculator, marriage penalty calculate, marriage bonus, filing jointly vs separately, tax brackets marriage"
+      keywords: "marriage tax calculator, marriage penalty calculate, marriage bonus, filing jointly vs separately, tax brackets marriage",
+      lastUpdated: "2025-01-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1684,7 +1746,8 @@ Enter the annual income for both Partner 1 and Partner 2. The calculator will es
     meta: {
       title: "Annuity Calculator | Calculate Present and Future Value",
       description: "Free Annuity Calculator. Discover the future value of a current annuity or the present value required to generate specific future payments.",
-      keywords: "annuity calculator, future value of annuity, present value of annuity, retirement income, investment calculator"
+      keywords: "annuity calculator, future value of annuity, present value of annuity, retirement income, investment calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1722,7 +1785,8 @@ Use this calculator to find the payout or the required investment for your finan
     meta: {
       title: "Annuity Payout Calculator | Retirement Income Estimator",
       description: "Calculate your periodic annuity payout from a lump sum. Estimate how long your retirement savings will last with our high-performance Annuity Payout Calculator.",
-      keywords: "annuity payout calculator, retirement income, annuity distribution, lump sum payout, retirement savings, monthly annuity"
+      keywords: "annuity payout calculator, retirement income, annuity distribution, lump sum payout, retirement savings, monthly annuity",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1773,7 +1837,8 @@ Taxation varies by jurisdiction. Generally, a portion of each payout representin
     meta: {
       title: "Simple Interest Calculator | Calculate Principal & Interest",
       description: "Free Simple Interest Calculator. Calculate interest earned or paid on a principal amount over time. Perfect for loans and basic investments.",
-      keywords: "simple interest calculator, calculate interest, loan interest, principal and interest, interest formula, investment growth"
+      keywords: "simple interest calculator, calculate interest, loan interest, principal and interest, interest formula, investment growth",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1833,7 +1898,8 @@ Simple interest values are "nominal." Over long periods, the purchasing power of
     meta: {
       title: "Debt Consolidation Calculator | Save Money on Interest",
       description: "Use our Debt Consolidation Calculator to see if combining your debts into one loan saves you money. Compare monthly payments and total interest costs.",
-      keywords: "debt consolidation calculator, consolidate debt, credit card consolidation, loan comparison, debt management, interest savings"
+      keywords: "debt consolidation calculator, consolidate debt, credit card consolidation, loan comparison, debt management, interest savings",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1882,7 +1948,8 @@ Most unsecured debts, like credit cards, personal loans, and medical bills, can 
     meta: {
       title: "Debt Payoff Calculator | Calculate Debt Freedom Date",
       description: "Free Debt Payoff Calculator. See how fast you can become debt-free and how much interest you can save by making extra payments.",
-      keywords: "debt payoff calculator, debt free date, credit card payoff, loan payoff calculator, interest savings"
+      keywords: "debt payoff calculator, debt free date, credit card payoff, loan payoff calculator, interest savings",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1916,7 +1983,8 @@ Making just the minimum payment on a loan or credit card mostly covers the inter
     meta: {
       title: "College Cost Calculator | Estimate University Expenses",
       description: "Free College Cost Calculator. Project the total expense of a university degree taking into account tuition fees, living expenses, and historical education inflation rates.",
-      keywords: "college cost calculator, university fee estimator, education savings, college tuition inflation, room and board cost"
+      keywords: "college cost calculator, university fee estimator, education savings, college tuition inflation, room and board cost",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1951,7 +2019,8 @@ Education costs generally rise faster than standard economic inflation. If a stu
     meta: {
       title: "Mutual Fund Calculator | SIP & Lumpsum Returns Matrix",
       description: "Free Mutual Fund Calculator. Estimate your investment returns over time with regular SIP contributions or a one-time Lumpsum investment to achieve your financial goals.",
-      keywords: "mutual fund calculator, SIP calculator, lumpsum calculator, investment returns, compounding returns, systematic investment plan"
+      keywords: "mutual fund calculator, SIP calculator, lumpsum calculator, investment returns, compounding returns, systematic investment plan",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -1985,7 +2054,8 @@ The secret ingredient of mutual fund investing is compound interest—earning in
     meta: {
       title: "VAT Calculator | Value Added Tax",
       description: "Free VAT Calculator. Easily add VAT to a net amount or extract VAT from a gross amount.",
-      keywords: "vat calculator, value added tax, calculate vat, add vat, remove vat, gross net calculation"
+      keywords: "vat calculator, value added tax, calculate vat, add vat, remove vat, gross net calculation",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2023,7 +2093,8 @@ This calculator allows you to quickly perform both calculations. Simply enter yo
     meta: {
       title: "RMD Calculator | Required Minimum Distribution",
       description: "Free RMD calculator. Easily estimate your Required Minimum Distribution for your retirement accounts based on your age and account balance.",
-      keywords: "rmd calculator, required minimum distribution, retirement calculator, ira withdrawal calculator, 401k rmd"
+      keywords: "rmd calculator, required minimum distribution, retirement calculator, ira withdrawal calculator, 401k rmd",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2061,7 +2132,8 @@ Failing to withdraw your RMD can result in severe tax penalties. While this calc
     meta: {
       title: "Bond Calculator | Calculate Bond Price & Yield to Maturity",
       description: "Free online bond calculator. Estimate the price, current yield, and yield to maturity (YTM) of a bond using its face value, coupon rate, and maturity date.",
-      keywords: "bond calculator, bond price calculator, yield to maturity, ytm calculator, current yield, fixed income calculator, coupon rate math"
+      keywords: "bond calculator, bond price calculator, yield to maturity, ytm calculator, current yield, fixed income calculator, coupon rate math",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2103,7 +2175,8 @@ Because bond prices and yields move in opposite directions, understanding the re
     meta: {
       title: "P-Value Calculator | Z-test, T-test, Chi-square, F-test",
       description: "Free online p-value calculator. Find out if your results are statistically significant by calculating the p-value from Z, T, F, and Chi-square statistics.",
-      keywords: "p-value calculator, p value, z test p value, t test p value, chi square p value, f test p value, statistical significance"
+      keywords: "p-value calculator, p value, z test p value, t test p value, chi square p value, f test p value, statistical significance",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "math"
@@ -2122,7 +2195,8 @@ Because bond prices and yields move in opposite directions, understanding the re
     meta: {
       title: "Average Return Calculator | Arithmetic vs Geometric",
       description: "Free online Average Return Calculator. Calculate simple Arithmetic Mean and the precise Geometric Mean (CAGR) of your portfolio to evaluate investment performance.",
-      keywords: "average return calculator, geometric mean return, arithmetic average return, investment return, cagr calculator, portfolio return"
+      keywords: "average return calculator, geometric mean return, arithmetic average return, investment return, cagr calculator, portfolio return",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2155,7 +2229,8 @@ If your portfolio goes up 50% one year and down 50% the next, your arithmetic av
     meta: {
       title: "Debt-to-Income Ratio (DTI) Calculator",
       description: "Free online Debt-to-Income (DTI) ratio calculator. Calculate your percentage of income that goes toward paying debts to assess mortgage or loan readiness.",
-      keywords: "debt to income ratio calculator, dti calculator, calculate debt to income, mortgage dti, personal finance calculator, borrowing capacity"
+      keywords: "debt to income ratio calculator, dti calculator, calculate debt to income, mortgage dti, personal finance calculator, borrowing capacity",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2198,7 +2273,8 @@ If your DTI is higher than you'd like, you have two primary levers to improve it
     meta: {
       title: "Boat Loan Calculator | Estimate Marine Financing",
       description: "Free online Boat Loan Calculator. Estimate your monthly marine financing payments, total interest, and payoff schedule.",
-      keywords: "boat loan calculator, marine financing calculator, yacht loan calculator"
+      keywords: "boat loan calculator, marine financing calculator, yacht loan calculator",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2226,7 +2302,8 @@ Boat loans are similar to auto loans but often have longer terms and different i
     meta: {
       title: "Rental Property Calculator | Cash Flow & ROI Estimator",
       description: "Free online Rental Property Calculator. Analyze real estate investments by calculating monthly cash flow, cap rate, return on investment (ROI), and more.",
-      keywords: "rental property calculator, real estate investment calculator, ROI calculator real estate, cap rate calculator, cash flow calculator"
+      keywords: "rental property calculator, real estate investment calculator, ROI calculator real estate, cap rate calculator, cash flow calculator",
+      lastUpdated: "2025-03-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2261,7 +2338,8 @@ When entering data, do not forget variables such as vacancy rates, property mana
     meta: {
       title: "FHA Loan Calculator | Estimate FHA Mortgage & MIP",
       description: "Free online FHA Loan Calculator. Estimate your monthly mortgage payments, including upfront and annual Mortgage Insurance Premiums (MIP), property taxes, and insurance.",
-      keywords: "fha loan calculator, fha mortgage calculator, fha mip calculator, fha loan payment"
+      keywords: "fha loan calculator, fha mortgage calculator, fha mip calculator, fha loan payment",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2293,7 +2371,8 @@ This FHA Loan Calculator helps first-time homebuyers and existing owners estimat
     meta: {
       title: "Down Payment Calculator | Estimate Your Deposit",
       description: "Free online Down Payment Calculator. Find out how much you need to save for a house or car down payment and how it impacts your monthly mortgage or auto loan payments.",
-      keywords: "down payment calculator, house down payment, car down payment, deposit calculator, mortgage deposit"
+      keywords: "down payment calculator, house down payment, car down payment, deposit calculator, mortgage deposit",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2330,7 +2409,8 @@ Saving a significant amount of money takes time and discipline. Consider setting
     meta: {
       title: "Future Value Calculator | Investment Growth Projection",
       description: "Free online Future Value Calculator. Determine the future value of a single sum or periodic deposits with compound interest. Ideal for retirement and savings analysis.",
-      keywords: "future value calculator, compound interest, investment growth, fv calculator, savings calculator"
+      keywords: "future value calculator, compound interest, investment growth, fv calculator, savings calculator",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2371,7 +2451,8 @@ Use our calculator to test different scenarios:
     meta: {
       title: "Mortgage Amortization Calculator | Payment Schedule",
       description: "Free online Mortgage Amortization Calculator. Determine your mortgage payment and view a year-by-year and month-by-month breakdown of principal and interest.",
-      keywords: "mortgage amortization calculator, mortgage payment, loan amortization, amortization schedule, principal and interest"
+      keywords: "mortgage amortization calculator, mortgage payment, loan amortization, amortization schedule, principal and interest",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
@@ -2412,7 +2493,8 @@ An amortization schedule is a complete table of periodic loan payments. It provi
     meta: {
       title: "House Affordability Calculator | How Much House Can I Afford?",
       description: "Free online House Affordability Calculator. Estimate your maximum home price and mortgage amount based on your income, monthly debts, and DTI ratio.",
-      keywords: "house affordability calculator, how much house can i afford, mortgage affordability, home affordability, DTI ratio"
+      keywords: "house affordability calculator, how much house can i afford, mortgage affordability, home affordability, DTI ratio",
+      lastUpdated: "2025-06-01"
     },
     fields: [],
     logicModule: "financial",
