@@ -383,25 +383,9 @@ export const calculators: CalculatorDef[] = [
     fields: [],
     logicModule: "math"
   },
-  {
-    slug: "random-number-generator",
-    slugs: {
-      en: "random-number-generator",
-      es: "generador-de-numeros-aleatorios",
-      de: "zufallszahlengenerator",
-      fr: "generateur-de-nombres-aleatoires"
-    },
-    title: "Random Number Generator",
-    category: "Math",
-    description: "Generate truly random numbers instantly. Set custom minimum and maximum ranges, and choose to allow or prevent duplicate numbers.",
-    meta: {
-      title: "Random Number Generator | Free Number Picker",
-      description: "Free online random number generator (RNG). Create single or multiple random numbers sets with custom min/max ranges. No duplicates option available.",
-      keywords: "random number generator, rng, random picker, number generator, generate random number, math tools"
-    },
-    fields: [],
-    logicModule: "math"
-  },
+  // NOTE: random-number-generator is a Developer Tool only.
+  // It lives under /tools/random-number-generator — NOT /calculators/.
+  // Removed from this array to prevent sitemap slug collision and crawl budget waste.
   {
     slug: "triangle-calculator",
     slugs: {
@@ -744,25 +728,9 @@ export const calculators: CalculatorDef[] = [
     fields: [],
     logicModule: "math"
   },
-  {
-    slug: "password-generator",
-    slugs: {
-      en: "password-generator",
-      es: "generador-de-contrasenas",
-      fr: "generateur-de-mots-de-passe",
-      de: "passwort-generator"
-    },
-    title: "Password Generator",
-    category: "Other",
-    description: "Generate highly secure, random passwords online to protect your accounts. Customize length, numbers, symbols, and casing.",
-    meta: {
-      title: "Secure Password Generator | Create Strong Random Passwords",
-      description: "Free online password generator. Instantly create highly secure, random passwords with custom lengths and character types to protect your online identity.",
-      keywords: "password generator, secure password, random password maker, strong password, create password, cybersecurity"
-    },
-    fields: [],
-    logicModule: "other"
-  },
+  // NOTE: password-generator is a Developer Tool only.
+  // It lives under /tools/password-generator — NOT /calculators/.
+  // Removed from this array to prevent sitemap slug collision and crawl budget waste.
   {
     slug: "conversion-calculator",
     slugs: {
@@ -1330,40 +1298,8 @@ BMI = [Weight (lbs) / Height (inches)²] × 703
 *Note on Global Architecture: Nexus Calculator natively wraps its backend processing engine in Metric execution arrays. When you flip the Global Unit Toggle to "Imperial", we intercept the rendering component, seamlessly translating inches to centimeters in the background instantly!*
     `,
   },
-  {
-    slug: "student-loan-calculator",
-    slugs: {
-      en: "student-loan-calculator",
-      es: "calculadora-prestamos-estudiantiles",
-      de: "studienkredit-rechner",
-      fr: "calculatrice-pret-etudiant"
-    },
-    title: "Student Loan Calculator",
-    category: "Financial",
-    description: "Calculate your student loan payoff details, including monthly payment and total interest.",
-    meta: {
-      title: "Student Loan Calculator - Estimate Payoff and Interest",
-      description: "Quickly estimate your monthly student loan payments, total interest costs, and payoff timelines with our free calculator. Supports both public and private loans.",
-      keywords: "student loan calculator, student debt payoff, interest calculator, monthly loan payment, college loan"
-    },
-    fields: [],
-    logicModule: "financial",
-    seoContent: `
-## How to Use the Student Loan Calculator
-
-Paying off student loans is a major financial goal for many graduates. This student loan calculator helps you estimate the monthly payments and total interest required to pay off your student loans over a specified time period.
-
-### Understanding the Inputs:
-1. **Loan Amount:** The total student loan balance you owe, or the amount you plan to borrow.
-2. **Interest Rate:** Your loan's annual interest rate. Federal student loan interest rates are typically fixed, while private student loans can be fixed or variable.
-3. **Loan Term:** The amount of time you have to pay off the loan. Standard federal student loans have a 10-year term, but you may have the option to choose terms ranging from 5 to 25 years.
-
-### Strategies to Pay Off Student Loans Faster
-- **Make Extra Payments:** Applying any extra cash you have towards your loan principal significantly reduces the interest you pay and speeds up your payoff date.
-- **Refinance:** If you have high-interest private loans, refinancing them to a lower rate could reduce your payments and save you money in interest. Note that refinancing federal loans turns them into private loans, making them ineligible for federal benefits such as income-driven repayment or forgiveness.
-- **Bi-weekly Payments:** Alternatively, you can split your monthly payment in half and pay it every two weeks. This leads to making one extra full payment per year, which shortens your term and lowers long-term interest.
-    `,
-  },
+  // DUPLICATE REMOVED: student-loan-calculator was defined twice in this array.
+  // The canonical entry with full seoContent is kept above (first occurrence).
   {
     slug: "depreciation-calculator",
     slugs: {
