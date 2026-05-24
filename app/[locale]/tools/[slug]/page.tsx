@@ -49,6 +49,7 @@ const ApiMockDataGeneratorTool = dynamic(() => import('../../../components/tools
 const HtmlTableGeneratorTool = dynamic(() => import('../../../components/tools/HtmlTableGeneratorTool').then(m => m.HtmlTableGeneratorTool));
 const UsernameGeneratorTool = dynamic(() => import('../../../components/tools/UsernameGeneratorTool').then(m => m.UsernameGeneratorTool));
 const RandomStringGeneratorTool = dynamic(() => import('../../../components/tools/RandomStringGeneratorTool').then(m => m.RandomStringGeneratorTool));
+const StrongPasswordGeneratorTool = dynamic(() => import('../../../components/tools/StrongPasswordGeneratorTool').then(m => m.StrongPasswordGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -102,7 +103,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "api-mock-data-generator": ApiMockDataGeneratorTool,
   "html-table-generator": HtmlTableGeneratorTool,
   "username-generator": UsernameGeneratorTool,
-  "random-string-generator": RandomStringGeneratorTool
+  "random-string-generator": RandomStringGeneratorTool,
+  "strong-password-generator": StrongPasswordGeneratorTool
 };
 
 
