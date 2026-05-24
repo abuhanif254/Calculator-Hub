@@ -299,7 +299,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Math & Science ──────────────────────────────
   'scientific-calculator': [
     'graphing-calculator', 'fraction-calculator', 'percentage-calculator',
-    'scientific-notation-calculator', 'statistics-calculator'
+    'scientific-notation-calculator', 'statistics-calculator', 'binary-calculator'
   ],
   'graphing-calculator': [
     'scientific-calculator', 'statistics-calculator', 'standard-deviation-calculator',
@@ -311,7 +311,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'percentage-calculator': [
     'fraction-calculator', 'percent-off-calculator', 'scientific-calculator',
-    'margin-calculator', 'sales-tax-calculator'
+    'margin-calculator', 'sales-tax-calculator', 'binary-calculator'
   ],
   'statistics-calculator': [
     'standard-deviation-calculator', 'p-value-calculator', 'graphing-calculator',
@@ -336,6 +336,10 @@ export const calculatorRelationships: Record<string, string[]> = {
   'scientific-notation-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
     'graphing-calculator', 'conversion-calculator'
+  ],
+  'binary-calculator': [
+    'hexadecimal-calculator', 'scientific-calculator', 'percentage-calculator',
+    'subnet-calculator', 'conversion-calculator', 'data-storage-converter'
   ],
 
   // ─── Other / Utility ─────────────────────────────
@@ -369,7 +373,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'conversion-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
-    'currency-calculator', 'concrete-calculator'
+    'currency-calculator', 'concrete-calculator', 'binary-calculator'
   ],
   'currency-calculator': [
     'conversion-calculator', 'inflation-calculator', 'sales-tax-calculator',
@@ -377,7 +381,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'subnet-calculator': [
     'conversion-calculator', 'scientific-calculator', 'password-generator',
-    'random-number-generator', 'percentage-calculator'
+    'random-number-generator', 'percentage-calculator', 'binary-calculator'
   ],
   'password-generator': [
     'random-number-generator', 'subnet-calculator', 'scientific-calculator',
