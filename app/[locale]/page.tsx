@@ -103,7 +103,7 @@ const categoryData = [
       { name: "Scientific Calculator", href: "/calculators/scientific-calculator" },
       { name: "Fraction Calculator", href: "/calculators/fraction-calculator" },
       { name: "Percentage Calculator", href: "/calculators/percentage-calculator" },
-      { name: "Random Number Generator", href: "/calculators/random-number-generator" },
+      { name: "Random Number Generator", href: "/tools/random-number-generator" },
       { name: "Triangle Calculator", href: "/calculators/triangle-calculator" },
       { name: "Standard Deviation Calculator", href: "/calculators/standard-deviation-calculator" }
     ]
@@ -120,7 +120,7 @@ const categoryData = [
       { name: "HTML Formatter", href: "/tools/html-formatter" },
       { name: "Diff Checker", href: "/tools/diff-checker" },
       { name: "Subnet Calculator", href: "/calculators/subnet-calculator" },
-      { name: "Password Generator", href: "/calculators/password-generator" },
+      { name: "Password Generator", href: "/tools/password-generator" },
       { name: "Conversion Calculator", href: "/calculators/conversion-calculator" }
     ]
   }

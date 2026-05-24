@@ -122,6 +122,7 @@ export default async function sitemap({
       buildEntry('/sitemap', 'weekly', 0.8),
       buildEntry('/community', 'daily', 0.7),
       buildEntry('/community/new', 'monthly', 0.4),
+      buildEntry('/search', 'weekly', 0.6),
       buildEntry('/about-us', 'monthly', 0.5),
       buildEntry('/privacy-policy', 'yearly', 0.3),
       buildEntry('/terms-of-use', 'yearly', 0.3),
@@ -144,17 +145,20 @@ export default async function sitemap({
 
   // ─── SITEMAP 1 & 2: Calculator Pages ─────────────
   if (sitemapId === 1 || sitemapId === 2) {
-    const allCalcSlugs: { slug: string; priority: number }[] = [];
+    const allCalcSlugs: { slug: string; priority: number; lastUpdated?: string }[] = [];
     const processedSlugs = new Set<string>();
 
     // 1) Database calculators (highest priority)
     calculators.forEach((calc) => {
       if (!processedSlugs.has(calc.slug)) {
-        allCalcSlugs.push({ slug: calc.slug, priority: 0.9 });
+        allCalcSlugs.push({
+          slug: calc.slug,
+          priority: 0.9,
+          lastUpdated: calc.meta.lastUpdated,
+        });
         processedSlugs.add(calc.slug);
       }
     });
-
 
     // Sort alphabetically for deterministic output
     allCalcSlugs.sort((a, b) => a.slug.localeCompare(b.slug));
@@ -167,20 +171,26 @@ export default async function sitemap({
       ? allCalcSlugs.slice(0, splitIndex)
       : allCalcSlugs.slice(splitIndex);
 
-    return subset.map(({ slug, priority }) => {
+    return subset.map(({ slug, priority, lastUpdated }) => {
+      // Use the calculator's own lastUpdated date, or fall back to a
+      // baseline date so Google always gets a concrete lastModified signal.
+      const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2025-01-01');
       const routeKey = `/calculators/${slug}`;
       const existsInRouting = (routing.pathnames as any)[routeKey];
 
       if (existsInRouting) {
-        return buildEntry(routeKey, 'monthly', priority);
+        return buildEntry(routeKey, 'monthly', priority, undefined, lastMod);
       }
-      return buildEntry('/calculators/[slug]', 'monthly', priority, slug);
+      return buildEntry('/calculators/[slug]', 'monthly', priority, slug, lastMod);
     });
   }
 
   // ─── SITEMAP 3: Developer Tools ──────────────────
   if (sitemapId === 3) {
     const processedTools = new Set<string>();
+    // Tools section was heavily built out in late 2025 — use that as
+    // the baseline lastModified so Googlebot knows they're fresh.
+    const toolsLastMod = new Date('2025-11-01');
 
     return developerToolSlugs
       .filter((slug) => {
@@ -189,7 +199,7 @@ export default async function sitemap({
         return true;
       })
       .sort()
-      .map((slug) => buildEntry('/tools/[slug]', 'weekly', 0.8, slug));
+      .map((slug) => buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod));
   }
 
   return [];

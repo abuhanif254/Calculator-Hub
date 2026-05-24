@@ -80,6 +80,86 @@ export const collections: CollectionDef[] = [
       'ideal-weight-calculator',
       'pace-calculator'
     ]
+  },
+  {
+    slug: 'home-buyer-toolkit',
+    title: 'Home Buyer\'s Toolkit',
+    description: 'Calculate affordability, compare loan types, and estimate down payments to buy your dream home confidently.',
+    icon: 'Key',
+    seoTitle: 'Home Buying Calculators & Toolkit | Nexus Calculator',
+    seoDescription: 'A complete toolkit for homebuyers. Calculate mortgage payments, home affordability, down payments, FHA loans, and HELOC options.',
+    toolSlugs: [
+      'mortgage-calculator',
+      'house-affordability-calculator',
+      'down-payment-calculator',
+      'fha-loan-calculator',
+      'heloc-calculator',
+      'mortgage-amortization-calculator'
+    ]
+  },
+  {
+    slug: 'retirement-planning-suite',
+    title: 'Retirement Planning Suite',
+    description: 'Project your nest egg, calculate RMDs, and estimate Social Security benefits for a secure future.',
+    icon: 'Umbrella',
+    seoTitle: 'Retirement Planning Calculators | 401(k), IRA & RMDs | Nexus Calculator',
+    seoDescription: 'Plan your retirement with our suite of tools covering 401(k) growth, Roth IRA contributions, RMD calculations, and Social Security benefits.',
+    toolSlugs: [
+      'retirement-calculator',
+      'roth-ira-calculator',
+      '401k-calculator',
+      'rmd-calculator',
+      'social-security-calculator',
+      'annuity-payout-calculator'
+    ]
+  },
+  {
+    slug: 'student-finance-pack',
+    title: 'Student Finance Pack',
+    description: 'Manage student loans, calculate GPAs, and build a student budget effectively.',
+    icon: 'GraduationCap',
+    seoTitle: 'Student Calculators: GPA, Loans & College Costs | Nexus Calculator',
+    seoDescription: 'Financial and academic tools for students. Calculate GPA, estimate college costs, plan student loan payoffs, and manage your budget.',
+    toolSlugs: [
+      'student-loan-calculator',
+      'gpa-calculator',
+      'grade-calculator',
+      'budget-calculator',
+      'college-cost-calculator',
+      'salary-calculator'
+    ]
+  },
+  {
+    slug: 'crypto-investor-tools',
+    title: 'Tax & Investment Tools',
+    description: 'Analyze capital gains, calculate compound interest, and factor in inflation for your investments.',
+    icon: 'LineChart',
+    seoTitle: 'Investment & Capital Gains Calculators | Nexus Calculator',
+    seoDescription: 'Track and forecast investment returns. Calculate capital gains, compound interest, average returns, and adjust for inflation over time.',
+    toolSlugs: [
+      'investment-calculator',
+      'compound-interest-calculator',
+      'average-return-calculator',
+      'inflation-calculator',
+      'capital-gains-calculator'
+    ]
+  },
+  {
+    slug: 'developer-security-pack',
+    title: 'Developer Security Pack',
+    description: 'Generate hashes, decode JWTs, and create strong passwords securely in your browser.',
+    icon: 'Shield',
+    seoTitle: 'Security Tools for Developers: Hash & Password Generators | Nexus Calculator',
+    seoDescription: 'A suite of security tools for developers. Generate MD5/SHA256 hashes, create HMACs, decode JWT tokens, and generate strong passwords locally.',
+    toolSlugs: [
+      'hash-generator',
+      'hmac-generator',
+      'sha256-generator',
+      'md5-generator',
+      'password-generator',
+      'strong-password-generator',
+      'jwt-decoder'
+    ]
   }
 ];
 
