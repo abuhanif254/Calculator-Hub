@@ -185,11 +185,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 The ultimate ecosystem for professionals. Access hundreds of precise calculators and powerful developer utilities instantly in your browser.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <Link href="/calculators" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-lg shadow-green-900/20">
+                <Link href={"/calculators" as any} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-lg shadow-green-900/20">
                   Explore Tools
                   <ArrowRight size={20} />
                 </Link>
-                <Link href="/community" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-sm">
+                <Link href={"/community" as any} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-sm">
                   Join Community
                   <Users size={20} />
                 </Link>
@@ -337,7 +337,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Developer Essentials</h2>
               <p className="text-slate-600 dark:text-slate-400">High-performance utilities built for modern web developers.</p>
             </div>
-            <Link href="/tools" className="hidden sm:flex items-center gap-1 text-[#518231] font-semibold hover:text-[#436a28]">
+            <Link href={"/tools" as any} className="hidden sm:flex items-center gap-1 text-[#518231] font-semibold hover:text-[#436a28]">
               View all dev tools <ArrowRight size={16} />
             </Link>
           </div>
@@ -387,7 +387,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                       </li>
                     ))}
                   </ul>
-                  <Link href="/calculators" className="text-sm font-semibold text-[#518231] hover:text-[#436a28] flex items-center gap-1 mt-4">
+                  <Link href={"/calculators" as any} className="text-sm font-semibold text-[#518231] hover:text-[#436a28] flex items-center gap-1 mt-4">
                     View all tools <ArrowRight size={14} />
                   </Link>
                 </div>
@@ -511,7 +511,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Community & Discussions</h2>
                 <p className="text-slate-600 dark:text-slate-400 text-lg">Join developers and professionals worldwide.</p>
               </div>
-              <Link href="/community" className="shrink-0 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+              <Link href={"/community" as any} className="shrink-0 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
                 View Community
               </Link>
             </div>
