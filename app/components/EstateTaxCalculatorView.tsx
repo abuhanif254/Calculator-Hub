@@ -95,6 +95,7 @@ export function EstateTaxCalculatorView() {
   const [debts, setDebts] = useState(50000);
   const [funeralExpenses, setFuneralExpenses] = useState(15000);
   const [charitableGifts, setCharitableGifts] = useState(25000);
+  const [maritalStatus, setMaritalStatus] = useState<'single' | 'married'>('single');
   const [exclusionLimit, setExclusionLimit] = useState(13610000); // 2024 US Federal Limit
   const [taxRate, setTaxRate] = useState(40); // 40% tax rate above limit
   
@@ -103,8 +104,12 @@ export function EstateTaxCalculatorView() {
 
   const totalAssets = assets.reduce((sum, asset) => sum + asset.value, 0);
   const totalDeductions = debts + funeralExpenses + charitableGifts;
+  
+  // Apply portability rule for married couples
+  const effectiveExclusionLimit = maritalStatus === 'married' ? exclusionLimit * 2 : exclusionLimit;
+
   const taxableEstate = Math.max(0, totalAssets - totalDeductions);
-  const taxableAmount = Math.max(0, taxableEstate - exclusionLimit);
+  const taxableAmount = Math.max(0, taxableEstate - effectiveExclusionLimit);
   const estimatedTax = (taxableAmount * taxRate) / 100;
   const netEstateToHeirs = totalAssets - totalDeductions - estimatedTax;
 
@@ -125,7 +130,7 @@ export function EstateTaxCalculatorView() {
   };
 
   const chartData = [
-    { name: t('exclusion'), value: Math.min(taxableEstate, exclusionLimit) },
+    { name: t('exclusion'), value: Math.min(taxableEstate, effectiveExclusionLimit) },
     { name: t('estTax'), value: estimatedTax },
     { name: t('netToHeirs'), value: Math.max(0, netEstateToHeirs) },
     { name: t('deductions'), value: totalDeductions },
@@ -210,6 +215,32 @@ export function EstateTaxCalculatorView() {
               {t('exemptionsTitle')}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="sm:col-span-2 space-y-2">
+                <label className="text-sm font-bold text-slate-700 flex items-center gap-2">
+                  Marital Status
+                  <div className="group relative">
+                    <HelpCircle size={14} className="text-slate-400 cursor-help" />
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-slate-900 text-white text-[10px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+                      Married couples can use "portability" to double their federal estate tax exclusion limit.
+                    </div>
+                  </div>
+                </label>
+                <div className="flex gap-4">
+                  <button
+                    onClick={() => setMaritalStatus('single')}
+                    className={`flex-1 py-2.5 rounded-xl text-sm font-bold border transition-all ${maritalStatus === 'single' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300'}`}
+                  >
+                    Single
+                  </button>
+                  <button
+                    onClick={() => setMaritalStatus('married')}
+                    className={`flex-1 py-2.5 rounded-xl text-sm font-bold border transition-all ${maritalStatus === 'married' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300'}`}
+                  >
+                    Married
+                  </button>
+                </div>
+              </div>
+
               <LocalInputGroup
                 label={t('debts')}
                 type="number"
@@ -227,13 +258,18 @@ export function EstateTaxCalculatorView() {
                 tooltip={t('charitableTooltip')}
               />
               <LocalInputGroup
-                label={t('exclusionLimit')}
+                label="Base Exclusion Limit"
                 type="number"
                 value={exclusionLimit}
                 prefix="$"
                 onChange={setExclusionLimit}
                 tooltip={t('exclusionTooltip')}
               />
+              <div className="sm:col-span-2 bg-blue-50/50 p-4 rounded-xl border border-blue-100 mt-2">
+                <p className="text-xs font-bold text-blue-600 uppercase mb-1">Effective Exemption Applied</p>
+                <p className="text-xl font-black text-slate-800">${effectiveExclusionLimit.toLocaleString()}</p>
+                {maritalStatus === 'married' && <p className="text-xs text-slate-500 mt-1">Base limit doubled via spousal portability.</p>}
+              </div>
               <LocalInputGroup
                 label={t('taxRate')}
                 type="number"

@@ -20,6 +20,7 @@ export function LeaseCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
   const [monthlyTaxes, setMonthlyTaxes] = useState<number>(0);
   const [totalMonthlyPayment, setTotalMonthlyPayment] = useState<number>(0);
   const [totalLeaseCost, setTotalLeaseCost] = useState<number>(0);
+  const [moneyFactorDisplay, setMoneyFactorDisplay] = useState<number>(0);
   
   const t = useTranslations("calculator");
 
@@ -40,6 +41,7 @@ export function LeaseCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
       // Step 4: Monthly Finance (Rent) Charge
       // Money Factor = APR / 2400
       const moneyFactor = interestRate / 2400;
+      setMoneyFactorDisplay(moneyFactor);
       const rentCharge = (capCost + residualValue) * moneyFactor;
       setMonthlyFinanceCharge(rentCharge);
 
@@ -215,6 +217,20 @@ export function LeaseCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
                 <p className="text-sm font-semibold text-slate-500 mb-1">Residual Value</p>
                 <div className="text-2xl font-bold text-slate-800 tracking-tight">
                   ${(vehiclePrice * (residualValuePercentage/100)).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                </div>
+              </div>
+
+              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                <p className="text-sm font-semibold text-slate-500 mb-1">Equivalent Money Factor</p>
+                <div className="text-2xl font-bold text-slate-800 tracking-tight">
+                  {moneyFactorDisplay.toFixed(5)}
+                </div>
+              </div>
+
+              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                <p className="text-sm font-semibold text-slate-500 mb-1">Total Cost if Purchased at End</p>
+                <div className="text-2xl font-bold text-slate-800 tracking-tight">
+                  ${(totalLeaseCost + (vehiclePrice * (residualValuePercentage/100))).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                 </div>
               </div>
             </div>

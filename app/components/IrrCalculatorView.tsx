@@ -13,9 +13,10 @@ export function IrrCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
   const [irr, setIrr] = useState<number>(0);
   const [npv, setNpv] = useState<number>(0);
   const [totalReturn, setTotalReturn] = useState<number>(0);
+  const [roi, setRoi] = useState<number>(0);
   const [isCalculable, setIsCalculable] = useState<boolean>(true);
   
-  const discountRate = 0.10; // Fixed at 10% for NPV illustrative purposes or can be adjustable
+  const [discountRate, setDiscountRate] = useState<number>(10); // Default 10%
 
   useEffect(() => {
     function calculate() {
@@ -27,8 +28,9 @@ export function IrrCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
       let sumReturns = 0;
 
       // NPV Calculation
+      const rate = discountRate / 100;
       flows.forEach((flow, i) => {
-        calculatedNpv += flow / Math.pow(1 + discountRate, i);
+        calculatedNpv += flow / Math.pow(1 + rate, i);
       });
 
       setNpv(calculatedNpv);
@@ -71,10 +73,16 @@ export function IrrCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
 
       cashFlows.forEach(cf => { sumReturns += cf; });
       setTotalReturn(sumReturns);
+      
+      if (initialInvestment > 0) {
+        setRoi(((sumReturns - initialInvestment) / initialInvestment) * 100);
+      } else {
+        setRoi(0);
+      }
     }
     
     calculate();
-  }, [initialInvestment, cashFlows]);
+  }, [initialInvestment, cashFlows, discountRate]);
 
   const addYear = () => {
     setCashFlows([...cashFlows, 0]);
@@ -132,6 +140,23 @@ export function IrrCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
                 <p className="text-xs text-slate-500 mt-1">This is a cash outflow (-)</p>
               </div>
 
+              <div>
+                <label className="block text-sm font-semibold text-slate-700 mb-2">Discount Rate / Cost of Capital (%)</label>
+                <div className="relative">
+                  <input
+                    type="number"
+                    step="0.1"
+                    value={discountRate === 0 ? '' : discountRate}
+                    onChange={(e) => setDiscountRate(Number(e.target.value))}
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all shadow-sm text-slate-700 font-medium font-mono"
+                  />
+                  <div className="absolute inset-y-0 end-0 flex items-center pe-4 pointer-events-none">
+                    <span className="text-slate-400 font-medium">%</span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-500 mt-1">Used to calculate Net Present Value (NPV)</p>
+              </div>
+
               <div className="pt-4 border-t border-slate-200">
                 <div className="flex justify-between items-center mb-4">
                   <label className="block text-sm font-semibold text-slate-700">Future Cash Flows</label>
@@ -179,7 +204,17 @@ export function IrrCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
         <div className="p-6 md:p-10 bg-white">
           <div className="h-full flex flex-col space-y-8">
             <div className="grid grid-cols-2 gap-4">
-              <div className="bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 col-span-2 shadow-sm">
+              <div className="bg-emerald-50/50 rounded-2xl p-6 border border-emerald-100 shadow-sm relative overflow-hidden">
+                {isCalculable && irr > discountRate && (
+                  <div className="absolute top-0 right-0 bg-emerald-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider">
+                    Good Investment
+                  </div>
+                )}
+                {isCalculable && irr <= discountRate && (
+                  <div className="absolute top-0 right-0 bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider">
+                    Below Hurdle Rate
+                  </div>
+                )}
                 <p className="text-sm font-semibold text-emerald-600/80 mb-1">Internal Rate of Return (IRR)</p>
                 {isCalculable ? (
                     <div className="text-4xl font-extrabold text-emerald-700 tracking-tight font-mono">
@@ -193,17 +228,30 @@ export function IrrCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
                 <p className="text-xs text-emerald-600/70 mt-2 font-medium">The annualized effective compounded return rate.</p>
               </div>
               
-              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                <p className="text-sm font-semibold text-slate-500 mb-1">Total Cash Inflows</p>
-                <div className="text-2xl font-bold text-slate-800 tracking-tight font-mono">
-                  ${totalReturn.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+              <div className={`rounded-2xl p-6 border shadow-sm relative overflow-hidden ${npv >= 0 ? 'bg-blue-50/50 border-blue-100' : 'bg-red-50/50 border-red-100'}`}>
+                {npv > 0 && (
+                  <div className="absolute top-0 right-0 bg-blue-500 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider">
+                    Value Added
+                  </div>
+                )}
+                <p className={`text-sm font-semibold mb-1 ${npv >= 0 ? 'text-blue-600/80' : 'text-red-600/80'}`}>Net Present Value (NPV)</p>
+                <div className={`text-3xl font-extrabold tracking-tight font-mono ${npv >= 0 ? 'text-blue-700' : 'text-red-700'}`}>
+                  ${npv.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                </div>
+                <p className={`text-xs mt-2 font-medium ${npv >= 0 ? 'text-blue-600/70' : 'text-red-600/70'}`}>Present value of all future cash flows.</p>
+              </div>
+
+              <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <p className="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wider">Net Profit</p>
+                <div className={`text-2xl font-bold tracking-tight font-mono ${(totalReturn - initialInvestment) >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                  ${(totalReturn - initialInvestment).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                 </div>
               </div>
 
-              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100">
-                <p className="text-sm font-semibold text-slate-500 mb-1">Net Cash Profit</p>
-                <div className={`text-2xl font-bold tracking-tight font-mono ${(totalReturn - initialInvestment) >= 0 ? 'text-slate-800' : 'text-red-600'}`}>
-                  ${(totalReturn - initialInvestment).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+              <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100">
+                <p className="text-xs font-semibold text-slate-500 mb-1 uppercase tracking-wider">Total ROI</p>
+                <div className={`text-2xl font-bold tracking-tight font-mono ${roi >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                  {roi.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%
                 </div>
               </div>
             </div>
