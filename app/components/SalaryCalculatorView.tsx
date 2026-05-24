@@ -16,6 +16,7 @@ export function SalaryCalculatorView({ calcDef }: SalaryCalculatorViewProps) {
   const [period, setPeriod] = useState<string>("annually");
   const [hoursPerWeek, setHoursPerWeek] = useState<number>(40);
   const [daysPerWeek, setDaysPerWeek] = useState<number>(5);
+  const [unpaidWeeks, setUnpaidWeeks] = useState<number>(0);
   
   const [results, setResults] = useState<{ 
     hourly: number;
@@ -28,10 +29,10 @@ export function SalaryCalculatorView({ calcDef }: SalaryCalculatorViewProps) {
   } | null>(null);
 
   const calculate = () => {
-    if (amount <= 0 || hoursPerWeek <= 0 || daysPerWeek <= 0) return;
+    if (amount <= 0 || hoursPerWeek <= 0 || daysPerWeek <= 0 || unpaidWeeks < 0) return;
 
     let annually = 0;
-    const weeksPerYear = 52;
+    const weeksPerYear = 52 - unpaidWeeks;
     const hoursPerDay = hoursPerWeek / daysPerWeek;
 
     // Convert input amount to annual baseline
@@ -81,7 +82,7 @@ export function SalaryCalculatorView({ calcDef }: SalaryCalculatorViewProps) {
 
   useEffect(() => {
     calculate();
-  }, [amount, period, hoursPerWeek, daysPerWeek]);
+  }, [amount, period, hoursPerWeek, daysPerWeek, unpaidWeeks]);
 
   return (
     <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
@@ -143,6 +144,20 @@ export function SalaryCalculatorView({ calcDef }: SalaryCalculatorViewProps) {
                 className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all shadow-sm"
               />
             </div>
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">Unpaid Time Off (Weeks/Year)</label>
+              <div className="group relative">
+                <input 
+                  type="number"
+                  max={52}
+                  value={unpaidWeeks === 0 ? "" : unpaidWeeks}
+                  onChange={(e) => setUnpaidWeeks(Number(e.target.value))}
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all shadow-sm"
+                  placeholder="e.g. 2 for two weeks vacation"
+                />
+              </div>
+            </div>
+
           </div>
 
         </div>

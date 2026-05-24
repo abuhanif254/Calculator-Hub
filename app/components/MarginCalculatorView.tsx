@@ -13,6 +13,7 @@ export function MarginCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
   const [revenue, setRevenue] = useState<number>(0);
   const [profit, setProfit] = useState<number>(0);
   const [markup, setMarkup] = useState<number>(0);
+  const [multiplier, setMultiplier] = useState<number>(0);
   
   const t = useTranslations("calculator");
 
@@ -29,10 +30,12 @@ export function MarginCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
       const rev = cost / (1 - (margin / 100));
       const prof = rev - cost;
       const mkup = cost > 0 ? (prof / cost) * 100 : 0;
+      const mult = cost > 0 ? rev / cost : 0;
       
       setRevenue(rev);
       setProfit(prof);
       setMarkup(mkup);
+      setMultiplier(mult);
     }
     
     calculate();
@@ -120,15 +123,21 @@ export function MarginCalculatorView({ calcDef }: { calcDef?: CalculatorDef }) {
                 </div>
               </div>
 
-              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 col-span-2 flex justify-between items-center">
+              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex justify-between items-center">
                  <div>
-                    <p className="text-sm font-semibold text-slate-500 mb-1">Markup Percentage</p>
+                    <p className="text-sm font-semibold text-slate-500 mb-1">Markup %</p>
                     <div className="text-xl font-bold text-slate-900 tracking-tight">
                     {markup.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
                     </div>
                  </div>
-                 <div className="text-xs text-slate-400 max-w-[150px] text-right">
-                   Profit as a percentage of the total cost.
+              </div>
+
+              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 flex justify-between items-center">
+                 <div>
+                    <p className="text-sm font-semibold text-slate-500 mb-1">Pricing Multiplier</p>
+                    <div className="text-xl font-bold text-slate-900 tracking-tight">
+                    {multiplier.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}x
+                    </div>
                  </div>
               </div>
             </div>

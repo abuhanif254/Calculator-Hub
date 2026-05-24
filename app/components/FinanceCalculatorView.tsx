@@ -15,6 +15,7 @@ export function FinanceCalculatorView({ calcDef }: FinanceCalculatorViewProps) {
   const [presentValue, setPresentValue] = useState<number>(10000);
   const [annualPayment, setAnnualPayment] = useState<number>(1200);
   const [interestRate, setInterestRate] = useState<number>(6.0);
+  const [compoundingFrequency, setCompoundingFrequency] = useState<number>(1);
   const [years, setYears] = useState<number>(15);
   
   const [results, setResults] = useState<{ 
@@ -30,9 +31,10 @@ export function FinanceCalculatorView({ calcDef }: FinanceCalculatorViewProps) {
       return;
     }
 
-    const r = interestRate / 100;
-    let chartData = [];
+    const ratePerPeriod = (interestRate / 100) / compoundingFrequency;
+    const periodsPerYear = compoundingFrequency;
     
+    let chartData = [];
     let currentBalance = presentValue;
     let currentInvested = presentValue;
 
@@ -43,8 +45,13 @@ export function FinanceCalculatorView({ calcDef }: FinanceCalculatorViewProps) {
     });
 
     for (let yr = 1; yr <= years; yr++) {
-      currentBalance = currentBalance * (1 + r) + annualPayment;
       currentInvested += annualPayment;
+      // We assume the annual payment is divided evenly across compounding periods
+      const paymentPerPeriod = annualPayment / periodsPerYear;
+      
+      for (let p = 1; p <= periodsPerYear; p++) {
+        currentBalance = currentBalance * (1 + ratePerPeriod) + paymentPerPeriod;
+      }
       
       chartData.push({
         year: yr,
@@ -114,8 +121,21 @@ export function FinanceCalculatorView({ calcDef }: FinanceCalculatorViewProps) {
                 <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">%</span>
               </div>
             </div>
-            
+
             <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700">Compounding</label>
+              <select 
+                value={compoundingFrequency}
+                onChange={(e) => setCompoundingFrequency(Number(e.target.value))}
+                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-sm text-slate-700"
+              >
+                <option value={12}>Monthly</option>
+                <option value={4}>Quarterly</option>
+                <option value={1}>Annually</option>
+              </select>
+            </div>
+            
+            <div className="space-y-2 col-span-2">
               <label className="text-sm font-semibold text-slate-700">{t("years")}</label>
               <input 
                 type="number"

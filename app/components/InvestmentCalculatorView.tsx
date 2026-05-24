@@ -16,10 +16,12 @@ export function InvestmentCalculatorView({ calcDef }: InvestmentCalculatorViewPr
   const [additionalContribution, setAdditionalContribution] = useState<number>(500);
   const [contributionFrequency, setContributionFrequency] = useState<string>("monthly");
   const [annualReturn, setAnnualReturn] = useState<number>(7);
+  const [inflationRate, setInflationRate] = useState<number>(3);
   const [yearsToGrow, setYearsToGrow] = useState<number>(20);
   
   const [results, setResults] = useState<{ 
     endBalance: number; 
+    inflationAdjustedBalance: number;
     totalContributions: number; 
     totalInterest: number;
     chartData: any[];
@@ -27,7 +29,7 @@ export function InvestmentCalculatorView({ calcDef }: InvestmentCalculatorViewPr
 
   const calculate = () => {
     if (startingAmount < 0 || yearsToGrow <= 0) {
-      setResults({ endBalance: 0, totalContributions: 0, totalInterest: 0, chartData: [] });
+      setResults({ endBalance: 0, inflationAdjustedBalance: 0, totalContributions: 0, totalInterest: 0, chartData: [] });
       return;
     }
 
@@ -59,8 +61,12 @@ export function InvestmentCalculatorView({ calcDef }: InvestmentCalculatorViewPr
       });
     }
 
+    const inflationFactor = Math.pow(1 + (inflationRate / 100), yearsToGrow);
+    const inflationAdjustedBalance = currentBalance / inflationFactor;
+
     setResults({
       endBalance: currentBalance,
+      inflationAdjustedBalance,
       totalContributions: totalContribs,
       totalInterest: currentBalance - totalContribs,
       chartData
@@ -134,6 +140,20 @@ export function InvestmentCalculatorView({ calcDef }: InvestmentCalculatorViewPr
             </div>
             
             <div className="space-y-2">
+              <label className="text-sm font-semibold text-slate-700 whitespace-nowrap">Inflation Rate</label>
+              <div className="relative">
+                <input 
+                  type="number"
+                  step="0.1"
+                  value={inflationRate === 0 ? "" : inflationRate}
+                  onChange={(e) => setInflationRate(Number(e.target.value))}
+                  className="w-full pr-8 pl-4 py-3 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all shadow-sm"
+                />
+                <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 font-medium">%</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 col-span-2">
               <label className="text-sm font-semibold text-slate-700">{t("yearsToGrow")}</label>
               <input 
                 type="number"
@@ -165,6 +185,9 @@ export function InvestmentCalculatorView({ calcDef }: InvestmentCalculatorViewPr
                   <div className="text-sm font-bold text-purple-600 uppercase tracking-widest mb-1">{t("endBalance")}</div>
                   <div className="text-4xl md:text-5xl font-extrabold text-slate-900">
                     ${results.endBalance.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+                  </div>
+                  <div className="text-sm font-medium text-slate-500 mt-2 border-t border-slate-100 pt-2">
+                    Inflation-Adjusted Purchasing Power: <span className="font-bold text-slate-700">${results.inflationAdjustedBalance.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span>
                   </div>
                 </div>
                 

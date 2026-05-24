@@ -2531,3 +2531,4 @@ export const getCalculatorBySlug = (slug: string): CalculatorDef | undefined => 
     return false;
   });
 };
+

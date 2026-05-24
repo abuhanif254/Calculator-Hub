@@ -236,8 +236,12 @@ export function CashBackLowInterestCalculatorView({ calcDef }: Props) {
                       <span className="font-bold text-slate-800">${results.cbTotalInterest.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                     <div className="pt-3 border-t border-slate-100 flex justify-between items-center">
-                      <span className="font-bold text-slate-700">{t("totalCost")}</span>
+                      <span className="font-bold text-slate-700">{t("totalCost")} (Loan)</span>
                       <span className="font-extrabold text-lg text-slate-900">${results.cbTotalCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm text-slate-600 mt-2">
+                      <span>Total Out of Pocket</span>
+                      <span className="font-bold text-slate-800">${(results.cbTotalCost + downPayment).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                   </div>
                 </div>
@@ -256,8 +260,12 @@ export function CashBackLowInterestCalculatorView({ calcDef }: Props) {
                       <span className="font-bold text-slate-800">${results.liTotalInterest.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                     <div className="pt-3 border-t border-slate-100 flex justify-between items-center">
-                      <span className="font-bold text-slate-700">{t("totalCost")}</span>
+                      <span className="font-bold text-slate-700">{t("totalCost")} (Loan)</span>
                       <span className="font-extrabold text-lg text-slate-900">${results.liTotalCost.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                    </div>
+                    <div className="flex justify-between items-center text-sm text-slate-600 mt-2">
+                      <span>Total Out of Pocket</span>
+                      <span className="font-bold text-slate-800">${(results.liTotalCost + downPayment).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                     </div>
                   </div>
                 </div>

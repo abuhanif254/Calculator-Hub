@@ -18,6 +18,7 @@ export function RealEstateCalculatorView({ calcDef }: { calcDef?: CalculatorDef 
   const [monthlyCashFlow, setMonthlyCashFlow] = useState<number>(0);
   const [capRate, setCapRate] = useState<number>(0);
   const [cashOnCashReturn, setCashOnCashReturn] = useState<number>(0);
+  const [grossYield, setGrossYield] = useState<number>(0);
   
   const t = useTranslations("calculator");
 
@@ -53,6 +54,9 @@ export function RealEstateCalculatorView({ calcDef }: { calcDef?: CalculatorDef 
 
       const calculatedCapRate = purchasePrice > 0 ? (netOperatingIncome / purchasePrice) * 100 : 0;
       setCapRate(calculatedCapRate);
+
+      const calculatedGrossYield = purchasePrice > 0 ? (annualRent / purchasePrice) * 100 : 0;
+      setGrossYield(calculatedGrossYield);
 
       const cashInvested = downPayment; // simplistic assumption (ignoring closing costs, rehab, etc.)
       const calculatedCashOnCash = cashInvested > 0 ? (annualCashFlow / cashInvested) * 100 : 0;
@@ -206,6 +210,29 @@ export function RealEstateCalculatorView({ calcDef }: { calcDef?: CalculatorDef 
                 <p className="text-sm font-semibold text-slate-500 mb-1">Monthly Mortgage</p>
                 <div className="text-2xl font-bold text-slate-800 tracking-tight">
                   ${monthlyMortgage.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                </div>
+              </div>
+
+              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 col-span-2">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-sm font-semibold text-slate-500 mb-1">Gross Yield</p>
+                    <div className="text-2xl font-bold text-slate-800 tracking-tight">
+                      {grossYield.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%
+                    </div>
+                  </div>
+                  <div>
+                    {purchasePrice > 0 && (grossMonthlyRent / purchasePrice) >= 0.01 ? (
+                      <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        Passes 1% Rule
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 border border-slate-200">
+                        Fails 1% Rule
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
