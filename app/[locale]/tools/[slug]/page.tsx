@@ -45,6 +45,7 @@ const CssShadowGeneratorTool = dynamic(() => import('../../../components/tools/C
 const GlassmorphismGeneratorTool = dynamic(() => import('../../../components/tools/GlassmorphismGeneratorTool').then(m => m.GlassmorphismGeneratorTool));
 const NeumorphismGeneratorTool = dynamic(() => import('../../../components/tools/NeumorphismGeneratorTool').then(m => m.NeumorphismGeneratorTool));
 const ContrastCheckerTool = dynamic(() => import('../../../components/tools/ContrastCheckerTool').then(m => m.ContrastCheckerTool));
+const ColorPaletteGeneratorTool = dynamic(() => import('../../../components/tools/ColorPaletteGeneratorTool').then(m => m.ColorPaletteGeneratorTool));
 const HexToRgbTool = dynamic(() => import('../../../components/tools/hex-to-rgb').then(m => m.HexToRgbTool));
 const UuidGeneratorTool = dynamic(() => import('../../../components/tools/UuidGeneratorTool').then(m => m.UuidGeneratorTool));
 const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGeneratorTool').then(m => m.SlugGeneratorTool));
@@ -107,6 +108,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   "glassmorphism-generator": GlassmorphismGeneratorTool,
   "neumorphism-generator": NeumorphismGeneratorTool,
   "contrast-checker": ContrastCheckerTool,
+  "color-palette-generator": ColorPaletteGeneratorTool,
   "hex-to-rgb": HexToRgbTool,
   "uuid-generator": UuidGeneratorTool,
   "slug-generator": SlugGeneratorTool,

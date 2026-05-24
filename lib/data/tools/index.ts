@@ -41,6 +41,7 @@ import { cssShadowGeneratorConfig } from './css-shadow-generator';
 import { glassmorphismGeneratorConfig } from './glassmorphism-generator';
 import { neumorphismGeneratorConfig } from './neumorphism-generator';
 import { contrastCheckerConfig } from './contrast-checker';
+import { colorPaletteGeneratorConfig } from './color-palette-generator';
 
 import { hexToRgbConfig } from './hex-to-rgb';
 import { uuidGeneratorConfig } from './uuid-generator';
@@ -100,6 +101,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [glassmorphismGeneratorConfig.slug]: glassmorphismGeneratorConfig,
   [neumorphismGeneratorConfig.slug]: neumorphismGeneratorConfig,
   [contrastCheckerConfig.slug]: contrastCheckerConfig,
+  [colorPaletteGeneratorConfig.slug]: colorPaletteGeneratorConfig,
   [hexToRgbConfig.slug]: hexToRgbConfig,
   [uuidGeneratorConfig.slug]: uuidGeneratorConfig,
   [slugGeneratorConfig.slug]: slugGeneratorConfig,
