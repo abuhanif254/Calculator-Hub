@@ -46,6 +46,7 @@ const LoremIpsumGeneratorTool = dynamic(() => import('../../../components/tools/
 const FakeUserDataGeneratorTool = dynamic(() => import('../../../components/tools/FakeUserDataGeneratorTool').then(m => m.FakeUserDataGeneratorTool));
 const RandomNumberGeneratorTool = dynamic(() => import('../../../components/tools/RandomNumberGeneratorTool').then(m => m.RandomNumberGeneratorTool));
 const ApiMockDataGeneratorTool = dynamic(() => import('../../../components/tools/ApiMockDataGeneratorTool').then(m => m.ApiMockDataGeneratorTool));
+const HtmlTableGeneratorTool = dynamic(() => import('../../../components/tools/HtmlTableGeneratorTool').then(m => m.HtmlTableGeneratorTool));
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -96,7 +97,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "lorem-ipsum-generator": LoremIpsumGeneratorTool,
   "fake-user-data-generator": FakeUserDataGeneratorTool,
   "random-number-generator": RandomNumberGeneratorTool,
-  "api-mock-data-generator": ApiMockDataGeneratorTool
+  "api-mock-data-generator": ApiMockDataGeneratorTool,
+  "html-table-generator": HtmlTableGeneratorTool
 };
 
 

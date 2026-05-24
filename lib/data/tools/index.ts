@@ -43,6 +43,7 @@ import { loremIpsumGeneratorConfig } from './lorem-ipsum-generator';
 import { fakeUserDataGeneratorConfig } from './fake-user-data-generator';
 import { randomNumberGeneratorConfig } from './random-number-generator';
 import { apiMockDataGeneratorConfig } from './api-mock-data-generator';
+import { htmlTableGeneratorConfig } from './html-table-generator';
 
 export * from './types';
 
@@ -90,6 +91,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [fakeUserDataGeneratorConfig.slug]: fakeUserDataGeneratorConfig,
   [randomNumberGeneratorConfig.slug]: randomNumberGeneratorConfig,
   [apiMockDataGeneratorConfig.slug]: apiMockDataGeneratorConfig,
+  [htmlTableGeneratorConfig.slug]: htmlTableGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
