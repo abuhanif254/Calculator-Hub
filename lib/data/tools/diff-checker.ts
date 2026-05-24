@@ -55,5 +55,6 @@ Because this tool is built entirely on client-side technology, your data never l
     { name: "JSON Formatter", slug: "json-formatter" },
     { name: "JSON Validator", slug: "json-validator" },
     { name: "CSS Beautifier", slug: "css-beautifier" }
-  ]
+  ],
+  lastUpdated: "2024-05-17"
 };

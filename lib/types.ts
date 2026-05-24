@@ -20,6 +20,7 @@ export interface CalculatorDef {
     title: string;
     description: string;
     keywords: string;
+    lastUpdated?: string;
   };
   fields: CalculatorField[];
   logicModule: string; // to dynamically import the logic

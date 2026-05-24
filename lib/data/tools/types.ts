@@ -23,4 +23,5 @@ export interface ToolConfig {
   useCases: string[];
   howToSteps: string[];
   examples: ToolExample[];
+  lastUpdated?: string;
 }

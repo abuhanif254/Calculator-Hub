@@ -32,6 +32,7 @@ export interface UnifiedToolEntry {
   keywords: string;
   href: string;             // Full internal href
   status: 'published';
+  lastUpdated?: string;
 }
 
 // ─── Build the registry once at module load time ─────
@@ -50,6 +51,7 @@ calculators.forEach((calc) => {
     keywords: calc.meta.keywords,
     href: `/calculators/${calc.slug}`,
     status: 'published',
+    lastUpdated: calc.meta.lastUpdated,
   });
 });
 
@@ -65,6 +67,7 @@ Object.values(allToolsConfig).forEach((tool) => {
     keywords: tool.keywords.join(', '),
     href: `/tools/${tool.slug}`,
     status: 'published',
+    lastUpdated: tool.lastUpdated,
   });
 });
 
