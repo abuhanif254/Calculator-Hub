@@ -9,12 +9,14 @@ import { ThemeProvider } from '../../app/components/ThemeProvider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
+import { Inter } from 'next/font/google';
 
-// Offline-safe font configuration falling back to system-ui sans-serif fonts
-const inter = {
+// Load Inter from Google Fonts — subsets latin for performance
+const inter = Inter({
+  subsets: ['latin'],
   variable: '--font-sans',
-  className: 'font-sans',
-};
+  display: 'swap',
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -119,7 +121,7 @@ export default async function RootLayout({
           />
         )}
       </head>
-      <body className={`${inter.variable} font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-slate-950 dark:text-slate-100`}>
+      <body className={`${inter.variable} ${inter.className} bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-slate-950 dark:text-slate-100`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AuthProvider>

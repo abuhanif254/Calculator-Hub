@@ -243,7 +243,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Free Online Income Tax Calculator | Accurate Tax Estimator",
       description: "Calculate your income tax, net take-home pay, and effective tax rate with our free online Income Tax Calculator. Get accurate tax bracket estimations.",
-      keywords: "income tax calculator, free tax calculator, take home pay calculator, net pay estimator, calculate income tax, tax bracket calculator, salary after tax, paycheck calculator, how much tax will i pay, income tax calculation online"
+      keywords: "income tax calculator, free tax calculator, take home pay calculator, net pay estimator, calculate income tax, tax bracket calculator, salary after tax, paycheck calculator, how much tax will i pay, income tax calculation online",
+      lastUpdated: "2024-05-24"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -262,7 +263,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
       title: "Compound Interest Calculator | Growth & Returns Estimator",
       description: "Calculate how your savings and investments will grow with our advanced Compound Interest Calculator. Model different frequencies and contributions.",
-      keywords: "compound interest calculator, investment growth, APY calculator, interest compounding, simple vs compound interest"
+      keywords: "compound interest calculator, investment growth, APY calculator, interest compounding, simple vs compound interest",
+      lastUpdated: "2024-05-20"
     },
     fields: [], // Handled by custom view
     logicModule: "financial"
@@ -851,7 +853,8 @@ export const calculators: CalculatorDef[] = [
     meta: {
        title: "Credit Card Payoff Calculator | Calculate Debt Freedom Date",
        description: "Free online credit card payoff calculator. Find out exactly when you will be debt-free and see how much interest you will pay over time.",
-       keywords: "credit card payoff calculator, debt payoff, credit card calculator, pay off debt, compound interest, financial calculator"
+       keywords: "credit card payoff calculator, debt payoff, credit card calculator, pay off debt, compound interest, financial calculator",
+       lastUpdated: "2024-05-18"
     },
     fields: [],
     logicModule: "financial"

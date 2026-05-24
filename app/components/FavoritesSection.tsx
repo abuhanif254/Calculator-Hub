@@ -15,10 +15,10 @@ export function FavoritesSection() {
     <div className="mb-12">
       <div className="flex items-center gap-2 mb-6">
         <Star className="w-6 h-6 text-amber-500 fill-amber-400" />
-        <h2 className="text-2xl font-bold text-slate-800">Your Favorites</h2>
+        <h2 className="text-2xl font-bold text-slate-800 dark:text-white">Your Favorites</h2>
       </div>
       
-      <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+      <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4">
           {favorites.filter(calc => !!calc.href).map((calc) => (
             <li key={calc.href || calc.title}>

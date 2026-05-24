@@ -92,5 +92,6 @@ Whether you are formatting sensitive corporate web pages or debugging local proj
     { name: "JSON Formatter", slug: "json-formatter" },
     { name: "Diff Checker", slug: "diff-checker" },
     { name: "CSS Beautifier", slug: "css-beautifier" }
-  ]
+  ],
+  lastUpdated: "2024-05-22"
 };
