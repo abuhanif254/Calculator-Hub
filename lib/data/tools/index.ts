@@ -38,6 +38,7 @@ import { colorPickerConfig } from './color-picker';
 import { gradientGeneratorConfig } from './gradient-generator';
 import { tailwindColorPaletteConfig } from './tailwind-color-palette';
 import { cssShadowGeneratorConfig } from './css-shadow-generator';
+import { glassmorphismGeneratorConfig } from './glassmorphism-generator';
 
 import { hexToRgbConfig } from './hex-to-rgb';
 import { uuidGeneratorConfig } from './uuid-generator';
@@ -94,6 +95,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [gradientGeneratorConfig.slug]: gradientGeneratorConfig,
   [tailwindColorPaletteConfig.slug]: tailwindColorPaletteConfig,
   [cssShadowGeneratorConfig.slug]: cssShadowGeneratorConfig,
+  [glassmorphismGeneratorConfig.slug]: glassmorphismGeneratorConfig,
   [hexToRgbConfig.slug]: hexToRgbConfig,
   [uuidGeneratorConfig.slug]: uuidGeneratorConfig,
   [slugGeneratorConfig.slug]: slugGeneratorConfig,

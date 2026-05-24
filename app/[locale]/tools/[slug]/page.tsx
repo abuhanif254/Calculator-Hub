@@ -42,6 +42,7 @@ const ColorPickerTool = dynamic(() => import('../../../components/tools/color-pi
 const GradientGeneratorTool = dynamic(() => import('../../../components/tools/GradientGeneratorTool').then(m => m.GradientGeneratorTool));
 const TailwindColorPaletteTool = dynamic(() => import('../../../components/tools/TailwindColorPaletteTool').then(m => m.TailwindColorPaletteTool));
 const CssShadowGeneratorTool = dynamic(() => import('../../../components/tools/CssShadowGeneratorTool').then(m => m.CssShadowGeneratorTool));
+const GlassmorphismGeneratorTool = dynamic(() => import('../../../components/tools/GlassmorphismGeneratorTool').then(m => m.GlassmorphismGeneratorTool));
 const HexToRgbTool = dynamic(() => import('../../../components/tools/hex-to-rgb').then(m => m.HexToRgbTool));
 const UuidGeneratorTool = dynamic(() => import('../../../components/tools/UuidGeneratorTool').then(m => m.UuidGeneratorTool));
 const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGeneratorTool').then(m => m.SlugGeneratorTool));
@@ -101,6 +102,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   "gradient-generator": GradientGeneratorTool,
   "tailwind-color-palette": TailwindColorPaletteTool,
   "css-shadow-generator": CssShadowGeneratorTool,
+  "glassmorphism-generator": GlassmorphismGeneratorTool,
   "hex-to-rgb": HexToRgbTool,
   "uuid-generator": UuidGeneratorTool,
   "slug-generator": SlugGeneratorTool,
