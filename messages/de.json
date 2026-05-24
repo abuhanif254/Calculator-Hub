@@ -682,6 +682,13 @@
     "deg": "DEG",
     "rad": "RAD"
   },
+  "BinaryCalculator": {
+    "title": "Binärrechner",
+    "desc": "Führen Sie binäre Arithmetik, Konvertierungen, bitweise Operationen aus und erkunden Sie Logikgatter.",
+    "invalidBinary": "Ungültige Binäreingabe. Verwenden Sie nur 0 und 1.",
+    "waiting": "Warte auf Eingaben...",
+    "explanation": "Schritt-für-Schritt-Erklärung"
+  },
   "FractionCalculator": {
     "whole": "Ganz",
     "numerator": "Zähler",

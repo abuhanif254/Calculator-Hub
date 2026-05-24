@@ -682,6 +682,13 @@
     "deg": "DEG",
     "rad": "RAD"
   },
+  "BinaryCalculator": {
+    "title": "Binary Calculator",
+    "desc": "Perform binary arithmetic, conversions, bitwise operations, and explore logic gates.",
+    "invalidBinary": "Invalid binary input. Use only 0 and 1.",
+    "waiting": "Awaiting inputs...",
+    "explanation": "Step-by-Step Explanation"
+  },
   "FractionCalculator": {
     "whole": "Whole",
     "numerator": "Num",

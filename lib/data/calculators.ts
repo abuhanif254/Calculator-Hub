@@ -1,4 +1,4 @@
-﻿import { CalculatorDef } from "../types";
+import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
@@ -2517,6 +2517,26 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
 2.  **Interest Rate:** A seemingly small change in your interest rate dramatically shifts both your monthly payment and your maximum affordable home price.
 3.  **Property Taxes and Homeowners Insurance:** Many first-time buyers do not account for these recurring costs, which are bundled into your monthly mortgage payment and directly impact your DTI limit.
     `
+  },
+  {
+    slug: "binary-calculator",
+    slugs: {
+      en: "binary-calculator",
+      es: "calculadora-binaria",
+      de: "binarrechner",
+      fr: "calculatrice-binaire"
+    },
+    title: "Binary Calculator",
+    category: "Math",
+    description: "Perform binary arithmetic, conversions, bitwise operations, and explore logic gates.",
+    meta: {
+      title: "Binary Calculator | Signed & Unsigned Binary Math Solver",
+      description: "Free online Binary Calculator. Perform binary addition, subtraction, multiplication, division, bitwise operations, and base conversions with step-by-step explanations.",
+      keywords: "binary calculator, bitwise calculator, binary converter, signed binary calculator, binary arithmetic, two's complement, binary converter",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
   }
 ];
 

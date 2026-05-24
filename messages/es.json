@@ -676,11 +676,18 @@
     "grossPrice": "Precio Bruto (Total con Impuesto)"
   },
   "ScientificCalculator": {
-    "clearMessage": "Limpiar",
-    "deleteMessage": "Borrar",
+    "clearMessage": "Borrar",
+    "deleteMessage": "Eliminar",
     "error": "Error",
     "deg": "DEG",
     "rad": "RAD"
+  },
+  "BinaryCalculator": {
+    "title": "Calculadora Binaria",
+    "desc": "Realice operaciones aritméticas binarias, conversiones, operaciones bit a bit y explore puertas lógicas.",
+    "invalidBinary": "Entrada binaria no válida. Use solo 0 y 1.",
+    "waiting": "Esperando entradas...",
+    "explanation": "Explicación Paso a Paso"
   },
   "FractionCalculator": {
     "whole": "Entero",
