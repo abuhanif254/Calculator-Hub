@@ -185,7 +185,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 The ultimate ecosystem for professionals. Access hundreds of precise calculators and powerful developer utilities instantly in your browser.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                <Link href={"/calculators" as any} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-lg shadow-green-900/20">
+                <Link href={"/sitemap" as any} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-lg shadow-green-900/20">
                   Explore Tools
                   <ArrowRight size={20} />
                 </Link>
