@@ -35,6 +35,11 @@ import { ipLookupConfig } from './ip-lookup';
 import { userAgentParserConfig } from './user-agent-parser';
 import { mimeTypeCheckerConfig } from './mime-type-checker';
 import { colorPickerConfig } from './color-picker';
+import { gradientGeneratorConfig } from './gradient-generator';
+import { tailwindColorPaletteConfig } from './tailwind-color-palette';
+import { cssShadowGeneratorConfig } from './css-shadow-generator';
+import { glassmorphismGeneratorConfig } from './glassmorphism-generator';
+import { neumorphismGeneratorConfig } from './neumorphism-generator';
 
 import { hexToRgbConfig } from './hex-to-rgb';
 import { uuidGeneratorConfig } from './uuid-generator';
@@ -88,6 +93,11 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [userAgentParserConfig.slug]: userAgentParserConfig,
   [mimeTypeCheckerConfig.slug]: mimeTypeCheckerConfig,
   [colorPickerConfig.slug]: colorPickerConfig,
+  [gradientGeneratorConfig.slug]: gradientGeneratorConfig,
+  [tailwindColorPaletteConfig.slug]: tailwindColorPaletteConfig,
+  [cssShadowGeneratorConfig.slug]: cssShadowGeneratorConfig,
+  [glassmorphismGeneratorConfig.slug]: glassmorphismGeneratorConfig,
+  [neumorphismGeneratorConfig.slug]: neumorphismGeneratorConfig,
   [hexToRgbConfig.slug]: hexToRgbConfig,
   [uuidGeneratorConfig.slug]: uuidGeneratorConfig,
   [slugGeneratorConfig.slug]: slugGeneratorConfig,
