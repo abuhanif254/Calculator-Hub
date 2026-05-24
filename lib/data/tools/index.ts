@@ -36,6 +36,7 @@ import { userAgentParserConfig } from './user-agent-parser';
 import { mimeTypeCheckerConfig } from './mime-type-checker';
 import { colorPickerConfig } from './color-picker';
 import { gradientGeneratorConfig } from './gradient-generator';
+import { tailwindColorPaletteConfig } from './tailwind-color-palette';
 
 import { hexToRgbConfig } from './hex-to-rgb';
 import { uuidGeneratorConfig } from './uuid-generator';
@@ -90,6 +91,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [mimeTypeCheckerConfig.slug]: mimeTypeCheckerConfig,
   [colorPickerConfig.slug]: colorPickerConfig,
   [gradientGeneratorConfig.slug]: gradientGeneratorConfig,
+  [tailwindColorPaletteConfig.slug]: tailwindColorPaletteConfig,
   [hexToRgbConfig.slug]: hexToRgbConfig,
   [uuidGeneratorConfig.slug]: uuidGeneratorConfig,
   [slugGeneratorConfig.slug]: slugGeneratorConfig,
