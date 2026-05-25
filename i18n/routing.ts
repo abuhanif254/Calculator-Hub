@@ -141,6 +141,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-macros',
       de: '/rechner/makro-rechner'
     },
+    '/calculators/carbohydrate-calculator': {
+      en: '/calculators/carbohydrate-calculator',
+      es: '/calculadoras/calculadora-de-carbohidratos',
+      fr: '/calculatrices/calculateur-de-glucides',
+      de: '/rechner/kohlenhydrat-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

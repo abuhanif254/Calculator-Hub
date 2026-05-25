@@ -257,11 +257,13 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [
     'body-fat-calculator', 'calorie-calculator', 'ideal-weight-calculator',
-    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
+    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator',
+    'carbohydrate-calculator'
   ],
   'calorie-calculator': [
     'bmr-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
+    'ideal-weight-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator',
+    'carbohydrate-calculator'
   ],
   'body-fat-calculator': [
     'bmi-calculator', 'bmr-calculator', 'ideal-weight-calculator',
@@ -269,7 +271,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'bmr-calculator': [
     'calorie-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator', 'macro-calculator'
+    'ideal-weight-calculator', 'pace-calculator', 'macro-calculator', 'carbohydrate-calculator'
   ],
   'ideal-weight-calculator': [
     'bmi-calculator', 'body-fat-calculator', 'calorie-calculator',
@@ -281,11 +283,16 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'height-calculator': [
     'bmi-calculator', 'ideal-weight-calculator', 'body-fat-calculator',
-    'conversion-calculator', 'age-calculator', 'calorie-calculator', 'macro-calculator'
+    'conversion-calculator', 'age-calculator', 'calorie-calculator', 'macro-calculator',
+    'carbohydrate-calculator'
   ],
   'macro-calculator': [
     'calorie-calculator', 'bmi-calculator', 'body-fat-calculator',
-    'ideal-weight-calculator', 'bmr-calculator', 'pace-calculator'
+    'ideal-weight-calculator', 'bmr-calculator', 'pace-calculator', 'carbohydrate-calculator'
+  ],
+  'carbohydrate-calculator': [
+    'macro-calculator', 'calorie-calculator', 'bmi-calculator',
+    'bmr-calculator', 'height-calculator'
   ],
   'ovulation-calculator': [
     'pregnancy-calculator', 'pregnancy-conception-calculator', 'due-date-calculator',

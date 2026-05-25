@@ -824,6 +824,26 @@ export const calculators: CalculatorDef[] = [
     fields: [],
     logicModule: "math"
   },
+  {
+    slug: "carbohydrate-calculator",
+    slugs: {
+      en: "carbohydrate-calculator",
+      es: "calculadora-de-carbohidratos",
+      de: "kohlenhydrat-rechner",
+      fr: "calculateur-de-glucides"
+    },
+    title: "Carbohydrate Calculator",
+    category: "Health",
+    description: "Calculate your optimal daily carbohydrate intake, net carbs, carb cycling plans, and per-meal distributions based on your biometric profile and fitness goals.",
+    meta: {
+      title: "Carbohydrate Calculator | Daily Carb & Net Carb Finder",
+      description: "Free online Carbohydrate Calculator. Calculate daily carbohydrate requirements, net carbs, and carb cycling schedules. Offers diabetic blood sugar awareness and meal planners.",
+      keywords: "carb calculator, carbohydrate calculator, net carbs calculator, carb cycling calculator, diabetic carbs, ketogenic diet carbs, low carb calculator, carbohydrates, fitness nutrition",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
   // NOTE: password-generator is a Developer Tool only.
   // It lives under /tools/password-generator — NOT /calculators/.
   // Removed from this array to prevent sitemap slug collision and crawl budget waste.
