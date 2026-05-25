@@ -73,6 +73,98 @@ const nextConfig: NextConfig = {
         destination: '/de/rechner/kreditkarten-abbezahlen',
         permanent: true,
       },
+      // Fix for leaked tool documentation paths
+      {
+        source: '/new-path/:slug*',
+        destination: '/tools/redirect-checker',
+        permanent: true,
+      },
+      {
+        source: '/old-path/:slug*',
+        destination: '/tools/redirect-checker',
+        permanent: true,
+      },
+      // Redirects for deleted/missing calculators
+      {
+        source: '/:locale/calculators/tip-calculator',
+        destination: '/:locale/calculators/category/financial',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculadoras/tip-calculator',
+        destination: '/:locale/calculadoras/category/financial',
+        permanent: true,
+      },
+      {
+        source: '/:locale/rechner/day-counter',
+        destination: '/:locale/rechner/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/molarity-calculator',
+        destination: '/:locale/calculatrices/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/savings-calculator',
+        destination: '/:locale/calculators/category/financial',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/bandwidth-calculator',
+        destination: '/:locale/calculatrices/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/pregnancy-weight-gain-calculator',
+        destination: '/:locale/calculators/category/health-fitness',
+        permanent: true,
+      },
+      {
+        source: '/:locale/rechner/body-type-calculator',
+        destination: '/:locale/rechner/category/health-fitness',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculadoras/electricity-calculator',
+        destination: '/:locale/calculadoras/category/financial',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/pythagorean-theorem-calculator',
+        destination: '/:locale/calculatrices/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/number-sequence-calculator',
+        destination: '/:locale/calculators/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculadoras/time-zone-calculator',
+        destination: '/:locale/calculadoras/category/other',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/hex-calculator',
+        destination: '/:locale/calculatrices/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculadoras/bandwidth-calculator',
+        destination: '/:locale/calculadoras/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/rechner/circle-calculator',
+        destination: '/:locale/rechner/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/de/werkzeuge/next.js-discussions',
+        destination: '/de/werkzeuge',
+        permanent: true,
+      }
     ];
   },
 };
