@@ -784,6 +784,26 @@ export const calculators: CalculatorDef[] = [
     fields: [],
     logicModule: "math"
   },
+  {
+    slug: "ip-subnet-calculator",
+    slugs: {
+      en: "ip-subnet-calculator",
+      es: "calculadora-de-subred-ip",
+      de: "ip-subnetz-rechner",
+      fr: "calculateur-de-sous-reseau-ip"
+    },
+    title: "IP Subnet Calculator",
+    category: "Other",
+    description: "Calculate IPv4 subnetting parameters, CIDR ranges, network/broadcast addresses, wildcard masks, usable host bounds, binary bitmasks, special ranges, and VLSM plans.",
+    meta: {
+      title: "IP Subnet Calculator | Advanced CIDR & VLSM Calculator",
+      description: "Free online IP Subnet Calculator. Calculate IPv4 subnets, host addresses, wildcard masks, and binary bitmasks. Supports variable-length subnet masking (VLSM) and special range validation.",
+      keywords: "ip subnet calculator, subnet calculator, cidr calculator, vlsm calculator, ip range calculator, network classes, binary subnetting, networking tools, subnet planner",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
   // NOTE: password-generator is a Developer Tool only.
   // It lives under /tools/password-generator — NOT /calculators/.
   // Removed from this array to prevent sitemap slug collision and crawl budget waste.

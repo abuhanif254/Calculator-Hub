@@ -359,7 +359,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'binary-calculator': [
     'hexadecimal-calculator', 'scientific-calculator', 'percentage-calculator',
-    'subnet-calculator', 'conversion-calculator', 'data-storage-converter'
+    'subnet-calculator', 'ip-subnet-calculator', 'conversion-calculator', 'data-storage-converter'
   ],
 
   // ─── Other / Utility ─────────────────────────────
@@ -394,7 +394,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   'conversion-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
     'currency-calculator', 'concrete-calculator', 'binary-calculator', 'volume-calculator',
-    'height-calculator'
+    'height-calculator', 'ip-subnet-calculator'
   ],
   'currency-calculator': [
     'conversion-calculator', 'inflation-calculator', 'sales-tax-calculator',
@@ -402,11 +402,14 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'subnet-calculator': [
     'conversion-calculator', 'scientific-calculator', 'password-generator',
-    'random-number-generator', 'percentage-calculator', 'binary-calculator'
+    'random-number-generator', 'percentage-calculator', 'binary-calculator', 'ip-subnet-calculator'
   ],
   'password-generator': [
     'random-number-generator', 'subnet-calculator', 'scientific-calculator',
     'conversion-calculator', 'age-calculator'
+  ],
+  'ip-subnet-calculator': [
+    'binary-calculator', 'subnet-calculator', 'conversion-calculator'
   ],
 };
 

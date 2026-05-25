@@ -115,6 +115,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   // ─── Other ─────────────────────────────────────
   'age-calculator': dynamic(() => import('@/app/components/AgeCalculatorView').then(m => ({ default: m.AgeCalculatorView as ComponentType<CalcComponentProps> }))),
   'subnet-calculator': dynamic(() => import('@/app/components/SubnetCalculatorView').then(m => ({ default: m.SubnetCalculatorView as ComponentType<CalcComponentProps> }))),
+  'ip-subnet-calculator': dynamic(() => import('@/app/components/IpSubnetCalculatorView').then(m => ({ default: m.IpSubnetCalculatorView as ComponentType<CalcComponentProps> }))),
   'password-generator': dynamic(() => import('@/app/components/PasswordGeneratorView').then(m => ({ default: m.PasswordGeneratorView as ComponentType<CalcComponentProps> }))),
 };
 
