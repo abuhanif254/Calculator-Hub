@@ -101,6 +101,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
 
   // ─── Health & Fitness ──────────────────────────
   'bmi-calculator': dynamic(() => import('@/app/components/BmiCalculatorView').then(m => ({ default: m.BmiCalculatorView as ComponentType<CalcComponentProps> }))),
+  'height-calculator': dynamic(() => import('@/app/components/HeightCalculatorView').then(m => ({ default: m.HeightCalculatorView as ComponentType<CalcComponentProps> }))),
   'calorie-calculator': dynamic(() => import('@/app/components/CalorieCalculatorView').then(m => ({ default: m.CalorieCalculatorView as ComponentType<CalcComponentProps> }))),
   'body-fat-calculator': dynamic(() => import('@/app/components/BodyFatCalculatorView').then(m => ({ default: m.BodyFatCalculatorView as ComponentType<CalcComponentProps> }))),
   'bmr-calculator': dynamic(() => import('@/app/components/BMRCalculatorView').then(m => ({ default: m.BMRCalculatorView as ComponentType<CalcComponentProps> }))),

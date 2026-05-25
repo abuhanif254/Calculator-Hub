@@ -123,6 +123,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-d-erreur-pourcentage',
       de: '/rechner/prozentualer-fehler-rechner'
     },
+    '/calculators/height-calculator': {
+      en: '/calculators/height-calculator',
+      es: '/calculadoras/calculadora-de-altura',
+      fr: '/calculatrices/calculateur-de-taille',
+      de: '/rechner/groessenrechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

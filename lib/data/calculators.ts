@@ -545,6 +545,26 @@ export const calculators: CalculatorDef[] = [
     logicModule: "math"
   },
   {
+    slug: "height-calculator",
+    slugs: {
+      en: "height-calculator",
+      es: "calculadora-de-altura",
+      de: "groessenrechner",
+      fr: "calculateur-de-taille"
+    },
+    title: "Height Calculator",
+    category: "Health",
+    description: "Convert height between feet/inches and cm/m. Compare heights with visual human silhouettes, predict child heights, and analyze average height percentiles.",
+    meta: {
+      title: "Height Calculator | Feet to CM, Comparison & Predictor",
+      description: "Free online Height Calculator. Easily convert height between feet, inches, centimeters, and meters. Compare heights with visual silhouettes, run pediatric child growth predictions, and check percentile averages.",
+      keywords: "height calculator, feet to cm, height comparison, child height predictor, average human height, height percentile calculator, height converter",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "ovulation-calculator",
     slugs: {
       en: "ovulation-calculator",

@@ -257,15 +257,15 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [
     'body-fat-calculator', 'calorie-calculator', 'ideal-weight-calculator',
-    'bmr-calculator', 'pace-calculator'
+    'bmr-calculator', 'pace-calculator', 'height-calculator'
   ],
   'calorie-calculator': [
     'bmr-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator'
+    'ideal-weight-calculator', 'pace-calculator', 'height-calculator'
   ],
   'body-fat-calculator': [
     'bmi-calculator', 'bmr-calculator', 'ideal-weight-calculator',
-    'calorie-calculator', 'pace-calculator'
+    'calorie-calculator', 'pace-calculator', 'height-calculator'
   ],
   'bmr-calculator': [
     'calorie-calculator', 'body-fat-calculator', 'bmi-calculator',
@@ -273,11 +273,15 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'ideal-weight-calculator': [
     'bmi-calculator', 'body-fat-calculator', 'calorie-calculator',
-    'bmr-calculator', 'pace-calculator'
+    'bmr-calculator', 'pace-calculator', 'height-calculator'
   ],
   'pace-calculator': [
     'calorie-calculator', 'bmi-calculator', 'bmr-calculator',
     'body-fat-calculator', 'ideal-weight-calculator'
+  ],
+  'height-calculator': [
+    'bmi-calculator', 'ideal-weight-calculator', 'body-fat-calculator',
+    'conversion-calculator', 'age-calculator', 'calorie-calculator'
   ],
   'ovulation-calculator': [
     'pregnancy-calculator', 'pregnancy-conception-calculator', 'due-date-calculator',
@@ -361,7 +365,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Other / Utility ─────────────────────────────
   'age-calculator': [
     'date-calculator', 'time-calculator', 'due-date-calculator',
-    'hours-calculator', 'bmi-calculator'
+    'hours-calculator', 'bmi-calculator', 'height-calculator'
   ],
   'date-calculator': [
     'age-calculator', 'time-calculator', 'hours-calculator',
@@ -389,7 +393,8 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'conversion-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
-    'currency-calculator', 'concrete-calculator', 'binary-calculator', 'volume-calculator'
+    'currency-calculator', 'concrete-calculator', 'binary-calculator', 'volume-calculator',
+    'height-calculator'
   ],
   'currency-calculator': [
     'conversion-calculator', 'inflation-calculator', 'sales-tax-calculator',
