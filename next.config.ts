@@ -164,6 +164,11 @@ const nextConfig: NextConfig = {
         source: '/de/werkzeuge/next.js-discussions',
         destination: '/de/werkzeuge',
         permanent: true,
+      },
+      {
+        source: '/:locale/calculators/random-number-generator',
+        destination: '/:locale/tools/random-number-generator',
+        permanent: true,
       }
     ];
   },
