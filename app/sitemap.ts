@@ -174,7 +174,7 @@ export default async function sitemap({
     return subset.map(({ slug, priority, lastUpdated }) => {
       // Use the calculator's own lastUpdated date, or fall back to a
       // baseline date so Google always gets a concrete lastModified signal.
-      const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2025-01-01');
+      const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2026-05-25');
       const routeKey = `/calculators/${slug}`;
       const existsInRouting = (routing.pathnames as any)[routeKey];
 
@@ -190,7 +190,7 @@ export default async function sitemap({
     const processedTools = new Set<string>();
     // Tools section was heavily built out in late 2025 — use that as
     // the baseline lastModified so Googlebot knows they're fresh.
-    const toolsLastMod = new Date('2025-11-01');
+    const toolsLastMod = new Date('2026-05-25');
 
     return developerToolSlugs
       .filter((slug) => {
