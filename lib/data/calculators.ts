@@ -928,6 +928,26 @@ export const calculators: CalculatorDef[] = [
     logicModule: "math"
   },
   {
+    slug: "percent-error-calculator",
+    slugs: {
+      en: "percent-error-calculator",
+      es: "calculadora-de-error-porcentual",
+      de: "prozentualer-fehler-rechner",
+      fr: "calculateur-d-erreur-pourcentage"
+    },
+    title: "Percent Error Calculator",
+    category: "Math",
+    description: "Calculate percent error, absolute error, and relative error between experimental and theoretical values with detailed steps and charts.",
+    meta: {
+      title: "Percent Error Calculator | Calculate Measurement Accuracy",
+      description: "Free online percent error calculator. Compute absolute error, relative error, percent difference, and percentage deviation with formulas and steps.",
+      keywords: "percent error calculator, how to calculate percent error, absolute error formula, relative error equation, percent difference, experimental error, physics lab tools, chemistry measurements, accuracy vs precision",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "statistics-calculator",
     slugs: {
       en: "statistics-calculator",

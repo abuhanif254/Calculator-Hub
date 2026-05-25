@@ -97,6 +97,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'conversion-calculator': dynamic(() => import('@/app/components/ConversionCalculatorView').then(m => ({ default: m.ConversionCalculatorView as ComponentType<CalcComponentProps> }))),
   'half-life-calculator': dynamic(() => import('@/app/components/HalfLifeCalculatorView').then(m => ({ default: m.HalfLifeCalculatorView as ComponentType<CalcComponentProps> }))),
   'volume-calculator': dynamic(() => import('@/app/components/VolumeCalculatorView').then(m => ({ default: m.VolumeCalculatorView as ComponentType<CalcComponentProps> }))),
+  'percent-error-calculator': dynamic(() => import('@/app/components/PercentErrorCalculatorView').then(m => ({ default: m.PercentErrorCalculatorView as ComponentType<CalcComponentProps> }))),
 
   // ─── Health & Fitness ──────────────────────────
   'bmi-calculator': dynamic(() => import('@/app/components/BmiCalculatorView').then(m => ({ default: m.BmiCalculatorView as ComponentType<CalcComponentProps> }))),

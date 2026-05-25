@@ -117,6 +117,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-volume',
       de: '/rechner/volumenrechner'
     },
+    '/calculators/percent-error-calculator': {
+      en: '/calculators/percent-error-calculator',
+      es: '/calculadoras/calculadora-de-error-porcentual',
+      fr: '/calculatrices/calculateur-d-erreur-pourcentage',
+      de: '/rechner/prozentualer-fehler-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',
