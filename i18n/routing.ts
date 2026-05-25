@@ -135,6 +135,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-sous-reseau-ip',
       de: '/rechner/ip-subnetz-rechner'
     },
+    '/calculators/macro-calculator': {
+      en: '/calculators/macro-calculator',
+      es: '/calculadoras/calculadora-de-macros',
+      fr: '/calculatrices/calculateur-de-macros',
+      de: '/rechner/makro-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

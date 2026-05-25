@@ -804,6 +804,26 @@ export const calculators: CalculatorDef[] = [
     fields: [],
     logicModule: "math"
   },
+  {
+    slug: "macro-calculator",
+    slugs: {
+      en: "macro-calculator",
+      es: "calculadora-de-macros",
+      de: "makro-rechner",
+      fr: "calculateur-de-macros"
+    },
+    title: "Macro Calculator",
+    category: "Health",
+    description: "Calculate your daily macronutrient (protein, carbohydrates, fats) and calorie targets based on age, height, weight, activity level, and fitness goals.",
+    meta: {
+      title: "Macro Calculator | Personalized Macronutrient Ratio Finder",
+      description: "Free online Macro Calculator. Calculate your daily protein, carbohydrate, and fat targets based on your fitness goals, activity levels, and custom diet distributions.",
+      keywords: "macro calculator, macronutrient calculator, protein calculator, carb calculator, fat calculator, weight loss macros, muscle gain macros, bodybuilding macros, keto macros, low carb macros",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
   // NOTE: password-generator is a Developer Tool only.
   // It lives under /tools/password-generator — NOT /calculators/.
   // Removed from this array to prevent sitemap slug collision and crawl budget waste.

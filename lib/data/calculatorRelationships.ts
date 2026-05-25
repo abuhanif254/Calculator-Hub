@@ -257,31 +257,35 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [
     'body-fat-calculator', 'calorie-calculator', 'ideal-weight-calculator',
-    'bmr-calculator', 'pace-calculator', 'height-calculator'
+    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
   ],
   'calorie-calculator': [
     'bmr-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator', 'height-calculator'
+    'ideal-weight-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
   ],
   'body-fat-calculator': [
     'bmi-calculator', 'bmr-calculator', 'ideal-weight-calculator',
-    'calorie-calculator', 'pace-calculator', 'height-calculator'
+    'calorie-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
   ],
   'bmr-calculator': [
     'calorie-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator'
+    'ideal-weight-calculator', 'pace-calculator', 'macro-calculator'
   ],
   'ideal-weight-calculator': [
     'bmi-calculator', 'body-fat-calculator', 'calorie-calculator',
-    'bmr-calculator', 'pace-calculator', 'height-calculator'
+    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
   ],
   'pace-calculator': [
     'calorie-calculator', 'bmi-calculator', 'bmr-calculator',
-    'body-fat-calculator', 'ideal-weight-calculator'
+    'body-fat-calculator', 'ideal-weight-calculator', 'macro-calculator'
   ],
   'height-calculator': [
     'bmi-calculator', 'ideal-weight-calculator', 'body-fat-calculator',
-    'conversion-calculator', 'age-calculator', 'calorie-calculator'
+    'conversion-calculator', 'age-calculator', 'calorie-calculator', 'macro-calculator'
+  ],
+  'macro-calculator': [
+    'calorie-calculator', 'bmi-calculator', 'body-fat-calculator',
+    'ideal-weight-calculator', 'bmr-calculator', 'pace-calculator'
   ],
   'ovulation-calculator': [
     'pregnancy-calculator', 'pregnancy-conception-calculator', 'due-date-calculator',
