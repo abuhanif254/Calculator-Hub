@@ -9,14 +9,11 @@ import { ThemeProvider } from '../../app/components/ThemeProvider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
-import { Inter } from 'next/font/google';
-
-// Load Inter from Google Fonts — subsets latin for performance
-const inter = Inter({
-  subsets: ['latin'],
+// Load Inter mock for offline builds to avoid getaddrinfo ENOTFOUND fonts.googleapis.com
+const inter = {
+  className: 'font-sans',
   variable: '--font-sans',
-  display: 'swap',
-});
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

@@ -95,10 +95,16 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'grade-calculator': dynamic(() => import('@/app/components/GradeCalculatorView').then(m => ({ default: m.GradeCalculatorView as ComponentType<CalcComponentProps> }))),
   'concrete-calculator': dynamic(() => import('@/app/components/ConcreteCalculatorView').then(m => ({ default: m.ConcreteCalculatorView as ComponentType<CalcComponentProps> }))),
   'conversion-calculator': dynamic(() => import('@/app/components/ConversionCalculatorView').then(m => ({ default: m.ConversionCalculatorView as ComponentType<CalcComponentProps> }))),
+  'half-life-calculator': dynamic(() => import('@/app/components/HalfLifeCalculatorView').then(m => ({ default: m.HalfLifeCalculatorView as ComponentType<CalcComponentProps> }))),
+  'volume-calculator': dynamic(() => import('@/app/components/VolumeCalculatorView').then(m => ({ default: m.VolumeCalculatorView as ComponentType<CalcComponentProps> }))),
+  'percent-error-calculator': dynamic(() => import('@/app/components/PercentErrorCalculatorView').then(m => ({ default: m.PercentErrorCalculatorView as ComponentType<CalcComponentProps> }))),
 
   // ─── Health & Fitness ──────────────────────────
   'bmi-calculator': dynamic(() => import('@/app/components/BmiCalculatorView').then(m => ({ default: m.BmiCalculatorView as ComponentType<CalcComponentProps> }))),
+  'height-calculator': dynamic(() => import('@/app/components/HeightCalculatorView').then(m => ({ default: m.HeightCalculatorView as ComponentType<CalcComponentProps> }))),
   'calorie-calculator': dynamic(() => import('@/app/components/CalorieCalculatorView').then(m => ({ default: m.CalorieCalculatorView as ComponentType<CalcComponentProps> }))),
+  'macro-calculator': dynamic(() => import('@/app/components/MacroCalculatorView').then(m => ({ default: m.MacroCalculatorView as ComponentType<CalcComponentProps> }))),
+  'carbohydrate-calculator': dynamic(() => import('@/app/components/CarbohydrateCalculatorView').then(m => ({ default: m.CarbohydrateCalculatorView as ComponentType<CalcComponentProps> }))),
   'body-fat-calculator': dynamic(() => import('@/app/components/BodyFatCalculatorView').then(m => ({ default: m.BodyFatCalculatorView as ComponentType<CalcComponentProps> }))),
   'bmr-calculator': dynamic(() => import('@/app/components/BMRCalculatorView').then(m => ({ default: m.BMRCalculatorView as ComponentType<CalcComponentProps> }))),
   'ideal-weight-calculator': dynamic(() => import('@/app/components/IdealWeightCalculatorView').then(m => ({ default: m.IdealWeightCalculatorView as ComponentType<CalcComponentProps> }))),
@@ -111,6 +117,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   // ─── Other ─────────────────────────────────────
   'age-calculator': dynamic(() => import('@/app/components/AgeCalculatorView').then(m => ({ default: m.AgeCalculatorView as ComponentType<CalcComponentProps> }))),
   'subnet-calculator': dynamic(() => import('@/app/components/SubnetCalculatorView').then(m => ({ default: m.SubnetCalculatorView as ComponentType<CalcComponentProps> }))),
+  'ip-subnet-calculator': dynamic(() => import('@/app/components/IpSubnetCalculatorView').then(m => ({ default: m.IpSubnetCalculatorView as ComponentType<CalcComponentProps> }))),
   'password-generator': dynamic(() => import('@/app/components/PasswordGeneratorView').then(m => ({ default: m.PasswordGeneratorView as ComponentType<CalcComponentProps> }))),
 };
 

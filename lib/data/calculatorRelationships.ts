@@ -257,27 +257,42 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [
     'body-fat-calculator', 'calorie-calculator', 'ideal-weight-calculator',
-    'bmr-calculator', 'pace-calculator'
+    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator',
+    'carbohydrate-calculator'
   ],
   'calorie-calculator': [
     'bmr-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator'
+    'ideal-weight-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator',
+    'carbohydrate-calculator'
   ],
   'body-fat-calculator': [
     'bmi-calculator', 'bmr-calculator', 'ideal-weight-calculator',
-    'calorie-calculator', 'pace-calculator'
+    'calorie-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
   ],
   'bmr-calculator': [
     'calorie-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator'
+    'ideal-weight-calculator', 'pace-calculator', 'macro-calculator', 'carbohydrate-calculator'
   ],
   'ideal-weight-calculator': [
     'bmi-calculator', 'body-fat-calculator', 'calorie-calculator',
-    'bmr-calculator', 'pace-calculator'
+    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
   ],
   'pace-calculator': [
     'calorie-calculator', 'bmi-calculator', 'bmr-calculator',
-    'body-fat-calculator', 'ideal-weight-calculator'
+    'body-fat-calculator', 'ideal-weight-calculator', 'macro-calculator'
+  ],
+  'height-calculator': [
+    'bmi-calculator', 'ideal-weight-calculator', 'body-fat-calculator',
+    'conversion-calculator', 'age-calculator', 'calorie-calculator', 'macro-calculator',
+    'carbohydrate-calculator'
+  ],
+  'macro-calculator': [
+    'calorie-calculator', 'bmi-calculator', 'body-fat-calculator',
+    'ideal-weight-calculator', 'bmr-calculator', 'pace-calculator', 'carbohydrate-calculator'
+  ],
+  'carbohydrate-calculator': [
+    'macro-calculator', 'calorie-calculator', 'bmi-calculator',
+    'bmr-calculator', 'height-calculator'
   ],
   'ovulation-calculator': [
     'pregnancy-calculator', 'pregnancy-conception-calculator', 'due-date-calculator',
@@ -299,7 +314,8 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Math & Science ──────────────────────────────
   'scientific-calculator': [
     'graphing-calculator', 'fraction-calculator', 'percentage-calculator',
-    'scientific-notation-calculator', 'statistics-calculator', 'binary-calculator'
+    'scientific-notation-calculator', 'statistics-calculator', 'binary-calculator',
+    'half-life-calculator', 'percent-error-calculator'
   ],
   'graphing-calculator': [
     'scientific-calculator', 'statistics-calculator', 'standard-deviation-calculator',
@@ -311,15 +327,16 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'percentage-calculator': [
     'fraction-calculator', 'percent-off-calculator', 'scientific-calculator',
-    'margin-calculator', 'sales-tax-calculator', 'binary-calculator'
+    'margin-calculator', 'sales-tax-calculator', 'binary-calculator', 'percent-error-calculator'
   ],
   'statistics-calculator': [
     'standard-deviation-calculator', 'p-value-calculator', 'graphing-calculator',
-    'scientific-calculator', 'random-number-generator'
+    'scientific-calculator', 'random-number-generator', 'half-life-calculator',
+    'percent-error-calculator'
   ],
   'standard-deviation-calculator': [
     'statistics-calculator', 'p-value-calculator', 'scientific-calculator',
-    'graphing-calculator', 'random-number-generator'
+    'graphing-calculator', 'random-number-generator', 'percent-error-calculator'
   ],
   'p-value-calculator': [
     'statistics-calculator', 'standard-deviation-calculator', 'scientific-calculator',
@@ -331,21 +348,35 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'triangle-calculator': [
     'scientific-calculator', 'conversion-calculator', 'fraction-calculator',
-    'percentage-calculator', 'graphing-calculator'
+    'percentage-calculator', 'graphing-calculator', 'volume-calculator'
   ],
   'scientific-notation-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
-    'graphing-calculator', 'conversion-calculator'
+    'graphing-calculator', 'conversion-calculator', 'half-life-calculator',
+    'percent-error-calculator'
+  ],
+  'half-life-calculator': [
+    'scientific-calculator', 'scientific-notation-calculator', 'statistics-calculator',
+    'triangle-calculator', 'date-calculator', 'percent-error-calculator'
+  ],
+  'volume-calculator': [
+    'area-calculator', 'surface-area-calculator', 'cube-calculator',
+    'cylinder-calculator', 'geometry-calculator', 'conversion-calculator',
+    'triangle-calculator', 'concrete-calculator'
+  ],
+  'percent-error-calculator': [
+    'scientific-calculator', 'percentage-calculator', 'standard-deviation-calculator',
+    'statistics-calculator', 'half-life-calculator', 'scientific-notation-calculator'
   ],
   'binary-calculator': [
     'hexadecimal-calculator', 'scientific-calculator', 'percentage-calculator',
-    'subnet-calculator', 'conversion-calculator', 'data-storage-converter'
+    'subnet-calculator', 'ip-subnet-calculator', 'conversion-calculator', 'data-storage-converter'
   ],
 
   // ─── Other / Utility ─────────────────────────────
   'age-calculator': [
     'date-calculator', 'time-calculator', 'due-date-calculator',
-    'hours-calculator', 'bmi-calculator'
+    'hours-calculator', 'bmi-calculator', 'height-calculator'
   ],
   'date-calculator': [
     'age-calculator', 'time-calculator', 'hours-calculator',
@@ -369,11 +400,12 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'concrete-calculator': [
     'conversion-calculator', 'percentage-calculator', 'triangle-calculator',
-    'scientific-calculator', 'fraction-calculator'
+    'scientific-calculator', 'fraction-calculator', 'volume-calculator'
   ],
   'conversion-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
-    'currency-calculator', 'concrete-calculator', 'binary-calculator'
+    'currency-calculator', 'concrete-calculator', 'binary-calculator', 'volume-calculator',
+    'height-calculator', 'ip-subnet-calculator'
   ],
   'currency-calculator': [
     'conversion-calculator', 'inflation-calculator', 'sales-tax-calculator',
@@ -381,11 +413,14 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'subnet-calculator': [
     'conversion-calculator', 'scientific-calculator', 'password-generator',
-    'random-number-generator', 'percentage-calculator', 'binary-calculator'
+    'random-number-generator', 'percentage-calculator', 'binary-calculator', 'ip-subnet-calculator'
   ],
   'password-generator': [
     'random-number-generator', 'subnet-calculator', 'scientific-calculator',
     'conversion-calculator', 'age-calculator'
+  ],
+  'ip-subnet-calculator': [
+    'binary-calculator', 'subnet-calculator', 'conversion-calculator'
   ],
 };
 

@@ -545,6 +545,26 @@ export const calculators: CalculatorDef[] = [
     logicModule: "math"
   },
   {
+    slug: "height-calculator",
+    slugs: {
+      en: "height-calculator",
+      es: "calculadora-de-altura",
+      de: "groessenrechner",
+      fr: "calculateur-de-taille"
+    },
+    title: "Height Calculator",
+    category: "Health",
+    description: "Convert height between feet/inches and cm/m. Compare heights with visual human silhouettes, predict child heights, and analyze average height percentiles.",
+    meta: {
+      title: "Height Calculator | Feet to CM, Comparison & Predictor",
+      description: "Free online Height Calculator. Easily convert height between feet, inches, centimeters, and meters. Compare heights with visual silhouettes, run pediatric child growth predictions, and check percentile averages.",
+      keywords: "height calculator, feet to cm, height comparison, child height predictor, average human height, height percentile calculator, height converter",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "ovulation-calculator",
     slugs: {
       en: "ovulation-calculator",
@@ -764,6 +784,66 @@ export const calculators: CalculatorDef[] = [
     fields: [],
     logicModule: "math"
   },
+  {
+    slug: "ip-subnet-calculator",
+    slugs: {
+      en: "ip-subnet-calculator",
+      es: "calculadora-de-subred-ip",
+      de: "ip-subnetz-rechner",
+      fr: "calculateur-de-sous-reseau-ip"
+    },
+    title: "IP Subnet Calculator",
+    category: "Other",
+    description: "Calculate IPv4 subnetting parameters, CIDR ranges, network/broadcast addresses, wildcard masks, usable host bounds, binary bitmasks, special ranges, and VLSM plans.",
+    meta: {
+      title: "IP Subnet Calculator | Advanced CIDR & VLSM Calculator",
+      description: "Free online IP Subnet Calculator. Calculate IPv4 subnets, host addresses, wildcard masks, and binary bitmasks. Supports variable-length subnet masking (VLSM) and special range validation.",
+      keywords: "ip subnet calculator, subnet calculator, cidr calculator, vlsm calculator, ip range calculator, network classes, binary subnetting, networking tools, subnet planner",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "macro-calculator",
+    slugs: {
+      en: "macro-calculator",
+      es: "calculadora-de-macros",
+      de: "makro-rechner",
+      fr: "calculateur-de-macros"
+    },
+    title: "Macro Calculator",
+    category: "Health",
+    description: "Calculate your daily macronutrient (protein, carbohydrates, fats) and calorie targets based on age, height, weight, activity level, and fitness goals.",
+    meta: {
+      title: "Macro Calculator | Personalized Macronutrient Ratio Finder",
+      description: "Free online Macro Calculator. Calculate your daily protein, carbohydrate, and fat targets based on your fitness goals, activity levels, and custom diet distributions.",
+      keywords: "macro calculator, macronutrient calculator, protein calculator, carb calculator, fat calculator, weight loss macros, muscle gain macros, bodybuilding macros, keto macros, low carb macros",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "carbohydrate-calculator",
+    slugs: {
+      en: "carbohydrate-calculator",
+      es: "calculadora-de-carbohidratos",
+      de: "kohlenhydrat-rechner",
+      fr: "calculateur-de-glucides"
+    },
+    title: "Carbohydrate Calculator",
+    category: "Health",
+    description: "Calculate your optimal daily carbohydrate intake, net carbs, carb cycling plans, and per-meal distributions based on your biometric profile and fitness goals.",
+    meta: {
+      title: "Carbohydrate Calculator | Daily Carb & Net Carb Finder",
+      description: "Free online Carbohydrate Calculator. Calculate daily carbohydrate requirements, net carbs, and carb cycling schedules. Offers diabetic blood sugar awareness and meal planners.",
+      keywords: "carb calculator, carbohydrate calculator, net carbs calculator, carb cycling calculator, diabetic carbs, ketogenic diet carbs, low carb calculator, carbohydrates, fitness nutrition",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
   // NOTE: password-generator is a Developer Tool only.
   // It lives under /tools/password-generator — NOT /calculators/.
   // Removed from this array to prevent sitemap slug collision and crawl budget waste.
@@ -883,6 +963,66 @@ export const calculators: CalculatorDef[] = [
       description: "Free scientific notation calculator. Convert decimal numbers to scientific e-notation, or perform addition, subtraction, multiplication, and division on scientific notation.",
       keywords: "scientific notation calculator, e notation converter, standard form to scientific notation, scientific notation math",
       lastUpdated: "2025-03-01"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "half-life-calculator",
+    slugs: {
+      en: "half-life-calculator",
+      es: "calculadora-de-vida-media",
+      de: "halbwertszeit-rechner",
+      fr: "calculateur-de-demi-vie"
+    },
+    title: "Half-Life Calculator",
+    category: "Math",
+    description: "Calculate the remaining quantity, initial quantity, half-life, elapsed time, or decay constant of radioactive isotopes with interactive decay charts and visual atom simulators.",
+    meta: {
+      title: "Half-Life Calculator | Radioactive Decay & Half-Life Solver",
+      description: "Free online Half-Life Calculator. Instantly compute remaining mass, initial amount, elapsed decay time, half-life, or decay constant with step-by-step math and interactive graphs.",
+      keywords: "half-life calculator, radioactive decay calculator, exponential decay formula, carbon-14 dating calculator, decay constant calculator, nuclear physics calculator, half life equation solver",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "volume-calculator",
+    slugs: {
+      en: "volume-calculator",
+      es: "calculadora-de-volumen",
+      de: "volumenrechner",
+      fr: "calculateur-de-volume"
+    },
+    title: "Volume Calculator",
+    category: "Math",
+    description: "Calculate the volume of 14 different geometric shapes with dynamic SVG diagrams, unit conversions, presets, and step-by-step solutions.",
+    meta: {
+      title: "Volume Calculator | Calculate 3D Shapes Volume",
+      description: "Free online volume calculator. Easily compute the volume of a cylinder, sphere, cone, cube, capsule, frustum, and other 3D shapes with conversions.",
+      keywords: "volume calculator, calculate volume, cylinder volume formula, sphere volume calculator, cone volume equation, cube volume, tank volume, geometry tools",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "percent-error-calculator",
+    slugs: {
+      en: "percent-error-calculator",
+      es: "calculadora-de-error-porcentual",
+      de: "prozentualer-fehler-rechner",
+      fr: "calculateur-d-erreur-pourcentage"
+    },
+    title: "Percent Error Calculator",
+    category: "Math",
+    description: "Calculate percent error, absolute error, and relative error between experimental and theoretical values with detailed steps and charts.",
+    meta: {
+      title: "Percent Error Calculator | Calculate Measurement Accuracy",
+      description: "Free online percent error calculator. Compute absolute error, relative error, percent difference, and percentage deviation with formulas and steps.",
+      keywords: "percent error calculator, how to calculate percent error, absolute error formula, relative error equation, percent difference, experimental error, physics lab tools, chemistry measurements, accuracy vs precision",
+      lastUpdated: "2026-05-25"
     },
     fields: [],
     logicModule: "math"

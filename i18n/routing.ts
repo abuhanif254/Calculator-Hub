@@ -105,6 +105,48 @@ export const routing = defineRouting({
       fr: '/calculatrices/remboursement-cartes-de-credit',
       de: '/rechner/kreditkarten-abbezahlen'
     },
+    '/calculators/half-life-calculator': {
+      en: '/calculators/half-life-calculator',
+      es: '/calculadoras/calculadora-de-vida-media',
+      fr: '/calculatrices/calculateur-de-demi-vie',
+      de: '/rechner/halbwertszeit-rechner'
+    },
+    '/calculators/volume-calculator': {
+      en: '/calculators/volume-calculator',
+      es: '/calculadoras/calculadora-de-volumen',
+      fr: '/calculatrices/calculateur-de-volume',
+      de: '/rechner/volumenrechner'
+    },
+    '/calculators/percent-error-calculator': {
+      en: '/calculators/percent-error-calculator',
+      es: '/calculadoras/calculadora-de-error-porcentual',
+      fr: '/calculatrices/calculateur-d-erreur-pourcentage',
+      de: '/rechner/prozentualer-fehler-rechner'
+    },
+    '/calculators/height-calculator': {
+      en: '/calculators/height-calculator',
+      es: '/calculadoras/calculadora-de-altura',
+      fr: '/calculatrices/calculateur-de-taille',
+      de: '/rechner/groessenrechner'
+    },
+    '/calculators/ip-subnet-calculator': {
+      en: '/calculators/ip-subnet-calculator',
+      es: '/calculadoras/calculadora-de-subred-ip',
+      fr: '/calculatrices/calculateur-de-sous-reseau-ip',
+      de: '/rechner/ip-subnetz-rechner'
+    },
+    '/calculators/macro-calculator': {
+      en: '/calculators/macro-calculator',
+      es: '/calculadoras/calculadora-de-macros',
+      fr: '/calculatrices/calculateur-de-macros',
+      de: '/rechner/makro-rechner'
+    },
+    '/calculators/carbohydrate-calculator': {
+      en: '/calculators/carbohydrate-calculator',
+      es: '/calculadoras/calculadora-de-carbohidratos',
+      fr: '/calculatrices/calculateur-de-glucides',
+      de: '/rechner/kohlenhydrat-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',
