@@ -1,4 +1,4 @@
-import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase } from "lucide-react";
+import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase, File, Image as ImageIcon, Lock, Settings } from "lucide-react";
 
 export const sitemapCategories = [
   {
@@ -198,6 +198,100 @@ export const developerToolsMenu = [
       { name: "IP Lookup", desc: "Find IP address details" },
       { name: "User Agent Parser", desc: "Parse User Agent strings" },
       { name: "MIME Type Checker", desc: "Check MIME types" },
+    ]
+  }
+];
+
+export const pdfToolsMenu = [
+  {
+    title: "PDF Manipulation",
+    icon: File,
+    id: "pdf-manipulation",
+    description: "Merge, split, compress, and organize your PDF files easily.",
+    items: [
+      { name: "Merge PDF", desc: "Combine multiple PDFs into one" },
+      { name: "Split PDF", desc: "Extract pages from a PDF" },
+      { name: "Compress PDF", desc: "Reduce PDF file size" },
+      { name: "Rotate PDF", desc: "Rotate pages in a PDF" },
+      { name: "Extract Pages", desc: "Extract specific pages" },
+    ]
+  },
+  {
+    title: "Convert from PDF",
+    icon: FileText,
+    id: "convert-from-pdf",
+    description: "Convert PDF files into editable formats and images.",
+    items: [
+      { name: "PDF to Word", desc: "Convert PDF to Word document" },
+      { name: "PDF to Excel", desc: "Convert PDF to Excel spreadsheet" },
+      { name: "PDF to JPG", desc: "Extract images from PDF" },
+      { name: "PDF to PNG", desc: "Convert PDF to PNG images" },
+    ]
+  },
+  {
+    title: "Convert to PDF",
+    icon: Settings,
+    id: "convert-to-pdf",
+    description: "Convert various file formats into standard PDF documents.",
+    items: [
+      { name: "Word to PDF", desc: "Convert Word to PDF" },
+      { name: "Excel to PDF", desc: "Convert Excel to PDF" },
+      { name: "JPG to PDF", desc: "Convert JPG images to PDF" },
+      { name: "PNG to PDF", desc: "Convert PNG images to PDF" },
+    ]
+  },
+  {
+    title: "PDF Security",
+    icon: Lock,
+    id: "pdf-security",
+    description: "Add passwords, remove restrictions, and secure your PDFs.",
+    items: [
+      { name: "Protect PDF", desc: "Encrypt with a password" },
+      { name: "Unlock PDF", desc: "Remove PDF password" },
+      { name: "Sign PDF", desc: "Add digital signature" },
+      { name: "Watermark PDF", desc: "Add watermark to PDF" },
+    ]
+  }
+];
+
+export const imageToolsMenu = [
+  {
+    title: "Image Editing",
+    icon: Palette,
+    id: "image-editing",
+    description: "Compress, resize, and edit your images quickly.",
+    items: [
+      { name: "Compress Image", desc: "Reduce image file size" },
+      { name: "Resize Image", desc: "Change image dimensions" },
+      { name: "Crop Image", desc: "Crop and trim images" },
+      { name: "Rotate Image", desc: "Rotate image orientation" },
+      { name: "Flip Image", desc: "Flip images horizontally or vertically" },
+    ]
+  },
+  {
+    title: "Image Conversion",
+    icon: ImageIcon,
+    id: "image-conversion",
+    description: "Convert between various image formats easily.",
+    items: [
+      { name: "Convert to WEBP", desc: "Convert images to WEBP" },
+      { name: "Convert to PNG", desc: "Convert images to PNG" },
+      { name: "Convert to JPG", desc: "Convert images to JPG" },
+      { name: "Convert to SVG", desc: "Convert images to SVG" },
+      { name: "Convert to GIF", desc: "Convert images to GIF" },
+    ]
+  },
+  {
+    title: "Advanced Tools",
+    icon: Wrench,
+    id: "advanced-image-tools",
+    description: "Advanced utilities for developers and designers.",
+    items: [
+      { name: "Image to Base64", desc: "Convert image to Base64 string" },
+      { name: "Base64 to Image", desc: "Decode Base64 to image" },
+      { name: "Remove Background", desc: "Remove image background" },
+      { name: "Color Extractor", desc: "Extract color palette" },
+      { name: "Image Upscaler", desc: "Upscale image resolution" },
     ]
   }
 ];

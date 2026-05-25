@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { Link, resolveIntlHref } from "../../i18n/routing";
-import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell, DollarSign, Heart, Hash, Grid3X3 } from "lucide-react";
-import { sitemapCategories } from "../../lib/data/sitemapData";
+import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon } from "lucide-react";
+import { sitemapCategories, pdfToolsMenu, imageToolsMenu } from "../../lib/data/sitemapData";
 import { resolveHref } from "../../lib/utils/linkResolver";
 import { AuthButton } from "./AuthButton";
 
@@ -137,8 +137,12 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileCalcOpen, setMobileCalcOpen] = useState(false);
   const [mobileDevOpen, setMobileDevOpen] = useState(false);
+  const [mobilePdfOpen, setMobilePdfOpen] = useState(false);
+  const [mobileImageOpen, setMobileImageOpen] = useState(false);
   const [mobileCalcCategory, setMobileCalcCategory] = useState<string | null>(null);
   const [mobileDevCategory, setMobileDevCategory] = useState<string | null>(null);
+  const [mobilePdfCategory, setMobilePdfCategory] = useState<string | null>(null);
+  const [mobileImageCategory, setMobileImageCategory] = useState<string | null>(null);
   const [menuClicked, setMenuClicked] = useState(false);
 
   const handleLinkClick = () => {
@@ -198,6 +202,49 @@ export function Navbar() {
                         <DevMenuColumn category={developerToolsMenu[6]} handleLinkClick={handleLinkClick} compact />
                       </div>
 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── PDF Tools Mega Menu ── */}
+            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
+              <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+                <File size={16} className="text-[#518231]" />
+                PDF Tools
+                <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
+              </button>
+
+              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
+                <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
+                  <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                    <div className="grid grid-cols-4 gap-x-5 gap-y-0">
+                      <DevMenuColumn category={pdfToolsMenu[0]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={pdfToolsMenu[1]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={pdfToolsMenu[2]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={pdfToolsMenu[3]} handleLinkClick={handleLinkClick} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Image Tools Mega Menu ── */}
+            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
+              <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+                <ImageIcon size={16} className="text-[#518231]" />
+                Image Tools
+                <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
+              </button>
+
+              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
+                <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
+                  <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
+                    <div className="grid grid-cols-3 gap-x-5 gap-y-0">
+                      <DevMenuColumn category={imageToolsMenu[0]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={imageToolsMenu[1]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={imageToolsMenu[2]} handleLinkClick={handleLinkClick} />
                     </div>
                   </div>
                 </div>
@@ -333,6 +380,96 @@ export function Navbar() {
                       <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileDevCategory === category.title ? 'rotate-180' : ''}`} />
                     </button>
                     {mobileDevCategory === category.title && (
+                      <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
+                        {category.items.map(item => (
+                          <Link
+                            key={item.name}
+                            href={resolveIntlHref(resolveHref(item.name))}
+                            className="block py-2 group/moblink"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            <div className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231] transition-colors">{item.name}</div>
+                            <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* PDF Tools Mobile Accordion */}
+          <div className="py-1">
+            <button
+              onClick={() => setMobilePdfOpen(!mobilePdfOpen)}
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-200 uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+            >
+              <span className="flex items-center gap-2">
+                <File size={16} className="text-[#518231]" />
+                PDF Tools
+              </span>
+              <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobilePdfOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {mobilePdfOpen && (
+              <div className="mt-1 space-y-1 pl-1">
+                {pdfToolsMenu.map(category => (
+                  <div key={category.title}>
+                    <button
+                      onClick={() => setMobilePdfCategory(mobilePdfCategory === category.title ? null : category.title)}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+                    >
+                      <category.icon size={16} className="text-[#518231] shrink-0" />
+                      <span className="flex-1 text-left">{category.title}</span>
+                      <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobilePdfCategory === category.title ? 'rotate-180' : ''}`} />
+                    </button>
+                    {mobilePdfCategory === category.title && (
+                      <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
+                        {category.items.map(item => (
+                          <Link
+                            key={item.name}
+                            href={resolveIntlHref(resolveHref(item.name))}
+                            className="block py-2 group/moblink"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            <div className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231] transition-colors">{item.name}</div>
+                            <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Image Tools Mobile Accordion */}
+          <div className="py-1">
+            <button
+              onClick={() => setMobileImageOpen(!mobileImageOpen)}
+              className="w-full flex items-center justify-between px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-200 uppercase tracking-wider hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+            >
+              <span className="flex items-center gap-2">
+                <ImageIcon size={16} className="text-[#518231]" />
+                Image Tools
+              </span>
+              <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobileImageOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {mobileImageOpen && (
+              <div className="mt-1 space-y-1 pl-1">
+                {imageToolsMenu.map(category => (
+                  <div key={category.title}>
+                    <button
+                      onClick={() => setMobileImageCategory(mobileImageCategory === category.title ? null : category.title)}
+                      className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+                    >
+                      <category.icon size={16} className="text-[#518231] shrink-0" />
+                      <span className="flex-1 text-left">{category.title}</span>
+                      <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileImageCategory === category.title ? 'rotate-180' : ''}`} />
+                    </button>
+                    {mobileImageCategory === category.title && (
                       <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
                         {category.items.map(item => (
                           <Link
