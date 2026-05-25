@@ -95,6 +95,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'grade-calculator': dynamic(() => import('@/app/components/GradeCalculatorView').then(m => ({ default: m.GradeCalculatorView as ComponentType<CalcComponentProps> }))),
   'concrete-calculator': dynamic(() => import('@/app/components/ConcreteCalculatorView').then(m => ({ default: m.ConcreteCalculatorView as ComponentType<CalcComponentProps> }))),
   'conversion-calculator': dynamic(() => import('@/app/components/ConversionCalculatorView').then(m => ({ default: m.ConversionCalculatorView as ComponentType<CalcComponentProps> }))),
+  'half-life-calculator': dynamic(() => import('@/app/components/HalfLifeCalculatorView').then(m => ({ default: m.HalfLifeCalculatorView as ComponentType<CalcComponentProps> }))),
 
   // ─── Health & Fitness ──────────────────────────
   'bmi-calculator': dynamic(() => import('@/app/components/BmiCalculatorView').then(m => ({ default: m.BmiCalculatorView as ComponentType<CalcComponentProps> }))),

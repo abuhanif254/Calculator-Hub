@@ -888,6 +888,26 @@ export const calculators: CalculatorDef[] = [
     logicModule: "math"
   },
   {
+    slug: "half-life-calculator",
+    slugs: {
+      en: "half-life-calculator",
+      es: "calculadora-de-vida-media",
+      de: "halbwertszeit-rechner",
+      fr: "calculateur-de-demi-vie"
+    },
+    title: "Half-Life Calculator",
+    category: "Math",
+    description: "Calculate the remaining quantity, initial quantity, half-life, elapsed time, or decay constant of radioactive isotopes with interactive decay charts and visual atom simulators.",
+    meta: {
+      title: "Half-Life Calculator | Radioactive Decay & Half-Life Solver",
+      description: "Free online Half-Life Calculator. Instantly compute remaining mass, initial amount, elapsed decay time, half-life, or decay constant with step-by-step math and interactive graphs.",
+      keywords: "half-life calculator, radioactive decay calculator, exponential decay formula, carbon-14 dating calculator, decay constant calculator, nuclear physics calculator, half life equation solver",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "statistics-calculator",
     slugs: {
       en: "statistics-calculator",

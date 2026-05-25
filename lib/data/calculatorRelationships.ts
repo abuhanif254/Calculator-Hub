@@ -299,7 +299,8 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Math & Science ──────────────────────────────
   'scientific-calculator': [
     'graphing-calculator', 'fraction-calculator', 'percentage-calculator',
-    'scientific-notation-calculator', 'statistics-calculator', 'binary-calculator'
+    'scientific-notation-calculator', 'statistics-calculator', 'binary-calculator',
+    'half-life-calculator'
   ],
   'graphing-calculator': [
     'scientific-calculator', 'statistics-calculator', 'standard-deviation-calculator',
@@ -315,7 +316,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'statistics-calculator': [
     'standard-deviation-calculator', 'p-value-calculator', 'graphing-calculator',
-    'scientific-calculator', 'random-number-generator'
+    'scientific-calculator', 'random-number-generator', 'half-life-calculator'
   ],
   'standard-deviation-calculator': [
     'statistics-calculator', 'p-value-calculator', 'scientific-calculator',
@@ -335,7 +336,11 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'scientific-notation-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
-    'graphing-calculator', 'conversion-calculator'
+    'graphing-calculator', 'conversion-calculator', 'half-life-calculator'
+  ],
+  'half-life-calculator': [
+    'scientific-calculator', 'scientific-notation-calculator', 'statistics-calculator',
+    'triangle-calculator', 'date-calculator'
   ],
   'binary-calculator': [
     'hexadecimal-calculator', 'scientific-calculator', 'percentage-calculator',

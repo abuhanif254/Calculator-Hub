@@ -105,6 +105,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/remboursement-cartes-de-credit',
       de: '/rechner/kreditkarten-abbezahlen'
     },
+    '/calculators/half-life-calculator': {
+      en: '/calculators/half-life-calculator',
+      es: '/calculadoras/calculadora-de-vida-media',
+      fr: '/calculatrices/calculateur-de-demi-vie',
+      de: '/rechner/halbwertszeit-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',
