@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { getCalculatorBySlug } from "@/lib/data/calculators";
-import { getCalculatorComponent } from "@/lib/componentRegistry";
+import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from "@/i18n/routing";
 
@@ -22,8 +22,6 @@ export default async function EmbedCalculatorPage({
     notFound();
   }
 
-  const CalculatorView = getCalculatorComponent(calc.slug);
-
   return (
     <div className="w-full h-full">
       <div className="flex items-center justify-between mb-4 border-b border-slate-200 dark:border-slate-800 pb-3">
@@ -39,7 +37,7 @@ export default async function EmbedCalculatorPage({
           Powered by Nexus
         </a>
       </div>
-      <CalculatorView calcDef={calc} locale={resolvedParams.locale} />
+      <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
     </div>
   );
 }

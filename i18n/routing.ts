@@ -111,6 +111,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-demi-vie',
       de: '/rechner/halbwertszeit-rechner'
     },
+    '/calculators/volume-calculator': {
+      en: '/calculators/volume-calculator',
+      es: '/calculadoras/calculadora-de-volumen',
+      fr: '/calculatrices/calculateur-de-volume',
+      de: '/rechner/volumenrechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

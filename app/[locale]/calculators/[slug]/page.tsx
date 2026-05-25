@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { calculators, getCalculatorBySlug } from "@/lib/data/calculators";
 import { sitemapCategories, generalLinks } from "@/lib/data/sitemapData";
 import { getRelatedCalculators } from "@/lib/data/calculatorRelationships";
-import { getCalculatorComponent } from "@/lib/componentRegistry";
+import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
@@ -257,10 +257,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           />
 
           <div id="calculator-export-target" className="print-target">
-            {(() => {
-              const CalculatorView = getCalculatorComponent(calc.slug);
-              return <CalculatorView calcDef={calc} locale={resolvedParams.locale} />;
-            })()}
+            <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
           </div>
 
           <ExportResultsPanel targetId="calculator-export-target" fileName={`${calc.slug}-results`} />

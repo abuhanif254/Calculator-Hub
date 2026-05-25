@@ -12,7 +12,7 @@ import {
   ResponsiveContainer, 
   ReferenceDot 
 } from 'recharts';
-import { InlineMath, BlockMath } from 'react-katex';
+import { InlineMath, BlockMath } from '@/app/components/KatexMath';
 import 'katex/dist/katex.min.css';
 import { 
   Atom, 

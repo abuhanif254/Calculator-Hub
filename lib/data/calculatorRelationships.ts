@@ -332,7 +332,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'triangle-calculator': [
     'scientific-calculator', 'conversion-calculator', 'fraction-calculator',
-    'percentage-calculator', 'graphing-calculator'
+    'percentage-calculator', 'graphing-calculator', 'volume-calculator'
   ],
   'scientific-notation-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
@@ -341,6 +341,11 @@ export const calculatorRelationships: Record<string, string[]> = {
   'half-life-calculator': [
     'scientific-calculator', 'scientific-notation-calculator', 'statistics-calculator',
     'triangle-calculator', 'date-calculator'
+  ],
+  'volume-calculator': [
+    'area-calculator', 'surface-area-calculator', 'cube-calculator',
+    'cylinder-calculator', 'geometry-calculator', 'conversion-calculator',
+    'triangle-calculator', 'concrete-calculator'
   ],
   'binary-calculator': [
     'hexadecimal-calculator', 'scientific-calculator', 'percentage-calculator',
@@ -374,11 +379,11 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'concrete-calculator': [
     'conversion-calculator', 'percentage-calculator', 'triangle-calculator',
-    'scientific-calculator', 'fraction-calculator'
+    'scientific-calculator', 'fraction-calculator', 'volume-calculator'
   ],
   'conversion-calculator': [
     'scientific-calculator', 'fraction-calculator', 'percentage-calculator',
-    'currency-calculator', 'concrete-calculator', 'binary-calculator'
+    'currency-calculator', 'concrete-calculator', 'binary-calculator', 'volume-calculator'
   ],
   'currency-calculator': [
     'conversion-calculator', 'inflation-calculator', 'sales-tax-calculator',

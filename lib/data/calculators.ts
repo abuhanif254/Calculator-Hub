@@ -908,6 +908,26 @@ export const calculators: CalculatorDef[] = [
     logicModule: "math"
   },
   {
+    slug: "volume-calculator",
+    slugs: {
+      en: "volume-calculator",
+      es: "calculadora-de-volumen",
+      de: "volumenrechner",
+      fr: "calculateur-de-volume"
+    },
+    title: "Volume Calculator",
+    category: "Math",
+    description: "Calculate the volume of 14 different geometric shapes with dynamic SVG diagrams, unit conversions, presets, and step-by-step solutions.",
+    meta: {
+      title: "Volume Calculator | Calculate 3D Shapes Volume",
+      description: "Free online volume calculator. Easily compute the volume of a cylinder, sphere, cone, cube, capsule, frustum, and other 3D shapes with conversions.",
+      keywords: "volume calculator, calculate volume, cylinder volume formula, sphere volume calculator, cone volume equation, cube volume, tank volume, geometry tools",
+      lastUpdated: "2026-05-25"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "statistics-calculator",
     slugs: {
       en: "statistics-calculator",

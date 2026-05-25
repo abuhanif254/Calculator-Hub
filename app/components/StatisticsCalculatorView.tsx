@@ -5,7 +5,7 @@ import { CalculatorDef } from "@/lib/types";
 import { calculateStats, StatsResult } from "@/lib/statsUtils";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, LineChart, Line } from "recharts";
 import 'katex/dist/katex.min.css';
-import { InlineMath, BlockMath } from 'react-katex';
+import { InlineMath, BlockMath } from '@/app/components/KatexMath';
 import jsPDF from "jspdf";
 import * as htmlToImage from "html-to-image";
 import { useRef } from "react";
