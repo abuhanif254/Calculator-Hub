@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Link, routing } from '@/i18n/routing';
+import { Link, routing, resolveIntlHref } from '@/i18n/routing';
 import { sitemapCategories, developerToolsMenu, pdfToolsMenu, imageToolsMenu, generalLinks } from '@/lib/data/sitemapData';
 import { Search, Compass, ExternalLink, ChevronDown } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
@@ -213,7 +213,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                       return (
                         <li key={link}>
                           <Link 
-                            href={`/calculators/${slug}` as any}
+                            href={resolveIntlHref(`/calculators/${slug}`)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                           >
                             <span className="truncate">{link}</span>
@@ -256,7 +256,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={`/tools/${slug}` as any}
+                            href={resolveIntlHref(`/tools/${slug}`)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
@@ -299,7 +299,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={`/tools/${slug}` as any}
+                            href={resolveIntlHref(`/tools/${slug}`)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
@@ -342,7 +342,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={`/tools/${slug}` as any}
+                            href={resolveIntlHref(`/tools/${slug}`)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >

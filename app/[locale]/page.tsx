@@ -72,7 +72,7 @@ const categoryData = [
       { name: "Loan Calculator", href: "/calculators/loan-calculator" },
       { name: "Auto Loan Calculator", href: "/calculators/auto-loan-calculator" },
       { name: "Interest Calculator", href: "/calculators/interest-calculator" },
-      { name: "Payment Calculator", href: "/calculators/payment-calculator" },
+      { name: "Savings Calculator", href: "/calculators/savings-calculator" },
       { name: "Retirement Calculator", href: "/calculators/retirement-calculator" }
     ]
   },

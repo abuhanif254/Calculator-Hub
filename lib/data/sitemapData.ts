@@ -7,7 +7,7 @@ export const sitemapCategories = [
     icon: DollarSign,
     description: "Explore our free suite of financial tools to accurately calculate mortgages, auto loans, ROI, and retirement planning.",
     links: [
-      "Mortgage Calculator", "Canadian Mortgage Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
+      "Mortgage Calculator", "Savings Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
       "Payment Calculator", "Retirement Calculator", "Amortization Calculator", "Investment Calculator",
       "Inflation Calculator", "Finance Calculator", "Income Tax Calculator", "Compound Interest Calculator",
       "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator", "Currency Calculator",
@@ -18,7 +18,7 @@ export const sitemapCategories = [
       "Business Loan Calculator", "Real Estate Calculator", "Personal Loan Calculator", "Lease Calculator",
       "Budget Calculator", "IRR Calculator", "APR Calculator", "VA Mortgage Calculator", "HELOC Calculator",
       "Rent vs. Buy Calculator", "Present Value Calculator", "Commission Calculator", 
-      "Percent Off Calculator", "Mortgage Payoff Calculator", "401K Calculator", "Savings Calculator",
+      "Percent Off Calculator", "Mortgage Payoff Calculator", "401K Calculator", "Canadian Mortgage Calculator",
       "Marriage Tax Calculator", "Pension Calculator", "Annuity Calculator", "Credit Card Calculator",
       "Debt Payoff Calculator", "Repayment Calculator", "College Cost Calculator", "CD Calculator",
       "Mutual Fund Calculator", "IRA Calculator", "VAT Calculator", "Auto Lease Calculator",
