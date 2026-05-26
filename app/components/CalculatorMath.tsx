@@ -77,6 +77,7 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
       case 'compound-interest-calculator':
       case 'investment-calculator':
       case 'average-return-calculator':
+      case 'savings-calculator':
         return (
           <>
             <p className="mb-4">The core of investment projection relies on the compound interest formula:</p>

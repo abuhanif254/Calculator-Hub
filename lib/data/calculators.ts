@@ -2777,6 +2777,46 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "financial"
+  },
+  {
+    slug: "savings-calculator",
+    slugs: {
+      en: "savings-calculator",
+      es: "calculadora-de-ahorros",
+      de: "spar-rechner",
+      fr: "calculatrice-epargne"
+    },
+    title: "Savings Calculator",
+    category: "Financial",
+    description: "Calculate your savings growth over time with compound interest, recurring deposits, and inflation adjustments.",
+    meta: {
+      title: "Savings Calculator | Calculate Compound Growth & Savings Plan",
+      description: "Estimate your savings growth with compound interest, regular contributions, inflation adjustments, and visual charts. Plan your financial goals.",
+      keywords: "savings calculator, savings growth, compound interest savings, savings goal planner, recurring deposits, personal finance planning",
+      lastUpdated: "2026-05-27"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "cd-calculator",
+    slugs: {
+      en: "cd-calculator",
+      es: "calculadora-de-cd",
+      fr: "calculateur-de-compte-de-depot",
+      de: "festgeldrechner"
+    },
+    title: "CD Calculator",
+    category: "Financial",
+    description: "Calculate the growth and maturity value of your Certificate of Deposit (CD) with compound interest, early withdrawal penalty details, and laddering planning.",
+    meta: {
+      title: "CD Calculator | Certificate of Deposit Growth & Penalty Solver",
+      description: "Estimate your Certificate of Deposit (CD) maturity value, APY returns, compound interest, early withdrawal penalties, and savings projections.",
+      keywords: "cd calculator, certificate of deposit, cd penalty calculator, cd ladder, compounding interest, cd yield, fixed income banking",
+      lastUpdated: "2026-05-27"
+    },
+    fields: [],
+    logicModule: "financial"
   }
 ];
 

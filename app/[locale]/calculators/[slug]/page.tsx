@@ -10,7 +10,7 @@ import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
-import { Link, routing } from "@/i18n/routing";
+import { Link, routing, resolveIntlHref } from "@/i18n/routing";
 import { Search, ChevronRight, CalculatorIcon } from "lucide-react";
 
 import { setRequestLocale } from 'next-intl/server';
@@ -359,7 +359,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             return (
               <Link
                 key={toolSlug}
-                href={`/calculators/${toolSlug}` as any}
+                href={resolveIntlHref(`/calculators/${toolSlug}`)}
                 className="group flex flex-col bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all"
               >
                 <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">

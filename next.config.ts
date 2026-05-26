@@ -105,11 +105,7 @@ const nextConfig: NextConfig = {
         destination: '/:locale/calculatrices/category/math-science',
         permanent: true,
       },
-      {
-        source: '/:locale/calculators/savings-calculator',
-        destination: '/:locale/calculators/category/financial',
-        permanent: true,
-      },
+
       {
         source: '/:locale/calculatrices/bandwidth-calculator',
         destination: '/:locale/calculatrices/category/math-science',

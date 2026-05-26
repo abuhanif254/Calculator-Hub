@@ -1,13 +1,13 @@
 'use client';
 
-import { useFavorites } from '@/lib/hooks/useFavorites';
+import { useFavorites } from '@/lib/hooks/useRetention';
 import { FavoriteCalculatorLink } from './FavoriteCalculatorLink';
 import { Star } from 'lucide-react';
 
 export function FavoritesSection() {
-  const { favorites, isLoaded } = useFavorites();
+  const { favorites, mounted } = useFavorites();
 
-  if (!isLoaded || favorites.length === 0) {
+  if (!mounted || favorites.length === 0) {
     return null;
   }
 
@@ -21,8 +21,13 @@ export function FavoritesSection() {
       <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-4">
           {favorites.filter(calc => !!calc.href).map((calc) => (
-            <li key={calc.href || calc.title}>
-              <FavoriteCalculatorLink title={calc.title} href={calc.href} />
+            <li key={calc.slug || calc.href || calc.title}>
+              <FavoriteCalculatorLink 
+                title={calc.title} 
+                href={calc.href} 
+                slug={calc.slug} 
+                type={calc.type} 
+              />
             </li>
           ))}
         </ul>

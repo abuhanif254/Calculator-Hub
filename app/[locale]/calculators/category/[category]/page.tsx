@@ -5,7 +5,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { calculators } from '@/lib/data/calculators';
 import { categories, getCategoryById } from '@/lib/data/categories';
 import { getRelatedCalculators } from '@/lib/data/calculatorRelationships';
-import { Link } from '@/i18n/routing';
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { ChevronRight, Calculator, ArrowRight, Star } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
@@ -201,7 +201,7 @@ export default async function CategoryPage({
             {popularCalcs.map((calc) => (
               <Link
                 key={calc.slug}
-                href={`/calculators/${calc.slug}` as any}
+                href={resolveIntlHref(`/calculators/${calc.slug}`)}
                 className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all"
               >
                 <div className="flex items-start justify-between mb-3">
@@ -246,7 +246,7 @@ export default async function CategoryPage({
                     {colCalcs.map((calc) => (
                       <li key={calc.slug}>
                         <Link
-                          href={`/calculators/${calc.slug}` as any}
+                          href={resolveIntlHref(`/calculators/${calc.slug}`)}
                           className="block px-5 py-3.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-[#518231] transition-colors font-medium"
                         >
                           {calc.title}
@@ -282,7 +282,7 @@ export default async function CategoryPage({
                 return (
                   <Link
                     key={otherCat.id}
-                    href={`/calculators/category/${otherCat.id}` as any}
+                    href={resolveIntlHref(`/calculators/category/${otherCat.id}`)}
                     className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-5 py-4 hover:border-[#518231]/30 hover:shadow-sm transition-all group"
                   >
                     <div>

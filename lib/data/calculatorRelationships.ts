@@ -81,7 +81,8 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Financial: Loans ────────────────────────────
   'loan-calculator': [
     'mortgage-calculator', 'auto-loan-calculator', 'personal-loan-calculator',
-    'student-loan-calculator', 'payment-calculator', 'interest-calculator', 'commission-calculator'
+    'student-loan-calculator', 'payment-calculator', 'interest-calculator', 'commission-calculator',
+    'cd-calculator'
   ],
   'auto-loan-calculator': [
     'loan-calculator', 'payment-calculator', 'interest-calculator',
@@ -111,11 +112,11 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Financial: Interest & Savings ───────────────
   'interest-calculator': [
     'compound-interest-calculator', 'simple-interest-calculator',
-    'interest-rate-calculator', 'loan-calculator', 'savings-calculator'
+    'interest-rate-calculator', 'loan-calculator', 'savings-calculator', 'cd-calculator'
   ],
   'compound-interest-calculator': [
     'simple-interest-calculator', 'interest-calculator', 'investment-calculator',
-    'savings-calculator', 'future-value-calculator'
+    'savings-calculator', 'future-value-calculator', 'cd-calculator'
   ],
   'simple-interest-calculator': [
     'compound-interest-calculator', 'interest-calculator', 'loan-calculator',
@@ -123,7 +124,12 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'interest-rate-calculator': [
     'interest-calculator', 'apr-calculator', 'compound-interest-calculator',
-    'loan-calculator', 'mortgage-calculator'
+    'loan-calculator', 'mortgage-calculator', 'cd-calculator'
+  ],
+  'savings-calculator': [
+    'compound-interest-calculator', 'investment-calculator', 'retirement-calculator',
+    'future-value-calculator', 'budget-calculator', 'interest-calculator',
+    'interest-rate-calculator', 'college-cost-calculator', 'cd-calculator'
   ],
   'apr-calculator': [
     'interest-rate-calculator', 'loan-calculator', 'mortgage-calculator',
@@ -134,7 +140,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   'investment-calculator': [
     'compound-interest-calculator', 'irr-calculator', 'retirement-calculator',
     'mutual-fund-calculator', 'average-return-calculator', 'future-value-calculator', 'rent-vs-buy-calculator',
-    'commission-calculator'
+    'commission-calculator', 'cd-calculator'
   ],
   'irr-calculator': [
     'investment-calculator', 'real-estate-calculator', 'finance-calculator',
@@ -142,7 +148,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'retirement-calculator': [
     '401k-calculator', 'roth-ira-calculator', 'investment-calculator',
-    'annuity-calculator', 'social-security-calculator', 'pension-calculator'
+    'annuity-calculator', 'social-security-calculator', 'pension-calculator', 'cd-calculator'
   ],
   '401k-calculator': [
     'retirement-calculator', 'roth-ira-calculator', 'investment-calculator',
@@ -170,7 +176,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'bond-calculator': [
     'investment-calculator', 'interest-rate-calculator', 'present-value-calculator',
-    'future-value-calculator', 'compound-interest-calculator'
+    'future-value-calculator', 'compound-interest-calculator', 'cd-calculator'
   ],
   'average-return-calculator': [
     'investment-calculator', 'irr-calculator', 'mutual-fund-calculator',
@@ -245,7 +251,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Financial: Budget & Other ───────────────────
   'budget-calculator': [
     'salary-calculator', 'income-tax-calculator', 'debt-to-income-ratio-calculator',
-    'rent-calculator', 'retirement-calculator'
+    'rent-calculator', 'retirement-calculator', 'cd-calculator'
   ],
   'payment-calculator': [
     'loan-calculator', 'mortgage-calculator', 'amortization-calculator',
@@ -449,6 +455,11 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'ip-subnet-calculator': [
     'binary-calculator', 'subnet-calculator', 'conversion-calculator'
+  ],
+  'cd-calculator': [
+    'savings-calculator', 'compound-interest-calculator', 'investment-calculator',
+    'retirement-calculator', 'loan-calculator', 'budget-calculator', 'bond-calculator',
+    'interest-calculator', 'interest-rate-calculator'
   ],
 };
 

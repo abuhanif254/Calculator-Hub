@@ -147,6 +147,18 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-glucides',
       de: '/rechner/kohlenhydrat-rechner'
     },
+    '/calculators/savings-calculator': {
+      en: '/calculators/savings-calculator',
+      es: '/calculadoras/calculadora-de-ahorros',
+      fr: '/calculatrices/calculatrice-epargne',
+      de: '/rechner/spar-rechner'
+    },
+    '/calculators/cd-calculator': {
+      en: '/calculators/cd-calculator',
+      es: '/calculadoras/calculadora-de-cd',
+      fr: '/calculatrices/calculateur-de-compte-de-depot',
+      de: '/rechner/festgeldrechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',
