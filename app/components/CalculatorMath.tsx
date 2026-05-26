@@ -37,6 +37,19 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
             <p className="text-slate-600 text-xs">For partnerships and profit-sharing models, the total profit pool is distributed using linear percentage allocations (Profit_i = Profit_total × Split_i%) adjusted for custom business overhead fees.</p>
           </>
         );
+      case 'mortgage-payoff-calculator':
+        return (
+          <>
+            <p className="mb-4">Mortgage payments and accelerated payoff schedules are modeled using standard compound amortization formulas:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-xs md:text-sm mb-4 shadow-inner border border-slate-200 overflow-x-auto space-y-2">
+              <div><strong>Standard Monthly Payment (P&amp;I):</strong> M = P × [r(1+r)^n] / [(1+r)^n - 1]</div>
+              <div><strong>Biweekly Accelerated Payout:</strong> Annual payments equivalent to 13 monthly payments (26 half-payments).</div>
+              <div><strong>Extra Payments Impact:</strong> Remaining_Balance(t) = Balance(t-1) + Interest(t) - [Regular_Payment + Extra_Payment]</div>
+              <div><strong>Total Interest Saved:</strong> Interest_Saved = Standard_Total_Interest - Accelerated_Total_Interest</div>
+            </div>
+            <p className="text-slate-600 text-xs">Where <strong>M</strong> is the monthly principal &amp; interest payment, <strong>P</strong> is the remaining principal, <strong>r</strong> is the monthly interest rate (annual rate / 12), and <strong>n</strong> is the remaining payment months.</p>
+          </>
+        );
       case 'rent-vs-buy-calculator':
         return (
           <>

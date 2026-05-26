@@ -19,7 +19,8 @@ export const calculatorRelationships: Record<string, string[]> = {
   'mortgage-calculator': [
     'amortization-calculator', 'house-affordability-calculator', 'down-payment-calculator',
     'fha-loan-calculator', 'va-mortgage-calculator', 'mortgage-amortization-calculator', 'loan-calculator',
-    'interest-rate-calculator', 'rent-calculator', 'rent-vs-buy-calculator', 'commission-calculator'
+    'interest-rate-calculator', 'rent-calculator', 'rent-vs-buy-calculator', 'commission-calculator',
+    'mortgage-payoff-calculator'
   ],
   'canadian-mortgage-calculator': [
     'mortgage-calculator', 'amortization-calculator', 'house-affordability-calculator',
@@ -27,16 +28,17 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'amortization-calculator': [
     'mortgage-calculator', 'mortgage-amortization-calculator', 'loan-calculator',
-    'payment-calculator', 'interest-calculator', 'compound-interest-calculator', 'rent-vs-buy-calculator'
+    'payment-calculator', 'interest-calculator', 'compound-interest-calculator', 'rent-vs-buy-calculator',
+    'mortgage-payoff-calculator'
   ],
   'mortgage-amortization-calculator': [
     'amortization-calculator', 'mortgage-calculator', 'loan-calculator',
-    'payment-calculator', 'house-affordability-calculator'
+    'payment-calculator', 'house-affordability-calculator', 'mortgage-payoff-calculator'
   ],
   'house-affordability-calculator': [
     'mortgage-calculator', 'rent-calculator', 'down-payment-calculator',
     'debt-to-income-ratio-calculator', 'fha-loan-calculator', 'va-mortgage-calculator', 'income-tax-calculator',
-    'rent-vs-buy-calculator'
+    'rent-vs-buy-calculator', 'mortgage-payoff-calculator'
   ],
   'down-payment-calculator': [
     'mortgage-calculator', 'house-affordability-calculator', 'fha-loan-calculator',
@@ -48,7 +50,8 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'va-mortgage-calculator': [
     'mortgage-calculator', 'house-affordability-calculator', 'fha-loan-calculator',
-    'loan-calculator', 'down-payment-calculator', 'mortgage-amortization-calculator', 'rent-vs-buy-calculator'
+    'loan-calculator', 'down-payment-calculator', 'mortgage-amortization-calculator', 'rent-vs-buy-calculator',
+    'mortgage-payoff-calculator'
   ],
   'rent-calculator': [
     'mortgage-calculator', 'house-affordability-calculator', 'budget-calculator',
@@ -68,7 +71,11 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'rent-vs-buy-calculator': [
     'mortgage-calculator', 'house-affordability-calculator', 'investment-calculator',
-    'amortization-calculator', 'va-mortgage-calculator', 'rent-calculator'
+    'amortization-calculator', 'va-mortgage-calculator', 'rent-calculator', 'mortgage-payoff-calculator'
+  ],
+  'mortgage-payoff-calculator': [
+    'mortgage-calculator', 'mortgage-amortization-calculator', 'amortization-calculator',
+    'house-affordability-calculator', 'rent-vs-buy-calculator', 'va-mortgage-calculator'
   ],
 
   // ─── Financial: Loans ────────────────────────────

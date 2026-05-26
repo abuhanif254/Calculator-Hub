@@ -1414,5 +1414,20 @@
     "taxRate": "Estimated Tax Rate",
     "monthlyProjection": "Monthly Income Projection",
     "annualProjection": "Annual Income Forecast"
+  },
+  "MortgagePayoffCalculator": {
+    "title": "Mortgage Payoff Calculator",
+    "description": "Calculate remaining loan balance, monthly payments, payoff date, interest savings, and biweekly or extra payoff plans.",
+    "remainingBalance": "Remaining Balance",
+    "interestRate": "Interest Rate",
+    "remainingTerm": "Remaining Term",
+    "monthlyPayment": "Monthly Payment",
+    "extraPayments": "Extra Payments",
+    "payoffTimeline": "Payoff Timeline",
+    "amortizationSchedule": "Amortization Schedule",
+    "refinanceComparison": "Refinance Comparison",
+    "interestSavings": "Interest Savings",
+    "timeSaved": "Time Saved",
+    "newPayoffDate": "New Payoff Date"
   }
 }

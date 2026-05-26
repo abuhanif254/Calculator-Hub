@@ -2757,6 +2757,26 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "financial"
+  },
+  {
+    slug: "mortgage-payoff-calculator",
+    slugs: {
+      en: "mortgage-payoff-calculator",
+      es: "calculadora-pago-hipoteca",
+      de: "hypotheken-tilgungsrechner",
+      fr: "calculateur-remboursement-hypothecaire"
+    },
+    title: "Mortgage Payoff Calculator",
+    category: "Financial",
+    description: "Calculate remaining loan balance, monthly payments, payoff date, interest savings, and biweekly or extra payoff plans.",
+    meta: {
+      title: "Mortgage Payoff Calculator | Extra Payments & Refinance",
+      description: "Free online Mortgage Payoff Calculator. Estimate early payoff schedules, biweekly payments, extra monthly principal savings, and refinancing comparisons.",
+      keywords: "mortgage payoff calculator, pay off mortgage early, extra payments calculator, biweekly mortgage, early payoff schedule, home loan payoff, refinance break-even",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "financial"
   }
 ];
 

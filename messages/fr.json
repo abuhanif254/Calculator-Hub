@@ -1414,5 +1414,20 @@
     "taxRate": "Taux d'Imposition Estimé",
     "monthlyProjection": "Projection de Revenus Mensuels",
     "annualProjection": "Prévisions de Revenus Annuels"
+  },
+  "MortgagePayoffCalculator": {
+    "title": "Calculateur de Remboursement de prêt hypothécaire",
+    "description": "Calculez le solde restant du prêt, les mensualités, la date de remboursement, les économies d'intérêts et les plans de remboursement supplémentaires ou bihebdomadaires.",
+    "remainingBalance": "Solde Restant",
+    "interestRate": "Taux d'Intérêt",
+    "remainingTerm": "Durée Restante",
+    "monthlyPayment": "Mensualité",
+    "extraPayments": "Paiements Supplémentaires",
+    "payoffTimeline": "Calendrier de Remboursement",
+    "amortizationSchedule": "Tableau d'Amortissement",
+    "refinanceComparison": "Comparatif de Refinancement",
+    "interestSavings": "Économie d'Intérêts",
+    "timeSaved": "Temps Gagné",
+    "newPayoffDate": "Nouvelle Date de Fin"
   }
 }

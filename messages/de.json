@@ -1414,5 +1414,20 @@
     "taxRate": "Geschätzter Steuersatz",
     "monthlyProjection": "Monatliche Umsatzprognose",
     "annualProjection": "Jährliche Umsatzprognose"
+  },
+  "MortgagePayoffCalculator": {
+    "title": "Hypotheken-Tilgungsrechner",
+    "description": "Berechnen Sie den verbleibenden Kreditsaldo, die monatlichen Zahlungen, das Tilgungsdatum, die Zinseinsparungen sowie zweiwöchentliche oder zusätzliche Tilgungspläne.",
+    "remainingBalance": "Verbleibender Saldo",
+    "interestRate": "Zinssatz",
+    "remainingTerm": "Restlaufzeit",
+    "monthlyPayment": "Monatliche Rate",
+    "extraPayments": "Zusatzzahlungen",
+    "payoffTimeline": "Tilgungszeitplan",
+    "amortizationSchedule": "Tilgungsplan",
+    "refinanceComparison": "Refinanzierungsvergleich",
+    "interestSavings": "Zinseinsparungen",
+    "timeSaved": "Eingesparte Zeit",
+    "newPayoffDate": "Neues Tilgungsdatum"
   }
 }

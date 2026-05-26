@@ -1414,5 +1414,20 @@
     "taxRate": "Tasa de Impuestos Estimada",
     "monthlyProjection": "Proyección de Ingresos Mensuales",
     "annualProjection": "Pronóstico de Ingresos Anuales"
+  },
+  "MortgagePayoffCalculator": {
+    "title": "Calculadora de Pago de Hipoteca",
+    "description": "Calcule el saldo restante del préstamo, los pagos mensuales, la fecha de liquidación, el ahorro de intereses y los planes de pago extra o quincenales.",
+    "remainingBalance": "Saldo Restante",
+    "interestRate": "Tasa de Interés",
+    "remainingTerm": "Plazo Restante",
+    "monthlyPayment": "Pago Mensual",
+    "extraPayments": "Pagos Extras",
+    "payoffTimeline": "Cronograma de Liquidación",
+    "amortizationSchedule": "Tabla de Amortización",
+    "refinanceComparison": "Comparación de Refinanciación",
+    "interestSavings": "Ahorro de Intereses",
+    "timeSaved": "Tiempo Ahorrado",
+    "newPayoffDate": "Nueva Fecha de Pago"
   }
 }
