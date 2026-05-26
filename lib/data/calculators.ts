@@ -2697,6 +2697,26 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "health"
+  },
+  {
+    slug: "va-mortgage-calculator",
+    slugs: {
+      en: "va-mortgage-calculator",
+      es: "calculadora-de-hipotecas-va",
+      de: "va-hypothekenrechner",
+      fr: "calculateur-de-pret-hypothecaire-va"
+    },
+    title: "VA Mortgage Calculator",
+    category: "Financial",
+    description: "Calculate your monthly VA mortgage payments, VA funding fees, property taxes, insurance, and see the full amortization schedule.",
+    meta: {
+      title: "VA Mortgage Calculator | Estimate Payments & Funding Fee",
+      description: "Free online VA Mortgage Calculator. Estimate your monthly VA loan payments, including principal, interest, taxes, home insurance, and the VA funding fee.",
+      keywords: "va mortgage calculator, va loan calculator, va funding fee, veterans home loan, military mortgage, amortization schedule",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "math"
   }
 ];
 

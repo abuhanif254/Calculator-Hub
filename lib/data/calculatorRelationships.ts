@@ -18,7 +18,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Financial: Mortgage & Housing ───────────────
   'mortgage-calculator': [
     'amortization-calculator', 'house-affordability-calculator', 'down-payment-calculator',
-    'fha-loan-calculator', 'mortgage-amortization-calculator', 'loan-calculator',
+    'fha-loan-calculator', 'va-mortgage-calculator', 'mortgage-amortization-calculator', 'loan-calculator',
     'interest-rate-calculator', 'rent-calculator'
   ],
   'canadian-mortgage-calculator': [
@@ -35,15 +35,19 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'house-affordability-calculator': [
     'mortgage-calculator', 'rent-calculator', 'down-payment-calculator',
-    'debt-to-income-ratio-calculator', 'fha-loan-calculator', 'income-tax-calculator'
+    'debt-to-income-ratio-calculator', 'fha-loan-calculator', 'va-mortgage-calculator', 'income-tax-calculator'
   ],
   'down-payment-calculator': [
     'mortgage-calculator', 'house-affordability-calculator', 'fha-loan-calculator',
-    'loan-calculator', 'savings-calculator'
+    'va-mortgage-calculator', 'loan-calculator', 'savings-calculator'
   ],
   'fha-loan-calculator': [
     'mortgage-calculator', 'down-payment-calculator', 'house-affordability-calculator',
-    'loan-calculator', 'apr-calculator'
+    'va-mortgage-calculator', 'loan-calculator', 'apr-calculator'
+  ],
+  'va-mortgage-calculator': [
+    'mortgage-calculator', 'house-affordability-calculator', 'fha-loan-calculator',
+    'loan-calculator', 'down-payment-calculator', 'mortgage-amortization-calculator'
   ],
   'rent-calculator': [
     'mortgage-calculator', 'house-affordability-calculator', 'budget-calculator',

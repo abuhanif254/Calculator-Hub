@@ -9,6 +9,7 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
       case 'boat-loan-calculator':
       case 'rental-property-calculator':
       case 'fha-loan-calculator':
+      case 'va-mortgage-calculator':
         return (
           <>
             <p className="mb-4">These financial calculations are based on the standard monthly payment formula for amortizing loans:</p>
