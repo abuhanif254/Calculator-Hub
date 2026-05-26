@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { Link, routing } from '@/i18n/routing';
-import { sitemapCategories, developerToolsMenu, generalLinks } from '@/lib/data/sitemapData';
+import { sitemapCategories, developerToolsMenu, pdfToolsMenu, imageToolsMenu, generalLinks } from '@/lib/data/sitemapData';
 import { Search, Compass, ExternalLink, ChevronDown } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 import Script from 'next/script';
@@ -34,7 +34,9 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
   // Generate Schemas for SEO
   const allItems = [
     ...sitemapCategories.flatMap(cat => cat.links.map(link => ({ name: link, category: cat.title }))),
-    ...developerToolsMenu.flatMap(cat => cat.items.map(item => ({ name: item.name, category: cat.title })))
+    ...developerToolsMenu.flatMap(cat => cat.items.map(item => ({ name: item.name, category: cat.title }))),
+    ...pdfToolsMenu.flatMap(cat => cat.items.map(item => ({ name: item.name, category: cat.title }))),
+    ...imageToolsMenu.flatMap(cat => cat.items.map(item => ({ name: item.name, category: cat.title })))
   ];
 
   const itemListSchema = {
@@ -161,6 +163,16 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
               {cat.title}
             </a>
           ))}
+          {pdfToolsMenu.map(cat => (
+            <a key={cat.id} href={`#${cat.id}`} className="shrink-0 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium transition-colors">
+              {cat.title}
+            </a>
+          ))}
+          {imageToolsMenu.map(cat => (
+            <a key={cat.id} href={`#${cat.id}`} className="shrink-0 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium transition-colors">
+              {cat.title}
+            </a>
+          ))}
         </div>
       </div>
 
@@ -240,6 +252,92 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                     {category.items.map((item) => {
                       let slug = item.name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
                       if(item.name === "URL Encode / Decode") slug = "url-encoder"; 
+                      
+                      return (
+                        <li key={item.name}>
+                          <Link 
+                            href={`/tools/${slug}` as any}
+                            className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
+                            title={item.desc}
+                          >
+                            <span className="truncate">{item.name}</span>
+                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </div>
+
+          {/* PDF Tools Section */}
+          <div className="space-y-12 pt-8">
+            <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">PDF Tools</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {pdfToolsMenu.map((category) => (
+                <section key={category.id} id={category.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 transition-all scroll-mt-24">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2.5 bg-green-50 dark:bg-green-900/20 text-[#518231] rounded-lg">
+                      {category.icon && <category.icon size={22} />}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                      {category.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">
+                    {category.description}
+                  </p>
+                  <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
+                    {category.items.map((item) => {
+                      let slug = item.name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+                      
+                      return (
+                        <li key={item.name}>
+                          <Link 
+                            href={`/tools/${slug}` as any}
+                            className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
+                            title={item.desc}
+                          >
+                            <span className="truncate">{item.name}</span>
+                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </div>
+
+          {/* Image Tools Section */}
+          <div className="space-y-12 pt-8">
+            <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Image Tools</h2>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {imageToolsMenu.map((category) => (
+                <section key={category.id} id={category.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 transition-all scroll-mt-24">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2.5 bg-green-50 dark:bg-green-900/20 text-[#518231] rounded-lg">
+                      {category.icon && <category.icon size={22} />}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                      {category.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">
+                    {category.description}
+                  </p>
+                  <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
+                    {category.items.map((item) => {
+                      let slug = item.name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
                       
                       return (
                         <li key={item.name}>

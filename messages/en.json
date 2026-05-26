@@ -1268,5 +1268,35 @@
   "QrCodeGenerator": {
     "title": "QR Code Generator & Designer",
     "subtitle": "Generate fully customizable QR codes dynamically offline for URLs, WiFi, contacts, emails, and crypto."
+  },
+  "HealthyWeightCalculator": {
+    "title": "Healthy Weight Calculator",
+    "description": "Calculate your healthy body weight range based on height, age, gender, and frame size.",
+    "metric": "Metric Units",
+    "imperial": "US / Imperial",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "age": "Age",
+    "height": "Height",
+    "currentWeight": "Current Weight (Optional)",
+    "frameSize": "Body Frame Size (Optional)",
+    "small": "Small Frame",
+    "medium": "Medium Frame",
+    "large": "Large Frame",
+    "notSpecified": "Not Specified",
+    "wristCircumference": "Wrist Circumference (Optional)",
+    "calculateFrameSize": "Determine frame size by wrist size",
+    "calculate": "Calculate Healthy Weight",
+    "waiting": "Awaiting inputs...",
+    "errorHeight": "Please enter a valid height measurement.",
+    "errorAge": "Please enter a valid age (2 - 120).",
+    "errorWeight": "Please enter a valid current weight.",
+    "errorWrist": "Please enter a valid wrist circumference.",
+    "normalWeight": "Normal Weight",
+    "underweight": "Underweight",
+    "overweight": "Overweight",
+    "obesity": "Obesity",
+    "healthyBmiRange": "Healthy BMI Range"
   }
 }

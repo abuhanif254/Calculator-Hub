@@ -257,17 +257,18 @@ export const calculatorRelationships: Record<string, string[]> = {
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [
     'body-fat-calculator', 'calorie-calculator', 'ideal-weight-calculator',
-    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator',
-    'carbohydrate-calculator'
+    'healthy-weight-calculator', 'bmr-calculator', 'pace-calculator', 'height-calculator',
+    'macro-calculator', 'carbohydrate-calculator'
   ],
   'calorie-calculator': [
     'bmr-calculator', 'body-fat-calculator', 'bmi-calculator',
-    'ideal-weight-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator',
-    'carbohydrate-calculator'
+    'healthy-weight-calculator', 'ideal-weight-calculator', 'pace-calculator',
+    'height-calculator', 'macro-calculator', 'carbohydrate-calculator'
   ],
   'body-fat-calculator': [
     'bmi-calculator', 'bmr-calculator', 'ideal-weight-calculator',
-    'calorie-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
+    'healthy-weight-calculator', 'calorie-calculator', 'pace-calculator',
+    'height-calculator', 'macro-calculator'
   ],
   'bmr-calculator': [
     'calorie-calculator', 'body-fat-calculator', 'bmi-calculator',
@@ -275,7 +276,12 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'ideal-weight-calculator': [
     'bmi-calculator', 'body-fat-calculator', 'calorie-calculator',
-    'bmr-calculator', 'pace-calculator', 'height-calculator', 'macro-calculator'
+    'healthy-weight-calculator', 'bmr-calculator', 'pace-calculator', 'height-calculator',
+    'macro-calculator'
+  ],
+  'healthy-weight-calculator': [
+    'bmi-calculator', 'calorie-calculator', 'ideal-weight-calculator',
+    'body-fat-calculator', 'bmr-calculator', 'macro-calculator'
   ],
   'pace-calculator': [
     'calorie-calculator', 'bmi-calculator', 'bmr-calculator',

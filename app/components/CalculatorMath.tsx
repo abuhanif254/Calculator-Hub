@@ -64,6 +64,24 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
             <p className="text-slate-600 italic">For imperial units, this converts to: BMI = 703 × weight(lbs) / height(in)^2</p>
           </>
         );
+      case 'healthy-weight-calculator':
+        return (
+          <>
+            <p className="mb-4">Healthy Weight recommendations are computed using standard clinical formulas and the WHO body mass index range:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-center text-xs md:text-sm mb-4 shadow-inner border border-slate-200 overflow-x-auto space-y-1">
+              <div><strong>WHO Healthy Range (BMI 18.5 – 24.9):</strong> Weight (kg) = BMI × Height(m)²</div>
+              <div><strong>Devine (Male):</strong> 50.0 + 2.3 × (Height(in) - 60)</div>
+              <div><strong>Devine (Female):</strong> 45.5 + 2.3 × (Height(in) - 60)</div>
+              <div><strong>Robinson (Male):</strong> 52.0 + 1.9 × (Height(in) - 60)</div>
+              <div><strong>Robinson (Female):</strong> 49.0 + 1.7 × (Height(in) - 60)</div>
+              <div><strong>Miller (Male):</strong> 56.2 + 1.41 × (Height(in) - 60)</div>
+              <div><strong>Miller (Female):</strong> 53.1 + 1.36 × (Height(in) - 60)</div>
+              <div><strong>Hamwi (Male):</strong> 48.0 + 2.7 × (Height(in) - 60)</div>
+              <div><strong>Hamwi (Female):</strong> 45.5 + 2.2 × (Height(in) - 60)</div>
+            </div>
+            <p className="text-slate-600">Calculated ideal weights are adjusted by ±10% for Small / Large frame sizes based on height-to-wrist ratio $r$.</p>
+          </>
+        );
       case 'bmr-calculator':
       case 'calorie-calculator':
         return (

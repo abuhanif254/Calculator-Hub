@@ -1268,5 +1268,35 @@
   "QrCodeGenerator": {
     "title": "Generador y Diseñador de Códigos QR",
     "subtitle": "Genere y personalice códigos QR de forma dinámica y sin conexión para URL, WiFi, contactos, correos y cripto."
+  },
+  "HealthyWeightCalculator": {
+    "title": "Calculadora de Peso Saludable",
+    "description": "Calcule su rango de peso corporal saludable según la altura, edad, género y tamaño de complexión.",
+    "metric": "Métrica",
+    "imperial": "Imperial",
+    "gender": "Género",
+    "male": "Masculino",
+    "female": "Femenino",
+    "age": "Edad",
+    "height": "Altura",
+    "currentWeight": "Peso actual (opcional)",
+    "frameSize": "Tamaño de complexión (opcional)",
+    "small": "Complexión pequeña",
+    "medium": "Complexión mediana",
+    "large": "Complexión grande",
+    "notSpecified": "No especificado",
+    "wristCircumference": "Circunferencia de la muñeca (opcional)",
+    "calculateFrameSize": "Determinar por tamaño de muñeca",
+    "calculate": "Calcular peso saludable",
+    "waiting": "Esperando datos...",
+    "errorHeight": "Por favor, introduzca una altura válida.",
+    "errorAge": "Por favor, introduzca una edad válida (2 - 120).",
+    "errorWeight": "Por favor, introduzca un peso actual válido.",
+    "errorWrist": "Por favor, introduzca una circunferencia de muñeca válida.",
+    "normalWeight": "Peso Normal",
+    "underweight": "Bajo Peso",
+    "overweight": "Sobrepeso",
+    "obesity": "Obesidad",
+    "healthyBmiRange": "Rango de IMC Saludable"
   }
 }

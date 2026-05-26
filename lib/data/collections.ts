@@ -78,6 +78,7 @@ export const collections: CollectionDef[] = [
       'calorie-calculator',
       'body-fat-calculator',
       'ideal-weight-calculator',
+      'healthy-weight-calculator',
       'pace-calculator'
     ]
   },
