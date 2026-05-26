@@ -1393,5 +1393,26 @@
     "extraPayments": "Zusätzliche monatliche Tilgung",
     "refinanceSimulation": "Umschuldungs-Zinssatz",
     "years": "Jahre"
+  },
+  "CommissionCalculator": {
+    "title": "Provisionsrechner",
+    "description": "Berechnen Sie Verkaufsprovisionen, gestaffelte Provisionsmodelle, Immobilienmakler-Splits, Affiliate-Auszahlungen und Gewinnbeteiligungen.",
+    "commissionAmount": "Provisionsbetrag",
+    "salesRevenue": "Umsatzvolumen",
+    "commissionRate": "Provisionssatz",
+    "payout": "Gesamtauszahlung",
+    "netEarnings": "Nettoverdienst",
+    "targetEarnings": "Gewünschte Provision",
+    "requiredSales": "Erforderlicher Umsatz",
+    "tieredCommissions": "Staffelprovisions-Struktur",
+    "bonus": "Leistungsbonus",
+    "realEstateMode": "Immobilien-Provision",
+    "affiliateMode": "Affiliate-Provision & RevShare",
+    "freelancerMode": "Freelancer- & Agenturgebühren",
+    "profitSharing": "Gewinnbeteiligung für Partner",
+    "waiting": "Warten auf Eingaben...",
+    "taxRate": "Geschätzter Steuersatz",
+    "monthlyProjection": "Monatliche Umsatzprognose",
+    "annualProjection": "Jährliche Umsatzprognose"
   }
 }

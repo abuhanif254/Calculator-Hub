@@ -1393,5 +1393,26 @@
     "extraPayments": "Pago Mensual Extra",
     "refinanceSimulation": "Tasa de Interés de Refinanciación",
     "years": "Años"
+  },
+  "CommissionCalculator": {
+    "title": "Calculadora de Comisiones",
+    "description": "Calcule comisiones de ventas, divisiones de comisiones por niveles, divisiones de agentes inmobiliarios, pagos de afiliados y distribuciones de participación en ganancias.",
+    "commissionAmount": "Monto de la Comisión",
+    "salesRevenue": "Ingresos por Ventas",
+    "commissionRate": "Tasa de Comisión",
+    "payout": "Pago Total",
+    "netEarnings": "Ganancias Netas",
+    "targetEarnings": "Ganancias por Comisión Objetivo",
+    "requiredSales": "Volumen de Ventas Requerido",
+    "tieredCommissions": "Estructura de Comisiones por Niveles",
+    "bonus": "Bono de Rendimiento",
+    "realEstateMode": "Comisión Inmobiliaria",
+    "affiliateMode": "CPA de Afiliados y Participación de Ingresos",
+    "freelancerMode": "Tarifas de Freelance y Agencia",
+    "profitSharing": "Participación de Ganancias de Socios",
+    "waiting": "Esperando datos...",
+    "taxRate": "Tasa de Impuestos Estimada",
+    "monthlyProjection": "Proyección de Ingresos Mensuales",
+    "annualProjection": "Pronóstico de Ingresos Anuales"
   }
 }

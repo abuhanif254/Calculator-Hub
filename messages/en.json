@@ -1393,5 +1393,26 @@
     "extraPayments": "Extra Monthly Payment",
     "refinanceSimulation": "Refinance Interest Rate",
     "years": "Years"
+  },
+  "CommissionCalculator": {
+    "title": "Commission Calculator",
+    "description": "Calculate sales commissions, tiered commission splits, real estate agent splits, affiliate payouts, and profit-sharing distributions.",
+    "commissionAmount": "Commission Amount",
+    "salesRevenue": "Sales Revenue",
+    "commissionRate": "Commission Rate",
+    "payout": "Total Payout",
+    "netEarnings": "Net Earnings",
+    "targetEarnings": "Target Commission Earnings",
+    "requiredSales": "Required Sales Volume",
+    "tieredCommissions": "Tiered Commission Structure",
+    "bonus": "Performance Bonus",
+    "realEstateMode": "Real Estate Commission",
+    "affiliateMode": "Affiliate CPA & Revenue Share",
+    "freelancerMode": "Freelancer & Agency Rates",
+    "profitSharing": "Partners Profit Sharing",
+    "waiting": "Awaiting inputs...",
+    "taxRate": "Estimated Tax Rate",
+    "monthlyProjection": "Monthly Income Projection",
+    "annualProjection": "Annual Income Forecast"
   }
 }

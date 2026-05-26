@@ -2737,6 +2737,26 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "financial"
+  },
+  {
+    slug: "commission-calculator",
+    slugs: {
+      en: "commission-calculator",
+      es: "calculadora-de-comisiones",
+      de: "provisionsrechner",
+      fr: "calculateur-de-commission"
+    },
+    title: "Commission Calculator",
+    category: "Financial",
+    description: "Calculate sales commissions, tiered commission splits, real estate agent splits, affiliate payouts, and profit-sharing distributions.",
+    meta: {
+      title: "Commission Calculator | Sales, Splits & Tiers Payouts",
+      description: "Free online Commission Calculator. Compute sales commissions, tiered rate structures, brokerage splits, affiliate earnings, and partners profit sharing.",
+      keywords: "commission calculator, sales commission, tiered commission, real estate split, brokerage fee, affiliate commission, profit sharing, earnings projection",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "financial"
   }
 ];
 

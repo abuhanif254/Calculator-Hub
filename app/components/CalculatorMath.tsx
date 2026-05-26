@@ -24,6 +24,19 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
             </ul>
           </>
         );
+      case 'commission-calculator':
+        return (
+          <>
+            <p className="mb-4">Commission earnings are calculated based on the selected sales model structure:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-xs md:text-sm mb-4 shadow-inner border border-slate-200 overflow-x-auto space-y-2">
+              <div><strong>Basic Payout:</strong> Commission = Revenue × Rate% + Performance Bonus</div>
+              <div><strong>Reverse Target:</strong> Required Sales = (Target Payout - Performance Bonus) / Rate%</div>
+              <div><strong>Tiered Payout:</strong> Payout = Sum of (Revenue in Tier $n$ × Tier $n$ Rate%)</div>
+              <div><strong>Real Estate split:</strong> Agent Share = Property Price × Total Comm% × Agent Split% × Brokerage Split%</div>
+            </div>
+            <p className="text-slate-600 text-xs">For partnerships and profit-sharing models, the total profit pool is distributed using linear percentage allocations (Profit_i = Profit_total × Split_i%) adjusted for custom business overhead fees.</p>
+          </>
+        );
       case 'rent-vs-buy-calculator':
         return (
           <>

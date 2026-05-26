@@ -1393,5 +1393,26 @@
     "extraPayments": "Mensualité Supplémentaire",
     "refinanceSimulation": "Taux d'Intérêt Refinancement",
     "years": "Ans"
+  },
+  "CommissionCalculator": {
+    "title": "Calculateur de Commission",
+    "description": "Calculez les commissions sur ventes, les structures de commissions par paliers, les partages d'agents immobiliers, les gains d'affiliation et le partage des bénéfices.",
+    "commissionAmount": "Montant de la Commission",
+    "salesRevenue": "Chiffre d'Affaires",
+    "commissionRate": "Taux de Commission",
+    "payout": "Paiement Total",
+    "netEarnings": "Gains Nets",
+    "targetEarnings": "Objectif de Commission",
+    "requiredSales": "Volume de Vente Requis",
+    "tieredCommissions": "Structure de Commissions par Paliers",
+    "bonus": "Prime de Performance",
+    "realEstateMode": "Commission Immobilière",
+    "affiliateMode": "Affiliation CPA & Partage de Revenus",
+    "freelancerMode": "Tarifs Freelance & Agence",
+    "profitSharing": "Partage des Bénéfices Associés",
+    "waiting": "En attente de saisie...",
+    "taxRate": "Taux d'Imposition Estimé",
+    "monthlyProjection": "Projection de Revenus Mensuels",
+    "annualProjection": "Prévisions de Revenus Annuels"
   }
 }
