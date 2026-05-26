@@ -9,6 +9,7 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
       case 'boat-loan-calculator':
       case 'rental-property-calculator':
       case 'fha-loan-calculator':
+      case 'va-mortgage-calculator':
         return (
           <>
             <p className="mb-4">These financial calculations are based on the standard monthly payment formula for amortizing loans:</p>
@@ -21,6 +22,43 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
               <li><strong>i</strong> = your monthly interest rate (annual rate divided by 12)</li>
               <li><strong>n</strong> = number of payments (months)</li>
             </ul>
+          </>
+        );
+      case 'commission-calculator':
+        return (
+          <>
+            <p className="mb-4">Commission earnings are calculated based on the selected sales model structure:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-xs md:text-sm mb-4 shadow-inner border border-slate-200 overflow-x-auto space-y-2">
+              <div><strong>Basic Payout:</strong> Commission = Revenue × Rate% + Performance Bonus</div>
+              <div><strong>Reverse Target:</strong> Required Sales = (Target Payout - Performance Bonus) / Rate%</div>
+              <div><strong>Tiered Payout:</strong> Payout = Sum of (Revenue in Tier $n$ × Tier $n$ Rate%)</div>
+              <div><strong>Real Estate split:</strong> Agent Share = Property Price × Total Comm% × Agent Split% × Brokerage Split%</div>
+            </div>
+            <p className="text-slate-600 text-xs">For partnerships and profit-sharing models, the total profit pool is distributed using linear percentage allocations (Profit_i = Profit_total × Split_i%) adjusted for custom business overhead fees.</p>
+          </>
+        );
+      case 'mortgage-payoff-calculator':
+        return (
+          <>
+            <p className="mb-4">Mortgage payments and accelerated payoff schedules are modeled using standard compound amortization formulas:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-xs md:text-sm mb-4 shadow-inner border border-slate-200 overflow-x-auto space-y-2">
+              <div><strong>Standard Monthly Payment (P&amp;I):</strong> M = P × [r(1+r)^n] / [(1+r)^n - 1]</div>
+              <div><strong>Biweekly Accelerated Payout:</strong> Annual payments equivalent to 13 monthly payments (26 half-payments).</div>
+              <div><strong>Extra Payments Impact:</strong> Remaining_Balance(t) = Balance(t-1) + Interest(t) - [Regular_Payment + Extra_Payment]</div>
+              <div><strong>Total Interest Saved:</strong> Interest_Saved = Standard_Total_Interest - Accelerated_Total_Interest</div>
+            </div>
+            <p className="text-slate-600 text-xs">Where <strong>M</strong> is the monthly principal &amp; interest payment, <strong>P</strong> is the remaining principal, <strong>r</strong> is the monthly interest rate (annual rate / 12), and <strong>n</strong> is the remaining payment months.</p>
+          </>
+        );
+      case 'rent-vs-buy-calculator':
+        return (
+          <>
+            <p className="mb-4">The calculator performs a year-by-year financial simulation comparing Buyer Net Worth against Renter Net Worth:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-xs md:text-sm mb-4 shadow-inner border border-slate-200 overflow-x-auto space-y-1">
+              <div><strong>Buyer Net Worth (Year t):</strong> Home Value(t) - Mortgage Balance(t) - Selling Costs(t) + Invested Payment Savings(t)</div>
+              <div><strong>Renter Net Worth (Year t):</strong> Compounded Investment Portfolio of Opportunity Costs (Down Payment + Closing Costs + Annual Cost Differences)</div>
+            </div>
+            <p className="text-slate-600">The break-even point is the year where the buyer net worth exceeds the renter net worth, signifying that homeownership has offset its upfront transaction costs, interest, maintenance, and the renter's stock portfolio compounding returns.</p>
           </>
         );
       case 'debt-to-income-ratio-calculator':

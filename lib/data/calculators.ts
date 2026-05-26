@@ -2697,6 +2697,86 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "health"
+  },
+  {
+    slug: "va-mortgage-calculator",
+    slugs: {
+      en: "va-mortgage-calculator",
+      es: "calculadora-de-hipotecas-va",
+      de: "va-hypothekenrechner",
+      fr: "calculateur-de-pret-hypothecaire-va"
+    },
+    title: "VA Mortgage Calculator",
+    category: "Financial",
+    description: "Calculate your monthly VA mortgage payments, VA funding fees, property taxes, insurance, and see the full amortization schedule.",
+    meta: {
+      title: "VA Mortgage Calculator | Estimate Payments & Funding Fee",
+      description: "Free online VA Mortgage Calculator. Estimate your monthly VA loan payments, including principal, interest, taxes, home insurance, and the VA funding fee.",
+      keywords: "va mortgage calculator, va loan calculator, va funding fee, veterans home loan, military mortgage, amortization schedule",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "rent-vs-buy-calculator",
+    slugs: {
+      en: "rent-vs-buy-calculator",
+      es: "calculadora-alquilar-vs-comprar",
+      de: "mieten-vs-kaufen-rechner",
+      fr: "calculateur-louer-vs-acheter"
+    },
+    title: "Rent vs. Buy Calculator",
+    category: "Financial",
+    description: "Compare the long-term cost of renting vs. buying a home, including equity growth, investment returns, and opportunity costs.",
+    meta: {
+      title: "Rent vs Buy Calculator | Cost & Opportunity Comparison",
+      description: "Compare the total costs of renting vs buying a home. Analyze home appreciation, mortgage equity, renting costs, and stock market opportunity cost of investing your down payment.",
+      keywords: "rent vs buy calculator, renting vs buying, home ownership cost comparison, renting vs buying calculator, real estate investment, opportunity cost calculator",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "commission-calculator",
+    slugs: {
+      en: "commission-calculator",
+      es: "calculadora-de-comisiones",
+      de: "provisionsrechner",
+      fr: "calculateur-de-commission"
+    },
+    title: "Commission Calculator",
+    category: "Financial",
+    description: "Calculate sales commissions, tiered commission splits, real estate agent splits, affiliate payouts, and profit-sharing distributions.",
+    meta: {
+      title: "Commission Calculator | Sales, Splits & Tiers Payouts",
+      description: "Free online Commission Calculator. Compute sales commissions, tiered rate structures, brokerage splits, affiliate earnings, and partners profit sharing.",
+      keywords: "commission calculator, sales commission, tiered commission, real estate split, brokerage fee, affiliate commission, profit sharing, earnings projection",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "mortgage-payoff-calculator",
+    slugs: {
+      en: "mortgage-payoff-calculator",
+      es: "calculadora-pago-hipoteca",
+      de: "hypotheken-tilgungsrechner",
+      fr: "calculateur-remboursement-hypothecaire"
+    },
+    title: "Mortgage Payoff Calculator",
+    category: "Financial",
+    description: "Calculate remaining loan balance, monthly payments, payoff date, interest savings, and biweekly or extra payoff plans.",
+    meta: {
+      title: "Mortgage Payoff Calculator | Extra Payments & Refinance",
+      description: "Free online Mortgage Payoff Calculator. Estimate early payoff schedules, biweekly payments, extra monthly principal savings, and refinancing comparisons.",
+      keywords: "mortgage payoff calculator, pay off mortgage early, extra payments calculator, biweekly mortgage, early payoff schedule, home loan payoff, refinance break-even",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "financial"
   }
 ];
 

@@ -66,6 +66,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'boat-loan-calculator': dynamic(() => import('@/app/components/BoatLoanCalculatorView').then(m => ({ default: m.BoatLoanCalculatorView as ComponentType<CalcComponentProps> }))),
   'rental-property-calculator': dynamic(() => import('@/app/components/RentalPropertyCalculatorView').then(m => ({ default: m.RentalPropertyCalculatorView as ComponentType<CalcComponentProps> }))),
   'fha-loan-calculator': dynamic(() => import('@/app/components/FHALoanCalculatorView').then(m => ({ default: m.FHALoanCalculatorView as ComponentType<CalcComponentProps> }))),
+  'va-mortgage-calculator': dynamic(() => import('@/app/components/VAMortgageCalculatorView').then(m => ({ default: m.VAMortgageCalculatorView as ComponentType<CalcComponentProps> }))),
   'down-payment-calculator': dynamic(() => import('@/app/components/DownPaymentCalculatorView').then(m => ({ default: m.DownPaymentCalculatorView as ComponentType<CalcComponentProps> }))),
   'future-value-calculator': dynamic(() => import('@/app/components/FutureValueCalculatorView').then(m => ({ default: m.FutureValueCalculatorView as ComponentType<CalcComponentProps> }))),
   'mortgage-amortization-calculator': dynamic(() => import('@/app/components/MortgageAmortizationCalculatorView').then(m => ({ default: m.MortgageAmortizationCalculatorView as ComponentType<CalcComponentProps> }))),
@@ -73,6 +74,9 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'estate-tax-calculator': dynamic(() => import('@/app/components/EstateTaxCalculatorView').then(m => ({ default: m.EstateTaxCalculatorView as ComponentType<CalcComponentProps> }))),
   'credit-cards-payoff': dynamic(() => import('@/app/components/CreditCardsPayoffView').then(m => ({ default: m.CreditCardsPayoffView as ComponentType<CalcComponentProps> }))),
   'rent-calculator': dynamic(() => import('@/app/components/RentCalculatorView').then(m => ({ default: m.RentCalculatorView as ComponentType<CalcComponentProps> }))),
+  'rent-vs-buy-calculator': dynamic(() => import('@/app/components/RentVsBuyCalculatorView').then(m => ({ default: m.RentVsBuyCalculatorView as ComponentType<CalcComponentProps> }))),
+  'commission-calculator': dynamic(() => import('@/app/components/CommissionCalculatorView').then(m => ({ default: m.CommissionCalculatorView as ComponentType<CalcComponentProps> }))),
+  'mortgage-payoff-calculator': dynamic(() => import('@/app/components/MortgagePayoffCalculatorView').then(m => ({ default: m.MortgagePayoffCalculatorView as ComponentType<CalcComponentProps> }))),
   'social-security-calculator': dynamic(() => import('@/app/components/SocialSecurityCalculatorView').then(m => ({ default: m.SocialSecurityCalculatorView as ComponentType<CalcComponentProps> }))),
   'currency-calculator': dynamic(() => import('@/app/components/CurrencyCalculatorView').then(m => ({ default: m.CurrencyCalculatorView as ComponentType<CalcComponentProps> }))),
 

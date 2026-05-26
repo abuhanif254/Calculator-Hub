@@ -94,8 +94,10 @@ export const collections: CollectionDef[] = [
       'house-affordability-calculator',
       'down-payment-calculator',
       'fha-loan-calculator',
+      'va-mortgage-calculator',
       'heloc-calculator',
-      'mortgage-amortization-calculator'
+      'mortgage-amortization-calculator',
+      'rent-vs-buy-calculator'
     ]
   },
   {
