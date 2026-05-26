@@ -2677,6 +2677,26 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "math"
+  },
+  {
+    slug: "healthy-weight-calculator",
+    slugs: {
+      en: "healthy-weight-calculator",
+      es: "calculadora-de-peso-saludable",
+      de: "gesundes-gewicht-rechner",
+      fr: "calculateur-de-poids-sante"
+    },
+    title: "Healthy Weight Calculator",
+    category: "Health & Fitness",
+    description: "Calculate your healthy weight range based on your height, age, gender, and frame size using multiple scientific formulas.",
+    meta: {
+      title: "Healthy Weight Calculator | Scientific Healthy Weight Range",
+      description: "Free online Healthy Weight Calculator. Determine your healthy weight range, ideal target weight, and body frame size using clinically validated formulas.",
+      keywords: "healthy weight calculator, ideal body weight, healthy weight range, body frame size, wrist circumference ratio, BMI calculation, healthy weight",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "health"
   }
 ];
 

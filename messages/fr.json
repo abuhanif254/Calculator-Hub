@@ -1268,5 +1268,35 @@
   "QrCodeGenerator": {
     "title": "Générateur & Concepteur de Code QR",
     "subtitle": "Générez et personnalisez des codes QR de manière dynamique et hors ligne pour les URL, le Wi-Fi, les contacts, les e-mails et la crypto."
+  },
+  "HealthyWeightCalculator": {
+    "title": "Calculateur de Poids Santé",
+    "description": "Calculez votre plage de poids corporel sain en fonction de la taille, de l'âge, du sexe et de la corpulence.",
+    "metric": "Métrique",
+    "imperial": "Impérial",
+    "gender": "Sexe",
+    "male": "Homme",
+    "female": "Femme",
+    "age": "Âge",
+    "height": "Taille",
+    "currentWeight": "Poids actuel (facultatif)",
+    "frameSize": "Taille de la corpulence (facultatif)",
+    "small": "Petite corpulence",
+    "medium": "Corpulence moyenne",
+    "large": "Grande corpulence",
+    "notSpecified": "Non spécifié",
+    "wristCircumference": "Circonférence du poignet (facultatif)",
+    "calculateFrameSize": "Déterminer par la taille du poignet",
+    "calculate": "Calculer le poids santé",
+    "waiting": "En attente des données...",
+    "errorHeight": "Veuillez entrer une taille valide.",
+    "errorAge": "Veuillez entrer un âge valide (2 - 120).",
+    "errorWeight": "Veuillez entrer un poids actuel valide.",
+    "errorWrist": "Veuillez entrer une circonférence du poignet valide.",
+    "normalWeight": "Poids Normal",
+    "underweight": "Insuffisance Pondérale",
+    "overweight": "Surpoids",
+    "obesity": "Obésité",
+    "healthyBmiRange": "Plage d'IMC Santé"
   }
 }

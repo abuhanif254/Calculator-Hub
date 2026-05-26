@@ -1268,5 +1268,35 @@
   "QrCodeGenerator": {
     "title": "QR-Code-Generator & Designer",
     "subtitle": "Erstellen und gestalten Sie personalisierte QR-Codes offline für URLs, WLAN, Kontakte, E-Mails und Krypto."
+  },
+  "HealthyWeightCalculator": {
+    "title": "Gesundes Gewicht Rechner",
+    "description": "Berechnen Sie Ihren gesunden Gewichtsbereich basierend auf Größe, Alter, Geschlecht und Körperbau.",
+    "metric": "Metrisch",
+    "imperial": "Kaiserlich",
+    "gender": "Geschlecht",
+    "male": "Männlich",
+    "female": "Weiblich",
+    "age": "Alter",
+    "height": "Größe",
+    "currentWeight": "Aktuelles Gewicht (optional)",
+    "frameSize": "Körperbautyp (optional)",
+    "small": "Zierlicher Körperbau",
+    "medium": "Normaler Körperbau",
+    "large": "Kräftiger Körperbau",
+    "notSpecified": "Nicht angegeben",
+    "wristCircumference": "Handgelenkumfang (optional)",
+    "calculateFrameSize": "Körperbau nach Handgelenk berechnen",
+    "calculate": "Gesundes Gewicht berechnen",
+    "waiting": "Warten auf Eingaben...",
+    "errorHeight": "Bitte geben Sie eine gültige Körpergröße ein.",
+    "errorAge": "Bitte geben Sie ein gültiges Alter ein (2 - 120).",
+    "errorWeight": "Bitte geben Sie ein gültiges Gewicht ein.",
+    "errorWrist": "Bitte geben Sie einen gültigen Handgelenkumfang ein.",
+    "normalWeight": "Normalgewicht",
+    "underweight": "Untergewicht",
+    "overweight": "Übergewicht",
+    "obesity": "Adipositas",
+    "healthyBmiRange": "Gesunder BMI-Bereich"
   }
 }

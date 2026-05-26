@@ -28,11 +28,22 @@ function isValidEmail(email: string): boolean {
 function getAdminDb() {
   const apps = getApps();
   if (!apps.length) {
+    const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY;
+
+    if (!projectId || !clientEmail || !privateKey) {
+      throw new Error('Firebase Admin environment variables are missing.');
+    }
+
+    // Fix for Vercel formatting private keys with literal \n and potential surrounding quotes
+    const formattedPrivateKey = privateKey.replace(/\\n/g, '\n').replace(/^"|"$/g, '');
+
     initializeApp({
       credential: cert({
-        projectId: process.env.FIREBASE_ADMIN_PROJECT_ID,
-        clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
-        privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        projectId,
+        clientEmail,
+        privateKey: formattedPrivateKey,
       }),
     });
   }
@@ -50,11 +61,18 @@ export async function POST(req: NextRequest) {
   }
 
   let email: string;
+  let honeypot: string;
   try {
     const body = await req.json();
     email = (body.email ?? '').trim().toLowerCase();
+    honeypot = body.honeypot ?? '';
   } catch {
     return NextResponse.json({ success: false, error: 'Invalid request body.' }, { status: 400 });
+  }
+
+  // If honeypot is filled, silently return success to trick the bot
+  if (honeypot) {
+    return NextResponse.json({ success: true });
   }
 
   if (!email || !isValidEmail(email)) {
@@ -81,10 +99,19 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (err: unknown) {
-    console.error('[newsletter] Firestore error:', err);
+  } catch (err: any) {
+    console.error('[newsletter] API error:', err.message || err);
+    
+    // Check if it's an initialization error for clearer debugging
+    if (err.message?.includes('Firebase Admin environment variables')) {
+      return NextResponse.json(
+        { success: false, error: 'Server configuration error: Firebase Admin variables missing.' },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { success: false, error: 'Something went wrong. Please try again.' },
+      { success: false, error: 'Something went wrong processing your request.' },
       { status: 500 }
     );
   }
