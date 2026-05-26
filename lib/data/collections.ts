@@ -96,7 +96,8 @@ export const collections: CollectionDef[] = [
       'fha-loan-calculator',
       'va-mortgage-calculator',
       'heloc-calculator',
-      'mortgage-amortization-calculator'
+      'mortgage-amortization-calculator',
+      'rent-vs-buy-calculator'
     ]
   },
   {

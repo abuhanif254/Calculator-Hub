@@ -74,6 +74,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'estate-tax-calculator': dynamic(() => import('@/app/components/EstateTaxCalculatorView').then(m => ({ default: m.EstateTaxCalculatorView as ComponentType<CalcComponentProps> }))),
   'credit-cards-payoff': dynamic(() => import('@/app/components/CreditCardsPayoffView').then(m => ({ default: m.CreditCardsPayoffView as ComponentType<CalcComponentProps> }))),
   'rent-calculator': dynamic(() => import('@/app/components/RentCalculatorView').then(m => ({ default: m.RentCalculatorView as ComponentType<CalcComponentProps> }))),
+  'rent-vs-buy-calculator': dynamic(() => import('@/app/components/RentVsBuyCalculatorView').then(m => ({ default: m.RentVsBuyCalculatorView as ComponentType<CalcComponentProps> }))),
   'social-security-calculator': dynamic(() => import('@/app/components/SocialSecurityCalculatorView').then(m => ({ default: m.SocialSecurityCalculatorView as ComponentType<CalcComponentProps> }))),
   'currency-calculator': dynamic(() => import('@/app/components/CurrencyCalculatorView').then(m => ({ default: m.CurrencyCalculatorView as ComponentType<CalcComponentProps> }))),
 

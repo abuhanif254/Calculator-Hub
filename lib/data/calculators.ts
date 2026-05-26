@@ -2717,6 +2717,26 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "math"
+  },
+  {
+    slug: "rent-vs-buy-calculator",
+    slugs: {
+      en: "rent-vs-buy-calculator",
+      es: "calculadora-alquilar-vs-comprar",
+      de: "mieten-vs-kaufen-rechner",
+      fr: "calculateur-louer-vs-acheter"
+    },
+    title: "Rent vs. Buy Calculator",
+    category: "Financial",
+    description: "Compare the long-term cost of renting vs. buying a home, including equity growth, investment returns, and opportunity costs.",
+    meta: {
+      title: "Rent vs Buy Calculator | Cost & Opportunity Comparison",
+      description: "Compare the total costs of renting vs buying a home. Analyze home appreciation, mortgage equity, renting costs, and stock market opportunity cost of investing your down payment.",
+      keywords: "rent vs buy calculator, renting vs buying, home ownership cost comparison, renting vs buying calculator, real estate investment, opportunity cost calculator",
+      lastUpdated: "2026-05-26"
+    },
+    fields: [],
+    logicModule: "financial"
   }
 ];
 

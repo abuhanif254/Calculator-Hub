@@ -24,6 +24,17 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
             </ul>
           </>
         );
+      case 'rent-vs-buy-calculator':
+        return (
+          <>
+            <p className="mb-4">The calculator performs a year-by-year financial simulation comparing Buyer Net Worth against Renter Net Worth:</p>
+            <div className="bg-slate-100 p-4 rounded-xl font-mono text-xs md:text-sm mb-4 shadow-inner border border-slate-200 overflow-x-auto space-y-1">
+              <div><strong>Buyer Net Worth (Year t):</strong> Home Value(t) - Mortgage Balance(t) - Selling Costs(t) + Invested Payment Savings(t)</div>
+              <div><strong>Renter Net Worth (Year t):</strong> Compounded Investment Portfolio of Opportunity Costs (Down Payment + Closing Costs + Annual Cost Differences)</div>
+            </div>
+            <p className="text-slate-600">The break-even point is the year where the buyer net worth exceeds the renter net worth, signifying that homeownership has offset its upfront transaction costs, interest, maintenance, and the renter's stock portfolio compounding returns.</p>
+          </>
+        );
       case 'debt-to-income-ratio-calculator':
         return (
           <>
