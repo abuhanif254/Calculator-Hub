@@ -57,6 +57,7 @@ import { strongPasswordGeneratorConfig } from './strong-password-generator';
 import { rgbToHexConfig } from './rgb-to-hex';
 import { mergePdfConfig } from './merge-pdf';
 import { compressImageConfig } from './compress-image';
+import { resizeImageConfig } from './resize-image';
 
 
 
@@ -120,6 +121,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [rgbToHexConfig.slug]: rgbToHexConfig,
   [mergePdfConfig.slug]: mergePdfConfig,
   [compressImageConfig.slug]: compressImageConfig,
+  [resizeImageConfig.slug]: resizeImageConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
