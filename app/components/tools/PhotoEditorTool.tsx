@@ -26,6 +26,8 @@ interface TextLayer {
   italic: boolean;
   strokeColor: string;
   strokeWidth: number;
+  flipH?: boolean;
+  flipV?: boolean;
 }
 
 interface ImageLayer {
@@ -40,15 +42,19 @@ interface ImageLayer {
   height: number;
   opacity: number;
   rotation: number;
+  flipH?: boolean;
+  flipV?: boolean;
 }
 
 interface VectorShape {
   id: string;
-  type: "pen" | "line" | "arrow" | "rect" | "circle";
+  type: "pen" | "line" | "arrow" | "rect" | "circle" | "eraser";
   points: { x: number; y: number }[]; // coordinates on base canvas scale
   color: string;
   brushSize: number;
   opacity: number;
+  flipH?: boolean;
+  flipV?: boolean;
 }
 
 type Layer = TextLayer | ImageLayer | VectorShape;
@@ -118,7 +124,7 @@ export function PhotoEditorTool() {
   const [activeTab, setActiveTab] = useState<"adjust" | "filter" | "text" | "draw" | "crop" | "layers">("adjust");
 
   // Brush settings
-  const [brushMode, setBrushMode] = useState<"pen" | "line" | "arrow" | "rect" | "circle">("pen");
+  const [brushMode, setBrushMode] = useState<"pen" | "line" | "arrow" | "rect" | "circle" | "eraser">("pen");
   const [brushColor, setBrushColor] = useState("#518231");
   const [brushSize, setBrushSize] = useState(8);
   const [brushOpacity, setBrushOpacity] = useState(100);
@@ -156,6 +162,9 @@ export function PhotoEditorTool() {
   // Onboarding notifications
   const [onboarded, setOnboarded] = useState(false);
   const [dragActive, setDragActive] = useState(false);
+  const [workspaceDragActive, setWorkspaceDragActive] = useState(false);
+  const [canvasWidth, setCanvasWidth] = useState(800);
+  const [canvasHeight, setCanvasHeight] = useState(600);
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
@@ -164,6 +173,28 @@ export function PhotoEditorTool() {
       setDragActive(true);
     } else if (e.type === "dragleave") {
       setDragActive(false);
+    }
+  };
+
+  const handleWorkspaceDrag = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setWorkspaceDragActive(true);
+    } else if (e.type === "dragleave") {
+      setWorkspaceDragActive(false);
+    }
+  };
+
+  const handleWorkspaceDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setWorkspaceDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      const file = e.dataTransfer.files[0];
+      if (file.type.startsWith("image/")) {
+        addImageOverlay(file);
+      }
     }
   };
 
@@ -271,6 +302,14 @@ export function PhotoEditorTool() {
       localStorage.setItem("photo_editor_workspace", JSON.stringify(data));
     }
   }, [bgImageSrc, layers, adjustments]);
+
+  // Sync canvas dimensions
+  useEffect(() => {
+    if (bgImage) {
+      setCanvasWidth(bgImage.naturalWidth);
+      setCanvasHeight(bgImage.naturalHeight);
+    }
+  }, [bgImage]);
 
   // File loading triggers
   const loadFiles = (fileList: FileList | File[]) => {
@@ -563,6 +602,10 @@ export function PhotoEditorTool() {
         ctx.translate(layer.x, layer.y);
         ctx.rotate((layer.rotation * Math.PI) / 180);
 
+        const scaleX = layer.flipH ? -1 : 1;
+        const scaleY = layer.flipV ? -1 : 1;
+        ctx.scale(scaleX, scaleY);
+
         ctx.font = `${layer.bold ? "bold" : "normal"} ${layer.italic ? "italic" : "normal"} ${layer.fontSize}px ${layer.fontFamily}`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
@@ -583,6 +626,11 @@ export function PhotoEditorTool() {
           ctx.save();
           ctx.translate(layer.x + layer.width / 2, layer.y + layer.height / 2);
           ctx.rotate((layer.rotation * Math.PI) / 180);
+          
+          const scaleX = layer.flipH ? -1 : 1;
+          const scaleY = layer.flipV ? -1 : 1;
+          ctx.scale(scaleX, scaleY);
+          
           ctx.drawImage(
             layer.imgElement,
             -layer.width / 2,
@@ -594,6 +642,23 @@ export function PhotoEditorTool() {
         }
       } 
       
+      else if (layer.type === "eraser") {
+        ctx.strokeStyle = "rgba(0,0,0,1)";
+        ctx.lineWidth = layer.brushSize;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.globalCompositeOperation = "destination-out";
+        if (layer.points.length > 1) {
+          ctx.beginPath();
+          ctx.moveTo(layer.points[0].x, layer.points[0].y);
+          for (let i = 1; i < layer.points.length; i++) {
+            ctx.lineTo(layer.points[i].x, layer.points[i].y);
+          }
+          ctx.stroke();
+        }
+        ctx.globalCompositeOperation = "source-over";
+      }
+
       else if (layer.type === "pen" || layer.type === "line" || layer.type === "arrow" || layer.type === "rect" || layer.type === "circle") {
         ctx.strokeStyle = layer.color;
         ctx.lineWidth = layer.brushSize;
@@ -730,7 +795,7 @@ export function PhotoEditorTool() {
       setIsDrawing(true);
       setDrawStartPos(coords);
       
-      if (brushMode === "pen") {
+      if (brushMode === "pen" || brushMode === "eraser") {
         setCurrentPoints([coords]);
       } else {
         setCurrentPoints([coords, coords]);
@@ -789,15 +854,21 @@ export function PhotoEditorTool() {
       const canvas = canvasRef.current;
       const ctx = canvas?.getContext("2d");
       
-      if (brushMode === "pen") {
+      if (brushMode === "pen" || brushMode === "eraser") {
         setCurrentPoints(prev => [...prev, coords]);
         
         // draw intermediate preview stroke on screen
         if (ctx) {
           ctx.save();
-          ctx.strokeStyle = brushColor;
+          if (brushMode === "eraser") {
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.strokeStyle = "rgba(0,0,0,1)";
+          } else {
+            ctx.strokeStyle = brushColor;
+          }
           ctx.lineWidth = brushSize;
           ctx.lineCap = "round";
+          ctx.lineJoin = "round";
           ctx.globalAlpha = brushOpacity / 100;
           ctx.beginPath();
           ctx.moveTo(currentPoints[currentPoints.length - 1]?.x || coords.x, currentPoints[currentPoints.length - 1]?.y || coords.y);
@@ -907,6 +978,28 @@ export function PhotoEditorTool() {
     if (selectedLayerId && drawStartPos) {
       handleLayerInteractionEnd();
       setDrawStartPos(null);
+    }
+  };
+
+  // Resize canvas helper
+  const resizeBackgroundImage = (w: number, h: number) => {
+    if (!bgImage) return;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      ctx.drawImage(bgImage, 0, 0, w, h);
+      const dataUrl = canvas.toDataURL();
+      
+      const img = new Image();
+      img.src = dataUrl;
+      img.onload = () => {
+        setBgImage(img);
+        setBgImageSrc(dataUrl);
+        pushHistory(dataUrl, layers, adjustments);
+      };
     }
   };
 
@@ -1095,6 +1188,15 @@ export function PhotoEditorTool() {
   return (
     <div className="w-full flex flex-col gap-6">
       
+      {/* Hidden file input for base image loading (always mounted) */}
+      <input 
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={(e) => e.target.files && loadFiles(e.target.files)}
+      />
+      
       {/* Upload Zone triggers when empty */}
       {!bgImageSrc ? (
         <div 
@@ -1109,13 +1211,6 @@ export function PhotoEditorTool() {
               : "border-slate-350 dark:border-slate-800 hover:border-[#518231] dark:hover:border-[#518231] bg-white dark:bg-slate-900/40 hover:bg-slate-50 dark:hover:bg-slate-900/80"
           }`}
         >
-          <input 
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={(e) => e.target.files && loadFiles(e.target.files)}
-          />
           <div className="w-16 h-16 rounded-full bg-slate-50 dark:bg-slate-800 text-slate-400 flex items-center justify-center group-hover:scale-105 group-hover:bg-[#518231]/10 group-hover:text-[#518231] transition-all mb-4">
             <Upload size={28} />
           </div>
@@ -1404,6 +1499,7 @@ export function PhotoEditorTool() {
                     <div className="grid grid-cols-3 gap-2">
                       {[
                         { id: "pen", label: "Pen Brush", icon: Brush },
+                        { id: "eraser", label: "Eraser", icon: Eraser },
                         { id: "line", label: "Line", icon: ImageIcon },
                         { id: "arrow", label: "Arrow", icon: ArrowUpRight },
                         { id: "rect", label: "Rectangle", icon: Square },
@@ -1545,6 +1641,37 @@ export function PhotoEditorTool() {
                     </div>
                   </div>
 
+                  {/* Canvas Resize Controls */}
+                  <div className="space-y-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+                    <label className="text-[10px] font-bold text-slate-400 uppercase block tracking-wider">Canvas Custom Resize</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-semibold text-slate-500">Width (px)</span>
+                        <input
+                          type="number"
+                          value={canvasWidth}
+                          onChange={(e) => setCanvasWidth(Number(e.target.value))}
+                          className="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs font-mono font-bold focus:outline-none"
+                        />
+                      </div>
+                      <div className="space-y-1">
+                        <span className="text-[10px] font-semibold text-slate-500">Height (px)</span>
+                        <input
+                          type="number"
+                          value={canvasHeight}
+                          onChange={(e) => setCanvasHeight(Number(e.target.value))}
+                          className="w-full px-2.5 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs font-mono font-bold focus:outline-none"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => resizeBackgroundImage(canvasWidth, canvasHeight)}
+                      className="w-full py-2 bg-[#518231] hover:bg-[#436a28] text-white rounded-lg text-xs font-bold transition-all animate-in"
+                    >
+                      Apply Canvas Resize
+                    </button>
+                  </div>
+
                 </div>
               )}
 
@@ -1560,13 +1687,14 @@ export function PhotoEditorTool() {
                       className="hidden"
                       onChange={(e) => e.target.files && addImageOverlay(e.target.files[0])}
                     />
-                    <button
-                      onClick={() => overlayInputRef.current?.click()}
-                      className="text-[10px] text-[#518231] font-bold hover:underline"
-                    >
-                      + Overlay Image
-                    </button>
                   </div>
+
+                  <button
+                    onClick={() => overlayInputRef.current?.click()}
+                    className="w-full py-2 bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-350 font-bold rounded-xl text-xs transition-all border border-dashed border-slate-200 dark:border-slate-800 flex items-center justify-center gap-1.5 mb-2"
+                  >
+                    <Plus size={13} /> Add Image Overlay Layer
+                  </button>
 
                   {layers.length === 0 ? (
                     <p className="text-[11px] text-slate-400 text-center italic py-6">No active layers. Add text or brush highlights.</p>
@@ -1619,6 +1747,322 @@ export function PhotoEditorTool() {
                 </div>
               )}
 
+              {/* Contextual Selected Layer Settings Card */}
+              {selectedLayerId && (() => {
+                const layer = layers.find(l => l.id === selectedLayerId);
+                if (!layer) return null;
+                return (
+                  <div className="p-4 bg-slate-50 dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800/80 rounded-xl space-y-3.5 mt-4">
+                    <div className="flex items-center justify-between border-b border-slate-200/50 dark:border-slate-800/50 pb-2">
+                      <div className="flex items-center gap-1.5">
+                        <Settings size={13} className="text-[#518231]" />
+                        <span className="text-xs font-bold text-slate-800 dark:text-white capitalize">
+                          {layer.type} Layer Controls
+                        </span>
+                      </div>
+                      <button
+                        onClick={() => setSelectedLayerId(null)}
+                        className="p-1 rounded hover:bg-slate-250 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-650"
+                        title="Deselect Layer"
+                      >
+                        <X size={12} />
+                      </button>
+                    </div>
+
+                    {/* Layer Specific Fields */}
+                    {layer.type === "text" && (
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <span className="text-[10px] font-semibold text-slate-500">Edit Text</span>
+                          <input
+                            type="text"
+                            value={layer.text}
+                            onChange={(e) => updateLayerProp(layer.id, { text: e.target.value })}
+                            className="w-full px-2.5 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-xs font-semibold focus:outline-none"
+                          />
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1">
+                            <span className="text-[10px] font-semibold text-slate-500">Font Size</span>
+                            <input
+                              type="number"
+                              min="8"
+                              max="300"
+                              value={layer.fontSize}
+                              onChange={(e) => updateLayerProp(layer.id, { fontSize: Number(e.target.value) })}
+                              className="w-full px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs font-mono font-bold"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <span className="text-[10px] font-semibold text-slate-500">Stroke Width</span>
+                            <input
+                              type="number"
+                              min="0"
+                              max="30"
+                              value={layer.strokeWidth}
+                              onChange={(e) => updateLayerProp(layer.id, { strokeWidth: Number(e.target.value) })}
+                              className="w-full px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs font-mono font-bold"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-[10px] font-semibold text-slate-500 block mb-1">Fill Color</span>
+                            <div className="flex gap-1.5">
+                              <input
+                                type="color"
+                                value={layer.color}
+                                onChange={(e) => updateLayerProp(layer.id, { color: e.target.value })}
+                                className="w-6 h-6 rounded border cursor-pointer bg-transparent"
+                              />
+                              <input
+                                type="text"
+                                value={layer.color}
+                                onChange={(e) => updateLayerProp(layer.id, { color: e.target.value })}
+                                className="w-full px-1.5 py-0.5 bg-white dark:bg-slate-900 border border-slate-200 rounded text-[10px] font-mono"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <span className="text-[10px] font-semibold text-slate-500 block mb-1">Stroke Color</span>
+                            <div className="flex gap-1.5">
+                              <input
+                                type="color"
+                                value={layer.strokeColor}
+                                onChange={(e) => updateLayerProp(layer.id, { strokeColor: e.target.value })}
+                                className="w-6 h-6 rounded border cursor-pointer bg-transparent"
+                              />
+                              <input
+                                type="text"
+                                value={layer.strokeColor}
+                                onChange={(e) => updateLayerProp(layer.id, { strokeColor: e.target.value })}
+                                className="w-full px-1.5 py-0.5 bg-white dark:bg-slate-900 border border-slate-200 rounded text-[10px] font-mono"
+                              />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="space-y-1.5">
+                          <span className="text-[10px] font-semibold text-slate-500 block">Font Family</span>
+                          <select
+                            value={layer.fontFamily}
+                            onChange={(e) => updateLayerProp(layer.id, { fontFamily: e.target.value })}
+                            className="w-full px-2 py-1.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-xs font-semibold text-slate-700 dark:text-slate-300"
+                          >
+                            <option value="sans-serif">Sans Serif</option>
+                            <option value="serif">Classic Serif</option>
+                            <option value="monospace">Monospace</option>
+                            <option value="cursive">Cursive</option>
+                            <option value="fantasy">Impact Display</option>
+                          </select>
+                        </div>
+
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => updateLayerProp(layer.id, { bold: !layer.bold })}
+                            className={`flex-1 py-1 text-xs font-bold rounded border ${layer.bold ? "bg-slate-850 text-white dark:bg-slate-700" : "bg-white dark:bg-slate-900 border-slate-200"}`}
+                          >
+                            Bold
+                          </button>
+                          <button
+                            onClick={() => updateLayerProp(layer.id, { italic: !layer.italic })}
+                            className={`flex-1 py-1 text-xs font-bold rounded border ${layer.italic ? "bg-slate-850 text-white dark:bg-slate-700" : "bg-white dark:bg-slate-900 border-slate-200"}`}
+                          >
+                            Italic
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {layer.type === "image" && (
+                      <div className="space-y-3">
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1">
+                            <span className="text-[10px] font-semibold text-slate-500">Width (px)</span>
+                            <input
+                              type="number"
+                              value={layer.width}
+                              onChange={(e) => updateLayerProp(layer.id, { width: Number(e.target.value) })}
+                              className="w-full px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs font-mono font-bold"
+                            />
+                          </div>
+                          <div className="space-y-1">
+                            <span className="text-[10px] font-semibold text-slate-500">Height (px)</span>
+                            <input
+                              type="number"
+                              value={layer.height}
+                              onChange={(e) => updateLayerProp(layer.id, { height: Number(e.target.value) })}
+                              className="w-full px-2 py-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded text-xs font-mono font-bold"
+                            />
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => {
+                            if (layer.imgElement) {
+                              const ar = layer.imgElement.naturalHeight / layer.imgElement.naturalWidth;
+                              updateLayerProp(layer.id, {
+                                width: Math.round(bgImage ? bgImage.naturalWidth / 2 : 400),
+                                height: Math.round((bgImage ? bgImage.naturalWidth / 2 : 400) * ar)
+                              });
+                            }
+                          }}
+                          className="w-full py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-750 dark:text-slate-300 rounded text-xs font-bold border border-slate-200 dark:border-slate-700"
+                        >
+                          Reset Aspect Ratio Scale
+                        </button>
+                      </div>
+                    )}
+
+                    {/* Shared: Opacity & Rotations & Flips */}
+                    {layer.type !== "eraser" && (
+                      <div className="space-y-3.5 pt-2.5 border-t border-slate-200/50">
+                        {/* Opacity slider */}
+                        <div className="space-y-1.5">
+                          <div className="flex justify-between text-[10px] font-semibold text-slate-500">
+                            <span>Layer Opacity</span>
+                            <span className="font-bold text-[#518231]">{layer.opacity}%</span>
+                          </div>
+                          <input
+                            type="range"
+                            min="10"
+                            max="100"
+                            value={layer.opacity}
+                            onChange={(e) => updateLayerProp(layer.id, { opacity: Number(e.target.value) })}
+                            className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#518231]"
+                          />
+                        </div>
+
+                        {/* Rotation slider (for Text & Image) */}
+                        {(layer.type === "text" || layer.type === "image") && (
+                          <div className="space-y-1.5">
+                            <div className="flex justify-between text-[10px] font-semibold text-slate-500">
+                              <span>Layer Rotation</span>
+                              <span className="font-bold text-[#518231]">{layer.rotation}°</span>
+                            </div>
+                            <input
+                              type="range"
+                              min="0"
+                              max="360"
+                              value={layer.rotation}
+                              onChange={(e) => updateLayerProp(layer.id, { rotation: Number(e.target.value) })}
+                              className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#518231]"
+                            />
+                          </div>
+                        )}
+
+                        {/* Flip Toggles */}
+                        {(layer.type === "text" || layer.type === "image") && (
+                          <div className="grid grid-cols-2 gap-2">
+                            <button
+                              onClick={() => updateLayerProp(layer.id, { flipH: !layer.flipH })}
+                              className={`py-1 rounded text-xs border font-bold flex items-center justify-center gap-1 ${layer.flipH ? "bg-slate-800 text-white dark:bg-slate-700" : "bg-white dark:bg-slate-900"}`}
+                              title="Flip Horizontally"
+                            >
+                              <RefreshCcw size={12} className="transform rotate-90" />
+                              Flip Horiz
+                            </button>
+                            <button
+                              onClick={() => updateLayerProp(layer.id, { flipV: !layer.flipV })}
+                              className={`py-1 rounded text-xs border font-bold flex items-center justify-center gap-1 ${layer.flipV ? "bg-slate-800 text-white dark:bg-slate-700" : "bg-white dark:bg-slate-900"}`}
+                              title="Flip Vertically"
+                            >
+                              <RefreshCcw size={12} />
+                              Flip Vert
+                            </button>
+                          </div>
+                        )}
+
+                        {/* Ordering & Reordering Depths */}
+                        <div className="space-y-1 pt-1">
+                          <span className="text-[10px] font-semibold text-slate-500 block mb-1">Layer Depth</span>
+                          <div className="grid grid-cols-4 gap-1">
+                            <button
+                              onClick={() => {
+                                setLayers(prev => {
+                                  const target = prev.find(l => l.id === layer.id);
+                                  if (!target) return prev;
+                                  const filtered = prev.filter(l => l.id !== layer.id);
+                                  return [...filtered, target]; // last is rendered top/front
+                                });
+                              }}
+                              className="py-1 text-[9px] font-bold bg-white dark:bg-slate-900 hover:bg-slate-50 border rounded text-slate-755 dark:text-slate-300"
+                              title="Move to Front"
+                            >
+                              Front
+                            </button>
+                            <button
+                              onClick={() => {
+                                setLayers(prev => {
+                                  const idx = prev.findIndex(l => l.id === layer.id);
+                                  if (idx === -1 || idx === prev.length - 1) return prev;
+                                  const next = [...prev];
+                                  next[idx] = next[idx + 1];
+                                  next[idx + 1] = prev[idx];
+                                  return next;
+                                });
+                              }}
+                              className="py-1 text-[9px] font-bold bg-white dark:bg-slate-900 hover:bg-slate-50 border rounded text-slate-755 dark:text-slate-300"
+                              title="Move Up"
+                            >
+                              Up
+                            </button>
+                            <button
+                              onClick={() => {
+                                setLayers(prev => {
+                                  const idx = prev.findIndex(l => l.id === layer.id);
+                                  if (idx <= 0) return prev;
+                                  const next = [...prev];
+                                  next[idx] = next[idx - 1];
+                                  next[idx - 1] = prev[idx];
+                                  return next;
+                                });
+                              }}
+                              className="py-1 text-[9px] font-bold bg-white dark:bg-slate-900 hover:bg-slate-50 border rounded text-slate-755 dark:text-slate-300"
+                              title="Move Down"
+                            >
+                              Down
+                            </button>
+                            <button
+                              onClick={() => {
+                                setLayers(prev => {
+                                  const target = prev.find(l => l.id === layer.id);
+                                  if (!target) return prev;
+                                  const filtered = prev.filter(l => l.id !== layer.id);
+                                  return [target, ...filtered]; // first is rendered bottom/back
+                                });
+                              }}
+                              className="py-1 text-[9px] font-bold bg-white dark:bg-slate-900 hover:bg-slate-50 border rounded text-slate-755 dark:text-slate-300"
+                              title="Move to Back"
+                            >
+                              Back
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex gap-2 pt-1 border-t border-slate-200/50">
+                          <button
+                            onClick={() => duplicateLayer(layer.id)}
+                            className="flex-1 py-1.5 px-2 border rounded hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center justify-center gap-1 text-[10px] font-bold"
+                          >
+                            <Copy size={11} /> Duplicate
+                          </button>
+                          <button
+                            onClick={() => deleteLayer(layer.id)}
+                            className="flex-1 py-1.5 px-2 border border-red-200 text-red-650 hover:bg-red-50 dark:hover:bg-red-950/20 rounded flex items-center justify-center gap-1 text-[10px] font-bold"
+                          >
+                            <Trash2 size={11} /> Delete
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
+
             </div>
 
             {/* Reset & Export Actions bottom bar */}
@@ -1661,6 +2105,14 @@ export function PhotoEditorTool() {
                 >
                   <Redo2 size={14} />
                 </button>
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="px-2 py-1 flex items-center gap-1 text-slate-750 hover:text-[#518231] dark:text-slate-300 dark:hover:text-[#518231] rounded-lg border border-slate-250 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 text-xs font-bold transition-all"
+                  title="Replace Base Canvas Image"
+                >
+                  <Upload size={13} />
+                  Change Image
+                </button>
               </div>
 
               {/* Resolution details badge */}
@@ -1692,9 +2144,28 @@ export function PhotoEditorTool() {
             {/* Canvas Scrollable Workspace container */}
             <div 
               ref={workspaceRef}
-              className="flex-1 overflow-auto p-8 flex items-center justify-center relative cursor-default"
+              onDragOver={handleWorkspaceDrag}
+              onDragEnter={handleWorkspaceDrag}
+              onDragLeave={handleWorkspaceDrag}
+              onDrop={handleWorkspaceDrop}
+              className={`flex-1 overflow-auto p-8 flex items-center justify-center relative cursor-default transition-all duration-250 ${
+                workspaceDragActive ? "bg-[#518231]/5 border-2 border-dashed border-[#518231]/40" : ""
+              }`}
               style={{ backgroundImage: "radial-gradient(#cbd5e1 1px, transparent 1px)", backgroundSize: "20px 20px" }}
             >
+              {workspaceDragActive && (
+                <div className="absolute inset-0 z-10 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center pointer-events-none">
+                  <div className="bg-white dark:bg-slate-900 border border-slate-250 dark:border-slate-850 p-6 rounded-2xl shadow-xl flex flex-col items-center gap-3 text-center max-w-xs scale-95 animate-in zoom-in-95">
+                    <div className="w-12 h-12 rounded-full bg-[#518231]/10 text-[#518231] flex items-center justify-center">
+                      <Plus size={22} />
+                    </div>
+                    <h4 className="font-bold text-slate-800 dark:text-white text-sm">Add Secondary Image Overlay</h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">
+                      Drop image files here to add them as layered overlays on your canvas.
+                    </p>
+                  </div>
+                </div>
+              )}
               
               {/* Canvas scale wrapper */}
               <div 
