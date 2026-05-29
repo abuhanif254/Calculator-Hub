@@ -55,6 +55,10 @@ import { usernameGeneratorConfig } from './username-generator';
 import { randomStringGeneratorConfig } from './random-string-generator';
 import { strongPasswordGeneratorConfig } from './strong-password-generator';
 import { rgbToHexConfig } from './rgb-to-hex';
+import { mergePdfConfig } from './merge-pdf';
+import { compressImageConfig } from './compress-image';
+
+
 
 export * from './types';
 
@@ -114,6 +118,8 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [randomStringGeneratorConfig.slug]: randomStringGeneratorConfig,
   [strongPasswordGeneratorConfig.slug]: strongPasswordGeneratorConfig,
   [rgbToHexConfig.slug]: rgbToHexConfig,
+  [mergePdfConfig.slug]: mergePdfConfig,
+  [compressImageConfig.slug]: compressImageConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

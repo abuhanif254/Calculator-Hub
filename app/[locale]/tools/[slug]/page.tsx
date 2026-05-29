@@ -58,6 +58,10 @@ const UsernameGeneratorTool = dynamic(() => import('../../../components/tools/Us
 const RandomStringGeneratorTool = dynamic(() => import('../../../components/tools/RandomStringGeneratorTool').then(m => m.RandomStringGeneratorTool));
 const StrongPasswordGeneratorTool = dynamic(() => import('../../../components/tools/StrongPasswordGeneratorTool').then(m => m.StrongPasswordGeneratorTool));
 const RgbToHexTool = dynamic(() => import('../../../components/tools/RgbToHexTool').then(m => m.RgbToHexTool));
+const MergePdfTool = dynamic(() => import('../../../components/tools/MergePdfTool').then(m => m.MergePdfTool));
+const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
+
+
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -120,7 +124,9 @@ const toolComponents: Record<string, React.ComponentType> = {
   "username-generator": UsernameGeneratorTool,
   "random-string-generator": RandomStringGeneratorTool,
   "strong-password-generator": StrongPasswordGeneratorTool,
-  "rgb-to-hex": RgbToHexTool
+  "rgb-to-hex": RgbToHexTool,
+  "merge-pdf": MergePdfTool,
+  "compress-image": CompressImageTool
 };
 
 
