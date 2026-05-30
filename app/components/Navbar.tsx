@@ -12,6 +12,8 @@ const developerToolsMenu = [
     title: "Text & Formatting",
     icon: FileText,
     items: [
+      { name: "Word Counter & Character Counter", desc: "Count words, characters, and sentences in real time" },
+      { name: "Case Converter", desc: "Convert text letter cases instantly" },
       { name: "JSON Formatter", desc: "Format and indent JSON data" },
       { name: "JSON Validator", desc: "Validate your JSON strings" },
       { name: "HTML Formatter", desc: "Format HTML code" },
@@ -46,6 +48,9 @@ const developerToolsMenu = [
     title: "Generators",
     icon: Zap,
     items: [
+      { name: "AI Prompt Helper & Optimizer", desc: "Optimize prompts for ChatGPT, Claude, and Gemini" },
+      { name: "Instagram & TikTok Hashtag Generator", desc: "Generate trending, niche, and viral hashtags for social media posts" },
+      { name: "Bio Link Page Generator", desc: "Create a beautiful, mobile-first personal landing page hub" },
       { name: "UUID Generator", desc: "Generate UUIDs v4" },
       { name: "Slug Generator", desc: "Create URL-friendly slugs" },
       { name: "Lorem Ipsum Generator", desc: "Generate placeholder text" },

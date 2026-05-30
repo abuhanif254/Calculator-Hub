@@ -59,6 +59,11 @@ import { mergePdfConfig } from './merge-pdf';
 import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
+import { wordCounterConfig } from './word-counter';
+import { caseConverterConfig } from './case-converter';
+import { aiPromptHelperConfig } from './ai-prompt-helper';
+import { instagramTiktokHashtagGeneratorConfig } from './instagram-tiktok-hashtag-generator';
+import { bioLinkPageGeneratorConfig } from './bio-link-page-generator';
 
 
 
@@ -124,6 +129,11 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [compressImageConfig.slug]: compressImageConfig,
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,
+  [wordCounterConfig.slug]: wordCounterConfig,
+  [caseConverterConfig.slug]: caseConverterConfig,
+  [aiPromptHelperConfig.slug]: aiPromptHelperConfig,
+  [instagramTiktokHashtagGeneratorConfig.slug]: instagramTiktokHashtagGeneratorConfig,
+  [bioLinkPageGeneratorConfig.slug]: bioLinkPageGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

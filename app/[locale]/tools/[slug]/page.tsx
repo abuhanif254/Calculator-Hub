@@ -62,6 +62,11 @@ const MergePdfTool = dynamic(() => import('../../../components/tools/MergePdfToo
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
+const WordCounterTool = dynamic(() => import('../../../components/tools/WordCounterTool').then(m => m.WordCounterTool));
+const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseConverterTool').then(m => m.CaseConverterTool));
+const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPromptHelperTool').then(m => m.AIPromptHelperTool));
+const InstagramTiktokHashtagGeneratorTool = dynamic(() => import('../../../components/tools/InstagramTiktokHashtagGeneratorTool').then(m => m.InstagramTiktokHashtagGeneratorTool));
+const BioLinkPageGeneratorTool = dynamic(() => import('../../../components/tools/BioLinkPageGeneratorTool').then(m => m.BioLinkPageGeneratorTool));
 
 
 import { Link, routing } from '../../../../i18n/routing';
@@ -130,7 +135,12 @@ const toolComponents: Record<string, React.ComponentType> = {
   "merge-pdf": MergePdfTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
-  "photo-editor": PhotoEditorTool
+  "photo-editor": PhotoEditorTool,
+  "word-counter": WordCounterTool,
+  "case-converter": CaseConverterTool,
+  "ai-prompt-helper": AIPromptHelperTool,
+  "instagram-tiktok-hashtag-generator": InstagramTiktokHashtagGeneratorTool,
+  "bio-link-page-generator": BioLinkPageGeneratorTool
 };
 
 
