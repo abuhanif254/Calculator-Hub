@@ -62,6 +62,7 @@ const MergePdfTool = dynamic(() => import('../../../components/tools/MergePdfToo
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
+const WordCounterTool = dynamic(() => import('../../../components/tools/WordCounterTool').then(m => m.WordCounterTool));
 
 
 import { Link, routing } from '../../../../i18n/routing';
@@ -130,7 +131,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "merge-pdf": MergePdfTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
-  "photo-editor": PhotoEditorTool
+  "photo-editor": PhotoEditorTool,
+  "word-counter": WordCounterTool
 };
 
 

@@ -23,6 +23,7 @@ const developerToolsMenu = [
       { name: "YAML Formatter", desc: "Format YAML files" },
       { name: "CSV Viewer", desc: "View CSV data as table" },
       { name: "Diff Checker", desc: "Compare text differences" },
+      { name: "Word Counter & Character Counter", desc: "Count words, characters, and sentences in real time" },
     ]
   },
   {

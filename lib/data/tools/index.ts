@@ -59,6 +59,7 @@ import { mergePdfConfig } from './merge-pdf';
 import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
+import { wordCounterConfig } from './word-counter';
 
 
 
@@ -124,6 +125,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [compressImageConfig.slug]: compressImageConfig,
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,
+  [wordCounterConfig.slug]: wordCounterConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
