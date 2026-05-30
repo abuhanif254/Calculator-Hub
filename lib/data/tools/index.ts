@@ -63,6 +63,7 @@ import { wordCounterConfig } from './word-counter';
 import { caseConverterConfig } from './case-converter';
 import { aiPromptHelperConfig } from './ai-prompt-helper';
 import { instagramTiktokHashtagGeneratorConfig } from './instagram-tiktok-hashtag-generator';
+import { bioLinkPageGeneratorConfig } from './bio-link-page-generator';
 
 
 
@@ -132,6 +133,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [caseConverterConfig.slug]: caseConverterConfig,
   [aiPromptHelperConfig.slug]: aiPromptHelperConfig,
   [instagramTiktokHashtagGeneratorConfig.slug]: instagramTiktokHashtagGeneratorConfig,
+  [bioLinkPageGeneratorConfig.slug]: bioLinkPageGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

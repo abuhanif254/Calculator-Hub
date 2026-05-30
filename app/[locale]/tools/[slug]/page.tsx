@@ -66,6 +66,7 @@ const WordCounterTool = dynamic(() => import('../../../components/tools/WordCoun
 const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseConverterTool').then(m => m.CaseConverterTool));
 const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPromptHelperTool').then(m => m.AIPromptHelperTool));
 const InstagramTiktokHashtagGeneratorTool = dynamic(() => import('../../../components/tools/InstagramTiktokHashtagGeneratorTool').then(m => m.InstagramTiktokHashtagGeneratorTool));
+const BioLinkPageGeneratorTool = dynamic(() => import('../../../components/tools/BioLinkPageGeneratorTool').then(m => m.BioLinkPageGeneratorTool));
 
 
 import { Link, routing } from '../../../../i18n/routing';
@@ -138,7 +139,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "word-counter": WordCounterTool,
   "case-converter": CaseConverterTool,
   "ai-prompt-helper": AIPromptHelperTool,
-  "instagram-tiktok-hashtag-generator": InstagramTiktokHashtagGeneratorTool
+  "instagram-tiktok-hashtag-generator": InstagramTiktokHashtagGeneratorTool,
+  "bio-link-page-generator": BioLinkPageGeneratorTool
 };
 
 
