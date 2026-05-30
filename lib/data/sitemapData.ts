@@ -107,6 +107,8 @@ export const developerToolsMenu = [
     id: "text-formatting",
     description: "Format, minify, and validate JSON, HTML, CSS, SQL, and other text-based documents.",
     items: [
+      { name: "Word Counter & Character Counter", desc: "Count words, characters, and sentences in real time" },
+      { name: "Case Converter", desc: "Convert text letter cases instantly" },
       { name: "JSON Formatter", desc: "Format and indent JSON data" },
       { name: "JSON Validator", desc: "Validate your JSON strings" },
       { name: "HTML Formatter", desc: "Format HTML code" },
@@ -118,8 +120,6 @@ export const developerToolsMenu = [
       { name: "YAML Formatter", desc: "Format YAML files" },
       { name: "CSV Viewer", desc: "View CSV data as table" },
       { name: "Diff Checker", desc: "Compare text differences" },
-      { name: "Word Counter & Character Counter", desc: "Count words, characters, and sentences in real time" },
-      { name: "Case Converter", desc: "Convert text letter cases instantly" },
     ]
   },
   {
@@ -147,6 +147,7 @@ export const developerToolsMenu = [
     id: "generators",
     description: "Instantly create UUIDs, mock user data, passwords, API mock data, and HTML tables.",
     items: [
+      { name: "AI Prompt Helper & Optimizer", desc: "Optimize prompts for ChatGPT, Claude, and Gemini" },
       { name: "UUID Generator", desc: "Generate UUIDs v4" },
       { name: "Slug Generator", desc: "Create URL-friendly slugs" },
       { name: "Lorem Ipsum Generator", desc: "Generate placeholder text" },

@@ -64,6 +64,7 @@ const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeIm
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
 const WordCounterTool = dynamic(() => import('../../../components/tools/WordCounterTool').then(m => m.WordCounterTool));
 const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseConverterTool').then(m => m.CaseConverterTool));
+const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPromptHelperTool').then(m => m.AIPromptHelperTool));
 
 
 import { Link, routing } from '../../../../i18n/routing';
@@ -134,7 +135,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,
   "word-counter": WordCounterTool,
-  "case-converter": CaseConverterTool
+  "case-converter": CaseConverterTool,
+  "ai-prompt-helper": AIPromptHelperTool
 };
 
 

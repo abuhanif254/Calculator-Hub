@@ -61,6 +61,7 @@ import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
 import { wordCounterConfig } from './word-counter';
 import { caseConverterConfig } from './case-converter';
+import { aiPromptHelperConfig } from './ai-prompt-helper';
 
 
 
@@ -128,6 +129,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [photoEditorConfig.slug]: photoEditorConfig,
   [wordCounterConfig.slug]: wordCounterConfig,
   [caseConverterConfig.slug]: caseConverterConfig,
+  [aiPromptHelperConfig.slug]: aiPromptHelperConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
