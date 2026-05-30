@@ -63,6 +63,7 @@ const CompressImageTool = dynamic(() => import('../../../components/tools/Compre
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
 const WordCounterTool = dynamic(() => import('../../../components/tools/WordCounterTool').then(m => m.WordCounterTool));
+const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseConverterTool').then(m => m.CaseConverterTool));
 
 
 import { Link, routing } from '../../../../i18n/routing';
@@ -132,7 +133,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,
-  "word-counter": WordCounterTool
+  "word-counter": WordCounterTool,
+  "case-converter": CaseConverterTool
 };
 
 

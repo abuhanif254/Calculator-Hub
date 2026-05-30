@@ -60,6 +60,7 @@ import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
 import { wordCounterConfig } from './word-counter';
+import { caseConverterConfig } from './case-converter';
 
 
 
@@ -126,6 +127,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,
   [wordCounterConfig.slug]: wordCounterConfig,
+  [caseConverterConfig.slug]: caseConverterConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

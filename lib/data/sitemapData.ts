@@ -119,6 +119,7 @@ export const developerToolsMenu = [
       { name: "CSV Viewer", desc: "View CSV data as table" },
       { name: "Diff Checker", desc: "Compare text differences" },
       { name: "Word Counter & Character Counter", desc: "Count words, characters, and sentences in real time" },
+      { name: "Case Converter", desc: "Convert text letter cases instantly" },
     ]
   },
   {
