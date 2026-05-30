@@ -62,6 +62,7 @@ import { photoEditorConfig } from './photo-editor';
 import { wordCounterConfig } from './word-counter';
 import { caseConverterConfig } from './case-converter';
 import { aiPromptHelperConfig } from './ai-prompt-helper';
+import { instagramTiktokHashtagGeneratorConfig } from './instagram-tiktok-hashtag-generator';
 
 
 
@@ -130,6 +131,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [wordCounterConfig.slug]: wordCounterConfig,
   [caseConverterConfig.slug]: caseConverterConfig,
   [aiPromptHelperConfig.slug]: aiPromptHelperConfig,
+  [instagramTiktokHashtagGeneratorConfig.slug]: instagramTiktokHashtagGeneratorConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

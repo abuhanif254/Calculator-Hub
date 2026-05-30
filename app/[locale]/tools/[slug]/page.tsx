@@ -65,6 +65,7 @@ const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEdi
 const WordCounterTool = dynamic(() => import('../../../components/tools/WordCounterTool').then(m => m.WordCounterTool));
 const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseConverterTool').then(m => m.CaseConverterTool));
 const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPromptHelperTool').then(m => m.AIPromptHelperTool));
+const InstagramTiktokHashtagGeneratorTool = dynamic(() => import('../../../components/tools/InstagramTiktokHashtagGeneratorTool').then(m => m.InstagramTiktokHashtagGeneratorTool));
 
 
 import { Link, routing } from '../../../../i18n/routing';
@@ -136,7 +137,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "photo-editor": PhotoEditorTool,
   "word-counter": WordCounterTool,
   "case-converter": CaseConverterTool,
-  "ai-prompt-helper": AIPromptHelperTool
+  "ai-prompt-helper": AIPromptHelperTool,
+  "instagram-tiktok-hashtag-generator": InstagramTiktokHashtagGeneratorTool
 };
 
 

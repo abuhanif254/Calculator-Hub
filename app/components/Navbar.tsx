@@ -49,6 +49,7 @@ const developerToolsMenu = [
     icon: Zap,
     items: [
       { name: "AI Prompt Helper & Optimizer", desc: "Optimize prompts for ChatGPT, Claude, and Gemini" },
+      { name: "Instagram & TikTok Hashtag Generator", desc: "Generate trending, niche, and viral hashtags for social media posts" },
       { name: "UUID Generator", desc: "Generate UUIDs v4" },
       { name: "Slug Generator", desc: "Create URL-friendly slugs" },
       { name: "Lorem Ipsum Generator", desc: "Generate placeholder text" },
