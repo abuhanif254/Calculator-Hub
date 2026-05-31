@@ -6,22 +6,13 @@ import { ShieldCheck, Eye, GlobeLock, Cookie, Database, Mail, RefreshCcw, FileTe
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   
-  const languages: Record<string, string> = {
-    'x-default': '/en/privacy-policy',
-  };
-  
-  routing.locales.forEach((l) => {
-    languages[l] = `/${l}/privacy-policy`;
-  });
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: 'Privacy Policy & Data Security | Nexus Calculator',
     description: 'Detailed Privacy Policy for Nexus Calculator. Learn how we prioritize data minimalization, utilize ephemeral processing, and comply with GDPR, CCPA, and global privacy standards.',
     keywords: ['privacy policy', 'data security', 'gdpr compliance', 'ccpa compliance', 'nexus calculator privacy', 'international privacy guidelines'],
-    alternates: {
-      canonical: `/${locale}/privacy-policy`,
-      languages,
-    },
+    alternates: getCanonicalAndAlternates('/privacy-policy', locale),
     openGraph: {
       type: 'website',
       title: 'Privacy Policy | Nexus Calculator',

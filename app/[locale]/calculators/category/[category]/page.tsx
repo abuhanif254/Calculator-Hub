@@ -30,16 +30,15 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; category: string }>;
 }): Promise<Metadata> {
-  const { category } = await params;
+  const { category, locale } = await params;
   const cat = getCategoryById(category);
   if (!cat) return { title: 'Category Not Found' };
 
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
   return {
     title: cat.seoTitle,
     description: cat.seoDescription,
-    alternates: {
-      canonical: `/calculators/category/${category}`,
-    },
+    alternates: getCanonicalAndAlternates('/calculators/category/[category]', locale, category),
   };
 }
 

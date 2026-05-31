@@ -6,22 +6,13 @@ import { Scale, ShieldAlert, FileText, GlobeLock, RefreshCcw, Mail } from 'lucid
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   
-  const languages: Record<string, string> = {
-    'x-default': '/en/terms-of-use',
-  };
-  
-  routing.locales.forEach((l) => {
-    languages[l] = `/${l}/terms-of-use`;
-  });
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: 'Terms of Use & Legal Disclaimer | Nexus Calculator',
     description: 'Review the comprehensive international Terms of Use, legal disclaimers, and service guidelines for Nexus Calculator. Clear, transparent policies for our global user base.',
     keywords: ['terms of use', 'legal disclaimer', 'terms of service', 'nexus calculator policy', 'international terms'],
-    alternates: {
-      canonical: `/${locale}/terms-of-use`,
-      languages,
-    },
+    alternates: getCanonicalAndAlternates('/terms-of-use', locale),
     openGraph: {
       type: 'website',
       title: 'Terms of Use | Nexus Calculator',
