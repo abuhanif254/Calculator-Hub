@@ -7,9 +7,11 @@ import { ChevronRight, Layers, ArrowRight, Code2, Calculator } from 'lucide-reac
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const collection = getCollectionBySlug(slug);
   if (!collection) return {};
+
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: collection.seoTitle,
@@ -18,7 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: collection.seoTitle,
       description: collection.seoDescription,
       type: 'website'
-    }
+    },
+    alternates: getCanonicalAndAlternates('/collections/[slug]', locale, slug),
   };
 }
 

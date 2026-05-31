@@ -16,29 +16,21 @@ import { DynamicTrending } from "../components/DynamicTrending";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
-
-  const languages: Record<string, string> = {
-    'x-default': `${baseUrl}/en`,
-  };
-
-  routing.locales.forEach((l) => {
-    languages[l] = `${baseUrl}/${l}`;
-  });
-
+  const { getCanonicalAndAlternates, getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/', locale);
   return {
     title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
     description: 'The ultimate free ecosystem for professionals. Access hundreds of precise calculators and powerful developer utilities instantly — mortgage, BMI, JSON formatter, diff checker, and more.',
     openGraph: {
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
       description: 'Hundreds of precise calculators and powerful developer tools — all free, all instant, right in your browser.',
-      url: `${baseUrl}/${locale}`,
+      url: canonicalUrl,
       siteName: 'Nexus Calculator',
       type: 'website',
       locale: locale,
       images: [
         {
-          url: `${baseUrl}/icons/icon-512x512.png`,
+          url: `https://nexuscalculator.net/icons/icon-512x512.png`,
           width: 512,
           height: 512,
           alt: 'Nexus Calculator — Calculators & Developer Tools Platform',
@@ -49,12 +41,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
       description: 'Hundreds of precise calculators and powerful developer tools — all free, all instant, right in your browser.',
-      images: [`${baseUrl}/icons/icon-512x512.png`],
+      images: [`https://nexuscalculator.net/icons/icon-512x512.png`],
     },
-    alternates: {
-      canonical: `${baseUrl}/${locale}`,
-      languages,
-    },
+    alternates: getCanonicalAndAlternates('/', locale),
   };
 }
 

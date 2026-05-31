@@ -82,15 +82,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const metaDescription = mdData?.data?.metaDescription || calc.meta.description;
   const metaKeywords = mdData?.data?.metaKeywords || calc.meta.keywords;
 
-  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
-
-  const languages: Record<string, string> = {
-    'x-default': `${baseUrl}/en/calculators/${slug}`,
-  };
-
-  routing.locales.forEach((l) => {
-    languages[l] = `${baseUrl}/${l}/calculators/${slug}`;
-  });
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: metaTitle,
@@ -101,10 +93,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: metaDescription,
       type: "website",
     },
-    alternates: {
-      canonical: `${baseUrl}/${locale}/calculators/${slug}`,
-      languages,
-    },
+    alternates: getCanonicalAndAlternates('/calculators/[slug]', locale, slug),
   };
 }
 
@@ -143,8 +132,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const relatedTools = getRelatedCalculators(calc.slug, 8);
   const activeCategory = sitemapCategories.find(c => c.title.toLowerCase().includes(calc.category.toLowerCase())) || sitemapCategories[0];
 
-  const baseUrl = "https://nexuscalculator.net"; // Change to production domain when live
-  const canonicalUrl = `${baseUrl}/${resolvedParams.locale}/calculators/${resolvedParams.slug}`;
+  const baseUrl = "https://nexuscalculator.net";
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, resolvedParams.slug);
 
   // SoftwareApplication JSON-LD Schema
   const softwareAppSchema = {

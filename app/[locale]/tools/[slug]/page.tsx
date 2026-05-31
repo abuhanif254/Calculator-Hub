@@ -171,18 +171,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const config = getToolConfig(slug);
   if (!config) return {};
 
-  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
-
-  // Build absolute hreflang map for all supported locales
-  const languages: Record<string, string> = {
-    'x-default': `${baseUrl}/en/tools/${slug}`,
-  };
-  routing.locales.forEach((l) => {
-    const segment = toolPathSegments[l] || 'tools';
-    languages[l] = `${baseUrl}/${l}/${segment}/${slug}`;
-  });
-
-  const localeSegment = toolPathSegments[locale] || 'tools';
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: `${config.title} | Developer Tools | Nexus Calculator`,
@@ -193,10 +182,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: config.shortDescription,
       type: 'website',
     },
-    alternates: {
-      canonical: `${baseUrl}/${locale}/${localeSegment}/${slug}`,
-      languages,
-    },
+    alternates: getCanonicalAndAlternates('/tools/[slug]', locale, slug),
   };
 }
 
@@ -210,8 +196,8 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   }
 
   const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
-  const localeSegment = toolPathSegments[locale] || 'tools';
-  const canonicalUrl = `${baseUrl}/${locale}/${localeSegment}/${config.slug}`;
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/tools/[slug]', locale, config.slug);
 
   const ToolComponent = toolComponents[config.slug];
 

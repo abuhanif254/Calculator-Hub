@@ -30,12 +30,11 @@ interface Post {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
   return {
     title: 'Community Discussions | NexusCalculator',
     description: 'Join the NexusCalculator community. Ask questions, share tips, and discuss calculators with fellow users.',
-    alternates: {
-      canonical: `/${locale}/community`,
-    },
+    alternates: getCanonicalAndAlternates('/community', locale),
   };
 }
 
@@ -86,7 +85,7 @@ export default async function CommunityIndex({ params }: { params: Promise<{ loc
     '@context': 'https://schema.org',
     '@type': 'DiscussionForumPosting',
     headline: 'NexusCalculator Community Discussions',
-    url: `https://nexuscalculator.net/${resolvedParams.locale}/community`,
+    url: (await import('@/lib/utils/seoUtils')).getCanonicalUrl('/community', resolvedParams.locale),
     description: 'Community forum for calculator and developer tool discussions.',
   };
 

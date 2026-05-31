@@ -7,9 +7,11 @@ import { ChevronRight, ArrowRight, Check, X, Scale } from 'lucide-react';
 import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const comparison = getComparisonBySlug(slug);
   if (!comparison) return {};
+
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: comparison.seoTitle,
@@ -18,7 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: comparison.seoTitle,
       description: comparison.seoDescription,
       type: 'article'
-    }
+    },
+    alternates: getCanonicalAndAlternates('/compare/[slug]', locale, slug),
   };
 }
 

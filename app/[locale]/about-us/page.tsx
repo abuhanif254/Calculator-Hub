@@ -10,21 +10,12 @@ import { setRequestLocale } from 'next-intl/server';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   
-  const languages: Record<string, string> = {
-    'x-default': '/en/about-us',
-  };
-  
-  routing.locales.forEach((l) => {
-    languages[l] = `/${l}/about-us`;
-  });
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: 'About Us | Nexus Calculator - Your Trusted Global Calculator Platform',
     description: 'Discover the story behind Nexus Calculator. Learn about our mission to provide accurate, high-performance, and accessible calculators for users worldwide, and meet our lead developer.',
-    alternates: {
-      canonical: `/${locale}/about-us`,
-      languages,
-    },
+    alternates: getCanonicalAndAlternates('/about-us', locale),
     openGraph: {
       type: 'website',
       title: 'About Us | Nexus Calculator',
