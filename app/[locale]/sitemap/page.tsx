@@ -132,7 +132,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
               name="q"
               type="text" 
               placeholder="Search for any tool..." 
-              className="block w-full pl-12 pr-4 py-4 md:py-5 border-2 border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-0 focus:border-[#518231] transition-colors text-lg"
+              className="block w-full pl-12 pr-4 py-4 md:py-5 border-2 border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-[#518231] transition-colors text-lg"
             />
             <button type="submit" className="absolute inset-y-2 right-2 bg-[#518231] hover:bg-[#436a28] text-white px-6 py-2 rounded-lg font-semibold transition-colors">
               Search

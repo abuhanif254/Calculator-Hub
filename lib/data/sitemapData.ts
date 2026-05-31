@@ -186,6 +186,7 @@ export const developerToolsMenu = [
     id: "web-dev-utilities",
     description: "Essential utilities like SEO tag generators, Minifiers, HTTP header checkers, and IP lookups.",
     items: [
+      { name: "HTML / CSS / JavaScript Playground", desc: "Live code editor for frontend development" },
       { name: "Meta Tag Generator", desc: "Generate HTML meta tags" },
       { name: "Open Graph Generator", desc: "Generate OG tags" },
       { name: "Twitter Card Generator", desc: "Generate Twitter cards" },

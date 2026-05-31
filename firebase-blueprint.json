@@ -34,6 +34,9 @@
     "posts/{postId}": {
       "schema": { "$ref": "#/entities/Post" },
       "description": "Community posts"
+    },
+    "playground_pens/{penId}": {
+      "description": "Shared code snippets for HTML/CSS/JS Playground"
     }
   }
 }

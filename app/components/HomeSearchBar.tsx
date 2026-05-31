@@ -2,41 +2,34 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Search, Calculator, Code, ArrowRight } from "lucide-react";
-import { useRouter, resolveIntlHref } from "../../i18n/routing";
-import { sitemapCategories } from "../../lib/data/sitemapData";
-import { resolveHref } from "../../lib/utils/linkResolver";
+import { useRouter } from "../../i18n/routing";
 
-// Extract all tools and categories
-const allCalculators = sitemapCategories.flatMap(cat => 
-  cat.links.map(link => ({ name: link, category: cat.title, type: "calculator" }))
-);
-
-const developerTools = [
-  "JSON Formatter", "JSON Validator", "HTML Formatter", "CSS Beautifier", "JS Beautifier",
-  "XML Formatter", "Markdown Previewer", "SQL Formatter", "YAML Formatter", "CSV Viewer", "Diff Checker",
-  "Base64 Encode", "Base64 Decode", "URL Encoder", "URL Decoder", "JWT Decoder", "Hash Generator",
-  "MD5 Generator", "SHA256 Generator", "Password Generator", "HMAC Generator", "QR Code Generator",
-  "UUID Generator", "Slug Generator", "Lorem Ipsum Generator", "Random Number Generator",
-  "HEX to RGB", "RGB to HEX", "Color Picker", "Gradient Generator", "Meta Tag Generator",
-  "Open Graph Generator", "Twitter Card Generator", "robots.txt Generator", "sitemap.xml Generator",
-  "CSS Minifier", "JS Minifier", "HTML Minifier"
-].map(name => ({ name, category: "Developer Tools", type: "dev-tool" }));
-
-const categories = sitemapCategories.map(cat => ({ name: cat.title, category: "Category", type: "category" }));
-
-const allSearchableItems = [...allCalculators, ...developerTools, ...categories];
-
-// Create slugs dynamically via linkResolver
-const getHref = (item: any) => {
-  if (item.type === "category") return "/sitemap";
-  return resolveHref(item.name);
-};
+// Searchable items will be fetched from search-index.json
 
 export function HomeSearchBar() {
   const [query, setQuery] = useState("");
   const [isFocused, setIsFocused] = useState(false);
+  const [tools, setTools] = useState<any[]>([]);
   const router = useRouter();
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    fetch('/search-index.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data && Array.isArray(data.tools)) {
+          const formattedTools = data.tools.map((t: any) => ({
+            name: t.title,
+            category: t.category,
+            type: t.type === 'developer-tool' ? 'dev-tool' : 'calculator',
+            slug: t.slug,
+            href: t.href
+          }));
+          setTools(formattedTools);
+        }
+      })
+      .catch(err => console.error("Failed to load search index", err));
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -58,7 +51,7 @@ export function HomeSearchBar() {
 
   const filteredItems = query.trim() === "" 
     ? [] 
-    : allSearchableItems.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8);
+    : tools.filter(item => item.name.toLowerCase().includes(query.toLowerCase())).slice(0, 8);
 
   return (
     <div ref={wrapperRef} className="relative w-full z-50">
@@ -89,7 +82,10 @@ export function HomeSearchBar() {
                     type="button"
                     className="w-full text-left px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center justify-between border-b border-slate-50 dark:border-slate-700/50 last:border-0 transition-colors"
                     onClick={() => {
-                      router.push(resolveIntlHref(getHref(item)));
+                      router.push({
+                        pathname: item.type === 'dev-tool' ? '/tools/[slug]' : '/calculators/[slug]',
+                        params: { slug: item.slug }
+                      } as any);
                       setIsFocused(false);
                       setQuery("");
                     }}

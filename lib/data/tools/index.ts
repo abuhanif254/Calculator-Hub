@@ -64,6 +64,7 @@ import { caseConverterConfig } from './case-converter';
 import { aiPromptHelperConfig } from './ai-prompt-helper';
 import { instagramTiktokHashtagGeneratorConfig } from './instagram-tiktok-hashtag-generator';
 import { bioLinkPageGeneratorConfig } from './bio-link-page-generator';
+import { htmlCssJsPlaygroundConfig } from './html-css-js-playground';
 
 
 
@@ -134,6 +135,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [aiPromptHelperConfig.slug]: aiPromptHelperConfig,
   [instagramTiktokHashtagGeneratorConfig.slug]: instagramTiktokHashtagGeneratorConfig,
   [bioLinkPageGeneratorConfig.slug]: bioLinkPageGeneratorConfig,
+  [htmlCssJsPlaygroundConfig.slug]: htmlCssJsPlaygroundConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

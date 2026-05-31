@@ -64,68 +64,68 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
       />
 
       {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 mb-8">
+      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
         <ol className="flex items-center space-x-2">
           <li>
-            <CustomLink href="/" className="hover:text-blue-600 hover:underline transition-colors">Home</CustomLink>
+            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
           </li>
-          <li><span className="mx-1 text-slate-400">/</span></li>
-          <li aria-current="page" className="text-slate-700 font-medium">Privacy Policy</li>
+          <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
+          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">Privacy Policy</li>
         </ol>
       </nav>
 
-      <header className="mb-14 border-b border-slate-200 pb-10">
+      <header className="mb-14 border-b border-slate-200 dark:border-slate-800 pb-10">
         <div className="flex items-center gap-4 mb-6">
-          <div className="bg-slate-100 p-3 rounded-xl text-slate-700">
+          <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-slate-700 dark:text-slate-300">
             <ShieldCheck size={32} />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Privacy Policy</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Privacy Policy</h1>
         </div>
-        <p className="text-xl text-slate-600 leading-relaxed max-w-3xl">
+        <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
           We believe privacy is a fundamental right. This document outlines our transparent approach to data processing, tracking technologies, and international regulatory compliance.
         </p>
-        <div className="mt-6 inline-flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
-          <RefreshCcw size={16} className="text-slate-500" />
-          <span className="text-sm font-medium text-slate-700">Effective Date: January 1, 2024</span>
-          <span className="text-slate-300 mx-1">|</span>
-          <span className="text-sm text-slate-500">Last Modified: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+        <div className="mt-6 inline-flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
+          <RefreshCcw size={16} className="text-slate-500 dark:text-slate-400" />
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Effective Date: January 1, 2024</span>
+          <span className="text-slate-300 dark:text-slate-700 mx-1">|</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">Last Modified: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
         </div>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Table of Contents - Sticky Sidebar */}
         <div className="lg:col-span-4 hidden lg:block">
-          <div className="sticky top-24 bg-slate-50 border border-slate-200 p-6 rounded-2xl">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+          <div className="sticky top-24 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
               <FileText size={16} className="text-slate-500" />
               Contents
             </h3>
-            <ul className="space-y-3 text-sm font-medium text-slate-600">
-              <li><a href="#data-minimization" className="hover:text-blue-600 transition-colors block">1. The Principle of Data Minimization</a></li>
-              <li><a href="#information-collection" className="hover:text-blue-600 transition-colors block">2. Information Collection & Usage</a></li>
-              <li><a href="#cookies-tracking" className="hover:text-blue-600 transition-colors block">3. Cookies & Tracking Technologies</a></li>
-              <li><a href="#advertising" className="hover:text-blue-600 transition-colors block">4. Third-Party Advertisers (Google AdSense)</a></li>
-              <li><a href="#international-compliance" className="hover:text-blue-600 transition-colors block">5. International Privacy Laws (GDPR/CCPA)</a></li>
-              <li><a href="#data-security" className="hover:text-blue-600 transition-colors block">6. Infrastructure Security</a></li>
-              <li><a href="#childrens-privacy" className="hover:text-blue-600 transition-colors block">7. Children&apos;s Privacy</a></li>
+            <ul className="space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+              <li><a href="#data-minimization" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">1. The Principle of Data Minimization</a></li>
+              <li><a href="#information-collection" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">2. Information Collection & Usage</a></li>
+              <li><a href="#cookies-tracking" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">3. Cookies & Tracking Technologies</a></li>
+              <li><a href="#advertising" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">4. Third-Party Advertisers (Google AdSense)</a></li>
+              <li><a href="#international-compliance" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">5. International Privacy Laws (GDPR/CCPA)</a></li>
+              <li><a href="#data-security" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">6. Infrastructure Security</a></li>
+              <li><a href="#childrens-privacy" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">7. Children&apos;s Privacy</a></li>
             </ul>
           </div>
         </div>
 
         {/* Main Content */}
-        <article className="lg:col-span-8 prose prose-slate prose-lg max-w-none">
+        <article className="lg:col-span-8 prose prose-slate dark:prose-invert prose-lg max-w-none">
           
           <section id="data-minimization" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</span>
               The Principle of Data Minimization
             </h2>
-            <div className="bg-emerald-50 border-l-4 border-emerald-500 p-5 rounded-r-xl my-6 not-prose">
+            <div className="bg-[#518231]/5 border-l-4 border-[#518231] p-5 rounded-r-xl my-6 not-prose">
               <div className="flex gap-3">
-                <Database className="text-emerald-600 shrink-0 mt-0.5" size={24} />
+                <Database className="text-[#518231] shrink-0 mt-0.5" size={24} />
                 <div>
-                  <h3 className="font-bold text-emerald-900 mb-1">Ephemeral Processing</h3>
-                  <p className="text-emerald-800 text-sm leading-relaxed">
+                  <h3 className="font-bold text-slate-900 dark:text-white mb-1">Ephemeral Processing</h3>
+                  <p className="text-slate-800 dark:text-slate-300 text-sm leading-relaxed">
                     Nexus Calculator is fundamentally designed to function without requiring user accounts or storing personal identities. We process your inputs locally in your browser or ephemerally on edge servers. No calculation data is persistently mapped to your identity.
                   </p>
                 </div>
@@ -137,8 +137,8 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           </section>
 
           <section id="information-collection" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</span>
               Information Collection & Usage
             </h2>
             <p>We believe in strict data minimization. We only collect telemetry data strictly necessary to route traffic efficiently across our edge networks and ensure platform stability.</p>
@@ -149,13 +149,13 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           </section>
 
           <section id="cookies-tracking" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</span>
               Cookies & Tracking Technologies
             </h2>
-            <div className="flex items-start gap-4 bg-slate-50 p-6 rounded-2xl border border-slate-200 not-prose mb-6">
+            <div className="flex items-start gap-4 bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 not-prose mb-6">
               <Cookie className="text-orange-500 shrink-0" size={28} />
-              <p className="text-slate-700 text-sm leading-relaxed m-0">
+              <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed m-0">
                 Our web application leverages cookies and precise local storage APIs to preserve your session state (such as dark mode preferences and active locale configurations) and deliver network advertisements.
               </p>
             </div>
@@ -167,8 +167,8 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           </section>
 
           <section id="advertising" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</span>
               Third-Party Advertisers
             </h2>
             <p>
@@ -177,20 +177,20 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
             <p>
               Google uses advertising cookies to serve ads to users based on their prior visits to this and other websites. Google&apos;s deployment of the DART cookie enables it and its affiliates to establish interest profiles. 
             </p>
-            <p className="bg-blue-50 border border-blue-100 p-4 rounded-xl text-sm mt-4">
-              <strong>Opt-Out Protocol:</strong> Users possess the universal right to opt-out of personalized advertisement mapping by navigating to the <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="text-blue-700 font-semibold hover:underline">Google Ads Settings</a> interface. Comprehensive details exist within the <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-blue-700 font-semibold hover:underline">Google Partner Policy documentation</a>.
+            <p className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl text-sm mt-4">
+              <strong>Opt-Out Protocol:</strong> Users possess the universal right to opt-out of personalized advertisement mapping by navigating to the <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="text-[#518231] dark:text-[#6fa844] font-semibold hover:underline">Google Ads Settings</a> interface. Comprehensive details exist within the <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer" className="text-[#518231] dark:text-[#6fa844] font-semibold hover:underline">Google Partner Policy documentation</a>.
             </p>
           </section>
 
           <section id="international-compliance" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">5</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">5</span>
               International Privacy Laws
             </h2>
             
-            <div className="bg-slate-800 text-white p-6 rounded-2xl not-prose mb-6">
+            <div className="bg-slate-800 dark:bg-slate-900 border border-slate-700 dark:border-slate-800 text-white p-6 rounded-2xl not-prose mb-6">
               <div className="flex items-start gap-4">
-                <GlobeLock className="text-blue-400 shrink-0" size={28} />
+                <GlobeLock className="text-[#6fa844] shrink-0" size={28} />
                 <p className="text-slate-300 text-sm leading-relaxed">
                   As an internationally scaled utility, Nexus Calculator acknowledges localized sovereign data rights. We adhere to frameworks mitigating unauthorized extraction of Personally Identifiable Information (PII).
                 </p>
@@ -204,8 +204,8 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           </section>
 
           <section id="data-security" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">6</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">6</span>
               Infrastructure Security
             </h2>
             <p>
@@ -214,8 +214,8 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           </section>
 
           <section id="childrens-privacy" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">7</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">7</span>
               Children&apos;s Privacy
             </h2>
             <p>
@@ -223,17 +223,17 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
             </p>
           </section>
 
-          <section id="contact" className="mt-16 pt-8 border-t border-slate-200">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Contact Our Privacy Office</h2>
+          <section id="contact" className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Contact Our Privacy Office</h2>
             <p className="mb-6">
               For elevated inquiries demanding the attention of our Data Protection Officer (DPO), or to initiate a formal &quot;Right to Forget&quot; protocol, please utilize the encrypted channel below.
             </p>
-            <div className="flex gap-4">
-              <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
+            <div className="flex gap-4 flex-wrap">
+              <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
                 <Mail size={18} />
                 E-Mail
               </a>
-              <CustomLink href="/about-us" className="inline-flex items-center gap-2 bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-700 text-slate-700 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
+              <CustomLink href="/about-us" className="inline-flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-[#518231] hover:text-[#518231] dark:hover:border-[#6fa844] dark:hover:text-[#6fa844] text-slate-700 dark:text-slate-300 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
                 <Eye size={18} />
                 About Our Platform
               </CustomLink>

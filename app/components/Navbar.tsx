@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, resolveIntlHref } from "../../i18n/routing";
-import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, Bell, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon } from "lucide-react";
+import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon } from "lucide-react";
 import { sitemapCategories, pdfToolsMenu, imageToolsMenu } from "../../lib/data/sitemapData";
 import { resolveHref } from "../../lib/utils/linkResolver";
 import { AuthButton } from "./AuthButton";
+import { NotificationsPanel } from "./NotificationsPanel";
 
 const developerToolsMenu = [
   {
@@ -83,6 +84,7 @@ const developerToolsMenu = [
     title: "Web Dev Utilities",
     icon: Wrench,
     items: [
+      { name: "HTML / CSS / JavaScript Playground", desc: "Live code editor for frontend development" },
       { name: "Meta Tag Generator", desc: "Generate HTML meta tags" },
       { name: "Open Graph Generator", desc: "Generate OG tags" },
       { name: "Twitter Card Generator", desc: "Generate Twitter cards" },
@@ -148,10 +150,22 @@ export function Navbar() {
   const [mobileDevCategory, setMobileDevCategory] = useState<string | null>(null);
   const [mobilePdfCategory, setMobilePdfCategory] = useState<string | null>(null);
   const [mobileImageCategory, setMobileImageCategory] = useState<string | null>(null);
-  const [menuClicked, setMenuClicked] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setActiveMegaMenu(null);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   const handleLinkClick = () => {
-    setMenuClicked(true);
+    setActiveMegaMenu(null);
+    setIsMobileMenuOpen(false);
   };
 
   // Exclude 'Calculators for Your Site' from main top-nav for a cleaner look
@@ -159,7 +173,7 @@ export function Navbar() {
 
   return (
     <header className="bg-white border-b border-slate-200 dark:bg-slate-900 dark:border-slate-800 relative z-40">
-      <nav className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
+      <nav ref={navRef} className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
         <div className="flex justify-between h-16">
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -177,15 +191,18 @@ export function Navbar() {
           <div className="hidden lg:flex items-center space-x-1">
 
             {/* ── Developer Tools Mega Menu ── */}
-            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
-              <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+            <div className="px-3 py-2">
+              <button 
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'devTools' ? null : 'devTools')}
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'devTools' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
+              >
                 <Code size={16} className="text-[#518231]" />
                 Developer Tools
-                <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
+                <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'devTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
               {/* Dev Tools: Full-width dropdown — 5-column compact layout */}
-              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
+              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'devTools' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-5 gap-x-5 gap-y-0">
@@ -214,14 +231,17 @@ export function Navbar() {
             </div>
 
             {/* ── PDF Tools Mega Menu ── */}
-            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
-              <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+            <div className="px-3 py-2">
+              <button 
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'pdfTools' ? null : 'pdfTools')}
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'pdfTools' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
+              >
                 <File size={16} className="text-[#518231]" />
                 PDF Tools
-                <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
+                <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'pdfTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
-              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
+              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'pdfTools' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-4 gap-x-5 gap-y-0">
@@ -236,14 +256,17 @@ export function Navbar() {
             </div>
 
             {/* ── Image Tools Mega Menu ── */}
-            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
-              <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+            <div className="px-3 py-2">
+              <button 
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'imageTools' ? null : 'imageTools')}
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'imageTools' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
+              >
                 <ImageIcon size={16} className="text-[#518231]" />
                 Image Tools
-                <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
+                <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'imageTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
-              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
+              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'imageTools' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-3 gap-x-5 gap-y-0">
@@ -257,15 +280,18 @@ export function Navbar() {
             </div>
 
             {/* ── Calculators Unified Mega Menu ── */}
-            <div className="group px-3 py-2" onMouseLeave={() => setMenuClicked(false)}>
-              <button className="flex items-center gap-1 text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
+            <div className="px-3 py-2">
+              <button 
+                onClick={() => setActiveMegaMenu(activeMegaMenu === 'calculators' ? null : 'calculators')}
+                className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'calculators' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
+              >
                 <Calculator size={16} className="text-[#518231]" />
                 Calculators
-                <ChevronDown size={14} className="text-slate-400 group-hover:text-[#518231] transition-transform group-hover:rotate-180" />
+                <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'calculators' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
               {/* Calculators: Full-width 4-column mega menu */}
-              <div className={`absolute top-full left-0 w-full pt-0 opacity-0 invisible transition-all duration-300 ease-out z-50 ${menuClicked ? '' : 'group-hover:opacity-100 group-hover:visible'}`}>
+              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'calculators' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-4 gap-x-6">
@@ -319,16 +345,13 @@ export function Navbar() {
                 Community
               </Link>
               
-              <Link href="/search" className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full transition-colors dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-400">
+              <button onClick={() => window.dispatchEvent(new Event('open-command-palette'))} className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full transition-colors dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-400">
                 <Search size={14} />
                 <span className="text-sm font-medium">Search...</span>
                 <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-bold text-slate-400 bg-white border border-slate-200 rounded dark:bg-slate-900 dark:border-slate-700">Ctrl K</kbd>
-              </Link>
-
-              <button className="p-2 text-slate-400 hover:text-[#518231] transition-colors dark:text-slate-500 dark:hover:text-[#518231] relative" title="Notifications">
-                <Bell size={20} />
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border border-white dark:border-slate-900"></span>
               </button>
+
+              <NotificationsPanel />
               
               <AuthButton />
             </div>
@@ -336,10 +359,10 @@ export function Navbar() {
 
           {/* Right: Mobile menu button */}
           <div className="flex items-center lg:hidden">
-            <Link href="/search" className="p-2 me-2 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 inline-flex items-center justify-center min-h-[48px] min-w-[48px]">
+            <button onClick={() => window.dispatchEvent(new Event('open-command-palette'))} className="p-2 me-2 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 inline-flex items-center justify-center min-h-[48px] min-w-[48px]">
                <span className="sr-only">Search</span>
                <Search size={20} />
-            </Link>
+            </button>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#518231] dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 min-h-[48px] min-w-[48px]"
@@ -549,6 +572,15 @@ export function Navbar() {
             )}
           </div>
 
+        </div>
+
+        {/* Mobile Menu Footer — Auth + Notifications */}
+        <div className="border-t border-slate-100 dark:border-slate-800 px-4 py-4 flex items-center justify-between gap-3">
+          <span className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Quick Actions</span>
+          <div className="flex items-center gap-2">
+            <NotificationsPanel />
+            <AuthButton />
+          </div>
         </div>
       </div>
     </header>

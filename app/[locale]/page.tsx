@@ -1,6 +1,6 @@
 import { Link } from "../../i18n/routing";
 import Image from "next/image";
-import { PlayCircle, Calculator, ShieldCheck, LineChart, Activity, Search, MousePointerClick, Zap, Star, ChevronDown, Mail, ArrowRight, Code, Clock, TrendingUp, Layers, CheckCircle2, MessageSquare, Flame, Smartphone, Lock, UserX, Users, Rocket, FolderOpen, History, ThumbsUp, FileCode } from "lucide-react";
+import { Calculator, LineChart, Activity, Search, MousePointerClick, Zap, ChevronDown, ArrowRight, Code, Layers, CheckCircle2, Smartphone, Lock, UserX, Users, Rocket, FolderOpen, FileCode } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from 'next';
 import { routing, resolveIntlHref } from '../../i18n/routing';
@@ -170,13 +170,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 pt-16 pb-24 lg:pt-24 lg:pb-32">
+      <section className="relative overflow-hidden bg-transparent pt-16 pb-24 lg:pt-24 lg:pb-32">
         <div className="absolute inset-0 bg-gradient-to-br from-[#518231]/10 via-transparent to-[#518231]/5 -z-10" />
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div className="lg:w-1/2 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-sm font-semibold mb-6">
-                <Flame size={16} /> <span>Now more than just calculators!</span>
+                <Zap size={16} /> <span>250+ Tools — Calculators, Dev Utilities &amp; More</span>
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
                 Calculate, Build, Format & Solve — <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">All in One Platform</span>
@@ -198,13 +198,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             <div className="lg:w-1/2 relative w-full max-w-lg lg:max-w-none mx-auto" style={{ animation: 'slideInRight 0.7s ease-out forwards' }}>
 
               {/* Real Tool Preview Showcase — browser-chrome window */}
-              <div className="relative rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-slate-100 dark:border-slate-700 overflow-hidden">
+              <div className="relative rounded-2xl glass-panel-heavy overflow-hidden">
 
                 {/* Accent bar */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#518231] to-emerald-400" />
 
                 {/* Browser chrome */}
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/80">
+                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/20 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md">
                   <div className="w-3 h-3 rounded-full bg-red-400" />
                   <div className="w-3 h-3 rounded-full bg-amber-400" />
                   <div className="w-3 h-3 rounded-full bg-green-400" />
@@ -304,7 +304,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
               {/* Floating chip — tool count */}
               <div className="absolute -top-4 -right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10" style={{ animation: 'fadeInDown 0.5s ease-out 0.9s both' }}>
-                <Star size={13} className="fill-white" />
+                <Zap size={13} className="fill-white" />
                 <span className="text-xs font-bold">250+ Tools</span>
               </div>
 
@@ -349,7 +349,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                { name: "Diff Checker", icon: Layers, desc: "Compare two blocks of text or code to find differences.", href: "/tools/diff-checker" },
                { name: "Scientific Calculator", icon: Code, desc: "Advanced math with trigonometry, logarithms, and more.", href: "/calculators/scientific-calculator" }
              ].map((tool, i) => (
-               <Link key={i} href={resolveIntlHref(tool.href)} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all group">
+               <Link key={i} href={resolveIntlHref(tool.href)} className="glass-panel rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-1 hover:border-[#518231]/50 dark:hover:border-[#518231]/50 transition-all duration-300 group">
                  <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#518231]/10 transition-colors">
                    <tool.icon className="text-slate-600 dark:text-slate-400 group-hover:text-[#518231] transition-colors" size={24} />
                  </div>
@@ -365,7 +365,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">Comprehensive Tool Library</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {categoryData.map((category) => (
-              <div key={category.title} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-md transition-shadow">
+              <div key={category.title} className="glass-panel rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                 <div className="p-6">
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 border border-slate-100 dark:border-slate-700 ${category.bgColor}`}>
@@ -397,37 +397,43 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </section>
 
         {/* Why NexusCalculator */}
-        <section className="bg-slate-900 rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden text-center border border-slate-800">
-           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-           <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#518231] blur-[100px] rounded-full opacity-20"></div>
+        <section className="bg-[#090E17] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden text-center border border-white/10 shadow-2xl shadow-green-900/10">
+           <div
+             className="absolute inset-0 opacity-10"
+             style={{
+               backgroundImage: 'radial-gradient(circle, #94a3b8 1px, transparent 1px)',
+               backgroundSize: '24px 24px',
+             }}
+           />
+           <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#518231] blur-[100px] rounded-full opacity-20" />
            
            <div className="relative z-10">
              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Why Professionals Choose Us</h2>
              <p className="text-slate-400 max-w-2xl mx-auto mb-16 text-lg">We built this platform to respect your time, data, and device constraints.</p>
              
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
+                <div className="glass-panel !bg-white/5 dark:!bg-white/5 !border-white/10 hover:-translate-y-1 p-6 rounded-2xl transition-transform duration-300">
                   <div className="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Rocket size={24} />
                   </div>
                   <h3 className="text-white font-bold text-lg mb-2">Lightning Fast</h3>
                   <p className="text-slate-400 text-sm">Calculations run locally in your browser. Zero server latency.</p>
                 </div>
-                <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
+                <div className="glass-panel !bg-white/5 dark:!bg-white/5 !border-white/10 hover:-translate-y-1 p-6 rounded-2xl transition-transform duration-300">
                   <div className="w-12 h-12 bg-blue-500/10 text-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Lock size={24} />
                   </div>
                   <h3 className="text-white font-bold text-lg mb-2">Privacy First</h3>
                   <p className="text-slate-400 text-sm">No data logging. Your financial and health data never leaves your device.</p>
                 </div>
-                <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
+                <div className="glass-panel !bg-white/5 dark:!bg-white/5 !border-white/10 hover:-translate-y-1 p-6 rounded-2xl transition-transform duration-300">
                   <div className="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Smartphone size={24} />
                   </div>
                   <h3 className="text-white font-bold text-lg mb-2">Mobile Optimized</h3>
                   <p className="text-slate-400 text-sm">Flawless responsive design. Perfect UI on desktops, tablets, and phones.</p>
                 </div>
-                <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700">
+                <div className="glass-panel !bg-white/5 dark:!bg-white/5 !border-white/10 hover:-translate-y-1 p-6 rounded-2xl transition-transform duration-300">
                   <div className="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-4">
                     <UserX size={24} />
                   </div>
@@ -465,7 +471,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
           <div className="relative">
              <div className="absolute inset-0 bg-gradient-to-br from-[#518231]/20 to-transparent blur-3xl -z-10 rounded-full" />
-             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 shadow-2xl">
+             <div className="glass-panel-heavy rounded-3xl p-8">
                <div className="flex flex-col gap-6 relative">
                  <div className="absolute left-[27px] top-[40px] bottom-[40px] w-0.5 bg-slate-200 dark:bg-slate-700" />
                  
@@ -578,60 +584,83 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </section>
         </ScrollReveal>
 
-        {/* Testimonials */}
+        {/* Real Use Cases — replaces fabricated testimonials */}
         <ScrollReveal>
-          <section className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 border border-slate-200 dark:border-slate-800 shadow-sm">
+          <section className="glass-panel-heavy rounded-[2.5rem] p-8 md:p-12">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Trusted by Professionals Worldwide</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">Join thousands of developers and finance experts using Nexus Calculator.</p>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#518231]/10 text-[#518231] text-xs font-bold uppercase tracking-widest mb-4">
+                <Users size={12} /> Real-World Scenarios
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Built for How Professionals Actually Work</h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                From financial advisors to developers and students — see how Nexus fits into real workflows.
+              </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
-                { name: "Sarah J.", role: "Financial Advisor", text: "The most reliable mortgage and amortization tools I've found online. Clean interface and always accurate.", initials: "SJ", avatarFrom: "#3b82f6", avatarTo: "#6366f1", uses: "Mortgage Calculator", months: 14 },
-                { name: "Michael T.", role: "Senior Developer", text: "Having the JSON formatter and Base64 tools right next to my financial calculators is a game changer. Saves me so much time.", initials: "MT", avatarFrom: "#8b5cf6", avatarTo: "#ec4899", uses: "JSON Formatter", months: 9 },
-                { name: "Elena R.", role: "Graduate Student", text: "The scientific calculator saved me during finals week. I appreciate the clean layout without distracting ads.", initials: "ER", avatarFrom: "#10b981", avatarTo: "#059669", uses: "Scientific Calculator", months: 6 }
-              ].map((testimonial, i) => (
-                <div key={i} className="bg-slate-50 dark:bg-slate-800 p-8 rounded-2xl border border-slate-100 dark:border-slate-700 flex flex-col gap-5 hover:shadow-md transition-shadow">
-
-                  {/* Stars + Verified badge row */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-1 text-amber-400">
-                      <Star className="fill-current w-4 h-4" />
-                      <Star className="fill-current w-4 h-4" />
-                      <Star className="fill-current w-4 h-4" />
-                      <Star className="fill-current w-4 h-4" />
-                      <Star className="fill-current w-4 h-4" />
+                {
+                  persona: "Financial Advisor",
+                  role: "Mortgage & Loan Planning",
+                  icon: LineChart,
+                  iconBg: "bg-blue-500/10",
+                  iconColor: "text-blue-500",
+                  scenario: "A client wants to refinance a $450,000 home at a lower rate. Using the Mortgage Calculator and Amortization tool together, the advisor shows side-by-side monthly savings and total interest paid — exported to PDF in one click.",
+                  tools: ["Mortgage Calculator", "Amortization Calculator"],
+                  toolHrefs: ["/calculators/mortgage-calculator", "/calculators/amortization-calculator"],
+                },
+                {
+                  persona: "Backend Developer",
+                  role: "API Debugging & Data Validation",
+                  icon: Code,
+                  iconBg: "bg-purple-500/10",
+                  iconColor: "text-purple-500",
+                  scenario: "During an API integration, a malformed JSON payload is causing 400 errors. The developer pastes the response into the JSON Formatter, spots the missing comma, validates it, and uses the Base64 Decoder to inspect the embedded token — all in one tab.",
+                  tools: ["JSON Formatter", "Base64 Decoder"],
+                  toolHrefs: ["/tools/json-formatter", "/tools/base64-decode"],
+                },
+                {
+                  persona: "University Student",
+                  role: "Study & Exam Preparation",
+                  icon: Activity,
+                  iconBg: "bg-emerald-500/10",
+                  iconColor: "text-emerald-500",
+                  scenario: "Preparing for a statistics exam, a student uses the Standard Deviation Calculator with step-by-step breakdown, then the Scientific Calculator for regression problems. No app installs, no sign-up — just open and solve.",
+                  tools: ["Standard Deviation Calculator", "Scientific Calculator"],
+                  toolHrefs: ["/calculators/standard-deviation-calculator", "/calculators/scientific-calculator"],
+                },
+              ].map((item, i) => (
+                <div key={i} className="glass-panel !bg-white/40 dark:!bg-[#090E17]/60 p-8 rounded-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col gap-5">
+                  {/* Header */}
+                  <div className="flex items-center gap-3">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${item.iconBg}`}>
+                      <item.icon size={22} className={item.iconColor} />
                     </div>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 px-2 py-1 rounded-full border border-emerald-100 dark:border-emerald-800">
-                      <ShieldCheck size={11} />
-                      Verified User
-                    </span>
+                    <div>
+                      <p className="font-bold text-slate-900 dark:text-white text-sm">{item.persona}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">{item.role}</p>
+                    </div>
                   </div>
 
-                  {/* Quote */}
-                  <p className="text-slate-700 dark:text-slate-300 italic leading-relaxed flex-1">
-                    &quot;{testimonial.text}&quot;
+                  {/* Scenario */}
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed flex-1 italic">
+                    &ldquo;{item.scenario}&rdquo;
                   </p>
 
-                  {/* Usage context tag */}
-                  <div className="text-[11px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 px-3 py-1.5 rounded-lg w-fit">
-                    Uses: <span className="font-semibold text-slate-700 dark:text-slate-200">{testimonial.uses}</span>
-                  </div>
-
-                  {/* Avatar + name footer */}
-                  <div className="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-slate-700">
-                    <div
-                      className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-extrabold text-white shrink-0 shadow-sm"
-                      style={{ background: `linear-gradient(135deg, ${testimonial.avatarFrom}, ${testimonial.avatarTo})` }}
-                    >
-                      {testimonial.initials}
-                    </div>
-                    <div className="min-w-0">
-                      <p className="font-bold text-slate-900 dark:text-white text-sm truncate">{testimonial.name}</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">{testimonial.role} · {testimonial.months} months</p>
+                  {/* Tools used */}
+                  <div className="border-t border-slate-200 dark:border-slate-700 pt-4">
+                    <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Tools used in this workflow</p>
+                    <div className="flex flex-wrap gap-2">
+                      {item.tools.map((tool, ti) => (
+                        <a
+                          key={ti}
+                          href={item.toolHrefs[ti]}
+                          className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[#518231] hover:border-[#518231]/50 transition-colors"
+                        >
+                          {tool}
+                        </a>
+                      ))}
                     </div>
                   </div>
-
                 </div>
               ))}
             </div>
@@ -653,10 +682,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 { q: "Can I request a new tool?", a: "Absolutely! We love building tools our users need. Use our community forum to suggest a new specific calculator or utility." },
                 { q: "Are these tools free to use?", a: "Yes, all calculators and developer tools on Nexus Calculator are 100% free with no limits on usage. We aim to provide high-quality utility for everyone." }
               ].map((faq, i) => (
-                <details key={i} className="group border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
-                  <summary className="flex items-center justify-between cursor-pointer p-6 font-semibold text-slate-900 dark:text-white hover:text-[#518231] dark:hover:text-[#518231] transition-colors">
+                <details key={i} data-animated className="group border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex items-center justify-between cursor-pointer p-6 font-semibold text-slate-900 dark:text-white hover:text-[#518231] dark:hover:text-[#518231] transition-colors select-none">
                     {faq.q}
-                    <span className="transition group-open:rotate-180 text-slate-400">
+                    <span className="transition-transform duration-200 group-open:rotate-180 text-slate-400 shrink-0 ml-4">
                       <ChevronDown className="w-5 h-5" />
                     </span>
                   </summary>

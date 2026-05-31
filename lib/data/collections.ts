@@ -46,7 +46,8 @@ export const collections: CollectionDef[] = [
       'diff-checker',
       'subnet-calculator',
       'password-generator',
-      'conversion-calculator'
+      'conversion-calculator',
+      'html-css-js-playground'
     ]
   },
   {

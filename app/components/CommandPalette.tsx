@@ -39,6 +39,13 @@ export function CommandPalette() {
     }
   }, [isOpen, tools.length]);
 
+  // Listen for custom event from other components
+  useEffect(() => {
+    const handleOpen = () => setIsOpen(true);
+    window.addEventListener("open-command-palette", handleOpen);
+    return () => window.removeEventListener("open-command-palette", handleOpen);
+  }, []);
+
   // Handle Ctrl+K / Cmd+K shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -152,7 +159,7 @@ export function CommandPalette() {
                     onMouseEnter={() => setSelectedIndex(idx)}
                     className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl text-left transition-colors ${
                       idx === selectedIndex 
-                        ? 'bg-blue-50 dark:bg-slate-800/80 text-blue-900 dark:text-white' 
+                        ? 'bg-[#518231]/10 dark:bg-[#518231]/20 text-[#518231] dark:text-[#6fa844]' 
                         : 'text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/40'
                     }`}
                   >

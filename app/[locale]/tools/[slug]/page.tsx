@@ -67,6 +67,7 @@ const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseCo
 const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPromptHelperTool').then(m => m.AIPromptHelperTool));
 const InstagramTiktokHashtagGeneratorTool = dynamic(() => import('../../../components/tools/InstagramTiktokHashtagGeneratorTool').then(m => m.InstagramTiktokHashtagGeneratorTool));
 const BioLinkPageGeneratorTool = dynamic(() => import('../../../components/tools/BioLinkPageGeneratorTool').then(m => m.BioLinkPageGeneratorTool));
+const HtmlCssJsPlaygroundTool = dynamic(() => import('../../../components/tools/HtmlCssJsPlaygroundTool').then(m => m.HtmlCssJsPlaygroundTool));
 
 
 import { Link, routing } from '../../../../i18n/routing';
@@ -140,7 +141,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "case-converter": CaseConverterTool,
   "ai-prompt-helper": AIPromptHelperTool,
   "instagram-tiktok-hashtag-generator": InstagramTiktokHashtagGeneratorTool,
-  "bio-link-page-generator": BioLinkPageGeneratorTool
+  "bio-link-page-generator": BioLinkPageGeneratorTool,
+  "html-css-js-playground": HtmlCssJsPlaygroundTool
 };
 
 
