@@ -64,60 +64,60 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
       />
 
       {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 mb-8">
+      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
         <ol className="flex items-center space-x-2">
           <li>
-            <CustomLink href="/" className="hover:text-blue-600 hover:underline transition-colors">Home</CustomLink>
+            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
           </li>
-          <li><span className="mx-1 text-slate-400">/</span></li>
-          <li aria-current="page" className="text-slate-700 font-medium">Terms of Use</li>
+          <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
+          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">Terms of Use</li>
         </ol>
       </nav>
 
-      <header className="mb-14 border-b border-slate-200 pb-10">
+      <header className="mb-14 border-b border-slate-200 dark:border-slate-800 pb-10">
         <div className="flex items-center gap-4 mb-6">
-          <div className="bg-slate-100 p-3 rounded-xl text-slate-700">
+          <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-slate-700 dark:text-slate-300">
             <Scale size={32} />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Terms of Use</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Terms of Use</h1>
         </div>
-        <p className="text-xl text-slate-600 leading-relaxed max-w-3xl">
+        <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
           Please review these Terms carefully. By accessing or utilizing Nexus Calculator&apos;s suite of computational tools, you agree to be bound by these internationally applicable terms and conditions.
         </p>
-        <div className="mt-6 inline-flex items-center gap-2 bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
-          <RefreshCcw size={16} className="text-slate-500" />
-          <span className="text-sm font-medium text-slate-700">Effective Date: January 1, 2024</span>
-          <span className="text-slate-300 mx-1">|</span>
-          <span className="text-sm text-slate-500">Last Modified: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+        <div className="mt-6 inline-flex items-center gap-2 bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
+          <RefreshCcw size={16} className="text-slate-500 dark:text-slate-400" />
+          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Effective Date: January 1, 2024</span>
+          <span className="text-slate-300 dark:text-slate-700 mx-1">|</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">Last Modified: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
         </div>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Table of Contents - Sticky Sidebar */}
         <div className="lg:col-span-4 hidden lg:block">
-          <div className="sticky top-24 bg-slate-50 border border-slate-200 p-6 rounded-2xl">
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-widest mb-4 flex items-center gap-2">
+          <div className="sticky top-24 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
               <FileText size={16} className="text-slate-500" />
               Contents
             </h3>
-            <ul className="space-y-3 text-sm font-medium text-slate-600">
-              <li><a href="#acceptance" className="hover:text-blue-600 transition-colors block">1. Acceptance of Terms</a></li>
-              <li><a href="#disclaimer" className="hover:text-blue-600 transition-colors block">2. Crucial Disclaimer (No Professional Advice)</a></li>
-              <li><a href="#license" className="hover:text-blue-600 transition-colors block">3. Limited License & Interface Use</a></li>
-              <li><a href="#accuracy" className="hover:text-blue-600 transition-colors block">4. Accuracy, Metrics, and Standards</a></li>
-              <li><a href="#liability" className="hover:text-blue-600 transition-colors block">5. Limitation of Liability</a></li>
-              <li><a href="#international" className="hover:text-blue-600 transition-colors block">6. International Compliance</a></li>
-              <li><a href="#modifications" className="hover:text-blue-600 transition-colors block">7. Modifications to the Service</a></li>
+            <ul className="space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+              <li><a href="#acceptance" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">1. Acceptance of Terms</a></li>
+              <li><a href="#disclaimer" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">2. Crucial Disclaimer (No Professional Advice)</a></li>
+              <li><a href="#license" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">3. Limited License & Interface Use</a></li>
+              <li><a href="#accuracy" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">4. Accuracy, Metrics, and Standards</a></li>
+              <li><a href="#liability" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">5. Limitation of Liability</a></li>
+              <li><a href="#international" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">6. International Compliance</a></li>
+              <li><a href="#modifications" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">7. Modifications to the Service</a></li>
             </ul>
           </div>
         </div>
 
         {/* Main Content */}
-        <article className="lg:col-span-8 prose prose-slate prose-lg max-w-none">
+        <article className="lg:col-span-8 prose prose-slate dark:prose-invert prose-lg max-w-none">
           
           <section id="acceptance" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</span>
               Acceptance of Terms
             </h2>
             <p>
@@ -129,16 +129,16 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           </section>
 
           <section id="disclaimer" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</span>
               Crucial Disclaimer (No Professional Advice)
             </h2>
-            <div className="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl my-6 not-prose">
+            <div className="bg-[#518231]/5 border-l-4 border-[#518231] p-5 rounded-r-xl my-6 not-prose">
               <div className="flex gap-3">
-                <ShieldAlert className="text-amber-600 shrink-0 mt-0.5" size={24} />
+                <ShieldAlert className="text-[#518231] shrink-0 mt-0.5" size={24} />
                 <div>
-                  <h3 className="font-bold text-amber-900 mb-1">Informational Purposes Only</h3>
-                  <p className="text-amber-800 text-sm leading-relaxed">
+                  <h3 className="font-bold text-slate-900 dark:text-white mb-1">Informational Purposes Only</h3>
+                  <p className="text-slate-800 dark:text-slate-300 text-sm leading-relaxed">
                     All calculators, charts, and associated outputs provided on Nexus Calculator are strictly for broad, educational, and informational purposes. They do <strong>not</strong> constitute, and should not be construed as, professional advice.
                   </p>
                 </div>
@@ -155,14 +155,14 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           </section>
 
           <section id="license" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</span>
               Limited License & Interface Use
             </h2>
             <p>
               Nexus Calculator grants you a personal, non-exclusive, non-transferable, and revocable license to use our web-based calculators for non-commercial transitory viewing and computational operations. Under this limited license constraint, you may <strong>not</strong>:
             </p>
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 not-prose">
+            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 not-prose">
               <ul className="space-y-3 relative z-10">
                 {[
                   "Systematically scrape, mine, or extract calculation endpoints via automated bots or scripts.",
@@ -171,8 +171,8 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
                   "Utilize our tools for establishing commercial services that compete directly with Nexus Calculator."
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 items-start">
-                    <span className="text-rose-500 font-bold shrink-0 mt-0.5">✖</span>
-                    <span className="text-slate-700 text-sm leading-relaxed">{item}</span>
+                    <span className="text-rose-500 dark:text-rose-400 font-bold shrink-0 mt-0.5">✖</span>
+                    <span className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -180,8 +180,8 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           </section>
 
           <section id="accuracy" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</span>
               Accuracy, Metrics, and Standards
             </h2>
             <p>
@@ -193,8 +193,8 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           </section>
 
           <section id="liability" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">5</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">5</span>
               Limitation of Liability
             </h2>
             <p>
@@ -206,13 +206,13 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           </section>
 
           <section id="international" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">6</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">6</span>
               International Compliance
             </h2>
-            <div className="bg-slate-800 text-white p-6 rounded-2xl not-prose mb-6">
+            <div className="bg-slate-800 dark:bg-slate-900 border border-slate-700 dark:border-slate-800 text-white p-6 rounded-2xl not-prose mb-6">
               <div className="flex items-start gap-4">
-                <GlobeLock className="text-blue-400 shrink-0" size={28} />
+                <GlobeLock className="text-[#6fa844] shrink-0" size={28} />
                 <p className="text-slate-300 text-sm leading-relaxed">
                   Nexus Calculator operates infrastructure globally. However, if you are accessing these tools from regions with specific localized regulations regarding financial projections, health data (e.g., GDPR, HIPAA, UK DPA), or algorithmic transparency, it is your responsibility to ensure your usage complies with your local sovereign laws.
                 </p>
@@ -224,8 +224,8 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           </section>
 
           <section id="modifications" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
-              <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">7</span>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">7</span>
               Modifications to the Service and Terms
             </h2>
             <p>
@@ -233,12 +233,12 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
             </p>
           </section>
 
-          <section id="contact" className="mt-16 pt-8 border-t border-slate-200">
-            <h2 className="text-2xl font-bold text-slate-900 mb-4">Questions About Our Terms?</h2>
+          <section id="contact" className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Questions About Our Terms?</h2>
             <p className="mb-6">
               If you require clarification on any of the stipulations above or have a formal legal inquiry, our compliance team is available.
             </p>
-            <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
+            <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
               <Mail size={18} />
               nexuscalculator@gmail.com
             </a>

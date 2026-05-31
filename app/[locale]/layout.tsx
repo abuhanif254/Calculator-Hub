@@ -9,11 +9,15 @@ import { ThemeProvider } from '../../app/components/ThemeProvider';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
-// Load Inter mock for offline builds to avoid getaddrinfo ENOTFOUND fonts.googleapis.com
-const inter = {
-  className: 'font-sans',
-  variable: '--font-sans',
-};
+import { Inter } from 'next/font/google';
+
+// Inter — the industry-standard professional typeface for tool/SaaS platforms
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800', '900'],
+});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -84,6 +88,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 import { AuthProvider } from '../../app/components/AuthProvider';
 import { CommandPalette } from '../../app/components/CommandPalette';
 import { InstallPrompt } from '../../app/components/InstallPrompt';
+import { BackToTop } from '../../app/components/BackToTop';
 import Script from 'next/script';
 
 export default async function RootLayout({
@@ -103,7 +108,7 @@ export default async function RootLayout({
   const adClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
 
   return (
-    <html lang={locale} dir={['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning>
+    <html lang={locale} dir={['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning className={inter.variable}>
       <head>
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -118,7 +123,15 @@ export default async function RootLayout({
           />
         )}
       </head>
-      <body className={`${inter.variable} ${inter.className} bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-slate-950 dark:text-slate-100`}>
+      <body className="font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-[#090E17] dark:text-slate-100 relative">
+        {/* Ambient Glassmorphism Background Layers */}
+        <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#518231]/10 dark:bg-[#518231]/15 blur-[120px] mix-blend-multiply dark:mix-blend-screen" style={{ animation: 'ambientGlow 10s ease-in-out infinite' }} />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/10 dark:bg-emerald-500/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen" style={{ animation: 'ambientGlow 15s ease-in-out infinite reverse' }} />
+        </div>
+
+        {/* Skip to Content — WCAG 2.4.1 Level A */}
+        <a href="#global-content" className="skip-to-content">Skip to main content</a>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AuthProvider>
@@ -135,6 +148,7 @@ export default async function RootLayout({
                 </div>
                 <CommandPalette />
                 <InstallPrompt />
+                <BackToTop />
               </SettingsProvider>
             </AuthProvider>
           </ThemeProvider>

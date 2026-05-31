@@ -1,36 +1,78 @@
 @import "tailwindcss";
 @custom-variant dark (&:is(.dark *));
 
-/* Fix for all the white backgrounds and inputs in Dark Mode universally */
-.dark .bg-white,
-.dark .bg-white:hover { 
-  background-color: var(--color-slate-900, #0f172a) !important; 
+/* ── Design Token System ─────────────────────────────────── */
+:root {
+  --color-brand:       #518231;
+  --color-brand-dark:  #436a28;
+  --color-brand-light: #6fa844;
+  --color-brand-muted: #518231/10;
+  --font-sans: var(--font-inter, 'Inter'), system-ui, -apple-system, sans-serif;
 }
-.dark .bg-slate-50,
-.dark .bg-slate-100 { 
-  background-color: var(--color-slate-800, #1e293b) !important; 
+
+/* ── Smooth scroll ────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
-.dark .border-slate-100,
-.dark .border-slate-200 { 
-  border-color: var(--color-slate-800, #1e293b) !important; 
+
+/* ── Skip to Content (Accessibility WCAG 2.4.1) ──────────── */
+.skip-to-content {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 9999;
+  background: var(--color-brand);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: top 0.2s;
+  text-decoration: none;
 }
-.dark .border-slate-300 { 
-  border-color: var(--color-slate-700, #334155) !important; 
+.skip-to-content:focus {
+  top: 1rem;
 }
-.dark .text-slate-900 { 
-  color: var(--color-slate-100, #f1f5f9) !important; 
+
+/* ── Back to Top Button ─────────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: calc(2rem + env(safe-area-inset-bottom, 0px));
+  right: 2rem;
+  z-index: 999;
+  background: var(--color-brand);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(81,130,49,0.4);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+  pointer-events: none;
 }
-.dark .text-slate-800 { 
-  color: var(--color-slate-200, #e2e8f0) !important; 
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
-.dark .text-slate-700 { 
-  color: var(--color-slate-300, #cbd5e1) !important; 
+.back-to-top:hover {
+  background: var(--color-brand-dark);
 }
-.dark .text-slate-600 { 
-  color: var(--color-slate-400, #94a3b8) !important; 
+
+/* ── Animated FAQ (details/summary) ─────────────────────── */
+details[data-animated] > div {
+  overflow: hidden;
+  animation: faqOpen 0.22s ease-out;
 }
-.dark .text-slate-500 { 
-  color: var(--color-slate-400, #94a3b8) !important; 
+@keyframes faqOpen {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Base override to ensure inputs have proper contrast even if not using classes above */
@@ -52,3 +94,24 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Ambient Background Animations ──────────────────────── */
+@keyframes ambientGlow {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+  33% { transform: scale(1.1) translate(30px, -30px); opacity: 0.8; }
+  66% { transform: scale(0.9) translate(-30px, 30px); opacity: 0.5; }
+  100% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+}
+
+/* ── Glassmorphism Utilities ──────────────────────────────── */
+.glass-panel {
+  @apply backdrop-blur-xl bg-white/60 border border-white/40 shadow-xl;
+}
+.dark .glass-panel {
+  @apply bg-[#090E17]/60 border-white/10 shadow-2xl;
+}
+.glass-panel-heavy {
+  @apply backdrop-blur-2xl bg-white/80 border border-white/50 shadow-2xl;
+}
+.dark .glass-panel-heavy {
+  @apply bg-[#090E17]/80 border-white/10 shadow-2xl;
+}

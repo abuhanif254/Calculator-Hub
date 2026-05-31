@@ -38,25 +38,25 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
   return (
-    <main className="w-full max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
+    <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
       {/* Breadcrumbs */}
-      <div className="text-sm text-slate-500 mb-8">
-        <CustomLink href="/" className="hover:text-blue-600 hover:underline transition-colors">Home</CustomLink>
+      <div className="text-sm text-slate-500 dark:text-slate-400 mb-8">
+        <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
         <span className="mx-2">/</span>
-        <span className="text-slate-700 font-medium">About Us</span>
+        <span className="text-slate-700 dark:text-slate-300 font-medium">About Us</span>
       </div>
 
       <header className="mb-16 text-center max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">Empowering Your Decisions with Precision</h1>
-        <p className="text-xl text-slate-600 leading-relaxed">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">Empowering Your Decisions with Precision</h1>
+        <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
           Nexus Calculator represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free computational tools directly to your browser.
         </p>
       </header>
 
       <div className="space-y-16">
         {/* Concept & Vision */}
-        <section className="prose prose-slate prose-lg max-w-none">
-          <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Our Vision & Philosophy</h2>
+        <section className="prose prose-slate dark:prose-invert prose-lg max-w-none">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 mb-6 border-b dark:border-slate-700 pb-4">Our Vision & Philosophy</h2>
           <p>
             In an increasingly complex world, making informed decisions on personal finance, health metrics, and academic problems requires more than just guesswork. It requires precision. Nexus Calculator was conceived from a fundamental philosophy: <strong>powerful analytical tools should be universally accessible</strong>.
           </p>
@@ -70,44 +70,44 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
 
         {/* What sets us apart */}
         <section>
-          <h2 className="text-3xl font-bold text-slate-800 mb-8 border-b pb-4">Why We Stand Out</h2>
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 mb-8 border-b dark:border-slate-700 pb-4">Why We Stand Out</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className="bg-blue-50 w-14 h-14 rounded-xl flex items-center justify-center text-blue-600 mb-6">
                 <Zap size={28} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Architectural Excellence</h3>
-              <p className="text-slate-600 leading-relaxed">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Architectural Excellence</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 Deployed globally on edge networks utilizing Next.js App Router, our platform ensures near-instantaneous load times. Computations are executed securely and rapidly, providing a seamless user experience devoid of jarring page reloads or layout shifts.
               </p>
             </div>
 
-            <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className="bg-green-50 w-14 h-14 rounded-xl flex items-center justify-center text-green-600 mb-6">
                 <Calculator size={28} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Expansive & Modular</h3>
-              <p className="text-slate-600 leading-relaxed">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Expansive & Modular</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 Our library encompasses a wide array of disciplines. From sophisticated compound interest charts and currency converters to specialized health calculators, our modular architecture allows us to continually expand our offerings without sacrificing performance.
               </p>
             </div>
 
-            <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className="bg-purple-50 w-14 h-14 rounded-xl flex items-center justify-center text-purple-600 mb-6">
                 <Globe size={28} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Global Localization</h3>
-              <p className="text-slate-600 leading-relaxed">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Global Localization</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 Adhering to international standards, our calculators seamlessly adapt to diverse numeric formats, currencies, and localized guidelines. We design our algorithms to be robust and universally applicable.
               </p>
             </div>
 
-            <div className="bg-white border border-slate-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+            <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
               <div className="bg-orange-50 w-14 h-14 rounded-xl flex items-center justify-center text-orange-600 mb-6">
                 <ShieldCheck size={28} />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Absolute Data Integrity</h3>
-              <p className="text-slate-600 leading-relaxed">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Absolute Data Integrity</h3>
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 We believe privacy is a fundamental human right. All sensitive inputs and calculations are processed strictly on the client side. We do not aggregate, harvest, or store your personal calculation data.
               </p>
             </div>
@@ -115,7 +115,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
         </section>
         
         {/* Developer Identity */}
-        <section className="bg-slate-50 border border-slate-200 rounded-3xl overflow-hidden mt-16">
+        <section className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden mt-16">
           <div className="bg-slate-800 text-white p-8 md:p-10">
             <h2 className="text-3xl font-bold mb-2">Developer Identity</h2>
             <p className="text-slate-300">The engineering mind behind Nexus Calculator.</p>
@@ -133,9 +133,9 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <h3 className="text-2xl font-bold text-slate-900">MD Abu Hanif Mia</h3>
-              <p className="text-blue-600 font-medium mt-1 mb-4">Full Stack Web Architect</p>
-              <p className="text-sm text-slate-500 mb-6">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">MD Abu Hanif Mia</h3>
+              <p className="text-[#518231] font-medium mt-1 mb-4">Full Stack Web Architect</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
                 Specializing in high-performance web applications, scalable cloud architecture, and user-centric UI/UX design. Driven by a passion for delivering enterprise-level products to the global market.
               </p>
               
@@ -156,42 +156,42 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
             </div>
             
             <div className="w-full lg:w-2/3">
-              <h4 className="text-xl font-bold text-slate-800 mb-6 border-b pb-2">Contact Information</h4>
+              <h4 className="text-xl font-bold text-slate-800 dark:text-slate-200 mb-6 border-b dark:border-slate-700 pb-2">Contact Information</h4>
               <ul className="space-y-6">
                 <li className="flex items-start gap-4">
-                  <div className="bg-blue-50 p-3 rounded-lg text-blue-600 mt-1">
+                  <div className="bg-[#518231]/10 p-3 rounded-lg text-[#518231] mt-1">
                     <Mail size={20} />
                   </div>
                   <div>
-                    <span className="block text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Email Address</span>
-                    <a href="mailto:nexuscalculator@gmail.com" className="text-lg text-slate-800 hover:text-blue-600 transition-colors font-medium">nexuscalculator@gmail.com</a>
+                    <span className="block text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Email Address</span>
+                    <a href="mailto:nexuscalculator@gmail.com" className="text-lg text-slate-800 dark:text-slate-200 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors font-medium">nexuscalculator@gmail.com</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <div className="bg-blue-50 p-3 rounded-lg text-blue-600 mt-1">
+                  <div className="bg-[#518231]/10 p-3 rounded-lg text-[#518231] mt-1">
                     <Phone size={20} />
                   </div>
                   <div>
-                    <span className="block text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Phone Number</span>
-                    <a href="tel:+1234567890" className="text-lg text-slate-800 hover:text-blue-600 transition-colors font-medium">+8801724010261</a>
+                    <span className="block text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Phone Number</span>
+                    <a href="tel:+8801724010261" className="text-lg text-slate-800 dark:text-slate-200 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors font-medium">+8801724010261</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <div className="bg-blue-50 p-3 rounded-lg text-blue-600 mt-1">
+                  <div className="bg-[#518231]/10 p-3 rounded-lg text-[#518231] mt-1">
                     <MapPin size={20} />
                   </div>
                   <div>
-                    <span className="block text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Office Address</span>
-                    <span className="text-lg text-slate-800 block">2300 Kishoreganj Sadar<br />Dhaka, Bangladesh</span>
+                    <span className="block text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Office Address</span>
+                    <span className="text-lg text-slate-800 dark:text-slate-200 block">2300 Kishoreganj Sadar<br />Dhaka, Bangladesh</span>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
-                  <div className="bg-blue-50 p-3 rounded-lg text-blue-600 mt-1">
+                  <div className="bg-[#518231]/10 p-3 rounded-lg text-[#518231] mt-1">
                     <LinkIcon size={20} />
                   </div>
                   <div>
-                    <span className="block text-sm font-semibold text-slate-500 uppercase tracking-wider mb-1">Personal Portfolio</span>
-                    <a href="https://abu-hanif-mia.vercel.app" target="_blank" rel="noopener noreferrer" className="text-lg text-blue-600 hover:underline font-medium">My Portfolio Website</a>
+                    <span className="block text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Personal Portfolio</span>
+                    <a href="https://abu-hanif-mia.vercel.app" target="_blank" rel="noopener noreferrer" className="text-lg text-[#518231] dark:text-[#6fa844] hover:underline font-medium">My Portfolio Website</a>
                   </div>
                 </li>
               </ul>
@@ -201,8 +201,8 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
 
         {/* Our Another Websites */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold text-slate-800 mb-6 border-b pb-4">Our Another Websites</h2>
-          <p className="text-slate-600 mb-8 prose prose-lg">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 mb-6 border-b dark:border-slate-700 pb-4">Our Other Projects</h2>
+          <p className="text-slate-600 dark:text-slate-400 mb-8">
             Beyond Nexus Calculator, our engineering team cultivates a broader ecosystem of premium digital experiences. Explore our expanding portfolio of professional web platforms below.
           </p>
           
@@ -219,14 +219,14 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
                 href={site.url} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group block bg-white border border-slate-200 p-6 rounded-2xl shadow-sm hover:shadow-lg hover:border-blue-200 transition-all"
+                className="group block bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-6 rounded-2xl shadow-sm hover:shadow-lg hover:border-[#518231]/30 dark:hover:border-[#518231]/40 transition-all"
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{site.name}</h3>
-                  <Globe size={18} className="text-slate-400 group-hover:text-blue-500" />
+                  <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors">{site.name}</h3>
+                  <Globe size={18} className="text-slate-400 group-hover:text-[#518231]" />
                 </div>
-                <p className="text-sm text-slate-500 mb-4 h-10">{site.desc}</p>
-                <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 min-h-[2.5rem] line-clamp-3">{site.desc}</p>
+                <span className="text-xs font-semibold text-[#518231] bg-[#518231]/10 px-3 py-1 rounded-full uppercase tracking-wider inline-block">
                   Visit Site
                 </span>
               </a>
@@ -234,12 +234,12 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
           </div>
         </section>
 
-        <section className="prose prose-slate prose-lg max-w-none text-center bg-slate-50 p-10 rounded-3xl border border-slate-100">
-          <h2 className="text-2xl font-bold text-slate-800 mb-4">Continuous Evolvement</h2>
+        <section className="prose prose-slate dark:prose-invert prose-lg max-w-none text-center bg-slate-50 dark:bg-slate-800/50 p-10 rounded-3xl border border-slate-100 dark:border-slate-700">
+          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-200 mb-4">Continuous Evolvement</h2>
           <p className="mb-6">
             The web is not static, and neither are we. We are constantly expanding our library of tools, refining our algorithms, and responding to the evolving needs of our international audience.
           </p>
-          <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-xl transition-colors no-underline">
+          <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center justify-center bg-[#518231] hover:bg-[#436a28] text-white font-medium py-3 px-8 rounded-xl transition-colors no-underline">
             Reach Out to Our Team
           </a>
         </section>

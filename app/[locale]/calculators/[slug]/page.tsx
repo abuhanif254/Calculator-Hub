@@ -206,23 +206,23 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   };
 
   return (
-    <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Breadcrumbs for SEO */}
-      <nav aria-label="Breadcrumb" className="mb-6 font-sans text-sm text-slate-500">
+      <nav aria-label="Breadcrumb" className="mb-6 font-sans text-sm text-slate-500 dark:text-slate-400">
         <ol className="flex items-center space-x-2">
           <li>
-            <Link href="/" className="hover:text-blue-600 hover:underline">Home</Link>
+            <Link href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</Link>
           </li>
           <li><span className="text-slate-400">/</span></li>
           <li>
-            <Link href="/sitemap" className="hover:text-blue-600 hover:underline">Calculators</Link>
+            <Link href="/sitemap" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Calculators</Link>
           </li>
           <li><span className="text-slate-400">/</span></li>
-          <li className="text-slate-700 font-medium" aria-current="page">{pageTitle}</li>
+          <li className="text-slate-700 dark:text-slate-300 font-medium" aria-current="page">{pageTitle}</li>
         </ol>
       </nav>
 
@@ -231,7 +231,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         <div className="flex-1 w-full max-w-4xl min-w-0">
           <header className="mb-10">
             <div className="flex items-center gap-3 mb-4 flex-wrap">
-              <span className="inline-block px-3 py-1 bg-blue-50 border border-blue-100 text-blue-800 rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
+              <span className="inline-block px-3 py-1 bg-[#518231]/10 border border-[#518231]/20 text-[#518231] dark:text-[#6fa844] rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
                 {calc.category}
               </span>
               <FavoriteButton
@@ -241,10 +241,10 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 href={`/calculators/${calc.slug}`}
               />
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
               {pageTitle}
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
               {pageDesc}
             </p>
           </header>
@@ -269,20 +269,27 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </div>
 
           {seoContent && (
-            <article className="mt-12 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 prose prose-slate max-w-none lg:prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-blue-600 prose-img:rounded-xl">
+            <article className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 prose prose-slate dark:prose-invert max-w-none lg:prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[#518231] prose-img:rounded-xl">
               <ReactMarkdown>{seoContent}</ReactMarkdown>
             </article>
           )}
 
-          {/* FAQ Section */}
-          <div className="mt-12 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">Frequently Asked Questions</h2>
-            <div className="space-y-6">
+          {/* FAQ Section — Animated Accordion */}
+          <div className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+            <div className="space-y-3">
               {faqs.map((faq: any, index: number) => (
-                <div key={index} className="border-b border-slate-100 pb-5 last:border-0 last:pb-0">
-                  <h3 className="text-lg font-semibold text-slate-800 mb-2">{faq.question}</h3>
-                  <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
-                </div>
+                <details key={index} data-animated className="group border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-800/50 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex items-center justify-between cursor-pointer px-6 py-4 font-semibold text-slate-900 dark:text-white hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors select-none">
+                    <span>{faq.question}</span>
+                    <span className="transition-transform duration-200 group-open:rotate-180 text-slate-400 shrink-0 ml-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-5 pt-2 text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-slate-700">
+                    {faq.answer}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
@@ -292,17 +299,17 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0 flex flex-col gap-8">
 
           {/* Search Box */}
-          <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
-            <h3 className="text-lg font-bold text-slate-900 mb-4">Find a Calculator</h3>
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Find a Calculator</h3>
             <form action={`/${resolvedParams.locale}/search`} method="GET" className="relative group">
               <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none">
-                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" />
+                <Search className="h-5 w-5 text-slate-400 group-focus-within:text-[#518231] transition-colors" />
               </div>
               <input
                 type="text"
                 name="q"
                 placeholder="Search calculators..."
-                className="w-full ps-10 pe-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full ps-10 pe-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 rounded-xl focus:bg-white dark:focus:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-transparent transition-all"
                 required
               />
             </form>
@@ -345,10 +352,10 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       </div>
 
       {/* Related Calculators - Moved to bottom */}
-      <div className="mt-16 border-t border-slate-200 pt-16">
+      <div className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-16">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-slate-900">Related Calculators</h2>
-          <Link href="/sitemap" className="text-sm font-bold text-blue-600 hover:text-blue-700 hover:underline inline-flex items-center">
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Related Calculators</h2>
+          <Link href="/sitemap" className="text-sm font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center">
             View all {activeCategory.title.toLowerCase()} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
           </Link>
         </div>
@@ -360,13 +367,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               <Link
                 key={toolSlug}
                 href={resolveIntlHref(`/calculators/${toolSlug}`)}
-                className="group flex flex-col bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md hover:border-blue-200 transition-all"
+                className="group flex flex-col bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 dark:hover:border-[#518231]/40 transition-all"
               >
-                <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="w-10 h-10 rounded-full bg-[#518231]/10 text-[#518231] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <CalculatorIcon className="w-5 h-5" />
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">{targetCalc.title}</h3>
-                <p className="text-sm text-slate-500 line-clamp-2">
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">{targetCalc.title}</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
                   {targetCalc.description}
                 </p>
               </Link>

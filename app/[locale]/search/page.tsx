@@ -32,7 +32,7 @@ export default async function SearchPage({ params, searchParams }: { params: Pro
   const results = query ? searchTools(query, 50) : [];
 
   return (
-    <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white dark:bg-slate-950 min-h-[60vh]">
+    <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white dark:bg-slate-950 min-h-[60vh]">
       <div className="mb-8 border-b border-slate-200 dark:border-slate-800 pb-8">
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
           Search Tools & Calculators
@@ -50,7 +50,7 @@ export default async function SearchPage({ params, searchParams }: { params: Pro
             required
             autoFocus
           />
-          <button type="submit" className="absolute inset-y-2 end-2 bg-[#0066cc] hover:bg-blue-700 text-white px-6 font-medium rounded-lg transition-colors">
+          <button type="submit" className="absolute inset-y-2 end-2 bg-[#518231] hover:bg-[#436a28] text-white px-6 font-medium rounded-lg transition-colors">
             Search
           </button>
         </form>
