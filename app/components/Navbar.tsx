@@ -83,6 +83,7 @@ const developerToolsMenu = [
     title: "Web Dev Utilities",
     icon: Wrench,
     items: [
+      { name: "HTML / CSS / JavaScript Playground", desc: "Live code editor for frontend development" },
       { name: "Meta Tag Generator", desc: "Generate HTML meta tags" },
       { name: "Open Graph Generator", desc: "Generate OG tags" },
       { name: "Twitter Card Generator", desc: "Generate Twitter cards" },

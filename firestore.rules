@@ -68,5 +68,11 @@ service cloud.firestore {
                     
       allow delete: if isSignedIn() && request.auth.uid == existing().authorId;
     }
+
+    match /playground_pens/{penId} {
+      allow read: if true;
+      allow create: if true;
+      allow update: if true;
+    }
   }
 }
