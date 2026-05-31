@@ -4,14 +4,15 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 interface EmbedPageProps {
-  params: {
+  params: Promise<{
     locale: string;
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: EmbedPageProps): Promise<Metadata> {
-  const pen = await getPlaygroundPen(params.id);
+  const resolvedParams = await params;
+  const pen = await getPlaygroundPen(resolvedParams.id);
   
   if (!pen) {
     return { title: 'Pen Not Found' };
@@ -23,11 +24,12 @@ export async function generateMetadata({ params }: EmbedPageProps): Promise<Meta
 }
 
 export default async function PlaygroundEmbedPage({ params }: EmbedPageProps) {
-  const pen = await getPlaygroundPen(params.id);
+  const resolvedParams = await params;
+  const pen = await getPlaygroundPen(resolvedParams.id);
   
   if (!pen) {
     notFound();
   }
 
-  return <PlaygroundEmbedClient pen={pen} penId={params.id} />;
+  return <PlaygroundEmbedClient pen={pen} penId={resolvedParams.id} />;
 }
