@@ -314,7 +314,7 @@ export function HtmlCssJsPlaygroundToolBase({ initialData, penId }: PlaygroundPr
         <Group 
           orientation={layout === 'vertical' ? 'horizontal' : 'vertical'} 
           className="flex-1"
-          onLayoutChange={setMainPanelLayout}
+          onLayoutChange={(sizes: any) => setMainPanelLayout(sizes)}
         >
           {/* Editor Section */}
           <Panel 
@@ -437,7 +437,7 @@ export function HtmlCssJsPlaygroundToolBase({ initialData, penId }: PlaygroundPr
                 layout === 'vertical' ? 'border-l border-slate-200 dark:border-slate-800' : 'border-t border-slate-200 dark:border-slate-800'
               )}
             >
-              <Group orientation="vertical" onLayoutChange={setPreviewPanelLayout}>
+              <Group orientation="vertical" onLayoutChange={(sizes: any) => setPreviewPanelLayout(sizes)}>
                 <Panel defaultSize={previewPanelLayout ? previewPanelLayout[0] : 70} minSize={30} className="relative flex flex-col">
                 <div className="flex-1 min-h-0 bg-white">
                   <div className={clsx(
