@@ -189,7 +189,7 @@ export function MergePdfTool() {
           prev.map((f) => f.id === entry.id ? { ...f, pageCount: pages, status: "ready" } : f)
         );
       } catch (error: any) {
-        console.error("Error reading PDF file structure: ", error);
+        console.warn("Error reading PDF file structure: ", error.message || error);
         
         // Handle password protected/corrupted files gracefully
         let errorMessage = "Corrupted or unreadable PDF document.";
@@ -370,7 +370,7 @@ export function MergePdfTool() {
       localStorage.setItem("merge_pdf_history", JSON.stringify(updatedHistory));
 
     } catch (error: any) {
-      console.error("PDF Merge Failure: ", error);
+      console.warn("PDF Merge Failure: ", error.message || error);
       setErrorMessage(error.message || "An unexpected error occurred while merging your PDFs. Ensure files are not corrupted.");
       setMergeStatus("error");
     }

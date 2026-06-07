@@ -425,7 +425,7 @@ export function SplitPdfTool() {
       setPdfjsDoc(doc);
       setUploadStatus("ready");
     } catch (err: any) {
-      console.error("Upload process error:", err);
+      console.warn("Upload process error:", err.message || err);
       let msg = "Could not parse PDF. Ensure it is not password protected or corrupted.";
       if (err.message && err.message.includes("encrypted")) {
         msg = "Document is password protected. Please unlock it before uploading.";

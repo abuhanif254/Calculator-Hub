@@ -63,6 +63,10 @@ import { pdfToJpgConfig } from './pdf-to-jpg';
 import { jpgToPdfConfig } from './jpg-to-pdf';
 import { removePdfPagesConfig } from './remove-pdf-pages';
 import { rotatePdfConfig } from './rotate-pdf';
+import { watermarkPdfConfig } from './watermark-pdf';
+import { protectPdfConfig } from './protect-pdf';
+import { unlockPdfConfig } from './unlock-pdf';
+import { organizePdfConfig } from './organize-pdf';
 import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
@@ -141,6 +145,10 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [jpgToPdfConfig.slug]: jpgToPdfConfig,
   [removePdfPagesConfig.slug]: removePdfPagesConfig,
   [rotatePdfConfig.slug]: rotatePdfConfig,
+  [watermarkPdfConfig.slug]: watermarkPdfConfig,
+  [protectPdfConfig.slug]: protectPdfConfig,
+  [unlockPdfConfig.slug]: unlockPdfConfig,
+  [organizePdfConfig.slug]: organizePdfConfig,
   [compressImageConfig.slug]: compressImageConfig,
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,
