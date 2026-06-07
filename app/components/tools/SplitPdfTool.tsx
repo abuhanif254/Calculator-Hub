@@ -100,12 +100,10 @@ function Thumbnail({ pageNumber, pdfDoc, zoom, isSelected, onToggleSelect }: Thu
 
     if (containerRef.current) {
       observer = new IntersectionObserver(
-        (entries) => {
-          if (entries[0].isIntersecting && renderStatus === "idle") {
+        (entries, obs) => {
+          if (entries[0].isIntersecting) {
+            obs.unobserve(entries[0].target);
             renderPage();
-            if (observer && containerRef.current) {
-              observer.unobserve(containerRef.current);
-            }
           }
         },
         { threshold: 0.05 }

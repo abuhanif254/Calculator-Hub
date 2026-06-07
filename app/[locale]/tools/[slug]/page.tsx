@@ -62,6 +62,10 @@ const MergePdfTool = dynamic(() => import('../../../components/tools/MergePdfToo
 const SplitPdfTool = dynamic(() => import('../../../components/tools/SplitPdfTool').then(m => m.SplitPdfTool));
 const CompressPdfTool = dynamic(() => import('../../../components/tools/CompressPdfTool').then(m => m.CompressPdfTool));
 const EditPdfTool = dynamic(() => import('../../../components/tools/EditPdfTool').then(m => m.EditPdfTool));
+const PdfToJpgTool = dynamic(() => import('../../../components/tools/PdfToJpgTool').then(m => m.PdfToJpgTool));
+const JpgToPdfTool = dynamic(() => import('../../../components/tools/JpgToPdfTool').then(m => m.JpgToPdfTool));
+const RemovePdfPagesTool = dynamic(() => import('../../../components/tools/RemovePdfPagesTool').then(m => m.RemovePdfPagesTool));
+const RotatePdfTool = dynamic(() => import('../../../components/tools/RotatePdfTool').then(m => m.RotatePdfTool));
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
@@ -140,6 +144,10 @@ const toolComponents: Record<string, React.ComponentType> = {
   "split-pdf": SplitPdfTool,
   "compress-pdf": CompressPdfTool,
   "edit-pdf": EditPdfTool,
+  "pdf-to-jpg": PdfToJpgTool,
+  "jpg-to-pdf": JpgToPdfTool,
+  "remove-pdf-pages": RemovePdfPagesTool,
+  "rotate-pdf": RotatePdfTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,

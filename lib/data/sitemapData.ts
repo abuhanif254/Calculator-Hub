@@ -217,6 +217,7 @@ export const pdfToolsMenu = [
     items: [
       { name: "Merge PDF", desc: "Combine multiple PDFs into one" },
       { name: "Split PDF", desc: "Extract pages from a PDF" },
+      { name: "Remove PDF Pages", desc: "Delete pages from a PDF document" },
       { name: "Compress PDF", desc: "Reduce PDF file size" },
       { name: "Edit PDF", desc: "Edit text and images in PDF" },
       { name: "Rotate PDF", desc: "Rotate pages in a PDF" },
