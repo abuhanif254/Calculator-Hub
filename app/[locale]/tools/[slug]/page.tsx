@@ -66,6 +66,11 @@ const PdfToJpgTool = dynamic(() => import('../../../components/tools/PdfToJpgToo
 const JpgToPdfTool = dynamic(() => import('../../../components/tools/JpgToPdfTool').then(m => m.JpgToPdfTool));
 const RemovePdfPagesTool = dynamic(() => import('../../../components/tools/RemovePdfPagesTool').then(m => m.RemovePdfPagesTool));
 const RotatePdfTool = dynamic(() => import('../../../components/tools/RotatePdfTool').then(m => m.RotatePdfTool));
+const WatermarkPdfTool = dynamic(() => import('../../../components/tools/WatermarkPdfTool').then(m => m.WatermarkPdfTool));
+const ProtectPdfTool = dynamic(() => import('../../../components/tools/ProtectPdfTool').then(m => m.ProtectPdfTool));
+const UnlockPdfTool = dynamic(() => import('../../../components/tools/UnlockPdfTool').then(m => m.UnlockPdfTool));
+const OrganizePdfTool = dynamic(() => import('../../../components/tools/OrganizePdfTool').then(m => m.OrganizePdfTool));
+const AddPageNumbersPdfTool = dynamic(() => import('../../../components/tools/AddPageNumbersPdfTool').then(m => m.AddPageNumbersPdfTool));
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
@@ -148,6 +153,11 @@ const toolComponents: Record<string, React.ComponentType> = {
   "jpg-to-pdf": JpgToPdfTool,
   "remove-pdf-pages": RemovePdfPagesTool,
   "rotate-pdf": RotatePdfTool,
+  "watermark-pdf": WatermarkPdfTool,
+  "protect-pdf": ProtectPdfTool,
+  "unlock-pdf": UnlockPdfTool,
+  "organize-pdf": OrganizePdfTool,
+  "add-page-numbers-pdf": AddPageNumbersPdfTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,

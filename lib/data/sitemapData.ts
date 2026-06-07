@@ -217,13 +217,14 @@ export const pdfToolsMenu = [
     items: [
       { name: "Merge PDF", desc: "Combine multiple PDFs into one" },
       { name: "Split PDF", desc: "Extract pages from a PDF" },
+      { name: "Organize PDF", desc: "Rearrange, rotate, and manage PDF pages" },
       { name: "Remove PDF Pages", desc: "Delete pages from a PDF document" },
       { name: "Compress PDF", desc: "Reduce PDF file size" },
       { name: "Edit PDF", desc: "Edit text and images in PDF" },
       { name: "Rotate PDF", desc: "Rotate pages in a PDF" },
       { name: "Extract Pages", desc: "Extract specific pages" },
       { name: "Repair PDF", desc: "Repair corrupted PDF files" },
-      { name: "Add Page Numbers", desc: "Insert page numbers in PDF" },
+      { name: "Add Page Numbers to PDF", desc: "Insert page numbers in PDF" },
     ]
   },
   {

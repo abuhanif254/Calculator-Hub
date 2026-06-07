@@ -423,7 +423,7 @@ export function EditPdfTool() {
       
       setProcessingStatus("idle");
     } catch (err: any) {
-      console.error("Failed to load PDF file", err);
+      console.warn("Failed to load PDF file", err.message || err);
       let msg = "Could not parse PDF file structure.";
       if (err.message && err.message.includes("encrypted")) {
         msg = "Password protected PDF file. Please unlock before editing.";

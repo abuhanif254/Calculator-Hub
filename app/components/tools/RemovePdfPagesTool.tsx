@@ -477,7 +477,7 @@ export function RemovePdfPagesTool() {
           return f;
         }));
       } catch (err: any) {
-        console.error("Failed to parse file", item.name, err);
+        console.warn("Failed to parse file", item.name, err.message || err);
         let msg = "Could not parse PDF. File might be corrupted.";
         if (err.message && err.message.includes("encrypted")) {
           msg = "Document is password protected. Please decrypt first.";
