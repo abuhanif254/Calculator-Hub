@@ -67,6 +67,7 @@ import { watermarkPdfConfig } from './watermark-pdf';
 import { protectPdfConfig } from './protect-pdf';
 import { unlockPdfConfig } from './unlock-pdf';
 import { organizePdfConfig } from './organize-pdf';
+import { addPageNumbersPdfConfig } from './add-page-numbers-pdf';
 import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
@@ -149,6 +150,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [protectPdfConfig.slug]: protectPdfConfig,
   [unlockPdfConfig.slug]: unlockPdfConfig,
   [organizePdfConfig.slug]: organizePdfConfig,
+  [addPageNumbersPdfConfig.slug]: addPageNumbersPdfConfig,
   [compressImageConfig.slug]: compressImageConfig,
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,

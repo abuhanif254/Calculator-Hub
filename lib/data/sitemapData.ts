@@ -224,7 +224,7 @@ export const pdfToolsMenu = [
       { name: "Rotate PDF", desc: "Rotate pages in a PDF" },
       { name: "Extract Pages", desc: "Extract specific pages" },
       { name: "Repair PDF", desc: "Repair corrupted PDF files" },
-      { name: "Add Page Numbers", desc: "Insert page numbers in PDF" },
+      { name: "Add Page Numbers to PDF", desc: "Insert page numbers in PDF" },
     ]
   },
   {
