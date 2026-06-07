@@ -59,6 +59,9 @@ const RandomStringGeneratorTool = dynamic(() => import('../../../components/tool
 const StrongPasswordGeneratorTool = dynamic(() => import('../../../components/tools/StrongPasswordGeneratorTool').then(m => m.StrongPasswordGeneratorTool));
 const RgbToHexTool = dynamic(() => import('../../../components/tools/RgbToHexTool').then(m => m.RgbToHexTool));
 const MergePdfTool = dynamic(() => import('../../../components/tools/MergePdfTool').then(m => m.MergePdfTool));
+const SplitPdfTool = dynamic(() => import('../../../components/tools/SplitPdfTool').then(m => m.SplitPdfTool));
+const CompressPdfTool = dynamic(() => import('../../../components/tools/CompressPdfTool').then(m => m.CompressPdfTool));
+const EditPdfTool = dynamic(() => import('../../../components/tools/EditPdfTool').then(m => m.EditPdfTool));
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
@@ -134,6 +137,9 @@ const toolComponents: Record<string, React.ComponentType> = {
   "strong-password-generator": StrongPasswordGeneratorTool,
   "rgb-to-hex": RgbToHexTool,
   "merge-pdf": MergePdfTool,
+  "split-pdf": SplitPdfTool,
+  "compress-pdf": CompressPdfTool,
+  "edit-pdf": EditPdfTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,

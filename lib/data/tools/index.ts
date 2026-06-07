@@ -56,6 +56,9 @@ import { randomStringGeneratorConfig } from './random-string-generator';
 import { strongPasswordGeneratorConfig } from './strong-password-generator';
 import { rgbToHexConfig } from './rgb-to-hex';
 import { mergePdfConfig } from './merge-pdf';
+import { splitPdfConfig } from './split-pdf';
+import { compressPdfConfig } from './compress-pdf';
+import { editPdfConfig } from './edit-pdf';
 import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
@@ -127,6 +130,9 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [strongPasswordGeneratorConfig.slug]: strongPasswordGeneratorConfig,
   [rgbToHexConfig.slug]: rgbToHexConfig,
   [mergePdfConfig.slug]: mergePdfConfig,
+  [splitPdfConfig.slug]: splitPdfConfig,
+  [compressPdfConfig.slug]: compressPdfConfig,
+  [editPdfConfig.slug]: editPdfConfig,
   [compressImageConfig.slug]: compressImageConfig,
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,
