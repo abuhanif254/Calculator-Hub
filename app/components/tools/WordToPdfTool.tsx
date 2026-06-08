@@ -28,9 +28,16 @@ const withOklchPolyfill = async <T,>(fn: () => any): Promise<T> => {
   const convertColorToRgb = (colorStr: string): string => {
     if (!ctx) return "transparent";
     try {
+      ctx.clearRect(0, 0, 1, 1);
       ctx.fillStyle = "rgba(0,0,0,0)";
       ctx.fillStyle = colorStr;
-      return ctx.fillStyle;
+      ctx.fillRect(0, 0, 1, 1);
+      const imgData = ctx.getImageData(0, 0, 1, 1).data;
+      const r = imgData[0];
+      const g = imgData[1];
+      const b = imgData[2];
+      const a = (imgData[3] / 255).toFixed(3);
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
     } catch (e) {
       return "transparent";
     }
@@ -38,7 +45,16 @@ const withOklchPolyfill = async <T,>(fn: () => any): Promise<T> => {
 
   const translatePropertyValue = (val: string): string => {
     if (!val || typeof val !== "string") return val;
-    if (!val.includes("oklch") && !val.includes("oklab") && !val.includes("color-mix")) return val;
+    if (
+      !val.includes("oklch") && 
+      !val.includes("oklab") && 
+      !val.includes("color-mix") && 
+      !val.includes("color(") && 
+      !val.includes("hwb") && 
+      !val.includes("lab") && 
+      !val.includes("lch") && 
+      !val.includes("light-dark")
+    ) return val;
     
     let result = "";
     let i = 0;
@@ -46,13 +62,23 @@ const withOklchPolyfill = async <T,>(fn: () => any): Promise<T> => {
       if (
         val.startsWith("oklch(", i) || 
         val.startsWith("oklab(", i) || 
-        val.startsWith("color-mix(", i)
+        val.startsWith("color-mix(", i) ||
+        val.startsWith("color(", i) ||
+        val.startsWith("hwb(", i) ||
+        val.startsWith("lab(", i) ||
+        val.startsWith("lch(", i) ||
+        val.startsWith("light-dark(", i)
       ) {
         const start = i;
         let openBrackets = 1;
-        const funcName = val.startsWith("color-mix(", i) 
-          ? "color-mix(" 
-          : (val.startsWith("oklch(", i) ? "oklch(" : "oklab(");
+        let funcName = "";
+        const prefixes = ["oklch(", "oklab(", "color-mix(", "color(", "hwb(", "lab(", "lch(", "light-dark("];
+        for (const p of prefixes) {
+          if (val.startsWith(p, i)) {
+            funcName = p;
+            break;
+          }
+        }
         i += funcName.length;
         while (i < val.length && openBrackets > 0) {
           if (val[i] === "(") openBrackets++;

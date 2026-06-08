@@ -78,6 +78,9 @@ const PdfCropPagesTool = dynamic(() => import('../../../components/tools/PdfCrop
 const PdfOcrTool = dynamic(() => import('../../../components/tools/PdfOcrTool').then(m => m.PdfOcrTool));
 const PdfToWordTool = dynamic(() => import('../../../components/tools/PdfToWordTool').then(m => m.PdfToWordTool));
 const WordToPdfTool = dynamic(() => import('../../../components/tools/WordToPdfTool').then(m => m.WordToPdfTool));
+const ExcelToPdfTool = dynamic(() => import('../../../components/tools/ExcelToPdfTool').then(m => m.ExcelToPdfTool));
+const PowerPointToPdfTool = dynamic(() => import('../../../components/tools/PowerPointToPdfTool').then(m => m.PowerPointToPdfTool));
+const ImageToPdfTool = dynamic(() => import('../../../components/tools/ImageToPdfTool').then(m => m.ImageToPdfTool));
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
@@ -172,6 +175,9 @@ const toolComponents: Record<string, React.ComponentType> = {
   "pdf-ocr": PdfOcrTool,
   "pdf-to-word": PdfToWordTool,
   "word-to-pdf": WordToPdfTool,
+  "excel-to-pdf": ExcelToPdfTool,
+  "powerpoint-to-pdf": PowerPointToPdfTool,
+  "image-to-pdf": ImageToPdfTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,
