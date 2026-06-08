@@ -254,7 +254,8 @@ export const pdfToolsMenu = [
     items: [
       { name: "Word to PDF", desc: "Convert Word to PDF" },
       { name: "Excel to PDF", desc: "Convert Excel to PDF" },
-      { name: "PPT to PDF", desc: "Convert PowerPoint to PDF" },
+      { name: "PowerPoint to PDF", desc: "Convert PowerPoint to PDF" },
+      { name: "Image to PDF", desc: "Convert images to PDF" },
       { name: "JPG to PDF", desc: "Convert JPG images to PDF" },
       { name: "PNG to PDF", desc: "Convert PNG images to PDF" },
       { name: "HTML to PDF", desc: "Convert HTML webpage to PDF" },

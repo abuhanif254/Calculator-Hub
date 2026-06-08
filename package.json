@@ -25,6 +25,7 @@
     "@types/qrcode": "^1.5.6",
     "@typescript/ata": "^0.9.8",
     "autoprefixer": "^10.4.21",
+    "browser-image-compression": "^2.0.2",
     "chart.js": "^4.5.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -32,6 +33,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
     "emmet-monaco-es": "^5.7.0",
+    "exceljs": "^4.4.0",
     "firebase": "^12.13.0",
     "firebase-admin": "^13.10.0",
     "gray-matter": "^4.0.3",
@@ -73,7 +75,8 @@
     "terser": "^5.47.1",
     "tesseract.js": "^7.0.0",
     "ua-parser-js": "^2.0.10",
-    "uuid": "^14.0.0"
+    "uuid": "^14.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@firebase/eslint-plugin-security-rules": "^0.0.2",

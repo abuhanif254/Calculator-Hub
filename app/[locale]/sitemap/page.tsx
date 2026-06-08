@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { Link, routing, resolveIntlHref } from '@/i18n/routing';
 import { sitemapCategories, developerToolsMenu, pdfToolsMenu, imageToolsMenu, generalLinks } from '@/lib/data/sitemapData';
+import { resolveHref } from '@/lib/utils/linkResolver';
 import { Search, Compass, ExternalLink, ChevronDown } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 import Script from 'next/script';
@@ -202,18 +203,10 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.links.map((link) => {
-                      let slug = link.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-                      const slugOverrides: Record<string, string> = {
-                        "mortgage-calculator": "mortgage-calculator",
-                        "credit-cards-payoff-calculator": "credit-cards-payoff",
-                        "cash-back-or-low-interest-calculator": "cash-back-vs-low-interest-calculator",
-                      };
-                      slug = slugOverrides[slug] || slug;
-                      
                       return (
                         <li key={link}>
                           <Link 
-                            href={resolveIntlHref(`/calculators/${slug}`)}
+                            href={resolveIntlHref(resolveHref(link))}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                           >
                             <span className="truncate">{link}</span>
@@ -250,13 +243,10 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.items.map((item) => {
-                      let slug = item.name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-                      if(item.name === "URL Encode / Decode") slug = "url-encoder"; 
-                      
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={resolveIntlHref(`/tools/${slug}`)}
+                            href={resolveIntlHref(resolveHref(item.name))}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
@@ -294,12 +284,10 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.items.map((item) => {
-                      let slug = item.name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-                      
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={resolveIntlHref(`/tools/${slug}`)}
+                            href={resolveIntlHref(resolveHref(item.name))}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
@@ -337,12 +325,10 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.items.map((item) => {
-                      let slug = item.name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-                      
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={resolveIntlHref(`/tools/${slug}`)}
+                            href={resolveIntlHref(resolveHref(item.name))}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
