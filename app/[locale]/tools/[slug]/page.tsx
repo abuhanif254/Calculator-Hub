@@ -71,6 +71,11 @@ const ProtectPdfTool = dynamic(() => import('../../../components/tools/ProtectPd
 const UnlockPdfTool = dynamic(() => import('../../../components/tools/UnlockPdfTool').then(m => m.UnlockPdfTool));
 const OrganizePdfTool = dynamic(() => import('../../../components/tools/OrganizePdfTool').then(m => m.OrganizePdfTool));
 const AddPageNumbersPdfTool = dynamic(() => import('../../../components/tools/AddPageNumbersPdfTool').then(m => m.AddPageNumbersPdfTool));
+const PdfMetadataEditorTool = dynamic(() => import('../../../components/tools/PdfMetadataEditorTool').then(m => m.PdfMetadataEditorTool));
+const PdfMetadataViewerTool = dynamic(() => import('../../../components/tools/PdfMetadataViewerTool').then(m => m.PdfMetadataViewerTool));
+const PdfExtractPagesTool = dynamic(() => import('../../../components/tools/PdfExtractPagesTool').then(m => m.PdfExtractPagesTool));
+const PdfCropPagesTool = dynamic(() => import('../../../components/tools/PdfCropPagesTool').then(m => m.PdfCropPagesTool));
+const PdfOcrTool = dynamic(() => import('../../../components/tools/PdfOcrTool').then(m => m.PdfOcrTool));
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
@@ -158,6 +163,11 @@ const toolComponents: Record<string, React.ComponentType> = {
   "unlock-pdf": UnlockPdfTool,
   "organize-pdf": OrganizePdfTool,
   "add-page-numbers-pdf": AddPageNumbersPdfTool,
+  "pdf-metadata-editor": PdfMetadataEditorTool,
+  "pdf-metadata-viewer": PdfMetadataViewerTool,
+  "pdf-extract-pages": PdfExtractPagesTool,
+  "pdf-crop-pages": PdfCropPagesTool,
+  "pdf-ocr": PdfOcrTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,

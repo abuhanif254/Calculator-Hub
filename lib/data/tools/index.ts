@@ -68,6 +68,11 @@ import { protectPdfConfig } from './protect-pdf';
 import { unlockPdfConfig } from './unlock-pdf';
 import { organizePdfConfig } from './organize-pdf';
 import { addPageNumbersPdfConfig } from './add-page-numbers-pdf';
+import { pdfMetadataEditorConfig } from './pdf-metadata-editor';
+import { pdfMetadataViewerConfig } from './pdf-metadata-viewer';
+import { pdfExtractPagesConfig } from './pdf-extract-pages';
+import { pdfCropPagesConfig } from './pdf-crop-pages';
+import { pdfOcrConfig } from './pdf-ocr';
 import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
@@ -151,6 +156,11 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [unlockPdfConfig.slug]: unlockPdfConfig,
   [organizePdfConfig.slug]: organizePdfConfig,
   [addPageNumbersPdfConfig.slug]: addPageNumbersPdfConfig,
+  [pdfMetadataEditorConfig.slug]: pdfMetadataEditorConfig,
+  [pdfMetadataViewerConfig.slug]: pdfMetadataViewerConfig,
+  [pdfExtractPagesConfig.slug]: pdfExtractPagesConfig,
+  [pdfCropPagesConfig.slug]: pdfCropPagesConfig,
+  [pdfOcrConfig.slug]: pdfOcrConfig,
   [compressImageConfig.slug]: compressImageConfig,
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,
