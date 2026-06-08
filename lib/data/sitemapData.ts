@@ -222,9 +222,13 @@ export const pdfToolsMenu = [
       { name: "Compress PDF", desc: "Reduce PDF file size" },
       { name: "Edit PDF", desc: "Edit text and images in PDF" },
       { name: "Rotate PDF", desc: "Rotate pages in a PDF" },
-      { name: "Extract Pages", desc: "Extract specific pages" },
+      { name: "PDF Extract Pages", desc: "Extract specific pages or page ranges from a PDF document" },
+      { name: "PDF Crop Pages", desc: "Crop page margins, remove white space, and trim scanned borders" },
+      { name: "PDF OCR", desc: "Extract text from scanned PDFs and create searchable documents" },
       { name: "Repair PDF", desc: "Repair corrupted PDF files" },
       { name: "Add Page Numbers to PDF", desc: "Insert page numbers in PDF" },
+      { name: "PDF Metadata Editor", desc: "View, edit, and clean PDF document properties and metadata" },
+      { name: "PDF Metadata Viewer", desc: "Inspect document properties, view metadata, and check PDF security settings" },
     ]
   },
   {
