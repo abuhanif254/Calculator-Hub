@@ -76,6 +76,8 @@ const PdfMetadataViewerTool = dynamic(() => import('../../../components/tools/Pd
 const PdfExtractPagesTool = dynamic(() => import('../../../components/tools/PdfExtractPagesTool').then(m => m.PdfExtractPagesTool));
 const PdfCropPagesTool = dynamic(() => import('../../../components/tools/PdfCropPagesTool').then(m => m.PdfCropPagesTool));
 const PdfOcrTool = dynamic(() => import('../../../components/tools/PdfOcrTool').then(m => m.PdfOcrTool));
+const PdfToWordTool = dynamic(() => import('../../../components/tools/PdfToWordTool').then(m => m.PdfToWordTool));
+const WordToPdfTool = dynamic(() => import('../../../components/tools/WordToPdfTool').then(m => m.WordToPdfTool));
 const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
 const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
 const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
@@ -168,6 +170,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   "pdf-extract-pages": PdfExtractPagesTool,
   "pdf-crop-pages": PdfCropPagesTool,
   "pdf-ocr": PdfOcrTool,
+  "pdf-to-word": PdfToWordTool,
+  "word-to-pdf": WordToPdfTool,
   "compress-image": CompressImageTool,
   "resize-image": ResizeImageTool,
   "photo-editor": PhotoEditorTool,

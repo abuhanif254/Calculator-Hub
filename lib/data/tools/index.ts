@@ -73,6 +73,8 @@ import { pdfMetadataViewerConfig } from './pdf-metadata-viewer';
 import { pdfExtractPagesConfig } from './pdf-extract-pages';
 import { pdfCropPagesConfig } from './pdf-crop-pages';
 import { pdfOcrConfig } from './pdf-ocr';
+import { pdfToWordConfig } from './pdf-to-word';
+import { wordToPdfConfig } from './word-to-pdf';
 import { compressImageConfig } from './compress-image';
 import { resizeImageConfig } from './resize-image';
 import { photoEditorConfig } from './photo-editor';
@@ -161,6 +163,8 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [pdfExtractPagesConfig.slug]: pdfExtractPagesConfig,
   [pdfCropPagesConfig.slug]: pdfCropPagesConfig,
   [pdfOcrConfig.slug]: pdfOcrConfig,
+  [pdfToWordConfig.slug]: pdfToWordConfig,
+  [wordToPdfConfig.slug]: wordToPdfConfig,
   [compressImageConfig.slug]: compressImageConfig,
   [resizeImageConfig.slug]: resizeImageConfig,
   [photoEditorConfig.slug]: photoEditorConfig,
