@@ -138,7 +138,7 @@ export const developerToolsMenu = [
       { name: "SHA256 Generator", desc: "Generate SHA256 hashes" },
       { name: "Password Generator", desc: "Generate secure passwords" },
       { name: "HMAC Generator", desc: "Generate HMAC codes" },
-      { name: "QR Code Generator", desc: "Create QR codes" },
+      { name: "QR Code Studio", desc: "Create advanced custom QR codes" },
     ]
   },
   {
@@ -237,8 +237,9 @@ export const pdfToolsMenu = [
     id: "convert-from-pdf",
     description: "Convert PDF files into editable formats and images.",
     items: [
+      { name: "PDF to PowerPoint", desc: "Convert PDF presentation to PPTX" },
+      { name: "PDF to Excel", desc: "Convert PDF tables to Excel spreadsheets" },
       { name: "PDF to Word", desc: "Convert PDF to Word document" },
-      { name: "PDF to Excel", desc: "Convert PDF to Excel spreadsheet" },
       { name: "PDF to PPT", desc: "Convert PDF to PowerPoint presentation" },
       { name: "PDF to JPG", desc: "Extract images from PDF" },
       { name: "PDF to PNG", desc: "Convert PDF to PNG images" },

@@ -65,6 +65,7 @@ import { removePdfPagesConfig } from './remove-pdf-pages';
 import { rotatePdfConfig } from './rotate-pdf';
 import { watermarkPdfConfig } from './watermark-pdf';
 import { protectPdfConfig } from './protect-pdf';
+import { qrCodeStudioConfig } from './qr-code-studio';
 import { unlockPdfConfig } from './unlock-pdf';
 import { organizePdfConfig } from './organize-pdf';
 import { addPageNumbersPdfConfig } from './add-page-numbers-pdf';
@@ -87,8 +88,9 @@ import { aiPromptHelperConfig } from './ai-prompt-helper';
 import { instagramTiktokHashtagGeneratorConfig } from './instagram-tiktok-hashtag-generator';
 import { bioLinkPageGeneratorConfig } from './bio-link-page-generator';
 import { htmlCssJsPlaygroundConfig } from './html-css-js-playground';
-
-
+import { backgroundRemoverConfig } from './background-remover';
+import { pdfToExcelConfig } from './pdf-to-excel';
+import { pdfToPowerPointConfig } from './pdf-to-powerpoint';
 
 export * from './types';
 
@@ -157,6 +159,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [removePdfPagesConfig.slug]: removePdfPagesConfig,
   [rotatePdfConfig.slug]: rotatePdfConfig,
   [watermarkPdfConfig.slug]: watermarkPdfConfig,
+  [qrCodeStudioConfig.slug]: qrCodeStudioConfig,
   [protectPdfConfig.slug]: protectPdfConfig,
   [unlockPdfConfig.slug]: unlockPdfConfig,
   [organizePdfConfig.slug]: organizePdfConfig,
@@ -180,6 +183,9 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [instagramTiktokHashtagGeneratorConfig.slug]: instagramTiktokHashtagGeneratorConfig,
   [bioLinkPageGeneratorConfig.slug]: bioLinkPageGeneratorConfig,
   [htmlCssJsPlaygroundConfig.slug]: htmlCssJsPlaygroundConfig,
+  [backgroundRemoverConfig.slug]: backgroundRemoverConfig,
+  [pdfToExcelConfig.slug]: pdfToExcelConfig,
+  [pdfToPowerPointConfig.slug]: pdfToPowerPointConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
