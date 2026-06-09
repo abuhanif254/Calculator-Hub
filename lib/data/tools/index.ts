@@ -91,6 +91,9 @@ import { htmlCssJsPlaygroundConfig } from './html-css-js-playground';
 import { backgroundRemoverConfig } from './background-remover';
 import { pdfToExcelConfig } from './pdf-to-excel';
 import { pdfToPowerPointConfig } from './pdf-to-powerpoint';
+import { pdfToHtmlConfig } from './pdf-to-html';
+import { pdfToTextConfig } from './pdf-to-text';
+import { pdfToPngConfig } from './pdf-to-png';
 
 export * from './types';
 
@@ -186,6 +189,10 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [backgroundRemoverConfig.slug]: backgroundRemoverConfig,
   [pdfToExcelConfig.slug]: pdfToExcelConfig,
   [pdfToPowerPointConfig.slug]: pdfToPowerPointConfig,
+  [pdfToJpgConfig.slug]: pdfToJpgConfig,
+  [pdfToHtmlConfig.slug]: pdfToHtmlConfig,
+  [pdfToTextConfig.slug]: pdfToTextConfig,
+  [pdfToPngConfig.slug]: pdfToPngConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

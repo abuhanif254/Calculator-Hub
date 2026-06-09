@@ -94,6 +94,9 @@ const BackgroundRemoverTool = dynamic(() => import('../../../components/tools/Ba
 const QrCodeStudioTool = dynamic(() => import('../../../components/tools/QrCodeStudioTool').then(m => m.QrCodeStudioTool));
 const PdfToExcelTool = dynamic(() => import('../../../components/tools/PdfToExcelTool').then(m => m.PdfToExcelTool));
 const PdfToPowerPointTool = dynamic(() => import('../../../components/tools/PdfToPowerPointTool').then(m => m.PdfToPowerPointTool));
+const PdfToHtmlTool = dynamic(() => import('../../../components/tools/PdfToHtmlTool').then(m => m.PdfToHtmlTool));
+const PdfToTextTool = dynamic(() => import('../../../components/tools/PdfToTextTool').then(m => m.PdfToTextTool));
+const PdfToPngTool = dynamic(() => import('../../../components/tools/PdfToPngTool').then(m => m.PdfToPngTool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -193,7 +196,10 @@ const toolComponents: Record<string, React.ComponentType> = {
   "background-remover": BackgroundRemoverTool,
   "qr-code-studio": QrCodeStudioTool,
   "pdf-to-excel": PdfToExcelTool,
-  "pdf-to-powerpoint": PdfToPowerPointTool
+  "pdf-to-powerpoint": PdfToPowerPointTool,
+  "pdf-to-html": PdfToHtmlTool,
+  "pdf-to-text": PdfToTextTool,
+  "pdf-to-png": PdfToPngTool
 };
 
 
