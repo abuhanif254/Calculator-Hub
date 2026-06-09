@@ -90,7 +90,10 @@ const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPro
 const InstagramTiktokHashtagGeneratorTool = dynamic(() => import('../../../components/tools/InstagramTiktokHashtagGeneratorTool').then(m => m.InstagramTiktokHashtagGeneratorTool));
 const BioLinkPageGeneratorTool = dynamic(() => import('../../../components/tools/BioLinkPageGeneratorTool').then(m => m.BioLinkPageGeneratorTool));
 const HtmlCssJsPlaygroundTool = dynamic(() => import('../../../components/tools/HtmlCssJsPlaygroundTool').then(m => m.HtmlCssJsPlaygroundTool));
-
+const BackgroundRemoverTool = dynamic(() => import('../../../components/tools/BackgroundRemoverTool').then(m => m.BackgroundRemoverTool));
+const QrCodeStudioTool = dynamic(() => import('../../../components/tools/QrCodeStudioTool').then(m => m.QrCodeStudioTool));
+const PdfToExcelTool = dynamic(() => import('../../../components/tools/PdfToExcelTool').then(m => m.PdfToExcelTool));
+const PdfToPowerPointTool = dynamic(() => import('../../../components/tools/PdfToPowerPointTool').then(m => m.PdfToPowerPointTool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -186,7 +189,11 @@ const toolComponents: Record<string, React.ComponentType> = {
   "ai-prompt-helper": AIPromptHelperTool,
   "instagram-tiktok-hashtag-generator": InstagramTiktokHashtagGeneratorTool,
   "bio-link-page-generator": BioLinkPageGeneratorTool,
-  "html-css-js-playground": HtmlCssJsPlaygroundTool
+  "html-css-js-playground": HtmlCssJsPlaygroundTool,
+  "background-remover": BackgroundRemoverTool,
+  "qr-code-studio": QrCodeStudioTool,
+  "pdf-to-excel": PdfToExcelTool,
+  "pdf-to-powerpoint": PdfToPowerPointTool
 };
 
 

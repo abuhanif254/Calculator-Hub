@@ -21,6 +21,10 @@ const titleOverrides: Record<string, string> = {
   "Cash Back or Low Interest Calculator": "/calculators/cash-back-vs-low-interest-calculator",
   "401K Calculator": "/calculators/401k-calculator",
   "Roth IRA Calculator": "/calculators/roth-ira-calculator",
+  "Remove Background": "/tools/background-remover",
+  "QR Code Studio": "/tools/qr-code-studio",
+  "PDF to Excel": "/tools/pdf-to-excel",
+  "PDF to PowerPoint Converter": "/tools/pdf-to-powerpoint",
 };
 
 Object.entries(titleOverrides).forEach(([title, href]) => {

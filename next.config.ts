@@ -41,7 +41,32 @@ const nextConfig: NextConfig = {
   experimental: {
     cpus: 1,
   },
-  webpack: (config, { dev }) => {
+  webpack: (config, { dev, isServer, webpack }) => {
+    // Fix pdfjs-dist canvas dependency issue
+    config.resolve.alias.canvas = false;
+    
+    // Fix pptxgenjs node:fs imports on client
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+        os: false,
+        https: false,
+        http: false,
+        net: false,
+        tls: false,
+        crypto: false,
+        stream: false,
+        zlib: false,
+      };
+      config.plugins.push(
+        new webpack.NormalModuleReplacementPlugin(/^node:/, (resource: { request: string }) => {
+          resource.request = resource.request.replace(/^node:/, '');
+        })
+      );
+    }
+    
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
     // Do not modify—file watching is disabled to prevent flickering during agent edits.
     if (dev && process.env.DISABLE_HMR === 'true') {
