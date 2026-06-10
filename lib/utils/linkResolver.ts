@@ -25,6 +25,10 @@ const titleOverrides: Record<string, string> = {
   "QR Code Studio": "/tools/qr-code-studio",
   "PDF to Excel": "/tools/pdf-to-excel",
   "PDF to PowerPoint Converter": "/tools/pdf-to-powerpoint",
+  "PDF to PPT": "/tools/pdf-to-powerpoint",
+  "TXT to PDF": "/tools/text-to-pdf",
+  "EPUB to PDF": "/tools/epub-to-pdf",
+  "PDF to EPUB": "/tools/pdf-to-epub",
 };
 
 Object.entries(titleOverrides).forEach(([title, href]) => {

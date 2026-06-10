@@ -97,6 +97,11 @@ const PdfToPowerPointTool = dynamic(() => import('../../../components/tools/PdfT
 const PdfToHtmlTool = dynamic(() => import('../../../components/tools/PdfToHtmlTool').then(m => m.PdfToHtmlTool));
 const PdfToTextTool = dynamic(() => import('../../../components/tools/PdfToTextTool').then(m => m.PdfToTextTool));
 const PdfToPngTool = dynamic(() => import('../../../components/tools/PdfToPngTool').then(m => m.PdfToPngTool));
+const PngToPdfTool = dynamic(() => import('../../../components/tools/PngToPdfTool').then(m => m.PngToPdfTool));
+const HtmlToPdfTool = dynamic(() => import('../../../components/tools/HtmlToPdfTool').then(m => m.HtmlToPdfTool));
+const TextToPdfTool = dynamic(() => import('../../../components/tools/TextToPdfTool').then(m => m.TextToPdfTool));
+const EpubToPdfTool = dynamic(() => import('../../../components/tools/EpubToPdfTool').then(m => m.EpubToPdfTool));
+const PdfToEpubTool = dynamic(() => import('../../../components/tools/PdfToEpubTool').then(m => m.PdfToEpubTool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -199,7 +204,12 @@ const toolComponents: Record<string, React.ComponentType> = {
   "pdf-to-powerpoint": PdfToPowerPointTool,
   "pdf-to-html": PdfToHtmlTool,
   "pdf-to-text": PdfToTextTool,
-  "pdf-to-png": PdfToPngTool
+  "pdf-to-png": PdfToPngTool,
+  "png-to-pdf": PngToPdfTool,
+  "html-to-pdf": HtmlToPdfTool,
+  "text-to-pdf": TextToPdfTool,
+  "epub-to-pdf": EpubToPdfTool,
+  "pdf-to-epub": PdfToEpubTool
 };
 
 

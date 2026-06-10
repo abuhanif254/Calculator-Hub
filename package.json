@@ -34,6 +34,7 @@
     "crypto-js": "^4.2.0",
     "date-fns": "^4.1.0",
     "emmet-monaco-es": "^5.7.0",
+    "epubjs": "^0.3.93",
     "exceljs": "^4.4.0",
     "firebase": "^12.13.0",
     "firebase-admin": "^13.10.0",

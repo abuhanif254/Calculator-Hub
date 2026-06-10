@@ -245,6 +245,7 @@ export const pdfToolsMenu = [
       { name: "PDF to PNG", desc: "Convert PDF to PNG images" },
       { name: "PDF to Text", desc: "Extract text from PDF" },
       { name: "PDF to HTML", desc: "Convert PDF to HTML webpage" },
+      { name: "PDF to EPUB", desc: "Convert PDF to EPUB ebook" },
     ]
   },
   {
@@ -261,6 +262,7 @@ export const pdfToolsMenu = [
       { name: "PNG to PDF", desc: "Convert PNG images to PDF" },
       { name: "HTML to PDF", desc: "Convert HTML webpage to PDF" },
       { name: "TXT to PDF", desc: "Convert Text document to PDF" },
+      { name: "EPUB to PDF", desc: "Convert EPUB ebook to PDF" },
     ]
   },
   {

@@ -94,6 +94,11 @@ import { pdfToPowerPointConfig } from './pdf-to-powerpoint';
 import { pdfToHtmlConfig } from './pdf-to-html';
 import { pdfToTextConfig } from './pdf-to-text';
 import { pdfToPngConfig } from './pdf-to-png';
+import { pngToPdfConfig } from './png-to-pdf';
+import { htmlToPdfConfig } from './html-to-pdf';
+import { textToPdfConfig } from './text-to-pdf';
+import { epubToPdfConfig } from './epub-to-pdf';
+import { pdfToEpubConfig } from './pdf-to-epub';
 
 export * from './types';
 
@@ -193,6 +198,11 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [pdfToHtmlConfig.slug]: pdfToHtmlConfig,
   [pdfToTextConfig.slug]: pdfToTextConfig,
   [pdfToPngConfig.slug]: pdfToPngConfig,
+  [pngToPdfConfig.slug]: pngToPdfConfig,
+  [htmlToPdfConfig.slug]: htmlToPdfConfig,
+  [textToPdfConfig.slug]: textToPdfConfig,
+  [epubToPdfConfig.slug]: epubToPdfConfig,
+  [pdfToEpubConfig.slug]: pdfToEpubConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
