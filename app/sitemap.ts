@@ -17,6 +17,7 @@ import { allGuides } from '../lib/data/guides';
 //   /sitemap/1.xml  →  Calculator pages (A–L)
 //   /sitemap/2.xml  →  Calculator pages (M–Z)
 //   /sitemap/3.xml  →  Developer tools
+//   /sitemap/4.xml  →  Community posts
 //
 // WHY: Google recommends splitting sitemaps by content type.
 // Each child sitemap is independently crawlable, so when
@@ -102,6 +103,7 @@ export async function generateSitemaps() {
     { id: '1' },  // Calculators A–L
     { id: '2' },  // Calculators M–Z
     { id: '3' },  // Developer tools
+    { id: '4' },  // Community posts
   ];
 }
 
@@ -206,6 +208,29 @@ export default async function sitemap({
       })
       .sort()
       .map((slug) => buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod));
+  }
+
+  // ─── SITEMAP 4: Community Posts ──────────────────
+  if (sitemapId === 4) {
+    const { collection, getDocs } = await import('firebase/firestore');
+    const { db } = await import('../lib/firebase');
+    
+    try {
+      const postsSnapshot = await getDocs(collection(db, 'posts'));
+      return postsSnapshot.docs.map(doc => {
+        const data = doc.data();
+        return buildEntry(
+          '/community/[slug]', 
+          'daily', 
+          0.7, 
+          data.slug, 
+          data.updatedAt?.toDate() || new Date(data.createdAt?.toMillis() || Date.now())
+        );
+      });
+    } catch (err) {
+      console.error("Failed to fetch community posts for sitemap", err);
+      return [];
+    }
   }
 
   return [];

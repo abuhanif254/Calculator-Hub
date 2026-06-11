@@ -185,9 +185,30 @@ export const routing = defineRouting({
       fr: '/calculatrices/[slug]',
       de: '/rechner/[slug]'
     },
-    '/community': '/community',
-    '/community/new': '/community/new',
-    '/community/[slug]': '/community/[slug]',
+    '/community': {
+      en: '/community',
+      es: '/comunidad',
+      fr: '/communaute',
+      de: '/gemeinschaft'
+    },
+    '/community/new': {
+      en: '/community/new',
+      es: '/comunidad/nuevo',
+      fr: '/communaute/nouveau',
+      de: '/gemeinschaft/neu'
+    },
+    '/community/[slug]': {
+      en: '/community/[slug]',
+      es: '/comunidad/[slug]',
+      fr: '/communaute/[slug]',
+      de: '/gemeinschaft/[slug]'
+    },
+    '/community/[slug]/edit': {
+      en: '/community/[slug]/edit',
+      es: '/comunidad/[slug]/editar',
+      fr: '/communaute/[slug]/modifier',
+      de: '/gemeinschaft/[slug]/bearbeiten'
+    },
     '/tools/[slug]': {
       en: '/tools/[slug]',
       es: '/herramientas/[slug]',
@@ -213,6 +234,24 @@ export const routing = defineRouting({
       es: '/comparar/[slug]',
       fr: '/comparer/[slug]',
       de: '/vergleichen/[slug]'
+    },
+    '/login': {
+      en: '/login',
+      es: '/iniciar-sesion',
+      fr: '/connexion',
+      de: '/anmelden'
+    },
+    '/signup': {
+      en: '/signup',
+      es: '/registrarse',
+      fr: '/inscription',
+      de: '/registrieren'
+    },
+    '/admin/community': {
+      en: '/admin/community',
+      es: '/admin/comunidad',
+      fr: '/admin/communaute',
+      de: '/admin/gemeinschaft'
     }
   }
 });
@@ -252,6 +291,14 @@ export function resolveIntlHref(hrefStr: string): any {
   }
   if (hrefStr.startsWith('/compare/')) {
     return { pathname: '/compare/[slug]', params: { slug: hrefStr.replace('/compare/', '') } };
+  }
+  if (hrefStr.startsWith('/community/')) {
+    const parts = hrefStr.replace('/community/', '').split('/');
+    if (parts.length === 1 && parts[0] !== 'new') {
+      return { pathname: '/community/[slug]', params: { slug: parts[0] } };
+    } else if (parts.length === 2 && parts[1] === 'edit') {
+      return { pathname: '/community/[slug]/edit', params: { slug: parts[0] } };
+    }
   }
   
   return hrefStr;
