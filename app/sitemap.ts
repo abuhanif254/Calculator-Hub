@@ -5,6 +5,7 @@ import { collections } from '../lib/data/collections';
 import { comparisons } from '../lib/data/comparisons';
 import { routing } from '../i18n/routing';
 import { allToolsConfig } from '../lib/data/tools/index';
+import { allGuides } from '../lib/data/guides';
 
 // ─────────────────────────────────────────────────────────
 // SITEMAP INDEX ARCHITECTURE
@@ -125,6 +126,12 @@ export default async function sitemap({
       buildEntry('/about-us', 'monthly', 0.5),
       buildEntry('/privacy-policy', 'yearly', 0.3),
       buildEntry('/terms-of-use', 'yearly', 0.3),
+      // Guides hub (documentation-style — high priority for topical authority)
+      buildEntry('/guides', 'weekly', 0.85),
+      // Individual guide articles
+      ...allGuides.map((guide) =>
+        buildEntry('/guides/[slug]', 'monthly', 0.75, guide.slug, new Date(guide.lastUpdated))
+      ),
       // Category pillar pages (high priority for topical authority)
       ...categories
         .filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category)))

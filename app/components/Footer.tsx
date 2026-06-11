@@ -121,7 +121,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/search" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
+                <Link href="/guides" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
                   Guides
                 </Link>
               </li>

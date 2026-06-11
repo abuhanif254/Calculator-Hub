@@ -31,6 +31,18 @@ export const routing = defineRouting({
       fr: '/conditions-d-utilisation',
       de: '/nutzungsbedingungen'
     },
+    '/guides': {
+      en: '/guides',
+      es: '/guias',
+      fr: '/guides',
+      de: '/anleitungen'
+    },
+    '/guides/[slug]': {
+      en: '/guides/[slug]',
+      es: '/guias/[slug]',
+      fr: '/guides/[slug]',
+      de: '/anleitungen/[slug]'
+    },
     // We can also let the catch-all dynamic parameter fall through, but
     // let's explicitly map the calculators we actively support to their specific translated slugs
     '/calculators/age-calculator': {

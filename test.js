@@ -1,0 +1,1 @@
+const http = require('http'); http.get('http://localhost:3001/en/guides/how-to-use-compound-interest-calculator', (res) => { let data = ''; res.on('data', d => data += d); res.on('end', () => console.log(data.match(/"(Error.*?)"/g) || data.substring(data.indexOf('Error'), data.indexOf('Error') + 300))); });
