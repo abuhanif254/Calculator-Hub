@@ -1,118 +1,99 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
-import { db } from "../../../../lib/firebase";
-import { handleFirestoreError, OperationType } from "../../../../lib/firestoreUtils";
+import React from "react";
+import { fetchPostBySlugRest, fetchUserRest, RestPost } from "../../../../lib/firebase-rest";
 import { Link } from "../../../../i18n/routing";
 import { ArrowLeft, User as UserIcon } from "lucide-react";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
-interface Post {
-  id: string;
-  title: string;
-  slug: string;
-  content: string;
-  authorId: string;
-  createdAt: number;
-}
+// Interactive client components
+import { LikeButton } from "./LikeButton";
+import { CommentsSection } from "./CommentsSection";
+import { EditButton } from "./EditButton";
+
+
 
 interface UserProfile {
   displayName: string | null;
   photoURL: string | null;
 }
 
-export default function PostPage() {
-  const params = useParams();
-  const slug = (params?.slug || "") as string;
+async function getPost(slug: string): Promise<{ post: RestPost; author: UserProfile | null } | null> {
+  const post = await fetchPostBySlugRest(slug);
+  if (!post) return null;
   
-  const [post, setPost] = useState<Post | null>(null);
-  const [author, setAuthor] = useState<UserProfile | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  let author: UserProfile | null = null;
+  if (post.authorId) {
+    author = await fetchUserRest(post.authorId);
+  }
+  
+  return { post, author };
+}
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      if (!slug) return;
-      
-      try {
-        const q = query(collection(db, "posts"), where("slug", "==", slug));
-        const querySnapshot = await getDocs(q);
-        
-        if (querySnapshot.empty) {
-          setError("Post not found");
-          setLoading(false);
-          return;
-        }
-        
-        const docSnap = querySnapshot.docs[0];
-        const data = docSnap.data();
-        const postData = {
-          id: docSnap.id,
-          title: data.title,
-          slug: data.slug,
-          content: data.content,
-          authorId: data.authorId,
-          createdAt: data.createdAt?.toMillis() || Date.now()
-        };
-        
-        setPost(postData);
-        
-        // Fetch author
-        if (postData.authorId) {
-          try {
-            const userRef = doc(db, "users", postData.authorId);
-            const userSnap = await getDoc(userRef);
-            if (userSnap.exists()) {
-              setAuthor(userSnap.data() as UserProfile);
-            }
-          } catch(err) {
-             console.error("Failed to fetch author", err);
-             // handleFirestoreError is not strictly required here if we want to swallow author fetch
-          }
-        }
-      } catch (err) {
-        handleFirestoreError(err, OperationType.GET, "posts");
-        setError("Error loading post");
-      } finally {
-        setLoading(false);
-      }
-    };
-    
-    fetchPost();
-  }, [slug]);
+export async function generateMetadata({ params }: { params: Promise<{ locale: string, slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const data = await getPost(slug);
+  
+  if (!data) return { title: "Post Not Found | Nexus Community" };
+  
+  // Create a plain text snippet for description from HTML
+  const plainTextDescription = data.post.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...';
 
-  if (loading) {
-    return (
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="animate-pulse space-y-4">
-          <div className="h-4 w-24 bg-slate-200 dark:bg-slate-800 rounded"></div>
-          <div className="h-10 w-3/4 bg-slate-200 dark:bg-slate-800 rounded"></div>
-          <div className="h-64 bg-slate-200 dark:bg-slate-800 rounded mt-8"></div>
-        </div>
-      </div>
-    );
+  return {
+    title: `${data.post.title} | Nexus Community`,
+    description: plainTextDescription,
+    openGraph: {
+      title: data.post.title,
+      description: plainTextDescription,
+      type: "article",
+      authors: [data.author?.displayName || data.post.authorName || "Nexus Community Member"]
+    }
+  };
+}
+
+export default async function PostPage({ params }: { params: Promise<{ locale: string, slug: string }> }) {
+  const { locale, slug } = await params;
+  const data = await getPost(slug);
+
+  if (!data) {
+    notFound();
   }
 
-  if (error || !post) {
-    return (
-      <div className="max-w-4xl mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold mb-4">Post not found</h1>
-        <Link href="/community" className="text-[#518231] hover:underline">Back to Community</Link>
-      </div>
-    );
-  }
+  const { post, author } = data;
+  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+
+  // Article JSON-LD Schema
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "DiscussionForumPosting",
+    "headline": post.title,
+    "datePublished": new Date(post.createdAt).toISOString(),
+    "author": {
+      "@type": "Person",
+      "name": author?.displayName || post.authorName || "Community Member"
+    },
+    "text": post.content.replace(/<[^>]+>/g, ''), // Strip HTML for schema
+    "url": `${baseUrl}/${locale}/community/${post.slug}`
+  };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-12">
-      <Link href="/community" className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-slate-900 dark:hover:text-white mb-8 transition-colors">
+    <div className="max-w-4xl mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <Link href="/community" className="inline-flex items-center text-sm font-medium text-slate-500 hover:text-[#518231] dark:hover:text-[#65a33d] mb-8 transition-colors">
         <ArrowLeft size={16} className="mr-1" />
         Back to Community
       </Link>
       
-      <article className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
-        <header className="px-6 py-8 md:px-10 border-b border-slate-100 dark:border-slate-800">
-          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight">
+      <article className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden mb-8">
+        <header className="px-6 py-8 md:px-10 border-b border-slate-100 dark:border-slate-800 relative">
+          <div className="absolute top-8 right-8">
+            <EditButton postAuthorId={post.authorId} slug={post.slug} />
+          </div>
+
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight pr-12">
             {post.title}
           </h1>
           
@@ -126,10 +107,10 @@ export default function PostPage() {
              )}
              <div>
                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
-                 {author?.displayName || "Community Member"}
+                 {author?.displayName || post.authorName || "Community Member"}
                </p>
                <p className="text-xs text-slate-500">
-                 {new Date(post.createdAt).toLocaleDateString(undefined, { 
+                 {new Date(post.createdAt).toLocaleDateString(locale, { 
                    year: 'numeric', month: 'long', day: 'numeric' 
                  })}
                </p>
@@ -137,10 +118,21 @@ export default function PostPage() {
           </div>
         </header>
         
-        <div className="px-6 py-8 md:px-10 text-slate-800 dark:text-slate-200 leading-relaxed whitespace-pre-wrap text-lg">
-          {post.content}
+        {/* Render HTML from TipTap/Quill */}
+        <div 
+          className="px-6 py-8 md:px-10 prose prose-slate dark:prose-invert max-w-none prose-a:text-[#518231] hover:prose-a:text-[#436a28]"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+
+        <div className="px-6 py-4 md:px-10 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 flex items-center justify-between">
+          <LikeButton postId={post.id} initialCount={0} />
+          <div className="text-sm text-slate-500">
+            Share this discussion
+          </div>
         </div>
       </article>
+
+      <CommentsSection postId={post.id} />
     </div>
   );
 }

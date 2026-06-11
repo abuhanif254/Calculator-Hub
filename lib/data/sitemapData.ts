@@ -263,6 +263,7 @@ export const pdfToolsMenu = [
       { name: "HTML to PDF", desc: "Convert HTML webpage to PDF" },
       { name: "TXT to PDF", desc: "Convert Text document to PDF" },
       { name: "EPUB to PDF", desc: "Convert EPUB ebook to PDF" },
+      { name: "Scan to PDF", desc: "Scan documents using your camera to PDF" },
     ]
   },
   {
@@ -314,6 +315,7 @@ export const imageToolsMenu = [
       { name: "Convert to SVG", desc: "Convert images to SVG" },
       { name: "Convert to GIF", desc: "Convert images to GIF" },
       { name: "ICO to PNG", desc: "Convert favicon ICO to PNG" },
+      { name: "Scan to PDF", desc: "Turn your camera into a document scanner" },
     ]
   },
   {

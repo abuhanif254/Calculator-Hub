@@ -2,9 +2,8 @@ import React from 'react';
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '../../../i18n/routing';
-import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
-import { db } from '../../../lib/firebase';
 import { MessageSquarePlus, MessageCircle, Clock } from 'lucide-react';
+import { fetchPostsRest } from '../../../lib/firebase-rest';
 
 // ═══════════════════════════════════════════════════════
 // COMMUNITY INDEX PAGE — SERVER COMPONENT
@@ -39,39 +38,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 async function fetchPosts(): Promise<Post[]> {
-  try {
-    // Skip Firebase execution during Vercel's static build phase to prevent gRPC hangs/errors.
-    // The posts will be fetched dynamically via ISR upon the first user request.
-    if (process.env.npm_lifecycle_event === 'build' || process.env.NEXT_PHASE === 'phase-production-build' || process.env.VERCEL === '1') {
-      // In Vercel, we can just return empty array for the initial static HTML, and let ISR/client fetch handle it.
-      // Actually, if we skip it in Vercel completely, the page will always be empty for ISR.
-      // So we ONLY skip it if it's the BUILD phase. Vercel doesn't expose a clean BUILD ONLY variable natively,
-      // but CI=1 is set during build. Let's just use NEXT_PHASE.
-      const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build' || process.env.npm_lifecycle_event === 'build';
-      if (isBuildPhase) {
-        return [];
-      }
-    }
-
-    const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(20));
-    const querySnapshot = await getDocs(q);
-    const posts: Post[] = [];
-    querySnapshot.forEach((doc) => {
-      const data = doc.data();
-      posts.push({
-        id: doc.id,
-        title: data.title,
-        slug: data.slug,
-        content: data.content,
-        authorId: data.authorId,
-        createdAt: data.createdAt?.toMillis() || Date.now(),
-      });
-    });
-    return posts;
-  } catch (error) {
-    console.error('Failed to fetch community posts:', error);
-    return [];
-  }
+  const restPosts = await fetchPostsRest();
+  return restPosts.map(p => ({
+    id: p.id,
+    title: p.title,
+    slug: p.slug,
+    content: p.content,
+    authorId: p.authorId,
+    createdAt: p.createdAt
+  }));
 }
 
 export default async function CommunityIndex({ params }: { params: Promise<{ locale: string }> }) {
@@ -141,7 +116,7 @@ export default async function CommunityIndex({ params }: { params: Promise<{ loc
                   {post.title}
                 </h2>
                 <p className="text-slate-600 dark:text-slate-400 line-clamp-2 mb-4 leading-relaxed">
-                  {post.content}
+                  {post.content.replace(/<[^>]+>/g, '')}
                 </p>
                 <div className="flex items-center text-xs text-slate-500 space-x-4">
                   <span className="inline-flex items-center gap-1">

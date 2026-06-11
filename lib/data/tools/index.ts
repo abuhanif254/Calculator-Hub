@@ -99,6 +99,11 @@ import { htmlToPdfConfig } from './html-to-pdf';
 import { textToPdfConfig } from './text-to-pdf';
 import { epubToPdfConfig } from './epub-to-pdf';
 import { pdfToEpubConfig } from './pdf-to-epub';
+import { flattenPdfConfig } from './flatten-pdf';
+import { signPdfConfig } from './sign-pdf';
+import { redactPdfConfig } from './redact-pdf';
+import { repairPdfConfig } from './repair-pdf';
+import { scanPdfConfig } from './scan-to-pdf';
 
 export * from './types';
 
@@ -203,6 +208,11 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [textToPdfConfig.slug]: textToPdfConfig,
   [epubToPdfConfig.slug]: epubToPdfConfig,
   [pdfToEpubConfig.slug]: pdfToEpubConfig,
+  [flattenPdfConfig.slug]: flattenPdfConfig,
+  [signPdfConfig.slug]: signPdfConfig,
+  [redactPdfConfig.slug]: redactPdfConfig,
+  [repairPdfConfig.slug]: repairPdfConfig,
+  [scanPdfConfig.slug]: scanPdfConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
