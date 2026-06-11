@@ -149,31 +149,33 @@ export function CommentsSection({ postId }: { postId: string }) {
           ))}
         </div>
       ) : comments.length > 0 ? (
-        <div className="space-y-6">
+        <div className="space-y-0 relative before:absolute before:inset-0 before:ml-9 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 dark:before:via-slate-800 before:to-transparent">
           {comments.map(comment => (
-            <div key={comment.id} className="flex gap-4 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm relative group">
+            <div key={comment.id} className="relative flex items-start gap-4 group py-6">
               {(appUser?.uid === comment.authorId || isAdmin) && (
                 <button 
                   onClick={() => handleDeleteComment(comment.id)}
-                  className="absolute top-6 right-6 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute top-6 right-2 text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity bg-white dark:bg-slate-900 rounded-full p-1 shadow-sm border border-slate-200 dark:border-slate-800 z-10"
                   title="Delete Comment"
                 >
-                  <Trash2 size={16} />
+                  <Trash2 size={14} />
                 </button>
               )}
               
-              <div className="flex-shrink-0 mt-1">
+              <div className="flex-shrink-0 relative z-10">
                 {comment.authorPhoto ? (
-                  <img src={comment.authorPhoto} alt={comment.authorName} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-slate-700" />
+                  <img src={comment.authorPhoto} alt={comment.authorName} className="w-10 h-10 rounded-full object-cover border-4 border-white dark:border-[#0B1120] shadow-sm" />
                 ) : (
-                  <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center border border-slate-200 dark:border-slate-700">
-                    <UserIcon size={18} className="text-slate-400" />
+                  <div className="w-10 h-10 rounded-full bg-white dark:bg-[#0B1120] border-4 border-white dark:border-[#0B1120] shadow-sm flex items-center justify-center">
+                    <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                      <UserIcon size={16} className="text-slate-400" />
+                    </div>
                   </div>
                 )}
               </div>
-              <div className="flex-1 min-w-0 pr-8">
+              <div className="flex-1 min-w-0 bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm relative z-10 hover:shadow-md transition-shadow">
                 <div className="mb-2">
-                  <span className="font-semibold text-slate-900 dark:text-white mr-2">
+                  <span className="font-bold text-slate-900 dark:text-white mr-2">
                     {comment.authorName}
                   </span>
                   <span className="text-xs text-slate-500">
@@ -182,7 +184,7 @@ export function CommentsSection({ postId }: { postId: string }) {
                     })}
                   </span>
                 </div>
-                <div className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap">
+                <div className="text-slate-700 dark:text-slate-300 leading-relaxed whitespace-pre-wrap text-sm md:text-base">
                   {comment.content}
                 </div>
               </div>
