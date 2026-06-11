@@ -104,6 +104,10 @@ import { signPdfConfig } from './sign-pdf';
 import { redactPdfConfig } from './redact-pdf';
 import { repairPdfConfig } from './repair-pdf';
 import { scanPdfConfig } from './scan-to-pdf';
+import { cropImageToolConfig } from './crop-image';
+import { rotateImageToolConfig } from './rotate-image';
+import { flipImageToolConfig } from './flip-image';
+import { imageConverterToolConfig } from './image-converter';
 
 export * from './types';
 
@@ -213,6 +217,10 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [redactPdfConfig.slug]: redactPdfConfig,
   [repairPdfConfig.slug]: repairPdfConfig,
   [scanPdfConfig.slug]: scanPdfConfig,
+  [cropImageToolConfig.slug]: cropImageToolConfig,
+  [rotateImageToolConfig.slug]: rotateImageToolConfig,
+  [flipImageToolConfig.slug]: flipImageToolConfig,
+  [imageConverterToolConfig.slug]: imageConverterToolConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

@@ -107,6 +107,10 @@ const SignPdfTool = dynamic(() => import('../../../components/tools/SignPdfTool'
 const RedactPdfTool = dynamic(() => import('../../../components/tools/RedactPdfTool').then(m => m.RedactPdfTool));
 const RepairPdfTool = dynamic(() => import('../../../components/tools/RepairPdfTool').then(m => m.RepairPdfTool));
 const ScanToPdfTool = dynamic(() => import('../../../components/tools/ScanToPdfTool').then(m => m.ScanToPdfTool));
+const CropImageTool = dynamic(() => import('../../../components/tools/CropImageTool').then(m => m.CropImageTool));
+const RotateImageTool = dynamic(() => import('../../../components/tools/RotateImageTool').then(m => m.RotateImageTool));
+const FlipImageTool = dynamic(() => import('../../../components/tools/FlipImageTool').then(m => m.FlipImageTool));
+const ImageConverterTool = dynamic(() => import('../../../components/tools/ImageConverterTool').then(m => m.ImageConverterTool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -220,6 +224,10 @@ const toolComponents: Record<string, React.ComponentType> = {
   'redact-pdf': RedactPdfTool,
   'repair-pdf': RepairPdfTool,
   'scan-to-pdf': ScanToPdfTool,
+  'crop-image': CropImageTool,
+  'rotate-image': RotateImageTool,
+  'flip-image': FlipImageTool,
+  'image-converter': ImageConverterTool,
 };
 
 
