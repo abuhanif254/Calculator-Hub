@@ -306,6 +306,7 @@ export const imageToolsMenu = [
     id: "image-conversion",
     description: "Convert between various image formats easily.",
     items: [
+      { name: "Image Converter", desc: "Batch convert JPG, PNG, and WEBP" },
       { name: "HEIC to JPG", desc: "Convert iPhone HEIC to JPG" },
       { name: "SVG to PNG", desc: "Convert vector SVG to PNG" },
       { name: "PNG to SVG", desc: "Convert raster PNG to SVG" },
