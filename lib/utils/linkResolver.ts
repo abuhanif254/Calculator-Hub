@@ -29,6 +29,11 @@ const titleOverrides: Record<string, string> = {
   "TXT to PDF": "/tools/text-to-pdf",
   "EPUB to PDF": "/tools/epub-to-pdf",
   "PDF to EPUB": "/tools/pdf-to-epub",
+  "Image Metadata Remover": "/tools/image-metadata-remover",
+  "Color Picker From Image": "/tools/color-picker-from-image",
+  "Color Palette Generator From Image": "/tools/color-palette-generator-from-image",
+  "AI Image Upscaler": "/tools/ai-image-upscaler",
+  "Blur Faces in Image": "/tools/blur-faces-in-image",
 };
 
 Object.entries(titleOverrides).forEach(([title, href]) => {

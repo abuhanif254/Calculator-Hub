@@ -591,6 +591,7 @@ export function Navbar() {
 interface DevMenuCategoryItem {
   name: string;
   desc: string;
+  slug?: string;
 }
 interface DevMenuCat {
   title: string;
@@ -621,7 +622,7 @@ function DevMenuColumn({
         {category.items.map(item => (
           <li key={item.name}>
             <Link
-              href={resolveIntlHref(resolveHref(item.name))}
+              href={resolveIntlHref(item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
               onClick={handleLinkClick}
               className="block px-2 py-1.5 text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md transition-all leading-tight"
             >

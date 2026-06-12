@@ -1,1 +1,10 @@
-const http = require('http'); http.get('http://localhost:3001/en/guides/how-to-use-compound-interest-calculator', (res) => { let data = ''; res.on('data', d => data += d); res.on('end', () => console.log(data.match(/"(Error.*?)"/g) || data.substring(data.indexOf('Error'), data.indexOf('Error') + 300))); });
+const fs = require('fs');
+const path = require('path');
+
+try {
+  const content = fs.readFileSync(path.join(__dirname, 'lib/data/tools/index.ts'), 'utf-8');
+  console.log('Has aiImageUpscalerConfig import:', content.includes('aiImageUpscalerConfig'));
+  console.log('Has [aiImageUpscalerConfig.slug]:', content.includes('[aiImageUpscalerConfig.slug]: aiImageUpscalerConfig'));
+} catch (e) {
+  console.error(e);
+}
