@@ -45,6 +45,7 @@
     "firebase": "^12.13.0",
     "firebase-admin": "^13.10.0",
     "gray-matter": "^4.0.3",
+    "heic2any": "^0.0.4",
     "highlight.js": "^11.11.1",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",

@@ -115,6 +115,11 @@ import { colorPickerFromImageConfig } from './color-picker-from-image';
 import { colorPaletteGeneratorFromImageConfig } from './color-palette-generator-from-image';
 import { aiImageUpscalerConfig } from './ai-image-upscaler';
 import { blurFacesInImageConfig } from './blur-faces-in-image';
+import { watermarkImageToolConfig } from './watermark-image';
+import { pixelateImageConfig } from './pixelate-image';
+import { blurImageToolConfig } from './blur-image';
+import { heicToJpgToolConfig } from './heic-to-jpg';
+import { svgToPngToolConfig } from './svg-to-png';
 
 export * from './types';
 
@@ -234,6 +239,11 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [colorPaletteGeneratorFromImageConfig.slug]: colorPaletteGeneratorFromImageConfig,
   [aiImageUpscalerConfig.slug]: aiImageUpscalerConfig,
   [blurFacesInImageConfig.slug]: blurFacesInImageConfig,
+  [watermarkImageToolConfig.slug]: watermarkImageToolConfig,
+  [pixelateImageConfig.slug]: pixelateImageConfig,
+  [blurImageToolConfig.slug]: blurImageToolConfig,
+  [heicToJpgToolConfig.slug]: heicToJpgToolConfig,
+  [svgToPngToolConfig.slug]: svgToPngToolConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
