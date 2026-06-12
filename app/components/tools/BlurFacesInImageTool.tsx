@@ -188,7 +188,7 @@ export default function BlurFacesInImageTool() {
       if (detections.length === 0) {
         setError("No faces automatically detected. Please use the manual selection tool.");
       } else {
-        const newBoxes = detections.map(det => {
+        const newBoxes = detections.map((det: any) => {
           // Add a 15% padding around the detected face for better coverage
           const paddingX = det.box.width * 0.15;
           const paddingY = det.box.height * 0.15;
