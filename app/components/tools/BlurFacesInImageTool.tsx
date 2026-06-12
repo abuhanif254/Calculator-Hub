@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Upload, Image as ImageIcon, Download, Maximize, Zap, Sparkles, RefreshCw, AlertCircle, ScanFace, MousePointerSquareDashed, Trash2, Eye, ShieldCheck, ChevronRight } from "lucide-react";
-import * as faceapi from '@vladmandic/face-api';
+// Dynamically import face-api to prevent SSR issues during build
 
 interface BoundingBox {
   id: string;
@@ -21,6 +21,8 @@ export default function BlurFacesInImageTool() {
   const [isModelsLoaded, setIsModelsLoaded] = useState(false);
   const [isDetecting, setIsDetecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  
+  const faceapiRef = useRef<any>(null);
   
   const [blurMode, setBlurMode] = useState<string>('gaussian');
   const [blurIntensity, setBlurIntensity] = useState<number>(30); // 0-100
@@ -43,6 +45,9 @@ export default function BlurFacesInImageTool() {
       try {
         // We use unpkg CDN to dynamically load the highly optimized Tiny Face Detector weights
         // This ensures the main bundle remains small and Lighthouse scores stay high.
+        const faceapi = await import('@vladmandic/face-api');
+        faceapiRef.current = faceapi;
+        
         const modelUrl = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model/';
         await faceapi.nets.tinyFaceDetector.loadFromUri(modelUrl);
         setIsModelsLoaded(true);
@@ -169,6 +174,13 @@ export default function BlurFacesInImageTool() {
     setError(null);
     
     try {
+      const faceapi = faceapiRef.current;
+      if (!faceapi) {
+        setError("AI engine not fully loaded yet.");
+        setIsDetecting(false);
+        return;
+      }
+      
       // Use TinyFaceDetector for maximum speed in browser
       const options = new faceapi.TinyFaceDetectorOptions({ inputSize: 512, scoreThreshold: 0.4 });
       const detections = await faceapi.detectAllFaces(imageRef.current, options);
