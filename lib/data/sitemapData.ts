@@ -290,12 +290,17 @@ export const imageToolsMenu = [
     description: "Compress, resize, and edit your images quickly.",
     items: [
       { name: "Photo Editor", desc: "Advanced online photo editor" },
+      { name: 'Image Metadata Remover', desc: 'Remove EXIF data from photos', isNew: true, slug: 'image-metadata-remover' },
+      { name: 'Color Picker From Image', desc: 'Extract exact HEX/RGB colors from photos', isNew: true, slug: 'color-picker-from-image' },
+      { name: 'Color Palette Generator From Image', desc: 'Extract dominant colors and create designer-ready palettes from photos', isNew: true, slug: 'color-palette-generator-from-image' },
+      { name: 'AI Image Upscaler', desc: 'Enhance and upscale images up to 4x using AI', isNew: true, slug: 'ai-image-upscaler' },
+      { name: 'Blur Faces in Image', desc: 'Automatically detect and blur faces for privacy', isNew: true, slug: 'blur-faces-in-image' },
+      { name: "Watermark Image", desc: "Add custom text, logos, or tiled watermarks" },
       { name: "Compress Image", desc: "Reduce image file size" },
       { name: "Resize Image", desc: "Change image dimensions" },
       { name: "Crop Image", desc: "Crop and trim images" },
       { name: "Rotate Image", desc: "Rotate image orientation" },
       { name: "Flip Image", desc: "Flip images horizontally or vertically" },
-      { name: "Watermark Image", desc: "Add custom watermark to image" },
       { name: "Blur Image", desc: "Blur faces or objects in image" },
       { name: "Pixelate Image", desc: "Pixelate parts of an image" },
     ]
@@ -327,11 +332,11 @@ export const imageToolsMenu = [
     items: [
       { name: "AI Image Generator", desc: "Generate images with AI text prompts" },
       { name: "Meme Generator", desc: "Create custom memes with text" },
-      { name: "Image to Base64", desc: "Convert image to Base64 string" },
-      { name: "Base64 to Image", desc: "Decode Base64 to image" },
-      { name: "Remove Background", desc: "Remove image background" },
-      { name: "Color Extractor", desc: "Extract color palette" },
-      { name: "Image Upscaler", desc: "Upscale image resolution using AI" },
+      { name: "Image to Base64", desc: "Convert image to Base64 string", slug: "image-to-base64" },
+      { name: "Base64 to Image", desc: "Decode Base64 to image", slug: "base64-to-image" },
+      { name: "Remove Background", desc: "Remove image background", slug: "background-remover" },
+      { name: "Color Extractor", desc: "Extract color palette", slug: "color-palette-generator-from-image" },
+      { name: "Image Upscaler", desc: "Upscale image resolution using AI", slug: "ai-image-upscaler" },
     ]
   }
 ];
