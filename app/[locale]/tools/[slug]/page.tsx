@@ -111,13 +111,17 @@ const CropImageTool = dynamic(() => import('../../../components/tools/CropImageT
 const RotateImageTool = dynamic(() => import('../../../components/tools/RotateImageTool').then(m => m.RotateImageTool));
 const FlipImageTool = dynamic(() => import('../../../components/tools/FlipImageTool').then(m => m.FlipImageTool));
 const ImageConverterTool = dynamic(() => import('../../../components/tools/ImageConverterTool').then(m => m.ImageConverterTool));
+const BlurFacesInImageTool = dynamic(() => import('../../../components/tools/BlurFacesInImageTool').then(m => m.default));
 const WatermarkImageTool = dynamic(() => import('../../../components/tools/WatermarkImageTool').then(m => m.WatermarkImageTool));
+const PixelateImageTool = dynamic(() => import('../../../components/tools/PixelateImageTool').then(m => m.PixelateImageTool));
+const BlurImageTool = dynamic(() => import('../../../components/tools/BlurImageTool').then(m => m.BlurImageTool));
+const HeicToJpgTool = dynamic(() => import('../../../components/tools/HeicToJpgTool').then(m => m.HeicToJpgTool));
+const SvgToPngTool = dynamic(() => import('../../../components/tools/SvgToPngTool').then(m => m.SvgToPngTool));
 const ImageMetadataViewerTool = dynamic(() => import('../../../components/tools/ImageMetadataViewerTool').then(m => m.ImageMetadataViewerTool));
 const ImageMetadataRemoverTool = dynamic(() => import('../../../components/tools/ImageMetadataRemoverTool').then(m => m.ImageMetadataRemoverTool));
 const ColorPickerFromImageTool = dynamic(() => import('../../../components/tools/ColorPickerFromImageTool').then(m => m.ColorPickerFromImageTool));
 const ColorPaletteGeneratorFromImageTool = dynamic(() => import('../../../components/tools/ColorPaletteGeneratorFromImageTool'));
 const AiImageUpscalerTool = dynamic(() => import('../../../components/tools/AiImageUpscalerTool'));
-const BlurFacesInImageTool = dynamic(() => import('../../../components/tools/BlurFacesInImageTool'));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -235,13 +239,17 @@ const toolComponents: Record<string, React.ComponentType> = {
   'rotate-image': RotateImageTool,
   'flip-image': FlipImageTool,
   'image-converter': ImageConverterTool,
-  'watermark-image': WatermarkImageTool,
   'image-metadata-viewer': ImageMetadataViewerTool,
   'image-metadata-remover': ImageMetadataRemoverTool,
   'color-picker-from-image': ColorPickerFromImageTool,
   'color-palette-generator-from-image': ColorPaletteGeneratorFromImageTool,
   'ai-image-upscaler': AiImageUpscalerTool,
   'blur-faces-in-image': BlurFacesInImageTool,
+  'watermark-image': WatermarkImageTool,
+  'pixelate-image': PixelateImageTool,
+  'blur-image': BlurImageTool,
+  'heic-to-jpg': HeicToJpgTool,
+  'svg-to-png': SvgToPngTool,
 };
 
 

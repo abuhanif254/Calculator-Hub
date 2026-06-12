@@ -34,6 +34,9 @@ const titleOverrides: Record<string, string> = {
   "Color Palette Generator From Image": "/tools/color-palette-generator-from-image",
   "AI Image Upscaler": "/tools/ai-image-upscaler",
   "Blur Faces in Image": "/tools/blur-faces-in-image",
+  "Blur Image": "/tools/blur-image",
+  "HEIC to JPG": "/tools/heic-to-jpg",
+  "SVG to PNG": "/tools/svg-to-png",
 };
 
 Object.entries(titleOverrides).forEach(([title, href]) => {
