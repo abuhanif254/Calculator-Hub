@@ -204,6 +204,8 @@ export const developerToolsMenu = [
       { name: "IP Lookup", desc: "Find IP address details" },
       { name: "User Agent Parser", desc: "Parse User Agent strings" },
       { name: "MIME Type Checker", desc: "Check MIME types" },
+      { name: "Favicon Generator", desc: "Generate website icons and PWA manifests", isNew: true, slug: "favicon-generator" },
+      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" },
     ]
   }
 ];
@@ -314,12 +316,13 @@ export const imageToolsMenu = [
       { name: "Image Converter", desc: "Batch convert JPG, PNG, and WEBP" },
       { name: "HEIC to JPG", desc: "Convert iPhone HEIC to JPG", isNew: true, slug: "heic-to-jpg" },
       { name: "SVG to PNG", desc: "Convert vector SVG to PNG", isNew: true, slug: "svg-to-png" },
-      { name: "PNG to SVG", desc: "Convert raster PNG to SVG" },
-      { name: "Convert to WEBP", desc: "Convert images to WEBP" },
-      { name: "Convert to PNG", desc: "Convert images to PNG" },
-      { name: "Convert to JPG", desc: "Convert images to JPG" },
-      { name: "Convert to SVG", desc: "Convert images to SVG" },
-      { name: "Convert to GIF", desc: "Convert images to GIF" },
+      { name: "PNG to SVG", desc: "Convert raster PNG to SVG", isNew: true, slug: "png-to-svg" },
+      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" },
+      { name: "Convert to WebP", desc: "Convert images to WebP format", isNew: true, slug: "convert-to-webp" },
+      { name: "Convert to PNG", desc: "Convert images to PNG format", isNew: true, slug: "convert-to-png" },
+      { name: "Convert to JPG", desc: "Convert images to JPG format", isNew: true, slug: "convert-to-jpg" },
+      { name: "Convert to SVG", desc: "Convert images to SVG format", isNew: true, slug: "convert-to-svg" },
+      { name: "Convert to GIF", desc: "Convert images to GIF format", isNew: true, slug: "convert-to-gif" },
       { name: "ICO to PNG", desc: "Convert favicon ICO to PNG" },
       { name: "Scan to PDF", desc: "Turn your camera into a document scanner" },
     ]

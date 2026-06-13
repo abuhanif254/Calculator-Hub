@@ -120,6 +120,14 @@ import { pixelateImageConfig } from './pixelate-image';
 import { blurImageToolConfig } from './blur-image';
 import { heicToJpgToolConfig } from './heic-to-jpg';
 import { svgToPngToolConfig } from './svg-to-png';
+import { faviconGeneratorToolConfig } from './favicon-generator';
+import { pngToSvgToolConfig } from './png-to-svg';
+import { svgOptimizerToolConfig } from './svg-optimizer';
+import { convertToWebpToolConfig } from './convert-to-webp';
+import { convertToPngToolConfig } from './convert-to-png';
+import { convertToJpgToolConfig } from './convert-to-jpg';
+import { convertToSvgToolConfig } from './convert-to-svg';
+import { convertToGifToolConfig } from './convert-to-gif';
 
 export * from './types';
 
@@ -244,6 +252,14 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [blurImageToolConfig.slug]: blurImageToolConfig,
   [heicToJpgToolConfig.slug]: heicToJpgToolConfig,
   [svgToPngToolConfig.slug]: svgToPngToolConfig,
+  [faviconGeneratorToolConfig.slug]: faviconGeneratorToolConfig,
+  [pngToSvgToolConfig.slug]: pngToSvgToolConfig,
+  [svgOptimizerToolConfig.slug]: svgOptimizerToolConfig,
+  [convertToWebpToolConfig.slug]: convertToWebpToolConfig,
+  [convertToPngToolConfig.slug]: convertToPngToolConfig,
+  [convertToJpgToolConfig.slug]: convertToJpgToolConfig,
+  [convertToSvgToolConfig.slug]: convertToSvgToolConfig,
+  [convertToGifToolConfig.slug]: convertToGifToolConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
