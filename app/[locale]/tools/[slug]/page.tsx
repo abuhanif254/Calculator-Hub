@@ -117,6 +117,14 @@ const PixelateImageTool = dynamic(() => import('../../../components/tools/Pixela
 const BlurImageTool = dynamic(() => import('../../../components/tools/BlurImageTool').then(m => m.BlurImageTool));
 const HeicToJpgTool = dynamic(() => import('../../../components/tools/HeicToJpgTool').then(m => m.HeicToJpgTool));
 const SvgToPngTool = dynamic(() => import('../../../components/tools/SvgToPngTool').then(m => m.SvgToPngTool));
+const FaviconGeneratorTool = dynamic(() => import('../../../components/tools/FaviconGeneratorTool').then(m => m.FaviconGeneratorTool));
+const PngToSvgTool = dynamic(() => import('../../../components/tools/PngToSvgTool').then(m => m.PngToSvgTool));
+const SvgOptimizerTool = dynamic(() => import('../../../components/tools/SvgOptimizerTool').then(m => m.SvgOptimizerTool));
+const ConvertToWebpTool = dynamic(() => import('../../../components/tools/ConvertToWebpTool').then(m => m.ConvertToWebpTool));
+const ConvertToPngTool = dynamic(() => import('../../../components/tools/ConvertToPngTool').then(m => m.ConvertToPngTool));
+const ConvertToJpgTool = dynamic(() => import('../../../components/tools/ConvertToJpgTool').then(m => m.ConvertToJpgTool));
+const ConvertToSvgTool = dynamic(() => import('../../../components/tools/ConvertToSvgTool').then(m => m.ConvertToSvgTool));
+const ConvertToGifTool = dynamic(() => import('../../../components/tools/ConvertToGifTool').then(m => m.ConvertToGifTool));
 const ImageMetadataViewerTool = dynamic(() => import('../../../components/tools/ImageMetadataViewerTool').then(m => m.ImageMetadataViewerTool));
 const ImageMetadataRemoverTool = dynamic(() => import('../../../components/tools/ImageMetadataRemoverTool').then(m => m.ImageMetadataRemoverTool));
 const ColorPickerFromImageTool = dynamic(() => import('../../../components/tools/ColorPickerFromImageTool').then(m => m.ColorPickerFromImageTool));
@@ -250,6 +258,14 @@ const toolComponents: Record<string, React.ComponentType> = {
   'blur-image': BlurImageTool,
   'heic-to-jpg': HeicToJpgTool,
   'svg-to-png': SvgToPngTool,
+  'favicon-generator': FaviconGeneratorTool,
+  'png-to-svg': PngToSvgTool,
+  'svg-optimizer': SvgOptimizerTool,
+  'convert-to-webp': ConvertToWebpTool,
+  'convert-to-png': ConvertToPngTool,
+  'convert-to-jpg': ConvertToJpgTool,
+  'convert-to-svg': ConvertToSvgTool,
+  'convert-to-gif': ConvertToGifTool,
 };
 
 

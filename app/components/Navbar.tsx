@@ -102,6 +102,8 @@ const developerToolsMenu = [
       { name: "IP Lookup", desc: "Find IP address details" },
       { name: "User Agent Parser", desc: "Parse User Agent strings" },
       { name: "MIME Type Checker", desc: "Check MIME types" },
+      { name: "Favicon Generator", desc: "Generate website icons and PWA manifests", slug: "favicon-generator" },
+      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", slug: "svg-optimizer" },
     ]
   },
   {
