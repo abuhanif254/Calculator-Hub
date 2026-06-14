@@ -13,13 +13,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
-    title: 'About Us | Nexus Calculator - Your Trusted Global Calculator Platform',
-    description: 'Discover the story behind Nexus Calculator. Learn about our mission to provide accurate, high-performance, and accessible calculators for users worldwide, and meet our lead developer.',
+    title: 'About Us | Nexus Calculator - Your Trusted Global Tools Platform',
+    description: 'Discover the story behind Nexus Calculator. Learn about our mission to provide accurate calculators, powerful developer utilities, PDF tools, and image tools for users worldwide.',
     alternates: getCanonicalAndAlternates('/about-us', locale),
     openGraph: {
       type: 'website',
-      title: 'About Us | Nexus Calculator',
-      description: 'Nexus Calculator provides world-class computational tools for finance, health, math, and more. Meet the minds that built this high-performance platform.',
+      title: 'About Us | Nexus Calculator Tools Platform',
+      description: 'Nexus Calculator provides world-class computational tools, developer utilities, image editors, and PDF tools. Meet the minds that built this high-performance platform.',
       siteName: 'Nexus Calculator',
     },
   };
@@ -40,7 +40,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
       <header className="mb-16 text-center max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">Empowering Your Decisions with Precision</h1>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-          Nexus Calculator represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free computational tools directly to your browser.
+          Nexus Calculator represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free calculators, developer tools, image editors, and PDF utilities directly to your browser.
         </p>
       </header>
 
@@ -49,10 +49,10 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
         <section className="prose prose-slate dark:prose-invert prose-lg max-w-none">
           <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 mb-6 border-b dark:border-slate-700 pb-4">Our Vision & Philosophy</h2>
           <p>
-            In an increasingly complex world, making informed decisions on personal finance, health metrics, and academic problems requires more than just guesswork. It requires precision. Nexus Calculator was conceived from a fundamental philosophy: <strong>powerful analytical tools should be universally accessible</strong>.
+            What started as a premier destination for high-precision calculators has evolved into an expansive ecosystem. In an increasingly complex digital world, professionals and everyday users require a diverse set of utilities. Nexus Calculator was conceived from a fundamental philosophy: <strong>powerful analytical and developer tools should be universally accessible</strong>.
           </p>
           <p>
-            We recognize that whether you are a small business owner in Tokyo calculating loan amortizations, a student in London exploring geometric theorems, or a fitness enthusiast in New York estimating a BMI trajectory, you demand accuracy. Our platform bridges the gap between complex mathematical algorithms and an intuitive, user-centric interface. By leveraging international standards and verified computational models, we ensure that every result produced by our system can be trusted implicitly.
+            We recognize that whether you are a small business owner calculating loan amortizations, a software engineer formatting complex JSON and debugging code, or a digital creator compressing PDFs and manipulating images—you demand accuracy and performance. Our platform bridges the gap between complex operations and an intuitive, user-centric interface. By leveraging international standards, we ensure that every calculation, formatting, and conversion produced by our system can be trusted implicitly.
           </p>
           <p>
             Traditional offline applications and archaic web tools are often fraught with slow load times, invasive tracking, and cluttered advertisements. We chose a different path. Nexus Calculator is built upon a high-performance, modern tech stack that relies on serverless edge computing to guarantee minimal latency and exceptional reliability, no matter where you are in the world.
@@ -79,7 +79,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">Expansive & Modular</h3>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                Our library encompasses a wide array of disciplines. From sophisticated compound interest charts and currency converters to specialized health calculators, our modular architecture allows us to continually expand our offerings without sacrificing performance.
+                Our library encompasses a wide array of disciplines. From sophisticated financial calculators and health trackers to developer tools, robust PDF modifiers, and image generators, our modular architecture allows us to continually expand our utility suite without sacrificing performance.
               </p>
             </div>
 
@@ -103,6 +103,32 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Comprehensive Tool Ecosystem (SEO Focus) */}
+        <section className="prose prose-slate dark:prose-invert prose-lg max-w-none mt-16">
+          <h2 className="text-3xl font-bold text-slate-800 dark:text-slate-200 mb-6 border-b dark:border-slate-700 pb-4">A Comprehensive Ecosystem of Digital Utilities</h2>
+          <p>
+            As a leading <strong>all-in-one digital utility platform</strong>, we engineer tools that cater to the everyday needs of professionals, software engineers, designers, and students globally. Our rigorous approach to web architecture guarantees that whether you need to format complex code, convert rich media, manipulate documents, or execute advanced financial algorithms, you have an enterprise-grade solution at your fingertips.
+          </p>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 list-none pl-0 mt-8">
+            <li className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+              <strong className="text-xl text-slate-900 dark:text-white flex items-center mb-2">Advanced Developer Tools</strong>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400 m-0">Access robust developer utilities including <em>JSON formatters</em>, <em>CSS minifiers</em>, <em>Base64 encoders/decoders</em>, and <em>cryptographic hash generators</em>. These secure, client-side tools accelerate your development workflow by providing instant string manipulations, code formatting, and cryptographic tasks natively within your browser without compromising sensitive data.</p>
+            </li>
+            <li className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+              <strong className="text-xl text-slate-900 dark:text-white flex items-center mb-2">Professional PDF Utilities</strong>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400 m-0">Manage and modify your documents with ease using our comprehensive PDF suite. We employ highly optimized WebAssembly algorithms to <em>compress PDFs</em>, <em>merge and split documents</em>, <em>extract individual pages</em>, and <em>convert PDF to Word or Image formats</em>. Everything is processed directly on your device, ensuring total privacy and GDPR compliance.</p>
+            </li>
+            <li className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+              <strong className="text-xl text-slate-900 dark:text-white flex items-center mb-2">Image & Media Processing</strong>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400 m-0">Enhance, resize, and transform your visual assets instantly. Our media toolkit features blazing-fast <em>image converters (JPG, PNG, WebP, SVG)</em>, <em>AI-powered background removers</em>, <em>intelligent image compressors</em>, and <em>favicon generators</em>. Perfectly designed for content marketers and web designers looking to achieve optimal image SEO, faster page loads, and superior Core Web Vitals.</p>
+            </li>
+            <li className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+              <strong className="text-xl text-slate-900 dark:text-white flex items-center mb-2">High-Precision Calculators</strong>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400 m-0">From sophisticated <em>mortgage and auto loan calculators</em> to nuanced <em>health, fitness, and scientific calculation tools</em>. Engineered with localized date formats, internationalized currencies, and precise floating-point math, our calculators deliver mathematically verified, context-aware insights for tracking compounding interest, retirement planning, and academic problem-solving.</p>
+            </li>
+          </ul>
         </section>
         
         {/* Developer Identity */}

@@ -27,7 +27,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm leading-relaxed">
-              Hundreds of highly accurate, high-performance calculators for financial, health, math, and everyday needs. Built for global standards and reliability.
+              An all-in-one platform featuring a comprehensive suite of developer utilities, PDF processors, image editors, and hundreds of high-precision calculators. Built for global standards and reliability.
             </p>
             
             {/* Social Links — Glassmorphic */}
@@ -111,8 +111,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/pdf" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
+                  PDF Tools
+                </Link>
+              </li>
+              <li>
+                <Link href="/image" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
+                  Image Tools
+                </Link>
+              </li>
+              <li>
                 <Link href="/sitemap" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  Collections
+                  Calculators
                 </Link>
               </li>
               <li>

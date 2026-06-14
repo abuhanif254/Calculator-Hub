@@ -1,11 +1,12 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // 0. Global Safety Net
+    // 0. Global Safety Net - blocks anything not explicitly allowed below
     match /{document=**} {
       allow read, write: if false;
     }
 
+    // Helper functions for security checks
     function incoming() { return request.resource.data; }
     function existing() { return resource.data; }
     function isSignedIn() { return request.auth != null; }
@@ -17,6 +18,7 @@ service cloud.firestore {
       );
     }
 
+    // 1. Users Collection
     match /users/{userId} {
       // Anyone can read profiles
       allow read: if true; 
@@ -25,23 +27,45 @@ service cloud.firestore {
       allow update: if (isSignedIn() && request.auth.uid == userId) || isAdmin();
       // Only admins can delete users
       allow delete: if isAdmin();
+
+      // --- NEW SUBCOLLECTION RULES ---
+      match /notifications/{notifId} {
+        // Users can manage their own notifications
+        allow read, update, delete: if isSignedIn() && request.auth.uid == userId;
+        // Any signed in user can send a notification (e.g. when liking/commenting)
+        allow create: if isSignedIn();
+      }
+      
+      match /followers/{followerId} {
+        allow read: if true;
+        allow write: if isSignedIn(); // Anyone signed in can follow/unfollow
+      }
+      
+      match /following/{followingId} {
+        allow read: if true;
+        // Users can only manage who *they* are following
+        allow write: if isSignedIn() && request.auth.uid == userId;
+      }
+      
+      match /drafts/{draftId} {
+        // Users can only access their own drafts
+        allow read, write: if isSignedIn() && request.auth.uid == userId;
+      }
     }
 
+    // 2. Posts Collection
     match /posts/{postId} {
       // Anyone can read posts
       allow read: if true; 
-      
       // Signed in users can create posts
-      allow create: if isSignedIn() 
-                    && incoming().authorId == request.auth.uid;
-                    
+      allow create: if isSignedIn() && incoming().authorId == request.auth.uid;
       // Authors can update their own posts. Admins can update any post.
       allow update: if (isSignedIn() && request.auth.uid == existing().authorId) || isAdmin();
-                    
       // Authors can delete their own posts. Admins can delete any post.
       allow delete: if (isSignedIn() && request.auth.uid == existing().authorId) || isAdmin();
     }
 
+    // 3. Comments Collection
     match /comments/{commentId} {
       allow read: if true;
       allow create: if isSignedIn() && incoming().authorId == request.auth.uid;
@@ -49,18 +73,15 @@ service cloud.firestore {
       allow delete: if (isSignedIn() && request.auth.uid == existing().authorId) || isAdmin();
     }
 
+    // 4. Likes Collection
     match /likes/{likeId} {
-      // likeId should be structured as {postId}_{userId} or {commentId}_{userId}
       allow read: if true;
-      allow create: if isSignedIn();
-      allow delete: if isSignedIn();
+      allow create, delete: if isSignedIn();
     }
 
+    // 5. Playground Pens (Preserving your existing rule)
     match /playground_pens/{penId} {
-      allow read: if true;
-      allow create: if true;
-      allow update: if true;
+      allow read, create, update: if true;
     }
   }
 }
-
