@@ -130,6 +130,10 @@ const ImageMetadataRemoverTool = dynamic(() => import('../../../components/tools
 const ColorPickerFromImageTool = dynamic(() => import('../../../components/tools/ColorPickerFromImageTool').then(m => m.ColorPickerFromImageTool));
 const ColorPaletteGeneratorFromImageTool = dynamic(() => import('../../../components/tools/ColorPaletteGeneratorFromImageTool'));
 const AiImageUpscalerTool = dynamic(() => import('../../../components/tools/AiImageUpscalerTool'));
+const IcoToPngTool = dynamic(() => import('../../../components/tools/IcoToPngTool').then(m => m.IcoToPngTool));
+const AiImageGeneratorTool = dynamic(() => import('../../../components/tools/AiImageGeneratorTool').then(m => m.AiImageGeneratorTool));
+const MemeGeneratorTool = dynamic(() => import('../../../components/tools/MemeGeneratorTool').then(m => m.MemeGeneratorTool));
+const ImageToBase64Tool = dynamic(() => import('../../../components/tools/ImageToBase64Tool').then(m => m.ImageToBase64Tool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -266,6 +270,10 @@ const toolComponents: Record<string, React.ComponentType> = {
   'convert-to-jpg': ConvertToJpgTool,
   'convert-to-svg': ConvertToSvgTool,
   'convert-to-gif': ConvertToGifTool,
+  'ico-to-png': IcoToPngTool,
+  'ai-image-generator': AiImageGeneratorTool,
+  'meme-generator': MemeGeneratorTool,
+  'image-to-base64': ImageToBase64Tool,
 };
 
 

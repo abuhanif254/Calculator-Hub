@@ -49,6 +49,7 @@
     "highlight.js": "^11.11.1",
     "html-to-image": "^1.11.13",
     "html2canvas": "^1.4.1",
+    "icojs": "^0.23.0",
     "js-yaml": "^4.1.1",
     "jspdf": "^4.2.1",
     "jstat": "^1.9.6",
