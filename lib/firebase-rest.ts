@@ -287,11 +287,11 @@ export async function queryPostsRest(options: {
     
     if (requiresClientSort) {
       if (options.sortMethod === 'top') {
-        posts.sort((a, b) => b.upvotes - a.upvotes);
+        posts.sort((a, b) => (b.upvotes || 0) - (a.upvotes || 0));
       } else if (options.sortMethod === 'trending') {
-        posts.sort((a, b) => b.upvotes - a.upvotes); // Fallback: trendingScore logic isn't retrieved here directly, use upvotes
+        posts.sort((a, b) => (b.upvotes || 0) - (a.upvotes || 0)); // Fallback: trendingScore logic isn't retrieved here directly, use upvotes
       } else {
-        posts.sort((a, b) => b.createdAt - a.createdAt);
+        posts.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
       }
     }
     
