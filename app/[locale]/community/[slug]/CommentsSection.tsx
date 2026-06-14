@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/app/components/AuthProvider';
 import { db } from '@/lib/firebase';
-import { collection, query, where, doc, getDoc, setDoc, deleteDoc, updateDoc, increment, serverTimestamp, onSnapshot, getDocs } from 'firebase/firestore';
+import { collection, query, where, doc, getDoc, setDoc, deleteDoc, updateDoc, increment, serverTimestamp, onSnapshot, getDocs, addDoc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { User as UserIcon, Trash2, CheckCircle2, Lock } from 'lucide-react';
 import { Link } from '@/i18n/routing';
