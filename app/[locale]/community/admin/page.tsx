@@ -259,7 +259,7 @@ export default function AdminDashboardPage() {
                 type="text"
                 value={newAnnouncement.linkLabel}
                 onChange={e => setNewAnnouncement(p => ({ ...p, linkLabel: e.target.value }))}
-                placeholder="Link label (e.g. \"Learn more\")"
+                placeholder='Link label (e.g. "Learn more")'
                 className="flex-1 px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#518231]"
               />
               <button

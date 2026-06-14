@@ -2,11 +2,11 @@ import React from 'react';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
-import { Link } from '../../../../i18n/routing';
+import { Link } from '@/i18n/routing';
 import { ArrowLeft, MessageSquarePlus } from 'lucide-react';
-import { queryPostsRest } from '../../../../lib/firebase-rest';
-import { COMMUNITY_CATEGORIES, getCategoryMeta } from '../../../../lib/categories';
-import CommunityFeed, { Post } from '../CommunityFeed';
+import { queryPostsRest } from '@/lib/firebase-rest';
+import { COMMUNITY_CATEGORIES, getCategoryMeta } from '@/lib/categories';
+import CommunityFeed, { Post } from '../../CommunityFeed';
 
 export const revalidate = 120;
 
