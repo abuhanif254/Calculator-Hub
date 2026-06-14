@@ -134,6 +134,8 @@ const IcoToPngTool = dynamic(() => import('../../../components/tools/IcoToPngToo
 const AiImageGeneratorTool = dynamic(() => import('../../../components/tools/AiImageGeneratorTool').then(m => m.AiImageGeneratorTool));
 const MemeGeneratorTool = dynamic(() => import('../../../components/tools/MemeGeneratorTool').then(m => m.MemeGeneratorTool));
 const ImageToBase64Tool = dynamic(() => import('../../../components/tools/ImageToBase64Tool').then(m => m.ImageToBase64Tool));
+const Base64ToImageTool = dynamic(() => import('../../../components/tools/Base64ToImageTool').then(m => m.Base64ToImageTool));
+const MortgageCalculatorUkTool = dynamic(() => import('../../../components/tools/MortgageCalculatorUkTool').then(m => m.MortgageCalculatorUkTool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -274,6 +276,8 @@ const toolComponents: Record<string, React.ComponentType> = {
   'ai-image-generator': AiImageGeneratorTool,
   'meme-generator': MemeGeneratorTool,
   'image-to-base64': ImageToBase64Tool,
+  'base64-to-image': Base64ToImageTool,
+  'mortgage-calculator-uk': MortgageCalculatorUkTool,
 };
 
 

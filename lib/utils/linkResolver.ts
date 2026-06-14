@@ -16,11 +16,30 @@ allTools.forEach((tool) => {
 
 // Handle edge cases where sitemapData.ts titles don't exactly match calculator titles
 const titleOverrides: Record<string, string> = {
+  // Developer Community Links
+  "Latest Discussions": "/community",
+  "Ask a Question": "/community/new",
+  "Share Code Snippets": "/community/category/web-dev",
+  "Tool Requests": "/community/category/feature-request",
+  "Bug Reports": "/community/category/bug-report",
+  "React Discussions": "/community?q=react",
+  "Next.js Discussions": "/community?q=next.js",
+  "Firebase Discussions": "/community?q=firebase",
+  "SEO Discussions": "/community?q=seo",
+  "API Discussions": "/community?q=api",
+
+  // Trending Tools Links
+  "Most Used Today": "/#trending-today",
+  "Recently Added": "/#recently-updated",
+  "Popular Among Developers": "/collections/developer-starter-pack",
+  "Editor's Picks": "/search",
+
   "Credit Cards Payoff Calculator": "/calculators/credit-cards-payoff",
   "Credit Cards Payoff": "/calculators/credit-cards-payoff",
   "Cash Back or Low Interest Calculator": "/calculators/cash-back-vs-low-interest-calculator",
   "401K Calculator": "/calculators/401k-calculator",
   "Roth IRA Calculator": "/calculators/roth-ira-calculator",
+  "Mortgage Calculator UK": "/tools/mortgage-calculator-uk",
   "Remove Background": "/tools/background-remover",
   "QR Code Studio": "/tools/qr-code-studio",
   "PDF to Excel": "/tools/pdf-to-excel",
