@@ -91,7 +91,7 @@ export default function UserProfilePage({ params }: { params: Promise<{ userId: 
         
         // Resolve post slugs for comments so we can link to them
         const commentsData = commentsSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-        const postIds = [...new Set(commentsData.map(c => c.postId))];
+        const postIds = [...new Set(commentsData.map(c => (c as any).postId))];
         
         // Fetch post titles/slugs for these comments
         const postsMeta: Record<string, { slug: string, title: string }> = {};
@@ -104,8 +104,8 @@ export default function UserProfilePage({ params }: { params: Promise<{ userId: 
         
         setComments(commentsData.map(c => ({
            ...c,
-           postSlug: postsMeta[c.postId as string]?.slug,
-           postTitle: postsMeta[c.postId as string]?.title,
+           postSlug: postsMeta[(c as any).postId as string]?.slug,
+           postTitle: postsMeta[(c as any).postId as string]?.title,
         })));
 
         // Fetch saved posts if owner

@@ -28,6 +28,8 @@ import { ViewCounter } from "./ViewCounter";
 interface UserProfile {
   displayName: string | null;
   photoURL: string | null;
+  role?: string;
+  badges?: string[];
 }
 
 async function getPost(slug: string): Promise<{ post: RestPost; author: UserProfile | null } | null> {

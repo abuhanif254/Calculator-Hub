@@ -5,7 +5,7 @@ import { useAuth } from '@/app/components/AuthProvider';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, collection, query, orderBy, onSnapshot, addDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { Link } from '@/i18n/routing';
-import { ArrowLeft, Send, User as UserIcon } from 'lucide-react';
+import { ArrowLeft, Send, User as UserIcon, MessageSquare } from 'lucide-react';
 import { ProtectedRoute } from '@/app/components/ProtectedRoute';
 
 export default function ChatViewPage({ params }: { params: Promise<{ chatId: string }> }) {

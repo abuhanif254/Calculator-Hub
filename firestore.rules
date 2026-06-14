@@ -59,8 +59,8 @@ service cloud.firestore {
       allow read: if true; 
       // Signed in users can create posts
       allow create: if isSignedIn() && incoming().authorId == request.auth.uid;
-      // Authors can update their own posts. Admins can update any post.
-      allow update: if (isSignedIn() && request.auth.uid == existing().authorId) || isAdmin();
+      // Authors can update their own posts. Admins can update any post. Anyone can update viewCount.
+      allow update: if (isSignedIn() && request.auth.uid == existing().authorId) || isAdmin() || incoming().diff(existing()).affectedKeys().hasOnly(['viewCount']);
       // Authors can delete their own posts. Admins can delete any post.
       allow delete: if (isSignedIn() && request.auth.uid == existing().authorId) || isAdmin();
     }

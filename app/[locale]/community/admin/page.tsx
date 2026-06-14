@@ -29,6 +29,7 @@ interface Report {
 
 export default function AdminDashboardPage() {
   const { appUser, isAdmin, loading: authLoading } = useAuth();
+  const [reports, setReports] = useState<Report[]>([]);
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [newAnnouncement, setNewAnnouncement] = useState({ message: '', type: 'info' as const, link: '', linkLabel: '' });
   const [postingAnnouncement, setPostingAnnouncement] = useState(false);

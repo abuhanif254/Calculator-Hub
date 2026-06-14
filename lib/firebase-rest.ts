@@ -227,16 +227,22 @@ export async function queryPostsRest(options: {
     }
 
     // Sorting
-    // Note: If we have an inequality filter or array_contains, Firestore requires the first order by field to match.
-    // So if sortMethod is 'top' (orderBy likesCount DESC), we can only do it if there are no complex filters,
-    // otherwise we might need a composite index. We'll fallback to client-side sorting for complex cases,
-    // but we can request basic sorting here.
-    if (options.sortMethod === 'top') {
-      structuredQuery.orderBy = [{ field: { fieldPath: 'likesCount' }, direction: 'DESCENDING' }];
-    } else if (options.sortMethod === 'trending') {
-      structuredQuery.orderBy = [{ field: { fieldPath: 'trendingScore' }, direction: 'DESCENDING' }];
+    // Note: If we have an inequality filter or array_contains, Firestore requires a composite index
+    // if we also provide an orderBy on a different field.
+    // To avoid requiring users to manually create composite indexes for every combination,
+    // we omit orderBy from the query if there are filters, and handle sorting client-side.
+    let requiresClientSort = false;
+    
+    if (filters.length > 0) {
+      requiresClientSort = true;
     } else {
-      structuredQuery.orderBy = [{ field: { fieldPath: 'createdAt' }, direction: 'DESCENDING' }];
+      if (options.sortMethod === 'top') {
+        structuredQuery.orderBy = [{ field: { fieldPath: 'likesCount' }, direction: 'DESCENDING' }];
+      } else if (options.sortMethod === 'trending') {
+        structuredQuery.orderBy = [{ field: { fieldPath: 'trendingScore' }, direction: 'DESCENDING' }];
+      } else {
+        structuredQuery.orderBy = [{ field: { fieldPath: 'createdAt' }, direction: 'DESCENDING' }];
+      }
     }
 
     const response = await fetch(`${BASE_URL}:runQuery?key=${API_KEY}`, {
@@ -277,6 +283,16 @@ export async function queryPostsRest(options: {
         category: parseFirestoreValue(fields.category) || 'general',
         viewCount: parseFirestoreValue(fields.viewCount) || 0,
       });
+    }
+    
+    if (requiresClientSort) {
+      if (options.sortMethod === 'top') {
+        posts.sort((a, b) => b.upvotes - a.upvotes);
+      } else if (options.sortMethod === 'trending') {
+        posts.sort((a, b) => b.upvotes - a.upvotes); // Fallback: trendingScore logic isn't retrieved here directly, use upvotes
+      } else {
+        posts.sort((a, b) => b.createdAt - a.createdAt);
+      }
     }
     
     return posts;
