@@ -137,8 +137,8 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
 
                 <div className="flex items-center gap-2 mb-3">
                   <div className="text-sm text-[#518231] font-semibold">Discussion</div>
-                  {(post as any).category && (
-                    <CategoryPill slug={(post as any).category} />
+                  {post.category && (
+                    <CategoryPill slug={post.category} />
                   )}
                   {post.isPinned && (
                     <span className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-extrabold px-2 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider ml-2">

@@ -17,6 +17,10 @@ export interface RestPost {
   createdAt: number;
   upvotes?: number;
   replyCount?: number;
+  isPinned?: boolean;
+  isLocked?: boolean;
+  category?: string;
+  viewCount?: number;
   poll?: {
     question: string;
     options: {
@@ -108,6 +112,8 @@ export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: n
         replyCount: parseFirestoreValue(fields.replyCount) || 0,
         isPinned: parseFirestoreValue(fields.isPinned) || false,
         isLocked: parseFirestoreValue(fields.isLocked) || false,
+        category: parseFirestoreValue(fields.category) || 'general',
+        viewCount: parseFirestoreValue(fields.viewCount) || 0,
       });
     }
     
@@ -268,6 +274,8 @@ export async function queryPostsRest(options: {
         replyCount: parseFirestoreValue(fields.replyCount) || 0,
         isPinned: parseFirestoreValue(fields.isPinned) || false,
         isLocked: parseFirestoreValue(fields.isLocked) || false,
+        category: parseFirestoreValue(fields.category) || 'general',
+        viewCount: parseFirestoreValue(fields.viewCount) || 0,
       });
     }
     
@@ -349,6 +357,8 @@ export async function fetchPostBySlugRest(slug: string): Promise<RestPost | null
       poll,
       isPinned: parseFirestoreValue(fields.isPinned) || false,
       isLocked: parseFirestoreValue(fields.isLocked) || false,
+      category: parseFirestoreValue(fields.category) || 'general',
+      viewCount: parseFirestoreValue(fields.viewCount) || 0,
     };
   } catch (err) {
     console.error("Failed to fetch post by slug via REST", err);

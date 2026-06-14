@@ -40,7 +40,7 @@ async function fetchCategoryPosts(category: string): Promise<Post[]> {
     upvotes: p.upvotes,
     replyCount: p.replyCount,
     tags: p.tags,
-    category: (p as any).category,
+    category: p.category,
     isPinned: p.isPinned || false,
     isLocked: p.isLocked || false,
   }));
