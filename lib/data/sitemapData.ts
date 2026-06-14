@@ -7,7 +7,7 @@ export const sitemapCategories = [
     icon: DollarSign,
     description: "Explore our free suite of financial tools to accurately calculate mortgages, auto loans, ROI, and retirement planning.",
     links: [
-      "Mortgage Calculator", "Savings Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
+      "Mortgage Calculator", "Mortgage Calculator UK", "Savings Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
       "Payment Calculator", "Retirement Calculator", "Amortization Calculator", "Investment Calculator",
       "Inflation Calculator", "Finance Calculator", "Income Tax Calculator", "Compound Interest Calculator",
       "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator", "Currency Calculator",
@@ -25,7 +25,7 @@ export const sitemapCategories = [
       "Average Return Calculator", "Discount Calculator", "Debt-to-Income Ratio Calculator",
       "Take-Home-Paycheck Calculator", "Boat Loan Calculator", "Refinance Calculator", "Rental Property Calculator",
       "ROI Calculator", "FHA Loan Calculator", "Home Equity Loan Calculator", "Down Payment Calculator",
-      "Payback Period Calculator", "Future Value Calculator", "Mortgage Calculator UK", "Mortgage Amortization Calculator"
+      "Payback Period Calculator", "Future Value Calculator", "Mortgage Amortization Calculator"
     ]
   },
   {
@@ -50,7 +50,7 @@ export const sitemapCategories = [
     icon: Hash,
     description: "Solve complex mathematical equations, geometry problems, and statistical analysis with precision.",
     links: [
-      "Graphing Calculator", "Scientific Calculator", "Fraction Calculator", "Percentage Calculator", "Random Number Generator",
+      "Graphing Calculator", "Scientific Calculator", "Fraction Calculator", "Percentage Calculator",
       "Triangle Calculator", "Standard Deviation Calculator", "Volume Calculator", "Percent Error Calculator",
       "Scientific Notation Calculator", "Binary Calculator", "Half-Life Calculator", "Slope Calculator", "Area Calculator", "Probability Calculator",
       "Mean, Median, Mode, Range Calculator", "Z-score Calculator", "Ratio Calculator", "Circle Calculator",
@@ -71,7 +71,7 @@ export const sitemapCategories = [
     links: [
       "Age Calculator", "Date Calculator", "Time Calculator", "Hours Calculator",
       "GPA Calculator", "Grade Calculator", "Concrete Calculator", "Subnet Calculator",
-      "Password Generator", "Conversion Calculator", "Height Calculator", "IP Subnet Calculator",
+      "Conversion Calculator", "Height Calculator", "IP Subnet Calculator",
       "Voltage Drop Calculator", "Square Footage Calculator", "Time Zone Calculator", "GDP Calculator",
       "Horsepower Calculator", "Stair Calculator", "Ohms Law Calculator", "Shoe Size Conversion",
       "Mileage Calculator", "Mass Calculator", "Speed Calculator", "Molecular Weight Calculator",
@@ -242,7 +242,7 @@ export const pdfToolsMenu = [
       { name: "PDF to PowerPoint", desc: "Convert PDF presentation to PPTX" },
       { name: "PDF to Excel", desc: "Convert PDF tables to Excel spreadsheets" },
       { name: "PDF to Word", desc: "Convert PDF to Word document" },
-      { name: "PDF to PPT", desc: "Convert PDF to PowerPoint presentation" },
+
       { name: "PDF to JPG", desc: "Extract images from PDF" },
       { name: "PDF to PNG", desc: "Convert PDF to PNG images" },
       { name: "PDF to Text", desc: "Extract text from PDF" },
@@ -317,14 +317,14 @@ export const imageToolsMenu = [
       { name: "HEIC to JPG", desc: "Convert iPhone HEIC to JPG", isNew: true, slug: "heic-to-jpg" },
       { name: "SVG to PNG", desc: "Convert vector SVG to PNG", isNew: true, slug: "svg-to-png" },
       { name: "PNG to SVG", desc: "Convert raster PNG to SVG", isNew: true, slug: "png-to-svg" },
-      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" },
+
       { name: "Convert to WebP", desc: "Convert images to WebP format", isNew: true, slug: "convert-to-webp" },
       { name: "Convert to PNG", desc: "Convert images to PNG format", isNew: true, slug: "convert-to-png" },
       { name: "Convert to JPG", desc: "Convert images to JPG format", isNew: true, slug: "convert-to-jpg" },
       { name: "Convert to SVG", desc: "Convert images to SVG format", isNew: true, slug: "convert-to-svg" },
       { name: "Convert to GIF", desc: "Convert images to GIF format", isNew: true, slug: "convert-to-gif" },
       { name: "ICO to PNG", desc: "Convert favicon ICO to PNG", isNew: true, slug: "ico-to-png" },
-      { name: "Scan to PDF", desc: "Turn your camera into a document scanner" },
+
     ]
   },
   {

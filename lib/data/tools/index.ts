@@ -132,6 +132,8 @@ import { icoToPngConfig } from './ico-to-png';
 import { aiImageGeneratorConfig } from './ai-image-generator';
 import { memeGeneratorConfig } from './meme-generator';
 import { imageToBase64Config } from './image-to-base64';
+import { base64ToImageConfig } from './base64-to-image';
+import { mortgageCalculatorUkConfig } from './mortgage-calculator-uk';
 
 export * from './types';
 
@@ -268,6 +270,8 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [aiImageGeneratorConfig.slug]: aiImageGeneratorConfig,
   [memeGeneratorConfig.slug]: memeGeneratorConfig,
   [imageToBase64Config.slug]: imageToBase64Config,
+  [base64ToImageConfig.slug]: base64ToImageConfig,
+  [mortgageCalculatorUkConfig.slug]: mortgageCalculatorUkConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

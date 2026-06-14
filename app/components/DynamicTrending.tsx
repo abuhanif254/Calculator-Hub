@@ -111,7 +111,7 @@ export function DynamicTrending() {
 
   return (
     <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+      <div id="trending-today" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 scroll-mt-24">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
             <TrendingUp className="text-blue-500" />
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">Trending Today</h2>
@@ -128,7 +128,7 @@ export function DynamicTrending() {
           </ul>
       </div>
       
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+      <div id="recently-updated" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 scroll-mt-24">
           <div className="flex items-center gap-2 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
             <Clock className="text-emerald-500" />
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">Recently Updated</h2>
