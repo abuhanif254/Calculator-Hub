@@ -4,15 +4,32 @@ import { Link } from "../../../../i18n/routing";
 import { ArrowLeft, User as UserIcon, Home, ChevronRight, Clock, Share2, MoreHorizontal } from "lucide-react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
+import 'highlight.js/styles/github-dark.css';
 
 // Interactive client components
 import { LikeButton } from "./LikeButton";
 import { CommentsSection } from "./CommentsSection";
 import { EditButton } from "./EditButton";
+import { ShareButton } from "./ShareButton";
+import { SubscribeButton } from "./SubscribeButton";
+import { ReportButton } from "./ReportButton";
+import { BookmarkButton } from "./BookmarkButton";
+import { PollRenderer } from "./PollRenderer";
+import { LinkRenderer } from "@/app/components/LinkRenderer";
+import { AdminControls } from "./AdminControls";
+import { RelatedPosts } from "./RelatedPosts";
+import { CategoryPill } from "@/lib/categories";
+import { ViewCounter } from "./ViewCounter";
 
 interface UserProfile {
   displayName: string | null;
   photoURL: string | null;
+  role?: string;
+  badges?: string[];
 }
 
 async function getPost(slug: string): Promise<{ post: RestPost; author: UserProfile | null } | null> {
@@ -120,13 +137,36 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                   <EditButton postAuthorId={post.authorId} slug={post.slug} />
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-[#518231] font-semibold mb-3">
-                  Discussion
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="text-sm text-[#518231] font-semibold">Discussion</div>
+                  {post.category && (
+                    <CategoryPill slug={post.category} />
+                  )}
+                  {post.isPinned && (
+                    <span className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-extrabold px-2 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider ml-2">
+                      📌 Pinned
+                    </span>
+                  )}
+                  {post.isLocked && (
+                    <span className="bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400 text-xs font-extrabold px-2 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider">
+                      🔒 Locked
+                    </span>
+                  )}
                 </div>
 
-                <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight pr-8">
+                <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-4 leading-tight pr-8">
                   {post.title}
                 </h1>
+
+                {post.tags && post.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {post.tags.map(tag => (
+                      <span key={tag} className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg text-xs font-bold uppercase tracking-wider border border-slate-200 dark:border-slate-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 
                 <div className="flex items-center justify-between flex-wrap gap-4">
                   <div className="flex items-center space-x-3">
@@ -138,41 +178,90 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                       </div>
                     )}
                     <div>
-                      <p className="text-base font-bold text-slate-900 dark:text-white">
-                        {authorName}
-                      </p>
-                      <p className="text-xs text-slate-500 flex items-center gap-1">
-                        <Clock size={12} />
-                        {timeAgo(post.createdAt)}
-                      </p>
+                      <div className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <Link href={`/community/user/${post.authorId}` as any} className="hover:text-[#518231] transition-colors">
+                          {authorName}
+                        </Link>
+                        {author?.role === 'admin' && (
+                          <span className="bg-[#518231]/10 text-[#518231] dark:bg-[#518231]/20 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">Admin</span>
+                        )}
+                        {author?.role === 'pro' && (
+                          <span className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">Pro</span>
+                        )}
+                        {author?.badges?.includes('verified') && (
+                          <span className="text-blue-500" title="Verified">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.1 14.6l-4.2-4.2 1.4-1.4 2.8 2.8 5.8-5.8 1.4 1.4-7.2 7.2z"/></svg>
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3 mt-0.5">
+                        <p className="text-xs text-slate-500 flex items-center gap-1">
+                          <Clock size={12} />
+                          {timeAgo(post.createdAt)}
+                        </p>
+                        <span className="text-slate-300 dark:text-slate-700">·</span>
+                        <ViewCounter postId={post.id} initialCount={(post as any).viewCount || 0} />
+                      </div>
                     </div>
                   </div>
                 </div>
               </header>
               
+              {/* Render Poll if it exists */}
+              {(post as any).poll && (
+                <div className="px-6 md:px-10 pt-8 pb-2">
+                  <PollRenderer postId={post.id} initialPoll={(post as any).poll} />
+                </div>
+              )}
+
               <div 
                 className="px-6 py-8 md:px-10 prose prose-slate dark:prose-invert max-w-none 
                   prose-headings:font-bold prose-a:text-[#518231] hover:prose-a:text-[#436a28] 
-                  prose-p:leading-relaxed prose-pre:bg-slate-50 dark:prose-pre:bg-slate-800 prose-pre:border prose-pre:border-slate-200 dark:prose-pre:border-slate-700 prose-pre:text-slate-800 dark:prose-pre:text-slate-200
+                  prose-p:leading-relaxed prose-pre:bg-[#0d1117] dark:prose-pre:bg-[#0d1117] prose-pre:border prose-pre:border-slate-200 dark:prose-pre:border-slate-700 prose-pre:text-slate-200
                   prose-blockquote:border-l-[#518231] prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-800/50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
+              >
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]} 
+                  rehypePlugins={[rehypeRaw, rehypeHighlight]}
+                  components={{
+                    a: ({ node, ...props }) => <LinkRenderer {...props} />
+                  }}
+                >
+                  {post.content}
+                </ReactMarkdown>
+              </div>
 
               <div className="px-6 py-4 md:px-10 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 flex items-center justify-between">
-                <LikeButton postId={post.id} initialCount={0} />
-                
-                <button className="flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-4 py-2 rounded-lg shadow-sm hover:shadow">
-                  <Share2 size={16} />
-                  Share
-                </button>
+                <div className="flex items-center gap-4">
+                  <LikeButton postId={post.id} postAuthorId={post.authorId} initialCount={post.upvotes || 0} slug={post.slug} />
+                  <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
+                  <BookmarkButton postId={post.id} iconSize={18} />
+                </div>
+                <div className="flex items-center gap-2 md:gap-4">
+                  <ReportButton targetType="post" targetId={post.id} />
+                  <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
+                  <SubscribeButton postId={post.id} initialSubscribers={(post as any).subscribers || []} />
+                  <ShareButton title={post.title} text={`Check out this discussion on Nexus: ${post.title}`} />
+                </div>
               </div>
             </article>
 
             {/* Threaded Comments Section */}
             <div className="mt-10">
+              <AdminControls postId={post.id} isPinned={post.isPinned || false} isLocked={post.isLocked || false} />
+              
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Discussion Thread</h3>
-              <CommentsSection postId={post.id} />
+              <section>
+                <CommentsSection postId={post.id} postAuthorId={post.authorId} slug={post.slug} isLocked={post.isLocked || false} />
+              </section>
             </div>
+
+            {/* Related Posts */}
+            <RelatedPosts
+              currentPostId={post.id}
+              tags={post.tags || []}
+              category={(post as any).category}
+            />
           </div>
 
           {/* Right Sidebar (Author Info & Stats) */}
@@ -187,8 +276,17 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                     <UserIcon size={32} className="text-slate-400" />
                   </div>
                 )}
-                <p className="text-lg font-bold text-slate-900 dark:text-white mb-1">{authorName}</p>
-                <p className="text-sm text-slate-500 mb-4">Community Member</p>
+                <p className="text-lg font-bold text-slate-900 dark:text-white flex items-center justify-center gap-2 mb-1">
+                  {authorName}
+                  {author?.badges?.includes('verified') && (
+                    <span className="text-blue-500" title="Verified">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.1 14.6l-4.2-4.2 1.4-1.4 2.8 2.8 5.8-5.8 1.4 1.4-7.2 7.2z"/></svg>
+                    </span>
+                  )}
+                </p>
+                <p className="text-sm text-slate-500 mb-4 capitalize">
+                  {author?.role === 'admin' ? 'Nexus Team' : (author?.role === 'pro' ? 'Pro Developer' : 'Community Member')}
+                </p>
                 <button className="w-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white font-medium py-2 rounded-xl transition-colors">
                   View Profile
                 </button>

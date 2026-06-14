@@ -12,8 +12,10 @@ export interface AppUser {
   displayName: string | null;
   photoURL: string | null;
   role: 'user' | 'admin';
+  badges?: string[];
   banned?: boolean;
   createdAt?: any;
+  lastActive?: any;
 }
 
 interface AuthContextType {
@@ -61,11 +63,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           if (userSnap.exists()) {
             currentAppUser = userSnap.data() as AppUser;
             
+            const updates: any = { lastActive: serverTimestamp() };
             // Ensure hardcoded admin email always gets admin role
             if (currentUser.email === ADMIN_EMAIL && currentAppUser.role !== 'admin') {
               currentAppUser.role = 'admin';
-              await setDoc(userRef, { role: 'admin' }, { merge: true });
+              updates.role = 'admin';
             }
+            await setDoc(userRef, updates, { merge: true });
           } else {
             currentAppUser = {
               uid: currentUser.uid,
@@ -73,11 +77,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               displayName: currentUser.displayName || currentUser.email?.split('@')[0] || 'User',
               photoURL: currentUser.photoURL,
               role: currentUser.email === ADMIN_EMAIL ? 'admin' : 'user',
+              badges: [],
               banned: false,
             };
             await setDoc(userRef, {
               ...currentAppUser,
-              createdAt: serverTimestamp()
+              createdAt: serverTimestamp(),
+              joinedAt: serverTimestamp(),
+              lastActive: serverTimestamp()
             });
           }
           
@@ -126,6 +133,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         displayName: name,
         photoURL: null,
         role: email === ADMIN_EMAIL ? 'admin' : 'user',
+        badges: [],
         banned: false,
         createdAt: serverTimestamp()
       }, { merge: true });

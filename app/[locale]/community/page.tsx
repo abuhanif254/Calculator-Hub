@@ -1,9 +1,12 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { Link } from '../../../i18n/routing';
-import { MessageSquarePlus, MessageCircle, Clock, Search, Users, TrendingUp, ChevronRight, User as UserIcon } from 'lucide-react';
+import { MessageSquarePlus, Users, TrendingUp, Trophy } from 'lucide-react';
 import { fetchPostsRest } from '../../../lib/firebase-rest';
+import CommunityFeed, { Post } from './CommunityFeed';
+import { Flame } from 'lucide-react';
+import { COMMUNITY_CATEGORIES } from '../../../lib/categories';
 
 // ═══════════════════════════════════════════════════════
 // COMMUNITY INDEX PAGE — SERVER COMPONENT
@@ -11,22 +14,14 @@ import { fetchPostsRest } from '../../../lib/firebase-rest';
 
 export const revalidate = 300; // ISR: revalidate every 5 minutes
 
-interface Post {
-  id: string;
-  title: string;
-  slug: string;
-  content: string;
-  authorId: string;
-  authorName?: string;
-  createdAt: number;
-}
+// The Post interface is now exported from CommunityFeed.tsx
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
   return {
     title: 'Community Discussions | NexusCalculator',
-    description: 'Join the NexusCalculator community. Ask questions, share tips, and discuss calculators with fellow users.',
+    description: 'Join the NexusCalculator community. Ask questions, share tips, and discuss developer tools, PDF utilities, image editing, and calculators with fellow professionals.',
     alternates: getCanonicalAndAlternates('/community', locale),
   };
 }
@@ -40,37 +35,47 @@ async function fetchPosts(): Promise<Post[]> {
     content: p.content,
     authorId: p.authorId,
     authorName: p.authorName,
-    createdAt: p.createdAt
+    authorRole: p.authorRole,
+    authorBadges: p.authorBadges,
+    createdAt: p.createdAt,
+    upvotes: p.upvotes,
+    replyCount: p.replyCount,
+    tags: p.tags,
+    category: (p as any).category,
+    viewCount: (p as any).viewCount || 0,
+    isPinned: p.isPinned || false,
+    isLocked: p.isLocked || false
   }));
 }
 
-function timeAgo(timestamp: number) {
-  const seconds = Math.floor((Date.now() - timestamp) / 1000);
-  let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + " years ago";
-  interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + " months ago";
-  interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + " days ago";
-  interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + " hours ago";
-  interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + " minutes ago";
-  return Math.floor(seconds) + " seconds ago";
-}
 
-export default async function CommunityIndex({ params }: { params: Promise<{ locale: string }> }) {
+
+export default async function CommunityIndex({ 
+  params,
+  searchParams
+}: { 
+  params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
 
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const initialQuery = typeof resolvedSearchParams.q === 'string' ? resolvedSearchParams.q : '';
+
   const posts = await fetchPosts();
+  const t = await getTranslations({ locale: resolvedParams.locale, namespace: 'Community' });
+
+  // Fetch trending sidebar data in parallel
+  const { fetchTrendingPosts } = await import('../../actions/community');
+  const trendingPosts = await fetchTrendingPosts(5).catch(() => []);
 
   const forumSchema = {
     '@context': 'https://schema.org',
     '@type': 'DiscussionForumPosting',
     headline: 'NexusCalculator Community Discussions',
     url: (await import('@/lib/utils/seoUtils')).getCanonicalUrl('/community', resolvedParams.locale),
-    description: 'Community forum for calculator and developer tool discussions.',
+    description: 'Global community forum for developers, designers, financial planners, and everyday users. Discuss web tools, image processing, PDF utilities, and high-precision calculators.',
   };
 
   return (
@@ -87,10 +92,10 @@ export default async function CommunityIndex({ params }: { params: Promise<{ loc
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
             <div>
               <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                Nexus Community
+                {t('title')}
               </h1>
               <p className="text-lg text-slate-500 dark:text-slate-400 mt-2 max-w-2xl">
-                The international hub for calculator enthusiasts, developers, and financial planners. Ask, learn, and share.
+                {t('subtitle')}
               </p>
             </div>
             <Link
@@ -98,148 +103,119 @@ export default async function CommunityIndex({ params }: { params: Promise<{ loc
               className="inline-flex items-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-[#518231]/20 hover:shadow-[#518231]/40 transition-all transform hover:-translate-y-0.5"
             >
               <MessageSquarePlus size={20} />
-              Start Discussion
+              {t('startDiscussion')}
             </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
-            {/* Main Feed Column */}
-            <div className="lg:col-span-3 space-y-6">
-              
-              {/* Search & Filters Bar */}
-              <div className="bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row items-center gap-2">
-                <div className="relative flex-1 w-full">
-                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                    <Search size={18} className="text-slate-400" />
-                  </div>
-                  <input 
-                    type="text" 
-                    placeholder="Search discussions..." 
-                    className="w-full pl-11 pr-4 py-3 bg-transparent border-none focus:ring-0 text-slate-900 dark:text-white placeholder-slate-400"
-                  />
-                </div>
-                <div className="h-8 w-px bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
-                <div className="flex w-full sm:w-auto gap-1 px-2">
-                  <button className="px-4 py-2 rounded-lg text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white transition-colors">Latest</button>
-                  <button className="px-4 py-2 rounded-lg text-sm font-medium text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Top</button>
-                  <button className="px-4 py-2 rounded-lg text-sm font-medium text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Unanswered</button>
-                </div>
-              </div>
-
-              {/* Post List */}
-              <div className="space-y-4">
-                {posts.length === 0 ? (
-                  <div className="text-center py-20 bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-slate-300 dark:border-slate-700">
-                    <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <MessageCircle size={32} className="text-slate-400 dark:text-slate-500" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">No Discussions Yet</h3>
-                    <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-md mx-auto">
-                      Be the pioneer! Start the very first discussion in the Nexus community.
-                    </p>
-                    <Link
-                      href="/community/new"
-                      className="inline-flex items-center gap-2 bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-100 text-white dark:text-slate-900 px-5 py-2.5 rounded-lg font-medium transition-colors"
-                    >
-                      Create First Post
-                    </Link>
-                  </div>
-                ) : (
-                  posts.map((post) => (
-                    <Link
-                      key={post.id}
-                      href={`/community/${post.slug}` as any}
-                      className="block bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 hover:shadow-lg hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-200 group"
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="hidden sm:flex flex-shrink-0 mt-1">
-                          <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center">
-                            <UserIcon size={20} className="text-slate-400" />
-                          </div>
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-2 text-xs sm:text-sm text-slate-500">
-                            <span className="font-semibold text-slate-700 dark:text-slate-300">
-                              {post.authorName || 'Community Member'}
-                            </span>
-                            <span>•</span>
-                            <span className="flex items-center gap-1">
-                              <Clock size={14} />
-                              {timeAgo(post.createdAt)}
-                            </span>
-                          </div>
-                          
-                          <h2 className="text-xl font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors mb-3 leading-tight">
-                            {post.title}
-                          </h2>
-                          
-                          <p className="text-slate-600 dark:text-slate-400 line-clamp-2 text-sm md:text-base leading-relaxed mb-4">
-                            {post.content.replace(/<[^>]+>/g, '')}
-                          </p>
-                          
-                          <div className="flex items-center gap-4 text-sm text-slate-500">
-                            <div className="flex items-center gap-1.5 hover:text-slate-800 dark:hover:text-slate-300 transition-colors">
-                              <MessageCircle size={16} />
-                              <span>Discuss</span>
-                            </div>
-                            <div className="flex items-center gap-1.5 text-[#518231] font-medium opacity-0 group-hover:opacity-100 transition-opacity ml-auto">
-                              Read more <ChevronRight size={16} />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  ))
-                )}
-              </div>
-            </div>
+            {/* Main Feed Column (Client Component) */}
+            <CommunityFeed initialPosts={posts} initialSearchQuery={initialQuery} />
 
             {/* Right Sidebar */}
             <div className="space-y-6">
               
               <div className="bg-gradient-to-br from-[#518231] to-[#3a5e23] rounded-2xl p-6 text-white shadow-lg">
-                <h3 className="text-xl font-bold mb-2">Welcome!</h3>
+                <h3 className="text-xl font-bold mb-2">{t('welcomeTitle')}</h3>
                 <p className="text-white/80 text-sm mb-6 leading-relaxed">
-                  You've reached the global Nexus community. Share your financial strategies, report bugs, or request new calculators.
+                  {t('welcomeText')}
                 </p>
                 <div className="flex items-center gap-2 text-sm font-medium">
                   <Users size={18} />
-                  <span>Join the conversation</span>
+                  <span>{t('joinConversation')}</span>
                 </div>
               </div>
 
+              {/* Channels Widget */}
               <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
                 <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                   <TrendingUp size={18} className="text-[#518231]" />
-                  Popular Tags
+                  Channels
                 </h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Finance', 'Mortgage', 'Feature Request', 'Bug Report', 'Health', 'Development'].map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-xs font-medium rounded-full cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
-                      {tag}
-                    </span>
+                <div className="space-y-1">
+                  {COMMUNITY_CATEGORIES.map(cat => (
+                    <Link
+                      key={cat.slug}
+                      href={`/community/category/${cat.slug}` as any}
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white transition-colors group"
+                    >
+                      <span className="text-base group-hover:scale-110 transition-transform">{cat.emoji}</span>
+                      {cat.label}
+                    </Link>
                   ))}
                 </div>
               </div>
 
               <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4">Guidelines</h3>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4">{t('guidelinesTitle')}</h3>
                 <ul className="space-y-3 text-sm text-slate-600 dark:text-slate-400">
                   <li className="flex items-start gap-2">
                     <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#518231] flex-shrink-0"></div>
-                    Be respectful and constructive.
+                    {t('guideline1')}
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#518231] flex-shrink-0"></div>
-                    Search before asking a question.
+                    {t('guideline2')}
                   </li>
                   <li className="flex items-start gap-2">
                     <div className="mt-1 w-1.5 h-1.5 rounded-full bg-[#518231] flex-shrink-0"></div>
-                    Keep discussions relevant to the calculators or logic.
+                    {t('guideline3')}
                   </li>
                 </ul>
               </div>
+
+              {/* 🔥 Trending Now Widget */}
+              {trendingPosts.length > 0 && (
+                <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                    <Flame size={18} className="text-orange-500" />
+                    Trending Now
+                  </h3>
+                  <ol className="space-y-3">
+                    {trendingPosts.map((post, i) => (
+                      <li key={post.id}>
+                        <Link 
+                          href={`/community/${post.slug}` as any}
+                          className="flex items-start gap-3 group"
+                        >
+                          <span className={`flex-shrink-0 w-5 h-5 mt-0.5 flex items-center justify-center rounded-full text-[10px] font-black ${
+                            i === 0 ? 'bg-orange-100 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' :
+                            i === 1 ? 'bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400' :
+                            'bg-slate-50 text-slate-400 dark:bg-slate-800/50 dark:text-slate-500'
+                          }`}>{i + 1}</span>
+                          <div className="min-w-0">
+                            <p className="text-sm font-medium text-slate-800 dark:text-slate-200 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors leading-tight line-clamp-2">
+                              {post.title}
+                            </p>
+                            <p className="text-[10px] text-slate-400 mt-0.5">
+                              ❤️ {post.upvotes} &nbsp;·&nbsp; 💬 {post.replyCount}
+                            </p>
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              {/* Hall of Fame link */}
+              <Link
+                href="/community/hall-of-fame" 
+                className="block bg-gradient-to-br from-amber-50 to-amber-100/50 dark:from-amber-900/20 dark:to-amber-900/10 rounded-2xl border border-amber-200 dark:border-amber-800/50 p-6 hover:shadow-md hover:border-amber-400 dark:hover:border-amber-600 transition-all group"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center shadow-sm">
+                    <Trophy size={20} className="text-amber-600 dark:text-amber-400" />
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors">Hall of Fame</h3>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mb-3 leading-relaxed">
+                  Discover our top contributors and all-time best discussions.
+                </p>
+                <span className="text-xs font-bold text-amber-600 dark:text-amber-500 flex items-center gap-1">
+                  View Leaderboard →
+                </span>
+              </Link>
 
             </div>
 

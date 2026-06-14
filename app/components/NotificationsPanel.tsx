@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Bell, X, Zap, Star, Wrench, Info, CheckCheck, Package } from "lucide-react";
+import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import { Bell, X, Zap, Star, Info, CheckCheck, Package, MessageCircle, Heart, CheckCircle } from "lucide-react";
+import { useAuth } from "./AuthProvider";
+import { db } from "@/lib/firebase";
+import { collection, query, orderBy, limit, onSnapshot, updateDoc, doc } from "firebase/firestore";
 
 // ── Notification data ─────────────────────────────────────────────────────────
-export type NotificationType = "new_tool" | "update" | "tip" | "announcement";
+export type NotificationType = "new_tool" | "update" | "tip" | "announcement" | "reply" | "upvote" | "accepted";
 
 export interface AppNotification {
   id: string;
@@ -13,6 +16,8 @@ export interface AppNotification {
   body: string;
   timestamp: string;  // ISO date string
   href?: string;
+  read?: boolean;
+  isUserSpecific?: boolean;
 }
 
 const SYSTEM_NOTIFICATIONS: AppNotification[] = [
@@ -107,12 +112,17 @@ const TYPE_META: Record<
   update:       { icon: Zap,      label: "Update",       bg: "bg-blue-500/10",    text: "text-blue-500"    },
   tip:          { icon: Star,     label: "Tip",          bg: "bg-amber-500/10",   text: "text-amber-500"   },
   announcement: { icon: Info,     label: "Announcement", bg: "bg-purple-500/10",  text: "text-purple-500"  },
+  reply:        { icon: MessageCircle, label: "New Reply", bg: "bg-indigo-500/10", text: "text-indigo-500" },
+  upvote:       { icon: Heart,         label: "Upvote",    bg: "bg-rose-500/10",   text: "text-rose-500" },
+  accepted:     { icon: CheckCircle,   label: "Accepted",  bg: "bg-[#518231]/10",  text: "text-[#518231]" },
 };
 
 // ── Main Component ────────────────────────────────────────────────────────────
 export function NotificationsPanel() {
+  const { appUser }             = useAuth();
   const [open, setOpen]         = useState(false);
   const [readIds, setReadIds]   = useState<Set<string>>(new Set());
+  const [userNotifications, setUserNotifications] = useState<AppNotification[]>([]);
   const [mounted, setMounted]   = useState(false);
   const panelRef                = useRef<HTMLDivElement>(null);
   const buttonRef               = useRef<HTMLButtonElement>(null);
@@ -121,6 +131,24 @@ export function NotificationsPanel() {
     setMounted(true);
     setReadIds(getReadIds());
   }, []);
+
+  useEffect(() => {
+    if (!appUser) {
+      setUserNotifications([]);
+      return;
+    }
+    const q = query(collection(db, `users/${appUser.uid}/notifications`), orderBy('timestamp', 'desc'), limit(20));
+    const unsub = onSnapshot(q, (snap) => {
+      const notifs = snap.docs.map(d => ({
+        id: d.id,
+        ...d.data(),
+        isUserSpecific: true,
+        read: d.data().read || false
+      })) as AppNotification[];
+      setUserNotifications(notifs);
+    });
+    return () => unsub();
+  }, [appUser]);
 
   // Close on outside click
   useEffect(() => {
@@ -144,24 +172,39 @@ export function NotificationsPanel() {
     return () => document.removeEventListener("keydown", handler);
   }, []);
 
+  const allNotifications = useMemo(() => {
+    return [...userNotifications, ...SYSTEM_NOTIFICATIONS].sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
+  }, [userNotifications]);
+
   const unreadCount = mounted
-    ? SYSTEM_NOTIFICATIONS.filter((n) => !readIds.has(n.id)).length
+    ? allNotifications.filter((n) => n.isUserSpecific ? !n.read : !readIds.has(n.id)).length
     : 0;
 
   const markAllRead = useCallback(() => {
-    const all = new Set(SYSTEM_NOTIFICATIONS.map((n) => n.id));
-    setReadIds(all);
-    saveReadIds(all);
-  }, []);
+    const allSystem = new Set(SYSTEM_NOTIFICATIONS.map((n) => n.id));
+    setReadIds(allSystem);
+    saveReadIds(allSystem);
+    
+    // Mark user notifications read in firestore
+    if (appUser) {
+       userNotifications.filter(n => !n.read).forEach(n => {
+          updateDoc(doc(db, `users/${appUser.uid}/notifications`, n.id), { read: true }).catch(()=>null);
+       });
+    }
+  }, [userNotifications, appUser]);
 
-  const markRead = useCallback((id: string) => {
-    setReadIds((prev) => {
-      const next = new Set(prev);
-      next.add(id);
-      saveReadIds(next);
-      return next;
-    });
-  }, []);
+  const markRead = useCallback((id: string, isUserSpecific?: boolean) => {
+    if (isUserSpecific && appUser) {
+       updateDoc(doc(db, `users/${appUser.uid}/notifications`, id), { read: true }).catch(()=>null);
+    } else {
+       setReadIds((prev) => {
+         const next = new Set(prev);
+         next.add(id);
+         saveReadIds(next);
+         return next;
+       });
+    }
+  }, [appUser]);
 
   const handleOpen = () => {
     setOpen((v) => !v);
@@ -234,9 +277,9 @@ export function NotificationsPanel() {
 
           {/* Notification List */}
           <ul className="max-h-[420px] overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
-            {SYSTEM_NOTIFICATIONS.map((notif) => {
-              const isRead = readIds.has(notif.id);
-              const meta   = TYPE_META[notif.type];
+            {allNotifications.map((notif) => {
+              const isRead = notif.isUserSpecific ? notif.read : readIds.has(notif.id);
+              const meta   = TYPE_META[notif.type] || TYPE_META.announcement;
               const Icon   = meta.icon;
               const inner  = (
                 <li
@@ -246,7 +289,7 @@ export function NotificationsPanel() {
                       ? "bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800/50"
                       : "bg-[#518231]/5 hover:bg-[#518231]/10 dark:bg-[#518231]/10 dark:hover:bg-[#518231]/15"
                     }`}
-                  onClick={() => markRead(notif.id)}
+                  onClick={() => markRead(notif.id, notif.isUserSpecific)}
                 >
                   {/* Icon */}
                   <div className={`mt-0.5 shrink-0 w-8 h-8 rounded-lg flex items-center justify-center ${meta.bg}`}>
@@ -279,7 +322,7 @@ export function NotificationsPanel() {
 
               if (notif.href) {
                 return (
-                  <a key={notif.id} href={notif.href} onClick={() => { markRead(notif.id); setOpen(false); }} className="block no-underline">
+                  <a key={notif.id} href={notif.href} onClick={() => { markRead(notif.id, notif.isUserSpecific); setOpen(false); }} className="block no-underline">
                     {inner}
                   </a>
                 );

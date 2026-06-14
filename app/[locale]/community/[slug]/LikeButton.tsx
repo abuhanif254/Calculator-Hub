@@ -4,9 +4,36 @@ import React, { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { useAuth } from '@/app/components/AuthProvider';
 import { db } from '@/lib/firebase';
-import { doc, getDoc, setDoc, deleteDoc, increment, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, deleteDoc, increment, updateDoc, collection, addDoc } from 'firebase/firestore';
 
-export function LikeButton({ postId, initialCount }: { postId: string, initialCount: number }) {
+// Hacker News-style trending score: (upvotes*3 + replies*5) / (hoursAge+2)^1.2
+function calcTrendingScore(upvotes: number, replies: number, createdAt: number) {
+  const hoursAge = (Date.now() - createdAt) / 3600000;
+  const score = (upvotes * 3 + replies * 5) / Math.pow(hoursAge + 2, 1.2);
+  return Math.round(score * 100) / 100;
+}
+
+async function recalcTrending(
+  postRef: ReturnType<typeof doc>,
+  newLikes?: number,
+  newReplies?: number,
+  createdAt?: number
+) {
+  try {
+    const snap = await getDoc(postRef);
+    if (!snap.exists()) return;
+    const d = snap.data();
+    const likes = newLikes ?? (d.likesCount || 0);
+    const replies = newReplies ?? (d.replyCount || 0);
+    const created = createdAt ?? (d.createdAt?.toMillis?.() || Date.now());
+    const score = calcTrendingScore(likes, replies, created);
+    await updateDoc(postRef, { trendingScore: score });
+  } catch (err) {
+    // Non-critical — silently fail
+  }
+}
+
+export function LikeButton({ postId, postAuthorId, initialCount, slug }: { postId: string, postAuthorId: string, initialCount: number, slug: string }) {
   const { appUser } = useAuth();
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(initialCount);
@@ -57,8 +84,13 @@ export function LikeButton({ postId, initialCount }: { postId: string, initialCo
       if (liked) {
         await deleteDoc(likeRef);
         await updateDoc(postRef, { likesCount: increment(-1) });
+        if (postAuthorId) await updateDoc(doc(db, 'users', postAuthorId), { reputation: increment(-5) }).catch(()=>null);
         setLiked(false);
-        setLikesCount(prev => Math.max(0, prev - 1));
+        setLikesCount(prev => {
+          const next = Math.max(0, prev - 1);
+          recalcTrending(postRef, next, undefined, undefined);
+          return next;
+        });
       } else {
         await setDoc(likeRef, {
           userId: appUser.uid,
@@ -66,8 +98,23 @@ export function LikeButton({ postId, initialCount }: { postId: string, initialCo
           createdAt: new Date()
         });
         await updateDoc(postRef, { likesCount: increment(1) });
+        if (postAuthorId && postAuthorId !== appUser.uid) {
+          await updateDoc(doc(db, 'users', postAuthorId), { reputation: increment(5) }).catch(()=>null);
+          await addDoc(collection(db, `users/${postAuthorId}/notifications`), {
+             type: 'upvote',
+             title: 'New Upvote!',
+             body: `${appUser.displayName || 'Someone'} liked your discussion.`,
+             timestamp: new Date().toISOString(),
+             href: `/community/${slug}`,
+             read: false
+          }).catch(()=>null);
+        }
         setLiked(true);
-        setLikesCount(prev => prev + 1);
+        setLikesCount(prev => {
+          const next = prev + 1;
+          recalcTrending(postRef, next, undefined, undefined);
+          return next;
+        });
       }
     } catch (err) {
       console.error("Error toggling like", err);

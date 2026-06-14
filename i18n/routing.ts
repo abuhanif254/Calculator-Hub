@@ -252,6 +252,61 @@ export const routing = defineRouting({
       es: '/admin/comunidad',
       fr: '/admin/communaute',
       de: '/admin/gemeinschaft'
+    },
+    '/community/messages': {
+      en: '/community/messages',
+      es: '/comunidad/mensajes',
+      fr: '/communaute/messages',
+      de: '/gemeinschaft/nachrichten'
+    },
+    '/community/messages/[chatId]': {
+      en: '/community/messages/[chatId]',
+      es: '/comunidad/mensajes/[chatId]',
+      fr: '/communaute/messages/[chatId]',
+      de: '/gemeinschaft/nachrichten/[chatId]'
+    },
+    '/community/user/[userId]': {
+      en: '/community/user/[userId]',
+      es: '/comunidad/usuario/[userId]',
+      fr: '/communaute/utilisateur/[userId]',
+      de: '/gemeinschaft/benutzer/[userId]'
+    },
+
+    '/community/hall-of-fame': {
+      en: '/community/hall-of-fame',
+      es: '/comunidad/salon-de-la-fama',
+      fr: '/communaute/temple-de-la-renommee',
+      de: '/gemeinschaft/ruhmeshalle'
+    },
+    '/community/leaderboard': {
+      en: '/community/leaderboard',
+      es: '/comunidad/tabla-de-posiciones',
+      fr: '/communaute/classement',
+      de: '/gemeinschaft/bestenliste'
+    },
+    '/community/settings': {
+      en: '/community/settings',
+      es: '/comunidad/configuracion',
+      fr: '/communaute/parametres',
+      de: '/gemeinschaft/einstellungen'
+    },
+    '/community/category/[slug]': {
+      en: '/community/category/[slug]',
+      es: '/comunidad/categoria/[slug]',
+      fr: '/communaute/categorie/[slug]',
+      de: '/gemeinschaft/kategorie/[slug]'
+    },
+    '/pdf': {
+      en: '/pdf',
+      es: '/pdf',
+      fr: '/pdf',
+      de: '/pdf'
+    },
+    '/image': {
+      en: '/image',
+      es: '/imagen',
+      fr: '/image',
+      de: '/bild'
     }
   }
 });
@@ -294,10 +349,16 @@ export function resolveIntlHref(hrefStr: string): any {
   }
   if (hrefStr.startsWith('/community/')) {
     const parts = hrefStr.replace('/community/', '').split('/');
-    if (parts.length === 1 && parts[0] !== 'new') {
+    if (parts.length === 1 && !['new', 'messages', 'admin'].includes(parts[0])) {
       return { pathname: '/community/[slug]', params: { slug: parts[0] } };
     } else if (parts.length === 2 && parts[1] === 'edit') {
       return { pathname: '/community/[slug]/edit', params: { slug: parts[0] } };
+    } else if (parts.length === 2 && parts[0] === 'messages') {
+      return { pathname: '/community/messages/[chatId]', params: { chatId: parts[1] } };
+    } else if (parts.length === 2 && parts[0] === 'user') {
+      return { pathname: '/community/user/[userId]', params: { userId: parts[1] } };
+    } else if (parts.length === 2 && parts[0] === 'category') {
+      return { pathname: '/community/category/[slug]', params: { slug: parts[1] } };
     }
   }
   
