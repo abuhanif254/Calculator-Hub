@@ -323,7 +323,7 @@ export const imageToolsMenu = [
       { name: "Convert to JPG", desc: "Convert images to JPG format", isNew: true, slug: "convert-to-jpg" },
       { name: "Convert to SVG", desc: "Convert images to SVG format", isNew: true, slug: "convert-to-svg" },
       { name: "Convert to GIF", desc: "Convert images to GIF format", isNew: true, slug: "convert-to-gif" },
-      { name: "ICO to PNG", desc: "Convert favicon ICO to PNG" },
+      { name: "ICO to PNG", desc: "Convert favicon ICO to PNG", isNew: true, slug: "ico-to-png" },
       { name: "Scan to PDF", desc: "Turn your camera into a document scanner" },
     ]
   },
@@ -333,9 +333,9 @@ export const imageToolsMenu = [
     id: "advanced-image-tools",
     description: "Advanced utilities for developers and designers.",
     items: [
-      { name: "AI Image Generator", desc: "Generate images with AI text prompts" },
-      { name: "Meme Generator", desc: "Create custom memes with text" },
-      { name: "Image to Base64", desc: "Convert image to Base64 string", slug: "image-to-base64" },
+      { name: "AI Image Generator", desc: "Generate images with AI text prompts", isNew: true, slug: "ai-image-generator" },
+      { name: "Meme Generator", desc: "Create custom memes with text", isNew: true, slug: "meme-generator" },
+      { name: "Image to Base64", desc: "Convert image to Base64 string", isNew: true, slug: "image-to-base64" },
       { name: "Base64 to Image", desc: "Decode Base64 to image", slug: "base64-to-image" },
       { name: "Remove Background", desc: "Remove image background", slug: "background-remover" },
       { name: "Color Extractor", desc: "Extract color palette", slug: "color-palette-generator-from-image" },

@@ -128,6 +128,10 @@ import { convertToPngToolConfig } from './convert-to-png';
 import { convertToJpgToolConfig } from './convert-to-jpg';
 import { convertToSvgToolConfig } from './convert-to-svg';
 import { convertToGifToolConfig } from './convert-to-gif';
+import { icoToPngConfig } from './ico-to-png';
+import { aiImageGeneratorConfig } from './ai-image-generator';
+import { memeGeneratorConfig } from './meme-generator';
+import { imageToBase64Config } from './image-to-base64';
 
 export * from './types';
 
@@ -260,6 +264,10 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [convertToJpgToolConfig.slug]: convertToJpgToolConfig,
   [convertToSvgToolConfig.slug]: convertToSvgToolConfig,
   [convertToGifToolConfig.slug]: convertToGifToolConfig,
+  [icoToPngConfig.slug]: icoToPngConfig,
+  [aiImageGeneratorConfig.slug]: aiImageGeneratorConfig,
+  [memeGeneratorConfig.slug]: memeGeneratorConfig,
+  [imageToBase64Config.slug]: imageToBase64Config,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
