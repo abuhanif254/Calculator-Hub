@@ -12,7 +12,7 @@ import { COMMUNITY_CATEGORIES } from '../../../lib/categories';
 // COMMUNITY INDEX PAGE — SERVER COMPONENT
 // ═══════════════════════════════════════════════════════
 
-export const revalidate = 300; // ISR: revalidate every 5 minutes
+export const revalidate = 3600; // ISR: revalidate every 1 hour (was 5 mins) to save Vercel free tier limits
 
 // The Post interface is now exported from CommunityFeed.tsx
 
