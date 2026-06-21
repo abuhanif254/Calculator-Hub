@@ -7,6 +7,8 @@ import { routing } from '../i18n/routing';
 import { allToolsConfig } from '../lib/data/tools/index';
 import { allGuides } from '../lib/data/guides';
 
+export const revalidate = 86400; // Cache sitemap for 24 hours to save Vercel free tier limits
+
 // ─────────────────────────────────────────────────────────
 // SINGLE SITEMAP ARCHITECTURE
 // ─────────────────────────────────────────────────────────

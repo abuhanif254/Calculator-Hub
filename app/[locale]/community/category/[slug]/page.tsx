@@ -8,7 +8,7 @@ import { queryPostsRest } from '@/lib/firebase-rest';
 import { COMMUNITY_CATEGORIES, getCategoryMeta } from '@/lib/categories';
 import CommunityFeed, { Post } from '../../CommunityFeed';
 
-export const revalidate = 120;
+export const revalidate = 3600; // was 120, increased to 3600 to save Vercel free tier limits
 
 // Generate static params for all known categories
 export async function generateStaticParams() {

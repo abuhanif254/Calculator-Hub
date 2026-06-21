@@ -78,7 +78,7 @@ export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: n
       },
       body: JSON.stringify({ structuredQuery }),
       // Revalidate based on Next.js ISR cache settings from the caller, but we can set default revalidate
-      next: { revalidate: 300 }
+      next: { revalidate: 3600 }
     });
 
     if (!response.ok) {
@@ -249,7 +249,7 @@ export async function queryPostsRest(options: {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ structuredQuery }),
-      next: { revalidate: 60 } // Shorter cache for dynamic queries
+      next: { revalidate: 3600 } // Longer cache for dynamic queries to save ISR usage
     });
 
     if (!response.ok) {
@@ -324,7 +324,7 @@ export async function fetchPostBySlugRest(slug: string): Promise<RestPost | null
           limit: 1
         }
       }),
-      next: { revalidate: 300 }
+      next: { revalidate: 3600 }
     });
 
     if (!response.ok) {
