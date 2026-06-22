@@ -34,7 +34,7 @@ async function fetchActiveAnnouncement() {
           limit: 1
         }
       }),
-      next: { revalidate: 60 }
+      next: { revalidate: 3600 }
     });
 
     if (!response.ok) return null;
