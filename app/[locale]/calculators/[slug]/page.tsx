@@ -234,9 +234,24 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
               {pageTitle}
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
               {pageDesc}
             </p>
+            
+            {/* Author Byline for E-E-A-T */}
+            <div className="flex items-center gap-3 py-3 border-y border-slate-200 dark:border-slate-800">
+              <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700">
+                <img src="https://ik.imagekit.io/ubwpdqyav/my_photo-removebg-preview.png?updatedAt=1776774813574" alt="MD Abu Hanif Mia" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">
+                  Reviewed by <Link href="/about-us" className="text-[#518231] hover:underline">MD Abu Hanif Mia</Link>
+                </p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Full Stack Web Architect • Last Updated: June 2026
+                </p>
+              </div>
+            </div>
           </header>
 
           <ToolVisitTracker
