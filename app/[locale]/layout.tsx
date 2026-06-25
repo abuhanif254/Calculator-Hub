@@ -89,6 +89,7 @@ import { AuthProvider } from '../../app/components/AuthProvider';
 import { CommandPalette } from '../../app/components/CommandPalette';
 import { InstallPrompt } from '../../app/components/InstallPrompt';
 import { BackToTop } from '../../app/components/BackToTop';
+import { CookieBanner } from '../../app/components/CookieBanner';
 import Script from 'next/script';
 
 export default async function RootLayout({
@@ -149,6 +150,7 @@ export default async function RootLayout({
                 <CommandPalette />
                 <InstallPrompt />
                 <BackToTop />
+                <CookieBanner />
               </SettingsProvider>
             </AuthProvider>
           </ThemeProvider>

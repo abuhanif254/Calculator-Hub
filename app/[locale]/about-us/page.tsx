@@ -228,8 +228,6 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
               { name: 'The Reason Magazine', url: 'https://the-reason-magazine.vercel.app', desc: 'Reason Magazine was founded with a clear purpose: to provide a professional, high-quality platform for atheism activism and secular advocacy.' },
               { name: 'Blood Donation Application', url: 'https://elaborate-toffee-f152b0.netlify.app', desc: 'A full-stack web application for managing blood donation requests, connecting donors with recipients, and processing donations through secure payment integration.' },
               { name: 'MovieMaster Pro', url: 'https://mellifluous-lebkuchen-ba8a35.netlify.app', desc: 'A comprehensive movie management system where users can browse, manage, and organize their favorite movies with advanced filtering and personal collections.' },
-              { name: 'Demo Platform Four', url: 'https://demo-website-four.com', desc: 'Interactive educational hub for remote learning.' },
-              { name: 'Demo Platform Five', url: 'https://demo-website-five.com', desc: 'Advanced analytics dashboard for digital marketers.' },
             ].map((site, index) => (
               <a 
                 key={index} 

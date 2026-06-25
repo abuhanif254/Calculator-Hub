@@ -19,6 +19,18 @@ export const routing = defineRouting({
       fr: '/a-propos',
       de: '/uber-uns'
     },
+    '/contact-us': {
+      en: '/contact-us',
+      es: '/contactenos',
+      fr: '/nous-contacter',
+      de: '/kontaktiere-uns'
+    },
+    '/disclaimer': {
+      en: '/disclaimer',
+      es: '/descargo-de-responsabilidad',
+      fr: '/clause-de-non-responsabilite',
+      de: '/haftungsausschluss'
+    },
     '/privacy-policy': {
       en: '/privacy-policy',
       es: '/politica-de-privacidad',

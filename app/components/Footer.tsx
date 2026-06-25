@@ -146,14 +146,21 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 text-sm font-medium">
+        <div className="pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col items-center gap-6">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium">
             <Link href="/about-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">About Us</Link>
+            <Link href="/contact-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Contact Us</Link>
             <Link href="/terms-of-use" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Terms of Use</Link>
             <Link href="/privacy-policy" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Privacy Policy</Link>
+            <Link href="/disclaimer" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Disclaimer</Link>
             <Link href="/sitemap" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Sitemap</Link>
           </div>
-          <div className="text-sm text-slate-500 text-center md:text-right">
+          
+          <div className="text-xs text-slate-400 dark:text-slate-500 text-center max-w-4xl mx-auto leading-relaxed">
+            <strong>Disclaimer:</strong> All calculators, tools, and content provided on this platform are for educational and informational purposes only. They do not constitute financial, medical, or legal advice. Always consult with a qualified professional before making significant financial or health-related decisions based on these estimates.
+          </div>
+
+          <div className="text-sm text-slate-500 text-center">
             &copy; {currentYear} Nexus Calculator. All Rights Reserved. · Bangladesh
           </div>
         </div>
