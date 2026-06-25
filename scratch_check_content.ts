@@ -5,12 +5,12 @@ import path from 'path';
 
 const LOW_CONTENT_THRESHOLD = 500; // Words
 
-function countWords(str) {
+function countWords(str: string) {
   if (!str) return 0;
   return str.split(/\s+/).filter(word => word.length > 0).length;
 }
 
-const lowContentTools = [];
+const lowContentTools: any[] = [];
 
 console.log("Checking Calculators...");
 calculators.forEach(calc => {
