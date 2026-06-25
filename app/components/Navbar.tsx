@@ -175,7 +175,7 @@ export function Navbar() {
 
   return (
     <header className="bg-white border-b border-slate-200 dark:bg-slate-900 dark:border-slate-800 relative z-40">
-      <nav ref={navRef} className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" aria-label="Global">
+      <nav ref={navRef} className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <div className="flex justify-between h-16">
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center">

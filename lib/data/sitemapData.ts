@@ -19,13 +19,10 @@ export const sitemapCategories = [
       "Budget Calculator", "IRR Calculator", "APR Calculator", "VA Mortgage Calculator", "HELOC Calculator",
       "Rent vs. Buy Calculator", "Present Value Calculator", "Commission Calculator", 
       "Percent Off Calculator", "Mortgage Payoff Calculator", "401K Calculator", "Canadian Mortgage Calculator",
-      "Marriage Tax Calculator", "Pension Calculator", "Annuity Calculator", "Credit Card Calculator",
-      "Debt Payoff Calculator", "Repayment Calculator", "College Cost Calculator", "CD Calculator",
-      "Mutual Fund Calculator", "IRA Calculator", "VAT Calculator", "Auto Lease Calculator",
-      "Average Return Calculator", "Discount Calculator", "Debt-to-Income Ratio Calculator",
-      "Take-Home-Paycheck Calculator", "Boat Loan Calculator", "Refinance Calculator", "Rental Property Calculator",
-      "ROI Calculator", "FHA Loan Calculator", "Home Equity Loan Calculator", "Down Payment Calculator",
-      "Payback Period Calculator", "Future Value Calculator", "Mortgage Amortization Calculator"
+      "Marriage Tax Calculator", "Annuity Calculator",
+      "Debt Payoff Calculator", "College Cost Calculator", "CD Calculator",
+      "Mutual Fund Calculator", "VAT Calculator",
+      "Average Return Calculator", "Debt-to-Income Ratio Calculator", "Boat Loan Calculator", "Rental Property Calculator", "FHA Loan Calculator", "Down Payment Calculator", "Future Value Calculator", "Mortgage Amortization Calculator"
     ]
   },
   {
@@ -36,13 +33,7 @@ export const sitemapCategories = [
     links: [
       "BMI Calculator", "Calorie Calculator", "Body Fat Calculator", "BMR Calculator",
       "Ideal Weight Calculator", "Pace Calculator", "Pregnancy Calculator", "Pregnancy Conception Calculator",
-      "Due Date Calculator", "Macro Calculator", "Carbohydrate Calculator", "Healthy Weight Calculator",
-      "One Rep Max Calculator", "Protein Calculator", "TDEE Calculator", "Conception Calculator",
-      "GFR Calculator", "Body Surface Area Calculator", "Anorexic BMI Calculator", "Overweight Calculator",
-      "Pregnancy Weight Gain Calculator", "Army Body Fat Calculator", "Lean Body Mass Calculator",
-      "Calories Burned Calculator", "Target Heart Rate Calculator", "Fat Intake Calculator", "Ovulation Calculator",
-      "Period Calculator", "Body Type Calculator", "BAC Calculator", "Weight Watcher Points Calculator"
-    ]
+      "Due Date Calculator", "Macro Calculator", "Carbohydrate Calculator", "Healthy Weight Calculator", "Ovulation Calculator"]
   },
   {
     title: "Math Calculators",
@@ -52,15 +43,7 @@ export const sitemapCategories = [
     links: [
       "Graphing Calculator", "Scientific Calculator", "Fraction Calculator", "Percentage Calculator",
       "Triangle Calculator", "Standard Deviation Calculator", "Volume Calculator", "Percent Error Calculator",
-      "Scientific Notation Calculator", "Binary Calculator", "Half-Life Calculator", "Slope Calculator", "Area Calculator", "Probability Calculator",
-      "Mean, Median, Mode, Range Calculator", "Z-score Calculator", "Ratio Calculator", "Circle Calculator",
-      "Pythagorean Theorem Calculator", "Root Calculator", "Greatest Common Factor Calculator", "Rounding Calculator",
-      "Prime Factorization Calculator", "Basic Calculator", "Average Calculator",
-      "Number Sequence Calculator", "Exponent Calculator", "Hex Calculator", "Quadratic Formula Calculator",
-      "Log Calculator", "Sample Size Calculator", "Statistics Calculator", "Permutation and Combination Calculator",
-      "Confidence Interval Calculator", "Distance Calculator", "Surface Area Calculator", "Right Triangle Calculator",
-      "Least Common Multiple Calculator", "Factor Calculator", "Matrix Calculator", "Big Number Calculator",
-      "Common Factor Calculator", "Long Division Calculator", "P-Value Calculator"
+      "Scientific Notation Calculator", "Binary Calculator", "Half-Life Calculator", "Statistics Calculator", "P-Value Calculator"
     ]
   },
   {
@@ -71,18 +54,7 @@ export const sitemapCategories = [
     links: [
       "Age Calculator", "Date Calculator", "Time Calculator", "Hours Calculator",
       "GPA Calculator", "Grade Calculator", "Concrete Calculator", "Subnet Calculator",
-      "Conversion Calculator", "Height Calculator", "IP Subnet Calculator",
-      "Voltage Drop Calculator", "Square Footage Calculator", "Time Zone Calculator", "GDP Calculator",
-      "Horsepower Calculator", "Stair Calculator", "Ohms Law Calculator", "Shoe Size Conversion",
-      "Mileage Calculator", "Mass Calculator", "Speed Calculator", "Molecular Weight Calculator",
-      "Golf Handicap Calculator", "Tire Size Calculator", "Tile Calculator", "Gravel Calculator",
-      "Heat Index Calculator", "Bandwidth Calculator", "URL Encode / Decode", "Day Counter",
-      "Bra Size Calculator", "Dice Roller", "Fuel Cost Calculator", "BTU Calculator", "Time Card Calculator",
-      "Love Calculator", "Gas Mileage Calculator", "Engine Horsepower Calculator", "Resistor Calculator",
-      "Electricity Calculator", "Tip Calculator", "Density Calculator", "Weight Calculator", "Molarity Calculator",
-      "Roman Numeral Converter", "Sleep Calculator", "Roofing Calculator", "Mulch Calculator", "Wind Chill Calculator",
-      "Dew Point Calculator", "Base64 Encode / Decode", "Time Duration Calculator", "Day of the Week Calculator"
-    ]
+      "Conversion Calculator", "Height Calculator", "IP Subnet Calculator"]
   },
   {
     title: "Calculators for Your Site",
@@ -90,8 +62,6 @@ export const sitemapCategories = [
     icon: Briefcase,
     description: "Embed our free, high-performance calculators directly into your own website or blog.",
     links: [
-      "Mortgage Calculator for Your Site", "Scientific Calculator for Your Site", "Concrete Calculator for Your Site",
-      "Math Calculator for Your Site", "Love Calculator for Your Site"
     ]
   }
 ];
@@ -110,7 +80,6 @@ export const developerToolsMenu = [
       { name: "Word Counter & Character Counter", desc: "Count words, characters, and sentences in real time" },
       { name: "Case Converter", desc: "Convert text letter cases instantly" },
       { name: "JSON Formatter", desc: "Format and indent JSON data" },
-      { name: "JSON Validator", desc: "Validate your JSON strings" },
       { name: "HTML Formatter", desc: "Format HTML code" },
       { name: "CSS Beautifier", desc: "Beautify CSS styles" },
       { name: "JS Beautifier", desc: "Format JS code" },
@@ -119,8 +88,7 @@ export const developerToolsMenu = [
       { name: "SQL Formatter", desc: "Format SQL queries" },
       { name: "YAML Formatter", desc: "Format YAML files" },
       { name: "CSV Viewer", desc: "View CSV data as table" },
-      { name: "Diff Checker", desc: "Compare text differences" },
-    ]
+      { name: "Diff Checker", desc: "Compare text differences" }]
   },
   {
     title: "Encoding & Security",
@@ -138,8 +106,7 @@ export const developerToolsMenu = [
       { name: "SHA256 Generator", desc: "Generate SHA256 hashes" },
       { name: "Password Generator", desc: "Generate secure passwords" },
       { name: "HMAC Generator", desc: "Generate HMAC codes" },
-      { name: "QR Code Studio", desc: "Create advanced custom QR codes" },
-    ]
+      { name: "QR Code Studio", desc: "Create advanced custom QR codes" }]
   },
   {
     title: "Generators",
@@ -159,8 +126,7 @@ export const developerToolsMenu = [
       { name: "Username Generator", desc: "Generate random usernames" },
       { name: "API Mock Data Generator", desc: "Create mock API responses" },
       { name: "Strong Password Generator", desc: "Create strong passwords" },
-      { name: "HTML Table Generator", desc: "Generate HTML tables" },
-    ]
+      { name: "HTML Table Generator", desc: "Generate HTML tables" }]
   },
   {
     title: "Color Tools",
@@ -177,8 +143,7 @@ export const developerToolsMenu = [
       { name: "Glassmorphism Generator", desc: "Create glass UI effects" },
       { name: "Neumorphism Generator", desc: "Create neomorphic styles" },
       { name: "Contrast Checker", desc: "Check color contrast ratio" },
-      { name: "Color Palette Generator", desc: "Generate color schemes" },
-    ]
+      { name: "Color Palette Generator", desc: "Generate color schemes" }]
   },
   {
     title: "Web Dev Utilities",
@@ -193,9 +158,6 @@ export const developerToolsMenu = [
       { name: "robots.txt Generator", desc: "Create robots.txt files" },
       { name: "sitemap.xml Generator", desc: "Generate XML sitemaps" },
       { name: ".htaccess Generator", desc: "Generate Apache .htaccess" },
-      { name: "CSS Minifier", desc: "Minify CSS code" },
-      { name: "JS Minifier", desc: "Minify JavaScript code" },
-      { name: "HTML Minifier", desc: "Minify HTML code" },
       { name: "Responsive Screen Tester", desc: "Test responsive designs" },
       { name: "HTTP Header Checker", desc: "Check HTTP response headers" },
       { name: "Redirect Checker", desc: "Check URL redirects" },
@@ -205,8 +167,7 @@ export const developerToolsMenu = [
       { name: "User Agent Parser", desc: "Parse User Agent strings" },
       { name: "MIME Type Checker", desc: "Check MIME types" },
       { name: "Favicon Generator", desc: "Generate website icons and PWA manifests", isNew: true, slug: "favicon-generator" },
-      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" },
-    ]
+      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" }]
   }
 ];
 
@@ -230,8 +191,7 @@ export const pdfToolsMenu = [
       { name: "Repair PDF", desc: "Repair corrupted PDF files" },
       { name: "Add Page Numbers to PDF", desc: "Insert page numbers in PDF" },
       { name: "PDF Metadata Editor", desc: "View, edit, and clean PDF document properties and metadata" },
-      { name: "PDF Metadata Viewer", desc: "Inspect document properties, view metadata, and check PDF security settings" },
-    ]
+      { name: "PDF Metadata Viewer", desc: "Inspect document properties, view metadata, and check PDF security settings" }]
   },
   {
     title: "Convert from PDF",
@@ -247,8 +207,7 @@ export const pdfToolsMenu = [
       { name: "PDF to PNG", desc: "Convert PDF to PNG images" },
       { name: "PDF to Text", desc: "Extract text from PDF" },
       { name: "PDF to HTML", desc: "Convert PDF to HTML webpage" },
-      { name: "PDF to EPUB", desc: "Convert PDF to EPUB ebook" },
-    ]
+      { name: "PDF to EPUB", desc: "Convert PDF to EPUB ebook" }]
   },
   {
     title: "Convert to PDF",
@@ -265,8 +224,7 @@ export const pdfToolsMenu = [
       { name: "HTML to PDF", desc: "Convert HTML webpage to PDF" },
       { name: "TXT to PDF", desc: "Convert Text document to PDF" },
       { name: "EPUB to PDF", desc: "Convert EPUB ebook to PDF" },
-      { name: "Scan to PDF", desc: "Scan documents using your camera to PDF" },
-    ]
+      { name: "Scan to PDF", desc: "Scan documents using your camera to PDF" }]
   },
   {
     title: "PDF Security",
@@ -279,8 +237,7 @@ export const pdfToolsMenu = [
       { name: "Sign PDF", desc: "Add digital signature" },
       { name: "Watermark PDF", desc: "Add watermark to PDF" },
       { name: "Redact PDF", desc: "Permanently blackout text" },
-      { name: "Flatten PDF", desc: "Flatten forms and annotations" },
-    ]
+      { name: "Flatten PDF", desc: "Flatten forms and annotations" }]
   }
 ];
 
@@ -304,8 +261,7 @@ export const imageToolsMenu = [
       { name: "Crop Image", desc: "Crop and trim images" },
       { name: "Rotate Image", desc: "Rotate image orientation" },
       { name: "Flip Image", desc: "Flip images horizontally or vertically" },
-      { name: "Blur Image", desc: "Blur faces or objects in image", isNew: true, slug: "blur-image" },
-    ]
+      { name: "Blur Image", desc: "Blur faces or objects in image", isNew: true, slug: "blur-image" }]
   },
   {
     title: "Image Conversion",
@@ -323,9 +279,7 @@ export const imageToolsMenu = [
       { name: "Convert to JPG", desc: "Convert images to JPG format", isNew: true, slug: "convert-to-jpg" },
       { name: "Convert to SVG", desc: "Convert images to SVG format", isNew: true, slug: "convert-to-svg" },
       { name: "Convert to GIF", desc: "Convert images to GIF format", isNew: true, slug: "convert-to-gif" },
-      { name: "ICO to PNG", desc: "Convert favicon ICO to PNG", isNew: true, slug: "ico-to-png" },
-
-    ]
+      { name: "ICO to PNG", desc: "Convert favicon ICO to PNG", isNew: true, slug: "ico-to-png" }]
   },
   {
     title: "Advanced Tools",
@@ -337,10 +291,7 @@ export const imageToolsMenu = [
       { name: "Meme Generator", desc: "Create custom memes with text", isNew: true, slug: "meme-generator" },
       { name: "Image to Base64", desc: "Convert image to Base64 string", isNew: true, slug: "image-to-base64" },
       { name: "Base64 to Image", desc: "Decode Base64 to image", slug: "base64-to-image" },
-      { name: "Remove Background", desc: "Remove image background", slug: "background-remover" },
-      { name: "Color Extractor", desc: "Extract color palette", slug: "color-palette-generator-from-image" },
-      { name: "Image Upscaler", desc: "Upscale image resolution using AI", slug: "ai-image-upscaler" },
-    ]
+      { name: "Remove Background", desc: "Remove image background", slug: "background-remover" }]
   }
 ];
 

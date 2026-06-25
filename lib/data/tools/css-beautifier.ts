@@ -14,19 +14,65 @@ export const cssBeautifierConfig: ToolConfig = {
   ],
 
   longDescription: `
-Working with CSS in modern web development often means dealing with minified production bundles, deeply nested media queries, and complex custom property hierarchies. Our **CSS Beautifier & Formatter** is a professional-grade tool built for developers who need to quickly transform unreadable, minified CSS into a clean, properly structured stylesheet.
+Working with Cascading Style Sheets (CSS) in modern web development often means dealing with a level of complexity that early web pioneers never could have imagined. Today's CSS involves massive design systems, deeply nested media queries, complex custom property hierarchies, utility-first frameworks, and post-processor output. When you combine this complexity with the fact that CSS is frequently bundled, transpiled, and aggressively minified for production environments, dealing with raw CSS becomes a monumental challenge.
 
-### Why CSS Formatting Matters
-Unformatted CSS is a productivity killer. When stylesheets lose their indentation — whether from build tools, copy-pasting from browser DevTools, or receiving compressed API payloads — it becomes nearly impossible to trace selector specificity, debug cascading issues, or identify redundant declarations. A reliable CSS Formatter reconstructs the logical hierarchy of your rules so you can instantly see parent-child relationships between selectors, media queries, and nested at-rules.
+Our **CSS Beautifier & Formatter** is a professional-grade, browser-based developer tool built specifically for engineers, UI/UX designers, and technical SEO specialists who need to quickly transform unreadable, minified, or disorganized CSS into a clean, properly structured, and highly readable stylesheet.
 
-### Modern CSS Support
-Our formatter is built for 2024+ CSS. It gracefully handles **CSS Custom Properties** (\`--variable\` declarations), **CSS Nesting** (the native \`&\` selector), **Container Queries** (\`@container\`), **CSS Layers** (\`@layer\`), \`@supports\` blocks, \`@keyframes\` animations, and complex \`@media\` queries with nested conditions. Whether you're writing vanilla CSS, utility-first frameworks like Tailwind CSS, or preprocessor output from Sass and Less, this tool formats it correctly.
+### Why CSS Formatting is Critical for Frontend Development
 
-### CSS Minification for Production
-Beyond beautification, our tool includes an aggressive **CSS Minifier**. Minification strips every unnecessary byte from your stylesheets — whitespace, comments, trailing semicolons, and redundant syntax — producing the smallest possible file for production deployment. Smaller CSS files mean faster First Contentful Paint (FCP), better Largest Contentful Paint (LCP) scores, and a direct improvement to your Core Web Vitals and search engine rankings.
+Unformatted CSS is an absolute productivity killer. When stylesheets lose their indentation—whether from build tools like Webpack or Vite, from copy-pasting code out of Chrome DevTools, or from receiving a compressed payload from a third-party API—it becomes nearly impossible to maintain the code.
 
-### Privacy-First & Blazing Fast
-Every character of your CSS is processed entirely within your browser using client-side JavaScript. We do not store, track, or transmit your code to any server. This makes our CSS Beautifier 100% safe for proprietary enterprise stylesheets, design system tokens, and confidential client projects.
+#### 1. Tracing the Cascade and Specificity
+The "C" in CSS stands for Cascading. The order in which rules are written, combined with the specificity of the selectors, determines exactly which styles the browser applies to an element. If a minified stylesheet stretches across a single, infinitely long line, determining which rule takes precedence is impossible. A reliable CSS Formatter reconstructs the logical hierarchy of your rules. It inserts line breaks between declaration blocks, indents properties consistently, and formats selectors so you can instantly see the parent-child relationships and analyze specificity conflicts.
+
+#### 2. Debugging Layout Issues
+When a CSS Grid or Flexbox layout suddenly breaks in production, you often need to inspect the live stylesheet. If that stylesheet is minified, finding the rogue \`margin\`, \`padding\`, or \`z-index\` property is like finding a needle in a haystack. Our CSS Beautifier expands the minified code, allowing you to use your browser's \`Ctrl+F\` function to locate specific classes and immediately read their associated properties in a clear, vertical list.
+
+#### 3. Standardizing Team Codebases
+Different developers have different habits. Some write CSS properties in alphabetical order; others group them by layout, typography, and color. Some use spaces, others use tabs. When collaborating on a large project, this inconsistency leads to massive, hard-to-read Git pull requests. Using a CSS formatter ensures that every piece of code conforms to a unified aesthetic standard before it is committed to the repository, drastically reducing code review friction.
+
+### Unparalleled Support for Modern CSS Features
+
+CSS has evolved dramatically over the last few years. We built our formatting engine to handle the cutting edge of CSS architecture, ensuring that it doesn't just format legacy CSS2, but perfectly handles the complexities of modern UI development.
+
+- **CSS Custom Properties (Variables):** The tool correctly formats \`:root\` pseudo-classes and the thousands of \`--variable\` declarations typical in modern design systems, ensuring colons and values align beautifully.
+- **Native CSS Nesting:** With modern browsers supporting the native \`&\` nesting selector (bringing Sass-like capabilities directly to vanilla CSS), our formatter correctly indents deeply nested selectors to preserve their visual hierarchy.
+- **Advanced At-Rules:** The formatting engine natively understands and formats complex \`@media\` queries, \`@supports\` feature queries, \`@container\` queries for component-driven design, and the newly introduced \`@layer\` rules for controlling cascade layers.
+- **Keyframe Animations:** Complex \`@keyframes\` animations with multiple percentage waypoints are parsed and spaced correctly so you can visualize the timeline of your animations.
+
+### The Power of CSS Minification
+
+Beyond making your code visually appealing, our tool operates in reverse. It features an aggressive, production-ready **CSS Minifier**.
+
+Why should you minify your CSS? Web performance is heavily reliant on the Critical Rendering Path. Before a browser can paint the first pixel on the screen, it must download and parse the CSS Object Model (CSSOM). Every byte of whitespace, every code comment, and every redundant semicolon adds to the file size and delays rendering. 
+
+Minification safely strips all of this unnecessary data from your stylesheets, producing the smallest possible file for production deployment. Smaller CSS files lead to:
+1. Faster Time to First Byte (TTFB).
+2. Faster First Contentful Paint (FCP).
+3. Better Largest Contentful Paint (LCP) scores.
+4. Higher Google PageSpeed Insights and Core Web Vitals rankings, directly boosting your SEO performance.
+
+With our tool, you can paste a 10,000-line beautifully formatted stylesheet and instantly compress it into a tiny, high-performance payload with a single click.
+
+### Complete Privacy with Client-Side Processing
+
+When you are working on a proprietary design system, a confidential client project, or an internal corporate web application, uploading your unreleased source code to a random, unverified internet server is a massive security risk.
+
+**Our CSS Beautifier is built with a strict, privacy-first architecture.** We utilize advanced WebAssembly and Client-Side JavaScript to parse, format, and minify your CSS entirely within your local web browser. 
+
+From the moment you paste your code to the moment the beautifully formatted output renders on your screen, your data never leaves your computer. It is never transmitted across a network, it is never saved to a database, and our servers never see it. This zero-data-retention model makes our CSS Formatter 100% safe for enterprise developers, financial institutions, and security-conscious engineers.
+
+### How to Get the Most Out of Our CSS Formatter
+
+- **Normalize Your Indentation:** Use the settings menu to select between 2 spaces, 4 spaces, or tab characters. Consistency is key when copying formatted code back into your IDE.
+- **Clean Up Copied Code:** When inspecting elements in Chrome DevTools or Safari Web Inspector, copying rules often brings along messy browser-specific formatting. Paste that code here first to sanitize it before adding it to your source files.
+- **Extracting Third-Party Styles:** If you are integrating a third-party widget (like a chat bubble or a marketing form) and need to override its styles, grab the vendor's minified CSS, format it here, and search for the specific class names you need to target.
+
+### Conclusion
+
+Whether you are a seasoned frontend architect maintaining a monolithic CSS architecture, a UX designer tweaking a prototype, or a junior developer trying to understand how a complex layout works, a reliable CSS Formatter is an indispensable tool. 
+
+Bookmark this CSS Beautifier & Formatter today. With its blazing-fast client-side execution, uncompromised security, and comprehensive support for modern CSS specifications, it will instantly become one of the most frequently used utilities in your frontend development toolkit.
   `,
 
   features: [
