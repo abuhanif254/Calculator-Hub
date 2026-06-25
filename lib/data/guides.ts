@@ -90,6 +90,26 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-06-11',
     relatedCalculator: 'debt-to-income-ratio-calculator',
   },
+  {
+    slug: 'how-to-calculate-auto-loan-payments',
+    title: 'How to Calculate Auto Loan Payments & Total Interest',
+    description:
+      'A detailed walkthrough of how car loans are structured, the impact of down payments, trade-in values, loan terms (e.g., 48 vs. 72 months), and how to read the amortization schedule.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-06-25',
+    relatedCalculator: 'auto-loan-calculator',
+  },
+  {
+    slug: 'salary-and-hourly-wage-guide',
+    title: 'Mastering Salary Calculations: Hourly to Annual Conversions',
+    description:
+      'Explaining the math behind converting hourly wages to annual salaries, factoring in paid time off, working hours, and standard tax implications.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-06-25',
+    relatedCalculator: 'salary-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
@@ -155,6 +175,16 @@ const healthGuides: Guide[] = [
     lastUpdated: '2026-06-11',
     relatedCalculator: 'ideal-weight-calculator',
   },
+  {
+    slug: 'daily-caloric-needs-guide',
+    title: 'Understanding Your Daily Caloric Needs for Weight Management',
+    description:
+      'How to determine caloric requirements based on TDEE (Total Daily Energy Expenditure), and adjusting intake for weight loss, maintenance, or muscle gain.',
+    category: 'Health',
+    readingTime: 7,
+    lastUpdated: '2026-06-25',
+    relatedCalculator: 'calorie-calculator',
+  },
 ];
 
 // ─── MATH & SCIENCE GUIDES ────────────────────────────────────────────
@@ -199,6 +229,16 @@ const mathGuides: Guide[] = [
     readingTime: 5,
     lastUpdated: '2026-06-11',
     relatedCalculator: 'scientific-notation-calculator',
+  },
+  {
+    slug: 'how-to-use-triangle-calculator',
+    title: 'How to Use the Triangle Calculator for Geometry & Trigonometry',
+    description:
+      'A guide on calculating sides, angles, and area of triangles using the Pythagorean theorem, the Law of Sines, and the Law of Cosines.',
+    category: 'Math & Science',
+    readingTime: 6,
+    lastUpdated: '2026-06-25',
+    relatedCalculator: 'triangle-calculator',
   },
   {
     slug: 'half-life-calculator-explained',
