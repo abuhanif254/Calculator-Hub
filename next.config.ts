@@ -8,7 +8,7 @@ const withSerwist = withSerwistInit({
   swSrc: 'app/sw.ts',
   swDest: 'public/sw.js',
   disable: true,
-  excludeChunks: ['pages/_dummy'],
+
 });
 
 const nextConfig: NextConfig = {

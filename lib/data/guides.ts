@@ -9,6 +9,12 @@ export type GuideCategory = 'Finance' | 'Health' | 'Math & Science';
 export interface Guide {
   /** URL-safe slug (used in /guides/[slug]) */
   slug: string;
+  slugs?: {
+    en: string;
+    es: string;
+    fr: string;
+    de: string;
+  };
   /** Full display title */
   title: string;
   /** SEO meta description (150–160 chars) */
@@ -29,6 +35,12 @@ export interface Guide {
 const financeGuides: Guide[] = [
   {
     slug: 'how-to-use-compound-interest-calculator',
+    slugs: {
+      en: 'how-to-use-compound-interest-calculator',
+      es: 'como-usar-calculadora-interes-compuesto',
+      fr: 'comment-utiliser-calculatrice-interets-composes',
+      de: 'zinseszinsrechner-anleitung'
+    },
     title: 'How to Use the Compound Interest Calculator',
     description:
       'A step-by-step walkthrough of compound interest: how the formula works, what inputs to provide, and how to interpret growth projections for savings and investments.',
@@ -40,6 +52,12 @@ const financeGuides: Guide[] = [
   },
   {
     slug: 'understanding-loan-amortization',
+    slugs: {
+      en: 'understanding-loan-amortization',
+      es: 'entender-amortizacion-prestamos',
+      fr: 'comprendre-amortissement-pret',
+      de: 'kredittilgung-verstehen'
+    },
     title: 'Understanding Loan Amortization: A Step-by-Step Guide',
     description:
       'Learn how loan amortization schedules work, how principal vs. interest payments shift over time, and how to use the amortization calculator to plan your repayment.',
@@ -51,6 +69,12 @@ const financeGuides: Guide[] = [
   },
   {
     slug: 'how-to-calculate-mortgage-payments',
+    slugs: {
+      en: 'how-to-calculate-mortgage-payments',
+      es: 'como-calcular-pagos-hipoteca',
+      fr: 'comment-calculer-paiements-hypothecaires',
+      de: 'hypothekenzahlungen-berechnen'
+    },
     title: 'How to Calculate Mortgage Payments Accurately',
     description:
       'Understand every component of a mortgage payment — principal, interest, PMI, taxes, and insurance — and learn to use our mortgage calculator for precise estimates.',
@@ -62,6 +86,12 @@ const financeGuides: Guide[] = [
   },
   {
     slug: 'apr-vs-interest-rate-guide',
+    slugs: {
+      en: 'apr-vs-interest-rate-guide',
+      es: 'guia-apr-vs-tasa-interes',
+      fr: 'guide-taeg-vs-taux-interet',
+      de: 'effektivzins-vs-nominalzins-ratgeber'
+    },
     title: 'APR vs. Interest Rate: What Every Borrower Should Know',
     description:
       'Understand the crucial difference between APR and nominal interest rate, why lenders advertise both, and how to use our APR calculator to compare loan offers fairly.',
@@ -72,6 +102,12 @@ const financeGuides: Guide[] = [
   },
   {
     slug: 'investment-calculator-for-retirement',
+    slugs: {
+      en: 'investment-calculator-for-retirement',
+      es: 'calculadora-inversiones-para-jubilacion',
+      fr: 'calculatrice-investissement-pour-retraite',
+      de: 'investmentrechner-fuer-altersvorsorge'
+    },
     title: 'Using the Investment Calculator for Retirement Planning',
     description:
       'A complete guide to projecting long-term portfolio growth using the investment calculator — covering contribution amounts, expected returns, compounding frequency, and inflation adjustment.',
@@ -82,6 +118,12 @@ const financeGuides: Guide[] = [
   },
   {
     slug: 'debt-to-income-ratio-guide',
+    slugs: {
+      en: 'debt-to-income-ratio-guide',
+      es: 'guia-relacion-deuda-ingreso',
+      fr: 'guide-ratio-endettement',
+      de: 'schulden-einkommens-verhaeltnis-ratgeber'
+    },
     title: 'Debt-to-Income Ratio: What It Is and How to Improve It',
     description:
       'Learn what debt-to-income ratio (DTI) means for mortgage approval and personal finance health, how lenders evaluate it, and actionable ways to reduce yours using our DTI calculator.',
@@ -92,6 +134,12 @@ const financeGuides: Guide[] = [
   },
   {
     slug: 'how-to-calculate-auto-loan-payments',
+    slugs: {
+      en: 'how-to-calculate-auto-loan-payments',
+      es: 'como-calcular-pagos-prestamo-auto',
+      fr: 'comment-calculer-paiements-pret-auto',
+      de: 'autokredit-raten-berechnen'
+    },
     title: 'How to Calculate Auto Loan Payments & Total Interest',
     description:
       'A detailed walkthrough of how car loans are structured, the impact of down payments, trade-in values, loan terms (e.g., 48 vs. 72 months), and how to read the amortization schedule.',
@@ -102,6 +150,12 @@ const financeGuides: Guide[] = [
   },
   {
     slug: 'salary-and-hourly-wage-guide',
+    slugs: {
+      en: 'salary-and-hourly-wage-guide',
+      es: 'guia-salario-y-salario-por-hora',
+      fr: 'guide-salaire-et-taux-horaire',
+      de: 'gehalt-und-stundenlohn-ratgeber'
+    },
     title: 'Mastering Salary Calculations: Hourly to Annual Conversions',
     description:
       'Explaining the math behind converting hourly wages to annual salaries, factoring in paid time off, working hours, and standard tax implications.',
@@ -116,6 +170,12 @@ const financeGuides: Guide[] = [
 const healthGuides: Guide[] = [
   {
     slug: 'how-to-calculate-bmi',
+    slugs: {
+      en: 'how-to-calculate-bmi',
+      es: 'como-calcular-imc',
+      fr: 'comment-calculer-imc',
+      de: 'bmi-berechnen'
+    },
     title: 'How to Calculate Your BMI and What It Means',
     description:
       'A complete guide to Body Mass Index: the standard formula (metric and imperial), what each BMI range means clinically, and the limitations of BMI as a sole health indicator.',
@@ -127,6 +187,12 @@ const healthGuides: Guide[] = [
   },
   {
     slug: 'understanding-bmr-calorie-needs',
+    slugs: {
+      en: 'understanding-bmr-calorie-needs',
+      es: 'entender-necesidades-caloricas-tmb',
+      fr: 'comprendre-besoins-caloriques-mb',
+      de: 'grundumsatz-kalorienbedarf-verstehen'
+    },
     title: 'Understanding Calorie Needs: Using the BMR Calculator',
     description:
       'Basal Metabolic Rate explained: what it is, the Mifflin-St Jeor and Harris-Benedict formulas, how activity multipliers work, and how to calculate your Total Daily Energy Expenditure (TDEE).',
@@ -137,6 +203,12 @@ const healthGuides: Guide[] = [
   },
   {
     slug: 'body-fat-percentage-tracking-guide',
+    slugs: {
+      en: 'body-fat-percentage-tracking-guide',
+      es: 'guia-seguimiento-porcentaje-grasa-corporal',
+      fr: 'guide-suivi-pourcentage-graisse-corporelle',
+      de: 'koerperfettanteil-verfolgen-ratgeber'
+    },
     title: 'How to Track Body Fat Percentage Over Time',
     description:
       'Understand body fat percentage measurement methods (Navy Method, skinfold calipers, DEXA), healthy ranges by age and sex, and how to interpret results from our body fat calculator.',
@@ -147,6 +219,12 @@ const healthGuides: Guide[] = [
   },
   {
     slug: 'pregnancy-due-date-calculator-guide',
+    slugs: {
+      en: 'pregnancy-due-date-calculator-guide',
+      es: 'guia-calculadora-fecha-parto-embarazo',
+      fr: 'guide-calculatrice-date-accouchement-grossesse',
+      de: 'schwangerschafts-entbindungstermin-ratgeber'
+    },
     title: 'Using the Pregnancy Calculator: Due Date & Milestones',
     description:
       'How due date calculation works using Naegele\'s Rule and LMP (Last Menstrual Period), what each trimester involves, and how to use our pregnancy calculator to track key milestones.',
@@ -157,6 +235,12 @@ const healthGuides: Guide[] = [
   },
   {
     slug: 'macro-calculator-guide',
+    slugs: {
+      en: 'macro-calculator-guide',
+      es: 'guia-calculadora-macros',
+      fr: 'guide-calculatrice-macros',
+      de: 'makro-rechner-ratgeber'
+    },
     title: 'Macro Calculator Guide: Protein, Carbs & Fat Explained',
     description:
       'A comprehensive guide to calculating and balancing macronutrients for your fitness goal — whether fat loss, muscle gain, or maintenance — using our macro calculator.',
@@ -167,6 +251,12 @@ const healthGuides: Guide[] = [
   },
   {
     slug: 'ideal-weight-ranges-guide',
+    slugs: {
+      en: 'ideal-weight-ranges-guide',
+      es: 'guia-rangos-peso-ideal',
+      fr: 'guide-plages-poids-ideal',
+      de: 'idealgewicht-bereiche-ratgeber'
+    },
     title: 'Ideal Weight Ranges by Height and Frame Size',
     description:
       'Explore the major ideal body weight formulas (Hamwi, Devine, Robinson, Miller), how frame size factors in, and how to use our ideal weight calculator for a realistic, personalized estimate.',
@@ -177,6 +267,12 @@ const healthGuides: Guide[] = [
   },
   {
     slug: 'daily-caloric-needs-guide',
+    slugs: {
+      en: 'daily-caloric-needs-guide',
+      es: 'guia-necesidades-caloricas-diarias',
+      fr: 'guide-besoins-caloriques-quotidiens',
+      de: 'taeglicher-kalorienbedarf-ratgeber'
+    },
     title: 'Understanding Your Daily Caloric Needs for Weight Management',
     description:
       'How to determine caloric requirements based on TDEE (Total Daily Energy Expenditure), and adjusting intake for weight loss, maintenance, or muscle gain.',
@@ -191,6 +287,12 @@ const healthGuides: Guide[] = [
 const mathGuides: Guide[] = [
   {
     slug: 'percentage-calculator-guide',
+    slugs: {
+      en: 'percentage-calculator-guide',
+      es: 'guia-calculadora-porcentajes',
+      fr: 'guide-calculatrice-pourcentages',
+      de: 'prozentrechner-ratgeber'
+    },
     title: 'How to Use the Percentage Calculator for Everyday Problems',
     description:
       'Master all three percentage problem types — finding a percentage, finding what percentage one number is of another, and finding a number given a percentage — with real-world examples.',
@@ -202,6 +304,12 @@ const mathGuides: Guide[] = [
   },
   {
     slug: 'standard-deviation-guide',
+    slugs: {
+      en: 'standard-deviation-guide',
+      es: 'guia-desviacion-estandar',
+      fr: 'guide-ecart-type',
+      de: 'standardabweichung-ratgeber'
+    },
     title: 'Understanding Standard Deviation with Examples',
     description:
       'A clear explanation of standard deviation and variance: the difference between population and sample formulas, what σ tells you about data spread, and how to read output from our statistics calculator.',
@@ -212,6 +320,12 @@ const mathGuides: Guide[] = [
   },
   {
     slug: 'unit-conversion-guide',
+    slugs: {
+      en: 'unit-conversion-guide',
+      es: 'guia-conversion-unidades',
+      fr: 'guide-conversion-unites',
+      de: 'einheitenumrechnung-ratgeber'
+    },
     title: 'How to Convert Units: A Complete Conversion Guide',
     description:
       'A comprehensive reference for converting length, weight, volume, temperature, speed, and area units between metric and imperial systems using our conversion calculator.',
@@ -222,6 +336,12 @@ const mathGuides: Guide[] = [
   },
   {
     slug: 'scientific-notation-guide',
+    slugs: {
+      en: 'scientific-notation-guide',
+      es: 'guia-notacion-cientifica',
+      fr: 'guide-notation-scientifique',
+      de: 'wissenschaftliche-schreibweise-ratgeber'
+    },
     title: 'Scientific Notation Made Simple: Format & Calculate',
     description:
       'Learn how to read and write numbers in scientific notation, perform arithmetic operations (×, ÷, +, −), convert between standard and scientific form, and avoid common mistakes.',
@@ -232,6 +352,12 @@ const mathGuides: Guide[] = [
   },
   {
     slug: 'how-to-use-triangle-calculator',
+    slugs: {
+      en: 'how-to-use-triangle-calculator',
+      es: 'como-usar-calculadora-triangulos',
+      fr: 'comment-utiliser-calculatrice-triangles',
+      de: 'dreiecksrechner-anleitung'
+    },
     title: 'How to Use the Triangle Calculator for Geometry & Trigonometry',
     description:
       'A guide on calculating sides, angles, and area of triangles using the Pythagorean theorem, the Law of Sines, and the Law of Cosines.',
@@ -242,6 +368,12 @@ const mathGuides: Guide[] = [
   },
   {
     slug: 'half-life-calculator-explained',
+    slugs: {
+      en: 'half-life-calculator-explained',
+      es: 'calculadora-vida-media-explicada',
+      fr: 'calculatrice-demi-vie-expliquee',
+      de: 'halbwertszeit-rechner-erklaert'
+    },
     title: 'How the Half-Life Calculator Works (Radioactive Decay)',
     description:
       'A complete guide to radioactive half-life: the exponential decay formula, how to find remaining quantity or elapsed time, real-world examples in nuclear medicine and archaeology.',
@@ -252,6 +384,12 @@ const mathGuides: Guide[] = [
   },
   {
     slug: 'triangle-calculator-guide',
+    slugs: {
+      en: 'triangle-calculator-guide',
+      es: 'guia-calculadora-triangulos',
+      fr: 'guide-calculatrice-triangles',
+      de: 'dreiecksrechner-ratgeber'
+    },
     title: 'Triangle Calculator Guide: Sides, Angles & Area',
     description:
       'A thorough reference for solving any triangle — right, acute, or obtuse — using trigonometric laws (Law of Sines, Law of Cosines), the Pythagorean theorem, and Heron\'s formula for area.',
@@ -281,9 +419,15 @@ export const guidesByCategory: Record<GuideCategory, Guide[]> = {
 /** Featured guides for the hero/landing section */
 export const featuredGuides: Guide[] = allGuides.filter((g) => g.featured);
 
-/** Get a single guide by slug. Returns undefined if not found. */
+/** Get a single guide by slug (checks both main slug and localized slugs). Returns undefined if not found. */
 export function getGuideBySlug(slug: string): Guide | undefined {
-  return allGuides.find((g) => g.slug === slug);
+  return allGuides.find((g) => {
+    if (g.slug === slug) return true;
+    if (g.slugs) {
+      return Object.values(g.slugs).includes(slug);
+    }
+    return false;
+  });
 }
 
 /** Get the previous and next guides relative to a given slug (for article navigation) */
@@ -291,12 +435,16 @@ export function getAdjacentGuides(slug: string): {
   prev: Guide | null;
   next: Guide | null;
 } {
-  const index = allGuides.findIndex((g) => g.slug === slug);
+  const index = allGuides.findIndex((g) => {
+    if (g.slug === slug) return true;
+    if (g.slugs) return Object.values(g.slugs).includes(slug);
+    return false;
+  });
   return {
     prev: index > 0 ? allGuides[index - 1] : null,
-    next: index < allGuides.length - 1 ? allGuides[index + 1] : null,
+    next: index !== -1 && index < allGuides.length - 1 ? allGuides[index + 1] : null,
   };
 }
 
-/** All guide slugs — used for generateStaticParams */
+/** All guide slugs (english only) — usually unused in localized static params generation, but preserved for compatibility */
 export const allGuideSlugs: string[] = allGuides.map((g) => g.slug);

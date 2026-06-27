@@ -2,6 +2,25 @@
   "Index": {
     "title": "Willkommen bei Nexus Calculator"
   },
+  "GuidesIndex": {
+    "metaTitle": "Rechner-Anleitungen & Ratgeber-Artikel",
+    "metaDescription": "Schritt-für-Schritt-Anleitungen, Formeln und Experten-Tutorials für jeden Rechner auf Nexus. Lernen Sie weltweit vertraute Berechnungsmethoden für Finanzen, Gesundheit und Mathematik.",
+    "home": "Startseite",
+    "guides": "Ratgeber",
+    "documentation": "Dokumentation",
+    "heroTitlePart1": "Rechner-Anleitungen &",
+    "heroTitlePart2": "Ratgeber-Artikel",
+    "heroDescription": "Von Experten verfasste Tutorials für jeden Rechner auf Nexus. Lernen Sie die Formeln hinter jedem Tool kennen, verstehen Sie Ihre Ergebnisse und wenden Sie sie auf reale Entscheidungen an — egal, ob Sie Finanzen verwalten, Ihre Gesundheit verfolgen oder mathematische Probleme lösen.",
+    "statGuides": "Ratgeber",
+    "statCategories": "Kategorien",
+    "statFree": "Kostenlos & Offen",
+    "featuredGuides": "Empfohlene Ratgeber",
+    "catFinanceDesc": "Hypotheken, Kredite, Investitionen und persönliche Finanzen",
+    "catHealthDesc": "BMI, Kalorienbedarf, Körperfett, Schwangerschaftstracking",
+    "catMathDesc": "Prozentsätze, Statistiken, Einheitenumrechnungen und mehr",
+    "readGuide": "Ratgeber lesen",
+    "minRead": "Min Lesezeit"
+  },
   "EstateTaxCalculator": {
     "assetsTitle": "Vermögenswerte (Bruttonachlass)",
     "realEstate": "Immobilien",

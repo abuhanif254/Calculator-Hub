@@ -1,6 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
-import { Link } from '@/i18n/routing';
+import { Link, routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import fs from 'fs';
 import path from 'path';
@@ -19,19 +19,32 @@ import {
   ExternalLink,
 } from 'lucide-react';
 import {
-  allGuideSlugs,
+  allGuides,
   getGuideBySlug,
   getAdjacentGuides,
   type GuideCategory,
 } from '@/lib/data/guides';
 import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
+import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Static params — pre-render all guide slugs at build time
 // ─────────────────────────────────────────────────────────────────────────────
 export async function generateStaticParams() {
-  return allGuideSlugs.map((slug) => ({ slug }));
+  const params: { slug: string; locale: string }[] = [];
+
+  routing.locales.forEach((locale) => {
+    allGuides.forEach((guide) => {
+      let slugToUse = guide.slug;
+      if (guide.slugs && guide.slugs[locale as keyof typeof guide.slugs]) {
+        slugToUse = guide.slugs[locale as keyof typeof guide.slugs];
+      }
+      params.push({ slug: slugToUse, locale });
+    });
+  });
+
+  return params;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -46,9 +59,12 @@ function slugifyHeading(text: string): string {
     .trim();
 }
 
-function loadGuideMarkdown(slug: string): { content: string; htmlContent: string } | null {
-  const filePath = path.join(process.cwd(), 'content', 'en', 'guides', `${slug}.md`);
-  if (!fs.existsSync(filePath)) return null;
+function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: string): { content: string; htmlContent: string } | null {
+  let filePath = path.join(process.cwd(), 'content', locale, 'guides', `${currentSlug}.md`);
+  if (!fs.existsSync(filePath)) {
+    filePath = path.join(process.cwd(), 'content', 'en', 'guides', `${guideSlug}.md`);
+    if (!fs.existsSync(filePath)) return null;
+  }
 
   const raw = fs.readFileSync(filePath, 'utf-8');
   const { content } = matter(raw);
@@ -102,8 +118,10 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { locale, slug } = await params;
-  const guide = getGuideBySlug(slug);
+  let guide = getGuideBySlug(slug);
   if (!guide) return { title: 'Guide Not Found' };
+  
+  guide = getLocalizedGuide(guide, locale);
 
   const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
 
@@ -180,21 +198,30 @@ export default async function GuideArticlePage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const guide = getGuideBySlug(slug);
-  if (!guide) notFound();
+  let baseGuide = getGuideBySlug(slug);
+  if (!baseGuide) notFound();
 
-  const markdownData = loadGuideMarkdown(slug);
+  const guide = getLocalizedGuide(baseGuide, locale);
+
+  const markdownData = loadGuideMarkdown(guide.slug, locale, slug);
   const htmlContent = markdownData?.htmlContent ?? `<p>Content coming soon. Check back shortly!</p>`;
 
   const headings = extractHeadings(htmlContent);
   const { prev, next } = getAdjacentGuides(slug);
+  
+  const prevGuide = prev ? getLocalizedGuide(prev, locale) : null;
+  const nextGuide = next ? getLocalizedGuide(next, locale) : null;
+
   const catIcon = CATEGORY_ICON[guide.category];
 
-  const formattedDate = new Date(guide.lastUpdated).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const formattedDate = new Date(guide.lastUpdated).toLocaleDateString(
+    locale === 'en' ? 'en-US' : locale, 
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }
+  );
 
   return (
     <div className="flex gap-10 xl:gap-14">
@@ -331,9 +358,9 @@ export default async function GuideArticlePage({
           aria-label="Guide navigation"
           className="mt-14 pt-8 border-t border-slate-100 dark:border-white/5 grid grid-cols-2 gap-4"
         >
-          {prev ? (
+          {prevGuide ? (
             <Link
-              href={{ pathname: '/guides/[slug]', params: { slug: prev.slug } }}
+              href={{ pathname: '/guides/[slug]', params: { slug: prevGuide.slug } }}
               className="group flex flex-col gap-1 p-4 rounded-xl border border-slate-200 dark:border-white/8 hover:border-[#518231]/30 dark:hover:border-[#518231]/30 bg-white dark:bg-slate-800/50 hover:shadow-md transition-all duration-200"
             >
               <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 dark:text-slate-500 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors">
@@ -341,16 +368,16 @@ export default async function GuideArticlePage({
                 Previous
               </span>
               <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-snug">
-                {prev.title}
+                {prevGuide.title}
               </span>
             </Link>
           ) : (
             <div />
           )}
 
-          {next ? (
+          {nextGuide ? (
             <Link
-              href={{ pathname: '/guides/[slug]', params: { slug: next.slug } }}
+              href={{ pathname: '/guides/[slug]', params: { slug: nextGuide.slug } }}
               className="group flex flex-col items-end gap-1 p-4 rounded-xl border border-slate-200 dark:border-white/8 hover:border-[#518231]/30 dark:hover:border-[#518231]/30 bg-white dark:bg-slate-800/50 hover:shadow-md transition-all duration-200 text-right"
             >
               <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 dark:text-slate-500 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors">
@@ -358,7 +385,7 @@ export default async function GuideArticlePage({
                 <ArrowRight size={13} />
               </span>
               <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-snug">
-                {next.title}
+                {nextGuide.title}
               </span>
             </Link>
           ) : (

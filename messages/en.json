@@ -2,6 +2,25 @@
   "Index": {
     "title": "Welcome to Nexus Calculator"
   },
+  "GuidesIndex": {
+    "metaTitle": "Calculator Guides & How-To Articles",
+    "metaDescription": "Step-by-step guides, formulas, and expert walkthroughs for every calculator on Nexus. Learn finance, health, and math calculation methods trusted globally.",
+    "home": "Home",
+    "guides": "Guides",
+    "documentation": "Documentation",
+    "heroTitlePart1": "Calculator Guides &",
+    "heroTitlePart2": "How-To Articles",
+    "heroDescription": "Expert-written walkthroughs for every calculator on Nexus. Learn the formulas behind each tool, understand your results, and apply them to real-world decisions — whether you're managing finances, tracking health, or solving math problems.",
+    "statGuides": "Guides",
+    "statCategories": "Categories",
+    "statFree": "Free & Open",
+    "featuredGuides": "Featured Guides",
+    "catFinanceDesc": "Mortgages, loans, investments, and personal finance",
+    "catHealthDesc": "BMI, calorie needs, body fat, pregnancy tracking",
+    "catMathDesc": "Percentages, statistics, unit conversions, and more",
+    "readGuide": "Read guide",
+    "minRead": "min read"
+  },
   "EstateTaxCalculator": {
     "assetsTitle": "Assets (Gross Estate)",
     "realEstate": "Real Estate",
