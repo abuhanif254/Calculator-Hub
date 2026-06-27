@@ -2,6 +2,25 @@
   "Index": {
     "title": "Bienvenido a Nexus Calculator"
   },
+  "GuidesIndex": {
+    "metaTitle": "Guías de Calculadoras y Artículos Prácticos",
+    "metaDescription": "Guías paso a paso, fórmulas y tutoriales de expertos para cada calculadora en Nexus. Aprenda métodos de cálculo de finanzas, salud y matemáticas confiables a nivel mundial.",
+    "home": "Inicio",
+    "guides": "Guías",
+    "documentation": "Documentación",
+    "heroTitlePart1": "Guías de Calculadoras y",
+    "heroTitlePart2": "Artículos Prácticos",
+    "heroDescription": "Tutoriales escritos por expertos para cada calculadora en Nexus. Aprenda las fórmulas detrás de cada herramienta, entienda sus resultados y aplíquelos a decisiones del mundo real, ya sea que esté administrando finanzas, rastreando su salud o resolviendo problemas matemáticos.",
+    "statGuides": "Guías",
+    "statCategories": "Categorías",
+    "statFree": "Gratis y Abierto",
+    "featuredGuides": "Guías Destacadas",
+    "catFinanceDesc": "Hipotecas, préstamos, inversiones y finanzas personales",
+    "catHealthDesc": "IMC, calorías, grasa corporal, seguimiento del embarazo",
+    "catMathDesc": "Porcentajes, estadísticas, conversiones de unidades y más",
+    "readGuide": "Leer guía",
+    "minRead": "min de lectura"
+  },
   "EstateTaxCalculator": {
     "assetsTitle": "Activos (Patrimonio Bruto)",
     "realEstate": "Bienes Raíces",

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
-import { setRequestLocale } from 'next-intl/server';
+import { setRequestLocale, getTranslations } from 'next-intl/server';
 import {
   BookOpen,
   ChevronRight,
@@ -19,6 +19,7 @@ import {
   type GuideCategory,
 } from '@/lib/data/guides';
 import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SEO Metadata
@@ -29,33 +30,35 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'GuidesIndex' });
+  
   return {
-    title: 'Calculator Guides & How-To Articles',
-    description:
-      'Step-by-step guides, formulas, and expert walkthroughs for every calculator on Nexus. Learn finance, health, and math calculation methods trusted globally.',
+    title: t('metaTitle'),
+    description: t('metaDescription'),
     alternates: getCanonicalAndAlternates('/guides', locale),
     openGraph: {
       type: 'website',
-      title: 'Calculator Guides & How-To Articles | Nexus Calculator',
-      description:
-        'Expert walkthroughs for finance, health, and math calculators. Learn compound interest, BMI, loan amortization, and more with real-world examples.',
+      title: t('metaTitle'),
+      description: t('metaDescription'),
       siteName: 'Nexus Calculator',
     },
     other: {
       'application/ld+json': JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'ItemList',
-        name: 'Nexus Calculator Guides',
-        description:
-          'A comprehensive documentation hub of calculator how-to guides and educational articles.',
+        name: t('metaTitle'),
+        description: t('metaDescription'),
         numberOfItems: allGuides.length,
-        itemListElement: allGuides.map((guide, idx) => ({
-          '@type': 'ListItem',
-          position: idx + 1,
-          name: guide.title,
-          description: guide.description,
-          url: `https://nexuscalculator.net/en/guides/${guide.slug}`,
-        })),
+        itemListElement: allGuides.map((g, idx) => {
+          const locGuide = getLocalizedGuide(g, locale);
+          return {
+            '@type': 'ListItem',
+            position: idx + 1,
+            name: locGuide.title,
+            description: locGuide.description,
+            url: `https://nexuscalculator.net/${locale}/guides/${locGuide.slug}`,
+          };
+        }),
       }),
     },
   };
@@ -64,24 +67,13 @@ export async function generateMetadata({
 // ─────────────────────────────────────────────────────────────────────────────
 // Category visual config
 // ─────────────────────────────────────────────────────────────────────────────
-const CATEGORY_META: Record<
-  GuideCategory,
-  {
-    Icon: React.ElementType;
-    color: string;
-    bg: string;
-    border: string;
-    accent: string;
-    description: string;
-  }
-> = {
+const CATEGORY_META = {
   Finance: {
     Icon: DollarSign,
     color: 'text-emerald-700 dark:text-emerald-400',
     bg: 'bg-emerald-50 dark:bg-emerald-500/10',
     border: 'border-emerald-100 dark:border-emerald-500/20',
     accent: 'text-emerald-600',
-    description: 'Mortgages, loans, investments, and personal finance',
   },
   Health: {
     Icon: Heart,
@@ -89,7 +81,6 @@ const CATEGORY_META: Record<
     bg: 'bg-rose-50 dark:bg-rose-500/10',
     border: 'border-rose-100 dark:border-rose-500/20',
     accent: 'text-rose-600',
-    description: 'BMI, calorie needs, body fat, pregnancy tracking',
   },
   'Math & Science': {
     Icon: FlaskConical,
@@ -97,18 +88,19 @@ const CATEGORY_META: Record<
     bg: 'bg-violet-50 dark:bg-violet-500/10',
     border: 'border-violet-100 dark:border-violet-500/20',
     accent: 'text-violet-600',
-    description: 'Percentages, statistics, unit conversions, and more',
   },
-};
+} as const;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Guide Card Component
 // ─────────────────────────────────────────────────────────────────────────────
-function GuideCard({ guide }: { guide: Guide }) {
-  const meta = CATEGORY_META[guide.category];
+function GuideCard({ guide, locale, readText, minReadText }: { guide: Guide; locale: string; readText: string; minReadText: string }) {
+  const locGuide = getLocalizedGuide(guide, locale);
+  const meta = CATEGORY_META[locGuide.category];
+  
   return (
     <Link
-      href={{ pathname: '/guides/[slug]', params: { slug: guide.slug } }}
+      href={{ pathname: '/guides/[slug]', params: { slug: locGuide.slug } }}
       className="group block bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-2xl p-6 hover:shadow-lg hover:shadow-slate-200/60 dark:hover:shadow-black/20 hover:border-[#518231]/30 dark:hover:border-[#518231]/30 hover:-translate-y-0.5 transition-all duration-300"
     >
       {/* Category badge */}
@@ -117,27 +109,27 @@ function GuideCard({ guide }: { guide: Guide }) {
           className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${meta.bg} ${meta.color} border ${meta.border}`}
         >
           <meta.Icon size={11} />
-          {guide.category}
+          {locGuide.category}
         </span>
         <span className="flex items-center gap-1 text-xs text-slate-400 dark:text-slate-500">
           <Clock size={11} />
-          {guide.readingTime} min read
+          {locGuide.readingTime} {minReadText}
         </span>
       </div>
 
       {/* Title */}
       <h3 className="font-bold text-slate-900 dark:text-white text-base leading-snug mb-2 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors duration-200">
-        {guide.title}
+        {locGuide.title}
       </h3>
 
       {/* Description */}
       <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2 mb-4">
-        {guide.description}
+        {locGuide.description}
       </p>
 
       {/* CTA */}
       <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#518231] dark:text-[#6fa844] group-hover:gap-2.5 transition-all duration-200">
-        Read guide
+        {readText}
         <ArrowRight size={14} />
       </span>
     </Link>
@@ -154,6 +146,7 @@ export default async function GuidesIndexPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations('GuidesIndex');
 
   const categories = Object.keys(guidesByCategory) as GuideCategory[];
 
@@ -168,10 +161,10 @@ export default async function GuidesIndexPage({
           href="/"
           className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors"
         >
-          Home
+          {t('home')}
         </Link>
         <ChevronRight size={12} />
-        <span className="text-slate-700 dark:text-slate-300 font-medium">Guides</span>
+        <span className="text-slate-700 dark:text-slate-300 font-medium">{t('guides')}</span>
       </nav>
 
       {/* ── Hero ─────────────────────────────────────────────────────── */}
@@ -181,28 +174,25 @@ export default async function GuidesIndexPage({
             <BookOpen size={22} className="text-[#518231] dark:text-[#6fa844]" />
           </div>
           <span className="text-sm font-semibold text-[#518231] dark:text-[#6fa844] tracking-wide uppercase">
-            Documentation
+            {t('documentation')}
           </span>
         </div>
 
         <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 leading-tight">
-          Calculator Guides &amp;{' '}
-          <span className="text-[#518231] dark:text-[#6fa844]">How-To Articles</span>
+          {t('heroTitlePart1')}{' '}
+          <span className="text-[#518231] dark:text-[#6fa844]">{t('heroTitlePart2')}</span>
         </h1>
 
         <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
-          Expert-written walkthroughs for every calculator on Nexus. Learn the formulas
-          behind each tool, understand your results, and apply them to real-world
-          decisions — whether you&apos;re managing finances, tracking health, or solving
-          math problems.
+          {t('heroDescription')}
         </p>
 
         {/* Stats row */}
         <div className="flex flex-wrap gap-4 mt-6">
           {[
-            { label: 'Guides', value: allGuides.length },
-            { label: 'Categories', value: categories.length },
-            { label: 'Free & Open', value: '∞' },
+            { label: t('statGuides'), value: allGuides.length },
+            { label: t('statCategories'), value: categories.length },
+            { label: t('statFree'), value: '∞' },
           ].map(({ label, value }) => (
             <div
               key={label}
@@ -222,13 +212,19 @@ export default async function GuidesIndexPage({
         <div className="flex items-center gap-2 mb-6">
           <Sparkles size={16} className="text-amber-500" />
           <h2 className="text-lg font-bold text-slate-800 dark:text-slate-200 tracking-tight">
-            Featured Guides
+            {t('featuredGuides')}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {featuredGuides.map((guide) => (
-            <GuideCard key={guide.slug} guide={guide} />
+            <GuideCard 
+              key={guide.slug} 
+              guide={guide} 
+              locale={locale} 
+              readText={t('readGuide')}
+              minReadText={t('minRead')} 
+            />
           ))}
         </div>
       </section>
@@ -237,6 +233,11 @@ export default async function GuidesIndexPage({
       {categories.map((cat) => {
         const meta = CATEGORY_META[cat];
         const guides = guidesByCategory[cat];
+        
+        let catDesc = '';
+        if (cat === 'Finance') catDesc = t('catFinanceDesc');
+        if (cat === 'Health') catDesc = t('catHealthDesc');
+        if (cat === 'Math & Science') catDesc = t('catMathDesc');
 
         return (
           <section key={cat} className="mb-14">
@@ -252,14 +253,20 @@ export default async function GuidesIndexPage({
                   {cat}
                 </h2>
                 <p className="text-sm text-slate-500 dark:text-slate-400">
-                  {meta.description}
+                  {catDesc}
                 </p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {guides.map((guide) => (
-                <GuideCard key={guide.slug} guide={guide} />
+                <GuideCard 
+                  key={guide.slug} 
+                  guide={guide} 
+                  locale={locale}
+                  readText={t('readGuide')}
+                  minReadText={t('minRead')} 
+                />
               ))}
             </div>
           </section>
@@ -268,3 +275,4 @@ export default async function GuidesIndexPage({
     </div>
   );
 }
+
