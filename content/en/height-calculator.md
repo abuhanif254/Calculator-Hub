@@ -1,8 +1,8 @@
 ---
 title: Height Calculator
 description: Calculate height conversions, predict adult child height ranges using parent stats, evaluate height percentiles, and compare statures with visual outlines.
-metaTitle: Height Calculator | Feet to CM Converter, Predictor & Percentiles
-metaDescription: Online Height Calculator. Easily convert height between feet, inches, centimeters, and meters. Run child growth predictions and find your percentile ranking.
+metaTitle: "Height Calculator: Convert Feet & CM, Compare visually (Free)"
+metaDescription: "Use our free online Height Calculator to instantly convert feet, inches, and cm. Visually compare heights, find your percentile, and predict child growth accurately."
 metaKeywords: height calculator, feet to cm, height comparison, child height predictor, average human height, height percentile, height converter, height chart
 faqs:
   - question: How do I convert feet to cm?
