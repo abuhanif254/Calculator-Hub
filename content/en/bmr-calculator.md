@@ -1,3 +1,11 @@
+---
+title: BMR Calculator
+description: Calculate your Basal Metabolic Rate (BMR) instantly. Determine exactly how many calories your body burns at complete rest.
+metaTitle: "BMR Calculator: Find Your Basal Metabolic Rate (Accurate)"
+metaDescription: "Free online BMR Calculator. Accurately determine how many calories your body burns at rest. Essential for weight loss, muscle gain, and diet planning."
+metaKeywords: bmr calculator, basal metabolic rate, resting metabolic rate, rmr calculator, calories burned resting, metabolism calculator
+---
+
 # BMR Calculator: Uncover Your Body's Baseline Energy Needs
 
 Welcome to the **BMR Calculator**, the foundational tool for anyone embarking on a weight loss, muscle-building, or general fitness journey. Before you can design an effective diet plan, you must understand your Basal Metabolic Rate (BMR). Your BMR is the exact number of calories your body burns at rest, just to keep you alive. It is the invisible engine powering your heart, lungs, and brain. 

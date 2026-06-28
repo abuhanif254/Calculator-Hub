@@ -3,7 +3,7 @@ import { ToolConfig } from './types';
 export const twitterCardGeneratorConfig: ToolConfig = {
   slug: "twitter-card-generator",
   title: "Twitter Card Generator & X Social Preview",
-  shortDescription: "Generate valid Twitter/X Card meta tags with live social previews. Build Summary, Summary Large Image, App, and Player cards with real-time rendering and one-click HTML export.",
+  shortDescription: "Generate valid Twitter/X Card meta tags with live social previews. Build Summary, App, and Player cards with real-time rendering and HTML export.",
   category: "Web Dev Utilities",
   keywords: [
     "twitter card generator", "twitter meta tags", "x card generator", "social preview generator",

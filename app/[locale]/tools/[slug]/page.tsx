@@ -309,7 +309,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
-    title: `${config.title} | Developer Tools | Nexus Calculator`,
+    title: `${config.title} | Nexus Calculator`,
     description: config.shortDescription,
     keywords: config.keywords.join(", "),
     openGraph: {

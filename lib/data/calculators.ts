@@ -496,8 +496,8 @@ export const calculators: CalculatorDef[] = [
     category: "Health",
     description: "Calculate your Basal Metabolic Rate (BMR) instantly. Determine exactly how many calories your body burns at complete rest.",
     meta: {
-      title: "BMR Calculator | Calculate Basal Metabolic Rate",
-      description: "Free online BMR calculator. Use the Mifflin-St Jeor equation to calculate your Basal Metabolic Rate (BMR) accurately in metric or imperial units.",
+      title: "BMR Calculator: Find Your Basal Metabolic Rate (Accurate)",
+      description: "Free online BMR Calculator. Accurately determine how many calories your body burns at rest. Essential for weight loss, muscle gain, and diet planning.",
       keywords: "bmr calculator, basal metabolic rate, resting metabolic rate, rmr calculator, calories burned resting, metabolism calculator",
       lastUpdated: "2025-03-01"
     },
@@ -556,8 +556,8 @@ export const calculators: CalculatorDef[] = [
     category: "Health",
     description: "Convert height between feet/inches and cm/m. Compare heights with visual human silhouettes, predict child heights, and analyze average height percentiles.",
     meta: {
-      title: "Height Calculator | Feet to CM, Comparison & Predictor",
-      description: "Free online Height Calculator. Easily convert height between feet, inches, centimeters, and meters. Compare heights with visual silhouettes, run pediatric child growth predictions, and check percentile averages.",
+      title: "Height Calculator: Convert Feet & CM, Compare visually (Free)",
+      description: "Use our free online Height Calculator to instantly convert feet, inches, and cm. Visually compare heights, find your percentile, and predict child growth accurately.",
       keywords: "height calculator, feet to cm, height comparison, child height predictor, average human height, height percentile calculator, height converter",
       lastUpdated: "2026-05-25"
     },
