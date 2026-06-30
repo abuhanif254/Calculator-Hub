@@ -336,9 +336,9 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
             <p className="mb-6">
               If you require clarification on any of the stipulations above or have a formal legal inquiry, our compliance and legal team is available.
             </p>
-            <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
-              <Mail size={18} />
-              nexuscalculator@gmail.com
+            <a href="mailto:support@nexuscalculator.net" className="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
+              <Mail className="w-5 h-5 text-[#518231]" />
+              support[at]nexuscalculator.net
             </a>
           </section>
 

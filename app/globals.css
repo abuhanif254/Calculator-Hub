@@ -115,3 +115,31 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea {
 .dark .glass-panel-heavy {
   @apply bg-[#090E17]/80 border-white/10 shadow-2xl;
 }
+
+/* ── Custom Utilities ──────────────────────────────── */
+.bg-radial-pattern {
+  background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.animate-ambient-glow-10 {
+  animation: ambientGlow 10s ease-in-out infinite;
+}
+.animate-ambient-glow-15-rev {
+  animation: ambientGlow 15s ease-in-out infinite reverse;
+}
+.animate-slide-in-right {
+  animation: slideInRight 0.7s ease-out forwards;
+}
+.animate-fade-in-up-1 {
+  animation: fadeInUp 0.5s ease-out 0.25s both;
+}
+.animate-fade-in-up-2 {
+  animation: fadeInUp 0.5s ease-out 0.5s both;
+}
+.animate-fade-in-up-3 {
+  animation: fadeInUp 0.5s ease-out 0.7s both;
+}
+.animate-fade-in-down {
+  animation: fadeInDown 0.5s ease-out 0.9s both;
+}
+

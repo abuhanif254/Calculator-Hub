@@ -57,8 +57,8 @@ export default async function ContactUsPage({ params }: { params: Promise<{ loca
                 </div>
                 <div>
                   <h4 className="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Email Support</h4>
-                  <a href="mailto:nexuscalculator@gmail.com" className="text-lg text-slate-900 dark:text-white hover:text-[#518231] dark:hover:text-[#6fa844] font-medium transition-colors break-all">
-                    nexuscalculator@gmail.com
+                  <a href="mailto:support@nexuscalculator.net" className="text-lg text-slate-900 dark:text-white hover:text-[#518231] dark:hover:text-[#6fa844] font-medium transition-colors break-all">
+                    support[at]nexuscalculator.net
                   </a>
                   <p className="text-sm text-slate-500 mt-1">We aim to reply within 24 hours.</p>
                 </div>
@@ -98,7 +98,7 @@ export default async function ContactUsPage({ params }: { params: Promise<{ loca
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 md:p-10 shadow-sm">
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Send us a Message</h3>
             
-            <form className="space-y-6" action="mailto:nexuscalculator@gmail.com" method="GET">
+            <form className="space-y-6" action="mailto:support@nexuscalculator.net" method="GET">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</label>

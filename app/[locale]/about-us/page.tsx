@@ -181,7 +181,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
                   </div>
                   <div>
                     <span className="block text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">Email Address</span>
-                    <a href="mailto:nexuscalculator@gmail.com" className="text-lg text-slate-800 dark:text-slate-200 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors font-medium">nexuscalculator@gmail.com</a>
+                    <a href="mailto:support@nexuscalculator.net" className="text-lg text-slate-800 dark:text-slate-200 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors font-medium">support[at]nexuscalculator.net</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-4">
@@ -254,7 +254,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
           <p className="mb-6">
             The web is not static, and neither are we. We are constantly expanding our library of tools, refining our algorithms, and responding to the evolving needs of our international audience.
           </p>
-          <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center justify-center bg-[#518231] hover:bg-[#436a28] text-white font-medium py-3 px-8 rounded-xl transition-colors no-underline">
+          <a href="mailto:support@nexuscalculator.net" className="inline-flex items-center justify-center bg-[#518231] hover:bg-[#436a28] text-white font-medium py-3 px-8 rounded-xl transition-colors no-underline">
             Reach Out to Our Team
           </a>
         </section>

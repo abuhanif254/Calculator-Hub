@@ -71,8 +71,8 @@ export function Footer() {
             </div>
             
             <div className="flex flex-col gap-2 text-sm">
-              <a href="mailto:nexuscalculator@gmail.com" className="hover:text-[#518231] dark:hover:text-white transition-colors duration-200 inline-block py-1 font-medium">
-                nexuscalculator@gmail.com 
+              <a href="mailto:support@nexuscalculator.net" className="hover:text-[#518231] dark:hover:text-white transition-colors duration-200 inline-block py-1 font-medium">
+                support[at]nexuscalculator.net 
               </a>
               <p className="text-slate-500">
                 2300 Kishoreganj Sadar, Dhaka, Bangladesh
