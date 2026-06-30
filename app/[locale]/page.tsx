@@ -20,10 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = getCanonicalUrl('/', locale);
   return {
     title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-    description: 'The ultimate free ecosystem for professionals. Access hundreds of precise calculators and powerful developer utilities instantly — mortgage, BMI, JSON formatter, diff checker, and more.',
+    description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer utilities instantly: mortgage, BMI, JSON formatter, and more.',
     openGraph: {
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'Hundreds of precise calculators and powerful developer tools — all free, all instant, right in your browser.',
+      description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer utilities instantly: mortgage, BMI, JSON formatter, and more.',
       url: canonicalUrl,
       siteName: 'Nexus Calculator',
       type: 'website',
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     twitter: {
       card: 'summary_large_image',
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'Hundreds of precise calculators and powerful developer tools — all free, all instant, right in your browser.',
+      description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer utilities instantly: mortgage, BMI, JSON formatter, and more.',
       images: [`https://nexuscalculator.net/icons/icon-512x512.png`],
     },
     alternates: getCanonicalAndAlternates('/', locale),
@@ -147,7 +147,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     "logo": `${baseUrl}/icons/icon-512x512.png`,
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "nexuscalculator@gmail.com",
+      "email": "support@nexuscalculator.net",
       "contactType": "customer service"
     },
     "sameAs": []
@@ -184,7 +184,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 </Link>
               </div>
             </div>
-            <div className="lg:w-1/2 relative w-full max-w-lg lg:max-w-none mx-auto" style={{ animation: 'slideInRight 0.7s ease-out forwards' }}>
+            <div className="lg:w-1/2 relative w-full max-w-lg lg:max-w-none mx-auto animate-slide-in-right">
 
               {/* Real Tool Preview Showcase — browser-chrome window */}
               <div className="relative rounded-2xl glass-panel-heavy overflow-hidden">
@@ -207,7 +207,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 <div className="p-5 space-y-4">
 
                   {/* JSON Formatter preview */}
-                  <div className="rounded-xl bg-slate-900 p-4" style={{ animation: 'fadeInUp 0.5s ease-out 0.25s both' }}>
+                  <div className="rounded-xl bg-slate-900 p-4 animate-fade-in-up-1">
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <Code className="text-purple-400" size={13} />
@@ -245,7 +245,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   <div className="grid grid-cols-2 gap-3">
 
                     {/* Mortgage result card */}
-                    <div className="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 p-3" style={{ animation: 'fadeInUp 0.5s ease-out 0.5s both' }}>
+                    <div className="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 p-3 animate-fade-in-up-2">
                       <div className="flex items-center gap-1.5 mb-2">
                         <LineChart size={11} className="text-blue-500" />
                         <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">Mortgage</span>
@@ -259,7 +259,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     </div>
 
                     {/* BMI score card */}
-                    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800/50 p-3" style={{ animation: 'fadeInUp 0.5s ease-out 0.7s both' }}>
+                    <div className="rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800/50 p-3 animate-fade-in-up-3">
                       <div className="flex items-center gap-1.5 mb-2">
                         <Activity size={11} className="text-emerald-500" />
                         <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">BMI Score</span>
@@ -292,7 +292,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Floating chip — tool count */}
-              <div className="absolute -top-4 -right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10" style={{ animation: 'fadeInDown 0.5s ease-out 0.9s both' }}>
+              <div className="absolute -top-4 -right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10 animate-fade-in-down">
                 <Zap size={13} className="fill-white" />
                 <span className="text-xs font-bold">250+ Tools</span>
               </div>
@@ -387,13 +387,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Why NexusCalculator */}
         <section className="bg-[#090E17] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden text-center border border-white/10 shadow-2xl shadow-green-900/10">
-           <div
-             className="absolute inset-0 opacity-10"
-             style={{
-               backgroundImage: 'radial-gradient(circle, #94a3b8 1px, transparent 1px)',
-               backgroundSize: '24px 24px',
-             }}
-           />
+           <div className="absolute inset-0 opacity-10 bg-radial-pattern" />
            <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#518231] blur-[100px] rounded-full opacity-20" />
            
            <div className="relative z-10">

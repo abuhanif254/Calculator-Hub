@@ -48,11 +48,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       default: 'Nexus | Ultimate Calculators & Developer Tools Platform',
       template: '%s | Nexus'
     },
-    description: 'The ultimate web platform featuring hundreds of highly accurate online calculators alongside professional-grade developer tools, code formatters, and utilities for modern workflows.',
+    description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
     keywords: 'online calculators, financial calculators, health calculators, developer tools, free web tools, json formatter, html beautifier, code formatter, developer utilities',
     openGraph: {
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'The ultimate web platform featuring hundreds of highly accurate online calculators alongside professional-grade developer tools, code formatters, and utilities.',
+      description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
       url: `${baseUrl}/${locale}`,
       siteName: 'Nexus',
       locale: locale,
@@ -69,7 +69,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     twitter: {
       card: 'summary_large_image',
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'The ultimate web platform featuring hundreds of highly accurate online calculators alongside professional-grade developer tools, code formatters, and utilities.',
+      description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
       images: [`${baseUrl}/icons/icon-512x512.png`],
     },
     alternates: {
@@ -127,8 +127,8 @@ export default async function RootLayout({
       <body className="font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-[#090E17] dark:text-slate-100 relative">
         {/* Ambient Glassmorphism Background Layers */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#518231]/10 dark:bg-[#518231]/15 blur-[120px] mix-blend-multiply dark:mix-blend-screen" style={{ animation: 'ambientGlow 10s ease-in-out infinite' }} />
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/10 dark:bg-emerald-500/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen" style={{ animation: 'ambientGlow 15s ease-in-out infinite reverse' }} />
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#518231]/10 dark:bg-[#518231]/15 blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-ambient-glow-10" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-emerald-500/10 dark:bg-emerald-500/10 blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-ambient-glow-15-rev" />
         </div>
 
         {/* Skip to Content — WCAG 2.4.1 Level A */}

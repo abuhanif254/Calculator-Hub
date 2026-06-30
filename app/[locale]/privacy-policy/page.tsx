@@ -300,7 +300,7 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
               For elevated inquiries demanding the attention of our Data Protection Officer (DPO), questions regarding our client-side processing architecture, or to initiate a formal GDPR/CCPA rights request, please utilize the encrypted communication channel below.
             </p>
             <div className="flex gap-4 flex-wrap">
-              <a href="mailto:nexuscalculator@gmail.com" className="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
+              <a href="mailto:support@nexuscalculator.net" className="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
                 <Mail size={18} />
                 E-Mail Legal Team
               </a>
