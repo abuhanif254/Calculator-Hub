@@ -20,10 +20,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const canonicalUrl = getCanonicalUrl('/', locale);
   return {
     title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-    description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer utilities instantly: mortgage, BMI, JSON formatter, and more.',
+    description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
     openGraph: {
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer utilities instantly: mortgage, BMI, JSON formatter, and more.',
+      description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
       url: canonicalUrl,
       siteName: 'Nexus Calculator',
       type: 'website',
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     twitter: {
       card: 'summary_large_image',
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer utilities instantly: mortgage, BMI, JSON formatter, and more.',
+      description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
       images: [`https://nexuscalculator.net/icons/icon-512x512.png`],
     },
     alternates: getCanonicalAndAlternates('/', locale),
@@ -168,7 +168,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 <Zap size={16} /> <span>250+ Tools — Calculators, Dev Utilities &amp; More</span>
               </div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
-                Calculate, Build, Format & Solve — <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">All in One Platform</span>
+                The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">Calculators & Developer Tools</span> Platform
               </h1>
               <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-8 max-w-2xl mx-auto lg:mx-0">
                 The ultimate ecosystem for professionals. Access hundreds of precise calculators and powerful developer utilities instantly in your browser.
@@ -351,7 +351,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Popular Categories */}
         <section>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">Comprehensive Tool Library</h2>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">Comprehensive Calculators & Developer Tools Library</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {categoryData.map((category) => (
               <div key={category.title} className="glass-panel rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
@@ -430,22 +430,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         {/* Real Use Cases / Workflow */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Designed for Real World Scenarios</h2>
+             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Calculators Designed for Real World Scenarios</h2>
              <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                Whether you are planning a 30-year mortgage, debugging a critical API response, or tracking your fitness goals, we have a specialized tool waiting for you.
              </p>
              <div className="space-y-6">
                 {[
-                  { title: "Financial Planning", desc: "Calculate mortgage payments, amortization schedules, and ROI.", icon: LineChart },
-                  { title: "Software Development", desc: "Validate API JSON, encode tokens, and format raw data.", icon: Code },
-                  { title: "Health & Fitness", desc: "Track calories, BMI, body fat, and setup diet plans.", icon: Activity }
+                  { title: "Mortgage & Financial Calculators", desc: "Calculate mortgage payments, amortization schedules, and ROI.", icon: LineChart },
+                  { title: "Software & Developer Tools", desc: "Validate API JSON, encode tokens, and format raw data.", icon: Code },
+                  { title: "Health & Fitness Calculators", desc: "Track calories, BMI, body fat, and setup diet plans.", icon: Activity }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-800">
                     <div className="w-12 h-12 bg-[#518231]/10 text-[#518231] rounded-xl flex items-center justify-center shrink-0 mt-1">
                       <item.icon size={24} />
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{item.title}</h4>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{item.title}</h3>
                       <p className="text-slate-600 dark:text-slate-400">{item.desc}</p>
                     </div>
                   </div>

@@ -18,7 +18,7 @@ export const app = !getApps().length ? initializeApp(firebaseConfig) : getApps()
 
 // Use long polling to prevent Next.js build (SSR/SSG) from hanging due to gRPC connection issues
 export const db = initializeFirestore(app, {
-  experimentalForceLongPolling: true
+  experimentalAutoDetectLongPolling: true
 }, (process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ? undefined : appletConfig.firestoreDatabaseId));
 
 export const auth = getAuth(app);
