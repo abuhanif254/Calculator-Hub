@@ -280,6 +280,32 @@ const toolComponents: Record<string, React.ComponentType> = {
   'mortgage-calculator-uk': MortgageCalculatorUkTool,
 };
 
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+
+// Helper function to read markdown content for tools
+function getMarkdownContent(slug: string, locale: string) {
+  try {
+    const filePath = path.join(process.cwd(), "content", "tools", locale, `${slug}.md`);
+
+    // Fallback to english if language file is missing
+    if (!fs.existsSync(filePath)) {
+      const fallbackPath = path.join(process.cwd(), "content", "tools", "en", `${slug}.md`);
+      if (fs.existsSync(fallbackPath)) {
+        const fileContent = fs.readFileSync(fallbackPath, "utf-8");
+        return matter(fileContent);
+      }
+      return null;
+    }
+
+    const fileContent = fs.readFileSync(filePath, "utf-8");
+    return matter(fileContent);
+  } catch (e) {
+    console.error("Error reading markdown for tool", slug, locale, e);
+    return null;
+  }
+}
 
 // Locale-specific path segments for /tools/[slug] as defined in i18n/routing.ts
 const toolPathSegments: Record<string, string> = {
@@ -307,15 +333,24 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!config) return {};
 
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const mdData = getMarkdownContent(slug, locale);
+
+  const metaTitle = mdData?.data?.metaTitle || `${config.title} | Nexus Calculator`;
+  const metaDescription = mdData?.data?.metaDescription || config.shortDescription;
+  const metaKeywords = mdData?.data?.metaKeywords || config.keywords.join(", ");
 
   return {
-    title: `${config.title} | Nexus Calculator`,
-    description: config.shortDescription,
-    keywords: config.keywords.join(", "),
+    title: metaTitle,
+    description: metaDescription,
+    keywords: metaKeywords,
     openGraph: {
-      title: config.title,
-      description: config.shortDescription,
+      title: metaTitle,
+      description: metaDescription,
       type: 'website',
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
     alternates: getCanonicalAndAlternates('/tools/[slug]', locale, slug),
   };
@@ -340,6 +375,16 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     return <div className="p-8 text-center">Tool component not found for this slug.</div>;
   }
 
+  const mdData = getMarkdownContent(resolvedSlug, locale);
+
+  const pageTitle = mdData?.data?.title || config.title;
+  const pageShortDesc = mdData?.data?.shortDescription || config.shortDescription;
+  const pageLongDesc = mdData?.content || config.longDescription;
+  const pageFaqs = mdData?.data?.faqs || config.faq;
+  const pageHowToSteps = mdData?.data?.howToSteps || config.howToSteps;
+  const pageFeatures = mdData?.data?.features || config.features;
+  const pageUseCases = mdData?.data?.useCases || config.useCases;
+
   // Generate Schemas
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -347,14 +392,14 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
       { "@type": "ListItem", "position": 2, "name": "Developer Tools", "item": `${baseUrl}/${locale}/sitemap` },
-      { "@type": "ListItem", "position": 3, "name": config.title, "item": canonicalUrl }
+      { "@type": "ListItem", "position": 3, "name": pageTitle, "item": canonicalUrl }
     ]
   };
 
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": config.faq.map(q => ({
+    "mainEntity": pageFaqs.map((q: any) => ({
       "@type": "Question",
       "name": q.question,
       "acceptedAnswer": {
@@ -367,10 +412,10 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const softwareSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": config.title,
+    "name": pageTitle,
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Web",
-    "description": config.shortDescription,
+    "description": pageShortDesc,
     "url": canonicalUrl,
     "offers": {
       "@type": "Offer",
@@ -383,10 +428,10 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": `How to Use ${config.title}`,
-    "description": config.shortDescription,
+    "name": `How to Use ${pageTitle}`,
+    "description": pageShortDesc,
     "url": canonicalUrl,
-    "step": config.howToSteps.map((stepText, index) => ({
+    "step": pageHowToSteps.map((stepText: string, index: number) => ({
       "@type": "HowToStep",
       "position": index + 1,
       "name": `Step ${index + 1}`,
@@ -409,7 +454,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           <ChevronRight size={14} />
           <Link href="/sitemap" className="hover:text-[#518231] transition-colors">Developer Tools</Link>
           <ChevronRight size={14} />
-          <span className="text-slate-900 dark:text-slate-200 font-medium">{config.title}</span>
+          <span className="text-slate-900 dark:text-slate-200 font-medium">{pageTitle}</span>
         </nav>
       </div>
 
@@ -417,15 +462,15 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
         {/* SEO Hero Section */}
         <section className="text-center py-8 max-w-4xl mx-auto space-y-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {config.title}
+            {pageTitle}
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400">
-            {config.shortDescription}
+            {pageShortDesc}
           </p>
           <div className="flex items-center justify-center gap-3 pt-2">
             <FavoriteButton
               slug={config.slug}
-              title={config.title}
+              title={pageTitle}
               type="developer-tool"
               href={`/tools/${config.slug}`}
             />
@@ -434,7 +479,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
         <ToolVisitTracker
           slug={config.slug}
-          title={config.title}
+          title={pageTitle}
           type="developer-tool"
           href={`/tools/${config.slug}`}
         />
@@ -448,16 +493,16 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           <div className="lg:col-span-2 space-y-12">
             {/* Explanation / SEO Article */}
             <section className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-[#518231] prose-a:text-[#518231]">
-              <ReactMarkdown>{config.longDescription}</ReactMarkdown>
+              <ReactMarkdown>{pageLongDesc}</ReactMarkdown>
             </section>
 
             {/* How To Use */}
             <section className="space-y-6">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Lightbulb className="text-[#518231]" /> How to Use {config.title}
+                <Lightbulb className="text-[#518231]" /> How to Use {pageTitle}
               </h2>
               <div className="grid gap-4">
-                {config.howToSteps.map((step, idx) => (
+                {pageHowToSteps.map((step: string, idx: number) => (
                   <div key={idx} className="flex gap-4 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
                     <div className="w-8 h-8 shrink-0 rounded-full bg-[#518231]/10 text-[#518231] flex items-center justify-center font-bold">
                       {idx + 1}
@@ -503,7 +548,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                 <HelpCircle className="text-[#518231]" /> Frequently Asked Questions
               </h2>
               <div className="space-y-4">
-                {config.faq.map((faq, idx) => (
+                {pageFaqs.map((faq: any, idx: number) => (
                   <details key={idx} className="group bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
                     <summary className="flex items-center justify-between p-6 cursor-pointer font-semibold text-slate-900 dark:text-white list-none [&::-webkit-details-marker]:hidden">
                       {faq.question}
@@ -525,7 +570,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                 <Zap className="text-amber-500" /> Key Features
               </h3>
               <ul className="space-y-3">
-                {config.features.map((feature, idx) => (
+                {pageFeatures.map((feature: string, idx: number) => (
                   <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#518231] shrink-0 mt-2"></div>
                     {feature}
@@ -540,7 +585,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                 <Layers className="text-blue-500" /> Common Use Cases
               </h3>
               <ul className="space-y-3">
-                {config.useCases.map((useCase, idx) => (
+                {pageUseCases.map((useCase: string, idx: number) => (
                   <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-2"></div>
                     {useCase}

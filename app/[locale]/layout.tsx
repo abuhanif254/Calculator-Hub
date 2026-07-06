@@ -72,6 +72,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
       images: [`${baseUrl}/icons/icon-512x512.png`],
     },
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: {
       canonical: `${baseUrl}/${locale}`,
       languages: {

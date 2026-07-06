@@ -93,6 +93,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: metaDescription,
       type: "website",
     },
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: getCanonicalAndAlternates('/calculators/[slug]', locale, slug),
   };
 }

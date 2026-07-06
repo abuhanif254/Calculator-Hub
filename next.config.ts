@@ -78,6 +78,37 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // SEO Indexing Fix: Redirect unlocalized bot crawls to localized pathnames
+      {
+        source: '/es/tools/:slug*',
+        destination: '/es/herramientas/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/fr/tools/:slug*',
+        destination: '/fr/outils/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/de/tools/:slug*',
+        destination: '/de/werkzeuge/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/es/calculators/:slug*',
+        destination: '/es/calculadoras/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/fr/calculators/:slug*',
+        destination: '/fr/calculatrices/:slug*',
+        permanent: true,
+      },
+      {
+        source: '/de/calculators/:slug*',
+        destination: '/de/rechner/:slug*',
+        permanent: true,
+      },
       {
         source: '/en/calculators/credit-cards-payoff-calculator',
         destination: '/en/calculators/credit-cards-payoff',
