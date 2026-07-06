@@ -1,4 +1,5 @@
 import { routing } from '@/i18n/routing';
+import { getCalculatorBySlug } from '@/lib/data/calculators';
 
 const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
 
@@ -36,8 +37,17 @@ export function getCanonicalAndAlternates(
     }
 
     if (genericSlug) {
+      // Fetch localized slug if this is a calculator route
+      let localizedSlug = genericSlug;
+      if (pathnameKey.startsWith('/calculators/')) {
+        const calc = getCalculatorBySlug(genericSlug);
+        if (calc && calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
+          localizedSlug = calc.slugs[locale as keyof typeof calc.slugs];
+        }
+      }
+
       relativePath = relativePath
-        .replace('[slug]', genericSlug)
+        .replace('[slug]', localizedSlug)
         .replace('[category]', genericSlug);
     }
 

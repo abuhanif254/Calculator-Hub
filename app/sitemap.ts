@@ -54,8 +54,16 @@ function buildEntry(
     }
 
     if (genericSlug) {
+      let localizedSlug = genericSlug;
+      if (pathnameKey.startsWith('/calculators/')) {
+        const calc = calculators.find(c => c.slug === genericSlug);
+        if (calc && calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
+          localizedSlug = calc.slugs[locale as keyof typeof calc.slugs];
+        }
+      }
+
       relativePath = relativePath
-        .replace('[slug]', genericSlug)
+        .replace('[slug]', localizedSlug)
         .replace('[category]', genericSlug);
     }
 
