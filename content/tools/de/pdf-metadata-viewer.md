@@ -6,7 +6,7 @@ title: "PDF Metadaten Viewer"
 shortDescription: "Inspizieren Sie tiefgreifende PDF-Eigenschaften, Metadaten und Sicherheitslinien. Lesen Sie Autor, verwendete Software, Fonts und versteckte XMP-Daten lokal im Browser aus."
 faqs:
   - question: "Was genau sind PDF-Metadaten?"
-    - answer: "Metadaten sind unsichtbare, strukturierte Informationen, die tief in einer PDF-Datei verankert sind. Sie beschreiben den Ursprung des Dokuments. Dazu gehören Titel, Autor, Thema, Stichwörter (Keywords), das Erstellerprogramm (Creator), die Konvertierungssoftware (Producer) sowie genaue Zeitstempel zur Erstellung und Modifikation."
+    answer: "Metadaten sind unsichtbare, strukturierte Informationen, die tief in einer PDF-Datei verankert sind. Sie beschreiben den Ursprung des Dokuments. Dazu gehören Titel, Autor, Thema, Stichwörter (Keywords), das Erstellerprogramm (Creator), die Konvertierungssoftware (Producer) sowie genaue Zeitstempel zur Erstellung und Modifikation."
   - question: "Wie kann ich die PDF-Metadaten anzeigen lassen?"
     answer: "Ziehen Sie Ihre Datei einfach per Drag & Drop in den Viewer. Die Engine analysiert die PDF-Binärstruktur in Echtzeit und zeigt Standard-Eigenschaften, benutzerdefinierte Felder, die Seitenanzahl, eingebettete Schriftarten und Sicherheitsrechte übersichtlich an."
   - question: "Welche versteckten Informationen können meine Privatsphäre gefährden?"

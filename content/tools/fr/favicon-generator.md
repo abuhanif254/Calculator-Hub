@@ -6,7 +6,7 @@ title: "Générateur de Favicon (Studio PWA & ICO)"
 shortDescription: "Concevez le pack d'icônes complet pour votre site (favicon.ico, PNG Retina, Apple Touch, Manifeste Web App) via un outil graphique 100% hors-ligne localisé."
 faqs:
   - question: "Qu'est-ce qu'un favicon et pourquoi est-ce important ?"
-    - answer: "Le favicon ('favorite icon') est la minuscule icône visible sur l'onglet de votre navigateur, dans les favoris, et dans l'historique de recherche. Il est vital pour l'image de marque (branding). De plus, sans lui, de nombreux navigateurs envoient des requêtes inutiles cherchant le fichier par défaut `favicon.ico`, générant des erreurs '404 Not Found' sur vos serveurs."
+    answer: "Le favicon ('favorite icon') est la minuscule icône visible sur l'onglet de votre navigateur, dans les favoris, et dans l'historique de recherche. Il est vital pour l'image de marque (branding). De plus, sans lui, de nombreux navigateurs envoient des requêtes inutiles cherchant le fichier par défaut `favicon.ico`, générant des erreurs '404 Not Found' sur vos serveurs."
   - question: "Que contient le fichier ZIP final ?"
     answer: "Notre outil génère le 'Saint-Graal' des icônes : Un fichier `.ico` (intégrant les tailles 16x16, 32x32, 48x48 pour la compatibilité legacy), un panel de PNG allant de 16px à 512px, le précieux `apple-touch-icon.png` (180px), les icônes Chrome pour Android, et le fichier de configuration JSON `site.webmanifest` pour les PWA."
   - question: "Puis-je importer un logo au format SVG ?"

@@ -28,7 +28,7 @@ faqs:
 features:
   - "Lokale Browser-Sandbox Engine: Verschlüsselung von Binärdaten via HTML5 `FileReader` API völlig ohne Backend-Pings für strikten Datenschutz und Zero-Latency."
   - "Multiformat-Parser: Akzeptiert Next-Gen Dateiformate wie WEBP, AVIF und SVG neben den Legacy-Standards PNG, JPG, GIF und BMP (inkl. ICO Favicons)."
-  - "Entwickler-Snippet-Generator: Liefert nicht nur Rohtext, sondern kopierfertige Syntax-Container für HTML (`<img src="...">`), CSS-Klassen und JSON-Key-Values."
+  - "Entwickler-Snippet-Generator: Liefert nicht nur Rohtext, sondern kopierfertige Syntax-Container für HTML (`<img src='...'>`), CSS-Klassen und JSON-Key-Values."
   - "Dynamischer 33.3% Overhead-Analysator: Berechnet sofort das Wachstum der Netzwerklast (Payload Size) im Vergleich zur Original-Binärdatei zur HTTP-Performance-Kontrolle."
   - "In-Browser Visual Validator (Decodierung): Der Output-Reiter wandelt den String testweise zurück um zu beweisen, dass die Datenstruktur nicht korrumpiert ist."
   - "JSZip Batch-Processing Pipeline: Uploaden und verarbeiten Sie 100 Icons simultan und packen Sie die resultierenden Base64-Skripte lokal in einen ZIP-Ordner."
