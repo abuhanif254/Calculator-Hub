@@ -1,87 +1,44 @@
 ---
-metaTitle: "Vérificateur de Redirections | Analyseur de Chaînes SEO 301 & 302"
-metaDescription: "Tracez le chemin des URL redirigées, inspectez les codes 301/302, analysez les temps de réponse, détectez les boucles infinies (loops) et les balises canoniques."
-metaKeywords: "vérificateur redirection, traceur redirection 301, redirect checker, chaîne redirection seo, redirect loop, boucle redirection, vérifier redirection 302"
-title: "Vérificateur de Redirections"
-shortDescription: "Tracez pas-à-pas les URL redirigées. Inspectez les codes HTTP 301/302, détectez les boucles infinies (loops) et analysez la santé SEO des chaînes."
+metaTitle: "Testeur de Redirection URL Gratuit | Tracer les chaînes 301 et 302"
+metaDescription: "Suivez les redirections URL instantanément. Notre testeur détecte les redirections 301, 302 et 307, révélant les chaînes et boucles cachées pour votre SEO."
+metaKeywords: "testeur redirection, traceur url, verifier redirection 301, outil seo redirection, chaine de redirection, boucle redirection"
 faqs:
-  - question: "Pourquoi la longueur d'une chaîne de redirections est-elle importante pour le SEO ?"
-    answer: "Chaque étape de redirection ajoute une latence (car le navigateur doit refaire une requête DNS/TCP). De plus, Googlebot a un « budget de crawl » limité. S'il rencontre des chaînes de plus de 3 ou 4 redirections, il risque d'abandonner l'exploration et de ne pas indexer la page finale."
-  - question: "Cet outil peut-il détecter les redirections JavaScript ?"
-    answer: "Oui, notre outil analyse le code HTML. Si le serveur renvoie un code 200 OK, mais que la page contient des balises Meta Refresh ou des scripts modifiant 'window.location.href', notre outil extrait l'URL cible et l'affiche comme une étape de redirection (côté client)."
-  - question: "Qu'est-ce qu'une erreur de balise canonique (Canonical Mismatch) ?"
-    answer: "Cela se produit lorsque l'URL de destination finale possède une balise '<link rel=\"canonical\">' qui pointe vers une autre adresse. Les moteurs de recherche (comme Google) se retrouvent confus : ils ont suivi une redirection pour arriver sur une page, qui leur dit que la 'vraie' page est ailleurs. Cela dilue votre classement SEO."
-  - question: "Quelle est la différence entre une redirection 301 et 308 ?"
-    answer: "Toutes deux sont permanentes et transmettent le 'jus SEO'. Cependant, historiquement, une 301 permet au navigateur de transformer une requête POST (ex: envoi de formulaire) en GET. Le statut 308 interdit strictement ce changement, sécurisant ainsi les données."
-features:
-  - "Traçage récursif des chaînes de redirection jusqu'à 10 sauts."
-  - "Identification des codes de réponse (301, 302, 307, 308, 404, 200)."
-  - "Détection des redirections côté client (HTML Meta Refresh et JS)."
-  - "Audit des métadonnées canoniques (pour éviter les conflits SEO)."
-  - "Identification des boucles infinies (ERR_TOO_MANY_REDIRECTS)."
-  - "Extraction des en-têtes de réponse cruciaux (Cache-Control, X-Robots-Tag)."
-  - "Sélection de l'User-Agent (Desktop, Googlebot, Bingbot) pour tester le cloaking."
-useCases:
-  - "Spécialistes SEO pistant les pertes d'autorité (Link Juice)."
-  - "Développeurs web vérifiant les règles de réécriture (Apache/Nginx) lors de migrations de domaine."
-  - "Professionnels de la sécurité testant les passages non sécurisés de HTTP vers HTTPS."
-  - "Administrateurs de sites localisant des boucles (loops) qui font planter le navigateur."
-howToSteps:
-  - "Entrez l'URL de départ (ex: exemple.com) dans la barre de recherche."
-  - "Sélectionnez un User-Agent (ex: Chrome, Googlebot, iPhone)."
-  - "Cliquez sur 'Analyser les Redirections' pour lancer la trace."
-  - "Observez le diagramme visuel montrant les codes 301/302 et le temps de latence."
-  - "Vérifiez le panneau de diagnostic SEO pour des problèmes comme des boucles infinies."
-  - "Cliquez sur un panneau pour afficher les en-têtes HTTP de chaque étape."
+  - question: "Qu'est-ce qu'une redirection d'URL ?"
+    answer: "Une redirection est une réponse du serveur web qui renvoie automatiquement un utilisateur et les moteurs de recherche d'une URL vers une autre URL. Les types les plus courants sont 301 (Permanent) et 302 (Temporaire)."
+  - question: "Quelle est la différence entre une redirection 301 et 302 ?"
+    answer: "Une 301 indique qu'une page a été déplacée de façon permanente, transférant presque tout le 'jus SEO' (PageRank) vers la nouvelle URL. Une 302 est temporaire et ne transfère pas la valeur SEO."
+  - question: "Qu'est-ce qu'une chaîne de redirection ?"
+    answer: "Une chaîne se produit lorsqu'il y a plus d'une redirection entre l'URL initiale et la destination finale. Elles ralentissent le temps de chargement et diluent la valeur SEO."
+  - question: "Comment les boucles de redirection affectent-elles le SEO ?"
+    answer: "Une boucle de redirection crée un cycle infini qui plante le navigateur (ERR_TOO_MANY_REDIRECTS). Les moteurs de recherche ne peuvent pas crawler les boucles, ce qui détruit le SEO de la page."
+  - question: "Trop de redirections peuvent-elles nuire à mon site Web ?"
+    answer: "Oui. Si une chaîne dépasse 5 sauts, Googlebot peut cesser de la suivre, ce qui signifie que votre page finale ne sera pas indexée."
 ---
 
-## Comment fonctionnent les redirections HTTP
+## Le Guide Ultime des Redirections URL pour le SEO
 
-Une **redirection HTTP** est une commande serveur qui renvoie automatiquement un visiteur (ou un robot d'indexation) d'une URL vers une autre. Elles sont indispensables pour éviter les erreurs 404 lors des migrations de domaine, des suppressions d'articles ou pour forcer l'usage du HTTPS.
+Que vous migriez un site Web vers un nouveau domaine ou que vous modifiiez votre structure d'URL, les redirections sont fondamentales. Cependant, si elles sont mal mises en œuvre, elles peuvent détruire votre SEO.
 
-Le mécanisme de base est le suivant :
-1. Le navigateur demande `http://exemple.com`.
-2. Le serveur répond avec un code `301` et l'en-tête `Location: https://exemple.com`.
-3. Le navigateur exécute instantanément une nouvelle requête vers l'URL indiquée.
+Notre **Testeur de Redirection URL** vous permet de tracer instantanément le chemin exact d'une URL, découvrant les chaînes cachées et les boucles infinies.
 
-Si cette nouvelle URL renvoie encore vers une 3ème adresse, on parle alors d'une **chaîne de redirection**.
+### Comprendre les codes d'état de redirection
 
----
+#### 301 Déplacé Définitivement (La Référence)
+Une redirection 301 est l'outil le plus critique pour le SEO. Elle indique à Google que l'URL d'origine a été définitivement déplacée vers un nouvel emplacement. Fait crucial, une redirection 301 transfère environ 90 à 99 % de la puissance de classement.
 
-## 301 vs 302 vs 307 vs 308 : Quel code utiliser ?
+#### 302 Trouvé / Déplacé Temporairement
+Une redirection 302 indique aux moteurs de recherche que la page a été déplacée, mais uniquement temporairement. Par conséquent, Google **ne transfère pas** le jus SEO vers la nouvelle page.
 
-L'utilisation du mauvais statut HTTP peut tromper les robots des moteurs de recherche et ruiner le SEO d'un site.
+#### 307 Redirection Temporaire
+Elle fonctionne exactement comme une 302 pour le SEO, mais garantit que la méthode HTTP ne change pas.
 
-### 1. Redirections Permanentes (Pour le SEO)
-Elles informent Google que la page a définitivement déménagé. Le moteur de recherche va transférer le \"jus de lien\" (Link Equity / PageRank) de l'ancienne URL vers la nouvelle.
-* **301 Moved Permanently :** Le standard historique et le plus utilisé pour les migrations. 
-* **308 Permanent Redirect :** Équivalent moderne qui oblige le navigateur à conserver la méthode HTTP (utile pour les soumissions API / POST).
+### 3 Erreurs Fatales à Éviter
 
-### 2. Redirections Temporaires (Aucun transfert SEO)
-Elles sont utilisées en cas de maintenance ou de promotion. Google garde l'ancienne URL dans son index et ne transfère pas l'autorité SEO à la nouvelle.
-* **302 Found :** Le standard temporaire classique.
-* **307 Temporary Redirect :** La version stricte de la 302, qui empêche la modification des méthodes HTTP.
+#### 1. La Chaîne de Redirection
+Une chaîne de redirection se produit lorsqu'une URL redirige vers une autre URL, qui redirige ensuite vers une troisième. Chaque "saut" ajoute de la latence et perd une fraction de la valeur SEO.
 
----
+#### 2. La Boucle de Redirection
+Elle se produit lorsqu'une URL se redirige vers elle-même, directement ou via une chaîne. Les navigateurs bloqueront l'utilisateur (ERR_TOO_MANY_REDIRECTS).
 
-## Redirections côté client (À éviter)
-
-Toutes les redirections ne se produisent pas sur le serveur. Certaines sont déclenchées par le navigateur après avoir lu la page :
-
-1. **Meta Refresh (HTML)** : `<meta http-equiv=\"refresh\" content=\"3; url=...\"/>`. À éviter absolument, car Googlebot assimile parfois cela à des techniques de spam (Doorway Pages).
-2. **JavaScript** : `window.location.replace(...)`. Bien que Google exécute le JavaScript, cela prend du temps. Si le budget de crawl est épuisé, Googlebot ne verra jamais la cible.
-
----
-
-## Les pièges techniques SEO à éviter
-
-### 1. Les chaînes de redirections (Redirect Chains)
-Lorsqu'une URL redirige vers B, puis vers C, puis vers D.
-* **Baisse de classement** : L'autorité SEO diminue très légèrement à chaque saut.
-* **Vitesse de page** : Chaque saut oblige le navigateur à effectuer une requête DNS et à établir une poignée de main TCP/TLS. Une chaîne de 4 redirections peut faire patienter un mobile pendant plusieurs secondes sur une page blanche.
-
-### 2. Les boucles (Redirect Loops)
-L'URL A renvoie vers B, mais B renvoie vers A. Le navigateur tourne en rond et affiche l'erreur fatale `ERR_TOO_MANY_REDIRECTS`. Google désindexera la page.
-
-### 3. Conflits Canoniques (Canonical Mismatch)
-Si vous redirigez 301 vers la page B, mais que le code HTML de la page B contient une balise `<link rel=\"canonical\" href=\"Page-C\">`, vous envoyez des signaux contradictoires très pénalisants à l'algorithme de Google. La cible finale d'une redirection doit toujours être la page canonique finale.
+#### 3. La Fausse 302
+De nombreux développeurs utilisent par erreur des redirections 302 au lieu des 301. Si vous refondez votre site avec des 302, vous perdrez toute votre autorité SEO historique.
