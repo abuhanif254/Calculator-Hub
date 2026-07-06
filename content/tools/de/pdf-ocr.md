@@ -6,7 +6,7 @@ title: "PDF OCR (Texterkennung)"
 shortDescription: "Extrahieren Sie Text aus eingescannten PDF-Dateien und Bildern mithilfe Künstlicher Intelligenz. Verarbeiten Sie alles 100% lokal, sicher und DSGVO-konform."
 faqs:
   - question: "Was bedeutet PDF OCR?"
-    - answer: "OCR steht für 'Optical Character Recognition' (Optische Zeichenerkennung). Die Technologie analysiert Bildpixel in gescannten PDFs, erkennt die Formen von Buchstaben und wandelt sie in maschinenlesbaren, kopierbaren Text um."
+    answer: "OCR steht für 'Optical Character Recognition' (Optische Zeichenerkennung). Die Technologie analysiert Bildpixel in gescannten PDFs, erkennt die Formen von Buchstaben und wandelt sie in maschinenlesbaren, kopierbaren Text um."
   - question: "Wie wandle ich ein gescanntes PDF in Text um?"
     answer: "Ziehen Sie Ihre Datei in das Upload-Feld, wählen Sie die Dokumentensprache (z.B. Deutsch), entscheiden Sie sich für das Exportformat (Text, Excel-CSV oder Durchsuchbares PDF) und klicken Sie auf 'OCR starten'. Der Text wird direkt in Ihrem Browser extrahiert."
   - question: "Was ist ein 'durchsuchbares PDF' (Searchable PDF)?"

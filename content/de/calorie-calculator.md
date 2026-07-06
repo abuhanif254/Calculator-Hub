@@ -5,15 +5,15 @@ metaDescription: "Berechnen Sie Ihren Gesamtenergieumsatz (TDEE) und Grundumsatz
 metaKeywords: "kalorienrechner, kalorienbedarf berechnen, kalorienverbrauch, tdee rechner, grundumsatz, bmr rechner, abnehmen, kalorien pro tag"
 faqs:
   - question: "Was ist der Grundumsatz (BMR)?"
-    - answer: "Ihr Grundumsatz (Basal Metabolic Rate, BMR) ist die absolute Mindestanzahl an Kalorien, die Ihr Körper im völligen Ruhezustand verbrennt, nur um Sie am Leben zu erhalten (Atmen, Blutkreislauf, Zellreparatur). Für die meisten Menschen macht der BMR 60 % bis 70 % des gesamten täglichen Kalorienverbrauchs aus."
+    answer: "Ihr Grundumsatz (Basal Metabolic Rate, BMR) ist die absolute Mindestanzahl an Kalorien, die Ihr Körper im völligen Ruhezustand verbrennt, nur um Sie am Leben zu erhalten (Atmen, Blutkreislauf, Zellreparatur). Für die meisten Menschen macht der BMR 60 % bis 70 % des gesamten täglichen Kalorienverbrauchs aus."
   - question: "Was ist der Leistungsumsatz (TDEE)?"
-    - answer: "Der Gesamtenergieumsatz (Total Daily Energy Expenditure, TDEE) ist Ihr Grundumsatz multipliziert mit Ihrem körperlichen Aktivitätslevel. Er gibt an, wie viele Kalorien Sie in 24 Stunden insgesamt verbrennen, einschließlich Sport und Verdauung."
+    answer: "Der Gesamtenergieumsatz (Total Daily Energy Expenditure, TDEE) ist Ihr Grundumsatz multipliziert mit Ihrem körperlichen Aktivitätslevel. Er gibt an, wie viele Kalorien Sie in 24 Stunden insgesamt verbrennen, einschließlich Sport und Verdauung."
   - question: "Wie viele Kalorien hat ein Kilo Körperfett?"
-    - answer: "Ein einziges Kilogramm reines menschliches Körperfett speichert ungefähr 7.000 bis 7.700 Kalorien an Energie. Um also ein halbes Kilo Fett pro Woche zu verlieren, müssen Sie ein tägliches Kaloriendefizit von etwa 500 Kalorien einhalten (500 x 7 = 3.500)."
+    answer: "Ein einziges Kilogramm reines menschliches Körperfett speichert ungefähr 7.000 bis 7.700 Kalorien an Energie. Um also ein halbes Kilo Fett pro Woche zu verlieren, müssen Sie ein tägliches Kaloriendefizit von etwa 500 Kalorien einhalten (500 x 7 = 3.500)."
   - question: "Welche Formel verwendet dieser Rechner?"
-    - answer: "Unsere hochmoderne Berechnungsmaschine verwendet die Mifflin-St. Jeor-Gleichung, die von klinischen Ernährungsberatern und Sportmedizinern weltweit als die absolut genaueste Stoffwechselformel für moderne Erwachsene angesehen wird."
+    answer: "Unsere hochmoderne Berechnungsmaschine verwendet die Mifflin-St. Jeor-Gleichung, die von klinischen Ernährungsberatern und Sportmedizinern weltweit als die absolut genaueste Stoffwechselformel für moderne Erwachsene angesehen wird."
   - question: "Sollte ich die beim Sport verbrannten Kalorien zusätzlich essen?"
-    - answer: "In der Regel ganz klar: Nein! Wenn Sie in unserem Rechner Ihr 'Aktivitätsniveau' auswählen, sind Ihre beim Sport zusätzlich verbrannten Kalorien bereits im Endergebnis (dem TDEE) vollständig und mathematisch korrekt berücksichtigt. Wenn Sie die Werte Ihrer Smartwatch nochmals addieren, machen Sie Ihre Erfolge zunichte!"
+    answer: "In der Regel ganz klar: Nein! Wenn Sie in unserem Rechner Ihr 'Aktivitätsniveau' auswählen, sind Ihre beim Sport zusätzlich verbrannten Kalorien bereits im Endergebnis (dem TDEE) vollständig und mathematisch korrekt berücksichtigt. Wenn Sie die Werte Ihrer Smartwatch nochmals addieren, machen Sie Ihre Erfolge zunichte!"
 ---
 
 ## Der gigantische, ultimative Leitfaden zum Kalorienrechner

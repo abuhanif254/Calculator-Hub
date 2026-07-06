@@ -6,7 +6,7 @@ title: "Convertisseur de PDF en PNG"
 shortDescription: "Transformez vos documents PDF en images PNG impeccables. Préservez la netteté du texte (sans perte) et gérez les fonds transparents en toute sécurité sur votre appareil."
 faqs:
   - question: "Pourquoi choisir le format PNG plutôt que JPG ?"
-    - answer: "Le JPG compresse les données avec perte (Lossy), ce qui crée des 'artefacts' (des pixels flous ou grisâtres) autour des textes et des lignes nettes. Le PNG utilise une compression sans perte (Lossless). Cela garantit que les polices, les graphiques statistiques et les plans architecturaux restent d'une netteté absolue, exactement comme dans le PDF d'origine."
+    answer: "Le JPG compresse les données avec perte (Lossy), ce qui crée des 'artefacts' (des pixels flous ou grisâtres) autour des textes et des lignes nettes. Le PNG utilise une compression sans perte (Lossless). Cela garantit que les polices, les graphiques statistiques et les plans architecturaux restent d'une netteté absolue, exactement comme dans le PDF d'origine."
   - question: "L'outil gère-t-il les fonds transparents (Alpha Channel) ?"
     answer: "Oui. Contrairement au format JPG qui force toujours un arrière-plan blanc solide, notre extracteur PNG prend en charge le canal Alpha (transparence). Si votre document original inclut des logos vectoriels sans fond, vous pouvez activer le mode 'Fond Transparent' pour obtenir un PNG parfaitement détouré, prêt pour le web design."
   - question: "À quoi sert la fonction 'Échelle 4x Ultra HD' ?"
