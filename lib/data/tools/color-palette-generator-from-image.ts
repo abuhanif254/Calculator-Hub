@@ -6,9 +6,26 @@ export const colorPaletteGeneratorFromImageConfig: ToolConfig = {
   shortDescription: 'Instantly extract beautiful, designer-ready color palettes from any image. Generate dominant colors, brand kits, and export to CSS, Tailwind, or JSON.',
   category: 'Image Tools',
   keywords: ['color palette generator', 'extract palette from image', 'image color palette', 'brand color palette', 'website color scheme', 'ui color palette', 'design color palette', 'color theme generator', 'palette extractor', 'color combination generator'],
-  features: [],
-  useCases: [],
-  howToSteps: [],
+  features: [
+    "Machine Learning Clustering: Uses advanced K-Means algorithms to extract mathematically dominant colors.",
+    "Multiple Palette Algorithms: Generate Vibrant, Muted, Light, and Dark themes instantly.",
+    "Real-Time CSS/Tailwind Export: One-click export of your palette into ready-to-use frontend code.",
+    "100% Client-Side Processing: Your mood boards and unreleased brand assets never touch a cloud server.",
+    "WCAG Accessibility Integration: Automatically tests contrast ratios for generated color combinations."
+  ],
+  useCases: [
+    "Extracting a brand identity from a mood board or corporate logo.",
+    "Generating a complete Tailwind CSS configuration file from a design inspiration photo.",
+    "Finding harmonious background colors for product photography in e-commerce.",
+    "Building UI color systems (Primary, Secondary, Accent) from a cinematic still."
+  ],
+  howToSteps: [
+    "Upload your inspiration image, mood board, or logo (JPG, PNG, WEBP).",
+    "Our on-device algorithm instantly scans the pixels and extracts the dominant colors.",
+    "Toggle between different palette algorithms (Vibrant, Pastel, Monochromatic).",
+    "Click on individual color swatches to copy their HEX, RGB, or HSL codes.",
+    "Use the Export button to download the palette as CSS variables or JSON."
+  ],
   examples: [],
   relatedTools: [
     { name: "Color Picker From Image", slug: "color-picker-from-image" },

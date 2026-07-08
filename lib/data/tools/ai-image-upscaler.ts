@@ -5,9 +5,26 @@ export const aiImageUpscalerConfig: ToolConfig = {
   title: 'AI Image Upscaler & Enhancer Studio',
   shortDescription: 'Instantly upscale, enhance, and restore your images up to 4x using advanced, privacy-first, on-device algorithms. Achieve HD resolution without losing quality.',
   category: 'Image Tools',
-  features: [],
-  useCases: [],
-  howToSteps: [],
+  features: [
+    "AI-Powered Upscaling: Uses advanced ESRGAN models to enlarge images by 2x or 4x without losing clarity.",
+    "Noise Reduction & Sharpening: Automatically removes compression artifacts and sharpens blurred edges.",
+    "100% On-Device Processing: Your photos never leave your browser, ensuring complete privacy.",
+    "Real-Time Before/After Preview: Interactive slider to instantly compare the original and upscaled image.",
+    "Multiple Model Selection: Choose between Anime/Art models and Photorealistic models for optimal results."
+  ],
+  useCases: [
+    "Enhancing low-resolution photos for high-quality printing or canvas framing.",
+    "Upscaling AI-generated art (like Midjourney or DALL-E) to 4K or 8K resolution.",
+    "Restoring old, compressed, or blurry family photos.",
+    "Preparing web-quality images for professional marketing materials and presentations."
+  ],
+  howToSteps: [
+    "Upload the low-resolution image you want to enhance.",
+    "Select the upscale factor (2x or 4x) and choose the appropriate AI model (Photo or Anime).",
+    "Click 'Upscale Image' and let the local AI model process the pixels.",
+    "Use the interactive slider to compare the before and after results.",
+    "Download the newly enhanced, high-resolution image securely to your device."
+  ],
   examples: [],
   relatedTools: [
     { name: "Background Remover", slug: "background-remover" },
