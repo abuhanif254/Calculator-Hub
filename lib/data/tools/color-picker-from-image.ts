@@ -6,9 +6,29 @@ export const colorPickerFromImageConfig: ToolConfig = {
   shortDescription: 'Easily pick colors and extract dominant palettes from any image with pixel-level precision.',
   keywords: ['color picker from image', 'image color picker', 'extract colors from image', 'photo color picker', 'hex color picker', 'dominant color generator', 'color palette generator from image', 'image to hex', 'find color in image'],
   category: 'Image Tools',
-  features: [],
-  useCases: [],
-  howToSteps: [],
+  features: [
+    "Pixel-perfect color extraction with advanced magnification lens (up to 40x zoom)",
+    "Automatic dominant color palette generation (Vibrant, Muted, Pastel)",
+    "Instantly copy codes in HEX, RGB, HSL, and CMYK formats",
+    "Real-time WCAG Contrast Checker for web accessibility compliance",
+    "Generates mathematically perfect Color Harmonies (Complementary, Analogous, Triadic)",
+    "Export palettes to JSON, CSS Variables, and Tailwind CSS configuration",
+    "100% Client-side processing ensures your images never leave your device"
+  ],
+  useCases: [
+    "Extracting exact HEX codes from a client's mood board or logo design",
+    "Building accessible UI components by testing text contrast against background colors",
+    "Generating cohesive Tailwind CSS color themes directly from a source photograph",
+    "Finding the precise complementary colors for digital art and illustrations",
+    "Identifying safe, non-clashing colors for data visualization and charts"
+  ],
+  howToSteps: [
+    "Upload your image by dragging and dropping it, or pasting it from your clipboard (Ctrl+V).",
+    "Hover your cursor over the image to activate the magnifier lens and locate the exact pixel.",
+    "Click the pixel to lock the color and extract its HEX, RGB, HSL, and CMYK values.",
+    "Review the automatically generated dominant palettes and color harmonies.",
+    "Click on any color value to copy it to your clipboard instantly."
+  ],
   examples: [],
   relatedTools: [
     { name: "Image Converter", slug: "image-converter" },

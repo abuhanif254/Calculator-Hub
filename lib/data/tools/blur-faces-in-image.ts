@@ -5,9 +5,25 @@ export const blurFacesInImageConfig: ToolConfig = {
   title: 'Blur Faces in Image | Free AI Privacy Tool',
   shortDescription: 'Automatically detect and blur faces in photos to protect your privacy. Fast, secure, and 100% on-device image anonymization without cloud uploads.',
   category: 'Image Tools',
-  features: [],
-  useCases: [],
-  howToSteps: [],
+  features: [
+    "Automatic Face Detection: Uses advanced machine learning to detect faces instantly.",
+    "Adjustable Blur Intensity: Control the exact amount of blur applied.",
+    "Multiple Anonymization Methods: Choose between Blur or Pixelate effects.",
+    "100% Client-Side Processing: Images are processed in your browser for total privacy.",
+    "Batch Processing: Detect and blur faces across multiple images simultaneously."
+  ],
+  useCases: [
+    "Anonymizing people in background photos before publishing online.",
+    "Protecting the privacy of minors or students in educational photos.",
+    "Hiding identities in documentary or journalistic photography.",
+    "Obscuring faces in corporate event pictures prior to social media sharing."
+  ],
+  howToSteps: [
+    "Upload the photo containing the faces you want to blur.",
+    "Wait a moment while the AI detects the faces automatically.",
+    "Adjust the blur intensity or switch to a pixelation effect.",
+    "Review the blurred areas and download the anonymized image securely."
+  ],
   examples: [],
   relatedTools: [
     { name: "Image Metadata Remover", slug: "image-metadata-remover" },

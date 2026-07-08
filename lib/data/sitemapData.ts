@@ -249,6 +249,7 @@ export const imageToolsMenu = [
     description: "Compress, resize, and edit your images quickly.",
     items: [
       { name: "Photo Editor", desc: "Advanced online photo editor" },
+      { name: 'Image Metadata Viewer', desc: 'Read EXIF data, camera settings, and GPS location securely', isNew: true, slug: 'image-metadata-viewer' },
       { name: 'Image Metadata Remover', desc: 'Remove EXIF data from photos', isNew: true, slug: 'image-metadata-remover' },
       { name: 'Color Picker From Image', desc: 'Extract exact HEX/RGB colors from photos', isNew: true, slug: 'color-picker-from-image' },
       { name: 'Color Palette Generator From Image', desc: 'Extract dominant colors and create designer-ready palettes from photos', isNew: true, slug: 'color-palette-generator-from-image' },
