@@ -14,8 +14,14 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       {
-        // Block aggressive SEO crawlers that waste crawl budget
-        userAgent: ['AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot'],
+        // Block aggressive SEO crawlers and AI bots that waste crawl budget
+        userAgent: [
+          'AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot',
+          'GPTBot', 'ChatGPT-User', 'Google-Extended', 'Anthropic-ai',
+          'Claude-Web', 'ClaudeBot', 'Omgili', 'Omgilibot', 'FacebookBot',
+          'Bytespider', 'Amazonbot', 'TurnitinBot', 'Barkrowler',
+          'AwarioRssBot', 'AwarioSmartBot', 'DataForSeoBot'
+        ],
         disallow: ['/'],
       },
     ],

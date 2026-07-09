@@ -317,6 +317,7 @@ const toolPathSegments: Record<string, string> = {
 
 // ISR: revalidate tool pages once per day (matches calculator page behaviour)
 export const revalidate = 86400;
+export const dynamicParams = false;
 
 // SSG: pre-render every locale × tool slug combination at build time
 // This produces static HTML served from CDN edge — much better LCP than SSR
