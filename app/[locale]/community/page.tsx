@@ -85,22 +85,22 @@ export default async function CommunityIndex({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(forumSchema) }}
       />
 
-      <div className="bg-slate-50 dark:bg-[#0B1120] min-h-screen py-12">
+      <div className="bg-slate-50 dark:bg-[#0B1120] min-h-screen py-6 sm:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header Section */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-10 gap-4 sm:gap-6">
             <div>
-              <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
                 {t('title')}
               </h1>
-              <p className="text-lg text-slate-500 dark:text-slate-400 mt-2 max-w-2xl">
+              <p className="text-base sm:text-lg text-slate-500 dark:text-slate-400 mt-2 max-w-2xl">
                 {t('subtitle')}
               </p>
             </div>
             <Link
               href="/community/new"
-              className="inline-flex items-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-[#518231]/20 hover:shadow-[#518231]/40 transition-all transform hover:-translate-y-0.5"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-[#518231]/20 hover:shadow-[#518231]/40 transition-all transform hover:-translate-y-0.5"
             >
               <MessageSquarePlus size={20} />
               {t('startDiscussion')}

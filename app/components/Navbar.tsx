@@ -183,7 +183,7 @@ export function Navbar() {
               <div className="bg-[#518231] p-1.5 rounded-lg text-white group-hover:bg-[#436a28] transition-colors shadow-sm">
                 <Calculator size={20} strokeWidth={2.5} className="animate-[spin_15s_linear_infinite]" />
               </div>
-              <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white">
+              <span className="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-white">
                 Nexus<span className="text-[#518231]">Calculator</span>
               </span>
             </Link>
@@ -387,8 +387,16 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`lg:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? "max-h-[calc(100vh-64px)] border-b border-slate-200 dark:border-slate-800 overflow-y-auto" : "max-h-0 overflow-hidden"} bg-white dark:bg-slate-900 custom-scrollbar`}>
+      {/* Mobile Menu Overlay
+           - Uses 100dvh (dynamic viewport height) which excludes mobile browser chrome
+           - Subtracts: 64px (navbar) + 44px (GlobalSettingsBar) = 108px total header
+           - Falls back to 100vh - 108px for older browsers that don't support dvh
+      */}
+      <div className={`lg:hidden transition-all duration-300 ease-in-out ${
+        isMobileMenuOpen
+          ? "max-h-[calc(100dvh-108px)] border-b border-slate-200 dark:border-slate-800 overflow-y-auto"
+          : "max-h-0 overflow-hidden"
+      } bg-white dark:bg-slate-900 custom-scrollbar overscroll-contain`}>
         <div className="px-4 pt-2 pb-6 space-y-1">
 
           {/* Developer Tools Mobile Accordion */}
@@ -583,7 +591,7 @@ export function Navbar() {
         </div>
 
         {/* Mobile Menu Footer — Auth + Notifications */}
-        <div className="border-t border-slate-100 dark:border-slate-800 px-4 py-4 flex items-center justify-between gap-3">
+        <div className="border-t border-slate-100 dark:border-slate-800 px-4 py-4 flex items-center justify-between gap-3 pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
           <span className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Quick Actions</span>
           <div className="flex items-center gap-2">
             <NotificationsPanel />

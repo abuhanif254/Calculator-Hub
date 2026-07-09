@@ -234,15 +234,32 @@ export function NotificationsPanel() {
         )}
       </button>
 
-      {/* Dropdown Panel */}
+      {/* Dropdown Panel — bottom sheet on mobile, absolute dropdown on sm+ */}
       {open && (
-        <div
-          ref={panelRef}
-          role="dialog"
-          aria-label="Notifications"
-          className="absolute right-0 top-full mt-3 w-[360px] max-w-[calc(100vw-2rem)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xl rounded-2xl z-50 overflow-hidden"
-          style={{ animation: "fadeInUp 0.18s ease-out" }}
-        >
+        <>
+          {/* Mobile backdrop */}
+          <div
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 sm:hidden"
+            onClick={() => setOpen(false)}
+          />
+          <div
+            ref={panelRef}
+            role="dialog"
+            aria-label="Notifications"
+            className={[
+              // Mobile: full-width bottom sheet
+              "fixed inset-x-0 bottom-0 z-50 rounded-t-2xl",
+              // sm+: absolute dropdown pinned right
+              "sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:mt-3 sm:w-[360px] sm:rounded-2xl",
+              // Shared
+              "max-w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xl overflow-hidden",
+            ].join(" ")}
+            style={{ animation: "fadeInUp 0.18s ease-out" }}
+          >
+            {/* Mobile drag indicator */}
+            <div className="flex justify-center pt-3 pb-1 sm:hidden">
+              <div className="w-10 h-1 bg-slate-200 dark:bg-slate-700 rounded-full" />
+            </div>
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-2">
@@ -276,7 +293,7 @@ export function NotificationsPanel() {
           </div>
 
           {/* Notification List */}
-          <ul className="max-h-[420px] overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800">
+          <ul className="max-h-[60dvh] sm:max-h-[420px] overflow-y-auto overscroll-contain divide-y divide-slate-100 dark:divide-slate-800">
             {allNotifications.map((notif) => {
               const isRead = notif.isUserSpecific ? notif.read : readIds.has(notif.id);
               const meta   = TYPE_META[notif.type] || TYPE_META.announcement;
@@ -338,6 +355,7 @@ export function NotificationsPanel() {
             </span>
           </div>
         </div>
+        </>
       )}
     </div>
   );

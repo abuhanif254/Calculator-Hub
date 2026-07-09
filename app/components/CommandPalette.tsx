@@ -110,18 +110,18 @@ export function CommandPalette() {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-[10vh] sm:pt-[20vh] px-4">
+    <div className="fixed inset-0 z-[100] flex items-start justify-center pt-4 sm:pt-[10vh] md:pt-[20vh] px-3 sm:px-4">
       <div 
         className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
         onClick={() => setIsOpen(false)}
       />
       <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center border-b border-slate-100 dark:border-slate-800 px-4">
+        <div className="flex items-center border-b border-slate-100 dark:border-slate-800 px-3 sm:px-4">
           <Search className="w-5 h-5 text-slate-400 shrink-0" />
           <input
             ref={inputRef}
             type="text"
-            className="flex-1 w-full bg-transparent border-0 py-4 px-3 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-0 text-lg"
+            className="flex-1 w-full bg-transparent border-0 py-3.5 sm:py-4 px-3 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-0 text-base sm:text-lg"
             placeholder="Search calculators & tools..."
             value={query}
             onChange={(e) => {
@@ -129,15 +129,26 @@ export function CommandPalette() {
               setSelectedIndex(0);
             }}
           />
+          {/* Desktop: ESC pill. Mobile: tap-friendly ✕ close button */}
           <button 
             onClick={() => setIsOpen(false)}
-            className="text-[10px] uppercase font-bold tracking-widest text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded"
+            className="hidden sm:block text-[10px] uppercase font-bold tracking-widest text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded"
+            aria-label="Close (Escape)"
           >
             ESC
           </button>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="sm:hidden w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 shrink-0"
+            aria-label="Close search"
+          >
+            ✕
+          </button>
         </div>
 
-        <div className="max-h-[60vh] overflow-y-auto overscroll-contain">
+        {/* max-h-[45dvh] on mobile: dvh shrinks when software keyboard opens,
+            keeping results visible above it. 60vh on sm+ where keyboard isn't an issue. */}
+        <div className="max-h-[45dvh] sm:max-h-[60vh] overflow-y-auto overscroll-contain">
           {query.trim() === "" && (
             <div className="p-4 text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
               Start typing to search...

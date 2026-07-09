@@ -130,18 +130,18 @@ export function ScientificCalculatorView({ calcDef }: ScientificCalculatorViewPr
     }
   }, [expression]);
 
-  const btnClassBase = "flex items-center justify-center p-4 rounded-xl text-lg font-bold transition-all active:scale-95 select-none";
+  const btnClassBase = "flex items-center justify-center p-3 md:p-4 rounded-xl text-base md:text-lg font-bold transition-all active:scale-95 select-none min-h-[44px]";
   const numProps = "bg-slate-100 hover:bg-slate-200 text-slate-800 shadow-sm";
   const opProps = "bg-blue-50 hover:bg-blue-100 text-blue-600 shadow-sm border border-blue-100";
   const specProps = "bg-slate-200 hover:bg-slate-300 text-slate-700 shadow-sm";
   const funcProps = "bg-indigo-50 hover:bg-indigo-100 text-indigo-700 shadow-sm border border-indigo-100 text-sm";
   
   return (
-    <div className="bg-white rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-200 overflow-hidden max-w-2xl mx-auto">
+    <div className="bg-white rounded-3xl shadow-2xl shadow-slate-200/50 border border-slate-200 overflow-hidden w-full max-w-2xl mx-auto">
       
       {/* Display Screen */}
-      <div className="bg-slate-900 px-6 py-8 relative shadow-inner">
-        <div className="absolute top-4 left-6 flex items-center space-x-2">
+      <div className="bg-slate-900 px-4 sm:px-6 py-6 sm:py-8 relative shadow-inner">
+        <div className="absolute top-4 left-4 sm:left-6 flex items-center space-x-2">
           <button 
             onClick={() => setIsRad(true)}
             className={`text-xs font-bold px-2 py-1 rounded transition-colors ${isRad ? 'bg-indigo-600 text-white' : 'text-slate-400 hover:text-white'}`}
@@ -159,18 +159,18 @@ export function ScientificCalculatorView({ calcDef }: ScientificCalculatorViewPr
         <div className="flex flex-col items-end space-y-2 mt-4">
           <div 
             ref={displayRef}
-            className="text-slate-400 text-xl md:text-2xl h-8 tracking-wider font-mono text-right w-full overflow-hidden whitespace-nowrap scroll-smooth"
+            className="text-slate-400 text-lg md:text-2xl h-8 tracking-wider font-mono text-right w-full overflow-hidden whitespace-nowrap scroll-smooth"
           >
             {expression}
           </div>
-          <div className="text-white text-5xl md:text-7xl font-light tracking-tight w-full text-right overflow-hidden break-normal">
+          <div className="text-white text-4xl sm:text-5xl md:text-7xl font-light tracking-tight w-full text-right overflow-hidden break-all">
             {result}
           </div>
         </div>
       </div>
 
       {/* Keypad */}
-      <div className="p-6 md:p-8 bg-white grid grid-cols-5 gap-3 md:gap-4">
+      <div className="p-3 sm:p-6 md:p-8 bg-white grid grid-cols-5 gap-2 sm:gap-3 md:gap-4">
         
         {/* Row 1 */}
         <button className={`${btnClassBase} ${funcProps}`} onClick={() => handleInput("sin(")}>sin</button>
