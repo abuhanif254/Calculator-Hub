@@ -22,6 +22,7 @@ import matter from "gray-matter";
 // SSG / ISR configuration
 // We revalidate occasionally to catch data updates if we were using a headless CMS.
 export const revalidate = 86400; // once a day
+export const dynamicParams = false;
 
 // Helper function to read markdown content
 function getMarkdownContent(slug: string, locale: string) {
