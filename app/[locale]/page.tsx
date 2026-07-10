@@ -1,18 +1,23 @@
 import { Link } from "../../i18n/routing";
-import Image from "next/image";
 import { Calculator, LineChart, Activity, Search, MousePointerClick, Zap, ChevronDown, ArrowRight, Code, Layers, CheckCircle2, Smartphone, Lock, UserX, Users, Rocket, FolderOpen, FileCode } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from 'next';
 import { routing, resolveIntlHref } from '../../i18n/routing';
 import { FavoriteCalculatorLink } from "../components/FavoriteCalculatorLink";
-import { FavoritesSection } from "../components/FavoritesSection";
 import { HomeSearchBar } from "../components/HomeSearchBar";
-import { ContinueWhereYouLeftOff } from "../components/ContinueWhereYouLeftOff";
 import { NewsletterForm } from "../components/NewsletterForm";
-import { RecentDiscussions } from "../components/RecentDiscussions";
-import { AnimatedCounter } from "../components/AnimatedCounter";
-import { ScrollReveal } from "../components/ScrollReveal";
-import { DynamicTrending } from "../components/DynamicTrending";
+import dynamic from 'next/dynamic';
+
+// ── Below-fold components: code-split into separate chunks ────────────────────
+// These components either import Firebase (DynamicTrending, RecentDiscussions)
+// or use client-only APIs (localStorage, IntersectionObserver). Loading them
+// lazily removes their JS from the critical path, reducing unused JS and TBT.
+const FavoritesSection      = dynamic(() => import('../components/FavoritesSection').then(m => m.FavoritesSection), { loading: () => null });
+const ContinueWhereYouLeftOff = dynamic(() => import('../components/ContinueWhereYouLeftOff').then(m => m.ContinueWhereYouLeftOff), { loading: () => null });
+const RecentDiscussions     = dynamic(() => import('../components/RecentDiscussions').then(m => m.RecentDiscussions), { loading: () => null });
+const AnimatedCounter       = dynamic(() => import('../components/AnimatedCounter').then(m => m.AnimatedCounter), { loading: () => null });
+const ScrollReveal          = dynamic(() => import('../components/ScrollReveal').then(m => m.ScrollReveal), { loading: () => null });
+const DynamicTrending       = dynamic(() => import('../components/DynamicTrending').then(m => m.DynamicTrending), { loading: () => null });
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

@@ -20,11 +20,14 @@ import Script from 'next/script';
 import { ClientShell } from '../../app/components/ClientShell';
 
 // Inter — the industry-standard professional typeface for tool/SaaS platforms
+// Weights: 400 (body), 500 (medium), 600 (semibold), 700 (bold).
+// 800/900 removed — saves ~50KB. Tailwind extrabold/black renders as 700 gracefully.
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  preload: true,
+  weight: ['400', '500', '600', '700'],
 });
 
 export function generateStaticParams() {
