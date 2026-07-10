@@ -18,6 +18,18 @@ html {
   overflow-x: hidden;
 }
 
+/* ── Respect user motion preferences (Accessibility + Performance) ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ── Global Mobile Fixes ─────────────────────────────────── */
 body {
   /* Prevent horizontal scroll on all pages */
@@ -202,11 +214,17 @@ details[data-animated] > div {
   background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px);
   background-size: 24px 24px;
 }
+/* Promoted to own GPU compositor layer to prevent full-page repaints.
+   contain:strict isolates layout/style/paint — blobs can't affect other elements. */
 .animate-ambient-glow-10 {
   animation: ambientGlow 10s ease-in-out infinite;
+  will-change: transform, opacity;
+  contain: strict;
 }
 .animate-ambient-glow-15-rev {
   animation: ambientGlow 15s ease-in-out infinite reverse;
+  will-change: transform, opacity;
+  contain: strict;
 }
 .animate-slide-in-right {
   animation: slideInRight 0.7s ease-out forwards;
