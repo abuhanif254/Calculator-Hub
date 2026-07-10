@@ -66,14 +66,14 @@ function CustomDropdown({
       </div>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between gap-2 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-700/50 text-slate-700 dark:text-slate-200 text-xs py-1.5 px-3 rounded-lg transition-colors border border-transparent focus:border-[#518231] outline-none min-w-[120px]"
+        className="flex items-center justify-between gap-2 bg-slate-100 dark:bg-slate-800/50 hover:bg-slate-200 dark:hover:bg-slate-700/50 text-slate-700 dark:text-slate-200 text-xs py-1.5 px-3 rounded-lg transition-colors border border-transparent focus:border-[#518231] outline-none min-w-[90px] sm:min-w-[120px]"
       >
         <span className="truncate">{selectedOption.label}</span>
         <ChevronDown size={12} className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-1.5 w-48 bg-white/90 dark:bg-[#090E17]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute top-full left-0 sm:left-auto sm:right-0 mt-1.5 w-48 max-w-[calc(100vw-1rem)] bg-white/90 dark:bg-[#090E17]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="max-h-60 overflow-y-auto py-1 custom-scrollbar">
             {options.map((opt) => (
               <button
@@ -125,7 +125,7 @@ export function GlobalSettingsBar() {
   }));
 
   return (
-    <div id="global-settings-bar" className="relative z-50 bg-white/80 dark:bg-[#090E17]/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-[11px] font-sans py-1.5 px-4 sm:px-6 lg:px-8 flex justify-end gap-3 sm:gap-6 items-center min-h-[44px] transition-colors duration-300">
+    <div id="global-settings-bar" className="relative z-50 bg-white/80 dark:bg-[#090E17]/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-[11px] font-sans py-1.5 px-4 sm:px-6 lg:px-8 flex justify-end gap-1.5 sm:gap-3 lg:gap-6 items-center min-h-[44px] transition-colors duration-300">
       
       {/* Theme Toggle - untouched */}
       <ThemeToggle />

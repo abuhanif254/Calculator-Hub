@@ -1,7 +1,7 @@
 ---
 metaTitle: "Favicon Generator | ICO, PWA Manifest & Apple Touch Icons"
 metaDescription: "Erstellen Sie professionelle Favicons (16x16 bis 512x512), multi-size ICO-Dateien, Apple Touch Icons und PWA-Web-Manifeste. 100% lokales, sicheres HTML5-Tool."
-metaKeywords: "favicon generator, favicon erstellen, ico datei erstellen, pwa icon generator, apple touch icon generator, web manifest erstellen, png zu ico, favicon.ico machen, nextjs favicon"
+metaKeywords: "favicon generator, favicon erstellen, ico datei erstellen, pwa icon generator, apple touch icon generator, web manifest erstellen, png zu ico, favicon.ico machen, nextjs favicon, favicon generator aus bild kostenlos, favicon ico datei online erstellen, pwa manifest icon generator online"
 title: "Favicon Generator (PWA & ICO Studio)"
 shortDescription: "Das komplette Werkzeug für moderne Web-Icons. Erstellen Sie ICO-Dateien, hochauflösende PNGs, Apple Touch Icons und PWA-Manifeste komplett lokal im Browser."
 faqs:

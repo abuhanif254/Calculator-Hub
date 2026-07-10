@@ -17,6 +17,7 @@ export default function GraphingCalculatorView({ calcDef }: GraphingCalculatorVi
   const [errorPrompt, setErrorPrompt] = useState("");
   
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
 
   const drawGraph = () => {
     const canvas = canvasRef.current;
@@ -126,19 +127,38 @@ export default function GraphingCalculatorView({ calcDef }: GraphingCalculatorVi
     drawGraph();
   }, [equation, xMin, xMax, yMin, yMax]);
 
+  // Make canvas responsive: match its pixel dimensions to its container
+  useEffect(() => {
+    const updateCanvasSize = () => {
+      if (!canvasContainerRef.current || !canvasRef.current) return;
+      const containerWidth = canvasContainerRef.current.clientWidth;
+      // Maintain a 6:5 aspect ratio (600x500 original)
+      const height = Math.round((containerWidth * 5) / 6);
+      canvasRef.current.width = containerWidth;
+      canvasRef.current.height = height;
+      drawGraph();
+    };
+
+    updateCanvasSize();
+    const resizeObserver = new ResizeObserver(updateCanvasSize);
+    if (canvasContainerRef.current) resizeObserver.observe(canvasContainerRef.current);
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
     <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
-      <div className="p-6 md:p-8 bg-slate-50 border-b border-slate-200">
-        <h2 className="text-2xl font-bold text-slate-800 mb-2">{calcDef.title}</h2>
-        <p className="text-slate-600">{calcDef.description}</p>
+      <div className="p-4 sm:p-6 md:p-8 bg-slate-50 border-b border-slate-200">
+        <h2 className="text-xl sm:text-2xl font-bold text-slate-800 mb-2">{calcDef.title}</h2>
+        <p className="text-slate-600 text-sm sm:text-base">{calcDef.description}</p>
       </div>
 
-      <div className="p-6 md:p-8 grid md:grid-cols-3 gap-8">
-        <div className="space-y-6 md:col-span-1 border-r border-slate-100 pr-0 md:pr-8">
+      <div className="p-4 sm:p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        {/* Controls — full width on mobile, 1-col sidebar on md+ */}
+        <div className="space-y-4 sm:space-y-6 md:col-span-1 md:border-r md:border-slate-100 md:pr-8">
           <div className="space-y-4">
             <label className="block text-sm font-semibold text-slate-700">Enter function f(x)</label>
             <div className="flex items-center space-x-2">
-              <span className="font-bold text-slate-600">f(x) =</span>
+              <span className="font-bold text-slate-600 shrink-0">f(x) =</span>
               <input 
                 type="text" 
                 value={equation} 
@@ -185,15 +205,16 @@ export default function GraphingCalculatorView({ calcDef }: GraphingCalculatorVi
           </div>
         </div>
         
-        <div className="md:col-span-2 flex items-center justify-center bg-slate-50 border border-slate-200 rounded-2xl p-4">
-          <div className="w-full max-w-full overflow-hidden text-center flex flex-col items-center">
+        {/* Canvas — spans 2 cols on md+, full width on mobile */}
+        <div className="md:col-span-2 flex items-start justify-center bg-slate-50 border border-slate-200 rounded-2xl p-2 sm:p-4">
+          <div ref={canvasContainerRef} className="w-full overflow-hidden text-center flex flex-col items-center">
             <canvas 
               ref={canvasRef} 
               width={600} 
               height={500} 
-              className="bg-white rounded border border-slate-200 shadow-sm max-w-full"
+              className="bg-white rounded border border-slate-200 shadow-sm w-full"
             ></canvas>
-            <div className="mt-4 text-slate-500 font-mono">
+            <div className="mt-3 text-slate-500 font-mono text-sm">
               y = {equation}
             </div>
           </div>

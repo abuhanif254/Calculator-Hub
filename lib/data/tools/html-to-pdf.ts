@@ -250,12 +250,12 @@ By converting HTML code directly into a PDF (Portable Document Format) file, you
 Our HTML to PDF Studio brings advanced rendering capabilities directly into your browser. Instead of relying on slow, privacy-invasive remote server rendering (like Puppeteer or headless Chrome endpoints), our tool uses sophisticated client-side canvas capturing. It integrates a professional code editor (powered by the exact same engine that runs VS Code) allowing developers to tweak HTML and CSS in real-time. You can paste your code, see a live preview, and instantly snapshot that DOM node into a high-quality, print-ready PDF document—all without a single byte of your data ever leaving your local machine.
 `,
   category: "Developer Tools",
-  keywords: ["html to pdf", "convert html to pdf", "html pdf converter", "webpage to pdf", "html code to pdf", "html export", "pdf generator", "save webpage as pdf"],
+  keywords: ["html to pdf", "convert html to pdf", "html pdf converter", "webpage to pdf", "html code to pdf", "html export", "pdf generator", "save webpage as pdf", "convert html code to pdf file online", "html to pdf generator with css", "save webpage to pdf high quality"],
   features: ["Integrated VS Code style editor", "Real-time DOM rendering preview", "High-fidelity CSS and SVG capture", "100% Secure Local Browser Processing", "Custom Page Margins and Sizes"],
   useCases: ["Developers generating invoices and receipts from HTML templates", "Designers freezing responsive web mockups into fixed PDF layouts", "Students saving research articles and web content for offline annotation"],
   howToSteps: ["Paste your HTML code into the integrated editor or upload an .html file", "Review the live rendered preview in the right panel", "Adjust your desired PDF settings like page size and margins", "Click Export PDF to capture the layout directly in your browser"],
   examples: [],
-  relatedTools: [{ name: "Markdown Editor", slug: "markdown-editor" }, { name: "HTML Formatter", slug: "html-formatter" }],
+  relatedTools: [{ name: "Markdown Editor", slug: "markdown-editor" }, { name: "HTML Formatter", slug: "html-formatter" }, { name: "HTML CSS JS Playground", slug: "html-css-js-playground" }, { name: "PDF to HTML", slug: "pdf-to-html" }, { name: "Word to PDF", slug: "word-to-pdf" }],
   faq: [
     {
       question: "Question 1 about converting HTML to PDF locally?",

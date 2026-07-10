@@ -98,39 +98,39 @@ export const LoanCalculatorView: React.FC<Props> = () => {
         </div>
         <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           <div className="space-y-4">
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("loanAmount")}</label>
-                <div className="relative w-48">
+                <div className="relative w-full sm:w-48">
                   <span className="absolute start-3 top-2 text-slate-500 font-medium">{cSym}</span>
                   <input type="number" value={amAmount} onChange={(e) => setAmAmount(Number(e.target.value))} className="w-full ps-7 pe-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
                 </div>
              </div>
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("loanTerm")}</label>
-                <div className="flex gap-2 w-48">
+                <div className="flex gap-2 w-full sm:w-48">
                   <input type="number" value={amYears} onChange={(e) => setAmYears(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("yearsPlaceholder")} />
                   <input type="number" value={amMonths} onChange={(e) => setAmMonths(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("monthsPlaceholder")} />
                 </div>
              </div>
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("interestRate")}</label>
-                <div className="relative w-48">
+                <div className="relative w-full sm:w-48">
                   <input type="number" value={amRate} onChange={(e) => setAmRate(Number(e.target.value))} className="w-full pe-8 ps-3 py-2 border border-slate-300 rounded-md shadow-sm" />
                   <span className="absolute end-3 top-2 text-slate-500">%</span>
                 </div>
              </div>
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("compound")}</label>
-                <select value={amCompound} onChange={(e) => setAmCompound(e.target.value)} className="w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                <select value={amCompound} onChange={(e) => setAmCompound(e.target.value)} className="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                   <option value="Monthly (APR)">{t("monthlyApr")}</option>
                   <option value="Annually (APY)">{t("annuallyApy")}</option>
                   <option value="Semi-Annually">{t("semiAnnually")}</option>
                   <option value="Quarterly">{t("quarterly")}</option>
                 </select>
              </div>
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("payBack")}</label>
-                <select value={amPayBack} onChange={(e) => setAmPayBack(e.target.value)} className="w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                <select value={amPayBack} onChange={(e) => setAmPayBack(e.target.value)} className="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                   <option value="Every Month">{t("everyMonth")}</option>
                 </select>
              </div>
@@ -166,30 +166,30 @@ export const LoanCalculatorView: React.FC<Props> = () => {
         </div>
         <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           <div className="space-y-4">
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("loanAmount")}</label>
-                <div className="relative w-48">
+                <div className="relative w-full sm:w-48">
                   <span className="absolute start-3 top-2 text-slate-500 font-medium">{cSym}</span>
                   <input type="number" value={defAmount} onChange={(e) => setDefAmount(Number(e.target.value))} className="w-full ps-7 pe-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
                 </div>
              </div>
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("loanTerm")}</label>
-                <div className="flex gap-2 w-48">
+                <div className="flex gap-2 w-full sm:w-48">
                   <input type="number" value={defYears} onChange={(e) => setDefYears(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("yearsPlaceholder")} />
                   <input type="number" value={defMonths} onChange={(e) => setDefMonths(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("monthsPlaceholder")} />
                 </div>
              </div>
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("interestRate")}</label>
-                <div className="relative w-48">
+                <div className="relative w-full sm:w-48">
                   <input type="number" value={defRate} onChange={(e) => setDefRate(Number(e.target.value))} className="w-full pe-8 ps-3 py-2 border border-slate-300 rounded-md shadow-sm" />
                   <span className="absolute end-3 top-2 text-slate-500">%</span>
                 </div>
              </div>
-             <div className="flex items-center justify-between">
+             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("compound")}</label>
-                <select value={defCompound} onChange={(e) => setDefCompound(e.target.value)} className="w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                <select value={defCompound} onChange={(e) => setDefCompound(e.target.value)} className="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                   <option value="Annually (APY)">{t("annuallyApy")}</option>
                   <option value="Monthly (APR)">{t("monthlyApr")}</option>
                   <option value="Semi-Annually">{t("semiAnnually")}</option>

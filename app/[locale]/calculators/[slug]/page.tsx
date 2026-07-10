@@ -208,7 +208,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
       {/* Breadcrumbs for SEO */}
       <nav aria-label="Breadcrumb" className="mb-6 font-sans text-sm text-slate-500 dark:text-slate-400">
-        <ol className="flex items-center space-x-2">
+        <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <li>
             <Link href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</Link>
           </li>
@@ -236,7 +236,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 href={`/calculators/${calc.slug}`}
               />
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
               {pageTitle}
             </h1>
             <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
@@ -266,7 +266,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             href={`/calculators/${calc.slug}`}
           />
 
-          <div id="calculator-export-target" className="print-target">
+          <div id="calculator-export-target" className="print-target calculator-view">
             <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
           </div>
 

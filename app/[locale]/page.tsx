@@ -159,7 +159,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-transparent pt-16 pb-24 lg:pt-24 lg:pb-32">
+      <section className="relative overflow-hidden bg-transparent pt-12 pb-20 sm:pt-16 sm:pb-24 lg:pt-24 lg:pb-32">
         <div className="absolute inset-0 bg-gradient-to-br from-[#518231]/10 via-transparent to-[#518231]/5 -z-10" />
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -167,7 +167,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-sm font-semibold mb-6">
                 <Zap size={16} /> <span>250+ Tools — Calculators, Dev Utilities &amp; More</span>
               </div>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
                 The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">Calculators & Developer Tools</span> Platform
               </h1>
               <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-8 max-w-2xl mx-auto lg:mx-0">
@@ -281,7 +281,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Floating chip — execution speed */}
-              <div className="absolute -left-5 -bottom-5 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-2.5 animate-[bounce_4s_ease-in-out_infinite] z-10">
+              {/* left-2 sm:-left-5: stays inside viewport on 320-375px phones */}
+              <div className="absolute left-2 -bottom-3 sm:-left-5 sm:-bottom-5 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-2.5 animate-[bounce_4s_ease-in-out_infinite] z-10">
                 <div className="bg-amber-100 text-amber-600 p-1.5 rounded-lg">
                   <Zap size={16} />
                 </div>
@@ -292,7 +293,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
 
               {/* Floating chip — tool count */}
-              <div className="absolute -top-4 -right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10 animate-fade-in-down">
+              {/* top-2 sm:-top-4: stays inside viewport on small screens */}
+              <div className="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10 animate-fade-in-down">
                 <Zap size={13} className="fill-white" />
                 <span className="text-xs font-bold">250+ Tools</span>
               </div>
@@ -307,11 +309,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       <ContinueWhereYouLeftOff />
 
       {/* Global Search Section */}
-      <section className="relative z-20 -mt-10 max-w-[900px] mx-auto px-4 sm:px-6 w-full">
+      <section className="relative z-20 -mt-6 sm:-mt-10 max-w-[900px] mx-auto px-4 sm:px-6 w-full">
         <HomeSearchBar />
       </section>
 
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 space-y-16 sm:space-y-24">
         
         {/* Recently Used / Favorites */}
         <FavoritesSection />
@@ -321,10 +323,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Featured Developer Tools (NEW) */}
         <section>
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-6 sm:mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Developer Essentials</h2>
-              <p className="text-slate-600 dark:text-slate-400">High-performance utilities built for modern web developers.</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2">Developer Essentials</h2>
+              <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">High-performance utilities built for modern web developers.</p>
             </div>
             <Link href={"/tools" as any} className="hidden sm:flex items-center gap-1 text-[#518231] font-semibold hover:text-[#436a28]">
               View all dev tools <ArrowRight size={16} />
@@ -351,7 +353,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Popular Categories */}
         <section>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-8 text-center">Comprehensive Calculators & Developer Tools Library</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8 text-center">Comprehensive Calculators & Developer Tools Library</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {categoryData.map((category) => (
               <div key={category.title} className="glass-panel rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
@@ -386,13 +388,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </section>
 
         {/* Why NexusCalculator */}
-        <section className="bg-[#090E17] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden text-center border border-white/10 shadow-2xl shadow-green-900/10">
+        <section className="bg-[#090E17] rounded-2xl sm:rounded-[2.5rem] p-6 sm:p-8 md:p-16 relative overflow-hidden text-center border border-white/10 shadow-2xl shadow-green-900/10">
            <div className="absolute inset-0 opacity-10 bg-radial-pattern" />
            <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#518231] blur-[100px] rounded-full opacity-20" />
            
            <div className="relative z-10">
-             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Why Professionals Choose Us</h2>
-             <p className="text-slate-400 max-w-2xl mx-auto mb-16 text-lg">We built this platform to respect your time, data, and device constraints.</p>
+             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4">Why Professionals Choose Us</h2>
+             <p className="text-slate-400 max-w-2xl mx-auto mb-10 sm:mb-16 text-base sm:text-lg">We built this platform to respect your time, data, and device constraints.</p>
              
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="glass-panel !bg-white/5 dark:!bg-white/5 !border-white/10 hover:-translate-y-1 p-6 rounded-2xl transition-transform duration-300">
@@ -428,25 +430,25 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </section>
 
         {/* Real Use Cases / Workflow */}
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div>
-             <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-6">Calculators Designed for Real World Scenarios</h2>
+             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-6">Calculators Designed for Real World Scenarios</h2>
              <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 leading-relaxed">
                Whether you are planning a 30-year mortgage, debugging a critical API response, or tracking your fitness goals, we have a specialized tool waiting for you.
              </p>
-             <div className="space-y-6">
+             <div className="space-y-4 sm:space-y-6">
                 {[
                   { title: "Mortgage & Financial Calculators", desc: "Calculate mortgage payments, amortization schedules, and ROI.", icon: LineChart },
                   { title: "Software & Developer Tools", desc: "Validate API JSON, encode tokens, and format raw data.", icon: Code },
                   { title: "Health & Fitness Calculators", desc: "Track calories, BMI, body fat, and setup diet plans.", icon: Activity }
                 ].map((item, i) => (
                   <div key={i} className="flex items-start gap-4 p-4 rounded-2xl hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors border border-transparent hover:border-slate-100 dark:hover:border-slate-800">
-                    <div className="w-12 h-12 bg-[#518231]/10 text-[#518231] rounded-xl flex items-center justify-center shrink-0 mt-1">
-                      <item.icon size={24} />
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#518231]/10 text-[#518231] rounded-xl flex items-center justify-center shrink-0 mt-1">
+                      <item.icon size={22} />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{item.title}</h3>
-                      <p className="text-slate-600 dark:text-slate-400">{item.desc}</p>
+                      <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-1">{item.title}</h3>
+                      <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -454,37 +456,37 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
           <div className="relative">
              <div className="absolute inset-0 bg-gradient-to-br from-[#518231]/20 to-transparent blur-3xl -z-10 rounded-full" />
-             <div className="glass-panel-heavy rounded-3xl p-8">
-               <div className="flex flex-col gap-6 relative">
+             <div className="glass-panel-heavy rounded-2xl sm:rounded-3xl p-6 sm:p-8">
+               <div className="flex flex-col gap-4 sm:gap-6 relative">
                  <div className="absolute left-[27px] top-[40px] bottom-[40px] w-0.5 bg-slate-200 dark:bg-slate-700" />
                  
-                 <div className="flex gap-6 relative z-10">
-                   <div className="w-14 h-14 bg-white dark:bg-slate-800 border-2 border-[#518231] rounded-full flex items-center justify-center shrink-0 shadow-md">
-                     <Search className="text-[#518231]" size={24} />
+                 <div className="flex gap-4 sm:gap-6 relative z-10">
+                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white dark:bg-slate-800 border-2 border-[#518231] rounded-full flex items-center justify-center shrink-0 shadow-md">
+                     <Search className="text-[#518231]" size={22} />
                    </div>
-                   <div className="pt-3">
-                     <h4 className="font-bold text-slate-900 dark:text-white text-lg">1. Find Your Tool</h4>
-                     <p className="text-slate-500 dark:text-slate-400 mt-1">Search or browse our massive directory.</p>
-                   </div>
-                 </div>
-                 
-                 <div className="flex gap-6 relative z-10">
-                   <div className="w-14 h-14 bg-white dark:bg-slate-800 border-2 border-[#518231] rounded-full flex items-center justify-center shrink-0 shadow-md">
-                     <MousePointerClick className="text-[#518231]" size={24} />
-                   </div>
-                   <div className="pt-3">
-                     <h4 className="font-bold text-slate-900 dark:text-white text-lg">2. Input Data</h4>
-                     <p className="text-slate-500 dark:text-slate-400 mt-1">Fill in the variables in our intuitive UI.</p>
+                   <div className="pt-2 sm:pt-3">
+                     <h4 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">1. Find Your Tool</h4>
+                     <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Search or browse our massive directory.</p>
                    </div>
                  </div>
                  
-                 <div className="flex gap-6 relative z-10">
-                   <div className="w-14 h-14 bg-[#518231] text-white rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-[#518231]/30 border-4 border-green-100 dark:border-green-900/30">
-                     <CheckCircle2 size={24} />
+                 <div className="flex gap-4 sm:gap-6 relative z-10">
+                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white dark:bg-slate-800 border-2 border-[#518231] rounded-full flex items-center justify-center shrink-0 shadow-md">
+                     <MousePointerClick className="text-[#518231]" size={22} />
                    </div>
-                   <div className="pt-3">
-                     <h4 className="font-bold text-slate-900 dark:text-white text-lg">3. Instant Results</h4>
-                     <p className="text-slate-500 dark:text-slate-400 mt-1">Get accurate answers with visual charts instantly.</p>
+                   <div className="pt-2 sm:pt-3">
+                     <h4 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">2. Input Data</h4>
+                     <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Fill in the variables in our intuitive UI.</p>
+                   </div>
+                 </div>
+                 
+                 <div className="flex gap-4 sm:gap-6 relative z-10">
+                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#518231] text-white rounded-full flex items-center justify-center shrink-0 shadow-lg shadow-[#518231]/30 border-4 border-green-100 dark:border-green-900/30">
+                     <CheckCircle2 size={22} />
+                   </div>
+                   <div className="pt-2 sm:pt-3">
+                     <h4 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">3. Instant Results</h4>
+                     <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Get accurate answers with visual charts instantly.</p>
                    </div>
                  </div>
                </div>
@@ -494,11 +496,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Community & Discussions */}
         <ScrollReveal>
-          <section className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 lg:p-12">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
+          <section className="bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 mb-8 sm:mb-10">
               <div>
-                <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">Community & Discussions</h2>
-                <p className="text-slate-600 dark:text-slate-400 text-lg">Join developers and professionals worldwide.</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2">Community & Discussions</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">Join developers and professionals worldwide.</p>
               </div>
               <Link href={"/community" as any} className="shrink-0 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
                 View Community
@@ -512,9 +514,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Featured Collections (Future Goldmine) */}
         <section>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Curated Tool Collections</h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg">Hand-picked sets of tools for specific professions.</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">Curated Tool Collections</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">Hand-picked sets of tools for specific professions.</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -537,31 +539,31 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Trust & Statistics */}
         <ScrollReveal>
-          <section className="border-y border-slate-200 dark:border-slate-800 py-16 text-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-slate-200 dark:divide-slate-800">
+          <section className="border-y border-slate-200 dark:border-slate-800 py-12 sm:py-16 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 divide-x divide-slate-200 dark:divide-slate-800">
                <div>
-                 <div className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
+                 <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
                    <AnimatedCounter end={250} suffix="+" />
                  </div>
-                 <div className="text-slate-500 dark:text-slate-400 font-medium">Tools & Calculators</div>
+                 <div className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base">Tools & Calculators</div>
                </div>
                <div>
-                 <div className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
+                 <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
                    <AnimatedCounter end={100} suffix="+" />
                  </div>
-                 <div className="text-slate-500 dark:text-slate-400 font-medium">Dev Utilities</div>
+                 <div className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base">Dev Utilities</div>
                </div>
                <div>
-                 <div className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
+                 <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
                    <AnimatedCounter end={50} suffix="k+" />
                  </div>
-                 <div className="text-slate-500 dark:text-slate-400 font-medium">Monthly Calculations</div>
+                 <div className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base">Monthly Calculations</div>
                </div>
                <div>
-                 <div className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
+                 <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-2">
                    <AnimatedCounter end={99} suffix="%" />
                  </div>
-                 <div className="text-slate-500 dark:text-slate-400 font-medium">Uptime & Reliability</div>
+                 <div className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base">Uptime & Reliability</div>
                </div>
             </div>
           </section>
@@ -569,13 +571,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
         {/* Real Use Cases — replaces fabricated testimonials */}
         <ScrollReveal>
-          <section className="glass-panel-heavy rounded-[2.5rem] p-8 md:p-12">
-            <div className="text-center mb-12">
+          <section className="glass-panel-heavy rounded-2xl sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12">
+            <div className="text-center mb-8 sm:mb-12">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#518231]/10 text-[#518231] text-xs font-bold uppercase tracking-widest mb-4">
                 <Users size={12} /> Real-World Scenarios
               </div>
-              <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Built for How Professionals Actually Work</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">Built for How Professionals Actually Work</h2>
+              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                 From financial advisors to developers and students — see how Nexus fits into real workflows.
               </p>
             </div>
@@ -654,9 +656,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         {/* FAQ Accordion */}
         <ScrollReveal>
           <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
-              <p className="text-lg text-slate-600 dark:text-slate-400">Everything you need to know about our calculators and tools.</p>
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">Frequently Asked Questions</h2>
+              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400">Everything you need to know about our calculators and tools.</p>
             </div>
             <div className="space-y-4">
               {[
@@ -682,11 +684,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </ScrollReveal>
 
         {/* Newsletter CTA */}
-        <div className="relative rounded-[2.5rem] bg-slate-900 overflow-hidden px-4 md:px-6 py-16 md:py-24 text-center border border-slate-800">
+        <div className="relative rounded-2xl sm:rounded-[2.5rem] bg-slate-900 overflow-hidden px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-24 text-center border border-slate-800">
           <div className="absolute inset-0 bg-gradient-to-br from-[#518231]/20 via-transparent to-transparent opacity-50" />
           <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Stay Updated</h2>
-            <p className="text-slate-300 text-lg mb-10">Join our newsletter to be the first to know when new developer tools, APIs, and advanced calculators are deployed.</p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">Stay Updated</h2>
+            <p className="text-slate-300 text-base sm:text-lg mb-8 sm:mb-10">Join our newsletter to be the first to know when new developer tools, APIs, and advanced calculators are deployed.</p>
             <NewsletterForm />
           </div>
         </div>

@@ -38,11 +38,11 @@ export default function DashboardPage() {
   return (
     <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 min-h-[70vh]">
       {/* Header */}
-      <div className="mb-10">
-        <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
+      <div className="mb-6 sm:mb-10">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-2">
           Your Dashboard
         </h1>
-        <p className="text-slate-500 dark:text-slate-400 text-lg">
+        <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg">
           Track your tools, favorites, and usage — all stored locally in your browser.
         </p>
       </div>

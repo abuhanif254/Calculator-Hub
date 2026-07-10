@@ -65,7 +65,7 @@ export function HomeSearchBar() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           placeholder="Search calculators, developer tools, categories..." 
-          className="flex-grow bg-transparent border-none focus:ring-0 text-lg sm:text-xl px-4 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 outline-none w-full"
+          className="flex-grow bg-transparent border-none focus:ring-0 text-base sm:text-xl px-4 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 outline-none w-full"
         />
         <button type="submit" className="hidden sm:block bg-[#518231] hover:bg-[#436a28] text-white px-6 py-3 rounded-xl font-semibold transition-colors shrink-0">
           Search
@@ -75,12 +75,12 @@ export function HomeSearchBar() {
       {isFocused && query.trim() !== "" && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden z-50">
           {filteredItems.length > 0 ? (
-            <ul className="max-h-[400px] overflow-y-auto">
+            <ul className="max-h-[50dvh] overflow-y-auto overscroll-contain">
               {filteredItems.map((item, idx) => (
                 <li key={idx}>
                   <button 
                     type="button"
-                    className="w-full text-left px-6 py-4 hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center justify-between border-b border-slate-50 dark:border-slate-700/50 last:border-0 transition-colors"
+                    className="w-full text-left px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-slate-700/50 flex items-center justify-between border-b border-slate-50 dark:border-slate-700/50 last:border-0 transition-colors min-h-[56px]"
                     onClick={() => {
                       router.push({
                         pathname: item.type === 'dev-tool' ? '/tools/[slug]' : '/calculators/[slug]',

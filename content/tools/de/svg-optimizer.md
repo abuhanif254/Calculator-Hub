@@ -1,7 +1,7 @@
 ---
 metaTitle: "SVG Optimizer Online | Vektor-Code Minifizieren & Komprimieren"
 metaDescription: "Komprimieren und minifizieren Sie SVG-Dateien. Entfernen Sie Illustrator-Metadaten, leere Nodes und runden Sie Pfad-Koordinaten ab. 100% Client-Side SVGO-Engine."
-metaKeywords: "svg optimieren, svg komprimieren online, svg minifier, svg dateigröße reduzieren, svg code säubern, svgo tool, react svg jsx converter, web performance, lcp svg"
+metaKeywords: "svg optimieren, svg komprimieren online, svg minifier, svg dateigröße reduzieren, svg code säubern, svgo tool, react svg jsx converter, web performance, lcp svg, svg optimizer online kostenlos, svg datei online komprimieren, svg dateigrosse ohne qualitat zu verlieren reduzieren"
 title: "SVG Optimizer (Kompressor & Minifier)"
 shortDescription: "Reduzieren Sie die Dateigröße Ihrer SVGs um bis zu 80%. Entfernen Sie Design-Metadaten, säubern Sie Pfad-Koordinaten und konvertieren Sie den Code direkt nach React/JSX."
 faqs:
@@ -48,9 +48,9 @@ howToSteps:
   - "Schritt 6: Exportieren Sie das saubere `.svg` File, laden Sie das Sammel-ZIP herunter oder kopieren Sie den React-kompatiblen JSX-Code direkt in die Zwischenablage."
 ---
 
-## Das Vektor-Handbuch für Entwickler: SVG Minification, SVGO und maximale Performance
+## Das Vektor-Handbuch für Entwickler: [SVG](/de/tools/convert-to-svg) Minification, SVGO und maximale Performance
 
-Scalable Vector Graphics (SVG) haben das Webdesign radikal verändert. Anstatt Bilder aus einem starren, unscharf werdenden Pixel-Raster (wie PNG oder JPG) zu bauen, bestehen SVGs aus einer mathematischen Formelsprache (XML), die auf dem kleinsten Smartphone genauso gestochen scharf aussieht wie auf einer 4K-Plakatwand.
+Scalable Vector Graphics (SVG) haben das Webdesign radikal verändert. Anstatt Bilder aus einem starren, unscharf werdenden Pixel-Raster (wie [PNG](/de/tools/convert-to-png) oder [JPG](/de/tools/convert-to-jpg)) zu bauen, bestehen SVGs aus einer mathematischen Formelsprache (XML), die auf dem kleinsten Smartphone genauso gestochen scharf aussieht wie auf einer 4K-Plakatwand.
 
 Diese Flexibilität ist jedoch gleichzeitig die größte Schwachstelle der Technologie: Vektoren sind einfache Text-Dateien. Und Textdateien tendieren dazu, gnadenlos aufgebläht zu werden. Wenn ein Designer ein einfaches, sauberes Icon in Figma oder Adobe Illustrator gestaltet und auf "Speichern" klickt, exportiert die Software einen wahren Albtraum aus nutzlosem Code, Geister-Ebenen, Editor-Signaturen und astronomisch präzisen Koordinaten.
 
@@ -63,7 +63,7 @@ Wer unoptimierte SVGs in ein modernes Webprojekt (sei es HTML5 oder ein Next.js-
 Öffnen Sie eine frisch aus Illustrator exportierte SVG-Datei in einem Texteditor (wie VS Code). Sie erwarten vielleicht zwei Tags für einen Kreis. Stattdessen sehen Sie hundert Zeilen kryptischen Code. Das ist der Ballast, der Ihre Webseite verlangsamt:
 
 **1. Editor-Namespaces und XML-Dogmen:**
-Da SVG ein altes Format ist, beginnt es oft mit `<?xml version="1.0" encoding="utf-8"?>` und ewig langen DOCTYPE-Deklarationen. Wenn Sie das SVG direkt in eine moderne HTML5-Seite einbetten (Inline-SVG), ist dieser Header komplett nutzlos und verwirrt nur den Browser-Parser.
+Da [SVG](/de/tools/convert-to-svg) ein altes Format ist, beginnt es oft mit `<?xml version="1.0" encoding="utf-8"?>` und ewig langen DOCTYPE-Deklarationen. Wenn Sie das [SVG](/de/tools/convert-to-svg) direkt in eine moderne HTML5-Seite einbetten (Inline-SVG), ist dieser Header komplett nutzlos und verwirrt nur den Browser-Parser.
 Zusätzlich hinterlassen Zeichenprogramme ihre Fußabdrücke: `xmlns:inkscape`, `<sodipodi:namedview>` oder Metadaten-Tags von Adobe. Sie dienen nur dazu, dass das Programm sich merkt, wo Ihre Lineale lagen, wenn Sie die Datei wieder öffnen. Die Optimierungs-Engine löscht diesen Ballast erbarmungslos und spart oft sofort 30% an Dateigröße ein.
 
 **2. Leere Hüllen und Geister-Gruppen (`<g>`):**
@@ -83,7 +83,7 @@ Unsere Architektur orientiert sich an den Best-Practices moderner CLI-Tools (wie
 Das effektivste Mittel zur Dateiverkleinerung ist die mathematische Stutzung der Koordinaten. Ein Regex-Parser durchkämmt das XML-Dokument und lokalisiert jeden numerischen Wert.
 Stellen Sie den Regler "Decimal Precision" auf `2`, zwingt der Algorithmus die irrsinnige Zahl `125.12345678` zu einem simplen `125.12`. 
 Wird dieser brutale Schnitt bei tausenden Kurven-Koordinaten angewandt, stürzt die Dateigröße um mehr als 50% ab. 
-*(Sicherheitswarnung: Zwingen Sie den Regler auf '0', wird rigoros auf ganze Zahlen abgerundet. Das macht das SVG winzig klein, kann aber weiche, detaillierte Kurven eckig zerschießen. Nutzen Sie den interaktiven Split-Screen, um die visuellen Auswirkungen zu kontrollieren).*
+*(Sicherheitswarnung: Zwingen Sie den Regler auf '0', wird rigoros auf ganze Zahlen abgerundet. Das macht das [SVG](/de/tools/convert-to-svg) winzig klein, kann aber weiche, detaillierte Kurven eckig zerschießen. Nutzen Sie den interaktiven Split-Screen, um die visuellen Auswirkungen zu kontrollieren).*
 
 **B. DOM-Flattening (Gruppen auflösen):**
 Die Engine führt eine heuristische Baum-Analyse (Tree Traversal) durch. Sie löst nutzlose Verschachtelungen auf:
@@ -98,10 +98,10 @@ Die Engine verkleinert selbst simple Farbcodes. Die überflüssige Notation `fil
 
 ### 3. Der React & Next.js Retter: Der JSX Konverter
 
-Wer ein nacktes, W3C-Standard konformes SVG direkt per Copy & Paste in die `render()` Funktion eines modernen React- oder Next.js-Projekts einfügt, erlebt eine böse Überraschung. Die Anwendung stürzt ab oder wirft Fehler in der Konsole.
+Wer ein nacktes, W3C-Standard konformes [SVG](/de/tools/convert-to-svg) direkt per Copy & Paste in die `render()` Funktion eines modernen React- oder Next.js-Projekts einfügt, erlebt eine böse Überraschung. Die Anwendung stürzt ab oder wirft Fehler in der Konsole.
 
 Das liegt daran, dass React die HTML-Schreibweise mit Bindestrichen strikt verbietet und stattdessen CamelCase (Binnenmajuskel) verlangt.
-Unser Optimizer eliminiert diesen Pain-Point. Wenn Sie auf den Button "JSX/React" im Developer-Panel klicken, scannt der Transformer das fertig optimierte, minifizierte SVG und übersetzt sämtliche W3C-Ausdrücke:
+Unser Optimizer eliminiert diesen Pain-Point. Wenn Sie auf den Button "JSX/React" im Developer-Panel klicken, scannt der Transformer das fertig optimierte, minifizierte [SVG](/de/tools/convert-to-svg) und übersetzt sämtliche W3C-Ausdrücke:
 `stroke-width` wird zu `strokeWidth`.
 `clip-path` mutiert zu `clipPath`.
 `fill-rule` transformiert zu `fillRule`.

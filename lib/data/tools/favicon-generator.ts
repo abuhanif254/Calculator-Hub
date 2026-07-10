@@ -15,7 +15,10 @@ export const faviconGeneratorToolConfig: ToolConfig = {
     "app icon generator",
     "favicon maker",
     "free favicon generator",
-    "pwa icon generator"
+    "pwa icon generator",
+    "favicon generator from image free",
+    "create favicon ico file online",
+    "pwa manifest icon generator online"
   ],
   features: [
     "Generate multi-resolution favicon.ico files containing 16x16, 32x32, and 48x48 pixel densities",
@@ -46,7 +49,10 @@ export const faviconGeneratorToolConfig: ToolConfig = {
   ],
   relatedTools: [
     { name: "SVG to PNG", slug: "svg-to-png" },
+    { name: "Convert to PNG", slug: "convert-to-png" },
     { name: "Image Converter", slug: "image-converter" },
+    { name: "Image to Base64", slug: "image-to-base64" },
+    { name: "SVG Optimizer", slug: "svg-optimizer" },
     { name: "QR Code Studio", slug: "qr-code-studio" },
     { name: "Gradient Generator", slug: "gradient-generator" },
     { name: "Color Picker From Image", slug: "color-picker-from-image" },

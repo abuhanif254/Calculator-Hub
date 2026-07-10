@@ -1,7 +1,7 @@
 ---
 metaTitle: "Générateur de Favicon & PWA | Créer ICO et App Icons en Ligne"
 metaDescription: "Créez des favicons pro, des fichiers ICO multi-résolutions, des Apple Touch Icons et le Manifeste PWA. Traitement 100% Canvas local (Client-Side), sans upload."
-metaKeywords: "générateur de favicon, créer favicon, png vers ico, svg vers ico, icône site web, générateur icône app pwa, apple touch icon gratuit, nextjs favicon, créer manifest json"
+metaKeywords: "générateur de favicon, créer favicon, png vers ico, svg vers ico, icône site web, générateur icône app pwa, apple touch icon gratuit, nextjs favicon, créer manifest json, générateur de favicon à partir d'image gratuit, créer fichier ico favicon en ligne, générateur pwa manifest icon en ligne"
 title: "Générateur de Favicon (Studio PWA & ICO)"
 shortDescription: "Concevez le pack d'icônes complet pour votre site (favicon.ico, PNG Retina, Apple Touch, Manifeste Web App) via un outil graphique 100% hors-ligne localisé."
 faqs:
@@ -60,7 +60,7 @@ Ce guide détaille la structure binaire des fichiers ICO, les problématiques de
 
 ### 1. La Structure du Conteneur ICO (Un Héritage Windows)
 
-On entend souvent : *"Pourquoi m'embêter avec un fichier .ico obsolète si on a inventé le format PNG ?"*
+On entend souvent : *"Pourquoi m'embêter avec un fichier .ico obsolète si on a inventé le format [PNG](/fr/tools/convert-to-png) ?"*
 La réponse tient en un mot : **Rétrocompatibilité**. Un site professionnel doit s'afficher parfaitement sur Chrome M1 (Mac) mais aussi sur le vieux PC Windows 7 d'une administration publique.
 
 Le format `.ico` n'est pas une image. **C'est un "Dossier" virtuel (un conteneur).**
@@ -73,7 +73,7 @@ Un fichier `favicon.ico` standard héberge :
 
 **Le Mécanisme du Navigateur :**
 Quand Windows télécharge ce fichier, son algorithme lit la "table des répertoires" du fichier (le Header binaire). En fonction d'où vous mettez le raccourci (barre des tâches, ou bureau principal), le système extrait instantanément le calque (Layer) de la taille parfaite, évitant un redimensionnement affreux.
-Notre générateur compile ce conteneur en associant vos différents calques PNG et en encodant les adresses binaires (Byte Offsets), créant un `.ico` totalement valide via une compilation `Client-Side`.
+Notre générateur compile ce conteneur en associant vos différents calques [PNG](/fr/tools/convert-to-png) et en encodant les adresses binaires (Byte Offsets), créant un `.ico` totalement valide via une compilation `Client-Side`.
 
 ---
 
@@ -114,7 +114,7 @@ Notre interface est équipée d'une simulation Canvas. Vous devez utiliser les c
 Gérer la transparence entre les différents écosystèmes relève du parcours du combattant.
 
 **Le Problème Apple iOS :**
-Le fichier `apple-touch-icon.png` **NE DOIT PAS** comporter de canal alpha (transparence). Si vous donnez un PNG transparent à l'iPhone, iOS va saturer le vide avec une immonde couleur noire solide.
+Le fichier `apple-touch-icon.png` **NE DOIT PAS** comporter de canal alpha (transparence). Si vous donnez un [PNG](/fr/tools/convert-to-png) transparent à l'iPhone, iOS va saturer le vide avec une immonde couleur noire solide.
 *La solution :* Notre panneau d'édition graphique vous permet de forcer un "Solid Background". Appliquez un blanc pur ou la couleur Hex de votre charte graphique en arrière-plan.
 
 **Le Manifeste PWA & Android :**

@@ -14,6 +14,91 @@
 /* ── Smooth scroll ────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  /* Prevent horizontal overflow at root level */
+  overflow-x: hidden;
+}
+
+/* ── Global Mobile Fixes ─────────────────────────────────── */
+body {
+  /* Prevent horizontal scroll on all pages */
+  overflow-x: hidden;
+  /* Fluid base font size: scales between 14px (tiny phones) → 16px (normal) */
+  font-size: clamp(14px, 4vw, 16px);
+}
+
+/* Touch-action: eliminate 300ms tap delay on Android Chrome < 55 */
+button,
+a,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+label[for],
+summary {
+  touch-action: manipulation;
+}
+
+/* ── iOS Input Zoom Prevention ───────────────────────────── */
+/* CRITICAL: Any input < 16px font-size causes iOS Safari to auto-zoom the
+   entire page on focus, breaking the layout. This rule fixes ALL 141+
+   calculator components at once without touching individual files. */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select,
+textarea {
+  font-size: 16px !important;
+  /* Override on desktop to restore normal size */
+  @media (min-width: 768px) {
+    font-size: inherit !important;
+  }
+}
+
+/* Base contrast override (unchanged) */
+input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+  @apply text-slate-900 dark:text-slate-100 dark:bg-slate-950 dark:border-slate-700;
+}
+
+/* ── Mobile Table Scroll Utility ─────────────────────────── */
+/* Wrap any overflow table in this div to get horizontal scroll on mobile */
+.table-scroll-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+/* ── Calculator View Global Mobile Fixes ─────────────────── */
+/* Tables inside calculator views — rendered from markdown or JSX */
+.calculator-view table,
+article table,
+.prose table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+/* Recharts responsive container minimum height */
+.recharts-responsive-container {
+  min-height: 160px;
+}
+
+/* Prevent iOS text-size auto-adjustment in calculator areas */
+.calculator-view {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── Safe-Area Utility Classes ───────────────────────────── */
+/* Use these on fixed/sticky elements near screen edges */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+.pl-safe {
+  padding-left: env(safe-area-inset-left, 0px);
+}
+.pr-safe {
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 /* ── Skip to Content (Accessibility WCAG 2.4.1) ──────────── */
@@ -74,11 +159,6 @@ details[data-animated] > div {
 @keyframes faqOpen {
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Base override to ensure inputs have proper contrast even if not using classes above */
-input:not([type="checkbox"]):not([type="radio"]), select, textarea {
-  @apply text-slate-900 dark:text-slate-100 dark:bg-slate-950 dark:border-slate-700;
 }
 
 /* ── Hero entrance animations ──────────────────────────────── */
@@ -142,5 +222,20 @@ input:not([type="checkbox"]):not([type="radio"]), select, textarea {
 }
 .animate-fade-in-down {
   animation: fadeInDown 0.5s ease-out 0.9s both;
+}
+
+/* ── Calculator Form Row Mobile Fix ──────────────────────── */
+/* Many calculator forms use `flex items-center justify-between`
+   with a fixed w-48 input on the right. On screens < 480px these
+   overflow. This rule makes those inputs full-width on small screens
+   inside any .calculator-view without editing 141 individual files. */
+@media (max-width: 479px) {
+  .calculator-view .flex.items-center.justify-between > input,
+  .calculator-view .flex.items-center.justify-between > select,
+  .calculator-view .flex.items-center.justify-between > div > input,
+  .calculator-view .flex.items-center.justify-between > div > select {
+    width: 100%;
+    min-width: 0;
+  }
 }
 

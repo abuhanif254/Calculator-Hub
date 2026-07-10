@@ -28,8 +28,11 @@ export function CookieBanner() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] p-4 sm:p-6 md:p-8 pointer-events-none flex justify-center">
-      <div className="pointer-events-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xl rounded-2xl p-5 sm:p-6 max-w-4xl w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-6 animate-in slide-in-from-bottom-10 fade-in duration-500">
+    <div
+      className="fixed bottom-0 left-0 right-0 z-[100] px-3 sm:px-6 md:px-8 pointer-events-none flex justify-center"
+      style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom, 0px))' }}
+    >
+      <div className="pointer-events-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xl rounded-2xl p-4 sm:p-6 max-w-4xl w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 animate-in slide-in-from-bottom-10 fade-in duration-500">
         
         <div className="flex items-start gap-4">
           <div className="bg-[#518231]/10 text-[#518231] p-3 rounded-xl hidden sm:flex shrink-0">

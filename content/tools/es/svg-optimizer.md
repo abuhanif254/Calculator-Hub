@@ -1,7 +1,7 @@
 ---
 metaTitle: "Optimizador SVG Online | Comprimir y Minificar Código SVG"
 metaDescription: "Comprima y minifique archivos SVG online. Elimine metadatos, namespaces de Illustrator y reduzca coordenadas decimales. Optimización SVGO 100% Client-Side."
-metaKeywords: "optimizador svg, comprimir svg online, minificar svg, reducir tamaño svg, limpiar codigo svg, svgo online, optimizacion web, react svg, mejorar lcp"
+metaKeywords: "optimizador svg, comprimir svg online, minificar svg, reducir tamaño svg, limpiar codigo svg, svgo online, optimizacion web, react svg, mejorar lcp, optimizador de svg en linea gratis, comprimir archivo svg en linea, reducir tamano de archivo svg sin perder calidad"
 title: "Optimizador SVG (Compresor y Minificador)"
 shortDescription: "Limpie el código basura de sus vectores. Elimine metadatos, agrupe etiquetas y recorte decimales para reducir el peso de sus SVG hasta un 80% y acelerar su web."
 faqs:
@@ -50,25 +50,25 @@ howToSteps:
 
 ## Guía Integral del Desarrollador: Optimización, Compresión y Rendimiento de Gráficos SVG
 
-Los gráficos vectoriales escalables (SVG) han transformado el desarrollo de interfaces de usuario. Ofrecen íconos cristalinos, ilustraciones responsivas y logotipos nítidos que no pierden calidad sin importar en qué pantalla se muestren. Sin embargo, a diferencia de los formatos de imagen estáticos tradicionales, los SVG son una arquitectura de texto basada en XML.
+Los gráficos vectoriales escalables (SVG) han transformado el desarrollo de interfaces de usuario. Ofrecen íconos cristalinos, ilustraciones responsivas y logotipos nítidos que no pierden calidad sin importar en qué pantalla se muestren. Sin embargo, a diferencia de los formatos de imagen estáticos tradicionales, los [SVG](/es/tools/convert-to-svg) son una arquitectura de texto basada en XML.
 
-Este diseño abierto y manipulable es una bendición, pero también es su talón de Aquiles: el código SVG tiende a inflarse de manera descontrolada. Un diseñador puede crear un logotipo simple en Figma o Illustrator, pero al momento de exportarlo, el programa insertará silenciosamente cientos de líneas de metadatos y etiquetas innecesarias. 
+Este diseño abierto y manipulable es una bendición, pero también es su talón de Aquiles: el código [SVG](/es/tools/convert-to-svg) tiende a inflarse de manera descontrolada. Un diseñador puede crear un logotipo simple en Figma o Illustrator, pero al momento de exportarlo, el programa insertará silenciosamente cientos de líneas de metadatos y etiquetas innecesarias. 
 
-Si no optimiza sus archivos SVG antes de implementarlos en su código de producción (HTML, React, Vue), enfrentará graves caídas en las métricas de rendimiento web (Core Web Vitals). Esta guía técnica expone por qué los SVGs crecen tanto, cómo funciona la matemática de la minificación y cómo nuestro Optimizador Client-Side limpia su código.
+Si no optimiza sus archivos [SVG](/es/tools/convert-to-svg) antes de implementarlos en su código de producción (HTML, React, Vue), enfrentará graves caídas en las métricas de rendimiento web (Core Web Vitals). Esta guía técnica expone por qué los SVGs crecen tanto, cómo funciona la matemática de la minificación y cómo nuestro Optimizador Client-Side limpia su código.
 
 ---
 
 ### 1. La Anatomía de la "Basura" en un Archivo SVG
 
-Cuando abre un archivo SVG generado por software profesional en un editor de texto (como VS Code), rara vez ve solo un par de círculos y cuadrados. En su lugar, es recibido por un muro de código aparentemente incomprensible.
+Cuando abre un archivo [SVG](/es/tools/convert-to-svg) generado por software profesional en un editor de texto (como VS Code), rara vez ve solo un par de círculos y cuadrados. En su lugar, es recibido por un muro de código aparentemente incomprensible.
 
 ¿De dónde viene este exceso de peso?
 
 **1. Declaraciones y DTD (Document Type Definitions):**
-Las primeras líneas suelen ser `<?xml version="1.0" encoding="utf-8"?>` y declaraciones de tipo DOCTYPE. Si usted va a insertar el SVG directamente en un documento HTML5, estas líneas son 100% inútiles y el navegador las ignorará. Eliminarlas ahorra valiosos bytes.
+Las primeras líneas suelen ser `<?xml version="1.0" encoding="utf-8"?>` y declaraciones de tipo DOCTYPE. Si usted va a insertar el [SVG](/es/tools/convert-to-svg) directamente en un documento HTML5, estas líneas son 100% inútiles y el navegador las ignorará. Eliminarlas ahorra valiosos bytes.
 
 **2. Metadatos del Editor (Namespaces Privados):**
-Programas como Inkscape o Adobe Illustrator están diseñados para que usted pueda cerrar el programa, abrir el SVG al día siguiente y recuperar sus guías, su cuadrícula de dibujo y el nombre de sus capas.
+Programas como Inkscape o Adobe Illustrator están diseñados para que usted pueda cerrar el programa, abrir el [SVG](/es/tools/convert-to-svg) al día siguiente y recuperar sus guías, su cuadrícula de dibujo y el nombre de sus capas.
 Para lograr esto, inyectan etiquetas como `<sodipodi:namedview>`, `<illustrator:metadata>`, y namespaces como `xmlns:inkscape="..."`. Los navegadores web no entienden ni necesitan estas directivas para dibujar la imagen. Eliminarlas mediante la minificación puede reducir el tamaño del archivo entre un 20% y un 40% instantáneamente.
 
 **3. Elementos Ocultos y Grupos Vacíos:**
@@ -80,7 +80,7 @@ Un diseñador a menudo oculta una capa o grupo (`display="none"`) y se olvida de
 
 El impacto de reducción más masivo (el núcleo de herramientas CLI como SVGO) ocurre en el atributo `d` (datos) de la etiqueta `<path>`.
 
-Un SVG dibuja usando comandos de ruta. En un archivo no optimizado, un comando puede verse así:
+Un [SVG](/es/tools/convert-to-svg) dibuja usando comandos de ruta. En un archivo no optimizado, un comando puede verse así:
 `<path d="M 125.1234567891234 45.9876543219876 C 130.111112222333 50.444445555666 ... " />`
 
 Las aplicaciones vectoriales operan con precisión de punto flotante de 64 bits y exportan números con 10 o 15 decimales. En el lienzo de un navegador web (compuesto por píxeles finitos), el ojo humano es incapaz de percibir cambios más allá de 2 o 3 decimales.
@@ -95,7 +95,7 @@ Al realizar esta micro-compresión en miles de coordenadas dentro de una ilustra
 
 ### 3. Reducción de la Profundidad del Árbol DOM (Colapso de Grupos)
 
-Un navegador renderiza los SVGs tal como renderiza los divs de HTML. Si tiene un SVG con 10 grupos anidados, el navegador debe crear 10 nodos de memoria, aunque no sirvan para nada.
+Un navegador renderiza los SVGs tal como renderiza los divs de HTML. Si tiene un [SVG](/es/tools/convert-to-svg) con 10 grupos anidados, el navegador debe crear 10 nodos de memoria, aunque no sirvan para nada.
 
 El Optimizador aplica un árbol de decisión heurístico de **Colapso de Grupos**:
 *   **Regla 1:** Si una etiqueta `<g>` no tiene contenido, se elimina.
@@ -111,8 +111,8 @@ Esta aplanación mejora de inmediato los informes del tabulador "Rendimiento" en
 Una vez purgada la estructura, el último paso de compresión es la "Minificación" tradicional: se eliminan todos los retornos de carro (saltos de línea), espacios en blanco y tabulaciones (Indentación). El archivo de 500 líneas se convierte en una sola línea de código densa y continua.
 
 **El Convertidor JSX para Ecosistemas React / Next.js:**
-Los desarrolladores web modernos enfrentan un problema frustrante: no pueden simplemente copiar un SVG estandarizado y pegarlo dentro del `return` de un componente de React. React lanza errores de compilación porque requiere que los atributos HTML/XML con guiones se escriban en notación de camello (`camelCase`).
-El Optimizador intercepta este problema en el panel de Desarrollador. Con un solo clic, el código SVG purgado traduce atributos como `stroke-width` a `strokeWidth`, `fill-rule` a `fillRule`, y `clip-path` a `clipPath`, dejando el código perfectamente compilable y listo para pegarse en un archivo `.tsx` o `.jsx`.
+Los desarrolladores web modernos enfrentan un problema frustrante: no pueden simplemente copiar un [SVG](/es/tools/convert-to-svg) estandarizado y pegarlo dentro del `return` de un componente de React. React lanza errores de compilación porque requiere que los atributos HTML/XML con guiones se escriban en notación de camello (`camelCase`).
+El Optimizador intercepta este problema en el panel de Desarrollador. Con un solo clic, el código [SVG](/es/tools/convert-to-svg) purgado traduce atributos como `stroke-width` a `strokeWidth`, `fill-rule` a `fillRule`, y `clip-path` a `clipPath`, dejando el código perfectamente compilable y listo para pegarse en un archivo `.tsx` o `.jsx`.
 
 ---
 
@@ -121,4 +121,4 @@ El Optimizador intercepta este problema en el panel de Desarrollador. Con un sol
 Las grandes corporaciones imponen NDA (Acuerdos de Confidencialidad) severos sobre los bocetos de interfaces y logotipos. Enviar estos archivos a un servidor de compresión gratuito de terceros viola estos protocolos de seguridad.
 
 Nuestra arquitectura está diseñada bajo el principio "Client-Side".
-Todas las heurísticas de poda de XML, los analizadores de coordenadas Regex, la minificación DOM y el empaquetado de archivos ZIP (`JSZip`) se compilan y operan a nivel local mediante el motor JavaScript de su propio navegador. Su código SVG se lee, se comprime y se descarga directamente desde la memoria RAM de su equipo. Es 100% privado, extremadamente rápido, e independiente de cualquier carga en la nube.
+Todas las heurísticas de poda de XML, los analizadores de coordenadas Regex, la minificación DOM y el empaquetado de archivos ZIP (`JSZip`) se compilan y operan a nivel local mediante el motor JavaScript de su propio navegador. Su código [SVG](/es/tools/convert-to-svg) se lee, se comprime y se descarga directamente desde la memoria RAM de su equipo. Es 100% privado, extremadamente rápido, e independiente de cualquier carga en la nube.

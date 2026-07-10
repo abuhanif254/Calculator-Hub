@@ -26,6 +26,9 @@ export function generateStaticParams() {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
+  // viewport-fit=cover is required for env(safe-area-inset-*) to work
+  // on iPhones with notch / Dynamic Island / home bar
+  viewportFit: 'cover',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
     { media: '(prefers-color-scheme: dark)', color: '#020617' },
@@ -128,7 +131,7 @@ export default async function RootLayout({
           />
         )}
       </head>
-      <body className="font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-[#090E17] dark:text-slate-100 relative">
+      <body className="font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-[#090E17] dark:text-slate-100 relative overflow-x-hidden max-w-full">
         {/* Ambient Glassmorphism Background Layers */}
         <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#518231]/10 dark:bg-[#518231]/15 blur-[120px] mix-blend-multiply dark:mix-blend-screen animate-ambient-glow-10" />
