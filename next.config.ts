@@ -41,6 +41,56 @@ const nextConfig: NextConfig = {
   experimental: {
     cpus: 1,
   },
+  async headers() {
+    return [
+      // ── Security headers (improves Lighthouse Best Practices score) ───────────
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Content-Type-Options',   value: 'nosniff' },
+          { key: 'X-Frame-Options',           value: 'SAMEORIGIN' },
+          { key: 'X-XSS-Protection',          value: '1; mode=block' },
+          { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy',        value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+        ],
+      },
+      // ── Immutable cache for Next.js static chunks (JS/CSS/fonts) ──────────
+      // These files have content-hashed names, so max-age=1yr + immutable is safe.
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      // ── Long cache for public static assets (icons, images) ───────────────
+      {
+        source: '/icons/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, immutable' },
+        ],
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/favicon.ico',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400' },
+        ],
+      },
+      // ── API routes: no cache by default, CORS allowed ────────────────────
+      {
+        source: '/api/(.*)',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+        ],
+      },
+    ];
+  },
   webpack: (config, { dev, isServer, webpack }) => {
     // Fix pdfjs-dist canvas dependency issue
     config.resolve.alias.canvas = false;
