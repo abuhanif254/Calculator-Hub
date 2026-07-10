@@ -1,7 +1,7 @@
 ---
 metaTitle: "Estudio de Generador de Códigos QR | Crear QR con Logo y Diseño"
 metaDescription: "Cree códigos QR de alta calidad y diseño profesional en nuestro Estudio. Soporte para URL, Texto, vCard, WiFi, con personalización avanzada, logos y descargas SVG."
-metaKeywords: "qr code studio, qr code generator, qr code con logo, qr dinamico, crear codigo qr, diseño qr, alta resolucion qr code, svg qr code"
+metaKeywords: "qr code studio, qr code generator, qr code con logo, qr dinamico, crear codigo qr, diseño qr, alta resolucion qr code, svg qr code, generador de codigo qr con logo gratis, crear codigo qr wifi en linea, generar codigo qr vcard gratis"
 title: "Estudio de Generador de Códigos QR"
 shortDescription: "Cree códigos QR altamente personalizados. Soporte para URL, Texto, vCard, WiFi, y más. Personalice colores, gradientes, puntos redondeados, y descargue en PNG, SVG o PDF de alta resolución."
 faqs:

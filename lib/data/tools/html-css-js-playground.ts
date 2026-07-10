@@ -9,7 +9,8 @@ export const htmlCssJsPlaygroundConfig: ToolConfig = {
     "HTML editor", "CSS playground", "JavaScript playground", "online IDE", 
     "live code editor", "web development sandbox", "frontend playground", 
     "HTML CSS JS editor", "browser IDE", "coding sandbox", "run HTML online",
-    "test javascript online", "interactive web playground"
+    "test javascript online", "interactive web playground",
+    "free online html editor with live preview", "html css javascript playground online", "test javascript code online free"
   ],
   
   longDescription: `
@@ -276,6 +277,9 @@ btn.addEventListener('click', () => {
   ],
 
   relatedTools: [
+    { name: "HTML Formatter", slug: "html-formatter" },
+    { name: "CSS Beautifier", slug: "css-beautifier" },
+    { name: "JS Beautifier", slug: "js-beautifier" },
     { name: "JSON Formatter", slug: "json-formatter" },
     { name: "CSS Shadow Generator", slug: "css-shadow-generator" },
     { name: "Gradient Generator", slug: "gradient-generator" },

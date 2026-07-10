@@ -1,7 +1,7 @@
 ---
 metaTitle: "QR Code Generator Studio | Design QR Codes mit Logo"
 metaDescription: "Erstellen Sie professionelle QR Codes in unserem Design Studio. Integrieren Sie Ihr Logo, nutzen Sie Farbverläufe und runde Punkte. Download in SVG, PNG oder PDF."
-metaKeywords: "qr code studio, qr code generator, qr code design, qr code mit logo erstellen, vektor qr code, qr code drucken, svg qr code"
+metaKeywords: "qr code studio, qr code generator, qr code design, qr code mit logo erstellen, vektor qr code, qr code drucken, svg qr code, qr code generator mit logo kostenlos, wifi qr code online erstellen, vcard qr code kostenlos generieren"
 title: "QR Code Design Studio"
 shortDescription: "Das ultimative Studio für hochgradig anpassbare QR Codes. Fügen Sie Logos hinzu, wählen Sie runde Formen und Farbverläufe. Export als hochauflösendes PNG oder SVG."
 faqs:

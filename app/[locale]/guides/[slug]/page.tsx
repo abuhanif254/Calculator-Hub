@@ -331,6 +331,36 @@ export default async function GuideArticlePage({
           </div>
         )}
 
+        {/* ── Mobile inline Table of Contents (hidden on xl where sticky aside shows) ── */}
+        {headings.length > 0 && (
+          <details className="xl:hidden mb-8 rounded-xl border border-slate-200 dark:border-white/8 bg-slate-50 dark:bg-white/3 group">
+            <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none">
+              <span className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#518231]" />
+                On this page
+              </span>
+              <ChevronRight
+                size={15}
+                className="text-slate-400 transition-transform duration-200 group-open:rotate-90"
+              />
+            </summary>
+            <ul className="px-4 pb-3 pt-1 space-y-1 border-t border-slate-100 dark:border-white/5">
+              {headings.map(({ id, text, level }) => (
+                <li key={id}>
+                  <a
+                    href={`#${id}`}
+                    className={`block text-sm py-1 text-[#518231] dark:text-[#6fa844] hover:underline ${
+                      level === 3 ? 'pl-4 text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200' : 'font-medium'
+                    }`}
+                  >
+                    {text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
+
         {/* ── Article Prose ──────────────────────────────────────────── */}
         <div
           className="

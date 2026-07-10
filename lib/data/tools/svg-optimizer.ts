@@ -15,7 +15,10 @@ export const svgOptimizerToolConfig: ToolConfig = {
     "svg cleanup",
     "svg performance optimization",
     "svg for web performance",
-    "svg compression tool"
+    "svg compression tool",
+    "svg optimizer online free",
+    "compress svg file online",
+    "reduce svg file size without losing quality"
   ],
   features: [
     "Locally compress and minify SVG graphics entirely inside your browser (zero files uploaded)",
@@ -50,7 +53,8 @@ export const svgOptimizerToolConfig: ToolConfig = {
     { name: "Favicon Generator", slug: "favicon-generator" },
     { name: "Compress Image", slug: "compress-image" },
     { name: "Image Converter", slug: "image-converter" },
-    { name: "Resize Image", slug: "resize-image" }
+    { name: "Resize Image", slug: "resize-image" },
+    { name: "Convert to SVG", slug: "convert-to-svg" }
   ],
   examples: [],
   faq: [
