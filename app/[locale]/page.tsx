@@ -345,7 +345,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                { name: "Diff Checker", icon: Layers, desc: "Compare two blocks of text or code to find differences.", href: "/tools/diff-checker" },
                { name: "Scientific Calculator", icon: Code, desc: "Advanced math with trigonometry, logarithms, and more.", href: "/calculators/scientific-calculator" }
              ].map((tool, i) => (
-               <Link key={i} href={resolveIntlHref(tool.href)} className="glass-panel rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-1 hover:border-[#518231]/50 dark:hover:border-[#518231]/50 transition-all duration-300 group">
+               <Link key={i} prefetch={false} href={resolveIntlHref(tool.href)} className="glass-panel rounded-2xl p-6 hover:shadow-2xl hover:-translate-y-1 hover:border-[#518231]/50 dark:hover:border-[#518231]/50 transition-all duration-300 group">
                  <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#518231]/10 transition-colors">
                    <tool.icon className="text-slate-600 dark:text-slate-400 group-hover:text-[#518231] transition-colors" size={24} />
                  </div>
@@ -376,14 +376,16 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   <ul className="space-y-2 mb-4">
                     {category.links.slice(0, 4).map((link) => (
                       <li key={link.name}>
-                         <Link href={resolveIntlHref(link.href)} className="text-sm text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#518231] font-medium transition-colors flex items-center gap-2">
+                         {/* prefetch={false}: prevents Next.js from prefetching massive tool
+                             page bundles (1.99MB) when these cards enter the viewport */}
+                         <Link prefetch={false} href={resolveIntlHref(link.href)} className="text-sm text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#518231] font-medium transition-colors flex items-center gap-2">
                            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600" />
                            {link.name}
                          </Link>
                       </li>
                     ))}
                   </ul>
-                  <Link href={"/calculators" as any} className="text-sm font-semibold text-[#518231] hover:text-[#436a28] flex items-center gap-1 mt-4">
+                  <Link prefetch={false} href={"/calculators" as any} className="text-sm font-semibold text-[#518231] hover:text-[#436a28] flex items-center gap-1 mt-4">
                     View all tools <ArrowRight size={14} />
                   </Link>
                 </div>

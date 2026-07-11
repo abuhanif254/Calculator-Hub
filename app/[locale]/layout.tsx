@@ -123,10 +123,13 @@ export default async function RootLayout({
     <html lang={locale} dir={['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning className={inter.variable}>
       <head>
         {/* ── Critical resource hints ─────────────────────────────────────
-             preconnect: opens TCP/TLS handshake before the resource is needed.
-             dns-prefetch: fallback for browsers that don't support preconnect. */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+             NOTE: fonts.googleapis.com preconnect is intentionally OMITTED.
+             next/font/google self-hosts font files at build time — they are
+             served from YOUR domain, not googleapis.com. Adding a preconnect
+             to googleapis.com is wasteful (Lighthouse flags it as unused).
+
+             dns-prefetch for Firebase + AdSense: these ARE requested at
+             runtime (Firebase auth/Firestore, AdSense ad units). */}
         <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
         <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
