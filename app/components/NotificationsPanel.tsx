@@ -248,11 +248,11 @@ export function NotificationsPanel() {
             aria-label="Notifications"
             className={[
               // Mobile: full-width bottom sheet
-              "fixed inset-x-0 bottom-0 z-50 rounded-t-2xl",
+              "fixed inset-x-0 bottom-0 z-50 rounded-t-2xl w-full",
               // sm+: absolute dropdown pinned right
-              "sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:mt-3 sm:w-[360px] sm:rounded-2xl",
+              "sm:absolute sm:inset-x-auto sm:bottom-auto sm:right-0 sm:top-full sm:mt-3 sm:w-[360px] sm:max-w-[100vw] sm:rounded-2xl",
               // Shared
-              "max-w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xl overflow-hidden",
+              "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-2xl overflow-hidden",
             ].join(" ")}
             style={{ animation: "fadeInUp 0.18s ease-out" }}
           >
