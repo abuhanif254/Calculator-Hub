@@ -31,7 +31,7 @@ export const sitemapCategories = [
     icon: Heart,
     description: "Achieve your wellness goals with calculators for BMI, daily calories, macronutrients, and pregnancy tracking.",
     links: [
-      "BMI Calculator", "Calorie Calculator", "Body Fat Calculator", "BMR Calculator",
+      "Advanced Sleep Cycle Calculator", "BMI Calculator", "Calorie Calculator", "Body Fat Calculator", "BMR Calculator",
       "Ideal Weight Calculator", "Pace Calculator", "Pregnancy Calculator", "Pregnancy Conception Calculator",
       "Due Date Calculator", "Macro Calculator", "Carbohydrate Calculator", "Healthy Weight Calculator", "Ovulation Calculator"]
   },

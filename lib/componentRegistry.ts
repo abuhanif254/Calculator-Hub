@@ -120,6 +120,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'pregnancy-calculator': dynamic(() => import('@/app/components/PregnancyCalculatorView').then(m => ({ default: m.PregnancyCalculatorView as ComponentType<CalcComponentProps> }))),
   'pregnancy-conception-calculator': dynamic(() => import('@/app/components/PregnancyConceptionCalculatorView').then(m => ({ default: m.PregnancyConceptionCalculatorView as ComponentType<CalcComponentProps> }))),
   'due-date-calculator': dynamic(() => import('@/app/components/DueDateCalculatorView').then(m => ({ default: m.DueDateCalculatorView as ComponentType<CalcComponentProps> }))),
+  'advanced-sleep-cycle-calculator': dynamic(() => import('@/app/components/AdvancedSleepCycleCalculatorView').then(m => ({ default: m.AdvancedSleepCycleCalculatorView as ComponentType<CalcComponentProps> }))),
 
   // ─── Other ─────────────────────────────────────
   'age-calculator': dynamic(() => import('@/app/components/AgeCalculatorView').then(m => ({ default: m.AgeCalculatorView as ComponentType<CalcComponentProps> }))),
