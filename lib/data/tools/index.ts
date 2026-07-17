@@ -134,6 +134,7 @@ import { memeGeneratorConfig } from './meme-generator';
 import { imageToBase64Config } from './image-to-base64';
 import { base64ToImageConfig } from './base64-to-image';
 import { mortgageCalculatorUkConfig } from './mortgage-calculator-uk';
+import { databaseAnonymizerConfig } from './database-anonymizer';
 
 export * from './types';
 
@@ -272,6 +273,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [imageToBase64Config.slug]: imageToBase64Config,
   [base64ToImageConfig.slug]: base64ToImageConfig,
   [mortgageCalculatorUkConfig.slug]: mortgageCalculatorUkConfig,
+  [databaseAnonymizerConfig.slug]: databaseAnonymizerConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { Link, routing, resolveIntlHref } from '@/i18n/routing';
 import { sitemapCategories, developerToolsMenu, pdfToolsMenu, imageToolsMenu, generalLinks } from '@/lib/data/sitemapData';
 import { resolveHref } from '@/lib/utils/linkResolver';
-import { Search, Compass, ExternalLink, ChevronDown } from 'lucide-react';
+import { Search, Compass, ExternalLink, ChevronDown, Shield } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 import Script from 'next/script';
 
@@ -175,6 +175,9 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
               {cat.title}
             </a>
           ))}
+          <a href="#data-privacy" className="shrink-0 px-3 py-1.5 rounded-full bg-violet-100 hover:bg-violet-200 dark:bg-violet-900/30 dark:hover:bg-violet-900/50 text-violet-700 dark:text-violet-300 text-sm font-bold transition-colors">
+            🔒 Data Privacy
+          </a>
         </div>
       </div>
 
@@ -339,6 +342,89 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                         </li>
                       );
                     })}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          </div>
+
+          {/* Data Privacy Platform Section */}
+          <div className="space-y-8 pt-8" id="data-privacy">
+            <div className="flex items-center gap-4 border-b-2 border-violet-200 dark:border-violet-900 pb-4">
+              <div className="p-2.5 bg-violet-600 rounded-xl">
+                <Shield size={22} className="text-white" />
+              </div>
+              <div>
+                <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Data Privacy Platform</h2>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Enterprise-grade database anonymization · GDPR · HIPAA · PCI-DSS · Free forever</p>
+              </div>
+              <Link href={`/${locale}/database-privacy` as any} className="ml-auto shrink-0 inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
+                <ExternalLink size={14} /> Open Platform
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {[
+                { id: 'dp-scanner', title: 'PII Scanner', desc: 'Auto-detect 30+ PII types across all databases', items: [
+                  { name: 'Sensitive Data Scanner', href: `/${locale}/database-privacy/scanner` },
+                  { name: 'Scanner Findings', href: `/${locale}/database-privacy/scanner/findings` },
+                ]},
+                { id: 'dp-masking', title: 'Data Masking', desc: 'Apply masking rules and anonymize sensitive columns', items: [
+                  { name: 'Masking Rules Builder', href: `/${locale}/database-privacy/masking/rules` },
+                  { name: 'Template Library', href: `/${locale}/database-privacy/masking/templates` },
+                  { name: 'Rule Marketplace', href: `/${locale}/database-privacy/masking/marketplace` },
+                  { name: 'Preview Before Execute', href: `/${locale}/database-privacy/masking/preview` },
+                ]},
+                { id: 'dp-connections', title: 'Connections & Explorer', desc: 'Manage database connections and browse schemas', items: [
+                  { name: 'Database Connections', href: `/${locale}/database-privacy/connections` },
+                  { name: 'Database Explorer', href: `/${locale}/database-privacy/explorer` },
+                  { name: 'Projects', href: `/${locale}/database-privacy/projects` },
+                  { name: 'Organizations', href: `/${locale}/database-privacy/organizations` },
+                ]},
+                { id: 'dp-jobs', title: 'Jobs & Scheduling', desc: 'Automate anonymization with scheduled jobs', items: [
+                  { name: 'Job Management', href: `/${locale}/database-privacy/jobs` },
+                  { name: 'Job History', href: `/${locale}/database-privacy/jobs/history` },
+                  { name: 'Job Scheduler', href: `/${locale}/database-privacy/jobs/scheduler` },
+                ]},
+                { id: 'dp-compliance', title: 'Compliance & Audit', desc: 'GDPR, HIPAA, PCI-DSS readiness and audit trails', items: [
+                  { name: 'Compliance Center', href: `/${locale}/database-privacy/compliance` },
+                  { name: 'Reports & Analytics', href: `/${locale}/database-privacy/reports` },
+                  { name: 'Audit Logs', href: `/${locale}/database-privacy/audit` },
+                ]},
+                { id: 'dp-io', title: 'Import & Export', desc: 'Upload datasets and export anonymized data', items: [
+                  { name: 'Import Dataset', href: `/${locale}/database-privacy/import` },
+                  { name: 'Export Data', href: `/${locale}/database-privacy/export` },
+                ]},
+                { id: 'dp-security', title: 'Security & Access', desc: 'API keys, secrets, webhooks, and team access', items: [
+                  { name: 'API Keys', href: `/${locale}/database-privacy/api-keys` },
+                  { name: 'Secrets Manager', href: `/${locale}/database-privacy/secrets` },
+                  { name: 'Webhooks', href: `/${locale}/database-privacy/webhooks` },
+                  { name: 'User Management', href: `/${locale}/database-privacy/users` },
+                  { name: 'Roles & Permissions', href: `/${locale}/database-privacy/users/roles` },
+                ]},
+                { id: 'dp-monitoring', title: 'Monitoring', desc: 'Real-time performance and worker node monitoring', items: [
+                  { name: 'Performance Monitor', href: `/${locale}/database-privacy/monitoring` },
+                  { name: 'Worker Nodes', href: `/${locale}/database-privacy/monitoring/workers` },
+                  { name: 'Queue Manager', href: `/${locale}/database-privacy/monitoring/queue` },
+                  { name: 'Settings', href: `/${locale}/database-privacy/settings` },
+                ]},
+              ].map((category) => (
+                <section key={category.id} id={category.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-violet-100 dark:border-violet-900/30 shadow-sm hover:shadow-md hover:border-violet-400/40 transition-all scroll-mt-24">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 bg-violet-50 dark:bg-violet-900/20 rounded-lg">
+                      <Shield size={18} className="text-violet-600 dark:text-violet-400" />
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white">{category.title}</h3>
+                  </div>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">{category.desc}</p>
+                  <ul className="space-y-2">
+                    {category.items.map((item) => (
+                      <li key={item.name}>
+                        <Link href={item.href as any} className="group flex items-center justify-between text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 py-0.5 transition-colors">
+                          <span>{item.name}</span>
+                          <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </section>
               ))}

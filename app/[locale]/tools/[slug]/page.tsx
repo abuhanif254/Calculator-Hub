@@ -1,5 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { ToastProvider } from '../../../components/platform/ui/Toast';
 import { getToolConfig, allToolsConfig } from '../../../../lib/data/tools';
 import dynamic from 'next/dynamic';
 
@@ -136,6 +137,7 @@ const MemeGeneratorTool = dynamic(() => import('../../../components/tools/MemeGe
 const ImageToBase64Tool = dynamic(() => import('../../../components/tools/ImageToBase64Tool').then(m => m.ImageToBase64Tool));
 const Base64ToImageTool = dynamic(() => import('../../../components/tools/Base64ToImageTool').then(m => m.Base64ToImageTool));
 const MortgageCalculatorUkTool = dynamic(() => import('../../../components/tools/MortgageCalculatorUkTool').then(m => m.MortgageCalculatorUkTool));
+const DatabaseAnonymizerTool = dynamic(() => import('../../../components/platform/ui/DatabaseAnonymizerTool').then(m => m.DatabaseAnonymizerTool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -278,6 +280,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'image-to-base64': ImageToBase64Tool,
   'base64-to-image': Base64ToImageTool,
   'mortgage-calculator-uk': MortgageCalculatorUkTool,
+  'database-anonymizer': DatabaseAnonymizerTool,
 };
 
 import fs from "fs";
@@ -487,7 +490,9 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
         {/* Main Tool Interface */}
         <section className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-2 sm:p-6 lg:p-8">
-          <ToolComponent />
+          <ToastProvider>
+            <ToolComponent />
+          </ToastProvider>
         </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8">
