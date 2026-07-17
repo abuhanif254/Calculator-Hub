@@ -32,6 +32,7 @@ const developerToolsMenu = [
     title: "Encoding & Security",
     icon: Shield,
     items: [
+      { name: "Data Privacy Platform", desc: "Enterprise Database Anonymizer", isNew: true, href: "/database-privacy", icon: Shield },
       { name: "Base64 Encode", desc: "Encode text to Base64" },
       { name: "Base64 Decode", desc: "Decode Base64 to text" },
       { name: "URL Encoder", desc: "Encode URL characters" },
@@ -282,21 +283,6 @@ export function Navbar() {
               </div>
             </div>
 
-            {/* ── Data Privacy Platform ── */}
-            <div className="px-3 py-2">
-              <Link
-                href={"/database-privacy" as any}
-                onClick={handleLinkClick}
-                className="flex items-center gap-1.5 text-sm font-semibold text-slate-800 hover:text-violet-600 dark:text-slate-200 dark:hover:text-violet-400 transition-colors group"
-              >
-                <div className="flex items-center justify-center w-5 h-5 rounded bg-violet-600 group-hover:bg-violet-500 transition-colors">
-                  <Shield size={12} className="text-white" />
-                </div>
-                Data Privacy
-                <span className="text-[10px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none">NEW</span>
-              </Link>
-            </div>
-
             {/* ── Calculators Unified Mega Menu ── */}
             <div className="px-3 py-2">
               <button 
@@ -441,14 +427,18 @@ export function Navbar() {
                     </button>
                     {mobileDevCategory === category.title && (
                       <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
-                        {category.items.map(item => (
+                        {category.items.map((item: any) => (
                           <Link
                             key={item.name}
-                            href={resolveIntlHref(resolveHref(item.name))}
+                            href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
                             className="block py-2 group/moblink"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
-                            <div className="text-sm font-medium text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231] transition-colors">{item.name}</div>
+                            <div className={`text-sm font-medium transition-colors flex items-center ${item.isNew ? 'text-violet-600 dark:text-violet-400' : 'text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231]'}`}>
+                              {item.icon && <item.icon size={14} className="mr-1.5 shrink-0" />}
+                              {item.name}
+                              {item.isNew && <span className="text-[9px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-2 shrink-0">NEW</span>}
+                            </div>
                             <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
                           </Link>
                         ))}
@@ -486,10 +476,10 @@ export function Navbar() {
                     </button>
                     {mobilePdfCategory === category.title && (
                       <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
-                        {category.items.map(item => (
+                        {category.items.map((item: any) => (
                           <Link
                             key={item.name}
-                            href={resolveIntlHref(resolveHref(item.name))}
+                            href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
                             className="block py-2 group/moblink"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
@@ -531,10 +521,10 @@ export function Navbar() {
                     </button>
                     {mobileImageCategory === category.title && (
                       <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
-                        {category.items.map(item => (
+                        {category.items.map((item: any) => (
                           <Link
                             key={item.name}
-                            href={resolveIntlHref(resolveHref(item.name))}
+                            href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
                             className="block py-2 group/moblink"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
@@ -548,21 +538,6 @@ export function Navbar() {
                 ))}
               </div>
             )}
-          </div>
-
-          {/* Data Privacy Mobile Link */}
-          <div className="py-1">
-            <Link
-              href={"/database-privacy" as any}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full flex items-center gap-2 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-200 hover:bg-violet-50 dark:hover:bg-violet-900/20 rounded-md transition-colors"
-            >
-              <div className="flex items-center justify-center w-6 h-6 rounded bg-violet-600">
-                <Shield size={14} className="text-white" />
-              </div>
-              Data Privacy Platform
-              <span className="text-[10px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-auto">NEW</span>
-            </Link>
           </div>
 
           {/* Calculators Mobile Accordion */}
@@ -639,6 +614,9 @@ interface DevMenuCategoryItem {
   name: string;
   desc: string;
   slug?: string;
+  isNew?: boolean;
+  href?: string;
+  icon?: React.ComponentType<{ size?: number; className?: string }>;
 }
 interface DevMenuCat {
   title: string;
@@ -666,14 +644,20 @@ function DevMenuColumn({
         </h3>
       </div>
       <ul className={`space-y-0 ${compact ? 'max-h-[200px]' : 'max-h-[360px]'} overflow-y-auto custom-scrollbar`}>
-        {category.items.map(item => (
+        {category.items.map((item: any) => (
           <li key={item.name}>
             <Link
-              href={resolveIntlHref(item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
+              href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
               onClick={handleLinkClick}
-              className="block px-2 py-1.5 text-[13px] text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md transition-all leading-tight"
+              className={`flex items-center px-2 py-1.5 text-[13px] rounded-md transition-all leading-tight ${
+                item.isNew 
+                  ? 'text-violet-700 dark:text-violet-300 hover:bg-violet-50 dark:hover:bg-violet-900/20 font-semibold'
+                  : 'text-slate-600 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] hover:bg-slate-50 dark:hover:bg-slate-800/50'
+              }`}
             >
-              {item.name}
+              {item.icon && <item.icon size={14} className="mr-1.5 shrink-0" />}
+              <span className="truncate">{item.name}</span>
+              {item.isNew && <span className="text-[9px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-auto shrink-0">NEW</span>}
             </Link>
           </li>
         ))}

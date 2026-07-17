@@ -2817,6 +2817,26 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "financial"
+  },
+  {
+    slug: "advanced-sleep-cycle-calculator",
+    slugs: {
+      en: "advanced-sleep-cycle-calculator",
+      es: "calculadora-avanzada-ciclo-de-sueno",
+      de: "erweiterter-schlafzyklus-rechner",
+      fr: "calculatrice-avancee-cycle-de-sommeil"
+    },
+    title: "Advanced Sleep Cycle Calculator",
+    category: "Health & Fitness",
+    description: "Calculate the exact time to go to bed or wake up using 90-minute REM sleep cycles and age-based recommendations.",
+    meta: {
+      title: "Advanced Sleep Cycle Calculator | Best Time to Wake Up",
+      description: "Free advanced sleep cycle calculator to prevent sleep inertia.",
+      keywords: "sleep cycle calculator, best time to wake up, sleep calculator",
+      lastUpdated: "2026-07-17"
+    },
+    fields: [],
+    logicModule: "fitness"
   }
 ];
 

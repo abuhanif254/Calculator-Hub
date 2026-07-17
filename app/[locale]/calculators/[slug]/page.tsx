@@ -330,6 +330,42 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <AdSenseContainer slot="calculator_sidebar_top" style={{ minHeight: '250px' }} />
           </div>
 
+          {/* Features */}
+          {mdData?.data?.features && mdData.data.features.length > 0 && (
+            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-500"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Key Features
+              </h3>
+              <ul className="space-y-3">
+                {mdData.data.features.map((feature: string, idx: number) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#518231] shrink-0 mt-2"></div>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Use Cases */}
+          {mdData?.data?.useCases && mdData.data.useCases.length > 0 && (
+            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg>
+                Common Use Cases
+              </h3>
+              <ul className="space-y-3">
+                {mdData.data.useCases.map((useCase: string, idx: number) => (
+                  <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-2"></div>
+                    {useCase}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {/* Page Links / Quick Navigation */}
           <div className="bg-slate-900 rounded-2xl shadow-sm border border-slate-800 p-6 text-white">
             <h3 className="text-lg font-bold mb-4 pb-4 border-b border-slate-800">Quick Links</h3>
