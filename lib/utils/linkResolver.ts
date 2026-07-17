@@ -57,6 +57,7 @@ const titleOverrides: Record<string, string> = {
   "HEIC to JPG": "/tools/heic-to-jpg",
   "SVG to PNG": "/tools/svg-to-png",
   "Favicon Generator": "/tools/favicon-generator",
+  "Database Dump Anonymizer": "/tools/database-anonymizer",
   "PNG to SVG": "/tools/png-to-svg",
   "PNG to SVG Converter": "/tools/png-to-svg",
   "SVG Optimizer": "/tools/svg-optimizer",

@@ -167,7 +167,8 @@ export const developerToolsMenu = [
       { name: "User Agent Parser", desc: "Parse User Agent strings" },
       { name: "MIME Type Checker", desc: "Check MIME types" },
       { name: "Favicon Generator", desc: "Generate website icons and PWA manifests", isNew: true, slug: "favicon-generator" },
-      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" }]
+      { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" },
+      { name: "Database Dump Anonymizer", desc: "Mask PII in SQL/CSV dumps", isNew: true, slug: "database-anonymizer" }]
   }
 ];
 

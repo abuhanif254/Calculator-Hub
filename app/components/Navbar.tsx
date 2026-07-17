@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Link, resolveIntlHref } from "../../i18n/routing";
-import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon } from "lucide-react";
+import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon, Database } from "lucide-react";
 import { sitemapCategories, pdfToolsMenu, imageToolsMenu } from "../../lib/data/sitemapData";
 import { resolveHref } from "../../lib/utils/linkResolver";
 import { AuthButton } from "./AuthButton";
@@ -104,6 +104,7 @@ const developerToolsMenu = [
       { name: "MIME Type Checker", desc: "Check MIME types" },
       { name: "Favicon Generator", desc: "Generate website icons and PWA manifests", slug: "favicon-generator" },
       { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", slug: "svg-optimizer" },
+      { name: "Database Dump Anonymizer", desc: "Mask PII in SQL/CSV dumps", isNew: true, slug: "database-anonymizer" },
     ]
   },
   {
@@ -279,6 +280,21 @@ export function Navbar() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* ── Data Privacy Platform ── */}
+            <div className="px-3 py-2">
+              <Link
+                href={"/database-privacy" as any}
+                onClick={handleLinkClick}
+                className="flex items-center gap-1.5 text-sm font-semibold text-slate-800 hover:text-violet-600 dark:text-slate-200 dark:hover:text-violet-400 transition-colors group"
+              >
+                <div className="flex items-center justify-center w-5 h-5 rounded bg-violet-600 group-hover:bg-violet-500 transition-colors">
+                  <Shield size={12} className="text-white" />
+                </div>
+                Data Privacy
+                <span className="text-[10px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none">NEW</span>
+              </Link>
             </div>
 
             {/* ── Calculators Unified Mega Menu ── */}
@@ -532,6 +548,21 @@ export function Navbar() {
                 ))}
               </div>
             )}
+          </div>
+
+          {/* Data Privacy Mobile Link */}
+          <div className="py-1">
+            <Link
+              href={"/database-privacy" as any}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full flex items-center gap-2 px-3 py-3 text-sm font-bold text-slate-900 dark:text-slate-200 hover:bg-violet-50 dark:hover:bg-violet-900/20 rounded-md transition-colors"
+            >
+              <div className="flex items-center justify-center w-6 h-6 rounded bg-violet-600">
+                <Shield size={14} className="text-white" />
+              </div>
+              Data Privacy Platform
+              <span className="text-[10px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-auto">NEW</span>
+            </Link>
           </div>
 
           {/* Calculators Mobile Accordion */}
