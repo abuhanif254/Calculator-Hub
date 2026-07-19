@@ -143,6 +143,7 @@ const calcCategoryIcons: Record<string, React.ComponentType<{ size?: number; cla
   "math": Hash,
   "other": Grid3X3,
   "weather": CloudSnow,
+  "physics": Zap,
 };
 
 export function Navbar() {
@@ -299,7 +300,7 @@ export function Navbar() {
               <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'calculators' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
-                    <div className="grid grid-cols-5 gap-x-6">
+                    <div className="grid grid-cols-6 gap-x-6">
                       {navCategories.map((category) => {
                         const IconComp = calcCategoryIcons[category.id] || Calculator;
                         return (

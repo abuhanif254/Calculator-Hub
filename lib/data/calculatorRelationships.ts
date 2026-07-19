@@ -82,7 +82,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   'loan-calculator': [
     'mortgage-calculator', 'auto-loan-calculator', 'personal-loan-calculator',
     'student-loan-calculator', 'payment-calculator', 'interest-calculator', 'commission-calculator',
-    'cd-calculator', 'tip-calculator'
+    'cd-calculator', 'tip-calculator', 'zakat-calculator'
   ],
   'auto-loan-calculator': [
     'loan-calculator', 'payment-calculator', 'interest-calculator',
@@ -116,7 +116,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'compound-interest-calculator': [
     'simple-interest-calculator', 'interest-calculator', 'investment-calculator',
-    'savings-calculator', 'future-value-calculator', 'cd-calculator'
+    'savings-calculator', 'future-value-calculator', 'cd-calculator', 'zakat-calculator'
   ],
   'simple-interest-calculator': [
     'compound-interest-calculator', 'interest-calculator', 'loan-calculator',
@@ -140,7 +140,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   'investment-calculator': [
     'compound-interest-calculator', 'irr-calculator', 'retirement-calculator',
     'mutual-fund-calculator', 'average-return-calculator', 'future-value-calculator', 'rent-vs-buy-calculator',
-    'commission-calculator', 'cd-calculator'
+    'commission-calculator', 'cd-calculator', 'zakat-calculator'
   ],
   'irr-calculator': [
     'investment-calculator', 'real-estate-calculator', 'finance-calculator',
@@ -285,6 +285,20 @@ export const calculatorRelationships: Record<string, string[]> = {
     'sales-tax-calculator', 'vat-calculator', 'percent-off-calculator',
     'percentage-calculator', 'currency-calculator', 'loan-calculator'
   ],
+  'zakat-calculator': [
+    'percentage-calculator', 'investment-calculator', 'compound-interest-calculator',
+    'currency-calculator', 'loan-calculator'
+  ],
+  'projectile-motion-calculator': [
+    'velocity-calculator', 'acceleration-calculator', 'force-calculator',
+    'momentum-calculator', 'kinetic-energy-calculator', 'potential-energy-calculator',
+    'free-fall-calculator', 'work-calculator', 'power-calculator'
+  ],
+  'velocity-calculator': [
+    'acceleration-calculator', 'distance-calculator', 'time-calculator',
+    'projectile-motion-calculator', 'force-calculator', 'momentum-calculator',
+    'kinetic-energy-calculator', 'free-fall-calculator'
+  ],
 
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [
@@ -366,7 +380,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   'percentage-calculator': [
     'fraction-calculator', 'percent-off-calculator', 'scientific-calculator',
     'margin-calculator', 'sales-tax-calculator', 'binary-calculator', 'percent-error-calculator',
-    'tip-calculator'
+    'tip-calculator', 'zakat-calculator'
   ],
   'statistics-calculator': [
     'standard-deviation-calculator', 'p-value-calculator', 'graphing-calculator',
@@ -448,7 +462,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'currency-calculator': [
     'conversion-calculator', 'inflation-calculator', 'sales-tax-calculator',
-    'vat-calculator', 'percentage-calculator', 'tip-calculator'
+    'vat-calculator', 'percentage-calculator', 'tip-calculator', 'zakat-calculator'
   ],
   'subnet-calculator': [
     'conversion-calculator', 'scientific-calculator', 'password-generator',

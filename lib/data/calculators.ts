@@ -2877,6 +2877,66 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "financial"
+  },
+  {
+    slug: "zakat-calculator",
+    slugs: {
+      en: "zakat-calculator",
+      es: "calculadora-de-zakat",
+      de: "zakat-rechner",
+      fr: "calculateur-de-zakat"
+    },
+    title: "Zakat Calculator",
+    category: "Financial",
+    description: "Calculate your annual Zakat online. Formulate cash, gold, silver, investments, crypto, and business inventory against custom liabilities using standard Nisab thresholds.",
+    meta: {
+      title: "Zakat Calculator – Calculate Your Zakat Instantly",
+      description: "Free online Islamic Zakat Calculator. Calculate Zakat on your assets (cash, gold, silver, stocks, crypto, business) and subtract liabilities based on Nisab.",
+      keywords: "zakat calculator, islamic zakat calculator, gold nisab, silver nisab, calculate zakat, zakat wealth calculator, alms calculator",
+      lastUpdated: "2026-07-19"
+    },
+    fields: [],
+    logicModule: "financial"
+  },
+  {
+    slug: "projectile-motion-calculator",
+    slugs: {
+      en: "projectile-motion-calculator",
+      es: "calculadora-de-movimiento-de-proyectiles",
+      de: "projektilbewegung-rechner",
+      fr: "calculateur-de-mouvement-de-projectile"
+    },
+    title: "Projectile Motion Calculator",
+    category: "Physics",
+    description: "Calculate and simulate 2D projectile motion. Model trajectory paths, horizontal range, maximum height, flight time, and velocities under drag or planetary gravity presets.",
+    meta: {
+      title: "Projectile Motion Calculator | Interactive Physics Simulator",
+      description: "Free online Projectile Motion Calculator. Simulate 2D trajectories, calculate range, maximum height, peak time, velocity vectors, and impact parameters with drag.",
+      keywords: "projectile motion calculator, projectile motion simulator, trajectory calculator, kinematics solver, flight path physics, physics calculator, projectile target simulator",
+      lastUpdated: "2026-07-19"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "velocity-calculator",
+    slugs: {
+      en: "velocity-calculator",
+      es: "calculadora-de-velocidad",
+      de: "geschwindigkeitsrechner",
+      fr: "calculateur-de-vitesse"
+    },
+    title: "Velocity Calculator",
+    category: "Physics",
+    description: "Calculate velocity, distance, or time of a moving object. Convert between metric and imperial units, compare real-world speeds, and simulate motion paths.",
+    meta: {
+      title: "Velocity Calculator | Speed, Distance & Time Simulator",
+      description: "Free online Velocity Calculator. Instantly solve v = d/t equations, convert units, simulate motion on interactive timelines, and compare escape speeds.",
+      keywords: "velocity calculator, speed calculator, distance time calculator, average velocity, physics calculator, kinematics solver, escape velocity calculator, speed converter",
+      lastUpdated: "2026-07-19"
+    },
+    fields: [],
+    logicModule: "physics"
   }
 ];
 
