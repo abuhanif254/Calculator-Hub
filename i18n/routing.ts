@@ -147,6 +147,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-d-erreur-pourcentage',
       de: '/rechner/prozentualer-fehler-rechner'
     },
+    '/calculators/snow-day-calculator': {
+      en: '/calculators/snow-day-calculator',
+      es: '/calculadoras/calculadora-de-dia-de-nieve',
+      fr: '/calculatrices/calculateur-jour-de-neige',
+      de: '/rechner/schneefreier-tag-rechner'
+    },
     '/calculators/height-calculator': {
       en: '/calculators/height-calculator',
       es: '/calculadoras/calculadora-de-altura',
@@ -182,6 +188,12 @@ export const routing = defineRouting({
       es: '/calculadoras/calculadora-de-cd',
       fr: '/calculatrices/calculateur-de-compte-de-depot',
       de: '/rechner/festgeldrechner'
+    },
+    '/calculators/tip-calculator': {
+      en: '/calculators/tip-calculator',
+      es: '/calculadoras/calculadora-de-propinas',
+      fr: '/calculatrices/calculateur-de-pourboire',
+      de: '/rechner/trinkgeldrechner'
     },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {

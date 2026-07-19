@@ -192,16 +192,6 @@ const nextConfig: NextConfig = {
       },
       // Redirects for deleted/missing calculators
       {
-        source: '/:locale/calculators/tip-calculator',
-        destination: '/:locale/calculators/category/financial',
-        permanent: true,
-      },
-      {
-        source: '/:locale/calculadoras/tip-calculator',
-        destination: '/:locale/calculadoras/category/financial',
-        permanent: true,
-      },
-      {
         source: '/:locale/rechner/day-counter',
         destination: '/:locale/rechner/category/math-science',
         permanent: true,

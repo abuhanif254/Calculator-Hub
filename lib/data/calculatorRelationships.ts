@@ -82,7 +82,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   'loan-calculator': [
     'mortgage-calculator', 'auto-loan-calculator', 'personal-loan-calculator',
     'student-loan-calculator', 'payment-calculator', 'interest-calculator', 'commission-calculator',
-    'cd-calculator'
+    'cd-calculator', 'tip-calculator'
   ],
   'auto-loan-calculator': [
     'loan-calculator', 'payment-calculator', 'interest-calculator',
@@ -206,11 +206,11 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'sales-tax-calculator': [
     'income-tax-calculator', 'vat-calculator', 'percent-off-calculator',
-    'margin-calculator', 'inflation-calculator', 'commission-calculator'
+    'margin-calculator', 'inflation-calculator', 'commission-calculator', 'tip-calculator'
   ],
   'vat-calculator': [
     'sales-tax-calculator', 'income-tax-calculator', 'margin-calculator',
-    'percent-off-calculator', 'inflation-calculator'
+    'percent-off-calculator', 'inflation-calculator', 'tip-calculator'
   ],
   'marriage-tax-calculator': [
     'income-tax-calculator', 'salary-calculator', 'estate-tax-calculator',
@@ -267,7 +267,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'percent-off-calculator': [
     'margin-calculator', 'sales-tax-calculator', 'percentage-calculator',
-    'vat-calculator', 'inflation-calculator'
+    'vat-calculator', 'inflation-calculator', 'tip-calculator'
   ],
   'depreciation-calculator': [
     'lease-calculator', 'auto-loan-calculator', 'real-estate-calculator',
@@ -280,6 +280,10 @@ export const calculatorRelationships: Record<string, string[]> = {
   'college-cost-calculator': [
     'student-loan-calculator', 'savings-calculator', 'budget-calculator',
     'compound-interest-calculator', 'investment-calculator'
+  ],
+  'tip-calculator': [
+    'sales-tax-calculator', 'vat-calculator', 'percent-off-calculator',
+    'percentage-calculator', 'currency-calculator', 'loan-calculator'
   ],
 
   // ─── Health & Fitness ────────────────────────────
@@ -361,7 +365,8 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'percentage-calculator': [
     'fraction-calculator', 'percent-off-calculator', 'scientific-calculator',
-    'margin-calculator', 'sales-tax-calculator', 'binary-calculator', 'percent-error-calculator'
+    'margin-calculator', 'sales-tax-calculator', 'binary-calculator', 'percent-error-calculator',
+    'tip-calculator'
   ],
   'statistics-calculator': [
     'standard-deviation-calculator', 'p-value-calculator', 'graphing-calculator',
@@ -443,7 +448,7 @@ export const calculatorRelationships: Record<string, string[]> = {
   ],
   'currency-calculator': [
     'conversion-calculator', 'inflation-calculator', 'sales-tax-calculator',
-    'vat-calculator', 'percentage-calculator'
+    'vat-calculator', 'percentage-calculator', 'tip-calculator'
   ],
   'subnet-calculator': [
     'conversion-calculator', 'scientific-calculator', 'password-generator',
@@ -461,6 +466,10 @@ export const calculatorRelationships: Record<string, string[]> = {
     'retirement-calculator', 'loan-calculator', 'budget-calculator', 'bond-calculator',
     'interest-calculator', 'interest-rate-calculator'
   ],
+  'snow-day-calculator': [
+    'wind-chill-calculator', 'heat-index-calculator', 'weather-calculator',
+    'rainfall-calculator', 'temperature-converter', 'snowfall-unit-converter'
+  ]
 };
 
 /**

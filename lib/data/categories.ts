@@ -112,6 +112,29 @@ The **Subnet Calculator** handles IPv4 CIDR notation for network engineers. The 
 
 ### Conversions
 Convert between units of measurement, currencies, and number systems. Our **Conversion Calculator** supports hundreds of unit pairs across length, weight, volume, and temperature.`
+  },
+  {
+    id: 'weather',
+    title: 'Weather Calculators',
+    dbCategory: ['Weather', 'Weather Calculators'],
+    description: 'Calculate wind chill, heat index, snow day probability, and other weather factors.',
+    icon: 'CloudSnow',
+    seoTitle: 'Weather Calculators | Wind Chill, Heat Index & Snow Day Tools',
+    seoDescription: 'Free online weather calculators. Calculate snow day probabilities, wind chill index, heat index, and relative humidity with precision.',
+    pillarContent: `## Weather Calculators
+
+Plan for the elements and understand the atmosphere. Our suite of **weather and climate calculators** provides precise tools for estimating environmental indices, temperature conversions, precipitation rates, and safety forecasts.
+
+### Winter Hazards & Predictions
+The **Snow Day Calculator** estimates school closure probabilities based on a combination of regional threshold parameters, temperature, icing, road conditions, and school levels. Use the **Wind Chill Calculator** to compute human-perceived temperature under windy conditions.
+
+### Summer Heat & Humidity
+Estimate heat stress and human discomfort with the **Heat Index Calculator**. Track humidity levels, dew points, and evaporation indexes to prepare for hot weather.
+
+### General Meteorology
+Convert temperatures between Celsius, Fahrenheit, and Kelvin instantly, or perform rainfall and liquid-to-solid snow conversions using meteorologically sound parameters.
+
+All computations are processed locally in your browser to maintain your geographic privacy.`
   }
 ];
 
