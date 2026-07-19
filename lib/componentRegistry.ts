@@ -81,6 +81,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'currency-calculator': dynamic(() => import('@/app/components/CurrencyCalculatorView').then(m => ({ default: m.CurrencyCalculatorView as ComponentType<CalcComponentProps> }))),
   'savings-calculator': dynamic(() => import('@/app/components/SavingsCalculatorView').then(m => ({ default: m.SavingsCalculatorView as ComponentType<CalcComponentProps> }))),
   'cd-calculator': dynamic(() => import('@/app/components/CDCalculatorView').then(m => ({ default: m.CDCalculatorView as ComponentType<CalcComponentProps> }))),
+  'tip-calculator': dynamic(() => import('@/app/components/TipCalculatorView').then(m => ({ default: m.TipCalculatorView as ComponentType<CalcComponentProps> }))),
 
   // ─── Math & Science ────────────────────────────
   'binary-calculator': dynamic(() => import('@/app/components/BinaryCalculatorView').then(m => ({ default: m.BinaryCalculatorView as ComponentType<CalcComponentProps> }))),
@@ -122,12 +123,17 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'due-date-calculator': dynamic(() => import('@/app/components/DueDateCalculatorView').then(m => ({ default: m.DueDateCalculatorView as ComponentType<CalcComponentProps> }))),
   'advanced-sleep-cycle-calculator': dynamic(() => import('@/app/components/AdvancedSleepCycleCalculatorView').then(m => ({ default: m.AdvancedSleepCycleCalculatorView as ComponentType<CalcComponentProps> }))),
 
+  // ─── Weather ───────────────────────────────────
+  'snow-day-calculator': dynamic(() => import('@/app/components/SnowDayCalculatorView').then(m => ({ default: m.SnowDayCalculatorView as ComponentType<CalcComponentProps> }))),
+
   // ─── Other ─────────────────────────────────────
   'age-calculator': dynamic(() => import('@/app/components/AgeCalculatorView').then(m => ({ default: m.AgeCalculatorView as ComponentType<CalcComponentProps> }))),
   'subnet-calculator': dynamic(() => import('@/app/components/SubnetCalculatorView').then(m => ({ default: m.SubnetCalculatorView as ComponentType<CalcComponentProps> }))),
   'ip-subnet-calculator': dynamic(() => import('@/app/components/IpSubnetCalculatorView').then(m => ({ default: m.IpSubnetCalculatorView as ComponentType<CalcComponentProps> }))),
   'password-generator': dynamic(() => import('@/app/components/PasswordGeneratorView').then(m => ({ default: m.PasswordGeneratorView as ComponentType<CalcComponentProps> }))),
 };
+
+console.log("[DEBUG REGISTRY] Registered keys:", Object.keys(registry));
 
 // Fallback generic calculator component
 const FallbackCalculator = dynamic(() => import('@/app/components/Calculator').then(m => ({ default: m.Calculator as ComponentType<CalcComponentProps> })));
@@ -137,5 +143,6 @@ const FallbackCalculator = dynamic(() => import('@/app/components/Calculator').t
  * Falls back to the generic Calculator component if no custom view exists.
  */
 export function getCalculatorComponent(slug: string): ComponentType<CalcComponentProps> {
+  console.log("[DEBUG REGISTRY] slug requested:", slug, "found in registry:", !!registry[slug]);
   return registry[slug] ?? FallbackCalculator;
 }

@@ -12,9 +12,12 @@ interface CalculatorViewWrapperProps {
 export function CalculatorViewWrapper({ calcDef, locale }: CalculatorViewWrapperProps) {
   const [Component, setComponent] = useState<ComponentType<any> | null>(null);
 
+  console.log("[DEBUG WRAPPER RENDER] slug:", calcDef.slug, "Component state:", Component ? "Loaded" : "Null");
+
   useEffect(() => {
     // Retrieve the dynamic component strictly on the client side after mounting
     const LoadedComponent = getCalculatorComponent(calcDef.slug);
+    console.log("[DEBUG WRAPPER EFFECT] slug:", calcDef.slug, "Loaded Component:", LoadedComponent ? (LoadedComponent.displayName || LoadedComponent.name || "Unnamed") : "None");
     setComponent(() => LoadedComponent);
   }, [calcDef.slug]);
 

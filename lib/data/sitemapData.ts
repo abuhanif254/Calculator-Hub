@@ -1,4 +1,4 @@
-import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase, File, Image as ImageIcon, Lock, Settings } from "lucide-react";
+import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase, File, Image as ImageIcon, Lock, Settings, CloudSnow } from "lucide-react";
 
 export const sitemapCategories = [
   {
@@ -7,7 +7,7 @@ export const sitemapCategories = [
     icon: DollarSign,
     description: "Explore our free suite of financial tools to accurately calculate mortgages, auto loans, ROI, and retirement planning.",
     links: [
-      "Mortgage Calculator", "Mortgage Calculator UK", "Savings Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
+      "Mortgage Calculator", "Mortgage Calculator UK", "Savings Calculator", "Tip Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
       "Payment Calculator", "Retirement Calculator", "Amortization Calculator", "Investment Calculator",
       "Inflation Calculator", "Finance Calculator", "Income Tax Calculator", "Compound Interest Calculator",
       "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator", "Currency Calculator",
@@ -55,6 +55,15 @@ export const sitemapCategories = [
       "Age Calculator", "Date Calculator", "Time Calculator", "Hours Calculator",
       "GPA Calculator", "Grade Calculator", "Concrete Calculator", "Subnet Calculator",
       "Conversion Calculator", "Height Calculator", "IP Subnet Calculator"]
+  },
+  {
+    title: "Weather Calculators",
+    id: "weather",
+    icon: CloudSnow,
+    description: "Calculate wind chill, heat index, snow day probability, and other weather factors.",
+    links: [
+      "Snow Day Calculator"
+    ]
   },
   {
     title: "Calculators for Your Site",

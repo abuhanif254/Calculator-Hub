@@ -2837,6 +2837,46 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "fitness"
+  },
+  {
+    slug: "snow-day-calculator",
+    slugs: {
+      en: "snow-day-calculator",
+      es: "calculadora-de-dia-de-nieve",
+      de: "schneefreier-tag-rechner",
+      fr: "calculateur-jour-de-neige"
+    },
+    title: "Snow Day Calculator",
+    category: "Weather",
+    description: "Estimate the probability of a school closure (snow day) based on snowfall forecast, temperature, wind speed, road conditions, and school district characteristics.",
+    meta: {
+      title: "Snow Day Calculator | School Closure Probability Predictor",
+      description: "Calculate your school's closure probability during winter storms. Factors in snowfall accumulation, temperature, ice, wind chill, road conditions, school level, and region.",
+      keywords: "snow day calculator, school closure predictor, snow day probability, school closing prediction, winter storm road conditions, snow accumulation guide",
+      lastUpdated: "2026-07-18"
+    },
+    fields: [],
+    logicModule: "weather"
+  },
+  {
+    slug: "tip-calculator",
+    slugs: {
+      en: "tip-calculator",
+      es: "calculadora-de-propinas",
+      de: "trinkgeldrechner",
+      fr: "calculateur-de-pourboire"
+    },
+    title: "Tip Calculator",
+    category: "Financial",
+    description: "Calculate standard tips, service charges, discounts, sales taxes, and split restaurant bills instantly across multiple currencies and international customs.",
+    meta: {
+      title: "Tip Calculator – Calculate Tips & Split Bills Instantly",
+      description: "Calculate tip percentages, split bills with up to 100 people, apply tax, discounts, service charges, and review worldwide tipping customs with our free online calculator.",
+      keywords: "tip calculator, bill splitter, split bill, restaurant tip, gratuity calculator, calculate tip, tip splitting, international tipping, dining calculator",
+      lastUpdated: "2026-07-19"
+    },
+    fields: [],
+    logicModule: "financial"
   }
 ];
 
