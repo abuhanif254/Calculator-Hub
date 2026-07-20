@@ -213,6 +213,90 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-vitesse',
       de: '/rechner/geschwindigkeitsrechner'
     },
+    '/calculators/acceleration-calculator': {
+      en: '/calculators/acceleration-calculator',
+      es: '/calculadoras/calculadora-de-aceleracion',
+      fr: '/calculatrices/calculateur-d-acceleration',
+      de: '/rechner/beschleunigungsrechner'
+    },
+    '/calculators/force-calculator': {
+      en: '/calculators/force-calculator',
+      es: '/calculadoras/calculadora-de-fuerza',
+      fr: '/calculatrices/calculateur-de-force',
+      de: '/rechner/kraftrechner'
+    },
+    '/calculators/momentum-calculator': {
+      en: '/calculators/momentum-calculator',
+      es: '/calculadoras/calculadora-de-momento',
+      fr: '/calculatrices/calculateur-de-quantite-de-mouvement',
+      de: '/rechner/impulsrechner'
+    },
+    '/calculators/kinetic-energy-calculator': {
+      en: '/calculators/kinetic-energy-calculator',
+      es: '/calculadoras/calculadora-de-energia-cinetica',
+      fr: '/calculatrices/calculateur-d-energie-cinetique',
+      de: '/rechner/kinetische-energie-rechner'
+    },
+    '/calculators/potential-energy-calculator': {
+      en: '/calculators/potential-energy-calculator',
+      es: '/calculadoras/calculadora-de-energia-potencial',
+      fr: '/calculatrices/calculateur-d-energie-potentielle',
+      de: '/rechner/potenzielle-energie-rechner'
+    },
+    '/calculators/free-fall-calculator': {
+      en: '/calculators/free-fall-calculator',
+      es: '/calculadoras/calculadora-de-caida-libre',
+      fr: '/calculatrices/calculateur-de-chute-libre',
+      de: '/rechner/freier-fall-rechner'
+    },
+    '/calculators/work-calculator': {
+      en: '/calculators/work-calculator',
+      es: '/calculadoras/calculadora-de-trabajo',
+      fr: '/calculatrices/calculateur-de-travail',
+      de: '/rechner/arbeit-rechner'
+    },
+    '/calculators/power-calculator': {
+      en: '/calculators/power-calculator',
+      es: '/calculadoras/calculadora-de-potencia',
+      fr: '/calculatrices/calculateur-de-puissance',
+      de: '/rechner/leistung-rechner'
+    },
+    '/calculators/density-calculator': {
+      en: '/calculators/density-calculator',
+      es: '/calculadoras/calculadora-de-densidad',
+      fr: '/calculatrices/calculateur-de-masse-volumique',
+      de: '/rechner/dichte-rechner'
+    },
+    '/calculators/weight-calculator': {
+      en: '/calculators/weight-calculator',
+      es: '/calculadoras/calculadora-de-peso',
+      fr: '/calculatrices/calculateur-de-poids',
+      de: '/rechner/gewicht-rechner'
+    },
+    '/calculators/ohms-law-calculator': {
+      en: '/calculators/ohms-law-calculator',
+      es: '/calculadoras/calculadora-ley-de-ohm',
+      fr: '/calculatrices/calculateur-loi-d-ohm',
+      de: '/rechner/ohmsches-gesetz-rechner'
+    },
+    '/calculators/voltage-calculator': {
+      en: '/calculators/voltage-calculator',
+      es: '/calculadoras/calculadora-de-voltaje',
+      fr: '/calculatrices/calculateur-de-tension',
+      de: '/rechner/spannung-rechner'
+    },
+    '/calculators/current-calculator': {
+      en: '/calculators/current-calculator',
+      es: '/calculadoras/calculadora-de-corriente',
+      fr: '/calculatrices/calculateur-de-courant',
+      de: '/rechner/strom-rechner'
+    },
+    '/calculators/resistance-calculator': {
+      en: '/calculators/resistance-calculator',
+      es: '/calculadoras/calculadora-de-resistencia',
+      fr: '/calculatrices/calculateur-de-resistance',
+      de: '/rechner/widerstand-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

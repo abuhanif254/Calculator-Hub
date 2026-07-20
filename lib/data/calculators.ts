@@ -2937,6 +2937,286 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "physics"
+  },
+  {
+    slug: "acceleration-calculator",
+    slugs: {
+      en: "acceleration-calculator",
+      es: "calculadora-de-aceleracion",
+      de: "beschleunigungsrechner",
+      fr: "calculateur-d-acceleration"
+    },
+    title: "Acceleration Calculator",
+    category: "Physics",
+    description: "Calculate acceleration, initial/final velocity, or time duration. Features G-force gauge, animated motion timelines, presets, and interactive graphs.",
+    meta: {
+      title: "Acceleration Calculator | Physics G-Force & Motion Solver",
+      description: "Free online Acceleration Calculator. Solve a = (vf - vi)/t, convert units, view interactive G-force arc gauges, and simulate vehicle speed acceleration timelines.",
+      keywords: "acceleration calculator, average acceleration, deceleration calculator, g-force calculator, kinematics calculator, physics solver, final velocity calculator",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "force-calculator",
+    slugs: {
+      en: "force-calculator",
+      es: "calculadora-de-fuerza",
+      de: "kraftrechner",
+      fr: "calculateur-de-force"
+    },
+    title: "Force Calculator",
+    category: "Physics",
+    description: "Calculate force, mass, or acceleration using Newton's Second Law (F = m · a). Features arc force gauge, vector animation, real-world presets, and graphs.",
+    meta: {
+      title: "Force Calculator | Newton's Second Law (F = ma) Solver",
+      description: "Free online Force Calculator. Instantly solve F = ma, convert units across N, lbf, kgf, and dyne, view vector motion animations, and compare real-world forces.",
+      keywords: "force calculator, newtons second law calculator, f ma calculator, net force calculator, physics force solver, force mass acceleration calculator",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "momentum-calculator",
+    slugs: {
+      en: "momentum-calculator",
+      es: "calculadora-de-momento",
+      de: "impulsrechner",
+      fr: "calculateur-de-quantite-de-mouvement"
+    },
+    title: "Momentum Calculator",
+    category: "Physics",
+    description: "Calculate linear momentum (p = m · v), mass, or velocity. Features 1D collision explorer, momentum vs kinetic energy comparison, planet mode, and arc gauges.",
+    meta: {
+      title: "Momentum Calculator | Linear Momentum & Collision Simulator",
+      description: "Free online Momentum Calculator. Solve p = mv, simulate 1D elastic and inelastic collisions, compare momentum vs kinetic energy, and analyze real-world speeds.",
+      keywords: "momentum calculator, linear momentum calculator, p mv calculator, collision calculator, impulse calculator, momentum formula physics, kinetic energy momentum",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "kinetic-energy-calculator",
+    slugs: {
+      en: "kinetic-energy-calculator",
+      es: "calculadora-de-energia-cinetica",
+      de: "kinetische-energie-rechner",
+      fr: "calculateur-d-energie-cinetique"
+    },
+    title: "Kinetic Energy Calculator",
+    category: "Physics",
+    description: "Calculate kinetic energy (KE = ½m·v²), mass, or velocity. Features velocity impact simulator, energy breakdown panel, mechanical energy hub, and planet mode.",
+    meta: {
+      title: "Kinetic Energy Calculator | Motion Energy (KE = ½mv²) Solver",
+      description: "Free online Kinetic Energy Calculator. Instantly solve KE = ½mv², analyze quadratic velocity impact graphs, convert units across J, kJ, MJ, and kWh, and explore real-world motion.",
+      keywords: "kinetic energy calculator, ke calculator, motion energy calculator, kinetic energy formula, work energy theorem, velocity impact simulator",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "potential-energy-calculator",
+    slugs: {
+      en: "potential-energy-calculator",
+      es: "calculadora-de-energia-potencial",
+      de: "potenzielle-energie-rechner",
+      fr: "calculateur-d-energie-potentielle"
+    },
+    title: "Potential Energy Calculator",
+    category: "Physics",
+    description: "Calculate gravitational potential energy (PE = m·g·h), mass, height, or gravity. Features 10 planet presets, free-fall PE to KE converter, and mechanical energy hub.",
+    meta: {
+      title: "Potential Energy Calculator | Gravitational Energy (PE = mgh) Solver",
+      description: "Free online Potential Energy Calculator. Instantly solve PE = mgh, explore 10 planet gravity presets, simulate free-fall energy conversion, and convert energy units across J, kJ, MJ, and kWh.",
+      keywords: "potential energy calculator, pe calculator, gravitational potential energy calculator, pe mgh calculator, potential energy formula, mechanical energy hub",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "free-fall-calculator",
+    slugs: {
+      en: "free-fall-calculator",
+      es: "calculadora-de-caida-libre",
+      de: "freier-fall-rechner",
+      fr: "calculateur-de-chute-libre"
+    },
+    title: "Free Fall Calculator",
+    category: "Physics",
+    description: "Calculate fall time, final impact velocity, drop height, or gravity. Features animated drop simulator, 10 planet gravity presets, and kinematic motion charts.",
+    meta: {
+      title: "Free Fall Calculator | Falling Object Kinematics Solver",
+      description: "Free online Free Fall Calculator. Instantly calculate fall time (t = √(2h/g)), impact speed (vf = √(2gh)), explore 10 planet gravity presets, and view animated drop simulations.",
+      keywords: "free fall calculator, falling object calculator, gravity fall calculator, free fall time calculator, drop height calculator, kinematic equations physics",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "work-calculator",
+    slugs: {
+      en: "work-calculator",
+      es: "calculadora-de-trabajo",
+      de: "arbeit-rechner",
+      fr: "calculateur-de-travail"
+    },
+    title: "Work Calculator",
+    category: "Physics",
+    description: "Calculate mechanical work (W = F · d · cosθ), force, distance, or angle. Features interactive force direction simulator, work arc meter, and energy graphs.",
+    meta: {
+      title: "Work Calculator | Mechanical Work (W = F·d·cosθ) Solver",
+      description: "Free online Work Calculator. Instantly solve W = Fd cosθ, analyze positive, negative, and zero work vectors, convert units across J, kJ, MJ, and kWh, and explore real-world forces.",
+      keywords: "work calculator, physics work calculator, work done calculator, mechanical work calculator, work formula calculator, force direction simulator",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "power-calculator",
+    slugs: {
+      en: "power-calculator",
+      es: "calculadora-de-potencia",
+      de: "leistung-rechner",
+      fr: "calculateur-de-puissance"
+    },
+    title: "Power Calculator",
+    category: "Physics",
+    description: "Calculate mechanical and electrical power (P = W/t = F·v = V·I), work, or time. Features horsepower converter, real-world power explorer, and animated flow simulator.",
+    meta: {
+      title: "Power Calculator | Mechanical & Electrical Power (P = W/t) Solver",
+      description: "Free online Power Calculator. Instantly solve P = W/t, P = Fv, P = VI, convert horsepower (hp to W), explore real-world power ratings across human, car engine, and rocket scales.",
+      keywords: "power calculator, physics power calculator, mechanical power calculator, watt calculator, horsepower calculator, hp to watts converter",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "density-calculator",
+    slugs: {
+      en: "density-calculator",
+      es: "calculadora-de-densidad",
+      de: "dichte-rechner",
+      fr: "calculateur-de-masse-volumique"
+    },
+    title: "Density Calculator",
+    category: "Physics",
+    description: "Calculate density (ρ = m/V), mass, or volume. Features 17+ material database, floating vs sinking buoyancy simulator, specific gravity converter, and ranking charts.",
+    meta: {
+      title: "Density Calculator | Mass Density & Specific Gravity Solver",
+      description: "Free online Density Calculator. Instantly calculate density (ρ = m/V), explore 17+ material presets (air, water, steel, gold), convert specific gravity, and simulate floating vs sinking buoyancy.",
+      keywords: "density calculator, mass density calculator, density formula calculator, specific gravity calculator, buoyancy calculator, Archimedes principle",
+      lastUpdated: "2026-07-20"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "weight-calculator",
+    slugs: {
+      en: "weight-calculator",
+      es: "calculadora-de-peso",
+      de: "gewicht-rechner",
+      fr: "calculateur-de-poids"
+    },
+    title: "Weight Calculator",
+    category: "Physics",
+    description: "Calculate weight (W = m · g), mass, or planetary gravity. Features Astronaut mode, 10-planet weight explorer, mass vs weight visualizer, and ranking charts.",
+    meta: {
+      title: "Weight Calculator | Gravity & Planetary Weight (W = mg) Solver",
+      description: "Free online Weight Calculator. Instantly solve W = mg, compare your weight on 10 Solar System planets (Earth, Moon, Mars, Jupiter), visualize mass vs weight, and convert units.",
+      keywords: "weight calculator, gravity weight calculator, weight formula calculator, weight on other planets calculator, mass vs weight calculator, physics weight solver",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "ohms-law-calculator",
+    slugs: {
+      en: "ohms-law-calculator",
+      es: "calculadora-ley-de-ohm",
+      de: "ohmsches-gesetz-rechner",
+      fr: "calculateur-loi-d-ohm"
+    },
+    title: "Ohm's Law Calculator",
+    category: "Physics",
+    description: "Calculate voltage (V = IR), current, resistance, and electrical power (P = VI). Features Falstad animated DC circuit simulator, heat dissipation indicator, and 4-band resistor color codes.",
+    meta: {
+      title: "Ohm's Law Calculator | Voltage, Current, Resistance & Power (V=IR) Solver",
+      description: "Free online Ohm's Law Calculator. Instantly calculate Voltage (V = IR), Current, Resistance, and Power (P = VI). Features PhET-style animated DC circuit simulator, resistor color bands, and battery presets.",
+      keywords: "ohms law calculator, voltage calculator, current calculator, resistance calculator, electrical power calculator, VIR calculator, resistor color code calculator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "voltage-calculator",
+    slugs: {
+      en: "voltage-calculator",
+      es: "calculadora-de-voltaje",
+      de: "spannung-rechner",
+      fr: "calculateur-de-tension"
+    },
+    title: "Voltage Calculator",
+    category: "Physics",
+    description: "Calculate electric voltage (V = IR, V = P/I, V = √(PR)). Features animated digital multimeter voltmeter, 13-battery explorer, voltage safety gauge, and circuit graphs.",
+    meta: {
+      title: "Voltage Calculator | Electrical Voltage & Potential Difference (V = IR) Solver",
+      description: "Free online Voltage Calculator. Instantly calculate Voltage from current (V = IR), power (V = P/I), or resistance (V = √(PR)). Features digital multimeter display, battery presets, and safety indicators.",
+      keywords: "voltage calculator, electrical voltage calculator, volt calculator, voltage formula calculator, circuit voltage solver, V = IR calculator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "current-calculator",
+    slugs: {
+      en: "current-calculator",
+      es: "calculadora-de-corriente",
+      de: "strom-rechner",
+      fr: "calculateur-de-courant"
+    },
+    title: "Current Calculator",
+    category: "Physics",
+    description: "Calculate electric current (I = V/R, I = P/V, I = √(P/R)). Features electron vs conventional flow dual animation, digital ammeter, smart fuse and AWG wire size recommender.",
+    meta: {
+      title: "Current Calculator | Electrical Current Draw & Amperage (I = V/R) Solver",
+      description: "Free online Current Calculator. Instantly calculate electric current from voltage (I = V/R), power (I = P/V), or resistance (I = √(P/R)). Features digital ammeter display, electron flow simulation, and fuse recommendations.",
+      keywords: "current calculator, electrical current calculator, amp calculator, current formula calculator, current draw calculator, I = V/R calculator, fuse calculator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "resistance-calculator",
+    slugs: {
+      en: "resistance-calculator",
+      es: "calculadora-de-resistencia",
+      de: "widerstand-rechner",
+      fr: "calculateur-de-resistance"
+    },
+    title: "Resistance Calculator",
+    category: "Physics",
+    description: "Calculate electrical resistance (R = V/I, R = P/I², R = V²/P). Features live resistor color code visualizer, series/parallel network builder, wire analyzer, and ohmmeter.",
+    meta: {
+      title: "Resistance Calculator | Electrical Resistance & Resistor (R = V/I) Solver",
+      description: "Free online Resistance Calculator. Instantly calculate electrical resistance from voltage (R = V/I), power (R = P/I²), or wire resistivity. Features live 4-band resistor color code display and network builder.",
+      keywords: "resistance calculator, electrical resistance calculator, ohm calculator, resistor calculator, resistance formula calculator, R = V/I calculator, wire resistance calculator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
   }
 ];
 

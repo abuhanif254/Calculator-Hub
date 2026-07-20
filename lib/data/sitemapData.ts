@@ -72,7 +72,21 @@ export const sitemapCategories = [
     description: "Calculate projectile motion, velocity, acceleration, forces, and other physical properties.",
     links: [
       "Projectile Motion Calculator",
-      "Velocity Calculator"
+      "Velocity Calculator",
+      "Acceleration Calculator",
+      "Force Calculator",
+      "Momentum Calculator",
+      "Kinetic Energy Calculator",
+      "Potential Energy Calculator",
+      "Free Fall Calculator",
+      "Work Calculator",
+      "Power Calculator",
+      "Density Calculator",
+      "Weight Calculator",
+      "Ohm's Law Calculator",
+      "Voltage Calculator",
+      "Current Calculator",
+      "Resistance Calculator"
     ]
   },
   {
