@@ -7,7 +7,7 @@ export const sitemapCategories = [
     icon: DollarSign,
     description: "Explore our free suite of financial tools to accurately calculate mortgages, auto loans, ROI, and retirement planning.",
     links: [
-      "Mortgage Calculator", "Mortgage Calculator UK", "Savings Calculator", "Tip Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
+      "Mortgage Calculator", "Mortgage Calculator UK", "Savings Calculator", "Tip Calculator", "Zakat Calculator", "Loan Calculator", "Auto Loan Calculator", "Interest Calculator",
       "Payment Calculator", "Retirement Calculator", "Amortization Calculator", "Investment Calculator",
       "Inflation Calculator", "Finance Calculator", "Income Tax Calculator", "Compound Interest Calculator",
       "Salary Calculator", "Interest Rate Calculator", "Sales Tax Calculator", "Currency Calculator",
@@ -63,6 +63,16 @@ export const sitemapCategories = [
     description: "Calculate wind chill, heat index, snow day probability, and other weather factors.",
     links: [
       "Snow Day Calculator"
+    ]
+  },
+  {
+    title: "Physics Calculators",
+    id: "physics",
+    icon: Zap,
+    description: "Calculate projectile motion, velocity, acceleration, forces, and other physical properties.",
+    links: [
+      "Projectile Motion Calculator",
+      "Velocity Calculator"
     ]
   },
   {

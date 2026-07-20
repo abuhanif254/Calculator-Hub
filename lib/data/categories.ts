@@ -122,7 +122,7 @@ Convert between units of measurement, currencies, and number systems. Our **Conv
     seoTitle: 'Weather Calculators | Wind Chill, Heat Index & Snow Day Tools',
     seoDescription: 'Free online weather calculators. Calculate snow day probabilities, wind chill index, heat index, and relative humidity with precision.',
     pillarContent: `## Weather Calculators
-
+ 
 Plan for the elements and understand the atmosphere. Our suite of **weather and climate calculators** provides precise tools for estimating environmental indices, temperature conversions, precipitation rates, and safety forecasts.
 
 ### Winter Hazards & Predictions
@@ -135,6 +135,29 @@ Estimate heat stress and human discomfort with the **Heat Index Calculator**. Tr
 Convert temperatures between Celsius, Fahrenheit, and Kelvin instantly, or perform rainfall and liquid-to-solid snow conversions using meteorologically sound parameters.
 
 All computations are processed locally in your browser to maintain your geographic privacy.`
+  },
+  {
+    id: 'physics',
+    title: 'Physics Calculators',
+    dbCategory: ['Physics', 'Physics Calculators'],
+    description: 'Calculate projectile motion, velocity, acceleration, forces, and other physical properties.',
+    icon: 'Zap',
+    seoTitle: 'Physics Calculators | Projectile Motion, Velocity & Force Tools',
+    seoDescription: 'Free online physics calculators. Solve kinematics, projectile motion, dynamics, energy, and thermodynamics problems with step-by-step solutions.',
+    pillarContent: `## Physics Calculators
+    
+Study the motion, energy, and forces of the universe. Our physics calculators help students, teachers, and professionals solve complex equations easily.
+
+### Kinematics & Projectiles
+Solve 2D projectile motion, uniform acceleration, velocity, and time equations with interactive kinematic calculators.
+
+### Dynamics & Force
+Calculate net force, mass, acceleration, friction coefficients, and torque based on Newton's laws of motion.
+
+### Energy & Thermodynamics
+Estimate kinetic energy, potential energy, work, power, thermal expansion, and heat transfer across multiple units.
+
+All calculations run entirely in your web browser with no server latency or tracking.`
   }
 ];
 

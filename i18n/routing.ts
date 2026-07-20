@@ -195,6 +195,24 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-pourboire',
       de: '/rechner/trinkgeldrechner'
     },
+    '/calculators/zakat-calculator': {
+      en: '/calculators/zakat-calculator',
+      es: '/calculadoras/calculadora-de-zakat',
+      fr: '/calculatrices/calculateur-de-zakat',
+      de: '/rechner/zakat-rechner'
+    },
+    '/calculators/projectile-motion-calculator': {
+      en: '/calculators/projectile-motion-calculator',
+      es: '/calculadoras/calculadora-de-movimiento-de-proyectiles',
+      fr: '/calculatrices/calculateur-de-mouvement-de-projectile',
+      de: '/rechner/projektilbewegung-rechner'
+    },
+    '/calculators/velocity-calculator': {
+      en: '/calculators/velocity-calculator',
+      es: '/calculadoras/calculadora-de-velocidad',
+      fr: '/calculatrices/calculateur-de-vitesse',
+      de: '/rechner/geschwindigkeitsrechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

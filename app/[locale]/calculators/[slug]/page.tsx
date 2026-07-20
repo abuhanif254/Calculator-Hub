@@ -201,7 +201,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   };
 
   return (
-    <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+    <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
@@ -223,7 +223,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
         {/* Main Content Area (Left/Top) */}
-        <div className="flex-1 w-full max-w-4xl min-w-0">
+        <div className="flex-1 w-full max-w-5xl min-w-0">
           <header className="mb-10">
             <div className="flex items-center gap-3 mb-4 flex-wrap">
               <span className="inline-block px-3 py-1 bg-[#518231]/10 border border-[#518231]/20 text-[#518231] dark:text-[#6fa844] rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
