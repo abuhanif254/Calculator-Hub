@@ -299,6 +299,76 @@ export const calculatorRelationships: Record<string, string[]> = {
     'projectile-motion-calculator', 'force-calculator', 'momentum-calculator',
     'kinetic-energy-calculator', 'free-fall-calculator'
   ],
+  'acceleration-calculator': [
+    'velocity-calculator', 'projectile-motion-calculator', 'force-calculator',
+    'momentum-calculator', 'kinetic-energy-calculator', 'potential-energy-calculator',
+    'free-fall-calculator', 'work-calculator', 'power-calculator'
+  ],
+  'force-calculator': [
+    'acceleration-calculator', 'velocity-calculator', 'momentum-calculator',
+    'kinetic-energy-calculator', 'potential-energy-calculator', 'work-calculator',
+    'power-calculator', 'pressure-calculator', 'projectile-motion-calculator'
+  ],
+  'momentum-calculator': [
+    'velocity-calculator', 'acceleration-calculator', 'force-calculator',
+    'projectile-motion-calculator', 'kinetic-energy-calculator', 'potential-energy-calculator',
+    'work-calculator', 'power-calculator', 'free-fall-calculator'
+  ],
+  'kinetic-energy-calculator': [
+    'velocity-calculator', 'acceleration-calculator', 'force-calculator',
+    'momentum-calculator', 'potential-energy-calculator', 'work-calculator',
+    'power-calculator', 'projectile-motion-calculator', 'free-fall-calculator'
+  ],
+  'potential-energy-calculator': [
+    'kinetic-energy-calculator', 'velocity-calculator', 'acceleration-calculator',
+    'force-calculator', 'momentum-calculator', 'work-calculator',
+    'power-calculator', 'projectile-motion-calculator', 'free-fall-calculator'
+  ],
+  'free-fall-calculator': [
+    'projectile-motion-calculator', 'velocity-calculator', 'acceleration-calculator',
+    'force-calculator', 'momentum-calculator', 'kinetic-energy-calculator',
+    'potential-energy-calculator', 'work-calculator', 'power-calculator'
+  ],
+  'work-calculator': [
+    'force-calculator', 'power-calculator', 'kinetic-energy-calculator',
+    'potential-energy-calculator', 'momentum-calculator', 'velocity-calculator',
+    'acceleration-calculator', 'free-fall-calculator', 'projectile-motion-calculator'
+  ],
+  'power-calculator': [
+    'work-calculator', 'force-calculator', 'velocity-calculator',
+    'acceleration-calculator', 'momentum-calculator', 'kinetic-energy-calculator',
+    'potential-energy-calculator', 'free-fall-calculator', 'projectile-motion-calculator'
+  ],
+  'density-calculator': [
+    'force-calculator', 'potential-energy-calculator', 'kinetic-energy-calculator',
+    'work-calculator', 'power-calculator', 'momentum-calculator',
+    'velocity-calculator', 'acceleration-calculator', 'free-fall-calculator'
+  ],
+  'weight-calculator': [
+    'force-calculator', 'density-calculator', 'potential-energy-calculator',
+    'kinetic-energy-calculator', 'work-calculator', 'power-calculator',
+    'momentum-calculator', 'velocity-calculator', 'acceleration-calculator', 'free-fall-calculator'
+  ],
+  'ohms-law-calculator': [
+    'power-calculator', 'force-calculator', 'density-calculator',
+    'weight-calculator', 'work-calculator', 'potential-energy-calculator',
+    'kinetic-energy-calculator', 'momentum-calculator', 'velocity-calculator'
+  ],
+  'voltage-calculator': [
+    'ohms-law-calculator', 'power-calculator', 'force-calculator',
+    'density-calculator', 'weight-calculator', 'work-calculator',
+    'potential-energy-calculator', 'kinetic-energy-calculator', 'momentum-calculator'
+  ],
+  'current-calculator': [
+    'voltage-calculator', 'ohms-law-calculator', 'power-calculator',
+    'force-calculator', 'density-calculator', 'weight-calculator',
+    'work-calculator', 'potential-energy-calculator', 'kinetic-energy-calculator'
+  ],
+  'resistance-calculator': [
+    'current-calculator', 'voltage-calculator', 'ohms-law-calculator',
+    'power-calculator', 'force-calculator', 'density-calculator',
+    'weight-calculator', 'work-calculator', 'potential-energy-calculator'
+  ],
 
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [
