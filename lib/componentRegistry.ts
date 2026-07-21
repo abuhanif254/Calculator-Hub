@@ -99,6 +99,13 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'voltage-calculator': dynamic(() => import('@/app/components/VoltageCalculatorView').then(m => ({ default: m.VoltageCalculatorView as ComponentType<CalcComponentProps> }))),
   'current-calculator': dynamic(() => import('@/app/components/CurrentCalculatorView').then(m => ({ default: m.CurrentCalculatorView as ComponentType<CalcComponentProps> }))),
   'resistance-calculator': dynamic(() => import('@/app/components/ResistanceCalculatorView').then(m => ({ default: m.ResistanceCalculatorView as ComponentType<CalcComponentProps> }))),
+  'electrical-power-calculator': dynamic(() => import('@/app/components/ElectricalPowerCalculatorView').then(m => ({ default: m.ElectricalPowerCalculatorView as ComponentType<CalcComponentProps> }))),
+  'electrical-energy-calculator': dynamic(() => import('@/app/components/ElectricalEnergyCalculatorView').then(m => ({ default: m.ElectricalEnergyCalculatorView as ComponentType<CalcComponentProps> }))),
+  'voltage-drop-calculator': dynamic(() => import('@/app/components/VoltageDropCalculatorView').then(m => ({ default: m.VoltageDropCalculatorView as ComponentType<CalcComponentProps> }))),
+  'wire-resistance-calculator': dynamic(() => import('@/app/components/WireResistanceCalculatorView').then(m => ({ default: m.WireResistanceCalculatorView as ComponentType<CalcComponentProps> }))),
+  'electricity-cost-calculator': dynamic(() => import('@/app/components/ElectricityCostCalculatorView').then(m => ({ default: m.ElectricityCostCalculatorView as ComponentType<CalcComponentProps> }))),
+  'led-resistor-calculator': dynamic(() => import('@/app/components/LedResistorCalculatorView').then(m => ({ default: m.LedResistorCalculatorView as ComponentType<CalcComponentProps> }))),
+  'power-supply-calculator': dynamic(() => import('@/app/components/PowerSupplyCalculatorView').then(m => ({ default: m.PowerSupplyCalculatorView as ComponentType<CalcComponentProps> }))),
 
   // ─── Math & Science ────────────────────────────
   'binary-calculator': dynamic(() => import('@/app/components/BinaryCalculatorView').then(m => ({ default: m.BinaryCalculatorView as ComponentType<CalcComponentProps> }))),

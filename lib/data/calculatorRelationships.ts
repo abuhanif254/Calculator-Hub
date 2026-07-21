@@ -369,6 +369,41 @@ export const calculatorRelationships: Record<string, string[]> = {
     'power-calculator', 'force-calculator', 'density-calculator',
     'weight-calculator', 'work-calculator', 'potential-energy-calculator'
   ],
+  'electrical-power-calculator': [
+    'resistance-calculator', 'current-calculator', 'voltage-calculator',
+    'ohms-law-calculator', 'power-calculator', 'force-calculator',
+    'density-calculator', 'weight-calculator', 'work-calculator'
+  ],
+  'electrical-energy-calculator': [
+    'electrical-power-calculator', 'resistance-calculator', 'current-calculator',
+    'voltage-calculator', 'ohms-law-calculator', 'power-calculator',
+    'force-calculator', 'density-calculator', 'weight-calculator'
+  ],
+  'voltage-drop-calculator': [
+    'electrical-energy-calculator', 'electrical-power-calculator', 'resistance-calculator',
+    'current-calculator', 'voltage-calculator', 'ohms-law-calculator',
+    'power-calculator', 'force-calculator', 'density-calculator'
+  ],
+  'wire-resistance-calculator': [
+    'voltage-drop-calculator', 'electrical-energy-calculator', 'electrical-power-calculator',
+    'resistance-calculator', 'current-calculator', 'voltage-calculator',
+    'ohms-law-calculator', 'power-calculator', 'force-calculator'
+  ],
+  'electricity-cost-calculator': [
+    'electrical-energy-calculator', 'electrical-power-calculator', 'voltage-drop-calculator',
+    'wire-resistance-calculator', 'resistance-calculator', 'current-calculator',
+    'voltage-calculator', 'ohms-law-calculator', 'power-calculator'
+  ],
+  'led-resistor-calculator': [
+    'ohms-law-calculator', 'voltage-calculator', 'current-calculator',
+    'resistance-calculator', 'electrical-power-calculator', 'electricity-cost-calculator',
+    'wire-resistance-calculator', 'voltage-drop-calculator', 'electrical-energy-calculator'
+  ],
+  'power-supply-calculator': [
+    'electrical-power-calculator', 'electrical-energy-calculator', 'ohms-law-calculator',
+    'voltage-calculator', 'current-calculator', 'resistance-calculator',
+    'led-resistor-calculator', 'voltage-drop-calculator', 'electricity-cost-calculator'
+  ],
 
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [

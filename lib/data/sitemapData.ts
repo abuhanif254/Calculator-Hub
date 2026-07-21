@@ -86,7 +86,14 @@ export const sitemapCategories = [
       "Ohm's Law Calculator",
       "Voltage Calculator",
       "Current Calculator",
-      "Resistance Calculator"
+      "Resistance Calculator",
+      "Electrical Power Calculator",
+      "Electrical Energy Calculator",
+      "Voltage Drop Calculator",
+      "Wire Resistance Calculator",
+      "Electricity Cost Calculator",
+      "LED Resistor Calculator",
+      "Power Supply Calculator"
     ]
   },
   {
