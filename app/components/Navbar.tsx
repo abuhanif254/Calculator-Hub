@@ -316,7 +316,7 @@ export function Navbar() {
                             </div>
                             {/* Links */}
                             <ul className="space-y-0.5 max-h-[340px] overflow-y-auto custom-scrollbar pr-1">
-                              {category.links.slice(0, 20).map((link) => (
+                              {category.links.slice(0, 50).map((link) => (
                                 <li key={link}>
                                   <Link
                                     href={resolveIntlHref(resolveHref(link))}
@@ -570,7 +570,7 @@ export function Navbar() {
                       </button>
                       {mobileCalcCategory === category.id && (
                         <div className="pl-9 pr-3 py-1.5 space-y-0.5 bg-slate-50/70 dark:bg-slate-800/20 rounded-b-md mb-1">
-                          {category.links.slice(0, 20).map(link => (
+                          {category.links.slice(0, 50).map(link => (
                             <Link
                               key={link}
                               href={resolveIntlHref(resolveHref(link))}

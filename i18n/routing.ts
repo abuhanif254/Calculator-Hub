@@ -297,6 +297,48 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-resistance',
       de: '/rechner/widerstand-rechner'
     },
+    '/calculators/electrical-power-calculator': {
+      en: '/calculators/electrical-power-calculator',
+      es: '/calculadoras/calculadora-de-potencia-electrica',
+      fr: '/calculatrices/calculateur-de-puissance-electrique',
+      de: '/rechner/elektrische-leistung-rechner'
+    },
+    '/calculators/electrical-energy-calculator': {
+      en: '/calculators/electrical-energy-calculator',
+      es: '/calculadoras/calculadora-de-energia-electrica',
+      fr: '/calculatrices/calculateur-d-energie-electrique',
+      de: '/rechner/elektrische-energie-rechner'
+    },
+    '/calculators/voltage-drop-calculator': {
+      en: '/calculators/voltage-drop-calculator',
+      es: '/calculadoras/calculadora-de-caida-de-voltaje',
+      fr: '/calculatrices/calculateur-de-chute-de-tension',
+      de: '/rechner/spannungsabfall-rechner'
+    },
+    '/calculators/wire-resistance-calculator': {
+      en: '/calculators/wire-resistance-calculator',
+      es: '/calculadoras/calculadora-de-resistencia-de-cable',
+      fr: '/calculatrices/calculateur-de-resistance-de-fil',
+      de: '/rechner/drahtwiderstand-rechner'
+    },
+    '/calculators/electricity-cost-calculator': {
+      en: '/calculators/electricity-cost-calculator',
+      es: '/calculadoras/calculadora-de-costo-de-electricidad',
+      fr: '/calculatrices/calculateur-de-cout-d-electricite',
+      de: '/rechner/stromkosten-rechner'
+    },
+    '/calculators/led-resistor-calculator': {
+      en: '/calculators/led-resistor-calculator',
+      es: '/calculadoras/calculadora-de-resistencia-led',
+      fr: '/calculatrices/calculateur-de-resistance-led',
+      de: '/rechner/led-widerstand-rechner'
+    },
+    '/calculators/power-supply-calculator': {
+      en: '/calculators/power-supply-calculator',
+      es: '/calculadoras/calculadora-de-fuente-de-alimentacion',
+      fr: '/calculatrices/calculateur-d-alimentation-electrique',
+      de: '/rechner/netzteil-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

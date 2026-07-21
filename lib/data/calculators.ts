@@ -3217,6 +3217,146 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "physics"
+  },
+  {
+    slug: "electrical-power-calculator",
+    slugs: {
+      en: "electrical-power-calculator",
+      es: "calculadora-de-potencia-electrica",
+      de: "elektrische-leistung-rechner",
+      fr: "calculateur-de-puissance-electrique"
+    },
+    title: "Electrical Power Calculator",
+    category: "Physics",
+    description: "Calculate DC and AC electrical power (W, VA, VAR), power factor, 3-phase power, electricity consumption costs, and solar inverter efficiency. Features interactive Power Triangle.",
+    meta: {
+      title: "Electrical Power Calculator | Real (W), Apparent (VA) & Reactive (VAR) Solver",
+      description: "Free online Electrical Power Calculator. Instantly calculate Real Power (W), Apparent Power (VA), Reactive Power (VAR), 3-phase AC power, and electricity billing costs. Features interactive Power Triangle.",
+      keywords: "electrical power calculator, watt calculator, electric power calculator, VA calculator, VAR calculator, 3-phase power calculator, electricity cost estimator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "electrical-energy-calculator",
+    slugs: {
+      en: "electrical-energy-calculator",
+      es: "calculadora-de-energia-electrica",
+      de: "elektrische-energie-rechner",
+      fr: "calculateur-d-energie-electrique"
+    },
+    title: "Electrical Energy Calculator",
+    category: "Physics",
+    description: "Calculate electrical energy consumption (kWh, Joules, Wh), electricity billing costs, multi-device appliance breakdown, solar panel generation, battery runtime, and EV charging costs.",
+    meta: {
+      title: "Electrical Energy Calculator | kWh, Joules, Bill Estimator & Solar Solver",
+      description: "Free online Electrical Energy Calculator. Instantly calculate electrical energy consumption (E = P·t), monthly electricity utility bill costs, multi-device appliance breakdown, solar array output, and battery runtime.",
+      keywords: "electrical energy calculator, kWh calculator, energy consumption calculator, electricity bill estimator, watt hour calculator, joules calculator, battery runtime calculator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "voltage-drop-calculator",
+    slugs: {
+      en: "voltage-drop-calculator",
+      es: "calculadora-de-caida-de-voltaje",
+      de: "spannungsabfall-rechner",
+      fr: "calculateur-de-chute-de-tension"
+    },
+    title: "Voltage Drop Calculator",
+    category: "Physics",
+    description: "Calculate DC, single-phase, and 3-phase AC voltage drop, percentage loss, end-of-line voltage, wire resistance, AWG size comparisons, temperature corrections, solar, and automotive wiring.",
+    meta: {
+      title: "Voltage Drop Calculator | DC, 1-Phase & 3-Phase AC Wire Loss Solver",
+      description: "Free online Voltage Drop Calculator. Instantly calculate DC, 1-phase AC, and 3-phase AC cable voltage drop, load voltage, conductor resistance, NEC 3%/5% compliance, and wire size comparisons.",
+      keywords: "voltage drop calculator, wire voltage drop calculator, cable voltage drop calculator, electrical voltage drop, AWG voltage drop, solar voltage drop calculator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "wire-resistance-calculator",
+    slugs: {
+      en: "wire-resistance-calculator",
+      es: "calculadora-de-resistencia-de-cable",
+      de: "drahtwiderstand-rechner",
+      fr: "calculateur-de-resistance-de-fil"
+    },
+    title: "Wire Resistance Calculator",
+    category: "Physics",
+    description: "Calculate wire electrical resistance (R = ρL/A), resistivity, AWG wire sizes, temperature-adjusted resistance, two-wire loop circuits, parallel conductors, copper vs aluminum comparisons, and power loss.",
+    meta: {
+      title: "Wire Resistance Calculator | Conductor Resistance (R = ρL/A) & AWG Solver",
+      description: "Free online Wire Resistance Calculator. Instantly calculate electrical wire resistance from resistivity, length, area (R = ρL/A), AWG size, temperature, two-wire loops, and material comparisons.",
+      keywords: "wire resistance calculator, cable resistance calculator, conductor resistance calculator, R = ρL/A calculator, AWG wire resistance, copper wire resistance, resistivity calculator",
+      lastUpdated: "2026-07-21"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "electricity-cost-calculator",
+    slugs: {
+      en: "electricity-cost-calculator",
+      es: "calculadora-de-costo-de-electricidad",
+      de: "stromkosten-rechner",
+      fr: "calculateur-de-cout-d-electricite"
+    },
+    title: "Electricity Cost Calculator",
+    category: "Physics",
+    description: "Calculate electricity cost and energy bill for household appliances, multi-device loads, tiered tariffs, time-of-use rates, commercial demand charges, EV charging, solar offset, and 10-year cost projections.",
+    meta: {
+      title: "Electricity Cost Calculator | Energy Bill & Multi-Appliance Solver",
+      description: "Free online Electricity Cost Calculator. Instantly calculate monthly electricity bill, appliance kWh energy cost, tiered & time-of-use tariffs, EV charging, solar offset savings, and 10-year cost projections.",
+      keywords: "electricity cost calculator, electricity bill calculator, electric bill calculator, energy cost calculator, power consumption cost calculator, kWh cost calculator, EV charging cost calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "led-resistor-calculator",
+    slugs: {
+      en: "led-resistor-calculator",
+      es: "calculadora-de-resistencia-led",
+      de: "led-widerstand-rechner",
+      fr: "calculateur-de-resistance-led"
+    },
+    title: "LED Resistor Calculator",
+    category: "Physics",
+    description: "Calculate current-limiting resistor values for single, series, and parallel LEDs, E12/E24 standard resistors, 4/5-band color codes, power ratings, microcontroller GPIO, and automotive circuits.",
+    meta: {
+      title: "LED Resistor Calculator | Series, Parallel & Color Code Solver",
+      description: "Free online LED Resistor Calculator. Instantly calculate current-limiting LED resistors, E12/E24 standard resistor matching, 4-band and 5-band color codes, power dissipation, and series/parallel branch setups.",
+      keywords: "led resistor calculator, led current limiting resistor, led series resistor calculator, led forward voltage, e24 resistor values, resistor color code calculator, arduino led resistor",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "power-supply-calculator",
+    slugs: {
+      en: "power-supply-calculator",
+      es: "calculadora-de-fuente-de-alimentacion",
+      de: "netzteil-rechner",
+      fr: "calculateur-d-alimentation-electrique"
+    },
+    title: "Power Supply Calculator",
+    category: "Physics",
+    description: "Calculate power supply wattage, current ratings, safety headroom margins, efficiency losses, multi-load systems, AC power factor VA vs W, PC/Server PSUs, LED strips, and UPS backup runtime.",
+    meta: {
+      title: "Power Supply Calculator | PSU Wattage & Multi-Load Solver",
+      description: "Free online Power Supply Calculator. Instantly calculate required PSU wattage, current ratings, safety margin headroom, multi-device load breakdown, AC power factor (VA vs W), efficiency heat loss, and PC/Server PSU sizing.",
+      keywords: "power supply calculator, psu calculator, psu wattage calculator, power supply sizing calculator, dc power supply calculator, power adapter calculator, ups sizing calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
   }
 ];
 
