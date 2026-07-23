@@ -404,6 +404,94 @@ export const calculatorRelationships: Record<string, string[]> = {
     'voltage-calculator', 'current-calculator', 'resistance-calculator',
     'led-resistor-calculator', 'voltage-drop-calculator', 'electricity-cost-calculator'
   ],
+  'power-factor-calculator': [
+    'electrical-power-calculator', 'power-supply-calculator', 'electrical-energy-calculator',
+    'ohms-law-calculator', 'voltage-calculator', 'current-calculator',
+    'resistance-calculator', 'voltage-drop-calculator', 'wire-resistance-calculator', 'electricity-cost-calculator'
+  ],
+  'battery-runtime-calculator': [
+    'power-supply-calculator', 'power-factor-calculator', 'electrical-power-calculator',
+    'electrical-energy-calculator', 'ohms-law-calculator', 'voltage-calculator',
+    'current-calculator', 'resistance-calculator', 'voltage-drop-calculator', 'wire-resistance-calculator', 'electricity-cost-calculator'
+  ],
+  'ups-calculator': [
+    'battery-runtime-calculator', 'power-supply-calculator', 'power-factor-calculator',
+    'electrical-power-calculator', 'electrical-energy-calculator', 'ohms-law-calculator',
+    'voltage-calculator', 'current-calculator', 'resistance-calculator', 'voltage-drop-calculator', 'wire-resistance-calculator', 'electricity-cost-calculator'
+  ],
+  'inverter-calculator': [
+    'ups-calculator', 'battery-runtime-calculator', 'power-supply-calculator',
+    'power-factor-calculator', 'electrical-power-calculator', 'electrical-energy-calculator',
+    'ohms-law-calculator', 'voltage-calculator', 'current-calculator',
+    'resistance-calculator', 'voltage-drop-calculator', 'wire-resistance-calculator', 'electricity-cost-calculator'
+  ],
+  'solar-panel-calculator': [
+    'inverter-calculator', 'ups-calculator', 'battery-runtime-calculator',
+    'electricity-cost-calculator', 'power-supply-calculator', 'power-factor-calculator',
+    'electrical-power-calculator', 'electrical-energy-calculator', 'ohms-law-calculator',
+    'voltage-calculator', 'current-calculator', 'resistance-calculator',
+    'voltage-drop-calculator', 'wire-resistance-calculator'
+  ],
+  'molarity-calculator': [
+    'mole-calculator', 'molality-calculator', 'solar-panel-calculator',
+    'inverter-calculator', 'battery-runtime-calculator', 'electricity-cost-calculator'
+  ],
+  'molality-calculator': [
+    'mole-calculator', 'molarity-calculator', 'solar-panel-calculator',
+    'inverter-calculator', 'battery-runtime-calculator', 'electricity-cost-calculator'
+  ],
+  'mole-calculator': [
+    'molar-mass-calculator', 'molarity-calculator', 'molality-calculator',
+    'solar-panel-calculator', 'inverter-calculator', 'battery-runtime-calculator'
+  ],
+  'molar-mass-calculator': [
+    'percent-composition-calculator', 'mole-calculator', 'molarity-calculator',
+    'molality-calculator', 'solar-panel-calculator', 'inverter-calculator'
+  ],
+  'percent-composition-calculator': [
+    'molarity-dilution-calculator', 'molar-mass-calculator', 'mole-calculator',
+    'molarity-calculator', 'molality-calculator', 'solar-panel-calculator'
+  ],
+  'molarity-dilution-calculator': [
+    'dilution-calculator', 'molarity-calculator', 'molality-calculator',
+    'mole-calculator', 'molar-mass-calculator', 'percent-composition-calculator'
+  ],
+  'dilution-calculator': [
+    'stoichiometry-calculator', 'molarity-dilution-calculator', 'molarity-calculator',
+    'molality-calculator', 'mole-calculator', 'molar-mass-calculator'
+  ],
+  'stoichiometry-calculator': [
+    'empirical-formula-calculator', 'mole-calculator', 'molar-mass-calculator',
+    'molarity-calculator', 'molality-calculator', 'percent-composition-calculator'
+  ],
+  'empirical-formula-calculator': [
+    'molecular-formula-calculator', 'percent-composition-calculator', 'molar-mass-calculator',
+    'mole-calculator', 'stoichiometry-calculator', 'molarity-calculator'
+  ],
+  'molecular-formula-calculator': [
+    'balancing-chemical-equations-calculator', 'empirical-formula-calculator', 'molar-mass-calculator',
+    'percent-composition-calculator', 'mole-calculator', 'stoichiometry-calculator'
+  ],
+  'balancing-chemical-equations-calculator': [
+    'ph-calculator', 'stoichiometry-calculator', 'molecular-formula-calculator',
+    'empirical-formula-calculator', 'molar-mass-calculator', 'molarity-calculator'
+  ],
+  'ph-calculator': [
+    'poh-calculator', 'molarity-calculator', 'dilution-calculator',
+    'molarity-dilution-calculator', 'stoichiometry-calculator', 'balancing-chemical-equations-calculator'
+  ],
+  'poh-calculator': [
+    'pka-calculator', 'ph-calculator', 'molarity-calculator',
+    'dilution-calculator', 'molarity-dilution-calculator', 'stoichiometry-calculator'
+  ],
+  'pka-calculator': [
+    'henderson-hasselbalch-equation-calculator', 'ph-calculator', 'poh-calculator',
+    'molarity-calculator', 'dilution-calculator', 'stoichiometry-calculator'
+  ],
+  'henderson-hasselbalch-equation-calculator': [
+    'pka-calculator', 'ph-calculator', 'poh-calculator',
+    'molarity-calculator', 'dilution-calculator', 'stoichiometry-calculator'
+  ],
 
   // ─── Health & Fitness ────────────────────────────
   'bmi-calculator': [

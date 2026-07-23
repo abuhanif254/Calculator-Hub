@@ -339,6 +339,126 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-d-alimentation-electrique',
       de: '/rechner/netzteil-rechner'
     },
+    '/calculators/power-factor-calculator': {
+      en: '/calculators/power-factor-calculator',
+      es: '/calculadoras/calculadora-de-factor-de-potencia',
+      fr: '/calculatrices/calculateur-de-facteur-de-puissance',
+      de: '/rechner/leistungsfaktor-rechner'
+    },
+    '/calculators/battery-runtime-calculator': {
+      en: '/calculators/battery-runtime-calculator',
+      es: '/calculadoras/calculadora-de-autonomia-de-bateria',
+      fr: '/calculatrices/calculateur-d-autonomie-de-batterie',
+      de: '/rechner/batterielaufzeit-rechner'
+    },
+    '/calculators/ups-calculator': {
+      en: '/calculators/ups-calculator',
+      es: '/calculadoras/calculadora-de-ups',
+      fr: '/calculatrices/calculateur-d-onduleur',
+      de: '/rechner/usv-rechner'
+    },
+    '/calculators/inverter-calculator': {
+      en: '/calculators/inverter-calculator',
+      es: '/calculadoras/calculadora-de-inversor',
+      fr: '/calculatrices/calculateur-d-onduleur-solaire',
+      de: '/rechner/wechselrichter-rechner'
+    },
+    '/calculators/solar-panel-calculator': {
+      en: '/calculators/solar-panel-calculator',
+      es: '/calculadoras/calculadora-de-paneles-solares',
+      fr: '/calculatrices/calculateur-de-panneau-solaire',
+      de: '/rechner/solarpanel-rechner'
+    },
+    '/calculators/molarity-calculator': {
+      en: '/calculators/molarity-calculator',
+      es: '/calculadoras/calculadora-de-molaridad',
+      fr: '/calculatrices/calculateur-de-molarite',
+      de: '/rechner/molaritaets-rechner'
+    },
+    '/calculators/molality-calculator': {
+      en: '/calculators/molality-calculator',
+      es: '/calculadoras/calculadora-de-molalidad',
+      fr: '/calculatrices/calculateur-de-molalite',
+      de: '/rechner/molalitaets-rechner'
+    },
+    '/calculators/mole-calculator': {
+      en: '/calculators/mole-calculator',
+      es: '/calculadoras/calculadora-de-moles',
+      fr: '/calculatrices/calculateur-de-moles',
+      de: '/rechner/mol-rechner'
+    },
+    '/calculators/molar-mass-calculator': {
+      en: '/calculators/molar-mass-calculator',
+      es: '/calculadoras/calculadora-de-masa-molar',
+      fr: '/calculatrices/calculateur-de-masse-molaire',
+      de: '/rechner/molare-masse-rechner'
+    },
+    '/calculators/percent-composition-calculator': {
+      en: '/calculators/percent-composition-calculator',
+      es: '/calculadoras/calculadora-de-composicion-porcentual',
+      fr: '/calculatrices/calculateur-de-composition-centesimale',
+      de: '/rechner/prozentuale-zusammensetzung-rechner'
+    },
+    '/calculators/molarity-dilution-calculator': {
+      en: '/calculators/molarity-dilution-calculator',
+      es: '/calculadoras/calculadora-de-dilucion-de-molaridad',
+      fr: '/calculatrices/calculateur-de-dilution-de-molarite',
+      de: '/rechner/molaritaets-verduennungsrechner'
+    },
+    '/calculators/dilution-calculator': {
+      en: '/calculators/dilution-calculator',
+      es: '/calculadoras/calculadora-de-dilucion',
+      fr: '/calculatrices/calculateur-de-dilution',
+      de: '/rechner/verduennungsrechner'
+    },
+    '/calculators/stoichiometry-calculator': {
+      en: '/calculators/stoichiometry-calculator',
+      es: '/calculadoras/calculadora-de-estequiometria',
+      fr: '/calculatrices/calculateur-de-stoechiometrie',
+      de: '/rechner/stoechiometrie-rechner'
+    },
+    '/calculators/empirical-formula-calculator': {
+      en: '/calculators/empirical-formula-calculator',
+      es: '/calculadoras/calculadora-de-formula-empirica',
+      fr: '/calculatrices/calculateur-de-formule-brute',
+      de: '/rechner/empirische-formel-rechner'
+    },
+    '/calculators/molecular-formula-calculator': {
+      en: '/calculators/molecular-formula-calculator',
+      es: '/calculadoras/calculadora-de-formula-molecular',
+      fr: '/calculatrices/calculateur-de-formule-moleculaire',
+      de: '/rechner/molekuelformel-rechner'
+    },
+    '/calculators/balancing-chemical-equations-calculator': {
+      en: '/calculators/balancing-chemical-equations-calculator',
+      es: '/calculadoras/calculadora-de-balanceo-de-ecuaciones-quimicas',
+      fr: '/calculatrices/calculateur-d-equilibrage-d-equations-chimiques',
+      de: '/rechner/chemische-gleichungen-balancieren-rechner'
+    },
+    '/calculators/ph-calculator': {
+      en: '/calculators/ph-calculator',
+      es: '/calculadoras/calculadora-de-ph',
+      fr: '/calculatrices/calculateur-de-ph',
+      de: '/rechner/ph-wert-rechner'
+    },
+    '/calculators/poh-calculator': {
+      en: '/calculators/poh-calculator',
+      es: '/calculadoras/calculadora-de-poh',
+      fr: '/calculatrices/calculateur-de-poh',
+      de: '/rechner/poh-wert-rechner'
+    },
+    '/calculators/pka-calculator': {
+      en: '/calculators/pka-calculator',
+      es: '/calculadoras/calculadora-de-pka',
+      fr: '/calculatrices/calculateur-de-pka',
+      de: '/rechner/pka-wert-rechner'
+    },
+    '/calculators/henderson-hasselbalch-equation-calculator': {
+      en: '/calculators/henderson-hasselbalch-equation-calculator',
+      es: '/calculadoras/calculadora-de-ecuacion-de-henderson-hasselbalch',
+      fr: '/calculatrices/calculateur-d-equation-de-henderson-hasselbalch',
+      de: '/rechner/henderson-hasselbalch-gleichung-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',
