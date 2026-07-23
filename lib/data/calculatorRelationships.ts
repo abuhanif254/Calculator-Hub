@@ -489,8 +489,96 @@ export const calculatorRelationships: Record<string, string[]> = {
     'molarity-calculator', 'dilution-calculator', 'stoichiometry-calculator'
   ],
   'henderson-hasselbalch-equation-calculator': [
-    'pka-calculator', 'ph-calculator', 'poh-calculator',
-    'molarity-calculator', 'dilution-calculator', 'stoichiometry-calculator'
+    'buffer-calculator', 'pka-calculator', 'ph-calculator',
+    'poh-calculator', 'molarity-calculator', 'dilution-calculator'
+  ],
+  'buffer-calculator': [
+    'acid-base-calculator', 'henderson-hasselbalch-equation-calculator', 'pka-calculator',
+    'ph-calculator', 'poh-calculator', 'molarity-calculator'
+  ],
+  'acid-base-calculator': [
+    'ka-calculator', 'buffer-calculator', 'henderson-hasselbalch-equation-calculator',
+    'pka-calculator', 'ph-calculator', 'poh-calculator'
+  ],
+  'ka-calculator': [
+    'kb-calculator', 'pka-calculator', 'acid-base-calculator', 'buffer-calculator',
+    'henderson-hasselbalch-equation-calculator', 'ph-calculator', 'poh-calculator'
+  ],
+  'kb-calculator': [
+    'equilibrium-constant-calculator', 'ka-calculator', 'pka-calculator', 'acid-base-calculator',
+    'buffer-calculator', 'henderson-hasselbalch-equation-calculator'
+  ],
+  'equilibrium-constant-calculator': [
+    'ksp-calculator', 'ka-calculator', 'kb-calculator', 'acid-base-calculator',
+    'buffer-calculator', 'henderson-hasselbalch-equation-calculator'
+  ],
+  'ksp-calculator': [
+    'solubility-calculator', 'equilibrium-constant-calculator', 'ka-calculator', 'kb-calculator',
+    'acid-base-calculator', 'buffer-calculator'
+  ],
+  'solubility-calculator': [
+    'nernst-equation-calculator', 'ksp-calculator', 'equilibrium-constant-calculator', 'ka-calculator',
+    'kb-calculator', 'acid-base-calculator'
+  ],
+  'nernst-equation-calculator': [
+    'electrochemical-cell-calculator', 'equilibrium-constant-calculator', 'ksp-calculator', 'solubility-calculator',
+    'ka-calculator', 'kb-calculator'
+  ],
+  'electrochemical-cell-calculator': [
+    'cell-potential-calculator', 'nernst-equation-calculator', 'equilibrium-constant-calculator', 'ksp-calculator',
+    'solubility-calculator', 'ka-calculator'
+  ],
+  'cell-potential-calculator': [
+    'faradays-law-calculator', 'electrochemical-cell-calculator', 'nernst-equation-calculator', 'equilibrium-constant-calculator',
+    'ksp-calculator', 'solubility-calculator'
+  ],
+  'faradays-law-calculator': [
+    'electrolysis-calculator', 'cell-potential-calculator', 'electrochemical-cell-calculator', 'nernst-equation-calculator',
+    'ksp-calculator', 'stoichiometry-calculator'
+  ],
+  'electrolysis-calculator': [
+    'gibbs-free-energy-calculator', 'faradays-law-calculator', 'cell-potential-calculator', 'electrochemical-cell-calculator',
+    'nernst-equation-calculator', 'ksp-calculator'
+  ],
+  'gibbs-free-energy-calculator': [
+    'enthalpy-calculator', 'equilibrium-constant-calculator', 'cell-potential-calculator', 'nernst-equation-calculator',
+    'electrochemical-cell-calculator', 'electrolysis-calculator'
+  ],
+  'enthalpy-calculator': [
+    'heat-of-reaction-calculator', 'gibbs-free-energy-calculator', 'equilibrium-constant-calculator', 'stoichiometry-calculator',
+    'cell-potential-calculator', 'electrochemical-cell-calculator'
+  ],
+  'heat-of-reaction-calculator': [
+    'hess-law-calculator', 'enthalpy-calculator', 'gibbs-free-energy-calculator', 'equilibrium-constant-calculator',
+    'stoichiometry-calculator', 'mole-calculator'
+  ],
+  'hess-law-calculator': [
+    'calorimetry-calculator', 'heat-of-reaction-calculator', 'enthalpy-calculator', 'gibbs-free-energy-calculator',
+    'equilibrium-constant-calculator', 'stoichiometry-calculator'
+  ],
+  'calorimetry-calculator': [
+    'specific-heat-calculator', 'hess-law-calculator', 'heat-of-reaction-calculator', 'enthalpy-calculator',
+    'gibbs-free-energy-calculator', 'stoichiometry-calculator'
+  ],
+  'specific-heat-calculator': [
+    'ideal-gas-law-calculator', 'calorimetry-calculator', 'hess-law-calculator', 'heat-of-reaction-calculator',
+    'enthalpy-calculator', 'gibbs-free-energy-calculator'
+  ],
+  'ideal-gas-law-calculator': [
+    'combined-gas-law-calculator', 'specific-heat-calculator', 'calorimetry-calculator', 'hess-law-calculator',
+    'stoichiometry-calculator', 'mole-calculator'
+  ],
+  'combined-gas-law-calculator': [
+    'boyles-law-calculator', 'ideal-gas-law-calculator', 'specific-heat-calculator', 'calorimetry-calculator',
+    'hess-law-calculator', 'stoichiometry-calculator'
+  ],
+  'boyles-law-calculator': [
+    'charles-law-calculator', 'combined-gas-law-calculator', 'ideal-gas-law-calculator', 'specific-heat-calculator',
+    'calorimetry-calculator', 'stoichiometry-calculator'
+  ],
+  'charles-law-calculator': [
+    'boyles-law-calculator', 'combined-gas-law-calculator', 'ideal-gas-law-calculator', 'specific-heat-calculator',
+    'calorimetry-calculator', 'mole-calculator'
   ],
 
   // ─── Health & Fitness ────────────────────────────

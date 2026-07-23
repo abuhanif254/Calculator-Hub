@@ -3757,6 +3757,446 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "physics"
+  },
+  {
+    slug: "buffer-calculator",
+    slugs: {
+      en: "buffer-calculator",
+      es: "calculadora-de-tampon-quimico",
+      de: "puffer-rechner",
+      fr: "calculateur-de-tampon"
+    },
+    title: "Buffer Calculator",
+    category: "Chemistry",
+    description: "Calculate buffer pH, design and prepare buffer solutions, analyze buffer capacity (beta), simulate strong acid/base addition neutralization, buffer dilution, and species distribution.",
+    meta: {
+      title: "Buffer Calculator | Buffer Solution pH & Capacity Solver",
+      description: "Free online Buffer Calculator. Instantly calculate buffer pH, design buffer solutions for target pH, prepare buffers from weak acids/conjugate bases, analyze buffer capacity beta, and simulate acid/base addition.",
+      keywords: "buffer calculator, buffer ph calculator, buffer solution calculator, buffer capacity calculator, buffer preparation calculator, buffer design calculator, calculate buffer ph, acid base buffer calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "acid-base-calculator",
+    slugs: {
+      en: "acid-base-calculator",
+      es: "calculadora-de-acido-base",
+      de: "saeure-base-rechner",
+      fr: "calculateur-acide-base"
+    },
+    title: "Acid-Base Calculator",
+    category: "Chemistry",
+    description: "Calculate pH, pOH, [H+], [OH-], Ka, Kb, pKa, pKb, strong/weak acid/base equilibrium, stoichiometric neutralization, titration curves, and species distribution.",
+    meta: {
+      title: "Acid-Base Calculator | Equilibrium, pH, Ka & Kb Solver",
+      description: "Free online Acid-Base Calculator. Instantly calculate pH, pOH, hydrogen and hydroxide ion concentrations, Ka, Kb, pKa, pKb, weak acid/base equilibrium, stoichiometric neutralization, and titration curves.",
+      keywords: "acid base calculator, acid base chemistry calculator, ph calculator, poh calculator, ka calculator, kb calculator, pka calculator, pkb calculator, weak acid calculator, weak base calculator, neutralization calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "ka-calculator",
+    slugs: {
+      en: "ka-calculator",
+      es: "calculadora-de-ka",
+      de: "ka-wert-rechner",
+      fr: "calculateur-de-ka"
+    },
+    title: "Ka Calculator",
+    category: "Chemistry",
+    description: "Calculate acid dissociation constant Ka from equilibrium concentrations, pH, [H+], percent ionization, degree of ionization, and pKa with ICE tables and exact quadratic solvers.",
+    meta: {
+      title: "Ka Calculator | Acid Dissociation Constant & ICE Table Solver",
+      description: "Free online Ka Calculator. Instantly calculate acid dissociation constant Ka, pKa, hydrogen ion concentration [H+], pH, equilibrium concentrations, percent ionization, and ICE tables.",
+      keywords: "ka calculator, acid dissociation constant calculator, calculate ka, ka to pka calculator, pka to ka calculator, weak acid equilibrium calculator, percent ionization calculator, ice table calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "kb-calculator",
+    slugs: {
+      en: "kb-calculator",
+      es: "calculadora-de-kb",
+      de: "kb-wert-rechner",
+      fr: "calculateur-de-kb"
+    },
+    title: "Kb Calculator",
+    category: "Chemistry",
+    description: "Calculate base dissociation constant Kb from equilibrium concentrations, pOH, pH, [OH-], [H+], percent ionization, degree of ionization, pKb, and conjugate acid Ka with ICE tables and exact quadratic solvers.",
+    meta: {
+      title: "Kb Calculator | Base Dissociation Constant & ICE Table Solver",
+      description: "Free online Kb Calculator. Instantly calculate base dissociation constant Kb, pKb, hydroxide ion concentration [OH-], pOH, pH, equilibrium concentrations, percent ionization, conjugate acid Ka, and ICE tables.",
+      keywords: "kb calculator, base dissociation constant calculator, calculate kb, kb to pkb calculator, pkb to kb calculator, weak base equilibrium calculator, percent ionization calculator, ice table calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "equilibrium-constant-calculator",
+    slugs: {
+      en: "equilibrium-constant-calculator",
+      es: "calculadora-de-constante-de-equilibrio",
+      de: "gleichgewichtskonstante-rechner",
+      fr: "calculateur-de-constante-d-equilibre"
+    },
+    title: "Equilibrium Constant Calculator",
+    category: "Chemistry",
+    description: "Calculate equilibrium constants Kc, Kp, reaction quotient Qc, Qp, Kc to Kp conversions, ICE tables, Le Chatelier shifts, and van 't Hoff temperature effects.",
+    meta: {
+      title: "Equilibrium Constant Calculator | Kc, Kp & Reaction Quotient Solver",
+      description: "Free online Equilibrium Constant Calculator. Instantly calculate Kc, Kp, reaction quotient Qc, Qp, convert between Kc and Kp, solve ICE tables, and predict reaction direction.",
+      keywords: "equilibrium constant calculator, kc calculator, kp calculator, reaction quotient calculator, qc calculator, qp calculator, chemical equilibrium calculator, ice table solver, kc to kp calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "ksp-calculator",
+    slugs: {
+      en: "ksp-calculator",
+      es: "calculadora-de-ksp",
+      de: "ksp-rechner",
+      fr: "calculateur-de-ksp"
+    },
+    title: "Ksp Calculator",
+    category: "Chemistry",
+    description: "Calculate solubility product constant Ksp, molar solubility s, mass solubility, Qsp precipitation prediction, and common-ion effect for sparingly soluble salts.",
+    meta: {
+      title: "Ksp Calculator | Solubility Product Constant & Qsp Solver",
+      description: "Free online Ksp Calculator. Instantly calculate solubility product constant Ksp, molar solubility s, mass solubility (g/L), Qsp precipitation prediction, and common-ion effect.",
+      keywords: "ksp calculator, solubility product calculator, molar solubility calculator, qsp calculator, precipitation calculator, common ion effect calculator, chemical solubility calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "solubility-calculator",
+    slugs: {
+      en: "solubility-calculator",
+      es: "calculadora-de-solubilidad",
+      de: "loeslichkeitsrechner",
+      fr: "calculateur-de-solubilite"
+    },
+    title: "Solubility Calculator",
+    category: "Chemistry",
+    description: "Calculate mass solubility, molar solubility, solubility from Ksp, maximum dissolved mass for solvent volume V, saturation states, and temperature-solubility curves.",
+    meta: {
+      title: "Solubility Calculator | Mass, Molar & Ksp Solubility Solver",
+      description: "Free online Solubility Calculator. Instantly convert mass solubility (g/L) to molar solubility (mol/L), calculate solubility from Ksp, solvent volume dissolved mass, and saturation ratio.",
+      keywords: "solubility calculator, molar solubility calculator, mass solubility calculator, calculate solubility, solubility from ksp calculator, g/L to mol/L calculator, saturation ratio calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "nernst-equation-calculator",
+    slugs: {
+      en: "nernst-equation-calculator",
+      es: "calculadora-de-ecuacion-de-nernst",
+      de: "nernst-gleichung-rechner",
+      fr: "calculateur-d-equation-de-nernst"
+    },
+    title: "Nernst Equation Calculator",
+    category: "Chemistry",
+    description: "Calculate non-standard cell potential E, electrode potentials, reaction quotient Q, Gibbs free energy ΔG, equilibrium constant K, and concentration cells.",
+    meta: {
+      title: "Nernst Equation Calculator | Cell & Electrode Potential Solver",
+      description: "Free online Nernst Equation Calculator. Instantly calculate non-standard cell potential E, standard potential E°, reaction quotient Q, Gibbs free energy ΔG, and equilibrium constant K.",
+      keywords: "nernst equation calculator, cell potential calculator, electrode potential calculator, q calculator, gibbs free energy electrochemistry, concentration cell calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "electrochemical-cell-calculator",
+    slugs: {
+      en: "electrochemical-cell-calculator",
+      es: "calculadora-de-celda-electroquimica",
+      de: "elektrochemische-zelle-rechner",
+      fr: "calculateur-de-pile-electrochimique"
+    },
+    title: "Electrochemical Cell Calculator",
+    category: "Chemistry",
+    description: "Analyze Galvanic, Electrolytic, Concentration, and Custom cells. Calculate E°cell, Ecell, cell notation, Gibbs free energy ΔG, equilibrium constant K, and salt bridge ion flow.",
+    meta: {
+      title: "Electrochemical Cell Calculator | Galvanic & Electrolytic Cell Solver",
+      description: "Free online Electrochemical Cell Calculator. Instantly build Galvanic, Electrolytic, and Concentration cells, generate standard cell notation, calculate E°cell, Ecell, ΔG, and K.",
+      keywords: "electrochemical cell calculator, galvanic cell calculator, electrolytic cell calculator, cell potential calculator, cell notation generator, nernst equation cell solver",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "cell-potential-calculator",
+    slugs: {
+      en: "cell-potential-calculator",
+      es: "calculadora-de-potencial-de-celda",
+      de: "zellpotenzial-rechner",
+      fr: "calculateur-de-potentiel-de-pile"
+    },
+    title: "Cell Potential Calculator",
+    category: "Chemistry",
+    description: "Calculate standard cell potential E°cell, non-standard potential Ecell, reduction potentials, Nernst equation, Gibbs free energy ΔG, and equilibrium constant K.",
+    meta: {
+      title: "Cell Potential Calculator | Standard E° & Nernst Cell Voltage",
+      description: "Free online Cell Potential Calculator. Instantly calculate standard cell potential E°cell = E°cathode - E°anode, non-standard potential Ecell, reaction quotient Q, and Gibbs free energy ΔG.",
+      keywords: "cell potential calculator, e°cell calculator, ecell calculator, standard reduction potential calculator, nernst potential calculator, galvanic voltage calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "faradays-law-calculator",
+    slugs: {
+      en: "faradays-law-calculator",
+      es: "calculadora-de-ley-de-faraday",
+      de: "faradaysches-gesetz-rechner",
+      fr: "calculateur-de-loi-de-faraday"
+    },
+    title: "Faraday's Law Calculator",
+    category: "Chemistry",
+    description: "Calculate mass deposited m = MIt/nF, electric charge Q = It, moles of electrons, electrochemical equivalent Z, electroplating coating thickness, and current efficiency.",
+    meta: {
+      title: "Faraday's Law Calculator | Electrolysis & Electroplating Solver",
+      description: "Free online Faraday's Law Calculator. Instantly calculate mass deposited m = MIt/nF, electric charge Q, electrolysis time, current efficiency %, and electroplating layer thickness.",
+      keywords: "faradays law calculator, electrolysis calculator, electroplating calculator, mass deposited calculator, faraday constant calculator, electrochemical equivalent calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "electrolysis-calculator",
+    slugs: {
+      en: "electrolysis-calculator",
+      es: "calculadora-de-electrolisis",
+      de: "elektrolyse-rechner",
+      fr: "calculateur-d-electrolyse"
+    },
+    title: "Electrolysis Calculator",
+    category: "Chemistry",
+    description: "Analyze aqueous and molten electrolysis, predict cathode/anode products, calculate gas volume, mass deposited, charge, current, time, and electrical energy.",
+    meta: {
+      title: "Electrolysis Calculator | Aqueous & Molten Cell Product Solver",
+      description: "Free online Electrolysis Calculator. Instantly predict cathode and anode products for aqueous, molten, and water electrolysis, calculate gas volume V = nRT/P, product mass, and energy.",
+      keywords: "electrolysis calculator, electrolytic cell calculator, water electrolysis calculator, gas volume calculator electrolysis, chlorine production calculator, preferential discharge calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "gibbs-free-energy-calculator",
+    slugs: {
+      en: "gibbs-free-energy-calculator",
+      es: "calculadora-de-energia-libre-de-gibbs",
+      de: "gibbs-energie-rechner",
+      fr: "calculateur-d-energie-libre-de-gibbs"
+    },
+    title: "Gibbs Free Energy Calculator",
+    category: "Chemistry",
+    description: "Calculate Gibbs free energy ΔG = ΔH - TΔS, reaction spontaneity, equilibrium constant K, reaction quotient Q, crossover temperature, and electrochemical potential.",
+    meta: {
+      title: "Gibbs Free Energy Calculator | ΔG, Spontaneity & Equilibrium Solver",
+      description: "Free online Gibbs Free Energy Calculator. Instantly calculate ΔG = ΔH - TΔS, determine reaction spontaneity, solve equilibrium constant K, crossover temperature, and cell potential Ecell.",
+      keywords: "gibbs free energy calculator, delta g calculator, spontaneity calculator chemistry, enthalpy entropy gibbs calculator, equilibrium constant K calculator, crossover temperature calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "enthalpy-calculator",
+    slugs: {
+      en: "enthalpy-calculator",
+      es: "calculadora-de-entalpia",
+      de: "enthalpie-rechner",
+      fr: "calculateur-d-enthalpie"
+    },
+    title: "Enthalpy Calculator",
+    category: "Chemistry",
+    description: "Calculate enthalpy change ΔH = H_products - H_reactants, reaction heat, Hess's Law, formation enthalpies, bond energies, calorimetry q = mcΔT, and exothermic/endothermic status.",
+    meta: {
+      title: "Enthalpy Calculator | ΔH, Heat of Reaction & Thermochemistry Solver",
+      description: "Free online Enthalpy Calculator. Instantly calculate ΔH = H_products - H_reactants, heat of reaction q = mcΔT, Hess's Law, standard enthalpies of formation, bond energies, and phase changes.",
+      keywords: "enthalpy calculator, delta H calculator, heat of reaction calculator, thermochemistry calculator, exothermic endothermic calculator, calorimetry q = mcΔT calculator, Hess law solver",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "heat-of-reaction-calculator",
+    slugs: {
+      en: "heat-of-reaction-calculator",
+      es: "calculadora-de-calor-de-reaccion",
+      de: "reaktionswaerme-rechner",
+      fr: "calculateur-de-chaleur-de-reaction"
+    },
+    title: "Heat of Reaction Calculator",
+    category: "Chemistry",
+    description: "Calculate heat of reaction q_rxn, reaction enthalpy ΔH, coffee-cup calorimetry, bomb calorimetry q_v = ΔU, Hess's Law, bond energies, and stoichiometric heat scaling.",
+    meta: {
+      title: "Heat of Reaction Calculator | Reaction Enthalpy & Calorimetry Solver",
+      description: "Free online Heat of Reaction Calculator. Instantly calculate reaction heat q_rxn, reaction enthalpy ΔH, calorimetry q = mcΔT, coffee-cup and bomb calorimetry, Hess's Law, and bond energies.",
+      keywords: "heat of reaction calculator, reaction enthalpy calculator, q = mcΔT calculator, calorimetry calculator, coffee cup calorimetry calculator, bomb calorimetry calculator, exothermic endothermic calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "hess-law-calculator",
+    slugs: {
+      en: "hess-law-calculator",
+      es: "calculadora-de-ley-de-hess",
+      de: "hess-gesetz-rechner",
+      fr: "calculateur-de-loi-de-hess"
+    },
+    title: "Hess's Law Calculator",
+    category: "Chemistry",
+    description: "Combine multi-step chemical equations, reverse and scale reaction steps, cancel intermediate species, and calculate target reaction enthalpy ΔH using Hess's Law.",
+    meta: {
+      title: "Hess's Law Calculator | Reaction Enthalpy & Multi-Step Solver",
+      description: "Free online Hess's Law Calculator. Instantly combine chemical equations, reverse reactions ΔH ➔ -ΔH, scale reaction multipliers, cancel intermediate species, and solve target enthalpy ΔH.",
+      keywords: "hess law calculator, hess's law solver, reaction enthalpy calculator, thermochemistry calculator, intermediate species cancellation, reaction algebra solver, state function enthalpy calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "calorimetry-calculator",
+    slugs: {
+      en: "calorimetry-calculator",
+      es: "calculadora-de-calorimetria",
+      de: "kalorimetrie-rechner",
+      fr: "calculateur-de-calorimetrie"
+    },
+    title: "Calorimetry Calculator",
+    category: "Chemistry",
+    description: "Calculate heat transfer q = mcΔT, thermal equilibrium temperature, coffee-cup calorimetry, bomb calorimetry q_v = ΔU, calorimeter constants, and latent heat phase changes.",
+    meta: {
+      title: "Calorimetry Calculator | Heat Transfer & Thermochemistry Solver",
+      description: "Free online Calorimetry Calculator. Instantly calculate q = mcΔT, thermal equilibrium T_eq, coffee-cup and bomb calorimetry, calorimeter constant calibration, and latent heat.",
+      keywords: "calorimetry calculator, q = mcΔT calculator, specific heat calculator, heat capacity calculator, thermal equilibrium calculator, coffee cup calorimetry calculator, bomb calorimetry calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "specific-heat-calculator",
+    slugs: {
+      en: "specific-heat-calculator",
+      es: "calculadora-de-calor-especifico",
+      de: "spezifische-waerme-rechner",
+      fr: "calculateur-de-chaleur-massique"
+    },
+    title: "Specific Heat Calculator",
+    category: "Chemistry",
+    description: "Calculate specific heat capacity c = q/(mΔT), heat transferred q = mcΔT, sample mass, temperature change, unknown material identification, and reference database comparison.",
+    meta: {
+      title: "Specific Heat Calculator | Calculate Specific Heat Capacity & Heat Transfer",
+      description: "Free online Specific Heat Calculator. Instantly calculate specific heat capacity c, heat transferred q = mcΔT, mass m, temperature change ΔT, and identify unknown materials against reference database.",
+      keywords: "specific heat calculator, specific heat capacity calculator, c = q/mΔT calculator, q = mcΔT calculator, heat transfer calculator, material specific heat identifier, specific heat of water",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "ideal-gas-law-calculator",
+    slugs: {
+      en: "ideal-gas-law-calculator",
+      es: "calculadora-de-ley-de-gases-ideales",
+      de: "ideales-gas-gesetz-rechner",
+      fr: "calculateur-de-loi-des-gaz-parfaits"
+    },
+    title: "Ideal Gas Law Calculator",
+    category: "Chemistry",
+    description: "Calculate pressure P, volume V, moles n, absolute temperature T, gas constant R, gas density ρ = PM/RT, molar mass M, and two-state combined gas law relationships.",
+    meta: {
+      title: "Ideal Gas Law Calculator | PV = nRT & Gas Property Solver",
+      description: "Free online Ideal Gas Law Calculator. Instantly calculate pressure P, volume V, moles n, absolute temperature T, gas constant R, gas density ρ, molar mass M, and two-state gas compression.",
+      keywords: "ideal gas law calculator, PV = nRT calculator, gas law calculator, gas density calculator, molar mass from gas data calculator, combined gas law calculator, compressibility factor calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "combined-gas-law-calculator",
+    slugs: {
+      en: "combined-gas-law-calculator",
+      es: "calculadora-de-ley-combinada-de-gases",
+      de: "kombiniertes-gas-gesetz-rechner",
+      fr: "calculateur-de-loi-combinee-des-gaz"
+    },
+    title: "Combined Gas Law Calculator",
+    category: "Chemistry",
+    description: "Calculate initial or final pressure P, volume V, or absolute temperature T using P1V1/T1 = P2V2/T2. Includes automatic Kelvin conversion, percentage changes, and gas process classification.",
+    meta: {
+      title: "Combined Gas Law Calculator | P1V1/T1 = P2V2/T2 Two-State Gas Solver",
+      description: "Free online Combined Gas Law Calculator. Calculate unknown initial or final pressure, volume, or temperature between two states of a fixed gas sample (P1V1/T1 = P2V2/T2).",
+      keywords: "combined gas law calculator, P1V1/T1 = P2V2/T2 calculator, two-state gas calculator, gas compression calculator, gas expansion calculator, boyles law calculator, charles law calculator, gay-lussac law calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "boyles-law-calculator",
+    slugs: {
+      en: "boyles-law-calculator",
+      es: "calculadora-de-ley-de-boyle",
+      de: "boyle-mariotte-gesetz-rechner",
+      fr: "calculateur-de-loi-de-boyle"
+    },
+    title: "Boyle's Law Calculator",
+    category: "Chemistry",
+    description: "Calculate initial or final pressure P or volume V using P1V1 = P2V2. Includes Boyle's constant k = PV calculation, compression vs expansion analysis, and isotherm curves.",
+    meta: {
+      title: "Boyle's Law Calculator | P1V1 = P2V2 Pressure-Volume Solver",
+      description: "Free online Boyle's Law Calculator. Calculate unknown initial or final pressure or volume under constant temperature conditions (P1V1 = P2V2). Includes interactive P-V isotherms.",
+      keywords: "boyles law calculator, P1V1 = P2V2 calculator, pressure volume calculator, gas compression calculator, gas expansion calculator, boyle mariotte law calculator, isothermal gas solver",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "charles-law-calculator",
+    slugs: {
+      en: "charles-law-calculator",
+      es: "calculadora-de-ley-de-charles",
+      de: "charles-gesetz-rechner",
+      fr: "calculateur-de-loi-de-charles"
+    },
+    title: "Charles's Law Calculator",
+    category: "Chemistry",
+    description: "Calculate initial or final volume V or absolute temperature T using V1/T1 = V2/T2. Includes automatic Kelvin conversion, thermal expansion/contraction analysis, and V-T linear plots.",
+    meta: {
+      title: "Charles's Law Calculator | V1/T1 = V2/T2 Volume-Temperature Solver",
+      description: "Free online Charles's Law Calculator. Calculate unknown initial or final volume or temperature under constant pressure conditions (V1/T1 = V2/T2). Includes absolute Kelvin conversion.",
+      keywords: "charles law calculator, V1/T1 = V2/T2 calculator, volume temperature calculator, thermal expansion calculator, gas contraction calculator, gay-lussac law calculator, isobaric gas solver",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
   }
 ];
 

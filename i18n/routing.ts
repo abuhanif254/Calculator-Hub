@@ -459,6 +459,138 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-d-equation-de-henderson-hasselbalch',
       de: '/rechner/henderson-hasselbalch-gleichung-rechner'
     },
+    '/calculators/buffer-calculator': {
+      en: '/calculators/buffer-calculator',
+      es: '/calculadoras/calculadora-de-tampon-quimico',
+      fr: '/calculatrices/calculateur-de-tampon',
+      de: '/rechner/puffer-rechner'
+    },
+    '/calculators/acid-base-calculator': {
+      en: '/calculators/acid-base-calculator',
+      es: '/calculadoras/calculadora-de-acido-base',
+      fr: '/calculatrices/calculateur-acide-base',
+      de: '/rechner/saeure-base-rechner'
+    },
+    '/calculators/ka-calculator': {
+      en: '/calculators/ka-calculator',
+      es: '/calculadoras/calculadora-de-ka',
+      fr: '/calculatrices/calculateur-de-ka',
+      de: '/rechner/ka-wert-rechner'
+    },
+    '/calculators/kb-calculator': {
+      en: '/calculators/kb-calculator',
+      es: '/calculadoras/calculadora-de-kb',
+      fr: '/calculatrices/calculateur-de-kb',
+      de: '/rechner/kb-wert-rechner'
+    },
+    '/calculators/equilibrium-constant-calculator': {
+      en: '/calculators/equilibrium-constant-calculator',
+      es: '/calculadoras/calculadora-de-constante-de-equilibrio',
+      fr: '/calculatrices/calculateur-de-constante-d-equilibre',
+      de: '/rechner/gleichgewichtskonstante-rechner'
+    },
+    '/calculators/ksp-calculator': {
+      en: '/calculators/ksp-calculator',
+      es: '/calculadoras/calculadora-de-ksp',
+      fr: '/calculatrices/calculateur-de-ksp',
+      de: '/rechner/ksp-rechner'
+    },
+    '/calculators/solubility-calculator': {
+      en: '/calculators/solubility-calculator',
+      es: '/calculadoras/calculadora-de-solubilidad',
+      fr: '/calculatrices/calculateur-de-solubilite',
+      de: '/rechner/loeslichkeitsrechner'
+    },
+    '/calculators/nernst-equation-calculator': {
+      en: '/calculators/nernst-equation-calculator',
+      es: '/calculadoras/calculadora-de-ecuacion-de-nernst',
+      fr: '/calculatrices/calculateur-d-equation-de-nernst',
+      de: '/rechner/nernst-gleichung-rechner'
+    },
+    '/calculators/electrochemical-cell-calculator': {
+      en: '/calculators/electrochemical-cell-calculator',
+      es: '/calculadoras/calculadora-de-celda-electroquimica',
+      fr: '/calculatrices/calculateur-de-pile-electrochimique',
+      de: '/rechner/elektrochemische-zelle-rechner'
+    },
+    '/calculators/cell-potential-calculator': {
+      en: '/calculators/cell-potential-calculator',
+      es: '/calculadoras/calculadora-de-potencial-de-celda',
+      fr: '/calculatrices/calculateur-de-potentiel-de-pile',
+      de: '/rechner/zellpotenzial-rechner'
+    },
+    '/calculators/faradays-law-calculator': {
+      en: '/calculators/faradays-law-calculator',
+      es: '/calculadoras/calculadora-de-ley-de-faraday',
+      fr: '/calculatrices/calculateur-de-loi-de-faraday',
+      de: '/rechner/faradaysches-gesetz-rechner'
+    },
+    '/calculators/electrolysis-calculator': {
+      en: '/calculators/electrolysis-calculator',
+      es: '/calculadoras/calculadora-de-electrolisis',
+      fr: '/calculatrices/calculateur-d-electrolyse',
+      de: '/rechner/elektrolyse-rechner'
+    },
+    '/calculators/gibbs-free-energy-calculator': {
+      en: '/calculators/gibbs-free-energy-calculator',
+      es: '/calculadoras/calculadora-de-energia-libre-de-gibbs',
+      fr: '/calculatrices/calculateur-d-energie-libre-de-gibbs',
+      de: '/rechner/gibbs-energie-rechner'
+    },
+    '/calculators/enthalpy-calculator': {
+      en: '/calculators/enthalpy-calculator',
+      es: '/calculadoras/calculadora-de-entalpia',
+      fr: '/calculatrices/calculateur-d-enthalpie',
+      de: '/rechner/enthalpie-rechner'
+    },
+    '/calculators/heat-of-reaction-calculator': {
+      en: '/calculators/heat-of-reaction-calculator',
+      es: '/calculadoras/calculadora-de-calor-de-reaccion',
+      fr: '/calculatrices/calculateur-de-chaleur-de-reaction',
+      de: '/rechner/reaktionswaerme-rechner'
+    },
+    '/calculators/hess-law-calculator': {
+      en: '/calculators/hess-law-calculator',
+      es: '/calculadoras/calculadora-de-ley-de-hess',
+      fr: '/calculatrices/calculateur-de-loi-de-hess',
+      de: '/rechner/hess-gesetz-rechner'
+    },
+    '/calculators/calorimetry-calculator': {
+      en: '/calculators/calorimetry-calculator',
+      es: '/calculadoras/calculadora-de-calorimetria',
+      fr: '/calculatrices/calculateur-de-calorimetrie',
+      de: '/rechner/kalorimetrie-rechner'
+    },
+    '/calculators/specific-heat-calculator': {
+      en: '/calculators/specific-heat-calculator',
+      es: '/calculadoras/calculadora-de-calor-especifico',
+      fr: '/calculatrices/calculateur-de-chaleur-massique',
+      de: '/rechner/spezifische-waerme-rechner'
+    },
+    '/calculators/ideal-gas-law-calculator': {
+      en: '/calculators/ideal-gas-law-calculator',
+      es: '/calculadoras/calculadora-de-ley-de-gases-ideales',
+      fr: '/calculatrices/calculateur-de-loi-des-gaz-parfaits',
+      de: '/rechner/ideales-gas-gesetz-rechner'
+    },
+    '/calculators/combined-gas-law-calculator': {
+      en: '/calculators/combined-gas-law-calculator',
+      es: '/calculadoras/calculadora-de-ley-combinada-de-gases',
+      fr: '/calculatrices/calculateur-de-loi-combinee-des-gaz',
+      de: '/rechner/kombiniertes-gas-gesetz-rechner'
+    },
+    '/calculators/boyles-law-calculator': {
+      en: '/calculators/boyles-law-calculator',
+      es: '/calculadoras/calculadora-de-ley-de-boyle',
+      fr: '/calculatrices/calculateur-de-loi-de-boyle',
+      de: '/rechner/boyle-mariotte-gesetz-rechner'
+    },
+    '/calculators/charles-law-calculator': {
+      en: '/calculators/charles-law-calculator',
+      es: '/calculadoras/calculadora-de-ley-de-charles',
+      fr: '/calculatrices/calculateur-de-loi-de-charles',
+      de: '/rechner/charles-gesetz-rechner'
+    },
     // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',
