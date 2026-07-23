@@ -1,0 +1,903 @@
+"use client";
+
+import React, { useState, useMemo, useEffect } from "react";
+import Link from "next/link";
+import { 
+  Play, Pause, RotateCcw, Info, Printer, Copy, Share2, 
+  CheckCircle2, ChevronRight, Zap, Activity, Sparkles, AlertTriangle, ArrowRight, Layers, Sliders, Cpu, Flame, Sun, DollarSign, Thermometer, ShieldAlert, ArrowDown, Plus, Trash2, Battery, Server, RefreshCw, ExternalLink, ShieldCheck, Gauge, HardDrive, Wifi, Tv, SunDim, Compass
+} from "lucide-react";
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, PieChart, Pie, Cell } from "recharts";
+
+type CategoryTab = "basic_sizing" | "multi_appliance" | "voltage_comparison" | "battery_runtime" | "solar_hybrid";
+
+interface CustomAppliance {
+  id: string;
+  name: string;
+  powerW: number;
+  powerFactor: number;
+  quantity: number;
+  surgeMultiplier: number; // e.g. 1.0 for TV, 2.5 for fridge/motor
+  dutyCyclePct: number; // e.g. 50% for fridge compressor
+}
+
+const DEFAULT_INVERTER_LOADS: CustomAppliance[] = [
+  { id: "1", name: "Refrigerator", powerW: 150, powerFactor: 0.80, quantity: 1, surgeMultiplier: 2.5, dutyCyclePct: 50 },
+  { id: "2", name: "Ceiling Fans", powerW: 75, powerFactor: 0.85, quantity: 3, surgeMultiplier: 1.2, dutyCyclePct: 100 },
+  { id: "3", name: "LED Household Lights", powerW: 12, powerFactor: 0.90, quantity: 6, surgeMultiplier: 1.0, dutyCyclePct: 100 },
+  { id: "4", name: "LED TV & Soundbar", powerW: 120, powerFactor: 0.95, quantity: 1, surgeMultiplier: 1.0, dutyCyclePct: 100 }
+];
+
+export function InverterCalculatorView() {
+  const [isClient, setIsClient] = useState(false);
+  const [activeTab, setActiveTab] = useState<CategoryTab>("basic_sizing");
+  const [isAdvancedMode, setIsAdvancedMode] = useState<boolean>(true);
+
+  // Tab 1: Basic Sizing Inputs
+  const [loadPowerW, setLoadPowerW] = useState<number>(800); // Watts
+  const [systemPf, setSystemPf] = useState<number>(0.85); // 0.85 PF
+  const [safetyMarginPct, setSafetyMarginPct] = useState<number>(20); // 20% safety margin
+  const [futureExpansionPct, setFutureExpansionPct] = useState<number>(20); // 20% future expansion
+
+  // Target Installed Inverter Capacity (for Utilization Gauge)
+  const [installedInverterVa, setInstalledInverterVa] = useState<number>(1500); // 1500 VA Inverter
+
+  // Tab 2: Multi-Appliance Load State
+  const [loadList, setLoadList] = useState<CustomAppliance[]>(DEFAULT_INVERTER_LOADS);
+  const [newLoadName, setNewLoadName] = useState<string>("");
+  const [newLoadW, setNewLoadW] = useState<number>(100);
+  const [newLoadPf, setNewLoadPf] = useState<number>(0.85);
+  const [newLoadSurge, setNewLoadSurge] = useState<number>(1.5);
+  const [newLoadDuty, setNewLoadDuty] = useState<number>(100);
+
+  // Tab 3: System Voltage Comparison State (12V, 24V, 48V)
+  const [selectedSystemVoltageV, setSelectedSystemVoltageV] = useState<number>(24);
+
+  // Tab 4: Battery Bank State
+  const [batteryVoltageV, setBatteryVoltageV] = useState<number>(12.0); // 12V batteries
+  const [batteryCapacityAh, setBatteryCapacityAh] = useState<number>(150.0); // 150Ah
+  const [seriesCount, setSeriesCount] = useState<number>(2); // 2 in series = 24V bank
+  const [parallelCount, setParallelCount] = useState<number>(1); // 1 parallel string
+  const [inverterEffPct, setInverterEffPct] = useState<number>(90); // 90% Efficiency
+  const [dodPct, setDodPct] = useState<number>(80); // 80% Depth of discharge
+
+  // Tab 5: Solar Hybrid Array State
+  const [solarArrayWatts, setSolarArrayWatts] = useState<number>(1200); // 1200W solar array
+  const [peakSunHours, setPeakSunHours] = useState<number>(5.0); // 5.0 hours/day
+
+  // Visual Tab State
+  const [visualTab, setVisualTab] = useState<"gauge" | "voltage" | "battery" | "solar" | "quiz">("gauge");
+
+  // Quiz State
+  const [quizQuestion, setQuizQuestion] = useState<{ q: string; correctAnswer: number; units: string } | null>(null);
+  const [quizUserAnswer, setQuizUserAnswer] = useState<string>("");
+  const [quizChecked, setQuizChecked] = useState(false);
+  const [quizIsCorrect, setQuizIsCorrect] = useState(false);
+
+  // Notification Banner
+  const [notification, setNotification] = useState<{ type: "success" | "error"; message: string } | null>(null);
+
+  useEffect(() => {
+    setIsClient(true);
+    generateQuiz();
+  }, []);
+
+  const triggerNotification = (type: "success" | "error", message: string) => {
+    setNotification({ type, message });
+    setTimeout(() => setNotification(null), 3000);
+  };
+
+  // Calculations Engine
+  const results = useMemo(() => {
+    // 1. Total Load Power Determination
+    let activeContinuousPowerW = loadPowerW;
+    let activeContinuousVa = loadPowerW / Math.max(0.1, systemPf);
+    let activePeakSurgeW = loadPowerW;
+
+    if (activeTab === "multi_appliance") {
+      activeContinuousPowerW = loadList.reduce((sum, item) => sum + item.powerW * item.quantity * (item.dutyCyclePct / 100), 0);
+      activeContinuousVa = loadList.reduce((sum, item) => sum + ((item.powerW * (item.dutyCyclePct / 100)) / Math.max(0.1, item.powerFactor)) * item.quantity, 0);
+      activePeakSurgeW = loadList.reduce((sum, item) => sum + (item.powerW * item.surgeMultiplier) * item.quantity, 0);
+    }
+
+    const calculatedOverallPf = activeContinuousVa > 0 ? activeContinuousPowerW / activeContinuousVa : systemPf;
+
+    // 2. Recommended Inverter Sizing (VA & Watts)
+    const safetyMultiplier = 1 + (safetyMarginPct / 100);
+    const expansionMultiplier = 1 + (futureExpansionPct / 100);
+    const totalSizingMultiplier = safetyMultiplier * expansionMultiplier;
+
+    const requiredInverterVa = activeContinuousVa * totalSizingMultiplier;
+    const requiredInverterW = activeContinuousPowerW * totalSizingMultiplier;
+
+    // Standard Inverter VA Ratings
+    const standardVaRatings = [600, 900, 1200, 1500, 2000, 2500, 3500, 5000, 7500, 10000];
+    const recommendedStandardVa = standardVaRatings.find(r => r >= requiredInverterVa) || Math.ceil(requiredInverterVa / 1000) * 1000;
+
+    // 3. Inverter Utilization Gauge Analysis
+    const effectiveInstalledVa = Math.max(1, installedInverterVa);
+    const inverterUtilizationPct = (activeContinuousVa / effectiveInstalledVa) * 100;
+
+    let utilizationStatus: "low" | "optimal" | "high" | "capacity" | "overload" = "optimal";
+    if (inverterUtilizationPct < 40) utilizationStatus = "low";
+    else if (inverterUtilizationPct <= 75) utilizationStatus = "optimal";
+    else if (inverterUtilizationPct <= 90) utilizationStatus = "high";
+    else if (inverterUtilizationPct <= 100) utilizationStatus = "capacity";
+    else utilizationStatus = "overload";
+
+    // 4. DC Current Draw Comparison across 12V, 24V, and 48V
+    const invEffDecimal = Math.max(0.1, inverterEffPct / 100);
+    const dcPowerW = activeContinuousPowerW / invEffDecimal;
+
+    const current12V = dcPowerW / 12.0;
+    const current24V = dcPowerW / 24.0;
+    const current48V = dcPowerW / 48.0;
+
+    // 5. Battery Bank & Runtime Sizing
+    const bankTotalVoltageV = batteryVoltageV * seriesCount;
+    const bankTotalCapacityAh = batteryCapacityAh * parallelCount;
+    const totalBatteryCount = seriesCount * parallelCount;
+    const totalBatteryEnergyWh = bankTotalVoltageV * bankTotalCapacityAh;
+
+    const usableEnergyWh = totalBatteryEnergyWh * (dodPct / 100);
+    const estimatedRuntimeHours = dcPowerW > 0 ? usableEnergyWh / dcPowerW : 0;
+
+    // 6. Solar Hybrid Array Mode
+    const dailySolarGenerationKwh = (solarArrayWatts * peakSunHours * 0.82) / 1000; // 82% derated efficiency
+    const dailyLoadConsumptionKwh = (activeContinuousPowerW * 24) / 1000;
+    const dailyEnergyBalanceKwh = dailySolarGenerationKwh - dailyLoadConsumptionKwh;
+    const dcToAcRatio = installedInverterVa > 0 ? solarArrayWatts / installedInverterVa : 1.0;
+
+    return {
+      activeContinuousPowerW,
+      activeContinuousVa,
+      activePeakSurgeW,
+      calculatedOverallPf,
+      requiredInverterVa,
+      requiredInverterW,
+      recommendedStandardVa,
+      inverterUtilizationPct,
+      utilizationStatus,
+      dcPowerW,
+      current12V,
+      current24V,
+      current48V,
+      bankTotalVoltageV,
+      bankTotalCapacityAh,
+      totalBatteryCount,
+      totalBatteryEnergyWh,
+      usableEnergyWh,
+      estimatedRuntimeHours,
+      dailySolarGenerationKwh,
+      dailyLoadConsumptionKwh,
+      dailyEnergyBalanceKwh,
+      dcToAcRatio
+    };
+  }, [
+    loadPowerW, systemPf, activeTab, loadList, safetyMarginPct, futureExpansionPct, installedInverterVa,
+    inverterEffPct, batteryVoltageV, batteryCapacityAh, seriesCount, parallelCount, dodPct,
+    solarArrayWatts, peakSunHours
+  ]);
+
+  // Recharts Chart Data (Voltage vs DC Current Comparison)
+  const voltageComparisonData = useMemo(() => {
+    return [
+      { Voltage: "12V Bank", CurrentAmps: Number(results.current12V.toFixed(1)) },
+      { Voltage: "24V Bank", CurrentAmps: Number(results.current24V.toFixed(1)) },
+      { Voltage: "48V Bank", CurrentAmps: Number(results.current48V.toFixed(1)) }
+    ];
+  }, [results.current12V, results.current24V, results.current48V]);
+
+  // Recharts Chart Data (Solar Generation vs Load Consumption)
+  const solarFlowData = useMemo(() => {
+    return [
+      { Category: "Daily Solar Gen", kWh: Number(results.dailySolarGenerationKwh.toFixed(2)) },
+      { Category: "Daily Load Demand", kWh: Number(results.dailyLoadConsumptionKwh.toFixed(2)) }
+    ];
+  }, [results.dailySolarGenerationKwh, results.dailyLoadConsumptionKwh]);
+
+  // Handlers for Multi-Appliance List
+  const handleAddLoad = () => {
+    if (!newLoadName.trim()) {
+      triggerNotification("error", "Please enter a valid load description name.");
+      return;
+    }
+    const newItem: CustomAppliance = {
+      id: Date.now().toString(),
+      name: newLoadName.trim(),
+      powerW: newLoadW,
+      powerFactor: newLoadPf,
+      quantity: 1,
+      surgeMultiplier: newLoadSurge,
+      dutyCyclePct: newLoadDuty
+    };
+    setLoadList([...loadList, newItem]);
+    setNewLoadName("");
+    triggerNotification("success", `Added "${newItem.name}" to inverter load profile!`);
+  };
+
+  const handleRemoveLoad = (id: string) => {
+    setLoadList(loadList.filter(item => item.id !== id));
+  };
+
+  const handleCopySummary = () => {
+    const hours = Math.floor(results.estimatedRuntimeHours);
+    const mins = Math.round((results.estimatedRuntimeHours - hours) * 60);
+
+    const text = `Inverter Sizing & Solar Backup Analysis Summary
+-----------------------------------------
+Continuous Appliance Load: ${results.activeContinuousPowerW.toFixed(0)} W / ${results.activeContinuousVa.toFixed(0)} VA (PF: ${results.calculatedOverallPf.toFixed(2)})
+Peak Surge Load: ${results.activePeakSurgeW.toFixed(0)} W
+-----------------------------------------
+RECOMMENDED INVERTER CAPACITY: ${results.recommendedStandardVa} VA (${(results.recommendedStandardVa * systemPf).toFixed(0)} W)
+Safety Margin: ${safetyMarginPct}% · Expansion Growth: ${futureExpansionPct}%
+Utilization (${installedInverterVa} VA Unit): ${results.inverterUtilizationPct.toFixed(1)}% (${results.utilizationStatus.toUpperCase()})
+-----------------------------------------
+DC Battery Current Comparison:
+12V System: ${results.current12V.toFixed(1)} A · 24V System: ${results.current24V.toFixed(1)} A · 48V System: ${results.current48V.toFixed(1)} A
+-----------------------------------------
+Battery Bank: ${results.bankTotalVoltageV}V ${results.bankTotalCapacityAh}Ah (${results.totalBatteryEnergyWh.toFixed(0)} Wh Total Energy)
+ESTIMATED BACKUP RUNTIME: ${hours} Hours ${mins} Mins (${results.estimatedRuntimeHours.toFixed(1)} Hours)
+Solar Generation (${solarArrayWatts}W Array): ${results.dailySolarGenerationKwh.toFixed(2)} kWh/day (DC/AC Ratio: ${results.dcToAcRatio.toFixed(2)})`;
+
+    navigator.clipboard.writeText(text).then(() => {
+      triggerNotification("success", "Inverter analysis summary copied to clipboard!");
+    });
+  };
+
+  // Quiz Generator
+  const generateQuiz = () => {
+    const questions = [
+      { q: "What is the Apparent Power (VA) required for an 800W load operating at a 0.85 Power Factor?", correctAnswer: 941, units: "VA" },
+      { q: "What is the DC battery current drawn by a 12V battery bank supplying an 800W load at 90% inverter efficiency (888.8W DC power)?", correctAnswer: 74.1, units: "Amps" },
+      { q: "What is the DC battery current drawn if the system voltage is upgraded to 24V DC for the exact same 888.8W load?", correctAnswer: 37, units: "Amps" }
+    ];
+
+    const rand = questions[Math.floor(Math.random() * questions.length)];
+    setQuizQuestion(rand);
+    setQuizUserAnswer("");
+    setQuizChecked(false);
+  };
+
+  const handleCheckQuiz = () => {
+    if (!quizQuestion) return;
+    const userVal = parseFloat(quizUserAnswer);
+    const diff = Math.abs(userVal - quizQuestion.correctAnswer);
+    setQuizIsCorrect(diff < 5);
+    setQuizChecked(true);
+  };
+
+  return (
+    <div className="w-full">
+      {/* Notification Banner */}
+      {notification && (
+        <div className={`fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-3 rounded-xl shadow-lg border text-sm transition-all duration-300 ${
+          notification.type === "success" 
+            ? "bg-green-50 border-green-200 text-green-800 dark:bg-green-950 dark:border-green-800 dark:text-green-200" 
+            : "bg-red-50 border-red-200 text-red-800 dark:bg-red-950 dark:border-red-800 dark:text-red-200"
+        }`}>
+          <CheckCircle2 size={18} />
+          <span>{notification.message}</span>
+        </div>
+      )}
+
+      {/* 🔄 Physics & Electrical Hub Top Pill Navigation */}
+      <div className="bg-slate-100 dark:bg-slate-900/80 p-2 rounded-2xl border border-slate-200 dark:border-slate-800 mb-8 flex items-center justify-between overflow-x-auto gap-2">
+        <span className="text-xs font-bold text-slate-500 uppercase tracking-wider px-3 flex items-center gap-1.5 shrink-0">
+          <Layers size={14} className="text-[#518231]" />
+          Inverter & Solar Hub:
+        </span>
+        <div className="flex items-center gap-1 shrink-0">
+          <span className="px-3 py-1.5 bg-[#518231] text-white rounded-xl text-xs font-bold shadow-sm">
+            Inverter Sizing
+          </span>
+          <Link href="/calculators/ups-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+            UPS Sizing
+          </Link>
+          <Link href="/calculators/battery-runtime-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+            Battery Runtime
+          </Link>
+          <Link href="/calculators/power-supply-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+            Power Supply
+          </Link>
+          <Link href="/calculators/electricity-cost-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+            Electricity Cost
+          </Link>
+        </div>
+      </div>
+
+      {/* Main Grid Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        {/* Left Column: Input Cockpit */}
+        <div className="lg:col-span-5 space-y-6">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-800">
+            
+            <div className="flex items-center justify-between mb-6 pb-6 border-b border-slate-100 dark:border-slate-800">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <SunDim className="text-[#518231]" />
+                Inverter Cockpit
+              </h2>
+
+              <button
+                type="button"
+                onClick={() => setIsAdvancedMode(!isAdvancedMode)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all border ${
+                  isAdvancedMode 
+                    ? "bg-[#518231]/10 text-[#518231] border-[#518231]/30 dark:bg-[#518231]/20" 
+                    : "bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700"
+                }`}
+              >
+                <Sliders size={13} />
+                {isAdvancedMode ? "Advanced Mode" : "Simple Mode"}
+              </button>
+            </div>
+
+            {/* Category Select Tabs */}
+            <div className="bg-slate-100 dark:bg-slate-950/60 p-1 rounded-2xl grid grid-cols-5 gap-1 mb-6 text-center">
+              {[
+                { key: "basic_sizing", label: "Sizing" },
+                { key: "multi_appliance", label: "Loads" },
+                { key: "voltage_comparison", label: "Volts DC" },
+                { key: "battery_runtime", label: "Runtime" },
+                { key: "solar_hybrid", label: "Solar" }
+              ].map(t => (
+                <button
+                  key={t.key}
+                  type="button"
+                  onClick={() => setActiveTab(t.key as CategoryTab)}
+                  className={`py-2 px-1 text-[11px] font-bold rounded-xl transition-all capitalize ${
+                    activeTab === t.key 
+                      ? "bg-white dark:bg-slate-800 text-[#518231] shadow-sm font-black" 
+                      : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                  }`}
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Dynamic Inputs */}
+            <div className="space-y-5">
+              
+              {/* Primary Output Display */}
+              <ReadOnlyField 
+                label="Recommended Inverter Rating" 
+                val={`${results.recommendedStandardVa} VA (${results.requiredInverterW.toFixed(0)} W)`} 
+                icon={Zap} 
+              />
+
+              {/* Connected Load Power (Watts) for Tab 1 */}
+              {activeTab === "basic_sizing" && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Total Continuous Load (Watts)</span>
+                    <input
+                      type="number"
+                      step="50"
+                      value={loadPowerW}
+                      onChange={(e) => setLoadPowerW(Number(e.target.value))}
+                      className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800 font-black text-sm"
+                    />
+                  </div>
+                  <input
+                    type="range"
+                    min="100"
+                    max="5000"
+                    step="50"
+                    value={loadPowerW}
+                    onChange={(e) => setLoadPowerW(Number(e.target.value))}
+                    className="w-full accent-[#518231] cursor-pointer"
+                  />
+                </div>
+              )}
+
+              {/* Power Factor (PF) */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  <span>Appliance Power Factor (PF)</span>
+                  <input
+                    type="number"
+                    step="0.05"
+                    min="0.5"
+                    max="1.0"
+                    value={systemPf}
+                    onChange={(e) => setSystemPf(Number(e.target.value))}
+                    className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800 font-black text-sm"
+                  />
+                </div>
+                <div className="flex flex-wrap gap-1 pt-1">
+                  {[0.7, 0.8, 0.85, 0.9, 0.95].map(pf => (
+                    <button
+                      key={pf}
+                      type="button"
+                      onClick={() => setSystemPf(pf)}
+                      className={`text-[10px] px-2 py-1 rounded-lg font-bold transition-all border ${
+                        systemPf === pf 
+                          ? "bg-[#518231] text-white border-[#518231]" 
+                          : "bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700"
+                      }`}
+                    >
+                      PF {pf}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Installed Inverter Capacity Target (for Gauge) */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  <span>Target Inverter VA Rating (Gauge Target)</span>
+                  <input
+                    type="number"
+                    step="100"
+                    value={installedInverterVa}
+                    onChange={(e) => setInstalledInverterVa(Number(e.target.value))}
+                    className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800 font-black text-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Tab 2: Multi-Appliance Surge Builder */}
+              {activeTab === "multi_appliance" && (
+                <div className="space-y-3 pt-2 animate-fade-in border-t border-slate-100 dark:border-slate-800 text-xs">
+                  <span className="font-bold text-slate-900 dark:text-white block">Household & Office Appliance Breakdown</span>
+                  
+                  <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                    {loadList.map(item => (
+                      <div key={item.id} className="flex items-center justify-between bg-slate-50 dark:bg-slate-950 p-2 rounded-xl border border-slate-200/50 dark:border-slate-800">
+                        <div>
+                          <span className="font-bold text-slate-900 dark:text-white block">{item.name}</span>
+                          <span className="text-[10px] text-slate-400">{item.powerW}W × {item.quantity} · Surge: {item.surgeMultiplier}x ({item.dutyCyclePct}% duty)</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveLoad(item.id)}
+                          className="text-red-500 hover:text-red-700 p-1"
+                        >
+                          <Trash2 size={14} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Add New Appliance Form */}
+                  <div className="grid grid-cols-3 gap-1 pt-1">
+                    <input
+                      type="text"
+                      placeholder="Appliance Description"
+                      value={newLoadName}
+                      onChange={(e) => setNewLoadName(e.target.value)}
+                      className="col-span-3 bg-slate-50 dark:bg-slate-950 p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Watts"
+                      value={newLoadW}
+                      onChange={(e) => setNewLoadW(Number(e.target.value))}
+                      className="bg-slate-50 dark:bg-slate-950 p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold"
+                    />
+                    <input
+                      type="number"
+                      placeholder="Surge Multiplier"
+                      step="0.1"
+                      value={newLoadSurge}
+                      onChange={(e) => setNewLoadSurge(Number(e.target.value))}
+                      className="bg-slate-50 dark:bg-slate-950 p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-xs font-semibold"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAddLoad}
+                      className="bg-[#518231] hover:bg-[#436a28] text-white font-bold p-2 rounded-xl text-xs flex items-center justify-center gap-1"
+                    >
+                      <Plus size={14} /> Add
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 4: Battery Bank & Backup Runtime */}
+              {activeTab === "battery_runtime" && (
+                <div className="space-y-3 pt-2 animate-fade-in border-t border-slate-100 dark:border-slate-800 text-xs">
+                  <span className="font-bold text-slate-900 dark:text-white block">Battery Bank Topology</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Series Batteries (Voltage × N)</span>
+                      <input
+                        type="number"
+                        min="1"
+                        max="8"
+                        value={seriesCount}
+                        onChange={(e) => setSeriesCount(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Battery Ah Rating</span>
+                      <input
+                        type="number"
+                        value={batteryCapacityAh}
+                        onChange={(e) => setBatteryCapacityAh(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Tab 5: Solar Hybrid Inputs */}
+              {activeTab === "solar_hybrid" && (
+                <div className="space-y-3 pt-2 animate-fade-in border-t border-slate-100 dark:border-slate-800 text-xs">
+                  <span className="font-bold text-slate-900 dark:text-white block">Solar PV Array Parameters</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Solar Array DC Power (Watts)</span>
+                      <input
+                        type="number"
+                        step="100"
+                        value={solarArrayWatts}
+                        onChange={(e) => setSolarArrayWatts(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Peak Sun Hours (h/day)</span>
+                      <input
+                        type="number"
+                        step="0.5"
+                        value={peakSunHours}
+                        onChange={(e) => setPeakSunHours(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Advanced Mode: Safety Margins & Inverter Efficiency */}
+              {isAdvancedMode && (
+                <div className="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
+                  <span className="font-bold text-slate-900 dark:text-white block">System Efficiency & Safety Margins</span>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Inverter Efficiency (%)</span>
+                      <select
+                        value={inverterEffPct}
+                        onChange={(e) => setInverterEffPct(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      >
+                        <option value={85}>85% (Standard Modified Wave)</option>
+                        <option value={90}>90% (High-Efficiency Pure Sine)</option>
+                        <option value={95}>95% (Solar Hybrid Pro)</option>
+                      </select>
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Safety Headroom (%)</span>
+                      <select
+                        value={safetyMarginPct}
+                        onChange={(e) => setSafetyMarginPct(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      >
+                        <option value={15}>15% (Minimum)</option>
+                        <option value={20}>20% (Recommended)</option>
+                        <option value={25}>25% (High Margin)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+            </div>
+          </div>
+
+          {/* Integration Link to UPS Calculator */}
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-5 shadow-sm border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+            <div>
+              <span className="text-xs font-bold text-slate-900 dark:text-white block">Sizing critical IT server racks?</span>
+              <span className="text-[11px] text-slate-500">Calculate 0ms transfer time online double-conversion UPS units</span>
+            </div>
+            <Link
+              href="/calculators/ups-calculator"
+              className="flex items-center gap-1 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors shrink-0"
+            >
+              UPS Calculator
+              <ExternalLink size={13} />
+            </Link>
+          </div>
+        </div>
+
+        {/* Right Column: Interactive Inverter Power Flow & DC Current Cockpit */}
+        <div className="lg:col-span-7 space-y-6">
+          
+          {/* Visual Cockpit: Dynamic Interactive Inverter Power Flow & Load Gauge */}
+          <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800 relative overflow-hidden print-card">
+            
+            <div className="flex justify-between items-center mb-4">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
+                <Sparkles size={13} className="text-[#518231]" />
+                ⚡ Dynamic Inverter Power Flow & Utilization Gauge
+              </span>
+              <span className={`text-xs font-bold px-2.5 py-1 rounded-lg ${
+                results.utilizationStatus === "overload" ? "bg-red-900 text-red-200 animate-pulse" :
+                results.utilizationStatus === "capacity" ? "bg-amber-900 text-amber-200" :
+                "bg-slate-800 text-green-400"
+              }`}>
+                Util: {results.inverterUtilizationPct.toFixed(1)}% ({results.utilizationStatus.toUpperCase()})
+              </span>
+            </div>
+
+            {/* SVG Interactive Inverter Power Flow Pipeline */}
+            <div className="bg-slate-950 rounded-2xl border border-slate-800 p-6 flex flex-col items-center justify-center relative mb-4">
+              
+              {/* Load Bar Gauge */}
+              <div className="w-full mb-4">
+                <div className="flex justify-between text-xs mb-1 font-bold">
+                  <span className="text-slate-400">Inverter Utilization ({results.activeContinuousVa.toFixed(0)} VA / {installedInverterVa} VA)</span>
+                  <span className={results.inverterUtilizationPct > 100 ? "text-red-400 font-black" : "text-[#518231]"}>
+                    {results.inverterUtilizationPct.toFixed(1)}%
+                  </span>
+                </div>
+                <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden p-0.5 border border-slate-700">
+                  <div 
+                    className={`h-full rounded-full transition-all duration-500 ${
+                      results.inverterUtilizationPct > 100 ? "bg-red-500" :
+                      results.inverterUtilizationPct > 80 ? "bg-amber-500" : "bg-[#518231]"
+                    }`}
+                    style={{ width: `${Math.min(100, results.inverterUtilizationPct)}%` }}
+                  />
+                </div>
+              </div>
+
+              {/* SVG Pipeline Visualizer */}
+              <div className="w-full max-w-md h-32 relative flex items-center justify-center">
+                <svg viewBox="0 0 400 110" className="w-full h-full">
+                  
+                  {/* Battery DC Node */}
+                  <rect x="20" y="25" width="85" height="60" fill="#1e293b" stroke="#10b981" strokeWidth="2" rx="8" />
+                  <text x="62" y="52" fill="#10b981" fontSize="11" fontWeight="bold" textAnchor="middle">{results.bankTotalVoltageV}V Battery</text>
+                  <text x="62" y="68" fill="#94a3b8" fontSize="9" textAnchor="middle">{results.current24V.toFixed(1)} A DC</text>
+
+                  {/* Flow Arrow */}
+                  <line x1="105" y1="55" x2="160" y2="55" stroke="#10b981" strokeWidth="3" strokeDasharray="5 3" />
+
+                  {/* Inverter Node */}
+                  <rect x="160" y="20" width="100" height="70" fill="#0f172a" stroke="#518231" strokeWidth="2.5" rx="8" />
+                  <text x="210" y="50" fill="#518231" fontSize="12" fontWeight="bold" textAnchor="middle">Inverter</text>
+                  <text x="210" y="68" fill="#e2e8f0" fontSize="10" fontWeight="bold" textAnchor="middle">{results.recommendedStandardVa} VA</text>
+
+                  {/* Flow Arrow */}
+                  <line x1="260" y1="55" x2="310" y2="55" stroke="#f59e0b" strokeWidth="3" strokeDasharray="5 3" />
+
+                  {/* Appliance Load Node */}
+                  <rect x="310" y="25" width="75" height="60" fill="#1e293b" stroke="#f59e0b" strokeWidth="2" rx="8" />
+                  <text x="347" y="52" fill="#f59e0b" fontSize="11" fontWeight="bold" textAnchor="middle">Load</text>
+                  <text x="347" y="68" fill="#ffffff" fontSize="10" fontWeight="bold" textAnchor="middle">{results.activeContinuousPowerW.toFixed(0)}W</text>
+                </svg>
+              </div>
+            </div>
+
+            {/* Quick Summary Cards */}
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 text-center">
+                <span className="text-[10px] font-bold uppercase text-slate-400 block">Recommended VA</span>
+                <span className="text-xs font-black text-white">{results.recommendedStandardVa} VA</span>
+              </div>
+              <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 text-center">
+                <span className="text-[10px] font-bold uppercase text-slate-400 block">Peak Surge Power</span>
+                <span className="text-xs font-black text-amber-400">{results.activePeakSurgeW.toFixed(0)} W</span>
+              </div>
+              <div className="bg-slate-950 p-3 rounded-2xl border border-slate-800 text-center">
+                <span className="text-[10px] font-bold uppercase text-slate-400 block">Backup Runtime</span>
+                <span className="text-xs font-black text-[#518231]">{results.estimatedRuntimeHours.toFixed(1)} Hours</span>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-slate-800">
+              <button
+                type="button"
+                onClick={handleCopySummary}
+                className="flex items-center justify-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold py-2 px-3 rounded-xl text-xs transition-colors border border-slate-700"
+              >
+                <Copy size={13} />
+                Copy Summary
+              </button>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="flex items-center justify-center gap-1.5 bg-[#518231] hover:bg-[#436a28] text-white font-semibold py-2 px-3 rounded-xl text-xs transition-colors border border-[#436a28]"
+              >
+                <Printer size={13} />
+                Print PDF
+              </button>
+            </div>
+          </div>
+
+          {/* Advanced Mode Tabbed Panel */}
+          {isAdvancedMode && (
+            <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden animate-fade-in">
+              
+              <div className="flex border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 p-1 flex-wrap">
+                {(["gauge", "voltage", "battery", "solar", "quiz"] as const).map(tab => (
+                  <button
+                    key={tab}
+                    type="button"
+                    onClick={() => setVisualTab(tab)}
+                    className={`flex-1 text-center py-2.5 text-xs font-bold rounded-xl transition-all capitalize ${
+                      visualTab === tab
+                        ? "bg-white dark:bg-slate-900 text-[#518231] shadow-sm"
+                        : "text-slate-500 hover:text-slate-700 dark:text-slate-400"
+                    }`}
+                  >
+                    {tab === "gauge" ? "Overview" : tab === "voltage" ? "🔌 12V/24V/48V DC" : tab === "battery" ? "🔋 Battery Bank" : tab === "solar" ? "☀️ Solar Hybrid" : "Quiz"}
+                  </button>
+                ))}
+              </div>
+
+              <div className="p-6">
+                
+                {/* Tab 1: Overview */}
+                {visualTab === "gauge" && (
+                  <div className="space-y-3 text-xs text-slate-600 dark:text-slate-400">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">⚡ Inverter Sizing Engineering Principles</h4>
+                    <p className="leading-relaxed">
+                      Inverter sizing calculates both **Apparent Power (S = P / PF)** and **Real Power (P)**. Recommended sizing includes a {safetyMarginPct}% safety headroom and {futureExpansionPct}% expansion margin to support appliance startup surges.
+                    </p>
+                  </div>
+                )}
+
+                {/* Tab 2: 12V vs 24V vs 48V DC Current Comparer */}
+                {visualTab === "voltage" && (
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">12V vs 24V vs 48V Battery Voltage DC Current Comparison (Amps)</h4>
+                    {isClient ? (
+                      <div className="h-52 w-full mt-2">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={voltageComparisonData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                            <XAxis dataKey="Voltage" />
+                            <YAxis />
+                            <Tooltip formatter={(val: any) => [`${val} Amps`, "DC Current Draw"]} />
+                            <Bar dataKey="CurrentAmps" fill="#3b82f6" radius={[6, 6, 0, 0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    ) : (
+                      <div className="h-48 flex items-center justify-center text-slate-400 text-xs">Loading comparison chart...</div>
+                    )}
+                    <p className="text-[11px] text-slate-500">
+                      Higher system voltage (48V) reduces battery-side current draw by 75% compared to 12V for the exact same power load, minimizing cable copper thickness requirements and thermal line losses.
+                    </p>
+                  </div>
+                )}
+
+                {/* Tab 3: Battery Bank Diagram */}
+                {visualTab === "battery" && (
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">Inverter Series-Parallel Battery Bank Configurator</h4>
+                    <div className="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs text-slate-300 space-y-2">
+                      <div className="flex justify-between border-b border-slate-800 pb-2">
+                        <span>Total Battery Bank Voltage:</span>
+                        <span className="font-bold text-[#518231]">{results.bankTotalVoltageV} V DC</span>
+                      </div>
+                      <div className="flex justify-between border-b border-slate-800 pb-2">
+                        <span>Total Battery Capacity:</span>
+                        <span className="font-bold text-white">{results.bankTotalCapacityAh} Ah</span>
+                      </div>
+                      <div className="flex justify-between border-b border-slate-800 pb-2">
+                        <span>Total Stored Energy:</span>
+                        <span className="font-bold text-amber-400">{results.totalBatteryEnergyWh.toFixed(0)} Wh</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Cell Count / Wiring:</span>
+                        <span className="font-bold text-slate-400">{seriesCount} Series × {parallelCount} Parallel ({results.totalBatteryCount} Units)</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Tab 4: Solar Hybrid Energy Balance Chart */}
+                {visualTab === "solar" && (
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">Solar PV Array Daily Generation vs Appliance Load (kWh)</h4>
+                    {isClient ? (
+                      <div className="h-52 w-full mt-2">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart data={solarFlowData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} />
+                            <XAxis dataKey="Category" />
+                            <YAxis />
+                            <Tooltip formatter={(val: any) => [`${val} kWh/day`, "Energy"]} />
+                            <Bar dataKey="kWh" fill="#f59e0b" radius={[6, 6, 0, 0]} />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    ) : (
+                      <div className="h-48 flex items-center justify-center text-slate-400 text-xs">Loading chart...</div>
+                    )}
+                  </div>
+                )}
+
+                {/* Tab 5: Quiz */}
+                {visualTab === "quiz" && (
+                  <div className="space-y-4">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">Inverter & Solar Engineering Quiz</h4>
+                    {quizQuestion && (
+                      <div className="space-y-3 bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
+                        <p className="text-xs text-slate-600 dark:text-slate-300 font-semibold leading-relaxed">{quizQuestion.q}</p>
+                        <div className="flex gap-2">
+                          <input
+                            type="number"
+                            step="1"
+                            value={quizUserAnswer}
+                            onChange={(e) => setQuizUserAnswer(e.target.value)}
+                            placeholder="Your answer"
+                            className="flex-1 px-3 py-2 border border-slate-200 dark:border-slate-700 rounded-lg bg-white dark:bg-slate-900 text-sm focus:outline-none"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleCheckQuiz}
+                            className="bg-[#518231] hover:bg-[#436a28] text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors"
+                          >
+                            Submit
+                          </button>
+                        </div>
+
+                        {quizChecked && (
+                          <div className={`p-3 rounded-xl border text-xs flex items-center gap-2 ${
+                            quizIsCorrect ? "bg-green-50 border-green-200 text-green-800" : "bg-red-50 border-red-200 text-red-800"
+                          }`}>
+                            {quizIsCorrect ? (
+                              <>
+                                <CheckCircle2 size={16} className="text-green-600 shrink-0" />
+                                <span>Correct! The answer is {quizQuestion.correctAnswer} {quizQuestion.units}.</span>
+                              </>
+                            ) : (
+                              <>
+                                <AlertTriangle size={16} className="text-red-600 shrink-0" />
+                                <span>Incorrect. The correct answer is {quizQuestion.correctAnswer} {quizQuestion.units}. Try again!</span>
+                              </>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={generateQuiz}
+                      className="flex items-center gap-1 text-xs font-bold text-[#518231] hover:underline"
+                    >
+                      Next Question
+                      <ChevronRight size={14} />
+                    </button>
+                  </div>
+                )}
+
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Sub-component Helper
+interface ReadOnlyFieldProps {
+  label: string;
+  val: string;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+}
+
+function ReadOnlyField({ label, val, icon: IconComp }: ReadOnlyFieldProps) {
+  return (
+    <div className="space-y-1.5">
+      <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">{label}</span>
+      <div className="w-full flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200/50 dark:border-slate-800/80 shadow-inner">
+        <span className="text-sm font-black text-slate-900 dark:text-slate-100">{val}</span>
+        <IconComp size={16} className="text-[#518231]" />
+      </div>
+    </div>
+  );
+}

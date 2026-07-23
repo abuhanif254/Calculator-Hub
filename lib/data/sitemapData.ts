@@ -1,4 +1,4 @@
-import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase, File, Image as ImageIcon, Lock, Settings, CloudSnow } from "lucide-react";
+import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase, File, Image as ImageIcon, Lock, Settings, CloudSnow, FlaskConical } from "lucide-react";
 
 export const sitemapCategories = [
   {
@@ -93,7 +93,35 @@ export const sitemapCategories = [
       "Wire Resistance Calculator",
       "Electricity Cost Calculator",
       "LED Resistor Calculator",
-      "Power Supply Calculator"
+      "Power Supply Calculator",
+      "Power Factor Calculator",
+      "Battery Runtime Calculator",
+      "UPS Calculator",
+      "Inverter Calculator",
+      "Solar Panel Calculator"
+    ]
+  },
+  {
+    title: "Chemistry Calculators",
+    id: "chemistry",
+    icon: FlaskConical,
+    description: "Solve molarity, molecular weight, stoichiometry, gas laws, pH, and chemical solution math.",
+    links: [
+      "Molarity Calculator",
+      "Molality Calculator",
+      "Mole Calculator",
+      "Molar Mass Calculator",
+      "Percent Composition Calculator",
+      "Molarity Dilution Calculator",
+      "Dilution Calculator",
+      "Stoichiometry Calculator",
+      "Empirical Formula Calculator",
+      "Molecular Formula Calculator",
+      "Balancing Chemical Equations Calculator",
+      "pH Calculator",
+      "pOH Calculator",
+      "pKa Calculator",
+      "Henderson-Hasselbalch Equation Calculator"
     ]
   },
   {

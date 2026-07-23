@@ -158,6 +158,29 @@ Calculate net force, mass, acceleration, friction coefficients, and torque based
 Estimate kinetic energy, potential energy, work, power, thermal expansion, and heat transfer across multiple units.
 
 All calculations run entirely in your web browser with no server latency or tracking.`
+  },
+  {
+    id: 'chemistry',
+    title: 'Chemistry Calculators',
+    dbCategory: ['Chemistry', 'Chemistry Calculators'],
+    description: 'Solve molarity, molecular weight, stoichiometry, gas laws, pH, and chemical solution math.',
+    icon: 'FlaskConical',
+    seoTitle: 'Chemistry Calculators | Free Molarity, Gas Laws & Stoichiometry Tools',
+    seoDescription: 'Free online chemistry calculators. Solve molarity, molecular weight, stoichiometry, ideal gas law, pH, buffer solutions, and thermochemistry problems with step-by-step solutions.',
+    pillarContent: `## Chemistry Calculators
+
+Master chemical calculations and laboratory solutions with our suite of **precision chemistry calculators**. Designed for students, researchers, and lab technicians, all tools run instantaneously in your web browser.
+
+### Solution Chemistry & Molarity
+Calculate solution concentration, molarity, molality, dilution volumes ($C_1 V_1 = C_2 V_2$), and mass percentages for precision laboratory preparation.
+
+### Stoichiometry & Chemical Formulas
+Compute molar masses, empirical formulas, percent composition, limiting reactants, and theoretical reaction yield.
+
+### Gas Laws & Thermodynamics
+Solve Ideal Gas Law ($PV = nRT$), Boyle's Law, Charles's Law, and enthalpy changes ($\Delta H$) with automatic unit conversions.
+
+All calculations process locally in your browser to deliver instant calculations and complete privacy.`
   }
 ];
 

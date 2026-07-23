@@ -3357,6 +3357,406 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     fields: [],
     logicModule: "physics"
+  },
+  {
+    slug: "power-factor-calculator",
+    slugs: {
+      en: "power-factor-calculator",
+      es: "calculadora-de-factor-de-potencia",
+      de: "leistungsfaktor-rechner",
+      fr: "calculateur-de-facteur-de-puissance"
+    },
+    title: "Power Factor Calculator",
+    category: "Physics",
+    description: "Calculate power factor, real power (kW), apparent power (kVA), reactive power (kVAR), phase angle (φ), 1-phase/3-phase AC current, capacitor bank sizing (μF), and multi-load vector aggregation.",
+    meta: {
+      title: "Power Factor Calculator | Correction & Capacitor Sizing Solver",
+      description: "Free online Power Factor Calculator. Instantly calculate power factor (PF), real power (kW), apparent power (kVA), reactive power (kVAR), phase angle, 1-phase and 3-phase AC current, power factor correction, and capacitor bank sizing.",
+      keywords: "power factor calculator, pf calculator, power factor correction calculator, reactive power calculator, apparent power calculator, capacitor bank sizing, 3 phase power factor calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "battery-runtime-calculator",
+    slugs: {
+      en: "battery-runtime-calculator",
+      es: "calculadora-de-autonomia-de-bateria",
+      de: "batterielaufzeit-rechner",
+      fr: "calculateur-d-autonomie-de-batterie"
+    },
+    title: "Battery Runtime Calculator",
+    category: "Physics",
+    description: "Calculate battery backup runtime (hours), battery energy (Wh/kWh), capacity (Ah), depth of discharge (DoD), inverter losses, Peukert's Law, series/parallel battery banks, and charging time.",
+    meta: {
+      title: "Battery Runtime Calculator | Backup Time & Energy Storage Solver",
+      description: "Free online Battery Runtime Calculator. Instantly calculate battery backup runtime (hours/minutes), stored energy (Wh & kWh), depth of discharge (DoD), inverter efficiency, Peukert's Law, series-parallel battery banks, and charging time.",
+      keywords: "battery runtime calculator, battery life calculator, battery backup time calculator, battery capacity calculator, ups battery runtime calculator, inverter battery runtime calculator, peukert law calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "ups-calculator",
+    slugs: {
+      en: "ups-calculator",
+      es: "calculadora-de-ups",
+      de: "usv-rechner",
+      fr: "calculateur-d-onduleur"
+    },
+    title: "UPS Calculator",
+    category: "Physics",
+    description: "Calculate UPS VA rating, Watts, safety margins, load utilization %, peak startup surges, battery backup runtime, N+1 modular redundancy, and generator compatibility.",
+    meta: {
+      title: "UPS Calculator | Sizing, Runtime & Backup Power Solver",
+      description: "Free online UPS Calculator. Instantly calculate required UPS VA and Watt ratings, safety headroom, load utilization %, startup surges, battery backup runtime, N+1 redundancy, and generator compatibility.",
+      keywords: "ups calculator, ups sizing calculator, ups runtime calculator, ups battery calculator, ups va calculator, ups capacity calculator, uninterruptible power supply calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "inverter-calculator",
+    slugs: {
+      en: "inverter-calculator",
+      es: "calculadora-de-inversor",
+      de: "wechselrichter-rechner",
+      fr: "calculateur-d-onduleur-solaire"
+    },
+    title: "Inverter Calculator",
+    category: "Physics",
+    description: "Calculate inverter VA and Watt ratings, safety margins, appliance startup surges, 12V vs 24V vs 48V DC current draw, battery backup runtime, and solar hybrid array generation.",
+    meta: {
+      title: "Inverter Calculator | Sizing, Battery Runtime & Solar Backup Solver",
+      description: "Free online Inverter Calculator. Instantly calculate required inverter VA and Watt ratings, safety headroom, 12V/24V/48V DC battery current draw, battery bank backup runtime, and solar hybrid array production.",
+      keywords: "inverter calculator, inverter sizing calculator, inverter capacity calculator, inverter va calculator, solar inverter calculator, inverter battery runtime calculator, 12v vs 24v vs 48v inverter",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "solar-panel-calculator",
+    slugs: {
+      en: "solar-panel-calculator",
+      es: "calculadora-de-paneles-solares",
+      de: "solarpanel-rechner",
+      fr: "calculateur-de-panneau-solaire"
+    },
+    title: "Solar Panel Calculator",
+    category: "Physics",
+    description: "Calculate solar panel array capacity (kWp), panel count, daily/monthly/annual kWh energy production, required roof area (m²), stringing MPPT range, battery storage, and financial payback period.",
+    meta: {
+      title: "Solar Panel Calculator | System Sizing, Output & Payback Solver",
+      description: "Free online Solar Panel Calculator. Instantly calculate required solar array capacity (kW), panel count, roof area, daily/annual energy output, MPPT stringing, battery backup autonomy, and financial payback period.",
+      keywords: "solar panel calculator, solar panel sizing calculator, solar calculator, solar pv calculator, solar panel output calculator, solar panel count calculator, solar payback calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "molarity-calculator",
+    slugs: {
+      en: "molarity-calculator",
+      es: "calculadora-de-molaridad",
+      de: "molaritaets-rechner",
+      fr: "calculateur-de-molarite"
+    },
+    title: "Molarity Calculator",
+    category: "Chemistry",
+    description: "Calculate molarity (M), solute moles (n), solution volume (L), mass (g), molar mass parser, dilution (M1V1=M2V2), and solution preparation protocols.",
+    meta: {
+      title: "Molarity Calculator | Moles, Volume, Mass & Dilution Solver",
+      description: "Free online Molarity Calculator. Instantly calculate solution molarity (M = n / V), solute moles, volume, mass from grams, chemical formula molar mass parsing, dilution (M1V1 = M2V2), and stock solution preparation.",
+      keywords: "molarity calculator, molar concentration calculator, moles to molarity calculator, molarity from mass calculator, dilution calculator, m1v1 m2v2 calculator, chemistry molarity calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "molality-calculator",
+    slugs: {
+      en: "molality-calculator",
+      es: "calculadora-de-molalidad",
+      de: "molalitaets-rechner",
+      fr: "calculateur-de-molalite"
+    },
+    title: "Molality Calculator",
+    category: "Chemistry",
+    description: "Calculate molality (m = n / kg), solute moles, solvent mass, solute mass, molar mass parser, colligative properties (ΔTb, ΔTf), and molality vs molarity temperature sensitivity.",
+    meta: {
+      title: "Molality Calculator | Moles, Solvent Mass & Colligative Solver",
+      description: "Free online Molality Calculator. Instantly calculate molality (m = n / kg solvent), solute moles, solvent mass, solute mass, chemical formula molar mass parsing, colligative properties (boiling elevation ΔTb & freezing depression ΔTf), and temperature sensitivity.",
+      keywords: "molality calculator, molal concentration calculator, moles to molality calculator, molality from mass calculator, colligative properties calculator, boiling point elevation calculator, freezing point depression calculator",
+      lastUpdated: "2026-07-22"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "mole-calculator",
+    slugs: {
+      en: "mole-calculator",
+      es: "calculadora-de-moles",
+      de: "mol-rechner",
+      fr: "calculateur-de-moles"
+    },
+    title: "Mole Calculator",
+    category: "Chemistry",
+    description: "Calculate moles (n = m / M), substance mass, Avogadro's particles (N = n × Na), chemical formula molar mass parsing, atom counts, molecules, formula units, and ions.",
+    meta: {
+      title: "Mole Calculator | Moles, Mass, Molar Mass & Particles Solver",
+      description: "Free online Mole Calculator. Instantly calculate moles from mass (n = m / M), mass from moles, Avogadro's particles (N = n × 6.022×10²³), chemical formula molar mass parsing, atom counts, molecules, formula units, and ions.",
+      keywords: "mole calculator, moles calculator, calculate moles, mole equation calculator, moles from mass calculator, moles to particles calculator, avogadros number calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "molar-mass-calculator",
+    slugs: {
+      en: "molar-mass-calculator",
+      es: "calculadora-de-masa-molar",
+      de: "molare-masse-rechner",
+      fr: "calculateur-de-masse-molaire"
+    },
+    title: "Molar Mass Calculator",
+    category: "Chemistry",
+    description: "Calculate molar mass from chemical formulas, molecular mass (u / Da), formula mass, elemental percentage composition breakdown, hydrate water of crystallization, and interactive periodic element quick picker.",
+    meta: {
+      title: "Molar Mass Calculator | Formula Mass & Percent Composition Solver",
+      description: "Free online Molar Mass Calculator. Instantly calculate molar mass from chemical formulas, molecular weight (u/Da), formula mass, elemental percentage mass composition, hydrate water analysis (·xH2O), and periodic element explorer.",
+      keywords: "molar mass calculator, molar mass from formula calculator, calculate molar mass, molecular mass calculator, formula mass calculator, percentage composition calculator, hydrate molar mass calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "percent-composition-calculator",
+    slugs: {
+      en: "percent-composition-calculator",
+      es: "calculadora-de-composicion-porcentual",
+      de: "prozentuale-zusammensetzung-rechner",
+      fr: "calculateur-de-composition-centesimale"
+    },
+    title: "Percent Composition Calculator",
+    category: "Chemistry",
+    description: "Calculate percent composition by mass from chemical formulas, elemental mass contributions, sample mass analyzer, atom percent vs mass percent comparison, hydrate water percentage, and empirical formula connections.",
+    meta: {
+      title: "Percent Composition Calculator | Mass Percent & Chemical Analyzer",
+      description: "Free online Percent Composition Calculator. Instantly calculate percentage composition by mass for each element in a compound, sample mass element distribution (g), atom vs mass ratio comparison, hydrate water breakdown (·xH2O), and empirical formula bridge.",
+      keywords: "percent composition calculator, percentage composition calculator, calculate percent composition, percent composition by mass calculator, elemental percentage calculator, sample mass analyzer chemistry",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "molarity-dilution-calculator",
+    slugs: {
+      en: "molarity-dilution-calculator",
+      es: "calculadora-de-dilucion-de-molaridad",
+      de: "molaritaets-verduennungsrechner",
+      fr: "calculateur-de-dilution-de-molarite"
+    },
+    title: "Molarity Dilution Calculator",
+    category: "Chemistry",
+    description: "Calculate solution dilutions using C1V1 = C2V2, required stock volume, solvent volume to add (Vwater), dilution factor, serial dilutions (1:10), and interactive liquid beaker particle visualizer.",
+    meta: {
+      title: "Molarity Dilution Calculator | C1V1 = C2V2 Solution Solver",
+      description: "Free online Molarity Dilution Calculator. Instantly solve C1V1 = C2V2 dilution equations, required stock solution volume, solvent volume to add, dilution factor (DF), multi-step serial dilutions, and interactive particle beaker visualizer.",
+      keywords: "molarity dilution calculator, c1v1 c2v2 calculator, dilution calculator, stock solution calculator, serial dilution calculator, solvent volume calculator, calculate solution dilution",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "dilution-calculator",
+    slugs: {
+      en: "dilution-calculator",
+      es: "calculadora-de-dilucion",
+      de: "verduennungsrechner",
+      fr: "calculateur-de-dilution"
+    },
+    title: "Dilution Calculator",
+    category: "Chemistry",
+    description: "Universal dilution calculator supporting dilution factor (DF), dilution ratios (1:10), mass/volume/percentage concentration types, diluent volume, serial dilutions, and fluid visualizer.",
+    meta: {
+      title: "Dilution Calculator | Dilution Factor, Ratio & Concentration Solver",
+      description: "Free online Universal Dilution Calculator. Instantly calculate dilution factor (DF), dilution ratio (1:10), final concentration, diluent volume, mass/percentage concentration, serial dilutions, and fluid diluent visualizer.",
+      keywords: "dilution calculator, dilution factor calculator, dilution ratio calculator, solution dilution calculator, calculate dilution, diluent volume calculator, serial dilution calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "stoichiometry-calculator",
+    slugs: {
+      en: "stoichiometry-calculator",
+      es: "calculadora-de-estequiometria",
+      de: "stoechiometrie-rechner",
+      fr: "calculateur-de-stoechiometrie"
+    },
+    title: "Stoichiometry Calculator",
+    category: "Chemistry",
+    description: "Universal stoichiometry calculator for chemical equation balancing, atom matrix, mole ratios, limiting reactant identification, theoretical yield, actual yield, percent yield, and solution/gas stoichiometry.",
+    meta: {
+      title: "Stoichiometry Calculator | Equation Balancer & Yield Solver",
+      description: "Free online Stoichiometry Calculator. Instantly balance chemical equations, analyze mole ratios, convert mass to moles, identify limiting and excess reactants, calculate theoretical, actual, and percent yield, plus solution and gas stoichiometry.",
+      keywords: "stoichiometry calculator, chemical equation balancer, mole ratio calculator, limiting reactant calculator, theoretical yield calculator, percent yield calculator, reaction stoichiometry",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "empirical-formula-calculator",
+    slugs: {
+      en: "empirical-formula-calculator",
+      es: "calculadora-de-formula-empirica",
+      de: "empirische-formel-rechner",
+      fr: "calculateur-de-formule-brute"
+    },
+    title: "Empirical Formula Calculator",
+    category: "Chemistry",
+    description: "Calculate empirical and molecular formulas from percent composition, elemental mass (g), or mole quantities with fractional multiplier detection and element composition donut chart.",
+    meta: {
+      title: "Empirical Formula Calculator | Chemical Composition Solver",
+      description: "Free online Empirical Formula Calculator. Instantly determine simplest whole-number empirical formulas and molecular formulas from percent composition, elemental mass, or mole quantities with multiplier detection.",
+      keywords: "empirical formula calculator, calculate empirical formula, percent composition to empirical formula, molecular formula calculator, elemental composition solver, chemical formula calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "molecular-formula-calculator",
+    slugs: {
+      en: "molecular-formula-calculator",
+      es: "calculadora-de-formula-molecular",
+      de: "molekuelformel-rechner",
+      fr: "calculateur-de-formule-moleculaire"
+    },
+    title: "Molecular Formula Calculator",
+    category: "Chemistry",
+    description: "Calculate molecular formulas from empirical formulas and molar mass (n = M/M_emp), relative molecular mass (Mr), percent composition, subscript GCD reduction, and molecular mass composition.",
+    meta: {
+      title: "Molecular Formula Calculator | Formula & Multiplier Solver",
+      description: "Free online Molecular Formula Calculator. Instantly determine molecular formulas from empirical formulas and molar mass, molecular multiplier n, relative molecular mass Mr, subscript reduction, and mass composition charts.",
+      keywords: "molecular formula calculator, calculate molecular formula, empirical to molecular formula, molecular multiplier calculator, molecular mass calculator, chemical formula calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "balancing-chemical-equations-calculator",
+    slugs: {
+      en: "balancing-chemical-equations-calculator",
+      es: "calculadora-de-balanceo-de-ecuaciones-quimicas",
+      de: "chemische-gleichungen-balancieren-rechner",
+      fr: "calculateur-d-equilibrage-d-equations-chimiques"
+    },
+    title: "Balancing Chemical Equations Calculator",
+    category: "Chemistry",
+    description: "Automatically balance chemical equations, verify atom and charge conservation matrix, calculate stoichiometric coefficients, solve redox half-reactions, and generate step-by-step explanations.",
+    meta: {
+      title: "Balancing Chemical Equations Calculator | Reaction Balancer",
+      description: "Free online Balancing Chemical Equations Calculator. Instantly balance chemical reactions with linear matrix algebra, verify atom and charge conservation, solve redox half-reactions, and view step-by-step solutions.",
+      keywords: "balancing chemical equations calculator, chemical equation balancer, balance chemical equations, equation balancer, redox equation balancer, net ionic equation calculator, reaction balancer",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "ph-calculator",
+    slugs: {
+      en: "ph-calculator",
+      es: "calculadora-de-ph",
+      de: "ph-wert-rechner",
+      fr: "calculateur-de-ph"
+    },
+    title: "pH Calculator",
+    category: "Chemistry",
+    description: "Calculate pH, pOH, hydrogen ion [H+], hydroxide [OH-], strong/weak acid & base equilibrium, Ka/Kb/pKa/pKb, Henderson-Hasselbalch buffer pH, dilution, and titration curves.",
+    meta: {
+      title: "pH Calculator | Acid-Base & Equilibrium Solver",
+      description: "Free online pH Calculator. Instantly calculate pH, pOH, hydrogen ion concentration [H+], hydroxide [OH-], weak acid/base quadratic equilibrium, Henderson-Hasselbalch buffer pH, and titration curves.",
+      keywords: "ph calculator, calculate ph, poh calculator, hydrogen ion concentration calculator, hydroxide ion concentration, weak acid ph calculator, buffer ph calculator, henderson hasselbalch calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "poh-calculator",
+    slugs: {
+      en: "poh-calculator",
+      es: "calculadora-de-poh",
+      de: "poh-wert-rechner",
+      fr: "calculateur-de-poh"
+    },
+    title: "pOH Calculator",
+    category: "Chemistry",
+    description: "Calculate pOH, hydroxide ion [OH-], pH, hydrogen ion [H+], strong/weak base equilibrium, Kb/pKb, Henderson-Hasselbalch base buffer pOH, base dilution, and titration curves.",
+    meta: {
+      title: "pOH Calculator | Hydroxide Ion & Base Equilibrium Solver",
+      description: "Free online pOH Calculator. Instantly calculate pOH, hydroxide ion concentration [OH-], pH, hydrogen ion [H+], weak base quadratic equilibrium, Henderson-Hasselbalch base buffer pOH, and titration curves.",
+      keywords: "poh calculator, calculate poh, hydroxide ion concentration calculator, oh- concentration calculator, ph from poh calculator, weak base poh calculator, base buffer poh calculator, henderson hasselbalch base calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "pka-calculator",
+    slugs: {
+      en: "pka-calculator",
+      es: "calculadora-de-pka",
+      de: "pka-wert-rechner",
+      fr: "calculateur-de-pka"
+    },
+    title: "pKa Calculator",
+    category: "Chemistry",
+    description: "Calculate pKa from Ka, convert between pKa and Ka, analyze weak acid equilibrium, acid strength, conjugate bases, Henderson-Hasselbalch equations, polyprotic acids, and titration curves.",
+    meta: {
+      title: "pKa Calculator | Acid Strength & Equilibrium Solver",
+      description: "Free online pKa Calculator. Instantly calculate pKa from Ka, convert between pKa and Ka, analyze weak acid quadratic equilibrium, Henderson-Hasselbalch buffer pH, polyprotic species distribution, and titration curves.",
+      keywords: "pka calculator, calculate pka, ka to pka calculator, pka to ka calculator, acid strength calculator, acid dissociation calculator, weak acid calculator, henderson hasselbalch calculator, polyprotic acid calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
+  },
+  {
+    slug: "henderson-hasselbalch-equation-calculator",
+    slugs: {
+      en: "henderson-hasselbalch-equation-calculator",
+      es: "calculadora-de-ecuacion-de-henderson-hasselbalch",
+      de: "henderson-hasselbalch-gleichung-rechner",
+      fr: "calculateur-d-equation-de-henderson-hasselbalch"
+    },
+    title: "Henderson-Hasselbalch Equation Calculator",
+    category: "Chemistry",
+    description: "Calculate buffer pH, pKa, conjugate base [A-], weak acid [HA], acid/base ratio, buffer capacity (beta), buffer range, buffer preparation, and species distribution.",
+    meta: {
+      title: "Henderson-Hasselbalch Calculator | Buffer pH & Capacity Solver",
+      description: "Free online Henderson-Hasselbalch Equation Calculator. Instantly calculate buffer pH, pKa, conjugate ratio [A-]/[HA], weak acid concentration, buffer capacity beta, buffer range, and species distribution.",
+      keywords: "henderson hasselbalch calculator, henderson hasselbalch equation calculator, buffer ph calculator, buffer calculator, calculate buffer ph, ph buffer calculator, buffer capacity calculator, buffer ratio calculator",
+      lastUpdated: "2026-07-23"
+    },
+    fields: [],
+    logicModule: "physics"
   }
 ];
 
