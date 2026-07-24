@@ -12,7 +12,7 @@ faqs:
   - question: "En quoi le volume est-il différent de la surface ?"
     answer: "Le volume mesure la quantité d'espace tridimensionnel qu'un objet occupe, tandis que la surface mesure l'aire totale des surfaces extérieures de l'objet."
   - question: "Quelles unités sont utilisées pour le volume ?"
-    answer: "Le volume est toujours mesuré en unités cubes. Les unités courantes incluent les centimètres cubes (cm³), les mètres cubes (m³), ou les litres."
+    answer: "Le volume est toujours mesuré en unités cubes. Les unités courantes incluent les centimètres cubes (cm³), les mètres cubes (m3), ou les litres."
 ---
 
 ## Le Guide Ultime pour Calculer un Volume
@@ -25,7 +25,7 @@ Notre **Calculateur de Volume Gratuit** résout instantanément les équations g
 
 En géométrie, le **volume** est la mesure de l'espace tridimensionnel. En termes simples, si la surface est la quantité de papier d'emballage nécessaire pour recouvrir une boîte, le volume est la quantité d'espace physique *à l'intérieur* de la boîte.
 
-Parce qu'il est tridimensionnel (longueur, largeur et hauteur), le volume est toujours exprimé en unités cubes, comme les mètres cubes (m³), ou en mesures fluides comme les litres.
+Parce qu'il est tridimensionnel (longueur, largeur et hauteur), le volume est toujours exprimé en unités cubes, comme les mètres cubes (m3), ou en mesures fluides comme les litres.
 
 ### Formules pour les 5 Formes 3D les Plus Courantes
 

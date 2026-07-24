@@ -10,6 +10,7 @@ import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
+import Mermaid from "@/app/components/Mermaid";
 import { Link, routing, resolveIntlHref } from "@/i18n/routing";
 import { Search, ChevronRight, CalculatorIcon } from "lucide-react";
 
@@ -280,7 +281,23 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
           {seoContent && (
             <article className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 prose prose-slate dark:prose-invert max-w-none lg:prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[#518231] prose-img:rounded-xl">
-              <ReactMarkdown>{seoContent}</ReactMarkdown>
+              <ReactMarkdown
+                components={{
+                  code({ node, className, children, ...props }: any) {
+                    const match = /language-(\w+)/.exec(className || '');
+                    if (match && match[1] === 'mermaid') {
+                      return <Mermaid chart={String(children).replace(/\n$/, '')} />;
+                    }
+                    return (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    );
+                  }
+                }}
+              >
+                {seoContent}
+              </ReactMarkdown>
             </article>
           )}
 

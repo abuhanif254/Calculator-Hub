@@ -12,7 +12,7 @@ faqs:
   - question: "Was ist der Unterschied zwischen Volumen und Oberfläche?"
     answer: "Das Volumen misst den dreidimensionalen Raum, den ein Objekt einnimmt (das 'Innere'), während die Oberfläche die Gesamtfläche der Außenseiten des Objekts misst."
   - question: "Welche Einheiten werden für das Volumen verwendet?"
-    answer: "Das Volumen wird immer in kubischen Einheiten gemessen. Gängige Einheiten sind Kubikzentimeter (cm³), Kubikmeter (m³) oder auch Liter."
+    answer: "Das Volumen wird immer in kubischen Einheiten gemessen. Gängige Einheiten sind Kubikzentimeter (cm³), Kubikmeter (m3) oder auch Liter."
 ---
 
 ## Der ultimative Leitfaden zur Volumenberechnung
@@ -25,7 +25,7 @@ Unser **kostenloser Volumenrechner** löst sofort die komplexen geometrischen Gl
 
 In der Geometrie ist das **Volumen** (der Rauminhalt) das Maß für den dreidimensionalen Raum, der von einer geschlossenen Begrenzung eingeschlossen wird. Einfach ausgedrückt: Wenn die Oberfläche die Menge an Geschenkpapier ist, die benötigt wird, um eine Schachtel zu bedecken, ist das Volumen die Menge an physischem Raum *in* der Schachtel.
 
-Da es dreidimensional ist (Länge, Breite und Höhe), wird das Volumen immer in kubischen Einheiten ausgedrückt, z. B. in Kubikmetern (m³).
+Da es dreidimensional ist (Länge, Breite und Höhe), wird das Volumen immer in kubischen Einheiten ausgedrückt, z. B. in Kubikmetern (m3).
 
 ### Formeln für die 5 häufigsten 3D-Formen
 

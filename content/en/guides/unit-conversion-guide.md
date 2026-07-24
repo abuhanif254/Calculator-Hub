@@ -67,7 +67,7 @@ Every unit conversion can be performed by multiplying by a **conversion factor**
 | Millilitres (ml) | US Fluid ounces (fl oz) | 0.033814 |
 | US Fluid ounces (fl oz) | Millilitres (ml) | 29.5735 |
 | Litres (L) | UK Pints (pt) | 1.75975 |
-| Cubic metres (m³) | Cubic feet (ft³) | 35.3147 |
+| Cubic metres (m3) | Cubic feet (ft³) | 35.3147 |
 
 ---
 
