@@ -1,6 +1,6 @@
 ---
 title: "Calculateur de Béton"
-description: "Calculez la quantité exacte de béton nécessaire pour votre projet en mètres cubes (m³) ou en sacs. Idéal pour les dalles, piliers et fondations."
+description: "Calculez la quantité exacte de béton nécessaire pour votre projet en mètres cubes (m3) ou en sacs. Idéal pour les dalles, piliers et fondations."
 metaTitle: "Calculateur de Béton | Calcul du volume et des sacs"
 metaDescription: "Calculateur de béton en ligne gratuit. Calculez le volume exact dont vous avez besoin pour vos dalles, murs et semelles en mètres cubes ou sacs prêts à l'emploi."
 metaKeywords: "calculateur de beton, calcul metre cube beton, dalle beton, volume beton, sac de beton, ciment, calcul fondations"

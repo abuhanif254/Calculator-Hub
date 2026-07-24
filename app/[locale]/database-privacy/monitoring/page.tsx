@@ -1,59 +1,167 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Monitor, CheckCircle2, Cpu, MemoryStick, Activity, Zap } from 'lucide-react';
-import { PageHeader, MetricCard } from '../../../components/platform/ui/PlatformUI';
+import { Activity, Cpu, Server, Zap, RefreshCw, Layers } from 'lucide-react';
+import { LineChart, Line, ResponsiveContainer, YAxis, BarChart, Bar } from 'recharts';
 
-const bars = [35, 42, 28, 51, 44, 38, 62, 47, 33, 55, 41, 48, 38, 45, 52, 40, 36, 44, 58, 43, 37, 50, 46, 42];
+const generateSparkline = (points: number, min: number, max: number) => {
+  return Array.from({ length: points }, (_, i) => ({
+    time: i,
+    value: Math.floor(Math.random() * (max - min + 1)) + min
+  }));
+};
+
+const initialMetrics = {
+  cpu: { value: 45, history: generateSparkline(20, 30, 80) },
+  memory: { value: 62, history: generateSparkline(20, 50, 75) },
+  queue: { value: 12, history: generateSparkline(20, 0, 50) },
+  throughput: { value: 2450, history: generateSparkline(20, 1000, 5000) }
+};
+
+const workers = [
+  { id: 'worker-node-1', cpu: 42, memory: 58, status: 'Active', heartbeat: '1s ago', jobs: 124 },
+  { id: 'worker-node-2', cpu: 78, memory: 82, status: 'Active', heartbeat: '2s ago', jobs: 98 },
+  { id: 'worker-node-3', cpu: 12, memory: 45, status: 'Idle', heartbeat: '1s ago', jobs: 45 },
+  { id: 'worker-node-4', cpu: 0, memory: 0, status: 'Offline', heartbeat: '5m ago', jobs: 0 },
+];
+
+const queueHistory = Array.from({ length: 24 }, (_, i) => ({
+  hour: `${i}:00`,
+  depth: Math.floor(Math.random() * 200) + 10
+}));
 
 export default function MonitoringPage() {
+  const [metrics, setMetrics] = useState(initialMetrics);
+  const [autoRefresh, setAutoRefresh] = useState(true);
+
+  useEffect(() => {
+    if (!autoRefresh) return;
+    
+    const interval = setInterval(() => {
+      setMetrics(prev => ({
+        cpu: { value: Math.floor(Math.random() * (80 - 30 + 1)) + 30, history: [...prev.cpu.history.slice(1), { time: 20, value: Math.floor(Math.random() * (80 - 30 + 1)) + 30 }] },
+        memory: { value: Math.floor(Math.random() * (85 - 50 + 1)) + 50, history: [...prev.memory.history.slice(1), { time: 20, value: Math.floor(Math.random() * (85 - 50 + 1)) + 50 }] },
+        queue: { value: Math.floor(Math.random() * 30), history: [...prev.queue.history.slice(1), { time: 20, value: Math.floor(Math.random() * 30) }] },
+        throughput: { value: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000, history: [...prev.throughput.history.slice(1), { time: 20, value: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000 }] },
+      }));
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [autoRefresh]);
+
+  const MetricCard = ({ title, value, unit, icon: Icon, color, data }: any) => (
+    <div className="glass-panel rounded-2xl p-6 dark:bg-[#090E17]/60 dark:border-white/10 flex flex-col">
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
+          <Icon className="w-5 h-5" />
+          {title}
+        </div>
+        <div className={`text-2xl font-bold ${color}`}>{value}{unit}</div>
+      </div>
+      <div className="h-16 w-full mt-auto">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={data}>
+            <YAxis domain={['dataMin - 10', 'dataMax + 10']} hide />
+            <Line type="monotone" dataKey="value" stroke={color.replace('text-', 'var(--tw-') + ') || currentColor'} strokeWidth={2} dot={false} isAnimationActive={false} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="space-y-6">
-      <PageHeader title="Platform Monitoring" subtitle="Worker health, performance metrics, and system status" />
-
-      <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl px-5 py-3">
-        <div className="relative"><div className="w-2.5 h-2.5 rounded-full bg-emerald-400" /><div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping opacity-50" /></div>
-        <span className="text-emerald-400 font-semibold text-sm">All Systems Operational</span>
-        <span className="text-emerald-400/60 text-xs ml-auto">Last checked: just now</span>
-      </motion.div>
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <MetricCard title="Worker Uptime" value="99.9%" subtitle="Last 30 days" trend={0} icon={CheckCircle2} iconColor="text-emerald-400" iconBg="bg-emerald-500/10" delay={0} />
-        <MetricCard title="Avg Response" value="42ms" subtitle="P95 latency" trend={-8} icon={Zap} iconColor="text-blue-400" iconBg="bg-blue-500/10" delay={0.05} />
-        <MetricCard title="Memory Usage" value="34%" subtitle="Of allocated" trend={2} icon={MemoryStick} iconColor="text-amber-400" iconBg="bg-amber-500/10" delay={0.1} />
-        <MetricCard title="Requests/min" value="127" subtitle="Current rate" trend={15} icon={Activity} iconColor="text-violet-400" iconBg="bg-violet-500/10" delay={0.15} />
+    <div className="p-6 md:p-8 space-y-8 max-w-7xl mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+            <Activity className="w-8 h-8 text-violet-600" />
+            Platform Monitoring
+          </h1>
+          <p className="text-slate-600 dark:text-slate-400 mt-1">
+            Real-time system performance and worker status.
+          </p>
+        </div>
+        <button
+          onClick={() => setAutoRefresh(!autoRefresh)}
+          className={`px-4 py-2 rounded-xl flex items-center gap-2 transition-colors font-medium border ${autoRefresh ? 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20 dark:bg-emerald-500/20 dark:text-emerald-400' : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'}`}
+        >
+          <RefreshCw className={`w-4 h-4 ${autoRefresh ? 'animate-spin' : ''}`} />
+          {autoRefresh ? 'Live Updates On' : 'Live Updates Off'}
+        </button>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-          className="bg-[#0A0F1A] border border-white/10 rounded-2xl p-6">
-          <h3 className="font-semibold text-white mb-4 flex items-center gap-2"><Activity className="w-4 h-4 text-violet-400" />Response Time (last 24 requests)</h3>
-          <div className="flex items-end gap-1 h-32">
-            {bars.map((h, i) => (
-              <div key={i} className="flex-1 rounded-t-sm transition-all" style={{ height: `${h}%`, background: h > 55 ? '#ef4444' : '#8b5cf6', opacity: 0.7 + (i / bars.length) * 0.3 }} />
-            ))}
-          </div>
-          <div className="flex justify-between text-xs text-white/30 mt-2"><span>24 req ago</span><span>Now</span></div>
-        </motion.div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MetricCard title="CPU Usage" value={metrics.cpu.value} unit="%" icon={Cpu} color="text-violet-500" data={metrics.cpu.history} />
+        <MetricCard title="Memory Usage" value={metrics.memory.value} unit="%" icon={Server} color="text-blue-500" data={metrics.memory.history} />
+        <MetricCard title="Queue Depth" value={metrics.queue.value} unit="" icon={Layers} color="text-amber-500" data={metrics.queue.history} />
+        <MetricCard title="Throughput" value={metrics.throughput.value} unit="r/s" icon={Zap} color="text-emerald-500" data={metrics.throughput.history} />
+      </div>
 
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-          className="bg-[#0A0F1A] border border-white/10 rounded-2xl p-6">
-          <h3 className="font-semibold text-white mb-4 flex items-center gap-2"><Cpu className="w-4 h-4 text-violet-400" />Worker Status</h3>
-          <div className="space-y-4">
-            {[{ id: 'us-east-1a', cpu: 12, mem: 34 }, { id: 'us-east-1b', cpu: 8, mem: 28 }, { id: 'eu-west-1a', cpu: 21, mem: 41 }].map(w => (
-              <div key={w.id} className="flex items-center gap-4">
-                <div className="relative"><div className="w-2 h-2 rounded-full bg-emerald-400" /><div className="absolute inset-0 w-2 h-2 rounded-full bg-emerald-400 animate-ping opacity-40" /></div>
-                <span className="font-mono text-xs text-white/70 w-28 shrink-0">worker-{w.id}</span>
-                <div className="flex-1 space-y-1">
-                  <div className="flex items-center gap-2"><span className="text-xs text-white/30 w-8">CPU</span><div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-blue-500 rounded-full" style={{ width: `${w.cpu}%` }} /></div><span className="text-xs text-white/50 w-8 text-right">{w.cpu}%</span></div>
-                  <div className="flex items-center gap-2"><span className="text-xs text-white/30 w-8">MEM</span><div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-violet-500 rounded-full" style={{ width: `${w.mem}%` }} /></div><span className="text-xs text-white/50 w-8 text-right">{w.mem}%</span></div>
-                </div>
-              </div>
-            ))}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="glass-panel rounded-2xl p-6 dark:bg-[#090E17]/60 dark:border-white/10 lg:col-span-2">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-6">Worker Nodes</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 font-medium">
+                <tr>
+                  <th className="px-4 py-3 rounded-tl-lg">Node ID</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">CPU</th>
+                  <th className="px-4 py-3">Memory</th>
+                  <th className="px-4 py-3">Jobs</th>
+                  <th className="px-4 py-3 rounded-tr-lg">Heartbeat</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                {workers.map((worker) => (
+                  <tr key={worker.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
+                    <td className="px-4 py-4 font-mono text-slate-900 dark:text-white font-medium">{worker.id}</td>
+                    <td className="px-4 py-4">
+                      <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-medium
+                        ${worker.status === 'Active' ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400' :
+                          worker.status === 'Idle' ? 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400' :
+                          'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400'}`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${worker.status === 'Active' ? 'bg-emerald-500' : worker.status === 'Idle' ? 'bg-amber-500' : 'bg-slate-500'}`} />
+                        {worker.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full ${worker.cpu > 80 ? 'bg-red-500' : 'bg-violet-500'}`} style={{ width: `${worker.cpu}%` }} />
+                        </div>
+                        <span className="text-xs text-slate-500 w-6">{worker.cpu}%</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-16 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                          <div className={`h-full rounded-full ${worker.memory > 80 ? 'bg-red-500' : 'bg-blue-500'}`} style={{ width: `${worker.memory}%` }} />
+                        </div>
+                        <span className="text-xs text-slate-500 w-6">{worker.memory}%</span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-slate-600 dark:text-slate-300">{worker.jobs}</td>
+                    <td className="px-4 py-4 text-slate-500 text-xs">{worker.heartbeat}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="glass-panel rounded-2xl p-6 dark:bg-[#090E17]/60 dark:border-white/10 flex flex-col">
+          <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Queue Depth (24h)</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">Historical job backlog trend</p>
+          <div className="flex-grow min-h-[200px]">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={queueHistory}>
+                <Bar dataKey="depth" fill="#8b5cf6" radius={[2, 2, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
     </div>
   );

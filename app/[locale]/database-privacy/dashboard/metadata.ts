@@ -1,12 +1,26 @@
-import type { Metadata } from 'next';
+import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: 'Dashboard | DataPrivacy Enterprise',
-  description: 'Monitor your database privacy posture — PII coverage, active jobs, compliance scores, and recent activity in real time.',
-  keywords: 'database privacy dashboard, PII monitoring, anonymization jobs, compliance monitoring',
-  openGraph: {
-    title: 'Dashboard | DataPrivacy Enterprise',
-    description: 'Monitor your database privacy posture — PII coverage, active jobs, compliance scores, and recent activity in real time.',
-    type: 'website',
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const baseUrl = process.env.APP_URL || "https://nexuscalculator.net";
+  return {
+    title: "Dashboard | DataPrivacy — Nexus",
+    description:
+      "Monitor your database privacy metrics, scan jobs, and sensitive data exposure risks in real-time.",
+    alternates: {
+      canonical: `${baseUrl}/${locale}/database-privacy/dashboard`,
+      languages: { "x-default": `${baseUrl}/en/database-privacy/dashboard` },
+    },
+    openGraph: {
+      title: "Dashboard | DataPrivacy — Nexus",
+      description:
+        "Monitor your database privacy metrics, scan jobs, and sensitive data exposure risks in real-time.",
+      type: "website",
+      url: `${baseUrl}/${locale}/database-privacy/dashboard`,
+    },
+  };
+}

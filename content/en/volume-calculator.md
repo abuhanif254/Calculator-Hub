@@ -12,7 +12,7 @@ faqs:
   - question: "How is volume different from surface area?"
     answer: "Volume measures the amount of three-dimensional space an object occupies (the 'inside'), while surface area measures the total area of the outside surfaces of the object."
   - question: "What units are used for volume?"
-    answer: "Volume is always measured in cubic units, because it involves three dimensions. Common units include cubic centimeters (cm³), cubic meters (m³), and cubic inches (in³). It can also be measured in liquid capacities like liters or gallons."
+    answer: "Volume is always measured in cubic units, because it involves three dimensions. Common units include cubic centimeters (cm³), cubic meters (m3), and cubic inches (in³). It can also be measured in liquid capacities like liters or gallons."
 ---
 
 ## The Ultimate Guide to Calculating Volume
@@ -25,7 +25,7 @@ Our **Free Volume Calculator** instantly solves the complex geometric equations 
 
 In geometry, **volume** is the measure of the three-dimensional space enclosed within a closed boundary. Put simply, if surface area is the amount of wrapping paper needed to cover a box, volume is the amount of physical space *inside* the box. 
 
-Because it is three-dimensional (length, width, and height/depth), volume is always expressed in cubic units, such as cubic meters (m³), cubic inches (in³), or fluid measurements like liters and gallons.
+Because it is three-dimensional (length, width, and height/depth), volume is always expressed in cubic units, such as cubic meters (m3), cubic inches (in³), or fluid measurements like liters and gallons.
 
 ### Formulas for the 5 Most Common 3D Shapes
 

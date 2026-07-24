@@ -1,82 +1,115 @@
-'use client';
+"use client";
 
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { Key, Plus, Copy, Eye, EyeOff, Trash2, Shield } from 'lucide-react';
-import { PageHeader } from '../../../components/platform/ui/PlatformUI';
-import { useToast } from '../../../components/platform/ui/Toast';
-
-const initialKeys = [
-  { id: 'k1', name: 'CI/CD Pipeline',     key: 'sk-live-a3f9...c7d2', full: 'sk-live-a3f9b812e5f04c2d87a1c7d2', perms: ['read', 'write'], created: 'Jan 10, 2024', last: '2h ago' },
-  { id: 'k2', name: 'Analytics Dashboard', key: 'sk-live-b7e2...f4a1', full: 'sk-live-b7e2c341d09a4b5f8e2c4f4a1', perms: ['read'],          created: 'Jan 12, 2024', last: '1d ago' },
-  { id: 'k3', name: 'Backup Cron Job',     key: 'sk-live-c1d4...a8b3', full: 'sk-live-c1d4e567f08b4c9a2d3e7a8b3', perms: ['read', 'write'], created: 'Jan 15, 2024', last: '7d ago' },
-  { id: 'k4', name: 'Dev Environment',     key: 'sk-test-d9f3...e2c7', full: 'sk-test-d9f3a124b08c4d7e9f1b3e2c7', perms: ['read', 'write', 'admin'], created: 'Jan 18, 2024', last: '3h ago' },
-  { id: 'k5', name: 'Monitoring Agent',    key: 'sk-live-e4b8...d1f9', full: 'sk-live-e4b8c235a07d4e9b1c2d4d1f9', perms: ['read'],          created: 'Jan 20, 2024', last: 'Just now' },
-];
-
-const permColors: Record<string, string> = { read: 'text-blue-400 bg-blue-400/10 border-blue-400/20', write: 'text-amber-400 bg-amber-400/10 border-amber-400/20', admin: 'text-red-400 bg-red-400/10 border-red-400/20' };
 
 export default function ApiKeysPage() {
-  const [keys, setKeys] = useState(initialKeys);
-  const [revealed, setRevealed] = useState<Set<string>>(new Set());
-  const [creating, setCreating] = useState(false);
-  const [newName, setNewName] = useState('');
-  const toast = useToast();
+  const [showModal, setShowModal] = useState(false);
+  const [newKey, setNewKey] = useState<string | null>(null);
 
-  const toggleReveal = (id: string) => {
-    setRevealed(prev => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-    if (!revealed.has(id)) toast.info('Key Revealed', 'Copy it now — it will be hidden again when you navigate away.');
-  };
-  const copyKey = (full: string) => { navigator.clipboard?.writeText(full); toast.success('Copied to Clipboard', 'API key copied successfully.'); };
-  const deleteKey = (id: string) => setKeys(prev => prev.filter(k => k.id !== id));
-  const createKey = () => {
-    if (!newName) { toast.warning('Name Required', 'Please enter a name for your API key.'); return; }
-    const newKey = { id: `k${Date.now()}`, name: newName, key: 'sk-live-xxxx...xxxx', full: 'sk-live-xxxx-newly-generated', perms: ['read'], created: 'Just now', last: 'Never' };
-    setKeys(prev => [newKey, ...prev]);
-    toast.success('API Key Created', `"${newName}" key has been created.`);
-    setCreating(false); setNewName('');
+  const handleCreate = () => {
+    setNewKey('pk_live_8f92a4bce5d678190fabcdef1234567890');
   };
 
   return (
     <div className="space-y-6">
-      <PageHeader title="API Keys" subtitle="Manage programmatic access to the Data Privacy Platform">
-        <button onClick={() => setCreating(p => !p)} className="bg-violet-600 hover:bg-violet-500 text-white font-medium text-sm px-4 py-2 rounded-xl flex items-center gap-2 transition-colors">
-          <Plus className="w-4 h-4" /> Create New Key
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">API Keys</h1>
+          <p className="text-slate-600 dark:text-slate-400 mt-1">Manage programmatic access to the platform.</p>
+        </div>
+        <button 
+          onClick={() => setShowModal(true)}
+          className="px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-lg font-medium transition-colors"
+        >
+          Create API Key
         </button>
-      </PageHeader>
+      </div>
 
-      {creating && (
-        <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="bg-[#0A0F1A] border border-violet-500/30 rounded-2xl p-5 flex items-end gap-3">
-          <div className="flex-1"><label className="text-xs font-semibold text-white/60 uppercase tracking-wider mb-2 block">Key Name</label>
-            <input autoFocus value={newName} onChange={e => setNewName(e.target.value)} placeholder="e.g. My CI Pipeline Key" className="w-full bg-[#080D18] border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white outline-none focus:border-violet-500/50" /></div>
-          <button onClick={createKey} className="bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-5 py-2.5 rounded-xl transition-colors">Generate Key</button>
-          <button onClick={() => setCreating(false)} className="text-white/40 hover:text-white text-sm px-3 py-2.5 transition-colors">Cancel</button>
-        </motion.div>
-      )}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="glass-panel rounded-xl p-5 dark:bg-[#090E17]/60 border border-slate-200 dark:border-white/10">
+          <div className="text-sm font-medium text-slate-500 mb-1">API Calls (This Month)</div>
+          <div className="text-2xl font-bold text-slate-900 dark:text-white">1.2M <span className="text-sm font-normal text-slate-500">/ 5M limit</span></div>
+          <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full mt-3 overflow-hidden">
+            <div className="h-full bg-violet-600 w-1/4"></div>
+          </div>
+        </div>
+      </div>
 
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="bg-[#0A0F1A] border border-white/10 rounded-2xl overflow-hidden">
-        <table className="w-full text-sm">
-          <thead className="bg-[#080D18]">
-            <tr>{['Name', 'Key', 'Permissions', 'Created', 'Last Used', ''].map(h => <th key={h} className="text-left px-5 py-3.5 text-xs text-white/40 font-medium">{h}</th>)}</tr>
+      <div className="glass-panel rounded-2xl dark:bg-[#090E17]/60 border border-slate-200 dark:border-white/10 overflow-hidden">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-slate-50 dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 text-slate-500">
+            <tr>
+              <th className="p-4 font-medium">Key Name</th>
+              <th className="p-4 font-medium">Prefix</th>
+              <th className="p-4 font-medium">Permissions</th>
+              <th className="p-4 font-medium">Last Used</th>
+              <th className="p-4 font-medium text-right">Actions</th>
+            </tr>
           </thead>
-          <tbody className="divide-y divide-white/[0.04]">
-            {keys.map(k => (
-              <tr key={k.id} className="hover:bg-white/[0.02]">
-                <td className="px-5 py-4"><div className="flex items-center gap-2"><Key className="w-3.5 h-3.5 text-violet-400" /><span className="text-white font-medium text-sm">{k.name}</span></div></td>
-                <td className="px-5 py-4"><div className="flex items-center gap-2 font-mono text-xs">
-                  <span className="text-white/60">{revealed.has(k.id) ? k.full : k.key}</span>
-                  <button onClick={() => toggleReveal(k.id)} className="text-white/30 hover:text-white transition-colors">{revealed.has(k.id) ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}</button>
-                  <button onClick={() => copyKey(k.full)} className="text-white/30 hover:text-violet-400 transition-colors"><Copy className="w-3.5 h-3.5" /></button>
-                </div></td>
-                <td className="px-5 py-4"><div className="flex gap-1">{k.perms.map(p => <span key={p} className={`text-xs px-2 py-0.5 rounded-full border font-medium ${permColors[p]}`}>{p}</span>)}</div></td>
-                <td className="px-5 py-4 text-white/40 text-xs">{k.created}</td>
-                <td className="px-5 py-4 text-white/40 text-xs">{k.last}</td>
-                <td className="px-5 py-4 text-right"><button onClick={() => deleteKey(k.id)} className="text-white/20 hover:text-red-400 transition-colors"><Trash2 className="w-4 h-4" /></button></td>
-              </tr>
-            ))}
+          <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+            <tr className="bg-white dark:bg-[#0B1120]">
+              <td className="p-4 font-medium text-slate-900 dark:text-white">Production Automation</td>
+              <td className="p-4 font-mono text-slate-600 dark:text-slate-400">pk_live_8f92***</td>
+              <td className="p-4"><span className="px-2 py-1 bg-violet-500/10 text-violet-600 rounded text-xs font-medium">Full Access</span></td>
+              <td className="p-4 text-slate-500">2 mins ago</td>
+              <td className="p-4 text-right">
+                <button className="text-red-500 hover:underline text-xs font-medium">Revoke</button>
+              </td>
+            </tr>
+            <tr className="bg-white dark:bg-[#0B1120]">
+              <td className="p-4 font-medium text-slate-900 dark:text-white">CI/CD Pipeline</td>
+              <td className="p-4 font-mono text-slate-600 dark:text-slate-400">pk_test_3a1b***</td>
+              <td className="p-4"><span className="px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded text-xs font-medium">Read Only</span></td>
+              <td className="p-4 text-slate-500">Yesterday</td>
+              <td className="p-4 text-right">
+                <button className="text-red-500 hover:underline text-xs font-medium">Revoke</button>
+              </td>
+            </tr>
           </tbody>
         </table>
-      </motion.div>
+      </div>
+
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+          <div className="glass-panel rounded-2xl w-full max-w-md p-6 dark:bg-[#0B1120] border border-slate-200 dark:border-white/10 shadow-2xl">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Create New API Key</h2>
+            
+            {!newKey ? (
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Key Name</label>
+                  <input type="text" className="w-full px-3 py-2 bg-white dark:bg-[#090E17] border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white" placeholder="e.g. Data Pipeline" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Permissions</label>
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" defaultChecked /> Read Data</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> Write Data</label>
+                    <label className="flex items-center gap-2"><input type="checkbox" className="rounded" /> Admin (Manage Rules)</label>
+                  </div>
+                </div>
+                <div className="flex justify-end gap-3 mt-6">
+                  <button onClick={() => setShowModal(false)} className="px-4 py-2 text-slate-600 dark:text-slate-400">Cancel</button>
+                  <button onClick={handleCreate} className="px-4 py-2 bg-violet-600 text-white rounded-lg font-medium">Generate Key</button>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <div className="p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl text-amber-600 dark:text-amber-500 text-sm">
+                  <strong>Important:</strong> Copy this key now. You will not be able to see it again after closing this window.
+                </div>
+                <div className="flex items-center gap-2">
+                  <input type="text" readOnly value={newKey} className="w-full px-3 py-2 bg-slate-50 dark:bg-[#090E17] border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white font-mono text-sm" />
+                  <button className="p-2 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700">📋</button>
+                </div>
+                <div className="flex justify-end mt-6">
+                  <button onClick={() => { setShowModal(false); setNewKey(null); }} className="px-4 py-2 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg font-medium">Done</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

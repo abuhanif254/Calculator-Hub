@@ -1,49 +1,189 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'motion/react';
-import { GitBranch, Database, Shield, Play, MoreHorizontal, Users } from 'lucide-react';
-import { PageHeader } from '../../../components/platform/ui/PlatformUI';
-
-const orgs = [
-  { name: 'Acme Corp', members: 12, databases: 8, slug: 'acme-corp', plan: 'Enterprise' },
-  { name: 'Startup Inc', members: 4, databases: 3, slug: 'startup-inc', plan: 'Free' },
-];
+import React from "react";
+import { motion } from "motion/react";
+import {
+  Building2,
+  Users,
+  Database,
+  Zap,
+  HardDrive,
+  Settings,
+} from "lucide-react";
 
 export default function OrganizationsPage() {
+  const members = [
+    {
+      name: "Alice Smith",
+      email: "alice@example.com",
+      role: "Admin",
+      status: "Active",
+    },
+    {
+      name: "Bob Jones",
+      email: "bob@example.com",
+      role: "Developer",
+      status: "Active",
+    },
+    {
+      name: "Charlie Brown",
+      email: "charlie@example.com",
+      role: "Compliance Officer",
+      status: "Invited",
+    },
+  ];
+
   return (
-    <div className="space-y-6">
-      <PageHeader title="Organizations" subtitle="Manage your organizations and their database privacy configurations">
-        <button className="bg-violet-600 hover:bg-violet-500 text-white font-medium text-sm px-4 py-2 rounded-xl flex items-center gap-2 transition-colors">
-          <GitBranch className="w-4 h-4" /> New Organization
+    <div className="p-8 max-w-7xl mx-auto space-y-8">
+      <div className="flex justify-between items-end">
+        <div>
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+            Organization
+          </h1>
+          <p className="text-slate-600 dark:text-slate-400">
+            Manage members and view organization usage.
+          </p>
+        </div>
+        <button className="flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50">
+          <Settings className="h-4 w-4" /> Org Settings
         </button>
-      </PageHeader>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {orgs.map((org, i) => (
-          <motion.div key={org.name} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}
-            className="bg-[#0A0F1A] border border-white/10 rounded-2xl p-6 hover:border-violet-500/30 transition-colors group">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center text-white font-bold">{org.name[0]}</div>
-                <div>
-                  <p className="text-white font-semibold">{org.name}</p>
-                  <p className="text-xs text-white/40">/{org.slug}</p>
-                </div>
-              </div>
-              <span className={`text-xs px-2.5 py-1 rounded-full border font-medium ${org.plan === 'Enterprise' ? 'text-violet-400 bg-violet-400/10 border-violet-400/20' : 'text-white/40 bg-white/5 border-white/10'}`}>{org.plan}</span>
-            </div>
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              {[{ icon: Users, label: 'Members', val: org.members }, { icon: Database, label: 'Databases', val: org.databases }, { icon: Shield, label: 'Rules', val: 14 }].map(s => (
-                <div key={s.label} className="bg-white/[0.02] border border-white/5 rounded-xl p-3 text-center">
-                  <p className="text-lg font-bold text-white">{s.val}</p>
-                  <p className="text-xs text-white/40 mt-0.5">{s.label}</p>
-                </div>
-              ))}
-            </div>
-            <button className="w-full bg-white/5 hover:bg-violet-600 text-white/60 hover:text-white text-sm font-medium py-2.5 rounded-xl border border-white/5 hover:border-transparent transition-all">Open Organization</button>
-          </motion.div>
-        ))}
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <motion.div
+          className="glass-panel rounded-2xl p-6"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-xl text-blue-600 dark:text-blue-400">
+              <Building2 className="h-6 w-6" />
+            </div>
+            <div>
+              <p className="text-sm text-slate-500">Current Organization</p>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                Acme Corp
+              </h3>
+            </div>
+          </div>
+          <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800/50 flex justify-between items-center">
+            <span className="text-sm text-slate-500">Plan</span>
+            <span className="px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded text-xs font-medium uppercase tracking-wider text-slate-600 dark:text-slate-300">
+              Free Tier
+            </span>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="glass-panel rounded-2xl p-6 md:col-span-2"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
+            Usage This Month
+          </h3>
+          <div className="grid grid-cols-3 gap-4">
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-slate-500">
+                <Database className="h-4 w-4" /> Databases
+              </div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-white">
+                7<span className="text-sm font-normal text-slate-400">/10</span>
+              </div>
+              <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full bg-emerald-500 w-[70%]"></div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-slate-500">
+                <Zap className="h-4 w-4" /> Jobs Run
+              </div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-white">
+                124
+                <span className="text-sm font-normal text-slate-400">/500</span>
+              </div>
+              <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full bg-blue-500 w-[25%]"></div>
+              </div>
+            </div>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-slate-500">
+                <HardDrive className="h-4 w-4" /> Storage
+              </div>
+              <div className="text-2xl font-bold text-slate-900 dark:text-white">
+                2.4
+                <span className="text-sm font-normal text-slate-400">
+                  GB / 5GB
+                </span>
+              </div>
+              <div className="h-2 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                <div className="h-full bg-violet-500 w-[48%]"></div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+
+      <motion.div
+        className="glass-panel rounded-2xl overflow-hidden"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-white dark:bg-[#0f1523]">
+          <h2 className="text-xl font-bold flex items-center gap-2 text-slate-900 dark:text-white">
+            <Users className="h-5 w-5 text-violet-500" /> Members (3)
+          </h2>
+          <button className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-700">
+            Invite Member
+          </button>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-slate-50 dark:bg-slate-900/50">
+              <tr>
+                <th className="p-4 font-medium text-slate-500">Name</th>
+                <th className="p-4 font-medium text-slate-500">Role</th>
+                <th className="p-4 font-medium text-slate-500">Status</th>
+                <th className="p-4 font-medium text-slate-500 text-right">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
+              {members.map((m, i) => (
+                <tr
+                  key={i}
+                  className="hover:bg-slate-50 dark:hover:bg-slate-800/30"
+                >
+                  <td className="p-4">
+                    <div className="font-medium text-slate-900 dark:text-white">
+                      {m.name}
+                    </div>
+                    <div className="text-slate-500">{m.email}</div>
+                  </td>
+                  <td className="p-4 text-slate-600 dark:text-slate-400">
+                    {m.role}
+                  </td>
+                  <td className="p-4">
+                    <span
+                      className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${m.status === "Active" ? "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400" : "bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300"}`}
+                    >
+                      {m.status}
+                    </span>
+                  </td>
+                  <td className="p-4 text-right">
+                    <button className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-sm font-medium">
+                      Edit
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </motion.div>
     </div>
   );
 }

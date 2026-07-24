@@ -143,6 +143,56 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .sort()
     .map((slug) => buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod));
 
+  // ─── DATA PRIVACY PLATFORM PAGES ─────────────────
+  const dataPrivacyPages = [
+    { path: '/database-privacy', priority: 0.9, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/dashboard', priority: 0.8, changeFreq: 'daily' as const },
+    { path: '/database-privacy/scanner', priority: 0.9, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/scanner/findings', priority: 0.7, changeFreq: 'daily' as const },
+    { path: '/database-privacy/masking/rules', priority: 0.8, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/masking/templates', priority: 0.7, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/masking/marketplace', priority: 0.7, changeFreq: 'daily' as const },
+    { path: '/database-privacy/masking/preview', priority: 0.8, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/anonymize', priority: 0.8, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/connections', priority: 0.7, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/explorer', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/projects', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/organizations', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/jobs', priority: 0.7, changeFreq: 'daily' as const },
+    { path: '/database-privacy/jobs/history', priority: 0.6, changeFreq: 'daily' as const },
+    { path: '/database-privacy/jobs/scheduler', priority: 0.6, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/compliance', priority: 0.85, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/reports', priority: 0.7, changeFreq: 'daily' as const },
+    { path: '/database-privacy/audit', priority: 0.6, changeFreq: 'daily' as const },
+    { path: '/database-privacy/import', priority: 0.75, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/export', priority: 0.75, changeFreq: 'weekly' as const },
+    { path: '/database-privacy/api-keys', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/secrets', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/webhooks', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/users', priority: 0.6, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/users/roles', priority: 0.5, changeFreq: 'monthly' as const },
+    { path: '/database-privacy/monitoring', priority: 0.6, changeFreq: 'daily' as const },
+    { path: '/database-privacy/monitoring/workers', priority: 0.5, changeFreq: 'daily' as const },
+    { path: '/database-privacy/monitoring/queue', priority: 0.5, changeFreq: 'daily' as const },
+    { path: '/database-privacy/settings', priority: 0.5, changeFreq: 'monthly' as const },
+  ];
+
+  const dpLastMod = new Date('2026-07-24');
+  const dataPrivacyEntries: MetadataRoute.Sitemap = dataPrivacyPages.flatMap(({ path, priority, changeFreq }) => {
+    const languages: Record<string, string> = {};
+    routing.locales.forEach(locale => {
+      languages[locale] = `${baseUrl}/${locale}${path}`;
+    });
+    languages['x-default'] = `${baseUrl}/en${path}`;
+    return [{
+      url: `${baseUrl}/en${path}`,
+      lastModified: dpLastMod,
+      changeFrequency: changeFreq,
+      priority,
+      alternates: { languages },
+    }];
+  });
+
   // ─── COMMUNITY POSTS ──────────────────
   let communityEntries: MetadataRoute.Sitemap = [];
   try {
@@ -163,5 +213,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch community posts for sitemap", err);
   }
 
-  return [...coreEntries, ...calcEntries, ...toolEntries, ...communityEntries];
+  return [...coreEntries, ...calcEntries, ...toolEntries, ...dataPrivacyEntries, ...communityEntries];
 }

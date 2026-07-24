@@ -1057,22 +1057,24 @@ Energy at Launch: ${results.totalLaunchEnergy.toFixed(2)} J`;
         <div className="lg:col-span-6 space-y-6 lg:sticky lg:top-24">
           
           {/* Dashboard Trajectory Plot SVG Graph */}
-          <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-xl border border-slate-800 relative overflow-hidden print-card">
+          <div className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white rounded-3xl p-6 shadow-xl border border-slate-200 dark:border-slate-800 relative overflow-hidden print-card">
             
             {/* Header info */}
             <div className="flex justify-between items-center mb-4">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1">
                 <Globe2 size={13} className="text-[#518231]" />
                 Interactive Trajectory Graph
               </span>
-              <div className="flex items-center gap-1.5 bg-slate-800 px-2 py-1 rounded-lg text-xs">
+              <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-lg text-xs font-medium">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
                 <span>Live Mode</span>
               </div>
             </div>
+            
+            <p className="text-xs text-slate-500 mb-2">The trajectory diagram updates with launch height, apex, landing point, range, and peak height.</p>
 
             {/* Render Canvas/SVG Trajectory Plot */}
-            <div className="bg-slate-950 rounded-2xl border border-slate-800 p-2.5 relative">
+            <div className="bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 p-2.5 relative">
               <svg
                 ref={svgRef}
                 viewBox={`0 0 ${graphWidth} ${graphHeight}`}
@@ -1080,30 +1082,54 @@ Energy at Launch: ${results.totalLaunchEnergy.toFixed(2)} J`;
                 onPointerMove={handlePointerMove}
                 onPointerLeave={handlePointerLeave}
               >
-                {/* Horizontal grid lines */}
-                {[0.25, 0.5, 0.75].map((ratio, idx) => (
-                  <line
-                    key={idx}
-                    x1="40"
-                    y1={graphHeight - 40 - ratio * (graphHeight - 60)}
-                    x2={graphWidth - 20}
-                    y2={graphHeight - 40 - ratio * (graphHeight - 60)}
-                    stroke="#1e293b"
-                    strokeDasharray="2 3"
-                  />
-                ))}
-                
+                {/* Vertical Launch Reference Line */}
+                <line
+                  x1={toSvgX(0)}
+                  y1={toSvgY(siInputs.h0)}
+                  x2={toSvgX(0)}
+                  y2={toSvgY(results.maxHeight * 1.1)}
+                  stroke="#cbd5e1"
+                  strokeDasharray="4 4"
+                  strokeWidth="1.5"
+                />
+
                 {/* Ground floor line */}
-                <line x1="30" y1={graphHeight - 40} x2={graphWidth - 10} y2={graphHeight - 40} stroke="#334155" strokeWidth="2.5" />
+                <line x1="30" y1={toSvgY(0)} x2={graphWidth - 10} y2={toSvgY(0)} stroke="#94a3b8" strokeWidth="1.5" />
 
                 {/* Trajectory path line */}
                 <path
                   d={trajectory.map((p, i) => `${i === 0 ? "M" : "L"} ${toSvgX(p.x)} ${toSvgY(p.y)}`).join(" ")}
                   fill="none"
-                  stroke="#10b981"
-                  strokeWidth="3"
+                  stroke="#2563eb"
+                  strokeWidth="3.5"
                   strokeLinecap="round"
                 />
+
+                {/* Vertical Peak drop line */}
+                <line 
+                  x1={toSvgX(trajectory.find(p => p.y === results.maxHeight)?.x || 0)} 
+                  y1={toSvgY(results.maxHeight)} 
+                  x2={toSvgX(trajectory.find(p => p.y === results.maxHeight)?.x || 0)} 
+                  y2={toSvgY(0)} 
+                  stroke="#64748b" 
+                  strokeDasharray="5 5" 
+                  strokeWidth="1.5" 
+                />
+
+                {/* Horizontal Range Line */}
+                <line 
+                  x1={toSvgX(0)} 
+                  y1={toSvgY(0) + 15} 
+                  x2={toSvgX(results.range)} 
+                  y2={toSvgY(0) + 15} 
+                  stroke="#64748b" 
+                  strokeDasharray="5 5" 
+                  strokeWidth="1.5" 
+                />
+                
+                {/* Horizontal Range End markers */}
+                <line x1={toSvgX(0)} y1={toSvgY(0) + 12} x2={toSvgX(0)} y2={toSvgY(0) + 18} stroke="#64748b" strokeWidth="1.5" />
+                <line x1={toSvgX(results.range)} y1={toSvgY(0) + 12} x2={toSvgX(results.range)} y2={toSvgY(0) + 18} stroke="#64748b" strokeWidth="1.5" />
 
                 {/* Target Circle (Hit Simulator) */}
                 {targetModeEnabled && (
@@ -1129,13 +1155,22 @@ Energy at Launch: ${results.totalLaunchEnergy.toFixed(2)} J`;
 
                 {/* Key Plot markers (Launch, Peak, Landing) */}
                 {/* Launch Marker */}
-                <circle cx={toSvgX(0)} cy={toSvgY(siInputs.h0)} r="4" fill="#3b82f6" />
+                <circle cx={toSvgX(0)} cy={toSvgY(siInputs.h0)} r="5" fill="#16a34a" />
+                <text x={toSvgX(0)} y={toSvgY(siInputs.h0) - 10} textAnchor="middle" fill="#0f172a" fontSize="16" fontWeight="900" className="dark:fill-white">Launch</text>
                 
                 {/* Peak height marker */}
-                <circle cx={toSvgX(trajectory.find(p => p.y === results.maxHeight)?.x || 0)} cy={toSvgY(results.maxHeight)} r="4" fill="#f59e0b" />
+                <circle cx={toSvgX(trajectory.find(p => p.y === results.maxHeight)?.x || 0)} cy={toSvgY(results.maxHeight)} r="5" fill="#2563eb" />
+                <text x={toSvgX(trajectory.find(p => p.y === results.maxHeight)?.x || 0)} y={toSvgY(results.maxHeight) - 10} textAnchor="middle" fill="#0f172a" fontSize="18" fontWeight="900" className="dark:fill-white">Apex</text>
+                
+                {/* Peak Height Text label */}
+                <text x={toSvgX(trajectory.find(p => p.y === results.maxHeight)?.x || 0) + 15} y={toSvgY(results.maxHeight / 2)} fill="#475569" fontSize="14" fontWeight="bold" className="dark:fill-slate-300">Peak: {displayVal(results.maxHeight, "height")}</text>
 
                 {/* Impact landing marker */}
-                <circle cx={toSvgX(results.range)} cy={toSvgY(0)} r="4" fill="#ef4444" />
+                <circle cx={toSvgX(results.range)} cy={toSvgY(0)} r="5" fill="#9a3412" />
+                <text x={toSvgX(results.range)} y={toSvgY(0) - 10} textAnchor="middle" fill="#0f172a" fontSize="16" fontWeight="900" className="dark:fill-white">Landing</text>
+
+                {/* Range Text label */}
+                <text x={toSvgX(results.range / 2)} y={toSvgY(0) + 30} textAnchor="middle" fill="#16a34a" fontSize="16" fontWeight="900">Range: {displayVal(results.range, "distance")}</text>
 
                 {/* Animated project object ball */}
                 <circle
@@ -1143,7 +1178,7 @@ Energy at Launch: ${results.totalLaunchEnergy.toFixed(2)} J`;
                   cy={toSvgY(currentPoint.y)}
                   r="7"
                   fill="#ffffff"
-                  stroke="#10b981"
+                  stroke="#2563eb"
                   strokeWidth="2.5"
                   className="shadow-lg"
                 />
@@ -1151,20 +1186,21 @@ Energy at Launch: ${results.totalLaunchEnergy.toFixed(2)} J`;
                 {/* Pointer Hover Info popup */}
                 {hoverCoords && (
                   <g>
-                    <line x1={toSvgX(hoverCoords.x)} y1="10" x2={toSvgX(hoverCoords.x)} y2={graphHeight - 45} stroke="#334155" strokeDasharray="2 2" />
-                    <line x1="35" y1={toSvgY(hoverCoords.y)} x2={graphWidth - 15} y2={toSvgY(hoverCoords.y)} stroke="#334155" strokeDasharray="2 2" />
-                    <circle cx={toSvgX(hoverCoords.x)} cy={toSvgY(hoverCoords.y)} r="3" fill="#ffffff" />
+                    <line x1={toSvgX(hoverCoords.x)} y1="10" x2={toSvgX(hoverCoords.x)} y2={graphHeight - 45} stroke="#94a3b8" strokeDasharray="2 2" />
+                    <line x1="35" y1={toSvgY(hoverCoords.y)} x2={graphWidth - 15} y2={toSvgY(hoverCoords.y)} stroke="#94a3b8" strokeDasharray="2 2" />
+                    <circle cx={toSvgX(hoverCoords.x)} cy={toSvgY(hoverCoords.y)} r="3" fill="#0f172a" className="dark:fill-white" />
                   </g>
                 )}
 
-                {/* Axis Labels */}
-                <text x={graphWidth - 60} y={graphHeight - 15} fill="#64748b" fontSize="10" fontWeight="bold">Range ({distanceLabel})</text>
-                <text x="15" y="20" fill="#64748b" fontSize="10" fontWeight="bold" transform={`rotate(90, 15, 20)`}>Height</text>
+                {/* Projectile motion trajectory diagram label box (Bottom Right) */}
+                <rect x={graphWidth - 160} y={graphHeight - 25} width="150" height="20" fill="#1e293b" opacity="0.9" rx="2" />
+                <text x={graphWidth - 155} y={graphHeight - 11} fill="#f8fafc" fontSize="9" opacity="0.9">Projectile motion trajectory diagram</text>
+
               </svg>
 
               {/* Cursor coordinates indicator overlay */}
               {hoverCoords && (
-                <div className="absolute top-4 left-4 bg-slate-900/95 border border-slate-800 p-2 rounded-xl text-[10px] space-y-0.5 pointer-events-none">
+                <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-900/95 border border-slate-200 dark:border-slate-800 p-2 rounded-xl text-[10px] space-y-0.5 pointer-events-none text-slate-800 dark:text-slate-200 shadow-sm">
                   <div>X: {displayVal(hoverCoords.x, "distance")}</div>
                   <div>Y: {displayVal(hoverCoords.y, "height")}</div>
                 </div>

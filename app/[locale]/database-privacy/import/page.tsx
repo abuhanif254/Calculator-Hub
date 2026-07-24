@@ -1,101 +1,240 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { FileInput, Upload, Zap, CheckCircle2, AlertCircle } from 'lucide-react';
-import { PageHeader } from '../../../components/platform/ui/PlatformUI';
-import { useToast } from '../../../components/platform/ui/Toast';
-
-const detectedCols = [
-  { col: 'email',       type: 'Email Address', confidence: 99, risk: 'High',   mask: 'Synthetic Faker' },
-  { col: 'full_name',   type: 'Full Name',     confidence: 95, risk: 'Medium', mask: 'Synthetic Faker' },
-  { col: 'phone',       type: 'Phone Number',  confidence: 92, risk: 'Medium', mask: 'Partial Redaction' },
-  { col: 'ssn',         type: 'SSN',           confidence: 100, risk: 'High',  mask: 'SHA-256 Hash' },
-  { col: 'ip_address',  type: 'IP Address',    confidence: 88, risk: 'Low',    mask: 'Generalization' },
-  { col: 'created_at',  type: 'Date',          confidence: 70, risk: 'Low',    mask: 'None (safe)' },
-];
-
-const recent = [
-  { name: 'customers_export.csv', rows: '45,231', size: '2.1 MB', at: '2h ago', status: 'done' },
-  { name: 'users_backup.json',    rows: '12,048', size: '0.8 MB', at: '1d ago', status: 'done' },
-  { name: 'orders_raw.xml',       rows: '8,302',  size: '1.4 MB', at: '3d ago', status: 'done' },
-  { name: 'legacy_data.sql',      rows: '120,000', size: '9.2 MB', at: '5d ago', status: 'done' },
-];
+import React, { useState, useRef } from "react";
 
 export default function ImportPage() {
-  const toast = useToast();
-  const [dragging, setDragging] = useState(false);
-  const [uploaded, setUploaded] = useState<string | null>(null);
-  const fileRef = React.useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<File | null>(null);
+  const [dragActive, setDragActive] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [result, setResult] = useState<any>(null);
 
   const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault(); setDragging(false);
-    const file = e.dataTransfer.files[0];
-    if (file) { setUploaded(file.name); toast.info('File Detected', `${file.name} — analyzing columns...`); }
+    e.preventDefault();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setFile(e.dataTransfer.files[0]);
+    }
   };
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) { setUploaded(file.name); toast.info('File Detected', `${file.name} — analyzing columns...`); }
+
+  const handleProcess = () => {
+    setProgress(1);
+    const interval = setInterval(() => {
+      setProgress((p) => {
+        if (p >= 100) {
+          clearInterval(interval);
+          setResult({ rows: 14502, pii: 3, masked: 43506 });
+          return 100;
+        }
+        return p + 5;
+      });
+    }, 100);
   };
 
   return (
-    <div className="space-y-6">
-      <PageHeader title="Import Dataset" subtitle="Upload a dataset to anonymize, scan, or analyze" />
+    <div className="max-w-4xl mx-auto space-y-6">
+      <div className="text-center mb-8">
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
+          Import & Anonymize Dataset
+        </h1>
+        <p className="text-slate-600 dark:text-slate-400 mt-2">
+          Upload a file to securely process and apply masking rules before
+          storing.
+        </p>
+      </div>
 
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
-        onDragOver={e => { e.preventDefault(); setDragging(true); }} onDragLeave={() => setDragging(false)} onDrop={handleDrop}
-        onClick={() => fileRef.current?.click()}
-        className={`relative border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all ${dragging ? 'border-violet-500 bg-violet-500/10' : 'border-white/10 hover:border-white/20 bg-[#0A0F1A]'}`}>
-        <input ref={fileRef} type="file" accept=".csv,.json,.xml,.sql,.txt" className="hidden" onChange={handleFileChange} />
-        <div className="w-16 h-16 rounded-2xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center mx-auto mb-4">
-          <Upload className="w-8 h-8 text-violet-400" />
+      {!file ? (
+        <div
+          onDragOver={(e) => {
+            e.preventDefault();
+            setDragActive(true);
+          }}
+          onDragLeave={() => setDragActive(false)}
+          onDrop={handleDrop}
+          className={`border-2 border-dashed rounded-2xl p-12 text-center transition-colors ${
+            dragActive
+              ? "border-violet-500 bg-violet-500/10"
+              : "border-slate-300 dark:border-slate-700 hover:border-violet-400 dark:hover:border-violet-500 bg-slate-50 dark:bg-[#090E17]/60"
+          }`}
+        >
+          <div className="w-16 h-16 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+            <svg
+              className="w-8 h-8 text-violet-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+              />
+            </svg>
+          </div>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+            Drop your file here
+          </h3>
+          <p className="text-sm text-slate-500 mb-6">
+            Or click to browse from your computer
+          </p>
+
+          <div className="flex justify-center gap-2 mb-6">
+            {["CSV", "JSON", "SQL", "XML", "PARQUET"].map((fmt) => (
+              <span
+                key={fmt}
+                className="text-[10px] font-bold px-2 py-1 bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded"
+              >
+                {fmt}
+              </span>
+            ))}
+          </div>
+
+          <label className="cursor-pointer px-6 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-lg font-medium transition-colors hover:bg-slate-800 dark:hover:bg-slate-100">
+            Select File
+            <input
+              type="file"
+              className="hidden"
+              onChange={(e) => e.target.files && setFile(e.target.files[0])}
+            />
+          </label>
         </div>
-        <p className="text-white font-semibold mb-1">{dragging ? 'Drop your file here' : 'Drag & drop or click to upload'}</p>
-        <p className="text-sm text-white/40">Supports CSV, JSON, XML, SQL, TXT — up to 500 MB</p>
-      </motion.div>
+      ) : (
+        <div className="glass-panel rounded-2xl p-6 dark:bg-[#090E17]/60 border border-slate-200 dark:border-white/10">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-violet-100 dark:bg-violet-900/30 rounded-xl flex items-center justify-center text-violet-600 dark:text-violet-400">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 dark:text-white">
+                  {file.name}
+                </h3>
+                <p className="text-sm text-slate-500">
+                  {(file.size / 1024 / 1024).toFixed(2)} MB
+                </p>
+              </div>
+            </div>
+            {!result && progress === 0 && (
+              <button
+                onClick={() => setFile(null)}
+                className="text-sm text-red-500 hover:underline"
+              >
+                Remove
+              </button>
+            )}
+          </div>
 
-      {uploaded && (
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="bg-[#0A0F1A] border border-white/10 rounded-2xl overflow-hidden">
-          <div className="px-6 py-4 border-b border-white/10 flex items-center gap-3">
-            <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-            <div><p className="font-semibold text-white">{uploaded}</p><p className="text-xs text-white/40">Auto-detected {detectedCols.length} columns · 6 with PII</p></div>
-          </div>
-          <table className="w-full text-sm">
-            <thead className="bg-[#080D18]"><tr>{['Column', 'Detected Type', 'Confidence', 'Risk', 'Masking Strategy'].map(h => <th key={h} className="text-left px-5 py-3 text-xs text-white/40 font-medium">{h}</th>)}</tr></thead>
-            <tbody className="divide-y divide-white/[0.04]">
-              {detectedCols.map(c => (
-                <tr key={c.col} className="hover:bg-white/[0.02]">
-                  <td className="px-5 py-3.5 text-white font-mono text-xs">{c.col}</td>
-                  <td className="px-5 py-3.5 text-white/70 text-xs">{c.type}</td>
-                  <td className="px-5 py-3.5"><div className="flex items-center gap-2"><div className="w-12 h-1.5 bg-white/10 rounded-full overflow-hidden"><div className="h-full bg-violet-500 rounded-full" style={{ width: `${c.confidence}%` }} /></div><span className="text-xs text-white/50">{c.confidence}%</span></div></td>
-                  <td className="px-5 py-3.5"><span className={`text-xs px-2 py-0.5 rounded-full border font-medium ${c.risk === 'High' ? 'text-red-400 bg-red-400/10 border-red-400/20' : c.risk === 'Medium' ? 'text-amber-400 bg-amber-400/10 border-amber-400/20' : 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20'}`}>{c.risk}</span></td>
-                  <td className="px-5 py-3.5 text-white/60 text-xs">{c.mask}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="px-6 py-4 border-t border-white/10">
-            <button onClick={() => toast.success('Anonymization Started', `Processing ${uploaded}...`)} className="bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium px-6 py-2.5 rounded-xl flex items-center gap-2 transition-colors">
-              <Zap className="w-4 h-4" /> Process & Anonymize
-            </button>
-          </div>
-        </motion.div>
+          {!result ? (
+            <div className="space-y-6">
+              <div className="bg-slate-50 dark:bg-slate-900 rounded-xl p-4">
+                <h4 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">
+                  Select Active Rule Profile
+                </h4>
+                <select className="w-full px-3 py-2 bg-white dark:bg-[#0B1120] border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white">
+                  <option>GDPR Strict Baseline</option>
+                  <option>HIPAA PHI Redaction</option>
+                  <option>Development Sandbox (Synthetic)</option>
+                </select>
+              </div>
+
+              {progress > 0 ? (
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm font-medium">
+                    <span className="text-slate-700 dark:text-slate-300">
+                      Processing file...
+                    </span>
+                    <span className="text-violet-600">{progress}%</span>
+                  </div>
+                  <div className="h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-violet-600 transition-all duration-200"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <button
+                  onClick={handleProcess}
+                  className="w-full py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-xl font-bold transition-colors"
+                >
+                  Process & Import
+                </button>
+              )}
+            </div>
+          ) : (
+            <div className="text-center py-6 animate-in fade-in zoom-in duration-300">
+              <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-500">
+                <svg
+                  className="w-8 h-8"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                Import Complete
+              </h3>
+
+              <div className="grid grid-cols-3 gap-4 mt-6">
+                <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
+                  <div className="text-2xl font-bold text-slate-900 dark:text-white">
+                    {result.rows.toLocaleString()}
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    Rows Processed
+                  </div>
+                </div>
+                <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
+                  <div className="text-2xl font-bold text-orange-500">
+                    {result.pii}
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    PII Columns Found
+                  </div>
+                </div>
+                <div className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl">
+                  <div className="text-2xl font-bold text-emerald-500">
+                    {result.masked.toLocaleString()}
+                  </div>
+                  <div className="text-xs text-slate-500 mt-1">
+                    Cells Masked
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  setFile(null);
+                  setResult(null);
+                  setProgress(0);
+                }}
+                className="mt-6 px-6 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-lg font-medium transition-colors"
+              >
+                Import Another File
+              </button>
+            </div>
+          )}
+        </div>
       )}
-
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="bg-[#0A0F1A] border border-white/10 rounded-2xl overflow-hidden">
-        <div className="px-6 py-4 border-b border-white/10"><h3 className="font-semibold text-white">Recent Imports</h3></div>
-        <table className="w-full text-sm"><thead className="bg-[#080D18]"><tr>{['File', 'Rows', 'Size', 'Imported', 'Status'].map(h => <th key={h} className="text-left px-6 py-3 text-xs text-white/40 font-medium">{h}</th>)}</tr></thead>
-          <tbody className="divide-y divide-white/[0.04]">{recent.map(r => (
-            <tr key={r.name} className="hover:bg-white/[0.02]">
-              <td className="px-6 py-4 text-white text-xs font-mono">{r.name}</td>
-              <td className="px-6 py-4 text-white/50 text-xs">{r.rows}</td>
-              <td className="px-6 py-4 text-white/50 text-xs">{r.size}</td>
-              <td className="px-6 py-4 text-white/40 text-xs">{r.at}</td>
-              <td className="px-6 py-4"><span className="flex items-center gap-1.5 text-xs text-emerald-400"><CheckCircle2 className="w-3.5 h-3.5" />Done</span></td>
-            </tr>
-          ))}</tbody>
-        </table>
-      </motion.div>
     </div>
   );
 }

@@ -12,7 +12,7 @@ faqs:
   - question: "¿En qué se diferencia el volumen del área de superficie?"
     answer: "El volumen mide la cantidad de espacio tridimensional que ocupa un objeto (el 'adentro'), mientras que el área de superficie mide el área total de las superficies exteriores."
   - question: "¿Qué unidades se utilizan para el volumen?"
-    answer: "El volumen siempre se mide en unidades cúbicas. Las unidades comunes incluyen centímetros cúbicos (cm³), metros cúbicos (m³) y pulgadas cúbicas (in³)."
+    answer: "El volumen siempre se mide en unidades cúbicas. Las unidades comunes incluyen centímetros cúbicos (cm³), metros cúbicos (m3) y pulgadas cúbicas (in³)."
 ---
 
 ## La Guía Definitiva para Calcular Volumen
@@ -25,7 +25,7 @@ Nuestra **Calculadora de Volumen Gratuita** resuelve instantáneamente las ecuac
 
 En geometría, el **volumen** es la medida del espacio tridimensional encerrado dentro de un límite cerrado. En pocas palabras, si el área de superficie es la cantidad de papel de regalo necesaria para cubrir una caja, el volumen es la cantidad de espacio físico *dentro* de la caja.
 
-Debido a que es tridimensional (longitud, ancho y altura), el volumen siempre se expresa en unidades cúbicas, como metros cúbicos (m³), pulgadas cúbicas (in³) o medidas de líquidos como litros y galones.
+Debido a que es tridimensional (longitud, ancho y altura), el volumen siempre se expresa en unidades cúbicas, como metros cúbicos (m3), pulgadas cúbicas (in³) o medidas de líquidos como litros y galones.
 
 ### Fórmulas para las 5 Figuras 3D más comunes
 
