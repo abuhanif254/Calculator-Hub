@@ -358,54 +358,54 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                 <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Data Privacy Platform</h2>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Enterprise-grade database anonymization · GDPR · HIPAA · PCI-DSS · Free forever</p>
               </div>
-              <Link href={`/${locale}/database-privacy` as any} className="ml-auto shrink-0 inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
+              <Link href={'/database-privacy' as any} className="ml-auto shrink-0 inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
                 <ExternalLink size={14} /> Open Platform
               </Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {[
                 { id: 'dp-scanner', title: 'PII Scanner', desc: 'Auto-detect 30+ PII types across all databases', items: [
-                  { name: 'Sensitive Data Scanner', href: `/${locale}/database-privacy/scanner` },
-                  { name: 'Scanner Findings', href: `/${locale}/database-privacy/scanner/findings` },
+                  { name: 'Sensitive Data Scanner', href: '/database-privacy/scanner' },
+                  { name: 'Scanner Findings', href: '/database-privacy/scanner/findings' },
                 ]},
                 { id: 'dp-masking', title: 'Data Masking', desc: 'Apply masking rules and anonymize sensitive columns', items: [
-                  { name: 'Masking Rules Builder', href: `/${locale}/database-privacy/masking/rules` },
-                  { name: 'Template Library', href: `/${locale}/database-privacy/masking/templates` },
-                  { name: 'Rule Marketplace', href: `/${locale}/database-privacy/masking/marketplace` },
-                  { name: 'Preview Before Execute', href: `/${locale}/database-privacy/masking/preview` },
+                  { name: 'Masking Rules Builder', href: '/database-privacy/masking/rules' },
+                  { name: 'Template Library', href: '/database-privacy/masking/templates' },
+                  { name: 'Rule Marketplace', href: '/database-privacy/masking/marketplace' },
+                  { name: 'Preview Before Execute', href: '/database-privacy/masking/preview' },
                 ]},
                 { id: 'dp-connections', title: 'Connections & Explorer', desc: 'Manage database connections and browse schemas', items: [
-                  { name: 'Database Connections', href: `/${locale}/database-privacy/connections` },
-                  { name: 'Database Explorer', href: `/${locale}/database-privacy/explorer` },
-                  { name: 'Projects', href: `/${locale}/database-privacy/projects` },
-                  { name: 'Organizations', href: `/${locale}/database-privacy/organizations` },
+                  { name: 'Database Connections', href: '/database-privacy/connections' },
+                  { name: 'Database Explorer', href: '/database-privacy/explorer' },
+                  { name: 'Projects', href: '/database-privacy/projects' },
+                  { name: 'Organizations', href: '/database-privacy/organizations' },
                 ]},
                 { id: 'dp-jobs', title: 'Jobs & Scheduling', desc: 'Automate anonymization with scheduled jobs', items: [
-                  { name: 'Job Management', href: `/${locale}/database-privacy/jobs` },
-                  { name: 'Job History', href: `/${locale}/database-privacy/jobs/history` },
-                  { name: 'Job Scheduler', href: `/${locale}/database-privacy/jobs/scheduler` },
+                  { name: 'Job Management', href: '/database-privacy/jobs' },
+                  { name: 'Job History', href: '/database-privacy/jobs/history' },
+                  { name: 'Job Scheduler', href: '/database-privacy/jobs/scheduler' },
                 ]},
                 { id: 'dp-compliance', title: 'Compliance & Audit', desc: 'GDPR, HIPAA, PCI-DSS readiness and audit trails', items: [
-                  { name: 'Compliance Center', href: `/${locale}/database-privacy/compliance` },
-                  { name: 'Reports & Analytics', href: `/${locale}/database-privacy/reports` },
-                  { name: 'Audit Logs', href: `/${locale}/database-privacy/audit` },
+                  { name: 'Compliance Center', href: '/database-privacy/compliance' },
+                  { name: 'Reports & Analytics', href: '/database-privacy/reports' },
+                  { name: 'Audit Logs', href: '/database-privacy/audit' },
                 ]},
                 { id: 'dp-io', title: 'Import & Export', desc: 'Upload datasets and export anonymized data', items: [
-                  { name: 'Import Dataset', href: `/${locale}/database-privacy/import` },
-                  { name: 'Export Data', href: `/${locale}/database-privacy/export` },
+                  { name: 'Import Dataset', href: '/database-privacy/import' },
+                  { name: 'Export Data', href: '/database-privacy/export' },
                 ]},
                 { id: 'dp-security', title: 'Security & Access', desc: 'API keys, secrets, webhooks, and team access', items: [
-                  { name: 'API Keys', href: `/${locale}/database-privacy/api-keys` },
-                  { name: 'Secrets Manager', href: `/${locale}/database-privacy/secrets` },
-                  { name: 'Webhooks', href: `/${locale}/database-privacy/webhooks` },
-                  { name: 'User Management', href: `/${locale}/database-privacy/users` },
-                  { name: 'Roles & Permissions', href: `/${locale}/database-privacy/users/roles` },
+                  { name: 'API Keys', href: '/database-privacy/api-keys' },
+                  { name: 'Secrets Manager', href: '/database-privacy/secrets' },
+                  { name: 'Webhooks', href: '/database-privacy/webhooks' },
+                  { name: 'User Management', href: '/database-privacy/users' },
+                  { name: 'Roles & Permissions', href: '/database-privacy/users/roles' },
                 ]},
                 { id: 'dp-monitoring', title: 'Monitoring', desc: 'Real-time performance and worker node monitoring', items: [
-                  { name: 'Performance Monitor', href: `/${locale}/database-privacy/monitoring` },
-                  { name: 'Worker Nodes', href: `/${locale}/database-privacy/monitoring/workers` },
-                  { name: 'Queue Manager', href: `/${locale}/database-privacy/monitoring/queue` },
-                  { name: 'Settings', href: `/${locale}/database-privacy/settings` },
+                  { name: 'Performance Monitor', href: '/database-privacy/monitoring' },
+                  { name: 'Worker Nodes', href: '/database-privacy/monitoring/workers' },
+                  { name: 'Queue Manager', href: '/database-privacy/monitoring/queue' },
+                  { name: 'Settings', href: '/database-privacy/settings' },
                 ]},
               ].map((category) => (
                 <section key={category.id} id={category.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-violet-100 dark:border-violet-900/30 shadow-sm hover:shadow-md hover:border-violet-400/40 transition-all scroll-mt-24">
