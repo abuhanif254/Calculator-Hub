@@ -727,7 +727,39 @@ export const routing = defineRouting({
       es: '/imagen',
       fr: '/image',
       de: '/bild'
-    }
+    },
+
+    // ── Data Privacy Platform ────────────────────────────────────────────────
+    '/database-privacy': '/database-privacy',
+    '/database-privacy/dashboard': '/database-privacy/dashboard',
+    '/database-privacy/scanner': '/database-privacy/scanner',
+    '/database-privacy/scanner/findings': '/database-privacy/scanner/findings',
+    '/database-privacy/masking/rules': '/database-privacy/masking/rules',
+    '/database-privacy/masking/templates': '/database-privacy/masking/templates',
+    '/database-privacy/masking/marketplace': '/database-privacy/masking/marketplace',
+    '/database-privacy/masking/preview': '/database-privacy/masking/preview',
+    '/database-privacy/anonymize': '/database-privacy/anonymize',
+    '/database-privacy/connections': '/database-privacy/connections',
+    '/database-privacy/explorer': '/database-privacy/explorer',
+    '/database-privacy/projects': '/database-privacy/projects',
+    '/database-privacy/organizations': '/database-privacy/organizations',
+    '/database-privacy/jobs': '/database-privacy/jobs',
+    '/database-privacy/jobs/history': '/database-privacy/jobs/history',
+    '/database-privacy/jobs/scheduler': '/database-privacy/jobs/scheduler',
+    '/database-privacy/compliance': '/database-privacy/compliance',
+    '/database-privacy/reports': '/database-privacy/reports',
+    '/database-privacy/audit': '/database-privacy/audit',
+    '/database-privacy/import': '/database-privacy/import',
+    '/database-privacy/export': '/database-privacy/export',
+    '/database-privacy/api-keys': '/database-privacy/api-keys',
+    '/database-privacy/secrets': '/database-privacy/secrets',
+    '/database-privacy/webhooks': '/database-privacy/webhooks',
+    '/database-privacy/users': '/database-privacy/users',
+    '/database-privacy/users/roles': '/database-privacy/users/roles',
+    '/database-privacy/monitoring': '/database-privacy/monitoring',
+    '/database-privacy/monitoring/workers': '/database-privacy/monitoring/workers',
+    '/database-privacy/monitoring/queue': '/database-privacy/monitoring/queue',
+    '/database-privacy/settings': '/database-privacy/settings'
   }
 });
 
