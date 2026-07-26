@@ -374,17 +374,17 @@ Ce diagramme de Gantt cartographie la chronologie du processus de conversion phy
 ```mermaid
 gantt
     title Processus de conversion de l'énergie potentielle hydroélectrique
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Stockage
-    L'eau repose dans un réservoir élevé (EP max) :done, 0, 10s
+    L'eau repose dans un réservoir élevé (EP max) :done, 00:00:00, 00:00:10
     section Chute libre
-    Les vannes s'ouvrent, l'eau tombe :crit, active, 10s, 20s
-    L'EP se convertit rapidement en EC :crit, active, 10s, 20s
+    Les vannes s'ouvrent, l'eau tombe :crit, active, 00:00:10, 00:00:20
+    L'EP se convertit rapidement en EC :crit, active, 00:00:10, 00:00:20
     section Production
-    L'eau cinétique frappe les turbines :milestone, 20s, 0s
-    La turbine fait tourner le générateur :active, 20s, 30s
-    Électricité exportée vers le réseau :active, 22s, 35s
+    L'eau cinétique frappe les turbines :milestone, 00:00:20, 0d
+    La turbine fait tourner le générateur :active, 00:00:20, 00:00:30
+    Électricité exportée vers le réseau :active, 00:00:22, 00:00:35
 ```
 
 ---

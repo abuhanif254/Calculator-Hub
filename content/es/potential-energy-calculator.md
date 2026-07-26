@@ -374,17 +374,17 @@ Este diagrama de Gantt traza la línea de tiempo de conversión física paso a p
 ```mermaid
 gantt
     title Proceso de Conversión de Energía Potencial Hidroeléctrica
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Almacenamiento
-    Agua descansa en depósito alto (EP Máxima) :done, 0, 10s
+    Agua descansa en depósito alto (EP Máxima) :done, 00:00:00, 00:00:10
     section Caída Libre
-    Compuertas se abren, agua cae por tubería :crit, active, 10s, 20s
-    EP se convierte rápido a Energía Cinética :crit, active, 10s, 20s
+    Compuertas se abren, agua cae por tubería :crit, active, 00:00:10, 00:00:20
+    EP se convierte rápido a Energía Cinética :crit, active, 00:00:10, 00:00:20
     section Generación
-    Agua cinética impacta aspas de turbina :milestone, 20s, 0s
-    Turbina gira generador magnético :active, 20s, 30s
-    Electricidad exportada a red eléctrica :active, 22s, 35s
+    Agua cinética impacta aspas de turbina :milestone, 00:00:20, 0d
+    Turbina gira generador magnético :active, 00:00:20, 00:00:30
+    Electricidad exportada a red eléctrica :active, 00:00:22, 00:00:35
 ```
 
 ---

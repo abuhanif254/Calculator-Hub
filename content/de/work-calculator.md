@@ -326,7 +326,7 @@ flowchart TD
     B --> C{Arbeits-Energie-Theorem}
     C -->|W = ΔKE| D(Änderung der kinetischen Energie)
     D --> E[End-KE = Anfangs-KE + W]
-    E --> F[Geschwindigkeit extrahieren: v_f = sqrt(2 * KE / m)]
+    E --> F["Geschwindigkeit extrahieren: v_f = sqrt(2 * KE / m)"]
 ```
 
 ---
@@ -345,13 +345,13 @@ Dieses Gantt-Diagramm bildet die Millisekunden eines 4-Takt-Motorzyklus ab und h
 ```mermaid
 gantt
     title 4-Takt-Motorzyklus (Mechanische Arbeitserzeugung)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Motorzyklus
-    Ansaugtakt (Negative Arbeit) :active, 0, 1s
-    Verdichtungstakt (Negative Arbeit) :active, 1s, 2s
-    Zündung & Arbeitstakt (Massive Positive Arbeit) :crit, done, 2s, 3s
-    Auspufftakt (Negative Arbeit) :active, 3s, 4s
+    Ansaugtakt (Negative Arbeit) :active, 00:00:00, 00:00:01
+    Verdichtungstakt (Negative Arbeit) :active, 00:00:01, 00:00:02
+    Zündung & Arbeitstakt (Massive Positive Arbeit) :crit, done, 00:00:02, 00:00:03
+    Auspufftakt (Negative Arbeit) :active, 00:00:03, 00:00:04
 ```
 *(Hinweis: Zeitrahmen sind illustrativ. In einem echten Motor bei 3.000 U/min dauert dieser gesamte 4-Takt-Zyklus 0,04 Sekunden!)*
 

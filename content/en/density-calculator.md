@@ -326,18 +326,18 @@ This Gantt chart outlines the chronological laboratory process for calculating t
 ```mermaid
 gantt
     title Laboratory Density Testing Protocol (Water Displacement)
-    dateFormat m
-    axisFormat %M
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Dry Measurements
-    Calibrate Scale to Zero :crit, active, 0, 2m
-    Weigh Object in Air (Record Mass) :active, 2m, 5m
+    Calibrate Scale to Zero :crit, active, 00:00:00, 00:02:00
+    Weigh Object in Air (Record Mass) :active, 00:02:00, 00:05:00
     section Wet Measurements
-    Fill Graduated Cylinder with Water :5m, 8m
-    Record Initial Water Volume (V1) :8m, 10m
-    Submerge Object & Record Final Volume (V2) :crit, 10m, 13m
+    Fill Graduated Cylinder with Water :00:05:00, 00:08:00
+    Record Initial Water Volume (V1) :00:08:00, 00:10:00
+    Submerge Object & Record Final Volume (V2) :crit, 00:10:00, 00:13:00
     section Calculations
-    Calculate Displaced Volume (V2 - V1) :13m, 15m
-    Calculate Density (Mass / Volume) :milestone, 15m, 16m
+    Calculate Displaced Volume (V2 - V1) :00:13:00, 00:15:00
+    Calculate Density (Mass / Volume) :milestone, 00:15:00, 00:16:00
 ```
 
 ---

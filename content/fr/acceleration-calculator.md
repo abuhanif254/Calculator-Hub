@@ -297,10 +297,10 @@ Cet organigramme visualise la séquence de cinématique utilisée par le moteur 
 ```mermaid
 flowchart TD
     A[Variables d'Entrée :<br/>vi = 33,3 m/s<br/>vf = 0 m/s<br/>a = -8,5 m/s²] --> B{Calculer le Temps}
-    B -->|t = (vf - vi) / a| C[Temps = 3,92 s]
+    B -->|"t = (vf - vi) / a"| C[Temps = 3,92 s]
     C --> D{Calculer la Distance}
     A --> D
-    D -->|d = vi*t + 0.5*a*t²| E[Distance = 65,23 m]
+    D -->|"d = vi*t + 0.5*a*t²"| E[Distance = 65,23 m]
     style A fill:#3b82f6,stroke:#1e40af,color:#fff
     style C fill:#10b981,stroke:#047857,color:#fff
     style E fill:#ef4444,stroke:#b91c1c,color:#fff
@@ -350,18 +350,18 @@ Le diagramme de Gantt ci-dessous illustre une chronologie de lancement de fusée
 ```mermaid
 gantt
     title Profil d'Accélération de Lancement de Fusée Orbitale
-    dateFormat  m
-    axisFormat %M
+    dateFormat  YYYY-MM-DD
+    axisFormat %d
     section Étage 1 (Propulsion)
-    Allumage (1,5g) :active, 0, 1m
-    Étranglement Max Q (2,0g) : 1m, 2m
-    Pic Pré-MECO (3,5g) :crit, 2m, 3m
+    Allumage (1,5g) :active, id1, 2026-01-01, 1d
+    Étranglement Max Q (2,0g) : id2, after id1, 1d
+    Pic Pré-MECO (3,5g) :crit, id3, after id2, 1d
     section Étage 2 (Orbital)
-    Séparation des Étages (Secousse 0g) :milestone, 3, 0m
-    Combustion du Second Étage (1,2g à 3g) :active, 3m, 7m
+    Séparation des Étages (Secousse 0g) :milestone, id4, after id3, 0d
+    Combustion du Second Étage (1,2g à 3g) :active, id5, after id4, 4d
     section Vol Libre
-    Coupure du Moteur (Zéro G) :milestone, 7, 0m
-    Vol Libre Orbital (0g) : 7m, 10m
+    Coupure du Moteur (Zéro G) :milestone, id6, after id5, 0d
+    Vol Libre Orbital (0g) : id7, after id6, 3d
 ```
 
 ---

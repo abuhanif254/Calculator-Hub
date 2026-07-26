@@ -341,14 +341,14 @@ Ce diagramme de Gantt visualise une chronologie de fin de course, contrastant la
 ```mermaid
 gantt
     title Chronologie de Puissance de Sortie du Dernier Kilomètre d'un Cycliste Pro
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Aérobie (Soutenu)
-    Croisière du Peloton (300 Watts) :active, 0, 45s
-    Poussée du Train de Tête (600 Watts) :crit, done, 45s, 60s
+    Croisière du Peloton (300 Watts) :active, 00:00:00, 00:00:45
+    Poussée du Train de Tête (600 Watts) :crit, done, 00:00:45, 00:01:00
     section Anaérobie (Sprint)
-    Sprint Final Ligne d'Arrivée (1 500 Watts!) :milestone, 60s, 75s
-    Épuisement Post-Course (50 Watts) :active, 75s, 100s
+    Sprint Final Ligne d'Arrivée (1 500 Watts!) :milestone, 00:01:00, 00:01:15
+    Épuisement Post-Course (50 Watts) :active, 00:01:15, 00:01:40
 ```
 
 ---

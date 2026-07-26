@@ -361,14 +361,14 @@ $$ Poussée = 29\ 135\ 700 + 4\ 455\ 000 = 33\ 590\ 700\text{ Newtons (33,6 MN)}
 ```mermaid
 gantt
     title Profil d'Ascension du Premier Étage de Saturn V
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat %M:%S
     section Décollage
-    Allumage (Masse Élevée, Faible Accél 1,5g) :active, 0, 30s
-    Max Q (Pics de Traînée Aérodynamique) :crit, 30s, 60s
-    section Fin d'Ascension
-    Perte Rapide de Masse (Carburant Brûlé) : 60s, 120s
-    Force Maximale Pré-séparation (Haute Accél 4g) :milestone, 120, 0s
+    Allumage (Masse Élevée, Faible Accél 1,5g) :active, id1, 00:00:00, 30s
+    Max Q (Pics de Traînée Aérodynamique) :crit, id2, after id1, 30s
+    section Ascension Tardive
+    Perte Rapide de Masse (Carburant Brûlé) : id3, after id2, 60s
+    Force Maximale Pré-Séparation (Haute Accél 4g) :milestone, id4, after id3, 0s
 ```
 
 ---

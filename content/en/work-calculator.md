@@ -326,7 +326,7 @@ flowchart TD
     B --> C{Work-Energy Theorem}
     C -->|W = ΔKE| D(Change in Kinetic Energy)
     D --> E[Final KE = Initial KE + W]
-    E --> F[Extract Velocity: v_f = sqrt(2 * KE / m)]
+    E --> F["Extract Velocity: v_f = sqrt(2 * KE / m)"]
 ```
 
 ---
@@ -345,13 +345,13 @@ This Gantt chart maps the milliseconds of a 4-stroke engine cycle, highlighting 
 ```mermaid
 gantt
     title 4-Stroke Engine Cycle (Mechanical Work Generation)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Engine Cycle
-    Intake Stroke (Negative Work) :active, 0, 1s
-    Compression Stroke (Negative Work) :active, 1s, 2s
-    Ignition & Power Stroke (Massive Positive Work) :crit, done, 2s, 3s
-    Exhaust Stroke (Negative Work) :active, 3s, 4s
+    Intake Stroke (Negative Work) :active, 00:00:00, 00:00:01
+    Compression Stroke (Negative Work) :active, 00:00:01, 00:00:02
+    Ignition & Power Stroke (Massive Positive Work) :crit, done, 00:00:02, 00:00:03
+    Exhaust Stroke (Negative Work) :active, 00:00:03, 00:00:04
 ```
 *(Note: Timeframes are illustrative. In a real engine at 3,000 RPM, this entire 4-stroke cycle happens in 0.04 seconds!)*
 

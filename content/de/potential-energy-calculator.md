@@ -374,17 +374,17 @@ Dieses Gantt-Diagramm skizziert den Schritt-für-Schritt-Zeitplan der physikalis
 ```mermaid
 gantt
     title Wasserkraft - Prozess der Umwandlung potenzieller Energie
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Speicherung
-    Wasser ruht in hohem Reservoir (Maximale PE) :done, 0, 10s
+    Wasser ruht in hohem Reservoir (Maximale PE) :done, 00:00:00, 00:00:10
     section Freier Fall
-    Tore öffnen, Wasser fällt durch Druckrohr :crit, active, 10s, 20s
-    PE wandelt sich schnell in kinetische Energie um :crit, active, 10s, 20s
+    Tore öffnen, Wasser fällt durch Druckrohr :crit, active, 00:00:10, 00:00:20
+    PE wandelt sich schnell in kinetische Energie um :crit, active, 00:00:10, 00:00:20
     section Erzeugung
-    Kinetisches Wasser trifft auf Turbinenschaufeln :milestone, 20s, 0s
-    Turbine dreht Magnetgenerator :active, 20s, 30s
-    Elektrizität wird ins Stromnetz eingespeist :active, 22s, 35s
+    Kinetisches Wasser trifft auf Turbinenschaufeln :milestone, 00:00:20, 0d
+    Turbine dreht Magnetgenerator :active, 00:00:20, 00:00:30
+    Elektrizität wird ins Stromnetz eingespeist :active, 00:00:22, 00:00:35
 ```
 
 ---

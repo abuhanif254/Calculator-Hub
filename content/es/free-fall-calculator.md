@@ -361,15 +361,15 @@ Este diagrama de Gantt visualiza el cronograma lleno de adrenalina del salto, de
 ```mermaid
 gantt
     title Cronograma de Salto en Paracaídas Estándar (Salida a 4,000m al Suelo)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Caída Libre
-    Salida de Aeronave y Acelerar :done, 0, 12s
-    Velocidad Terminal Constante (54 m/s) :crit, active, 12s, 50s
+    Salida de Aeronave y Acelerar :done, 00:00:00, 00:00:12
+    Velocidad Terminal Constante (54 m/s) :crit, active, 00:00:12, 00:00:50
     section Paracaídas
-    Despliegue de Paracaídas Principal (Alta Desaceleración) :milestone, 50s, 0s
-    Viaje en Dosel (descenso de 5 m/s) :active, 54s, 354s
-    Aterrizaje Seguro en Suelo :milestone, 354s, 0s
+    Despliegue de Paracaídas Principal (Alta Desaceleración) :milestone, 00:00:50, 0d
+    Viaje en Dosel (descenso de 5 m/s) :active, 00:00:54, 00:05:54
+    Aterrizaje Seguro en Suelo :milestone, 00:05:54, 0d
 ```
 
 ---

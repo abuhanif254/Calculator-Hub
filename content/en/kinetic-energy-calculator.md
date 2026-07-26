@@ -386,14 +386,14 @@ This Gantt chart visualizes the microscopic timeline of energy transfer during t
 ```mermaid
 gantt
     title Kinetic Energy Transfer (Golf Club Impact)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Pre-Impact
-    Club Acceleration Phase (Building 250J KE) :done, 0, 0.500s
+    Club Acceleration Phase (Building 250J KE) :done, 00:00:00.000, 00:00:00.500
     section Impact
-    Initial Contact & Ball Compression :crit, active, 0.500s, 0.5002s
-    Energy Transfer (255kW Peak Power) :crit, active, 0.5002s, 0.5005s
-    Ball Release (Launch) :milestone, 0.5005s, 0s
+    Initial Contact & Ball Compression :crit, active, 00:00:00.500, 00:00:00.502
+    Energy Transfer (255kW Peak Power) :crit, active, 00:00:00.502, 00:00:00.505
+    Ball Release (Launch) :milestone, 00:00:00.505, 0d
 ```
 
 ---

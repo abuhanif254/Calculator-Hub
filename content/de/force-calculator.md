@@ -361,14 +361,14 @@ Da die Rakete pro Sekunde Tausende Gallonen Treibstoff verbrennt, nimmt ihre Mas
 ```mermaid
 gantt
     title Aufstiegsprofil der ersten Stufe der Saturn V
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat %M:%S
     section Abheben
-    Zündung (Hohe Masse, Geringe Beschleunigung 1,5g) :active, 0, 30s
-    Max Q (Aerodynamischer Widerstand kulminiert) :crit, 30s, 60s
+    Zündung (Hohe Masse, Geringe Beschleunigung 1,5g) :active, id1, 00:00:00, 30s
+    Max Q (Aerodynamischer Widerstand kulminiert) :crit, id2, after id1, 30s
     section Später Aufstieg
-    Rapider Masseverlust (Verbrannter Treibstoff) : 60s, 120s
-    Spitzenkraft vor Stufentrennung (Hohe Beschleunigung 4g) :milestone, 120, 0s
+    Rapider Masseverlust (Verbrannter Treibstoff) : id3, after id2, 60s
+    Spitzenkraft vor Stufentrennung (Hohe Beschleunigung 4g) :milestone, id4, after id3, 0s
 ```
 
 ---

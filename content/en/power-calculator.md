@@ -341,14 +341,14 @@ This Gantt chart visualizes a race finish timeline, contrasting the long enduran
 ```mermaid
 gantt
     title Pro Cyclist Final Kilometer Power Output Timeline
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Aerobic (Sustained)
-    Peloton Cruising (300 Watts) :active, 0, 45s
-    Leadout Train Push (600 Watts) :crit, done, 45s, 60s
+    Peloton Cruising (300 Watts) :active, 00:00:00, 00:00:45
+    Leadout Train Push (600 Watts) :crit, done, 00:00:45, 00:01:00
     section Anaerobic (Sprint)
-    Max Finish Line Sprint (1,500 Watts!) :milestone, 60s, 75s
-    Post-Race Exhaustion (50 Watts) :active, 75s, 100s
+    Max Finish Line Sprint (1,500 Watts!) :milestone, 00:01:00, 00:01:15
+    Post-Race Exhaustion (50 Watts) :active, 00:01:15, 00:01:40
 ```
 
 ---

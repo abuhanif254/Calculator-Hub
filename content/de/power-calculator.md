@@ -341,14 +341,14 @@ Dieses Gantt-Diagramm visualisiert den Zeitstrahl einer Rennankunft und stellt d
 ```mermaid
 gantt
     title Leistungsabgabe Profi-Radfahrer im finalen Kilometer
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Aerob (Anhaltend)
-    Peloton Cruising (300 Watt) :active, 0, 45s
-    Leadout Train Push (600 Watt) :crit, done, 45s, 60s
+    Peloton Cruising (300 Watt) :active, 00:00:00, 00:00:45
+    Leadout Train Push (600 Watt) :crit, done, 00:00:45, 00:01:00
     section Anaerob (Sprint)
-    Max. Zielsprint (1.500 Watt!) :milestone, 60s, 75s
-    Erschöpfung nach dem Rennen (50 Watt) :active, 75s, 100s
+    Max. Zielsprint (1.500 Watt!) :milestone, 00:01:00, 00:01:15
+    Erschöpfung nach dem Rennen (50 Watt) :active, 00:01:15, 00:01:40
 ```
 
 ---
