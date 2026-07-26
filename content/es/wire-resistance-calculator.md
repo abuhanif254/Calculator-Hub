@@ -245,7 +245,7 @@ Este gráfico de barras demuestra agresivamente la severa penalización de resis
 ```mermaid
 xychart-beta
     title "Penalización de Resistencia: Cobre vs Aluminio (Ohmios por 1000 pies)"
-    x-axis "Tipo de Material (6 AWG)" [Cobre, Aluminio]
+    x-axis "Tipo de Material (6 AWG)" ["Cobre", "Aluminio"]
     y-axis "Resistencia Total (Ohmios)" 0 --> 3
     bar [1.30, 2.18]
 ```

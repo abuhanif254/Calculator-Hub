@@ -245,7 +245,7 @@ Ce graphique à barres démontre de manière agressive la grave pénalité de r�
 ```mermaid
 xychart-beta
     title "Pénalité de Résistance : Cuivre vs Aluminium (Ohms par 1000 pieds)"
-    x-axis "Type de Matériau (6 AWG)" [Cuivre, Aluminium]
+    x-axis "Type de Matériau (6 AWG)" ["Cuivre", "Aluminium"]
     y-axis "Résistance Totale (Ohms)" 0 --> 3
     bar [1.30, 2.18]
 ```

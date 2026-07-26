@@ -233,7 +233,7 @@ Ce graphique à barres classe de manière agressive les 5 appareils ménagers le
 ```mermaid
 xychart-beta
     title "Consommation d'Énergie Résidentielle Mensuelle par Appareil (kWh)"
-    x-axis "Appareils Électroménagers" [Climatisation Centrale, Chauffe-Eau, Chargeur VE, Réfrigérateur, Éclairage LED]
+    x-axis "Appareils Électroménagers" ["Climatisation Centrale", "Chauffe-Eau", "Chargeur VE", "Réfrigérateur", "Éclairage LED"]
     y-axis "Énergie Mensuelle (kWh)" 0 --> 900
     bar [840, 180, 150, 108, 12]
 ```
@@ -254,7 +254,7 @@ Ce graphique trace les dollars cumulés terrifiants versés à la compagnie d'é
 ```mermaid
 xychart-beta
     title "Dépenses Cumulées de Facture d'Électricité sur 10 Ans (4% d'Inflation Annuelle)"
-    x-axis "Chronologie (Années)" [Année 1, Année 3, Année 5, Année 7, Année 10]
+    x-axis "Chronologie (Années)" ["Année 1", "Année 3", "Année 5", "Année 7", "Année 10"]
     y-axis "Coût Cumulé ($)" 0 --> 30000
     line [2400, 7552, 13240, 19592, 28814]
 ```

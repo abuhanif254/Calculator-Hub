@@ -245,7 +245,7 @@ This chart proves how correcting the Power Factor mathematically shrinks the App
 ```mermaid
 xychart-beta
     title "Transformer kVA Demand for 343 kW Load"
-    x-axis "System State" [Before Correction (0.70 PF), After Correction (0.98 PF), Safe Headroom Limit]
+    x-axis "System State" ["Before Correction (0.70 PF)", "After Correction (0.98 PF)", "Safe Headroom Limit"]
     y-axis "Transformer Demand (kVA)" 0 --> 600
     bar [490, 350, 500]
 ```

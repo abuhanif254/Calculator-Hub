@@ -245,7 +245,7 @@ Dieses Diagramm beweist, wie die Korrektur des Leistungsfaktors den Scheinleistu
 ```mermaid
 xychart-beta
     title "Transformator-kVA-Bedarf für eine 343 kW Last"
-    x-axis "Systemstatus" [Vor Korrektur (0.70 PF), Nach Korrektur (0.98 PF), Sichere Reservegrenze]
+    x-axis "Systemstatus" ["Vor Korrektur (0.70 PF)", "Nach Korrektur (0.98 PF)", "Sichere Reservegrenze"]
     y-axis "Transformatorbedarf (kVA)" 0 --> 600
     bar [490, 350, 500]
 ```

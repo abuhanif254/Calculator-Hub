@@ -245,7 +245,7 @@ This bar chart aggressively demonstrates the severe resistance penalty of identi
 ```mermaid
 xychart-beta
     title "Resistance Penalty: Copper vs Aluminum (Ohms per 1000 ft)"
-    x-axis "Material Type (6 AWG)" [Copper, Aluminum]
+    x-axis "Material Type (6 AWG)" ["Copper", "Aluminum"]
     y-axis "Total Resistance (Ohms)" 0 --> 3
     bar [1.30, 2.18]
 ```

@@ -208,7 +208,7 @@ This bar chart aggressively demonstrates the massive usable energy advantage of 
 ```mermaid
 xychart-beta
     title "Usable Energy (Wh) from a 1200Wh Battery"
-    x-axis "Battery Chemistry and DoD Limit" [Flooded Lead Acid (50%), AGM (50%), LiFePO4 Lithium (80%)]
+    x-axis "Battery Chemistry and DoD Limit" ["Flooded Lead Acid (50%)", "AGM (50%)", "LiFePO4 Lithium (80%)"]
     y-axis "Usable Watt-Hours (Wh)" 0 --> 1200
     bar [600, 600, 960]
 ```
@@ -229,7 +229,7 @@ This chart plots the brutal reality of the Derating Waterfall, proving exactly w
 ```mermaid
 xychart-beta
     title "The Derating Waterfall: Shrinking Battery Capacity"
-    x-axis "System Constraints" [Theoretical 100%, After Inverter Loss, After DoD Limit, After SOH Aging]
+    x-axis "System Constraints" ["Theoretical 100%", "After Inverter Loss", "After DoD Limit", "After SOH Aging"]
     y-axis "Remaining Energy (Wh)" 0 --> 1250
     bar [1200, 1080, 864, 777]
 ```

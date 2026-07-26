@@ -311,7 +311,7 @@ El gráfico de barras muestra dramáticamente que dejar caer una roca de $100\te
 ```mermaid
 xychart-beta
     title "Carga de 100kg a 10m de Altura en Distintos Planetas"
-    x-axis "Planeta / Cuerpo Celeste" [Luna, Marte, Tierra, Júpiter]
+    x-axis "Planeta / Cuerpo Celeste" ["Luna", "Marte", "Tierra", "Júpiter"]
     y-axis "Energía Potencial Almacenada (Julios)" 0 --> 25000
     bar [1620, 3710, 9810, 24790]
 ```

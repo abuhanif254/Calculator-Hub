@@ -311,7 +311,7 @@ Le graphique à barres montre de manière spectaculaire que faire tomber un roch
 ```mermaid
 xychart-beta
     title "Charge utile de 100 kg à 10 m de hauteur sur différentes planètes"
-    x-axis "Planète / Corps céleste" [Lune, Mars, Terre, Jupiter]
+    x-axis "Planète / Corps céleste" ["Lune", "Mars", "Terre", "Jupiter"]
     y-axis "Énergie potentielle stockée (Joules)" 0 --> 25000
     bar [1620, 3710, 9810, 24790]
 ```

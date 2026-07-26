@@ -251,7 +251,7 @@ Ce graphique à barres trace les variations extrêmes de la Force de Poids à tr
 ```mermaid
 xychart-beta
     title "Poids Gravitationnel d'un Rover de 1 000 kg à travers le Système Solaire"
-    x-axis "Corps Céleste" [Pluton, Lune, Mars, Terre, Jupiter]
+    x-axis "Corps Céleste" ["Pluton", "Lune", "Mars", "Terre", "Jupiter"]
     y-axis "Force Descendante (Newtons)" 0 --> 25000
     bar [620, 1620, 3710, 9810, 24790]
 ```

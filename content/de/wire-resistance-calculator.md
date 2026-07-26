@@ -245,7 +245,7 @@ Dieses Balkendiagramm veranschaulicht drastisch die schwere Widerstandsstrafe be
 ```mermaid
 xychart-beta
     title "Widerstandsstrafe: Kupfer vs. Aluminium (Ohm pro 1000 ft)"
-    x-axis "Materialtyp (6 AWG)" [Kupfer, Aluminium]
+    x-axis "Materialtyp (6 AWG)" ["Kupfer", "Aluminium"]
     y-axis "Gesamtwiderstand (Ohm)" 0 --> 3
     bar [1.30, 2.18]
 ```

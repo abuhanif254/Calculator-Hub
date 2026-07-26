@@ -208,7 +208,7 @@ Ce graphique à barres démontre agressivement l'avantage massif en énergie uti
 ```mermaid
 xychart-beta
     title "Énergie Utilisable (Wh) à partir d'une Batterie de 1200Wh"
-    x-axis "Chimie de Batterie et Limite DoD" [Plomb Ouvert (50%), AGM (50%), Lithium LiFePO4 (80%)]
+    x-axis "Chimie de Batterie et Limite DoD" ["Plomb Ouvert (50%)", "AGM (50%)", "Lithium LiFePO4 (80%)"]
     y-axis "Watt-Heures Utilisables (Wh)" 0 --> 1200
     bar [600, 600, 960]
 ```
@@ -229,7 +229,7 @@ Ce graphique illustre la réalité brutale de la Répartition en Cascade de la D
 ```mermaid
 xychart-beta
     title "Répartition en Cascade de la Dégradation : Capacité Réduite de la Batterie"
-    x-axis "Contraintes du Système" [Théorique 100%, Après Perte Onduleur, Après Limite DoD, Après Vieillissement SOH]
+    x-axis "Contraintes du Système" ["Théorique 100%", "Après Perte Onduleur", "Après Limite DoD", "Après Vieillissement SOH"]
     y-axis "Énergie Restante (Wh)" 0 --> 1250
     bar [1200, 1080, 864, 777]
 ```

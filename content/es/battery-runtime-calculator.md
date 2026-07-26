@@ -208,7 +208,7 @@ Este gráfico de barras demuestra agresivamente la enorme ventaja de la energía
 ```mermaid
 xychart-beta
     title "Energía Utilizable (Wh) de una Batería de 1200Wh"
-    x-axis "Química de la Batería y Límite DoD" [Ácido-Plomo Inundado (50%), AGM (50%), LiFePO4 Litio (80%)]
+    x-axis "Química de la Batería y Límite DoD" ["Ácido-Plomo Inundado (50%)", "AGM (50%)", "LiFePO4 Litio (80%)"]
     y-axis "Vatios-Hora Utilizables (Wh)" 0 --> 1200
     bar [600, 600, 960]
 ```
@@ -229,7 +229,7 @@ Este gráfico traza la brutal realidad del Desglose de Derivación, probando exa
 ```mermaid
 xychart-beta
     title "El Desglose de Derivación: Reducción de la Capacidad de la Batería"
-    x-axis "Restricciones del Sistema" [Teórico 100%, Después de Pérdida del Inversor, Después de Límite DoD, Después de Envejecimiento SOH]
+    x-axis "Restricciones del Sistema" ["Teórico 100%", "Después de Pérdida del Inversor", "Después de Límite DoD", "Después de Envejecimiento SOH"]
     y-axis "Energía Restante (Wh)" 0 --> 1250
     bar [1200, 1080, 864, 777]
 ```

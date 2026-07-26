@@ -258,7 +258,7 @@ Ce diagramme à barres trace les différences stupéfiantes de densité entre de
 ```mermaid
 xychart-beta
     title "Comparaison de Densité de Matériaux Communs (kg/m3)"
-    x-axis "Type de Matériau" [Eau, Béton, Aluminium, Acier, Plomb, Or]
+    x-axis "Type de Matériau" ["Eau", "Béton", "Aluminium", "Acier", "Plomb", "Or"]
     y-axis "Densité (kg par Mètre Cube)" 0 --> 20000
     bar [1000, 2400, 2700, 7850, 11340, 19300]
 ```

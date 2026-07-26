@@ -228,7 +228,7 @@ Este gráfico de barras clasifica agresivamente los Voltajes Directos exactos ne
 ```mermaid
 xychart-beta
     title "Voltaje Directo Típico (Vf) por Color de LED"
-    x-axis "Espectro de Color del LED" [Infrarrojo, Rojo, Amarillo, Verde, Azul, Blanco]
+    x-axis "Espectro de Color del LED" ["Infrarrojo", "Rojo", "Amarillo", "Verde", "Azul", "Blanco"]
     y-axis "Voltaje Directo (Voltios)" 0 --> 4
     bar [1.3, 2.0, 2.1, 2.2, 3.2, 3.2]
 ```
@@ -249,7 +249,7 @@ Este gráfico traza los límites de seguridad de los encapsulados de resistencia
 ```mermaid
 xychart-beta
     title "Disipación Térmica vs Potencia Nominal de Resistencias (Vatios)"
-    x-axis "Tamaño del Encapsulado de la Resistencia" [Calor Calculado, 1/4 Vatio, 1/2 Vatio, 1 Vatio]
+    x-axis "Tamaño del Encapsulado de la Resistencia" ["Calor Calculado", "1/4 Vatio", "1/2 Vatio", "1 Vatio"]
     y-axis "Manejo de Potencia (Vatios)" 0 --> 1.2
     bar [0.40, 0.25, 0.50, 1.00]
 ```

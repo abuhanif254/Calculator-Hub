@@ -228,7 +228,7 @@ Ce graphique à barres classe de manière agressive les Tensions Directes exacte
 ```mermaid
 xychart-beta
     title "Tension Directe Typique (Vf) par Couleur de LED"
-    x-axis "Spectre de Couleur LED" [Infrarouge, Rouge, Jaune, Vert, Bleu, Blanc]
+    x-axis "Spectre de Couleur LED" ["Infrarouge", "Rouge", "Jaune", "Vert", "Bleu", "Blanc"]
     y-axis "Tension Directe (Volts)" 0 --> 4
     bar [1.3, 2.0, 2.1, 2.2, 3.2, 3.2]
 ```
@@ -249,7 +249,7 @@ Ce graphique trace les limites de sécurité des boîtiers de résistances stand
 ```mermaid
 xychart-beta
     title "Dissipation Thermique vs Puissance Nominale des Résistances (Watts)"
-    x-axis "Taille du Boîtier de la Résistance" [Chaleur Calculée, 1/4 Watt, 1/2 Watt, 1 Watt]
+    x-axis "Taille du Boîtier de la Résistance" ["Chaleur Calculée", "1/4 Watt", "1/2 Watt", "1 Watt"]
     y-axis "Gestion de la Puissance (Watts)" 0 --> 1.2
     bar [0.40, 0.25, 0.50, 1.00]
 ```

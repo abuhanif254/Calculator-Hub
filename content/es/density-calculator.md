@@ -258,7 +258,7 @@ Este gráfico de barras traza las asombrosas diferencias en la densidad entre ma
 ```mermaid
 xychart-beta
     title "Comparación de Densidad de Materiales Comunes (kg/m3)"
-    x-axis "Tipo de Material" [Agua, Hormigón, Aluminio, Acero, Plomo, Oro]
+    x-axis "Tipo de Material" ["Agua", "Hormigón", "Aluminio", "Acero", "Plomo", "Oro"]
     y-axis "Densidad (kg por Metro Cúbico)" 0 --> 20000
     bar [1000, 2400, 2700, 7850, 11340, 19300]
 ```

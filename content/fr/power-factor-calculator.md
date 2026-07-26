@@ -245,7 +245,7 @@ Ce graphique prouve comment la correction du facteur de puissance réduit mathé
 ```mermaid
 xychart-beta
     title "Demande du transformateur en kVA pour une charge de 343 kW"
-    x-axis "État du système" [Avant correction (0.70 FP), Après correction (0.98 FP), Limite de marge sûre]
+    x-axis "État du système" ["Avant correction (0.70 FP)", "Après correction (0.98 FP)", "Limite de marge sûre"]
     y-axis "Demande du transformateur (kVA)" 0 --> 600
     bar [490, 350, 500]
 ```
