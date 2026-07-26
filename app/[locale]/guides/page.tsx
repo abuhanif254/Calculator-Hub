@@ -21,6 +21,10 @@ import {
 import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
+// SSG configuration — fully static, no revalidation needed.
+// Guide listing data is static TypeScript and only changes on deploy.
+export const revalidate = false;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // SEO Metadata
 // ─────────────────────────────────────────────────────────────────────────────

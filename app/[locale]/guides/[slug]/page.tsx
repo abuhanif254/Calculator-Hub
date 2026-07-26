@@ -28,6 +28,11 @@ import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
+// SSG configuration — fully static, no revalidation needed.
+// Guide content is stored in static MDX/TS files and only changes on deploy.
+// revalidate=false eliminates ISR background re-renders, saving Vercel quota.
+export const revalidate = false;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Static params — pre-render all guide slugs at build time
 // ─────────────────────────────────────────────────────────────────────────────
