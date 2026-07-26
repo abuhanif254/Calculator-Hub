@@ -20,9 +20,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-// SSG / ISR configuration
-// We revalidate occasionally to catch data updates if we were using a headless CMS.
-export const revalidate = 86400; // once a day
+// SSG configuration — fully static, no revalidation needed.
+// All calculator data lives in TypeScript source files (lib/data/calculators.ts).
+// Content only changes when code is deployed, so revalidate=false (build-time only)
+// eliminates all ISR background re-renders, saving Vercel free tier limits.
+export const revalidate = false;
 export const dynamicParams = false;
 
 // Helper function to read markdown content

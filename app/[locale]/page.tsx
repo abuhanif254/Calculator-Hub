@@ -19,6 +19,15 @@ const AnimatedCounter       = dynamic(() => import('../components/AnimatedCounte
 const ScrollReveal          = dynamic(() => import('../components/ScrollReveal').then(m => m.ScrollReveal), { loading: () => null });
 const DynamicTrending       = dynamic(() => import('../components/DynamicTrending').then(m => m.DynamicTrending), { loading: () => null });
 
+// SSG configuration — fully static, no revalidation needed.
+// The homepage content is entirely static (translations + static data).
+// Dynamic sections (FavoritesSection, ContinueWhereYouLeftOff, DynamicTrending,
+// RecentDiscussions) are all client-side components that fetch their own data
+// after hydration — they do NOT require SSR on every request.
+// revalidate=false prevents Vercel from re-rendering this page in the background,
+// saving ISR quota on the free tier.
+export const revalidate = false;
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { getCanonicalAndAlternates, getCanonicalUrl } = await import('@/lib/utils/seoUtils');

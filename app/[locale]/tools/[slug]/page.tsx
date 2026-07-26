@@ -318,8 +318,11 @@ const toolPathSegments: Record<string, string> = {
   de: 'werkzeuge',
 };
 
-// ISR: revalidate tool pages once per day (matches calculator page behaviour)
-export const revalidate = 86400;
+// SSG configuration — fully static, no revalidation needed.
+// All tool data lives in TypeScript source files (lib/data/tools/).
+// Content only changes when code is deployed, so revalidate=false (build-time only)
+// eliminates all ISR background re-renders, saving Vercel free tier limits.
+export const revalidate = false;
 export const dynamicParams = false;
 
 // SSG: pre-render every locale × tool slug combination at build time
