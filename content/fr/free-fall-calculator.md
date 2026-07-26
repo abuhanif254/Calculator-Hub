@@ -361,15 +361,15 @@ Ce diagramme de Gantt visualise la chronologie palpitante du saut, en décomposa
 ```mermaid
 gantt
     title Chronologie Standard de Parachutisme (Sortie à 4 000 m jusqu'au sol)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Chute Libre
-    Sortie de l'Avion & Accélération :done, 0, 12s
-    Vitesse Terminale Constante (54 m/s) :crit, active, 12s, 50s
+    Sortie de l'Avion & Accélération :done, 00:00:00, 00:00:12
+    Vitesse Terminale Constante (54 m/s) :crit, active, 00:00:12, 00:00:50
     section Parachute
-    Déploiement du Parachute Principal (Haute Décélération) :milestone, 50s, 0s
-    Descente sous Voile (Descente à 5 m/s) :active, 54s, 354s
-    Atterrissage au Sol en Toute Sécurité :milestone, 354s, 0s
+    Déploiement du Parachute Principal (Haute Décélération) :milestone, 00:00:50, 0d
+    Descente sous Voile (Descente à 5 m/s) :active, 00:00:54, 00:05:54
+    Atterrissage au Sol en Toute Sécurité :milestone, 00:05:54, 0d
 ```
 
 ---

@@ -386,14 +386,14 @@ Dieses Gantt-Diagramm visualisiert den mikroskopischen Zeitverlauf der Energieü
 ```mermaid
 gantt
     title Kinetische Energieübertragung (Golfschläger-Aufprall)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Vor dem Aufprall
-    Beschleunigungsphase des Schlägers (Aufbau 250J KE) :done, 0, 0.500s
+    Beschleunigungsphase des Schlägers (Aufbau 250J KE) :done, 00:00:00.000, 00:00:00.500
     section Aufprall
-    Erster Kontakt & Ballkompression :crit, active, 0.500s, 0.5002s
-    Energieübertragung (255kW Spitzenleistung) :crit, active, 0.5002s, 0.5005s
-    Ballfreigabe (Abschuss) :milestone, 0.5005s, 0s
+    Erster Kontakt & Ballkompression :crit, active, 00:00:00.500, 00:00:00.502
+    Energieübertragung (255kW Spitzenleistung) :crit, active, 00:00:00.502, 00:00:00.505
+    Ballfreigabe (Abschuss) :milestone, 00:00:00.505, 0d
 ```
 
 ---

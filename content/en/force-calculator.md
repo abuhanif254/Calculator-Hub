@@ -361,14 +361,14 @@ As the rocket burns thousands of gallons of fuel per second, its mass decreases 
 ```mermaid
 gantt
     title Saturn V First Stage Ascent Profile
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat %M:%S
     section Liftoff
-    Ignition (High Mass, Low Accel 1.5g) :active, 0, 30s
-    Max Q (Aerodynamic Drag Peaks) :crit, 30s, 60s
+    Ignition (High Mass, Low Accel 1.5g) :active, id1, 00:00:00, 30s
+    Max Q (Aerodynamic Drag Peaks) :crit, id2, after id1, 30s
     section Late Ascent
-    Rapid Mass Loss (Fuel Burned) : 60s, 120s
-    Pre-staging Peak Force (High Accel 4g) :milestone, 120, 0s
+    Rapid Mass Loss (Fuel Burned) : id3, after id2, 60s
+    Pre-staging Peak Force (High Accel 4g) :milestone, id4, after id3, 0s
 ```
 
 ---

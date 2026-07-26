@@ -326,7 +326,7 @@ flowchart TD
     B --> C{Théorème de l'Énergie Cinétique}
     C -->|W = ΔKE| D(Variation de l'Énergie Cinétique)
     D --> E[KE Finale = KE Initiale + W]
-    E --> F[Extraire la Vitesse : v_f = sqrt(2 * KE / m)]
+    E --> F["Extraire la Vitesse : v_f = sqrt(2 * KE / m)"]
 ```
 
 ---
@@ -345,13 +345,13 @@ Ce diagramme de Gantt cartographie les millisecondes d'un cycle de moteur à 4 t
 ```mermaid
 gantt
     title Cycle de Moteur à 4 Temps (Génération de Travail Mécanique)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Cycle du Moteur
-    Temps d'Admission (Travail Négatif) :active, 0, 1s
-    Temps de Compression (Travail Négatif) :active, 1s, 2s
-    Allumage & Temps Moteur (Travail Positif Massif) :crit, done, 2s, 3s
-    Temps d'Échappement (Travail Négatif) :active, 3s, 4s
+    Temps d'Admission (Travail Négatif) :active, 00:00:00, 00:00:01
+    Temps de Compression (Travail Négatif) :active, 00:00:01, 00:00:02
+    Allumage & Temps Moteur (Travail Positif Massif) :crit, done, 00:00:02, 00:00:03
+    Temps d'Échappement (Travail Négatif) :active, 00:00:03, 00:00:04
 ```
 *(Remarque : Les délais sont illustratifs. Dans un moteur réel à 3 000 tr/min, ce cycle entier à 4 temps se produit en 0,04 seconde !)*
 

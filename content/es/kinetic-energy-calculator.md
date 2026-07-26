@@ -386,14 +386,14 @@ Este diagrama de Gantt visualiza la línea de tiempo microscópica de la transfe
 ```mermaid
 gantt
     title Transferencia de Energía Cinética (Impacto del Palo de Golf)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Pre-Impacto
-    Fase Aceleración del Palo (Generando 250J EC) :done, 0, 0.500s
+    Fase Aceleración del Palo (Generando 250J EC) :done, 00:00:00.000, 00:00:00.500
     section Impacto
-    Contacto Inicial & Compresión de Bola :crit, active, 0.500s, 0.5002s
-    Transferencia de Energía (255kW Potencia Máx) :crit, active, 0.5002s, 0.5005s
-    Lanzamiento de la Bola :milestone, 0.5005s, 0s
+    Contacto Inicial & Compresión de Bola :crit, active, 00:00:00.500, 00:00:00.502
+    Transferencia de Energía (255kW Potencia Máx) :crit, active, 00:00:00.502, 00:00:00.505
+    Lanzamiento de la Bola :milestone, 00:00:00.505, 0d
 ```
 
 ---

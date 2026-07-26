@@ -361,14 +361,14 @@ A medida que el cohete quema miles de galones de combustible por segundo, su mas
 ```mermaid
 gantt
     title Perfil de Ascenso de la Primera Etapa del Saturno V
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat %M:%S
     section Despegue
-    Ignición (Masa Alta, Accel Baja 1.5g) :active, 0, 30s
-    Max Q (Picos de Arrastre Aero) :crit, 30s, 60s
+    Ignición (Alta Masa, Baja Acel. 1.5g) :active, id1, 00:00:00, 30s
+    Max Q (Picos de Resistencia Aerodinámica) :crit, id2, after id1, 30s
     section Ascenso Tardío
-    Pérdida Rápida de Masa (Combustible) : 60s, 120s
-    Fuerza Máx Pre-separación (Accel Alta 4g) :milestone, 120, 0s
+    Pérdida Rápida de Masa (Combustible Quemado) : id3, after id2, 60s
+    Fuerza Máxima antes de Separación (Alta Acel. 4g) :milestone, id4, after id3, 0s
 ```
 
 ---

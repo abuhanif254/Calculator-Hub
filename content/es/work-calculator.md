@@ -326,7 +326,7 @@ flowchart TD
     B --> C{Teorema del Trabajo y Energía}
     C -->|W = ΔEC| D(Cambio en la Energía Cinética)
     D --> E[EC Final = EC Inicial + W]
-    E --> F[Extraer Velocidad: v_f = sqrt(2 * EC / m)]
+    E --> F["Extraer Velocidad: v_f = sqrt(2 * EC / m)"]
 ```
 
 ---
@@ -345,13 +345,13 @@ Este diagrama de Gantt traza los milisegundos del ciclo de un motor de 4 tiempos
 ```mermaid
 gantt
     title Ciclo de Motor de 4 Tiempos (Generación de Trabajo Mecánico)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Ciclo del Motor
-    Carrera de Admisión (Trabajo Negativo) :active, 0, 1s
-    Carrera de Compresión (Trabajo Negativo) :active, 1s, 2s
-    Ignición y Carrera de Trabajo (Trabajo Positivo Masivo) :crit, done, 2s, 3s
-    Carrera de Escape (Trabajo Negativo) :active, 3s, 4s
+    Carrera de Admisión (Trabajo Negativo) :active, 00:00:00, 00:00:01
+    Carrera de Compresión (Trabajo Negativo) :active, 00:00:01, 00:00:02
+    Ignición y Carrera de Trabajo (Trabajo Positivo Masivo) :crit, done, 00:00:02, 00:00:03
+    Carrera de Escape (Trabajo Negativo) :active, 00:00:03, 00:00:04
 ```
 *(Nota: Los plazos son ilustrativos. ¡En un motor real a 3.000 RPM, todo este ciclo de 4 tiempos ocurre en 0,04 segundos!)*
 

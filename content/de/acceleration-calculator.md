@@ -297,10 +297,10 @@ Dieses Flussdiagramm visualisiert die Abfolge von Kinematik-Schritten, die von d
 ```mermaid
 flowchart TD
     A[Input Variables:<br/>vi = 33.3 m/s<br/>vf = 0 m/s<br/>a = -8.5 m/s²] --> B{Calculate Time}
-    B -->|t = (vf - vi) / a| C[Time = 3.92 s]
+    B -->|"t = (vf - vi) / a"| C[Time = 3.92 s]
     C --> D{Calculate Distance}
     A --> D
-    D -->|d = vi*t + 0.5*a*t²| E[Distance = 65.23 m]
+    D -->|"d = vi*t + 0.5*a*t²"| E[Distance = 65.23 m]
     style A fill:#3b82f6,stroke:#1e40af,color:#fff
     style C fill:#10b981,stroke:#047857,color:#fff
     style E fill:#ef4444,stroke:#b91c1c,color:#fff
@@ -350,18 +350,18 @@ Das untenstehende Gantt-Diagramm veranschaulicht ein vereinfachtes Raketenstart-
 ```mermaid
 gantt
     title Orbital Rocket Launch Acceleration Profile
-    dateFormat  m
-    axisFormat %M
+    dateFormat  YYYY-MM-DD
+    axisFormat %d
     section Stage 1 (Boost)
-    Ignition (1.5g) :active, 0, 1m
-    Max Q Throttling (2.0g) : 1m, 2m
-    Pre-MECO Peak (3.5g) :crit, 2m, 3m
+    Ignition (1.5g) :active, id1, 2026-01-01, 1d
+    Max Q Throttling (2.0g) : id2, after id1, 1d
+    Pre-MECO Peak (3.5g) :crit, id3, after id2, 1d
     section Stage 2 (Orbital)
-    Stage Separation (0g Jolt) :milestone, 3, 0m
-    Second Stage Burn (1.2g to 3g) :active, 3m, 7m
+    Stage Separation (0g Jolt) :milestone, id4, after id3, 0d
+    Second Stage Burn (1.2g to 3g) :active, id5, after id4, 4d
     section Coast
-    Engine Cut-Off (Zero G) :milestone, 7, 0m
-    Orbital Coast (0g) : 7m, 10m
+    Engine Cut-Off (Zero G) :milestone, id6, after id5, 0d
+    Orbital Coast (0g) : id7, after id6, 3d
 ```
 
 ---

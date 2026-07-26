@@ -326,18 +326,18 @@ Ce diagramme de Gantt décrit le processus chronologique en laboratoire pour cal
 ```mermaid
 gantt
     title Protocole de Test de Densité en Laboratoire (Déplacement d'Eau)
-    dateFormat m
-    axisFormat %M
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Mesures à Sec
-    Calibrer la Balance à Zéro :crit, active, 0, 2m
-    Peser l'Objet dans l'Air (Noter la Masse) :active, 2m, 5m
+    Calibrer la Balance à Zéro :crit, active, 00:00:00, 00:02:00
+    Peser l'Objet dans l'Air (Noter la Masse) :active, 00:02:00, 00:05:00
     section Mesures dans l'Eau
-    Remplir l'Éprouvette Graduée avec de l'Eau :5m, 8m
-    Noter le Volume d'Eau Initial (V1) :8m, 10m
-    Immerger l'Objet & Noter le Volume Final (V2) :crit, 10m, 13m
+    Remplir l'Éprouvette Graduée avec de l'Eau :00:05:00, 00:08:00
+    Noter le Volume d'Eau Initial (V1) :00:08:00, 00:10:00
+    Immerger l'Objet & Noter le Volume Final (V2) :crit, 00:10:00, 00:13:00
     section Calculs
-    Calculer le Volume Déplacé (V2 - V1) :13m, 15m
-    Calculer la Densité (Masse / Volume) :milestone, 15m, 16m
+    Calculer le Volume Déplacé (V2 - V1) :00:13:00, 00:15:00
+    Calculer la Densité (Masse / Volume) :milestone, 00:15:00, 00:16:00
 ```
 
 ---

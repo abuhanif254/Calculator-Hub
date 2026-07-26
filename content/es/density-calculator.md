@@ -326,18 +326,18 @@ Este diagrama de Gantt describe el proceso cronológico de laboratorio para calc
 ```mermaid
 gantt
     title Protocolo de Prueba de Densidad en Laboratorio (Desplazamiento de Agua)
-    dateFormat m
-    axisFormat %M
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Medidas en Seco
-    Calibrar Báscula a Cero :crit, active, 0, 2m
-    Pesar Objeto en el Aire (Registrar Masa) :active, 2m, 5m
+    Calibrar Báscula a Cero :crit, active, 00:00:00, 00:02:00
+    Pesar Objeto en el Aire (Registrar Masa) :active, 00:02:00, 00:05:00
     section Medidas en Húmedo
-    Llenar Cilindro Graduado con Agua :5m, 8m
-    Registrar Volumen de Agua Inicial (V1) :8m, 10m
-    Sumergir Objeto y Registrar Volumen Final (V2) :crit, 10m, 13m
+    Llenar Cilindro Graduado con Agua :00:05:00, 00:08:00
+    Registrar Volumen de Agua Inicial (V1) :00:08:00, 00:10:00
+    Sumergir Objeto y Registrar Volumen Final (V2) :crit, 00:10:00, 00:13:00
     section Cálculos
-    Calcular Volumen Desplazado (V2 - V1) :13m, 15m
-    Calcular Densidad (Masa / Volumen) :milestone, 15m, 16m
+    Calcular Volumen Desplazado (V2 - V1) :00:13:00, 00:15:00
+    Calcular Densidad (Masa / Volumen) :milestone, 00:15:00, 00:16:00
 ```
 
 ---

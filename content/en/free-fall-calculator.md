@@ -361,15 +361,15 @@ This Gantt chart visualizes the adrenaline-pumping timeline of the jump, breakin
 ```mermaid
 gantt
     title Standard Skydive Timeline (4,000m Exit to Ground)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Free Fall
-    Exit Aircraft & Accelerate :done, 0, 12s
-    Constant Terminal Velocity (54 m/s) :crit, active, 12s, 50s
+    Exit Aircraft & Accelerate :done, 00:00:00, 00:00:12
+    Constant Terminal Velocity (54 m/s) :crit, active, 00:00:12, 00:00:50
     section Parachute
-    Deploy Main Parachute (High Deceleration) :milestone, 50s, 0s
-    Canopy Ride (5 m/s descent) :active, 54s, 354s
-    Safe Ground Landing :milestone, 354s, 0s
+    Deploy Main Parachute (High Deceleration) :milestone, 00:00:50, 0d
+    Canopy Ride (5 m/s descent) :active, 00:00:54, 00:05:54
+    Safe Ground Landing :milestone, 00:05:54, 0d
 ```
 
 ---

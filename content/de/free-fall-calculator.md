@@ -361,15 +361,15 @@ Dieses Gantt-Diagramm visualisiert die adrenalingeladene Zeitachse des Sprungs u
 ```mermaid
 gantt
     title Standard-Fallschirmsprung-Zeitachse (4.000m Absprung bis Boden)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Freier Fall
-    Flugzeug verlassen & Beschleunigen :done, 0, 12s
-    Konstante Endgeschwindigkeit (54 m/s) :crit, active, 12s, 50s
+    Flugzeug verlassen & Beschleunigen :done, 00:00:00, 00:00:12
+    Konstante Endgeschwindigkeit (54 m/s) :crit, active, 00:00:12, 00:00:50
     section Fallschirm
-    Hauptfallschirm öffnen (Hohe Verzögerung) :milestone, 50s, 0s
-    Schirmfahrt (5 m/s Sinkflug) :active, 54s, 354s
-    Sichere Bodenlandung :milestone, 354s, 0s
+    Hauptfallschirm öffnen (Hohe Verzögerung) :milestone, 00:00:50, 0d
+    Schirmfahrt (5 m/s Sinkflug) :active, 00:00:54, 00:05:54
+    Sichere Bodenlandung :milestone, 00:05:54, 0d
 ```
 
 ---

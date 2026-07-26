@@ -326,18 +326,18 @@ Dieses Gantt-Diagramm skizziert den chronologischen Laborprozess zur Berechnung 
 ```mermaid
 gantt
     title Laborprotokoll für die Dichteprüfung (Wasserverdrängung)
-    dateFormat m
-    axisFormat %M
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Trockenmessungen
-    Waage auf Null kalibrieren :crit, active, 0, 2m
-    Objekt an der Luft wiegen (Masse notieren) :active, 2m, 5m
+    Waage auf Null kalibrieren :crit, active, 00:00:00, 00:02:00
+    Objekt an der Luft wiegen (Masse notieren) :active, 00:02:00, 00:05:00
     section Nassmessungen
-    Messzylinder mit Wasser füllen :5m, 8m
-    Anfängliches Wasservolumen notieren (V1) :8m, 10m
-    Objekt eintauchen & Endvolumen notieren (V2) :crit, 10m, 13m
+    Messzylinder mit Wasser füllen :00:05:00, 00:08:00
+    Anfängliches Wasservolumen notieren (V1) :00:08:00, 00:10:00
+    Objekt eintauchen & Endvolumen notieren (V2) :crit, 00:10:00, 00:13:00
     section Berechnungen
-    Verdrängtes Volumen berechnen (V2 - V1) :13m, 15m
-    Dichte berechnen (Masse / Volumen) :milestone, 15m, 16m
+    Verdrängtes Volumen berechnen (V2 - V1) :00:13:00, 00:15:00
+    Dichte berechnen (Masse / Volumen) :milestone, 00:15:00, 00:16:00
 ```
 
 ---

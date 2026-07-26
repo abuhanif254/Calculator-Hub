@@ -374,17 +374,17 @@ This Gantt chart maps out the step-by-step physical conversion timeline, showing
 ```mermaid
 gantt
     title Hydroelectric Potential Energy Conversion Process
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Storage
-    Water rests in high reservoir (Maximum PE) :done, 0, 10s
+    Water rests in high reservoir (Maximum PE) :done, 00:00:00, 00:00:10
     section Free Fall
-    Gates open, water falls down penstock :crit, active, 10s, 20s
-    PE rapidly converts into Kinetic Energy :crit, active, 10s, 20s
+    Gates open, water falls down penstock :crit, active, 00:00:10, 00:00:20
+    PE rapidly converts into Kinetic Energy :crit, active, 00:00:10, 00:00:20
     section Generation
-    Kinetic water impacts turbine blades :milestone, 20s, 0s
-    Turbine spins magnetic generator :active, 20s, 30s
-    Electricity exported to power grid :active, 22s, 35s
+    Kinetic water impacts turbine blades :milestone, 00:00:20, 0d
+    Turbine spins magnetic generator :active, 00:00:20, 00:00:30
+    Electricity exported to power grid :active, 00:00:22, 00:00:35
 ```
 
 ---

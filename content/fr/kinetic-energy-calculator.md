@@ -386,14 +386,14 @@ Ce diagramme de Gantt visualise la chronologie microscopique du transfert d'éne
 ```mermaid
 gantt
     title Transfert d'Énergie Cinétique (Impact du Club de Golf)
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Avant l'Impact
-    Phase d'Accélération du Club (Génération 250J EC) :done, 0, 0.500s
+    Phase d'Accélération du Club (Génération 250J EC) :done, 00:00:00.000, 00:00:00.500
     section Impact
-    Contact Initial & Compression de la Balle :crit, active, 0.500s, 0.5002s
-    Transfert d'Énergie (Puissance de Crête 255kW) :crit, active, 0.5002s, 0.5005s
-    Lancement de la Balle (Sortie) :milestone, 0.5005s, 0s
+    Contact Initial & Compression de la Balle :crit, active, 00:00:00.500, 00:00:00.502
+    Transfert d'Énergie (Puissance de Crête 255kW) :crit, active, 00:00:00.502, 00:00:00.505
+    Lancement de la Balle (Sortie) :milestone, 00:00:00.505, 0d
 ```
 
 ---
