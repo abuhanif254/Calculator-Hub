@@ -228,7 +228,7 @@ Dieses Balkendiagramm ordnet die exakten Durchlassspannungen, die erforderlich s
 ```mermaid
 xychart-beta
     title "Typical Forward Voltage (Vf) by LED Color"
-    x-axis "LED Color Spectrum" [Infrared, Red, Yellow, Green, Blue, White]
+    x-axis "LED Color Spectrum" ["Infrared", "Red", "Yellow", "Green", "Blue", "White"]
     y-axis "Forward Voltage (Volts)" 0 --> 4
     bar [1.3, 2.0, 2.1, 2.2, 3.2, 3.2]
 ```
@@ -249,7 +249,7 @@ Dieses Diagramm stellt die Sicherheitsgrenzen von Standard-Widerstandsgehäusen 
 ```mermaid
 xychart-beta
     title "Thermal Dissipation vs Resistor Power Ratings (Watts)"
-    x-axis "Resistor Package Size" [Calculated Heat, 1/4 Watt, 1/2 Watt, 1 Watt]
+    x-axis "Resistor Package Size" ["Calculated Heat", "1/4 Watt", "1/2 Watt", "1 Watt"]
     y-axis "Power Handling (Watts)" 0 --> 1.2
     bar [0.40, 0.25, 0.50, 1.00]
 ```

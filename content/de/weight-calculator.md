@@ -251,7 +251,7 @@ Dieses Balkendiagramm zeigt die extremen Schwankungen der Gewichtskraft auf fün
 ```mermaid
 xychart-beta
     title "Gravitationsgewicht eines 1.000 kg Rovers im Sonnensystem"
-    x-axis "Himmelskörper" [Pluto, Mond, Mars, Erde, Jupiter]
+    x-axis "Himmelskörper" ["Pluto", "Mond", "Mars", "Erde", "Jupiter"]
     y-axis "Nach unten gerichtete Kraft (Newton)" 0 --> 25000
     bar [620, 1620, 3710, 9810, 24790]
 ```

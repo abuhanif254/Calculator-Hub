@@ -233,7 +233,7 @@ This bar chart aggressively ranks the top 5 household appliances by their monthl
 ```mermaid
 xychart-beta
     title "Monthly Residential Energy Consumption by Appliance (kWh)"
-    x-axis "Household Appliances" [Central AC, Water Heater, EV Charger, Refrigerator, LED Lights]
+    x-axis "Household Appliances" ["Central AC", "Water Heater", "EV Charger", "Refrigerator", "LED Lights"]
     y-axis "Monthly Energy (kWh)" 0 --> 900
     bar [840, 180, 150, 108, 12]
 ```
@@ -254,7 +254,7 @@ This chart plots the terrifying cumulative dollars handed over to the utility co
 ```mermaid
 xychart-beta
     title "10-Year Cumulative Utility Bill Expenditure (4% Annual Inflation)"
-    x-axis "Timeline (Years)" [Year 1, Year 3, Year 5, Year 7, Year 10]
+    x-axis "Timeline (Years)" ["Year 1", "Year 3", "Year 5", "Year 7", "Year 10"]
     y-axis "Cumulative Cost ($)" 0 --> 30000
     line [2400, 7552, 13240, 19592, 28814]
 ```

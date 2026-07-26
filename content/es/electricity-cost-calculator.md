@@ -233,7 +233,7 @@ Este gráfico de barras clasifica agresivamente a los 5 electrodomésticos princ
 ```mermaid
 xychart-beta
     title "Consumo Mensual de Energía Residencial por Electrodoméstico (kWh)"
-    x-axis "Electrodomésticos" [Aire Acondicionado Central, Calentador de Agua, Cargador de VE, Refrigerador, Luces LED]
+    x-axis "Electrodomésticos" ["Aire Acondicionado Central", "Calentador de Agua", "Cargador de VE", "Refrigerador", "Luces LED"]
     y-axis "Energía Mensual (kWh)" 0 --> 900
     bar [840, 180, 150, 108, 12]
 ```
@@ -254,7 +254,7 @@ Este gráfico traza los dólares acumulativos aterradores entregados a la compa�
 ```mermaid
 xychart-beta
     title "Gasto Acumulativo de Factura de Servicios Públicos a 10 Años (Inflación Anual del 4%)"
-    x-axis "Línea de Tiempo (Años)" [Año 1, Año 3, Año 5, Año 7, Año 10]
+    x-axis "Línea de Tiempo (Años)" ["Año 1", "Año 3", "Año 5", "Año 7", "Año 10"]
     y-axis "Costo Acumulativo ($)" 0 --> 30000
     line [2400, 7552, 13240, 19592, 28814]
 ```

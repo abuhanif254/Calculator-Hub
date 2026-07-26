@@ -215,7 +215,7 @@ Este gráfico de barras demuestra agresivamente la masiva penalización térmica
 ```mermaid
 xychart-beta
     title "Calor Desperdiciado (Watts) con Carga de Salida de 1000W de CC"
-    x-axis "Nivel de Eficiencia 80 Plus" [White 80%, Bronze 85%, Gold 90%, Titanium 94%]
+    x-axis "Nivel de Eficiencia 80 Plus" ["White 80%", "Bronze 85%", "Gold 90%", "Titanium 94%"]
     y-axis "Calor Desperdiciado (Watts)" 0 --> 300
     bar [250, 176, 111, 63]
 ```
@@ -236,7 +236,7 @@ Este gráfico traza la carga total exacta contra el umbral catastrófico de Marg
 ```mermaid
 xychart-beta
     title "Capacidad de la Fuente de Alimentación vs Margen de Seguridad"
-    x-axis "Umbrales de Diseño" [Carga Real del Sistema, Peligro de Margen Cero, Margen Recomendado 25%]
+    x-axis "Umbrales de Diseño" ["Carga Real del Sistema", "Peligro de Margen Cero", "Margen Recomendado 25%"]
     y-axis "Potencia Requerida (W)" 0 --> 800
     bar [600, 600, 750]
 ```

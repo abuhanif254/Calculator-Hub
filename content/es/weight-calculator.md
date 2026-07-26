@@ -251,7 +251,7 @@ Este gráfico de barras traza las variaciones extremas en la Fuerza de Peso a tr
 ```mermaid
 xychart-beta
     title "Peso Gravitacional de un Rover de 1,000 kg en el Sistema Solar"
-    x-axis "Cuerpo Celeste" [Plutón, Luna, Marte, Tierra, Júpiter]
+    x-axis "Cuerpo Celeste" ["Plutón", "Luna", "Marte", "Tierra", "Júpiter"]
     y-axis "Fuerza Descendente (Newtons)" 0 --> 25000
     bar [620, 1620, 3710, 9810, 24790]
 ```

@@ -208,7 +208,7 @@ Dieses Balkendiagramm zeigt auf drastische Weise den massiven Vorteil der nutzba
 ```mermaid
 xychart-beta
     title "Nutzbare Energie (Wh) aus einer 1200Wh Batterie"
-    x-axis "Batteriechemie und DoD-Limit" [Blei-Säure-Nass (50%), AGM (50%), LiFePO4 Lithium (80%)]
+    x-axis "Batteriechemie und DoD-Limit" ["Blei-Säure-Nass (50%)", "AGM (50%)", "LiFePO4 Lithium (80%)"]
     y-axis "Nutzbare Wattstunden (Wh)" 0 --> 1200
     bar [600, 600, 960]
 ```
@@ -229,7 +229,7 @@ Dieses Diagramm zeigt die brutale Realität des Derating-Wasserfalls und beweist
 ```mermaid
 xychart-beta
     title "Der Derating-Wasserfall: Schrumpfende Batteriekapazität"
-    x-axis "Systembeschränkungen" [Theoretisch 100%, Nach Wechselrichterverlust, Nach DoD-Limit, Nach SOH-Alterung]
+    x-axis "Systembeschränkungen" ["Theoretisch 100%", "Nach Wechselrichterverlust", "Nach DoD-Limit", "Nach SOH-Alterung"]
     y-axis "Verbleibende Energie (Wh)" 0 --> 1250
     bar [1200, 1080, 864, 777]
 ```

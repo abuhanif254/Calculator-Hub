@@ -245,7 +245,7 @@ Este gráfico demuestra cómo corregir el Factor de Potencia reduce matemáticam
 ```mermaid
 xychart-beta
     title "Demanda de kVA del Transformador para una Carga de 343 kW"
-    x-axis "Estado del Sistema" [Antes de la Corrección (0.70 PF), Después de la Corrección (0.98 PF), Límite Seguro de Espacio Libre]
+    x-axis "Estado del Sistema" ["Antes de la Corrección (0.70 PF)", "Después de la Corrección (0.98 PF)", "Límite Seguro de Espacio Libre"]
     y-axis "Demanda del Transformador (kVA)" 0 --> 600
     bar [490, 350, 500]
 ```

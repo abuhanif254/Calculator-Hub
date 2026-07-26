@@ -258,7 +258,7 @@ This bar chart plots the staggering differences in density across common materia
 ```mermaid
 xychart-beta
     title "Density Comparison of Common Materials (kg/m3)"
-    x-axis "Material Type" [Water, Concrete, Aluminum, Steel, Lead, Gold]
+    x-axis "Material Type" ["Water", "Concrete", "Aluminum", "Steel", "Lead", "Gold"]
     y-axis "Density (kg per Cubic Meter)" 0 --> 20000
     bar [1000, 2400, 2700, 7850, 11340, 19300]
 ```

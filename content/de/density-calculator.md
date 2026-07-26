@@ -258,7 +258,7 @@ Dieses Balkendiagramm stellt die enormen Dichteunterschiede zwischen gängigen M
 ```mermaid
 xychart-beta
     title "Dichtevergleich gängiger Materialien (kg/m3)"
-    x-axis "Materialtyp" [Wasser, Beton, Aluminium, Stahl, Blei, Gold]
+    x-axis "Materialtyp" ["Wasser", "Beton", "Aluminium", "Stahl", "Blei", "Gold"]
     y-axis "Dichte (kg pro Kubikmeter)" 0 --> 20000
     bar [1000, 2400, 2700, 7850, 11340, 19300]
 ```

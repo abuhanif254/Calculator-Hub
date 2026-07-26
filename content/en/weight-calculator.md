@@ -251,7 +251,7 @@ This bar chart plots the extreme variations in Weight Force across five celestia
 ```mermaid
 xychart-beta
     title "Gravitational Weight of a 1,000 kg Rover Across the Solar System"
-    x-axis "Celestial Body" [Pluto, Moon, Mars, Earth, Jupiter]
+    x-axis "Celestial Body" ["Pluto", "Moon", "Mars", "Earth", "Jupiter"]
     y-axis "Downward Force (Newtons)" 0 --> 25000
     bar [620, 1620, 3710, 9810, 24790]
 ```

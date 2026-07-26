@@ -311,7 +311,7 @@ Das Balkendiagramm zeigt auf dramatische Weise, dass das Fallenlassen eines $100
 ```mermaid
 xychart-beta
     title "100 kg Nutzlast in 10 m Höhe auf verschiedenen Planeten"
-    x-axis "Planet / Himmelskörper" [Mond, Mars, Erde, Jupiter]
+    x-axis "Planet / Himmelskörper" ["Mond", "Mars", "Erde", "Jupiter"]
     y-axis "Gespeicherte Potenzielle Energie (Joule)" 0 --> 25000
     bar [1620, 3710, 9810, 24790]
 ```

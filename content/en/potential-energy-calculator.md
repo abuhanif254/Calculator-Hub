@@ -311,7 +311,7 @@ The bar chart dramatically shows that dropping a $100\text{ kg}$ rock on Jupiter
 ```mermaid
 xychart-beta
     title "100kg Payload at 10m Height Across Planets"
-    x-axis "Planet / Celestial Body" [Moon, Mars, Earth, Jupiter]
+    x-axis "Planet / Celestial Body" ["Moon", "Mars", "Earth", "Jupiter"]
     y-axis "Stored Potential Energy (Joules)" 0 --> 25000
     bar [1620, 3710, 9810, 24790]
 ```

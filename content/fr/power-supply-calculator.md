@@ -215,7 +215,7 @@ Ce graphique à barres démontre de manière agressive la pénalité thermique m
 ```mermaid
 xychart-beta
     title "Chaleur Gaspillée (Watts) à 1000W de Charge de Sortie DC"
-    x-axis "Niveau d'Efficacité 80 Plus" [White 80%, Bronze 85%, Gold 90%, Titanium 94%]
+    x-axis "Niveau d'Efficacité 80 Plus" ["White 80%", "Bronze 85%", "Gold 90%", "Titanium 94%"]
     y-axis "Chaleur Gaspillée (Watts)" 0 --> 300
     bar [250, 176, 111, 63]
 ```
@@ -236,7 +236,7 @@ Ce graphique compare la charge totale exacte au seuil catastrophique de Marge Nu
 ```mermaid
 xychart-beta
     title "Capacité de l'Alimentation vs Marge de Sécurité"
-    x-axis "Seuils de Conception" [Charge Totale du Système, Danger Marge Nulle, Marge Recommandée 25%]
+    x-axis "Seuils de Conception" ["Charge Totale du Système", "Danger Marge Nulle", "Marge Recommandée 25%"]
     y-axis "Puissance Requise (W)" 0 --> 800
     bar [600, 600, 750]
 ```

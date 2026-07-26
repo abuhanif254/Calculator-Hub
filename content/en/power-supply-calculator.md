@@ -215,7 +215,7 @@ This bar chart aggressively demonstrates the massive thermal penalty inflicted o
 ```mermaid
 xychart-beta
     title "Wasted Heat (Watts) at 1000W DC Output Load"
-    x-axis "80 Plus Efficiency Tier" [White 80%, Bronze 85%, Gold 90%, Titanium 94%]
+    x-axis "80 Plus Efficiency Tier" ["White 80%", "Bronze 85%", "Gold 90%", "Titanium 94%"]
     y-axis "Wasted Heat (Watts)" 0 --> 300
     bar [250, 176, 111, 63]
 ```
@@ -236,7 +236,7 @@ This chart plots the exact total load against the catastrophic Zero Margin thres
 ```mermaid
 xychart-beta
     title "Power Supply Capacity vs Safety Headroom Margin"
-    x-axis "Design Thresholds" [Actual System Load, Zero Margin Danger, Recommended 25% Margin]
+    x-axis "Design Thresholds" ["Actual System Load", "Zero Margin Danger", "Recommended 25% Margin"]
     y-axis "Required Wattage (W)" 0 --> 800
     bar [600, 600, 750]
 ```

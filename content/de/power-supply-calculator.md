@@ -215,7 +215,7 @@ Dieses Balkendiagramm veranschaulicht aggressiv die massiven thermischen Nachtei
 ```mermaid
 xychart-beta
     title "Verschwendete Wärme (Watt) bei 1000W DC-Ausgangslast"
-    x-axis "80-Plus-Effizienzstufe" [White 80%, Bronze 85%, Gold 90%, Titanium 94%]
+    x-axis "80-Plus-Effizienzstufe" ["White 80%", "Bronze 85%", "Gold 90%", "Titanium 94%"]
     y-axis "Verschwendete Wärme (Watt)" 0 --> 300
     bar [250, 176, 111, 63]
 ```
@@ -236,7 +236,7 @@ Dieses Diagramm vergleicht die genaue Gesamtlast mit dem katastrophalen Null-Mar
 ```mermaid
 xychart-beta
     title "Netzteilkapazität vs. Sicherheitsmarge (Headroom)"
-    x-axis "Design-Schwellenwerte" [Tatsächliche Systemlast, Null-Marge (Gefahr), Empfohlene 25% Marge]
+    x-axis "Design-Schwellenwerte" ["Tatsächliche Systemlast", "Null-Marge (Gefahr)", "Empfohlene 25% Marge"]
     y-axis "Benötigte Wattzahl (W)" 0 --> 800
     bar [600, 600, 750]
 ```
