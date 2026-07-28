@@ -363,15 +363,15 @@ Cette visualisation de la chronologie représente le délai entre l'événement 
 ```mermaid
 gantt
     title Chronologie de l'Observateur de la Foudre
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section L'Événement
-    Frappe de la Foudre :crit, active, 0, 1s
+    Frappe de la Foudre :crit, active, 00:00:00.000, 00:00:01.000
     section Propagation
-    La Lumière Atteint les Yeux (Instantané) : milestone, 0, 0s
-    Onde Sonore en Voyage (343 m/s) : active, 0, 4.5s
+    La Lumière Atteint les Yeux (Instantané) : milestone, 00:00:00.000, 0d
+    Onde Sonore en Voyage (343 m/s) : active, 00:00:00.000, 00:00:04.500
     section Observation
-    Tonnerre Entendu : milestone, 4.5, 0s
+    Tonnerre Entendu : milestone, 00:00:04.500, 0d
 ```
 
 ---

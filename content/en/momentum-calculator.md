@@ -406,12 +406,12 @@ This Gantt chart visualizes the precise timeframe difference that saves lives du
 ```mermaid
 gantt
     title Crash Impact Duration (Impulse Force Spreading)
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Vintage Chassis (Stiff)
-    Impact Peak Force (1.2 MN) :crit, 0, 0.05s
+    Impact Peak Force (1.2 MN) :crit, 00:00:00.000, 00:00:00.050
     section Modern Chassis (Crumple)
-    Crush Zone Collapse (0.24 MN) :active, 0, 0.25s
+    Crush Zone Collapse (0.24 MN) :active, 00:00:00.000, 00:00:00.250
 ```
 
 ---

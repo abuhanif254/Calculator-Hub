@@ -322,17 +322,17 @@ Dieses Gantt-Diagramm skizziert die chronologische physikalische Zeitleiste eine
 ```mermaid
 gantt
     title Start einer Orbitalrakete: Schub-vs-Gewicht-Sequenz
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Vor dem Start
-    Triebwerkszündung :active, 0, 5s
-    Schub baut sich auf, aber Schub < Gewicht :active, 5s, 8s
+    Triebwerkszündung :active, 00:00:00, 00:00:05
+    Schub baut sich auf, aber Schub < Gewicht :active, 00:00:05, 00:00:08
     section Abheben
-    Schub übersteigt Gewicht (T over W Greater Than 1) :crit, done, 8s, 10s
-    Turm passiert (beschleunigt) :done, 10s, 15s
+    Schub übersteigt Gewicht (T over W Greater Than 1) :crit, done, 00:00:08, 00:00:10
+    Turm passiert (beschleunigt) :done, 00:00:10, 00:00:15
     section Flug
-    Treibstoffverbrennung (Gewicht nimmt schnell ab) :active, 15s, 40s
-    Maximaler aerodynamischer Druck (Max-Q) :milestone, 40s, 45s
+    Treibstoffverbrennung (Gewicht nimmt schnell ab) :active, 00:00:15, 00:00:40
+    Maximaler aerodynamischer Druck (Max-Q) :milestone, 00:00:40, 00:00:45
 ```
 
 ---

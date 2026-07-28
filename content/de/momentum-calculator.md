@@ -406,12 +406,12 @@ Dieses Gantt-Diagramm visualisiert den genauen Zeitrahmenunterschied, der währe
 ```mermaid
 gantt
     title Aufpralldauer (Verteilung der Kraftstoßkraft)
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Oldtimer-Karosserie (Steif)
-    Aufprall-Spitzenkraft (1,2 MN) :crit, 0, 0.05s
-    section Moderne Karosserie (Knautsch)
-    Knautschzonen-Kollaps (0,24 MN) :active, 0, 0.25s
+    Maximale Aufprallkraft (1,2 MN) :crit, 00:00:00.000, 00:00:00.050
+    section Moderne Karosserie (Knautschzone)
+    Kollaps der Knautschzone (0,24 MN) :active, 00:00:00.000, 00:00:00.250
 ```
 
 ---

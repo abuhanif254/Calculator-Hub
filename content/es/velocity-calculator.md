@@ -363,15 +363,15 @@ Esta visualización de la línea de tiempo representa el retraso entre el evento
 ```mermaid
 gantt
     title Línea de Tiempo del Observador del Rayo
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section El Evento
-    Rayo                :crit, active, 0, 1s
+    Rayo                :crit, active, 00:00:00.000, 00:00:01.000
     section Propagación
-    Luz Llega a los Ojos (Instante) : milestone, 0, 0s
-    Onda de Sonido Viajando (343 m/s) : active, 0, 4.5s
+    Luz Llega a los Ojos (Instante) : milestone, 00:00:00.000, 0d
+    Onda de Sonido Viajando (343 m/s) : active, 00:00:00.000, 00:00:04.500
     section Observación
-    Trueno Escuchado    : milestone, 4.5, 0s
+    Trueno Escuchado    : milestone, 00:00:04.500, 0d
 ```
 
 ---

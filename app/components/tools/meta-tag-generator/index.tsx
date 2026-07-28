@@ -1174,7 +1174,7 @@ export function MetaTagGeneratorTool() {
                       <select
                         value={fields.ogType}
                         onChange={(e) => handleFieldChange("ogType", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 dark:bg-slate-950 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#518231] dark:text-white dark:bg-slate-900 cursor-pointer"
+                        className="w-full bg-slate-50 border border-slate-200 dark:bg-slate-900 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#518231] dark:text-white dark:bg-slate-900 cursor-pointer"
                       >
                         <option value="website">website</option>
                         <option value="article">article</option>
@@ -1241,7 +1241,7 @@ export function MetaTagGeneratorTool() {
                       <select
                         value={fields.twitterCard}
                         onChange={(e) => handleFieldChange("twitterCard", e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 dark:bg-slate-950 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#518231] dark:text-white dark:bg-slate-900 cursor-pointer"
+                        className="w-full bg-slate-50 border border-slate-200 dark:bg-slate-950 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#518231] dark:text-white dark:bg-slate-950 cursor-pointer"
                       >
                         <option value="summary_large_image">summary_large_image (Large banner)</option>
                         <option value="summary">summary (Square thumbnail)</option>
