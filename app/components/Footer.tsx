@@ -157,7 +157,7 @@ export function Footer() {
           </div>
           
           <div className="text-xs text-slate-400 dark:text-slate-500 text-center max-w-4xl mx-auto leading-relaxed">
-            <strong>Disclaimer:</strong> All calculators, tools, and content provided on this platform are for educational and informational purposes only. They do not constitute financial, medical, or legal advice. Always consult with a qualified professional before making significant financial or health-related decisions based on these estimates And Some Cases We Collect Information, Like: 'Data Privacy Platform'.
+            <strong>Disclaimer:</strong> All calculators, tools, and content provided on this platform are for educational and informational purposes only. They do not constitute financial, medical, or legal advice. Always consult with a qualified professional before making significant financial or health-related decisions based on these estimates And Some Cases We Collect Information, Like Data Privacy Platform
           </div>
 
           <div className="text-sm text-slate-500 text-center">
