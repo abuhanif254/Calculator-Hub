@@ -28,12 +28,23 @@ export const revalidate = false;
 export const dynamicParams = false;
 
 // Helper function to read markdown content
-function getMarkdownContent(slug: string, locale: string) {
+function getMarkdownContent(slug: string, locale: string, localizedSlug?: string) {
   try {
     const filePath = path.join(process.cwd(), "content", locale, `${slug}.md`);
+    let targetPath = filePath;
 
-    // Fallback to english if language file is missing
     if (!fs.existsSync(filePath)) {
+      // If the English-named file doesn't exist, try the localized name if provided
+      if (localizedSlug) {
+        const localizedPath = path.join(process.cwd(), "content", locale, `${localizedSlug}.md`);
+        if (fs.existsSync(localizedPath)) {
+          targetPath = localizedPath;
+        }
+      }
+    }
+
+    // Fallback to english if language file is missing completely
+    if (!fs.existsSync(targetPath)) {
       const fallbackPath = path.join(process.cwd(), "content", "en", `${slug}.md`);
       if (fs.existsSync(fallbackPath)) {
         const fileContent = fs.readFileSync(fallbackPath, "utf-8");
@@ -42,7 +53,7 @@ function getMarkdownContent(slug: string, locale: string) {
       return null;
     }
 
-    const fileContent = fs.readFileSync(filePath, "utf-8");
+    const fileContent = fs.readFileSync(targetPath, "utf-8");
     return matter(fileContent);
   } catch (e) {
     console.error("Error reading markdown for", slug, locale, e);
@@ -58,8 +69,9 @@ export async function generateStaticParams() {
     calculators.forEach((calc) => {
       let slugToUse = calc.slug;
       if (calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
-        const isPhysicsOrChemistry = calc.category === 'Physics' || calc.category === 'Chemistry';
-        if (isPhysicsOrChemistry && `/calculators/${calc.slug}` in routing.pathnames) {
+        // Apply the safe mapping fix to ALL categories to prevent 404s
+        const isExplicitlyMapped = `/calculators/${calc.slug}` in routing.pathnames;
+        if (isExplicitlyMapped) {
           slugToUse = calc.slug;
         } else {
           slugToUse = calc.slugs[locale as keyof typeof calc.slugs];
@@ -84,7 +96,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const mdData = getMarkdownContent(slug, locale);
+  const localizedSlug = calc.slugs && calc.slugs[locale as keyof typeof calc.slugs];
+  const mdData = getMarkdownContent(slug, locale, localizedSlug);
 
   // Use markdown matter if available, fallback to hardcoded
   const metaTitle = mdData?.data?.metaTitle || calc.meta.title;
@@ -119,7 +132,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     notFound();
   }
 
-  const mdData = getMarkdownContent(resolvedParams.slug, resolvedParams.locale);
+  const localizedSlug = calc.slugs && calc.slugs[resolvedParams.locale as keyof typeof calc.slugs];
+  const mdData = getMarkdownContent(resolvedParams.slug, resolvedParams.locale, localizedSlug);
 
   // Replace defaults with markdown data
   const pageTitle = mdData?.data?.title || calc.title;
