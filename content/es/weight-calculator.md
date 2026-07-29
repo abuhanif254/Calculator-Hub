@@ -322,17 +322,17 @@ Este diagrama de Gantt esboza la cronología física de un cohete despejando la 
 ```mermaid
 gantt
     title Lanzamiento de Cohete Orbital: Secuencia de Empuje vs Peso
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Pre-Lanzamiento
-    Secuencia de Ignición de Motores :active, 0, 5s
-    El Empuje se Acumula pero Empuje < Peso :active, 5s, 8s
+    Secuencia de Ignición de Motores :active, 00:00:00, 00:00:05
+    El Empuje se Acumula pero Empuje < Peso :active, 00:00:05, 00:00:08
     section Despegue
-    El Empuje Excede al Peso (T over W Greater Than 1) :crit, done, 8s, 10s
-    Torre Despejada (Acelerando) :done, 10s, 15s
+    El Empuje Excede al Peso (T over W Greater Than 1) :crit, done, 00:00:08, 00:00:10
+    Torre Despejada (Acelerando) :done, 00:00:10, 00:00:15
     section Vuelo
-    Quema de Combustible (El peso disminuye rápidamente) :active, 15s, 40s
-    Máxima Presión Aerodinámica (Max-Q) :milestone, 40s, 45s
+    Quema de Combustible (El peso disminuye rápidamente) :active, 00:00:15, 00:00:40
+    Máxima Presión Aerodinámica (Max-Q) :milestone, 00:00:40, 00:00:45
 ```
 
 ---

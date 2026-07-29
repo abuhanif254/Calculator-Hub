@@ -406,12 +406,12 @@ Ce diagramme de Gantt visualise la différence de délai précise qui sauve des 
 ```mermaid
 gantt
     title Durée de l'Impact de la Collision (Répartition de la force d'impulsion)
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Châssis Ancien (Rigide)
-    Force maximale d'impact (1,2 MN) :crit, 0, 0.05s
+    Force maximale d'impact (1,2 MN) :crit, 00:00:00.000, 00:00:00.050
     section Châssis Moderne (Déformation)
-    Effondrement de la zone d'écrasement (0,24 MN) :active, 0, 0.25s
+    Effondrement de la zone d'écrasement (0,24 MN) :active, 00:00:00.000, 00:00:00.250
 ```
 
 ---

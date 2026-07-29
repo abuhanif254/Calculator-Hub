@@ -179,13 +179,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div className="lg:w-1/2 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-sm font-semibold mb-6">
-                <Zap size={16} /> <span>250+ Tools — Calculators, Dev Utilities &amp; More</span>
+                <Zap size={16} /> <span>302+ Tools — Calculators, Dev Utilities &amp; More</span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
                 The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">Calculators & Developer Tools</span> Platform
               </h1>
               <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-8 max-w-2xl mx-auto lg:mx-0">
-                The ultimate ecosystem for professionals. Access hundreds of precise calculators and powerful developer utilities instantly in your browser.
+                The ultimate ecosystem for professionals. Access two hundreds of precise calculators and powerful developer utilities, PDF Tools, Image Tools instantly in your browser.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link href={"/sitemap" as any} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-lg shadow-green-900/20">
@@ -310,7 +310,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {/* top-2 sm:-top-4: stays inside viewport on small screens */}
               <div className="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10 animate-fade-in-down">
                 <Zap size={13} className="fill-white" />
-                <span className="text-xs font-bold">250+ Tools</span>
+                <span className="text-xs font-bold">302+ Tools</span>
               </div>
 
             </div>

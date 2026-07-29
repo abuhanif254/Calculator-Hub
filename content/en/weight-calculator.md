@@ -323,16 +323,16 @@ This Gantt chart outlines the chronological physics timeline of a rocket clearin
 gantt
     title Orbital Rocket Launch Thrust vs Weight Sequence
     dateFormat  HH:mm:ss
-    axisFormat  %H:%M:%S
+    axisFormat  %M:%S
     section Pre-Launch
-    Engine Ignition Sequence :active, 00:00:00, 5s
-    Thrust Builds but Thrust Less Than Weight :active, 00:00:05, 3s
+    Engine Ignition Sequence :active, 00:00:00, 00:00:05
+    Thrust Builds but Thrust < Weight :active, 00:00:05, 00:00:08
     section Liftoff
-    Thrust Exceeds Weight (T over W Greater Than 1) :crit, done, 00:00:08, 2s
-    Tower Clear (Accelerating) :done, 00:00:10, 5s
+    Thrust Exceeds Weight (T/W > 1) :crit, done, 00:00:08, 00:00:10
+    Tower Cleared (Accelerating) :done, 00:00:10, 00:00:15
     section Flight
-    Fuel Burning (Weight rapidly decreasing) :active, 00:00:15, 25s
-    Maximum Aerodynamic Pressure (Max-Q) :milestone, 00:00:40, 5s
+    Fuel Burnoff (Weight dropping rapidly) :active, 00:00:15, 00:00:40
+    Maximum Aerodynamic Pressure (Max-Q) :milestone, 00:00:40, 00:00:40
 ```
 
 ---

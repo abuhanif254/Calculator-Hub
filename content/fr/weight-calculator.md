@@ -322,17 +322,17 @@ Ce diagramme de Gantt décrit la chronologie physique d'une fusée se dégageant
 ```mermaid
 gantt
     title Lancement de Fusée Orbitale : Séquence Poussée vs Poids
-    dateFormat s
-    axisFormat %S
+    dateFormat  HH:mm:ss
+    axisFormat  %M:%S
     section Pré-Lancement
-    Séquence d'Allumage des Moteurs :active, 0, 5s
-    La Poussée Augmente mais Poussée < Poids :active, 5s, 8s
+    Séquence d'Allumage des Moteurs :active, 00:00:00, 00:00:05
+    La Poussée Augmente mais Poussée < Poids :active, 00:00:05, 00:00:08
     section Décollage
-    La Poussée Dépasse le Poids (P/P > 1) :crit, done, 8s, 10s
-    Tour Dégagée (En Accélération) :done, 10s, 15s
+    La Poussée Dépasse le Poids (P/P > 1) :crit, done, 00:00:08, 00:00:10
+    Tour Dégagée (En Accélération) :done, 00:00:10, 00:00:15
     section Vol
-    Combustion du Carburant (Le Poids diminue rapidement) :active, 15s, 40s
-    Pression Aérodynamique Maximale (Max-Q) :milestone, 40s, 45s
+    Combustion du Carburant (Le Poids diminue rapidement) :active, 00:00:15, 00:00:40
+    Pression Aérodynamique Maximale (Max-Q) :milestone, 00:00:40, 00:00:45
 ```
 
 ---

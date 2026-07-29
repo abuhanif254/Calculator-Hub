@@ -406,12 +406,12 @@ Este diagrama de Gantt visualiza la precisa diferencia en el marco temporal que 
 ```mermaid
 gantt
     title Duración del Impacto del Choque (Dispersión de la Fuerza de Impulso)
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Chasis Clásico (Rígido)
-    Fuerza Máxima de Impacto (1.2 MN) :crit, 0, 0.05s
+    Fuerza Máxima de Impacto (1.2 MN) :crit, 00:00:00.000, 00:00:00.050
     section Chasis Moderno (Deformable)
-    Colapso de Zona de Deformación (0.24 MN) :active, 0, 0.25s
+    Colapso de Zona de Deformación (0.24 MN) :active, 00:00:00.000, 00:00:00.250
 ```
 
 ---

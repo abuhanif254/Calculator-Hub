@@ -363,15 +363,15 @@ Diese Zeitachsen-Visualisierung repräsentiert die Verzögerung zwischen dem Ere
 ```mermaid
 gantt
     title Zeitachse des Beobachters eines Blitzeinschlags
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section Das Ereignis
-    Blitzeinschlag      :crit, active, 0, 1s
+    Blitzeinschlag :crit, active, 00:00:00.000, 00:00:01.000
     section Ausbreitung
-    Licht erreicht Augen (sofort) : milestone, 0, 0s
-    Schallwelle reist (343 m/s) : active, 0, 4.5s
+    Licht erreicht die Augen (Sofort) : milestone, 00:00:00.000, 0d
+    Schallwelle breitet sich aus (343 m/s) : active, 00:00:00.000, 00:00:04.500
     section Beobachtung
-    Donner gehört       : milestone, 4.5, 0s
+    Donner gehört : milestone, 00:00:04.500, 0d
 ```
 
 ---

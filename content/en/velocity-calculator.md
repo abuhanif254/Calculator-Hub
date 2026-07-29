@@ -363,15 +363,15 @@ This timeline visualization represents the delay between the event (the strike),
 ```mermaid
 gantt
     title Lightning Strike Observer Timeline
-    dateFormat  s
-    axisFormat %S
+    dateFormat  HH:mm:ss.SSS
+    axisFormat  %S.%L
     section The Event
-    Lightning Strike    :crit, active, 0, 1s
+    Lightning Strike    :crit, active, 00:00:00.000, 00:00:01.000
     section Propagation
-    Light Reaches Eyes (Instant) : milestone, 0, 0s
-    Sound Wave Traveling (343 m/s) : active, 0, 4.5s
+    Light Reaches Eyes (Instant) : milestone, 00:00:00.000, 0d
+    Sound Wave Traveling (343 m/s) : active, 00:00:00.000, 00:00:04.500
     section Observation
-    Thunder Heard       : milestone, 4.5, 0s
+    Thunder Heard       : milestone, 00:00:04.500, 0d
 ```
 
 ---
