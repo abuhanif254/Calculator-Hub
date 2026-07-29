@@ -58,7 +58,12 @@ export async function generateStaticParams() {
     calculators.forEach((calc) => {
       let slugToUse = calc.slug;
       if (calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
-        slugToUse = calc.slugs[locale as keyof typeof calc.slugs];
+        const isPhysicsOrChemistry = calc.category === 'Physics' || calc.category === 'Chemistry';
+        if (isPhysicsOrChemistry && `/calculators/${calc.slug}` in routing.pathnames) {
+          slugToUse = calc.slug;
+        } else {
+          slugToUse = calc.slugs[locale as keyof typeof calc.slugs];
+        }
       }
       params.push({ slug: slugToUse, locale });
     });
