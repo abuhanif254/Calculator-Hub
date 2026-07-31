@@ -243,7 +243,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         </ol>
       </nav>
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
         {/* Main Content Area (Left/Top) */}
         <div className="flex-1 w-full max-w-5xl min-w-0">
           <header className="mb-10">
@@ -346,6 +346,39 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         {/* Sidebar Area (Right/Bottom) */}
         <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0 flex flex-col gap-8">
 
+          {/* Ad Space 1 - Half Page (300x600) */}
+          <div className="w-full">
+            <AdSenseContainer slot="calculator_sidebar_1" style={{ minHeight: '600px' }} />
+          </div>
+
+          {/* Ad Space 2 - Large Rectangle (336x280) */}
+          <div className="w-full">
+            <AdSenseContainer slot="calculator_sidebar_2" style={{ minHeight: '280px' }} />
+          </div>
+
+          {/* Ad Space 3 - Medium Rectangle (300x250) */}
+          <div className="w-full">
+            <AdSenseContainer slot="calculator_sidebar_3" style={{ minHeight: '250px' }} />
+          </div>
+
+          {/* Ad Space 4 - Portrait (300x1050) */}
+          <div className="w-full">
+            <AdSenseContainer slot="calculator_sidebar_4" style={{ minHeight: '1050px' }} />
+          </div>
+
+          {/* Ad Space 5 - Portrait (300x1050) */}
+          <div className="w-full">
+            <AdSenseContainer slot="calculator_sidebar_5" style={{ minHeight: '1050px' }} />
+          </div>
+
+          {/* Ad Space 6 - Half Page (300x600) */}
+          <div className="w-full">
+            <AdSenseContainer slot="calculator_sidebar_6" style={{ minHeight: '600px' }} />
+          </div>
+
+          {/* Empty space to push remaining sections to the bottom */}
+          <div className="flex-1"></div>
+
           {/* Search Box */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Find a Calculator</h3>
@@ -361,11 +394,6 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 required
               />
             </form>
-          </div>
-
-          {/* Ad Space - Top Sidebar */}
-          <div className="w-full">
-            <AdSenseContainer slot="calculator_sidebar_top" style={{ minHeight: '250px' }} />
           </div>
 
           {/* Features */}
@@ -425,11 +453,6 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 );
               })}
             </ul>
-          </div>
-
-          {/* Ad Space - Bottom Sidebar (Sticky option) */}
-          <div className="sticky top-24 w-full">
-            <AdSenseContainer slot="calculator_sidebar_sticky" style={{ minHeight: '600px' }} />
           </div>
 
         </aside>

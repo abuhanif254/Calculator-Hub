@@ -491,6 +491,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           href={`/tools/${config.slug}`}
         />
 
+        {/* Top Leaderboard Ad Space (728x90 or 970x90/250) */}
+        <div className="w-full flex justify-center overflow-hidden">
+          <div className="w-full max-w-[970px]">
+            <AdSenseContainer slot="tools_top_leaderboard" style={{ minHeight: '90px' }} />
+          </div>
+        </div>
+
         {/* Main Tool Interface */}
         <section className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-2 sm:p-6 lg:p-8">
           <ToastProvider>
@@ -504,6 +511,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             <section className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-[#518231] prose-a:text-[#518231]">
               <ReactMarkdown>{pageLongDesc}</ReactMarkdown>
             </section>
+
+            {/* In-Article Horizontal Ad (Non-intrusive) */}
+            <div className="w-full flex justify-center py-4">
+              <div className="w-full max-w-[728px]">
+                <AdSenseContainer slot="tools_content_middle" style={{ minHeight: '90px' }} />
+              </div>
+            </div>
 
             {/* How To Use */}
             <section className="space-y-6">
@@ -573,6 +587,11 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           </div>
 
           <div className="space-y-8">
+            {/* Top Sidebar Ad Space */}
+            <div className="w-full">
+              <AdSenseContainer slot="tools_sidebar_top" style={{ minHeight: '250px' }} />
+            </div>
+
             {/* Features */}
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
