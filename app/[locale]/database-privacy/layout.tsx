@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname, useParams, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
 import {
   Shield,
@@ -26,8 +26,13 @@ import {
   Menu,
   X,
   ArrowRight,
+  LogOut,
+  UserCircle,
 } from "lucide-react";
 import { ToastProvider } from "../../components/platform/ui/Toast";
+import { createClient } from "../../../lib/supabase/client";
+import PlatformAuthGuard from "../../../components/platform/auth/PlatformAuthGuard";
+import type { User } from "@supabase/supabase-js";
 
 type NavItem = {
   name: string;
@@ -47,14 +52,46 @@ export default function DatabasePrivacyLayout({
   children: React.ReactNode;
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
   const pathname = usePathname();
   const params = useParams();
   const locale = (params?.locale as string) || "en";
+  const router = useRouter();
 
   // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
+
+  // Listen for Supabase auth state
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.push(`/${locale}/database-privacy/login`);
+  };
+
+  // Safely handle pathname (usePathname can return null with next-intl)
+  const path = pathname ?? '';
+
+  // Auth pages render without sidebar or auth guard
+  const isAuthPage =
+    path.includes("/database-privacy/login") ||
+    path.includes("/database-privacy/signup") ||
+    path.includes("/database-privacy/auth/");
+
+  // Landing page is public (no auth guard, but keep sidebar)
+  const isLandingPage = path.endsWith("/database-privacy") || path.endsWith("/database-privacy/");
 
   const navSections: NavSection[] = [
     {
@@ -308,8 +345,39 @@ export default function DatabasePrivacyLayout({
           </div>
         ))}
       </nav>
+
+      {/* User menu at bottom of sidebar */}
+      {user && (
+        <div className="border-t border-slate-200 dark:border-slate-800 p-3 mt-auto">
+          <div className="flex items-center gap-2.5 px-2 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
+            <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center shrink-0">
+              <span className="text-white text-xs font-bold">
+                {(user.user_metadata?.full_name || user.email || "U")[0].toUpperCase()}
+              </span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-medium text-slate-900 dark:text-white truncate">
+                {user.user_metadata?.full_name || "User"}
+              </p>
+              <p className="text-[10px] text-slate-400 truncate">{user.email}</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              title="Sign out"
+              className="p-1 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors shrink-0"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
+
+  // Auth pages (login/signup): render without sidebar
+  if (isAuthPage) {
+    return <ToastProvider>{children}</ToastProvider>;
+  }
 
   return (
     <ToastProvider>
@@ -375,8 +443,14 @@ export default function DatabasePrivacyLayout({
               {renderSidebarContent()}
             </aside>
 
-            {/* Main content */}
-            <main className="flex-1 min-w-0">{children}</main>
+            {/* Main content — protected by auth guard for non-landing pages */}
+            <main className="flex-1 min-w-0">
+              {isLandingPage ? (
+                children
+              ) : (
+                <PlatformAuthGuard>{children}</PlatformAuthGuard>
+              )}
+            </main>
           </div>
         </div>
       </div>

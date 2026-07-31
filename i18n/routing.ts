@@ -731,6 +731,8 @@ export const routing = defineRouting({
 
     // ── Data Privacy Platform ────────────────────────────────────────────────
     '/database-privacy': '/database-privacy',
+    '/database-privacy/login': '/database-privacy/login',
+    '/database-privacy/signup': '/database-privacy/signup',
     '/database-privacy/dashboard': '/database-privacy/dashboard',
     '/database-privacy/scanner': '/database-privacy/scanner',
     '/database-privacy/scanner/findings': '/database-privacy/scanner/findings',
