@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { writeAudit } from '@/lib/supabase/audit';
 
 // ─── DELETE /api/privacy/connections/[id] ─── Delete a connection ────────────
 export async function DELETE(
@@ -21,6 +22,10 @@ export async function DELETE(
       .eq('user_id', user.id); // RLS double-check
 
     if (error) throw error;
+    void writeAudit(user.id, user.email, {
+      action: 'CONNECTION_DELETED', category: 'connection', severity: 'warning',
+      resource: id, details: { connection_id: id },
+    });
     return NextResponse.json({ success: true });
   } catch (err: any) {
     console.error('[DELETE /api/privacy/connections/[id]]', err);

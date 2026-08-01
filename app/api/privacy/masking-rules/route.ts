@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { writeAudit } from '@/lib/supabase/audit';
 
 // ── GET /api/privacy/masking-rules ── List user's rules ───────────────────────
 export async function GET(req: NextRequest) {
@@ -66,6 +67,12 @@ export async function POST(req: NextRequest) {
       }
       throw error;
     }
+
+    void writeAudit(user.id, user.email, {
+      action: 'RULE_CREATED', category: 'rule', severity: 'info',
+      resource: `${table_name}.${column_name}`,
+      details: { detector_id, strategy, risk_level, connection_name },
+    });
 
     return NextResponse.json({ rule: data }, { status: 201 });
   } catch (err: any) {
