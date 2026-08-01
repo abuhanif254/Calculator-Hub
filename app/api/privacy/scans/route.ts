@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { decrypt } from '@/lib/supabase/encryption';
 import { SERVER_PII_DETECTORS, scanValue } from '@/lib/supabase/piiDetectors.server';
+import { writeAudit } from '@/lib/supabase/audit';
 
 // ── GET /api/privacy/scans ── List user's scans ───────────────────────────────
 export async function GET() {
@@ -71,6 +72,13 @@ export async function POST(req: NextRequest) {
     if (scanErr || !scan) throw scanErr ?? new Error('Failed to create scan');
 
     const scanId = scan.id;
+
+    // Audit: scan started
+    void writeAudit(user.id, user.email, {
+      action: 'SCAN_STARTED', category: 'scan', severity: 'info',
+      resource: conn.name,
+      details: { scan_id: scanId, tables: selectedTables, connection_id: connectionId },
+    });
 
     // ── Run scan asynchronously (in-request, streaming results) ──────────────
     // We run it synchronously within the request timeout (max ~60s on Vercel hobby)
@@ -208,19 +216,26 @@ export async function POST(req: NextRequest) {
         completed_at: new Date().toISOString(),
       }).eq('id', scanId);
 
+      void writeAudit(user.id, user.email, {
+        action: 'SCAN_FAILED', category: 'scan', severity: 'error',
+        resource: conn.name,
+        details: { scan_id: scanId, error: err.message },
+      });
+
       return NextResponse.json({
-        scanId,
-        status: 'failed',
-        error: err.message,
+        scanId, status: 'failed', error: err.message,
       }, { status: 500 });
     }
 
+    void writeAudit(user.id, user.email, {
+      action: 'SCAN_COMPLETED', category: 'scan', severity: 'info',
+      resource: conn.name,
+      details: { scan_id: scanId, tables: tablesScanned, rows: totalRowsScanned, findings: totalFindings },
+    });
+
     return NextResponse.json({
-      scanId,
-      status: 'completed',
-      tablesScanned,
-      rowsScanned: totalRowsScanned,
-      findingsCount: totalFindings,
+      scanId, status: 'completed',
+      tablesScanned, rowsScanned: totalRowsScanned, findingsCount: totalFindings,
     }, { status: 201 });
 
   } catch (err: any) {

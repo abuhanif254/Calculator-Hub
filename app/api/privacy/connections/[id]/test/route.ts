@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { decrypt } from '@/lib/supabase/encryption';
+import { writeAudit } from '@/lib/supabase/audit';
 
 // ─── POST /api/privacy/connections/[id]/test ─── Test a real DB connection ───
 export async function POST(
@@ -115,6 +116,14 @@ export async function POST(
         tables_count: testStatus === 'connected' ? tablesCount : conn.tables_count,
       })
       .eq('id', id);
+
+    void writeAudit(user.id, user.email, {
+      action: testStatus === 'connected' ? 'CONNECTION_TEST_SUCCESS' : 'CONNECTION_TEST_FAILED',
+      category: 'connection',
+      severity: testStatus === 'connected' ? 'info' : 'error',
+      resource: conn.name,
+      details: { latencyMs, tablesCount, type: conn.type, error: errorMessage },
+    });
 
     return NextResponse.json({
       success: testStatus === 'connected',

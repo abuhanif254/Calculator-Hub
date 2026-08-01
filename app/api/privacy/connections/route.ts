@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { encrypt } from '@/lib/supabase/encryption';
+import { writeAudit } from '@/lib/supabase/audit';
 
 // ─── GET /api/privacy/connections ─── List user's connections ────────────────
 export async function GET() {
@@ -72,6 +73,13 @@ export async function POST(req: NextRequest) {
       }
       throw error;
     }
+
+    // Audit: connection created
+    void writeAudit(user.id, user.email, {
+      action: 'CONNECTION_CREATED', category: 'connection', severity: 'info',
+      resource: name,
+      details: { type, host, port, dbname },
+    });
 
     return NextResponse.json({ connection: data }, { status: 201 });
   } catch (err: any) {
