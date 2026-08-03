@@ -1,15 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
-import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
+import { useRouter } from '@/i18n/routing';
+import { useParams } from 'next/navigation';
+import { Link } from '@/i18n/routing';
+import { useAuth } from '@/app/components/AuthProvider';
 import { Shield, Mail, Lock, Eye, EyeOff, User, AlertCircle, CheckCircle } from 'lucide-react';
 
 export default function PlatformSignupPage() {
   const router = useRouter();
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
+
+  const { signIn, signUpWithEmail, appUser } = useAuth();
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
@@ -24,11 +27,10 @@ export default function PlatformSignupPage() {
   useEffect(() => {
     setMounted(true);
     // Redirect if already logged in
-    const supabase = createClient();
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) router.replace(`/${locale}/database-privacy/dashboard`);
-    });
-  }, [router, locale]);
+    if (appUser) {
+      window.location.href = `/database-privacy/dashboard`;
+    }
+  }, [appUser]);
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,36 +42,23 @@ export default function PlatformSignupPage() {
     }
 
     setLoading(true);
-    const supabase = createClient();
-    const { error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: { full_name: fullName },
-        emailRedirectTo: `${window.location.origin}/api/auth/callback?next=/database-privacy/dashboard&locale=${locale}`,
-      },
-    });
-
-    if (signUpError) {
-      setError(signUpError.message);
+    try {
+      await signUpWithEmail(email, password, fullName);
+      window.location.href = `/database-privacy/dashboard`;
+    } catch (err: any) {
+      setError(err.message || 'Failed to create account');
       setLoading(false);
-    } else {
-      setSuccess(true);
     }
   };
 
   const handleGoogleLogin = async () => {
     setGoogleLoading(true);
     setError('');
-    const supabase = createClient();
-    const { error: oauthError } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/api/auth/callback?next=/database-privacy/dashboard&locale=${locale}`,
-      },
-    });
-    if (oauthError) {
-      setError(oauthError.message);
+    try {
+      await signIn();
+      window.location.href = `/database-privacy/dashboard`;
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in with Google');
       setGoogleLoading(false);
     }
   };
@@ -90,7 +79,7 @@ export default function PlatformSignupPage() {
             Click it to activate your account.
           </p>
           <Link
-            href={`/${locale}/database-privacy/login`}
+            href={`/database-privacy/login`}
             className="inline-flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm rounded-xl transition-colors"
           >
             Back to Sign In
@@ -235,22 +224,22 @@ export default function PlatformSignupPage() {
 
             <p className="text-xs text-slate-400 dark:text-slate-500 text-center">
               By signing up you agree to our{' '}
-              <Link href={`/${locale}/terms-of-use`} className="underline hover:text-slate-600">Terms</Link>
+              <Link href={`/terms-of-use`} className="underline hover:text-slate-600">Terms</Link>
               {' '}and{' '}
-              <Link href={`/${locale}/privacy-policy`} className="underline hover:text-slate-600">Privacy Policy</Link>.
+              <Link href={`/privacy-policy`} className="underline hover:text-slate-600">Privacy Policy</Link>.
             </p>
           </form>
 
           <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
             Already have an account?{' '}
-            <Link href={`/${locale}/database-privacy/login`} className="text-violet-600 dark:text-violet-400 font-medium hover:underline">
+            <Link href={`/database-privacy/login`} className="text-violet-600 dark:text-violet-400 font-medium hover:underline">
               Sign in
             </Link>
           </p>
         </div>
 
         <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-6">
-          <Link href={`/${locale}`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+          <Link href={`/`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
             ← Back to NexusCalculator
           </Link>
         </p>
