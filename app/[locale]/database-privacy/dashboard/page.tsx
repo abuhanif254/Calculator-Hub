@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useAuth } from '@/app/components/AuthProvider';
 import { motion } from 'motion/react';
 import {
   LineChart, BarChart, Bar, Cell, Line, XAxis, YAxis,
@@ -189,15 +190,23 @@ export default function PrivacyDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError]     = useState('');
   const [refreshing, setRefreshing] = useState(false);
+  const { appUser, user } = useAuth(); // Assuming this is imported
 
   const fetchData = async (silent = false) => {
+    if (!appUser || !user) return;
     if (!silent) setLoading(true);
     else setRefreshing(true);
     setError('');
     try {
-      const res = await fetch('/api/privacy/dashboard');
+      const token = await user.getIdToken();
+      const res = await fetch('/api/privacy/dashboard', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       if (!res.ok) throw new Error('Failed to load dashboard');
       const json = await res.json();
+      if (json.error) throw new Error(json.error);
       setData(json);
     } catch (e: any) {
       setError(e.message);
@@ -207,7 +216,9 @@ export default function PrivacyDashboard() {
     }
   };
 
-  useEffect(() => { fetchData(); }, []);
+  useEffect(() => { 
+    if (appUser && user) fetchData(); 
+  }, [appUser, user]);
 
   const s = data?.stats;
 

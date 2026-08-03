@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+import { useRouter, usePathname } from '@/i18n/routing';
+import { useAuth } from '@/app/components/AuthProvider';
 
 interface PlatformAuthGuardProps {
   children: React.ReactNode;
@@ -10,46 +10,30 @@ interface PlatformAuthGuardProps {
 
 /**
  * Client-side auth guard for the Data Privacy Platform.
- * Checks Supabase session. Redirects to platform login if unauthenticated.
- * Does NOT affect Firebase Auth used by the rest of the site.
+ * 
+ * Now uses Firebase Auth via the unified AuthProvider to eliminate
+ * cross-domain cookie issues that plagued Supabase Auth.
  */
 export default function PlatformAuthGuard({ children }: PlatformAuthGuardProps) {
-  const router = useRouter();
-  const params = useParams();
-  const locale = (params?.locale as string) || 'en';
-  const [isChecking, setIsChecking] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const router   = useRouter();
+  const pathname = usePathname();
+  const loginPath = `/database-privacy/login`;
+  
+  const { appUser, loading } = useAuth();
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
-    const supabase = createClient();
-
-    // Initial session check
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
-        router.replace(`/${locale}/database-privacy/login`);
+    // Wait for auth to finish loading before redirecting
+    if (!loading) {
+      if (!appUser && !pathname?.includes('/database-privacy/login') && !pathname?.includes('/database-privacy/signup')) {
+        window.location.href = loginPath;
       } else {
-        setIsAuthenticated(true);
+        setIsReady(true);
       }
-      setIsChecking(false);
-    });
+    }
+  }, [appUser, loading, pathname, loginPath]);
 
-    // Listen for auth state changes (login/logout in another tab)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (!session) {
-          setIsAuthenticated(false);
-          router.replace(`/${locale}/database-privacy/login`);
-        } else {
-          setIsAuthenticated(true);
-        }
-      }
-    );
-
-    return () => subscription.unsubscribe();
-  }, [router, locale]);
-
-  // Show a loading state while checking auth
-  if (isChecking) {
+  if (loading || !isReady) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="flex flex-col items-center gap-3">
@@ -60,7 +44,10 @@ export default function PlatformAuthGuard({ children }: PlatformAuthGuardProps) 
     );
   }
 
-  if (!isAuthenticated) return null;
+  // Prevent flashing protected content before redirect
+  if (!appUser && !pathname?.includes('/database-privacy/login') && !pathname?.includes('/database-privacy/signup')) {
+    return null; 
+  }
 
   return <>{children}</>;
 }

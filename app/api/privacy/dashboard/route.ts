@@ -1,14 +1,27 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { adminAuth } from '@/lib/firebase-admin';
 
 // ── GET /api/privacy/dashboard ── Aggregate real stats for the dashboard ───────
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const authHeader = request.headers.get('authorization');
+    if (!authHeader?.startsWith('Bearer ')) {
+      return NextResponse.json({ error: 'Missing or invalid authorization header' }, { status: 401 });
+    }
 
-    const uid = user.id;
+    const token = authHeader.split('Bearer ')[1];
+    let decodedToken;
+    try {
+      decodedToken = await adminAuth.verifyIdToken(token);
+    } catch (error) {
+      console.error('[Firebase Auth] Token verification failed:', error);
+      return NextResponse.json({ error: 'Unauthorized: Invalid token' }, { status: 401 });
+    }
+
+    const uid = decodedToken.uid;
+    // Use the anon key to query Supabase (bypassing RLS by manually forcing .eq('user_id', uid))
+    const supabase = await createClient();
 
     // ── Run all queries in parallel ──────────────────────────────────────────
     const [

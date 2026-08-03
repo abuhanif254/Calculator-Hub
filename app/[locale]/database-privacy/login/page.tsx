@@ -1,15 +1,18 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter, useParams } from 'next/navigation';
-import Link from 'next/link';
-import { createClient } from '@/lib/supabase/client';
-import { Shield, Mail, Lock, Eye, EyeOff, AlertCircle, Chrome } from 'lucide-react';
+import { useRouter } from '@/i18n/routing';
+import { useParams } from 'next/navigation';
+import { Link } from '@/i18n/routing';
+import { useAuth } from '@/app/components/AuthProvider';
+import { Shield, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
 
 export default function PlatformLoginPage() {
   const router = useRouter();
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
+
+  const { signIn, signInWithEmail, appUser } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,45 +24,33 @@ export default function PlatformLoginPage() {
 
   useEffect(() => {
     setMounted(true);
-    // Check for error from OAuth callback
-    const urlParams = new URLSearchParams(window.location.search);
-    const errorParam = urlParams.get('error');
-    if (errorParam === 'auth_failed') setError('Authentication failed. Please try again.');
-    if (errorParam === 'auth') setError('Sign-in was cancelled or failed. Please try again.');
-
     // Redirect if already logged in
-    const supabase = createClient();
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) router.replace(`/${locale}/database-privacy/dashboard`);
-    });
-  }, [router, locale]);
+    if (appUser) {
+      window.location.href = `/database-privacy/dashboard`;
+    }
+  }, [appUser]);
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setLoading(true);
-    const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
-    if (signInError) {
-      setError(signInError.message);
+    try {
+      await signInWithEmail(email, password);
+      window.location.href = `/database-privacy/dashboard`;
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in');
       setLoading(false);
-    } else {
-      router.replace(`/${locale}/database-privacy/dashboard`);
     }
   };
 
   const handleGoogleLogin = async () => {
     setGoogleLoading(true);
     setError('');
-    const supabase = createClient();
-    const { error: oauthError } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/api/auth/callback?next=/database-privacy/dashboard&locale=${locale}`,
-      },
-    });
-    if (oauthError) {
-      setError(oauthError.message);
+    try {
+      await signIn();
+      window.location.href = `/database-privacy/dashboard`;
+    } catch (err: any) {
+      setError(err.message || 'Failed to sign in with Google');
       setGoogleLoading(false);
     }
   };
@@ -189,7 +180,7 @@ export default function PlatformLoginPage() {
           {/* Sign up link */}
           <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
             Don&apos;t have an account?{' '}
-            <Link href={`/${locale}/database-privacy/signup`} className="text-violet-600 dark:text-violet-400 font-medium hover:underline">
+            <Link href={`/database-privacy/signup`} className="text-violet-600 dark:text-violet-400 font-medium hover:underline">
               Create account
             </Link>
           </p>
@@ -197,7 +188,7 @@ export default function PlatformLoginPage() {
 
         {/* Back to main site */}
         <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-6">
-          <Link href={`/${locale}`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+          <Link href={`/`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
             ← Back to NexusCalculator
           </Link>
         </p>

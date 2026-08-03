@@ -30,9 +30,8 @@ import {
   UserCircle,
 } from "lucide-react";
 import { ToastProvider } from "../../components/platform/ui/Toast";
-import { createClient } from "../../../lib/supabase/client";
 import PlatformAuthGuard from "../../../components/platform/auth/PlatformAuthGuard";
-import type { User } from "@supabase/supabase-js";
+import { useAuth } from '@/app/components/AuthProvider';
 
 type NavItem = {
   name: string;
@@ -52,7 +51,7 @@ export default function DatabasePrivacyLayout({
   children: React.ReactNode;
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
+  const { appUser, user, signOut } = useAuth();
   const pathname = usePathname();
   const params = useParams();
   const locale = (params?.locale as string) || "en";
@@ -63,21 +62,8 @@ export default function DatabasePrivacyLayout({
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  // Listen for Supabase auth state
-  useEffect(() => {
-    const supabase = createClient();
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-    return () => subscription.unsubscribe();
-  }, []);
-
   const handleLogout = async () => {
-    const supabase = createClient();
-    await supabase.auth.signOut();
+    await signOut();
     router.push(`/${locale}/database-privacy/login`);
   };
 
@@ -347,17 +333,17 @@ export default function DatabasePrivacyLayout({
       </nav>
 
       {/* User menu at bottom of sidebar */}
-      {user && (
+      {user && appUser && (
         <div className="border-t border-slate-200 dark:border-slate-800 p-3 mt-auto">
           <div className="flex items-center gap-2.5 px-2 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/50">
             <div className="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center shrink-0">
               <span className="text-white text-xs font-bold">
-                {(user.user_metadata?.full_name || user.email || "U")[0].toUpperCase()}
+                {(appUser.displayName || user.email || "U")[0].toUpperCase()}
               </span>
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-medium text-slate-900 dark:text-white truncate">
-                {user.user_metadata?.full_name || "User"}
+                {appUser.displayName || "User"}
               </p>
               <p className="text-[10px] text-slate-400 truncate">{user.email}</p>
             </div>
@@ -443,9 +429,9 @@ export default function DatabasePrivacyLayout({
               {renderSidebarContent()}
             </aside>
 
-            {/* Main content — protected by auth guard for non-landing pages */}
+            {/* Main content — auth guard skips login, signup, and landing page */}
             <main className="flex-1 min-w-0">
-              {isLandingPage ? (
+              {isAuthPage || isLandingPage ? (
                 children
               ) : (
                 <PlatformAuthGuard>{children}</PlatformAuthGuard>

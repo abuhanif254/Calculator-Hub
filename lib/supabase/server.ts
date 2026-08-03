@@ -13,6 +13,9 @@ export async function createClient() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
+      cookieOptions: {
+        secure: process.env.NODE_ENV === 'production',
+      },
       cookies: {
         getAll() {
           return cookieStore.getAll();
@@ -20,7 +23,10 @@ export async function createClient() {
         setAll(cookiesToSet) {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
+              cookieStore.set(name, value, { 
+                ...options, 
+                secure: process.env.NODE_ENV === 'production' 
+              })
             );
           } catch {
             // setAll called from a Server Component — safe to ignore
