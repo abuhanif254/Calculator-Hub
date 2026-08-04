@@ -63,6 +63,12 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculatrice-de-probabilite',
       de: '/rechner/wahrscheinlichkeitsrechner'
     },
+    '/calculators/z-score-calculator': {
+      en: '/calculators/z-score-calculator',
+      es: '/calculadoras/calculadora-de-valor-z',
+      fr: '/calculatrices/calculatrice-score-z',
+      de: '/rechner/z-score-rechner'
+    },
     '/calculators/age-calculator': {
       en: '/calculators/age-calculator',
       es: '/calculadoras/calculadora-de-edad',

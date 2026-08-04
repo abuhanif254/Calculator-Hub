@@ -2,6 +2,66 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "t-test-calculator",
+    slugs: {
+      en: "t-test-calculator",
+      es: "calculadora-prueba-t",
+      de: "t-test-rechner",
+      fr: "calculatrice-test-t"
+    },
+    title: "T-Test Calculator",
+    category: "Statistics & Probability",
+    description: "Perform One-Sample, Independent, Paired, and Welch's t-tests. Calculate p-values, confidence intervals, effect size (Cohen's d), and test statistical hypotheses.",
+    meta: {
+      title: "T-Test Calculator | One Sample, Independent, Paired & Welch",
+      description: "Use our free T-Test Calculator to perform one-sample, paired, independent, and Welch's t-tests. Includes p-values, confidence intervals, and hypothesis testing.",
+      keywords: "t-test calculator, independent t-test, paired t-test, welchs t-test, p-value calculator, hypothesis testing, cohens d, student t-test",
+      lastUpdated: "2026-08-05"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "z-score-calculator",
+    slugs: {
+      en: "z-score-calculator",
+      es: "calculadora-de-valor-z",
+      de: "z-score-rechner",
+      fr: "calculatrice-score-z"
+    },
+    title: "Z-Score Calculator",
+    category: "Statistics & Probability",
+    description: "Calculate standard scores, percentiles, probabilities, and confidence intervals. Includes dataset analysis and interactive normal distribution curves.",
+    meta: {
+      title: "Z-Score Calculator | Standard Score & Percentile",
+      description: "Free online Z-score calculator to compute standard scores, percentiles, probabilities, confidence intervals, and detect outliers. Includes interactive bell curves.",
+      keywords: "z-score calculator, standard score calculator, normal distribution, percentiles, statistics calculator, bell curve",
+      lastUpdated: "2026-08-04"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "variance-calculator",
+    slugs: {
+      en: "variance-calculator",
+      es: "calculadora-de-varianza",
+      de: "varianz-rechner",
+      fr: "calculatrice-de-variance"
+    },
+    title: "Variance Calculator",
+    category: "Statistics & Probability",
+    description: "Calculate population variance, sample variance, standard deviation, and key dispersion metrics with step-by-step solutions and interactive data visualizations.",
+    meta: {
+      title: "Variance Calculator | Population & Sample Variance",
+      description: "Free Variance Calculator to compute sample variance, population variance, standard deviation, mean absolute deviation, and coefficient of variation with step-by-step solutions.",
+      keywords: "variance calculator, population variance, sample variance, standard deviation calculator, statistics dispersion, IQR, mean absolute deviation",
+      lastUpdated: "2026-08-05"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "probability-calculator",
     slugs: {
       en: "probability-calculator",
