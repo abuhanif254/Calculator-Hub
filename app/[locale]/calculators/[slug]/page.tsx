@@ -10,6 +10,7 @@ import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
+import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
 import { Link, routing, resolveIntlHref } from "@/i18n/routing";
 import { Search, ChevronRight, CalculatorIcon } from "lucide-react";
@@ -320,6 +321,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 {seoContent}
               </ReactMarkdown>
             </article>
+          )}
+
+          {/* Inject custom Probability SEO Component if slug matches */}
+          {calc.slug === 'probability-calculator' && (
+            <ProbabilitySeoContent />
           )}
 
           {/* FAQ Section — Animated Accordion */}

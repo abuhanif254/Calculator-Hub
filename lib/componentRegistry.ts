@@ -160,6 +160,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'triangle-calculator': dynamic(() => import('@/app/components/TriangleCalculatorView').then(m => ({ default: m.TriangleCalculatorView as ComponentType<CalcComponentProps> }))),
   'standard-deviation-calculator': dynamic(() => import('@/app/components/StandardDeviationCalculatorView').then(m => ({ default: m.StandardDeviationCalculatorView as ComponentType<CalcComponentProps> }))),
   'statistics-calculator': dynamic(() => import('@/app/components/StatisticsCalculatorView').then(m => ({ default: m.StatisticsCalculatorView as ComponentType<CalcComponentProps> }))),
+  'probability-calculator': dynamic(() => import('@/app/components/ProbabilityCalculatorView').then(m => ({ default: m.ProbabilityCalculatorView as ComponentType<CalcComponentProps> }))),
   'p-value-calculator': dynamic(() => import('@/app/components/PValueCalculatorView').then(m => ({ default: m.PValueCalculatorView as ComponentType<CalcComponentProps> }))),
   'date-calculator': dynamic(() => import('@/app/components/DateCalculatorView').then(m => ({ default: m.DateCalculatorView as ComponentType<CalcComponentProps> }))),
   'time-calculator': dynamic(() => import('@/app/components/TimeCalculatorView').then(m => ({ default: m.TimeCalculatorView as ComponentType<CalcComponentProps> }))),
