@@ -666,15 +666,15 @@ export const calculatorRelationships: Record<string, string[]> = {
   'statistics-calculator': [
     'standard-deviation-calculator', 'p-value-calculator', 'graphing-calculator',
     'scientific-calculator', 'random-number-generator', 'half-life-calculator',
-    'percent-error-calculator'
+    'percent-error-calculator', 'z-score-calculator', 't-test-calculator'
   ],
   'standard-deviation-calculator': [
     'statistics-calculator', 'p-value-calculator', 'scientific-calculator',
-    'graphing-calculator', 'random-number-generator', 'percent-error-calculator'
+    'graphing-calculator', 'random-number-generator', 'percent-error-calculator', 'z-score-calculator', 't-test-calculator'
   ],
   'p-value-calculator': [
     'statistics-calculator', 'standard-deviation-calculator', 'scientific-calculator',
-    'graphing-calculator', 'random-number-generator'
+    'graphing-calculator', 'random-number-generator', 'z-score-calculator', 't-test-calculator'
   ],
   'random-number-generator': [
     'statistics-calculator', 'p-value-calculator', 'standard-deviation-calculator',
@@ -705,6 +705,15 @@ export const calculatorRelationships: Record<string, string[]> = {
   'binary-calculator': [
     'hexadecimal-calculator', 'scientific-calculator', 'percentage-calculator',
     'subnet-calculator', 'ip-subnet-calculator', 'conversion-calculator', 'data-storage-converter'
+  ],
+  'z-score-calculator': [
+    'standard-deviation-calculator', 'statistics-calculator', 'probability-calculator', 'p-value-calculator', 't-test-calculator', 'variance-calculator'
+  ],
+  'variance-calculator': [
+    'standard-deviation-calculator', 'statistics-calculator', 'z-score-calculator', 't-test-calculator'
+  ],
+  't-test-calculator': [
+    'p-value-calculator', 'statistics-calculator', 'standard-deviation-calculator', 'z-score-calculator'
   ],
 
   // ─── Other / Utility ─────────────────────────────
