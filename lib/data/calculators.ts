@@ -2,6 +2,26 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "probability-calculator",
+    slugs: {
+      en: "probability-calculator",
+      es: "calculadora-de-probabilidad",
+      de: "wahrscheinlichkeitsrechner",
+      fr: "calculatrice-de-probabilite"
+    },
+    title: "Probability Calculator",
+    category: "Statistics & Probability",
+    description: "Calculate basic probability, conditional probability, Bayes theorem, expected value, odds, union, intersection, and more with interactive simulators.",
+    meta: {
+      title: "Advanced Probability Calculator | Bayes, Expected Value, & Simulators",
+      description: "Free online probability calculator. Compute conditional probability, Bayes theorem, expected value, odds, and run coin/dice/card simulators.",
+      keywords: "probability calculator, conditional probability, bayes theorem calculator, expected value, odds calculator, coin toss simulator",
+      lastUpdated: "2026-08-04"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "irr-calculator",
     slugs: {
       en: "irr-calculator",

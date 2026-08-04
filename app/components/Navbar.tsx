@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Link, resolveIntlHref } from "../../i18n/routing";
-import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon, Database, CloudSnow, FlaskConical } from "lucide-react";
+import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon, Database, CloudSnow, FlaskConical, BarChart } from "lucide-react";
 import { sitemapCategories, pdfToolsMenu, imageToolsMenu } from "../../lib/data/sitemapData";
 import { resolveHref } from "../../lib/utils/linkResolver";
 import { AuthButton } from "./AuthButton";
@@ -145,6 +145,7 @@ const calcCategoryIcons: Record<string, React.ComponentType<{ size?: number; cla
   "weather": CloudSnow,
   "physics": Zap,
   "chemistry": FlaskConical,
+  "statistics": BarChart,
 };
 
 export function Navbar() {
@@ -301,11 +302,11 @@ export function Navbar() {
               <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'calculators' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
-                    <div className="grid grid-cols-7 gap-x-5">
+                    <div className="flex overflow-x-auto gap-x-5 pb-4 custom-scrollbar snap-x">
                       {navCategories.map((category) => {
                         const IconComp = calcCategoryIcons[category.id] || Calculator;
                         return (
-                          <div key={category.id}>
+                          <div key={category.id} className="min-w-[180px] shrink-0 snap-start">
                             {/* Category header */}
                             <div className="flex items-center gap-2 mb-3 pb-2 border-b border-slate-100 dark:border-slate-800">
                               <div className="p-1.5 bg-slate-50 dark:bg-slate-800 rounded-md">

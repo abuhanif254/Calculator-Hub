@@ -57,6 +57,12 @@ export const routing = defineRouting({
     },
     // We can also let the catch-all dynamic parameter fall through, but
     // let's explicitly map the calculators we actively support to their specific translated slugs
+    '/calculators/probability-calculator': {
+      en: '/calculators/probability-calculator',
+      es: '/calculadoras/calculadora-de-probabilidad',
+      fr: '/calculatrices/calculatrice-de-probabilite',
+      de: '/rechner/wahrscheinlichkeitsrechner'
+    },
     '/calculators/age-calculator': {
       en: '/calculators/age-calculator',
       es: '/calculadoras/calculadora-de-edad',

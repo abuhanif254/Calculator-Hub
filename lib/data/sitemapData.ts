@@ -1,4 +1,4 @@
-import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase, File, Image as ImageIcon, Lock, Settings, CloudSnow, FlaskConical } from "lucide-react";
+import { FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, DollarSign, Heart, Hash, Grid3X3, Briefcase, File, Image as ImageIcon, Lock, Settings, CloudSnow, FlaskConical, BarChart } from "lucide-react";
 
 export const sitemapCategories = [
   {
@@ -144,6 +144,15 @@ export const sitemapCategories = [
       "Combined Gas Law Calculator",
       "Boyle's Law Calculator",
       "Charles's Law Calculator"
+    ]
+  },
+  {
+    title: "Statistics & Probability",
+    id: "statistics",
+    icon: BarChart,
+    description: "Analyze datasets, calculate probabilities, and solve statistical problems.",
+    links: [
+      "Probability Calculator", "Z-Score Calculator", "T-Test Calculator", "Variance Calculator"
     ]
   },
   {
