@@ -603,7 +603,523 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-loi-de-charles',
       de: '/rechner/charles-gesetz-rechner'
     },
-    // Category landing pages (pillar pages for topical authority)
+          '/calculators/t-test-calculator': {
+        en: '/calculators/t-test-calculator',
+        es: '/calculadoras/calculadora-prueba-t',
+        fr: '/calculatrices/calculatrice-test-t',
+        de: '/rechner/t-test-rechner'
+      },
+      '/calculators/variance-calculator': {
+        en: '/calculators/variance-calculator',
+        es: '/calculadoras/calculadora-de-varianza',
+        fr: '/calculatrices/calculatrice-de-variance',
+        de: '/rechner/varianz-rechner'
+      },
+      '/calculators/mean-calculator': {
+        en: '/calculators/mean-calculator',
+        es: '/calculadoras/calculadora-de-media',
+        fr: '/calculatrices/calculatrice-de-moyenne',
+        de: '/rechner/mittelwertrechner'
+      },
+      '/calculators/median-calculator': {
+        en: '/calculators/median-calculator',
+        es: '/calculadoras/calculadora-de-mediana',
+        fr: '/calculatrices/calculatrice-de-mediane',
+        de: '/rechner/median-rechner'
+      },
+      '/calculators/mode-calculator': {
+        en: '/calculators/mode-calculator',
+        es: '/calculadoras/calculadora-de-moda',
+        fr: '/calculatrices/calculatrice-de-mode',
+        de: '/rechner/modus-rechner'
+      },
+      '/calculators/irr-calculator': {
+        en: '/calculators/irr-calculator',
+        es: '/calculadoras/calculadora-tir',
+        fr: '/calculatrices/calculatrice-tri',
+        de: '/rechner/irr-rechner'
+      },
+      '/calculators/lease-calculator': {
+        en: '/calculators/lease-calculator',
+        es: '/calculadoras/calculadora-de-arrendamiento',
+        fr: '/calculatrices/calculatrice-de-location',
+        de: '/rechner/leasingrechner'
+      },
+      '/calculators/real-estate-calculator': {
+        en: '/calculators/real-estate-calculator',
+        es: '/calculadoras/calculadora-bienes-raices',
+        fr: '/calculatrices/calculatrice-immobilier',
+        de: '/rechner/immobilienrechner'
+      },
+      '/calculators/margin-calculator': {
+        en: '/calculators/margin-calculator',
+        es: '/calculadoras/calculadora-de-margen',
+        fr: '/calculatrices/calculatrice-de-marge',
+        de: '/rechner/margenrechner'
+      },
+      '/calculators/cash-back-vs-low-interest-calculator': {
+        en: '/calculators/cash-back-vs-low-interest-calculator',
+        es: '/calculadoras/calculadora-reembolso-vs-bajo-interes',
+        fr: '/calculatrices/calculatrice-remise-en-argent-ou-taux-bas',
+        de: '/rechner/cashback-oder-niedriger-zinssatz-rechner'
+      },
+      '/calculators/roth-ira-calculator': {
+        en: '/calculators/roth-ira-calculator',
+        es: '/calculadoras/calculadora-roth-ira',
+        fr: '/calculatrices/calculatrice-roth-ira',
+        de: '/rechner/roth-ira-rechner'
+      },
+      '/calculators/retirement-calculator': {
+        en: '/calculators/retirement-calculator',
+        es: '/calculadoras/calculadora-de-jubilacion',
+        fr: '/calculatrices/calculatrice-de-retraite',
+        de: '/rechner/rentenrechner'
+      },
+      '/calculators/amortization-calculator': {
+        en: '/calculators/amortization-calculator',
+        es: '/calculadoras/calculadora-de-amortizacion',
+        fr: '/calculatrices/calculatrice-amortissement',
+        de: '/rechner/tilgungsrechner'
+      },
+      '/calculators/investment-calculator': {
+        en: '/calculators/investment-calculator',
+        es: '/calculadoras/calculadora-de-inversiones',
+        fr: '/calculatrices/calculatrice-investissement',
+        de: '/rechner/investmentanlage-rechner'
+      },
+      '/calculators/inflation-calculator': {
+        en: '/calculators/inflation-calculator',
+        es: '/calculadoras/calculadora-de-inflacion',
+        fr: '/calculatrices/calculatrice-inflation',
+        de: '/rechner/inflationsrechner'
+      },
+      '/calculators/finance-calculator': {
+        en: '/calculators/finance-calculator',
+        es: '/calculadoras/calculadora-financiera',
+        fr: '/calculatrices/calculatrice-financiere',
+        de: '/rechner/finanzrechner'
+      },
+      '/calculators/estate-tax-calculator': {
+        en: '/calculators/estate-tax-calculator',
+        es: '/calculadoras/calculadora-de-impuestos-sucesorios',
+        fr: '/calculatrices/calculateur-droits-de-succession',
+        de: '/rechner/erbschaftssteuerrechner'
+      },
+      '/calculators/income-tax-calculator': {
+        en: '/calculators/income-tax-calculator',
+        es: '/calculadoras/calculadora-de-impuestos',
+        fr: '/calculatrices/calculatrice-impot-revenu',
+        de: '/rechner/einkommensteuer-rechner'
+      },
+      '/calculators/compound-interest-calculator': {
+        en: '/calculators/compound-interest-calculator',
+        es: '/calculadoras/calculadora-interes-compuesto',
+        fr: '/calculatrices/calculatrice-interets-composes',
+        de: '/rechner/zinseszinsrechner'
+      },
+      '/calculators/salary-calculator': {
+        en: '/calculators/salary-calculator',
+        es: '/calculadoras/calculadora-de-salario',
+        fr: '/calculatrices/calculatrice-de-salaire',
+        de: '/rechner/gehaltsrechner'
+      },
+      '/calculators/interest-rate-calculator': {
+        en: '/calculators/interest-rate-calculator',
+        es: '/calculadoras/calculadora-tasa-de-interes',
+        fr: '/calculatrices/calculatrice-taux-interet',
+        de: '/rechner/zinssatzrechner'
+      },
+      '/calculators/sales-tax-calculator': {
+        en: '/calculators/sales-tax-calculator',
+        es: '/calculadoras/calculadora-impuesto-ventas',
+        fr: '/calculatrices/calculatrice-taxe-de-vente',
+        de: '/rechner/umsatzsteuerrechner'
+      },
+      '/calculators/graphing-calculator': {
+        en: '/calculators/graphing-calculator',
+        es: '/calculadoras/calculadora-grafica',
+        fr: '/calculatrices/calculatrice-graphique',
+        de: '/rechner/grafikrechner'
+      },
+      '/calculators/scientific-calculator': {
+        en: '/calculators/scientific-calculator',
+        es: '/calculadoras/calculadora-cientifica',
+        fr: '/calculatrices/calculatrice-scientifique',
+        de: '/rechner/wissenschaftlicher-taschenrechner'
+      },
+      '/calculators/percentage-calculator': {
+        en: '/calculators/percentage-calculator',
+        es: '/calculadoras/calculadora-de-porcentajes',
+        fr: '/calculatrices/calculatrice-de-pourcentage',
+        de: '/rechner/prozentrechner'
+      },
+      '/calculators/triangle-calculator': {
+        en: '/calculators/triangle-calculator',
+        es: '/calculadoras/calculadora-de-triangulos',
+        fr: '/calculatrices/calculatrice-de-triangle',
+        de: '/rechner/dreiecksrechner'
+      },
+      '/calculators/standard-deviation-calculator': {
+        en: '/calculators/standard-deviation-calculator',
+        es: '/calculadoras/calculadora-de-desviacion-estandar',
+        fr: '/calculatrices/calculatrice-decart-type',
+        de: '/rechner/standardabweichungs-rechner'
+      },
+      '/calculators/calorie-calculator': {
+        en: '/calculators/calorie-calculator',
+        es: '/calculadoras/calculadora-de-calorias',
+        fr: '/calculatrices/calculateur-de-calories',
+        de: '/rechner/kalorienrechner'
+      },
+      '/calculators/body-fat-calculator': {
+        en: '/calculators/body-fat-calculator',
+        es: '/calculadoras/calculadora-de-grasa-corporal',
+        fr: '/calculatrices/calculatrice-indice-masse-grasse',
+        de: '/rechner/koerperfettanteil-rechner'
+      },
+      '/calculators/bmr-calculator': {
+        en: '/calculators/bmr-calculator',
+        es: '/calculadoras/calculadora-de-tmb',
+        fr: '/calculatrices/calculateur-de-metabolisme-de-base',
+        de: '/rechner/grundumsatzrechner'
+      },
+      '/calculators/ideal-weight-calculator': {
+        en: '/calculators/ideal-weight-calculator',
+        es: '/calculadoras/calculadora-de-peso-ideal',
+        fr: '/calculatrices/calculateur-de-poids-ideal',
+        de: '/rechner/idealgewicht-rechner'
+      },
+      '/calculators/pace-calculator': {
+        en: '/calculators/pace-calculator',
+        es: '/calculadoras/calculadora-de-ritmo',
+        fr: '/calculatrices/calculateur-allure',
+        de: '/rechner/pace-rechner'
+      },
+      '/calculators/ovulation-calculator': {
+        en: '/calculators/ovulation-calculator',
+        es: '/calculadoras/calculadora-de-ovulacion',
+        fr: '/calculatrices/calculateur-d-ovulation',
+        de: '/rechner/eisprungrechner'
+      },
+      '/calculators/pregnancy-calculator': {
+        en: '/calculators/pregnancy-calculator',
+        es: '/calculadoras/calculadora-de-embarazo',
+        fr: '/calculatrices/calculateur-de-grossesse',
+        de: '/rechner/schwangerschaftsrechner'
+      },
+      '/calculators/pregnancy-conception-calculator': {
+        en: '/calculators/pregnancy-conception-calculator',
+        es: '/calculadoras/calculadora-de-concepcion',
+        fr: '/calculatrices/calculateur-de-date-de-conception',
+        de: '/rechner/empfaengnisrechner'
+      },
+      '/calculators/due-date-calculator': {
+        en: '/calculators/due-date-calculator',
+        es: '/calculadoras/calculadora-de-fecha-de-parto',
+        fr: '/calculatrices/calculateur-de-date-d-accouchement',
+        de: '/rechner/geburtsterminrechner'
+      },
+      '/calculators/date-calculator': {
+        en: '/calculators/date-calculator',
+        es: '/calculadoras/calculadora-de-fechas',
+        fr: '/calculatrices/calculateur-de-date',
+        de: '/rechner/datumsrechner'
+      },
+      '/calculators/time-calculator': {
+        en: '/calculators/time-calculator',
+        es: '/calculadoras/calculadora-de-tiempo',
+        fr: '/calculatrices/calculateur-de-temps',
+        de: '/rechner/zeitrechner'
+      },
+      '/calculators/hours-calculator': {
+        en: '/calculators/hours-calculator',
+        es: '/calculadoras/calculadora-de-horas',
+        fr: '/calculatrices/calculateur-d-heures',
+        de: '/rechner/stundenrechner'
+      },
+      '/calculators/gpa-calculator': {
+        en: '/calculators/gpa-calculator',
+        es: '/calculadoras/calculadora-de-gpa',
+        fr: '/calculatrices/calculateur-de-gpa',
+        de: '/rechner/gpa-rechner'
+      },
+      '/calculators/grade-calculator': {
+        en: '/calculators/grade-calculator',
+        es: '/calculadoras/calculadora-de-calificaciones',
+        fr: '/calculatrices/calculateur-de-notes',
+        de: '/rechner/notenrechner'
+      },
+      '/calculators/concrete-calculator': {
+        en: '/calculators/concrete-calculator',
+        es: '/calculadoras/calculadora-de-concreto',
+        fr: '/calculatrices/calculateur-de-beton',
+        de: '/rechner/betonrechner'
+      },
+      '/calculators/scientific-notation-calculator': {
+        en: '/calculators/scientific-notation-calculator',
+        es: '/calculadoras/calculadora-de-notacion-cientifica',
+        fr: '/calculatrices/calculatrice-de-notation-scientifique',
+        de: '/rechner/wissenschaftliche-schreibweise-rechner'
+      },
+      '/calculators/statistics-calculator': {
+        en: '/calculators/statistics-calculator',
+        es: '/calculadoras/calculadora-estadistica',
+        fr: '/calculatrices/calculatrice-statistique',
+        de: '/rechner/statistik-rechner'
+      },
+      '/calculators/fraction-calculator': {
+        en: '/calculators/fraction-calculator',
+        es: '/calculadoras/calculadora-de-fracciones',
+        fr: '/calculatrices/calculatrice-de-fractions',
+        de: '/rechner/bruchrechner'
+      },
+      '/calculators/auto-loan-calculator': {
+        en: '/calculators/auto-loan-calculator',
+        es: '/calculadoras/calculadora-prestamo-auto',
+        fr: '/calculatrices/calculatrice-pret-auto',
+        de: '/rechner/autokreditrechner'
+      },
+      '/calculators/payment-calculator': {
+        en: '/calculators/payment-calculator',
+        es: '/calculadoras/calculadora-de-pagos',
+        fr: '/calculatrices/calculatrice-de-paiement',
+        de: '/rechner/zahlungsrechner'
+      },
+      '/calculators/interest-calculator': {
+        en: '/calculators/interest-calculator',
+        es: '/calculadoras/calculadora-de-interes',
+        fr: '/calculatrices/calculatrice-interets',
+        de: '/rechner/zinsrechner'
+      },
+      '/calculators/student-loan-calculator': {
+        en: '/calculators/student-loan-calculator',
+        es: '/calculadoras/calculadora-prestamos-estudiantiles',
+        fr: '/calculatrices/calculatrice-pret-etudiant',
+        de: '/rechner/studienkredit-rechner'
+      },
+      '/calculators/depreciation-calculator': {
+        en: '/calculators/depreciation-calculator',
+        es: '/calculadoras/calculadora-depreciacion',
+        fr: '/calculatrices/calculateur-amortissement',
+        de: '/rechner/abschreibungsrechner'
+      },
+      '/calculators/business-loan-calculator': {
+        en: '/calculators/business-loan-calculator',
+        es: '/calculadoras/calculadora-prestamos-comerciales',
+        fr: '/calculatrices/calculateur-pret-professionnel',
+        de: '/rechner/firmenkredit-rechner'
+      },
+      '/calculators/personal-loan-calculator': {
+        en: '/calculators/personal-loan-calculator',
+        es: '/calculadoras/calculadora-prestamos-personales',
+        fr: '/calculatrices/calculateur-pret-personnel',
+        de: '/rechner/privatkredit-rechner'
+      },
+      '/calculators/budget-calculator': {
+        en: '/calculators/budget-calculator',
+        es: '/calculadoras/calculadora-presupuesto',
+        fr: '/calculatrices/calculateur-budget',
+        de: '/rechner/budgetrechner'
+      },
+      '/calculators/apr-calculator': {
+        en: '/calculators/apr-calculator',
+        es: '/calculadoras/calculadora-tae',
+        fr: '/calculatrices/calculateur-taeg',
+        de: '/rechner/effektivzins-rechner'
+      },
+      '/calculators/heloc-calculator': {
+        en: '/calculators/heloc-calculator',
+        es: '/calculadoras/calculadora-heloc',
+        fr: '/calculatrices/calculateur-heloc',
+        de: '/rechner/heloc-rechner'
+      },
+      '/calculators/present-value-calculator': {
+        en: '/calculators/present-value-calculator',
+        es: '/calculadoras/calculadora-valor-presente',
+        fr: '/calculatrices/calculateur-valeur-actuelle',
+        de: '/rechner/barwertrechner'
+      },
+      '/calculators/percent-off-calculator': {
+        en: '/calculators/percent-off-calculator',
+        es: '/calculadoras/calculadora-descuento',
+        fr: '/calculatrices/calculateur-pourcentage-reduction',
+        de: '/rechner/prozentsatz-rabatt-rechner'
+      },
+      '/calculators/401k-calculator': {
+        en: '/calculators/401k-calculator',
+        es: '/calculadoras/calculadora-401k',
+        fr: '/calculatrices/calculateur-401k',
+        de: '/rechner/401k-rechner'
+      },
+      '/calculators/marriage-tax-calculator': {
+        en: '/calculators/marriage-tax-calculator',
+        es: '/calculadoras/calculadora-impuesto-matrimonio',
+        fr: '/calculatrices/calculateur-impot-mariage',
+        de: '/rechner/heiratsstrafe-rechner'
+      },
+      '/calculators/annuity-calculator': {
+        en: '/calculators/annuity-calculator',
+        es: '/calculadoras/calculadora-anualidad',
+        fr: '/calculatrices/calculateur-rente',
+        de: '/rechner/rentenrechner'
+      },
+      '/calculators/annuity-payout-calculator': {
+        en: '/calculators/annuity-payout-calculator',
+        es: '/calculadoras/calculadora-de-pagos-de-anualidades',
+        fr: '/calculatrices/calculateur-de-versement-de-rente',
+        de: '/rechner/rentenauszahlungsrechner'
+      },
+      '/calculators/simple-interest-calculator': {
+        en: '/calculators/simple-interest-calculator',
+        es: '/calculadoras/calculadora-de-interes-simple',
+        fr: '/calculatrices/calculateur-d-interet-simple',
+        de: '/rechner/einfacher-zinsrechner'
+      },
+      '/calculators/debt-consolidation-calculator': {
+        en: '/calculators/debt-consolidation-calculator',
+        es: '/calculadoras/calculadora-de-consolidacion-de-deuda',
+        fr: '/calculatrices/calculateur-de-consolidation-de-dettes',
+        de: '/rechner/schuldenkonsolidierungsrechner'
+      },
+      '/calculators/debt-payoff-calculator': {
+        en: '/calculators/debt-payoff-calculator',
+        es: '/calculadoras/calculadora-pago-deudas',
+        fr: '/calculatrices/calculateur-remboursement-dette',
+        de: '/rechner/schulden-tilgungs-rechner'
+      },
+      '/calculators/college-cost-calculator': {
+        en: '/calculators/college-cost-calculator',
+        es: '/calculadoras/calculadora-costo-universidad',
+        fr: '/calculatrices/calculateur-cout-etudes',
+        de: '/rechner/studienkostenrechner'
+      },
+      '/calculators/mutual-fund-calculator': {
+        en: '/calculators/mutual-fund-calculator',
+        es: '/calculadoras/calculadora-fondos-mutuos',
+        fr: '/calculatrices/calculateur-fonds-communs',
+        de: '/rechner/investmentfonds-rechner'
+      },
+      '/calculators/vat-calculator': {
+        en: '/calculators/vat-calculator',
+        es: '/calculadoras/calculadora-iva',
+        fr: '/calculatrices/calculateur-tva',
+        de: '/rechner/mehrwertsteuer-rechner'
+      },
+      '/calculators/rmd-calculator': {
+        en: '/calculators/rmd-calculator',
+        es: '/calculadoras/calculadora-rmd',
+        fr: '/calculatrices/calculateur-rmd',
+        de: '/rechner/rmd-rechner'
+      },
+      '/calculators/bond-calculator': {
+        en: '/calculators/bond-calculator',
+        es: '/calculadoras/calculadora-de-bonos',
+        fr: '/calculatrices/calculateur-d-obligations',
+        de: '/rechner/anleihenrechner'
+      },
+      '/calculators/p-value-calculator': {
+        en: '/calculators/p-value-calculator',
+        es: '/calculadoras/calculadora-de-valor-p',
+        fr: '/calculatrices/calculateur-de-valeur-p',
+        de: '/rechner/p-wert-rechner'
+      },
+      '/calculators/average-return-calculator': {
+        en: '/calculators/average-return-calculator',
+        es: '/calculadoras/calculadora-rendimiento-promedio',
+        fr: '/calculatrices/calculateur-rendement-moyen',
+        de: '/rechner/durchschnittliche-rendite-rechner'
+      },
+      '/calculators/debt-to-income-ratio-calculator': {
+        en: '/calculators/debt-to-income-ratio-calculator',
+        es: '/calculadoras/calculadora-ratio-deuda-ingreso',
+        fr: '/calculatrices/calculateur-ratio-endettement',
+        de: '/rechner/schulden-einkommens-verhaeltnis-rechner'
+      },
+      '/calculators/boat-loan-calculator': {
+        en: '/calculators/boat-loan-calculator',
+        es: '/calculadoras/calculadora-prestamo-barco',
+        fr: '/calculatrices/calculateur-pret-bateau',
+        de: '/rechner/bootskredit-rechner'
+      },
+      '/calculators/rental-property-calculator': {
+        en: '/calculators/rental-property-calculator',
+        es: '/calculadoras/calculadora-propiedad-alquiler',
+        fr: '/calculatrices/calculateur-propriete-locative',
+        de: '/rechner/mietobjekt-rechner'
+      },
+      '/calculators/fha-loan-calculator': {
+        en: '/calculators/fha-loan-calculator',
+        es: '/calculadoras/calculadora-prestamo-fha',
+        fr: '/calculatrices/calculateur-pret-fha',
+        de: '/rechner/fha-kredit-rechner'
+      },
+      '/calculators/down-payment-calculator': {
+        en: '/calculators/down-payment-calculator',
+        es: '/calculadoras/calculadora-pago-inicial',
+        fr: '/calculatrices/calculateur-apport-initial',
+        de: '/rechner/anzahlung-rechner'
+      },
+      '/calculators/future-value-calculator': {
+        en: '/calculators/future-value-calculator',
+        es: '/calculadoras/calculadora-valor-futuro',
+        fr: '/calculatrices/calculateur-valeur-future',
+        de: '/rechner/zukunftswert-rechner'
+      },
+      '/calculators/mortgage-amortization-calculator': {
+        en: '/calculators/mortgage-amortization-calculator',
+        es: '/calculadoras/calculadora-amortizacion-hipoteca',
+        fr: '/calculatrices/calculateur-amortissement-hypothecaire',
+        de: '/rechner/hypothekentilgung-rechner'
+      },
+      '/calculators/house-affordability-calculator': {
+        en: '/calculators/house-affordability-calculator',
+        es: '/calculadoras/calculadora-asequibilidad-vivienda',
+        fr: '/calculatrices/calculateur-abordabilite-maison',
+        de: '/rechner/haus-erschwinglichkeits-rechner'
+      },
+      '/calculators/binary-calculator': {
+        en: '/calculators/binary-calculator',
+        es: '/calculadoras/calculadora-binaria',
+        fr: '/calculatrices/calculatrice-binaire',
+        de: '/rechner/binarrechner'
+      },
+      '/calculators/healthy-weight-calculator': {
+        en: '/calculators/healthy-weight-calculator',
+        es: '/calculadoras/calculadora-de-peso-saludable',
+        fr: '/calculatrices/calculateur-de-poids-sante',
+        de: '/rechner/gesundes-gewicht-rechner'
+      },
+      '/calculators/va-mortgage-calculator': {
+        en: '/calculators/va-mortgage-calculator',
+        es: '/calculadoras/calculadora-de-hipotecas-va',
+        fr: '/calculatrices/calculateur-de-pret-hypothecaire-va',
+        de: '/rechner/va-hypothekenrechner'
+      },
+      '/calculators/rent-vs-buy-calculator': {
+        en: '/calculators/rent-vs-buy-calculator',
+        es: '/calculadoras/calculadora-alquilar-vs-comprar',
+        fr: '/calculatrices/calculateur-louer-vs-acheter',
+        de: '/rechner/mieten-vs-kaufen-rechner'
+      },
+      '/calculators/commission-calculator': {
+        en: '/calculators/commission-calculator',
+        es: '/calculadoras/calculadora-de-comisiones',
+        fr: '/calculatrices/calculateur-de-commission',
+        de: '/rechner/provisionsrechner'
+      },
+      '/calculators/mortgage-payoff-calculator': {
+        en: '/calculators/mortgage-payoff-calculator',
+        es: '/calculadoras/calculadora-pago-hipoteca',
+        fr: '/calculatrices/calculateur-remboursement-hypothecaire',
+        de: '/rechner/hypotheken-tilgungsrechner'
+      },
+      '/calculators/advanced-sleep-cycle-calculator': {
+        en: '/calculators/advanced-sleep-cycle-calculator',
+        es: '/calculadoras/calculadora-avanzada-ciclo-de-sueno',
+        fr: '/calculatrices/calculatrice-avancee-cycle-de-sommeil',
+        de: '/rechner/erweiterter-schlafzyklus-rechner'
+      },
+      // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',
       es: '/calculadoras/categoria/[category]',
