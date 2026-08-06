@@ -1668,6 +1668,87 @@
         "sampleVariance": "Calculer la Variance de l'Échantillon (s²)",
         "sampleVarianceDesc": "Divisez la Somme des Carrés par (N - 1) pour appliquer la correction de Bessel."
       }
+    },
+    "mean": {
+      "inputData": "Saisie du Jeu de Données",
+      "inputDescription": "Entrez votre jeu de données pour calculer diverses moyennes et analyser la distribution.",
+      "rawDataset": "Données Brutes",
+      "frequencyTable": "Tableau de Fréquences",
+      "groupedData": "Données Groupées",
+      "pasteDataset": "Collez ou tapez le jeu de données",
+      "pasteDescription": "Les valeurs peuvent être séparées par des espaces, des virgules ou de nouvelles lignes.",
+      "pasteFreqTable": "Entrez le Tableau de Fréquences",
+      "freqDescription": "Entrez la valeur et la fréquence séparées par une virgule ou un espace sur chaque ligne.",
+      "invalidData": "Données Invalides",
+      "invalidDataDescription": "Veuillez entrer un jeu de données numérique valide.",
+      "arithmeticMean": "Moyenne Arithmétique",
+      "geometricMean": "Moyenne Géométrique",
+      "harmonicMean": "Moyenne Harmonique",
+      "median": "Médiane",
+      "descriptiveStatistics": "Résumé Statistique Détaillé",
+      "metric": "Métrique",
+      "value": "Valeur",
+      "interpretation": "Interprétation Statistique",
+      "visualizations": "Visualisations de la Distribution",
+      "skew_approx_symmetric": "approximativement symétrique",
+      "skew_highly_skewed_left": "fortement asymétrique à gauche",
+      "skew_moderately_skewed_left": "modérément asymétrique à gauche",
+      "skew_highly_skewed_right": "fortement asymétrique à droite",
+      "skew_moderately_skewed_right": "modérément asymétrique à droite",
+      "steps": {
+        "title": "Solveur Étape par Étape"
+      }
+    },
+    "median": {
+      "inputData": "Saisie du Jeu de Données",
+      "inputDescription": "Entrez votre jeu de données pour calculer la médiane, les quartiles et détecter les valeurs aberrantes.",
+      "rawDataset": "Données Brutes",
+      "frequencyTable": "Tableau de Fréquences",
+      "groupedData": "Données Groupées",
+      "pasteDataset": "Collez ou tapez le jeu de données",
+      "pasteDescription": "Les valeurs peuvent être séparées par des espaces, des virgules ou de nouvelles lignes.",
+      "pasteFreqTable": "Entrez le Tableau de Fréquences",
+      "freqDescription": "Entrez la valeur et la fréquence séparées par une virgule ou un espace sur chaque ligne.",
+      "pasteGrouped": "Entrez les Données Groupées (Intervalles de Classe)",
+      "groupedDescription": "Format: min-max, fréquence (ex. 10-20, 15)",
+      "estimatedMedian": "Médiane Estimée (Interpolée)",
+      "groupedDisclaimer": "Remarque : Les visualisations et les statistiques descriptives détaillées ne sont pas disponibles pour les intervalles de classe groupés. Passez aux Données Brutes ou aux Tableaux de Fréquences pour une analyse complète.",
+      "invalidData": "Données Invalides",
+      "invalidDataDescription": "Veuillez entrer un jeu de données numérique valide.",
+      "descriptiveStatistics": "Résumé Statistique Détaillé",
+      "interpretation": "Aperçus du Jeu de Données",
+      "visualizations": "Visualisations de la Distribution",
+      "skew_approx_symmetric": "approximativement symétrique",
+      "skew_highly_skewed_left": "fortement asymétrique à gauche",
+      "skew_moderately_skewed_left": "modérément asymétrique à gauche",
+      "skew_highly_skewed_right": "fortement asymétrique à droite",
+      "skew_moderately_skewed_right": "modérément asymétrique à droite",
+      "steps": {
+        "title": "Solveur Étape par Étape"
+      }
+    },
+    "mode": {
+      "inputData": "Saisie du Jeu de Données",
+      "inputDescription": "Entrez votre jeu de données pour calculer le mode, générer des tableaux de fréquences et analyser la distribution.",
+      "rawDataset": "Données Brutes",
+      "frequencyTable": "Tableau de Fréquences",
+      "groupedData": "Données Groupées",
+      "pasteDataset": "Collez ou tapez le jeu de données",
+      "pasteDescription": "Les valeurs peuvent être séparées par des espaces, des virgules ou de nouvelles lignes.",
+      "pasteFreqTable": "Entrez le Tableau de Fréquences",
+      "freqDescription": "Entrez la valeur et la fréquence séparées par une virgule ou un espace sur chaque ligne.",
+      "pasteGrouped": "Entrez les Données Groupées (Intervalles de Classe)",
+      "groupedDescription": "Format: min-max, fréquence (ex. 10-20, 15)",
+      "estimatedMode": "Mode Estimé (Formule de Classe Groupée)",
+      "groupedDisclaimer": "Remarque : Les visualisations et les statistiques descriptives détaillées ne sont pas disponibles pour les intervalles de classe groupés. Passez aux Données Brutes ou aux Tableaux de Fréquences pour une analyse complète.",
+      "invalidData": "Données Invalides",
+      "invalidDataDescription": "Veuillez entrer un jeu de données numérique valide.",
+      "frequencyTableTitle": "Tableau de Distribution des Fréquences",
+      "interpretation": "Aperçus de la Distribution",
+      "visualizations": "Visualisations Interactives",
+      "steps": {
+        "title": "Solveur Étape par Étape"
+      }
     }
   },
   "ZScoreCalculator": {

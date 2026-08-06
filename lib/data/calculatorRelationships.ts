@@ -710,7 +710,16 @@ export const calculatorRelationships: Record<string, string[]> = {
     'standard-deviation-calculator', 'statistics-calculator', 'probability-calculator', 'p-value-calculator', 't-test-calculator', 'variance-calculator'
   ],
   'variance-calculator': [
-    'standard-deviation-calculator', 'statistics-calculator', 'z-score-calculator', 't-test-calculator'
+    'standard-deviation-calculator', 'statistics-calculator', 'z-score-calculator', 't-test-calculator', 'mean-calculator'
+  ],
+  'mean-calculator': [
+    'median-calculator', 'mode-calculator', 'standard-deviation-calculator', 'variance-calculator', 'statistics-calculator', 'z-score-calculator'
+  ],
+  'median-calculator': [
+    'mean-calculator', 'mode-calculator', 'standard-deviation-calculator', 'variance-calculator', 'statistics-calculator'
+  ],
+  'mode-calculator': [
+    'mean-calculator', 'median-calculator', 'standard-deviation-calculator', 'variance-calculator', 'statistics-calculator'
   ],
   't-test-calculator': [
     'p-value-calculator', 'statistics-calculator', 'standard-deviation-calculator', 'z-score-calculator'

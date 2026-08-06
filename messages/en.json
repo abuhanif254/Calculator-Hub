@@ -1668,6 +1668,87 @@
         "sampleVariance": "Calculate Sample Variance (s²)",
         "sampleVarianceDesc": "Divide the Sum of Squares by (N - 1) to apply Bessel's correction, giving an unbiased estimate of the population variance."
       }
+    },
+    "mean": {
+      "inputData": "Dataset Input",
+      "inputDescription": "Enter your dataset to calculate various means and analyze the distribution.",
+      "rawDataset": "Raw Dataset",
+      "frequencyTable": "Frequency Table",
+      "groupedData": "Grouped Data",
+      "pasteDataset": "Paste or type dataset",
+      "pasteDescription": "Values can be separated by spaces, commas, or new lines.",
+      "pasteFreqTable": "Enter Frequency Table",
+      "freqDescription": "Enter value and frequency separated by comma or space on each line.",
+      "invalidData": "Invalid Data",
+      "invalidDataDescription": "Please enter a valid numeric dataset.",
+      "arithmeticMean": "Arithmetic Mean",
+      "geometricMean": "Geometric Mean",
+      "harmonicMean": "Harmonic Mean",
+      "median": "Median",
+      "descriptiveStatistics": "Detailed Statistical Summary",
+      "metric": "Metric",
+      "value": "Value",
+      "interpretation": "Statistical Interpretation",
+      "visualizations": "Distribution Visualizations",
+      "skew_approx_symmetric": "approximately symmetric",
+      "skew_highly_skewed_left": "highly skewed to the left",
+      "skew_moderately_skewed_left": "moderately skewed to the left",
+      "skew_highly_skewed_right": "highly skewed to the right",
+      "skew_moderately_skewed_right": "moderately skewed to the right",
+      "steps": {
+        "title": "Step-by-Step Solver"
+      }
+    },
+    "median": {
+      "inputData": "Dataset Input",
+      "inputDescription": "Enter your dataset to calculate the median, quartiles, and detect outliers.",
+      "rawDataset": "Raw Dataset",
+      "frequencyTable": "Frequency Table",
+      "groupedData": "Grouped Data",
+      "pasteDataset": "Paste or type dataset",
+      "pasteDescription": "Values can be separated by spaces, commas, or new lines.",
+      "pasteFreqTable": "Enter Frequency Table",
+      "freqDescription": "Enter value and frequency separated by comma or space on each line.",
+      "pasteGrouped": "Enter Grouped Data (Class Intervals)",
+      "groupedDescription": "Format: min-max, frequency (e.g. 10-20, 15)",
+      "estimatedMedian": "Estimated Median (Interpolated)",
+      "groupedDisclaimer": "Note: Visualizations and detailed descriptive statistics are not available for grouped class intervals. Switch to Raw Data or Frequency Tables for a complete analysis.",
+      "invalidData": "Invalid Data",
+      "invalidDataDescription": "Please enter a valid numeric dataset.",
+      "descriptiveStatistics": "Detailed Statistical Summary",
+      "interpretation": "Dataset Insights",
+      "visualizations": "Distribution Visualizations",
+      "skew_approx_symmetric": "approximately symmetric",
+      "skew_highly_skewed_left": "highly skewed to the left",
+      "skew_moderately_skewed_left": "moderately skewed to the left",
+      "skew_highly_skewed_right": "highly skewed to the right",
+      "skew_moderately_skewed_right": "moderately skewed to the right",
+      "steps": {
+        "title": "Step-by-Step Solver"
+      }
+    },
+    "mode": {
+      "inputData": "Dataset Input",
+      "inputDescription": "Enter your dataset to calculate modes, generate frequency tables, and analyze the distribution.",
+      "rawDataset": "Raw Dataset",
+      "frequencyTable": "Frequency Table",
+      "groupedData": "Grouped Data",
+      "pasteDataset": "Paste or type dataset",
+      "pasteDescription": "Values can be separated by spaces, commas, or new lines.",
+      "pasteFreqTable": "Enter Frequency Table",
+      "freqDescription": "Enter value and frequency separated by comma or space on each line.",
+      "pasteGrouped": "Enter Grouped Data (Class Intervals)",
+      "groupedDescription": "Format: min-max, frequency (e.g. 10-20, 15)",
+      "estimatedMode": "Estimated Mode (Grouped Class Formula)",
+      "groupedDisclaimer": "Note: Visualizations and detailed descriptive statistics are not available for grouped class intervals. Switch to Raw Data or Frequency Tables for a complete analysis.",
+      "invalidData": "Invalid Data",
+      "invalidDataDescription": "Please enter a valid numeric dataset.",
+      "frequencyTableTitle": "Frequency Distribution Table",
+      "interpretation": "Distribution Insights",
+      "visualizations": "Interactive Visualizations",
+      "steps": {
+        "title": "Step-by-Step Solver"
+      }
     }
   },
   "ZScoreCalculator": {

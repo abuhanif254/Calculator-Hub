@@ -62,6 +62,67 @@ export const calculators: CalculatorDef[] = [
     logicModule: "math"
   },
   {
+    slug: "mean-calculator",
+    slugs: {
+      en: "mean-calculator",
+      es: "calculadora-de-media",
+      de: "mittelwertrechner",
+      fr: "calculatrice-de-moyenne"
+    },
+    title: "Mean Calculator",
+    category: "Statistics & Probability",
+    description: "Calculate arithmetic, weighted, geometric, harmonic, and trimmed means. Includes comprehensive dataset analysis, descriptive statistics, and interactive distributions.",
+    meta: {
+      title: "Mean Calculator | Arithmetic, Weighted, Geometric & Harmonic Mean",
+      description: "Use our free Mean Calculator to calculate arithmetic, weighted, geometric, harmonic, and grouped means. Includes descriptive statistics, interactive charts, and step-by-step solutions.",
+      keywords: "mean calculator, arithmetic mean, weighted mean, geometric mean, harmonic mean, grouped data mean, central tendency, descriptive statistics",
+      lastUpdated: "2026-08-06"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "median-calculator",
+    slugs: {
+      en: "median-calculator",
+      es: "calculadora-de-mediana",
+      de: "median-rechner",
+      fr: "calculatrice-de-mediane"
+    },
+
+    title: "Median Calculator",
+    category: "Statistics & Probability",
+    description: "Calculate the median, quartiles, percentiles, and five-number summary. Includes interactive box plots, histograms, and outlier detection.",
+    meta: {
+      title: "Median Calculator | Find the Median with Step-by-Step Solutions",
+      description: "Use our free Median Calculator to calculate the median, quartiles, interquartile range (IQR), percentiles, and five-number summary. Includes interactive charts and step-by-step solutions.",
+      keywords: "median calculator, interquartile range, IQR, quartile calculator, five number summary, percentile calculator, robust statistics, descriptive statistics",
+      lastUpdated: "2026-08-06"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
+    slug: "mode-calculator",
+    slugs: {
+      en: "mode-calculator",
+      es: "calculadora-de-moda",
+      de: "modus-rechner",
+      fr: "calculatrice-de-mode"
+    },
+    title: "Mode Calculator",
+    category: "Statistics & Probability",
+    description: "Calculate single, bi-modal, multi-modal, and grouped data modes. Generate frequency tables and interactive charts.",
+    meta: {
+      title: "Mode Calculator | Find Single, Multiple & Grouped Data Modes",
+      description: "Use our free Mode Calculator to calculate single, bi-modal, multi-modal, and grouped data modes. Generate frequency tables, interactive charts, and descriptive statistics.",
+      keywords: "mode calculator, frequency distribution, multimodal, bimodal, grouped data mode, descriptive statistics",
+      lastUpdated: "2026-08-06"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "probability-calculator",
     slugs: {
       en: "probability-calculator",

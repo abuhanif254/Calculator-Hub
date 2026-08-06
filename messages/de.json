@@ -1668,6 +1668,87 @@
         "sampleVariance": "Stichprobenvarianz berechnen (s²)",
         "sampleVarianceDesc": "Teilen Sie die Summe der Quadrate durch (N - 1), um die Bessel-Korrektur anzuwenden."
       }
+    },
+    "mean": {
+      "inputData": "Datensatzeingabe",
+      "inputDescription": "Geben Sie Ihren Datensatz ein, um verschiedene Mittelwerte zu berechnen und die Verteilung zu analysieren.",
+      "rawDataset": "Rohdaten",
+      "frequencyTable": "Häufigkeitstabelle",
+      "groupedData": "Gruppierte Daten",
+      "pasteDataset": "Datensatz einfügen oder eingeben",
+      "pasteDescription": "Werte können durch Leerzeichen, Kommas oder Zeilenumbrüche getrennt werden.",
+      "pasteFreqTable": "Häufigkeitstabelle eingeben",
+      "freqDescription": "Geben Sie Wert und Häufigkeit durch Komma oder Leerzeichen getrennt in jede Zeile ein.",
+      "invalidData": "Ungültige Daten",
+      "invalidDataDescription": "Bitte geben Sie einen gültigen numerischen Datensatz ein.",
+      "arithmeticMean": "Arithmetisches Mittel",
+      "geometricMean": "Geometrisches Mittel",
+      "harmonicMean": "Harmonisches Mittel",
+      "median": "Median",
+      "descriptiveStatistics": "Detaillierte Statistische Zusammenfassung",
+      "metric": "Metrik",
+      "value": "Wert",
+      "interpretation": "Statistische Interpretation",
+      "visualizations": "Verteilungsvisualisierungen",
+      "skew_approx_symmetric": "annähernd symmetrisch",
+      "skew_highly_skewed_left": "stark linksschief",
+      "skew_moderately_skewed_left": "mäßig linksschief",
+      "skew_highly_skewed_right": "stark rechtsschief",
+      "skew_moderately_skewed_right": "mäßig rechtsschief",
+      "steps": {
+        "title": "Schritt-für-Schritt-Löser"
+      }
+    },
+    "median": {
+      "inputData": "Datensatzeingabe",
+      "inputDescription": "Geben Sie Ihren Datensatz ein, um den Median, Quartile zu berechnen und Ausreißer zu erkennen.",
+      "rawDataset": "Rohdaten",
+      "frequencyTable": "Häufigkeitstabelle",
+      "groupedData": "Gruppierte Daten",
+      "pasteDataset": "Datensatz einfügen oder eingeben",
+      "pasteDescription": "Werte können durch Leerzeichen, Kommas oder Zeilenumbrüche getrennt werden.",
+      "pasteFreqTable": "Häufigkeitstabelle eingeben",
+      "freqDescription": "Geben Sie Wert und Häufigkeit durch Komma oder Leerzeichen getrennt in jede Zeile ein.",
+      "pasteGrouped": "Gruppierte Daten eingeben (Klassenintervalle)",
+      "groupedDescription": "Format: min-max, Häufigkeit (z. B. 10-20, 15)",
+      "estimatedMedian": "Geschätzter Median (Interpoliert)",
+      "groupedDisclaimer": "Hinweis: Visualisierungen und detaillierte deskriptive Statistiken sind für gruppierte Klassenintervalle nicht verfügbar. Wechseln Sie für eine vollständige Analyse zu Rohdaten oder Häufigkeitstabellen.",
+      "invalidData": "Ungültige Daten",
+      "invalidDataDescription": "Bitte geben Sie einen gültigen numerischen Datensatz ein.",
+      "descriptiveStatistics": "Detaillierte Statistische Zusammenfassung",
+      "interpretation": "Einblicke in den Datensatz",
+      "visualizations": "Verteilungsvisualisierungen",
+      "skew_approx_symmetric": "annähernd symmetrisch",
+      "skew_highly_skewed_left": "stark linksschief",
+      "skew_moderately_skewed_left": "mäßig linksschief",
+      "skew_highly_skewed_right": "stark rechtsschief",
+      "skew_moderately_skewed_right": "mäßig rechtsschief",
+      "steps": {
+        "title": "Schritt-für-Schritt-Löser"
+      }
+    },
+    "mode": {
+      "inputData": "Datensatzeingabe",
+      "inputDescription": "Geben Sie Ihren Datensatz ein, um den Modus zu berechnen, Häufigkeitstabellen zu erstellen und die Verteilung zu analysieren.",
+      "rawDataset": "Rohdaten",
+      "frequencyTable": "Häufigkeitstabelle",
+      "groupedData": "Gruppierte Daten",
+      "pasteDataset": "Datensatz einfügen oder eingeben",
+      "pasteDescription": "Werte können durch Leerzeichen, Kommas oder Zeilenumbrüche getrennt werden.",
+      "pasteFreqTable": "Häufigkeitstabelle eingeben",
+      "freqDescription": "Geben Sie Wert und Häufigkeit durch Komma oder Leerzeichen getrennt in jede Zeile ein.",
+      "pasteGrouped": "Gruppierte Daten eingeben (Klassenintervalle)",
+      "groupedDescription": "Format: min-max, Häufigkeit (z. B. 10-20, 15)",
+      "estimatedMode": "Geschätzter Modus (Gruppierte Klassenformel)",
+      "groupedDisclaimer": "Hinweis: Visualisierungen und detaillierte deskriptive Statistiken sind für gruppierte Klassenintervalle nicht verfügbar. Wechseln Sie für eine vollständige Analyse zu Rohdaten oder Häufigkeitstabellen.",
+      "invalidData": "Ungültige Daten",
+      "invalidDataDescription": "Bitte geben Sie einen gültigen numerischen Datensatz ein.",
+      "frequencyTableTitle": "Häufigkeitsverteilungstabelle",
+      "interpretation": "Verteilungseinblicke",
+      "visualizations": "Interaktive Visualisierungen",
+      "steps": {
+        "title": "Schritt-für-Schritt-Löser"
+      }
     }
   },
   "ZScoreCalculator": {
