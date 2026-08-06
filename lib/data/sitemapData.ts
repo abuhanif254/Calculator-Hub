@@ -152,7 +152,7 @@ export const sitemapCategories = [
     icon: BarChart,
     description: "Analyze datasets, calculate probabilities, and solve statistical problems.",
     links: [
-      "Probability Calculator", "Z-Score Calculator", "T-Test Calculator", "Variance Calculator"
+      "Probability Calculator", "Z-Score Calculator", "T-Test Calculator", "Variance Calculator", "Mean Calculator", "Median Calculator", "Mode Calculator"
     ]
   },
   {

@@ -1668,6 +1668,87 @@
         "sampleVariance": "Calcular la Varianza Muestral (s²)",
         "sampleVarianceDesc": "Divida la Suma de Cuadrados por (N - 1) para aplicar la corrección de Bessel."
       }
+    },
+    "mean": {
+      "inputData": "Entrada de Conjunto de Datos",
+      "inputDescription": "Ingrese su conjunto de datos para calcular varias medias y analizar la distribución.",
+      "rawDataset": "Datos Crudos",
+      "frequencyTable": "Tabla de Frecuencias",
+      "groupedData": "Datos Agrupados",
+      "pasteDataset": "Pegue o escriba el conjunto de datos",
+      "pasteDescription": "Los valores pueden separarse con espacios, comas o nuevas líneas.",
+      "pasteFreqTable": "Ingrese Tabla de Frecuencias",
+      "freqDescription": "Ingrese el valor y la frecuencia separados por coma o espacio en cada línea.",
+      "invalidData": "Datos Inválidos",
+      "invalidDataDescription": "Por favor, introduzca un conjunto de datos numérico válido.",
+      "arithmeticMean": "Media Aritmética",
+      "geometricMean": "Media Geométrica",
+      "harmonicMean": "Media Armónica",
+      "median": "Mediana",
+      "descriptiveStatistics": "Resumen Estadístico Detallado",
+      "metric": "Métrica",
+      "value": "Valor",
+      "interpretation": "Interpretación Estadística",
+      "visualizations": "Visualizaciones de Distribución",
+      "skew_approx_symmetric": "aproximadamente simétrica",
+      "skew_highly_skewed_left": "altamente sesgada a la izquierda",
+      "skew_moderately_skewed_left": "moderadamente sesgada a la izquierda",
+      "skew_highly_skewed_right": "altamente sesgada a la derecha",
+      "skew_moderately_skewed_right": "moderadamente sesgada a la derecha",
+      "steps": {
+        "title": "Solucionador Paso a Paso"
+      }
+    },
+    "median": {
+      "inputData": "Entrada de Conjunto de Datos",
+      "inputDescription": "Ingrese su conjunto de datos para calcular la mediana, los cuartiles y detectar valores atípicos.",
+      "rawDataset": "Datos Crudos",
+      "frequencyTable": "Tabla de Frecuencias",
+      "groupedData": "Datos Agrupados",
+      "pasteDataset": "Pegue o escriba el conjunto de datos",
+      "pasteDescription": "Los valores pueden separarse con espacios, comas o nuevas líneas.",
+      "pasteFreqTable": "Ingrese Tabla de Frecuencias",
+      "freqDescription": "Ingrese el valor y la frecuencia separados por coma o espacio en cada línea.",
+      "pasteGrouped": "Ingrese Datos Agrupados (Intervalos de Clase)",
+      "groupedDescription": "Formato: min-max, frecuencia (ej. 10-20, 15)",
+      "estimatedMedian": "Mediana Estimada (Interpolada)",
+      "groupedDisclaimer": "Nota: Las visualizaciones y estadísticas descriptivas detalladas no están disponibles para intervalos de clase agrupados. Cambie a Datos Crudos o Tablas de Frecuencias para un análisis completo.",
+      "invalidData": "Datos Inválidos",
+      "invalidDataDescription": "Por favor, introduzca un conjunto de datos numérico válido.",
+      "descriptiveStatistics": "Resumen Estadístico Detallado",
+      "interpretation": "Perspectivas del Conjunto de Datos",
+      "visualizations": "Visualizaciones de Distribución",
+      "skew_approx_symmetric": "aproximadamente simétrica",
+      "skew_highly_skewed_left": "altamente sesgada a la izquierda",
+      "skew_moderately_skewed_left": "moderadamente sesgada a la izquierda",
+      "skew_highly_skewed_right": "altamente sesgada a la derecha",
+      "skew_moderately_skewed_right": "moderadamente sesgada a la derecha",
+      "steps": {
+        "title": "Solucionador Paso a Paso"
+      }
+    },
+    "mode": {
+      "inputData": "Entrada de Conjunto de Datos",
+      "inputDescription": "Ingrese su conjunto de datos para calcular modos, generar tablas de frecuencia y analizar la distribución.",
+      "rawDataset": "Datos Crudos",
+      "frequencyTable": "Tabla de Frecuencias",
+      "groupedData": "Datos Agrupados",
+      "pasteDataset": "Pegue o escriba el conjunto de datos",
+      "pasteDescription": "Los valores pueden separarse con espacios, comas o nuevas líneas.",
+      "pasteFreqTable": "Ingrese Tabla de Frecuencias",
+      "freqDescription": "Ingrese el valor y la frecuencia separados por coma o espacio en cada línea.",
+      "pasteGrouped": "Ingrese Datos Agrupados (Intervalos de Clase)",
+      "groupedDescription": "Formato: min-max, frecuencia (ej. 10-20, 15)",
+      "estimatedMode": "Moda Estimada (Fórmula de Clase Agrupada)",
+      "groupedDisclaimer": "Nota: Las visualizaciones y estadísticas descriptivas detalladas no están disponibles para intervalos de clase agrupados. Cambie a Datos Crudos o Tablas de Frecuencias para un análisis completo.",
+      "invalidData": "Datos Inválidos",
+      "invalidDataDescription": "Por favor, introduzca un conjunto de datos numérico válido.",
+      "frequencyTableTitle": "Tabla de Distribución de Frecuencias",
+      "interpretation": "Perspectivas de Distribución",
+      "visualizations": "Visualizaciones Interactivas",
+      "steps": {
+        "title": "Solucionador Paso a Paso"
+      }
     }
   },
   "ZScoreCalculator": {
