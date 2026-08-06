@@ -824,7 +824,17 @@
     "sum": "Somme",
     "waiting": "Entrez des données numériques pour voir les statistiques.",
     "invalidInput": "Entrée non valide détectée. Assurez-vous que toutes les valeurs sont des nombres.",
-    "notEnoughData": "Veuillez entrer au moins 2 nombres."
+    "notEnoughData": "Veuillez entrer au moins 2 nombres.",
+    "title": "Calculatrice d'Écart-Type",
+    "rawData": "Données Brutes",
+    "frequency": "Fréquence",
+    "grouped": "Groupés",
+    "freqTable": "Tableau de Fréquences",
+    "groupedData": "Données Groupées",
+    "freqFormat": "Format : Valeur, Fréquence\\n15, 3\\n18, 2",
+    "groupedFormat": "Format : Plage, Fréquence\\n0-10, 5\\n10-20, 20",
+    "stdError": "Erreur Standard",
+    "coefOfVar": "Coef de Var."
   },
   "CalorieCalculator": {
     "age": "Âge",

@@ -1309,7 +1309,7 @@ export function resolveIntlHref(hrefStr: string): any {
   // we MUST return the string directly. Using the dynamic object catch-all
   // for a statically mapped path causes next-intl to crash.
   if (hrefStr in routing.pathnames) {
-    return hrefStr;
+    return { pathname: hrefStr as any };
   }
   
   if (hrefStr.startsWith('/calculators/category/')) {
@@ -1344,5 +1344,5 @@ export function resolveIntlHref(hrefStr: string): any {
     }
   }
   
-  return hrefStr;
+  return { pathname: hrefStr as any };
 }

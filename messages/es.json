@@ -824,7 +824,17 @@
     "sum": "Suma",
     "waiting": "Ingrese datos numéricos para ver estadísticas.",
     "invalidInput": "Entrada no válida. Asegúrese de que todos los valores sean números.",
-    "notEnoughData": "Ingrese al menos 2 números para calcular la desviación."
+    "notEnoughData": "Ingrese al menos 2 números para calcular la desviación.",
+    "title": "Calculadora de Desviación Estándar",
+    "rawData": "Datos Brutos",
+    "frequency": "Frecuencia",
+    "grouped": "Agrupados",
+    "freqTable": "Tabla de Frecuencias",
+    "groupedData": "Datos Agrupados",
+    "freqFormat": "Formato: Valor, Frecuencia\\n15, 3\\n18, 2",
+    "groupedFormat": "Formato: Rango, Frecuencia\\n0-10, 5\\n10-20, 20",
+    "stdError": "Error Estándar",
+    "coefOfVar": "Coef de Var."
   },
   "CalorieCalculator": {
     "age": "Edad",

@@ -824,7 +824,17 @@
     "sum": "Summe",
     "waiting": "Geben Sie numerische Daten ein.",
     "invalidInput": "Ungültige Eingabe. Stellen Sie sicher, dass alles Zahlen sind.",
-    "notEnoughData": "Bitte geben Sie mindestens 2 Zahlen ein."
+    "notEnoughData": "Bitte geben Sie mindestens 2 Zahlen ein.",
+    "title": "Standardabweichungs-Rechner",
+    "rawData": "Rohdaten",
+    "frequency": "Frequenz",
+    "grouped": "Gruppiert",
+    "freqTable": "Häufigkeitstabelle",
+    "groupedData": "Gruppierte Daten",
+    "freqFormat": "Format: Wert, Häufigkeit\\n15, 3\\n18, 2",
+    "groupedFormat": "Format: Bereich, Häufigkeit\\n0-10, 5\\n10-20, 20",
+    "stdError": "Standardfehler",
+    "coefOfVar": "Var.-Koeff."
   },
   "CalorieCalculator": {
     "age": "Alter",
