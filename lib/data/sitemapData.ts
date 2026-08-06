@@ -42,7 +42,7 @@ export const sitemapCategories = [
     description: "Solve complex mathematical equations, geometry problems, and statistical analysis with precision.",
     links: [
       "Graphing Calculator", "Scientific Calculator", "Fraction Calculator", "Percentage Calculator",
-      "Triangle Calculator", "Standard Deviation Calculator", "Volume Calculator", "Percent Error Calculator",
+      "Triangle Calculator", "Volume Calculator", "Percent Error Calculator",
       "Scientific Notation Calculator", "Binary Calculator", "Half-Life Calculator", "Statistics Calculator", "P-Value Calculator"
     ]
   },
@@ -152,7 +152,7 @@ export const sitemapCategories = [
     icon: BarChart,
     description: "Analyze datasets, calculate probabilities, and solve statistical problems.",
     links: [
-      "Probability Calculator", "Z-Score Calculator", "T-Test Calculator", "Variance Calculator", "Mean Calculator", "Median Calculator", "Mode Calculator"
+      "Standard Deviation Calculator", "Probability Calculator", "Z-Score Calculator", "T-Test Calculator", "Variance Calculator", "Mean Calculator", "Median Calculator", "Mode Calculator"
     ]
   },
   {

@@ -158,7 +158,7 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'percentage-calculator': dynamic(() => import('@/app/components/PercentageCalculatorView').then(m => ({ default: m.PercentageCalculatorView as ComponentType<CalcComponentProps> }))),
   'random-number-generator': dynamic(() => import('@/app/components/RandomNumberGeneratorView').then(m => ({ default: m.RandomNumberGeneratorView as ComponentType<CalcComponentProps> }))),
   'triangle-calculator': dynamic(() => import('@/app/components/TriangleCalculatorView').then(m => ({ default: m.TriangleCalculatorView as ComponentType<CalcComponentProps> }))),
-  'standard-deviation-calculator': dynamic(() => import('@/app/components/StandardDeviationCalculatorView').then(m => ({ default: m.StandardDeviationCalculatorView as ComponentType<CalcComponentProps> }))),
+  'standard-deviation-calculator': dynamic(() => import('@/app/components/StandardDeviationCalculator/StandardDeviationCalculator').then(m => ({ default: m.default as ComponentType<CalcComponentProps> }))),
   'statistics-calculator': dynamic(() => import('@/app/components/StatisticsCalculatorView').then(m => ({ default: m.StatisticsCalculatorView as ComponentType<CalcComponentProps> }))),
   'variance-calculator': dynamic(() => import('@/app/components/VarianceCalculator/VarianceCalculator').then(m => ({ default: m.default as ComponentType<CalcComponentProps> }))),
   'mean-calculator': dynamic(() => import('@/app/components/MeanCalculator/MeanCalculator').then(m => ({ default: m.default as ComponentType<CalcComponentProps> }))),

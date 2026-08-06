@@ -574,7 +574,7 @@ export const calculators: CalculatorDef[] = [
       fr: "calculatrice-decart-type"
     },
     title: "Standard Deviation Calculator",
-    category: "Math",
+    category: "Statistics & Probability",
     description: "Calculate standard deviation, variance, mean, count, and sum. Supports population and sample data sets.",
     meta: {
       title: "Standard Deviation Calculator | Population & Sample",

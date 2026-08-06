@@ -824,7 +824,17 @@
     "sum": "Sum",
     "waiting": "Enter numerical data to see statistics.",
     "invalidInput": "Invalid input detected. Please ensure all values are numbers.",
-    "notEnoughData": "Please enter at least 2 numbers to calculate standard deviation."
+    "notEnoughData": "Please enter at least 2 numbers to calculate standard deviation.",
+    "title": "Standard Deviation Calculator",
+    "rawData": "Raw Data",
+    "frequency": "Frequency",
+    "grouped": "Grouped",
+    "freqTable": "Frequency Table",
+    "groupedData": "Grouped Data",
+    "freqFormat": "Format: Value, Frequency\\n15, 3\\n18, 2",
+    "groupedFormat": "Format: Range, Frequency\\n0-10, 5\\n10-20, 20",
+    "stdError": "Std Error",
+    "coefOfVar": "Coef of Var."
   },
   "CalorieCalculator": {
     "age": "Age",
