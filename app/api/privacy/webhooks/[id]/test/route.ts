@@ -1,19 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { createHmac } from 'crypto';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { data: webhook, error } = await supabase
       .from('webhooks')
       .select('id, url, signing_secret')
       .eq('id', id)
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .single();
 
     if (error) throw error;
@@ -51,7 +55,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
         last_status_code: status
       })
       .eq('id', webhook.id)
-      .eq('user_id', user.id);
+      .eq('user_id', uid);
 
     return NextResponse.json({ success: true, status, url: webhook.url });
   } catch (err: any) {

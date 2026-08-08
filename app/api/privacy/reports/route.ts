@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 import { createClient } from '@/lib/supabase/server';
 
 export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
 
     // findingsByRisk
     const { data: findingsRiskData, error: findingsRiskError } = await supabase
       .from('scan_findings')
       .select('risk_level')
-      .eq('user_id', user.id);
+      .eq('user_id', uid);
 
     if (findingsRiskError) throw findingsRiskError;
     
@@ -42,7 +42,7 @@ export async function GET(req: NextRequest) {
     const { data: scansData, error: scansError } = await supabase
       .from('scans')
       .select('started_at, findings_count')
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .gte('started_at', sevenDaysAgo.toISOString());
 
     if (scansError) throw scansError;
@@ -75,7 +75,7 @@ export async function GET(req: NextRequest) {
     const { data: complianceData, error: complianceError } = await supabase
       .from('compliance_states')
       .select('framework, score')
-      .eq('user_id', user.id);
+      .eq('user_id', uid);
     
     if (complianceError) throw complianceError;
     const complianceScores = (complianceData || []).map(c => ({
@@ -87,7 +87,7 @@ export async function GET(req: NextRequest) {
     const { data: topConnectionsData, error: topConnError } = await supabase
       .from('scans')
       .select('connection_id, findings_count, connections(name)')
-      .eq('user_id', user.id);
+      .eq('user_id', uid);
 
     if (topConnError) throw topConnError;
 

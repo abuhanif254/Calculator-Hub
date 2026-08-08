@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 export async function POST(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
 
     const type = req.nextUrl.searchParams.get('type');
     if (!type || !['findings', 'rules'].includes(type)) {
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
 
     for (const row of rows) {
       try {
-        const insertData = { ...row, user_id: user.id };
+        const insertData = { ...row, user_id: uid };
         const { error } = await supabase
           .from(tableName)
           .upsert(insertData);
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    void writeAudit(user.id, user.email || '', {
+    void writeAudit(uid, email ?? '', {
       action: 'DATA_IMPORTED',
       category: 'system',
       severity: 'info',

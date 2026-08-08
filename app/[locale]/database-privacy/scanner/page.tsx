@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Search, Shield, AlertTriangle, CheckCircle, Download, Loader2,
@@ -126,7 +127,7 @@ export default function PiiScanner() {
   useEffect(() => {
     if (activeTab !== 'database') return;
     setConnLoading(true);
-    fetch('/api/privacy/connections')
+    privacyFetch('/api/privacy/connections')
       .then(r => r.json())
       .then(d => setConnections(d.connections ?? []))
       .catch(() => {})
@@ -140,7 +141,7 @@ export default function PiiScanner() {
     setSchemaError('');
     setSelectedTables(new Set());
     setScanResult(null);
-    fetch(`/api/privacy/connections/${selectedConn}/schema`)
+    privacyFetch(`/api/privacy/connections/${selectedConn}/schema`)
       .then(r => r.json())
       .then(d => {
         if (d.error) throw new Error(d.error);
@@ -184,7 +185,7 @@ export default function PiiScanner() {
     setScanError('');
     setScanResult(null);
     try {
-      const res = await fetch('/api/privacy/scans', {
+      const res = await privacyFetch('/api/privacy/scans', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ connectionId: selectedConn, selectedTables: Array.from(selectedTables) }),
@@ -192,7 +193,7 @@ export default function PiiScanner() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? 'Scan failed');
       // Fetch findings
-      const findRes = await fetch(`/api/privacy/scans/${data.scanId}/findings`);
+      const findRes = await privacyFetch(`/api/privacy/scans/${data.scanId}/findings`);
       const findData = await findRes.json();
       setScanResult({ meta: findData.scan, findings: findData.findings ?? [] });
     } catch (e: any) {

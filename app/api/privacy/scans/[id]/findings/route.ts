@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 // ── GET /api/privacy/scans/[id]/findings ─────────────────────────────────────
 export async function GET(
@@ -8,17 +9,19 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const supabase = await createClient();
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid } = privacyUser;
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const supabase = await createClient();
 
     // Verify scan belongs to this user
     const { data: scan, error: scanErr } = await supabase
       .from('scans')
       .select('id, status, tables_scanned, rows_scanned, findings_count, connection_name, started_at, completed_at')
       .eq('id', id)
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .single();
 
     if (scanErr || !scan) return NextResponse.json({ error: 'Scan not found' }, { status: 404 });

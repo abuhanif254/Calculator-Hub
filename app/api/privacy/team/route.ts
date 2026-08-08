@@ -1,17 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { data: members, error } = await supabase
       .from('team_members')
       .select('id, email, display_name, role, status, invited_at, joined_at')
-      .eq('owner_id', user.id);
+      .eq('owner_id', uid);
 
     if (error) throw error;
 
@@ -23,16 +26,18 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email: userEmail } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { email, role } = await req.json();
 
     const { data: existing } = await supabase
       .from('team_members')
       .select('id')
-      .eq('owner_id', user.id)
+      .eq('owner_id', uid)
       .eq('email', email)
       .single();
     
@@ -43,7 +48,7 @@ export async function POST(req: NextRequest) {
     const { data: member, error } = await supabase
       .from('team_members')
       .insert({
-        owner_id: user.id,
+        owner_id: uid,
         email,
         role,
         status: 'invited',
@@ -54,7 +59,7 @@ export async function POST(req: NextRequest) {
 
     if (error) throw error;
 
-    void writeAudit(user.id, user.email || '', {
+    void writeAudit(uid, userEmail ?? '', {
       action: 'TEAM_MEMBER_INVITED',
       category: 'system',
       severity: 'info',

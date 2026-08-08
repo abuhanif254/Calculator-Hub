@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 const TEMPLATES = [
   { id: 'gdpr', name: "GDPR Starter Kit", category: "Compliance", desc: "Baseline rules for EU GDPR compliance. Masks PII like names, emails, and IPs.", rules: 12, icon: "🇪🇺",
@@ -79,7 +80,7 @@ export default function TemplatesPage() {
       // Create all rules for this template via the masking-rules API
       const results = await Promise.allSettled(
         template.rulePayloads.map(payload =>
-          fetch('/api/privacy/masking-rules', {
+          privacyFetch('/api/privacy/masking-rules', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -110,7 +111,7 @@ export default function TemplatesPage() {
       if (!Array.isArray(rules)) throw new Error('JSON must be an array of rules');
       const results = await Promise.allSettled(
         rules.map((rule: any) =>
-          fetch('/api/privacy/masking-rules', {
+          privacyFetch('/api/privacy/masking-rules', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(rule),

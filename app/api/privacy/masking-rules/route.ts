@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 // ── GET /api/privacy/masking-rules ── List user's rules ───────────────────────
 export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { searchParams } = new URL(req.url);
     const connectionId = searchParams.get('connectionId');
@@ -15,7 +18,7 @@ export async function GET(req: NextRequest) {
     let query = supabase
       .from('masking_rules')
       .select('id, connection_id, connection_name, table_name, column_name, detector_id, detector_name, risk_level, strategy, is_active, created_at')
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .order('created_at', { ascending: false });
 
     if (connectionId) query = query.eq('connection_id', connectionId);
@@ -31,9 +34,11 @@ export async function GET(req: NextRequest) {
 // ── POST /api/privacy/masking-rules ── Create a rule ─────────────────────────
 export async function POST(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const body = await req.json();
     const {
@@ -50,7 +55,7 @@ export async function POST(req: NextRequest) {
     const { data, error } = await supabase
       .from('masking_rules')
       .insert({
-        user_id: user.id,
+        user_id: uid,
         connection_id: connection_id || null,
         connection_name: connection_name || null,
         table_name, column_name,
@@ -68,7 +73,7 @@ export async function POST(req: NextRequest) {
       throw error;
     }
 
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'RULE_CREATED', category: 'rule', severity: 'info',
       resource: `${table_name}.${column_name}`,
       details: { detector_id, strategy, risk_level, connection_name },

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { Trash2, Plus, RefreshCw, X, CheckCircle, XCircle, Copy, AlertTriangle } from 'lucide-react';
 
 interface Webhook {
@@ -43,7 +44,7 @@ export default function WebhooksPage() {
   const fetchWebhooks = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/privacy/webhooks');
+      const res = await privacyFetch('/api/privacy/webhooks');
       if (!res.ok) throw new Error('Failed to fetch webhooks');
       const data = await res.json();
       setWebhooks(data.webhooks || []);
@@ -70,7 +71,7 @@ export default function WebhooksPage() {
 
     try {
       setSaving(true);
-      const res = await fetch('/api/privacy/webhooks', {
+      const res = await privacyFetch('/api/privacy/webhooks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
@@ -96,7 +97,7 @@ export default function WebhooksPage() {
     const originalState = webhook.is_active;
     setWebhooks(prev => prev.map(w => w.id === webhook.id ? { ...w, is_active: !originalState } : w));
     try {
-      const res = await fetch(`/api/privacy/webhooks/${webhook.id}`, {
+      const res = await privacyFetch(`/api/privacy/webhooks/${webhook.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ is_active: !originalState })
@@ -112,7 +113,7 @@ export default function WebhooksPage() {
   const handleTest = async (id: string) => {
     try {
       setTestingId(id);
-      const res = await fetch(`/api/privacy/webhooks/${id}/test`, { method: 'POST' });
+      const res = await privacyFetch(`/api/privacy/webhooks/${id}/test`, { method: 'POST' });
       const data = await res.json();
       setTestResults(prev => ({ ...prev, [id]: { status: data.status, success: data.success } }));
       if (data.success) {
@@ -131,7 +132,7 @@ export default function WebhooksPage() {
   const handleDelete = async (id: string) => {
     try {
       setDeleting(true);
-      const res = await fetch(`/api/privacy/webhooks/${id}`, { method: 'DELETE' });
+      const res = await privacyFetch(`/api/privacy/webhooks/${id}`, { method: 'DELETE' });
       if (!res.ok) throw new Error('Failed to delete webhook');
       setWebhooks(prev => prev.filter(w => w.id !== id));
       showToast('Webhook deleted');

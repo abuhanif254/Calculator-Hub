@@ -1,18 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 const VALID_ROLES = ['admin', 'compliance_officer', 'developer', 'viewer'];
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = await createClient();
 
     const body = await req.json();
     const { role } = body;
@@ -25,7 +26,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       .from('team_members')
       .update({ role })
       .eq('id', id)
-      .eq('owner_id', user.id)
+      .eq('owner_id', uid)
       .select()
       .single();
 
@@ -37,7 +38,7 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
       return NextResponse.json({ error: 'Team member not found' }, { status: 404 });
     }
 
-    await writeAudit(user.id, user.email, {
+    await writeAudit(uid, email ?? '', {
       action: 'TEAM_MEMBER_ROLE_CHANGED',
       category: 'system',
       severity: 'info',
@@ -54,24 +55,24 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = await createClient();
 
     const { error } = await supabase
       .from('team_members')
       .delete()
       .eq('id', id)
-      .eq('owner_id', user.id);
+      .eq('owner_id', uid);
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    await writeAudit(user.id, user.email, {
+    await writeAudit(uid, email ?? '', {
       action: 'TEAM_MEMBER_REMOVED',
       category: 'system',
       severity: 'info',

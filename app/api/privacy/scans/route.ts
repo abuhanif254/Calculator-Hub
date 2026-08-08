@@ -3,18 +3,21 @@ import { createClient } from '@/lib/supabase/server';
 import { decrypt } from '@/lib/supabase/encryption';
 import { SERVER_PII_DETECTORS, scanValue } from '@/lib/supabase/piiDetectors.server';
 import { writeAudit } from '@/lib/supabase/audit';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 // ── GET /api/privacy/scans ── List user's scans ───────────────────────────────
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { data, error } = await supabase
       .from('scans')
       .select('id, connection_name, status, tables_scanned, rows_scanned, findings_count, started_at, completed_at')
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .order('started_at', { ascending: false })
       .limit(50);
 
@@ -28,9 +31,11 @@ export async function GET() {
 // ── POST /api/privacy/scans ── Start a new DB scan ────────────────────────────
 export async function POST(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const body = await req.json();
     const { connectionId, selectedTables } = body as { connectionId: string; selectedTables: string[] };
@@ -48,7 +53,7 @@ export async function POST(req: NextRequest) {
       .from('connections')
       .select('*')
       .eq('id', connectionId)
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .single();
 
     if (connErr || !conn) return NextResponse.json({ error: 'Connection not found' }, { status: 404 });
@@ -61,7 +66,7 @@ export async function POST(req: NextRequest) {
     const { data: scan, error: scanErr } = await supabase
       .from('scans')
       .insert({
-        user_id: user.id,
+        user_id: uid,
         connection_id: connectionId,
         connection_name: conn.name,
         status: 'running',
@@ -74,7 +79,7 @@ export async function POST(req: NextRequest) {
     const scanId = scan.id;
 
     // Audit: scan started
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'SCAN_STARTED', category: 'scan', severity: 'info',
       resource: conn.name,
       details: { scan_id: scanId, tables: selectedTables, connection_id: connectionId },
@@ -216,7 +221,7 @@ export async function POST(req: NextRequest) {
         completed_at: new Date().toISOString(),
       }).eq('id', scanId);
 
-      void writeAudit(user.id, user.email, {
+      void writeAudit(uid, email ?? '', {
         action: 'SCAN_FAILED', category: 'scan', severity: 'error',
         resource: conn.name,
         details: { scan_id: scanId, error: err.message },
@@ -227,7 +232,7 @@ export async function POST(req: NextRequest) {
       }, { status: 500 });
     }
 
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'SCAN_COMPLETED', category: 'scan', severity: 'info',
       resource: conn.name,
       details: { scan_id: scanId, tables: tablesScanned, rows: totalRowsScanned, findings: totalFindings },

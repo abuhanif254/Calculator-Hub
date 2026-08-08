@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { Activity, Cpu, Server, Zap, RefreshCw, Layers, Briefcase } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, YAxis, BarChart, Bar } from 'recharts';
 
@@ -43,7 +44,7 @@ export default function MonitoringPage() {
     const fetchMonitoringData = async () => {
       // 1. Fetch main monitoring data
       try {
-        const res = await fetch('/api/privacy/monitoring');
+        const res = await privacyFetch('/api/privacy/monitoring');
         if (res.ok) {
           const data = await res.json();
           setMetrics(prev => ({
@@ -66,7 +67,7 @@ export default function MonitoringPage() {
 
       // 2. Fetch active jobs
       try {
-        const jobsRes = await fetch('/api/privacy/jobs?status=running');
+        const jobsRes = await privacyFetch('/api/privacy/jobs?status=running');
         if (jobsRes.ok) {
           const jobsData = await jobsRes.json();
           // Assume response has a count or is an array
@@ -78,7 +79,7 @@ export default function MonitoringPage() {
 
       // 3. Fetch workers
       try {
-        const workersRes = await fetch('/api/privacy/monitoring/workers');
+        const workersRes = await privacyFetch('/api/privacy/monitoring/workers');
         if (workersRes.ok) {
           const workersData = await workersRes.json();
           setWorkersList(workersData);

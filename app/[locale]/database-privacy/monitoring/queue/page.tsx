@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import { ListOrdered, Clock, CheckCircle2, XCircle, Play, AlertCircle } from "lucide-react";
 import { PageHeader } from "../../../../components/platform/ui/PlatformUI";
 import { useAuth } from '@/app/components/AuthProvider';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 const queuedJobs = [
   {
@@ -80,7 +81,7 @@ export default function QueuePage() {
       if (auth?.token) headers.Authorization = `Bearer ${auth.token}`;
       else if (auth?.getAuthToken) headers.Authorization = `Bearer ${await auth.getAuthToken()}`;
       
-      const res = await fetch("/api/privacy/jobs?status=scheduled,running&limit=20", { headers });
+      const res = await privacyFetch("/api/privacy/jobs?status=scheduled,running&limit=20", { headers });
       const data = await res.json();
       setQueuedJobs(data.jobs || []);
     } catch (err) {
@@ -100,7 +101,7 @@ export default function QueuePage() {
       if (auth?.token) headers.Authorization = `Bearer ${auth.token}`;
       else if (auth?.getAuthToken) headers.Authorization = `Bearer ${await auth.getAuthToken()}`;
       
-      await fetch(`/api/privacy/jobs/${id}/retry`, { method: "POST", headers });
+      await privacyFetch(`/api/privacy/jobs/${id}/retry`, { method: "POST", headers });
       fetchJobs();
     } catch (err) {
       console.error(err);

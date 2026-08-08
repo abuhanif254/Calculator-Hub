@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { PageHeader } from "../../../../components/platform/ui/PlatformUI";
 import { useToast } from "../../../../components/platform/ui/Toast";
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 interface ScheduledJob {
   id: string;
@@ -78,7 +79,7 @@ export default function SchedulerPage() {
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch("/api/privacy/jobs?status=scheduled"); // assuming it supports filtering or returns all and we filter
+      const res = await privacyFetch("/api/privacy/jobs?status=scheduled"); // assuming it supports filtering or returns all and we filter
       if (!res.ok) throw new Error("Failed to load schedules");
       const data = await res.json();
       const filtered = (data.jobs || []).filter((j: any) => j.cron_schedule != null);
@@ -101,7 +102,7 @@ export default function SchedulerPage() {
     }
     try {
       setSubmitting(true);
-      const res = await fetch("/api/privacy/jobs", {
+      const res = await privacyFetch("/api/privacy/jobs", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -126,7 +127,7 @@ export default function SchedulerPage() {
   const togglePause = async (id: string, currentStatus: string) => {
     const isPaused = currentStatus === 'paused';
     try {
-      const res = await fetch(`/api/privacy/jobs/${id}`, {
+      const res = await privacyFetch(`/api/privacy/jobs/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ is_paused: !isPaused })
@@ -141,7 +142,7 @@ export default function SchedulerPage() {
 
   const deleteSchedule = async (id: string) => {
     try {
-      const res = await fetch(`/api/privacy/jobs/${id}`, { method: "DELETE" });
+      const res = await privacyFetch(`/api/privacy/jobs/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error("Failed to delete schedule");
       toast.success("Deleted", "Schedule removed successfully.");
       setDeleteConfirmId(null);

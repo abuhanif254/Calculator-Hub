@@ -1,18 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
 import { createHash, randomBytes } from 'crypto';
 
 export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { data: keys, error } = await supabase
       .from('api_keys')
       .select('id, name, key_prefix, permissions, last_used_at, created_at, expires_at')
-      .eq('user_id', user.id);
+      .eq('user_id', uid);
 
     if (error) throw error;
 
@@ -24,9 +27,11 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const body = await req.json();
     const { name, permissions } = body;
@@ -39,7 +44,7 @@ export async function POST(req: NextRequest) {
     const { data: dbRecord, error } = await supabase
       .from('api_keys')
       .insert({
-        user_id: user.id,
+        user_id: uid,
         name,
         permissions,
         key_prefix,
@@ -50,7 +55,7 @@ export async function POST(req: NextRequest) {
 
     if (error) throw error;
 
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'API_KEY_CREATED',
       category: 'system',
       severity: 'info',

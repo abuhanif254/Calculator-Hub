@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { Eye, EyeOff, Lock, Plus, Trash, Edit, AlertCircle, CheckCircle2, Loader2, RefreshCw } from 'lucide-react';
 
 interface Secret {
@@ -53,7 +54,7 @@ export default function SecretsPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/privacy/secrets');
+      const res = await privacyFetch('/api/privacy/secrets');
       if (!res.ok) throw new Error('Failed to fetch secrets');
       const data = await res.json();
       setSecrets(data.secrets || []);
@@ -81,7 +82,7 @@ export default function SecretsPage() {
 
     setRevealing(id);
     try {
-      const res = await fetch(`/api/privacy/secrets/${id}`, { method: 'POST' });
+      const res = await privacyFetch(`/api/privacy/secrets/${id}`, { method: 'POST' });
       if (!res.ok) throw new Error('Failed to decrypt secret');
       const data = await res.json();
       setRevealedValues(prev => ({ ...prev, [id]: data.value }));
@@ -104,7 +105,7 @@ export default function SecretsPage() {
         delete payload.value;
       }
       
-      const res = await fetch(url, {
+      const res = await privacyFetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -125,7 +126,7 @@ export default function SecretsPage() {
   const handleDelete = async (id: string) => {
     setDeleting(true);
     try {
-      const res = await fetch(`/api/privacy/secrets/${id}`, { method: 'DELETE' });
+      const res = await privacyFetch(`/api/privacy/secrets/${id}`, { method: 'DELETE' });
       if (!res.ok) throw new Error('Failed to delete secret');
       
       setSecrets(prev => prev.filter(s => s.id !== id));

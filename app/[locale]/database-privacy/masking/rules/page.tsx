@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ShieldCheck, Plus, Trash2, RefreshCw, X, AlertCircle,
@@ -136,8 +137,8 @@ function MaskingRulesInner() {
     setLoading(true);
     try {
       const [rulesRes, connRes] = await Promise.all([
-        fetch('/api/privacy/masking-rules'),
-        fetch('/api/privacy/connections'),
+        privacyFetch('/api/privacy/masking-rules'),
+        privacyFetch('/api/privacy/connections'),
       ]);
       const [rulesData, connData] = await Promise.all([rulesRes.json(), connRes.json()]);
       setRules(rulesData.rules ?? []);
@@ -157,7 +158,7 @@ function MaskingRulesInner() {
     setFormError('');
     setSaving(true);
     try {
-      const res = await fetch('/api/privacy/masking-rules', {
+      const res = await privacyFetch('/api/privacy/masking-rules', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -176,7 +177,7 @@ function MaskingRulesInner() {
   const handleToggle = async (rule: MaskingRule) => {
     setTogglingId(rule.id);
     try {
-      const res = await fetch(`/api/privacy/masking-rules/${rule.id}`, {
+      const res = await privacyFetch(`/api/privacy/masking-rules/${rule.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ is_active: !rule.is_active }),
@@ -191,7 +192,7 @@ function MaskingRulesInner() {
   // Update strategy inline
   const handleStrategyChange = async (rule: MaskingRule, strategy: string) => {
     try {
-      await fetch(`/api/privacy/masking-rules/${rule.id}`, {
+      await privacyFetch(`/api/privacy/masking-rules/${rule.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ strategy }),
@@ -206,7 +207,7 @@ function MaskingRulesInner() {
     if (!confirm('Delete this masking rule?')) return;
     setDeletingId(id);
     try {
-      const res = await fetch(`/api/privacy/masking-rules/${id}`, { method: 'DELETE' });
+      const res = await privacyFetch(`/api/privacy/masking-rules/${id}`, { method: 'DELETE' });
       if (!res.ok) throw new Error();
       setRules(prev => prev.filter(r => r.id !== id));
       showToast('Rule deleted', 'success');
