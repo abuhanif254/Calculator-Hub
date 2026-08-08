@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 export default function ExportPage() {
   const [loading, setLoading] = useState(false);
@@ -20,8 +21,8 @@ export default function ExportPage() {
     const fetchInitialData = async () => {
       try {
         const [connRes, rulesRes] = await Promise.all([
-          fetch('/api/privacy/connections'),
-          fetch('/api/privacy/masking-rules?limit=50')
+          privacyFetch('/api/privacy/connections'),
+          privacyFetch('/api/privacy/masking-rules?limit=50')
         ]);
         if (connRes.ok) {
           const data = await connRes.json();
@@ -51,7 +52,7 @@ export default function ExportPage() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/privacy/export', {
+      const res = await privacyFetch('/api/privacy/export', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 

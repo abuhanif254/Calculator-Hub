@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import {
   Database,
   Table2,
@@ -46,7 +47,7 @@ export default function ExplorerPage() {
 
   // Fetch connections on mount
   useEffect(() => {
-    fetch('/api/privacy/connections')
+    privacyFetch('/api/privacy/connections')
       .then(r => r.json())
       .then(d => {
         const list: Connection[] = d.connections ?? [];
@@ -68,7 +69,7 @@ export default function ExplorerPage() {
     setTables([]);
     setSelectedTable(null);
     try {
-      const res = await fetch(`/api/privacy/connections/${conn.id}/schema`);
+      const res = await privacyFetch(`/api/privacy/connections/${conn.id}/schema`);
       if (!res.ok) throw new Error('Failed to load schema');
       const data = await res.json();
       const list: SchemaTable[] = data.tables ?? [];

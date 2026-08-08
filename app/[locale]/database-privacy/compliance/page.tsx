@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { ShieldCheck, CheckCircle, XCircle, FileText, Download, X, ChevronDown, ChevronUp, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 interface ComplianceItem { id: string; label: string; passed: boolean; }
 interface ComplianceData {
@@ -39,7 +40,7 @@ export default function ComplianceCenter() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/privacy/compliance');
+      const res = await privacyFetch('/api/privacy/compliance');
       if (!res.ok) throw new Error('Failed to fetch compliance data');
       const json = await res.json();
       setData(json.frameworks);
@@ -63,7 +64,7 @@ export default function ComplianceCenter() {
     const updateKey = `${framework}:${item.id}`;
     setUpdatingItem(updateKey);
     try {
-      const res = await fetch('/api/privacy/compliance', {
+      const res = await privacyFetch('/api/privacy/compliance', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ framework, itemId: item.id, passed: !item.passed }),

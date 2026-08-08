@@ -13,6 +13,7 @@ import {
 import { useAuth } from '@/app/components/AuthProvider';
 import { useRouter, useParams } from 'next/navigation';
 import Link from 'next/link';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 export default function FindingsPage() {
   const [findings, setFindings] = useState<any[]>([]);
@@ -32,12 +33,12 @@ export default function FindingsPage() {
         const token = await user.getIdToken();
         const headers = { 'Authorization': `Bearer ${token}` };
         
-        const scansRes = await fetch('/api/privacy/scans', { headers });
+        const scansRes = await privacyFetch('/api/privacy/scans', { headers });
         const scansData = await scansRes.json();
         const latestScan = scansData.scans?.[0];
         
         if (latestScan) {
-          const findingsRes = await fetch(`/api/privacy/scans/${latestScan.id}/findings`, { headers });
+          const findingsRes = await privacyFetch(`/api/privacy/scans/${latestScan.id}/findings`, { headers });
           const findingsData = await findingsRes.json();
           const loaded = (findingsData.findings || []).map((f: any) => ({
             ...f,

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { Play, CheckCircle, XCircle, Clock, AlertCircle, Plus, ChevronDown, ChevronUp, Loader2, RotateCcw, StopCircle } from 'lucide-react';
 
 interface Job {
@@ -57,7 +58,7 @@ export default function JobsPage() {
     setLoading(true);
     try {
       const url = activeTab === 'All' ? '/api/privacy/jobs' : `/api/privacy/jobs?status=${activeTab}`;
-      const res = await fetch(url);
+      const res = await privacyFetch(url);
       if (!res.ok) throw new Error('Failed to fetch jobs');
       const data = await res.json();
       setJobs(data.jobs || []);
@@ -82,7 +83,7 @@ export default function JobsPage() {
     setExpandedRow(id);
     setLoadingDetail(true);
     try {
-      const res = await fetch(`/api/privacy/jobs/${id}`);
+      const res = await privacyFetch(`/api/privacy/jobs/${id}`);
       if (!res.ok) throw new Error('Failed to fetch job detail');
       const data = await res.json();
       setJobDetail(data.job);
@@ -97,7 +98,7 @@ export default function JobsPage() {
     if (!createForm.name) return showToast('Job name is required', 'error');
     setCreating(true);
     try {
-      const res = await fetch('/api/privacy/jobs', {
+      const res = await privacyFetch('/api/privacy/jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(createForm),
@@ -119,7 +120,7 @@ export default function JobsPage() {
   const handleCancel = async (id: string) => {
     setCancelling(true);
     try {
-      const res = await fetch(`/api/privacy/jobs/${id}`, { method: 'DELETE' });
+      const res = await privacyFetch(`/api/privacy/jobs/${id}`, { method: 'DELETE' });
       if (!res.ok) throw new Error('Failed to cancel job');
       showToast('Job cancelled', 'success');
       setJobs(prev => prev.map(j => j.id === id ? { ...j, status: 'cancelled' } : j));
@@ -134,7 +135,7 @@ export default function JobsPage() {
   const handleRetry = async (id: string) => {
     setRetryingId(id);
     try {
-      const res = await fetch(`/api/privacy/jobs/${id}/retry`, { method: 'POST' });
+      const res = await privacyFetch(`/api/privacy/jobs/${id}/retry`, { method: 'POST' });
       if (!res.ok) throw new Error('Failed to retry job');
       const retriedJob = await res.json();
       setJobs(prev => prev.map(j => j.id === id ? retriedJob : j));

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { 
   BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, 
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend 
@@ -26,7 +27,7 @@ export default function ReportsPage() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/privacy/reports');
+      const res = await privacyFetch('/api/privacy/reports');
       if (!res.ok) throw new Error('Failed to fetch report data');
       const json = await res.json();
       setData(json);
@@ -44,7 +45,7 @@ export default function ReportsPage() {
   const handleExport = async () => {
     setExporting(true);
     try {
-      const res = await fetch('/api/privacy/export', {
+      const res = await privacyFetch('/api/privacy/export', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'findings', format: 'csv' }),

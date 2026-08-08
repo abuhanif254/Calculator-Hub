@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
 
 export async function GET(req: NextRequest) {
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = await createClient();
 
     const { searchParams } = new URL(req.url);
     const status = searchParams.get('status');
@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     let query = supabase
       .from('jobs')
       .select('id, name, type, status, progress, connection_name, rows_processed, findings_count, duration_ms, cron_schedule, is_paused, error_message, started_at, completed_at, created_at', { count: 'exact' })
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .order('created_at', { ascending: false })
       .range(offset, offset + limit - 1);
 
@@ -45,20 +45,18 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
-
     const body = await req.json();
     const { name, type, connection_id, connection_name, selected_tables, cron_schedule } = body;
 
     const { data, error } = await supabase
       .from('jobs')
       .insert({
-        user_id: user.id,
+        user_id: uid,
         name,
         type,
         connection_id,
@@ -76,7 +74,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    await writeAudit(user.id, user.email, {
+    await writeAudit(uid, email ?? '', {
       action: 'JOB_CREATED',
       category: 'system',
       severity: 'info',

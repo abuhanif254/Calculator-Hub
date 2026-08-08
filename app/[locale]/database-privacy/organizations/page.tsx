@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import {
   Building2,
   Users,
@@ -73,8 +74,8 @@ export default function OrganizationsPage() {
     try {
       setLoading(true);
       const [orgRes, membersRes] = await Promise.all([
-        fetch('/api/privacy/settings'),
-        fetch('/api/privacy/team'),
+        privacyFetch('/api/privacy/settings'),
+        privacyFetch('/api/privacy/team'),
       ]);
       const orgData = await orgRes.json();
       const membersData = await membersRes.json();
@@ -114,7 +115,7 @@ export default function OrganizationsPage() {
     if (!inviteEmail.trim()) return;
     setInviting(true);
     try {
-      const res = await fetch('/api/privacy/team', {
+      const res = await privacyFetch('/api/privacy/team', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: inviteEmail.trim(), role: inviteRole }),
@@ -133,7 +134,7 @@ export default function OrganizationsPage() {
 
   const handleEditRole = async (memberId: string) => {
     try {
-      const res = await fetch(`/api/privacy/team/${memberId}`, {
+      const res = await privacyFetch(`/api/privacy/team/${memberId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ role: editRole }),
@@ -150,7 +151,7 @@ export default function OrganizationsPage() {
   const handleRemove = async (memberId: string, email: string) => {
     if (!confirm(`Remove ${email} from the organization?`)) return;
     try {
-      const res = await fetch(`/api/privacy/team/${memberId}`, { method: 'DELETE' });
+      const res = await privacyFetch(`/api/privacy/team/${memberId}`, { method: 'DELETE' });
       if (!res.ok) throw new Error('Failed to remove member');
       setMembers(prev => prev.filter(m => m.id !== memberId));
       showToast('Member removed');
@@ -163,7 +164,7 @@ export default function OrganizationsPage() {
     if (!orgNameDraft.trim()) return;
     setSavingOrg(true);
     try {
-      const res = await fetch('/api/privacy/settings', {
+      const res = await privacyFetch('/api/privacy/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ org_name: orgNameDraft.trim() }),

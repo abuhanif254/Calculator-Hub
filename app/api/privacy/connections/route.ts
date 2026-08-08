@@ -1,21 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 import { createClient } from '@/lib/supabase/server';
 import { encrypt } from '@/lib/supabase/encryption';
 import { writeAudit } from '@/lib/supabase/audit';
 
 // ─── GET /api/privacy/connections ─── List user's connections ────────────────
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
 
     const { data, error } = await supabase
       .from('connections')
       .select('id, name, type, host, port, dbname, username, use_ssl, status, last_tested_at, tables_count, created_at')
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .order('created_at', { ascending: false });
 
     if (error) throw error;
@@ -29,12 +30,11 @@ export async function GET() {
 // ─── POST /api/privacy/connections ─── Create a new connection ───────────────
 export async function POST(req: NextRequest) {
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
+    const supabase = await createClient();
     const body = await req.json();
     const { name, type, host, port, dbname, username, password, use_ssl } = body;
 
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     const { data, error } = await supabase
       .from('connections')
       .insert({
-        user_id: user.id,
+        user_id: uid,
         name,
         type,
         host,
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Audit: connection created
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'CONNECTION_CREATED', category: 'connection', severity: 'info',
       resource: name,
       details: { type, host, port, dbname },

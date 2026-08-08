@@ -2,30 +2,30 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { decrypt } from '@/lib/supabase/encryption';
 import { writeAudit } from '@/lib/supabase/audit';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 // ─── POST /api/privacy/connections/[id]/test ─── Test a real DB connection ───
 export async function POST(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const startTime = Date.now();
 
   try {
     const { id } = await params;
-    const supabase = await createClient();
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
-    // Auth check
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = await createClient();
 
     // Fetch the connection (RLS enforces user_id match)
     const { data: conn, error: fetchError } = await supabase
       .from('connections')
       .select('*')
       .eq('id', id)
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .single();
 
     if (fetchError || !conn) {
@@ -117,7 +117,7 @@ export async function POST(
       })
       .eq('id', id);
 
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: testStatus === 'connected' ? 'CONNECTION_TEST_SUCCESS' : 'CONNECTION_TEST_FAILED',
       category: 'connection',
       severity: testStatus === 'connected' ? 'info' : 'error',

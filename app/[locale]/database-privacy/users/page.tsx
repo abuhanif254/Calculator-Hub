@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { X, Check, Edit2, Trash2, Loader2 } from 'lucide-react';
 
 interface TeamMember {
@@ -51,7 +52,7 @@ export default function UsersPage() {
   const fetchMembers = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch('/api/privacy/team');
+      const res = await privacyFetch('/api/privacy/team');
       if (!res.ok) throw new Error('Failed to fetch members');
       const data = await res.json();
       setMembers(data.members || []);
@@ -70,7 +71,7 @@ export default function UsersPage() {
     e.preventDefault();
     setInviting(true);
     try {
-      const res = await fetch('/api/privacy/team', {
+      const res = await privacyFetch('/api/privacy/team', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: inviteEmail, role: inviteRole }),
@@ -92,7 +93,7 @@ export default function UsersPage() {
   const handleSaveRole = async (id: string) => {
     setSaving(true);
     try {
-      const res = await fetch(`/api/privacy/team/${id}`, {
+      const res = await privacyFetch(`/api/privacy/team/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ role: editRole }),
@@ -112,7 +113,7 @@ export default function UsersPage() {
   const handleRemove = async (id: string) => {
     setRemoving(true);
     try {
-      const res = await fetch(`/api/privacy/team/${id}`, {
+      const res = await privacyFetch(`/api/privacy/team/${id}`, {
         method: 'DELETE',
       });
       if (!res.ok) throw new Error('Failed to remove member');

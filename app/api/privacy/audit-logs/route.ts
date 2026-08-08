@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 import { createClient } from '@/lib/supabase/server';
 
 // ── GET /api/privacy/audit-logs ───────────────────────────────────────────────
 export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { searchParams } = new URL(req.url);
     const category  = searchParams.get('category')  ?? '';   // connection|scan|rule|auth|system
@@ -19,7 +22,7 @@ export async function GET(req: NextRequest) {
     let query = supabase
       .from('audit_logs')
       .select('id, action, category, severity, resource, details, created_at', { count: 'exact' })
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .order('created_at', { ascending: false })
       .range(from, from + pageSize - 1);
 
@@ -36,11 +39,11 @@ export async function GET(req: NextRequest) {
 
     const [todayRes, errorRes, warnRes] = await Promise.all([
       supabase.from('audit_logs').select('id', { count: 'exact', head: true })
-        .eq('user_id', user.id).gte('created_at', todayStart.toISOString()),
+        .eq('user_id', uid).gte('created_at', todayStart.toISOString()),
       supabase.from('audit_logs').select('id', { count: 'exact', head: true })
-        .eq('user_id', user.id).eq('severity', 'error'),
+        .eq('user_id', uid).eq('severity', 'error'),
       supabase.from('audit_logs').select('id', { count: 'exact', head: true })
-        .eq('user_id', user.id).eq('severity', 'warning'),
+        .eq('user_id', uid).eq('severity', 'warning'),
     ]);
 
     return NextResponse.json({

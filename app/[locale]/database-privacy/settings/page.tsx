@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { Loader2, AlertCircle, CheckCircle, RefreshCw } from 'lucide-react';
 
 interface PlatformSettings {
@@ -40,7 +41,7 @@ export default function SettingsPage() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('/api/privacy/settings');
+      const res = await privacyFetch('/api/privacy/settings');
       if (!res.ok) throw new Error('Failed to load settings');
       const data = await res.json();
       setSettings(data.settings);
@@ -67,7 +68,7 @@ export default function SettingsPage() {
     if (!form) return;
     setSaving(true);
     try {
-      const res = await fetch('/api/privacy/settings', {
+      const res = await privacyFetch('/api/privacy/settings', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

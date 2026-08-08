@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
 import { encrypt, decrypt } from '@/lib/supabase/encryption';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 export async function PUT(
   req: NextRequest,
@@ -9,9 +10,12 @@ export async function PUT(
 ) {
   try {
     const { id } = await params;
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const body = await req.json();
     const { name, type, value, rotation_reminder_days } = body;
@@ -30,13 +34,13 @@ export async function PUT(
       .from('secrets')
       .update(updates)
       .eq('id', id)
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .select('id, name, type, rotation_reminder_days, last_rotated_at, created_at')
       .single();
 
     if (error) throw error;
 
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'SECRET_UPDATED',
       category: 'system',
       severity: 'info',
@@ -56,19 +60,22 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { error } = await supabase
       .from('secrets')
       .delete()
       .eq('id', id)
-      .eq('user_id', user.id);
+      .eq('user_id', uid);
 
     if (error) throw error;
 
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'SECRET_DELETED',
       category: 'system',
       severity: 'warning',
@@ -88,15 +95,18 @@ export async function POST(
 ) {
   try {
     const { id } = await params;
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { data: secret, error } = await supabase
       .from('secrets')
       .select('encrypted_value')
       .eq('id', id)
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .single();
 
     if (error) throw error;
@@ -104,7 +114,7 @@ export async function POST(
 
     const decryptedValue = await decrypt(secret.encrypted_value);
 
-    void writeAudit(user.id, user.email, {
+    void writeAudit(uid, email ?? '', {
       action: 'SECRET_DECRYPTED',
       category: 'system',
       severity: 'info',

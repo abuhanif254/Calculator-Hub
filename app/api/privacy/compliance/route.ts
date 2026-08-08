@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 const DEFAULTS: Record<string, any[]> = {
   gdpr: [
@@ -51,17 +52,16 @@ const calculateScore = (items: any[]) => {
 
 export async function GET(req: NextRequest) {
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = await createClient();
 
     const { data, error } = await supabase
       .from('compliance_states')
       .select('framework, items')
-      .eq('user_id', user.id);
+      .eq('user_id', uid);
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
@@ -77,7 +77,7 @@ export async function GET(req: NextRequest) {
       } else {
         const items = defaultItems;
         await supabase.from('compliance_states').insert({
-          user_id: user.id,
+          user_id: uid,
           framework: key,
           items
         });
@@ -93,19 +93,18 @@ export async function GET(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = await createClient();
 
     const { framework, itemId, passed } = await req.json();
 
     const { data: existing, error: fetchError } = await supabase
       .from('compliance_states')
       .select('items')
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .eq('framework', framework)
       .single();
 
@@ -120,14 +119,14 @@ export async function PUT(req: NextRequest) {
     const { error: updateError } = await supabase
       .from('compliance_states')
       .update({ items: newItems })
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .eq('framework', framework);
 
     if (updateError) {
       return NextResponse.json({ error: updateError.message }, { status: 500 });
     }
 
-    await writeAudit(user.id, user.email, {
+    await writeAudit(uid, email ?? '', {
       action: 'COMPLIANCE_ITEM_UPDATED',
       category: 'system',
       severity: 'info',

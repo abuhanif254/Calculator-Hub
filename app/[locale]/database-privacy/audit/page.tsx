@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import {
   ScrollText, Search, Download, RefreshCw, ChevronLeft, ChevronRight,
   Database, ScanSearch, ShieldCheck, LogIn, Settings, AlertCircle,
@@ -172,7 +173,7 @@ export default function AuditPage() {
       if (filterSeverity) params.set('severity', filterSeverity);
       if (debouncedSearch) params.set('search', debouncedSearch);
 
-      const res = await fetch(`/api/privacy/audit-logs?${params}`);
+      const res = await privacyFetch(`/api/privacy/audit-logs?${params}`);
       if (!res.ok) throw new Error('Failed to load audit logs');
       const data = await res.json();
       setLogs(data.logs ?? []);

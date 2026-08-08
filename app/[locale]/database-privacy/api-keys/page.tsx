@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import { Copy, Plus, Trash2, Key, ShieldAlert, Loader2, CheckCircle2, AlertCircle, X } from 'lucide-react';
 
 interface ApiKey {
@@ -38,7 +39,7 @@ export default function ApiKeysPage() {
   const fetchKeys = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/privacy/api-keys');
+      const res = await privacyFetch('/api/privacy/api-keys');
       if (!res.ok) throw new Error('Failed to fetch keys');
       const data = await res.json();
       setKeys(data.keys || []);
@@ -61,7 +62,7 @@ export default function ApiKeysPage() {
     
     try {
       setCreating(true);
-      const res = await fetch('/api/privacy/api-keys', {
+      const res = await privacyFetch('/api/privacy/api-keys', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newKeyName, permissions: newKeyPerms })
@@ -83,7 +84,7 @@ export default function ApiKeysPage() {
   const handleRevoke = async (id: string) => {
     try {
       setRevoking(true);
-      const res = await fetch(`/api/privacy/api-keys/${id}`, {
+      const res = await privacyFetch(`/api/privacy/api-keys/${id}`, {
         method: 'DELETE',
       });
       

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
 
@@ -15,22 +16,21 @@ const defaultSettings = {
 
 export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
 
     let { data: settings, error: fetchError } = await supabase
       .from('platform_settings')
       .select('*')
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .single();
 
     if (fetchError && fetchError.code === 'PGRST116') {
       // Not found, insert defaults
-      const insertData = { user_id: user.id, ...defaultSettings };
+      const insertData = { user_id: uid, ...defaultSettings };
       const { data: inserted, error: insertError } = await supabase
         .from('platform_settings')
         .insert(insertData)
@@ -51,17 +51,15 @@ export async function GET(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   try {
-    const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
+    const supabase = await createClient();
     const body = await req.json();
     
     const updateData = {
-      user_id: user.id,
+      user_id: uid,
       ...body,
       updated_at: new Date().toISOString(),
     };
@@ -74,7 +72,7 @@ export async function PUT(req: NextRequest) {
 
     if (upsertError) throw upsertError;
 
-    void writeAudit(user.id, user.email || '', {
+    void writeAudit(uid, email ?? '', {
       action: 'SETTINGS_UPDATED',
       category: 'system',
       severity: 'info',

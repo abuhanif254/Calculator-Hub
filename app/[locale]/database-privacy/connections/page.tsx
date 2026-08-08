@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 import {
   Database, Plus, RefreshCw, Server, Activity, Link2, X,
   Trash2, CheckCircle2, XCircle, Clock, Wifi, WifiOff,
@@ -61,7 +62,7 @@ export default function ConnectionsPage() {
   // ── Fetch connections ──────────────────────────────────────────────────────
   const fetchConnections = useCallback(async () => {
     try {
-      const res = await fetch('/api/privacy/connections');
+      const res = await privacyFetch('/api/privacy/connections');
       if (!res.ok) throw new Error('Failed to load connections');
       const { connections: data } = await res.json();
       setConnections(data ?? []);
@@ -80,7 +81,7 @@ export default function ConnectionsPage() {
     setFormError('');
     setSaving(true);
     try {
-      const res = await fetch('/api/privacy/connections', {
+      const res = await privacyFetch('/api/privacy/connections', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -102,7 +103,7 @@ export default function ConnectionsPage() {
   const handleTest = async (id: string) => {
     setTestingId(id);
     try {
-      const res = await fetch(`/api/privacy/connections/${id}/test`, { method: 'POST' });
+      const res = await privacyFetch(`/api/privacy/connections/${id}/test`, { method: 'POST' });
       const data = await res.json();
       if (data.success) {
         showToast(`Connected! ${data.tablesCount} tables · ${data.latencyMs}ms`, 'success');
@@ -127,7 +128,7 @@ export default function ConnectionsPage() {
     if (!confirm('Delete this connection? This action cannot be undone.')) return;
     setDeletingId(id);
     try {
-      const res = await fetch(`/api/privacy/connections/${id}`, { method: 'DELETE' });
+      const res = await privacyFetch(`/api/privacy/connections/${id}`, { method: 'DELETE' });
       if (!res.ok) throw new Error();
       setConnections(prev => prev.filter(c => c.id !== id));
       showToast('Connection deleted', 'success');

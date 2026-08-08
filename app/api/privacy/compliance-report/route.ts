@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 const FRAMEWORK_RULES: Record<string, Record<string, string>> = {
   GDPR: {
@@ -42,15 +43,16 @@ const FRAMEWORK_RULES: Record<string, Record<string, string>> = {
 
 export async function GET(req: NextRequest) {
   try {
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid } = privacyUser;
+
     const supabase = await createClient();
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const { searchParams } = new URL(req.url);
     const framework = (searchParams.get('framework') ?? 'GDPR') as 'GDPR' | 'HIPAA' | 'PCI-DSS';
     const days      = parseInt(searchParams.get('days') ?? '30', 10);
     const since     = new Date(Date.now() - days * 86400_000).toISOString();
-    const uid       = user.id;
 
     // ── Parallel data fetch ──────────────────────────────────────────────────
     const [connRes, scansRes, rulesRes] = await Promise.all([

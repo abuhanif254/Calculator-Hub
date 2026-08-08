@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { decrypt } from '@/lib/supabase/encryption';
+import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 export interface SchemaTable {
   name: string;
@@ -17,24 +18,24 @@ export interface SchemaColumn {
 
 // ── GET /api/privacy/connections/[id]/schema ──────────────────────────────────
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params;
-    const supabase = await createClient();
+    
+    const privacyUser = await requirePrivacyUser(req);
+    if (privacyUser instanceof Response) return privacyUser;
+    const { uid, email } = privacyUser;
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-    if (authError || !user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-    }
+    const supabase = await createClient();
 
     // Fetch connection (RLS ensures ownership)
     const { data: conn, error: fetchError } = await supabase
       .from('connections')
       .select('*')
       .eq('id', id)
-      .eq('user_id', user.id)
+      .eq('user_id', uid)
       .single();
 
     if (fetchError || !conn) {
@@ -128,8 +129,8 @@ export async function GET(
 
         const [colRows] = await connection.query<any[]>(`
           SELECT TABLE_NAME as table_name, COLUMN_NAME as column_name,
-                 DATA_TYPE as data_type, IS_NULLABLE as is_nullable,
-                 CHARACTER_MAXIMUM_LENGTH as character_maximum_length
+               DATA_TYPE as data_type, IS_NULLABLE as is_nullable,
+               CHARACTER_MAXIMUM_LENGTH as character_maximum_length
           FROM information_schema.COLUMNS
           WHERE TABLE_SCHEMA = DATABASE()
           ORDER BY TABLE_NAME, ORDINAL_POSITION

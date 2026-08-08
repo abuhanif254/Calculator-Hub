@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { CheckCircle, XCircle, Clock, ChevronDown, Search, Download, Ban } from "lucide-react";
 import { useToast } from "../../../../components/platform/ui/Toast";
+import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 interface HistoryJob {
   id: string;
@@ -35,7 +36,7 @@ export default function JobHistoryPage() {
       return;
     }
     try {
-      const res = await fetch("/api/privacy/jobs/" + jobId);
+      const res = await privacyFetch("/api/privacy/jobs/" + jobId);
       const data = await res.json();
       setJobLogs(prev => ({ ...prev, [jobId]: data.job?.logs || [] }));
       setExpandedJobId(expandedJobId === jobId ? null : jobId);
@@ -56,7 +57,7 @@ export default function JobHistoryPage() {
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch("/api/privacy/jobs?limit=50");
+      const res = await privacyFetch("/api/privacy/jobs?limit=50");
       if (!res.ok) throw new Error("Failed to fetch jobs");
       const data = await res.json();
       
@@ -75,7 +76,7 @@ export default function JobHistoryPage() {
 
   const handleExport = async () => {
     try {
-      const res = await fetch("/api/privacy/export", {
+      const res = await privacyFetch("/api/privacy/export", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type: 'findings', format: 'csv' })
