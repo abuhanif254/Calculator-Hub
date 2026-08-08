@@ -8,6 +8,7 @@ import {
   DollarSign,
   Heart,
   FlaskConical,
+  ShieldCheck,
   BookOpen,
   Search,
   X,
@@ -36,6 +37,11 @@ const CATEGORY_META: Record<
     color: 'text-violet-600 dark:text-violet-400',
     bg: 'bg-violet-50 dark:bg-violet-500/10',
   },
+  'Privacy & Security': {
+    icon: ShieldCheck,
+    color: 'text-sky-600 dark:text-sky-400',
+    bg: 'bg-sky-50 dark:bg-sky-500/10',
+  },
 };
 
 interface GuidesSidebarProps {
@@ -46,7 +52,7 @@ interface GuidesSidebarProps {
 export function GuidesSidebar({ activeSlug }: GuidesSidebarProps) {
   const [query, setQuery] = useState('');
   const [openCategories, setOpenCategories] = useState<Set<GuideCategory>>(
-    new Set(['Finance', 'Health', 'Math & Science'])
+    new Set(['Finance', 'Health', 'Math & Science', 'Privacy & Security'])
   );
 
   const toggleCategory = (cat: GuideCategory) => {

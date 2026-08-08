@@ -150,7 +150,71 @@ export function StepCard({
   );
 }
 
+// ── FAQ Accordion ──────────────────────────────────────────────────────────
+const FAQ_ITEMS = [
+  {
+    q: "What types of databases does the platform support?",
+    a: "The platform supports PostgreSQL, MySQL, MariaDB, MongoDB, SQLite, Microsoft SQL Server, BigQuery, Snowflake, and Redshift. New database connectors are added regularly.",
+  },
+  {
+    q: "Is my data safe? Does any data leave my browser?",
+    a: "In browser-side scan mode, all data is processed entirely within your browser using WebAssembly — nothing is sent to Nexus servers. For database scan mode, only anonymised metadata (column names, data types, sample statistics) is processed — never raw row values.",
+  },
+  {
+    q: "What PII types can it detect?",
+    a: "30+ PII detectors including: names, email addresses, phone numbers, SSNs, credit card numbers (PAN), dates of birth, IP addresses, passport numbers, bank account numbers, IBAN, National IDs, medical record numbers, and more. Detectors use both regex patterns and contextual heuristics for high accuracy.",
+  },
+  {
+    q: "Which compliance frameworks are supported?",
+    a: "The platform provides built-in compliance dashboards and downloadable reports for GDPR, HIPAA, PCI-DSS, and SOC 2. Each framework has a dedicated checklist, compliance score, and remediation recommendations.",
+  },
+  {
+    q: "Is it really free? What is the catch?",
+    a: "Yes, completely free. No usage limits, no credit card required, no paywalled features. The platform is open-source and hosted at no cost. Enterprise features — unlimited databases, job scheduling, team management, API access, AES-256 secrets vault — are all included for free.",
+  },
+];
+
+function FAQ() {
+  const [openIdx, setOpenIdx] = React.useState<number | null>(null);
+  return (
+    <div className="space-y-3">
+      {FAQ_ITEMS.map((item, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.06 }}
+          className="bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-2xl overflow-hidden"
+        >
+          <button
+            onClick={() => setOpenIdx(openIdx === i ? null : i)}
+            className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 group"
+          >
+            <span className="font-semibold text-slate-900 dark:text-white text-sm md:text-base">{item.q}</span>
+            <span className={`shrink-0 w-6 h-6 rounded-full flex items-center justify-center border transition-all duration-200 ${
+              openIdx === i
+                ? "bg-violet-600 border-violet-600 text-white rotate-45"
+                : "border-slate-300 dark:border-slate-600 text-slate-500 dark:text-slate-400 group-hover:border-violet-400 dark:group-hover:border-violet-500"
+            }`}>
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+              </svg>
+            </span>
+          </button>
+          {openIdx === i && (
+            <div className="px-6 pb-5 text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-white/5 pt-4">
+              {item.a}
+            </div>
+          )}
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 export function AnimatedContent() {
+
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const dashboardHref = `/${locale}/database-privacy/dashboard`;
@@ -425,7 +489,7 @@ export function AnimatedContent() {
               Platform Features
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
-              Everything you need.
+              Enterprise Database Privacy & PII Protection Features
             </h2>
             <p className="text-lg text-slate-600 dark:text-white/50 max-w-2xl mx-auto">
               Production-grade data privacy tooling that normally costs
@@ -453,7 +517,7 @@ export function AnimatedContent() {
                 How It Works
               </span>
               <h2 className="text-4xl font-black text-slate-900 dark:text-white mt-3 mb-8">
-                Anonymize in 3 steps
+                How PII Scanning & Data Masking Works — 3 Simple Steps
               </h2>
             </motion.div>
             <div className="space-y-8">
@@ -639,7 +703,7 @@ export function AnimatedContent() {
               Pricing
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
-              Free. Forever. No catch.
+              Free Database Privacy Platform — No Credit Card Required
             </h2>
             <p className="text-lg text-slate-600 dark:text-white/50 max-w-2xl mx-auto">
               Competitors charge $500–$5,000/month for the same capabilities. We
@@ -706,6 +770,208 @@ export function AnimatedContent() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* ── Privacy & Compliance Guides ──────────────────────────── */}
+      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900/40">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Privacy & Compliance Guides
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+              In-depth technical guides to help you understand PII scanning, data masking, and regulatory compliance requirements.
+            </p>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                title: "What Is PII Scanning?",
+                desc: "Learn how automated PII detection works, what types of sensitive data databases contain, and how to protect against breaches.",
+                href: `/${locale}/guides/what-is-pii-scanning`,
+                badge: "7 min read",
+                color: "violet",
+              },
+              {
+                title: "GDPR Database Compliance",
+                desc: "A technical guide to GDPR Articles 25 and 32 — encryption, pseudonymisation, data minimisation, and audit logging.",
+                href: `/${locale}/guides/gdpr-database-compliance`,
+                badge: "9 min read",
+                color: "blue",
+              },
+              {
+                title: "Data Masking Techniques",
+                desc: "Compare hashing, tokenization, redaction, pseudonymisation, and format-preserving encryption with real-world use cases.",
+                href: `/${locale}/guides/data-masking-techniques`,
+                badge: "8 min read",
+                color: "emerald",
+              },
+              {
+                title: "HIPAA Data De-Identification",
+                desc: "Safe Harbor vs Expert Determination — which 18 identifiers to remove and how to implement de-identification in SQL.",
+                href: `/${locale}/guides/hipaa-data-de-identification`,
+                badge: "8 min read",
+                color: "rose",
+              },
+              {
+                title: "PCI DSS PAN Masking",
+                desc: "How to truncate, tokenize, and hash Primary Account Numbers to descope your systems from PCI DSS compliance.",
+                href: `/${locale}/guides/pci-dss-pan-masking`,
+                badge: "7 min read",
+                color: "amber",
+              },
+              {
+                title: "View All Privacy Guides",
+                desc: "Browse our full library of data privacy, compliance, and database security guides — all written by engineers.",
+                href: `/${locale}/guides`,
+                badge: "5 guides",
+                color: "sky",
+                isViewAll: true,
+              },
+            ].map((guide, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+              >
+                <Link
+                  href={guide.href as any}
+                  className={`group block h-full bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-2xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 ${
+                    guide.isViewAll
+                      ? "border-dashed hover:border-violet-400 dark:hover:border-violet-500"
+                      : ""
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <span
+                      className={`text-xs font-semibold px-2.5 py-1 rounded-full bg-${
+                        guide.color
+                      }-50 dark:bg-${guide.color}-500/10 text-${guide.color}-700 dark:text-${guide.color}-400`}
+                    >
+                      {guide.badge}
+                    </span>
+                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-violet-500 group-hover:translate-x-0.5 transition-all" />
+                  </div>
+                  <h3
+                    className={`text-base font-bold mb-2 ${
+                      guide.isViewAll
+                        ? "text-violet-600 dark:text-violet-400"
+                        : "text-slate-900 dark:text-white"
+                    }`}
+                  >
+                    {guide.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {guide.desc}
+                  </p>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Competitor Comparison ─────────────────────────────────────── */}
+      <section className="py-20 px-4 bg-white dark:bg-transparent">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Enterprise Privacy Tools — Without the Enterprise Price
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Competitors charge $500–$5,000/month. We charge $0.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-white/10 shadow-sm"
+          >
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-slate-50 dark:bg-slate-900/80 border-b border-slate-200 dark:border-white/10">
+                  <th className="text-left px-6 py-4 font-semibold text-slate-700 dark:text-slate-300">Feature</th>
+                  <th className="px-6 py-4 font-bold text-violet-600 dark:text-violet-400 text-center">
+                    Nexus
+                    <div className="text-xs font-normal text-emerald-600 dark:text-emerald-400">$0 / month</div>
+                  </th>
+                  <th className="px-6 py-4 font-medium text-slate-500 text-center">
+                    Tonic.ai
+                    <div className="text-xs">$500+/mo</div>
+                  </th>
+                  <th className="px-6 py-4 font-medium text-slate-500 text-center">
+                    Delphix
+                    <div className="text-xs">$2,000+/mo</div>
+                  </th>
+                  <th className="px-6 py-4 font-medium text-slate-500 text-center">
+                    IBM Optim
+                    <div className="text-xs">$5,000+/mo</div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-white/5">
+                {[
+                  ["PII Auto-Detection (30+ types)", true, true, true, true],
+                  ["GDPR / HIPAA / PCI-DSS Reports", true, true, true, true],
+                  ["Browser-side processing", true, false, false, false],
+                  ["Job Scheduler", true, true, true, true],
+                  ["Team Management & RBAC", true, true, true, true],
+                  ["AES-256 Secrets Vault", true, false, true, true],
+                  ["Webhook Integrations", true, true, false, true],
+                  ["Open Source", true, false, false, false],
+                  ["No credit card required", true, false, false, false],
+                ].map(([feature, ...vals], ri) => (
+                  <tr key={ri} className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors">
+                    <td className="px-6 py-3.5 text-slate-700 dark:text-slate-300 font-medium">{feature as string}</td>
+                    {vals.map((v, ci) => (
+                      <td key={ci} className="px-6 py-3.5 text-center">
+                        {v ? (
+                          <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full ${ci === 0 ? "bg-violet-100 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400" : "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"}`}>
+                            ✓
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 dark:bg-white/5 text-slate-400">
+                            ✗
+                          </span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── FAQ ────────────────────────────────────────────────────────── */}
+      <section className="py-20 px-4 bg-slate-50 dark:bg-slate-900/40">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Frequently Asked Questions
+            </h2>
+          </motion.div>
+          <FAQ />
         </div>
       </section>
 

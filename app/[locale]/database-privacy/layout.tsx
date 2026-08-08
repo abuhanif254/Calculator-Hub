@@ -365,8 +365,16 @@ export default function DatabasePrivacyLayout({
     return <ToastProvider>{children}</ToastProvider>;
   }
 
+  // Landing page: render without the app sidebar so public visitors see
+  // a clean marketing page, not the authenticated dashboard shell.
+  if (isLandingPage) {
+    return <ToastProvider>{children}</ToastProvider>;
+  }
+
   return (
     <ToastProvider>
+      {/* Prevent search engines from indexing authenticated dashboard routes */}
+      <meta name="robots" content="noindex, nofollow" />
       <div className="w-full">
         {/* Mobile Header */}
         <div className="lg:hidden flex items-center justify-between bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-4 sticky top-0 z-30">

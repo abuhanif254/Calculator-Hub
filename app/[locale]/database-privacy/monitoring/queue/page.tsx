@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
-import { ListOrdered, Clock, CheckCircle2, XCircle, Play } from "lucide-react";
+import { ListOrdered, Clock, CheckCircle2, XCircle, Play, AlertCircle } from "lucide-react";
 import { PageHeader } from "../../../../components/platform/ui/PlatformUI";
+import { useAuth } from '@/app/components/AuthProvider';
 
 const queuedJobs = [
   {
@@ -63,7 +64,49 @@ const priorityColors: Record<string, string> = {
 };
 
 export default function QueuePage() {
-  const [queue] = useState(queuedJobs);
+  const [queuedJobs, setQueuedJobs] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  // Try to use auth if available, otherwise just basic fetch
+  let auth: any = {};
+  try {
+    auth = useAuth();
+  } catch (e) {}
+
+  const fetchJobs = async () => {
+    try {
+      setLoading(true);
+      const headers: Record<string, string> = {};
+      if (auth?.token) headers.Authorization = `Bearer ${auth.token}`;
+      else if (auth?.getAuthToken) headers.Authorization = `Bearer ${await auth.getAuthToken()}`;
+      
+      const res = await fetch("/api/privacy/jobs?status=scheduled,running&limit=20", { headers });
+      const data = await res.json();
+      setQueuedJobs(data.jobs || []);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const runNow = async (id: string) => {
+    try {
+      const headers: Record<string, string> = {};
+      if (auth?.token) headers.Authorization = `Bearer ${auth.token}`;
+      else if (auth?.getAuthToken) headers.Authorization = `Bearer ${await auth.getAuthToken()}`;
+      
+      await fetch(`/api/privacy/jobs/${id}/retry`, { method: "POST", headers });
+      fetchJobs();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -78,60 +121,73 @@ export default function QueuePage() {
         <div className="px-6 py-4 border-b border-white/10 flex items-center gap-2">
           <ListOrdered className="w-4 h-4 text-violet-400" />
           <h3 className="font-semibold text-white">
-            Pending Jobs ({queue.length})
+            Pending Jobs ({queuedJobs.length})
           </h3>
         </div>
-        <table className="w-full text-sm">
-          <thead className="bg-[#080D18]">
-            <tr>
-              {[
-                "Job Name",
-                "Target",
-                "Priority",
-                "Queued",
-                "Est. Duration",
-                "",
-              ].map((h) => (
-                <th
-                  key={h}
-                  className="text-left px-6 py-3 text-xs text-white/40 font-medium"
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-white/[0.04]">
-            {queue.map((job) => (
-              <tr key={job.id} className="hover:bg-white/[0.02]">
-                <td className="px-6 py-4 text-white font-medium">{job.name}</td>
-                <td className="px-6 py-4 text-white/60 font-mono text-xs">
-                  {job.target}
-                </td>
-                <td className="px-6 py-4">
-                  <span
-                    className={`px-2.5 py-1 rounded-full text-xs font-medium border ${priorityColors[job.priority]}`}
+        {loading ? (
+          <div className="p-6 space-y-4">
+             {[...Array(3)].map((_, i) => (
+               <div key={i} className="h-12 bg-white/5 rounded-lg animate-pulse" />
+             ))}
+          </div>
+        ) : queuedJobs.length === 0 ? (
+          <div className="flex flex-col items-center justify-center h-48 text-center">
+            <CheckCircle2 className="w-10 h-10 text-emerald-400 mb-3 opacity-50" />
+            <p className="text-white/60">No jobs currently in queue.</p>
+          </div>
+        ) : (
+          <table className="w-full text-sm">
+            <thead className="bg-[#080D18]">
+              <tr>
+                {[
+                  "Job Name",
+                  "Target",
+                  "Priority",
+                  "Queued",
+                  "Est. Duration",
+                  "",
+                ].map((h) => (
+                  <th
+                    key={h}
+                    className="text-left px-6 py-3 text-xs text-white/40 font-medium"
                   >
-                    {job.priority}
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-white/50 text-xs">
-                  <Clock className="w-3.5 h-3.5 inline mr-1" />
-                  {job.queued}
-                </td>
-                <td className="px-6 py-4 text-white/50 text-xs">
-                  {job.estimated}
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <button className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 transition-colors ml-auto">
-                    <Play className="w-3 h-3" />
-                    Run Now
-                  </button>
-                </td>
+                    {h}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-white/[0.04]">
+              {queuedJobs.map((job) => (
+                <tr key={job.id} className="hover:bg-white/[0.02]">
+                  <td className="px-6 py-4 text-white font-medium">{job.name}</td>
+                  <td className="px-6 py-4 text-white/60 font-mono text-xs">
+                    {job.target || job.connection_name || '-'}
+                  </td>
+                  <td className="px-6 py-4">
+                    <span
+                      className={`px-2.5 py-1 rounded-full text-xs font-medium border ${priorityColors[job.priority || 'Normal'] || priorityColors.Normal}`}
+                    >
+                      {job.priority || 'Normal'}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 text-white/50 text-xs">
+                    <Clock className="w-3.5 h-3.5 inline mr-1" />
+                    {job.queued || new Date(job.created_at).toLocaleTimeString()}
+                  </td>
+                  <td className="px-6 py-4 text-white/50 text-xs">
+                    {job.estimated || '~1 min'}
+                  </td>
+                  <td className="px-6 py-4 text-right">
+                    <button onClick={() => runNow(job.id)} className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300 transition-colors ml-auto">
+                      <Play className="w-3 h-3" />
+                      Run Now
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </motion.div>
 
       <motion.div

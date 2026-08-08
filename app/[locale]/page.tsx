@@ -1,5 +1,5 @@
 import { Link } from "../../i18n/routing";
-import { Calculator, LineChart, Activity, Search, MousePointerClick, Zap, ChevronDown, ArrowRight, Code, Layers, CheckCircle2, Smartphone, Lock, UserX, Users, Rocket, FolderOpen, FileCode } from "lucide-react";
+import { Calculator, LineChart, Activity, Search, MousePointerClick, Zap, ChevronDown, ArrowRight, Code, Layers, CheckCircle2, Smartphone, Lock, UserX, Users, Rocket, FolderOpen, FileCode, ShieldCheck } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Metadata } from 'next';
 import { routing, resolveIntlHref } from '../../i18n/routing';
@@ -125,6 +125,22 @@ const categoryData = [
       { name: "Subnet Calculator", href: "/calculators/subnet-calculator" },
       { name: "Password Generator", href: "/tools/password-generator" },
       { name: "Conversion Calculator", href: "/calculators/conversion-calculator" }
+    ]
+  },
+  {
+    title: "Privacy & Security",
+    icon: ShieldCheck,
+    bgColor: "bg-sky-50 dark:bg-sky-900/20",
+    iconColor: "text-sky-500",
+    count: "Free Platform",
+    desc: "PII scanning, data masking, GDPR compliance",
+    links: [
+      { name: "PII Scanner", href: "/database-privacy" },
+      { name: "Data Masking Rules", href: "/database-privacy" },
+      { name: "GDPR Compliance", href: "/database-privacy" },
+      { name: "HIPAA Compliance", href: "/database-privacy" },
+      { name: "Audit Logs", href: "/database-privacy" },
+      { name: "Secrets Vault", href: "/database-privacy" }
     ]
   }
 ];

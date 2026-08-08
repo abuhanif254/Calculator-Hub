@@ -21,6 +21,11 @@ export default function PlatformLoginPage() {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [showResetModal, setShowResetModal] = useState(false);
+  const [resetEmail, setResetEmail] = useState('');
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
+  const [resetError, setResetError] = useState('');
 
   useEffect(() => {
     setMounted(true);
@@ -52,6 +57,28 @@ export default function PlatformLoginPage() {
     } catch (err: any) {
       setError(err.message || 'Failed to sign in with Google');
       setGoogleLoading(false);
+    }
+  };
+
+  const handleForgotPassword = async () => {
+    if (!resetEmail) return;
+    setResetLoading(true);
+    setResetError('');
+    try {
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+      );
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+        redirectTo: `${window.location.origin}/database-privacy/dashboard`,
+      });
+      if (error) throw error;
+      setResetSent(true);
+    } catch (err: any) {
+      setResetError(err.message || 'Failed to send reset email');
+    } finally {
+      setResetLoading(false);
     }
   };
 
@@ -136,9 +163,7 @@ export default function PlatformLoginPage() {
                 <label htmlFor="password" className="block text-sm font-medium text-slate-700 dark:text-slate-300">
                   Password
                 </label>
-                <button type="button" className="text-xs text-violet-600 dark:text-violet-400 hover:underline">
-                  Forgot password?
-                </button>
+                <button type="button" onClick={() => { setShowResetModal(true); setResetSent(false); setResetError(''); setResetEmail(email); }} className="text-xs text-violet-600 dark:text-violet-400 hover:underline">Forgot password?</button>
               </div>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -193,6 +218,42 @@ export default function PlatformLoginPage() {
           </Link>
         </p>
       </div>
+
+      {/* Password Reset Modal */}
+      {showResetModal && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 w-full max-w-sm">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Reset Password</h2>
+            {resetSent ? (
+              <div className="text-center py-4">
+                <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                </div>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Check your inbox — we&apos;ve sent a password reset link to <strong>{resetEmail}</strong>.</p>
+                <button onClick={() => setShowResetModal(false)} className="mt-4 px-6 py-2 bg-violet-600 text-white rounded-xl font-medium text-sm hover:bg-violet-700 transition-colors">Done</button>
+              </div>
+            ) : (
+              <>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Enter your email address and we&apos;ll send you a link to reset your password.</p>
+                {resetError && <p className="text-xs text-red-600 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-lg px-3 py-2 mb-3">{resetError}</p>}
+                <input
+                  type="email"
+                  value={resetEmail}
+                  onChange={e => setResetEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 text-sm outline-none focus:ring-2 focus:ring-violet-500 mb-4"
+                />
+                <div className="flex gap-3">
+                  <button onClick={() => setShowResetModal(false)} className="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Cancel</button>
+                  <button onClick={handleForgotPassword} disabled={resetLoading || !resetEmail} className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
+                    {resetLoading ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending…</> : 'Send Reset Link'}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
