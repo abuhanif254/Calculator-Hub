@@ -8,6 +8,7 @@ import {
   DollarSign,
   Heart,
   FlaskConical,
+  ShieldCheck,
   Sparkles,
   ArrowRight,
 } from 'lucide-react';
@@ -92,6 +93,13 @@ const CATEGORY_META = {
     bg: 'bg-violet-50 dark:bg-violet-500/10',
     border: 'border-violet-100 dark:border-violet-500/20',
     accent: 'text-violet-600',
+  },
+  'Privacy & Security': {
+    Icon: ShieldCheck,
+    color: 'text-sky-700 dark:text-sky-400',
+    bg: 'bg-sky-50 dark:bg-sky-500/10',
+    border: 'border-sky-100 dark:border-sky-500/20',
+    accent: 'text-sky-600',
   },
 } as const;
 

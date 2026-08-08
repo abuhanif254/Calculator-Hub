@@ -4,7 +4,7 @@
 // Documentation-style guide hub (Tailwind CSS Docs / Vite Docs pattern)
 // ═══════════════════════════════════════════════════════════════════════
 
-export type GuideCategory = 'Finance' | 'Health' | 'Math & Science';
+export type GuideCategory = 'Finance' | 'Health' | 'Math & Science' | 'Privacy & Security';
 
 export interface Guide {
   /** URL-safe slug (used in /guides/[slug]) */
@@ -400,13 +400,99 @@ const mathGuides: Guide[] = [
   },
 ];
 
+// ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
+const privacyGuides: Guide[] = [
+  {
+    slug: 'what-is-pii-scanning',
+    slugs: {
+      en: 'what-is-pii-scanning',
+      es: 'que-es-el-escaneo-pii',
+      fr: 'quest-ce-que-le-scan-pii',
+      de: 'was-ist-pii-scanning',
+    },
+    title: 'What Is PII Scanning? A Complete Guide to Detecting Sensitive Data',
+    description:
+      'Learn how PII scanning works, what types of personally identifiable information databases contain, and how automated detection tools protect you from data breaches and compliance failures.',
+    category: 'Privacy & Security',
+    readingTime: 7,
+    lastUpdated: '2026-08-08',
+    relatedCalculator: 'database-privacy',
+    featured: true,
+  },
+  {
+    slug: 'gdpr-database-compliance',
+    slugs: {
+      en: 'gdpr-database-compliance',
+      es: 'cumplimiento-gdpr-base-datos',
+      fr: 'conformite-rgpd-base-de-donnees',
+      de: 'dsgvo-datenbankkonformitaet',
+    },
+    title: 'GDPR Database Compliance: A Technical Guide for Developers',
+    description:
+      'A practical technical guide to GDPR Articles 25 and 32 — covering data minimisation, encryption, pseudonymisation, and audit logging requirements for databases.',
+    category: 'Privacy & Security',
+    readingTime: 9,
+    lastUpdated: '2026-08-08',
+    relatedCalculator: 'database-privacy',
+  },
+  {
+    slug: 'data-masking-techniques',
+    slugs: {
+      en: 'data-masking-techniques',
+      es: 'tecnicas-enmascaramiento-datos',
+      fr: 'techniques-masquage-donnees',
+      de: 'datenmaskierungstechniken',
+    },
+    title: 'Data Masking Techniques: Hashing, Tokenization, Redaction & More',
+    description:
+      'Compare the most effective data masking techniques — including hashing, tokenization, redaction, pseudonymisation, and format-preserving encryption — with real-world use cases.',
+    category: 'Privacy & Security',
+    readingTime: 8,
+    lastUpdated: '2026-08-08',
+    relatedCalculator: 'database-privacy',
+  },
+  {
+    slug: 'hipaa-data-de-identification',
+    slugs: {
+      en: 'hipaa-data-de-identification',
+      es: 'desidentificacion-datos-hipaa',
+      fr: 'de-identification-donnees-hipaa',
+      de: 'hipaa-datenanonymisierung',
+    },
+    title: 'HIPAA Data De-Identification: Safe Harbor vs Expert Determination',
+    description:
+      'Understand HIPAA de-identification requirements under 45 CFR §164.514 — comparing the Safe Harbor and Expert Determination methods with guidance on which 18 identifiers must be removed.',
+    category: 'Privacy & Security',
+    readingTime: 8,
+    lastUpdated: '2026-08-08',
+    relatedCalculator: 'database-privacy',
+  },
+  {
+    slug: 'pci-dss-pan-masking',
+    slugs: {
+      en: 'pci-dss-pan-masking',
+      es: 'enmascaramiento-pan-pci-dss',
+      fr: 'masquage-pan-pci-dss',
+      de: 'pci-dss-pan-maskierung',
+    },
+    title: 'PCI DSS PAN Masking: Protecting Cardholder Data in Databases',
+    description:
+      'A technical guide to PCI DSS Requirement 3 — how to mask, truncate, and tokenize Primary Account Numbers (PAN) to protect cardholder data and avoid costly non-compliance penalties.',
+    category: 'Privacy & Security',
+    readingTime: 7,
+    lastUpdated: '2026-08-08',
+    relatedCalculator: 'database-privacy',
+  },
+];
+
 // ─── EXPORTED REGISTRY ────────────────────────────────────────────────
 
-/** All guides in display order (Finance → Health → Math & Science) */
+/** All guides in display order (Finance → Health → Math & Science → Privacy & Security) */
 export const allGuides: Guide[] = [
   ...financeGuides,
   ...healthGuides,
   ...mathGuides,
+  ...privacyGuides,
 ];
 
 /** Guides grouped by category for sidebar rendering */
@@ -414,6 +500,7 @@ export const guidesByCategory: Record<GuideCategory, Guide[]> = {
   Finance: financeGuides,
   Health: healthGuides,
   'Math & Science': mathGuides,
+  'Privacy & Security': privacyGuides,
 };
 
 /** Featured guides for the hero/landing section */

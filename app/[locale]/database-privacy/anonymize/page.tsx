@@ -83,6 +83,42 @@ export default function AnonymizePage() {
     }, 800);
   };
 
+  const handleDownloadCsv = () => {
+    if (anonymizedData.length === 0) return;
+    const header = columns.join(',');
+    const rows = anonymizedData.map(row =>
+      columns.map(col => {
+        const val = String(row[col] ?? '');
+        // Escape commas and quotes for CSV
+        return val.includes(',') || val.includes('"') ? `"${val.replace(/"/g, '""')}"` : val;
+      }).join(',')
+    ).join('\n');
+    const csvContent = header + '\n' + rows;
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `anonymized-data-${new Date().toISOString().slice(0, 10)}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const handleDownloadJson = () => {
+    if (anonymizedData.length === 0) return;
+    const json = JSON.stringify(anonymizedData, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `anonymized-data-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const strategiesApplied = Object.values(strategies).filter(s => s !== 'Keep').length;
+  const riskBefore = columns.length > 0 ? Math.min(100, columns.length * 15) : 0;
+  const riskAfter = Math.max(0, riskBefore - strategiesApplied * 12);
+
   return (
     <div className="p-8 max-w-7xl mx-auto space-y-8">
       <div>
@@ -164,8 +200,8 @@ export default function AnonymizePage() {
             <div className="mt-6 flex justify-between items-center">
               <div className="text-sm">
                 Risk Score:{" "}
-                <span className="text-red-500 font-bold">High (85)</span> →{" "}
-                <span className="text-emerald-500 font-bold">Low (12)</span>
+                <span className="text-red-500 font-bold">High ({riskBefore})</span> →{" "}
+                <span className="text-emerald-500 font-bold">Low ({riskAfter})</span>
               </div>
               <button
                 onClick={handleAnonymize}
@@ -189,9 +225,20 @@ export default function AnonymizePage() {
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">
               3. Results
             </h2>
-            <button className="px-4 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800/50">
-              Download CSV
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={handleDownloadCsv}
+                className="px-4 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800/50"
+              >
+                Download CSV
+              </button>
+              <button
+                onClick={handleDownloadJson}
+                className="px-4 py-2 border border-slate-200 dark:border-slate-800 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800/50"
+              >
+                Download JSON
+              </button>
+            </div>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">

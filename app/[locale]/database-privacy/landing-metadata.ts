@@ -3,32 +3,26 @@ import type { Metadata } from "next";
 const baseUrl = process.env.APP_URL || "https://nexuscalculator.net";
 
 export const metadata: Metadata = {
-  title: "Enterprise Database Anonymizer — Free Data Privacy Platform | Nexus",
+  title: "Database Privacy Platform — PII Scanner, Masking & GDPR Compliance | Nexus",
   description:
-    "Free enterprise-grade database anonymization platform. Scan for PII, apply masking rules, enforce GDPR/HIPAA/PCI-DSS compliance, and schedule automated jobs. No signup required.",
+    "Detect PII in databases, apply masking rules, and track GDPR, HIPAA & PCI-DSS compliance. Browser-side anonymization. Zero data leaves your device. Free to start.",
   keywords: [
-    "free database anonymizer",
-    "data masking tool",
-    "PII masking",
-    "GDPR compliance tool",
-    "HIPAA data masking",
-    "PCI-DSS anonymization",
-    "database privacy platform",
-    "sensitive data scanner",
-    "SQL anonymizer",
-    "data pseudonymization",
-    "enterprise data privacy free",
-    "data de-identification tool",
-    "synthetic data generator",
-    "database security tool",
-    "data privacy compliance",
+    "database privacy",
+    "PII scanner",
+    "data masking",
+    "GDPR compliance",
+    "HIPAA compliance",
+    "PCI-DSS",
+    "data anonymization",
+    "database security",
+    "data protection platform"
   ],
   openGraph: {
-    title: "Enterprise Database Anonymizer — Free Data Privacy Platform",
+    title: "Database Privacy Platform — PII Scanner, Masking & GDPR Compliance | Nexus",
     description:
-      "Scan, mask, and anonymize sensitive database columns. GDPR · HIPAA · PCI-DSS compliance in one platform. Free forever.",
+      "Detect PII in databases, apply masking rules, and track GDPR, HIPAA & PCI-DSS compliance. Browser-side anonymization. Zero data leaves your device. Free to start.",
     url: `${baseUrl}/en/database-privacy`,
-    siteName: "Nexus DataPrivacy",
+    siteName: "Nexus Calculator Hub",
     type: "website",
     images: [
       {
@@ -41,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Enterprise Database Anonymizer — Free · GDPR · HIPAA · PCI-DSS",
+    title: "Database Privacy Platform — PII Scanner, Masking & GDPR Compliance | Nexus",
     description:
-      "Scan, mask, and anonymize sensitive database columns. Free forever. No signup required.",
+      "Detect PII in databases, apply masking rules, and track GDPR, HIPAA & PCI-DSS compliance. Browser-side anonymization. Zero data leaves your device. Free to start.",
     images: [`${baseUrl}/icons/icon-512x512.png`],
   },
   robots: {

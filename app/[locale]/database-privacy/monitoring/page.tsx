@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Activity, Cpu, Server, Zap, RefreshCw, Layers } from 'lucide-react';
+import { Activity, Cpu, Server, Zap, RefreshCw, Layers, Briefcase } from 'lucide-react';
 import { LineChart, Line, ResponsiveContainer, YAxis, BarChart, Bar } from 'recharts';
 
 const generateSparkline = (points: number, min: number, max: number) => {
@@ -19,7 +19,7 @@ const initialMetrics = {
   throughput: { value: 2450, history: generateSparkline(20, 1000, 5000) }
 };
 
-const workers = [
+const defaultWorkers = [
   { id: 'worker-node-1', cpu: 42, memory: 58, status: 'Active', heartbeat: '1s ago', jobs: 124 },
   { id: 'worker-node-2', cpu: 78, memory: 82, status: 'Active', heartbeat: '2s ago', jobs: 98 },
   { id: 'worker-node-3', cpu: 12, memory: 45, status: 'Idle', heartbeat: '1s ago', jobs: 45 },
@@ -33,40 +33,88 @@ const queueHistory = Array.from({ length: 24 }, (_, i) => ({
 
 export default function MonitoringPage() {
   const [metrics, setMetrics] = useState(initialMetrics);
+  const [activeJobs, setActiveJobs] = useState<number | null>(null);
+  const [workersList, setWorkersList] = useState(defaultWorkers);
   const [autoRefresh, setAutoRefresh] = useState(true);
 
   useEffect(() => {
     if (!autoRefresh) return;
     
-    const interval = setInterval(() => {
-      setMetrics(prev => ({
-        cpu: { value: Math.floor(Math.random() * (80 - 30 + 1)) + 30, history: [...prev.cpu.history.slice(1), { time: 20, value: Math.floor(Math.random() * (80 - 30 + 1)) + 30 }] },
-        memory: { value: Math.floor(Math.random() * (85 - 50 + 1)) + 50, history: [...prev.memory.history.slice(1), { time: 20, value: Math.floor(Math.random() * (85 - 50 + 1)) + 50 }] },
-        queue: { value: Math.floor(Math.random() * 30), history: [...prev.queue.history.slice(1), { time: 20, value: Math.floor(Math.random() * 30) }] },
-        throughput: { value: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000, history: [...prev.throughput.history.slice(1), { time: 20, value: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000 }] },
-      }));
-    }, 2000);
+    const fetchMonitoringData = async () => {
+      // 1. Fetch main monitoring data
+      try {
+        const res = await fetch('/api/privacy/monitoring');
+        if (res.ok) {
+          const data = await res.json();
+          setMetrics(prev => ({
+            cpu: { value: data.cpu, history: [...prev.cpu.history.slice(1), { time: 20, value: data.cpu }] },
+            memory: { value: data.memory, history: [...prev.memory.history.slice(1), { time: 20, value: data.memory }] },
+            queue: { value: data.queue, history: [...prev.queue.history.slice(1), { time: 20, value: data.queue }] },
+            throughput: { value: data.throughput, history: [...prev.throughput.history.slice(1), { time: 20, value: data.throughput }] },
+          }));
+        } else {
+          throw new Error('Fallback to random');
+        }
+      } catch (err) {
+        setMetrics(prev => ({
+          cpu: { value: Math.floor(Math.random() * (80 - 30 + 1)) + 30, history: [...prev.cpu.history.slice(1), { time: 20, value: Math.floor(Math.random() * (80 - 30 + 1)) + 30 }] },
+          memory: { value: Math.floor(Math.random() * (85 - 50 + 1)) + 50, history: [...prev.memory.history.slice(1), { time: 20, value: Math.floor(Math.random() * (85 - 50 + 1)) + 50 }] },
+          queue: { value: Math.floor(Math.random() * 30), history: [...prev.queue.history.slice(1), { time: 20, value: Math.floor(Math.random() * 30) }] },
+          throughput: { value: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000, history: [...prev.throughput.history.slice(1), { time: 20, value: Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000 }] },
+        }));
+      }
+
+      // 2. Fetch active jobs
+      try {
+        const jobsRes = await fetch('/api/privacy/jobs?status=running');
+        if (jobsRes.ok) {
+          const jobsData = await jobsRes.json();
+          // Assume response has a count or is an array
+          setActiveJobs(jobsData.count ?? jobsData.length ?? 0);
+        }
+      } catch (err) {
+        // Silently fail for jobs or fallback
+      }
+
+      // 3. Fetch workers
+      try {
+        const workersRes = await fetch('/api/privacy/monitoring/workers');
+        if (workersRes.ok) {
+          const workersData = await workersRes.json();
+          setWorkersList(workersData);
+        } else {
+          // Keep current static array on fail
+        }
+      } catch (err) {
+        // Keep current static array on fail
+      }
+    };
+
+    fetchMonitoringData();
+    const interval = setInterval(fetchMonitoringData, 5000);
 
     return () => clearInterval(interval);
   }, [autoRefresh]);
 
-  const MetricCard = ({ title, value, unit, icon: Icon, color, data }: any) => (
+  const MetricCard = ({ title, value, unit, icon: Icon, color, data, isStatic }: any) => (
     <div className="glass-panel rounded-2xl p-6 dark:bg-[#090E17]/60 dark:border-white/10 flex flex-col">
       <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 font-medium">
           <Icon className="w-5 h-5" />
           {title}
         </div>
-        <div className={`text-2xl font-bold ${color}`}>{value}{unit}</div>
+        <div className={`text-2xl font-bold ${color}`}>{value !== null ? value : '-'}{unit}</div>
       </div>
-      <div className="h-16 w-full mt-auto">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={data}>
-            <YAxis domain={['dataMin - 10', 'dataMax + 10']} hide />
-            <Line type="monotone" dataKey="value" stroke={color.replace('text-', 'var(--tw-') + ') || currentColor'} strokeWidth={2} dot={false} isAnimationActive={false} />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
+      {!isStatic && data && (
+        <div className="h-16 w-full mt-auto">
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <YAxis domain={['dataMin - 10', 'dataMax + 10']} hide />
+              <Line type="monotone" dataKey="value" stroke={color.replace('text-', 'var(--tw-') + ') || currentColor'} strokeWidth={2} dot={false} isAnimationActive={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      )}
     </div>
   );
 
@@ -91,11 +139,12 @@ export default function MonitoringPage() {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         <MetricCard title="CPU Usage" value={metrics.cpu.value} unit="%" icon={Cpu} color="text-violet-500" data={metrics.cpu.history} />
         <MetricCard title="Memory Usage" value={metrics.memory.value} unit="%" icon={Server} color="text-blue-500" data={metrics.memory.history} />
         <MetricCard title="Queue Depth" value={metrics.queue.value} unit="" icon={Layers} color="text-amber-500" data={metrics.queue.history} />
         <MetricCard title="Throughput" value={metrics.throughput.value} unit="r/s" icon={Zap} color="text-emerald-500" data={metrics.throughput.history} />
+        <MetricCard title="Active Jobs" value={activeJobs} unit="" icon={Briefcase} color="text-rose-500" isStatic={true} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -114,7 +163,7 @@ export default function MonitoringPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-                {workers.map((worker) => (
+                {workersList.map((worker: any) => (
                   <tr key={worker.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                     <td className="px-4 py-4 font-mono text-slate-900 dark:text-white font-medium">{worker.id}</td>
                     <td className="px-4 py-4">

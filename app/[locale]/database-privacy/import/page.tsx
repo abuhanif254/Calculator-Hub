@@ -7,6 +7,7 @@ export default function ImportPage() {
   const [dragActive, setDragActive] = useState(false);
   const [progress, setProgress] = useState(0);
   const [result, setResult] = useState<any>(null);
+  const [ruleProfile, setRuleProfile] = useState('gdpr_strict');
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -17,17 +18,45 @@ export default function ImportPage() {
   };
 
   const handleProcess = () => {
-    setProgress(1);
-    const interval = setInterval(() => {
-      setProgress((p) => {
-        if (p >= 100) {
-          clearInterval(interval);
-          setResult({ rows: 14502, pii: 3, masked: 43506 });
-          return 100;
+    if (!file) return;
+    setProgress(2);
+
+    const formData = new FormData();
+    formData.append('file', file);
+    const ext = file.name.split('.').pop()?.toLowerCase();
+    const type = (ext === 'csv' || ext === 'json' || ext === 'sql' || ext === 'xml') ? ext : 'findings';
+    formData.append('type', type);
+    if (ruleProfile) formData.append('rule_profile', ruleProfile);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `/api/privacy/import?type=${type}`);
+
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable) {
+        setProgress(Math.round((e.loaded / e.total) * 85));
+      }
+    };
+
+    xhr.onload = () => {
+      setProgress(100);
+      try {
+        const data = JSON.parse(xhr.responseText);
+        if (xhr.status >= 400) {
+          setResult({ error: data.error ?? 'Import failed' });
+        } else {
+          setResult({ rows: data.imported ?? 0, pii: data.skipped ?? 0, masked: data.imported ?? 0, errors: data.errors ?? [] });
         }
-        return p + 5;
-      });
-    }, 100);
+      } catch {
+        setResult({ error: 'Invalid server response' });
+      }
+    };
+
+    xhr.onerror = () => {
+      setProgress(0);
+      setResult({ error: 'Network error during upload' });
+    };
+
+    xhr.send(formData);
   };
 
   return (
@@ -142,10 +171,10 @@ export default function ImportPage() {
                 <h4 className="text-sm font-bold text-slate-700 dark:text-slate-300 mb-3">
                   Select Active Rule Profile
                 </h4>
-                <select className="w-full px-3 py-2 bg-white dark:bg-[#0B1120] border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white">
-                  <option>GDPR Strict Baseline</option>
-                  <option>HIPAA PHI Redaction</option>
-                  <option>Development Sandbox (Synthetic)</option>
+                <select value={ruleProfile} onChange={e => setRuleProfile(e.target.value)} className="w-full px-3 py-2 bg-white dark:bg-[#0B1120] border border-slate-300 dark:border-slate-700 rounded-lg text-slate-900 dark:text-white">
+                  <option value="gdpr_strict">GDPR Strict Baseline</option>
+                  <option value="hipaa_phi">HIPAA PHI Redaction</option>
+                  <option value="dev_sandbox">Development Sandbox (Synthetic)</option>
                 </select>
               </div>
 

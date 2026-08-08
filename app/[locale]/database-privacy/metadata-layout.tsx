@@ -1,62 +1,77 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 
 const baseUrl = process.env.APP_URL || "https://nexuscalculator.net";
 
-export const metadata: Metadata = {
-  title: {
-    default: "Enterprise Database Anonymizer | Free Data Privacy Platform",
-    template: "%s | DataPrivacy — Nexus",
-  },
-  description:
-    "Free enterprise-grade database anonymization platform. Mask PII, enforce GDPR/HIPAA/PCI-DSS compliance, scan for sensitive data, and schedule masking jobs — all from a single beautiful dashboard.",
-  keywords: [
-    "database anonymizer",
-    "data masking",
-    "PII masking",
-    "GDPR compliance tool",
-    "HIPAA data masking",
-    "PCI-DSS anonymization",
-    "database privacy",
-    "free data anonymizer",
-    "sensitive data scanner",
-    "SQL anonymizer",
-    "data pseudonymization",
-    "enterprise data privacy",
-    "database privacy platform",
-    "data de-identification",
-    "synthetic data generator",
-  ],
-  openGraph: {
-    title: "Enterprise Database Anonymizer — Free Data Privacy Platform",
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  // Attempt to get current path from common headers or referer
+  const pathname = headersList.get("x-pathname") || headersList.get("x-invoke-path") || headersList.get("referer") || "";
+
+  // Pages that should be indexed (public)
+  const PUBLIC_SUFFIXES = [
+    "database-privacy",
+    "database-privacy/",
+    "database-privacy/login",
+    "database-privacy/signup",
+  ];
+
+  // If it's not a public page, add noindex
+  const isPublic = PUBLIC_SUFFIXES.some((suffix) => pathname.endsWith(suffix) || pathname.includes(suffix + "?"));
+
+  return {
+    title: {
+      default: "Enterprise Database Anonymizer | Free Data Privacy Platform",
+      template: "%s | DataPrivacy — Nexus",
+    },
     description:
-      "Scan, mask, and anonymize sensitive database columns. GDPR · HIPAA · PCI-DSS compliance in one platform. Free forever.",
-    url: `${baseUrl}/en/database-privacy`,
-    siteName: "Nexus DataPrivacy",
-    type: "website",
-    images: [
-      {
-        url: `${baseUrl}/icons/icon-512x512.png`,
-        width: 512,
-        height: 512,
-        alt: "Enterprise Database Anonymizer Platform",
-      },
+      "Free enterprise-grade database anonymization platform. Mask PII, enforce GDPR/HIPAA/PCI-DSS compliance, scan for sensitive data, and schedule masking jobs — all from a single beautiful dashboard.",
+    keywords: [
+      "database anonymizer",
+      "data masking",
+      "PII masking",
+      "GDPR compliance tool",
+      "HIPAA data masking",
+      "PCI-DSS anonymization",
+      "database privacy",
+      "free data anonymizer",
+      "sensitive data scanner",
+      "SQL anonymizer",
+      "data pseudonymization",
+      "enterprise data privacy",
+      "database privacy platform",
+      "data de-identification",
+      "synthetic data generator",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Enterprise Database Anonymizer — Free Data Privacy Platform",
-    description:
-      "Scan, mask, and anonymize sensitive database columns. GDPR · HIPAA · PCI-DSS ready.",
-    images: [`${baseUrl}/icons/icon-512x512.png`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  alternates: {
-    canonical: `${baseUrl}/en/database-privacy`,
-  },
-};
+    openGraph: {
+      title: "Enterprise Database Anonymizer — Free Data Privacy Platform",
+      description:
+        "Scan, mask, and anonymize sensitive database columns. GDPR · HIPAA · PCI-DSS compliance in one platform. Free forever.",
+      url: `${baseUrl}/en/database-privacy`,
+      siteName: "Nexus DataPrivacy",
+      type: "website",
+      images: [
+        {
+          url: `${baseUrl}/icons/icon-512x512.png`,
+          width: 512,
+          height: 512,
+          alt: "Enterprise Database Anonymizer Platform",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Enterprise Database Anonymizer — Free Data Privacy Platform",
+      description:
+        "Scan, mask, and anonymize sensitive database columns. GDPR · HIPAA · PCI-DSS ready.",
+      images: [`${baseUrl}/icons/icon-512x512.png`],
+    },
+    robots: isPublic ? { index: true, follow: true } : { index: false, follow: false },
+    alternates: {
+      canonical: `${baseUrl}/en/database-privacy`,
+    },
+  };
+}
 
 // This is a pass-through layout — the actual shell is in the client layout below
 export default function DatabasePrivacySEOLayout({

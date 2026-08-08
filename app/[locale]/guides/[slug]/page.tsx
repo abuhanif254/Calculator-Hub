@@ -16,6 +16,7 @@ import {
   DollarSign,
   Heart,
   FlaskConical,
+  ShieldCheck,
   ExternalLink,
 } from 'lucide-react';
 import {
@@ -190,6 +191,7 @@ const CATEGORY_ICON: Record<GuideCategory, { Icon: React.ElementType; style: str
   Finance: { Icon: DollarSign, style: 'text-emerald-600 bg-emerald-50 dark:bg-emerald-500/10' },
   Health: { Icon: Heart, style: 'text-rose-500 bg-rose-50 dark:bg-rose-500/10' },
   'Math & Science': { Icon: FlaskConical, style: 'text-violet-600 bg-violet-50 dark:bg-violet-500/10' },
+  'Privacy & Security': { Icon: ShieldCheck, style: 'text-sky-600 bg-sky-50 dark:bg-sky-500/10' },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
