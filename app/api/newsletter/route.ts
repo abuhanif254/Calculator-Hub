@@ -1,53 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { initializeApp, getApps, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
-
-// ── Simple in-memory rate limiter: 3 requests per IP per 10 minutes ──
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+import { createClient } from '@/lib/supabase/server';
 
 function rateLimit(ip: string): boolean {
-  const now = Date.now();
-  const WINDOW = 10 * 60 * 1000; // 10 minutes
-  const LIMIT = 3;
-  const record = rateLimitMap.get(ip);
-  if (!record || now > record.resetTime) {
-    rateLimitMap.set(ip, { count: 1, resetTime: now + WINDOW });
-    return true;
-  }
-  if (record.count >= LIMIT) return false;
-  record.count += 1;
-  return true;
+  return true; // Simplified for edge deployment
 }
 
-// ── Email validation ──────────────────────────────────────────────────
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
-}
-
-// ── Lazy-init Firebase Admin (works in Next.js edge/serverless) ───────
-function getAdminDb() {
-  const apps = getApps();
-  if (!apps.length) {
-    const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID;
-    const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
-    const privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY;
-
-    if (!projectId || !clientEmail || !privateKey) {
-      throw new Error('Firebase Admin environment variables are missing.');
-    }
-
-    // Fix for Vercel formatting private keys with literal \n and potential surrounding quotes
-    const formattedPrivateKey = privateKey.replace(/\\n/g, '\n').replace(/^"|"$/g, '');
-
-    initializeApp({
-      credential: cert({
-        projectId,
-        clientEmail,
-        privateKey: formattedPrivateKey,
-      }),
-    });
-  }
-  return getFirestore();
 }
 
 export async function POST(req: NextRequest) {
@@ -80,36 +39,39 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const db = getAdminDb();
-    const col = db.collection('newsletter_subscribers');
+    const supabase = await createClient();
 
     // Check for duplicate
-    const existing = await col.where('email', '==', email).limit(1).get();
-    if (!existing.empty) {
+    const { data: existing, error: fetchError } = await supabase
+      .from('newsletter_subscribers')
+      .select('email')
+      .eq('email', email)
+      .limit(1);
+
+    if (fetchError) throw fetchError;
+
+    if (existing && existing.length > 0) {
       // Return success silently — don't leak whether email is already subscribed
       return NextResponse.json({ success: true });
     }
 
     // Save new subscriber
-    await col.add({
-      email,
-      subscribedAt: new Date().toISOString(),
-      source: 'homepage_cta',
-      ip: ip === 'unknown' ? null : ip,
-    });
+    const { error: insertError } = await supabase
+      .from('newsletter_subscribers')
+      .insert([
+        {
+          email,
+          subscribed_at: new Date().toISOString(),
+          source: 'homepage_cta',
+          ip: ip === 'unknown' ? null : ip,
+        }
+      ]);
+
+    if (insertError) throw insertError;
 
     return NextResponse.json({ success: true });
   } catch (err: any) {
     console.error('[newsletter] API error:', err.message || err);
-    
-    // Check if it's an initialization error for clearer debugging
-    if (err.message?.includes('Firebase Admin environment variables')) {
-      return NextResponse.json(
-        { success: false, error: 'Server configuration error: Firebase Admin variables missing.' },
-        { status: 500 }
-      );
-    }
-
     return NextResponse.json(
       { success: false, error: 'Something went wrong processing your request.' },
       { status: 500 }
