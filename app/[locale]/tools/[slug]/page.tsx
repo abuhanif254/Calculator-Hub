@@ -90,8 +90,8 @@ const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseCo
 const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPromptHelperTool').then(m => m.AIPromptHelperTool));
 const InstagramTiktokHashtagGeneratorTool = dynamic(() => import('../../../components/tools/InstagramTiktokHashtagGeneratorTool').then(m => m.InstagramTiktokHashtagGeneratorTool));
 const BioLinkPageGeneratorTool = dynamic(() => import('../../../components/tools/BioLinkPageGeneratorTool').then(m => m.BioLinkPageGeneratorTool));
-const HtmlCssJsPlaygroundTool = dynamic(() => import('../../../components/tools/HtmlCssJsPlaygroundTool').then(m => m.HtmlCssJsPlaygroundTool));
-const BackgroundRemoverTool = dynamic(() => import('../../../components/tools/BackgroundRemoverTool').then(m => m.BackgroundRemoverTool));
+const HtmlCssJsPlaygroundTool = dynamic(() => import('../../../components/tools/HtmlCssJsPlaygroundTool').then(m => m.HtmlCssJsPlaygroundTool), { ssr: false });
+const BackgroundRemoverTool = dynamic(() => import('../../../components/tools/BackgroundRemoverTool').then(m => m.BackgroundRemoverTool), { ssr: false });
 const QrCodeStudioTool = dynamic(() => import('../../../components/tools/QrCodeStudioTool').then(m => m.QrCodeStudioTool));
 const PdfToExcelTool = dynamic(() => import('../../../components/tools/PdfToExcelTool').then(m => m.PdfToExcelTool));
 const PdfToPowerPointTool = dynamic(() => import('../../../components/tools/PdfToPowerPointTool').then(m => m.PdfToPowerPointTool));
@@ -112,7 +112,7 @@ const CropImageTool = dynamic(() => import('../../../components/tools/CropImageT
 const RotateImageTool = dynamic(() => import('../../../components/tools/RotateImageTool').then(m => m.RotateImageTool));
 const FlipImageTool = dynamic(() => import('../../../components/tools/FlipImageTool').then(m => m.FlipImageTool));
 const ImageConverterTool = dynamic(() => import('../../../components/tools/ImageConverterTool').then(m => m.ImageConverterTool));
-const BlurFacesInImageTool = dynamic(() => import('../../../components/tools/BlurFacesInImageTool').then(m => m.default));
+const BlurFacesInImageTool = dynamic(() => import('../../../components/tools/BlurFacesInImageTool').then(m => m.default), { ssr: false });
 const WatermarkImageTool = dynamic(() => import('../../../components/tools/WatermarkImageTool').then(m => m.WatermarkImageTool));
 const PixelateImageTool = dynamic(() => import('../../../components/tools/PixelateImageTool').then(m => m.PixelateImageTool));
 const BlurImageTool = dynamic(() => import('../../../components/tools/BlurImageTool').then(m => m.BlurImageTool));

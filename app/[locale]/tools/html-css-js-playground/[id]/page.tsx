@@ -1,6 +1,11 @@
 export const runtime = 'edge';
 import { getPlaygroundPen } from '@/lib/playgroundService';
-import { HtmlCssJsPlaygroundToolBase } from '@/app/components/tools/HtmlCssJsPlaygroundTool';
+import dynamic from 'next/dynamic';
+
+const HtmlCssJsPlaygroundToolBase = dynamic(
+  () => import('@/app/components/tools/HtmlCssJsPlaygroundTool').then((mod) => mod.HtmlCssJsPlaygroundToolBase),
+  { ssr: false, loading: () => <div className="p-12 text-center text-slate-500">Loading Editor...</div> }
+);
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
