@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { NextRequest, NextResponse } from 'next/server';
 
 // Memory-based rate limiter (10 requests per minute per IP)
