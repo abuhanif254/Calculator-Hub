@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import React from "react";
 import { notFound } from "next/navigation";
 import { calculators, getCalculatorBySlug } from "@/lib/data/calculators";
