@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Link, routing } from '@/i18n/routing';

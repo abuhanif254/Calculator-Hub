@@ -16,7 +16,7 @@ const walk = (dir) => {
   return results;
 };
 
-const files = walk('c:/nexus/Calculator-Hub/app').filter(f => f.endsWith('route.ts') || f.replace(/\\/g, '/').endsWith('app/layout.tsx'));
+const files = walk('c:/nexus/Calculator-Hub/app').filter(f => f.endsWith('route.ts') || f.endsWith('page.tsx') || f.replace(/\\/g, '/').endsWith('app/layout.tsx'));
 
 let count = 0;
 files.forEach(f => {

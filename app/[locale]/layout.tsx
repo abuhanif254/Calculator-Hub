@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import type { Metadata, Viewport } from 'next';
 import '../../app/globals.css'; // Global styles
 import { Navbar } from '../../app/components/Navbar';
@@ -188,3 +189,4 @@ export default async function RootLayout({
     </html>
   );
 }
+

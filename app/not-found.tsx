@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 // Required by next-intl to handle 404s outside the [locale] folder
 // and to fix build errors when notFound() is called in dynamic routes.
 // Must be a Server Component (no 'use client') to render <html>/<body>.
@@ -28,3 +29,4 @@ export default function GlobalNotFound() {
     </html>
   );
 }
+
