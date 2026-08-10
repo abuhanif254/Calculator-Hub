@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { getComparisonBySlug } from '../../../../lib/data/comparisons';
@@ -132,3 +133,4 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     </div>
   );
 }
+

@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { searchTools, allTools } from '@/lib/registry';
@@ -105,3 +106,4 @@ export default async function SearchPage({ params, searchParams }: { params: Pro
     </main>
   );
 }
+

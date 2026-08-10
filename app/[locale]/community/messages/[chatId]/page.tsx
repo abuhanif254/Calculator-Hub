@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 "use client";
 
 import React, { useState, useEffect, useRef, use } from 'react';
@@ -193,3 +194,4 @@ export default function ChatViewPage({ params }: { params: Promise<{ chatId: str
     </ProtectedRoute>
   );
 }
+

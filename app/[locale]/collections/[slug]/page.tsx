@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { getCollectionBySlug } from '../../../../lib/data/collections';
@@ -135,3 +136,4 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     </div>
   );
 }
+

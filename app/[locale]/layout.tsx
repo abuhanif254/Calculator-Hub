@@ -58,6 +58,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       statusBarStyle: 'default',
       title: 'Nexus Calculator',
     },
+    icons: {
+      icon: '/icon.svg',
+    },
     title: {
       default: 'Nexus | Ultimate Calculators & Developer Tools Platform',
       template: '%s | Nexus'

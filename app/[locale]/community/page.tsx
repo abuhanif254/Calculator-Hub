@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import React from 'react';
 import { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
@@ -225,3 +226,4 @@ export default async function CommunityIndex({
     </>
   );
 }
+

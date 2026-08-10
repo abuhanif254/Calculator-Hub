@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 "use client";
 
 import React, { useState, useEffect, use } from 'react';
@@ -416,3 +417,4 @@ export default function UserProfilePage({ params }: { params: Promise<{ userId: 
     </div>
   );
 }
+
