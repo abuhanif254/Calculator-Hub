@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import React from 'react';
 
 // Next.js requires a root layout, even if we use [locale]/layout.tsx
