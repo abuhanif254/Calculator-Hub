@@ -442,3 +442,5 @@ export default async function GuideArticlePage({
     </div>
   );
 }
+
+export const dynamicParams = false;

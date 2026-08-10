@@ -1,5 +1,4 @@
 "use client";
-export const runtime = 'edge';
 import React from 'react';
 import { useToolHistory, useFavorites, useStreak } from '@/lib/hooks/useRetention';
 import { Link } from '@/i18n/routing';

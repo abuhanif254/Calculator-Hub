@@ -189,3 +189,5 @@ export default async function RootLayout({
   );
 }
 
+
+export const dynamicParams = false;

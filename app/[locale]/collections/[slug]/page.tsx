@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { getCollectionBySlug } from '../../../../lib/data/collections';

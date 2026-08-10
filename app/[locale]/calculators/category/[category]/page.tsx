@@ -303,3 +303,5 @@ export default async function CategoryPage({
     </>
   );
 }
+
+export const dynamicParams = false;

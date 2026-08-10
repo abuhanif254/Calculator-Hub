@@ -1,5 +1,4 @@
 "use client";
-export const runtime = 'edge';
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { ListOrdered, Clock, CheckCircle2, XCircle, Play, AlertCircle } from "lucide-react";

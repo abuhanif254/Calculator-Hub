@@ -41,3 +41,5 @@ export default async function EmbedCalculatorPage({
     </div>
   );
 }
+
+export const dynamicParams = false;

@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import { getPlaygroundPen } from '@/lib/playgroundService';
 import { HtmlCssJsPlaygroundToolBase } from '@/app/components/tools/ClientHeavyTools';
 import { Metadata } from 'next';
