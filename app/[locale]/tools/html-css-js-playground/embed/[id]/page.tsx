@@ -1,11 +1,6 @@
 export const runtime = 'edge';
 import { getPlaygroundPen } from '@/lib/playgroundService';
-import dynamic from 'next/dynamic';
-
-const PlaygroundEmbedClient = dynamic(
-  () => import('@/app/components/tools/html-css-js-playground/PlaygroundEmbedClient').then((mod) => mod.PlaygroundEmbedClient),
-  { ssr: false, loading: () => <div className="p-4 text-center text-slate-500 text-sm">Loading Embed...</div> }
-);
+import { PlaygroundEmbedClient } from '@/app/components/tools/ClientHeavyTools';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
