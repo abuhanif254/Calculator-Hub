@@ -1,6 +1,5 @@
+"use client";
 export const runtime = 'edge';
-'use client';
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';

@@ -1,6 +1,5 @@
-export const runtime = 'edge';
 "use client";
-
+export const runtime = 'edge';
 import React from "react";
 import { motion } from "motion/react";
 import { Shield, CheckCircle2, XCircle } from "lucide-react";

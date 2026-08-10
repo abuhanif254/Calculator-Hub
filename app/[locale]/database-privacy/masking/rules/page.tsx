@@ -1,6 +1,5 @@
+"use client";
 export const runtime = 'edge';
-'use client';
-
 import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';

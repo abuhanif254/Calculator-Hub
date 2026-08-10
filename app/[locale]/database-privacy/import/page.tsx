@@ -1,6 +1,5 @@
-export const runtime = 'edge';
 "use client";
-
+export const runtime = 'edge';
 import React, { useState, useRef } from "react";
 
 export default function ImportPage() {

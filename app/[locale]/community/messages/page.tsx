@@ -1,6 +1,5 @@
-export const runtime = 'edge';
 "use client";
-
+export const runtime = 'edge';
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/app/components/AuthProvider';
 import { db } from '@/lib/firebase';

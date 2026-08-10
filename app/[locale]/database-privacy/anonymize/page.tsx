@@ -1,6 +1,5 @@
+"use client";
 export const runtime = 'edge';
-'use client';
-
 import React, { useState } from "react";
 import { motion } from "motion/react";
 

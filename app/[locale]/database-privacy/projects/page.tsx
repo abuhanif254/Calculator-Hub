@@ -1,6 +1,5 @@
+"use client";
 export const runtime = 'edge';
-'use client';
-
 import React from "react";
 import { motion } from "motion/react";
 import { FolderGit2, Plus, Server, Activity, Clock } from "lucide-react";
