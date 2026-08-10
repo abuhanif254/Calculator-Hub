@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import { getPlaygroundPen } from '@/lib/playgroundService';
 import { PlaygroundEmbedClient } from '@/app/components/tools/html-css-js-playground/PlaygroundEmbedClient';
 import { Metadata } from 'next';
