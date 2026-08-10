@@ -1,9 +1,14 @@
 export const runtime = 'edge';
 import { NextRequest, NextResponse } from 'next/server';
-import dns from 'dns';
-import { promisify } from 'util';
-
-const dnsLookup = promisify(dns.lookup);
+async function resolveDns(hostname: string) {
+  const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(hostname)}&type=A`, {
+    headers: { 'accept': 'application/dns-json' }
+  });
+  if (!res.ok) throw new Error('DNS lookup failed');
+  const data = await res.json();
+  if (!data.Answer) return [];
+  return data.Answer.map((a: any) => ({ address: a.data }));
+}
 
 // Simple memory-based rate limiter (30 requests per minute per IP)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -109,8 +114,8 @@ async function validateUrlHost(urlStr: string): Promise<void> {
   let resolvedIps: string[] = [];
   
   try {
-    const lookupResult = await dnsLookup(hostname, { all: true });
-    resolvedIps = lookupResult.map(r => r.address);
+    const lookupResult = await resolveDns(hostname);
+    resolvedIps = lookupResult.map((r: any) => r.address);
   } catch (err) {
     throw new Error(`Failed to resolve DNS hostname: ${hostname}`);
   }

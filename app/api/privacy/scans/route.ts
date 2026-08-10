@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     if (connErr || !conn) return NextResponse.json({ error: 'Connection not found' }, { status: 404 });
 
     let password: string;
-    try { password = decrypt(conn.encrypted_password); }
+    try { password = await decrypt(conn.encrypted_password); }
     catch { return NextResponse.json({ error: 'Failed to decrypt credentials' }, { status: 500 }); }
 
     // Create the scan record
@@ -166,39 +166,9 @@ export async function POST(req: NextRequest) {
       };
 
       if (conn.type === 'postgresql') {
-        const { Client } = await import('pg');
-        const client = new Client({
-          host: conn.host, port: conn.port, database: conn.dbname,
-          user: conn.username, password,
-          ssl: conn.use_ssl ? { rejectUnauthorized: false } : false,
-          connectionTimeoutMillis: 10000,
-        });
-        await client.connect();
-        try {
-          await connectAndScan(async (sql) => {
-            const res = await client.query(sql);
-            return res.rows;
-          });
-        } finally {
-          await client.end().catch(() => {});
-        }
-
+        throw new Error('Database privacy features are currently disabled in the Cloudflare Edge environment.');
       } else if (conn.type === 'mysql') {
-        const mysql = await import('mysql2/promise');
-        const connection = await mysql.createConnection({
-          host: conn.host, port: conn.port, database: conn.dbname,
-          user: conn.username, password,
-          ssl: conn.use_ssl ? { rejectUnauthorized: false } : undefined,
-          connectTimeout: 10000,
-        });
-        try {
-          await connectAndScan(async (sql) => {
-            const [rows] = await connection.query<any[]>(sql);
-            return rows;
-          });
-        } finally {
-          await connection.end().catch(() => {});
-        }
+        throw new Error('Database privacy features are currently disabled in the Cloudflare Edge environment.');
       }
 
       // Batch-insert findings

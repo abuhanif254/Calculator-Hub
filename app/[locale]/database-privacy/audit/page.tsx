@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -10,7 +9,7 @@ import {
   Info, AlertTriangle, XCircle, CheckCircle2, Filter, X,
 } from 'lucide-react';
 
-// ── Types ──────────────────────────────────────────────────────────────────────
+// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface AuditLog {
   id: string;
   action: string;
@@ -23,7 +22,7 @@ interface AuditLog {
 
 interface AuditStats { total: number; today: number; errors: number; warnings: number; }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const CATEGORY_CONFIG = {
   connection: { label: 'Connection', icon: <Database className="w-3.5 h-3.5" />, bg: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400' },
   scan:       { label: 'Scan',       icon: <ScanSearch className="w-3.5 h-3.5" />, bg: 'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400' },
@@ -66,7 +65,7 @@ function fmtTimestamp(iso: string) {
   });
 }
 
-// ── Export CSV ────────────────────────────────────────────────────────────────
+// â”€â”€ Export CSV â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function exportCsv(logs: AuditLog[]) {
   const header = 'Timestamp,Action,Category,Severity,Resource,Details\n';
   const rows   = logs.map(l =>
@@ -81,7 +80,7 @@ function exportCsv(logs: AuditLog[]) {
   a.click(); URL.revokeObjectURL(url);
 }
 
-// ── Expandable log detail ─────────────────────────────────────────────────────
+// â”€â”€ Expandable log detail â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function LogRow({ log }: { log: AuditLog }) {
   const [expanded, setExpanded] = useState(false);
   const cat = CATEGORY_CONFIG[log.category] ?? CATEGORY_CONFIG.system;
@@ -129,7 +128,7 @@ function LogRow({ log }: { log: AuditLog }) {
                   <div key={k} className="flex gap-3 py-0.5">
                     <span className="text-violet-600 dark:text-violet-400 shrink-0 w-24">{k}</span>
                     <span className="text-slate-700 dark:text-slate-300 break-all">
-                      {typeof v === 'object' ? JSON.stringify(v) : String(v ?? '—')}
+                      {typeof v === 'object' ? JSON.stringify(v) : String(v ?? 'â€”')}
                     </span>
                   </div>
                 ))}
@@ -142,7 +141,7 @@ function LogRow({ log }: { log: AuditLog }) {
   );
 }
 
-// ── Main Page ─────────────────────────────────────────────────────────────────
+// â”€â”€ Main Page â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export default function AuditPage() {
   const [logs, setLogs]         = useState<AuditLog[]>([]);
   const [stats, setStats]       = useState<AuditStats | null>(null);
@@ -206,7 +205,7 @@ export default function AuditPage() {
             <ScrollText className="w-7 h-7 text-violet-600" /> Audit Logs
           </h1>
           <p className="text-slate-500 dark:text-slate-400 mt-1 text-sm">
-            Immutable trail of all platform activity — connections, scans, rules.
+            Immutable trail of all platform activity â€” connections, scans, rules.
           </p>
         </div>
         <div className="flex gap-2">
@@ -250,7 +249,7 @@ export default function AuditPage() {
           <div className="relative flex-1 min-w-[160px]">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input value={search} onChange={e => setSearch(e.target.value)}
-              placeholder="Search action or resource…"
+              placeholder="Search action or resourceâ€¦"
               className="w-full pl-9 pr-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm outline-none focus:ring-2 focus:ring-violet-500" />
           </div>
 
@@ -323,7 +322,7 @@ export default function AuditPage() {
         {totalPages > 1 && (
           <div className="p-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-sm">
             <p className="text-slate-500 text-xs">
-              Showing {Math.min((page - 1) * 50 + 1, total)}–{Math.min(page * 50, total)} of {total.toLocaleString()} events
+              Showing {Math.min((page - 1) * 50 + 1, total)}â€“{Math.min(page * 50, total)} of {total.toLocaleString()} events
             </p>
             <div className="flex items-center gap-2">
               <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}

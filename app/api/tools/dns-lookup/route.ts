@@ -1,6 +1,6 @@
 export const runtime = 'edge';
 import { NextRequest, NextResponse } from 'next/server';
-import dns from 'dns/promises';
+import { dns } from '@/lib/dns-edge';
 
 // Simple memory-based rate limiter (30 requests per minute per IP)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -101,7 +101,7 @@ async function validateHostname(hostname: string): Promise<void> {
   
   try {
     const lookupResult = await dns.lookup(hostname, { all: true });
-    resolvedIps = lookupResult.map(r => r.address);
+    resolvedIps = lookupResult.map((r: any) => r.address);
   } catch (err) {
     throw new Error(`Failed to resolve DNS hostname: ${hostname}`);
   }
@@ -292,7 +292,7 @@ export async function POST(req: NextRequest) {
         type: 'ip',
         input: cleaned,
         records: {
-          PTR: ptr ? ptr.map(val => ({ value: val })) : []
+          PTR: ptr ? ptr.map((val: any) => ({ value: val })) : []
         },
         diagnostics: [],
         whois: null
@@ -334,37 +334,37 @@ export async function POST(req: NextRequest) {
     const records: Record<string, any[]> = {};
 
     if (a) {
-      records['A'] = a.map(r => ({ value: r.address, ttl: r.ttl }));
+      records['A'] = a.map((r: any) => ({ value: r.address, ttl: r.ttl }));
     }
     if (aaaa) {
-      records['AAAA'] = aaaa.map(r => ({ value: r.address, ttl: r.ttl }));
+      records['AAAA'] = aaaa.map((r: any) => ({ value: r.address, ttl: r.ttl }));
     }
     if (cname) {
-      records['CNAME'] = cname.map(val => ({ value: val }));
+      records['CNAME'] = cname.map((val: any) => ({ value: val }));
     }
     if (mx) {
-      records['MX'] = mx.map(r => ({ value: r.exchange, priority: r.priority }));
+      records['MX'] = mx.map((r: any) => ({ value: r.exchange, priority: r.priority }));
     }
     if (txt) {
-      records['TXT'] = txt.map(val => ({ value: val.join(' ') }));
+      records['TXT'] = txt.map((val: any) => ({ value: val.join(' ') }));
     }
     if (ns) {
-      records['NS'] = ns.map(val => ({ value: val }));
+      records['NS'] = ns.map((val: any) => ({ value: val }));
     }
     if (soa) {
       records['SOA'] = [{
-        value: `Primary NS: ${soa.nsname}, Admin: ${soa.hostmaster}, Serial: ${soa.serial}, Refresh: ${soa.refresh}, Retry: ${soa.retry}, Expire: ${soa.expire}, MinTTL: ${soa.minttl}`,
+        value: `Primary NS: ${(soa as any).nsname}, Admin: ${(soa as any).hostmaster}, Serial: ${(soa as any).serial}, Refresh: ${(soa as any).refresh}, Retry: ${(soa as any).retry}, Expire: ${(soa as any).expire}, MinTTL: ${(soa as any).minttl}`,
         details: soa
       }];
     }
     if (srv) {
-      records['SRV'] = srv.map(r => ({
+      records['SRV'] = srv.map((r: any) => ({
         value: `${r.name}:${r.port} (Priority: ${r.priority}, Weight: ${r.weight})`,
         details: r
       }));
     }
     if (caa) {
-      records['CAA'] = caa.map(r => {
+      records['CAA'] = caa.map((r: any) => {
         let val = '';
         if ('issue' in r) val = `issue: ${r.issue}`;
         else if ('issuewild' in r) val = `issuewild: ${r.issuewild}`;
@@ -384,7 +384,7 @@ export async function POST(req: NextRequest) {
     // Detect Providers
     const dnsProvider = detectDnsProvider(ns || []);
     const hostingProvider = detectHostingProvider(
-      (a || []).map(r => r.address),
+      (a || []).map((r: any) => r.address),
       ptrsForA || []
     );
 
@@ -392,7 +392,7 @@ export async function POST(req: NextRequest) {
     const diagnostics: { type: 'spf' | 'dmarc' | 'dkim' | 'general'; status: 'secure' | 'warning' | 'error'; message: string }[] = [];
 
     // SPF Audits
-    const spfRecord = txt ? txt.map(v => v.join(' ')).find(str => str.startsWith('v=spf1')) : null;
+    const spfRecord = txt ? txt.map((v: any) => v.join(' ')).find((str: any) => str.startsWith('v=spf1')) : null;
     if (!spfRecord) {
       diagnostics.push({
         type: 'spf',
@@ -422,7 +422,7 @@ export async function POST(req: NextRequest) {
     }
 
     // DMARC Audits
-    const dmarcRecord = dmarc ? dmarc.map(v => v.join(' ')).find(str => str.startsWith('v=DMARC1')) : null;
+    const dmarcRecord = dmarc ? dmarc.map((v: any) => v.join(' ')).find((str: any) => str.startsWith('v=DMARC1')) : null;
     if (!dmarcRecord) {
       diagnostics.push({
         type: 'dmarc',

@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/routing';
@@ -129,7 +128,7 @@ export default function PlatformLoginPage() {
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
               </svg>
             )}
-            {googleLoading ? 'Redirecting…' : 'Continue with Google'}
+            {googleLoading ? 'Redirectingâ€¦' : 'Continue with Google'}
           </button>
 
           {/* Divider */}
@@ -174,7 +173,7 @@ export default function PlatformLoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                   className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-shadow"
                 />
                 <button
@@ -195,7 +194,7 @@ export default function PlatformLoginPage() {
               {loading ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Signing in…
+                  Signing inâ€¦
                 </>
               ) : (
                 'Sign in'
@@ -215,7 +214,7 @@ export default function PlatformLoginPage() {
         {/* Back to main site */}
         <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-6">
           <Link href={`/`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
-            ← Back to NexusCalculator
+            â† Back to NexusCalculator
           </Link>
         </p>
       </div>
@@ -230,7 +229,7 @@ export default function PlatformLoginPage() {
                 <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
                   <svg className="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                 </div>
-                <p className="text-sm text-slate-600 dark:text-slate-400">Check your inbox — we&apos;ve sent a password reset link to <strong>{resetEmail}</strong>.</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">Check your inbox â€” we&apos;ve sent a password reset link to <strong>{resetEmail}</strong>.</p>
                 <button onClick={() => setShowResetModal(false)} className="mt-4 px-6 py-2 bg-violet-600 text-white rounded-xl font-medium text-sm hover:bg-violet-700 transition-colors">Done</button>
               </div>
             ) : (
@@ -247,7 +246,7 @@ export default function PlatformLoginPage() {
                 <div className="flex gap-3">
                   <button onClick={() => setShowResetModal(false)} className="flex-1 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Cancel</button>
                   <button onClick={handleForgotPassword} disabled={resetLoading || !resetEmail} className="flex-1 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-semibold text-sm transition-colors disabled:opacity-50 flex items-center justify-center gap-2">
-                    {resetLoading ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sending…</> : 'Send Reset Link'}
+                    {resetLoading ? <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />Sendingâ€¦</> : 'Send Reset Link'}
                   </button>
                 </div>
               </>

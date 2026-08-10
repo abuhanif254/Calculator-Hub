@@ -1,5 +1,4 @@
 "use client";
-export const runtime = 'edge';
 
 import React, { useState, useEffect } from "react";
 import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
@@ -174,7 +173,7 @@ export default function ExportPage() {
             {done ? (
               <div className="flex gap-4">
                 <div className="flex-1 py-3 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 rounded-xl font-medium flex items-center justify-center gap-2">
-                  ✓ File downloaded successfully
+                  âœ“ File downloaded successfully
                 </div>
                 <button
                   onClick={() => { setDone(false); setError(''); }}

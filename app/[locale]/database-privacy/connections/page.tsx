@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -60,7 +59,7 @@ export default function ConnectionsPage() {
     setTimeout(() => setToast(null), 4000);
   };
 
-  // ── Fetch connections ──────────────────────────────────────────────────────
+  // â”€â”€ Fetch connections â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const fetchConnections = useCallback(async () => {
     try {
       const res = await privacyFetch('/api/privacy/connections');
@@ -76,7 +75,7 @@ export default function ConnectionsPage() {
 
   useEffect(() => { fetchConnections(); }, [fetchConnections]);
 
-  // ── Create connection ──────────────────────────────────────────────────────
+  // â”€â”€ Create connection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError('');
@@ -100,14 +99,14 @@ export default function ConnectionsPage() {
     }
   };
 
-  // ── Test connection ────────────────────────────────────────────────────────
+  // â”€â”€ Test connection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleTest = async (id: string) => {
     setTestingId(id);
     try {
       const res = await privacyFetch(`/api/privacy/connections/${id}/test`, { method: 'POST' });
       const data = await res.json();
       if (data.success) {
-        showToast(`Connected! ${data.tablesCount} tables · ${data.latencyMs}ms`, 'success');
+        showToast(`Connected! ${data.tablesCount} tables Â· ${data.latencyMs}ms`, 'success');
         setConnections(prev => prev.map(c =>
           c.id === id ? { ...c, status: 'connected', tables_count: data.tablesCount, last_tested_at: new Date().toISOString() } : c
         ));
@@ -124,7 +123,7 @@ export default function ConnectionsPage() {
     }
   };
 
-  // ── Delete connection ──────────────────────────────────────────────────────
+  // â”€â”€ Delete connection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleDelete = async (id: string) => {
     if (!confirm('Delete this connection? This action cannot be undone.')) return;
     setDeletingId(id);
@@ -140,7 +139,7 @@ export default function ConnectionsPage() {
     }
   };
 
-  // ── Status helpers ─────────────────────────────────────────────────────────
+  // â”€â”€ Status helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const StatusBadge = ({ status }: { status: DBConnection['status'] }) => {
     const styles = {
       connected: 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
@@ -307,7 +306,7 @@ export default function ConnectionsPage() {
                   className="w-full flex items-center justify-center gap-2 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium transition-colors disabled:opacity-50 border border-slate-200 dark:border-slate-700"
                 >
                   <RefreshCw className={`w-3.5 h-3.5 ${testingId === conn.id ? 'animate-spin' : ''}`} />
-                  {testingId === conn.id ? 'Testing…' : 'Test Connection'}
+                  {testingId === conn.id ? 'Testingâ€¦' : 'Test Connection'}
                 </button>
               </div>
             </motion.div>
@@ -420,7 +419,7 @@ export default function ConnectionsPage() {
                     <input
                       type={showPassword ? 'text' : 'password'} required value={form.password}
                       onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
-                      placeholder="••••••••"
+                      placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                       autoComplete="new-password"
                       className="w-full pr-10 px-3 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
                     />
@@ -450,7 +449,7 @@ export default function ConnectionsPage() {
                   <button type="submit" disabled={saving}
                     className="bg-violet-600 hover:bg-violet-700 text-white px-5 py-2 rounded-xl transition-colors font-medium text-sm shadow-sm flex items-center gap-2 disabled:opacity-60">
                     {saving && <RefreshCw className="w-3.5 h-3.5 animate-spin" />}
-                    {saving ? 'Saving…' : 'Save Connection'}
+                    {saving ? 'Savingâ€¦' : 'Save Connection'}
                   </button>
                 </div>
               </form>

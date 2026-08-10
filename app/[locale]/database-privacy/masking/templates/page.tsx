@@ -1,11 +1,10 @@
 "use client";
-export const runtime = 'edge';
 
 import React, { useState, useRef } from "react";
 import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 
 const TEMPLATES = [
-  { id: 'gdpr', name: "GDPR Starter Kit", category: "Compliance", desc: "Baseline rules for EU GDPR compliance. Masks PII like names, emails, and IPs.", rules: 12, icon: "🇪🇺",
+  { id: 'gdpr', name: "GDPR Starter Kit", category: "Compliance", desc: "Baseline rules for EU GDPR compliance. Masks PII like names, emails, and IPs.", rules: 12, icon: "ðŸ‡ªðŸ‡º",
     rulePayloads: [
       { column_pattern: 'email', strategy: 'redact', pii_type: 'EMAIL' },
       { column_pattern: 'first_name', strategy: 'redact', pii_type: 'NAME' },
@@ -21,7 +20,7 @@ const TEMPLATES = [
       { column_pattern: 'postal_code', strategy: 'redact', pii_type: 'ZIP_CODE' },
     ],
   },
-  { id: 'hipaa', name: "HIPAA Healthcare Pack", category: "Healthcare", desc: "Strict redaction for PHI (Protected Health Information) including medical records.", rules: 24, icon: "🏥",
+  { id: 'hipaa', name: "HIPAA Healthcare Pack", category: "Healthcare", desc: "Strict redaction for PHI (Protected Health Information) including medical records.", rules: 24, icon: "ðŸ¥",
     rulePayloads: [
       { column_pattern: 'patient_name', strategy: 'redact', pii_type: 'NAME' },
       { column_pattern: 'mrn', strategy: 'redact', pii_type: 'MEDICAL_RECORD_NUMBER' },
@@ -31,7 +30,7 @@ const TEMPLATES = [
       { column_pattern: 'insurance_id', strategy: 'redact', pii_type: 'MEDICAL_RECORD_NUMBER' },
     ],
   },
-  { id: 'pci', name: "PCI-DSS Financial Pack", category: "Finance", desc: "Tokenization and encryption for credit cards, PANs, and bank accounts.", rules: 18, icon: "💳",
+  { id: 'pci', name: "PCI-DSS Financial Pack", category: "Finance", desc: "Tokenization and encryption for credit cards, PANs, and bank accounts.", rules: 18, icon: "ðŸ’³",
     rulePayloads: [
       { column_pattern: 'card_number', strategy: 'redact', pii_type: 'CREDIT_CARD_NUMBER' },
       { column_pattern: 'pan', strategy: 'redact', pii_type: 'CREDIT_CARD_NUMBER' },
@@ -40,21 +39,21 @@ const TEMPLATES = [
       { column_pattern: 'bank_account', strategy: 'redact', pii_type: 'IBAN_CODE' },
     ],
   },
-  { id: 'dev', name: "Developer Sandbox Pack", category: "Development", desc: "Replaces sensitive data with realistic synthetic data for dev/test environments.", rules: 35, icon: "💻",
+  { id: 'dev', name: "Developer Sandbox Pack", category: "Development", desc: "Replaces sensitive data with realistic synthetic data for dev/test environments.", rules: 35, icon: "ðŸ’»",
     rulePayloads: [
       { column_pattern: 'email', strategy: 'synthetic', pii_type: 'EMAIL' },
       { column_pattern: 'name', strategy: 'synthetic', pii_type: 'NAME' },
       { column_pattern: 'phone', strategy: 'synthetic', pii_type: 'PHONE_NUMBER' },
     ],
   },
-  { id: 'ccpa', name: "CCPA California Pack", category: "Compliance", desc: "Rules aligned with the California Consumer Privacy Act requirements.", rules: 15, icon: "🐻",
+  { id: 'ccpa', name: "CCPA California Pack", category: "Compliance", desc: "Rules aligned with the California Consumer Privacy Act requirements.", rules: 15, icon: "ðŸ»",
     rulePayloads: [
       { column_pattern: 'email', strategy: 'redact', pii_type: 'EMAIL' },
       { column_pattern: 'name', strategy: 'redact', pii_type: 'NAME' },
       { column_pattern: 'ip_address', strategy: 'redact', pii_type: 'IP_ADDRESS' },
     ],
   },
-  { id: 'enterprise', name: "Custom Enterprise", category: "Custom", desc: "Your organization specific custom baseline for broad anonymization.", rules: 8, icon: "🏢",
+  { id: 'enterprise', name: "Custom Enterprise", category: "Custom", desc: "Your organization specific custom baseline for broad anonymization.", rules: 8, icon: "ðŸ¢",
     rulePayloads: [
       { column_pattern: 'email', strategy: 'redact', pii_type: 'EMAIL' },
       { column_pattern: 'name', strategy: 'redact', pii_type: 'NAME' },
@@ -132,7 +131,7 @@ export default function TemplatesPage() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Masking Rule Templates</h1>
-          <p className="text-slate-600 dark:text-slate-400 mt-1">Pre-built profiles for instant compliance — applies real masking rules to your account.</p>
+          <p className="text-slate-600 dark:text-slate-400 mt-1">Pre-built profiles for instant compliance â€” applies real masking rules to your account.</p>
         </div>
         <div className="flex gap-3">
           <label className="cursor-pointer px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-white rounded-lg font-medium transition-colors flex items-center gap-2">

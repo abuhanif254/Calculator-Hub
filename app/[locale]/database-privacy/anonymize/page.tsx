@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import React, { useState } from "react";
 import { motion } from "motion/react";
@@ -201,7 +200,7 @@ export default function AnonymizePage() {
             <div className="mt-6 flex justify-between items-center">
               <div className="text-sm">
                 Risk Score:{" "}
-                <span className="text-red-500 font-bold">High ({riskBefore})</span> →{" "}
+                <span className="text-red-500 font-bold">High ({riskBefore})</span> â†’{" "}
                 <span className="text-emerald-500 font-bold">Low ({riskAfter})</span>
               </div>
               <button

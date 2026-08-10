@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
-import { createHash, randomBytes } from 'crypto';
+import { randomBytesHex, sha256Hex } from '@/lib/crypto-edge';
 
 export async function GET(req: NextRequest) {
   try {
@@ -37,10 +37,10 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, permissions } = body;
 
-    const rawKey = randomBytes(24).toString('hex');
+    const rawKey = await randomBytesHex(24);
     const key = `pk_live_${rawKey}`;
     const key_prefix = key.slice(0, 16) + '***';
-    const key_hash = createHash('sha256').update(key).digest('hex');
+    const key_hash = await sha256Hex(key);
 
     const { data: dbRecord, error } = await supabase
       .from('api_keys')

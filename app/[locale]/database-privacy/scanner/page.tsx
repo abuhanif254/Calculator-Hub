@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
@@ -11,45 +10,45 @@ import {
   Rows3, AlertCircle, ScanSearch, FileText, CheckCircle2, XCircle,
 } from 'lucide-react';
 
-// ── Browser-side PII detectors (unchanged) ────────────────────────────────────
+// â”€â”€ Browser-side PII detectors (unchanged) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PII_DETECTORS = [
-  { id: 'email', name: 'Email Address', category: 'Contact Info', risk: 'High', confidence: 99, icon: '📧',
+  { id: 'email', name: 'Email Address', category: 'Contact Info', risk: 'High', confidence: 99, icon: 'ðŸ“§',
     regex: /\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b/g,
     maskOptions: ['Hash (SHA-256)', 'Domain anonymize', 'Synthetic email', 'Redact'],
     recommendation: 'Pseudonymize or hash email addresses per GDPR Article 4(5)' },
-  { id: 'ssn', name: 'Social Security Number', category: 'Government ID', risk: 'Critical', confidence: 97, icon: '🔐',
+  { id: 'ssn', name: 'Social Security Number', category: 'Government ID', risk: 'Critical', confidence: 97, icon: 'ðŸ”',
     regex: /\b(?!000|666|9\d{2})\d{3}[\-\s]?(?!00)\d{2}[\-\s]?(?!0000)\d{4}\b/g,
     maskOptions: ['Full redact', 'Partial mask (***-**-1234)', 'Tokenize'],
-    recommendation: 'Immediately redact SSNs — maximum HIPAA/PCI risk' },
-  { id: 'creditcard', name: 'Credit Card Number', category: 'Financial', risk: 'Critical', confidence: 95, icon: '💳',
+    recommendation: 'Immediately redact SSNs â€” maximum HIPAA/PCI risk' },
+  { id: 'creditcard', name: 'Credit Card Number', category: 'Financial', risk: 'Critical', confidence: 95, icon: 'ðŸ’³',
     regex: /\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|3[47][0-9]{13}|6(?:011|5[0-9]{2})[0-9]{12})\b/g,
     maskOptions: ['PAN masking (last 4)', 'Full tokenize', 'Redact'],
     recommendation: 'PCI-DSS requires storing only last 4 digits of PAN' },
-  { id: 'phone', name: 'Phone Number', category: 'Contact Info', risk: 'Medium', confidence: 88, icon: '📱',
+  { id: 'phone', name: 'Phone Number', category: 'Contact Info', risk: 'Medium', confidence: 88, icon: 'ðŸ“±',
     regex: /\b(?:\+?\d{1,3}[\s.\-]?)?\(?\d{3}\)?[\s.\-]?\d{3}[\s.\-]?\d{4}\b/g,
     maskOptions: ['Partial mask (***-***-5678)', 'Hash', 'Redact'],
     recommendation: 'Mask phone middle digits, preserve country code' },
-  { id: 'ip', name: 'IP Address (IPv4)', category: 'Network', risk: 'Medium', confidence: 95, icon: '🌐',
+  { id: 'ip', name: 'IP Address (IPv4)', category: 'Network', risk: 'Medium', confidence: 95, icon: 'ðŸŒ',
     regex: /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/g,
     maskOptions: ['Generalize to /24 subnet', 'Hash', 'Redact'],
-    recommendation: 'GDPR treats IP as personal data — generalize to subnet' },
-  { id: 'dob', name: 'Date of Birth', category: 'Personal Info', risk: 'High', confidence: 85, icon: '📅',
+    recommendation: 'GDPR treats IP as personal data â€” generalize to subnet' },
+  { id: 'dob', name: 'Date of Birth', category: 'Personal Info', risk: 'High', confidence: 85, icon: 'ðŸ“…',
     regex: /\b(?:0?[1-9]|1[0-2])[\-\/](?:0?[1-9]|[12]\d|3[01])[\-\/](?:19|20)\d{2}\b/g,
     maskOptions: ['Year only', 'Age range (30-40)', 'Redact'],
     recommendation: 'Replace with age range to minimize re-identification risk' },
-  { id: 'jwt', name: 'JWT Token', category: 'Security', risk: 'Critical', confidence: 99, icon: '🔑',
+  { id: 'jwt', name: 'JWT Token', category: 'Security', risk: 'Critical', confidence: 99, icon: 'ðŸ”‘',
     regex: /\beyJ[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\.[A-Za-z0-9\-_]+\b/g,
     maskOptions: ['Full redact', 'Rotate & tokenize'],
-    recommendation: 'Rotate token immediately — JWTs contain signed claims' },
-  { id: 'apikey', name: 'API Key / Secret', category: 'Security', risk: 'Critical', confidence: 80, icon: '🗝️',
+    recommendation: 'Rotate token immediately â€” JWTs contain signed claims' },
+  { id: 'apikey', name: 'API Key / Secret', category: 'Security', risk: 'Critical', confidence: 80, icon: 'ðŸ—ï¸',
     regex: /(?:api[_-]?key|secret|token|password|passwd|pwd)\s*[:=]\s*['"]?([A-Za-z0-9_.\-]{16,})/gi,
     maskOptions: ['Full redact', 'Rotate & vault'],
     recommendation: 'Rotate all exposed API keys immediately and store in secrets vault' },
-  { id: 'iban', name: 'IBAN', category: 'Financial', risk: 'High', confidence: 96, icon: '🏦',
+  { id: 'iban', name: 'IBAN', category: 'Financial', risk: 'High', confidence: 96, icon: 'ðŸ¦',
     regex: /\b[A-Z]{2}[0-9]{2}[A-Z0-9]{4}[0-9]{7}(?:[A-Z0-9]{0,16})\b/g,
     maskOptions: ['Partial mask', 'Tokenize', 'Redact'],
     recommendation: 'Apply PCI-DSS masking for all banking identifiers' },
-  { id: 'zip', name: 'ZIP / Postal Code', category: 'Location', risk: 'Low', confidence: 82, icon: '📮',
+  { id: 'zip', name: 'ZIP / Postal Code', category: 'Location', risk: 'Low', confidence: 82, icon: 'ðŸ“®',
     regex: /\b\d{5}(?:-\d{4})?\b/g,
     maskOptions: ['3-digit generalization', 'Redact'],
     recommendation: 'HIPAA: generalize to 3-digit ZIP for populations < 20,000' },
@@ -95,13 +94,13 @@ const RISK_COLORS: Record<string, string> = {
   Low:      'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400 border-emerald-200 dark:border-emerald-800',
 };
 
-// ── Main Component ─────────────────────────────────────────────────────────────
+// â”€â”€ Main Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export default function PiiScanner() {
   const [activeTab, setActiveTab] = useState<'browser' | 'database'>('browser');
   const params = useParams();
   const locale = (params?.locale as string) ?? 'en';
 
-  // ── Browser scanner state ──────────────────────────────────────────────────
+  // â”€â”€ Browser scanner state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const [inputText, setInputText] = useState('');
   const [results, setResults] = useState<ScanResult[]>([]);
   const [isScanning, setIsScanning] = useState(false);
@@ -110,7 +109,7 @@ export default function PiiScanner() {
   const [selectedMasks, setSelectedMasks] = useState<Record<string, string>>({});
   const [expandedRow, setExpandedRow] = useState<number | null>(null);
 
-  // ── Database scanner state ─────────────────────────────────────────────────
+  // â”€â”€ Database scanner state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const [connections, setConnections] = useState<Connection[]>([]);
   const [connLoading, setConnLoading] = useState(false);
   const [selectedConn, setSelectedConn] = useState<string>('');
@@ -152,7 +151,7 @@ export default function PiiScanner() {
       .finally(() => setSchemaLoading(false));
   }, [selectedConn]);
 
-  // ── Browser scan handler ───────────────────────────────────────────────────
+  // â”€â”€ Browser scan handler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleBrowserScan = () => {
     if (!inputText.trim()) return;
     setIsScanning(true);
@@ -179,7 +178,7 @@ export default function PiiScanner() {
     }, 600);
   };
 
-  // ── Database scan handler ──────────────────────────────────────────────────
+  // â”€â”€ Database scan handler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const handleDbScan = async () => {
     if (!selectedConn || selectedTables.size === 0) return;
     setScanning(true);
@@ -235,14 +234,14 @@ export default function PiiScanner() {
                 ? 'bg-white dark:bg-slate-900 text-violet-700 dark:text-violet-400 shadow-sm'
                 : 'text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200'
             }`}>
-            {tab === 'browser' ? '📝 Text / Paste' : '🗄️ Database Scan'}
+            {tab === 'browser' ? 'ðŸ“ Text / Paste' : 'ðŸ—„ï¸ Database Scan'}
           </button>
         ))}
       </div>
 
       <AnimatePresence mode="wait">
 
-        {/* ── BROWSER SCANNER TAB ─────────────────────────────────────────── */}
+        {/* â”€â”€ BROWSER SCANNER TAB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {activeTab === 'browser' && (
           <motion.div key="browser" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -386,23 +385,23 @@ export default function PiiScanner() {
           </motion.div>
         )}
 
-        {/* ── DATABASE SCANNER TAB ─────────────────────────────────────────── */}
+        {/* â”€â”€ DATABASE SCANNER TAB â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
         {activeTab === 'database' && (
           <motion.div key="database" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="space-y-6">
 
-            {/* Step 1 — Select connection */}
+            {/* Step 1 â€” Select connection */}
             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6">
               <h3 className="font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <span className="w-6 h-6 bg-violet-600 text-white rounded-full text-xs font-bold flex items-center justify-center">1</span>
                 Select Database Connection
               </h3>
               {connLoading ? (
-                <div className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="w-4 h-4 animate-spin" /> Loading connections…</div>
+                <div className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="w-4 h-4 animate-spin" /> Loading connectionsâ€¦</div>
               ) : connections.length === 0 ? (
                 <div className="flex items-center gap-2 text-sm text-slate-500">
                   <AlertCircle className="w-4 h-4" />
-                  No connections yet. <a href="./connections" className="text-violet-600 hover:underline">Add a connection first →</a>
+                  No connections yet. <a href="./connections" className="text-violet-600 hover:underline">Add a connection first â†’</a>
                 </div>
               ) : (
                 <select value={selectedConn} onChange={e => setSelectedConn(e.target.value)}
@@ -413,7 +412,7 @@ export default function PiiScanner() {
               )}
             </div>
 
-            {/* Step 2 — Select tables */}
+            {/* Step 2 â€” Select tables */}
             {selectedConn && (
               <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm p-6">
                 <div className="flex items-center justify-between mb-4">
@@ -433,7 +432,7 @@ export default function PiiScanner() {
                 </div>
 
                 {schemaLoading ? (
-                  <div className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="w-4 h-4 animate-spin" />Loading schema…</div>
+                  <div className="flex items-center gap-2 text-sm text-slate-500"><Loader2 className="w-4 h-4 animate-spin" />Loading schemaâ€¦</div>
                 ) : schemaError ? (
                   <div className="flex items-start gap-2 p-3 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 rounded-xl text-sm text-red-700 dark:text-red-400">
                     <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />{schemaError}
@@ -482,18 +481,18 @@ export default function PiiScanner() {
 
                 {selectedTables.size > 0 && (
                   <p className="text-xs text-violet-600 dark:text-violet-400 mt-3">
-                    {selectedTables.size} table{selectedTables.size > 1 ? 's' : ''} selected — scans up to 500 rows per table
+                    {selectedTables.size} table{selectedTables.size > 1 ? 's' : ''} selected â€” scans up to 500 rows per table
                   </p>
                 )}
               </div>
             )}
 
-            {/* Step 3 — Run scan */}
+            {/* Step 3 â€” Run scan */}
             {selectedConn && schema.length > 0 && (
               <div className="flex items-center gap-4">
                 <button onClick={handleDbScan} disabled={scanning || selectedTables.size === 0}
                   className="flex items-center gap-2 px-6 py-3 bg-violet-600 hover:bg-violet-700 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-violet-600/20 disabled:opacity-50 disabled:cursor-not-allowed text-sm">
-                  {scanning ? <><Loader2 className="w-4 h-4 animate-spin" />Scanning database…</> : <><Play className="w-4 h-4" />Start PII Scan</>}
+                  {scanning ? <><Loader2 className="w-4 h-4 animate-spin" />Scanning databaseâ€¦</> : <><Play className="w-4 h-4" />Start PII Scan</>}
                 </button>
                 {selectedTables.size === 0 && <p className="text-sm text-slate-500">Select at least one table above</p>}
               </div>
@@ -519,7 +518,7 @@ export default function PiiScanner() {
                         {scanResult.meta.findings_count} PII finding{scanResult.meta.findings_count !== 1 ? 's' : ''}
                       </span>
                     </div>
-                    <span className="text-sm text-slate-500">{scanResult.meta.tables_scanned} tables · {scanResult.meta.rows_scanned.toLocaleString()} rows scanned</span>
+                    <span className="text-sm text-slate-500">{scanResult.meta.tables_scanned} tables Â· {scanResult.meta.rows_scanned.toLocaleString()} rows scanned</span>
                     <div className="ml-auto flex gap-2">
                       {(['Critical', 'High', 'Medium', 'Low', ''] as const).map(r => {
                         const label = r || 'All';
@@ -580,7 +579,7 @@ export default function PiiScanner() {
                           )}
                           <a href={ruleUrl}
                             className="shrink-0 text-xs font-medium text-violet-600 hover:text-violet-800 dark:text-violet-400 dark:hover:text-violet-200 bg-violet-50 hover:bg-violet-100 dark:bg-violet-900/20 dark:hover:bg-violet-900/40 px-2.5 py-1.5 rounded-lg transition-colors whitespace-nowrap">
-                            Save as Rule →
+                            Save as Rule â†’
                           </a>
                         </div>
                       );

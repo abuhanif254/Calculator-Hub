@@ -1,7 +1,7 @@
 export const runtime = 'edge';
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
-import { createHmac } from 'crypto';
+import { hmacSha256Hex } from '@/lib/crypto-edge';
 import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 export async function POST(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
@@ -30,9 +30,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
       webhook_id: webhook.id
     };
 
-    const signature = createHmac('sha256', webhook.signing_secret)
-      .update(JSON.stringify(payload))
-      .digest('hex');
+    const signature = await hmacSha256Hex(webhook.signing_secret, JSON.stringify(payload));
 
     let status = 0;
     try {

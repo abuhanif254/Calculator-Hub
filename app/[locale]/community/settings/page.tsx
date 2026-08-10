@@ -1,5 +1,4 @@
 "use client";
-export const runtime = 'edge';
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/app/components/AuthProvider';
@@ -307,7 +306,7 @@ export default function ProfileSettingsPage() {
               </div>
               {stats.bestPost && (
                 <div className="bg-[#518231]/5 dark:bg-[#518231]/10 border border-[#518231]/20 rounded-2xl p-4">
-                  <p className="text-xs font-bold uppercase tracking-wider text-[#518231] mb-1">🏆 Best Performing Post</p>
+                  <p className="text-xs font-bold uppercase tracking-wider text-[#518231] mb-1">ðŸ† Best Performing Post</p>
                   <Link
                     href={`/community/${stats.bestPost.slug}` as any}
                     className="text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-[#518231] transition-colors line-clamp-1"

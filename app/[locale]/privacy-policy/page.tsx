@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import { Metadata } from 'next';
 import { Link as CustomLink, routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
@@ -156,12 +155,12 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
             
             <h3 className="flex items-center gap-2 mt-8 text-xl font-bold text-slate-800 dark:text-slate-200"><Code className="text-blue-500" size={20}/> Developer Utilities</h3>
             <p>
-              When utilizing our suite of developer tools—which includes JSON formatters, CSS minifiers, Base64 encoders/decoders, SQL formatters, and cryptographic hash generators—your code is <strong>never</strong> transmitted to our servers. We leverage client-side JavaScript execution, meaning the parsing, formatting, and minification processes occur entirely within the DOM (Document Object Model) of your browser. You can safely paste proprietary code, API keys, or sensitive configuration files into our formatting tools knowing that the data never traverses the internet.
+              When utilizing our suite of developer toolsâ€”which includes JSON formatters, CSS minifiers, Base64 encoders/decoders, SQL formatters, and cryptographic hash generatorsâ€”your code is <strong>never</strong> transmitted to our servers. We leverage client-side JavaScript execution, meaning the parsing, formatting, and minification processes occur entirely within the DOM (Document Object Model) of your browser. You can safely paste proprietary code, API keys, or sensitive configuration files into our formatting tools knowing that the data never traverses the internet.
             </p>
 
             <h3 className="flex items-center gap-2 mt-8 text-xl font-bold text-slate-800 dark:text-slate-200"><FileCode className="text-red-500" size={20}/> Professional PDF Tools</h3>
             <p>
-              Our PDF modification utilities—such as PDF compression, merging, splitting, extraction, and format conversions (PDF to Word, PDF to Image)—are heavily optimized for privacy. To the maximum extent possible, we utilize WebAssembly (Wasm) libraries to manipulate PDF byte streams natively in your browser. In rare edge cases where a PDF is too complex or requires proprietary backend conversion (such as heavy OCR tasks), the file is transmitted securely over HTTPS, processed in isolated, stateless server containers, and deleted immediately upon successful conversion. We do not retain copies, backups, or logs of your personal, legal, or corporate PDF documents.
+              Our PDF modification utilitiesâ€”such as PDF compression, merging, splitting, extraction, and format conversions (PDF to Word, PDF to Image)â€”are heavily optimized for privacy. To the maximum extent possible, we utilize WebAssembly (Wasm) libraries to manipulate PDF byte streams natively in your browser. In rare edge cases where a PDF is too complex or requires proprietary backend conversion (such as heavy OCR tasks), the file is transmitted securely over HTTPS, processed in isolated, stateless server containers, and deleted immediately upon successful conversion. We do not retain copies, backups, or logs of your personal, legal, or corporate PDF documents.
             </p>
 
             <h3 className="flex items-center gap-2 mt-8 text-xl font-bold text-slate-800 dark:text-slate-200"><ImageIcon className="text-purple-500" size={20}/> Image & Media Processing</h3>

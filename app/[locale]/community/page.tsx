@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import React from 'react';
 import { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
@@ -9,9 +8,9 @@ import CommunityFeed, { Post } from './CommunityFeed';
 import { Flame } from 'lucide-react';
 import { COMMUNITY_CATEGORIES } from '../../../lib/categories';
 
-// ═══════════════════════════════════════════════════════
-// COMMUNITY INDEX PAGE — SERVER COMPONENT
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// COMMUNITY INDEX PAGE â€” SERVER COMPONENT
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 export const revalidate = 3600; // ISR: revalidate every 1 hour (was 5 mins) to save Vercel free tier limits
 
@@ -165,7 +164,7 @@ export default async function CommunityIndex({
                 </ul>
               </div>
 
-              {/* 🔥 Trending Now Widget */}
+              {/* ðŸ”¥ Trending Now Widget */}
               {trendingPosts.length > 0 && (
                 <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
                   <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
@@ -189,7 +188,7 @@ export default async function CommunityIndex({
                               {post.title}
                             </p>
                             <p className="text-[10px] text-slate-400 mt-0.5">
-                              ❤️ {post.upvotes} &nbsp;·&nbsp; 💬 {post.replyCount}
+                              â¤ï¸ {post.upvotes} &nbsp;Â·&nbsp; ðŸ’¬ {post.replyCount}
                             </p>
                           </div>
                         </Link>
@@ -214,7 +213,7 @@ export default async function CommunityIndex({
                   Discover our top contributors and all-time best discussions.
                 </p>
                 <span className="text-xs font-bold text-amber-600 dark:text-amber-500 flex items-center gap-1">
-                  View Leaderboard →
+                  View Leaderboard â†’
                 </span>
               </Link>
 

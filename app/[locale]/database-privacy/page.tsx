@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import React from "react";
 import { Metadata } from "next";
 import { AnimatedContent } from "./page.client";
@@ -23,7 +22,7 @@ export async function generateMetadata({
 
   return {
     title:
-      "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance | Nexus",
+      "Free Database Privacy Platform â€” PII Scanner, Data Masking & GDPR Compliance | Nexus",
     description:
       "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free enterprise platform with 30+ detectors. No data leaves your browser.",
     keywords: [
@@ -44,7 +43,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title:
-        "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance | Nexus",
+        "Free Database Privacy Platform â€” PII Scanner, Data Masking & GDPR Compliance | Nexus",
       description:
         "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free enterprise platform with 30+ detectors. No data leaves your browser.",
       url: `${baseUrl}/${locale}/database-privacy`,
@@ -56,14 +55,14 @@ export async function generateMetadata({
           url: ogImage,
           width: 1200,
           height: 630,
-          alt: "Nexus Data Privacy Platform — Free PII Scanner & Data Masking",
+          alt: "Nexus Data Privacy Platform â€” Free PII Scanner & Data Masking",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
       title:
-        "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance",
+        "Free Database Privacy Platform â€” PII Scanner, Data Masking & GDPR Compliance",
       description:
         "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free. No data leaves your browser.",
       images: [ogImage],
@@ -85,7 +84,7 @@ const softwareAppSchema = {
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
   description:
-    "Free enterprise platform to detect PII, apply masking rules, and track compliance with GDPR, HIPAA and PCI-DSS. All processing in-browser — no data leaves your device.",
+    "Free enterprise platform to detect PII, apply masking rules, and track compliance with GDPR, HIPAA and PCI-DSS. All processing in-browser â€” no data leaves your device.",
   featureList: [
     "PII Detection & Database Scanning (30+ detectors)",
     "Data Masking & Anonymization",
@@ -108,7 +107,7 @@ const softwareAppSchema = {
   screenshot: "https://nexuscalculator.net/og-database-privacy.jpg",
 };
 
-// FAQ JSON-LD schema — enables rich FAQ snippets in Google results
+// FAQ JSON-LD schema â€” enables rich FAQ snippets in Google results
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -118,7 +117,7 @@ const faqSchema = {
       name: "What is PII scanning and why do I need it?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "PII (Personally Identifiable Information) scanning automatically detects sensitive data — names, emails, SSNs, credit card numbers, dates of birth — stored in your databases. Under GDPR, HIPAA, and PCI-DSS you are legally required to know where personal data resides. The Nexus platform scans your databases with 30+ detectors and produces a compliance-ready report in minutes.",
+        text: "PII (Personally Identifiable Information) scanning automatically detects sensitive data â€” names, emails, SSNs, credit card numbers, dates of birth â€” stored in your databases. Under GDPR, HIPAA, and PCI-DSS you are legally required to know where personal data resides. The Nexus platform scans your databases with 30+ detectors and produces a compliance-ready report in minutes.",
       },
     },
     {
@@ -126,7 +125,7 @@ const faqSchema = {
       name: "Is my data safe? Does any data leave my browser?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "In browser-side scan mode, your database credentials and all scanned data are processed entirely within your browser using WebAssembly. Nothing is sent to Nexus servers. For database scan mode connecting to remote servers, only anonymised metadata (column names, data types, sample statistics) is processed — never raw row values.",
+        text: "In browser-side scan mode, your database credentials and all scanned data are processed entirely within your browser using WebAssembly. Nothing is sent to Nexus servers. For database scan mode connecting to remote servers, only anonymised metadata (column names, data types, sample statistics) is processed â€” never raw row values.",
       },
     },
     {

@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import { Metadata } from 'next';
 import { Link as CustomLink, routing } from '@/i18n/routing';
 import Image from 'next/image';
@@ -41,7 +40,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
       <header className="mb-16 text-center max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">Empowering Your Decisions with Precision</h1>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-          Nexus Calculator represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free calculators, developer tools, image editors, and PDF utilities directly to your browser.
+          Nexus Calculator represents the pinnacle of modern web utilitiesâ€”a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free calculators, developer tools, image editors, and PDF utilities directly to your browser.
         </p>
       </header>
 
@@ -53,7 +52,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
             What started as a premier destination for high-precision calculators has evolved into an expansive ecosystem. In an increasingly complex digital world, professionals and everyday users require a diverse set of utilities. Nexus Calculator was conceived from a fundamental philosophy: <strong>powerful analytical and developer tools should be universally accessible</strong>.
           </p>
           <p>
-            We recognize that whether you are a small business owner calculating loan amortizations, a software engineer formatting complex JSON and debugging code, or a digital creator compressing PDFs and manipulating images—you demand accuracy and performance. Our platform bridges the gap between complex operations and an intuitive, user-centric interface. By leveraging international standards, we ensure that every calculation, formatting, and conversion produced by our system can be trusted implicitly.
+            We recognize that whether you are a small business owner calculating loan amortizations, a software engineer formatting complex JSON and debugging code, or a digital creator compressing PDFs and manipulating imagesâ€”you demand accuracy and performance. Our platform bridges the gap between complex operations and an intuitive, user-centric interface. By leveraging international standards, we ensure that every calculation, formatting, and conversion produced by our system can be trusted implicitly.
           </p>
           <p>
             Traditional offline applications and archaic web tools are often fraught with slow load times, invasive tracking, and cluttered advertisements. We chose a different path. Nexus Calculator is built upon a high-performance, modern tech stack that relies on serverless edge computing to guarantee minimal latency and exceptional reliability, no matter where you are in the world.

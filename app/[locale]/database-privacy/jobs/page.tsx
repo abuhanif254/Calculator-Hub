@@ -1,5 +1,4 @@
 'use client'
-export const runtime = 'edge';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
@@ -171,7 +170,7 @@ export default function JobsPage() {
   };
 
   const formatDuration = (ms: number | null) => {
-    if (ms == null) return '—';
+    if (ms == null) return 'â€”';
     if (ms < 1000) return `${ms}ms`;
     if (ms < 60000) return `${(ms / 1000).toFixed(1)}s`;
     const m = Math.floor(ms / 60000);
@@ -180,7 +179,7 @@ export default function JobsPage() {
   };
 
   const formatDate = (isoString: string) => {
-    if (!isoString) return '—';
+    if (!isoString) return 'â€”';
     const date = new Date(isoString);
     return date.toLocaleString();
   };
@@ -297,7 +296,7 @@ export default function JobsPage() {
                             {job.type}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-slate-500">{job.connection_name || '—'}</td>
+                        <td className="px-6 py-4 text-slate-500">{job.connection_name || 'â€”'}</td>
                         <td className="px-6 py-4">
                           <div className="flex flex-col space-y-1">
                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium w-fit ${getStatusColor(job.status)}`}>

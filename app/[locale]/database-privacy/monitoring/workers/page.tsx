@@ -1,5 +1,4 @@
 "use client";
-export const runtime = 'edge';
 
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
@@ -163,7 +162,7 @@ export default function WorkersPage() {
             ))}
           </div>
           <p className="text-xs text-slate-500 text-right">
-            Last updated: {lastRefresh.toLocaleTimeString()} · Auto-refreshes every 30s
+            Last updated: {lastRefresh.toLocaleTimeString()} Â· Auto-refreshes every 30s
           </p>
         </>
       )}

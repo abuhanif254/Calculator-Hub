@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import React from "react";
 import { fetchPostBySlugRest, fetchUserRest, RestPost } from "../../../../lib/firebase-rest";
 import { Link } from "../../../../i18n/routing";
@@ -145,12 +144,12 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                   )}
                   {post.isPinned && (
                     <span className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-xs font-extrabold px-2 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider ml-2">
-                      📌 Pinned
+                      ðŸ“Œ Pinned
                     </span>
                   )}
                   {post.isLocked && (
                     <span className="bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400 text-xs font-extrabold px-2 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider">
-                      🔒 Locked
+                      ðŸ”’ Locked
                     </span>
                   )}
                 </div>
@@ -200,7 +199,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                           <Clock size={12} />
                           {timeAgo(post.createdAt)}
                         </p>
-                        <span className="text-slate-300 dark:text-slate-700">·</span>
+                        <span className="text-slate-300 dark:text-slate-700">Â·</span>
                         <ViewCounter postId={post.id} initialCount={(post as any).viewCount || 0} />
                       </div>
                     </div>

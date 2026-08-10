@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from '@/i18n/routing';
@@ -66,7 +65,7 @@ export default function PlatformSignupPage() {
 
   if (!mounted) return null;
 
-  // Success state — email confirmation sent
+  // Success state â€” email confirmation sent
   if (success) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-violet-50/30 to-indigo-50/20 dark:from-slate-950 dark:via-violet-950/20 dark:to-slate-950 p-4">
@@ -133,7 +132,7 @@ export default function PlatformSignupPage() {
                 <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
               </svg>
             )}
-            {googleLoading ? 'Redirecting…' : 'Continue with Google'}
+            {googleLoading ? 'Redirectingâ€¦' : 'Continue with Google'}
           </button>
 
           {/* Divider */}
@@ -195,7 +194,7 @@ export default function PlatformSignupPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
                   className="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-shadow"
                 />
                 <button
@@ -216,7 +215,7 @@ export default function PlatformSignupPage() {
               {loading ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Creating account…
+                  Creating accountâ€¦
                 </>
               ) : (
                 'Create free account'
@@ -241,7 +240,7 @@ export default function PlatformSignupPage() {
 
         <p className="text-center text-xs text-slate-400 dark:text-slate-500 mt-6">
           <Link href={`/`} className="hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
-            ← Back to NexusCalculator
+            â† Back to NexusCalculator
           </Link>
         </p>
       </div>

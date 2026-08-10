@@ -1,15 +1,14 @@
-export const runtime = 'edge';
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { searchTools, allTools } from '@/lib/registry';
 import { Link } from '@/i18n/routing';
 import { Search } from 'lucide-react';
 
-// ═══════════════════════════════════════════════════════
-// SEARCH PAGE — now powered by the unified tool registry
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// SEARCH PAGE â€” now powered by the unified tool registry
 // instead of a hardcoded list. Adding a new calculator or
 // dev tool automatically makes it searchable here.
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 export async function generateMetadata({ params, searchParams }: { params: Promise<{ locale: string }>, searchParams: Promise<{ q?: string }> }): Promise<Metadata> {
   const { locale } = await params;

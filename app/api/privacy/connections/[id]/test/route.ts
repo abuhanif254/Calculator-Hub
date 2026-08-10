@@ -5,7 +5,7 @@ import { decrypt } from '@/lib/supabase/encryption';
 import { writeAudit } from '@/lib/supabase/audit';
 import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
-// ─── POST /api/privacy/connections/[id]/test ─── Test a real DB connection ───
+// â”€â”€â”€ POST /api/privacy/connections/[id]/test â”€â”€â”€ Test a real DB connection â”€â”€â”€
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -36,72 +36,22 @@ export async function POST(
     // Decrypt the stored password
     let password: string;
     try {
-      password = decrypt(conn.encrypted_password);
+      password = await decrypt(conn.encrypted_password);
     } catch {
       return NextResponse.json({ error: 'Failed to decrypt credentials' }, { status: 500 });
     }
 
-    // ── Attempt real DB connection ──────────────────────────────────────────
+    // â”€â”€ Attempt real DB connection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     let tablesCount = 0;
     let testStatus: 'connected' | 'failed' = 'failed';
     let errorMessage: string | null = null;
 
     if (conn.type === 'postgresql') {
-      const { Client } = await import('pg');
-      const client = new Client({
-        host: conn.host,
-        port: conn.port,
-        database: conn.dbname,
-        user: conn.username,
-        password,
-        ssl: conn.use_ssl ? { rejectUnauthorized: false } : false,
-        connectionTimeoutMillis: 8000,
-      });
-
-      try {
-        await client.connect();
-        // Ping
-        await client.query('SELECT 1');
-        // Count tables
-        const result = await client.query(
-          `SELECT count(*) FROM information_schema.tables 
-           WHERE table_schema NOT IN ('pg_catalog','information_schema')`
-        );
-        tablesCount = parseInt(result.rows[0].count, 10);
-        testStatus = 'connected';
-      } catch (dbErr: any) {
-        errorMessage = dbErr.message;
-      } finally {
-        await client.end().catch(() => {});
-      }
-
+      testStatus = 'failed';
+      errorMessage = 'Database privacy features are currently disabled in the Cloudflare Edge environment.';
     } else if (conn.type === 'mysql') {
-      const mysql = await import('mysql2/promise');
-      let connection;
-      try {
-        connection = await mysql.createConnection({
-          host: conn.host,
-          port: conn.port,
-          database: conn.dbname,
-          user: conn.username,
-          password,
-          ssl: conn.use_ssl ? { rejectUnauthorized: false } : undefined,
-          connectTimeout: 8000,
-        });
-        // Ping
-        await connection.query('SELECT 1');
-        // Count tables
-        const [rows] = await connection.query<any[]>(
-          `SELECT count(*) as cnt FROM information_schema.tables 
-           WHERE table_schema = ?`, [conn.dbname]
-        );
-        tablesCount = rows[0]?.cnt ?? 0;
-        testStatus = 'connected';
-      } catch (dbErr: any) {
-        errorMessage = dbErr.message;
-      } finally {
-        if (connection) await connection.end().catch(() => {});
-      }
+      testStatus = 'failed';
+      errorMessage = 'Database privacy features are currently disabled in the Cloudflare Edge environment.';
     } else {
       return NextResponse.json({ error: 'Unsupported database type for testing' }, { status: 400 });
     }
@@ -114,23 +64,23 @@ export async function POST(
       .update({
         status: testStatus,
         last_tested_at: new Date().toISOString(),
-        tables_count: testStatus === 'connected' ? tablesCount : conn.tables_count,
+        tables_count: (testStatus as string) === 'connected' ? tablesCount : conn.tables_count,
       })
       .eq('id', id);
 
     void writeAudit(uid, email ?? '', {
-      action: testStatus === 'connected' ? 'CONNECTION_TEST_SUCCESS' : 'CONNECTION_TEST_FAILED',
+      action: (testStatus as string) === 'connected' ? 'CONNECTION_TEST_SUCCESS' : 'CONNECTION_TEST_FAILED',
       category: 'connection',
-      severity: testStatus === 'connected' ? 'info' : 'error',
+      severity: (testStatus as string) === 'connected' ? 'info' : 'error',
       resource: conn.name,
       details: { latencyMs, tablesCount, type: conn.type, error: errorMessage },
     });
 
     return NextResponse.json({
-      success: testStatus === 'connected',
+      success: (testStatus as string) === 'connected',
       status: testStatus,
       latencyMs,
-      tablesCount: testStatus === 'connected' ? tablesCount : null,
+      tablesCount: (testStatus as string) === 'connected' ? tablesCount : null,
       error: errorMessage,
     });
 

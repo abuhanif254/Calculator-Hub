@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import { Link } from "../../i18n/routing";
 import { Calculator, LineChart, Activity, Search, MousePointerClick, Zap, ChevronDown, ArrowRight, Code, Layers, CheckCircle2, Smartphone, Lock, UserX, Users, Rocket, FolderOpen, FileCode, ShieldCheck } from "lucide-react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -9,7 +8,7 @@ import { HomeSearchBar } from "../components/HomeSearchBar";
 import { NewsletterForm } from "../components/NewsletterForm";
 import dynamic from 'next/dynamic';
 
-// ── Below-fold components: code-split into separate chunks ────────────────────
+// â”€â”€ Below-fold components: code-split into separate chunks â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 // These components either import Firebase (DynamicTrending, RecentDiscussions)
 // or use client-only APIs (localStorage, IntersectionObserver). Loading them
 // lazily removes their JS from the critical path, reducing unused JS and TBT.
@@ -20,11 +19,11 @@ const AnimatedCounter       = dynamic(() => import('../components/AnimatedCounte
 const ScrollReveal          = dynamic(() => import('../components/ScrollReveal').then(m => m.ScrollReveal), { loading: () => null });
 const DynamicTrending       = dynamic(() => import('../components/DynamicTrending').then(m => m.DynamicTrending), { loading: () => null });
 
-// SSG configuration — fully static, no revalidation needed.
+// SSG configuration â€” fully static, no revalidation needed.
 // The homepage content is entirely static (translations + static data).
 // Dynamic sections (FavoritesSection, ContinueWhereYouLeftOff, DynamicTrending,
 // RecentDiscussions) are all client-side components that fetch their own data
-// after hydration — they do NOT require SSR on every request.
+// after hydration â€” they do NOT require SSR on every request.
 // revalidate=false prevents Vercel from re-rendering this page in the background,
 // saving ISR quota on the free tier.
 export const revalidate = false;
@@ -48,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: `https://nexuscalculator.net/icons/icon-512x512.png`,
           width: 512,
           height: 512,
-          alt: 'Nexus Calculator — Calculators & Developer Tools Platform',
+          alt: 'Nexus Calculator â€” Calculators & Developer Tools Platform',
         },
       ],
     },
@@ -152,7 +151,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const t = await getTranslations("Index");
   const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
 
-  // WebSite schema — enables Google Sitelinks Search Box
+  // WebSite schema â€” enables Google Sitelinks Search Box
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -169,7 +168,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     }
   };
 
-  // Organization schema — establishes brand entity
+  // Organization schema â€” establishes brand entity
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -196,7 +195,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div className="lg:w-1/2 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-sm font-semibold mb-6">
-                <Zap size={16} /> <span>302+ Tools — Calculators, Dev Utilities &amp; More</span>
+                <Zap size={16} /> <span>302+ Tools â€” Calculators, Dev Utilities &amp; More</span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
                 The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">Calculators & Developer Tools</span> Platform
@@ -217,7 +216,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
             </div>
             <div className="lg:w-1/2 relative w-full max-w-lg lg:max-w-none mx-auto animate-slide-in-right">
 
-              {/* Real Tool Preview Showcase — browser-chrome window */}
+              {/* Real Tool Preview Showcase â€” browser-chrome window */}
               <div className="relative rounded-2xl glass-panel-heavy overflow-hidden">
 
                 {/* Accent bar */}
@@ -244,7 +243,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         <Code className="text-purple-400" size={13} />
                         <span className="text-xs font-semibold text-slate-300">JSON Formatter</span>
                       </div>
-                      <span className="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-mono">✓ Valid JSON</span>
+                      <span className="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-mono">âœ“ Valid JSON</span>
                     </div>
                     <div className="space-y-0.5 text-[11px] font-mono leading-relaxed">
                       <div><span className="text-slate-500">{"{"}</span></div>
@@ -282,7 +281,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">Mortgage</span>
                       </div>
                       <div className="text-xl font-extrabold text-slate-900 dark:text-white leading-none">$1,842</div>
-                      <div className="text-[10px] text-slate-500 mb-2">per month · 30yr fixed</div>
+                      <div className="text-[10px] text-slate-500 mb-2">per month Â· 30yr fixed</div>
                       <div className="h-1.5 bg-blue-100 dark:bg-blue-800 rounded-full overflow-hidden">
                         <div className="h-full w-[68%] bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
                       </div>
@@ -296,7 +295,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">BMI Score</span>
                       </div>
                       <div className="text-xl font-extrabold text-slate-900 dark:text-white leading-none">22.4</div>
-                      <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mb-2">Normal ✓</div>
+                      <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mb-2">Normal âœ“</div>
                       {/* BMI range gauge */}
                       <div className="flex gap-0.5 rounded-full overflow-hidden">
                         <div className="h-1.5 flex-1 bg-blue-400" />
@@ -311,7 +310,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 </div>
               </div>
 
-              {/* Floating chip — execution speed */}
+              {/* Floating chip â€” execution speed */}
               {/* left-2 sm:-left-5: stays inside viewport on 320-375px phones */}
               <div className="absolute left-2 -bottom-3 sm:-left-5 sm:-bottom-5 bg-white dark:bg-slate-800 p-3 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-2.5 animate-[bounce_4s_ease-in-out_infinite] z-10">
                 <div className="bg-amber-100 text-amber-600 p-1.5 rounded-lg">
@@ -323,7 +322,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                 </div>
               </div>
 
-              {/* Floating chip — tool count */}
+              {/* Floating chip â€” tool count */}
               {/* top-2 sm:-top-4: stays inside viewport on small screens */}
               <div className="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10 animate-fade-in-down">
                 <Zap size={13} className="fill-white" />
@@ -602,7 +601,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </section>
         </ScrollReveal>
 
-        {/* Real Use Cases — replaces fabricated testimonials */}
+        {/* Real Use Cases â€” replaces fabricated testimonials */}
         <ScrollReveal>
           <section className="glass-panel-heavy rounded-2xl sm:rounded-[2.5rem] p-6 sm:p-8 md:p-12">
             <div className="text-center mb-8 sm:mb-12">
@@ -611,7 +610,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">Built for How Professionals Actually Work</h2>
               <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-                From financial advisors to developers and students — see how Nexus fits into real workflows.
+                From financial advisors to developers and students â€” see how Nexus fits into real workflows.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -622,7 +621,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   icon: LineChart,
                   iconBg: "bg-blue-500/10",
                   iconColor: "text-blue-500",
-                  scenario: "A client wants to refinance a $450,000 home at a lower rate. Using the Mortgage Calculator and Amortization tool together, the advisor shows side-by-side monthly savings and total interest paid — exported to PDF in one click.",
+                  scenario: "A client wants to refinance a $450,000 home at a lower rate. Using the Mortgage Calculator and Amortization tool together, the advisor shows side-by-side monthly savings and total interest paid â€” exported to PDF in one click.",
                   tools: ["Mortgage Calculator", "Amortization Calculator"],
                   toolHrefs: ["/calculators/mortgage-calculator", "/calculators/amortization-calculator"],
                 },
@@ -632,7 +631,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   icon: Code,
                   iconBg: "bg-purple-500/10",
                   iconColor: "text-purple-500",
-                  scenario: "During an API integration, a malformed JSON payload is causing 400 errors. The developer pastes the response into the JSON Formatter, spots the missing comma, validates it, and uses the Base64 Decoder to inspect the embedded token — all in one tab.",
+                  scenario: "During an API integration, a malformed JSON payload is causing 400 errors. The developer pastes the response into the JSON Formatter, spots the missing comma, validates it, and uses the Base64 Decoder to inspect the embedded token â€” all in one tab.",
                   tools: ["JSON Formatter", "Base64 Decoder"],
                   toolHrefs: ["/tools/json-formatter", "/tools/base64-decode"],
                 },
@@ -642,7 +641,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   icon: Activity,
                   iconBg: "bg-emerald-500/10",
                   iconColor: "text-emerald-500",
-                  scenario: "Preparing for a statistics exam, a student uses the Standard Deviation Calculator with step-by-step breakdown, then the Scientific Calculator for regression problems. No app installs, no sign-up — just open and solve.",
+                  scenario: "Preparing for a statistics exam, a student uses the Standard Deviation Calculator with step-by-step breakdown, then the Scientific Calculator for regression problems. No app installs, no sign-up â€” just open and solve.",
                   tools: ["Standard Deviation Calculator", "Scientific Calculator"],
                   toolHrefs: ["/calculators/standard-deviation-calculator", "/calculators/scientific-calculator"],
                 },

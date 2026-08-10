@@ -2,7 +2,7 @@ export const runtime = 'edge';
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { writeAudit } from '@/lib/supabase/audit';
-import { randomBytes } from 'crypto';
+import { randomBytesHex } from '@/lib/crypto-edge';
 import { requirePrivacyUser } from '@/lib/privacy/server-auth';
 
 export async function GET(req: NextRequest) {
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
     const supabase = await createClient();
 
     const { url, events } = await req.json();
-    const signing_secret = randomBytes(32).toString('hex');
+    const signing_secret = await randomBytesHex(32);
 
     const { data: webhook, error } = await supabase
       .from('webhooks')

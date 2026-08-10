@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
@@ -17,7 +16,7 @@ import {
   BarChart3, XCircle,
 } from 'lucide-react';
 
-// ── Types ──────────────────────────────────────────────────────────────────────
+// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface DashboardStats {
   totalConnections: number;
   connectedConns: number;
@@ -61,7 +60,7 @@ interface DashboardData {
   topRiskyColumns: RiskyColumn[];
 }
 
-// ── Animated counter hook ─────────────────────────────────────────────────────
+// â”€â”€ Animated counter hook â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function useAnimatedCounter(target: number, duration = 800) {
   const [value, setValue] = useState(0);
   const startRef = useRef<number | null>(null);
@@ -84,7 +83,7 @@ function useAnimatedCounter(target: number, duration = 800) {
   return value;
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const RISK_COLORS: Record<string, string> = {
   Critical: 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border-red-200 dark:border-red-800',
   High:     'bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-400 border-orange-200 dark:border-orange-800',
@@ -100,7 +99,7 @@ const timeAgo = (iso: string) => {
   return `${Math.floor(diff / 86400)}d ago`;
 };
 
-// ── Stat Card ─────────────────────────────────────────────────────────────────
+// â”€â”€ Stat Card â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function StatCard({
   label, value, sub, icon, iconBg, trend, loading,
 }: {
@@ -139,7 +138,7 @@ function StatCard({
   );
 }
 
-// ── Compliance Ring ───────────────────────────────────────────────────────────
+// â”€â”€ Compliance Ring â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function ComplianceRing({ score, loading }: { score: number; loading: boolean }) {
   const animated = useAnimatedCounter(loading ? 0 : score);
   const radius = 44;
@@ -174,7 +173,7 @@ function ComplianceRing({ score, loading }: { score: number; loading: boolean })
         <div className="text-sm text-slate-600 dark:text-slate-400 space-y-1">
           <p><span className="font-semibold text-slate-900 dark:text-white">{score}%</span> covered</p>
           <p className={`text-xs font-medium ${animated >= 80 ? 'text-emerald-600' : animated >= 50 ? 'text-amber-600' : 'text-red-600'}`}>
-            {animated >= 80 ? '✓ Good standing' : animated >= 50 ? '⚠ Needs attention' : '✗ High risk'}
+            {animated >= 80 ? 'âœ“ Good standing' : animated >= 50 ? 'âš  Needs attention' : 'âœ— High risk'}
           </p>
         </div>
       </div>
@@ -182,7 +181,7 @@ function ComplianceRing({ score, loading }: { score: number; loading: boolean })
   );
 }
 
-// ── Main Dashboard ────────────────────────────────────────────────────────────
+// â”€â”€ Main Dashboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export default function PrivacyDashboard() {
   const params = useParams();
   const locale = (params?.locale as string) || 'en';
@@ -255,7 +254,7 @@ export default function PrivacyDashboard() {
         </div>
       )}
 
-      {/* ── Stat Cards ─────────────────────────────────────────────────────── */}
+      {/* â”€â”€ Stat Cards â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           label="Connected Databases"
@@ -287,13 +286,13 @@ export default function PrivacyDashboard() {
         <ComplianceRing score={s?.complianceScore ?? 0} loading={loading} />
       </div>
 
-      {/* ── Charts Row ─────────────────────────────────────────────────────── */}
+      {/* â”€â”€ Charts Row â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        {/* Scan Activity — 7 days */}
+        {/* Scan Activity â€” 7 days */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl shadow-sm">
           <h3 className="text-base font-semibold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-            <Activity className="w-4 h-4 text-violet-500" /> Scan Activity — Last 7 Days
+            <Activity className="w-4 h-4 text-violet-500" /> Scan Activity â€” Last 7 Days
           </h3>
           {loading ? (
             <div className="h-64 bg-slate-50 dark:bg-slate-800/50 rounded-xl animate-pulse" />
@@ -327,7 +326,7 @@ export default function PrivacyDashboard() {
           ) : (data?.riskDistribution ?? []).every(r => r.value === 0) ? (
             <div className="h-64 flex flex-col items-center justify-center text-slate-400">
               <Shield className="w-10 h-10 mb-3 opacity-20" />
-              <p className="text-sm">No findings yet — run a database scan first.</p>
+              <p className="text-sm">No findings yet â€” run a database scan first.</p>
               <Link href={`/${locale}/database-privacy/scanner`}
                 className="mt-3 text-xs text-violet-600 hover:underline flex items-center gap-1">
                 Go to Scanner <ArrowRight className="w-3 h-3" />
@@ -356,10 +355,10 @@ export default function PrivacyDashboard() {
         </div>
       </div>
 
-      {/* ── Bottom Row: Recent Scans + Top Risky Columns ─────────────────── */}
+      {/* â”€â”€ Bottom Row: Recent Scans + Top Risky Columns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        {/* Recent Scans — 2/3 width */}
+        {/* Recent Scans â€” 2/3 width */}
         <div className="lg:col-span-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
           <div className="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
@@ -380,7 +379,7 @@ export default function PrivacyDashboard() {
               <ScanSearch className="w-8 h-8 mx-auto mb-3 text-slate-300 dark:text-slate-700" />
               <p className="text-sm text-slate-500">No scans yet.</p>
               <Link href={`/${locale}/database-privacy/scanner`}
-                className="mt-2 inline-block text-xs text-violet-600 hover:underline">Run your first scan →</Link>
+                className="mt-2 inline-block text-xs text-violet-600 hover:underline">Run your first scan â†’</Link>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -398,7 +397,7 @@ export default function PrivacyDashboard() {
                   {(data?.recentScans ?? []).map(scan => (
                     <tr key={scan.id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors">
                       <td className="px-5 py-3.5 font-medium text-slate-900 dark:text-white text-sm">
-                        {scan.connection_name ?? '—'}
+                        {scan.connection_name ?? 'â€”'}
                       </td>
                       <td className="px-5 py-3.5">
                         <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${
@@ -421,7 +420,7 @@ export default function PrivacyDashboard() {
                         }
                       </td>
                       <td className="px-5 py-3.5 text-right text-slate-500 text-xs">
-                        {scan.rows_scanned?.toLocaleString() ?? '—'}
+                        {scan.rows_scanned?.toLocaleString() ?? 'â€”'}
                       </td>
                       <td className="px-5 py-3.5 text-right text-slate-400 text-xs whitespace-nowrap">
                         {timeAgo(scan.started_at)}
@@ -434,7 +433,7 @@ export default function PrivacyDashboard() {
           )}
         </div>
 
-        {/* Top Risky Columns — 1/3 width */}
+        {/* Top Risky Columns â€” 1/3 width */}
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
           <div className="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
             <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
@@ -467,7 +466,7 @@ export default function PrivacyDashboard() {
                       <span className="text-slate-400">{col.table_name}.</span>
                       <span className="font-semibold text-violet-600 dark:text-violet-400">{col.column_name}</span>
                     </p>
-                    <p className="text-[10px] text-slate-400 mt-0.5">{col.detector_name} · {col.occurrences} hits</p>
+                    <p className="text-[10px] text-slate-400 mt-0.5">{col.detector_name} Â· {col.occurrences} hits</p>
                   </div>
                 </div>
               ))}
@@ -476,7 +475,7 @@ export default function PrivacyDashboard() {
         </div>
       </div>
 
-      {/* ── Quick Actions ──────────────────────────────────────────────────── */}
+      {/* â”€â”€ Quick Actions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
           { href: `/${locale}/database-privacy/connections`, icon: <Plus className="w-5 h-5" />, label: 'Add Connection', bg: 'bg-violet-50 dark:bg-violet-900/20 text-violet-700 dark:text-violet-400 hover:bg-violet-100 dark:hover:bg-violet-900/30' },

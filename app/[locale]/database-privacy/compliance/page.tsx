@@ -1,5 +1,4 @@
 'use client'
-export const runtime = 'edge';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
@@ -353,7 +352,7 @@ ${reportData.recommendations.map(r => `- ${r}`).join('\n')}
                   {reportData.recommendations.length > 0 ? (
                     <ul className="text-sm space-y-2 text-slate-600 dark:text-slate-400 max-h-40 overflow-y-auto pr-2">
                       {reportData.recommendations.map((rec, i) => (
-                        <li key={i} className="flex items-start"><span className="mr-2">•</span> {rec}</li>
+                        <li key={i} className="flex items-start"><span className="mr-2">â€¢</span> {rec}</li>
                       ))}
                     </ul>
                   ) : (

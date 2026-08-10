@@ -1,5 +1,4 @@
 "use client";
-export const runtime = 'edge';
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/app/components/AuthProvider';
@@ -236,9 +235,9 @@ export default function AdminDashboardPage() {
                 onChange={e => setNewAnnouncement(p => ({ ...p, type: e.target.value as any }))}
                 className="px-3 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-sm text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-[#518231]"
               >
-                <option value="info">📢 Info</option>
-                <option value="warning">⚠️ Warning</option>
-                <option value="success">✅ Success</option>
+                <option value="info">ðŸ“¢ Info</option>
+                <option value="warning">âš ï¸ Warning</option>
+                <option value="success">âœ… Success</option>
               </select>
               <input
                 required
@@ -285,7 +284,7 @@ export default function AdminDashboardPage() {
               {announcements.map(ann => (
                 <div key={ann.id} className={`p-5 flex items-start justify-between gap-4 transition-colors ${ann.isActive ? '' : 'opacity-50'}`}>
                   <div className="flex items-start gap-3 flex-1 min-w-0">
-                    <span className="text-xl mt-0.5">{ann.type === 'warning' ? '⚠️' : ann.type === 'success' ? '✅' : '📢'}</span>
+                    <span className="text-xl mt-0.5">{ann.type === 'warning' ? 'âš ï¸' : ann.type === 'success' ? 'âœ…' : 'ðŸ“¢'}</span>
                     <div className="min-w-0">
                       <p className="text-sm font-medium text-slate-900 dark:text-white">{ann.message}</p>
                       {ann.link && <p className="text-xs text-slate-400 mt-0.5 truncate">{ann.link}</p>}

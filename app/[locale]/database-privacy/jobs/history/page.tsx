@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
@@ -283,7 +282,7 @@ export default function JobHistoryPage() {
                             <div className="space-y-1">
                               {jobLogs[job.id].map((log: any, i: number) => (
                                 <div key={i} className="text-xs font-mono text-slate-600 dark:text-slate-400">
-                                  {log.timestamp ? new Date(log.timestamp).toLocaleTimeString() + ' — ' : ''}{log.message || JSON.stringify(log)}
+                                  {log.timestamp ? new Date(log.timestamp).toLocaleTimeString() + ' â€” ' : ''}{log.message || JSON.stringify(log)}
                                 </div>
                               ))}
                             </div>

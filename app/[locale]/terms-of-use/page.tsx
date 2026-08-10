@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import { Metadata } from 'next';
 import { Link as CustomLink, routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
@@ -74,7 +73,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Terms of Use & Legal Guidelines</h1>
         </div>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-          Please review these Terms carefully. By accessing or utilizing the Nexus platform—including our comprehensive suite of developer utilities, PDF processors, image editors, and high-precision calculators—you agree to be bound by these internationally applicable terms and conditions.
+          Please review these Terms carefully. By accessing or utilizing the Nexus platformâ€”including our comprehensive suite of developer utilities, PDF processors, image editors, and high-precision calculatorsâ€”you agree to be bound by these internationally applicable terms and conditions.
         </p>
         <div className="mt-6 inline-flex flex-wrap items-center gap-2 bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
           <RefreshCcw size={16} className="text-slate-500 dark:text-slate-400" />
@@ -192,7 +191,7 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
                   "Attempt to bypass our rate-limiting or security protocols through proxy rotations or automated API abuse."
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 items-start">
-                    <span className="text-rose-500 dark:text-rose-400 font-bold shrink-0 mt-0.5">✖</span>
+                    <span className="text-rose-500 dark:text-rose-400 font-bold shrink-0 mt-0.5">âœ–</span>
                     <span className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}

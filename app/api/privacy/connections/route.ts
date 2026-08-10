@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/server';
 import { encrypt } from '@/lib/supabase/encryption';
 import { writeAudit } from '@/lib/supabase/audit';
 
-// ─── GET /api/privacy/connections ─── List user's connections ────────────────
+// â”€â”€â”€ GET /api/privacy/connections â”€â”€â”€ List user's connections â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export async function GET(req: NextRequest) {
   try {
     const privacyUser = await requirePrivacyUser(req);
@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-// ─── POST /api/privacy/connections ─── Create a new connection ───────────────
+// â”€â”€â”€ POST /api/privacy/connections â”€â”€â”€ Create a new connection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export async function POST(req: NextRequest) {
   try {
     const privacyUser = await requirePrivacyUser(req);
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Encrypt the password before storing
-    const encrypted_password = encrypt(password);
+    const encrypted_password = await encrypt(password);
 
     const { data, error } = await supabase
       .from('connections')

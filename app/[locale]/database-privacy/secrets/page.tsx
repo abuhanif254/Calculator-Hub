@@ -1,5 +1,4 @@
 "use client";
-export const runtime = 'edge';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -234,7 +233,7 @@ export default function SecretsPage() {
                           <span className="w-2 h-2 rounded-full bg-amber-500 shrink-0" title={`Needs rotation (${daysSinceRotation} days old)`}></span>
                         )}
                       </div>
-                      <p className="text-xs text-slate-500 mb-3">{TYPE_LABELS[secret.type]} • Updated {new Date(secret.last_rotated_at).toLocaleDateString()}</p>
+                      <p className="text-xs text-slate-500 mb-3">{TYPE_LABELS[secret.type]} â€¢ Updated {new Date(secret.last_rotated_at).toLocaleDateString()}</p>
                       
                       <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 rounded p-2 mb-4 w-full">
                         <input 

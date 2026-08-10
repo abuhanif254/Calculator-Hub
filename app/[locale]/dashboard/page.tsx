@@ -1,5 +1,4 @@
 'use client';
-export const runtime = 'edge';
 
 import React from 'react';
 import { useToolHistory, useFavorites, useStreak } from '@/lib/hooks/useRetention';
@@ -9,13 +8,13 @@ import {
   Calculator, Code2, History, Heart, TrendingUp, Sparkles
 } from 'lucide-react';
 
-// ═══════════════════════════════════════════════════════
-// USER DASHBOARD — Retention Hub
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// USER DASHBOARD â€” Retention Hub
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // Surfaces recent history, favorites, and usage streaks.
 // All data is localStorage-based (privacy-first, no auth needed).
 // This page is the primary mechanism for repeat engagement.
-// ═══════════════════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 
 function formatTimeAgo(ts: number): string {
   const diff = Date.now() - ts;
@@ -44,7 +43,7 @@ export default function DashboardPage() {
           Your Dashboard
         </h1>
         <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg">
-          Track your tools, favorites, and usage — all stored locally in your browser.
+          Track your tools, favorites, and usage â€” all stored locally in your browser.
         </p>
       </div>
 
@@ -58,7 +57,7 @@ export default function DashboardPage() {
             <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Recent Tools</span>
           </div>
           <p className="text-3xl font-extrabold text-blue-900 dark:text-blue-100">
-            {mounted ? history.length : '—'}
+            {mounted ? history.length : 'â€”'}
           </p>
         </div>
 
@@ -70,7 +69,7 @@ export default function DashboardPage() {
             <span className="text-sm font-medium text-amber-700 dark:text-amber-300">Favorites</span>
           </div>
           <p className="text-3xl font-extrabold text-amber-900 dark:text-amber-100">
-            {mounted ? favorites.length : '—'}
+            {mounted ? favorites.length : 'â€”'}
           </p>
         </div>
 
@@ -193,7 +192,7 @@ export default function DashboardPage() {
               <div className="p-8 text-center text-slate-400 dark:text-slate-500">
                 <Star size={32} className="mx-auto mb-3 opacity-30" />
                 <p className="text-sm">No favorites yet.</p>
-                <p className="text-xs mt-1">Click the ★ icon on any tool to add it here.</p>
+                <p className="text-xs mt-1">Click the â˜… icon on any tool to add it here.</p>
               </div>
             ) : (
               <ul className="divide-y divide-slate-100 dark:divide-slate-800">

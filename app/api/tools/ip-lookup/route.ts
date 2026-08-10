@@ -1,7 +1,12 @@
 export const runtime = 'edge';
 import { NextRequest, NextResponse } from 'next/server';
-import dns from 'dns/promises';
-import { isIP } from 'net';
+import { dns } from '@/lib/dns-edge';
+
+function isIP(ip: string): number {
+  if (/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(ip)) return 4;
+  if (/^[a-fA-F0-9:]+$/.test(ip)) return 6;
+  return 0;
+}
 
 // Memory-based rate limiter (30 requests per minute per IP)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
