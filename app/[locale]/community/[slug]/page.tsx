@@ -5,11 +5,7 @@ import { Link } from "../../../../i18n/routing";
 import { ArrowLeft, User as UserIcon, Home, ChevronRight, Clock, Share2, MoreHorizontal } from "lucide-react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import rehypeRaw from 'rehype-raw';
-import 'highlight.js/styles/github-dark.css';
+import { PostMarkdown } from './PostMarkdown';
 
 // Interactive client components
 import { LikeButton } from "./LikeButton";
@@ -221,15 +217,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
                   prose-p:leading-relaxed prose-pre:bg-[#0d1117] dark:prose-pre:bg-[#0d1117] prose-pre:border prose-pre:border-slate-200 dark:prose-pre:border-slate-700 prose-pre:text-slate-200
                   prose-blockquote:border-l-[#518231] prose-blockquote:bg-slate-50 dark:prose-blockquote:bg-slate-800/50 prose-blockquote:py-1 prose-blockquote:px-4 prose-blockquote:rounded-r-lg"
               >
-                <ReactMarkdown 
-                  remarkPlugins={[remarkGfm]} 
-                  rehypePlugins={[rehypeRaw, rehypeHighlight]}
-                  components={{
-                    a: ({ node, ...props }) => <LinkRenderer {...props} />
-                  }}
-                >
-                  {post.content}
-                </ReactMarkdown>
+                <PostMarkdown content={post.content} />
               </div>
 
               <div className="px-6 py-4 md:px-10 border-t border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30 flex items-center justify-between">

@@ -1,5 +1,5 @@
-export const runtime = 'edge';
 "use client";
+export const runtime = 'edge';
 
 import React, { useState, useEffect, use } from 'react';
 import { db } from '@/lib/firebase';
@@ -417,4 +417,5 @@ export default function UserProfilePage({ params }: { params: Promise<{ userId: 
     </div>
   );
 }
+
 
