@@ -1,12 +1,29 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import { getCalculatorBySlug } from "@/lib/data/calculators";
+import { calculators, getCalculatorBySlug } from "@/lib/data/calculators";
 import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from "@/i18n/routing";
 
-export function generateStaticParams() {
-  return []; // Generate on demand for embeds
+export async function generateStaticParams() {
+  const params: { slug: string; locale: string }[] = [];
+
+  routing.locales.forEach((locale) => {
+    calculators.forEach((calc) => {
+      let slugToUse = calc.slug;
+      if (calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
+        const isExplicitlyMapped = `/calculators/${calc.slug}` in routing.pathnames;
+        if (isExplicitlyMapped) {
+          slugToUse = calc.slug;
+        } else {
+          slugToUse = calc.slugs[locale as keyof typeof calc.slugs];
+        }
+      }
+      params.push({ slug: slugToUse, locale });
+    });
+  });
+
+  return params;
 }
 
 export default async function EmbedCalculatorPage({ 
