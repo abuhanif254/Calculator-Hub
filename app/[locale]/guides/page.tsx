@@ -27,10 +27,6 @@ import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 // Guide listing data is static TypeScript and only changes on deploy.
 export const revalidate = false;
 
-export async function generateStaticParams() {
-  const { routing } = await import('@/i18n/routing');
-  return routing.locales.map((locale) => ({ locale }));
-}
 
 // ————————————————————————————————————————————————————————————————————————————————
 // SEO Metadata
