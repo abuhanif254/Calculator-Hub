@@ -1,4 +1,3 @@
-export const runtime = 'edge';
 import React from "react";
 import { fetchPostBySlugRest, fetchUserRest, RestPost } from "../../../../lib/firebase-rest";
 import { Link } from "../../../../i18n/routing";

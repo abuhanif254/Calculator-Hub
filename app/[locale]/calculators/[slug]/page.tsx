@@ -27,7 +27,7 @@ import matter from "gray-matter";
 // eliminates all ISR background re-renders, saving Vercel free tier limits.
 export const revalidate = false;
 export const dynamicParams = false;
-export const dynamic = "force-static";
+
 
 // Helper function to read markdown content
 function getMarkdownContent(slug: string, locale: string, localizedSlug?: string) {
