@@ -444,3 +444,4 @@ export default async function GuideArticlePage({
 }
 
 export const dynamicParams = false;
+export const dynamic = "force-static";

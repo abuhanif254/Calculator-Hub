@@ -69,3 +69,5 @@ export default async function GuidesLayout({ children, params }: GuidesLayoutPro
     </div>
   );
 }
+
+export const dynamicParams = false;

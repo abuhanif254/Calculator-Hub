@@ -295,3 +295,4 @@ export default async function GuidesIndexPage({
 }
 
 export const dynamicParams = false;
+export const dynamic = "force-static";
