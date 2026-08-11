@@ -1,4 +1,5 @@
 "use client";
+export const runtime = 'edge';
 import React, { useState, useRef } from "react";
 import { privacyFetch } from '@/app/components/platform/utils/privacyFetch';
 

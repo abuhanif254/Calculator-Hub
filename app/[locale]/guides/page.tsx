@@ -1,3 +1,4 @@
+
 import { Metadata } from 'next';
 import { Link } from '@/i18n/routing';
 import { setRequestLocale, getTranslations } from 'next-intl/server';

@@ -1,4 +1,5 @@
 "use client";
+export const runtime = 'edge';
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'next/navigation';
 import { ShieldCheck, CheckCircle, XCircle, FileText, Download, X, ChevronDown, ChevronUp, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
