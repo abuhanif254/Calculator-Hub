@@ -147,6 +147,27 @@ export default async function RootLayout({
             strategy="lazyOnload"
           />
         )}
+
+        {/* Monetag: Vignette Banner (Clean UX) */}
+        <Script
+          strategy="lazyOnload"
+          src="https://n6wxm.com/vignette.min.js"
+          data-zone="11566157"
+        />
+
+        {/* Monetag: In-Page Push Banner (Clean UX) */}
+        <Script
+          strategy="lazyOnload"
+          src="https://nap5k.com/tag.min.js"
+          data-zone="11566160"
+        />
+
+        {/* Monetag: Push Notifications */}
+        <Script
+          strategy="lazyOnload"
+          src="https://5gvci.com/act/files/tag.min.js?z=11566164"
+          data-cfasync="false"
+        />
       </head>
       <body className="font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-[#090E17] dark:text-slate-100 relative overflow-x-hidden max-w-full">
         {/* Ambient Glassmorphism Background Layers

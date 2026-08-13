@@ -22,11 +22,11 @@ export function AdSenseContainer({
   // ⚙️ CONFIGURATION: Define what type of ad shows in each slot!
   // Options: 'affiliate' | 'ad_network'
   const adStrategy: Record<string, 'affiliate' | 'ad_network'> = {
-    tools_top_leaderboard: 'ad_network',  // Example: Show Ezoic/Monetag at the top
-    tools_sidebar_top: 'affiliate',       // Example: Show DigitalOcean in the sidebar
-    tools_sidebar: 'ad_network',          
+    tools_top_leaderboard: 'affiliate', 
+    tools_sidebar_top: 'affiliate',       
+    tools_sidebar: 'affiliate',          
     tools_content_middle: 'affiliate',    
-    default: 'ad_network'                 // Fallback
+    default: 'affiliate'
   };
 
   const currentMode = adStrategy[slot || 'default'] || adStrategy.default;
