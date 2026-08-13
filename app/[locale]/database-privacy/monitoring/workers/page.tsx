@@ -30,6 +30,8 @@ export default function WorkersPage() {
   const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
 
   const fetchWorkers = async () => {
+    if (document.hidden) return; // Pause polling when tab is inactive
+    
     try {
       let authHeader: Record<string, string> = {};
       if (user) {

@@ -42,6 +42,8 @@ export default function MonitoringPage() {
     if (!autoRefresh) return;
     
     const fetchMonitoringData = async () => {
+      if (document.hidden) return; // Pause polling when tab is inactive
+      
       // 1. Fetch main monitoring data
       try {
         const res = await privacyFetch('/api/privacy/monitoring');
@@ -92,7 +94,7 @@ export default function MonitoringPage() {
     };
 
     fetchMonitoringData();
-    const interval = setInterval(fetchMonitoringData, 5000);
+    const interval = setInterval(fetchMonitoringData, 30000); // Increased from 5s to 30s
 
     return () => clearInterval(interval);
   }, [autoRefresh]);
