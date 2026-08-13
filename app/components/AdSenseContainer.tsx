@@ -19,26 +19,42 @@ export function AdSenseContainer({
   slot,
 }: AdSenseContainerProps) {
   
-  // ⚙️ CONFIGURATION: Define what type of ad shows in each slot!
-  // Options: 'affiliate' | 'ad_network'
+  // ⚙️ CONFIGURATION: Set everything to 'ad_network' to show Adsterra!
   const adStrategy: Record<string, 'affiliate' | 'ad_network'> = {
-    tools_top_leaderboard: 'affiliate', 
-    tools_sidebar_top: 'affiliate',       
-    tools_sidebar: 'affiliate',          
-    tools_content_middle: 'affiliate',    
-    default: 'affiliate'
+    tools_top_leaderboard: 'ad_network', 
+    tools_sidebar_top: 'ad_network',       
+    tools_sidebar: 'ad_network',          
+    tools_content_middle: 'ad_network',    
+    default: 'ad_network'
   };
 
   const currentMode = adStrategy[slot || 'default'] || adStrategy.default;
 
   // ==========================================
-  // MODE 1: 3RD PARTY AD NETWORK (Ezoic, Monetag, etc.)
+  // MODE 1: 3RD PARTY AD NETWORK (Adsterra)
   // ==========================================
+  // We use a safe iframe approach because Adsterra's invoke.js breaks React apps if injected directly.
   if (currentMode === 'ad_network') {
+    const isSidebar = slot === 'tools_sidebar' || slot === 'tools_sidebar_top';
+    const adWidth = isSidebar ? 300 : 728;
+    const adHeight = isSidebar ? 250 : 90;
+    const htmlFile = isSidebar ? "/ad-300.html" : "/ad-728.html";
+
     return (
-      <div className={`ad-network-container w-full flex justify-center items-center overflow-hidden border border-dashed border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-900/50 ${className}`} style={{ minHeight: '90px', ...style }}>
-        {/* ⚠️ PASTE YOUR AD NETWORK <div> OR <ins> TAG HERE */}
-        <p className="text-xs text-slate-400 font-mono">Ad Network Placeholder ({slot})</p>
+      <div 
+        className={`ad-network-container w-full flex justify-center items-center overflow-hidden my-4 ${className}`} 
+        style={{ minHeight: `${adHeight}px`, ...style }}
+      >
+        <iframe 
+          src={htmlFile}
+          width={adWidth} 
+          height={adHeight} 
+          frameBorder="0" 
+          scrolling="no"
+          style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
+          title="Advertisement"
+          loading="lazy"
+        />
       </div>
     );
   }
