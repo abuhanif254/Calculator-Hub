@@ -40,7 +40,7 @@ faqs:
     answer: "El factor de potencia unitario (PF = 1.0) ocurre cuando las formas de onda de voltaje y corriente están perfectamente en fase (φ = 0°), lo que significa que el 100% de la energía suministrada se convierte en trabajo real (0 kVAR de potencia reactiva)."
   - question: "¿Por qué las empresas de servicios eléctricos cobran tarifas de penalización por factor de potencia?"
     answer: "Un factor de potencia bajo obliga a las empresas de servicios públicos a suministrar una corriente de línea más alta y una mayor capacidad de transformador en kVA para entregar la misma potencia real (kW), causando mayores pérdidas de transmisión (I²R) en las redes eléctricas."
-  - question: "¿Cómo funciona la corrección del factor de potencia (PFC)?",
+  - question: "¿Cómo funciona la corrección del factor de potencia (PFC)?"
     answer: "La corrección del factor de potencia agrega bancos de capacitores en paralelo que generan potencia reactiva en adelanto (-kVAR), neutralizando la potencia reactiva en atraso (+kVAR) consumida por los motores inductivos."
   - question: "¿Cuál es la fórmula para la compensación capacitiva requerida (Qc)?"
     answer: "Qc = P × (tan φ1 - tan φ2), donde P es la Potencia Real en kW, φ1 es el ángulo de fase inicial (arccos PF1), y φ2 es el ángulo de fase objetivo (arccos PF2)."
