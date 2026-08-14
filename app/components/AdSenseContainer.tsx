@@ -35,10 +35,10 @@ export function AdSenseContainer({
   // ==========================================
   // We use a safe iframe approach because Adsterra's invoke.js breaks React apps if injected directly.
   if (currentMode === 'ad_network') {
-    const isSidebar = slot === 'tools_sidebar' || slot === 'tools_sidebar_top';
-    const adWidth = isSidebar ? 300 : 728;
-    const adHeight = isSidebar ? 250 : 90;
-    const htmlFile = isSidebar ? "/ad-300.html" : "/ad-728.html";
+    const isSidebar = slot?.includes('sidebar');
+    const adWidth = isSidebar ? 160 : 728;
+    const adHeight = isSidebar ? 600 : 90;
+    const htmlFile = isSidebar ? "/ad-160.html" : "/ad-728.html";
 
     return (
       <div 
