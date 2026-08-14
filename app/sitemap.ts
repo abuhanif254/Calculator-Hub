@@ -31,7 +31,9 @@ const developerToolSlugs: string[] = Object.keys(allToolsConfig);
 // ═══════════════════════════════════════════════════════
 // Hreflang URL Builder
 // ═══════════════════════════════════════════════════════
-const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
+// IMPORTANT: Must use www.nexuscalculator.net — Vercel redirects non-www → www.
+// A non-www baseUrl causes ALL sitemap entries to show as "Page with redirect" in GSC.
+const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '').replace('://nexuscalculator.net', '://www.nexuscalculator.net');
 
 function buildEntry(
   pathnameKey: string,
@@ -94,7 +96,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     buildEntry('/', 'daily', 1.0),
     buildEntry('/sitemap', 'weekly', 0.8),
     buildEntry('/community', 'daily', 0.7),
-    buildEntry('/community/new', 'monthly', 0.4),
+    // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
+    // REMOVED: /login, /signup — auth pages always redirect, waste crawl budget
     buildEntry('/about-us', 'monthly', 0.5),
     buildEntry('/privacy-policy', 'yearly', 0.3),
     buildEntry('/terms-of-use', 'yearly', 0.3),

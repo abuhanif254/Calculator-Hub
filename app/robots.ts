@@ -1,7 +1,8 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+  // IMPORTANT: canonical domain is www. Using non-www causes redirect chains.
+  const baseUrl = 'https://www.nexuscalculator.net';
 
   return {
     rules: [
@@ -11,9 +12,23 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/api/',                              // Internal API endpoints
           '/private/',                          // Admin / internal routes
-          // ── Data Privacy Platform — authenticated app routes ──────────
-          // These pages require login and redirect to /login for unauthenticated
-          // crawlers. Excluding them prevents crawl budget waste and GSC errors.
+          // ── Auth-required pages (redirect unauthenticated crawlers) ───────────
+          // These cause "Page with redirect" in GSC. Block crawl budget waste.
+          '/*/login',
+          '/*/signup',
+          '/*/community/new',
+          '/*/community/messages',
+          '/*/community/messages/*',
+          '/*/community/settings',
+          '/*/dashboard',
+          '/*/admin/*',
+          '/admin/',
+          // ── Community search params (create duplicate/redirect URLs) ──────────
+          '/*/community?q=*',
+          '/*/comunidad?q=*',
+          '/*/communaute?q=*',
+          '/*/gemeinschaft?q=*',
+          // ── Data Privacy Platform — authenticated app routes ──────────────────
           '/*/database-privacy/dashboard',
           '/*/database-privacy/scanner',
           '/*/database-privacy/scanner/',
@@ -51,8 +66,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/'],
       },
     ],
-    // Next.js auto-generates the sitemap index at /sitemap.xml
-    // which references /sitemap/0.xml, /sitemap/1.xml, etc.
+    // Sitemap uses www canonical domain
     sitemap: `${baseUrl}/sitemap.xml`,
     host: baseUrl,
   };

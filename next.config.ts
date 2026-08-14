@@ -128,7 +128,9 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // SEO Indexing Fix: Redirect unlocalized bot crawls to localized pathnames
+      // ── Tool prefix localization (Google crawls /xx/tools/ instead of localized prefix) ──
+      // NOTE: Calculator slug redirects are handled in middleware.ts via CALC_REDIRECT_MAP
+      // for accuracy (the slug itself changes per locale, not just the prefix).
       {
         source: '/es/tools/:slug*',
         destination: '/es/herramientas/:slug*',
@@ -144,21 +146,13 @@ const nextConfig: NextConfig = {
         destination: '/de/werkzeuge/:slug*',
         permanent: true,
       },
+      // ── EN path with image/pdf for non-en locales ────────────────────────────
       {
-        source: '/es/calculators/:slug*',
-        destination: '/es/calculadoras/:slug*',
-        permanent: true,
+        source: '/es/pdf',
+        destination: '/es/pdf',
+        permanent: false, // already correct, but ensure it resolves
       },
-      {
-        source: '/fr/calculators/:slug*',
-        destination: '/fr/calculatrices/:slug*',
-        permanent: true,
-      },
-      {
-        source: '/de/calculators/:slug*',
-        destination: '/de/rechner/:slug*',
-        permanent: true,
-      },
+      // ── Credit cards payoff slug normalization ───────────────────────────────
       {
         source: '/en/calculators/credit-cards-payoff-calculator',
         destination: '/en/calculators/credit-cards-payoff',
@@ -179,18 +173,18 @@ const nextConfig: NextConfig = {
         destination: '/de/rechner/kreditkarten-abbezahlen',
         permanent: true,
       },
-      // Fix for leaked tool documentation paths
+      // ── Leaked tool documentation paths ─────────────────────────────────────
       {
         source: '/new-path/:slug*',
-        destination: '/tools/redirect-checker',
+        destination: '/en/tools/redirect-checker',
         permanent: true,
       },
       {
         source: '/old-path/:slug*',
-        destination: '/tools/redirect-checker',
+        destination: '/en/tools/redirect-checker',
         permanent: true,
       },
-      // Redirects for deleted/missing calculators
+      // ── Non-existent calculator slugs → nearest category ────────────────────
       {
         source: '/:locale/rechner/day-counter',
         destination: '/:locale/rechner/category/math-science',
@@ -198,10 +192,9 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/:locale/calculatrices/molarity-calculator',
-        destination: '/:locale/calculatrices/category/math-science',
+        destination: '/:locale/calculatrices/calculateur-de-molarite',
         permanent: true,
       },
-
       {
         source: '/:locale/calculatrices/bandwidth-calculator',
         destination: '/:locale/calculatrices/category/math-science',
@@ -213,18 +206,28 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/:locale/calculators/lean-body-mass-calculator',
+        destination: '/:locale/calculators/category/health-fitness',
+        permanent: true,
+      },
+      {
         source: '/:locale/rechner/body-type-calculator',
         destination: '/:locale/rechner/category/health-fitness',
         permanent: true,
       },
       {
         source: '/:locale/calculadoras/electricity-calculator',
-        destination: '/:locale/calculadoras/category/financial',
+        destination: '/:locale/calculadoras/category/electrical',
         permanent: true,
       },
       {
         source: '/:locale/calculatrices/pythagorean-theorem-calculator',
         destination: '/:locale/calculatrices/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/pythagorean-theorem-calculator',
+        destination: '/:locale/calculators/category/math-science',
         permanent: true,
       },
       {
@@ -235,6 +238,16 @@ const nextConfig: NextConfig = {
       {
         source: '/:locale/calculadoras/time-zone-calculator',
         destination: '/:locale/calculadoras/category/other',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculadoras/time-card-calculator',
+        destination: '/:locale/calculadoras/category/other',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/time-card-calculator',
+        destination: '/:locale/calculators/category/other',
         permanent: true,
       },
       {
@@ -253,15 +266,94 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: '/:locale/calculators/mass-calculator',
+        destination: '/:locale/calculators/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/gdp-calculator',
+        destination: '/:locale/calculators/category/financial',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/gdp-calculator',
+        destination: '/:locale/calculatrices/category/financial',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/mean-median-mode-range-calculator',
+        destination: '/:locale/calculators/statistics-calculator',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/mean-median-mode-range-calculator',
+        destination: '/:locale/calculatrices/calculatrice-statistique',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/permutation-and-combination-calculator',
+        destination: '/:locale/calculators/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/permutation-and-combination-calculator',
+        destination: '/:locale/calculatrices/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/calories-burned-calculator',
+        destination: '/:locale/calculatrices/category/health-fitness',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/calories-burned-calculator',
+        destination: '/:locale/calculators/category/health-fitness',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculatrices/college-cost-calculator',
+        destination: '/:locale/calculatrices/calculateur-cout-etudes',
+        permanent: true,
+      },
+      {
+        source: '/:locale/calculators/college-cost-calculator',
+        destination: '/:locale/calculators/college-cost-calculator',
+        permanent: false,
+      },
+      // ── Tool slug that moved to /tools/ ──────────────────────────────────────
+      {
+        source: '/:locale/calculators/random-number-generator',
+        destination: '/:locale/tools/random-number-generator',
+        permanent: true,
+      },
+      // ── Werkzeuge slug with dots (invalid) ───────────────────────────────────
+      {
         source: '/de/werkzeuge/next.js-discussions',
         destination: '/de/werkzeuge',
         permanent: true,
       },
       {
-        source: '/:locale/calculators/random-number-generator',
-        destination: '/:locale/tools/random-number-generator',
+        source: '/de/werkzeuge/sitemap.xml-generator',
+        destination: '/de/werkzeuge/sitemap-xml-generator',
         permanent: true,
-      }
+      },
+      // ── En refinance-calculator (doesn't exist) → mortgage ───────────────────
+      {
+        source: '/en/calculators/refinance-calculator',
+        destination: '/en/calculators/mortgage-calculator',
+        permanent: true,
+      },
+      // ── Non-existent number/body calculators ────────────────────────────────
+      {
+        source: '/:locale/calculators/number-sequence-calculator',
+        destination: '/:locale/calculators/category/math-science',
+        permanent: true,
+      },
+      {
+        source: '/:locale/rechner/number-sequence-calculator',
+        destination: '/:locale/rechner/category/math-science',
+        permanent: true,
+      },
     ];
   },
 };
