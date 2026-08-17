@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { fetchPostsRest } from '@/lib/firebase-rest';
 
 export async function GET() {
-  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '');
   
   // Fetch up to 50 recent community posts for the RSS feed
   const posts = await fetchPostsRest(undefined, 50);

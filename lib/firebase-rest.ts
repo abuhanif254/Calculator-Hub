@@ -73,7 +73,7 @@ export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: n
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        'Origin': 'https://nexuscalculator.net',
+        'Origin': 'https://www.nexuscalculator.net',
         'Referer': 'https://nexuscalculator.net/'
       },
       body: JSON.stringify({ structuredQuery }),
@@ -308,7 +308,7 @@ export async function fetchPostBySlugRest(slug: string): Promise<RestPost | null
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        'Origin': 'https://nexuscalculator.net',
+        'Origin': 'https://www.nexuscalculator.net',
         'Referer': 'https://nexuscalculator.net/'
       },
       body: JSON.stringify({
@@ -387,7 +387,7 @@ export async function fetchUserRest(userId: string): Promise<{ displayName: stri
     const response = await fetch(`${BASE_URL}/users/${userId}?key=${API_KEY}`, {
       method: 'GET',
       headers: {
-        'Origin': 'https://nexuscalculator.net',
+        'Origin': 'https://www.nexuscalculator.net',
         'Referer': 'https://nexuscalculator.net/'
       },
       next: { revalidate: 3600 } // cache users for an hour

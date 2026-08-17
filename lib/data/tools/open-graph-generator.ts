@@ -262,7 +262,7 @@ Using our advanced, client-side Open Graph Generator, you can easily select your
     {
       title: "Basic WebSite Open Graph Meta Tags",
       description: "Standard properties for websites, portfolios, and main homepages.",
-      input: "Title: 'Nexus Calculator - Developer Tools'\nDescription: 'A free hub of dev tools.'\nImage: 'https://nexuscalculator.net/og.png'\nCanonical: 'https://nexuscalculator.net'",
+      input: "Title: 'Nexus Calculator - Developer Tools'\nDescription: 'A free hub of dev tools.'\nImage: 'https://nexuscalculator.net/og.png'\nCanonical: 'https://www.nexuscalculator.net'",
       output: "<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:title\" content=\"Nexus Calculator - Developer Tools\" />\n<meta property=\"og:description\" content=\"A free hub of dev tools.\" />\n<meta property=\"og:image\" content=\"https://nexuscalculator.net/og.png\" />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\" content=\"630\" />\n<meta property=\"og:image:alt\" content=\"Nexus Calculator Preview Image\" />\n<meta property=\"og:url\" content=\"https://nexuscalculator.net\" />\n<meta property=\"og:site_name\" content=\"Nexus Calculator\" />"
     },
     {

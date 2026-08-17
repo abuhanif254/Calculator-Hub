@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 
-const baseUrl = process.env.APP_URL || "https://nexuscalculator.net";
+const baseUrl = process.env.APP_URL || "https://www.nexuscalculator.net";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();

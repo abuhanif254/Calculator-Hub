@@ -149,7 +149,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
   const t = await getTranslations("Index");
-  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
 
   // WebSite schema — enables Google Sitelinks Search Box
   const websiteSchema = {

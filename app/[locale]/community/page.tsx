@@ -16,9 +16,21 @@ export const revalidate = 3600; // ISR: revalidate every 1 hour (was 5 mins) to 
 
 // The Post interface is now exported from CommunityFeed.tsx
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams?: Promise<{ q?: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const resolvedSearch = searchParams ? await searchParams : {};
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+
+  // ?q= community search pages are duplicates — block indexing to eliminate
+  // "Alternative page with proper canonical tag" entries in GSC.
+  if (resolvedSearch.q) {
+    return {
+      title: 'Community Discussions | NexusCalculator',
+      robots: { index: false, follow: false },
+      alternates: getCanonicalAndAlternates('/community', locale),
+    };
+  }
+
   return {
     title: 'Community Discussions | NexusCalculator',
     description: 'Join the NexusCalculator community. Ask questions, share tips, and discuss developer tools, PDF utilities, image editing, and calculators with fellow professionals.',

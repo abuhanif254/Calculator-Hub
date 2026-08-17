@@ -8,7 +8,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.APP_URL || "https://nexuscalculator.net";
+  const baseUrl = process.env.APP_URL || "https://www.nexuscalculator.net";
   const ogImage = `${baseUrl}/og-database-privacy.jpg`;
 
   // Build full hreflang map for all supported locales
@@ -102,7 +102,7 @@ const softwareAppSchema = {
   creator: {
     "@type": "Organization",
     name: "Nexus Calculator Hub",
-    url: "https://nexuscalculator.net",
+    url: "https://www.nexuscalculator.net",
   },
   screenshot: "https://nexuscalculator.net/og-database-privacy.jpg",
 };

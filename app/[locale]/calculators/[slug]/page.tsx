@@ -160,7 +160,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const relatedTools = getRelatedCalculators(calc.slug, 8);
   const activeCategory = sitemapCategories.find(c => c.title.toLowerCase().includes(calc.category.toLowerCase())) || sitemapCategories[0];
 
-  const baseUrl = "https://nexuscalculator.net";
+  const baseUrl = "https://www.nexuscalculator.net";
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, resolvedParams.slug);
 

@@ -828,7 +828,7 @@ export function SitemapXmlGeneratorTool() {
           <input
             type="text"
             className="w-full text-sm py-2 px-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#518231] transition-all font-mono"
-            placeholder="https://nexuscalculator.net"
+            placeholder="https://www.nexuscalculator.net"
             value={hostUrl}
             onChange={(e) => handleHostChange(e.target.value)}
           />

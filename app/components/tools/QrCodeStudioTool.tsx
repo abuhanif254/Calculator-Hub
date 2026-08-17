@@ -18,7 +18,7 @@ export function QrCodeStudioTool() {
   const [qrType, setQrType] = useState<QrType>("url");
   
   // Data States
-  const [urlData, setUrlData] = useState("https://nexuscalculator.net");
+  const [urlData, setUrlData] = useState("https://www.nexuscalculator.net");
   const [textData, setTextData] = useState("");
   
   // WiFi States
@@ -51,7 +51,7 @@ export function QrCodeStudioTool() {
   // Generate QR String based on active type
   const getQrString = useCallback(() => {
     switch (qrType) {
-      case "url": return urlData || "https://nexuscalculator.net";
+      case "url": return urlData || "https://www.nexuscalculator.net";
       case "text": return textData || "Hello World";
       case "wifi": 
         return `WIFI:T:${wifiEncryption};S:${wifiSsid};P:${wifiPassword};${wifiHidden ? 'H:true' : ''};`;

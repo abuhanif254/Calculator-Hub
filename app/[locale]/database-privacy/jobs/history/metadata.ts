@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 
-const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
 
 export async function generateMetadata({
   params,

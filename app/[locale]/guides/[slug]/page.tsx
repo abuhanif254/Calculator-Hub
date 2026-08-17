@@ -129,7 +129,7 @@ export async function generateMetadata(
   
   guide = getLocalizedGuide(guide, locale);
 
-  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
 
   return {
     title: guide.title,

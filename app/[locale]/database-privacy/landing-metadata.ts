@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const baseUrl = process.env.APP_URL || "https://nexuscalculator.net";
+const baseUrl = process.env.APP_URL || "https://www.nexuscalculator.net";
 
 export const metadata: Metadata = {
   title: "Database Privacy Platform — PII Scanner, Masking & GDPR Compliance | Nexus",

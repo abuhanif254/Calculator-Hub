@@ -44,7 +44,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nexuscalculator.net" },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nexuscalculator.net" },
       { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://nexuscalculator.net/compare" },
       { "@type": "ListItem", "position": 3, "name": comparison.title, "item": `https://nexuscalculator.net/compare/${comparison.slug}` }
     ]

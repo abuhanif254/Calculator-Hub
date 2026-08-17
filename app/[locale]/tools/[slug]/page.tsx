@@ -372,7 +372,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     notFound();
   }
 
-  const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '');
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/tools/[slug]', locale, config.slug);
 

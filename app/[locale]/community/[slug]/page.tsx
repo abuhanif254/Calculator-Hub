@@ -88,7 +88,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   }
 
   const { post, author } = data;
-  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
   const authorName = author?.displayName || post.authorName || "Community Member";
 
   const jsonLd = {

@@ -1,7 +1,13 @@
 import { routing } from '@/i18n/routing';
 import { getCalculatorBySlug } from '@/lib/data/calculators';
 
-const baseUrl = (process.env.APP_URL || 'https://nexuscalculator.net').replace(/\/$/, '');
+// IMPORTANT: canonical domain is www.nexuscalculator.net
+// APP_URL must be set to https://www.nexuscalculator.net in Vercel env vars.
+// The .replace() guards against misconfigured non-www APP_URL causing all canonical
+// tags to point to nexuscalculator.net → "Alternative page with proper canonical tag" in GSC.
+const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
+  .replace(/\/$/, '')
+  .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
 
 /**
  * Generates an SEO `alternates` object containing the absolute canonical URL

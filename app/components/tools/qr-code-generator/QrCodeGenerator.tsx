@@ -62,7 +62,7 @@ export default function QrCodeGenerator() {
   const [activeTab, setActiveTab] = useState<QRType>('url');
   
   // Content inputs
-  const [url, setUrl] = useState('https://nexuscalculator.net');
+  const [url, setUrl] = useState('https://www.nexuscalculator.net');
   const [text, setText] = useState('');
   
   // WiFi

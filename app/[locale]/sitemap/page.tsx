@@ -8,7 +8,7 @@ import Script from 'next/script';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.APP_URL || 'https://nexuscalculator.net';
+  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
   
   const languages: Record<string, string> = {
     'x-default': `${baseUrl}/en/sitemap`,
@@ -53,7 +53,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
     }))
   };
 
-  const baseUrl = 'https://nexuscalculator.net';
+  const baseUrl = 'https://www.nexuscalculator.net';
   
   const breadcrumbSchema = {
     "@type": "BreadcrumbList",

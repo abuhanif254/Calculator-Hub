@@ -262,7 +262,7 @@ Optimizing your website's meta tags remains one of the highest leverage activiti
     {
       title: "Basic SEO & Robots Directives",
       description: "Standard HTML tags for indexing, canonical mapping, and crawler directives.",
-      input: "Title: 'Nexus Calculator - Dev Tools'\nDescription: 'A free online platform with calculators and developer utilities.'\nCanonical: 'https://nexuscalculator.net'\nRobots: 'index, follow'",
+      input: "Title: 'Nexus Calculator - Dev Tools'\nDescription: 'A free online platform with calculators and developer utilities.'\nCanonical: 'https://www.nexuscalculator.net'\nRobots: 'index, follow'",
       output: "<title>Nexus Calculator - Dev Tools</title>\n<meta name=\"description\" content=\"A free online platform with calculators and developer utilities.\" />\n<link rel=\"canonical\" href=\"https://nexuscalculator.net\" />\n<meta name=\"robots\" content=\"index, follow, max-image-preview:large\" />"
     },
     {
@@ -274,7 +274,7 @@ Optimizing your website's meta tags remains one of the highest leverage activiti
     {
       title: "JSON-LD Structured Data Schema",
       description: "Structured metadata block defining a WebSite schema with search capabilities.",
-      input: "Site Name: 'Nexus Calculator'\nURL: 'https://nexuscalculator.net'\nQuery Parameter: 'search_term_string'",
+      input: "Site Name: 'Nexus Calculator'\nURL: 'https://www.nexuscalculator.net'\nQuery Parameter: 'search_term_string'",
       output: "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebSite\",\n  \"name\": \"Nexus Calculator\",\n  \"url\": \"https://nexuscalculator.net\",\n  \"potentialAction\": {\n    \"@type\": \"SearchAction\",\n    \"target\": {\n      \"@type\": \"EntryPoint\",\n      \"urlTemplate\": \"https://nexuscalculator.net/en/search?q={search_term_string}\"\n    },\n    \"query-input\": \"required name=search_term_string\"\n  }\n}\n</script>"
     }
   ]

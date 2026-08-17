@@ -6,7 +6,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.APP_URL || "https://nexuscalculator.net";
+  const baseUrl = process.env.APP_URL || "https://www.nexuscalculator.net";
   return {
     title: "GDPR · HIPAA · PCI-DSS Compliance Center | Nexus DataPrivacy",
     description:
