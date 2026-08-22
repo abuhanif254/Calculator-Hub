@@ -15,15 +15,32 @@ import { CALC_REDIRECT_MAP } from './lib/calcRedirectMap';
 
 const intlMiddleware = createMiddleware(routing);
 
-// Garbage paths injected by PDF metadata scrapers and bot probes
-const GARBAGE_PATHS = new Set(['/Author', '/P', '/XObject', '/28', '/Contents', '/page', '/$', '/&']);
+// Garbage paths injected by PDF metadata scrapers, bot probes, and malformed crawls
+const GARBAGE_PATHS = new Set([
+  '/Author', '/Producer', '/Kids', '/P', '/XObject', '/28', '/Contents',
+  '/page', '/$', '/&', '/egneodunq', '/$', '/admin',
+  '/images/*', '/new-path/:slug',
+]);
+
+// Locale-aware tool category aliases (old nav paths) → redirect to locale homepage
+const LOCALE_TOOL_CATEGORY_PATHS: Record<string, string> = {
+  '/de/pdf': '/de', '/de/bild': '/de',
+  '/en/image': '/en', '/en/pdf': '/en',
+  '/fr/pdf': '/fr', '/fr/image': '/fr',
+  '/es/imagen': '/es', '/es/pdf': '/es',
+};
+
+// Cross-locale community path aliases (e.g. /fr/community → /fr/communaute)
+const LOCALE_COMMUNITY_ALIAS: Record<string, string> = {
+  '/de/community': '/de/gemeinschaft',
+  '/fr/community': '/fr/communaute',
+  '/es/community': '/es/comunidad',
+};
 
 export default function middleware(request: NextRequest) {
   const { pathname, hostname } = request.nextUrl;
 
   // ── 0. Non-www → www canonical redirect ───────────────────────────────────
-  // Vercel handles this at infra level on most plans, but this ensures it happens
-  // at middleware level too, preventing "Page with redirect" in GSC for non-www URLs.
   if (hostname === 'nexuscalculator.net') {
     const url = request.nextUrl.clone();
     url.hostname = 'www.nexuscalculator.net';
@@ -31,7 +48,6 @@ export default function middleware(request: NextRequest) {
   }
 
   // ── 1. Calculator slug mismatch redirects (O(1) lookup, highest priority) ──
-  // Must run before next-intl so Google gets a clean 301 without a redirect chain.
   const redirectTarget = CALC_REDIRECT_MAP[pathname];
   if (redirectTarget) {
     const url = request.nextUrl.clone();
@@ -39,7 +55,7 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // ── 2. Garbage / PDF-metadata-scraped paths → redirect to homepage ─────────
+  // ── 2. Garbage / PDF-metadata-scraped paths → homepage ────────────────────
   if (GARBAGE_PATHS.has(pathname)) {
     const url = request.nextUrl.clone();
     url.pathname = '/';
@@ -47,17 +63,33 @@ export default function middleware(request: NextRequest) {
   }
 
   // ── 3. WordPress / admin probe paths → homepage ───────────────────────────
-  if (pathname === '/wp-admin/' || pathname === '/wp-admin' || pathname === '/admin/') {
+  if (
+    pathname === '/wp-admin/' || pathname === '/wp-admin' ||
+    pathname === '/admin/' || pathname === '/admin'
+  ) {
     const url = request.nextUrl.clone();
     url.pathname = '/';
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // ── 4. Bare paths without locale prefix → /en/... ────────────────────────
-  // Calculator/tool components use href="/calculators/..." (no locale prefix).
-  // next-intl would normally redirect these with a double-hop. We short-circuit
-  // that here with an explicit 301 → /en/... for all bare-path internal routes.
-  // This eliminates the largest source of "Page with redirect" in GSC.
+  // ── 4a. Old locale-specific tool category paths (/de/pdf, /en/image, etc.) ──
+  const toolCategoryRedirect = LOCALE_TOOL_CATEGORY_PATHS[pathname];
+  if (toolCategoryRedirect) {
+    const url = request.nextUrl.clone();
+    url.pathname = toolCategoryRedirect;
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
+  // ── 4b. Cross-locale community aliases (/fr/community → /fr/communaute) ───
+  const communityAlias = LOCALE_COMMUNITY_ALIAS[pathname];
+  if (communityAlias) {
+    const url = request.nextUrl.clone();
+    url.pathname = communityAlias;
+    // preserve ?q= params
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
+  // ── 5. Bare paths without locale prefix → /en/... ─────────────────────────
   if (
     pathname.startsWith('/calculators/') ||
     pathname.startsWith('/tools/') ||
@@ -77,15 +109,16 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // ── 5. /en/calculators listing (no slug) → /en ───────────────────────────
-  if (pathname === '/en/calculators') {
+  // ── 6. /[locale]/calculators listing (no slug) → /[locale] ──────────────
+  const calcListingMatch = pathname.match(/^\/(en|es|fr|de)\/calculators$/);
+  if (calcListingMatch) {
     const url = request.nextUrl.clone();
-    url.pathname = '/en';
+    url.pathname = `/${calcListingMatch[1]}`;
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // ── 6. Old community post format → community index ───────────────────────
-  if (/^\/(en|es|fr|de)?\/?(community|comunidad|communaute|gemeinschaft)\/to-use-a-/.test(pathname)) {
+  // ── 7. Old community post format → community index ───────────────────────
+  if (/^\/(en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/to-use-a-/.test(pathname)) {
     const localeMatch = pathname.match(/^\/(en|es|fr|de)\//);
     const locale = localeMatch ? localeMatch[1] : 'en';
     const url = request.nextUrl.clone();
@@ -93,9 +126,10 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // ── 6. Hand off all other routing to next-intl ────────────────────────────
+  // ── 8. Hand off all other routing to next-intl ────────────────────────────
   return intlMiddleware(request);
 }
+
 
 export const config = {
   matcher: [

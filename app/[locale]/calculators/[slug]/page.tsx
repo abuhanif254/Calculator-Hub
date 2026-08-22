@@ -65,25 +65,37 @@ function getMarkdownContent(slug: string, locale: string, localizedSlug?: string
 // Dynamic routing parameter generation
 export async function generateStaticParams() {
   const params: { slug: string; locale: string }[] = [];
+  const seen = new Set<string>();
 
   routing.locales.forEach((locale) => {
     calculators.forEach((calc) => {
-      let slugToUse = calc.slug;
-      if (calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
-        // Apply the safe mapping fix to ALL categories to prevent 404s
-        const isExplicitlyMapped = `/calculators/${calc.slug}` in routing.pathnames;
-        if (isExplicitlyMapped) {
-          slugToUse = calc.slug;
-        } else {
-          slugToUse = calc.slugs[locale as keyof typeof calc.slugs];
+      const isExplicitlyMapped = `/calculators/${calc.slug}` in routing.pathnames;
+      const localizedSlug = calc.slugs?.[locale as keyof typeof calc.slugs];
+
+      // Always add the English (canonical) slug so the base route works
+      const enKey = `${locale}::${calc.slug}`;
+      if (!seen.has(enKey)) {
+        seen.add(enKey);
+        params.push({ slug: calc.slug, locale });
+      }
+
+      // For explicitly-mapped calculators that have a localized slug, next-intl
+      // rewrites the URL (e.g. /de/rechner/potenzielle-energie-rechner → [slug]),
+      // passing the LOCALIZED slug as the param. With dynamicParams=false this
+      // caused a 404. Adding the localized slug fixes it.
+      if (isExplicitlyMapped && localizedSlug && localizedSlug !== calc.slug) {
+        const localKey = `${locale}::${localizedSlug}`;
+        if (!seen.has(localKey)) {
+          seen.add(localKey);
+          params.push({ slug: localizedSlug, locale });
         }
       }
-      params.push({ slug: slugToUse, locale });
     });
   });
 
   return params;
 }
+
 
 // SEO Metadata configuration
 export async function generateMetadata({ params }: { params: Promise<{ slug: string, locale: string }> }) {

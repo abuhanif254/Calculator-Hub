@@ -1,6 +1,7 @@
 // AUTO-GENERATED from i18n/routing.ts — DO NOT EDIT MANUALLY
 // Regenerate with: node scripts/generateRedirectMap.js
 // Maps wrong calculator URL paths → correct canonical locale URL
+// Used by middleware.ts for O(1) 301 redirects on every request.
 
 // prettier-ignore
 export const CALC_REDIRECT_MAP: Record<string, string> = {
