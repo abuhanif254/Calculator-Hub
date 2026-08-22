@@ -70,6 +70,26 @@ export default function robots(): MetadataRoute.Robots {
           '/*.xls$',
           '/images/*',
           '/new-path/*',
+          '/old-path/*',
+          // ── Tracking / referral query params (cause infinite redirect variants) ─
+          '/*?ref=*',
+          '/*?utm_source=*',
+          '/*?utm_medium=*',
+          '/*?utm_campaign=*',
+          '/*?utm_content=*',
+          '/*?utm_term=*',
+          // ── Trailing slash variants of locale roots ───────────────────────────
+          '/en/',
+          '/es/',
+          '/fr/',
+          '/de/',
+          // ── Community category archive pages (thin, duplicate-prone) ──────────
+          '/*/community/category/*',
+          '/*/comunidad/categoria/*',
+          '/*/gemeinschaft/kategorie/*',
+          '/*/communaute/categorie/*',
+          // ── Database privacy bare paths (auth-required) ───────────────────────
+          '/database-privacy/*',
         ],
       },
       {
