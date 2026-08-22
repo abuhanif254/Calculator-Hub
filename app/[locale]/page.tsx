@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const { getCanonicalAndAlternates, getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/', locale);
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
+    .replace(/\/$/, '')
+    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
   return {
     title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
     description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
@@ -44,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       locale: locale,
       images: [
         {
-          url: `https://nexuscalculator.net/icons/icon-512x512.png`,
+          url: `${baseUrl}/icons/icon-512x512.png`,
           width: 512,
           height: 512,
           alt: 'Nexus Calculator — Calculators & Developer Tools Platform',
@@ -55,11 +58,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       card: 'summary_large_image',
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
       description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
-      images: [`https://nexuscalculator.net/icons/icon-512x512.png`],
+      images: [`${baseUrl}/icons/icon-512x512.png`],
     },
     alternates: getCanonicalAndAlternates('/', locale),
   };
 }
+
 
 
 const categoryData = [

@@ -52,6 +52,24 @@ export default function robots(): MetadataRoute.Robots {
           '/*/database-privacy/organizations',
           '/*/database-privacy/projects',
           '/*/database-privacy/settings',
+          // ── Calculator category listing pages (thin content) ──────────────────
+          // These have little unique content vs. English — Google overrides canonical.
+          // Blocking stops "Duplicate, Google chose different canonical" in GSC.
+          '/*/calculadoras/categoria/*',
+          '/*/calculatrices/categorie/*',
+          '/*/rechner/kategorie/*',
+          '/*/calculators/category/*',
+          // ── Community leaderboard / hall-of-fame (thin UGC) ──────────────────
+          '/*/community/leaderboard',
+          '/*/comunidad/tabla-de-posiciones',
+          '/*/comunidad/salon-de-la-fama',
+          '/*/gemeinschaft/ruhmeshalle',
+          '/*/communaute/tableau-de-classement',
+          // ── Malformed / garbage URLs crawled via bad external links ──────────
+          '/*.xls',
+          '/*.xls$',
+          '/images/*',
+          '/new-path/*',
         ],
       },
       {

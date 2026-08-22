@@ -35,12 +35,22 @@ export async function generateMetadata({
   if (!cat) return { title: 'Category Not Found' };
 
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+
+  // Non-English category pages have the same English pillar content as /en/calculators/category/*.
+  // Google overrides our declared canonical with the EN version ("Duplicate, Google chose different
+  // canonical"). Use noindex on non-EN locales to stop the duplicate signal while keeping EN indexed.
+  const isEnglish = locale === 'en';
+
   return {
     title: cat.seoTitle,
     description: cat.seoDescription,
+    robots: isEnglish
+      ? { index: true, follow: true }
+      : { index: false, follow: false },
     alternates: getCanonicalAndAlternates('/calculators/category/[category]', locale, category),
   };
 }
+
 
 export default async function CategoryPage({
   params,
