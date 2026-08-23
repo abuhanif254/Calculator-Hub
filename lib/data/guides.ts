@@ -2080,6 +2080,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'percent-composition-calculator',
   },
+  {
+    slug: 'molarity-dilution-calculator-guide',
+    slugs: {
+      en: 'molarity-dilution-calculator-guide',
+      es: 'guia-calculadora-dilucion-molaridad',
+      fr: 'guide-calculatrice-dilution-molarite',
+      de: 'molaritaets-verduennungs-rechner-ratgeber'
+    },
+    title: 'Molarity Dilution: The M1V1 = M2V2 Formula',
+    description:
+      'Learn how to prepare lab solutions from concentrated stock. Understand the M1V1 = M2V2 formula and use our free Molarity Dilution Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'molarity-dilution-calculator',
+  },
+  {
+    slug: 'dilution-calculator-guide',
+    slugs: {
+      en: 'dilution-calculator-guide',
+      es: 'guia-calculadora-dilucion',
+      fr: 'guide-calculatrice-dilution',
+      de: 'verduennungs-rechner-ratgeber'
+    },
+    title: 'Serial Dilution: Creating Precise Concentrations',
+    description:
+      'Learn the general dilution factor formula, how to perform serial dilutions in a lab, and use our free Dilution Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'dilution-calculator',
+  },
+  {
+    slug: 'stoichiometry-calculator-guide',
+    slugs: {
+      en: 'stoichiometry-calculator-guide',
+      es: 'guia-calculadora-estequiometria',
+      fr: 'guide-calculatrice-stoechiometrie',
+      de: 'stoechiometrie-rechner-ratgeber'
+    },
+    title: 'Stoichiometry: The Math of Chemical Reactions',
+    description:
+      'Master the most important concept in chemistry. Learn how to balance equations, find the limiting reactant, and use our free Stoichiometry Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'stoichiometry-calculator',
+  },
+  {
+    slug: 'empirical-formula-calculator-guide',
+    slugs: {
+      en: 'empirical-formula-calculator-guide',
+      es: 'guia-calculadora-formula-empirica',
+      fr: 'guide-calculatrice-formule-empirique',
+      de: 'empirische-formel-rechner-ratgeber'
+    },
+    title: 'Empirical Formula: The Simplest Ratio',
+    description:
+      'Learn how to find the simplest whole-number ratio of atoms in a chemical compound using mass percentages, and use our free Empirical Formula Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'empirical-formula-calculator',
+  },
+  {
+    slug: 'molecular-formula-calculator-guide',
+    slugs: {
+      en: 'molecular-formula-calculator-guide',
+      es: 'guia-calculadora-formula-molecular',
+      fr: 'guide-calculatrice-formule-moleculaire',
+      de: 'molekuelformel-rechner-ratgeber'
+    },
+    title: 'Molecular Formula: Finding the True Compound',
+    description:
+      'Learn the difference between Empirical and Molecular formulas, how to calculate the true number of atoms, and use our Molecular Formula Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'molecular-formula-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
