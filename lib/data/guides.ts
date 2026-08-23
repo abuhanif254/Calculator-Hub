@@ -630,7 +630,7 @@ const healthGuides: Guide[] = [
     title: 'Using the Pregnancy Calculator: Due Date & Milestones',
     description:
       'How due date calculation works using Naegele\'s Rule and LMP (Last Menstrual Period), what each trimester involves, and how to use our pregnancy calculator to track key milestones.',
-    category: 'Health & Fitness',
+    category: 'Health',
     readingTime: 3,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'pregnancy-calculator',
@@ -646,7 +646,7 @@ const healthGuides: Guide[] = [
     title: 'How Tall Will My Child Be? The Science of Height Prediction',
     description:
       'Explore the genetics of human growth, learn the Khamis-Roche method, and use our Height Calculator to predict your child\'s adult height.',
-    category: 'Health & Fitness',
+    category: 'Health',
     readingTime: 5,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'height-calculator',
