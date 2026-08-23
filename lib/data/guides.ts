@@ -982,6 +982,70 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'zakat-calculator',
   },
+  {
+    slug: 'currency-calculator-guide',
+    slugs: {
+      en: 'currency-calculator-guide',
+      es: 'guia-calculadora-divisas',
+      fr: 'guide-calculatrice-devises',
+      de: 'waehrungsrechner-ratgeber'
+    },
+    title: 'Currency Calculator: Exchange Rates Explained',
+    description:
+      'Understand how global forex exchange rates are set, what a currency spread is, and how to use our free Currency Calculator for travel or trading.',
+    category: 'Finance',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'currency-calculator',
+  },
+  {
+    slug: 'percent-off-calculator-guide',
+    slugs: {
+      en: 'percent-off-calculator-guide',
+      es: 'guia-calculadora-descuentos',
+      fr: 'guide-calculatrice-reductions',
+      de: 'rabattrechner-ratgeber'
+    },
+    title: 'Percent Off Calculator: Retail Math Explained',
+    description:
+      'Learn how to quickly calculate sale discounts in your head, understand double discounts, and use our Percent Off Calculator to save money.',
+    category: 'Finance',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'percent-off-calculator',
+  },
+  {
+    slug: 'marriage-tax-calculator-guide',
+    slugs: {
+      en: 'marriage-tax-calculator-guide',
+      es: 'guia-calculadora-impuestos-matrimonio',
+      fr: 'guide-calculatrice-impots-mariage',
+      de: 'heirats-steuerrechner-ratgeber'
+    },
+    title: 'Marriage Tax Calculator: Bonus or Penalty?',
+    description:
+      'Understand the financial impact of getting married. Learn about the Marriage Penalty, the Marriage Bonus, and use our free Marriage Tax Calculator.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'marriage-tax-calculator',
+  },
+  {
+    slug: 'annuity-payout-calculator-guide',
+    slugs: {
+      en: 'annuity-payout-calculator-guide',
+      es: 'guia-calculadora-pago-anualidad',
+      fr: 'guide-calculatrice-paiement-rente',
+      de: 'renten-auszahlungs-rechner-ratgeber'
+    },
+    title: 'Annuity Payout Calculator: Securing Your Retirement',
+    description:
+      'Learn how annuities work, the difference between fixed and variable payouts, and use our free Annuity Payout Calculator for retirement planning.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'annuity-payout-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
@@ -1178,6 +1242,22 @@ const healthGuides: Guide[] = [
     readingTime: 5,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'pace-calculator',
+  },
+  {
+    slug: 'carbohydrate-calculator-guide',
+    slugs: {
+      en: 'carbohydrate-calculator-guide',
+      es: 'guia-calculadora-carbohidratos',
+      fr: 'guide-calculatrice-glucides',
+      de: 'kohlenhydrat-rechner-ratgeber'
+    },
+    title: 'Carbohydrate Calculator: Managing Your Macros',
+    description:
+      'Learn how to calculate your daily carbohydrate limit for keto, cutting, or bulking. Understand net carbs and use our Carbohydrate Calculator.',
+    category: 'Health',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'carbohydrate-calculator',
   },
 ];
 
