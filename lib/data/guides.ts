@@ -1504,6 +1504,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'volume-calculator',
   },
+  {
+    slug: 'velocity-calculator-guide',
+    slugs: {
+      en: 'velocity-calculator-guide',
+      es: 'guia-calculadora-velocidad',
+      fr: 'guide-calculatrice-velocite',
+      de: 'geschwindigkeitsrechner-ratgeber'
+    },
+    title: 'Understanding Velocity: Speed With a Direction',
+    description:
+      'Learn the crucial difference between speed and velocity in physics, how to use vector quantities, and calculate displacement with our Velocity Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'velocity-calculator',
+  },
+  {
+    slug: 'acceleration-calculator-guide',
+    slugs: {
+      en: 'acceleration-calculator-guide',
+      es: 'guia-calculadora-aceleracion',
+      fr: 'guide-calculatrice-acceleration',
+      de: 'beschleunigungsrechner-ratgeber'
+    },
+    title: 'The Physics of Acceleration: More Than Just Going Fast',
+    description:
+      'Learn how acceleration actually works, the difference between positive and negative acceleration, and use our free Acceleration Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'acceleration-calculator',
+  },
+  {
+    slug: 'force-calculator-guide',
+    slugs: {
+      en: 'force-calculator-guide',
+      es: 'guia-calculadora-fuerza',
+      fr: 'guide-calculatrice-force',
+      de: 'kraft-rechner-ratgeber'
+    },
+    title: 'Newton\'s Second Law: Understanding Force and Mass',
+    description:
+      'Master Newton\'s Second Law of Motion (F=ma). Learn how mass affects acceleration and use our Force Calculator to solve physics equations.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'force-calculator',
+  },
+  {
+    slug: 'kinetic-energy-calculator-guide',
+    slugs: {
+      en: 'kinetic-energy-calculator-guide',
+      es: 'guia-calculadora-energia-cinetica',
+      fr: 'guide-calculatrice-energie-cinetique',
+      de: 'kinetische-energie-rechner-ratgeber'
+    },
+    title: 'The Energy of Motion: Understanding Kinetic Energy',
+    description:
+      'Learn the physics of kinetic energy, why speed matters more than mass in a car crash, and use our Kinetic Energy Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'kinetic-energy-calculator',
+  },
+  {
+    slug: 'projectile-motion-calculator-guide',
+    slugs: {
+      en: 'projectile-motion-calculator-guide',
+      es: 'guia-calculadora-movimiento-proyectiles',
+      fr: 'guide-calculatrice-mouvement-projectile',
+      de: 'wurfbewegungs-rechner-ratgeber'
+    },
+    title: 'Projectile Motion: The Physics of Trajectories',
+    description:
+      'Master the physics of projectile motion. Learn about launch angles, gravity, and use our Projectile Motion Calculator to plot parabolic trajectories.',
+    category: 'Math & Science',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'projectile-motion-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
