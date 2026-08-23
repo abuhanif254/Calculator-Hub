@@ -1904,6 +1904,54 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'power-factor-calculator',
   },
+  {
+    slug: 'battery-runtime-calculator-guide',
+    slugs: {
+      en: 'battery-runtime-calculator-guide',
+      es: 'guia-calculadora-duracion-bateria',
+      fr: 'guide-calculatrice-autonomie-batterie',
+      de: 'batterielaufzeit-rechner-ratgeber'
+    },
+    title: 'Battery Runtime: How Long Will It Last?',
+    description:
+      'Learn how to read battery capacity ratings (mAh and Ah), calculate exact discharge times, and use our free Battery Runtime Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'battery-runtime-calculator',
+  },
+  {
+    slug: 'inverter-calculator-guide',
+    slugs: {
+      en: 'inverter-calculator-guide',
+      es: 'guia-calculadora-inversor',
+      fr: 'guide-calculatrice-onduleur',
+      de: 'wechselrichter-rechner-ratgeber'
+    },
+    title: 'Inverters: Converting Battery Power to AC Power',
+    description:
+      'Learn how an inverter works, the difference between pure sine wave and modified sine wave, and use our free Inverter Calculator to size your system.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'inverter-calculator',
+  },
+  {
+    slug: 'solar-panel-calculator-guide',
+    slugs: {
+      en: 'solar-panel-calculator-guide',
+      es: 'guia-calculadora-paneles-solares',
+      fr: 'guide-calculatrice-panneaux-solaires',
+      de: 'solarpaneele-rechner-ratgeber'
+    },
+    title: 'Solar Panels: Sizing Your Off-Grid System',
+    description:
+      'Learn how solar panels generate electricity, how to account for Peak Sun Hours, and use our free Solar Panel Calculator to size your system.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'solar-panel-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
@@ -2114,6 +2162,38 @@ const productivityUtilitiesGuides: Guide[] = [
     readingTime: 4,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'time-calculator',
+  },
+  {
+    slug: 'ups-calculator-guide',
+    slugs: {
+      en: 'ups-calculator-guide',
+      es: 'guia-calculadora-ups',
+      fr: 'guide-calculatrice-ups',
+      de: 'ups-rechner-ratgeber'
+    },
+    title: 'UPS Calculator: Sizing Your Backup Battery',
+    description:
+      'Learn what an Uninterruptible Power Supply (UPS) is, how to calculate your VA and Wattage needs, and use our free UPS Calculator.',
+    category: 'Productivity & Utilities',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ups-calculator',
+  },
+  {
+    slug: 'subnet-calculator-guide',
+    slugs: {
+      en: 'subnet-calculator-guide',
+      es: 'guia-calculadora-subred',
+      fr: 'guide-calculatrice-sous-reseau',
+      de: 'subnetz-rechner-ratgeber'
+    },
+    title: 'Subnetting: Dividing the Network',
+    description:
+      'Learn what subnetting is, how CIDR notation works, why IT administrators divide networks, and use our free Subnet Calculator.',
+    category: 'Productivity & Utilities',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'subnet-calculator',
   },
   {
     slug: 'age-calculator-guide',
