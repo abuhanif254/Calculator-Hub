@@ -646,6 +646,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'va-mortgage-calculator',
   },
+  {
+    slug: '401k-calculator-guide',
+    slugs: {
+      en: '401k-calculator-guide',
+      es: 'guia-calculadora-401k',
+      fr: 'guide-calculatrice-401k',
+      de: '401k-rechner-ratgeber'
+    },
+    title: 'The Ultimate 401(k) Guide: How to Retire a Millionaire',
+    description:
+      'Learn how employer matches work, the massive power of compound interest over decades, and use our 401(k) Calculator to project your retirement wealth.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: '401k-calculator',
+  },
+  {
+    slug: 'future-value-calculator-guide',
+    slugs: {
+      en: 'future-value-calculator-guide',
+      es: 'guia-calculadora-valor-futuro',
+      fr: 'guide-calculatrice-valeur-future',
+      de: 'zukunftswert-rechner-ratgeber'
+    },
+    title: 'Future Value Explained: Predicting the Worth of Your Investments',
+    description:
+      'Master the time value of money. Learn the math behind compound growth and use our Future Value Calculator to project your financial assets.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'future-value-calculator',
+  },
+  {
+    slug: 'present-value-calculator-guide',
+    slugs: {
+      en: 'present-value-calculator-guide',
+      es: 'guia-calculadora-valor-presente',
+      fr: 'guide-calculatrice-valeur-actuelle',
+      de: 'barwert-rechner-ratgeber'
+    },
+    title: 'The Math of Present Value: Are You Making a Good Investment?',
+    description:
+      'Learn how to discount future cash flows, understand inflation\'s impact on wealth, and use our Present Value Calculator to analyze investments.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'present-value-calculator',
+  },
+  {
+    slug: 'rmd-calculator-guide',
+    slugs: {
+      en: 'rmd-calculator-guide',
+      es: 'guia-calculadora-rmd',
+      fr: 'guide-calculatrice-rmd',
+      de: 'rmd-rechner-ratgeber'
+    },
+    title: 'Understanding RMDs: Don\'t Lose 25% of Your Retirement to the IRS',
+    description:
+      'Learn what Required Minimum Distributions (RMDs) are, the new SECURE Act 2.0 age rules, and use our RMD Calculator to avoid massive IRS penalties.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'rmd-calculator',
+  },
+  {
+    slug: 'annuity-calculator-guide',
+    slugs: {
+      en: 'annuity-calculator-guide',
+      es: 'guia-calculadora-anualidad',
+      fr: 'guide-calculatrice-rente',
+      de: 'rentenrechner-ratgeber'
+    },
+    title: 'How Annuities Work: Buying a Guaranteed Monthly Paycheck',
+    description:
+      'Understand the difference between fixed, variable, and indexed annuities, and use our Annuity Calculator to estimate your guaranteed retirement income.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'annuity-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
