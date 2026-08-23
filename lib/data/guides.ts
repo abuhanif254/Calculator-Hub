@@ -1046,6 +1046,22 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'annuity-payout-calculator',
   },
+  {
+    slug: 'commission-calculator-guide',
+    slugs: {
+      en: 'commission-calculator-guide',
+      es: 'guia-calculadora-comisiones',
+      fr: 'guide-calculatrice-commission',
+      de: 'provisionsrechner-ratgeber'
+    },
+    title: 'Commission Calculator: Track Your Sales Earnings',
+    description:
+      'Learn how sales commissions are structured, the difference between tiered and flat rates, and use our free Commission Calculator.',
+    category: 'Finance',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'commission-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
@@ -1258,6 +1274,22 @@ const healthGuides: Guide[] = [
     readingTime: 4,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'carbohydrate-calculator',
+  },
+  {
+    slug: 'healthy-weight-calculator-guide',
+    slugs: {
+      en: 'healthy-weight-calculator-guide',
+      es: 'guia-calculadora-peso-saludable',
+      fr: 'guide-calculatrice-poids-sante',
+      de: 'idealgewicht-rechner-ratgeber'
+    },
+    title: 'Healthy Weight Calculator: Finding Your Ideal Range',
+    description:
+      'Understand BMI, body composition, and how to determine a healthy weight range using our free Healthy Weight Calculator.',
+    category: 'Health',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'healthy-weight-calculator',
   },
 ];
 
@@ -2399,6 +2431,54 @@ const mathGuides: Guide[] = [
     readingTime: 3,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'ksp-calculator',
+  },
+  {
+    slug: 'solubility-calculator-guide',
+    slugs: {
+      en: 'solubility-calculator-guide',
+      es: 'guia-calculadora-solubilidad',
+      fr: 'guide-calculatrice-solubilite',
+      de: 'loeslichkeitsrechner-ratgeber'
+    },
+    title: 'Solubility Calculator: Dissolving Chemistry',
+    description:
+      'Learn how temperature affects solubility, how to calculate molar solubility, and use our free Solubility Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'solubility-calculator',
+  },
+  {
+    slug: 'nernst-equation-calculator-guide',
+    slugs: {
+      en: 'nernst-equation-calculator-guide',
+      es: 'guia-calculadora-ecuacion-nernst',
+      fr: 'guide-calculatrice-equation-nernst',
+      de: 'nernst-gleichung-rechner-ratgeber'
+    },
+    title: 'Nernst Equation Calculator: Electrochemistry',
+    description:
+      'Understand how the Nernst Equation predicts cell potential at non-standard conditions, and use our free Nernst Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'nernst-equation-calculator',
+  },
+  {
+    slug: 'electrochemical-cell-calculator-guide',
+    slugs: {
+      en: 'electrochemical-cell-calculator-guide',
+      es: 'guia-calculadora-celda-electroquimica',
+      fr: 'guide-calculatrice-cellule-electrochimique',
+      de: 'elektrochemische-zellen-rechner-ratgeber'
+    },
+    title: 'Electrochemical Cell Calculator: Batteries Explained',
+    description:
+      'Learn how galvanic cells generate electricity, how to calculate standard cell potential, and use our Electrochemical Cell Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'electrochemical-cell-calculator',
   },
 ];
 
