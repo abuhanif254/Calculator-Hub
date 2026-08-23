@@ -4,7 +4,7 @@
 // Documentation-style guide hub (Tailwind CSS Docs / Vite Docs pattern)
 // ═══════════════════════════════════════════════════════════════════════
 
-export type GuideCategory = 'Finance' | 'Health' | 'Math & Science' | 'Privacy & Security';
+export type GuideCategory = 'Finance' | 'Health' | 'Math & Science' | 'Privacy & Security' | 'Design & Media' | 'Productivity & Utilities';
 
 export interface Guide {
   /** URL-safe slug (used in /guides/[slug]) */
@@ -163,6 +163,38 @@ const financeGuides: Guide[] = [
     readingTime: 5,
     lastUpdated: '2026-06-25',
     relatedCalculator: 'salary-calculator',
+  },
+  {
+    slug: 'irr-calculator-guide',
+    slugs: {
+      en: 'irr-calculator-guide',
+      es: 'guia-calculadora-tir',
+      fr: 'guide-calculatrice-tri',
+      de: 'irr-rechner-ratgeber'
+    },
+    title: 'Understanding Internal Rate of Return (IRR): A Complete Guide',
+    description:
+      'Learn what the Internal Rate of Return (IRR) is, how it differs from ROI, and how to calculate it for real estate and corporate finance investments.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'irr-calculator',
+  },
+  {
+    slug: 'fha-loan-calculator-guide',
+    slugs: {
+      en: 'fha-loan-calculator-guide',
+      es: 'guia-calculadora-prestamo-fha',
+      fr: 'guide-calculatrice-pret-fha',
+      de: 'fha-darlehensrechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to FHA Loans: Requirements and Calculations',
+    description:
+      'Learn how FHA loans work, who qualifies for the 3.5% down payment, and how to accurately calculate your monthly mortgage payments including MIP.',
+    category: 'Finance',
+    readingTime: 7,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'fha-loan-calculator',
   },
 ];
 
@@ -398,6 +430,38 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-06-11',
     relatedCalculator: 'triangle-calculator',
   },
+  {
+    slug: 'z-score-calculator-guide',
+    slugs: {
+      en: 'z-score-calculator-guide',
+      es: 'guia-calculadora-z-score',
+      fr: 'guide-calculatrice-score-z',
+      de: 'z-wert-rechner-ratgeber'
+    },
+    title: 'How to Calculate and Interpret Z-Scores in Statistics',
+    description:
+      'Learn what a Z-score tells you about a data point, how to calculate it using the standard deviation, and how to use our Z-Score Calculator.',
+    category: 'Math & Science',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'z-score-calculator',
+  },
+  {
+    slug: 't-test-calculator-guide',
+    slugs: {
+      en: 't-test-calculator-guide',
+      es: 'guia-calculadora-prueba-t',
+      fr: 'guide-calculatrice-test-t',
+      de: 't-test-rechner-ratgeber'
+    },
+    title: 'Understanding the T-Test: Independent vs. Paired Samples',
+    description:
+      'Learn how to use a Student\'s T-Test to determine if there is a statistically significant difference between the means of two groups.',
+    category: 'Math & Science',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 't-test-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
@@ -483,16 +547,157 @@ const privacyGuides: Guide[] = [
     lastUpdated: '2026-08-08',
     relatedCalculator: 'database-privacy',
   },
+  {
+    slug: 'database-anonymizer-guide',
+    slugs: {
+      en: 'database-anonymizer-guide',
+      es: 'guia-anonimizador-base-datos',
+      fr: 'guide-anonymiseur-base-donnees',
+      de: 'datenbank-anonymisierer-ratgeber',
+    },
+    title: 'How to Anonymize Database Dumps for Testing: A Developer\'s Guide',
+    description:
+      'Learn why data anonymization is critical for development environments, common masking techniques, and how to use our Database Anonymizer tool securely.',
+    category: 'Privacy & Security',
+    readingTime: 7,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'database-anonymizer',
+  },
+];
+
+// ─── DESIGN & MEDIA GUIDES ─────────────────────────────────────────────
+const designMediaGuides: Guide[] = [
+  {
+    slug: 'ai-image-upscaler-guide',
+    slugs: {
+      en: 'ai-image-upscaler-guide',
+      es: 'guia-escalador-imagenes-ia',
+      fr: 'guide-agrandisseur-image-ia',
+      de: 'ki-bild-upscaler-ratgeber',
+    },
+    title: 'How to Upscale Images Without Losing Quality',
+    description:
+      'Learn how AI image upscaling works, the difference between traditional resizing and AI, and how to get the best results for print and web.',
+    category: 'Design & Media',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ai-image-upscaler',
+    featured: true,
+  },
+  {
+    slug: 'qr-code-studio-guide',
+    slugs: {
+      en: 'qr-code-studio-guide',
+      es: 'guia-estudio-codigo-qr',
+      fr: 'guide-studio-code-qr',
+      de: 'qr-code-studio-ratgeber',
+    },
+    title: 'QR Code Best Practices: Scannability, Formats, and Error Correction',
+    description:
+      'Learn how to generate perfect QR codes for print and web, including error correction levels, color contrast, and choosing between SVG and PNG.',
+    category: 'Design & Media',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'qr-code-studio',
+  },
+  {
+    slug: 'heic-to-jpg-guide',
+    slugs: {
+      en: 'heic-to-jpg-guide',
+      es: 'guia-heic-a-jpg',
+      fr: 'guide-heic-vers-jpg',
+      de: 'heic-zu-jpg-ratgeber',
+    },
+    title: 'HEIC vs JPG: Why iPhones Use HEIC and How to Convert Them',
+    description:
+      'Understand the difference between HEIC and JPG formats, why Apple switched to HEIC, and how to convert your photos for maximum compatibility.',
+    category: 'Design & Media',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'heic-to-jpg',
+  },
+];
+
+// ─── PRODUCTIVITY & UTILITIES GUIDES ───────────────────────────────────
+const productivityUtilitiesGuides: Guide[] = [
+  {
+    slug: 'sql-formatter-guide',
+    slugs: {
+      en: 'sql-formatter-guide',
+      es: 'guia-formateador-sql',
+      fr: 'guide-formateur-sql',
+      de: 'sql-formatierer-ratgeber',
+    },
+    title: 'SQL Formatting Best Practices: Writing Clean & Readable Queries',
+    description:
+      'Learn why SQL formatting matters, standard indentation rules, and how to use our SQL Formatter to keep your team\'s queries consistent.',
+    category: 'Productivity & Utilities',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'sql-formatter',
+  },
+  {
+    slug: 'pdf-to-excel-guide',
+    slugs: {
+      en: 'pdf-to-excel-guide',
+      es: 'guia-pdf-a-excel',
+      fr: 'guide-pdf-vers-excel',
+      de: 'pdf-zu-excel-ratgeber',
+    },
+    title: 'How to Convert PDF to Excel Without Losing Formatting',
+    description:
+      'Learn how to accurately extract tables from PDF documents into Excel spreadsheets, maintaining rows, columns, and data privacy.',
+    category: 'Productivity & Utilities',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'pdf-to-excel',
+    featured: true,
+  },
+  {
+    slug: 'jwt-decoder-guide',
+    slugs: {
+      en: 'jwt-decoder-guide',
+      es: 'guia-decodificador-jwt',
+      fr: 'guide-decodeur-jwt',
+      de: 'jwt-decoder-ratgeber',
+    },
+    title: 'Understanding JWT (JSON Web Tokens): A Complete Guide',
+    description:
+      'Learn how JWTs are structured, how to decode them safely, and why you should never store sensitive data in the payload.',
+    category: 'Productivity & Utilities',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'jwt-decoder',
+  },
+  {
+    slug: 'pdf-ocr-guide',
+    slugs: {
+      en: 'pdf-ocr-guide',
+      es: 'guia-ocr-pdf',
+      fr: 'guide-ocr-pdf',
+      de: 'pdf-ocr-ratgeber',
+    },
+    title: 'How to Use PDF OCR: Extract Text from Scanned Documents',
+    description:
+      'Learn how Optical Character Recognition (OCR) works, how to extract text from scanned PDFs, and why browser-based OCR is better for privacy.',
+    category: 'Productivity & Utilities',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'pdf-ocr',
+    featured: true,
+  },
 ];
 
 // ─── EXPORTED REGISTRY ────────────────────────────────────────────────
 
-/** All guides in display order (Finance → Health → Math & Science → Privacy & Security) */
+/** All guides in display order */
 export const allGuides: Guide[] = [
   ...financeGuides,
   ...healthGuides,
   ...mathGuides,
   ...privacyGuides,
+  ...designMediaGuides,
+  ...productivityUtilitiesGuides,
 ];
 
 /** Guides grouped by category for sidebar rendering */
@@ -501,6 +706,8 @@ export const guidesByCategory: Record<GuideCategory, Guide[]> = {
   Health: healthGuides,
   'Math & Science': mathGuides,
   'Privacy & Security': privacyGuides,
+  'Design & Media': designMediaGuides,
+  'Productivity & Utilities': productivityUtilitiesGuides,
 };
 
 /** Featured guides for the hero/landing section */
