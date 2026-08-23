@@ -551,9 +551,41 @@ const healthGuides: Guide[] = [
     description:
       'Learn how the standard Naegele\'s Rule calculates your due date, how IVF and ultrasounds change the math, and how to use our Due Date Calculator.',
     category: 'Health',
-    readingTime: 5,
+    readingTime: 6,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'due-date-calculator',
+  },
+  {
+    slug: 'ovulation-calculator-guide',
+    slugs: {
+      en: 'ovulation-calculator-guide',
+      es: 'guia-calculadora-ovulacion',
+      fr: 'guide-calculatrice-ovulation',
+      de: 'eisprungrechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to Tracking Your Ovulation Cycle',
+    description:
+      'Learn how to calculate your fertile window, understand the signs of ovulation, and use our free Ovulation Calculator to maximize your chances of conception.',
+    category: 'Health',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ovulation-calculator',
+  },
+  {
+    slug: 'pace-calculator-guide',
+    slugs: {
+      en: 'pace-calculator-guide',
+      es: 'guia-calculadora-ritmo',
+      fr: 'guide-calculatrice-allure',
+      de: 'pace-rechner-ratgeber'
+    },
+    title: 'How to Calculate Running Pace: The Math Behind Your Marathon',
+    description:
+      'Learn the formula for calculating running pace, how to convert between miles and kilometers, and how to use our Pace Calculator to crush your next race.',
+    category: 'Health',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'pace-calculator',
   },
 ];
 
@@ -1042,6 +1074,54 @@ const productivityUtilitiesGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'sql-formatter',
     relatedType: 'tool',
+  },
+  {
+    slug: 'date-calculator-guide',
+    slugs: {
+      en: 'date-calculator-guide',
+      es: 'guia-calculadora-fechas',
+      fr: 'guide-calculatrice-dates',
+      de: 'datumsrechner-ratgeber'
+    },
+    title: 'The Ultimate Date Calculator Guide: Add, Subtract, and Measure Time',
+    description:
+      'Learn how to calculate exact durations between two dates, add or subtract business days, and use our free Date Calculator to plan your schedule perfectly.',
+    category: 'Productivity & Utilities',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'date-calculator',
+  },
+  {
+    slug: 'time-calculator-guide',
+    slugs: {
+      en: 'time-calculator-guide',
+      es: 'guia-calculadora-tiempo',
+      fr: 'guide-calculatrice-temps',
+      de: 'zeitrechner-ratgeber'
+    },
+    title: 'How to Add and Subtract Time: The Ultimate Guide',
+    description:
+      'Master base-60 mathematics. Learn how to accurately add hours and minutes, calculate payroll timesheets, and use our free Time Calculator.',
+    category: 'Productivity & Utilities',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'time-calculator',
+  },
+  {
+    slug: 'age-calculator-guide',
+    slugs: {
+      en: 'age-calculator-guide',
+      es: 'guia-calculadora-edad',
+      fr: 'guide-calculatrice-age',
+      de: 'alter-rechner-ratgeber'
+    },
+    title: 'The Mathematical Formula for Age: How to Calculate Exact Age',
+    description:
+      'Discover how age is calculated differently across cultures, the leap year age dilemma, and how to use our Age Calculator to find your age in days or seconds.',
+    category: 'Productivity & Utilities',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'age-calculator',
   },
   {
     slug: 'pdf-to-excel-guide',
