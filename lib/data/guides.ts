@@ -1744,6 +1744,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'electrical-power-calculator',
   },
+  {
+    slug: 'electrical-energy-calculator-guide',
+    slugs: {
+      en: 'electrical-energy-calculator-guide',
+      es: 'guia-calculadora-energia-electrica',
+      fr: 'guide-calculatrice-energie-electrique',
+      de: 'elektrische-energie-rechner-ratgeber'
+    },
+    title: 'Electrical Energy: Understanding Your Power Bill',
+    description:
+      'Learn the difference between Watts and Watt-hours. Understand how electrical energy is consumed over time, and use our free Electrical Energy Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'electrical-energy-calculator',
+  },
+  {
+    slug: 'voltage-drop-calculator-guide',
+    slugs: {
+      en: 'voltage-drop-calculator-guide',
+      es: 'guia-calculadora-caida-voltaje',
+      fr: 'guide-calculatrice-chute-tension',
+      de: 'spannungsabfall-rechner-ratgeber'
+    },
+    title: 'Voltage Drop: Why Long Wires Lose Power',
+    description:
+      'Understand why electricity loses pressure over long distances. Learn how wire gauge and material affect voltage drop, and use our free calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'voltage-drop-calculator',
+  },
+  {
+    slug: 'density-calculator-guide',
+    slugs: {
+      en: 'density-calculator-guide',
+      es: 'guia-calculadora-densidad',
+      fr: 'guide-calculatrice-densite',
+      de: 'dichte-rechner-ratgeber'
+    },
+    title: 'Understanding Density: Why Ice Floats',
+    description:
+      'Master the concept of density. Learn the difference between mass and volume, why ice floats on water, and use our free Density Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'density-calculator',
+  },
+  {
+    slug: 'weight-calculator-guide',
+    slugs: {
+      en: 'weight-calculator-guide',
+      es: 'guia-calculadora-peso',
+      fr: 'guide-calculatrice-poids',
+      de: 'gewicht-rechner-ratgeber'
+    },
+    title: 'Mass vs. Weight: What\'s the Difference?',
+    description:
+      'Discover why your weight changes on the Moon but your mass stays the same. Learn how to calculate weight from mass using our free Weight Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'weight-calculator',
+  },
+  {
+    slug: 'binary-calculator-guide',
+    slugs: {
+      en: 'binary-calculator-guide',
+      es: 'guia-calculadora-binaria',
+      fr: 'guide-calculatrice-binaire',
+      de: 'binaer-rechner-ratgeber'
+    },
+    title: 'Understanding Binary: How Computers Think',
+    description:
+      'Learn how to read binary code, why computers only use 1s and 0s, and how to convert numbers using our free Binary Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'binary-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
