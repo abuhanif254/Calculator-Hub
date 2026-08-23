@@ -2320,6 +2320,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'henderson-hasselbalch-equation-calculator',
   },
+  {
+    slug: 'buffer-calculator-guide',
+    slugs: {
+      en: 'buffer-calculator-guide',
+      es: 'guia-calculadora-amortiguador',
+      fr: 'guide-calculatrice-tampon',
+      de: 'puffer-rechner-ratgeber'
+    },
+    title: 'Buffer Calculator: Maintaining pH Stability',
+    description:
+      'Understand how chemical buffers work, how to calculate the ratio of acid to conjugate base, and use our free Buffer Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'buffer-calculator',
+  },
+  {
+    slug: 'ka-calculator-guide',
+    slugs: {
+      en: 'ka-calculator-guide',
+      es: 'guia-calculadora-ka',
+      fr: 'guide-calculatrice-ka',
+      de: 'ka-rechner-ratgeber'
+    },
+    title: 'Ka Calculator: The Acid Dissociation Constant',
+    description:
+      'Learn how the Ka constant measures acid strength, how to calculate it using ICE tables, and use our free Ka Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ka-calculator',
+  },
+  {
+    slug: 'kb-calculator-guide',
+    slugs: {
+      en: 'kb-calculator-guide',
+      es: 'guia-calculadora-kb',
+      fr: 'guide-calculatrice-kb',
+      de: 'kb-rechner-ratgeber'
+    },
+    title: 'Kb Calculator: The Base Dissociation Constant',
+    description:
+      'Understand the Kb constant for weak bases, the relationship between Ka, Kb, and Kw, and use our free Kb Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'kb-calculator',
+  },
+  {
+    slug: 'equilibrium-constant-calculator-guide',
+    slugs: {
+      en: 'equilibrium-constant-calculator-guide',
+      es: 'guia-calculadora-constante-equilibrio',
+      fr: 'guide-calculatrice-constante-equilibre',
+      de: 'gleichgewichtskonstanten-rechner-ratgeber'
+    },
+    title: 'Equilibrium Constant Calculator: Measuring Chemical Balance',
+    description:
+      'Learn how the Keq constant measures the balance between products and reactants in reversible reactions, and use our free calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'equilibrium-constant-calculator',
+  },
+  {
+    slug: 'ksp-calculator-guide',
+    slugs: {
+      en: 'ksp-calculator-guide',
+      es: 'guia-calculadora-ksp',
+      fr: 'guide-calculatrice-ksp',
+      de: 'ksp-rechner-ratgeber'
+    },
+    title: 'Ksp Calculator: The Solubility Product Constant',
+    description:
+      'Learn why some salts dissolve in water while others do not, how to calculate the Ksp, and use our free Ksp Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ksp-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
