@@ -406,6 +406,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'cash-back-vs-low-interest-calculator',
   },
+  {
+    slug: 'loan-calculator-guide',
+    slugs: {
+      en: 'loan-calculator-guide',
+      es: 'guia-calculadora-prestamos',
+      fr: 'guide-calculatrice-pret',
+      de: 'kreditrechner-ratgeber'
+    },
+    title: 'The Complete Guide to Understanding and Calculating Loans',
+    description:
+      'Master the mechanics of borrowing money. Learn about principal, interest, amortization, and how to use our free Loan Calculator to find your true monthly payment.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'loan-calculator',
+  },
+  {
+    slug: 'student-loan-calculator-guide',
+    slugs: {
+      en: 'student-loan-calculator-guide',
+      es: 'guia-calculadora-prestamos-estudiantiles',
+      fr: 'guide-calculatrice-pret-etudiant',
+      de: 'studienkredit-rechner-ratgeber'
+    },
+    title: 'How to Pay Off Student Loans Faster: A Mathematical Approach',
+    description:
+      'Learn how student loan interest accrues daily, understand the difference between subsidized and unsubsidized loans, and use our Student Loan Calculator.',
+    category: 'Finance',
+    readingTime: 7,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'student-loan-calculator',
+  },
+  {
+    slug: 'personal-loan-calculator-guide',
+    slugs: {
+      en: 'personal-loan-calculator-guide',
+      es: 'guia-calculadora-prestamos-personales',
+      fr: 'guide-calculatrice-pret-personnel',
+      de: 'ratenkredit-rechner-ratgeber'
+    },
+    title: 'The Ultimate Personal Loan Guide: Unsecured Debt Explained',
+    description:
+      'Learn the difference between secured and unsecured loans, how credit scores affect your APR, and use our Personal Loan Calculator to plan your consolidation.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'personal-loan-calculator',
+  },
+  {
+    slug: 'business-loan-calculator-guide',
+    slugs: {
+      en: 'business-loan-calculator-guide',
+      es: 'guia-calculadora-prestamos-comerciales',
+      fr: 'guide-calculatrice-pret-commercial',
+      de: 'firmenkredit-rechner-ratgeber'
+    },
+    title: 'Business Loan Guide: Financing Your Company\'s Growth',
+    description:
+      'Understand the true cost of commercial debt, the difference between term loans and lines of credit, and use our Business Loan Calculator to forecast cash flow.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'business-loan-calculator',
+  },
+  {
+    slug: 'payment-calculator-guide',
+    slugs: {
+      en: 'payment-calculator-guide',
+      es: 'guia-calculadora-pagos',
+      fr: 'guide-calculatrice-paiement',
+      de: 'ratenrechner-ratgeber'
+    },
+    title: 'The Universal Payment Guide: Calculate Any Monthly Installment',
+    description:
+      'Learn the universal mathematical formula for calculating monthly payments on amortized loans, and use our Payment Calculator to test any debt scenario.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'payment-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
