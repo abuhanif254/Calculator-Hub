@@ -326,6 +326,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'inflation-calculator',
   },
+  {
+    slug: 'finance-calculator-guide',
+    slugs: {
+      en: 'finance-calculator-guide',
+      es: 'guia-calculadora-financiera',
+      fr: 'guide-calculatrice-financiere',
+      de: 'finanzrechner-ratgeber'
+    },
+    title: 'The Ultimate Finance Calculator Guide: Master Time Value of Money',
+    description:
+      'Learn how the Time Value of Money (TVM) works. Discover how to calculate future value, present value, interest rates, and use our all-in-one Finance Calculator.',
+    category: 'Finance',
+    readingTime: 7,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'finance-calculator',
+  },
+  {
+    slug: 'interest-rate-calculator-guide',
+    slugs: {
+      en: 'interest-rate-calculator-guide',
+      es: 'guia-calculadora-tasas-interes',
+      fr: 'guide-calculatrice-taux-interet',
+      de: 'zinssatzrechner-ratgeber'
+    },
+    title: 'Interest Rates Explained: Nominal vs. Effective APR',
+    description:
+      'Discover how interest rates really work, the hidden cost of compounding frequency, and how to use our Interest Rate Calculator to find your true rate.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'interest-rate-calculator',
+  },
+  {
+    slug: 'interest-calculator-guide',
+    slugs: {
+      en: 'interest-calculator-guide',
+      es: 'guia-calculadora-intereses',
+      fr: 'guide-calculatrice-interets',
+      de: 'zinsrechner-ratgeber'
+    },
+    title: 'Simple vs. Compound Interest: A Complete Guide to Growth',
+    description:
+      'Learn the crucial difference between simple and compound interest, how they affect your loans and savings, and how to use our Interest Calculator.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'interest-calculator',
+  },
+  {
+    slug: 'estate-tax-calculator-guide',
+    slugs: {
+      en: 'estate-tax-calculator-guide',
+      es: 'guia-calculadora-impuesto-patrimonio',
+      fr: 'guide-calculatrice-impot-succession',
+      de: 'nachlasssteuerrechner-ratgeber'
+    },
+    title: 'Estate Tax vs. Inheritance Tax: What You Need to Know',
+    description:
+      'Understand the difference between federal estate tax and state inheritance tax, learn about the lifetime exemption, and use our Estate Tax Calculator.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'estate-tax-calculator',
+  },
+  {
+    slug: 'cash-back-vs-low-interest-calculator-guide',
+    slugs: {
+      en: 'cash-back-vs-low-interest-calculator-guide',
+      es: 'guia-calculadora-reembolso-vs-bajo-interes',
+      fr: 'guide-calculatrice-remise-vs-faible-taux',
+      de: 'cashback-vs-niedriger-zins-rechner-ratgeber'
+    },
+    title: 'Cash Back vs. Low Interest: Which Car Deal is Better?',
+    description:
+      'When buying a car, should you take the cash rebate or the 0% financing? Learn the math behind dealer incentives and use our comparison calculator.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'cash-back-vs-low-interest-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
