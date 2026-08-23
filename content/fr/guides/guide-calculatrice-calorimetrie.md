@@ -1,6 +1,6 @@
 ---
 title: "Calculatrice de Calorimétrie : Mesurer le Transfert de Chaleur"
-description: "Découvrez le fonctionnement d'un calorimètre, les mathématiques du transfert de chaleur ($q = mc\Delta T$), et utilisez notre calculatrice."
+description: "Découvrez le fonctionnement d'un calorimètre, les mathématiques du transfert de chaleur, et utilisez notre calculatrice gratuite."
 ---
 
 # Calculatrice de Calorimétrie : Mesurer le Transfert de Chaleur

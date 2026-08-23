@@ -1,6 +1,6 @@
 ---
 title: "Kalorimetrie-Rechner: Wärmeübertragung messen"
-description: "Lernen Sie, wie ein Kalorimeter funktioniert, die Mathematik der Wärmeübertragung ($q = mc\Delta T$), und nutzen Sie unseren Rechner."
+description: 'Lernen Sie, wie ein Kalorimeter funktioniert, die Mathematik der Wärmeübertragung, und nutzen Sie unseren Rechner.'
 ---
 
 # Kalorimetrie-Rechner: Wärmeübertragung messen

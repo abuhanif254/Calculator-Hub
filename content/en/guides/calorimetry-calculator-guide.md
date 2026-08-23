@@ -1,6 +1,6 @@
 ---
 title: "Calorimetry Calculator: Measuring Heat Transfer"
-description: "Learn how a calorimeter works, the math behind measuring heat transfer ($q = mc\Delta T$), and use our free Calorimetry Calculator."
+description: 'Learn how a calorimeter works, the math behind measuring heat transfer, and use our free Calorimetry Calculator.'
 ---
 
 # Calorimetry Calculator: Measuring Heat Transfer
