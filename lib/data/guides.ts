@@ -486,6 +486,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'payment-calculator',
   },
+  {
+    slug: 'rent-calculator-guide',
+    slugs: {
+      en: 'rent-calculator-guide',
+      es: 'guia-calculadora-alquiler',
+      fr: 'guide-calculatrice-loyer',
+      de: 'mietrechner-ratgeber'
+    },
+    title: 'How Much Rent Can I Afford? The 30% Rule Explained',
+    description:
+      'Learn how to calculate an affordable rent budget using the 30% rule, the 50/30/20 budget, and use our free Rent Calculator to find your maximum monthly payment.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'rent-calculator',
+  },
+  {
+    slug: 'canadian-mortgage-calculator-guide',
+    slugs: {
+      en: 'canadian-mortgage-calculator-guide',
+      es: 'guia-calculadora-hipotecas-canadiense',
+      fr: 'guide-calculatrice-hypotheque-canadienne',
+      de: 'kanadischer-hypothekenrechner-ratgeber'
+    },
+    title: 'Canadian Mortgages vs. US Mortgages: The Crucial Differences',
+    description:
+      'Understand the unique rules of Canadian mortgages, including semi-annual compounding and the 5-year renewal cycle, and use our Canadian Mortgage Calculator.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'canadian-mortgage-calculator',
+  },
+  {
+    slug: 'credit-cards-payoff-guide',
+    slugs: {
+      en: 'credit-cards-payoff-guide',
+      es: 'guia-calculadora-pago-tarjetas-credito',
+      fr: 'guide-calculatrice-remboursement-carte-credit',
+      de: 'kreditkarten-tilgungsrechner-ratgeber'
+    },
+    title: 'The Snowball vs. Avalanche Method: How to Pay Off Credit Cards',
+    description:
+      'Learn the two most effective strategies for eliminating high-interest credit card debt and use our Credit Card Payoff Calculator to build your escape plan.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'credit-cards-payoff',
+  },
+  {
+    slug: 'budget-calculator-guide',
+    slugs: {
+      en: 'budget-calculator-guide',
+      es: 'guia-calculadora-presupuesto',
+      fr: 'guide-calculatrice-budget',
+      de: 'budgetrechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to Personal Budgeting: 50/30/20 Explained',
+    description:
+      'Take control of your finances by understanding the 50/30/20 budget rule, zero-based budgeting, and use our free Budget Calculator to track your expenses.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'budget-calculator',
+  },
+  {
+    slug: 'social-security-calculator-guide',
+    slugs: {
+      en: 'social-security-calculator-guide',
+      es: 'guia-calculadora-seguro-social',
+      fr: 'guide-calculatrice-securite-sociale',
+      de: 'sozialversicherungs-rechner-ratgeber'
+    },
+    title: 'When Should I Take Social Security? Maximizing Your Benefits',
+    description:
+      'Learn how your Full Retirement Age (FRA) affects your Social Security payout, the penalties of retiring early, and use our Social Security Calculator.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'social-security-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
