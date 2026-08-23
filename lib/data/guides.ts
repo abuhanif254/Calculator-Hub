@@ -1824,6 +1824,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'binary-calculator',
   },
+  {
+    slug: 'wire-resistance-calculator-guide',
+    slugs: {
+      en: 'wire-resistance-calculator-guide',
+      es: 'guia-calculadora-resistencia-cables',
+      fr: 'guide-calculatrice-resistance-cable',
+      de: 'kabelwiderstands-rechner-ratgeber'
+    },
+    title: 'Wire Resistance: Why Cables Heat Up',
+    description:
+      'Learn how the length, thickness, and material of a wire affect its electrical resistance, and use our free Wire Resistance Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'wire-resistance-calculator',
+  },
+  {
+    slug: 'electricity-cost-calculator-guide',
+    slugs: {
+      en: 'electricity-cost-calculator-guide',
+      es: 'guia-calculadora-costo-electricidad',
+      fr: 'guide-calculatrice-cout-electricite',
+      de: 'stromkosten-rechner-ratgeber'
+    },
+    title: 'Electricity Cost: How Much Do Appliances Cost to Run?',
+    description:
+      'Learn how to read your utility bill, calculate kilowatt-hours (kWh), and predict the exact cost of running any appliance with our free calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'electricity-cost-calculator',
+  },
+  {
+    slug: 'led-resistor-calculator-guide',
+    slugs: {
+      en: 'led-resistor-calculator-guide',
+      es: 'guia-calculadora-resistencia-led',
+      fr: 'guide-calculatrice-resistance-led',
+      de: 'led-widerstands-rechner-ratgeber'
+    },
+    title: 'LED Resistors: Protecting Your Components',
+    description:
+      'Learn why LEDs need resistors, how to prevent your Arduino projects from blowing up, and use our free LED Resistor Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'led-resistor-calculator',
+  },
+  {
+    slug: 'power-supply-calculator-guide',
+    slugs: {
+      en: 'power-supply-calculator-guide',
+      es: 'guia-calculadora-fuente-alimentacion',
+      fr: 'guide-calculatrice-alimentation-pc',
+      de: 'netzteil-rechner-ratgeber'
+    },
+    title: 'Power Supply: How Much Wattage Do You Need?',
+    description:
+      'Learn how to choose the right Power Supply Unit (PSU) for your PC, calculate your system\'s total wattage, and use our free Power Supply Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'power-supply-calculator',
+  },
+  {
+    slug: 'power-factor-calculator-guide',
+    slugs: {
+      en: 'power-factor-calculator-guide',
+      es: 'guia-calculadora-factor-potencia',
+      fr: 'guide-calculatrice-facteur-puissance',
+      de: 'leistungsfaktor-rechner-ratgeber'
+    },
+    title: 'Power Factor: The Beer Mug Analogy',
+    description:
+      'Understand Power Factor in AC circuits. Learn the difference between Real Power, Apparent Power, and Reactive Power using our free Power Factor Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'power-factor-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
