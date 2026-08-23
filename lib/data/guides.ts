@@ -886,6 +886,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'depreciation-calculator',
   },
+  {
+    slug: 'mutual-fund-calculator-guide',
+    slugs: {
+      en: 'mutual-fund-calculator-guide',
+      es: 'guia-calculadora-fondo-mutuo',
+      fr: 'guide-calculatrice-fonds-commun',
+      de: 'investmentfonds-rechner-ratgeber'
+    },
+    title: 'Mutual Funds Explained: How to Build a Diversified Portfolio',
+    description:
+      'Learn what mutual funds are, how expense ratios eat your profits, and use our Mutual Fund Calculator to project your long-term wealth.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'mutual-fund-calculator',
+  },
+  {
+    slug: 'bond-calculator-guide',
+    slugs: {
+      en: 'bond-calculator-guide',
+      es: 'guia-calculadora-bonos',
+      fr: 'guide-calculatrice-obligations',
+      de: 'anleihen-rechner-ratgeber'
+    },
+    title: 'Understanding Bonds: The Foundation of a Safe Portfolio',
+    description:
+      'Learn the difference between coupon rates and yield to maturity, how bond prices react to interest rates, and use our Bond Calculator.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'bond-calculator',
+  },
+  {
+    slug: 'college-cost-calculator-guide',
+    slugs: {
+      en: 'college-cost-calculator-guide',
+      es: 'guia-calculadora-costo-universidad',
+      fr: 'guide-calculatrice-cout-universite',
+      de: 'studienkosten-rechner-ratgeber'
+    },
+    title: 'The True Cost of College: Budgeting for Higher Education',
+    description:
+      'Understand the hidden costs of college, how inflation affects tuition, and use our College Cost Calculator to plan your savings strategy.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'college-cost-calculator',
+  },
+  {
+    slug: 'average-return-calculator-guide',
+    slugs: {
+      en: 'average-return-calculator-guide',
+      es: 'guia-calculadora-retorno-promedio',
+      fr: 'guide-calculatrice-rendement-moyen',
+      de: 'durchschnittsrendite-rechner-ratgeber'
+    },
+    title: 'Average Return Explained: How to Measure Investment Performance',
+    description:
+      'Learn the difference between arithmetic and geometric average returns, and use our Average Return Calculator to analyze your portfolio.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'average-return-calculator',
+  },
+  {
+    slug: 'vat-calculator-guide',
+    slugs: {
+      en: 'vat-calculator-guide',
+      es: 'guia-calculadora-iva',
+      fr: 'guide-calculatrice-tva',
+      de: 'mwst-rechner-ratgeber'
+    },
+    title: 'Understanding VAT: The Global Standard for Sales Tax',
+    description:
+      'Learn how Value Added Tax (VAT) works, the difference between inclusive and exclusive pricing, and use our VAT Calculator for your business.',
+    category: 'Finance',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'vat-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
