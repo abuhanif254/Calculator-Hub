@@ -2560,6 +2560,102 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'calorimetry-calculator',
   },
+  {
+    slug: 'specific-heat-calculator-guide',
+    slugs: {
+      en: 'specific-heat-calculator-guide',
+      es: 'guia-calculadora-calor-especifico',
+      fr: 'guide-calculatrice-chaleur-specifique',
+      de: 'spezifische-waermekapazitaet-rechner-ratgeber'
+    },
+    title: 'Specific Heat Calculator: Understanding Thermal Capacity',
+    description:
+      'Learn what specific heat capacity is, why water takes so long to boil, and use our free Specific Heat Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'specific-heat-calculator',
+  },
+  {
+    slug: 'ideal-gas-law-calculator-guide',
+    slugs: {
+      en: 'ideal-gas-law-calculator-guide',
+      es: 'guia-calculadora-ley-gases-ideales',
+      fr: 'guide-calculatrice-loi-gaz-parfaits',
+      de: 'ideales-gasgesetz-rechner-ratgeber'
+    },
+    title: 'Ideal Gas Law Calculator: PV = nRT',
+    description:
+      'Understand the Ideal Gas Law, how pressure, volume, temperature, and moles interact, and use our free calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ideal-gas-law-calculator',
+  },
+  {
+    slug: 'combined-gas-law-calculator-guide',
+    slugs: {
+      en: 'combined-gas-law-calculator-guide',
+      es: 'guia-calculadora-ley-combinada-gases',
+      fr: 'guide-calculatrice-loi-combinee-gaz',
+      de: 'kombiniertes-gasgesetz-rechner-ratgeber'
+    },
+    title: 'Combined Gas Law Calculator: Changing Conditions',
+    description:
+      "Learn how the Combined Gas Law merges Boyle's, Charles's, and Gay-Lussac's laws to handle changing conditions, and use our calculator.",
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'combined-gas-law-calculator',
+  },
+  {
+    slug: 'boyles-law-calculator-guide',
+    slugs: {
+      en: 'boyles-law-calculator-guide',
+      es: 'guia-calculadora-ley-boyle',
+      fr: 'guide-calculatrice-loi-boyle',
+      de: 'boyle-mariotte-gesetz-rechner-ratgeber'
+    },
+    title: "Boyle's Law Calculator: Pressure vs. Volume",
+    description:
+      "Understand the inverse relationship between gas pressure and volume, explore real-world examples, and use our free Boyle's Law Calculator.",
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'boyles-law-calculator',
+  },
+  {
+    slug: 'charles-law-calculator-guide',
+    slugs: {
+      en: 'charles-law-calculator-guide',
+      es: 'guia-calculadora-ley-charles',
+      fr: 'guide-calculatrice-loi-charles',
+      de: 'charles-sches-gesetz-rechner-ratgeber'
+    },
+    title: "Charles's Law Calculator: Volume vs. Temperature",
+    description:
+      "Learn how heating a gas causes it to expand, explore the direct relationship of Charles's Law, and use our free calculator.",
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'charles-law-calculator',
+  },
+  {
+    slug: 'balancing-chemical-equations-calculator-guide',
+    slugs: {
+      en: 'balancing-chemical-equations-calculator-guide',
+      es: 'guia-calculadora-balanceo-ecuaciones-quimicas',
+      fr: 'guide-calculatrice-equilibrage-equations-chimiques',
+      de: 'chemische-gleichungen-rechner-ratgeber'
+    },
+    title: 'Balancing Chemical Equations: The Law of Conservation',
+    description:
+      'Learn why chemical equations must be balanced, how to balance them using coefficients, and use our free balancing calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'balancing-chemical-equations-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
