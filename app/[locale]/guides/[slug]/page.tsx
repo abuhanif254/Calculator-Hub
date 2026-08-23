@@ -171,7 +171,7 @@ export async function generateMetadata(
         timeRequired: `PT${guide.readingTime}M`,
         articleSection: guide.category,
         ...(guide.relatedCalculator && {
-          relatedLink: `${baseUrl}/en/calculators/${guide.relatedCalculator}`,
+          relatedLink: `${baseUrl}/en/${guide.relatedType === 'tool' ? 'tools' : 'calculators'}/${guide.relatedCalculator}`,
         }),
         breadcrumb: {
           '@type': 'BreadcrumbList',
@@ -307,19 +307,24 @@ export default async function GuideArticlePage({
         {guide.relatedCalculator && (
           <div className="mb-8 p-4 rounded-xl border border-[#518231]/20 dark:border-[#518231]/30 bg-[#518231]/5 dark:bg-[#518231]/10 flex items-center gap-4">
             <div className="p-2.5 rounded-lg bg-[#518231]/10 dark:bg-[#518231]/20 shrink-0">
-              <Calculator size={18} className="text-[#518231] dark:text-[#6fa844]" />
+              {guide.relatedType === 'tool' ? (
+                <Wrench size={18} className="text-[#518231] dark:text-[#6fa844]" />
+              ) : (
+                <Calculator size={18} className="text-[#518231] dark:text-[#6fa844]" />
+              )}
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-semibold text-[#518231] dark:text-[#6fa844] uppercase tracking-wide mb-0.5">
-                Related Calculator
+                {guide.relatedType === 'tool' ? 'Related Tool' : 'Related Calculator'}
               </p>
               <p className="text-sm text-slate-700 dark:text-slate-300">
                 Use the{' '}
                 <Link
-                  href={{
-                    pathname: '/calculators/[slug]',
-                    params: { slug: guide.relatedCalculator },
-                  }}
+                  href={
+                    guide.relatedType === 'tool'
+                      ? ({ pathname: '/tools/[slug]', params: { slug: guide.relatedCalculator } } as any)
+                      : ({ pathname: '/calculators/[slug]', params: { slug: guide.relatedCalculator } } as any)
+                  }
                   className="font-semibold text-[#518231] dark:text-[#6fa844] hover:underline"
                 >
                   {guide.relatedCalculator
@@ -330,10 +335,11 @@ export default async function GuideArticlePage({
               </p>
             </div>
             <Link
-              href={{
-                pathname: '/calculators/[slug]',
-                params: { slug: guide.relatedCalculator },
-              }}
+              href={
+                guide.relatedType === 'tool'
+                  ? ({ pathname: '/tools/[slug]', params: { slug: guide.relatedCalculator } } as any)
+                  : ({ pathname: '/calculators/[slug]', params: { slug: guide.relatedCalculator } } as any)
+              }
               className="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-[#518231] dark:text-[#6fa844] bg-[#518231]/10 dark:bg-[#518231]/20 hover:bg-[#518231]/20 dark:hover:bg-[#518231]/30 px-3 py-2 rounded-lg transition-colors"
             >
               Open
