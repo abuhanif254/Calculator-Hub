@@ -563,8 +563,8 @@ const privacyGuides: Guide[] = [
     category: 'Privacy & Security',
     readingTime: 7,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'database-anonymizer\',
-    relatedType: \'tool\',
+    relatedCalculator: 'database-anonymizer',
+    relatedType: 'tool',
   },
 ];
 
@@ -584,8 +584,8 @@ const designMediaGuides: Guide[] = [
     category: 'Design & Media',
     readingTime: 6,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'ai-image-upscaler\',
-    relatedType: \'tool\',
+    relatedCalculator: 'ai-image-upscaler',
+    relatedType: 'tool',
     featured: true,
   },
   {
@@ -602,8 +602,8 @@ const designMediaGuides: Guide[] = [
     category: 'Design & Media',
     readingTime: 6,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'qr-code-studio\',
-    relatedType: \'tool\',
+    relatedCalculator: 'qr-code-studio',
+    relatedType: 'tool',
   },
   {
     slug: 'heic-to-jpg-guide',
@@ -619,8 +619,8 @@ const designMediaGuides: Guide[] = [
     category: 'Design & Media',
     readingTime: 4,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'heic-to-jpg\',
-    relatedType: \'tool\',
+    relatedCalculator: 'heic-to-jpg',
+    relatedType: 'tool',
   },
 ];
 
@@ -640,8 +640,8 @@ const productivityUtilitiesGuides: Guide[] = [
     category: 'Productivity & Utilities',
     readingTime: 4,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'sql-formatter\',
-    relatedType: \'tool\',
+    relatedCalculator: 'sql-formatter',
+    relatedType: 'tool',
   },
   {
     slug: 'pdf-to-excel-guide',
@@ -657,8 +657,8 @@ const productivityUtilitiesGuides: Guide[] = [
     category: 'Productivity & Utilities',
     readingTime: 5,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'pdf-to-excel\',
-    relatedType: \'tool\',
+    relatedCalculator: 'pdf-to-excel',
+    relatedType: 'tool',
     featured: true,
   },
   {
@@ -675,8 +675,8 @@ const productivityUtilitiesGuides: Guide[] = [
     category: 'Productivity & Utilities',
     readingTime: 5,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'jwt-decoder\',
-    relatedType: \'tool\',
+    relatedCalculator: 'jwt-decoder',
+    relatedType: 'tool',
   },
   {
     slug: 'pdf-ocr-guide',
@@ -692,8 +692,8 @@ const productivityUtilitiesGuides: Guide[] = [
     category: 'Productivity & Utilities',
     readingTime: 6,
     lastUpdated: '2026-08-23',
-    relatedCalculator: \'pdf-ocr\',
-    relatedType: \'tool\',
+    relatedCalculator: 'pdf-ocr',
+    relatedType: 'tool',
     featured: true,
   },
 ];
