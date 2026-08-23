@@ -18,6 +18,8 @@ import {
   FlaskConical,
   ShieldCheck,
   ExternalLink,
+  Palette,
+  Wrench,
 } from 'lucide-react';
 import {
   allGuides,
@@ -192,6 +194,8 @@ const CATEGORY_ICON: Record<GuideCategory, { Icon: React.ElementType; style: str
   Health: { Icon: Heart, style: 'text-rose-500 bg-rose-50 dark:bg-rose-500/10' },
   'Math & Science': { Icon: FlaskConical, style: 'text-violet-600 bg-violet-50 dark:bg-violet-500/10' },
   'Privacy & Security': { Icon: ShieldCheck, style: 'text-sky-600 bg-sky-50 dark:bg-sky-500/10' },
+  'Design & Media': { Icon: Palette, style: 'text-pink-600 bg-pink-50 dark:bg-pink-500/10' },
+  'Productivity & Utilities': { Icon: Wrench, style: 'text-amber-600 bg-amber-50 dark:bg-amber-500/10' },
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

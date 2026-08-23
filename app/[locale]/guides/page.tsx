@@ -11,6 +11,8 @@ import {
   ShieldCheck,
   Sparkles,
   ArrowRight,
+  Palette,
+  Wrench,
 } from 'lucide-react';
 import {
   allGuides,
@@ -100,6 +102,20 @@ const CATEGORY_META = {
     bg: 'bg-sky-50 dark:bg-sky-500/10',
     border: 'border-sky-100 dark:border-sky-500/20',
     accent: 'text-sky-600',
+  },
+  'Design & Media': {
+    Icon: Palette,
+    color: 'text-pink-700 dark:text-pink-400',
+    bg: 'bg-pink-50 dark:bg-pink-500/10',
+    border: 'border-pink-100 dark:border-pink-500/20',
+    accent: 'text-pink-600',
+  },
+  'Productivity & Utilities': {
+    Icon: Wrench,
+    color: 'text-amber-700 dark:text-amber-400',
+    bg: 'bg-amber-50 dark:bg-amber-500/10',
+    border: 'border-amber-100 dark:border-amber-500/20',
+    accent: 'text-amber-600',
   },
 } as const;
 
