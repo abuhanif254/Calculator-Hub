@@ -806,6 +806,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'simple-interest-calculator',
   },
+  {
+    slug: 'savings-calculator-guide',
+    slugs: {
+      en: 'savings-calculator-guide',
+      es: 'guia-calculadora-ahorros',
+      fr: 'guide-calculatrice-epargne',
+      de: 'sparrechner-ratgeber'
+    },
+    title: 'The Power of Paying Yourself First: A Guide to Savings Goals',
+    description:
+      'Learn how to build an emergency fund, understand APY, and use our Savings Calculator to project exactly when you will reach your financial goals.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'savings-calculator',
+  },
+  {
+    slug: 'cd-calculator-guide',
+    slugs: {
+      en: 'cd-calculator-guide',
+      es: 'guia-calculadora-cd',
+      fr: 'guide-calculatrice-cd',
+      de: 'festgeld-rechner-ratgeber'
+    },
+    title: 'Understanding CDs: How to Lock in High Interest Rates',
+    description:
+      'Learn what a Certificate of Deposit is, how CD laddering works, and use our CD Calculator to find exactly how much interest you will earn.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'cd-calculator',
+  },
+  {
+    slug: 'rental-property-calculator-guide',
+    slugs: {
+      en: 'rental-property-calculator-guide',
+      es: 'guia-calculadora-propiedad-alquiler',
+      fr: 'guide-calculatrice-propriete-locative',
+      de: 'mietobjekt-rechner-ratgeber'
+    },
+    title: 'The Math of Real Estate: How to Analyze a Rental Property',
+    description:
+      'Learn how to calculate Cash on Cash Return, the 1% Rule, Net Operating Income, and use our Rental Property Calculator to evaluate investments.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'rental-property-calculator',
+  },
+  {
+    slug: 'mortgage-payoff-calculator-guide',
+    slugs: {
+      en: 'mortgage-payoff-calculator-guide',
+      es: 'guia-calculadora-pago-hipoteca',
+      fr: 'guide-calculatrice-remboursement-hypothecaire',
+      de: 'hypotheken-tilgungsrechner-ratgeber'
+    },
+    title: 'How to Pay Off Your Mortgage Years Early and Save Thousands',
+    description:
+      'Discover the secret of extra principal payments, bi-weekly schedules, and use our Mortgage Payoff Calculator to build your debt-free timeline.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'mortgage-payoff-calculator',
+  },
+  {
+    slug: 'depreciation-calculator-guide',
+    slugs: {
+      en: 'depreciation-calculator-guide',
+      es: 'guia-calculadora-depreciacion',
+      fr: 'guide-calculatrice-amortissement',
+      de: 'abschreibungsrechner-ratgeber'
+    },
+    title: 'Understanding Depreciation: How Assets Lose Value Over Time',
+    description:
+      'Learn the difference between straight-line and declining balance depreciation, and use our Depreciation Calculator for your business assets.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'depreciation-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────

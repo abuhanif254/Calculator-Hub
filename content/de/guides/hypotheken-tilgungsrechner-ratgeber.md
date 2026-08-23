@@ -1,30 +1,31 @@
 ---
-title: "Die Magie der Hypothekentilgung: So sparen Sie 100.000 $ bei Ihrem Haus"
-description: "Verstehen Sie, wie sich Ihre Rate in Kapital und Zinsen aufteilt, und lernen Sie, wie Sie Ihr Haus Jahre früher abbezahlen."
+title: "So tilgen Sie Ihre Hypothek Jahre früher und sparen Tausende"
+description: "Entdecken Sie die Macht von Sondertilgungen und nutzen Sie unseren Hypotheken-Tilgungsrechner, um schuldenfrei zu werden."
 ---
 
-# Die Magie der Hypothekentilgung: So sparen Sie 100.000 $ bei Ihrem Haus
+# So tilgen Sie Ihre Hypothek Jahre früher und sparen Tausende
 
-Banken nutzen die **Tilgung (Amortisation)**, um Zinszahlungen an den Anfang zu legen. Wir zeigen Ihnen, wie Sie mit unserem [Hypotheken-Tilgungsrechner](/de/rechner/hypotheken-tilgungsrechner) ein Vermögen sparen.
-
----
-
-## 🏦 Wie Tilgung wirklich funktioniert
-
-Ihre monatliche Rate ist fest, aber die Aufteilung ändert sich.
-* **Die ersten Jahre:** Bis zu 80 % Ihrer Rate gehen als Zinsen an die Bank. Nur ein Bruchteil reduziert Ihre tatsächliche Schuld (Kapital).
-* **Die späteren Jahre:** Ab Jahr 25 geht der Großteil Ihrer Rate in das Kapital.
+Bei einer 30-jährigen Baufinanzierung kassiert die Bank die meisten Zinsen in den ersten Jahren. Um die Bank zu schlagen, müssen Sie diesen Plan durchbrechen. Wir erklären wie und zeigen unseren [Hypotheken-Tilgungsrechner](/de/rechner/hypotheken-tilgungsrechner).
 
 ---
 
-## 💸 Der Trick: Zusätzliche Sondertilgungen
+## 🔨 Die Macht der Sondertilgungen
 
-Wenn Sie nur **100 $ extra pro Monat** (als reine Kapitaltilgung) zahlen, reduzieren Sie die Basis für die künftigen Zinsen. Das kann Ihre Hypothek um 4 bis 5 Jahre verkürzen!
+Die Bank berechnet Zinsen auf den *aktuellen* Restbetrag. Reduzieren Sie diesen schneller, streichen Sie sofort alle zukünftigen Zinsen auf diesen Betrag.
+* **Beispiel:** Bei einer 300.000 $ Hypothek zu 7 % über 30 Jahre zahlen Sie 418.000 $ an reinen Zinsen.
+* Wenn Sie nur **200 $ extra pro Monat** tilgen, ist das Haus **6 Jahre früher abbezahlt** und Sie sparen über **100.000 $ an Zinsen**.
+
+---
+
+## 📅 Der Zwei-Wochen-Trick (Bi-Weekly)
+
+Zahlen Sie nicht einmal im Monat, sondern die **Hälfte** alle **zwei Wochen**. 
+Ein Jahr hat 52 Wochen, also leisten Sie 26 halbe Zahlungen – das entspricht exakt 13 vollen Monatsraten. Diese eine "unsichtbare" Extrarate verkürzt Ihren Kredit um 4 bis 5 Jahre!
 
 ---
 
 ## ⚙️ Nutzung des Tilgungsrechners
 
-1. **Kreditdetails eingeben:** Betrag, Zinssatz und Laufzeit.
-2. **Tilgungsplan ansehen:** Die Tabelle zeigt genau, wie viel jeden Monat in Zinsen vs. Kapital fließt.
-3. **Sondertilgungen simulieren:** Geben Sie eine extra Zahlung ein. Das Tool zeigt Ihnen das genaue Datum der Schuldenfreiheit und die gesparten Zinsen!
+1. **Aktuelle Hypothek:** Restschuld, Zinssatz, Restlaufzeit.
+2. **Sondertilgung:** Testen Sie z.B. 100 $/Monat oder eine Einmalzahlung.
+3. **Berechnen:** Das Tool generiert einen neuen Tilgungsplan und zeigt Ihre exakten Ersparnisse!
