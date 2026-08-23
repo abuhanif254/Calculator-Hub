@@ -2480,6 +2480,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'electrochemical-cell-calculator',
   },
+  {
+    slug: 'gibbs-free-energy-calculator-guide',
+    slugs: {
+      en: 'gibbs-free-energy-calculator-guide',
+      es: 'guia-calculadora-energia-libre-gibbs',
+      fr: 'guide-calculatrice-energie-libre-gibbs',
+      de: 'gibbs-energie-rechner-ratgeber'
+    },
+    title: 'Gibbs Free Energy Calculator: Spontaneous Reactions',
+    description:
+      'Learn how Gibbs Free Energy determines if a chemical reaction is spontaneous, how enthalpy and entropy factor in, and use our free calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'gibbs-free-energy-calculator',
+  },
+  {
+    slug: 'enthalpy-calculator-guide',
+    slugs: {
+      en: 'enthalpy-calculator-guide',
+      es: 'guia-calculadora-entalpia',
+      fr: 'guide-calculatrice-enthalpie',
+      de: 'enthalpie-rechner-ratgeber'
+    },
+    title: 'Enthalpy Calculator: Heat in Chemical Reactions',
+    description:
+      'Understand enthalpy, the difference between exothermic and endothermic reactions, and use our free Enthalpy Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'enthalpy-calculator',
+  },
+  {
+    slug: 'heat-of-reaction-calculator-guide',
+    slugs: {
+      en: 'heat-of-reaction-calculator-guide',
+      es: 'guia-calculadora-calor-reaccion',
+      fr: 'guide-calculatrice-chaleur-reaction',
+      de: 'reaktionswaerme-rechner-ratgeber'
+    },
+    title: 'Heat of Reaction Calculator: Thermodynamics',
+    description:
+      'Learn how to calculate the standard heat of reaction from standard enthalpies of formation, and use our free calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'heat-of-reaction-calculator',
+  },
+  {
+    slug: 'hess-law-calculator-guide',
+    slugs: {
+      en: 'hess-law-calculator-guide',
+      es: 'guia-calculadora-ley-hess',
+      fr: 'guide-calculatrice-loi-hess',
+      de: 'hess-scher-waermesatz-rechner-ratgeber'
+    },
+    title: "Hess's Law Calculator: Adding Up Enthalpy",
+    description:
+      "Understand Hess's Law, how enthalpy is a state function, how to add intermediate reactions, and use our free Hess's Law Calculator.",
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'hess-law-calculator',
+  },
+  {
+    slug: 'calorimetry-calculator-guide',
+    slugs: {
+      en: 'calorimetry-calculator-guide',
+      es: 'guia-calculadora-calorimetria',
+      fr: 'guide-calculatrice-calorimetrie',
+      de: 'kalorimetrie-rechner-ratgeber'
+    },
+    title: 'Calorimetry Calculator: Measuring Heat Transfer',
+    description:
+      'Learn how a calorimeter works, the math behind measuring heat transfer, and use our free Calorimetry Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'calorimetry-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
