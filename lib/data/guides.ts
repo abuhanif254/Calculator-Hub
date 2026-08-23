@@ -726,6 +726,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'annuity-calculator',
   },
+  {
+    slug: 'debt-consolidation-calculator-guide',
+    slugs: {
+      en: 'debt-consolidation-calculator-guide',
+      es: 'guia-calculadora-consolidacion-deudas',
+      fr: 'guide-calculatrice-consolidation-dettes',
+      de: 'schuldenkonsolidierungs-rechner-ratgeber'
+    },
+    title: 'The Truth About Debt Consolidation: How to Lower Your Interest Rates',
+    description:
+      'Learn how debt consolidation loans work, the dangers of balance transfer cards, and use our Debt Consolidation Calculator to see how much you could save.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'debt-consolidation-calculator',
+  },
+  {
+    slug: 'debt-payoff-calculator-guide',
+    slugs: {
+      en: 'debt-payoff-calculator-guide',
+      es: 'guia-calculadora-pago-deudas',
+      fr: 'guide-calculatrice-remboursement-dettes',
+      de: 'schuldenabbau-rechner-ratgeber'
+    },
+    title: 'Debt Snowball vs. Avalanche: The Ultimate Payoff Strategy',
+    description:
+      'Compare the psychological benefits of the Debt Snowball against the mathematical savings of the Debt Avalanche, and use our Debt Payoff Calculator.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'debt-payoff-calculator',
+  },
+  {
+    slug: 'heloc-calculator-guide',
+    slugs: {
+      en: 'heloc-calculator-guide',
+      es: 'guia-calculadora-heloc',
+      fr: 'guide-calculatrice-heloc',
+      de: 'heloc-rechner-ratgeber'
+    },
+    title: 'HELOC Explained: Should You Use Your House as an ATM?',
+    description:
+      'Understand the risks and rewards of a Home Equity Line of Credit (HELOC), how draw periods work, and use our HELOC Calculator to plan your payments.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'heloc-calculator',
+  },
+  {
+    slug: 'boat-loan-calculator-guide',
+    slugs: {
+      en: 'boat-loan-calculator-guide',
+      es: 'guia-calculadora-prestamo-bote',
+      fr: 'guide-calculatrice-pret-bateau',
+      de: 'bootskredit-rechner-ratgeber'
+    },
+    title: 'The Reality of Boat Loans: Depreciation and Hidden Costs',
+    description:
+      'Before you buy your dream boat, understand marine loan terms, rapid depreciation, and use our Boat Loan Calculator to find your true monthly cost.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'boat-loan-calculator',
+  },
+  {
+    slug: 'simple-interest-calculator-guide',
+    slugs: {
+      en: 'simple-interest-calculator-guide',
+      es: 'guia-calculadora-interes-simple',
+      fr: 'guide-calculatrice-interet-simple',
+      de: 'einfacher-zinsrechner-ratgeber'
+    },
+    title: 'Simple vs. Compound Interest: What is the Difference?',
+    description:
+      'Learn how simple interest differs from compound interest, how auto loans and personal loans are calculated, and use our Simple Interest Calculator.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'simple-interest-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
