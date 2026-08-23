@@ -966,6 +966,22 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'vat-calculator',
   },
+  {
+    slug: 'zakat-calculator-guide',
+    slugs: {
+      en: 'zakat-calculator-guide',
+      es: 'guia-calculadora-zakat',
+      fr: 'guide-calculatrice-zakat',
+      de: 'zakat-rechner-ratgeber'
+    },
+    title: 'Zakat Calculator: Understanding Nisab and Wealth',
+    description:
+      'Learn the fundamentals of Zakat, how to calculate Nisab using the gold and silver standards, and use our free Zakat Calculator for accurate payments.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'zakat-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
@@ -1952,6 +1968,38 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'solar-panel-calculator',
   },
+  {
+    slug: 'graphing-calculator-guide',
+    slugs: {
+      en: 'graphing-calculator-guide',
+      es: 'guia-calculadora-grafica',
+      fr: 'guide-calculatrice-graphique',
+      de: 'grafikrechner-ratgeber'
+    },
+    title: 'Graphing Functions: Parabolas and Slopes',
+    description:
+      'Learn how to graph linear equations and parabolas. Understand slopes and y-intercepts, and use our free Graphing Calculator to visualize your math.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'graphing-calculator',
+  },
+  {
+    slug: 'p-value-calculator-guide',
+    slugs: {
+      en: 'p-value-calculator-guide',
+      es: 'guia-calculadora-valor-p',
+      fr: 'guide-calculatrice-valeur-p',
+      de: 'p-wert-rechner-ratgeber'
+    },
+    title: 'P-Values: Is Your Data Statistically Significant?',
+    description:
+      'Understand the Null Hypothesis, what it means when p < 0.05, and how to use our free P-Value Calculator to analyze your experimental data.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'p-value-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
@@ -2194,6 +2242,38 @@ const productivityUtilitiesGuides: Guide[] = [
     readingTime: 3,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'subnet-calculator',
+  },
+  {
+    slug: 'ip-subnet-calculator-guide',
+    slugs: {
+      en: 'ip-subnet-calculator-guide',
+      es: 'guia-calculadora-subred-ip',
+      fr: 'guide-calculatrice-sous-reseau-ip',
+      de: 'ip-subnetz-rechner-ratgeber'
+    },
+    title: 'IP Subnetting: Host Ranges and Broadcasts',
+    description:
+      'Take a deeper dive into IPv4 subnetting. Learn how to calculate network IDs, broadcast addresses, and host ranges using our free IP Subnet Calculator.',
+    category: 'Productivity & Utilities',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ip-subnet-calculator',
+  },
+  {
+    slug: 'snow-day-calculator-guide',
+    slugs: {
+      en: 'snow-day-calculator-guide',
+      es: 'guia-calculadora-dia-nieve',
+      fr: 'guide-calculatrice-jour-neige',
+      de: 'schneefrei-rechner-ratgeber'
+    },
+    title: 'Snow Day Calculator: Will School Be Canceled?',
+    description:
+      'Discover the hidden factors school districts use to call a snow day. Learn how algorithms predict delays and closures, and try our Snow Day Calculator.',
+    category: 'Productivity & Utilities',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'snow-day-calculator',
   },
   {
     slug: 'age-calculator-guide',
