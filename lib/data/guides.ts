@@ -630,10 +630,26 @@ const healthGuides: Guide[] = [
     title: 'Using the Pregnancy Calculator: Due Date & Milestones',
     description:
       'How due date calculation works using Naegele\'s Rule and LMP (Last Menstrual Period), what each trimester involves, and how to use our pregnancy calculator to track key milestones.',
-    category: 'Health',
-    readingTime: 5,
-    lastUpdated: '2026-06-11',
+    category: 'Health & Fitness',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
     relatedCalculator: 'pregnancy-calculator',
+  },
+  {
+    slug: 'height-calculator-guide',
+    slugs: {
+      en: 'height-calculator-guide',
+      es: 'guia-calculadora-de-altura',
+      fr: 'guide-calculatrice-taille',
+      de: 'groessenrechner-ratgeber'
+    },
+    title: 'How Tall Will My Child Be? The Science of Height Prediction',
+    description:
+      'Explore the genetics of human growth, learn the Khamis-Roche method, and use our Height Calculator to predict your child\'s adult height.',
+    category: 'Health & Fitness',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'height-calculator',
   },
   {
     slug: 'macro-calculator-guide',
@@ -1056,6 +1072,38 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'percent-error-calculator',
   },
+  {
+    slug: 'grade-calculator-guide',
+    slugs: {
+      en: 'grade-calculator-guide',
+      es: 'guia-calculadora-calificaciones',
+      fr: 'guide-calculatrice-notes',
+      de: 'notenrechner-ratgeber'
+    },
+    title: 'How to Calculate Your Final Grade: Weighted Averages Explained',
+    description:
+      'Learn how weighted grading systems work, the math behind GPA calculation, and use our free Grade Calculator to see what you need on your final exam.',
+    category: 'Math & Science',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'grade-calculator',
+  },
+  {
+    slug: 'volume-calculator-guide',
+    slugs: {
+      en: 'volume-calculator-guide',
+      es: 'guia-calculadora-volumen',
+      fr: 'guide-calculatrice-volume',
+      de: 'volumenrechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to Calculating Volume: Formulas for Every Shape',
+    description:
+      'Master the math of 3D space. Learn the formulas for calculating the volume of cubes, cylinders, cones, and spheres, and use our free Volume Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'volume-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
@@ -1282,6 +1330,38 @@ const productivityUtilitiesGuides: Guide[] = [
     readingTime: 4,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'age-calculator',
+  },
+  {
+    slug: 'hours-calculator-guide',
+    slugs: {
+      en: 'hours-calculator-guide',
+      es: 'guia-calculadora-horas',
+      fr: 'guide-calculatrice-heures',
+      de: 'stundenrechner-ratgeber'
+    },
+    title: 'The Payroll Masterclass: Calculating Timesheets and Work Hours',
+    description:
+      'Learn how to convert minutes to decimals for payroll, how to calculate gross pay, and use our free Hours Calculator to track your weekly timesheets.',
+    category: 'Productivity & Utilities',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'hours-calculator',
+  },
+  {
+    slug: 'concrete-calculator-guide',
+    slugs: {
+      en: 'concrete-calculator-guide',
+      es: 'guia-calculadora-de-concreto',
+      fr: 'guide-calculatrice-beton',
+      de: 'betonrechner-ratgeber'
+    },
+    title: 'How to Estimate Concrete for Your Next DIY Project',
+    description:
+      'Learn how to calculate concrete volume in cubic yards, account for spillage, and use our free Concrete Calculator for slabs, footings, and columns.',
+    category: 'Productivity & Utilities',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'concrete-calculator',
   },
   {
     slug: 'pdf-to-excel-guide',
