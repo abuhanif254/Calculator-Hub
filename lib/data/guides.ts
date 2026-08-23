@@ -704,6 +704,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'scientific-calculator',
   },
+  {
+    slug: 'median-calculator-guide',
+    slugs: {
+      en: 'median-calculator-guide',
+      es: 'guia-calculadora-mediana',
+      fr: 'guide-calculatrice-mediane',
+      de: 'median-rechner-ratgeber'
+    },
+    title: 'How to Find the Median: A Comprehensive Guide to Averages',
+    description:
+      'Learn what the median is in statistics, how to find it for odd and even datasets, why it\'s better than the mean for skewed data, and use our Calculator.',
+    category: 'Math & Science',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'median-calculator',
+  },
+  {
+    slug: 'mode-calculator-guide',
+    slugs: {
+      en: 'mode-calculator-guide',
+      es: 'guia-calculadora-moda',
+      fr: 'guide-calculatrice-mode',
+      de: 'modus-rechner-ratgeber'
+    },
+    title: 'Understanding the Mode in Statistics: Definition and Examples',
+    description:
+      'Discover how to find the mode in a dataset, understand bimodal and multimodal distributions, and see why the mode is essential for categorical data.',
+    category: 'Math & Science',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'mode-calculator',
+  },
+  {
+    slug: 'statistics-calculator-guide',
+    slugs: {
+      en: 'statistics-calculator-guide',
+      es: 'guia-calculadora-estadistica',
+      fr: 'guide-calculatrice-statistique',
+      de: 'statistikrechner-ratgeber'
+    },
+    title: 'Descriptive Statistics Explained: How to Analyze Any Dataset',
+    description:
+      'A complete guide to descriptive statistics. Learn how to calculate mean, median, mode, variance, and standard deviation using our comprehensive Statistics Calculator.',
+    category: 'Math & Science',
+    readingTime: 7,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'statistics-calculator',
+  },
+  {
+    slug: 'fraction-calculator-guide',
+    slugs: {
+      en: 'fraction-calculator-guide',
+      es: 'guia-calculadora-fracciones',
+      fr: 'guide-calculatrice-fractions',
+      de: 'bruchrechner-ratgeber'
+    },
+    title: 'The Complete Guide to Fractions: Adding, Subtracting, Multiplying & Dividing',
+    description:
+      'Master the rules of fractions. Learn how to find common denominators, simplify fractions, and use our Fraction Calculator to solve complex math problems.',
+    category: 'Math & Science',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'fraction-calculator',
+  },
+  {
+    slug: 'percent-error-calculator-guide',
+    slugs: {
+      en: 'percent-error-calculator-guide',
+      es: 'guia-calculadora-error-porcentual',
+      fr: 'guide-calculatrice-pourcentage-erreur',
+      de: 'prozentfehler-rechner-ratgeber'
+    },
+    title: 'How to Calculate Percent Error: Formula, Steps, and Examples',
+    description:
+      'Learn what percent error means in science and statistics, how to calculate it using the absolute value formula, and how to use our Percent Error Calculator.',
+    category: 'Math & Science',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'percent-error-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
