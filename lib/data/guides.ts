@@ -1062,6 +1062,22 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'commission-calculator',
   },
+  {
+    slug: 'tip-calculator-guide',
+    slugs: {
+      en: 'tip-calculator-guide',
+      es: 'guia-calculadora-propinas',
+      fr: 'guide-calculatrice-pourboire',
+      de: 'trinkgeld-rechner-ratgeber'
+    },
+    title: 'Tip Calculator: How Much Should You Tip?',
+    description:
+      'Learn the social etiquette of tipping, what percentages are standard for different services, and use our free Tip Calculator to split the bill.',
+    category: 'Finance',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'tip-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
@@ -1290,6 +1306,22 @@ const healthGuides: Guide[] = [
     readingTime: 3,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'healthy-weight-calculator',
+  },
+  {
+    slug: 'advanced-sleep-cycle-calculator-guide',
+    slugs: {
+      en: 'advanced-sleep-cycle-calculator-guide',
+      es: 'guia-calculadora-ciclos-sueno-avanzado',
+      fr: 'guide-calculatrice-cycles-sommeil-avancee',
+      de: 'erweiterter-schlafzyklus-rechner-ratgeber'
+    },
+    title: 'Advanced Sleep Cycle Calculator: Wake Up Refreshed',
+    description:
+      'Learn how sleep cycles work, why you wake up groggy, and use our Advanced Sleep Cycle Calculator to find the perfect bedtime or wake time.',
+    category: 'Health',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'advanced-sleep-cycle-calculator',
   },
 ];
 
@@ -2655,6 +2687,54 @@ const mathGuides: Guide[] = [
     readingTime: 3,
     lastUpdated: '2026-08-23',
     relatedCalculator: 'balancing-chemical-equations-calculator',
+  },
+  {
+    slug: 'cell-potential-calculator-guide',
+    slugs: {
+      en: 'cell-potential-calculator-guide',
+      es: 'guia-calculadora-potencial-celda',
+      fr: 'guide-calculatrice-potentiel-cellule',
+      de: 'zellpotential-rechner-ratgeber'
+    },
+    title: 'Cell Potential Calculator: Predicting Spontaneous Reactions',
+    description:
+      'Learn how to calculate the standard cell potential of an electrochemical cell and predict whether a redox reaction will occur spontaneously.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'cell-potential-calculator',
+  },
+  {
+    slug: 'faradays-law-calculator-guide',
+    slugs: {
+      en: 'faradays-law-calculator-guide',
+      es: 'guia-calculadora-ley-faraday',
+      fr: 'guide-calculatrice-loi-faraday',
+      de: 'faradaysches-gesetz-rechner-ratgeber'
+    },
+    title: "Faraday's Law of Electrolysis Calculator",
+    description:
+      "Learn how Faraday's Laws connect electrical charge to the amount of substance deposited or dissolved during electrolysis.",
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'faradays-law-calculator',
+  },
+  {
+    slug: 'electrolysis-calculator-guide',
+    slugs: {
+      en: 'electrolysis-calculator-guide',
+      es: 'guia-calculadora-electrolisis',
+      fr: 'guide-calculatrice-electrolyse',
+      de: 'elektrolyse-rechner-ratgeber'
+    },
+    title: 'Electrolysis Calculator: Using Electricity to Drive Chemistry',
+    description:
+      'Learn how electrolysis uses electrical energy to force non-spontaneous chemical reactions and use our free Electrolysis Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'electrolysis-calculator',
   },
 ];
 
