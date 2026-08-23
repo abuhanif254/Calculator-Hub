@@ -2000,6 +2000,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'p-value-calculator',
   },
+  {
+    slug: 'molarity-calculator-guide',
+    slugs: {
+      en: 'molarity-calculator-guide',
+      es: 'guia-calculadora-molaridad',
+      fr: 'guide-calculatrice-molarite',
+      de: 'molaritaets-rechner-ratgeber'
+    },
+    title: 'Molarity Calculator: Measuring Chemical Concentration',
+    description:
+      'Learn what Molarity is, how to calculate moles per liter, and use our free Molarity Calculator for your chemistry lab.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'molarity-calculator',
+  },
+  {
+    slug: 'molality-calculator-guide',
+    slugs: {
+      en: 'molality-calculator-guide',
+      es: 'guia-calculadora-molalidad',
+      fr: 'guide-calculatrice-molalite',
+      de: 'molalitaets-rechner-ratgeber'
+    },
+    title: 'Molality: The Temperature-Proof Concentration',
+    description:
+      'Learn the difference between Molarity and Molality, why chemists use mass instead of volume, and use our free Molality Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'molality-calculator',
+  },
+  {
+    slug: 'mole-calculator-guide',
+    slugs: {
+      en: 'mole-calculator-guide',
+      es: 'guia-calculadora-moles',
+      fr: 'guide-calculatrice-moles',
+      de: 'mol-rechner-ratgeber'
+    },
+    title: 'The Mole: Chemistry\'s Dozen',
+    description:
+      'Understand Avogadro\'s Number, what a mole actually is, how to convert between grams and moles, and use our free Mole Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'mole-calculator',
+  },
+  {
+    slug: 'molar-mass-calculator-guide',
+    slugs: {
+      en: 'molar-mass-calculator-guide',
+      es: 'guia-calculadora-masa-molar',
+      fr: 'guide-calculatrice-masse-molaire',
+      de: 'molare-masse-rechner-ratgeber'
+    },
+    title: 'Molar Mass: Reading the Periodic Table',
+    description:
+      'Learn how to read atomic weights on the periodic table, calculate the molar mass of complex compounds, and use our free Molar Mass Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'molar-mass-calculator',
+  },
+  {
+    slug: 'percent-composition-calculator-guide',
+    slugs: {
+      en: 'percent-composition-calculator-guide',
+      es: 'guia-calculadora-composicion-porcentual',
+      fr: 'guide-calculatrice-composition-centesimale',
+      de: 'massenanteil-rechner-ratgeber'
+    },
+    title: 'Percent Composition: Analyzing Chemical Makeup',
+    description:
+      'Learn how to find the mass percentage of individual elements inside a compound. Includes step-by-step math and our free Percent Composition Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'percent-composition-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
