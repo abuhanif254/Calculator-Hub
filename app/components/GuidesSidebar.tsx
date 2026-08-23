@@ -12,6 +12,8 @@ import {
   BookOpen,
   Search,
   X,
+  Palette,
+  Wrench,
 } from 'lucide-react';
 import { allGuides, guidesByCategory, type GuideCategory } from '@/lib/data/guides';
 
@@ -42,6 +44,16 @@ const CATEGORY_META: Record<
     color: 'text-sky-600 dark:text-sky-400',
     bg: 'bg-sky-50 dark:bg-sky-500/10',
   },
+  'Design & Media': {
+    icon: Palette,
+    color: 'text-pink-600 dark:text-pink-400',
+    bg: 'bg-pink-50 dark:bg-pink-500/10',
+  },
+  'Productivity & Utilities': {
+    icon: Wrench,
+    color: 'text-amber-600 dark:text-amber-400',
+    bg: 'bg-amber-50 dark:bg-amber-500/10',
+  },
 };
 
 interface GuidesSidebarProps {
@@ -52,7 +64,7 @@ interface GuidesSidebarProps {
 export function GuidesSidebar({ activeSlug }: GuidesSidebarProps) {
   const [query, setQuery] = useState('');
   const [openCategories, setOpenCategories] = useState<Set<GuideCategory>>(
-    new Set(['Finance', 'Health', 'Math & Science', 'Privacy & Security'])
+    new Set(['Finance', 'Health', 'Math & Science', 'Privacy & Security', 'Design & Media', 'Productivity & Utilities'])
   );
 
   const toggleCategory = (cat: GuideCategory) => {
