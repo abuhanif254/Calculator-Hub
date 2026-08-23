@@ -544,6 +544,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 't-test-calculator',
   },
+  {
+    slug: 'probability-calculator-guide',
+    slugs: {
+      en: 'probability-calculator-guide',
+      es: 'guia-calculadora-probabilidad',
+      fr: 'guide-calculatrice-probabilite',
+      de: 'wahrscheinlichkeitsrechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to Probability: Formulas, Events, and Rules',
+    description:
+      'Learn how to calculate the probability of single and multiple events, understand the rules of probability, and use our Probability Calculator.',
+    category: 'Math & Science',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'probability-calculator',
+  },
+  {
+    slug: 'variance-calculator-guide',
+    slugs: {
+      en: 'variance-calculator-guide',
+      es: 'guia-calculadora-varianza',
+      fr: 'guide-calculatrice-variance',
+      de: 'varianz-rechner-ratgeber'
+    },
+    title: 'Understanding Variance: Population vs. Sample Formulas Explained',
+    description:
+      'Learn what variance tells you about a dataset, how to calculate population and sample variance, and how to use our Variance Calculator.',
+    category: 'Math & Science',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'variance-calculator',
+  },
+  {
+    slug: 'mean-calculator-guide',
+    slugs: {
+      en: 'mean-calculator-guide',
+      es: 'guia-calculadora-media',
+      fr: 'guide-calculatrice-moyenne',
+      de: 'mittelwert-rechner-ratgeber'
+    },
+    title: 'How to Find the Mean: Arithmetic, Geometric, and Harmonic',
+    description:
+      'Discover the different types of means (averages) used in statistics, when to use them, and how to use our Mean Calculator.',
+    category: 'Math & Science',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'mean-calculator',
+  },
+  {
+    slug: 'gpa-calculator-guide',
+    slugs: {
+      en: 'gpa-calculator-guide',
+      es: 'guia-calculadora-gpa',
+      fr: 'guide-calculatrice-gpa',
+      de: 'gpa-rechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to Calculating Your GPA',
+    description:
+      'Learn how the GPA system works, the difference between weighted and unweighted GPAs, and how to use our GPA Calculator to plan your academic success.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'gpa-calculator',
+  },
+  {
+    slug: 'scientific-calculator-guide',
+    slugs: {
+      en: 'scientific-calculator-guide',
+      es: 'guia-calculadora-cientifica',
+      fr: 'guide-calculatrice-scientifique',
+      de: 'wissenschaftlicher-rechner-ratgeber'
+    },
+    title: 'How to Master the Scientific Calculator: Functions & Shortcuts',
+    description:
+      'A comprehensive manual on using a scientific calculator, including trigonometry, logarithms, exponential functions, and keyboard shortcuts.',
+    category: 'Math & Science',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'scientific-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
