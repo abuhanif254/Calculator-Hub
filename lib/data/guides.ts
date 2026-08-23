@@ -2240,6 +2240,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'molecular-formula-calculator',
   },
+  {
+    slug: 'ph-calculator-guide',
+    slugs: {
+      en: 'ph-calculator-guide',
+      es: 'guia-calculadora-ph',
+      fr: 'guide-calculatrice-ph',
+      de: 'ph-rechner-ratgeber'
+    },
+    title: 'pH Calculator: Measuring Acidity and Alkalinity',
+    description:
+      'Understand the pH scale, learn how to calculate hydrogen ion concentration using logarithms, and use our free pH Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ph-calculator',
+  },
+  {
+    slug: 'poh-calculator-guide',
+    slugs: {
+      en: 'poh-calculator-guide',
+      es: 'guia-calculadora-poh',
+      fr: 'guide-calculatrice-poh',
+      de: 'poh-rechner-ratgeber'
+    },
+    title: 'pOH Calculator: The Inverse of pH',
+    description:
+      'Learn how the pOH scale measures alkalinity, the relationship between pH and pOH (pH + pOH = 14), and use our free pOH Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'poh-calculator',
+  },
+  {
+    slug: 'pka-calculator-guide',
+    slugs: {
+      en: 'pka-calculator-guide',
+      es: 'guia-calculadora-pka',
+      fr: 'guide-calculatrice-pka',
+      de: 'pka-rechner-ratgeber'
+    },
+    title: 'pKa Calculator: Measuring Acid Strength',
+    description:
+      'Understand acid dissociation constants (Ka), how to calculate pKa, and use our free pKa Calculator to determine acid strength.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'pka-calculator',
+  },
+  {
+    slug: 'acid-base-calculator-guide',
+    slugs: {
+      en: 'acid-base-calculator-guide',
+      es: 'guia-calculadora-acido-base',
+      fr: 'guide-calculatrice-acide-base',
+      de: 'saeure-base-rechner-ratgeber'
+    },
+    title: 'Acid-Base Calculator: Mastering Neutralization',
+    description:
+      'Learn how acids and bases react to form water and salt, understand titration formulas, and use our free Acid-Base Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'acid-base-calculator',
+  },
+  {
+    slug: 'henderson-hasselbalch-equation-calculator-guide',
+    slugs: {
+      en: 'henderson-hasselbalch-equation-calculator-guide',
+      es: 'guia-calculadora-ecuacion-henderson-hasselbalch',
+      fr: 'guide-calculatrice-equation-henderson-hasselbalch',
+      de: 'henderson-hasselbalch-gleichungs-rechner-ratgeber'
+    },
+    title: 'Henderson-Hasselbalch Equation: Buffer Solutions',
+    description:
+      'Learn how the Henderson-Hasselbalch equation works, how buffer solutions resist pH changes, and use our free calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'henderson-hasselbalch-equation-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
