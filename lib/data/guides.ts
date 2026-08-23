@@ -1584,6 +1584,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'projectile-motion-calculator',
   },
+  {
+    slug: 'momentum-calculator-guide',
+    slugs: {
+      en: 'momentum-calculator-guide',
+      es: 'guia-calculadora-momento',
+      fr: 'guide-calculatrice-quantite-mouvement',
+      de: 'impuls-rechner-ratgeber'
+    },
+    title: 'Understanding Momentum: The Physics of Collisions',
+    description:
+      'Master the law of conservation of momentum. Learn the difference between elastic and inelastic collisions, and use our Momentum Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'momentum-calculator',
+  },
+  {
+    slug: 'potential-energy-calculator-guide',
+    slugs: {
+      en: 'potential-energy-calculator-guide',
+      es: 'guia-calculadora-energia-potencial',
+      fr: 'guide-calculatrice-energie-potentielle',
+      de: 'potentielle-energie-rechner-ratgeber'
+    },
+    title: 'Potential Energy: Stored Energy Waiting to be Released',
+    description:
+      'Learn how gravitational potential energy works, how it converts to kinetic energy, and use our Potential Energy Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'potential-energy-calculator',
+  },
+  {
+    slug: 'free-fall-calculator-guide',
+    slugs: {
+      en: 'free-fall-calculator-guide',
+      es: 'guia-calculadora-caida-libre',
+      fr: 'guide-calculatrice-chute-libre',
+      de: 'freier-fall-rechner-ratgeber'
+    },
+    title: 'The Physics of Free Fall: Gravity in a Vacuum',
+    description:
+      'Master the kinematics of falling objects. Learn about the constant 9.8 m/s² gravity, air resistance, and use our Free Fall Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'free-fall-calculator',
+  },
+  {
+    slug: 'work-calculator-guide',
+    slugs: {
+      en: 'work-calculator-guide',
+      es: 'guia-calculadora-trabajo',
+      fr: 'guide-calculatrice-travail',
+      de: 'arbeit-rechner-ratgeber'
+    },
+    title: 'The Physics of Work: Force and Displacement',
+    description:
+      'Understand the scientific definition of Work (W = F × d). Learn why pushing a wall isn\'t \'work\', and use our Work Calculator for your homework.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'work-calculator',
+  },
+  {
+    slug: 'power-calculator-guide',
+    slugs: {
+      en: 'power-calculator-guide',
+      es: 'guia-calculadora-potencia',
+      fr: 'guide-calculatrice-puissance',
+      de: 'leistungs-rechner-ratgeber'
+    },
+    title: 'Physics of Power: The Rate of Doing Work',
+    description:
+      'Master the relationship between Work, Time, and Power. Learn what a Watt is and use our free Power Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'power-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
