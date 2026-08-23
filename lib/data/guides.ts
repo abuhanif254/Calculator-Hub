@@ -246,6 +246,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'income-tax-calculator',
   },
+  {
+    slug: 'margin-calculator-guide',
+    slugs: {
+      en: 'margin-calculator-guide',
+      es: 'guia-calculadora-margen',
+      fr: 'guide-calculatrice-marge',
+      de: 'margenrechner-ratgeber'
+    },
+    title: 'Margin vs. Markup: The Ultimate Guide for Retail Pricing',
+    description:
+      'Learn the crucial difference between profit margin and markup, how to calculate your gross margin, and how to use our Margin Calculator.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'margin-calculator',
+  },
+  {
+    slug: 'lease-calculator-guide',
+    slugs: {
+      en: 'lease-calculator-guide',
+      es: 'guia-calculadora-arrendamiento',
+      fr: 'guide-calculatrice-location',
+      de: 'leasingrechner-ratgeber'
+    },
+    title: 'Car Leasing Explained: How to Calculate Your True Monthly Payment',
+    description:
+      'Demystify car leasing formulas, understand money factors, residual values, and capital reduction, and use our Lease Calculator to get the best deal.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'lease-calculator',
+  },
+  {
+    slug: 'real-estate-calculator-guide',
+    slugs: {
+      en: 'real-estate-calculator-guide',
+      es: 'guia-calculadora-bienes-raices',
+      fr: 'guide-calculatrice-immobilier',
+      de: 'immobilienrechner-ratgeber'
+    },
+    title: 'Real Estate ROI: How to Analyze an Investment Property',
+    description:
+      'Learn how to calculate Cash on Cash Return, Cap Rate, and Net Operating Income (NOI), and use our Real Estate Calculator to evaluate deals.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'real-estate-calculator',
+  },
+  {
+    slug: 'sales-tax-calculator-guide',
+    slugs: {
+      en: 'sales-tax-calculator-guide',
+      es: 'guia-calculadora-impuesto-ventas',
+      fr: 'guide-calculatrice-taxe-vente',
+      de: 'umsatzsteuerrechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to Calculating Sales Tax',
+    description:
+      'Learn how sales tax works, the difference between origin-based and destination-based sourcing, and how to use our Sales Tax Calculator.',
+    category: 'Finance',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'sales-tax-calculator',
+  },
+  {
+    slug: 'inflation-calculator-guide',
+    slugs: {
+      en: 'inflation-calculator-guide',
+      es: 'guia-calculadora-inflacion',
+      fr: 'guide-calculatrice-inflation',
+      de: 'inflationsrechner-ratgeber'
+    },
+    title: 'Understanding Inflation: How It Steals Your Purchasing Power',
+    description:
+      'Learn how the Consumer Price Index (CPI) measures inflation, how it affects your savings, and how to use our Inflation Calculator to adjust historical prices.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'inflation-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
