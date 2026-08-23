@@ -1664,6 +1664,86 @@ const mathGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'power-calculator',
   },
+  {
+    slug: 'ohms-law-calculator-guide',
+    slugs: {
+      en: 'ohms-law-calculator-guide',
+      es: 'guia-calculadora-ley-ohm',
+      fr: 'guide-calculatrice-loi-ohm',
+      de: 'ohmsches-gesetz-rechner-ratgeber'
+    },
+    title: 'Ohm\'s Law Explained: The Foundation of Electronics',
+    description:
+      'Master Ohm\'s Law (V = IR). Understand the relationship between voltage, current, and resistance, and use our free Ohm\'s Law Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'ohms-law-calculator',
+  },
+  {
+    slug: 'voltage-calculator-guide',
+    slugs: {
+      en: 'voltage-calculator-guide',
+      es: 'guia-calculadora-voltaje',
+      fr: 'guide-calculatrice-tension',
+      de: 'spannungs-rechner-ratgeber'
+    },
+    title: 'Understanding Voltage: The Pressure of Electricity',
+    description:
+      'Learn what voltage really is, how electric potential difference powers your devices, and use our free Voltage Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'voltage-calculator',
+  },
+  {
+    slug: 'current-calculator-guide',
+    slugs: {
+      en: 'current-calculator-guide',
+      es: 'guia-calculadora-corriente',
+      fr: 'guide-calculatrice-courant',
+      de: 'strom-rechner-ratgeber'
+    },
+    title: 'Electrical Current: The Flow of Electrons',
+    description:
+      'Learn what electrical current is, how amperage is measured, the dangers of high current, and use our free Current Calculator.',
+    category: 'Math & Science',
+    readingTime: 4,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'current-calculator',
+  },
+  {
+    slug: 'resistance-calculator-guide',
+    slugs: {
+      en: 'resistance-calculator-guide',
+      es: 'guia-calculadora-resistencia',
+      fr: 'guide-calculatrice-resistance',
+      de: 'widerstands-rechner-ratgeber'
+    },
+    title: 'Electrical Resistance: Controlling the Flow',
+    description:
+      'Understand electrical resistance, material conductivity, how resistors protect circuits, and use our free Resistance Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'resistance-calculator',
+  },
+  {
+    slug: 'electrical-power-calculator-guide',
+    slugs: {
+      en: 'electrical-power-calculator-guide',
+      es: 'guia-calculadora-potencia-electrica',
+      fr: 'guide-calculatrice-puissance-electrique',
+      de: 'elektrische-leistung-rechner-ratgeber'
+    },
+    title: 'Electrical Power: Calculating Watts (P=VI)',
+    description:
+      'Master Watt\'s Law. Learn how to calculate electrical power consumption using Voltage and Current with our free Electrical Power Calculator.',
+    category: 'Math & Science',
+    readingTime: 3,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'electrical-power-calculator',
+  },
 ];
 
 // ─── PRIVACY & SECURITY GUIDES ────────────────────────────────────────
