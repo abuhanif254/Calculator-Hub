@@ -198,6 +198,54 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'fha-loan-calculator',
   },
+  {
+    slug: 'roth-ira-calculator-guide',
+    slugs: {
+      en: 'roth-ira-calculator-guide',
+      es: 'guia-calculadora-roth-ira',
+      fr: 'guide-calculatrice-roth-ira',
+      de: 'roth-ira-rechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to Roth IRAs: How to Maximize Tax-Free Growth',
+    description:
+      'Learn what a Roth IRA is, the benefits of tax-free retirement income, contribution limits, and how to use our Roth IRA Calculator to plan your future.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'roth-ira-calculator',
+  },
+  {
+    slug: 'retirement-calculator-guide',
+    slugs: {
+      en: 'retirement-calculator-guide',
+      es: 'guia-calculadora-jubilacion',
+      fr: 'guide-calculatrice-retraite',
+      de: 'ruhestandsrechner-ratgeber'
+    },
+    title: 'Retirement Planning 101: How Much Do You Really Need?',
+    description:
+      'Discover how to calculate your retirement nest egg, understand the 4% rule, and use our Retirement Calculator to see if you are on track.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'retirement-calculator',
+  },
+  {
+    slug: 'income-tax-calculator-guide',
+    slugs: {
+      en: 'income-tax-calculator-guide',
+      es: 'guia-calculadora-impuesto-renta',
+      fr: 'guide-calculatrice-impot-revenu',
+      de: 'einkommensteuer-rechner-ratgeber'
+    },
+    title: 'Understanding Income Tax Brackets: Marginal vs. Effective Rates',
+    description:
+      'Demystify how income taxes work, learn the difference between marginal and effective tax rates, and use our Income Tax Calculator to estimate your take-home pay.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'income-tax-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
@@ -314,6 +362,38 @@ const healthGuides: Guide[] = [
     readingTime: 7,
     lastUpdated: '2026-06-25',
     relatedCalculator: 'calorie-calculator',
+  },
+  {
+    slug: 'pregnancy-conception-calculator-guide',
+    slugs: {
+      en: 'pregnancy-conception-calculator-guide',
+      es: 'guia-calculadora-concepcion-embarazo',
+      fr: 'guide-calculatrice-conception-grossesse',
+      de: 'schwangerschafts-empfaengnis-rechner-ratgeber'
+    },
+    title: 'How to Calculate Conception Date and Track Your Pregnancy',
+    description:
+      'Learn how doctors estimate your conception date, the biology of the ovulation window, and how to use our Pregnancy Conception Calculator.',
+    category: 'Health',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'pregnancy-conception-calculator',
+  },
+  {
+    slug: 'due-date-calculator-guide',
+    slugs: {
+      en: 'due-date-calculator-guide',
+      es: 'guia-calculadora-fecha-parto',
+      fr: 'guide-calculatrice-date-accouchement',
+      de: 'geburtsterminrechner-ratgeber'
+    },
+    title: 'Due Date Math: How to Calculate When Your Baby Will Arrive',
+    description:
+      'Learn how the standard Naegele\'s Rule calculates your due date, how IVF and ultrasounds change the math, and how to use our Due Date Calculator.',
+    category: 'Health',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'due-date-calculator',
   },
 ];
 
