@@ -566,6 +566,86 @@ const financeGuides: Guide[] = [
     lastUpdated: '2026-08-23',
     relatedCalculator: 'social-security-calculator',
   },
+  {
+    slug: 'mortgage-amortization-calculator-guide',
+    slugs: {
+      en: 'mortgage-amortization-calculator-guide',
+      es: 'guia-calculadora-amortizacion-hipoteca',
+      fr: 'guide-calculatrice-amortissement-hypothecaire',
+      de: 'hypotheken-tilgungsrechner-ratgeber'
+    },
+    title: 'The Magic of Mortgage Amortization: How to Save $100,000 on Your Home',
+    description:
+      'Understand how your mortgage payment is split between principal and interest, and learn how to use an amortization schedule to pay off your house years early.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'mortgage-amortization-calculator',
+  },
+  {
+    slug: 'house-affordability-calculator-guide',
+    slugs: {
+      en: 'house-affordability-calculator-guide',
+      es: 'guia-calculadora-asequibilidad-vivienda',
+      fr: 'guide-calculatrice-abordabilite-maison',
+      de: 'haus-erschwinglichkeitsrechner-ratgeber'
+    },
+    title: 'How Much House Can I Afford? The 28/36 Rule Explained',
+    description:
+      'Learn how mortgage lenders evaluate your income, understand the 28/36 DTI rule, and use our House Affordability Calculator to set a safe budget.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'house-affordability-calculator',
+  },
+  {
+    slug: 'rent-vs-buy-calculator-guide',
+    slugs: {
+      en: 'rent-vs-buy-calculator-guide',
+      es: 'guia-calculadora-alquilar-vs-comprar',
+      fr: 'guide-calculatrice-louer-vs-acheter',
+      de: 'mieten-vs-kaufen-rechner-ratgeber'
+    },
+    title: 'Rent vs. Buy: The 5% Rule and Unrecoverable Costs',
+    description:
+      'Stop throwing money away on rent? Not quite. Learn the 5% rule of real estate, understand unrecoverable costs, and use our Rent vs Buy Calculator.',
+    category: 'Finance',
+    readingTime: 6,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'rent-vs-buy-calculator',
+  },
+  {
+    slug: 'down-payment-calculator-guide',
+    slugs: {
+      en: 'down-payment-calculator-guide',
+      es: 'guia-calculadora-pago-inicial',
+      fr: 'guide-calculatrice-mise-de-fonds',
+      de: 'anzahlungsrechner-ratgeber'
+    },
+    title: 'The 20% Myth: How Much Down Payment Do You Really Need?',
+    description:
+      'Discover the truth about Private Mortgage Insurance (PMI), FHA loans, and use our Down Payment Calculator to find your ideal home buying strategy.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'down-payment-calculator',
+  },
+  {
+    slug: 'va-mortgage-calculator-guide',
+    slugs: {
+      en: 'va-mortgage-calculator-guide',
+      es: 'guia-calculadora-hipoteca-va',
+      fr: 'guide-calculatrice-hypotheque-va',
+      de: 'va-hypothekenrechner-ratgeber'
+    },
+    title: 'The Ultimate Guide to VA Loans: Zero Down, Zero PMI',
+    description:
+      'Learn how the VA Funding Fee works, the benefits of VA entitlements, and use our VA Mortgage Calculator to estimate your monthly payments.',
+    category: 'Finance',
+    readingTime: 5,
+    lastUpdated: '2026-08-23',
+    relatedCalculator: 'va-mortgage-calculator',
+  },
 ];
 
 // ─── HEALTH GUIDES ────────────────────────────────────────────────────
