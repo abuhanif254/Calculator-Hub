@@ -36,25 +36,57 @@ export function AdSenseContainer({
   // We use a safe iframe approach because Adsterra's invoke.js breaks React apps if injected directly.
   if (currentMode === 'ad_network') {
     const isSidebar = slot?.includes('sidebar');
-    const adWidth = isSidebar ? 160 : 728;
-    const adHeight = isSidebar ? 600 : 90;
-    const htmlFile = isSidebar ? "/ad-160.html" : "/ad-728.html";
 
+    if (isSidebar) {
+      return (
+        <div 
+          className={`ad-network-container w-full flex justify-center items-center overflow-hidden my-4 ${className}`} 
+          style={{ minHeight: '600px', ...style }}
+        >
+          <iframe 
+            src="/ad-160.html"
+            width={160} 
+            height={600} 
+            frameBorder="0" 
+            scrolling="no"
+            style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
+            title="Advertisement"
+            loading="lazy"
+          />
+        </div>
+      );
+    }
+
+    // For non-sidebar ads (content, top, bottom), render responsive iframes
     return (
-      <div 
-        className={`ad-network-container w-full flex justify-center items-center overflow-hidden my-4 ${className}`} 
-        style={{ minHeight: `${adHeight}px`, ...style }}
-      >
-        <iframe 
-          src={htmlFile}
-          width={adWidth} 
-          height={adHeight} 
-          frameBorder="0" 
-          scrolling="no"
-          style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
-          title="Advertisement"
-          loading="lazy"
-        />
+      <div className={`ad-network-container w-full my-4 ${className}`} style={style}>
+        {/* Desktop / Tablet Ad (728x90) */}
+        <div className="hidden sm:flex justify-center items-center w-full overflow-hidden" style={{ minHeight: '90px' }}>
+          <iframe 
+            src="/ad-728.html"
+            width={728} 
+            height={90} 
+            frameBorder="0" 
+            scrolling="no"
+            style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
+            title="Advertisement Desktop"
+            loading="lazy"
+          />
+        </div>
+        
+        {/* Mobile Ad (300x250) */}
+        <div className="flex sm:hidden justify-center items-center w-full overflow-hidden" style={{ minHeight: '250px' }}>
+          <iframe 
+            src="/ad-300.html"
+            width={300} 
+            height={250} 
+            frameBorder="0" 
+            scrolling="no"
+            style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
+            title="Advertisement Mobile"
+            loading="lazy"
+          />
+        </div>
       </div>
     );
   }
