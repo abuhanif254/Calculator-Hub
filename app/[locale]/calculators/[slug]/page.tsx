@@ -301,6 +301,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             href={`/calculators/${calc.slug}`}
           />
 
+          {/* Ad Placement above calculator (Top Content) */}
+          <div className="mb-8 w-full">
+            <AdSenseContainer slot="calculator_content_top" />
+          </div>
+
           <div id="calculator-export-target" className="print-target calculator-view">
             <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
           </div>
@@ -363,39 +368,6 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
         {/* Sidebar Area (Right/Bottom) */}
         <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0 flex flex-col gap-8">
-
-          {/* Ad Space 1 - Half Page (300x600) */}
-          <div className="w-full">
-            <AdSenseContainer slot="calculator_sidebar_1" style={{ minHeight: '600px' }} />
-          </div>
-
-          {/* Ad Space 2 - Large Rectangle (336x280) */}
-          <div className="w-full">
-            <AdSenseContainer slot="calculator_sidebar_2" style={{ minHeight: '280px' }} />
-          </div>
-
-          {/* Ad Space 3 - Medium Rectangle (300x250) */}
-          <div className="w-full">
-            <AdSenseContainer slot="calculator_sidebar_3" style={{ minHeight: '250px' }} />
-          </div>
-
-          {/* Ad Space 4 - Portrait (300x1050) */}
-          <div className="w-full">
-            <AdSenseContainer slot="calculator_sidebar_4" style={{ minHeight: '1050px' }} />
-          </div>
-
-          {/* Ad Space 5 - Portrait (300x1050) */}
-          <div className="w-full">
-            <AdSenseContainer slot="calculator_sidebar_5" style={{ minHeight: '1050px' }} />
-          </div>
-
-          {/* Ad Space 6 - Half Page (300x600) */}
-          <div className="w-full">
-            <AdSenseContainer slot="calculator_sidebar_6" style={{ minHeight: '600px' }} />
-          </div>
-
-          {/* Empty space to push remaining sections to the bottom */}
-          <div className="flex-1"></div>
 
           {/* Search Box */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
@@ -471,6 +443,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 );
               })}
             </ul>
+          </div>
+
+          {/* Ad Placement Sidebar (Sticky) */}
+          <div className="sticky top-24 pt-4">
+            <AdSenseContainer slot="calculator_sidebar_1" />
           </div>
 
         </aside>
