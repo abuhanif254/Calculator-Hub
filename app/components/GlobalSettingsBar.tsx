@@ -108,7 +108,9 @@ export function GlobalSettingsBar() {
 
   if (!mounted) {
     return (
-      <div className="bg-white/80 dark:bg-[#090E17]/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 text-slate-900 dark:text-white py-1.5 px-4 sm:px-6 lg:px-8 flex justify-end gap-6 items-center min-h-[44px]">
+      <div className="bg-white/80 dark:bg-[#090E17]/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 text-slate-900 dark:text-white py-1.5 px-4 sm:px-6 lg:px-8 flex justify-between gap-6 items-center min-h-[44px]">
+        <div className="flex-1 hidden md:block"></div>
+        <div className="w-[300px]"></div>
       </div>
     );
   }
@@ -125,33 +127,47 @@ export function GlobalSettingsBar() {
   }));
 
   return (
-    <div id="global-settings-bar" className="relative z-50 bg-white/80 dark:bg-[#090E17]/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-[11px] font-sans py-1.5 px-4 sm:px-6 lg:px-8 flex justify-end gap-1.5 sm:gap-3 lg:gap-6 items-center min-h-[44px] transition-colors duration-300">
+    <div id="global-settings-bar" className="relative z-50 bg-white/80 dark:bg-[#090E17]/80 backdrop-blur-md border-b border-slate-200 dark:border-white/10 text-slate-900 dark:text-white text-[11px] font-sans py-1.5 px-4 sm:px-6 lg:px-8 flex justify-between gap-1.5 sm:gap-3 lg:gap-6 items-center min-h-[44px] transition-colors duration-300">
       
-      {/* Theme Toggle - untouched */}
-      <ThemeToggle />
+      {/* News Ticker for Bookshelf */}
+      <div className="flex-1 overflow-hidden mr-4 hidden md:flex items-center">
+        <a 
+          href="https://www.pdf-bookshelf.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-red-600 dark:text-red-400 font-semibold hover:underline whitespace-nowrap"
+        >
+          <span className="bg-red-600 text-white px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider animate-pulse">Ad</span>
+          📚 Unlimited Free PDF Books Download at Bookshelf — Click Here!
+        </a>
+      </div>
 
-      <div className="h-4 w-px bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
+      <div className="flex items-center justify-end gap-1.5 sm:gap-3 lg:gap-6 ml-auto">
+        {/* Theme Toggle - untouched */}
+        <ThemeToggle />
 
-      {/* Units Toggle */}
-      <CustomDropdown
-        icon={Ruler}
-        label="Units"
-        value={unitSystem}
-        options={unitOptions}
-        onChange={(val) => setUnitSystem(val as 'metric' | 'imperial')}
-      />
+        <div className="h-4 w-px bg-slate-200 dark:bg-slate-700 hidden sm:block"></div>
 
-      {/* Currency Toggle */}
-      <CustomDropdown
-        icon={Globe}
-        label="Region"
-        value={currency}
-        options={currencyOptions}
-        onChange={(val, locale) => {
-          if (locale) setCurrencyAndLocale(val as any, locale as any);
-        }}
-      />
+        {/* Units Toggle */}
+        <CustomDropdown
+          icon={Ruler}
+          label="Units"
+          value={unitSystem}
+          options={unitOptions}
+          onChange={(val) => setUnitSystem(val as 'metric' | 'imperial')}
+        />
 
+        {/* Currency Toggle */}
+        <CustomDropdown
+          icon={Globe}
+          label="Region"
+          value={currency}
+          options={currencyOptions}
+          onChange={(val, locale) => {
+            if (locale) setCurrencyAndLocale(val as any, locale as any);
+          }}
+        />
+      </div>
     </div>
   );
 }
