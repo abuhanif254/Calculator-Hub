@@ -3,6 +3,7 @@
 import React, { useState, useEffect, ComponentType } from "react";
 import { getCalculatorComponent } from "@/lib/componentRegistry";
 import { CalculatorDef } from "@/lib/types";
+import { ErrorBoundary } from "./platform/ui/ErrorBoundary";
 
 interface CalculatorViewWrapperProps {
   calcDef: CalculatorDef;
@@ -12,12 +13,9 @@ interface CalculatorViewWrapperProps {
 export function CalculatorViewWrapper({ calcDef, locale }: CalculatorViewWrapperProps) {
   const [Component, setComponent] = useState<ComponentType<any> | null>(null);
 
-  console.log("[DEBUG WRAPPER RENDER] slug:", calcDef.slug, "Component state:", Component ? "Loaded" : "Null");
-
   useEffect(() => {
     // Retrieve the dynamic component strictly on the client side after mounting
     const LoadedComponent = getCalculatorComponent(calcDef.slug);
-    console.log("[DEBUG WRAPPER EFFECT] slug:", calcDef.slug, "Loaded Component:", LoadedComponent ? (LoadedComponent.displayName || LoadedComponent.name || "Unnamed") : "None");
     setComponent(() => LoadedComponent);
   }, [calcDef.slug]);
 
@@ -37,7 +35,9 @@ export function CalculatorViewWrapper({ calcDef, locale }: CalculatorViewWrapper
   // horizontal scroll on the page. w-full ensures it fills the content area.
   return (
     <div className="w-full overflow-x-hidden">
-      <Component calcDef={calcDef} locale={locale} />
+      <ErrorBoundary>
+        <Component calcDef={calcDef} locale={locale} />
+      </ErrorBoundary>
     </div>
   );
 }

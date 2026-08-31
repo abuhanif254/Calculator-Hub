@@ -6,10 +6,7 @@ import { InputGroup } from "./InputGroup";
 import { ResultDisplay } from "./ResultDisplay";
 import { useUrlObjectState } from "../../lib/hooks/useUrlState";
 
-// This simulates the dynamic import of our math logic.
-// In a real 200+ calculator app, we would use next/dynamic or an async import map here
-// rather than statically bundling all formulas.
-import { calculateMortgage, calculateCanadianMortgage } from "../../lib/formulas/financial";
+// Math logic is now dynamically imported in useEffect based on logicModule to reduce bundle size.
 
 interface CalculatorProps {
   calcDef: CalculatorDef;
@@ -26,16 +23,37 @@ export const Calculator: React.FC<CalculatorProps> = ({ calcDef }) => {
 
   const [values, setValues] = useUrlObjectState<Record<string, string | number>>(initialValues);
   
-  const result = useMemo(() => {
-    if (calcDef.logicModule === "financial") {
-      if (calcDef.slug === "mortgage-calculator") {
-        return calculateMortgage(values as any);
-      }
-      if (calcDef.slug === "canadian-mortgage-calculator") {
-        return calculateCanadianMortgage(values as any);
+  const [result, setResult] = React.useState<any>(null);
+
+  React.useEffect(() => {
+    let isMounted = true;
+
+    async function computeResult() {
+      try {
+        if (calcDef.logicModule === "financial") {
+          const financialModule = await import("../../lib/formulas/financial");
+          if (!isMounted) return;
+
+          if (calcDef.slug === "mortgage-calculator") {
+            setResult(financialModule.calculateMortgage(values as any));
+          } else if (calcDef.slug === "canadian-mortgage-calculator") {
+            setResult(financialModule.calculateCanadianMortgage(values as any));
+          } else {
+            setResult(null);
+          }
+        } else {
+          if (isMounted) setResult(null);
+        }
+      } catch (err) {
+        console.error("Error computing result:", err);
       }
     }
-    return null;
+
+    computeResult();
+
+    return () => {
+      isMounted = false;
+    };
   }, [values, calcDef]);
 
   const handleChange = (id: string, value: string | number) => {

@@ -104,7 +104,8 @@ export default function middleware(request: NextRequest) {
   // Prevents /?ref=producthunt, /?utm_source=... from polluting GSC.
   if (search && /[?&](ref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(search)) {
     const url = request.nextUrl.clone();
-    url.search = '';   // strip ALL query params (canonical URL never has them)
+    const trackingParams = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+    trackingParams.forEach(param => url.searchParams.delete(param));
     return NextResponse.redirect(url, { status: 301 });
   }
 

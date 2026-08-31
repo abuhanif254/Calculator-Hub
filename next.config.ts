@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   transpilePackages: ['motion'],
   experimental: {
-    cpus: 1,
+    cpus: process.env.CI_ENV === 'local' ? 1 : undefined,
   },
   async headers() {
     return [

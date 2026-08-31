@@ -206,8 +206,6 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'password-generator': dynamic(() => import('@/app/components/PasswordGeneratorView').then(m => ({ default: m.PasswordGeneratorView as ComponentType<CalcComponentProps> }))),
 };
 
-console.log("[DEBUG REGISTRY] Registered keys:", Object.keys(registry));
-
 // Fallback generic calculator component
 const FallbackCalculator = dynamic(() => import('@/app/components/Calculator').then(m => ({ default: m.Calculator as ComponentType<CalcComponentProps> })));
 
@@ -216,6 +214,5 @@ const FallbackCalculator = dynamic(() => import('@/app/components/Calculator').t
  * Falls back to the generic Calculator component if no custom view exists.
  */
 export function getCalculatorComponent(slug: string): ComponentType<CalcComponentProps> {
-  console.log("[DEBUG REGISTRY] slug requested:", slug, "found in registry:", !!registry[slug]);
   return registry[slug] ?? FallbackCalculator;
 }
