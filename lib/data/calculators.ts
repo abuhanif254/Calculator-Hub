@@ -2,6 +2,26 @@ import { CalculatorDef } from "../types";
 
 export const calculators: CalculatorDef[] = [
   {
+    slug: "confidence-interval-calculator",
+    slugs: {
+      en: "confidence-interval-calculator",
+      es: "calculadora-de-intervalo-de-confianza",
+      de: "konfidenzintervall-rechner",
+      fr: "calculateur-d-intervalle-de-confiance"
+    },
+    title: "Confidence Interval Calculator",
+    category: "Statistics & Probability",
+    description: "Calculate confidence intervals for population means, proportions, and differences. Supports Z-interval, T-interval, proportion CI, two-sample comparisons, and paired samples with step-by-step solutions.",
+    meta: {
+      title: "Confidence Interval Calculator – Z, T & Proportion CI",
+      description: "Free confidence interval calculator. Compute 95% CI, 99% CI for means (Z & T), proportions, two means, two proportions, and paired samples. Includes step-by-step solutions.",
+      keywords: "confidence interval calculator, 95% confidence interval, margin of error calculator, z interval, t interval, proportion confidence interval, two sample confidence interval, confidence level calculator",
+      lastUpdated: "2026-09-01"
+    },
+    fields: [],
+    logicModule: "math"
+  },
+  {
     slug: "t-test-calculator",
     slugs: {
       en: "t-test-calculator",

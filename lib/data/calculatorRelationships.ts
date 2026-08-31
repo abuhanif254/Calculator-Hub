@@ -707,13 +707,13 @@ export const calculatorRelationships: Record<string, string[]> = {
     'subnet-calculator', 'ip-subnet-calculator', 'conversion-calculator', 'data-storage-converter'
   ],
   'z-score-calculator': [
-    'standard-deviation-calculator', 'statistics-calculator', 'probability-calculator', 'p-value-calculator', 't-test-calculator', 'variance-calculator'
+    'standard-deviation-calculator', 'statistics-calculator', 'probability-calculator', 'p-value-calculator', 't-test-calculator', 'variance-calculator', 'confidence-interval-calculator'
   ],
   'variance-calculator': [
-    'standard-deviation-calculator', 'statistics-calculator', 'z-score-calculator', 't-test-calculator', 'mean-calculator'
+    'standard-deviation-calculator', 'statistics-calculator', 'z-score-calculator', 't-test-calculator', 'mean-calculator', 'confidence-interval-calculator'
   ],
   'mean-calculator': [
-    'median-calculator', 'mode-calculator', 'standard-deviation-calculator', 'variance-calculator', 'statistics-calculator', 'z-score-calculator'
+    'median-calculator', 'mode-calculator', 'standard-deviation-calculator', 'variance-calculator', 'statistics-calculator', 'z-score-calculator', 'confidence-interval-calculator'
   ],
   'median-calculator': [
     'mean-calculator', 'mode-calculator', 'standard-deviation-calculator', 'variance-calculator', 'statistics-calculator'
@@ -722,7 +722,13 @@ export const calculatorRelationships: Record<string, string[]> = {
     'mean-calculator', 'median-calculator', 'standard-deviation-calculator', 'variance-calculator', 'statistics-calculator'
   ],
   't-test-calculator': [
-    'p-value-calculator', 'statistics-calculator', 'standard-deviation-calculator', 'z-score-calculator'
+    'p-value-calculator', 'statistics-calculator', 'standard-deviation-calculator', 'z-score-calculator', 'confidence-interval-calculator'
+  ],
+
+  'confidence-interval-calculator': [
+    'standard-deviation-calculator', 'mean-calculator', 'variance-calculator',
+    'z-score-calculator', 't-test-calculator', 'p-value-calculator',
+    'statistics-calculator', 'probability-calculator'
   ],
 
   // ─── Other / Utility ─────────────────────────────

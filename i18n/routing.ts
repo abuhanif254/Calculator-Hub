@@ -609,6 +609,12 @@ export const routing = defineRouting({
         fr: '/calculatrices/calculatrice-test-t',
         de: '/rechner/t-test-rechner'
       },
+      '/calculators/confidence-interval-calculator': {
+        en: '/calculators/confidence-interval-calculator',
+        es: '/calculadoras/calculadora-de-intervalo-de-confianza',
+        fr: '/calculatrices/calculateur-d-intervalle-de-confiance',
+        de: '/rechner/konfidenzintervall-rechner'
+      },
       '/calculators/variance-calculator': {
         en: '/calculators/variance-calculator',
         es: '/calculadoras/calculadora-de-varianza',
