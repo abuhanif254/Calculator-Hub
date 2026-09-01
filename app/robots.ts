@@ -79,10 +79,10 @@ export default function robots(): MetadataRoute.Robots {
           '/*?utm_content=*',
           '/*?utm_term=*',
           // ── Trailing slash variants of locale roots ───────────────────────────
-          '/en/',
-          '/es/',
-          '/fr/',
-          '/de/',
+          '/en/$',
+          '/es/$',
+          '/fr/$',
+          '/de/$',
           // ── Community category archive pages (thin, duplicate-prone) ──────────
           '/*/community/category/*',
           '/*/comunidad/categoria/*',
