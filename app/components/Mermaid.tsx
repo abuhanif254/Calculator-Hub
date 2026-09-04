@@ -1,15 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import mermaid from "mermaid";
-import { v4 as uuidv4 } from "uuid";
-
-mermaid.initialize({
-  startOnLoad: false,
-  theme: "default",
-  securityLevel: "loose",
-  fontFamily: "inherit",
-});
 
 interface MermaidProps {
   chart: string;
@@ -18,14 +9,21 @@ interface MermaidProps {
 export default function Mermaid({ chart }: MermaidProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [svgContent, setSvgContent] = useState<string>("");
-  // Generating a stable ID for this instance based on a short UUID
-  const [id] = useState(`mermaid-${uuidv4().replace(/-/g, '').substring(0, 8)}`);
+  // Generating a stable ID for this instance based on random hex
+  const [id] = useState(() => `mermaid-${Math.random().toString(36).substring(2, 10)}`);
 
   useEffect(() => {
     let isMounted = true;
     const renderChart = async () => {
       try {
         if (containerRef.current) {
+          const mermaid = (await import("mermaid")).default;
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: "default",
+            securityLevel: "loose",
+            fontFamily: "inherit",
+          });
           const { svg } = await mermaid.render(id, chart);
           if (isMounted) {
             setSvgContent(svg);

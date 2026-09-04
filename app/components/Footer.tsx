@@ -8,7 +8,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-50 text-slate-600 dark:bg-[#090E17] dark:text-slate-300 py-16 lg:py-20 border-t border-slate-200 dark:border-white/5 mt-auto relative overflow-hidden">
+    <footer className="bg-slate-50 text-slate-600 dark:bg-[#090E17] dark:text-slate-300 py-16 lg:py-20 border-t border-slate-200 dark:border-white/5 mt-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:1px_400px]">
       
       {/* Ambient Glowing Floor - Massive faint radial gradient centered at the bottom */}
       <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-[80%] h-[50%] bg-[#518231]/10 dark:bg-[#518231]/15 blur-[120px] rounded-[100%] pointer-events-none -z-10" />

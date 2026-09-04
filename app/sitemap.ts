@@ -40,7 +40,8 @@ function buildEntry(
   changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never',
   priority: number,
   genericSlug?: string,
-  lastMod?: Date
+  lastMod?: Date,
+  images?: string[]
 ): MetadataRoute.Sitemap[number] {
   const languages: Record<string, string> = {};
   const routeMapping = (routing.pathnames as any)[pathnameKey];
@@ -105,13 +106,14 @@ function buildEntry(
     changeFrequency,
     priority,
     alternates: { languages },
+    ...(images && images.length > 0 ? { images } : {}),
   };
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ─── STATIC & CORE PAGES ──────────────
   const coreEntries = [
-    buildEntry('/', 'daily', 1.0),
+    buildEntry('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/icons/icon-512x512.png`]),
     buildEntry('/sitemap', 'weekly', 0.8),
     buildEntry('/community', 'daily', 0.7),
     // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
@@ -120,7 +122,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     buildEntry('/privacy-policy', 'yearly', 0.3),
     buildEntry('/terms-of-use', 'yearly', 0.3),
     buildEntry('/guides', 'weekly', 0.85),
-    ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.75, guide.slug, new Date(guide.lastUpdated))),
+    ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
     ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)),
     ...collections.map((collection) => buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)),
     ...comparisons.map((comparison) => buildEntry('/compare/[slug]', 'monthly', 0.8, comparison.slug)),
@@ -147,11 +149,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2026-05-25');
     const routeKey = `/calculators/${slug}`;
     const existsInRouting = (routing.pathnames as any)[routeKey];
+    const ogImageUrl = `${baseUrl}/en/calculators/${slug}/opengraph-image`;
 
     if (existsInRouting) {
-      return buildEntry(routeKey, 'monthly', priority, undefined, lastMod);
+      return buildEntry(routeKey, 'weekly', priority, undefined, lastMod, [ogImageUrl]);
     }
-    return buildEntry('/calculators/[slug]', 'monthly', priority, slug, lastMod);
+    return buildEntry('/calculators/[slug]', 'weekly', priority, slug, lastMod, [ogImageUrl]);
   });
 
   // ─── DEVELOPER TOOLS ──────────────────
@@ -165,7 +168,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return true;
     })
     .sort()
-    .map((slug) => buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod));
+    .map((slug) => {
+      const ogImageUrl = `${baseUrl}/en/tools/${slug}/opengraph-image`;
+      return buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod, [ogImageUrl]);
+    });
 
   // ─── DATA PRIVACY PLATFORM — PUBLIC LANDING ONLY ─────────────────
   // Authenticated sub-routes (/dashboard, /scanner, /jobs, etc.) are intentionally
@@ -182,6 +188,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         ['x-default', `${baseUrl}/en/database-privacy`],
       ]),
     },
+    images: [`${baseUrl}/og-database-privacy.jpg`],
   }));
 
 

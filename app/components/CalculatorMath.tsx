@@ -1,4 +1,5 @@
 import React from "react";
+import { getFormulaForCalculator } from "@/lib/data/calculatorFormulas";
 
 export function CalculatorMath({ slug, category }: { slug: string, category: string }) {
   const getMathContent = () => {
@@ -133,24 +134,48 @@ export function CalculatorMath({ slug, category }: { slug: string, category: str
             <p className="text-slate-600">TDEE (Total Daily Energy Expenditure) is then found by multiplying your BMR by a standard activity multiplier ranging from 1.2 (sedentary) to 1.9 (extremely active).</p>
           </>
         );
-      default:
+      default: {
+        const formulaDef = getFormulaForCalculator(slug);
+        if (formulaDef) {
+          return (
+            <>
+              <p className="mb-4 text-slate-700 dark:text-slate-300">
+                Calculations for this tool are based on the standard <strong>{formulaDef.name}</strong>:
+              </p>
+              <div className="bg-slate-100 dark:bg-slate-800/60 p-4 rounded-xl font-mono text-center text-base md:text-lg mb-4 shadow-inner border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white">
+                {formulaDef.formula}
+              </div>
+              <ul className="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+                {formulaDef.variables.map((v) => (
+                  <li key={v.symbol}>
+                    <strong>{v.symbol}</strong> = {v.name} ({v.description})
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs text-slate-500 dark:text-slate-400 italic">
+                {formulaDef.stepByStep}
+              </p>
+            </>
+          );
+        }
         return ( // Fallback
           <>
-            <p className="mb-4 text-slate-600">All results are generated using industry-standard, tested mathematical models tailored for <strong>{category.toLowerCase()}</strong> computations. Values are internally processed with high-precision floating point limits to ensure output reliability and minimal rounding drift.</p>
+            <p className="mb-4 text-slate-600 dark:text-slate-400">All results are generated using industry-standard, tested mathematical models tailored for <strong>{category.toLowerCase()}</strong> computations. Values are internally processed with high-precision floating point limits to ensure output reliability and minimal rounding drift.</p>
           </>
         );
+      }
     }
-  }
+  };
 
   return (
-    <div className="mt-8 bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-sm">
-      <h3 className="text-xl font-bold text-slate-900 mb-4 inline-flex items-center gap-2">
+    <div className="mt-8 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 md:p-8 shadow-sm">
+      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 inline-flex items-center gap-2">
         <svg className="w-5 h-5 text-[#518231]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
         </svg>
         The Math Behind It
       </h3>
-      <div className="prose prose-slate max-w-none text-slate-700">
+      <div className="prose prose-slate dark:prose-invert max-w-none text-slate-700 dark:text-slate-300">
         {getMathContent()}
       </div>
     </div>

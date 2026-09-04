@@ -4,17 +4,20 @@ import { calculators, getCalculatorBySlug } from "@/lib/data/calculators";
 import { categories, getCategoryForCalculator } from "@/lib/data/categories";
 import { sitemapCategories, generalLinks } from "@/lib/data/sitemapData";
 import { getRelatedCalculators } from "@/lib/data/calculatorRelationships";
+import { getGuideForCalculator } from "@/lib/data/guides";
+import { getLocalizedGuide } from "@/lib/utils/guideLocalization";
 import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
+import { getFormulaForCalculator, getFormulaFaq } from "@/lib/data/calculatorFormulas";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
 import { Link, routing, resolveIntlHref } from "@/i18n/routing";
-import { Search, ChevronRight, CalculatorIcon } from "lucide-react";
+import { Search, ChevronRight, CalculatorIcon, BookOpen, Clock, ArrowRight } from "lucide-react";
 
 import { setRequestLocale } from 'next-intl/server';
 
@@ -49,14 +52,40 @@ function getMarkdownContent(slug: string, locale: string, localizedSlug?: string
     if (!fs.existsSync(targetPath)) {
       const fallbackPath = path.join(process.cwd(), "content", "en", `${slug}.md`);
       if (fs.existsSync(fallbackPath)) {
-        const fileContent = fs.readFileSync(fallbackPath, "utf-8");
-        return matter(fileContent);
+        targetPath = fallbackPath;
+      } else {
+        return null;
       }
-      return null;
     }
 
     const fileContent = fs.readFileSync(targetPath, "utf-8");
-    return matter(fileContent);
+    const parsed = matter(fileContent);
+
+    // If frontmatter faqs are missing, check if an inline JSON-LD FAQPage script exists in the content
+    if (!parsed.data?.faqs || !Array.isArray(parsed.data.faqs) || parsed.data.faqs.length === 0) {
+      const faqScriptMatch = parsed.content.match(/<script\s+type=["']application\/ld\+json["']>([\s\S]*?)<\/script>/i);
+      if (faqScriptMatch) {
+        try {
+          const jsonLd = JSON.parse(faqScriptMatch[1]);
+          if (jsonLd['@type'] === 'FAQPage' && Array.isArray(jsonLd.mainEntity)) {
+            parsed.data = parsed.data || {};
+            parsed.data.faqs = jsonLd.mainEntity.map((item: any) => ({
+              question: item.name || '',
+              answer: item.acceptedAnswer?.text || '',
+            }));
+            // Strip the inline <script> from the markdown content so it does not leak into HTML
+            parsed.content = parsed.content.replace(faqScriptMatch[0], '').trim();
+          }
+        } catch (err) {
+          // Keep content intact if JSON parse fails
+        }
+      }
+    } else {
+      // If frontmatter faqs already exist, still strip any duplicate inline ld+json script if present
+      parsed.content = parsed.content.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '').trim();
+    }
+
+    return parsed;
   } catch (e) {
     console.error("Error reading markdown for", slug, locale, e);
     return null;
@@ -154,20 +183,33 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const pageDesc = mdData?.data?.description || calc.description;
   const seoContent = mdData?.content || calc.seoContent;
 
-  const faqs = mdData?.data?.faqs || [
-    {
-      question: `What is a ${pageTitle}?`,
-      answer: `A ${pageTitle} is a specialized mathematical tool that allows you to calculate and estimate relevant values based on your inputs. It's completely free to use online.`
-    },
-    {
-      question: `How do I use this ${pageTitle}?`,
-      answer: `Simply enter your required information into the fields above and the results will automatically calculate and update on your screen.`
-    },
-    {
-      question: `Is my data safe when using this ${pageTitle}?`,
-      answer: `Yes, protecting your privacy is our priority. All calculations performed by this ${pageTitle} happen locally in your browser. We never store or transmit your personal input data to any servers.`
+  const faqs: { question: string; answer: string }[] = (mdData?.data?.faqs && Array.isArray(mdData.data.faqs) && mdData.data.faqs.length > 0)
+    ? [...mdData.data.faqs]
+    : [
+        {
+          question: `What is a ${pageTitle}?`,
+          answer: `A ${pageTitle} is a specialized mathematical tool that allows you to calculate and estimate relevant values based on your inputs. It's completely free to use online.`
+        },
+        {
+          question: `How do I use this ${pageTitle}?`,
+          answer: `Simply enter your required information into the fields above and the results will automatically calculate and update on your screen.`
+        },
+        {
+          question: `Is my data safe when using this ${pageTitle}?`,
+          answer: `Yes, protecting your privacy is our priority. All calculations performed by this ${pageTitle} happen locally in your browser. We never store or transmit your personal input data to any servers.`
+        }
+      ];
+
+  // Semantic Math FAQ Embedding: inject authoritative mathematical formula FAQ if not already present
+  const hasFormulaFaq = faqs.some((f) =>
+    /formula|equation|fórmula|formule|formel/i.test(f.question)
+  );
+  if (!hasFormulaFaq) {
+    const formulaFaq = getFormulaFaq(calc.slug, pageTitle, resolvedParams.locale);
+    if (formulaFaq) {
+      faqs.unshift(formulaFaq);
     }
-  ];
+  }
 
   // Find related calculators for the sidebar and bottom section
   const relatedTools = getRelatedCalculators(calc.slug, 8);
@@ -183,6 +225,42 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const categoryUrl = categoryDef
     ? getCanonicalUrl('/calculators/category/[category]', resolvedParams.locale, categoryDef.id)
     : `${baseUrl}/${resolvedParams.locale}/sitemap`;
+
+  // Reverse lookup: check if an educational guide exists for this calculator
+  const relatedGuide = getGuideForCalculator(calc.slug);
+  const localizedGuide = relatedGuide ? getLocalizedGuide(relatedGuide, resolvedParams.locale) : null;
+  const guideSlug = relatedGuide ? (relatedGuide.slugs?.[resolvedParams.locale as keyof typeof relatedGuide.slugs] || relatedGuide.slug) : null;
+  const relatedGuideUrl = (relatedGuide && guideSlug)
+    ? getCanonicalUrl('/guides/[slug]', resolvedParams.locale, relatedGuide.slug)
+    : undefined;
+
+  const guideTranslations: Record<string, { badge: string; cta: string; minRead: string; featured: string }> = {
+    en: {
+      badge: 'In-Depth Guide & Mathematical Breakdown',
+      cta: 'Read Complete Guide',
+      minRead: 'min read',
+      featured: 'Featured Guide',
+    },
+    es: {
+      badge: 'Guía Educativa y Desglose Matemático',
+      cta: 'Leer la Guía Completa',
+      minRead: 'min de lectura',
+      featured: 'Guía Destacada',
+    },
+    fr: {
+      badge: 'Guide Pédagogique et Analyse Mathématique',
+      cta: 'Lire le Guide Complet',
+      minRead: 'min de lecture',
+      featured: 'Guide en Vedette',
+    },
+    de: {
+      badge: 'Ausführlicher Ratgeber & Formelerklärung',
+      cta: 'Vollständigen Ratgeber Lesen',
+      minRead: 'Min. Lesezeit',
+      featured: 'Empfohlener Ratgeber',
+    },
+  };
+  const guideText = guideTranslations[resolvedParams.locale] || guideTranslations.en;
 
   // SoftwareApplication JSON-LD Schema
   const softwareAppSchema = {
@@ -200,7 +278,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    }
+    },
+    ...(relatedGuideUrl && localizedGuide && {
+      "isRelatedTo": {
+        "@type": "Article",
+        "name": localizedGuide.title,
+        "url": relatedGuideUrl
+      }
+    })
   };
 
   // FAQPage JSON-LD Schema
@@ -326,6 +411,41 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           <ExportResultsPanel targetId="calculator-export-target" fileName={`${calc.slug}-results`} />
           <CalculatorMath slug={calc.slug} category={calc.category} />
 
+          {/* Educational Guide & Math Deep-Dive Callout */}
+          {localizedGuide && guideSlug && (
+            <aside aria-label="Educational Guide" className="my-10 p-6 md:p-8 bg-gradient-to-br from-emerald-50/40 via-white to-slate-50 dark:from-[#518231]/10 dark:via-slate-900 dark:to-slate-900/60 rounded-2xl border border-[#518231]/25 dark:border-[#518231]/35 shadow-sm relative overflow-hidden group">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-2.5 rounded-xl bg-[#518231]/10 text-[#518231] dark:text-[#6fa844] shrink-0">
+                    <BookOpen className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#518231] dark:text-[#6fa844]">
+                    {guideText.badge}
+                  </span>
+                </div>
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 self-start sm:self-auto shrink-0">
+                  <Clock className="w-3.5 h-3.5 text-slate-400" />
+                  {localizedGuide.readingTime} {guideText.minRead}
+                </span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors">
+                {localizedGuide.title}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-6 max-w-3xl">
+                {localizedGuide.description}
+              </p>
+              <div>
+                <Link
+                  href={{ pathname: '/guides/[slug]', params: { slug: guideSlug } }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#518231] hover:bg-[#436a28] text-white text-sm font-semibold shadow-sm transition-all hover:gap-3"
+                >
+                  <span>{guideText.cta}</span>
+                  <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+                </Link>
+              </div>
+            </aside>
+          )}
+
           {/* Ad Placement below calculator (Main Content) */}
           <div className="my-10 w-full">
             <AdSenseContainer slot="calculator_content_bottom" style={{ minHeight: '90px' }} format="auto" />
@@ -398,6 +518,37 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               />
             </form>
           </div>
+
+          {/* Related Guide in Sidebar */}
+          {localizedGuide && guideSlug && (
+            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-[#518231]/25 dark:border-[#518231]/35">
+              <div className="flex items-center gap-2 text-[#518231] dark:text-[#6fa844] mb-3">
+                <BookOpen className="w-4 h-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">
+                  {guideText.featured}
+                </span>
+              </div>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+                {localizedGuide.title}
+              </h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 mb-4 leading-relaxed">
+                {localizedGuide.description}
+              </p>
+              <div className="flex items-center justify-between text-xs pt-3 border-t border-slate-200 dark:border-slate-800">
+                <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" />
+                  {localizedGuide.readingTime} {guideText.minRead}
+                </span>
+                <Link
+                  href={{ pathname: '/guides/[slug]', params: { slug: guideSlug } }}
+                  className="font-bold text-[#518231] dark:text-[#6fa844] hover:underline inline-flex items-center gap-1"
+                >
+                  <span>{guideText.cta}</span>
+                  <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />
+                </Link>
+              </div>
+            </div>
+          )}
 
           {/* Features */}
           {mdData?.data?.features && mdData.data.features.length > 0 && (

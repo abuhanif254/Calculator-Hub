@@ -5,8 +5,10 @@ import { setRequestLocale } from 'next-intl/server';
 import { calculators } from '@/lib/data/calculators';
 import { categories, getCategoryById } from '@/lib/data/categories';
 import { getRelatedCalculators } from '@/lib/data/calculatorRelationships';
+import { allGuides } from '@/lib/data/guides';
+import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { Link, resolveIntlHref } from '@/i18n/routing';
-import { ChevronRight, Calculator, ArrowRight, Star } from 'lucide-react';
+import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 // ═══════════════════════════════════════════════════════
@@ -81,6 +83,89 @@ export default async function CategoryPage({
   // Group into subcategories based on tags/keywords for visual organization
   const popularCalcs = categoryCalcs.slice(0, 6);
 
+  // Get all guides associated with calculators in this category
+  const categoryCalcSlugs = new Set(categoryCalcs.map((c) => c.slug));
+  const directGuides = allGuides.filter(
+    (g) => g.relatedCalculator && categoryCalcSlugs.has(g.relatedCalculator)
+  );
+
+  const catGuideCategoryMap: Record<string, string[]> = {
+    financial: ['Finance'],
+    health: ['Health'],
+    math: ['Math & Science'],
+    physics: ['Math & Science'],
+    chemistry: ['Math & Science'],
+    weather: ['Productivity & Utilities'],
+    other: ['Productivity & Utilities'],
+  };
+  const matchingGuideCats = catGuideCategoryMap[cat.id] || [];
+  const seenGuideSlugs = new Set(directGuides.map((g) => g.slug));
+  const additionalGuides =
+    directGuides.length === 0
+      ? allGuides.filter((g) => matchingGuideCats.includes(g.category) && !seenGuideSlugs.has(g.slug))
+      : [];
+
+  const categoryGuides = [...directGuides, ...additionalGuides];
+
+  const localizedGuides = categoryGuides.map((guide) => {
+    const localized = getLocalizedGuide(guide, resolvedParams.locale);
+    const activeSlug =
+      guide.slugs?.[resolvedParams.locale as keyof typeof guide.slugs] || guide.slug;
+    return {
+      ...localized,
+      activeSlug,
+    };
+  });
+
+  const featuredCategoryGuides = localizedGuides.slice(0, 6);
+  const remainingCategoryGuides = localizedGuides.length > 6 ? localizedGuides : [];
+
+  const categoryGuideLabels: Record<
+    string,
+    {
+      featuredTitle: string;
+      featuredSubtitle: string;
+      allGuidesTitle: string;
+      readGuide: string;
+      minRead: string;
+      guidesCount: string;
+    }
+  > = {
+    en: {
+      featuredTitle: 'Educational Guides & Mathematical Tutorials',
+      featuredSubtitle: `Deep dive into formulas, step-by-step methodologies, and practical examples for ${cat.title.toLowerCase()}.`,
+      allGuidesTitle: `All ${cat.title} Guides & Tutorials`,
+      readGuide: 'Read Guide',
+      minRead: 'min read',
+      guidesCount: 'Guides',
+    },
+    es: {
+      featuredTitle: 'Guías Educativas y Tutoriales Matemáticos',
+      featuredSubtitle: `Profundice en fórmulas, metodologías paso a paso y ejemplos prácticos para ${cat.title.toLowerCase()}.`,
+      allGuidesTitle: `Todas las Guías y Tutoriales de ${cat.title}`,
+      readGuide: 'Leer Guía',
+      minRead: 'min de lectura',
+      guidesCount: 'Guías',
+    },
+    fr: {
+      featuredTitle: 'Guides Pédagogiques et Tutoriels Mathématiques',
+      featuredSubtitle: `Explorez les formules, les méthodologies étape par étape et les exemples pratiques pour ${cat.title.toLowerCase()}.`,
+      allGuidesTitle: `Tous les Guides et Tutoriels de ${cat.title}`,
+      readGuide: 'Lire le Guide',
+      minRead: 'min de lecture',
+      guidesCount: 'Guides',
+    },
+    de: {
+      featuredTitle: 'Ausführliche Ratgeber & Mathematische Anleitungen',
+      featuredSubtitle: `Vertiefen Sie Formeln, Schritt-für-Schritt-Methoden und praktische Beispiele für ${cat.title.toLowerCase()}.`,
+      allGuidesTitle: `Alle Ratgeber & Anleitungen für ${cat.title}`,
+      readGuide: 'Ratgeber Lesen',
+      minRead: 'Min. Lesezeit',
+      guidesCount: 'Ratgeber',
+    },
+  };
+  const tGuides = categoryGuideLabels[resolvedParams.locale] || categoryGuideLabels.en;
+
   // JSON-LD: BreadcrumbList
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -118,6 +203,14 @@ export default async function CategoryPage({
         url: getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, calc.slug),
       })),
     },
+    ...(localizedGuides.length > 0 && {
+      hasPart: localizedGuides.slice(0, 15).map((guide) => ({
+        '@type': 'Article',
+        name: guide.title,
+        description: guide.description,
+        url: getCanonicalUrl('/guides/[slug]', resolvedParams.locale, guide.slug),
+      })),
+    }),
   };
 
   // JSON-LD: FAQPage — unlocks FAQ rich results for high-volume category queries
@@ -158,6 +251,18 @@ export default async function CategoryPage({
           text: `Simply select any calculator from the list on this page, enter your values into the input fields, and get instant results. All ${cat.title.toLowerCase()} update in real time as you type, with no need to press a submit button.`,
         },
       },
+      ...(localizedGuides.length > 0
+        ? [
+            {
+              '@type': 'Question',
+              name: `Does Nexus Calculator provide tutorials and mathematical formulas for ${cat.title}?`,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: `Yes, Nexus Calculator provides ${localizedGuides.length} comprehensive educational guides and mathematical breakdowns for ${cat.title.toLowerCase()}. Each guide explains the underlying equations, variable definitions, and step-by-step calculation methods with practical real-world examples.`,
+              },
+            },
+          ]
+        : []),
     ],
   };
 
@@ -242,6 +347,88 @@ export default async function CategoryPage({
             ))}
           </div>
         </section>
+
+        {/* Educational Guides & Tutorials (Topical Depth Cluster) */}
+        {localizedGuides.length > 0 && (
+          <section className="mb-16">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <BookOpen className="text-[#518231]" size={22} />
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                    {tGuides.featuredTitle}
+                  </h2>
+                </div>
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-3xl">
+                  {tGuides.featuredSubtitle}
+                </p>
+              </div>
+              <span className="text-xs font-semibold px-3 py-1 rounded-full bg-[#518231]/10 text-[#518231] dark:text-[#6fa844] self-start sm:self-auto shrink-0">
+                {localizedGuides.length} {tGuides.guidesCount}
+              </span>
+            </div>
+
+            {/* Featured Guides Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+              {featuredCategoryGuides.map((guide) => (
+                <Link
+                  key={guide.slug}
+                  href={{ pathname: '/guides/[slug]', params: { slug: guide.activeSlug } }}
+                  className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className="inline-flex items-center gap-1 text-xs font-medium px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+                        <Clock className="w-3 h-3 text-slate-400" />
+                        {guide.readingTime} {tGuides.minRead}
+                      </span>
+                      <ArrowRight
+                        size={16}
+                        className="text-slate-300 group-hover:text-[#518231] transition-colors"
+                      />
+                    </div>
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors leading-snug line-clamp-2">
+                      {guide.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed mb-4">
+                      {guide.description}
+                    </p>
+                  </div>
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center text-xs font-semibold text-[#518231] dark:text-[#6fa844] group-hover:gap-2 transition-all">
+                    <span>{tGuides.readGuide}</span>
+                    <ChevronRight size={14} className="rtl:rotate-180" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Complete Guide Directory (when > 6 guides) */}
+            {remainingCategoryGuides.length > 0 && (
+              <div className="bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl p-6">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                  <GraduationCap className="w-4 h-4 text-[#518231]" />
+                  <span>{tGuides.allGuidesTitle} ({localizedGuides.length})</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2.5">
+                  {localizedGuides.map((guide) => (
+                    <Link
+                      key={guide.slug}
+                      href={{ pathname: '/guides/[slug]', params: { slug: guide.activeSlug } }}
+                      className="group flex items-center justify-between text-xs sm:text-sm py-1 text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors"
+                    >
+                      <span className="truncate pr-2 font-medium group-hover:underline">
+                        {guide.title}
+                      </span>
+                      <span className="shrink-0 text-[11px] text-slate-400 dark:text-slate-500">
+                        {guide.readingTime}m
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
 
         {/* Full Calculator Directory */}
         <section className="mb-16">

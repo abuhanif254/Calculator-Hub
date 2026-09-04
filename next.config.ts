@@ -40,6 +40,7 @@ const nextConfig: NextConfig = {
   transpilePackages: ['motion'],
   experimental: {
     cpus: process.env.CI_ENV === 'local' ? 1 : undefined,
+    optimizePackageImports: ['lucide-react', 'date-fns', 'chart.js', 'katex'],
   },
   async headers() {
     return [

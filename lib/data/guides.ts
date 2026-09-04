@@ -3155,6 +3155,11 @@ export function getGuideBySlug(slug: string): Guide | undefined {
   });
 }
 
+/** Get the related educational guide for a calculator slug. Returns undefined if not found. */
+export function getGuideForCalculator(calcSlug: string): Guide | undefined {
+  return allGuides.find((g) => g.relatedCalculator === calcSlug);
+}
+
 /** Get the previous and next guides relative to a given slug (for article navigation) */
 export function getAdjacentGuides(slug: string): {
   prev: Guide | null;
