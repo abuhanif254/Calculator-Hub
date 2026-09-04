@@ -2,9 +2,8 @@ import { ImageResponse } from 'next/og';
 import { getToolConfig, allToolsConfig } from '@/lib/data/tools';
 import { routing } from '@/i18n/routing';
 
-// SSG configuration — fully pre-rendered static images at build time
-export const revalidate = false;
-export const dynamicParams = false;
+// On-demand dynamic generation with Edge CDN caching
+export const runtime = 'edge';
 
 export const alt = 'Nexus Developer Tools';
 export const size = {
@@ -12,12 +11,6 @@ export const size = {
   height: 630,
 };
 export const contentType = 'image/png';
-
-export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    Object.keys(allToolsConfig).map((slug) => ({ locale, slug }))
-  );
-}
 
 function sanitizeForOg(text: string): string {
   if (!text) return '';

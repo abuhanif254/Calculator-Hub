@@ -2,9 +2,8 @@ import { ImageResponse } from 'next/og';
 import { getCalculatorBySlug, calculators } from '@/lib/data/calculators';
 import { routing } from '@/i18n/routing';
 
-// SSG configuration — fully pre-rendered static images at build time
-export const revalidate = false;
-export const dynamicParams = false;
+// On-demand dynamic generation with Edge CDN caching
+export const runtime = 'edge';
 
 export const alt = 'Nexus Calculator Hub';
 export const size = {
@@ -12,34 +11,6 @@ export const size = {
   height: 630,
 };
 export const contentType = 'image/png';
-
-export async function generateStaticParams() {
-  const params: { slug: string; locale: string }[] = [];
-  const seen = new Set<string>();
-
-  routing.locales.forEach((locale) => {
-    calculators.forEach((calc) => {
-      const isExplicitlyMapped = `/calculators/${calc.slug}` in routing.pathnames;
-      const localizedSlug = calc.slugs?.[locale as keyof typeof calc.slugs];
-
-      const enKey = `${locale}::${calc.slug}`;
-      if (!seen.has(enKey)) {
-        seen.add(enKey);
-        params.push({ slug: calc.slug, locale });
-      }
-
-      if (isExplicitlyMapped && localizedSlug && localizedSlug !== calc.slug) {
-        const localKey = `${locale}::${localizedSlug}`;
-        if (!seen.has(localKey)) {
-          seen.add(localKey);
-          params.push({ slug: localizedSlug, locale });
-        }
-      }
-    });
-  });
-
-  return params;
-}
 
 function sanitizeForOg(text: string): string {
   if (!text) return '';
