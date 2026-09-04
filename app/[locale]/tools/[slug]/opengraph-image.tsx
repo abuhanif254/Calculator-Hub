@@ -2,8 +2,8 @@ import { ImageResponse } from 'next/og';
 import { getToolConfig, allToolsConfig } from '@/lib/data/tools';
 import { routing } from '@/i18n/routing';
 
-// On-demand dynamic generation with Edge CDN caching
-export const runtime = 'edge';
+// On-demand dynamic generation with 24-hour CDN caching
+export const revalidate = 86400;
 
 export const alt = 'Nexus Developer Tools';
 export const size = {
