@@ -367,73 +367,131 @@ Estimated Monthly Consumption: ${results.monthlyKWh?.toFixed(1)} kWh ($${results
               {/* Primary Output Display */}
               <ReadOnlyField label="Calculated Real Power (P)" val={`${results.pWatts.toFixed(2)} W (${(results.pWatts / 1000).toFixed(3)} kW)`} icon={Zap} />
 
-              {/* Standard Inputs (Voltage & Current) */}
+              {/* DC Formula Method Toggle */}
+              {activeTab === "dc" && (
+                <div className="space-y-1">
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">DC Formula Method</span>
+                  <div className="grid grid-cols-3 gap-1">
+                    {[
+                      { key: "VI", label: "P = V × I" },
+                      { key: "VR", label: "P = V² / R" },
+                      { key: "IR", label: "P = I² × R" }
+                    ].map(m => (
+                      <button
+                        key={m.key}
+                        type="button"
+                        onClick={() => setDcMode(m.key as DcSubMode)}
+                        className={`py-1.5 px-1 text-xs font-bold rounded-xl border transition-all ${
+                          dcMode === m.key
+                            ? "bg-[#518231] text-white border-[#518231]"
+                            : "bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800"
+                        }`}
+                      >
+                        {m.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Standard Inputs (Voltage, Current, Resistance) */}
               {activeTab !== "solar" && (
                 <>
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
-                      <span>Voltage (V)</span>
-                      <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800">
-                        <input
-                          type="number"
-                          value={voltageVal}
-                          onChange={(e) => setVoltageVal(Number(e.target.value))}
-                          className="w-24 bg-transparent text-right font-black focus:outline-none text-slate-900 dark:text-white"
-                        />
-                        <select
-                          value={voltageUnit}
-                          onChange={(e) => setVoltageUnit(e.target.value)}
-                          className="bg-transparent font-bold text-xs text-slate-500 focus:outline-none"
-                        >
-                          {Object.keys(VOLTAGE_CONVERSIONS).map(u => (
-                            <option key={u} value={u} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">{u}</option>
-                          ))}
-                        </select>
+                  {!(activeTab === "dc" && dcMode === "IR") && (
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        <span>Voltage (V)</span>
+                        <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800">
+                          <input
+                            type="number"
+                            value={voltageVal}
+                            onChange={(e) => setVoltageVal(Number(e.target.value))}
+                            className="w-24 bg-transparent text-right font-black focus:outline-none text-slate-900 dark:text-white"
+                          />
+                          <select
+                            value={voltageUnit}
+                            onChange={(e) => setVoltageUnit(e.target.value)}
+                            className="bg-transparent font-bold text-xs text-slate-500 focus:outline-none"
+                          >
+                            {Object.keys(VOLTAGE_CONVERSIONS).map(u => (
+                              <option key={u} value={u} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">{u}</option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
+                      <input
+                        type="range"
+                        min="1"
+                        max="480"
+                        step="1"
+                        value={voltageVal}
+                        onChange={(e) => setVoltageVal(Number(e.target.value))}
+                        className="w-full accent-[#518231] cursor-pointer"
+                      />
                     </div>
-                    <input
-                      type="range"
-                      min="1"
-                      max="480"
-                      step="1"
-                      value={voltageVal}
-                      onChange={(e) => setVoltageVal(Number(e.target.value))}
-                      className="w-full accent-[#518231] cursor-pointer"
-                    />
-                  </div>
+                  )}
 
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
-                      <span>Current (I)</span>
-                      <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800">
-                        <input
-                          type="number"
-                          step="0.1"
-                          value={currentVal}
-                          onChange={(e) => setCurrentVal(Number(e.target.value))}
-                          className="w-24 bg-transparent text-right font-black focus:outline-none text-slate-900 dark:text-white"
-                        />
-                        <select
-                          value={currentUnit}
-                          onChange={(e) => setCurrentUnit(e.target.value)}
-                          className="bg-transparent font-bold text-xs text-slate-500 focus:outline-none"
-                        >
-                          {Object.keys(CURRENT_CONVERSIONS).map(u => (
-                            <option key={u} value={u} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">{u}</option>
-                          ))}
-                        </select>
+                  {!(activeTab === "dc" && dcMode === "VR") && (
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        <span>Current (I)</span>
+                        <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800">
+                          <input
+                            type="number"
+                            step="0.1"
+                            value={currentVal}
+                            onChange={(e) => setCurrentVal(Number(e.target.value))}
+                            className="w-24 bg-transparent text-right font-black focus:outline-none text-slate-900 dark:text-white"
+                          />
+                          <select
+                            value={currentUnit}
+                            onChange={(e) => setCurrentUnit(e.target.value)}
+                            className="bg-transparent font-bold text-xs text-slate-500 focus:outline-none"
+                          >
+                            {Object.keys(CURRENT_CONVERSIONS).map(u => (
+                              <option key={u} value={u} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">{u}</option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
+                      <input
+                        type="range"
+                        min="0.1"
+                        max="50"
+                        step="0.5"
+                        value={currentVal}
+                        onChange={(e) => setCurrentVal(Number(e.target.value))}
+                        className="w-full accent-[#518231] cursor-pointer"
+                      />
                     </div>
-                    <input
-                      type="range"
-                      min="0.1"
-                      max="50"
-                      step="0.5"
-                      value={currentVal}
-                      onChange={(e) => setCurrentVal(Number(e.target.value))}
-                      className="w-full accent-[#518231] cursor-pointer"
-                    />
-                  </div>
+                  )}
+
+                  {activeTab === "dc" && (dcMode === "VR" || dcMode === "IR") && (
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                        <span>Resistance (R)</span>
+                        <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-200/50 dark:border-slate-800">
+                          <input
+                            type="number"
+                            step="0.5"
+                            value={resistanceVal}
+                            onChange={(e) => setResistanceVal(Math.max(0.01, Number(e.target.value)))}
+                            className="w-24 bg-transparent text-right font-black focus:outline-none text-slate-900 dark:text-white"
+                          />
+                          <span className="font-bold text-xs text-slate-500">Ω</span>
+                        </div>
+                      </div>
+                      <input
+                        type="range"
+                        min="0.5"
+                        max="100"
+                        step="0.5"
+                        value={resistanceVal}
+                        onChange={(e) => setResistanceVal(Math.max(0.01, Number(e.target.value)))}
+                        className="w-full accent-[#518231] cursor-pointer"
+                      />
+                    </div>
+                  )}
                 </>
               )}
 

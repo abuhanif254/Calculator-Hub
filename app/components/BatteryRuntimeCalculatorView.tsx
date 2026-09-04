@@ -626,6 +626,31 @@ ESTIMATED REAL-WORLD RUNTIME: ${hours} Hours ${mins} Mins (${results.finalEstima
                       </select>
                     </div>
                   </div>
+
+                  <div className="grid grid-cols-2 gap-2 pt-2">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Battery Health / SoH (%)</span>
+                      <input
+                        type="number"
+                        min="10"
+                        max="100"
+                        value={sohPct}
+                        onChange={(e) => setSohPct(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Ambient Temp (°C)</span>
+                      <input
+                        type="number"
+                        min="-20"
+                        max="60"
+                        value={tempCelsius}
+                        onChange={(e) => setTempCelsius(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                  </div>
                 </div>
               )}
 

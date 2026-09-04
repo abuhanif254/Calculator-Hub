@@ -117,12 +117,12 @@ export function calculateWeightedMean(values: number[], weights: number[]): numb
 
 export function calculateGeometricMean(data: number[]): number | null {
   if (data.length === 0) return null;
-  let product = 1;
+  let logSum = 0;
   for (const val of data) {
     if (val <= 0) return null; // Geometric mean is only defined for strictly positive numbers
-    product *= val;
+    logSum += Math.log(val);
   }
-  return Math.pow(product, 1 / data.length);
+  return Math.exp(logSum / data.length);
 }
 
 export function calculateHarmonicMean(data: number[]): number | null {

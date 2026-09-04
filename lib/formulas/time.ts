@@ -1,4 +1,4 @@
-import { differenceInYears, differenceInMonths, differenceInDays, differenceInWeeks, addYears } from 'date-fns';
+import { differenceInYears, differenceInMonths, differenceInDays, differenceInWeeks, addYears, addMonths } from 'date-fns';
 
 export interface AgeResult {
   years: number;
@@ -17,12 +17,23 @@ export const calculateAge = (birthDate: Date, targetDate: Date = new Date()): Ag
     return { years: 0, months: 0, days: 0, totalMonths: 0, totalWeeks: 0, totalDays: 0, nextBirthdayDays: 0 };
   }
 
-  const years = differenceInYears(targetDate, birthDate);
-  const dateAfterYears = addYears(birthDate, years);
+  let years = differenceInYears(targetDate, birthDate);
+  let dateAfterYears = addYears(birthDate, years);
+  if (dateAfterYears > targetDate) {
+    years--;
+    dateAfterYears = addYears(birthDate, years);
+  }
   
-  const months = differenceInMonths(targetDate, dateAfterYears);
-  const dateAfterMonths = new Date(dateAfterYears);
-  dateAfterMonths.setMonth(dateAfterMonths.getMonth() + months);
+  let months = differenceInMonths(targetDate, dateAfterYears);
+  let dateAfterMonths = addMonths(dateAfterYears, months);
+  if (dateAfterMonths > targetDate) {
+    months--;
+    dateAfterMonths = addMonths(dateAfterYears, months);
+  }
+  if (months >= 12) {
+    years += Math.floor(months / 12);
+    months = months % 12;
+  }
 
   const days = differenceInDays(targetDate, dateAfterMonths);
 

@@ -430,6 +430,21 @@ Thermal Power Loss (@ ${loadCurrentA}A): ${results.powerLossWatts.toFixed(2)} W`
                       {isTwoWireLoop ? "Enabled (2x)" : "One-Way"}
                     </button>
                   </div>
+
+                  <div className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200/50 dark:border-slate-800 text-xs">
+                    <span className="font-semibold text-slate-700 dark:text-slate-300">Parallel Conductors</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        min="1"
+                        max="10"
+                        value={parallelConductors}
+                        onChange={(e) => setParallelConductors(Math.max(1, Number(e.target.value)))}
+                        className="w-16 bg-white dark:bg-slate-900 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs"
+                      />
+                      <span className="text-xs text-slate-400">runs</span>
+                    </div>
+                  </div>
                 </div>
               )}
 

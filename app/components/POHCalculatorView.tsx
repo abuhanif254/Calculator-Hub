@@ -384,6 +384,55 @@ Calculation Method: ${results.methodNote}`;
                 </>
               )}
 
+              {calcMode === "buffer_poh" && (
+                <>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      <span>Weak Base pKb</span>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pKbVal}
+                        onChange={(e) => setPKbVal(Number(e.target.value))}
+                        className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      <span>Weak Base [B]</span>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          step="0.01"
+                          value={weakBaseBufferConc}
+                          onChange={(e) => setWeakBaseBufferConc(Number(e.target.value))}
+                          className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                        />
+                        <span className="text-xs font-bold text-slate-400">M</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      <span>Conjugate Acid [BH+]</span>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          step="0.01"
+                          value={conjugateAcidConc}
+                          onChange={(e) => setConjugateAcidConc(Number(e.target.value))}
+                          className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                        />
+                        <span className="text-xs font-bold text-slate-400">M</span>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
+
               {/* Primary Output Readouts */}
               <ReadOnlyField 
                 label="Calculated pOH" 

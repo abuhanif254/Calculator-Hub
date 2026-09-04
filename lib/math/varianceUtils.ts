@@ -184,8 +184,8 @@ export function analyzeDataset(data: number[]): DispersionMetrics {
     sampleStandardDeviation = Math.sqrt(sampleVariance);
   }
 
-  const coefficientOfVariationPopulation = mean !== 0 ? (populationStandardDeviation / mean) * 100 : 0;
-  const coefficientOfVariationSample = mean !== 0 && sampleStandardDeviation !== null ? (sampleStandardDeviation / mean) * 100 : null;
+  const coefficientOfVariationPopulation = mean !== 0 ? (populationStandardDeviation / Math.abs(mean)) * 100 : 0;
+  const coefficientOfVariationSample = mean !== 0 && sampleStandardDeviation !== null ? (sampleStandardDeviation / Math.abs(mean)) * 100 : null;
 
   // Outlier detection (Tukey's fences)
   const lowerBound = q1 - 1.5 * iqr;

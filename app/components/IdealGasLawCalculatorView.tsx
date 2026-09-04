@@ -367,71 +367,116 @@ Compressibility Factor (Z): ${results.compressibilityZ.toFixed(3)} (Ideal Z = 1.
             </div>
 
             {/* R Constant Selector */}
-            <div className="space-y-2 mb-6">
-              <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Ideal Gas Constant (R)</label>
-              <select
-                value={rConstantVal}
-                onChange={(e) => setRConstantVal(Number(e.target.value))}
-                className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none"
-              >
-                <option value={0.082057}>0.082057 L·atm/(mol·K)</option>
-                <option value={8.314462}>8.314462 J/(mol·K) or Pa·m³/(mol·K)</option>
-                <option value={0.08314}>0.08314 L·bar/(mol·K)</option>
-                <option value={62.3637}>62.3637 L·mmHg/(mol·K)</option>
-              </select>
-            </div>
+            {variableMode !== "solve_r" ? (
+              <div className="space-y-2 mb-6">
+                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">Ideal Gas Constant (R)</label>
+                <select
+                  value={rConstantVal}
+                  onChange={(e) => setRConstantVal(Number(e.target.value))}
+                  className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white focus:outline-none"
+                >
+                  <option value={0.082057}>0.082057 L·atm/(mol·K)</option>
+                  <option value={8.314462}>8.314462 J/(mol·K) or Pa·m³/(mol·K)</option>
+                  <option value={0.08314}>0.08314 L·bar/(mol·K)</option>
+                  <option value={62.3637}>62.3637 L·mmHg/(mol·K)</option>
+                </select>
+              </div>
+            ) : (
+              <div className="space-y-2 mb-6">
+                <label className="text-xs font-bold text-[#518231] uppercase tracking-wider block">Ideal Gas Constant (R: Solved)</label>
+                <div className="w-full bg-green-50 dark:bg-green-950/40 p-2.5 rounded-2xl border border-green-200 dark:border-green-800 font-black text-xs text-[#518231]">
+                  {results.calcRVal.toFixed(5)} L·atm/(mol·K)
+                </div>
+              </div>
+            )}
 
             {/* Dynamic Inputs */}
             <div className="space-y-4">
               
               {/* Pressure (atm) */}
-              <div>
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Pressure P (atm)</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={inputPressureAtm}
-                  onChange={(e) => setInputPressureAtm(Number(e.target.value))}
-                  className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
-                />
-              </div>
+              {variableMode !== "solve_p" ? (
+                <div>
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Pressure P (atm)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={inputPressureAtm}
+                    onChange={(e) => setInputPressureAtm(Number(e.target.value))}
+                    className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <label className="text-xs font-bold text-[#518231] uppercase tracking-wider block mb-1">Pressure P (Target: Solved)</label>
+                  <div className="w-full bg-green-50 dark:bg-green-950/40 p-2.5 rounded-2xl border border-green-200 dark:border-green-800 font-black text-sm text-[#518231]">
+                    {results.calcPressureAtm.toFixed(3)} atm
+                  </div>
+                </div>
+              )}
 
               {/* Volume (L) */}
-              <div>
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Volume V (Liters)</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  value={inputVolumeL}
-                  onChange={(e) => setInputVolumeL(Number(e.target.value))}
-                  className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
-                />
-              </div>
+              {variableMode !== "solve_v" ? (
+                <div>
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Volume V (Liters)</label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    value={inputVolumeL}
+                    onChange={(e) => setInputVolumeL(Number(e.target.value))}
+                    className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <label className="text-xs font-bold text-[#518231] uppercase tracking-wider block mb-1">Volume V (Target: Solved)</label>
+                  <div className="w-full bg-green-50 dark:bg-green-950/40 p-2.5 rounded-2xl border border-green-200 dark:border-green-800 font-black text-sm text-[#518231]">
+                    {results.calcVolumeL.toFixed(3)} L
+                  </div>
+                </div>
+              )}
 
               {/* Moles n */}
-              <div>
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Amount of Gas n (moles)</label>
-                <input
-                  type="number"
-                  step="0.01"
-                  value={inputMoles}
-                  onChange={(e) => setInputMoles(Number(e.target.value))}
-                  className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
-                />
-              </div>
+              {variableMode !== "solve_n" ? (
+                <div>
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Amount of Gas n (moles)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={inputMoles}
+                    onChange={(e) => setInputMoles(Number(e.target.value))}
+                    className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <label className="text-xs font-bold text-[#518231] uppercase tracking-wider block mb-1">Amount of Gas n (Target: Solved)</label>
+                  <div className="w-full bg-green-50 dark:bg-green-950/40 p-2.5 rounded-2xl border border-green-200 dark:border-green-800 font-black text-sm text-[#518231]">
+                    {results.calcMoles.toFixed(4)} moles
+                  </div>
+                </div>
+              )}
 
               {/* Temperature (°C) */}
-              <div>
-                <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Temperature T (°C)</label>
-                <input
-                  type="number"
-                  step="0.1"
-                  value={inputTempC}
-                  onChange={(e) => setInputTempC(Number(e.target.value))}
-                  className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
-                />
-                <span className="text-[10px] text-slate-400 font-semibold block mt-1">Converted Absolute Temp: {results.tempK.toFixed(2)} K</span>
-              </div>
+              {variableMode !== "solve_t" ? (
+                <div>
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block mb-1">Temperature T (°C)</label>
+                  <input
+                    type="number"
+                    step="0.1"
+                    value={inputTempC}
+                    onChange={(e) => setInputTempC(Number(e.target.value))}
+                    className="w-full bg-slate-50 dark:bg-slate-950 p-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
+                  />
+                  <span className="text-[10px] text-slate-400 font-semibold block mt-1">Converted Absolute Temp: {results.tempK.toFixed(2)} K</span>
+                </div>
+              ) : (
+                <div>
+                  <label className="text-xs font-bold text-[#518231] uppercase tracking-wider block mb-1">Temperature T (Target: Solved)</label>
+                  <div className="w-full bg-green-50 dark:bg-green-950/40 p-2.5 rounded-2xl border border-green-200 dark:border-green-800 font-black text-sm text-[#518231]">
+                    {results.calcTempC.toFixed(1)} °C ({results.calcTempK.toFixed(2)} K)
+                  </div>
+                </div>
+              )}
 
               {/* Molar Mass M (g/mol) */}
               <div>
@@ -445,15 +490,80 @@ Compressibility Factor (Z): ${results.compressibilityZ.toFixed(3)} (Ideal Z = 1.
                 />
               </div>
 
+              {/* State 2 Inputs for two_state mode */}
+              {variableMode === "two_state" && (
+                <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block">State 2 Conditions (Comparison)</span>
+                  <div className="grid grid-cols-3 gap-2 text-xs">
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">P2 (atm)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={inputP2Atm}
+                        onChange={(e) => setInputP2Atm(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">V2 (L)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={inputV2L}
+                        onChange={(e) => setInputV2L(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">T2 (°C)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={inputT2C}
+                        onChange={(e) => setInputT2C(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Primary Output Readouts */}
               <ReadOnlyField 
-                label="Calculated Pressure (P)" 
-                val={`${results.calcPressureAtm.toFixed(3)} atm`} 
-                icon={Gauge} 
+                label={
+                  variableMode === "solve_p" ? "Calculated Pressure (P)" :
+                  variableMode === "solve_v" ? "Calculated Volume (V)" :
+                  variableMode === "solve_n" ? "Calculated Amount of Gas (n)" :
+                  variableMode === "solve_t" ? "Calculated Temperature (T)" :
+                  variableMode === "solve_r" ? "Calculated Gas Constant (R)" :
+                  variableMode === "density_molar_mass" ? "Calculated Gas Density (ρ)" :
+                  variableMode === "compressibility_z" ? "Compressibility Factor (Z)" :
+                  "Two-State Ratio Comparison"
+                } 
+                val={
+                  variableMode === "solve_p" ? `${results.calcPressureAtm.toFixed(3)} atm` :
+                  variableMode === "solve_v" ? `${results.calcVolumeL.toFixed(3)} Liters` :
+                  variableMode === "solve_n" ? `${results.calcMoles.toFixed(4)} moles` :
+                  variableMode === "solve_t" ? `${results.calcTempC.toFixed(1)} °C (${results.calcTempK.toFixed(2)} K)` :
+                  variableMode === "solve_r" ? `${results.calcRVal.toFixed(5)} L·atm/(mol·K)` :
+                  variableMode === "density_molar_mass" ? `${results.gasDensityGL.toFixed(3)} g/L` :
+                  variableMode === "compressibility_z" ? `${results.compressibilityZ.toFixed(4)} ${Math.abs(results.compressibilityZ - 1) < 0.05 ? "(Ideal Gas behavior)" : "(Real Gas deviation)"}` :
+                  results.isStateEquiv ? `State 1 (${results.state1Ratio.toFixed(3)}) ≈ State 2 (${results.state2Ratio.toFixed(3)})` : `State 1 (${results.state1Ratio.toFixed(3)}) ≠ State 2 (${results.state2Ratio.toFixed(3)})`
+                } 
+                icon={
+                  variableMode === "solve_p" ? Gauge :
+                  variableMode === "solve_v" ? Atom :
+                  variableMode === "solve_t" ? Thermometer :
+                  variableMode === "solve_r" ? Scale :
+                  variableMode === "density_molar_mass" ? FlaskConical :
+                  variableMode === "compressibility_z" ? Activity :
+                  Layers
+                } 
               />
               <ReadOnlyField 
-                label="Gas Density (ρ)" 
-                val={`${results.gasDensityGL.toFixed(3)} g/L`} 
+                label={variableMode === "density_molar_mass" ? "Molar Volume (Vm)" : "Gas Density (ρ)"} 
+                val={variableMode === "density_molar_mass" ? `${results.molarVolumeLmol.toFixed(3)} L/mol` : `${results.gasDensityGL.toFixed(3)} g/L`} 
                 icon={Atom} 
               />
 

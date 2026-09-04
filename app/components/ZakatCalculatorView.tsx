@@ -377,6 +377,23 @@ Zakat Due (2.5%): ${formatMoney(results.zakatDue)}`;
                       />
                     </div>
                   </div>
+                  <div className="space-y-2 sm:col-span-2">
+                    <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                      Money Owed to You (Receivables)
+                      <InfoTooltip text="Good loans given to others or accounts receivable that you expect to be repaid." />
+                    </label>
+                    <div className="relative rounded-xl shadow-sm">
+                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 font-semibold">{currentCurrency.symbol}</div>
+                      <input
+                        type="number"
+                        min="0"
+                        value={accountsReceivable || ""}
+                        onChange={(e) => setAccountsReceivable(Math.max(0, Number(e.target.value)))}
+                        className="block w-full pl-10 pr-3 py-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-950 focus:outline-none focus:ring-2 focus:ring-[#518231] focus:bg-white text-sm"
+                        placeholder="0.00"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
 

@@ -85,7 +85,7 @@ export function DilutionCalculatorView() {
     let computedV2 = v2FinalVolInput;
     let computedVDiluent = vDiluentInput;
 
-    if (calcMode === "general_dilution" || calcMode === "find_final_concentration") {
+    if (calcMode === "general_dilution" || calcMode === "find_final_concentration" || calcMode === "percentage_dilution" || calcMode === "mass_concentration_dilution" || calcMode === "serial_dilution") {
       computedV2 = v1InitialVol + vDiluentInput;
       computedC2 = computedV2 > 0 ? (c1InitialConc * v1InitialVol) / computedV2 : 0;
       computedVDiluent = Math.max(0, computedV2 - v1InitialVol);
@@ -100,6 +100,10 @@ export function DilutionCalculatorView() {
       computedC2 = c2FinalConcInput;
       computedV1 = v1InitialVol;
       computedV2 = computedC2 > 0 ? (c1InitialConc * v1InitialVol) / computedC2 : 0;
+      computedVDiluent = Math.max(0, computedV2 - v1InitialVol);
+    } else if (calcMode === "dilution_factor") {
+      computedV2 = v2FinalVolInput > 0 ? v2FinalVolInput : v1InitialVol * dilutionRatioX;
+      computedC2 = computedV2 > 0 ? (c1InitialConc * v1InitialVol) / computedV2 : 0;
       computedVDiluent = Math.max(0, computedV2 - v1InitialVol);
     } else if (calcMode === "dilution_ratio") {
       // 1:X ratio => DF = X, stock parts = 1, diluent parts = X - 1
@@ -282,32 +286,69 @@ Percentage Retained: ${results.percentageRetained.toFixed(2)}% (${results.percen
               
               {/* Primary Output Field */}
               <ReadOnlyField 
-                label="Calculated Final Concentration (C2)" 
-                val={`${results.computedC2.toFixed(2)} ${concUnitStr}`} 
+                label={
+                  calcMode === "find_initial_concentration" 
+                    ? "Calculated Initial Concentration (C₁)" 
+                    : calcMode === "find_diluent_volume" 
+                    ? "Calculated Diluent Volume (Vdiluent)" 
+                    : calcMode === "find_final_volume" 
+                    ? "Calculated Final Volume (V₂)" 
+                    : "Calculated Final Concentration (C₂)"
+                } 
+                val={
+                  calcMode === "find_initial_concentration" 
+                    ? `${results.computedC1.toFixed(2)} ${concUnitStr}` 
+                    : calcMode === "find_diluent_volume" 
+                    ? `${results.computedVDiluent.toFixed(2)} ${volUnitStr}` 
+                    : calcMode === "find_final_volume" 
+                    ? `${results.computedV2.toFixed(2)} ${volUnitStr}` 
+                    : `${results.computedC2.toFixed(2)} ${concUnitStr}`
+                } 
                 icon={Droplet} 
               />
 
               {/* Initial Concentration Input */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
-                  <span>Initial Concentration (C₁)</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      step="1"
-                      value={c1InitialConc}
-                      onChange={(e) => setC1InitialConc(Number(e.target.value))}
-                      className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
-                    />
-                    <input
-                      type="text"
-                      value={concUnitStr}
-                      onChange={(e) => setConcUnitStr(e.target.value)}
-                      className="w-16 bg-slate-50 dark:bg-slate-950 text-center p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs"
-                    />
+              {calcMode !== "find_initial_concentration" && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Initial Concentration (C₁)</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="1"
+                        value={c1InitialConc}
+                        onChange={(e) => setC1InitialConc(Number(e.target.value))}
+                        className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <input
+                        type="text"
+                        value={concUnitStr}
+                        onChange={(e) => setConcUnitStr(e.target.value)}
+                        className="w-16 bg-slate-50 dark:bg-slate-950 text-center p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
+
+              {/* Target / Final Concentration Input (for reverse modes) */}
+              {(calcMode === "find_initial_concentration" || calcMode === "find_diluent_volume" || calcMode === "find_final_volume") && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Target Concentration (C₂)</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="1"
+                        value={c2FinalConcInput}
+                        onChange={(e) => setC2FinalConcInput(Number(e.target.value))}
+                        className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{concUnitStr}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Initial Stock Volume Input */}
               <div className="space-y-2">
@@ -332,21 +373,42 @@ Percentage Retained: ${results.percentageRetained.toFixed(2)}% (${results.percen
               </div>
 
               {/* Diluent Volume Added Input */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
-                  <span>Diluent Volume Added (V_{`diluent`})</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      step="1"
-                      value={vDiluentInput}
-                      onChange={(e) => setVDiluentInput(Number(e.target.value))}
-                      className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
-                    />
-                    <span className="text-xs font-bold text-slate-400">{volUnitStr}</span>
+              {calcMode !== "find_diluent_volume" && calcMode !== "find_initial_concentration" && calcMode !== "dilution_ratio" && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Diluent Volume Added (V_{`diluent`})</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="1"
+                        value={vDiluentInput}
+                        onChange={(e) => setVDiluentInput(Number(e.target.value))}
+                        className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{volUnitStr}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
+
+              {/* Final Volume V2 Input */}
+              {(calcMode === "find_initial_concentration" || calcMode === "dilution_factor") && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Final Target Volume (V₂)</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="1"
+                        value={v2FinalVolInput}
+                        onChange={(e) => setV2FinalVolInput(Number(e.target.value))}
+                        className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{volUnitStr}</span>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Dilution Ratio Input (1:X) */}
               {calcMode === "dilution_ratio" && (
@@ -358,6 +420,34 @@ Percentage Retained: ${results.percentageRetained.toFixed(2)}% (${results.percen
                       step="1"
                       value={dilutionRatioX}
                       onChange={(e) => setDilutionRatioX(Number(e.target.value))}
+                      className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Serial Dilution Steps */}
+              {calcMode === "serial_dilution" && (
+                <div className="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Serial Steps Count</span>
+                    <input
+                      type="number"
+                      min="2"
+                      max="12"
+                      value={serialStepsCount}
+                      onChange={(e) => setSerialStepsCount(Number(e.target.value))}
+                      className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                    />
+                  </div>
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Step Dilution Factor (1:X)</span>
+                    <input
+                      type="number"
+                      min="2"
+                      max="100"
+                      value={serialStepDF}
+                      onChange={(e) => setSerialStepDF(Number(e.target.value))}
                       className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
                     />
                   </div>

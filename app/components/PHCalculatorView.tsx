@@ -403,14 +403,33 @@ Calculation Method: ${results.methodNote}`;
 
                   <div className="space-y-2">
                     <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      <span>Weak Acid [HA]</span>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          step="0.01"
+                          value={weakAcidBufferConc}
+                          onChange={(e) => setWeakAcidBufferConc(Number(e.target.value))}
+                          className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                        />
+                        <span className="text-xs font-bold text-slate-400">M</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
                       <span>Conjugate Base [A-]</span>
-                      <input
-                        type="number"
-                        step="0.01"
-                        value={conjugateBaseConc}
-                        onChange={(e) => setConjugateBaseConc(Number(e.target.value))}
-                        className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
-                      />
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          step="0.01"
+                          value={conjugateBaseConc}
+                          onChange={(e) => setConjugateBaseConc(Number(e.target.value))}
+                          className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                        />
+                        <span className="text-xs font-bold text-slate-400">M</span>
+                      </div>
                     </div>
                   </div>
                 </>

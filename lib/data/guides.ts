@@ -2754,7 +2754,8 @@ const privacyGuides: Guide[] = [
     category: 'Privacy & Security',
     readingTime: 7,
     lastUpdated: '2026-08-08',
-    relatedCalculator: 'database-privacy',
+    relatedCalculator: 'database-anonymizer',
+    relatedType: 'tool',
     featured: true,
   },
   {
@@ -2771,7 +2772,8 @@ const privacyGuides: Guide[] = [
     category: 'Privacy & Security',
     readingTime: 9,
     lastUpdated: '2026-08-08',
-    relatedCalculator: 'database-privacy',
+    relatedCalculator: 'database-anonymizer',
+    relatedType: 'tool',
   },
   {
     slug: 'data-masking-techniques',
@@ -2787,7 +2789,8 @@ const privacyGuides: Guide[] = [
     category: 'Privacy & Security',
     readingTime: 8,
     lastUpdated: '2026-08-08',
-    relatedCalculator: 'database-privacy',
+    relatedCalculator: 'database-anonymizer',
+    relatedType: 'tool',
   },
   {
     slug: 'hipaa-data-de-identification',
@@ -2803,7 +2806,8 @@ const privacyGuides: Guide[] = [
     category: 'Privacy & Security',
     readingTime: 8,
     lastUpdated: '2026-08-08',
-    relatedCalculator: 'database-privacy',
+    relatedCalculator: 'database-anonymizer',
+    relatedType: 'tool',
   },
   {
     slug: 'pci-dss-pan-masking',
@@ -2819,7 +2823,8 @@ const privacyGuides: Guide[] = [
     category: 'Privacy & Security',
     readingTime: 7,
     lastUpdated: '2026-08-08',
-    relatedCalculator: 'database-privacy',
+    relatedCalculator: 'database-anonymizer',
+    relatedType: 'tool',
   },
   {
     slug: 'database-anonymizer-guide',

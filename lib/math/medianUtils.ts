@@ -213,7 +213,7 @@ export function analyzeDatasetFull(data: number[]): MedianAnalysisMetrics {
   const varianceSample = n > 1 ? sumSquaredDiffs / (n - 1) : 0;
   const standardDeviationSample = Math.sqrt(varianceSample);
   
-  const cv = mean !== 0 ? (standardDeviationSample / mean) * 100 : null;
+  const cv = mean !== 0 ? (standardDeviationSample / Math.abs(mean)) * 100 : null;
 
   // Skewness and Kurtosis (Sample adjusted)
   let skewness = null;

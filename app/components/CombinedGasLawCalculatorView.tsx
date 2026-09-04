@@ -361,38 +361,65 @@ Temperature Change (ΔT): ${results.deltaTPercent.toFixed(1)}%`;
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block">State 1 (Initial Conditions)</span>
 
                 <div className="grid grid-cols-3 gap-2 text-xs">
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 block mb-1">P1 (atm)</label>
-                    <input
-                      type="number"
-                      step="0.01"
-                      value={inputP1Atm}
-                      onChange={(e) => setInputP1Atm(Number(e.target.value))}
-                      className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
-                    />
-                  </div>
+                  {variableMode !== "solve_p1" ? (
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">P1 (atm)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={inputP1Atm}
+                        onChange={(e) => setInputP1Atm(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <label className="text-[10px] font-bold text-[#518231] block mb-1">P1 (Target: Solved)</label>
+                      <div className="w-full bg-green-50 dark:bg-green-950/40 p-2 rounded-xl border border-green-200 dark:border-green-800 font-black text-[#518231]">
+                        {results.calcP1Atm.toFixed(3)} atm
+                      </div>
+                    </div>
+                  )}
 
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 block mb-1">V1 (L)</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={inputV1L}
-                      onChange={(e) => setInputV1L(Number(e.target.value))}
-                      className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
-                    />
-                  </div>
+                  {variableMode !== "solve_v1" ? (
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">V1 (L)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={inputV1L}
+                        onChange={(e) => setInputV1L(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <label className="text-[10px] font-bold text-[#518231] block mb-1">V1 (Target: Solved)</label>
+                      <div className="w-full bg-green-50 dark:bg-green-950/40 p-2 rounded-xl border border-green-200 dark:border-green-800 font-black text-[#518231]">
+                        {results.calcV1L.toFixed(2)} L
+                      </div>
+                    </div>
+                  )}
 
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 block mb-1">T1 (°C)</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={inputT1C}
-                      onChange={(e) => setInputT1C(Number(e.target.value))}
-                      className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
-                    />
-                  </div>
+                  {variableMode !== "solve_t1" ? (
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">T1 (°C)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={inputT1C}
+                        onChange={(e) => setInputT1C(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <label className="text-[10px] font-bold text-[#518231] block mb-1">T1 (Target: Solved)</label>
+                      <div className="w-full bg-green-50 dark:bg-green-950/40 p-2 rounded-xl border border-green-200 dark:border-green-800 font-black text-[#518231]">
+                        {results.calcT1C.toFixed(1)} °C
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -401,51 +428,91 @@ Temperature Change (ΔT): ${results.deltaTPercent.toFixed(1)}%`;
                 <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block">State 2 (Final Conditions)</span>
 
                 <div className="grid grid-cols-3 gap-2 text-xs">
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 block mb-1">P2 (atm)</label>
-                    <input
-                      type="number"
-                      step="0.01"
-                      value={inputP2Atm}
-                      onChange={(e) => setInputP2Atm(Number(e.target.value))}
-                      className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
-                    />
-                  </div>
+                  {variableMode !== "solve_p2" ? (
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">P2 (atm)</label>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={inputP2Atm}
+                        onChange={(e) => setInputP2Atm(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <label className="text-[10px] font-bold text-[#518231] block mb-1">P2 (Target: Solved)</label>
+                      <div className="w-full bg-green-50 dark:bg-green-950/40 p-2 rounded-xl border border-green-200 dark:border-green-800 font-black text-[#518231]">
+                        {results.calcP2Atm.toFixed(3)} atm
+                      </div>
+                    </div>
+                  )}
 
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 block mb-1">V2 (L)</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={inputV2L}
-                      onChange={(e) => setInputV2L(Number(e.target.value))}
-                      className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
-                    />
-                  </div>
+                  {variableMode !== "solve_v2" ? (
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">V2 (L)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={inputV2L}
+                        onChange={(e) => setInputV2L(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <label className="text-[10px] font-bold text-[#518231] block mb-1">V2 (Target: Solved)</label>
+                      <div className="w-full bg-green-50 dark:bg-green-950/40 p-2 rounded-xl border border-green-200 dark:border-green-800 font-black text-[#518231]">
+                        {results.calcV2L.toFixed(2)} L
+                      </div>
+                    </div>
+                  )}
 
-                  <div>
-                    <label className="text-[10px] font-bold text-slate-400 block mb-1">T2 (°C)</label>
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={inputT2C}
-                      onChange={(e) => setInputT2C(Number(e.target.value))}
-                      className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
-                    />
-                  </div>
+                  {variableMode !== "solve_t2" ? (
+                    <div>
+                      <label className="text-[10px] font-bold text-slate-400 block mb-1">T2 (°C)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={inputT2C}
+                        onChange={(e) => setInputT2C(Number(e.target.value))}
+                        className="w-full bg-white dark:bg-slate-900 p-2 rounded-xl border border-slate-200 dark:border-slate-800 font-bold"
+                      />
+                    </div>
+                  ) : (
+                    <div>
+                      <label className="text-[10px] font-bold text-[#518231] block mb-1">T2 (Target: Solved)</label>
+                      <div className="w-full bg-green-50 dark:bg-green-950/40 p-2 rounded-xl border border-green-200 dark:border-green-800 font-black text-[#518231]">
+                        {results.calcT2C.toFixed(1)} °C
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Primary Output Readouts */}
               <ReadOnlyField 
-                label="Calculated Final Pressure (P2)" 
-                val={`${results.calcP2Atm.toFixed(3)} atm`} 
-                icon={Gauge} 
-              />
-              <ReadOnlyField 
-                label="Calculated Final Volume (V2)" 
-                val={`${results.calcV2L.toFixed(2)} Liters`} 
-                icon={Atom} 
+                label={
+                  variableMode === "solve_p2" ? "Calculated Final Pressure (P2)" :
+                  variableMode === "solve_v2" ? "Calculated Final Volume (V2)" :
+                  variableMode === "solve_t2" ? "Calculated Final Temperature (T2)" :
+                  variableMode === "solve_p1" ? "Calculated Initial Pressure (P1)" :
+                  variableMode === "solve_v1" ? "Calculated Initial Volume (V1)" :
+                  "Calculated Initial Temperature (T1)"
+                } 
+                val={
+                  variableMode === "solve_p2" ? `${results.calcP2Atm.toFixed(3)} atm` :
+                  variableMode === "solve_v2" ? `${results.calcV2L.toFixed(2)} Liters` :
+                  variableMode === "solve_t2" ? `${results.calcT2C.toFixed(1)} °C (${results.calcT2K.toFixed(1)} K)` :
+                  variableMode === "solve_p1" ? `${results.calcP1Atm.toFixed(3)} atm` :
+                  variableMode === "solve_v1" ? `${results.calcV1L.toFixed(2)} Liters` :
+                  `${results.calcT1C.toFixed(1)} °C (${results.calcT1K.toFixed(1)} K)`
+                } 
+                icon={
+                  variableMode.includes("p") ? Gauge :
+                  variableMode.includes("v") ? Atom :
+                  Thermometer
+                } 
               />
 
             </div>

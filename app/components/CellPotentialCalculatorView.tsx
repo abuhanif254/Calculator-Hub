@@ -442,17 +442,98 @@ Spontaneity: ${results.spontaneityText}`;
                 </div>
               </div>
 
+              <div className="space-y-2">
+                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                  <span>Electrons Transferred (n)</span>
+                  <div className="flex items-center gap-1">
+                    <input
+                      type="number"
+                      step="1"
+                      min="1"
+                      value={inputNElectrons}
+                      onChange={(e) => setInputNElectrons(Math.max(1, parseInt(e.target.value) || 1))}
+                      className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                    />
+                    <span className="text-xs font-bold text-slate-400">e⁻</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Primary Output Readouts */}
-              <ReadOnlyField 
-                label="Standard Cell Potential (E°_cell)" 
-                val={`${results.e0Cell.toFixed(4)} V`} 
-                icon={Zap} 
-              />
-              <ReadOnlyField 
-                label="Non-Standard Cell Potential (E_cell)" 
-                val={`${results.eCell.toFixed(4)} V`} 
-                icon={Activity} 
-              />
+              {calcMode === "standard_potential" && (
+                <>
+                  <ReadOnlyField 
+                    label="Standard Cell Potential (E°_cell)" 
+                    val={`${results.e0Cell >= 0 ? "+" : ""}${results.e0Cell.toFixed(4)} V`} 
+                    icon={Zap} 
+                  />
+                  <ReadOnlyField 
+                    label="Reaction Type" 
+                    val={results.e0Cell > 0 ? "Galvanic (Spontaneous)" : results.e0Cell < 0 ? "Electrolytic (Non-Spontaneous)" : "Equilibrium"} 
+                    icon={Activity} 
+                  />
+                </>
+              )}
+
+              {calcMode === "non_standard_potential" && (
+                <>
+                  <ReadOnlyField 
+                    label="Non-Standard Potential (E_cell)" 
+                    val={`${results.eCell >= 0 ? "+" : ""}${results.eCell.toFixed(4)} V`} 
+                    icon={Activity} 
+                  />
+                  <ReadOnlyField 
+                    label="Standard Cell Potential (E°_cell)" 
+                    val={`${results.e0Cell >= 0 ? "+" : ""}${results.e0Cell.toFixed(4)} V`} 
+                    icon={Zap} 
+                  />
+                </>
+              )}
+
+              {calcMode === "reaction_quotient" && (
+                <>
+                  <ReadOnlyField 
+                    label="Reaction Quotient (Q = [Anode] / [Cathode])" 
+                    val={`${results.qVal.toFixed(4)}`} 
+                    icon={FlaskConical} 
+                  />
+                  <ReadOnlyField 
+                    label="Nernst Shift (ΔE = -RT/nF · ln Q)" 
+                    val={`${(results.eCell - results.e0Cell) >= 0 ? "+" : ""}${(results.eCell - results.e0Cell).toFixed(4)} V`} 
+                    icon={Zap} 
+                  />
+                </>
+              )}
+
+              {calcMode === "electrode_potentials" && (
+                <>
+                  <ReadOnlyField 
+                    label="Cathode Reduction Potential (E°_cath)" 
+                    val={`${inputCathodeE0 >= 0 ? "+" : ""}${inputCathodeE0.toFixed(3)} V`} 
+                    icon={Zap} 
+                  />
+                  <ReadOnlyField 
+                    label="Anode Reduction Potential (E°_anode)" 
+                    val={`${inputAnodeE0 >= 0 ? "+" : ""}${inputAnodeE0.toFixed(3)} V`} 
+                    icon={Zap} 
+                  />
+                </>
+              )}
+
+              {calcMode === "gibbs_equilibrium" && (
+                <>
+                  <ReadOnlyField 
+                    label="Gibbs Free Energy (ΔG)" 
+                    val={`${results.gibbsEnergyKJ.toFixed(2)} kJ/mol`} 
+                    icon={Flame} 
+                  />
+                  <ReadOnlyField 
+                    label="Equilibrium Constant (log₁₀ K)" 
+                    val={`${results.log10K.toFixed(2)} (K ≈ 10^${results.log10K.toFixed(1)})`} 
+                    icon={Scale} 
+                  />
+                </>
+              )}
 
             </div>
           </div>

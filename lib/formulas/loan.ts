@@ -20,10 +20,10 @@ export const calculateAmortizedLoan = (
   
   // Convert based on compound period
   let nPerYear = 12;
-  if (compoundPeriod.includes('Annually')) nPerYear = 1;
-  else if (compoundPeriod.includes('Semi-Annually')) nPerYear = 2;
-  else if (compoundPeriod.includes('Quarterly')) nPerYear = 4;
-  else if (compoundPeriod.includes('Daily')) nPerYear = 365;
+  if (compoundPeriod?.includes('Semi-Annually')) nPerYear = 2;
+  else if (compoundPeriod?.includes('Annually')) nPerYear = 1;
+  else if (compoundPeriod?.includes('Quarterly')) nPerYear = 4;
+  else if (compoundPeriod?.includes('Daily')) nPerYear = 365;
 
   // Effective rate per payment period (assuming monthly payback for now as standard)
   let effectiveRate = Math.pow(1 + r / nPerYear, nPerYear / 12) - 1;

@@ -510,7 +510,61 @@ Calculation Method: ${results.methodNote}`;
                       />
                     </div>
                   </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                      <span>Total Solution Volume</span>
+                      <div className="flex items-center gap-1">
+                        <input
+                          type="number"
+                          step="0.1"
+                          value={solutionVolumeL}
+                          onChange={(e) => setSolutionVolumeL(Number(e.target.value))}
+                          className="w-24 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                        />
+                        <span className="text-xs font-bold text-slate-400">L</span>
+                      </div>
+                    </div>
+                  </div>
                 </>
+              )}
+
+              {calcMode === "polyprotic" && (
+                <div className="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-300 block">Polyprotic Dissociation Constants</span>
+                  <div className="grid grid-cols-3 gap-2">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">pKa1</span>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pKa1}
+                        onChange={(e) => setPKa1(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">pKa2</span>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pKa2}
+                        onChange={(e) => setPKa2(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">pKa3</span>
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={pKa3}
+                        onChange={(e) => setPKa3(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-xs"
+                      />
+                    </div>
+                  </div>
+                </div>
               )}
 
               {/* Primary Output Readouts */}

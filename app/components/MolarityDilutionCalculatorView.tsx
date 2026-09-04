@@ -265,88 +265,176 @@ Solute Moles: ${results.soluteMoles.toFixed(4)} moles (Conserved)`;
               
               {/* Primary Calculated Output */}
               <ReadOnlyField 
-                label="Calculated Final Concentration (M2)" 
-                val={`${results.computedM2.toFixed(3)} ${concUnit}`} 
+                label={
+                  calcMode === "find_stock_volume"
+                    ? "Calculated Stock Volume (V₁)"
+                    : calcMode === "find_final_volume"
+                    ? "Calculated Final Volume (V₂)"
+                    : calcMode === "find_stock_concentration"
+                    ? "Calculated Stock Concentration (M₁)"
+                    : "Calculated Final Concentration (M₂)"
+                } 
+                val={
+                  calcMode === "find_stock_volume"
+                    ? `${results.computedV1.toFixed(3)} ${volUnit}`
+                    : calcMode === "find_final_volume"
+                    ? `${results.computedV2.toFixed(3)} ${volUnit}`
+                    : calcMode === "find_stock_concentration"
+                    ? `${results.computedM1.toFixed(3)} ${concUnit}`
+                    : `${results.computedM2.toFixed(3)} ${concUnit}`
+                } 
                 icon={Droplet} 
               />
 
               {/* M1 Stock Concentration Slider */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
-                  <span>Stock Concentration (M₁)</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={m1StockConc}
-                      onChange={(e) => setM1StockConc(Number(e.target.value))}
-                      className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
-                    />
-                    <span className="text-xs font-bold text-slate-400">{concUnit}</span>
+              {calcMode !== "find_stock_concentration" && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Stock Concentration (M₁)</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={m1StockConc}
+                        onChange={(e) => setM1StockConc(Number(e.target.value))}
+                        className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{concUnit}</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="10.0"
+                    step="0.1"
+                    value={m1StockConc}
+                    onChange={(e) => setM1StockConc(Number(e.target.value))}
+                    className="w-full accent-[#518231]"
+                  />
+                </div>
+              )}
+
+              {/* Target Concentration M2 (for reverse modes) */}
+              {(calcMode === "find_stock_volume" || calcMode === "find_final_volume" || calcMode === "find_stock_concentration") && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Target Concentration (M₂)</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="0.05"
+                        value={m2TargetConcInput}
+                        onChange={(e) => setM2TargetConcInput(Number(e.target.value))}
+                        className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{concUnit}</span>
+                    </div>
                   </div>
                 </div>
-                <input
-                  type="range"
-                  min="0.1"
-                  max="10.0"
-                  step="0.1"
-                  value={m1StockConc}
-                  onChange={(e) => setM1StockConc(Number(e.target.value))}
-                  className="w-full accent-[#518231]"
-                />
-              </div>
+              )}
 
               {/* V1 Stock Volume Slider */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
-                  <span>Stock Volume (V₁)</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={v1StockVol}
-                      onChange={(e) => setV1StockVol(Number(e.target.value))}
-                      className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
-                    />
-                    <span className="text-xs font-bold text-slate-400">{volUnit}</span>
+              {calcMode !== "find_stock_volume" && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Stock Volume (V₁)</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={v1StockVol}
+                        onChange={(e) => setV1StockVol(Number(e.target.value))}
+                        className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{volUnit}</span>
+                    </div>
                   </div>
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="10.0"
+                    step="0.1"
+                    value={v1StockVol}
+                    onChange={(e) => setV1StockVol(Number(e.target.value))}
+                    className="w-full accent-[#518231]"
+                  />
                 </div>
-                <input
-                  type="range"
-                  min="0.1"
-                  max="10.0"
-                  step="0.1"
-                  value={v1StockVol}
-                  onChange={(e) => setV1StockVol(Number(e.target.value))}
-                  className="w-full accent-[#518231]"
-                />
-              </div>
+              )}
 
               {/* Vwater Added Slider */}
-              <div className="space-y-2">
-                <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
-                  <span>Water Added (V_{`water`})</span>
-                  <div className="flex items-center gap-1">
-                    <input
-                      type="number"
-                      step="0.1"
-                      value={vWaterAdded}
-                      onChange={(e) => setVWaterAdded(Number(e.target.value))}
-                      className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
-                    />
-                    <span className="text-xs font-bold text-slate-400">{volUnit}</span>
+              {calcMode !== "find_stock_volume" && calcMode !== "find_final_volume" && calcMode !== "find_stock_concentration" && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Water Added (V_{`water`})</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={vWaterAdded}
+                        onChange={(e) => setVWaterAdded(Number(e.target.value))}
+                        className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{volUnit}</span>
+                    </div>
+                  </div>
+                  <input
+                    type="range"
+                    min="0.1"
+                    max="10.0"
+                    step="0.1"
+                    value={vWaterAdded}
+                    onChange={(e) => setVWaterAdded(Number(e.target.value))}
+                    className="w-full accent-[#518231]"
+                  />
+                </div>
+              )}
+
+              {/* Final Volume V2 Input */}
+              {(calcMode === "find_stock_volume" || calcMode === "find_stock_concentration") && (
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Final Desired Volume (V₂)</span>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        step="0.1"
+                        value={v2FinalVolInput}
+                        onChange={(e) => setV2FinalVolInput(Number(e.target.value))}
+                        className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                      />
+                      <span className="text-xs font-bold text-slate-400">{volUnit}</span>
+                    </div>
                   </div>
                 </div>
-                <input
-                  type="range"
-                  min="0.1"
-                  max="10.0"
-                  step="0.1"
-                  value={vWaterAdded}
-                  onChange={(e) => setVWaterAdded(Number(e.target.value))}
-                  className="w-full accent-[#518231]"
-                />
-              </div>
+              )}
+
+              {/* Serial Dilution Steps */}
+              {calcMode === "serial_dilution" && (
+                <div className="space-y-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Serial Steps Count</span>
+                    <input
+                      type="number"
+                      min="2"
+                      max="12"
+                      value={serialStepsCount}
+                      onChange={(e) => setSerialStepsCount(Number(e.target.value))}
+                      className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                    />
+                  </div>
+                  <div className="flex justify-between items-center text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    <span>Step Dilution Factor (1:X)</span>
+                    <input
+                      type="number"
+                      min="2"
+                      max="100"
+                      value={serialDilutionFactor}
+                      onChange={(e) => setSerialDilutionFactor(Number(e.target.value))}
+                      className="w-20 bg-slate-50 dark:bg-slate-950 text-right p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-black text-xs"
+                    />
+                  </div>
+                </div>
+              )}
 
             </div>
           </div>

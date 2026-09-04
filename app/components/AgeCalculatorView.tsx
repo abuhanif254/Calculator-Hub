@@ -17,6 +17,21 @@ export const AgeCalculatorView: React.FC<Props> = ({ calcDef }) => {
   const [targetDate, setTargetDate] = useState<Date | undefined>(new Date());
   const { locale } = useSettings();
 
+  const formatLocalDate = (d?: Date) => {
+    if (!d || isNaN(d.getTime())) return '';
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+
+  const parseLocalDate = (val: string) => {
+    if (!val) return undefined;
+    const parts = val.split('-').map(Number);
+    if (parts.length !== 3 || parts.some(isNaN)) return undefined;
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  };
+
   const result = (birthDate && targetDate) ? calculateAge(birthDate, targetDate) : null;
 
   return (
@@ -29,15 +44,8 @@ export const AgeCalculatorView: React.FC<Props> = ({ calcDef }) => {
             <label className="block text-sm font-semibold text-slate-700 mb-1">{t("dateOfBirth")}</label>
             <input 
               type="date" 
-              value={birthDate ? birthDate.toISOString().split('T')[0] : ''}
-              onChange={(e) => {
-                const date = e.target.valueAsDate;
-                if (date) {
-                  setBirthDate(new Date(date.getTime() + date.getTimezoneOffset() * 60000));
-                } else {
-                  setBirthDate(undefined);
-                }
-              }}
+              value={formatLocalDate(birthDate)}
+              onChange={(e) => setBirthDate(parseLocalDate(e.target.value))}
               className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:bg-slate-100 transition-colors"
             />
           </div>
@@ -49,15 +57,8 @@ export const AgeCalculatorView: React.FC<Props> = ({ calcDef }) => {
             <div className="flex items-center gap-3">
               <input 
                 type="date" 
-                value={targetDate ? targetDate.toISOString().split('T')[0] : ''}
-                onChange={(e) => {
-                  const date = e.target.valueAsDate;
-                  if (date) {
-                    setTargetDate(new Date(date.getTime() + date.getTimezoneOffset() * 60000));
-                  } else {
-                    setTargetDate(undefined);
-                  }
-                }}
+                value={formatLocalDate(targetDate)}
+                onChange={(e) => setTargetDate(parseLocalDate(e.target.value))}
                 className="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-blue-500 hover:bg-slate-100 transition-colors"
               />
               <button 

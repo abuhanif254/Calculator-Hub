@@ -540,6 +540,39 @@ Annual CO2 Emissions Offset: ${results.annualCo2AvoidedTons.toFixed(2)} Metric T
                       />
                     </div>
                   </div>
+
+                  <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Panel Voc (V)</span>
+                      <input
+                        type="number"
+                        step="0.5"
+                        value={panelVoc}
+                        onChange={(e) => setPanelVoc(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Inverter MPPT Min (V)</span>
+                      <input
+                        type="number"
+                        step="10"
+                        value={mpptVmin}
+                        onChange={(e) => setMpptVmin(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-[10px] text-slate-400 block">Inverter MPPT Max (V)</span>
+                      <input
+                        type="number"
+                        step="10"
+                        value={mpptVmax}
+                        onChange={(e) => setMpptVmax(Number(e.target.value))}
+                        className="w-full bg-slate-50 dark:bg-slate-950 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 font-bold text-right"
+                      />
+                    </div>
+                  </div>
                 </div>
               )}
 

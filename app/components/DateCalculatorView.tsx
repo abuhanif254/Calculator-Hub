@@ -111,9 +111,16 @@ export function DateCalculatorView({ calcDef }: DateCalculatorViewProps) {
 
     const mod = opState === "add" ? 1 : -1;
     
-    // JS Date perfectly handles month overflow/underflow automatically
-    d.setUTCFullYear(d.getUTCFullYear() + (y * mod));
-    d.setUTCMonth(d.getUTCMonth() + (m * mod));
+    // Safely adjust year and month with end-of-month clamping
+    const origDay = d.getUTCDate();
+    const targetYear = d.getUTCFullYear() + (y * mod);
+    const targetMonth = d.getUTCMonth() + (m * mod);
+
+    d.setUTCDate(1);
+    d.setUTCFullYear(targetYear);
+    d.setUTCMonth(targetMonth);
+    const daysInTargetMonth = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 0)).getUTCDate();
+    d.setUTCDate(Math.min(origDay, daysInTargetMonth));
     
     // Add weeks and days together
     const exactDays = (w * 7) + dx;
