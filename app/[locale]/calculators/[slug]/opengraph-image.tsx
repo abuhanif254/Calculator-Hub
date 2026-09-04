@@ -41,6 +41,28 @@ export async function generateStaticParams() {
   return params;
 }
 
+function sanitizeForOg(text: string): string {
+  if (!text) return '';
+  return text
+    .replace(/√/g, 'sqrt')
+    .replace(/ρ/g, 'rho')
+    .replace(/θ/g, 'theta')
+    .replace(/φ/g, 'phi')
+    .replace(/μ/g, 'u')
+    .replace(/Δ/g, 'Delta')
+    .replace(/➔/g, '->')
+    .replace(/²/g, '^2')
+    .replace(/³/g, '^3')
+    .replace(/·/g, ' * ')
+    .replace(/½/g, '1/2')
+    .replace(/[–—]/g, '-')
+    .replace(/[""]/g, '"')
+    .replace(/['']/g, "'")
+    .replace(/[^\x20-\x7E\u00A0-\u00FF]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export default async function Image({
   params,
 }: {
@@ -49,9 +71,13 @@ export default async function Image({
   const { locale, slug } = await params;
   const calc = getCalculatorBySlug(slug);
 
-  const title = calc?.title || 'Online Calculator';
-  const category = (calc?.category || 'Utility').toUpperCase();
-  const description = calc?.description || 'Fast, free, and accurate calculation tool on Nexus Calculator Hub.';
+  const rawTitle = calc?.title || 'Online Calculator';
+  const rawCategory = (calc?.category || 'Utility').toUpperCase();
+  const rawDesc = calc?.description || 'Fast, free, and accurate calculation tool on Nexus Calculator Hub.';
+
+  const title = sanitizeForOg(rawTitle);
+  const category = sanitizeForOg(rawCategory);
+  const description = sanitizeForOg(rawDesc);
 
   return new ImageResponse(
     (

@@ -3212,7 +3212,7 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     description: "Calculate fall time, final impact velocity, drop height, or gravity. Features animated drop simulator, 10 planet gravity presets, and kinematic motion charts.",
     meta: {
       title: "Free Fall Calculator | Falling Object Kinematics Solver",
-      description: "Free online Free Fall Calculator. Instantly calculate fall time (t = √(2h/g)), impact speed (vf = √(2gh)), explore 10 planet gravity presets, and view animated drop simulations.",
+      description: "Free online Free Fall Calculator. Instantly calculate fall time (t = sqrt(2h/g)), impact speed (vf = sqrt(2gh)), explore 10 planet gravity presets, and view animated drop simulations.",
       keywords: "free fall calculator, falling object calculator, gravity fall calculator, free fall time calculator, drop height calculator, kinematic equations physics",
       lastUpdated: "2026-07-20"
     },
@@ -3269,10 +3269,10 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     title: "Density Calculator",
     category: "Physics",
-    description: "Calculate density (ρ = m/V), mass, or volume. Features 17+ material database, floating vs sinking buoyancy simulator, specific gravity converter, and ranking charts.",
+    description: "Calculate density (rho = m/V), mass, or volume. Features 17+ material database, floating vs sinking buoyancy simulator, specific gravity converter, and ranking charts.",
     meta: {
       title: "Density Calculator | Mass Density & Specific Gravity Solver",
-      description: "Free online Density Calculator. Instantly calculate density (ρ = m/V), explore 17+ material presets (air, water, steel, gold), convert specific gravity, and simulate floating vs sinking buoyancy.",
+      description: "Free online Density Calculator. Instantly calculate density (rho = m/V), explore 17+ material presets (air, water, steel, gold), convert specific gravity, and simulate floating vs sinking buoyancy.",
       keywords: "density calculator, mass density calculator, density formula calculator, specific gravity calculator, buoyancy calculator, Archimedes principle",
       lastUpdated: "2026-07-20"
     },
@@ -3329,10 +3329,10 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     title: "Voltage Calculator",
     category: "Physics",
-    description: "Calculate electric voltage (V = IR, V = P/I, V = √(PR)). Features animated digital multimeter voltmeter, 13-battery explorer, voltage safety gauge, and circuit graphs.",
+    description: "Calculate electric voltage (V = IR, V = P/I, V = sqrt(PR)). Features animated digital multimeter voltmeter, 13-battery explorer, voltage safety gauge, and circuit graphs.",
     meta: {
       title: "Voltage Calculator | Electrical Voltage & Potential Difference (V = IR) Solver",
-      description: "Free online Voltage Calculator. Instantly calculate Voltage from current (V = IR), power (V = P/I), or resistance (V = √(PR)). Features digital multimeter display, battery presets, and safety indicators.",
+      description: "Free online Voltage Calculator. Instantly calculate Voltage from current (V = IR), power (V = P/I), or resistance (V = sqrt(PR)). Features digital multimeter display, battery presets, and safety indicators.",
       keywords: "voltage calculator, electrical voltage calculator, volt calculator, voltage formula calculator, circuit voltage solver, V = IR calculator",
       lastUpdated: "2026-07-21"
     },
@@ -3349,10 +3349,10 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     title: "Current Calculator",
     category: "Physics",
-    description: "Calculate electric current (I = V/R, I = P/V, I = √(P/R)). Features electron vs conventional flow dual animation, digital ammeter, smart fuse and AWG wire size recommender.",
+    description: "Calculate electric current (I = V/R, I = P/V, I = sqrt(P/R)). Features electron vs conventional flow dual animation, digital ammeter, smart fuse and AWG wire size recommender.",
     meta: {
       title: "Current Calculator | Electrical Current Draw & Amperage (I = V/R) Solver",
-      description: "Free online Current Calculator. Instantly calculate electric current from voltage (I = V/R), power (I = P/V), or resistance (I = √(P/R)). Features digital ammeter display, electron flow simulation, and fuse recommendations.",
+      description: "Free online Current Calculator. Instantly calculate electric current from voltage (I = V/R), power (I = P/V), or resistance (I = sqrt(P/R)). Features digital ammeter display, electron flow simulation, and fuse recommendations.",
       keywords: "current calculator, electrical current calculator, amp calculator, current formula calculator, current draw calculator, I = V/R calculator, fuse calculator",
       lastUpdated: "2026-07-21"
     },
@@ -3449,11 +3449,11 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     title: "Wire Resistance Calculator",
     category: "Physics",
-    description: "Calculate wire electrical resistance (R = ρL/A), resistivity, AWG wire sizes, temperature-adjusted resistance, two-wire loop circuits, parallel conductors, copper vs aluminum comparisons, and power loss.",
+    description: "Calculate wire electrical resistance (R = rho*L/A), resistivity, AWG wire sizes, temperature-adjusted resistance, two-wire loop circuits, parallel conductors, copper vs aluminum comparisons, and power loss.",
     meta: {
-      title: "Wire Resistance Calculator | Conductor Resistance (R = ρL/A) & AWG Solver",
-      description: "Free online Wire Resistance Calculator. Instantly calculate electrical wire resistance from resistivity, length, area (R = ρL/A), AWG size, temperature, two-wire loops, and material comparisons.",
-      keywords: "wire resistance calculator, cable resistance calculator, conductor resistance calculator, R = ρL/A calculator, AWG wire resistance, copper wire resistance, resistivity calculator",
+      title: "Wire Resistance Calculator | Conductor Resistance (R = rho*L/A) & AWG Solver",
+      description: "Free online Wire Resistance Calculator. Instantly calculate electrical wire resistance from resistivity, length, area (R = rho*L/A), AWG size, temperature, two-wire loops, and material comparisons.",
+      keywords: "wire resistance calculator, cable resistance calculator, conductor resistance calculator, R = rho*L/A calculator, AWG wire resistance, copper wire resistance, resistivity calculator",
       lastUpdated: "2026-07-21"
     },
     fields: [],
@@ -4289,10 +4289,10 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     },
     title: "Ideal Gas Law Calculator",
     category: "Chemistry",
-    description: "Calculate pressure P, volume V, moles n, absolute temperature T, gas constant R, gas density ρ = PM/RT, molar mass M, and two-state combined gas law relationships.",
+    description: "Calculate pressure P, volume V, moles n, absolute temperature T, gas constant R, gas density rho = PM/RT, molar mass M, and two-state combined gas law relationships.",
     meta: {
       title: "Ideal Gas Law Calculator | PV = nRT & Gas Property Solver",
-      description: "Free online Ideal Gas Law Calculator. Instantly calculate pressure P, volume V, moles n, absolute temperature T, gas constant R, gas density ρ, molar mass M, and two-state gas compression.",
+      description: "Free online Ideal Gas Law Calculator. Instantly calculate pressure P, volume V, moles n, absolute temperature T, gas constant R, gas density rho, molar mass M, and two-state gas compression.",
       keywords: "ideal gas law calculator, PV = nRT calculator, gas law calculator, gas density calculator, molar mass from gas data calculator, combined gas law calculator, compressibility factor calculator",
       lastUpdated: "2026-07-23"
     },

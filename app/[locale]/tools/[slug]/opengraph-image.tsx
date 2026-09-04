@@ -19,6 +19,28 @@ export function generateStaticParams() {
   );
 }
 
+function sanitizeForOg(text: string): string {
+  if (!text) return '';
+  return text
+    .replace(/√/g, 'sqrt')
+    .replace(/ρ/g, 'rho')
+    .replace(/θ/g, 'theta')
+    .replace(/φ/g, 'phi')
+    .replace(/μ/g, 'u')
+    .replace(/Δ/g, 'Delta')
+    .replace(/➔/g, '->')
+    .replace(/²/g, '^2')
+    .replace(/³/g, '^3')
+    .replace(/·/g, ' * ')
+    .replace(/½/g, '1/2')
+    .replace(/[–—]/g, '-')
+    .replace(/[""]/g, '"')
+    .replace(/['']/g, "'")
+    .replace(/[^\x20-\x7E\u00A0-\u00FF]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export default async function Image({
   params,
 }: {
@@ -27,9 +49,13 @@ export default async function Image({
   const { locale, slug } = await params;
   const config = getToolConfig(slug);
 
-  const title = config?.title || 'Developer Tool';
-  const category = (config?.category || 'Developer Utility').toUpperCase();
-  const description = config?.shortDescription || 'Free, browser-based online developer utility with client-side processing.';
+  const rawTitle = config?.title || 'Developer Tool';
+  const rawCategory = (config?.category || 'Developer Utility').toUpperCase();
+  const rawDesc = config?.shortDescription || 'Free, browser-based online developer utility with client-side processing.';
+
+  const title = sanitizeForOg(rawTitle);
+  const category = sanitizeForOg(rawCategory);
+  const description = sanitizeForOg(rawDesc);
 
   return new ImageResponse(
     (
@@ -87,7 +113,7 @@ export default async function Image({
                 boxShadow: '0 4px 14px rgba(2, 132, 199, 0.4)',
               }}
             >
-              <span style={{ fontSize: '26px', fontWeight: 'bold', color: '#ffffff' }}>⚙</span>
+              <span style={{ fontSize: '20px', fontWeight: 'bold', color: '#ffffff' }}>&lt;/&gt;</span>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span
