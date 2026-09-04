@@ -27,7 +27,7 @@ import {
   getAdjacentGuides,
   type GuideCategory,
 } from '@/lib/data/guides';
-import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, getCanonicalUrl } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
@@ -131,7 +131,17 @@ export async function generateMetadata(
   
   guide = getLocalizedGuide(guide, locale);
 
-  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
+    .replace(/\/$/, '')
+    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
+  const canonicalUrl = getCanonicalUrl('/guides/[slug]', locale, slug);
+  const guidesIndexUrl = getCanonicalUrl('/guides', locale);
+
+  const relatedUrl = guide.relatedCalculator
+    ? (guide.relatedType === 'tool'
+        ? getCanonicalUrl('/tools/[slug]', locale, guide.relatedCalculator)
+        : getCanonicalUrl('/calculators/[slug]', locale, guide.relatedCalculator))
+    : undefined;
 
   return {
     title: guide.title,
@@ -166,19 +176,19 @@ export async function generateMetadata(
         },
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': `${baseUrl}/en/guides/${slug}`,
+          '@id': canonicalUrl,
         },
         timeRequired: `PT${guide.readingTime}M`,
         articleSection: guide.category,
-        ...(guide.relatedCalculator && {
-          relatedLink: `${baseUrl}/en/${guide.relatedType === 'tool' ? 'tools' : 'calculators'}/${guide.relatedCalculator}`,
+        ...(relatedUrl && {
+          relatedLink: relatedUrl,
         }),
         breadcrumb: {
           '@type': 'BreadcrumbList',
           itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: baseUrl },
-            { '@type': 'ListItem', position: 2, name: 'Guides', item: `${baseUrl}/en/guides` },
-            { '@type': 'ListItem', position: 3, name: guide.title, item: `${baseUrl}/en/guides/${slug}` },
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/${locale}` },
+            { '@type': 'ListItem', position: 2, name: 'Guides', item: guidesIndexUrl },
+            { '@type': 'ListItem', position: 3, name: guide.title, item: canonicalUrl },
           ],
         },
       }),

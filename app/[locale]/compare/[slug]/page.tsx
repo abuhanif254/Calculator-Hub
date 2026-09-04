@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function ComparePage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const comparison = getComparisonBySlug(slug);
 
   if (!comparison) {
@@ -40,13 +40,19 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     return <div className="p-8 text-center text-red-500">Error: One or both tools in this comparison were not found.</div>;
   }
 
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
+    .replace(/\/$/, '')
+    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/compare/[slug]', locale, comparison.slug);
+
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nexuscalculator.net" },
-      { "@type": "ListItem", "position": 2, "name": "Compare", "item": "https://nexuscalculator.net/compare" },
-      { "@type": "ListItem", "position": 3, "name": comparison.title, "item": `https://nexuscalculator.net/compare/${comparison.slug}` }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${baseUrl}/${locale}` },
+      { "@type": "ListItem", "position": 2, "name": "Compare", "item": `${baseUrl}/${locale}/sitemap` },
+      { "@type": "ListItem", "position": 3, "name": comparison.title, "item": canonicalUrl }
     ]
   };
 

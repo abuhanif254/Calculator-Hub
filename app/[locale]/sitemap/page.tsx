@@ -8,23 +8,12 @@ import Script from 'next/script';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
-  
-  const languages: Record<string, string> = {
-    'x-default': `${baseUrl}/en/sitemap`,
-  };
-  
-  routing.locales.forEach((l) => {
-    languages[l] = `${baseUrl}/${l}/sitemap`;
-  });
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: 'All Tools & Calculators Directory | Nexus',
     description: 'The master directory of all free calculators and developer tools available on Nexus. Browse over 150+ tools for finance, math, fitness, web development, and more.',
-    alternates: {
-      canonical: `${baseUrl}/${locale}/sitemap`,
-      languages,
-    },
+    alternates: getCanonicalAndAlternates('/sitemap', locale),
   };
 }
 

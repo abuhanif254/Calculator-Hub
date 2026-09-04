@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { calculators, getCalculatorBySlug } from "@/lib/data/calculators";
+import { categories, getCategoryForCalculator } from "@/lib/data/categories";
 import { sitemapCategories, generalLinks } from "@/lib/data/sitemapData";
 import { getRelatedCalculators } from "@/lib/data/calculatorRelationships";
 import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
@@ -170,11 +171,18 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
   // Find related calculators for the sidebar and bottom section
   const relatedTools = getRelatedCalculators(calc.slug, 8);
+  const categoryDef = getCategoryForCalculator(calc.category);
   const activeCategory = sitemapCategories.find(c => c.title.toLowerCase().includes(calc.category.toLowerCase())) || sitemapCategories[0];
+  const categoryTitle = categoryDef?.title || activeCategory.title;
 
-  const baseUrl = "https://www.nexuscalculator.net";
+  const baseUrl = (process.env.APP_URL || "https://www.nexuscalculator.net")
+    .replace(/\/$/, '')
+    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, resolvedParams.slug);
+  const categoryUrl = categoryDef
+    ? getCanonicalUrl('/calculators/category/[category]', resolvedParams.locale, categoryDef.id)
+    : `${baseUrl}/${resolvedParams.locale}/sitemap`;
 
   // SoftwareApplication JSON-LD Schema
   const softwareAppSchema = {
@@ -218,13 +226,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": baseUrl
+        "item": `${baseUrl}/${resolvedParams.locale}`
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Calculators",
-        "item": `${baseUrl}/${resolvedParams.locale}/sitemap`
+        "name": categoryTitle,
+        "item": categoryUrl
       },
       {
         "@type": "ListItem",
@@ -249,7 +257,12 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </li>
           <li><span className="text-slate-400">/</span></li>
           <li>
-            <Link href="/sitemap" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Calculators</Link>
+            <Link
+              href={categoryDef ? resolveIntlHref(`/calculators/category/${categoryDef.id}`) : resolveIntlHref('/sitemap')}
+              className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors"
+            >
+              {categoryTitle}
+            </Link>
           </li>
           <li><span className="text-slate-400">/</span></li>
           <li className="text-slate-700 dark:text-slate-300 font-medium" aria-current="page">{pageTitle}</li>

@@ -153,20 +153,22 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
   const t = await getTranslations("Index");
-  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
+    .replace(/\/$/, '')
+    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
 
   // WebSite schema — enables Google Sitelinks Search Box
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Nexus Calculator",
-    "url": baseUrl,
+    "url": `${baseUrl}/${resolvedParams.locale}`,
     "description": "The ultimate ecosystem for calculators and developer tools.",
     "potentialAction": {
       "@type": "SearchAction",
       "target": {
         "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/en/search?q={search_term_string}`
+        "urlTemplate": `${baseUrl}/${resolvedParams.locale}/search?q={search_term_string}`
       },
       "query-input": "required name=search_term_string"
     }

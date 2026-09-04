@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default async function CollectionPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
-  const { slug } = await params;
+  const { slug, locale } = await params;
   const collection = getCollectionBySlug(slug);
 
   if (!collection) {
@@ -38,16 +38,23 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     return allTools.find(t => t.slug === toolSlug);
   }).filter(Boolean) as typeof allTools;
 
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
+    .replace(/\/$/, '')
+    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/collections/[slug]', locale, collection.slug);
+
   // Schema Generation
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": collection.title,
     "description": collection.description,
+    "url": canonicalUrl,
     "hasPart": tools.map((tool, index) => ({
       "@type": "WebPage",
       "position": index + 1,
-      "url": `https://nexuscalculator.net${tool.href}`,
+      "url": `${baseUrl}/${locale}${tool.href.startsWith('/') ? tool.href : `/${tool.href}`}`,
       "name": tool.title
     }))
   };
@@ -56,9 +63,9 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.nexuscalculator.net" },
-      { "@type": "ListItem", "position": 2, "name": "Collections", "item": "https://nexuscalculator.net/collections" },
-      { "@type": "ListItem", "position": 3, "name": collection.title, "item": `https://nexuscalculator.net/collections/${collection.slug}` }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${baseUrl}/${locale}` },
+      { "@type": "ListItem", "position": 2, "name": "Collections", "item": `${baseUrl}/${locale}/sitemap` },
+      { "@type": "ListItem", "position": 3, "name": collection.title, "item": canonicalUrl }
     ]
   };
 

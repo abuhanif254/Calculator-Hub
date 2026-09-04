@@ -5,7 +5,7 @@ import { collections } from '../lib/data/collections';
 import { comparisons } from '../lib/data/comparisons';
 import { routing } from '../i18n/routing';
 import { allToolsConfig } from '../lib/data/tools/index';
-import { allGuides } from '../lib/data/guides';
+import { allGuides, getGuideBySlug } from '../lib/data/guides';
 
 // SSG: sitemap is built from static TypeScript data files.
 // No revalidation needed — only changes on new deployments.
@@ -41,7 +41,7 @@ function buildEntry(
   priority: number,
   genericSlug?: string,
   lastMod?: Date
-): MetadataRoute.Sitemap[0] {
+): MetadataRoute.Sitemap[number] {
   const languages: Record<string, string> = {};
   const routeMapping = (routing.pathnames as any)[pathnameKey];
 
@@ -61,9 +61,14 @@ function buildEntry(
     if (genericSlug) {
       let localizedSlug = genericSlug;
       if (pathnameKey.startsWith('/calculators/')) {
-        const calc = calculators.find(c => c.slug === genericSlug);
+        const calc = calculators.find(c => c.slug === genericSlug || (c.slugs && Object.values(c.slugs).includes(genericSlug)));
         if (calc && calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
           localizedSlug = calc.slugs[locale as keyof typeof calc.slugs];
+        }
+      } else if (pathnameKey.startsWith('/guides/')) {
+        const guide = getGuideBySlug(genericSlug);
+        if (guide && guide.slugs && guide.slugs[locale as keyof typeof guide.slugs]) {
+          localizedSlug = guide.slugs[locale as keyof typeof guide.slugs];
         }
       }
 
@@ -75,8 +80,21 @@ function buildEntry(
     languages[locale] = `${baseUrl}${relativePath}`;
   });
 
+  let defaultSlug = genericSlug || '';
+  if (genericSlug) {
+    if (pathnameKey.startsWith('/calculators/')) {
+      const calc = calculators.find(c => c.slug === genericSlug || (c.slugs && Object.values(c.slugs).includes(genericSlug)));
+      if (calc?.slugs?.en) defaultSlug = calc.slugs.en;
+      else if (calc?.slug) defaultSlug = calc.slug;
+    } else if (pathnameKey.startsWith('/guides/')) {
+      const guide = getGuideBySlug(genericSlug);
+      if (guide?.slugs?.en) defaultSlug = guide.slugs.en;
+      else if (guide?.slug) defaultSlug = guide.slug;
+    }
+  }
+
   const defaultPath = pathnameKey
-    .replace('[slug]', genericSlug || '')
+    .replace('[slug]', defaultSlug)
     .replace('[category]', genericSlug || '');
 
   languages['x-default'] = languages['en'] || `${baseUrl}/en${defaultPath}`;

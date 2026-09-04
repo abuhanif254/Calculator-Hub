@@ -1,5 +1,6 @@
 import { routing } from '@/i18n/routing';
 import { getCalculatorBySlug } from '@/lib/data/calculators';
+import { getGuideBySlug } from '@/lib/data/guides';
 
 // IMPORTANT: canonical domain is www.nexuscalculator.net
 // APP_URL must be set to https://www.nexuscalculator.net in Vercel env vars.
@@ -43,12 +44,17 @@ export function getCanonicalAndAlternates(
     }
 
     if (genericSlug) {
-      // Fetch localized slug if this is a calculator route
+      // Fetch localized slug if this is a calculator or guide route
       let localizedSlug = genericSlug;
       if (pathnameKey.startsWith('/calculators/')) {
         const calc = getCalculatorBySlug(genericSlug);
         if (calc && calc.slugs && calc.slugs[locale as keyof typeof calc.slugs]) {
           localizedSlug = calc.slugs[locale as keyof typeof calc.slugs];
+        }
+      } else if (pathnameKey.startsWith('/guides/')) {
+        const guide = getGuideBySlug(genericSlug);
+        if (guide && guide.slugs && guide.slugs[locale as keyof typeof guide.slugs]) {
+          localizedSlug = guide.slugs[locale as keyof typeof guide.slugs];
         }
       }
 
@@ -60,8 +66,21 @@ export function getCanonicalAndAlternates(
     languages[locale] = `${baseUrl}${relativePath}`;
   });
 
+  let defaultSlug = genericSlug || '';
+  if (genericSlug) {
+    if (pathnameKey.startsWith('/calculators/')) {
+      const calc = getCalculatorBySlug(genericSlug);
+      if (calc?.slugs?.en) defaultSlug = calc.slugs.en;
+      else if (calc?.slug) defaultSlug = calc.slug;
+    } else if (pathnameKey.startsWith('/guides/')) {
+      const guide = getGuideBySlug(genericSlug);
+      if (guide?.slugs?.en) defaultSlug = guide.slugs.en;
+      else if (guide?.slug) defaultSlug = guide.slug;
+    }
+  }
+
   const defaultPath = pathnameKey
-    .replace('[slug]', genericSlug || '')
+    .replace('[slug]', defaultSlug)
     .replace('[category]', genericSlug || '');
 
   languages['x-default'] = languages['en'] || `${baseUrl}/en${defaultPath}`;

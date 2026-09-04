@@ -44,9 +44,10 @@ export async function generateMetadata({
   return {
     title: cat.seoTitle,
     description: cat.seoDescription,
-    robots: isEnglish
-      ? { index: true, follow: true }
-      : { index: false, follow: false },
+    robots: {
+      index: true,
+      follow: true,
+    },
     alternates: getCanonicalAndAlternates('/calculators/category/[category]', locale, category),
   };
 }
@@ -62,6 +63,12 @@ export default async function CategoryPage({
 
   const cat = getCategoryById(resolvedParams.category);
   if (!cat) notFound();
+
+  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
+    .replace(/\/$/, '')
+    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalCategoryUrl = getCanonicalUrl('/calculators/category/[category]', resolvedParams.locale, cat.id);
 
   // Get all calculators for this category
   const categoryCalcs = calculators.filter((c) =>
@@ -83,13 +90,13 @@ export default async function CategoryPage({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: `https://nexuscalculator.net/${resolvedParams.locale}`,
+        item: `${baseUrl}/${resolvedParams.locale}`,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: cat.title,
-        item: `https://nexuscalculator.net/${resolvedParams.locale}/calculators/category/${cat.id}`,
+        item: canonicalCategoryUrl,
       },
     ],
   };
@@ -100,7 +107,7 @@ export default async function CategoryPage({
     '@type': 'CollectionPage',
     name: cat.seoTitle,
     description: cat.seoDescription,
-    url: `https://nexuscalculator.net/${resolvedParams.locale}/calculators/category/${cat.id}`,
+    url: canonicalCategoryUrl,
     mainEntity: {
       '@type': 'ItemList',
       numberOfItems: categoryCalcs.length,
@@ -108,7 +115,7 @@ export default async function CategoryPage({
         '@type': 'ListItem',
         position: i + 1,
         name: calc.title,
-        url: `https://nexuscalculator.net/${resolvedParams.locale}/calculators/${calc.slug}`,
+        url: getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, calc.slug),
       })),
     },
   };
