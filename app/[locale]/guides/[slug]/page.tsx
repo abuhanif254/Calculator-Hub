@@ -156,43 +156,6 @@ export async function generateMetadata(
       modifiedTime: guide.lastUpdated,
       section: guide.category,
     },
-    other: {
-      'application/ld+json': JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: guide.title,
-        description: guide.description,
-        datePublished: guide.lastUpdated,
-        dateModified: guide.lastUpdated,
-        author: {
-          '@type': 'Organization',
-          name: 'Nexus Calculator',
-          url: baseUrl,
-        },
-        publisher: {
-          '@type': 'Organization',
-          name: 'Nexus Calculator',
-          url: baseUrl,
-        },
-        mainEntityOfPage: {
-          '@type': 'WebPage',
-          '@id': canonicalUrl,
-        },
-        timeRequired: `PT${guide.readingTime}M`,
-        articleSection: guide.category,
-        ...(relatedUrl && {
-          relatedLink: relatedUrl,
-        }),
-        breadcrumb: {
-          '@type': 'BreadcrumbList',
-          itemListElement: [
-            { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/${locale}` },
-            { '@type': 'ListItem', position: 2, name: 'Guides', item: guidesIndexUrl },
-            { '@type': 'ListItem', position: 3, name: guide.title, item: canonicalUrl },
-          ],
-        },
-      }),
-    },
   };
 }
 
@@ -243,9 +206,68 @@ export default async function GuideArticlePage({
       day: 'numeric',
     }
   );
+  const baseUrl = 'https://www.nexuscalculator.net';
+  const canonicalUrl = getCanonicalUrl('/guides/[slug]', locale, slug);
+  const guidesIndexUrl = getCanonicalUrl('/guides', locale);
+
+  const relatedUrl = guide.relatedCalculator
+    ? (guide.relatedType === 'tool'
+        ? getCanonicalUrl('/tools/[slug]', locale, guide.relatedCalculator)
+        : getCanonicalUrl('/calculators/[slug]', locale, guide.relatedCalculator))
+    : undefined;
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: guide.title,
+    description: guide.description,
+    datePublished: guide.lastUpdated,
+    dateModified: guide.lastUpdated,
+    author: {
+      '@type': 'Organization',
+      name: 'Nexus Calculator',
+      url: baseUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Nexus Calculator',
+      url: baseUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/icons/icon-512x512.png`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    timeRequired: `PT${guide.readingTime}M`,
+    articleSection: guide.category,
+    ...(relatedUrl && {
+      relatedLink: relatedUrl,
+    }),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: 'Guides', item: guidesIndexUrl },
+      { '@type': 'ListItem', position: 3, name: guide.title, item: canonicalUrl },
+    ],
+  };
 
   return (
     <div className="flex gap-10 xl:gap-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
       {/* ══════════════════════════════════════════════════════════════
           ARTICLE CONTENT (center column)

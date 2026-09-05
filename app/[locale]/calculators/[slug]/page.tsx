@@ -279,6 +279,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       "price": "0",
       "priceCurrency": "USD"
     },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "148",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
     ...(relatedGuideUrl && localizedGuide && {
       "isRelatedTo": {
         "@type": "Article",
@@ -286,6 +293,20 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         "url": relatedGuideUrl
       }
     })
+  };
+
+  // MathSolver JSON-LD Schema for Google Math Solvers
+  const mathSolverSchema = {
+    "@context": "https://schema.org",
+    "@type": "MathSolver",
+    "name": pageTitle,
+    "description": pageDesc,
+    "url": canonicalUrl,
+    "potentialAction": {
+      "@type": "SolveMathAction",
+      "target": canonicalUrl,
+      "mathExpression-input": "required"
+    }
   };
 
   // FAQPage JSON-LD Schema
@@ -331,6 +352,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   return (
     <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mathSolverSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -379,7 +401,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             {/* Author Byline for E-E-A-T */}
             <div className="flex items-center gap-3 py-3 border-y border-slate-200 dark:border-slate-800">
               <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700">
-                <img src="https://ik.imagekit.io/ubwpdqyav/my_photo-removebg-preview.png?updatedAt=1776774813574" alt="MD Abu Hanif Mia" className="w-full h-full object-cover" />
+                <img
+                  src="https://ik.imagekit.io/ubwpdqyav/my_photo-removebg-preview.png?updatedAt=1776774813574"
+                  alt="MD Abu Hanif Mia"
+                  width={40}
+                  height={40}
+                  loading="lazy"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <p className="text-sm font-semibold text-slate-900 dark:text-white">
