@@ -177,6 +177,7 @@ export default function middleware(request: NextRequest) {
 
   // ── 10. Bare paths without locale prefix → /en/... ─────────────────────────
   // next-intl would double-hop these; we short-circuit with an explicit 301.
+  if (
     pathname.startsWith('/calculators/') ||
     pathname === '/calculators' ||
     pathname.startsWith('/tools/') ||
