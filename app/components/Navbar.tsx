@@ -233,6 +233,16 @@ export function Navbar() {
                       </div>
 
                     </div>
+                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                      <span className="text-xs text-slate-500 dark:text-slate-400">85+ client-side developer utilities running 100% locally in your browser</span>
+                      <Link
+                        href="/tools"
+                        onClick={handleLinkClick}
+                        className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
+                      >
+                        Browse Complete Developer Tools Directory →
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -331,7 +341,7 @@ export function Navbar() {
                               ))}
                               <li>
                                 <Link
-                                  href="/sitemap"
+                                  href={resolveIntlHref(`/calculators/category/${category.id}`)}
                                   onClick={handleLinkClick}
                                   className="block px-2 py-1.5 text-sm font-semibold text-[#518231] hover:bg-green-50 dark:hover:bg-slate-800 rounded-lg transition-colors mt-1"
                                 >
@@ -342,6 +352,16 @@ export function Navbar() {
                           </div>
                         );
                       })}
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                      <span className="text-xs text-slate-500 dark:text-slate-400">Over 300 verified online calculators with instant step-by-step formulas</span>
+                      <Link
+                        href="/calculators"
+                        onClick={handleLinkClick}
+                        className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
+                      >
+                        Browse Complete Calculators Directory →
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -450,6 +470,13 @@ export function Navbar() {
                     )}
                   </div>
                 ))}
+                <Link
+                  href="/tools"
+                  className="block px-3 py-2.5 text-sm font-bold text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Browse All Developer Tools Directory →
+                </Link>
               </div>
             )}
           </div>
@@ -583,7 +610,7 @@ export function Navbar() {
                             </Link>
                           ))}
                           <Link
-                            href="/sitemap"
+                            href={resolveIntlHref(`/calculators/category/${category.id}`)}
                             className="block py-2 text-sm font-semibold text-[#518231]"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
@@ -594,6 +621,13 @@ export function Navbar() {
                     </div>
                   );
                 })}
+                <Link
+                  href="/calculators"
+                  className="block px-3 py-2.5 text-sm font-bold text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Browse All Calculators Directory →
+                </Link>
               </div>
             )}
           </div>

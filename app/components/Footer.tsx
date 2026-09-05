@@ -106,7 +106,12 @@ export function Footer() {
             <h3 className="text-slate-900 dark:text-white font-bold mb-6 text-lg tracking-tight">Ecosystem</h3>
             <ul className="space-y-4 text-sm">
               <li>
-                <Link href="/search" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
+                <Link href="/calculators" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
+                  Calculators Directory
+                </Link>
+              </li>
+              <li>
+                <Link href="/tools" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
                   Developer Tools
                 </Link>
               </li>
@@ -118,11 +123,6 @@ export function Footer() {
               <li>
                 <Link href="/image" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
                   Image Tools
-                </Link>
-              </li>
-              <li>
-                <Link href="/sitemap" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  Calculators
                 </Link>
               </li>
               <li>

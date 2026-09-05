@@ -8,7 +8,7 @@ import { getRelatedCalculators } from '@/lib/data/calculatorRelationships';
 import { allGuides } from '@/lib/data/guides';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { Link, resolveIntlHref } from '@/i18n/routing';
-import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap } from 'lucide-react';
+import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap, Wrench } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 // ═══════════════════════════════════════════════════════
@@ -98,6 +98,31 @@ export default async function CategoryPage({
     weather: ['Productivity & Utilities'],
     other: ['Productivity & Utilities'],
   };
+
+  const categoryRelatedToolsMap: Record<string, { title: string; slug: string; desc: string }[]> = {
+    financial: [
+      { title: 'UK Mortgage Calculator', slug: 'mortgage-calculator-uk', desc: 'Calculate UK property mortgage payments with stamp duty' },
+      { title: 'CSV Viewer & Editor', slug: 'csv-viewer', desc: 'Inspect financial records, spreadsheets, and CSV exports in table format' },
+      { title: 'Data Privacy Anonymizer', slug: 'database-anonymizer', desc: 'Anonymize sensitive customer and transaction data locally' },
+    ],
+    math: [
+      { title: 'Random Number Generator', slug: 'random-number-generator', desc: 'Generate cryptographically random numbers in custom ranges' },
+      { title: 'HTML Table Generator', slug: 'html-table-generator', desc: 'Build and format mathematical tables and matrices instantly' },
+      { title: 'Hash & Checksum Generator', slug: 'hash-generator', desc: 'Calculate SHA-256, MD5, and cryptographic checksums' },
+    ],
+    physics: [
+      { title: 'Unit & Hex Converter', slug: 'hex-to-rgb', desc: 'Convert and calculate precision numerical color codes' },
+      { title: 'JSON Formatter & Parser', slug: 'json-formatter', desc: 'Inspect complex scientific data arrays and structures' },
+      { title: 'Diff Checker', slug: 'diff-checker', desc: 'Compare raw experimental data outputs line-by-line' },
+    ],
+    other: [
+      { title: 'QR Code Studio', slug: 'qr-code-studio', desc: 'Generate custom vector QR codes for documents and websites' },
+      { title: 'Word & Character Counter', slug: 'word-counter', desc: 'Count words, sentences, and reading time in real-time' },
+      { title: 'Markdown Previewer', slug: 'markdown-previewer', desc: 'Live preview Markdown syntax and documentation formulas' },
+    ]
+  };
+  const relatedTools = categoryRelatedToolsMap[cat.id] || [];
+
   const matchingGuideCats = catGuideCategoryMap[cat.id] || [];
   const seenGuideSlugs = new Set(directGuides.map((g) => g.slug));
   const additionalGuides =
@@ -479,6 +504,48 @@ export default async function CategoryPage({
             <ReactMarkdown>{cat.pillarContent}</ReactMarkdown>
           </div>
         </section>
+
+        {/* Related Utilities & Developer Tools Cross-Linking */}
+        {relatedTools.length > 0 && (
+          <section className="mb-16">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-2">
+                <Wrench className="text-[#518231]" size={20} />
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                  Related Developer Tools &amp; Utilities
+                </h2>
+              </div>
+              <Link
+                href="/tools"
+                className="text-sm font-semibold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
+              >
+                All Developer Tools →
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {relatedTools.map((tool) => (
+                <Link
+                  key={tool.slug}
+                  href={resolveIntlHref(`/tools/${tool.slug}`)}
+                  className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#518231]/40 hover:shadow-sm transition-all group flex flex-col justify-between"
+                >
+                  <div>
+                    <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors flex items-center justify-between gap-2">
+                      <span>{tool.title}</span>
+                      <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 transition-all shrink-0" />
+                    </h3>
+                    <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                      {tool.desc}
+                    </p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center gap-1.5 text-[11px] font-semibold text-[#518231]">
+                    <span>100% Free • In-Browser Tool</span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Browse Other Categories */}
         <section>
