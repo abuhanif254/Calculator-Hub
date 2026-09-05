@@ -28,6 +28,17 @@ export const textToSpeechConfig: ToolConfig = {
     "spanish text to speech",
     "french text to speech",
     "german text to speech",
+    "bangla text to speech",
+    "bangla voice generator",
+    "bengali tts",
+    "bangla text to voice",
+    "bangla ai voice",
+    "podcast voice generator",
+    "dialogue text to speech",
+    "two person voice generator",
+    "ambient music voiceover",
+    "emotional text to speech",
+    "expressive ai voice",
     "download speech as mp3",
     "commercial tts generator",
     "elearning narration tool",
@@ -59,17 +70,35 @@ Our **Text to Speech Studio** connects directly to Microsoft's flagship Neural V
 Access world-class neural voices trusted by broadcasters, audio engineers, and digital content creators:
 - **English (US & UK)**: Features versatile voices like **Jenny** (warm, friendly, and conversational), **Guy** (casual, energetic, and engaging), **Aria** (authoritative, clear, and professional), and **Ryan & Sonia** (crisp British accents).
 - **Spanish (Castilian & Latin American)**: Expressive voices like **Álvaro**, **Elvira**, **Dalia**, and **Jorge** with authentic regional cadences.
-- **French (Metropolitan & Canadian)**: Neutral, refined voices including **Denise**, **Henri**, and **Sylvie**.
-- **German (Standard & Austrian)**: High-clarity voices like **Katja**, **Conrad**, and **Ingrid**.
+- **Bangla (Bangladesh & India)**: Features expressive native voices including **Nabanita (নবনিতা)**, **Pradeep (প্রদীপ)**, **Bashkar (ভাস্কর)**, and **Tanishaa (তানিশা)** with fluent Bengali cadence and authentic pronunciation.
+- **Global Languages**: Portuguese (Brazil), Italian, Japanese, Hindi, Arabic, and Chinese (Mandarin).
 
-### 2. Full Audio Prosody Control
-Fine-tune how your generated speech sounds with precision controls:
-- **Speaking Speed (Rate)**: Adjust from **0.5x** (deliberate, slow for tutorials or pronunciation drills) up to **2.0x** (fast-paced audiobooks or quick summaries), centered at **1.0x**.
-- **Voice Pitch**: Modulate pitch from **-50%** (deeper, authoritative tone) to **+50%** (lighter, brighter timbre).
-- **Live Audition & Waveform Visualizer**: Preview audio directly in your browser with real-time waveform scrub, playback timeline, and elapsed duration display.
+### 2. Emotional Speaking Styles & Expressiveness
+Transform flat voiceovers into engaging performances with 7 expressive neural styles:
+- **Natural Studio**: Clean, balanced cadence and uncolored timbre.
+- **Conversational**: Relaxed, warm tone perfect for podcasts, explainer videos, and social clips.
+- **News Anchor**: Authoritative, steady broadcast cadence for formal announcements.
+- **Storyteller**: Narrative pacing with expressive dramatic micro-pauses for audiobooks.
+- **Cheerful**: Upbeat, vibrant enthusiasm for advertisements and celebrations.
+- **Empathetic**: Gentle, compassionate, and reassuring for healthcare and guided meditation.
+- **Whisper**: Soft, intimate ASMR acoustics for bedtime stories and immersive audio.
 
-### 3. Instant 1-Click MP3 Export
-Unlike generic browser speech readers that lock audio inside device speakers, Nexus allows you to **download high-bitrate MP3 files** directly to your device with a single click. Every exported file is cleanly named and ready to drag-and-drop into Premiere Pro, DaVinci Resolve, CapCut, Audacity, or Final Cut.
+### 3. Multi-Speaker Dialogue & Podcast Mode
+Generate complete two-person podcast episodes, interviews, and radio dramas in a single unified audio export. Select distinct voices for **Speaker 1 (Host)** and **Speaker 2 (Guest)**; our studio parses the dialogue script, synthesizes each conversational turn, and seamlessly stitches the turns into one continuous MP3 audio file.
+
+### 4. Smart Script Naturalizer
+One-click AI script optimization that automatically expands monetary amounts ($150 → 150 dollars), percentages, abbreviations (Dr. → Doctor, etc. → et cetera), and technical acronyms (A-I, S-E-O), while inserting natural breathing micro-pauses for organic human rhythm.
+
+### 5. In-Browser Ambient Background Music Mixer
+Add depth to your spoken content with built-in royalty-free ambient soundscapes:
+- **Lo-Fi Study Beats**: Warm analog 7th chords with tape warmth.
+- **Cinematic Ambient**: Expansive, soothing atmospheric pads.
+- **Modern Tech Pulse**: Rhythmic acoustic plucks for tutorials and pitches.
+- **Zen 432Hz Acoustic**: Calming harmonic drones for relaxation.
+Adjust background volume dynamically with zero network overhead using client-side Web Audio synthesis.
+
+### 6. Full Audio Prosody Control & 1-Click MP3 Export
+Fine-tune speaking speed (0.5x to 2.0x) and voice pitch (-50% to +50%), audition real-time browser audio, and download high-bitrate MP3 files ready for CapCut, Premiere Pro, or DaVinci Resolve.
 
 ---
 
@@ -102,13 +131,18 @@ Unlike generic browser speech readers that lock audio inside device speakers, Ne
 
   features: [
     "Powered by high-fidelity Microsoft Neural TTS with real human timbre and breath cadence",
-    "Multi-accent support across English (US/UK), Spanish (ES/MX), French (FR/CA), and German (DE/AT)",
+    "Bangla (Bengali) native voice generation with Bangladesh and India regional accents",
+    "Multi-accent support across English (US/UK), Spanish (ES/MX), French (FR/CA), German (DE/AT), and 6 global languages",
+    "7 Emotional speaking styles (Conversational, News Anchor, Storyteller, Cheerful, Empathetic, Whisper)",
+    "Multi-speaker Dialogue and Podcast mode with automatic sequential MP3 stitching",
+    "Smart AI Script Naturalizer with automatic expansion of numbers, acronyms, and organic breathing pauses",
+    "Built-in Web Audio ambient music mixer (Lo-Fi, Cinematic, Tech Pulse, Zen Meditation) with volume balance",
     "Adjustable speaking rate from 0.5x up to 2.0x for rapid or deliberate narration",
     "Precise pitch adjustment slider (-50% to +50%) for custom voice persona shaping",
     "Instant 1-click MP3 audio export ready for CapCut, Premiere, DaVinci, or Audacity",
     "Built-in waveform timeline audio player with scrubbing and volume control",
     "Live word counter, character counter, and estimated listening duration metrics",
-    "One-click sample presets for YouTube intros, news reports, storytelling, and marketing ads",
+    "One-click sample presets for YouTube intros, news reports, storytelling, marketing ads, and podcasts",
     "100% free with no account creation, subscription paywalls, or watermarks"
   ],
 

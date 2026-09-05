@@ -53,7 +53,8 @@ function synthesizeWithEdgeTTS(
   text: string,
   voice: string,
   rateStr: string,
-  pitchStr: string
+  pitchStr: string,
+  style?: string
 ): Promise<Buffer> {
   return new Promise((resolve, reject) => {
     const connectionId = crypto.randomUUID().replace(/-/g, "");
@@ -112,12 +113,16 @@ function synthesizeWithEdgeTTS(
 
       // 2. Send SSML request message
       const sanitized = sanitizeText(text);
+      const voiceLang = voice.split("-").slice(0, 2).join("-") || "en-US";
+      let innerContent = `<prosody pitch='${pitchStr}' rate='${rateStr}' volume='+0%'>${sanitized}</prosody>`;
+      if (style && style !== "default") {
+        innerContent = `<mstts:express-as style='${style}'>${innerContent}</mstts:express-as>`;
+      }
+
       const ssml =
-        `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'>` +
+        `<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='https://www.w3.org/2001/mstts' xml:lang='${voiceLang}'>` +
         `<voice name='${voice}'>` +
-        `<prosody pitch='${pitchStr}' rate='${rateStr}' volume='+0%'>` +
-        sanitized +
-        `</prosody>` +
+        innerContent +
         `</voice>` +
         `</speak>`;
 
@@ -261,16 +266,23 @@ async function synthesizeWithGoogleTTS(text: string, lang: string): Promise<Buff
  * Derives the two-letter language code from the voice identifier.
  */
 function getLanguageFromVoice(voice: string): string {
-  if (voice.startsWith("es-")) return "es";
-  if (voice.startsWith("fr-")) return "fr";
-  if (voice.startsWith("de-")) return "de";
+  if (voice.startsWith("bn-")) return "bn"; // Bangla / Bengali
+  if (voice.startsWith("pt-")) return "pt"; // Portuguese
+  if (voice.startsWith("it-")) return "it"; // Italian
+  if (voice.startsWith("ja-")) return "ja"; // Japanese
+  if (voice.startsWith("hi-")) return "hi"; // Hindi
+  if (voice.startsWith("ar-")) return "ar"; // Arabic
+  if (voice.startsWith("zh-")) return "zh-CN"; // Chinese
+  if (voice.startsWith("es-")) return "es"; // Spanish
+  if (voice.startsWith("fr-")) return "fr"; // French
+  if (voice.startsWith("de-")) return "de"; // German
   return "en";
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { text, voice = "en-US-JennyNeural", rate = 1.0, pitch = 0 } = body;
+    const { text, voice = "en-US-JennyNeural", rate = 1.0, pitch = 0, style = "default" } = body;
 
     if (!text || typeof text !== "string" || text.trim().length === 0) {
       return NextResponse.json(
@@ -301,7 +313,7 @@ export async function POST(request: NextRequest) {
 
     try {
       // 1. Attempt Edge Neural TTS (fast 3.5s timeout)
-      audioBuffer = await synthesizeWithEdgeTTS(text, voice, rateStr, pitchStr);
+      audioBuffer = await synthesizeWithEdgeTTS(text, voice, rateStr, pitchStr, style);
     } catch (edgeErr: any) {
       console.warn(
         `Edge Neural TTS unavailable (${edgeErr.message}). Seamlessly engaging resilient fallback engine...`
