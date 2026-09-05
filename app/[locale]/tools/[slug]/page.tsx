@@ -138,6 +138,7 @@ const ImageToBase64Tool = dynamic(() => import('../../../components/tools/ImageT
 const Base64ToImageTool = dynamic(() => import('../../../components/tools/Base64ToImageTool').then(m => m.Base64ToImageTool));
 const MortgageCalculatorUkTool = dynamic(() => import('../../../components/tools/MortgageCalculatorUkTool').then(m => m.MortgageCalculatorUkTool));
 const DatabaseAnonymizerTool = dynamic(() => import('../../../components/platform/ui/DatabaseAnonymizerTool').then(m => m.DatabaseAnonymizerTool));
+const TextToSpeechTool = dynamic(() => import('../../../components/tools/TextToSpeechTool').then(m => m.TextToSpeechTool));
 
 import { Link, routing } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
@@ -281,6 +282,7 @@ const toolComponents: Record<string, React.ComponentType> = {
   'base64-to-image': Base64ToImageTool,
   'mortgage-calculator-uk': MortgageCalculatorUkTool,
   'database-anonymizer': DatabaseAnonymizerTool,
+  'text-to-speech': TextToSpeechTool,
 };
 
 import fs from "fs";

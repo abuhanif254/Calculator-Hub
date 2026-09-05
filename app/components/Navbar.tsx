@@ -50,6 +50,7 @@ const developerToolsMenu = [
     title: "Generators",
     icon: Zap,
     items: [
+      { name: "Text to Speech", desc: "Convert text to realistic neural voice & MP3", isNew: true, slug: "text-to-speech" },
       { name: "AI Prompt Helper & Optimizer", desc: "Optimize prompts for ChatGPT, Claude, and Gemini" },
       { name: "Instagram & TikTok Hashtag Generator", desc: "Generate trending, niche, and viral hashtags for social media posts" },
       { name: "Bio Link Page Generator", desc: "Create a beautiful, mobile-first personal landing page hub" },

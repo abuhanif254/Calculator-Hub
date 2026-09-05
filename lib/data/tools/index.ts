@@ -135,6 +135,7 @@ import { imageToBase64Config } from './image-to-base64';
 import { base64ToImageConfig } from './base64-to-image';
 import { mortgageCalculatorUkConfig } from './mortgage-calculator-uk';
 import { databaseAnonymizerConfig } from './database-anonymizer';
+import { textToSpeechConfig } from './text-to-speech';
 
 export * from './types';
 
@@ -274,6 +275,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [base64ToImageConfig.slug]: base64ToImageConfig,
   [mortgageCalculatorUkConfig.slug]: mortgageCalculatorUkConfig,
   [databaseAnonymizerConfig.slug]: databaseAnonymizerConfig,
+  [textToSpeechConfig.slug]: textToSpeechConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {
