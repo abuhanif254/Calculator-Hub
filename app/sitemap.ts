@@ -113,7 +113,7 @@ function buildEntry(
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ─── STATIC & CORE PAGES ──────────────
   const coreEntries = [
-    buildEntry('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/icons/icon-512x512.png`]),
+    buildEntry('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/en/opengraph-image`, `${baseUrl}/icons/icon-512x512.png`]),
     buildEntry('/sitemap', 'weekly', 0.8),
     buildEntry('/community', 'daily', 0.7),
     // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
@@ -122,10 +122,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     buildEntry('/privacy-policy', 'yearly', 0.3),
     buildEntry('/terms-of-use', 'yearly', 0.3),
     buildEntry('/guides', 'weekly', 0.85),
-    buildEntry('/calculators', 'weekly', 0.95),
-    buildEntry('/tools', 'weekly', 0.9),
-    ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
-    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)),
+    buildEntry('/calculators', 'weekly', 0.95, undefined, undefined, [`${baseUrl}/en/calculators/opengraph-image`]),
+    buildEntry('/tools', 'weekly', 0.9, undefined, undefined, [`${baseUrl}/en/tools/opengraph-image`]),
+    ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated), [`${baseUrl}/en/guides/${guide.slug}/opengraph-image`])),
+    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id, undefined, [`${baseUrl}/en/calculators/category/${cat.id}/opengraph-image`])),
     ...collections.map((collection) => buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)),
     ...comparisons.map((comparison) => buildEntry('/compare/[slug]', 'monthly', 0.8, comparison.slug)),
   ];
