@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { calculateAmortizedLoan, calculateDeferredLoan, calculateBond } from "../../lib/formulas/loan";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip as RechartsTooltip } from "recharts";
 import { CalculatorDef } from "../../lib/types";
@@ -69,6 +69,18 @@ export const LoanCalculatorView: React.FC<Props> = () => {
   const [bondRate, setBondRate] = useState(6);
   const [bondCompound, setBondCompound] = useState("Annually (APY)");
 
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search) {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get('amAmount')) setAmAmount(Number(p.get('amAmount')));
+      if (p.get('amYears')) setAmYears(Number(p.get('amYears')));
+      if (p.get('amMonths')) setAmMonths(Number(p.get('amMonths')));
+      if (p.get('amRate')) setAmRate(Number(p.get('amRate')));
+      if (p.get('amCompound')) setAmCompound(p.get('amCompound')!);
+      if (p.get('amPayBack')) setAmPayBack(p.get('amPayBack')!);
+    }
+  }, []);
+
   const formatCurrency = (val: number) => {
     return new Intl.NumberFormat(locale, { style: 'currency', currency }).format(val);
   };
@@ -99,29 +111,29 @@ export const LoanCalculatorView: React.FC<Props> = () => {
         <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           <div className="space-y-4">
              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
-                <label className="text-sm font-medium text-slate-700">{t("loanAmount")}</label>
+                <label htmlFor="amAmount" className="text-sm font-medium text-slate-700">{t("loanAmount")}</label>
                 <div className="relative w-full sm:w-48">
                   <span className="absolute start-3 top-2 text-slate-500 font-medium">{cSym}</span>
-                  <input type="number" value={amAmount} onChange={(e) => setAmAmount(Number(e.target.value))} className="w-full ps-7 pe-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
+                  <input id="amAmount" name="amAmount" type="number" value={amAmount} onChange={(e) => setAmAmount(Number(e.target.value))} className="w-full ps-7 pe-3 py-2 border border-slate-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" />
                 </div>
              </div>
              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
                 <label className="text-sm font-medium text-slate-700">{t("loanTerm")}</label>
                 <div className="flex gap-2 w-full sm:w-48">
-                  <input type="number" value={amYears} onChange={(e) => setAmYears(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("yearsPlaceholder")} />
-                  <input type="number" value={amMonths} onChange={(e) => setAmMonths(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("monthsPlaceholder")} />
+                  <input id="amYears" name="amYears" type="number" value={amYears} onChange={(e) => setAmYears(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("yearsPlaceholder")} />
+                  <input id="amMonths" name="amMonths" type="number" value={amMonths} onChange={(e) => setAmMonths(Number(e.target.value))} className="w-1/2 px-3 py-2 border border-slate-300 rounded-md shadow-sm" placeholder={t("monthsPlaceholder")} />
                 </div>
              </div>
              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
-                <label className="text-sm font-medium text-slate-700">{t("interestRate")}</label>
+                <label htmlFor="amRate" className="text-sm font-medium text-slate-700">{t("interestRate")}</label>
                 <div className="relative w-full sm:w-48">
-                  <input type="number" value={amRate} onChange={(e) => setAmRate(Number(e.target.value))} className="w-full pe-8 ps-3 py-2 border border-slate-300 rounded-md shadow-sm" />
+                  <input id="amRate" name="amRate" type="number" value={amRate} onChange={(e) => setAmRate(Number(e.target.value))} className="w-full pe-8 ps-3 py-2 border border-slate-300 rounded-md shadow-sm" />
                   <span className="absolute end-3 top-2 text-slate-500">%</span>
                 </div>
              </div>
              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
-                <label className="text-sm font-medium text-slate-700">{t("compound")}</label>
-                <select value={amCompound} onChange={(e) => setAmCompound(e.target.value)} className="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                <label htmlFor="amCompound" className="text-sm font-medium text-slate-700">{t("compound")}</label>
+                <select id="amCompound" name="amCompound" value={amCompound} onChange={(e) => setAmCompound(e.target.value)} className="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                   <option value="Monthly (APR)">{t("monthlyApr")}</option>
                   <option value="Annually (APY)">{t("annuallyApy")}</option>
                   <option value="Semi-Annually">{t("semiAnnually")}</option>
@@ -129,8 +141,8 @@ export const LoanCalculatorView: React.FC<Props> = () => {
                 </select>
              </div>
              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5">
-                <label className="text-sm font-medium text-slate-700">{t("payBack")}</label>
-                <select value={amPayBack} onChange={(e) => setAmPayBack(e.target.value)} className="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
+                <label htmlFor="amPayBack" className="text-sm font-medium text-slate-700">{t("payBack")}</label>
+                <select id="amPayBack" name="amPayBack" value={amPayBack} onChange={(e) => setAmPayBack(e.target.value)} className="w-full sm:w-48 px-3 py-2 border border-slate-300 rounded-md shadow-sm">
                   <option value="Every Month">{t("everyMonth")}</option>
                 </select>
              </div>

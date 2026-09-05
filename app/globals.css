@@ -261,3 +261,43 @@ details[data-animated] > div {
   }
 }
 
+/* ── Print Stylesheet Optimization ───────────────────────── */
+@media print {
+  nav,
+  footer,
+  aside,
+  .print\:hidden,
+  .back-to-top,
+  .adsbygoogle,
+  #cookie-banner,
+  .global-settings-bar {
+    display: none !important;
+  }
+
+  body,
+  html {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 12pt !important;
+    overflow: visible !important;
+  }
+
+  #calculator-export-target,
+  .print-target {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  table,
+  canvas,
+  .recharts-responsive-container {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+

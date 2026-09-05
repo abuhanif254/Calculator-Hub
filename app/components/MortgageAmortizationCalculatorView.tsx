@@ -20,6 +20,16 @@ export function MortgageAmortizationCalculatorView({ calcDef }: MortgageAmortiza
   const [schedule, setSchedule] = useState<any[]>([]);
   const [annualSchedule, setAnnualSchedule] = useState<any[]>([]);
 
+  // Direct hydration from URL query parameters on load
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search) {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get('loanAmount')) setLoanAmount(p.get('loanAmount')!);
+      if (p.get('interestRate')) setInterestRate(p.get('interestRate')!);
+      if (p.get('loanTerm')) setLoanTerm(p.get('loanTerm')!);
+    }
+  }, []);
+
   const calculate = () => {
     const P = parseFloat(loanAmount) || 0;
     const rate = parseFloat(interestRate) || 0;
@@ -138,6 +148,8 @@ export function MortgageAmortizationCalculatorView({ calcDef }: MortgageAmortiza
                 <div className="relative">
                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
                   <input 
+                    id="loanAmount"
+                    name="loanAmount"
                     type="number" min="0" value={loanAmount} onChange={(e) => setLoanAmount(e.target.value)}
                     className="w-full h-12 pl-8 pr-4 font-semibold rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500"
                   />
@@ -145,9 +157,11 @@ export function MortgageAmortizationCalculatorView({ calcDef }: MortgageAmortiza
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700 block">Interest Rate (Annual)</label>
+                <label htmlFor="interestRate" className="text-sm font-bold text-slate-700 block">Interest Rate (Annual)</label>
                 <div className="relative">
                   <input 
+                    id="interestRate"
+                    name="interestRate"
                     type="number" step="0.1" value={interestRate} onChange={(e) => setInterestRate(e.target.value)}
                     className="w-full h-12 pl-4 pr-8 font-semibold rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500"
                   />
@@ -156,9 +170,11 @@ export function MortgageAmortizationCalculatorView({ calcDef }: MortgageAmortiza
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700 block">Loan Term</label>
+                <label htmlFor="loanTerm" className="text-sm font-bold text-slate-700 block">Loan Term</label>
                 <div className="relative">
                   <input 
+                    id="loanTerm"
+                    name="loanTerm"
                     type="number" min="1" step="1" value={loanTerm} onChange={(e) => setLoanTerm(e.target.value)}
                     className="w-full h-12 pl-4 pr-12 font-semibold rounded-xl border border-slate-300 focus:ring-2 focus:ring-indigo-500"
                   />

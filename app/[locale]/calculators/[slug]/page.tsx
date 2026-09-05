@@ -437,7 +437,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
           </div>
 
-          <ExportResultsPanel targetId="calculator-export-target" fileName={`${calc.slug}-results`} />
+          <ExportResultsPanel 
+            targetId="calculator-export-target" 
+            fileName={`${calc.slug}-results`} 
+            title={pageTitle || calc.title} 
+          />
           <CalculatorMath slug={calc.slug} category={calc.category} />
 
           {/* Educational Guide & Math Deep-Dive Callout */}
