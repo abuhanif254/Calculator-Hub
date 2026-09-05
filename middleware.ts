@@ -177,9 +177,10 @@ export default function middleware(request: NextRequest) {
 
   // ── 10. Bare paths without locale prefix → /en/... ─────────────────────────
   // next-intl would double-hop these; we short-circuit with an explicit 301.
-  if (
     pathname.startsWith('/calculators/') ||
+    pathname === '/calculators' ||
     pathname.startsWith('/tools/') ||
+    pathname === '/tools' ||
     pathname.startsWith('/guides/') ||
     pathname.startsWith('/community') ||
     pathname.startsWith('/collections/') ||
@@ -195,14 +196,6 @@ export default function middleware(request: NextRequest) {
   ) {
     const url = request.nextUrl.clone();
     url.pathname = `/en${pathname}`;
-    return NextResponse.redirect(url, { status: 301 });
-  }
-
-  // ── 11. /[locale]/calculators listing (no slug) → /[locale] ────────────────
-  const calcListingMatch = pathname.match(/^\/(en|es|fr|de)\/calculators$/);
-  if (calcListingMatch) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${calcListingMatch[1]}`;
     return NextResponse.redirect(url, { status: 301 });
   }
 
