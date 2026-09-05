@@ -27,8 +27,13 @@ export function getCanonicalAndAlternates(
 ) {
   const languages: Record<string, string> = {};
   
-  // Explicitly typing routeMapping as any to extract the object structure
-  const routeMapping = (routing.pathnames as any)[pathnameKey];
+  // 1. Check if there is an explicit mapping for this specific slug in routing.pathnames
+  // e.g. /calculators/mortgage-calculator has specific localized slugs per language
+  const specificRouteKey = genericSlug && pathnameKey.startsWith('/calculators/')
+    ? `/calculators/${genericSlug}`
+    : pathnameKey;
+
+  const routeMapping = (routing.pathnames as any)[specificRouteKey] || (routing.pathnames as any)[pathnameKey];
 
   routing.locales.forEach((locale) => {
     let relativePath = '';
@@ -40,7 +45,16 @@ export function getCanonicalAndAlternates(
     } else if (routeMapping && typeof routeMapping === 'string') {
       relativePath = `/${locale}${routeMapping}`;
     } else {
-      relativePath = `/${locale}${pathnameKey}`;
+      // Fallback: apply intelligent locale prefixes for unmapped calculators/tools/guides
+      if (pathnameKey.startsWith('/calculators/')) {
+        const prefix = locale === 'es' ? '/calculadoras/' : locale === 'fr' ? '/calculatrices/' : locale === 'de' ? '/rechner/' : '/calculators/';
+        relativePath = `/${locale}${prefix}[slug]`;
+      } else if (pathnameKey.startsWith('/tools/')) {
+        const prefix = locale === 'es' ? '/herramientas/' : locale === 'fr' ? '/outils/' : locale === 'de' ? '/werkzeuge/' : '/tools/';
+        relativePath = `/${locale}${prefix}[slug]`;
+      } else {
+        relativePath = `/${locale}${pathnameKey}`;
+      }
     }
 
     if (genericSlug) {
@@ -66,6 +80,7 @@ export function getCanonicalAndAlternates(
     languages[locale] = `${baseUrl}${relativePath}`;
   });
 
+  // Calculate default canonical path (English or x-default)
   let defaultSlug = genericSlug || '';
   if (genericSlug) {
     if (pathnameKey.startsWith('/calculators/')) {
@@ -79,14 +94,18 @@ export function getCanonicalAndAlternates(
     }
   }
 
-  const defaultPath = pathnameKey
+  let defaultPath = pathnameKey
     .replace('[slug]', defaultSlug)
     .replace('[category]', genericSlug || '');
+
+  if (routeMapping && typeof routeMapping === 'object' && routeMapping['en']) {
+    defaultPath = routeMapping['en'].replace('[slug]', defaultSlug).replace('[category]', genericSlug || '');
+  }
 
   languages['x-default'] = languages['en'] || `${baseUrl}/en${defaultPath}`;
 
   return {
-    canonical: languages[currentLocale],
+    canonical: languages[currentLocale] || languages['en'],
     languages,
   };
 }

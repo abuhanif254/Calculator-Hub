@@ -122,6 +122,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     buildEntry('/privacy-policy', 'yearly', 0.3),
     buildEntry('/terms-of-use', 'yearly', 0.3),
     buildEntry('/guides', 'weekly', 0.85),
+    buildEntry('/calculators', 'weekly', 0.95),
+    buildEntry('/tools', 'weekly', 0.9),
     ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
     ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)),
     ...collections.map((collection) => buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)),

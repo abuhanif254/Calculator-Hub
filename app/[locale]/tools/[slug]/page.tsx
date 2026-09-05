@@ -398,7 +398,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-      { "@type": "ListItem", "position": 2, "name": "Developer Tools", "item": `${baseUrl}/${locale}/sitemap` },
+      { "@type": "ListItem", "position": 2, "name": "Developer Tools", "item": getCanonicalUrl('/tools', locale) },
       { "@type": "ListItem", "position": 3, "name": pageTitle, "item": canonicalUrl }
     ]
   };
@@ -459,7 +459,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
           <Link href="/" className="hover:text-[#518231] transition-colors">Home</Link>
           <ChevronRight size={14} />
-          <Link href="/sitemap" className="hover:text-[#518231] transition-colors">Developer Tools</Link>
+          <Link href="/tools" className="hover:text-[#518231] transition-colors">Developer Tools</Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-slate-200 font-medium">{pageTitle}</span>
         </nav>

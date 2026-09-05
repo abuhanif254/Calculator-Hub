@@ -55,6 +55,18 @@ export const routing = defineRouting({
       fr: '/guides/[slug]',
       de: '/anleitungen/[slug]'
     },
+    '/calculators': {
+      en: '/calculators',
+      es: '/calculadoras',
+      fr: '/calculatrices',
+      de: '/rechner'
+    },
+    '/tools': {
+      en: '/tools',
+      es: '/herramientas',
+      fr: '/outils',
+      de: '/werkzeuge'
+    },
     // We can also let the catch-all dynamic parameter fall through, but
     // let's explicitly map the calculators we actively support to their specific translated slugs
     '/calculators/probability-calculator': {
