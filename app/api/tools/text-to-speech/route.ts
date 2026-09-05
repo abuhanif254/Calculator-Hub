@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 // @ts-ignore
 import WebSocket from "ws";
 import crypto from "crypto";
+import https from "https";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -76,7 +77,7 @@ function synthesizeWithEdgeTTS(
     const audioChunks: Buffer[] = [];
     let isResolved = false;
 
-    // 12 second fail-safe timeout
+    // Fast 3,500ms timeout: if Microsoft hangs or drops packet handshake (common on cloud datacenter IPs)
     const timeout = setTimeout(() => {
       if (!isResolved) {
         isResolved = true;
@@ -85,9 +86,9 @@ function synthesizeWithEdgeTTS(
         } catch {
           // ignore
         }
-        reject(new Error("Text-to-speech synthesis timed out."));
+        reject(new Error("Edge TTS connection timed out."));
       }
-    }, 12000);
+    }, 3500);
 
     ws.on("open", () => {
       // 1. Send speech.config message
@@ -179,6 +180,93 @@ function synthesizeWithEdgeTTS(
   });
 }
 
+/**
+ * Splits text into natural sentence/phrase chunks under 180 characters.
+ */
+function splitTextIntoChunks(text: string, maxLen = 180): string[] {
+  const sentences = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+  const chunks: string[] = [];
+  let currentChunk = "";
+
+  for (const sentence of sentences) {
+    const trimmed = sentence.trim();
+    if (!trimmed) continue;
+    if ((currentChunk + " " + trimmed).trim().length <= maxLen) {
+      currentChunk = (currentChunk + " " + trimmed).trim();
+    } else {
+      if (currentChunk) chunks.push(currentChunk);
+      if (trimmed.length > maxLen) {
+        const words = trimmed.split(/\s+/);
+        let wordChunk = "";
+        for (const w of words) {
+          if ((wordChunk + " " + w).trim().length <= maxLen) {
+            wordChunk = (wordChunk + " " + w).trim();
+          } else {
+            if (wordChunk) chunks.push(wordChunk);
+            wordChunk = w;
+          }
+        }
+        currentChunk = wordChunk;
+      } else {
+        currentChunk = trimmed;
+      }
+    }
+  }
+  if (currentChunk) chunks.push(currentChunk);
+  return chunks.length > 0 ? chunks : [text.slice(0, maxLen)];
+}
+
+/**
+ * Fetches an individual audio chunk via Google Translate TTS.
+ */
+function fetchGoogleTTSChunk(chunk: string, lang: string): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${encodeURIComponent(
+      lang
+    )}&q=${encodeURIComponent(chunk)}`;
+
+    https
+      .get(
+        url,
+        {
+          headers: {
+            "User-Agent":
+              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+          },
+        },
+        (res) => {
+          if (res.statusCode !== 200) {
+            return reject(new Error(`Google TTS status ${res.statusCode}`));
+          }
+          const data: Buffer[] = [];
+          res.on("data", (c) => data.push(c));
+          res.on("end", () => resolve(Buffer.concat(data)));
+        }
+      )
+      .on("error", reject);
+  });
+}
+
+/**
+ * High-speed fallback synthesis engine that converts text to MP3 via
+ * multi-chunk audio concatenation. Completely resilient to datacenter IP blocks.
+ */
+async function synthesizeWithGoogleTTS(text: string, lang: string): Promise<Buffer> {
+  const chunks = splitTextIntoChunks(text);
+  const buffers = await Promise.all(chunks.map((c) => fetchGoogleTTSChunk(c, lang)));
+  return Buffer.concat(buffers);
+}
+
+/**
+ * Derives the two-letter language code from the voice identifier.
+ */
+function getLanguageFromVoice(voice: string): string {
+  if (voice.startsWith("es-")) return "es";
+  if (voice.startsWith("fr-")) return "fr";
+  if (voice.startsWith("de-")) return "de";
+  return "en";
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -198,15 +286,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Format rate: 1.0 -> +0%, 1.25 -> +25%, 0.8 -> -20%
+    // Format prosody rate: 1.0 -> +0%, 1.25 -> +25%, 0.8 -> -20%
     const ratePercent = Math.round((Number(rate) - 1.0) * 100);
     const rateStr = ratePercent >= 0 ? `+${ratePercent}%` : `${ratePercent}%`;
 
-    // Format pitch: 0 -> +0Hz, 10 -> +10Hz, -15 -> -15Hz
+    // Format prosody pitch: 0 -> +0Hz, 10 -> +10Hz, -15 -> -15Hz
     const pitchVal = Math.round(Number(pitch));
     const pitchStr = pitchVal >= 0 ? `+${pitchVal}Hz` : `${pitchVal}Hz`;
 
-    const audioBuffer = await synthesizeWithEdgeTTS(text, voice, rateStr, pitchStr);
+    const lang = getLanguageFromVoice(voice);
+
+    let audioBuffer: Buffer | null = null;
+    let usedEngine = "edge-neural";
+
+    try {
+      // 1. Attempt Edge Neural TTS (fast 3.5s timeout)
+      audioBuffer = await synthesizeWithEdgeTTS(text, voice, rateStr, pitchStr);
+    } catch (edgeErr: any) {
+      console.warn(
+        `Edge Neural TTS unavailable (${edgeErr.message}). Seamlessly engaging resilient fallback engine...`
+      );
+      // 2. Seamless Fallback: Google TTS Multi-Chunk MP3 engine
+      usedEngine = "resilient-fallback";
+      audioBuffer = await synthesizeWithGoogleTTS(text, lang);
+    }
 
     if (!audioBuffer || audioBuffer.length === 0) {
       return NextResponse.json(
@@ -222,6 +325,7 @@ export async function POST(request: NextRequest) {
         "Content-Length": audioBuffer.length.toString(),
         "Cache-Control": "public, max-age=86400, stale-while-revalidate=604800",
         "Content-Disposition": 'inline; filename="nexus-speech.mp3"',
+        "X-TTS-Engine": usedEngine,
       },
     });
   } catch (error: any) {

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useMemo } from "react";
+import { useLocale } from "next-intl";
 import {
   Volume2,
   VolumeX,
@@ -20,6 +21,7 @@ import {
   AlertCircle,
   Headphones,
   Wand2,
+  Radio,
 } from "lucide-react";
 
 interface VoiceOption {
@@ -191,33 +193,194 @@ const VOICES: VoiceOption[] = [
   },
 ];
 
-const PRESETS = [
-  {
-    label: "🎬 YouTube Intro",
-    text: "Welcome back to the channel! In today's video, we are exploring the most exciting technology innovations of this year. Be sure to hit that subscribe button and let's get right into it.",
+interface UIStringDict {
+  badge: string;
+  presetTitle: string;
+  copy: string;
+  copied: string;
+  clear: string;
+  placeholder: string;
+  words: string;
+  estDuration: string;
+  chars: string;
+  voiceLangTitle: string;
+  allLanguages: string;
+  speakingSpeed: string;
+  voicePitch: string;
+  reset: string;
+  activePersona: string;
+  generateVoice: string;
+  generating: string;
+  listenBrowser: string;
+  stopBrowser: string;
+  downloadMp3: string;
+  readyForExport: string;
+  voiceoverPreview: string;
+  volume: string;
+  synthesisNote: string;
+  browserNote: string;
+  presets: Array<{ label: string; text: string }>;
+  defaultText: string;
+  defaultVoice: string;
+}
+
+const DICTIONARIES: Record<string, UIStringDict> = {
+  en: {
+    badge: "Neural Speech Studio",
+    presetTitle: "Quick Presets:",
+    copy: "Copy",
+    copied: "Copied!",
+    clear: "Clear",
+    placeholder: "Type or paste your text here to convert into natural speech...",
+    words: "Words",
+    estDuration: "Est. Duration",
+    chars: "chars",
+    voiceLangTitle: "Voice & Language",
+    allLanguages: "🌐 All Languages",
+    speakingSpeed: "Speaking Speed",
+    voicePitch: "Voice Pitch",
+    reset: "Reset",
+    activePersona: "Active Persona:",
+    generateVoice: "Generate Voice",
+    generating: "Synthesizing Voice...",
+    listenBrowser: "Listen in Browser",
+    stopBrowser: "Stop Audio",
+    downloadMp3: "Download MP3 Audio",
+    readyForExport: "Ready for Playback & Export",
+    voiceoverPreview: "Voiceover Preview",
+    volume: "Volume",
+    synthesisNote: "Synthesis Note:",
+    browserNote: "Listen directly in your browser without waiting for server generation.",
+    defaultVoice: "en-US-JennyNeural",
+    defaultText: "Welcome to Nexus Calculator Hub! You can convert any text into natural, studio-quality speech with customizable voices, pitch, and speed. Try listening now or download the MP3.",
+    presets: [
+      { label: "🎬 YouTube Intro", text: "Welcome back to the channel! In today's video, we are exploring the most exciting technology innovations of this year. Be sure to hit that subscribe button and let's get right into it." },
+      { label: "📖 Audiobook", text: "The night air was crisp and still, carrying the scent of pine needles and distant rain. Through the dense canopy of trees, a single beam of moonlight illuminated the ancient stone path." },
+      { label: "📢 News Anchor", text: "Good evening. Leading our top stories tonight: global markets rallied today following positive economic indicators and record growth in green energy infrastructure worldwide." },
+      { label: "⚡ Product Ad", text: "Say goodbye to complicated setups. Introducing the all-new ultra-compact workstation, engineered for unmatched speed, quiet cooling, and total creative freedom. Order yours today." },
+    ]
   },
-  {
-    label: "📖 Audiobook",
-    text: "The night air was crisp and still, carrying the scent of pine needles and distant rain. Through the dense canopy of trees, a single beam of moonlight illuminated the ancient stone path.",
+  es: {
+    badge: "Estudio de Voz Neural",
+    presetTitle: "Plantillas Rápidas:",
+    copy: "Copiar",
+    copied: "¡Copiado!",
+    clear: "Limpiar",
+    placeholder: "Escriba o pegue aquí su texto para convertirlo en voz humana realista...",
+    words: "Palabras",
+    estDuration: "Duración est.",
+    chars: "caracteres",
+    voiceLangTitle: "Voz e Idioma",
+    allLanguages: "🌐 Todos los idiomas",
+    speakingSpeed: "Velocidad de locución",
+    voicePitch: "Tono de voz",
+    reset: "Restablecer",
+    activePersona: "Voz seleccionada:",
+    generateVoice: "Generar Voz",
+    generating: "Sintetizando voz...",
+    listenBrowser: "Escuchar en navegador",
+    stopBrowser: "Detener audio",
+    downloadMp3: "Descargar audio MP3",
+    readyForExport: "Listo para reproducir y exportar",
+    voiceoverPreview: "Vista previa de locución",
+    volume: "Volumen",
+    synthesisNote: "Nota de síntesis:",
+    browserNote: "Escuche instantáneamente en su navegador sin esperas de red.",
+    defaultVoice: "es-ES-AlvaroNeural",
+    defaultText: "¡Bienvenido a Nexus Calculator Hub! Convierta cualquier texto en voz humana realista de calidad de estudio con voces personalizables, entonación y velocidad. Pruébelo ahora o descargue el archivo MP3.",
+    presets: [
+      { label: "🎬 Intro de YouTube", text: "¡Hola a todos y bienvenidos un día más al canal! En el vídeo de hoy vamos a analizar las novedades tecnológicas más revolucionarias. Si te gusta el contenido, no olvides suscribirte y activar la campanita." },
+      { label: "📖 Audiolibro", text: "El aire de la noche era fresco y silencioso, cargado con el aroma de los pinos y la lluvia lejana. A través de la espesa arboleda, un haz de luz lunar iluminaba el antiguo sendero de piedra." },
+      { label: "📢 Noticias", text: "Buenas tardes. En los titulares de hoy: los mercados globales registraron subidas significativas impulsados por los nuevos acuerdos de sostenibilidad y energía verde." },
+      { label: "⚡ Anuncio Comercial", text: "Olvídate de las complicaciones y lleva tus proyectos al siguiente nivel. Descubre la estación de trabajo más rápida, silenciosa y eficiente del mercado. Pruébala hoy mismo." },
+    ]
   },
-  {
-    label: "📢 News Anchor",
-    text: "Good evening. Leading our top stories tonight: global markets rallied today following positive economic indicators and record growth in green energy infrastructure worldwide.",
+  fr: {
+    badge: "Studio Vocal Neuronal",
+    presetTitle: "Modèles Rapides :",
+    copy: "Copier",
+    copied: "Copié !",
+    clear: "Effacer",
+    placeholder: "Tapez ou collez votre texte ici pour le convertir en voix naturelle...",
+    words: "Mots",
+    estDuration: "Durée est.",
+    chars: "caractères",
+    voiceLangTitle: "Voix et Langue",
+    allLanguages: "🌐 Toutes les langues",
+    speakingSpeed: "Vitesse d'élocution",
+    voicePitch: "Hauteur de la voix",
+    reset: "Réinitialiser",
+    activePersona: "Voix active :",
+    generateVoice: "Générer la Voix",
+    generating: "Synthèse vocale en cours...",
+    listenBrowser: "Écouter dans le navigateur",
+    stopBrowser: "Arrêter l'audio",
+    downloadMp3: "Télécharger l'audio MP3",
+    readyForExport: "Prêt pour l'écoute et l'export",
+    voiceoverPreview: "Aperçu de la voix off",
+    volume: "Volume",
+    synthesisNote: "Note de synthèse :",
+    browserNote: "Écoutez immédiatement dans votre navigateur sans aucun temps d'attente.",
+    defaultVoice: "fr-FR-DeniseNeural",
+    defaultText: "Bienvenue sur Nexus Calculator Hub ! Convertissez n'importe quel texte en voix naturelle de qualité studio avec un contrôle complet sur le ton et le débit. Écoutez dès maintenant ou téléchargez votre fichier MP3.",
+    presets: [
+      { label: "🎬 Intro YouTube", text: "Bonjour à tous et bienvenue sur la chaîne ! Dans la vidéo d'aujourd'hui, nous explorons les avancées technologiques les plus marquantes de cette année. Pensez à vous abonner et c'est parti !" },
+      { label: "📖 Livre Audio", text: "L'air de la nuit était pur et immobile, transportant une fraîche odeur de pins et de terre humide. À travers la voûte des arbres centenaires, un rayon de lune éclairait doucement le pavé usé." },
+      { label: "📢 Journal Télévisé", text: "Bonsoir. À la une de l'actualité ce soir : forte hausse des marchés portée par une croissance record dans les énergies renouvelables et les infrastructures numériques." },
+      { label: "⚡ Publicité", text: "Dites adieu aux lenteurs et libérez votre créativité. Découvrez notre nouvelle gamme ultra-compacte alliant puissance brute et silence absolu. Commandez le vôtre aujourd'hui." },
+    ]
   },
-  {
-    label: "⚡ Product Ad",
-    text: "Say goodbye to complicated setups. Introducing the all-new ultra-compact workstation, engineered for unmatched speed, quiet cooling, and total creative freedom. Order yours today.",
-  },
-];
+  de: {
+    badge: "Neuronales Tonstudio",
+    presetTitle: "Schnellvorlagen:",
+    copy: "Kopieren",
+    copied: "Kopiert!",
+    clear: "Löschen",
+    placeholder: "Geben Sie hier Ihren Text ein, um ihn in lebensechte Sprache umzuwandeln...",
+    words: "Wörter",
+    estDuration: "Geschätzte Dauer",
+    chars: "Zeichen",
+    voiceLangTitle: "Stimme & Sprache",
+    allLanguages: "🌐 Alle Sprachen",
+    speakingSpeed: "Sprechgeschwindigkeit",
+    voicePitch: "Tonhöhe",
+    reset: "Zurücksetzen",
+    activePersona: "Aktive Stimme:",
+    generateVoice: "Stimme generieren",
+    generating: "Sprache wird synthetisiert...",
+    listenBrowser: "Im Browser anhören",
+    stopBrowser: "Audio stoppen",
+    downloadMp3: "MP3-Audio herunterladen",
+    readyForExport: "Bereit zur Wiedergabe & zum Export",
+    voiceoverPreview: "Voiceover-Vorschau",
+    volume: "Lautstärke",
+    synthesisNote: "Synthese-Hinweis:",
+    browserNote: "Sie können den Text auch sofort direkt im Browser abspielen.",
+    defaultVoice: "de-DE-KatjaNeural",
+    defaultText: "Herzlich willkommen bei Nexus Calculator Hub! Wandeln Sie jeden Text in natürliche, studio-reife Sprachausgabe um – mit anpassbarer Tonhöhe, Tempo und realistischen Stimmen. Jetzt anhören oder als MP3 herunterladen.",
+    presets: [
+      { label: "🎬 YouTube-Intro", text: "Willkommen zurück auf meinem Kanal! Im heutigen Video werfen wir einen genauen Blick auf die spannendsten Tech-Trends dieses Jahres. Vergesst nicht, den Kanal zu abonnieren, und legen wir direkt los." },
+      { label: "📖 Hörbuch", text: "Die Nachtluft war kühl und still und trug den würzigen Duft von Kiefernnadeln mit sich. Durch das dichte Blätterdach fiel ein einsamer Mondstrahl auf den uralten Steinpfad." },
+      { label: "📢 Nachrichtensprecher", text: "Guten Abend. Die wichtigsten Meldungen des Tages: Die internationalen Finanzmärkte reagierten heute mit deutlichen Kursgewinnen auf neue Innovationsförderungen für grüne Technologien." },
+      { label: "⚡ Werbespot", text: "Schluss mit zeitraubenden Ladezeiten. Erleben Sie höchste Performance, flüsterleise Kühlung und grenzenlose Flexibilität mit unserer neuen Workstation. Jetzt informieren und profitieren." },
+    ]
+  }
+};
 
 export function TextToSpeechTool() {
-  const [text, setText] = useState<string>(
-    "Welcome to Nexus Calculator Hub! You can convert any text into natural, studio-quality speech with customizable voices, pitch, and speed. Try listening now or download the MP3."
+  const currentLocale = useLocale();
+  const t = DICTIONARIES[currentLocale] || DICTIONARIES.en;
+
+  const [text, setText] = useState<string>(t.defaultText);
+  const [selectedVoiceId, setSelectedVoiceId] = useState<string>(t.defaultVoice);
+  const [languageFilter, setLanguageFilter] = useState<string>(
+    ["es", "fr", "de"].includes(currentLocale) ? currentLocale : "all"
   );
-  const [selectedVoiceId, setSelectedVoiceId] = useState<string>("en-US-JennyNeural");
-  const [languageFilter, setLanguageFilter] = useState<string>("all");
   const [rate, setRate] = useState<number>(1.0);
   const [pitch, setPitch] = useState<number>(0);
+
+  // Browser speech state
+  const [isBrowserSpeaking, setIsBrowserSpeaking] = useState<boolean>(false);
 
   // Audio Playback State
   const [audioUrl, setAudioUrl] = useState<string | null>(null);
@@ -281,6 +444,37 @@ export function TextToSpeechTool() {
       audio.removeEventListener("ended", handleEnded);
     };
   }, [audioUrl]);
+
+  // Browser Speech Synthesis (Client-side, 0ms latency, zero timeouts)
+  const handleBrowserSpeak = () => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      setErrorMsg("Your browser does not support the Web Speech API.");
+      return;
+    }
+    if (isBrowserSpeaking) {
+      window.speechSynthesis.cancel();
+      setIsBrowserSpeaking(false);
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = rate;
+    utterance.pitch = Math.max(0.5, Math.min(2, 1 + pitch / 50));
+
+    const browserVoices = window.speechSynthesis.getVoices();
+    const targetLocale = selectedVoice.locale;
+    const match =
+      browserVoices.find(
+        (v) => v.lang.replace("_", "-").toLowerCase() === targetLocale.toLowerCase()
+      ) || browserVoices.find((v) => v.lang.startsWith(targetLocale.slice(0, 2)));
+    if (match) utterance.voice = match;
+
+    utterance.onstart = () => setIsBrowserSpeaking(true);
+    utterance.onend = () => setIsBrowserSpeaking(false);
+    utterance.onerror = () => setIsBrowserSpeaking(false);
+
+    window.speechSynthesis.speak(utterance);
+  };
 
   // Generate Audio
   const handleGenerate = async (customText?: string, customVoiceId?: string, isPreview = false) => {
@@ -452,10 +646,10 @@ export function TextToSpeechTool() {
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
           <Wand2 className="w-3.5 h-3.5" />
-          Quick Test Presets:
+          {t.presetTitle}
         </div>
         <div className="flex flex-wrap gap-2">
-          {PRESETS.map((preset) => (
+          {t.presets.map((preset) => (
             <button
               key={preset.label}
               type="button"
@@ -475,7 +669,7 @@ export function TextToSpeechTool() {
           <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800 mb-3">
             <div className="flex items-center gap-2">
               <FileText className="w-4 h-4 text-[#518231]" />
-              <span className="text-sm font-bold text-slate-900 dark:text-white">Script Editor</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-white">{t.badge}</span>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -485,7 +679,7 @@ export function TextToSpeechTool() {
                 title="Copy script"
               >
                 {copied ? <Check className="w-3.5 h-3.5 text-green-600" /> : <Copy className="w-3.5 h-3.5" />}
-                <span className="hidden sm:inline">{copied ? "Copied" : "Copy"}</span>
+                <span className="hidden sm:inline">{copied ? t.copied : t.copy}</span>
               </button>
               <button
                 type="button"
@@ -494,7 +688,7 @@ export function TextToSpeechTool() {
                 title="Clear text"
               >
                 <Trash2 className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Clear</span>
+                <span className="hidden sm:inline">{t.clear}</span>
               </button>
             </div>
           </div>
@@ -503,7 +697,7 @@ export function TextToSpeechTool() {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value.slice(0, 3000))}
-            placeholder="Type or paste your text here to convert into natural speech..."
+            placeholder={t.placeholder}
             className="w-full flex-1 min-h-[220px] sm:min-h-[260px] p-4 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/60 dark:border-slate-800/80 focus:border-[#518231] focus:ring-2 focus:ring-[#518231]/20 outline-none text-slate-900 dark:text-slate-100 text-sm sm:text-[15px] leading-relaxed resize-y font-normal transition-all"
           />
 
@@ -511,17 +705,17 @@ export function TextToSpeechTool() {
           <div className="flex flex-wrap items-center justify-between gap-3 pt-3 mt-3 text-xs text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-4">
               <span>
-                Words: <strong className="text-slate-700 dark:text-slate-200">{wordCount}</strong>
+                {t.words}: <strong className="text-slate-700 dark:text-slate-200">{wordCount}</strong>
               </span>
               <span className="flex items-center gap-1">
                 <Clock className="w-3.5 h-3.5 text-slate-400" />
-                Est. Duration: <strong className="text-slate-700 dark:text-slate-200">~{estimatedReadingTimeSec}s</strong>
+                {t.estDuration}: <strong className="text-slate-700 dark:text-slate-200">~{estimatedReadingTimeSec}s</strong>
               </span>
             </div>
 
             <div className="flex items-center gap-2">
               <span className={charCount >= 2800 ? "text-amber-600 font-bold" : ""}>
-                {charCount} / 3,000 chars
+                {charCount} / 3,000 {t.chars}
               </span>
               <div className="w-16 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                 <div
@@ -542,7 +736,7 @@ export function TextToSpeechTool() {
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-2">
                 <Globe className="w-4 h-4 text-[#518231]" />
-                <span className="text-sm font-bold text-slate-900 dark:text-white">Voice &amp; Language</span>
+                <span className="text-sm font-bold text-slate-900 dark:text-white">{t.voiceLangTitle}</span>
               </div>
 
               {/* Language Filter */}
@@ -551,11 +745,11 @@ export function TextToSpeechTool() {
                 onChange={(e) => setLanguageFilter(e.target.value)}
                 className="text-xs py-1 px-2.5 rounded-lg bg-slate-100 dark:bg-slate-800 border-none font-medium text-slate-700 dark:text-slate-200 outline-none cursor-pointer"
               >
-                <option value="all">🌐 All Languages</option>
+                <option value="all">{t.allLanguages}</option>
                 <option value="en">🇺🇸 / 🇬🇧 English</option>
-                <option value="es">🇪🇸 / 🇲🇽 Spanish</option>
-                <option value="fr">🇫🇷 / 🇨🇦 French</option>
-                <option value="de">🇩🇪 / 🇦🇹 German</option>
+                <option value="es">🇪🇸 / 🇲🇽 Español</option>
+                <option value="fr">🇫🇷 / 🇨🇦 Français</option>
+                <option value="de">🇩🇪 / 🇦🇹 Deutsch</option>
               </select>
             </div>
 
@@ -618,13 +812,13 @@ export function TextToSpeechTool() {
           <div className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm p-5 sm:p-6 space-y-4">
             <div className="flex items-center gap-2 pb-2 border-b border-slate-100 dark:border-slate-800">
               <Sliders className="w-4 h-4 text-[#518231]" />
-              <span className="text-sm font-bold text-slate-900 dark:text-white">Fine-Tuning Controls</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-white">Prosody &amp; Acoustics</span>
             </div>
 
             {/* Speaking Rate */}
             <div className="space-y-1.5">
               <div className="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
-                <span>Speaking Rate (Speed)</span>
+                <span>{t.speakingSpeed}</span>
                 <span className="text-[#518231] font-bold">{rate.toFixed(2)}x</span>
               </div>
               <input
@@ -637,22 +831,22 @@ export function TextToSpeechTool() {
                 className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#518231]"
               />
               <div className="flex justify-between text-[10px] text-slate-400">
-                <span>0.5x (Slow)</span>
+                <span>0.5x</span>
                 <button
                   type="button"
                   onClick={() => setRate(1.0)}
                   className="hover:text-[#518231] font-semibold"
                 >
-                  Reset (1.0x)
+                  {t.reset} (1.0x)
                 </button>
-                <span>2.0x (Fast)</span>
+                <span>2.0x</span>
               </div>
             </div>
 
             {/* Voice Pitch */}
             <div className="space-y-1.5 pt-2">
               <div className="flex justify-between text-xs font-semibold text-slate-700 dark:text-slate-300">
-                <span>Voice Pitch</span>
+                <span>{t.voicePitch}</span>
                 <span className="text-[#518231] font-bold">
                   {pitch > 0 ? `+${pitch}Hz` : `${pitch}Hz`}
                 </span>
@@ -667,29 +861,29 @@ export function TextToSpeechTool() {
                 className="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#518231]"
               />
               <div className="flex justify-between text-[10px] text-slate-400">
-                <span>-50Hz (Deep)</span>
+                <span>-50Hz</span>
                 <button
                   type="button"
                   onClick={() => setPitch(0)}
                   className="hover:text-[#518231] font-semibold"
                 >
-                  Reset (0Hz)
+                  {t.reset} (0Hz)
                 </button>
-                <span>+50Hz (High)</span>
+                <span>+50Hz</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Generate Button */}
+      {/* Main Generate Button Bar */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-3xl bg-slate-900 dark:bg-slate-800 text-white shadow-xl">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl bg-[#518231] flex items-center justify-center shrink-0">
             <Headphones className="w-5 h-5 text-white" />
           </div>
           <div>
-            <div className="text-xs text-slate-400">Active Persona:</div>
+            <div className="text-xs text-slate-400">{t.activePersona}</div>
             <div className="text-sm font-bold text-white flex items-center gap-2">
               <span>{selectedVoice.flag}</span>
               <span>{selectedVoice.name}</span>
@@ -698,33 +892,68 @@ export function TextToSpeechTool() {
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={() => handleGenerate()}
-          disabled={isLoading || !text.trim()}
-          className="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-[#518231] hover:bg-[#436a28] disabled:opacity-50 disabled:cursor-not-allowed font-extrabold text-sm sm:text-base text-white shadow-lg shadow-[#518231]/30 transition-all transform active:scale-95 flex items-center justify-center gap-2 shrink-0"
-        >
-          {isLoading ? (
-            <>
-              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              <span>Synthesizing Voice...</span>
-            </>
-          ) : (
-            <>
-              <Sparkles className="w-4 h-4" />
-              <span>Generate Voice</span>
-            </>
-          )}
-        </button>
+        <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+          {/* Direct Instant Browser Playback */}
+          <button
+            type="button"
+            onClick={handleBrowserSpeak}
+            disabled={!text.trim()}
+            className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 border border-slate-700/80 font-bold text-xs sm:text-sm text-slate-200 transition-all active:scale-95 flex items-center justify-center gap-2"
+            title={t.browserNote}
+          >
+            {isBrowserSpeaking ? (
+              <>
+                <VolumeX className="w-4 h-4 text-rose-400 animate-pulse" />
+                <span>{t.stopBrowser}</span>
+              </>
+            ) : (
+              <>
+                <Radio className="w-4 h-4 text-emerald-400" />
+                <span>{t.listenBrowser}</span>
+              </>
+            )}
+          </button>
+
+          {/* Cloud MP3 Studio Generation */}
+          <button
+            type="button"
+            onClick={() => handleGenerate()}
+            disabled={isLoading || !text.trim()}
+            className="w-full sm:w-auto px-7 py-3.5 rounded-2xl bg-[#518231] hover:bg-[#436a28] disabled:opacity-50 disabled:cursor-not-allowed font-extrabold text-sm text-white shadow-lg shadow-[#518231]/30 transition-all transform active:scale-95 flex items-center justify-center gap-2 shrink-0"
+          >
+            {isLoading ? (
+              <>
+                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <span>{t.generating}</span>
+              </>
+            ) : (
+              <>
+                <Sparkles className="w-4 h-4" />
+                <span>{t.generateVoice}</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
 
       {/* Error Banner */}
       {errorMsg && (
-        <div className="p-4 rounded-2xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-900/60 flex items-start gap-3 text-red-700 dark:text-red-300 text-sm">
-          <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
-          <div className="flex-1">
-            <div className="font-bold">Synthesis Note:</div>
-            <div>{errorMsg}</div>
+        <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 flex items-start gap-3 text-amber-800 dark:text-amber-200 text-sm">
+          <AlertCircle className="w-5 h-5 shrink-0 mt-0.5 text-amber-600" />
+          <div className="flex-1 space-y-2">
+            <div>
+              <strong className="font-bold">{t.synthesisNote}</strong> {errorMsg}
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={handleBrowserSpeak}
+                className="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
+              >
+                <Radio className="w-3.5 h-3.5" />
+                <span>{t.listenBrowser}</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -735,10 +964,10 @@ export function TextToSpeechTool() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
             <div>
               <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                Ready for Playback &amp; Export
+                {t.readyForExport}
               </span>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span>{selectedVoice.name} Voiceover Preview</span>
+                <span>{selectedVoice.name} – {t.voiceoverPreview}</span>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-normal">
                   48kbps MP3
                 </span>
@@ -752,7 +981,7 @@ export function TextToSpeechTool() {
               className="px-5 py-2.5 rounded-xl bg-[#518231] hover:bg-[#436a28] text-white font-bold text-sm shadow-md shadow-[#518231]/20 flex items-center justify-center gap-2 transition-all active:scale-95 shrink-0"
             >
               <Download className="w-4 h-4" />
-              <span>Download MP3 Audio</span>
+              <span>{t.downloadMp3}</span>
             </button>
           </div>
 
