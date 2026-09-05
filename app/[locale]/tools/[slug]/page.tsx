@@ -418,10 +418,11 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
   const softwareSchema = {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "WebApplication",
     "name": pageTitle,
     "applicationCategory": "DeveloperApplication",
-    "operatingSystem": "Web",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
     "description": pageShortDesc,
     "url": canonicalUrl,
     "offers": {

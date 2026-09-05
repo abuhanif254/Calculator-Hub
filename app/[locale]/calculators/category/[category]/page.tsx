@@ -180,6 +180,12 @@ export default async function CategoryPage({
       {
         '@type': 'ListItem',
         position: 2,
+        name: 'Calculators',
+        item: getCanonicalUrl('/calculators', resolvedParams.locale),
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
         name: cat.title,
         item: canonicalCategoryUrl,
       },
@@ -292,6 +298,10 @@ export default async function CategoryPage({
         <nav className="flex items-center text-sm text-slate-500 mb-8 flex-wrap gap-1">
           <Link href="/" className="hover:text-[#518231] transition-colors">
             Home
+          </Link>
+          <ChevronRight size={14} />
+          <Link href="/calculators" className="hover:text-[#518231] transition-colors">
+            Calculators
           </Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-white font-medium">

@@ -162,6 +162,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Nexus Calculator",
+    "alternateName": ["Nexus Calculators", "Nexus Tools", "Nexus Calculator Hub"],
     "url": `${baseUrl}/${resolvedParams.locale}`,
     "description": "The ultimate ecosystem for calculators and developer tools.",
     "potentialAction": {
@@ -179,14 +180,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Nexus Calculator",
+    "alternateName": ["Nexus Tools Hub", "Nexus Calculator Platform"],
     "url": baseUrl,
     "logo": `${baseUrl}/icons/icon-512x512.png`,
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "support@nexuscalculator.net",
       "contactType": "customer service"
-    },
-    "sameAs": []
+    }
   };
 
   return (
