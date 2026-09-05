@@ -20,14 +20,6 @@ const GARBAGE_PATHS = new Set([
   '/images/*', '/new-path/:slug', '/old-path/:slug',
 ]);
 
-// Locale-aware tool category aliases (old nav paths) → redirect to locale homepage
-const LOCALE_TOOL_CATEGORY_PATHS: Record<string, string> = {
-  '/de/pdf': '/de', '/de/bild': '/de',
-  '/en/image': '/en', '/en/pdf': '/en',
-  '/fr/pdf': '/fr', '/fr/image': '/fr',
-  '/es/imagen': '/es', '/es/pdf': '/es',
-};
-
 // Cross-locale community path aliases (e.g. /fr/community → /fr/communaute)
 const LOCALE_COMMUNITY_ALIAS: Record<string, string> = {
   '/de/community': '/de/gemeinschaft',
@@ -77,6 +69,9 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   // sitemap
   '/es/sitemap': '/es/mapa-del-sitio',
   '/fr/sitemap': '/fr/plan-du-site',
+  // image hub cross-locale redirects
+  '/es/image': '/es/imagen',
+  '/de/image': '/de/bild',
 };
 
 // ── Main middleware ────────────────────────────────────────────────────────────
@@ -126,15 +121,7 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // ── 5. Old locale-specific tool category paths (/de/pdf, /en/image, etc.) ───
-  const toolCategoryRedirect = LOCALE_TOOL_CATEGORY_PATHS[pathname];
-  if (toolCategoryRedirect) {
-    const url = request.nextUrl.clone();
-    url.pathname = toolCategoryRedirect;
-    return NextResponse.redirect(url, { status: 301 });
-  }
-
-  // ── 6. Cross-locale community aliases (/fr/community → /fr/communaute) ─────
+  // ── 5. Cross-locale community aliases (/fr/community → /fr/communaute) ─────
   const communityAlias = LOCALE_COMMUNITY_ALIAS[pathname];
   if (communityAlias) {
     const url = request.nextUrl.clone();
@@ -182,6 +169,8 @@ export default function middleware(request: NextRequest) {
     pathname === '/calculators' ||
     pathname.startsWith('/tools/') ||
     pathname === '/tools' ||
+    pathname === '/pdf' ||
+    pathname === '/image' ||
     pathname.startsWith('/guides/') ||
     pathname.startsWith('/community') ||
     pathname.startsWith('/collections/') ||

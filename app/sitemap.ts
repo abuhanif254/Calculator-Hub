@@ -124,6 +124,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     buildEntry('/guides', 'weekly', 0.85),
     buildEntry('/calculators', 'weekly', 0.95, undefined, undefined, [`${baseUrl}/en/calculators/opengraph-image`]),
     buildEntry('/tools', 'weekly', 0.9, undefined, undefined, [`${baseUrl}/en/tools/opengraph-image`]),
+    buildEntry('/pdf', 'weekly', 0.9),
+    buildEntry('/image', 'weekly', 0.9),
     ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated), [`${baseUrl}/en/guides/${guide.slug}/opengraph-image`])),
     ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id, undefined, [`${baseUrl}/en/calculators/category/${cat.id}/opengraph-image`])),
     ...collections.map((collection) => buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)),
