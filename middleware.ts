@@ -16,9 +16,52 @@ const intlMiddleware = createMiddleware(routing);
 // Garbage paths injected by PDF metadata scrapers, bot probes, and malformed crawls
 const GARBAGE_PATHS = new Set([
   '/Author', '/Producer', '/Kids', '/P', '/XObject', '/28', '/Contents',
-  '/page', '/$', '/&', '/egneodunq', '/admin',
-  '/images/*', '/new-path/:slug', '/old-path/:slug',
+  '/page', '/$', '/&', '/egneodunq', '/admin', '/admin/', '/wp-admin', '/wp-admin/',
+  '/images/*', '/new-path/:slug', '/old-path/:slug', '/4', '/4/',
 ]);
+
+// Legacy or misspelled tool URLs → canonical tool path
+const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
+  '/en/tools/url-encoder-decoder': '/en/tools/url-encoder',
+  '/de/tools/url-encoder-decoder': '/de/werkzeuge/url-encoder',
+  '/es/tools/url-encoder-decoder': '/es/herramientas/url-encoder',
+  '/fr/tools/url-encoder-decoder': '/fr/outils/url-encoder',
+  '/de/werkzeuge/url-encoder-decoder': '/de/werkzeuge/url-encoder',
+  '/es/herramientas/url-encoder-decoder': '/es/herramientas/url-encoder',
+  '/fr/outils/url-encoder-decoder': '/fr/outils/url-encoder',
+  '/tools/url-encoder-decoder': '/en/tools/url-encoder',
+  '/de/werkzeuge/next.js-discussions': '/de/werkzeuge',
+  '/en/tools/next.js-discussions': '/en/tools',
+  '/de/werkzeuge/sitemap.xml-generator': '/de/werkzeuge/sitemap-xml-generator',
+  '/en/tools/sitemap.xml-generator': '/en/tools/sitemap-xml-generator',
+};
+
+// Deprecated or renamed calculators → canonical destination
+const DEPRECATED_CALC_REDIRECTS: Record<string, string> = {
+  'refinance-calculator': '/en/calculators/mortgage-calculator',
+  'number-sequence-calculator': '/en/calculators/category/math',
+  'body-type-calculator': '/en/calculators/body-fat-calculator',
+  'electricity-calculator': '/en/calculators/electricity-cost-calculator',
+  'time-card-calculator': '/en/calculators/hours-calculator',
+  'hex-calculator': '/en/calculators/binary-calculator',
+  'bandwidth-calculator': '/en/calculators/category/other',
+  'circle-calculator': '/en/calculators/category/math',
+  'mass-calculator': '/en/calculators/category/math',
+  'gdp-calculator': '/en/calculators/category/finance',
+  'mean-median-mode-range-calculator': '/en/calculators/statistics-calculator',
+  'permutation-and-combination-calculator': '/en/calculators/permutation-calculator',
+  'calories-burned-calculator': '/en/calculators/calorie-calculator',
+  'molarity-calculator': '/en/calculators/category/chemistry',
+  'day-counter': '/en/calculators/date-calculator',
+  'pregnancy-weight-gain-calculator': '/en/calculators/pregnancy-calculator',
+  'lean-body-mass-calculator': '/en/calculators/body-fat-calculator',
+  'pythagorean-theorem-calculator': '/en/calculators/category/math',
+  'time-zone-calculator': '/en/calculators/time-calculator',
+  'savings-calculator': '/en/calculators/investment-calculator',
+  'tip-calculator': '/en/calculators/category/finance',
+  'pace-calculator': '/en/calculators/category/fitness',
+  'mutual-fund-calculator': '/en/calculators/investment-calculator',
+};
 
 // Cross-locale community path aliases (e.g. /fr/community → /fr/communaute)
 const LOCALE_COMMUNITY_ALIAS: Record<string, string> = {
@@ -115,6 +158,26 @@ export default function middleware(request: NextRequest) {
     return NextResponse.redirect(url, { status: 301 });
   }
 
+  // ── 1b. Legacy or misspelled tool URLs (O(1) lookup) ───────────────────────
+  const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname];
+  if (legacyToolTarget) {
+    const url = request.nextUrl.clone();
+    url.pathname = legacyToolTarget;
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
+  // ── 1c. Deprecated or merged calculator redirects ──────────────────────────
+  const deprecatedMatch = pathname.match(/^\/(?:(en|es|fr|de)\/)?(?:calculators|calculadoras|calculatrices|rechner)\/([a-zA-Z0-9_-]+)$/);
+  if (deprecatedMatch) {
+    const [, , slug] = deprecatedMatch;
+    const deprecatedTarget = DEPRECATED_CALC_REDIRECTS[slug];
+    if (deprecatedTarget) {
+      const url = request.nextUrl.clone();
+      url.pathname = deprecatedTarget;
+      return NextResponse.redirect(url, { status: 301 });
+    }
+  }
+
   // ── 2. Tracking / UTM / referral query params → canonical (strip params) ───
   // Prevents /?ref=producthunt, /?utm_source=... from polluting GSC.
   if (search && /[?&](ref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(search)) {
@@ -125,7 +188,7 @@ export default function middleware(request: NextRequest) {
   }
 
   // ── 3. Garbage / PDF-metadata-scraped paths → homepage ─────────────────────
-  if (GARBAGE_PATHS.has(pathname)) {
+  if (GARBAGE_PATHS.has(pathname) || /^\/\d+\/?$/.test(pathname)) {
     const url = request.nextUrl.clone();
     url.pathname = '/';
     return NextResponse.redirect(url, { status: 301 });
@@ -146,6 +209,15 @@ export default function middleware(request: NextRequest) {
   if (communityAlias) {
     const url = request.nextUrl.clone();
     url.pathname = communityAlias;
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
+  // ── 5b. Old community post format → community index ────────────────────────
+  if (/^\/(?:en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/to-use-a-/.test(pathname) || pathname === '/community/to-use-a-bmi-calculator-93') {
+    const localeMatch = pathname.match(/^\/(en|es|fr|de)\//);
+    const locale = localeMatch ? localeMatch[1] : 'en';
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}/community`;
     return NextResponse.redirect(url, { status: 301 });
   }
 
@@ -225,15 +297,6 @@ export default function middleware(request: NextRequest) {
   if (pathname === '/en/') {
     const url = request.nextUrl.clone();
     url.pathname = '/en';
-    return NextResponse.redirect(url, { status: 301 });
-  }
-
-  // ── 13. Old community post format → community index ────────────────────────
-  if (/^\/(en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/to-use-a-/.test(pathname)) {
-    const localeMatch = pathname.match(/^\/(en|es|fr|de)\//);
-    const locale = localeMatch ? localeMatch[1] : 'en';
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/community`;
     return NextResponse.redirect(url, { status: 301 });
   }
 
