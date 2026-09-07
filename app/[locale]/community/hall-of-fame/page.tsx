@@ -14,6 +14,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: 'Community Hall of Fame | NexusCalculator',
     description: 'Discover the top contributors and highest value discussions in the Nexus Community.',
+    robots: {
+      index: false,
+      follow: true,
+    },
     alternates: getCanonicalAndAlternates('/community/hall-of-fame', locale),
   };
 }

@@ -1,5 +1,5 @@
 import { Metadata, ResolvingMetadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { Link, routing } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import fs from 'fs';
@@ -56,7 +56,7 @@ export async function generateStaticParams() {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Markdown loader — reads from content/en/guides/<slug>.md
+// Markdown loader — reads localized guide or falls back to English
 // ─────────────────────────────────────────────────────────────────────────────
 function slugifyHeading(text: string): string {
   return text
@@ -67,9 +67,19 @@ function slugifyHeading(text: string): string {
     .trim();
 }
 
-function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: string): { content: string; htmlContent: string } | null {
+function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: string, localizedSlug?: string): { content: string; htmlContent: string } | null {
+  // 1. Try currentSlug in locale folder
   let filePath = path.join(process.cwd(), 'content', locale, 'guides', `${currentSlug}.md`);
+  if (!fs.existsSync(filePath) && localizedSlug) {
+    // 2. Try localizedSlug in locale folder
+    filePath = path.join(process.cwd(), 'content', locale, 'guides', `${localizedSlug}.md`);
+  }
   if (!fs.existsSync(filePath)) {
+    // 3. Try guideSlug in locale folder
+    filePath = path.join(process.cwd(), 'content', locale, 'guides', `${guideSlug}.md`);
+  }
+  if (!fs.existsSync(filePath)) {
+    // 4. Fallback to English folder
     filePath = path.join(process.cwd(), 'content', 'en', 'guides', `${guideSlug}.md`);
     if (!fs.existsSync(filePath)) return null;
   }
@@ -126,15 +136,15 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { locale, slug } = await params;
-  let guide = getGuideBySlug(slug);
-  if (!guide) return { title: 'Guide Not Found' };
+  let baseGuide = getGuideBySlug(slug);
+  if (!baseGuide) return { title: 'Guide Not Found' };
   
-  guide = getLocalizedGuide(guide, locale);
+  const guide = getLocalizedGuide(baseGuide, locale);
 
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
-  const canonicalUrl = getCanonicalUrl('/guides/[slug]', locale, slug);
+  const canonicalUrl = getCanonicalUrl('/guides/[slug]', locale, baseGuide.slug);
   const guidesIndexUrl = getCanonicalUrl('/guides', locale);
 
   const relatedUrl = guide.relatedCalculator
@@ -146,7 +156,7 @@ export async function generateMetadata(
   return {
     title: guide.title,
     description: guide.description,
-    alternates: getCanonicalAndAlternates('/guides/[slug]', locale, slug),
+    alternates: getCanonicalAndAlternates('/guides/[slug]', locale, baseGuide.slug),
     openGraph: {
       type: 'article',
       title: `${guide.title} | Nexus Calculator Guides`,
@@ -185,9 +195,18 @@ export default async function GuideArticlePage({
   let baseGuide = getGuideBySlug(slug);
   if (!baseGuide) notFound();
 
-  const guide = getLocalizedGuide(baseGuide, locale);
+  // If accessed via an unlocalized slug on a localized path (e.g. /es/guias/debt-to-income-ratio-guide),
+  // permanently redirect to the canonical localized guide URL
+  const expectedSlug = baseGuide.slugs?.[locale as keyof typeof baseGuide.slugs] || baseGuide.slug;
+  if (slug !== expectedSlug) {
+    const canonicalGuideUrl = getCanonicalUrl('/guides/[slug]', locale, baseGuide.slug);
+    permanentRedirect(canonicalGuideUrl);
+  }
 
-  const markdownData = loadGuideMarkdown(guide.slug, locale, slug);
+  const guide = getLocalizedGuide(baseGuide, locale);
+  const localizedSlug = baseGuide.slugs?.[locale as keyof typeof baseGuide.slugs];
+
+  const markdownData = loadGuideMarkdown(baseGuide.slug, locale, slug, localizedSlug);
   const htmlContent = markdownData?.htmlContent ?? `<p>Content coming soon. Check back shortly!</p>`;
 
   const headings = extractHeadings(htmlContent);

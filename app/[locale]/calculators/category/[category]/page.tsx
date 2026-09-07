@@ -47,7 +47,7 @@ export async function generateMetadata({
     title: cat.seoTitle,
     description: cat.seoDescription,
     robots: {
-      index: true,
+      index: isEnglish,
       follow: true,
     },
     alternates: getCanonicalAndAlternates('/calculators/category/[category]', locale, category),

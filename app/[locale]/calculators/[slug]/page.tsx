@@ -33,13 +33,14 @@ export const revalidate = false;
 export const dynamicParams = false;
 
 // Helper function to read markdown content
-function getMarkdownContent(slug: string, locale: string, localizedSlug?: string) {
+function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: string, urlSlug?: string) {
   try {
-    const filePath = path.join(process.cwd(), "content", locale, `${slug}.md`);
-    let targetPath = filePath;
+    // 1. Try localized folder with canonical base slug (e.g. content/es/down-payment-calculator.md)
+    const baseFilePath = path.join(process.cwd(), "content", locale, `${baseSlug}.md`);
+    let targetPath = baseFilePath;
 
-    if (!fs.existsSync(filePath)) {
-      // If the English-named file doesn't exist, try the localized name if provided
+    if (!fs.existsSync(targetPath)) {
+      // 2. Try localized folder with localizedSlug (e.g. content/es/calculadora-pago-inicial.md)
       if (localizedSlug) {
         const localizedPath = path.join(process.cwd(), "content", locale, `${localizedSlug}.md`);
         if (fs.existsSync(localizedPath)) {
@@ -48,9 +49,17 @@ function getMarkdownContent(slug: string, locale: string, localizedSlug?: string
       }
     }
 
-    // Fallback to english if language file is missing completely
+    if (!fs.existsSync(targetPath) && urlSlug) {
+      // 3. Try localized folder with urlSlug
+      const urlSlugPath = path.join(process.cwd(), "content", locale, `${urlSlug}.md`);
+      if (fs.existsSync(urlSlugPath)) {
+        targetPath = urlSlugPath;
+      }
+    }
+
+    // 4. Fallback to english if language file is missing completely
     if (!fs.existsSync(targetPath)) {
-      const fallbackPath = path.join(process.cwd(), "content", "en", `${slug}.md`);
+      const fallbackPath = path.join(process.cwd(), "content", "en", `${baseSlug}.md`);
       if (fs.existsSync(fallbackPath)) {
         targetPath = fallbackPath;
       } else {
@@ -87,7 +96,7 @@ function getMarkdownContent(slug: string, locale: string, localizedSlug?: string
 
     return parsed;
   } catch (e) {
-    console.error("Error reading markdown for", slug, locale, e);
+    console.error("Error reading markdown for", baseSlug, locale, e);
     return null;
   }
 }
@@ -140,7 +149,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   const localizedSlug = calc.slugs && calc.slugs[locale as keyof typeof calc.slugs];
-  const mdData = getMarkdownContent(slug, locale, localizedSlug);
+  const mdData = getMarkdownContent(calc.slug, locale, localizedSlug, slug);
 
   // Use markdown matter if available, fallback to hardcoded
   const metaTitle = mdData?.data?.metaTitle || calc.meta.title;
@@ -162,7 +171,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       index: true,
       follow: true,
     },
-    alternates: getCanonicalAndAlternates('/calculators/[slug]', locale, slug),
+    alternates: getCanonicalAndAlternates('/calculators/[slug]', locale, calc.slug),
   };
 }
 
@@ -176,7 +185,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   }
 
   const localizedSlug = calc.slugs && calc.slugs[resolvedParams.locale as keyof typeof calc.slugs];
-  const mdData = getMarkdownContent(resolvedParams.slug, resolvedParams.locale, localizedSlug);
+  const mdData = getMarkdownContent(calc.slug, resolvedParams.locale, localizedSlug, resolvedParams.slug);
 
   // Replace defaults with markdown data
   const pageTitle = mdData?.data?.title || calc.title;

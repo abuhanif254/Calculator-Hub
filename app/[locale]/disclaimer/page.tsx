@@ -7,9 +7,34 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
+  const metaByLocale: Record<string, { title: string; description: string }> = {
+    en: {
+      title: 'Medical & Financial Disclaimer | Nexus Tools Platform',
+      description: 'Read the Nexus Tools Medical and Financial Disclaimer. All tools and calculators on this platform are for educational and informational purposes only.',
+    },
+    es: {
+      title: 'Descargo de Responsabilidad Médico y Financiero | Nexus',
+      description: 'Lea el descargo de responsabilidad médico y financiero de Nexus. Todas las herramientas y calculadoras son únicamente para fines informativos y educativos.',
+    },
+    fr: {
+      title: 'Clause de Non-Responsabilité Médicale et Financière | Nexus',
+      description: 'Consultez la clause de non-responsabilité médicale et financière de Nexus. Tous les outils et calculatrices sont fournis à des fins éducatives uniquement.',
+    },
+    de: {
+      title: 'Medizinischer & Finanzieller Haftungsausschluss | Nexus',
+      description: 'Lesen Sie den medizinischen und finanziellen Haftungsausschluss von Nexus. Alle Tools und Rechner dienen ausschließlich Informations- und Bildungszwecken.',
+    },
+  };
+
+  const meta = metaByLocale[locale] || metaByLocale.en;
+
   return {
-    title: 'Medical & Financial Disclaimer | Nexus Tools Platform',
-    description: 'Read the Nexus Tools Medical and Financial Disclaimer. All tools and calculators on this platform are for educational and informational purposes only.',
+    title: meta.title,
+    description: meta.description,
+    robots: {
+      index: locale === 'en',
+      follow: true,
+    },
     alternates: getCanonicalAndAlternates('/disclaimer', locale),
   };
 }

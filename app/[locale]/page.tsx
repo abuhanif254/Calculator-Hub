@@ -35,12 +35,33 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
-  return {
-    title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-    description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
-    openGraph: {
+  const metadataByLocale: Record<string, { title: string; description: string }> = {
+    en: {
       title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
       description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
+    },
+    es: {
+      title: 'Nexus | Plataforma Definitiva de Calculadoras y Herramientas para Desarrolladores',
+      description: 'Ecosistema gratuito para profesionales. Acceda a cientos de calculadoras precisas y herramientas de desarrollo al instante: calculadora de hipotecas, formateador JSON y más.',
+    },
+    fr: {
+      title: 'Nexus | Plateforme Ultime de Calculatrices et Outils Développeur',
+      description: 'Écosystème gratuit pour les professionnels. Accédez instantanément à des centaines de calculatrices précises et d\'outils développeur : simulateur hypothécaire, formateur JSON, etc.',
+    },
+    de: {
+      title: 'Nexus | Ultimative Plattform für Rechner & Entwickler-Tools',
+      description: 'Kostenloses Ökosystem für Profis. Greifen Sie sofort auf Hunderte präzise Rechner und Entwickler-Tools zu: Hypothekenrechner, JSON-Formatierer und mehr.',
+    },
+  };
+
+  const meta = metadataByLocale[locale] || metadataByLocale.en;
+
+  return {
+    title: meta.title,
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
       url: canonicalUrl,
       siteName: 'Nexus Calculator',
       type: 'website',
@@ -50,14 +71,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: `${baseUrl}/icons/icon-512x512.png`,
           width: 512,
           height: 512,
-          alt: 'Nexus Calculator — Calculators & Developer Tools Platform',
+          alt: `${meta.title} — Nexus Calculator`,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'Free ecosystem for professionals. Access hundreds of precise calculators and developer tools instantly: mortgage calculator, JSON formatter, and more.',
+      title: meta.title,
+      description: meta.description,
       images: [`${baseUrl}/icons/icon-512x512.png`],
     },
     alternates: getCanonicalAndAlternates('/', locale),
@@ -190,6 +211,46 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     }
   };
 
+  const heroCopy: Record<string, { badge: string; titlePart1: string; titleGradient: string; titlePart2: string; desc: string; exploreBtn: string; communityBtn: string }> = {
+    en: {
+      badge: "302+ Tools — Calculators, Dev Utilities & More",
+      titlePart1: "The Ultimate",
+      titleGradient: "Calculators & Developer Tools",
+      titlePart2: "Platform",
+      desc: "The ultimate ecosystem for professionals. Access two hundreds of precise calculators and powerful developer utilities, PDF Tools, Image Tools instantly in your browser.",
+      exploreBtn: "Explore Tools",
+      communityBtn: "Join Community",
+    },
+    es: {
+      badge: "Más de 302 Herramientas — Calculadoras y Utilidades Dev",
+      titlePart1: "La Plataforma Definitiva de",
+      titleGradient: "Calculadoras y Herramientas",
+      titlePart2: "para Profesionales",
+      desc: "El ecosistema ideal para profesionales. Acceda a cientos de calculadoras precisas, utilidades de desarrollo, herramientas PDF e imágenes al instante en su navegador.",
+      exploreBtn: "Explorar Herramientas",
+      communityBtn: "Unirse a la Comunidad",
+    },
+    fr: {
+      badge: "Plus de 302 Outils — Calculatrices & Utilitaires Développeur",
+      titlePart1: "La Plateforme Ultime de",
+      titleGradient: "Calculatrices et Outils",
+      titlePart2: "pour Développeurs",
+      desc: "L'écosystème gratuit pour les professionnels. Accédez instantanément à des centaines de calculatrices précises et d'utilitaires web et PDF dans votre navigateur.",
+      exploreBtn: "Explorer les Outils",
+      communityBtn: "Rejoindre la Communauté",
+    },
+    de: {
+      badge: "302+ Tools — Rechner, Entwickler-Tools & Mehr",
+      titlePart1: "Die Ultimative Plattform für",
+      titleGradient: "Rechner & Entwickler-Tools",
+      titlePart2: "im Web",
+      desc: "Das ultimative Ökosystem für Profis. Greifen Sie direkt im Browser auf Hunderte präzise Rechner, Entwickler-Tools, PDF- und Bildbearbeitungstools zu.",
+      exploreBtn: "Tools Erkunden",
+      communityBtn: "Community Beitreten",
+    },
+  };
+  const hero = heroCopy[resolvedParams.locale] || heroCopy.en;
+
   return (
     <main className="w-full">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
@@ -202,21 +263,21 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <div className="lg:w-1/2 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 text-sm font-semibold mb-6">
-                <Zap size={16} /> <span>302+ Tools — Calculators, Dev Utilities &amp; More</span>
+                <Zap size={16} /> <span>{hero.badge}</span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6 leading-tight">
-                The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">Calculators & Developer Tools</span> Platform
+                {hero.titlePart1} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#518231] to-emerald-600">{hero.titleGradient}</span> {hero.titlePart2}
               </h1>
               <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed font-medium mb-8 max-w-2xl mx-auto lg:mx-0">
-                The ultimate ecosystem for professionals. Access two hundreds of precise calculators and powerful developer utilities, PDF Tools, Image Tools instantly in your browser.
+                {hero.desc}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <Link href={"/sitemap" as any} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-lg shadow-green-900/20">
-                  Explore Tools
+                  {hero.exploreBtn}
                   <ArrowRight size={20} />
                 </Link>
                 <Link href={"/community" as any} className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-xl text-lg transition-colors font-semibold shadow-sm">
-                  Join Community
+                  {hero.communityBtn}
                   <Users size={20} />
                 </Link>
               </div>

@@ -7,9 +7,34 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
+  const metaByLocale: Record<string, { title: string; description: string }> = {
+    en: {
+      title: 'Contact Us | Nexus Calculator',
+      description: 'Get in touch with the Nexus Calculator team. We are here to help with your questions, feedback, and support inquiries.',
+    },
+    es: {
+      title: 'Contáctenos | Nexus Calculator',
+      description: 'Póngase en contacto con el equipo de Nexus Calculator. Estamos aquí para ayudar con sus preguntas, comentarios y soporte.',
+    },
+    fr: {
+      title: 'Nous Contacter | Nexus Calculator',
+      description: 'Contactez l\'équipe Nexus Calculator. Nous sommes là pour répondre à vos questions, suggestions et demandes d\'assistance.',
+    },
+    de: {
+      title: 'Kontaktieren Sie Uns | Nexus Calculator',
+      description: 'Nehmen Sie Kontakt mit dem Nexus Calculator-Team auf. Wir helfen Ihnen gerne bei Fragen, Feedback und Supportanfragen weiter.',
+    },
+  };
+
+  const meta = metaByLocale[locale] || metaByLocale.en;
+
   return {
-    title: 'Contact Us | Nexus Calculator',
-    description: 'Get in touch with the Nexus Calculator team. We are here to help with your questions, feedback, and support inquiries.',
+    title: meta.title,
+    description: meta.description,
+    robots: {
+      index: locale === 'en',
+      follow: true,
+    },
     alternates: getCanonicalAndAlternates('/contact-us', locale),
   };
 }
