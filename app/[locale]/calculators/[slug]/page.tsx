@@ -11,6 +11,7 @@ import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { DirectAnswerCard } from "@/app/components/DirectAnswerCard";
+import { StaticCalculationMatrix } from "@/app/components/StaticCalculationMatrix";
 import { getFormulaForCalculator, getFormulaFaq } from "@/lib/data/calculatorFormulas";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
@@ -510,6 +511,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             title={pageTitle || calc.title} 
           />
           <CalculatorMath slug={calc.slug} category={calc.category} />
+          <StaticCalculationMatrix slug={calc.slug} title={pageTitle} locale={resolvedParams.locale} />
 
           {/* Educational Guide & Math Deep-Dive Callout */}
           {localizedGuide && guideSlug && (
