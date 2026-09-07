@@ -14,6 +14,8 @@ export default function robots(): MetadataRoute.Robots {
           '/private/',                          // Admin / internal routes
           // ── Auth-required pages (redirect unauthenticated crawlers) ───────────
           // These cause "Page with redirect" in GSC. Block crawl budget waste.
+          '/login',
+          '/signup',
           '/*/login',
           '/*/signup',
           '/*/community/new',
@@ -23,6 +25,10 @@ export default function robots(): MetadataRoute.Robots {
           '/*/dashboard',
           '/*/admin/*',
           '/admin/',
+          // ── Bare community categories & utility paths ─────────────────────────
+          '/community/category/*',
+          '/community/hall-of-fame',
+          '/community/leaderboard',
           // ── Community search params (create duplicate/redirect URLs) ──────────
           '/*/community?q=*',
           '/*/comunidad?q=*',
