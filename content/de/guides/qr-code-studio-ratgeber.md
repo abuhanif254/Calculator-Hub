@@ -7,7 +7,7 @@ description: "Erfahren Sie, wie Sie perfekte QR-Codes für Druck und Web generie
 
 QR-Codes (Quick Response) sind zu einer unverzichtbaren Brücke zwischen der physischen und der digitalen Welt geworden. Egal, ob Sie einen QR-Code zu einer Speisekarte, einer Visitenkarte oder einer Werbetafel hinzufügen, es ist entscheidend, dass er zuverlässig gescannt werden kann.
 
-In diesem Leitfaden untersuchen wir die Anatomie eines QR-Codes, häufige Fehler und wie Sie unser kostenloses [QR Code Studio](/de/tools/qr-code-studio) nutzen können, um professionelle Codes zu generieren.
+In diesem Leitfaden untersuchen wir die Anatomie eines QR-Codes, häufige Fehler und wie Sie unser kostenloses [QR Code Studio](/de/werkzeuge/qr-code-studio) nutzen können, um professionelle Codes zu generieren.
 
 ---
 

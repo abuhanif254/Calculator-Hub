@@ -7,7 +7,7 @@ description: "Aprenda a usar una Prueba T de Student para determinar si existe u
 
 En estadística, es fácil calcular el promedio de dos grupos. ¿Pero cómo sabe si la diferencia es significativa o fue por azar?
 
-Aquí es donde entra la **Prueba T de Student**. En esta guía, exploraremos qué es y cómo interpretar los resultados con nuestra [Calculadora de Prueba T](/es/calculators/t-test-calculator).
+Aquí es donde entra la **Prueba T de Student**. En esta guía, exploraremos qué es y cómo interpretar los resultados con nuestra [Calculadora de Prueba T](/es/calculadoras/calculadora-prueba-t).
 
 ---
 

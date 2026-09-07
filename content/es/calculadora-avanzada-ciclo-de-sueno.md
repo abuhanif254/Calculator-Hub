@@ -16,9 +16,9 @@ faqs:
   - question: "¿Qué es una 'power nap' o siesta corta y cuánto debe durar?"
     answer: "Una siesta corta o power nap está diseñada para revitalizarte rápidamente. La duración ideal es de 20 minutos, lo que te permite disfrutar de los beneficios del sueño ligero sin entrar en el sueño profundo. Si necesitas una siesta más larga, debe durar un ciclo completo de 90 minutos."
   - question: "¿Puede calcular mis ciclos de sueño ayudarme a perder peso?"
-    answer: "Sí, indirectamente. Dormir mal altera hormonas como la grelina y la leptina, aumentando el apetito. Un sueño óptimo mejora la función metabólica. Puedes combinar esto con nuestra [Calculadora de IMC](/es/calculators/bmi-calculator) o [Calculadora de Calorías](/es/calculators/calorie-calculator) para una salud integral."
+    answer: "Sí, indirectamente. Dormir mal altera hormonas como la grelina y la leptina, aumentando el apetito. Un sueño óptimo mejora la función metabólica. Puedes combinar esto con nuestra [Calculadora de IMC](/es/calculadoras/calculadora-de-imc) o [Calculadora de Calorías](/es/calculadoras/calculadora-de-calorias) para una salud integral."
   - question: "¿Cómo se relaciona el sueño con el rendimiento físico?"
-    answer: "El sueño es el momento en el que ocurre la reparación muscular. Para deportistas, la arquitectura del sueño es crucial para la recuperación. Para llevar un seguimiento de tus metas deportivas, puedes usar nuestra [Calculadora de Ritmo (Pace)](/es/calculators/pace-calculator)."
+    answer: "El sueño es el momento en el que ocurre la reparación muscular. Para deportistas, la arquitectura del sueño es crucial para la recuperación. Para llevar un seguimiento de tus metas deportivas, puedes usar nuestra [Calculadora de Ritmo (Pace)](/es/calculadoras/calculadora-de-ritmo)."
   - question: "¿Cuáles son las 4 fases del sueño?"
     answer: "Fase 1 (sueño ligero), Fase 2 (sueño ligero con husos de sueño), Fase 3 (sueño profundo de ondas lentas) y fase REM (movimientos oculares rápidos, donde soñamos). Una noche normal incluye 4 a 6 repeticiones de estas fases."
   - question: "¿Qué es la inercia del sueño?"
@@ -96,8 +96,8 @@ Cuando la alarma vuelve a sonar 9 minutos después, te está arrancando violenta
 Dominar tu sueño es el mejor biohack. Al aprovechar la realidad biológica de los ciclos REM de 90 minutos, y respetando las necesidades de duración según la edad, puedes mejorar drásticamente tu función cognitiva, estabilidad emocional y salud física. Utiliza esta Calculadora Avanzada de Ciclos de Sueño cada noche para planificar tu descanso, y explora nuestras otras herramientas para optimizar completamente tu estilo de vida.
 
 ### Herramientas de Salud y Bienestar Relacionadas
-- [Calculadora de Calorías](/es/calculators/calorie-calculator) - Descubre tus necesidades calóricas diarias.
-- [Calculadora de IMC](/es/calculators/bmi-calculator) - Revisa tu Índice de Masa Corporal.
-- [Calculadora de Ritmo (Pace)](/es/calculators/pace-calculator) - Calcula tus tiempos de carrera.
-- [Calculadora de Macros](/es/calculators/macro-calculator) - Desglosa tus requerimientos de macronutrientes.
-- [Calculadora de Embarazo y Parto](/es/calculators/due-date-calculator) - Lleva un registro de los hitos de tu embarazo.
+- [Calculadora de Calorías](/es/calculadoras/calculadora-de-calorias) - Descubre tus necesidades calóricas diarias.
+- [Calculadora de IMC](/es/calculadoras/calculadora-de-imc) - Revisa tu Índice de Masa Corporal.
+- [Calculadora de Ritmo (Pace)](/es/calculadoras/calculadora-de-ritmo) - Calcula tus tiempos de carrera.
+- [Calculadora de Macros](/es/calculadoras/calculadora-de-macros) - Desglosa tus requerimientos de macronutrientes.
+- [Calculadora de Embarazo y Parto](/es/calculadoras/calculadora-de-fecha-de-parto) - Lleva un registro de los hitos de tu embarazo.

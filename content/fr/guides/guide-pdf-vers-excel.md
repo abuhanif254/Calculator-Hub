@@ -7,7 +7,7 @@ description: "Découvrez comment extraire avec précision des tableaux de docume
 
 Extraire des données d'un fichier PDF est l'une des tâches les plus frustrantes. Lorsque vous essayez de copier-coller un tableau d'un PDF vers Excel, les lignes et les colonnes s'effondrent, fusionnant toutes vos données structurées en une seule colonne de texte inutilisable.
 
-Pour résoudre ce problème, vous avez besoin d'un **Convertisseur PDF vers Excel** dédié. Dans ce guide, nous explorerons comment fonctionne l'extraction de tableaux, les pièges à éviter et comment convertir vos documents en toute sécurité avec notre [Outil PDF vers Excel](/fr/tools/pdf-to-excel) gratuit.
+Pour résoudre ce problème, vous avez besoin d'un **Convertisseur PDF vers Excel** dédié. Dans ce guide, nous explorerons comment fonctionne l'extraction de tableaux, les pièges à éviter et comment convertir vos documents en toute sécurité avec notre [Outil PDF vers Excel](/fr/outils/pdf-to-excel) gratuit.
 
 ---
 
@@ -35,7 +35,7 @@ Notre outil repose sur une **Architecture Zero-Cloud**.
 Suivez ces bonnes pratiques pour vous assurer que vos feuilles de calcul nécessitent un nettoyage minimal :
 
 ### 1. Assurez-vous que le PDF est basé sur du texte (Non Numérisé)
-Notre outil fonctionne mieux sur les PDF "natifs" (exportés directement depuis Word ou Excel). Si votre PDF est une image numérisée, vous devrez d'abord utiliser notre outil [OCR pour PDF](/fr/tools/pdf-ocr).
+Notre outil fonctionne mieux sur les PDF "natifs" (exportés directement depuis Word ou Excel). Si votre PDF est une image numérisée, vous devrez d'abord utiliser notre outil [OCR pour PDF](/fr/outils/pdf-ocr).
 
 ### 2. Vérifiez la Présence d'un Quadrillage Net
 Les convertisseurs s'appuient fortement sur les lignes de quadrillage visuelles (bordures) dessinées autour du tableau. Si le tableau n'a pas de bordures, la conversion est plus difficile.

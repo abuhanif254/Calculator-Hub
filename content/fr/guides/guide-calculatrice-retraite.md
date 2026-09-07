@@ -5,7 +5,7 @@ description: "Découvrez comment calculer votre pécule de retraite, comprenez l
 
 # Planification de la Retraite 101 : De Combien Avez-Vous Réellement Besoin ?
 
-Aurez-vous assez d'argent pour prendre une retraite confortable ? Dans ce guide, nous expliquerons les mathématiques fondamentales, la « règle des 4 % » et comment utiliser notre [Calculatrice de Retraite](/fr/calculators/retirement-calculator).
+Aurez-vous assez d'argent pour prendre une retraite confortable ? Dans ce guide, nous expliquerons les mathématiques fondamentales, la « règle des 4 % » et comment utiliser notre [Calculatrice de Retraite](/fr/calculatrices/calculatrice-de-retraite).
 
 ---
 

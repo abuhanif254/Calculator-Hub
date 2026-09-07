@@ -5,7 +5,7 @@ description: "Erfahren Sie, wie Sie Ihr Notgroschen für den Ruhestand berechnen
 
 # Ruhestandsplanung 101: Wie viel brauchen Sie wirklich?
 
-Werden Sie genug Geld haben, um bequem in den Ruhestand zu gehen? In diesem Leitfaden erklären wir die grundlegende Mathematik, die "4%-Regel" und die Verwendung unseres [Ruhestandsrechners](/de/calculators/retirement-calculator).
+Werden Sie genug Geld haben, um bequem in den Ruhestand zu gehen? In diesem Leitfaden erklären wir die grundlegende Mathematik, die "4%-Regel" und die Verwendung unseres [Ruhestandsrechners](/de/rechner/rentenrechner).
 
 ---
 

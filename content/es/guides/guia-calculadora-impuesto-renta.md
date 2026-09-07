@@ -7,7 +7,7 @@ description: "Desmitifique cómo funcionan los impuestos, conozca la diferencia 
 
 "¡Si me dan un aumento, pasaré a un tramo impositivo más alto y ganaré menos dinero!"
 
-Este es un mito común y falso. En esta guía, desglosaremos cómo funcionan los sistemas fiscales progresivos y cómo usar nuestra [Calculadora de Impuestos sobre la Renta](/es/calculators/income-tax-calculator).
+Este es un mito común y falso. En esta guía, desglosaremos cómo funcionan los sistemas fiscales progresivos y cómo usar nuestra [Calculadora de Impuestos sobre la Renta](/es/calculadoras/calculadora-de-impuestos).
 
 ---
 

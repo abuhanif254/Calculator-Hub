@@ -5,7 +5,7 @@ description: "Découvrez ce qu'un score Z vous apprend sur un point de données,
 
 # Comment Calculer et Interpréter le Score Z (Z-Score) en Statistiques
 
-Pour comparer mathématiquement des scores provenant de distributions différentes, les statisticiens utilisent le **Score Z** (score standard). Dans ce guide, nous explorerons la formule et comment utiliser notre [Calculatrice de Score Z](/fr/calculators/z-score-calculator).
+Pour comparer mathématiquement des scores provenant de distributions différentes, les statisticiens utilisent le **Score Z** (score standard). Dans ce guide, nous explorerons la formule et comment utiliser notre [Calculatrice de Score Z](/fr/calculatrices/calculatrice-score-z).
 
 ---
 

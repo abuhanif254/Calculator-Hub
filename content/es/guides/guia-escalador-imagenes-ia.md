@@ -7,7 +7,7 @@ description: "Descubra cómo funciona el escalado de imágenes por IA, la difere
 
 Ya sea que intente imprimir una fotografía familiar antigua, agrandar un pequeño logotipo para una presentación o mejorar arte generado por IA de baja resolución, el escalado de imágenes es una herramienta crítica. En el pasado, ampliar una imagen simplemente significaba hacer los píxeles existentes más grandes, resultando en un desastre borroso y pixelado. Hoy en día, los **Escaladores de Imágenes por IA** utilizan el aprendizaje automático para "adivinar" de manera inteligente y rellenar los detalles faltantes, proporcionando ampliaciones nítidas.
 
-En esta guía, exploraremos cómo funciona el escalado por IA, cuándo usarlo y cómo obtener los mejores resultados posibles usando nuestro [Escalador de Imágenes por IA](/es/tools/ai-image-upscaler) gratuito.
+En esta guía, exploraremos cómo funciona el escalado por IA, cuándo usarlo y cómo obtener los mejores resultados posibles usando nuestro [Escalador de Imágenes por IA](/es/herramientas/ai-image-upscaler) gratuito.
 
 ---
 

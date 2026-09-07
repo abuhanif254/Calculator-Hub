@@ -72,6 +72,6 @@ Toma el timón con firmeza ante tus planes con tu vida patrimonial analizando di
 
 ### Herramientas y Calculadoras Financieras Relacionadas
 Te invitamos a no dejar ni un solo eslabón económico personal en dudas tras tu evaluación libre previsional:
-* [Calculadora de Salario](/es/calculators/salary-calculator) - Analiza con minuciosidad pagos equitativos por hora, día o periodos bimensuales precisos y ajustables a un calendario general.
-* [Calculadora de Jubilación](/es/calculators/retirement-calculator) - Combina esta guía proyectando todos tus fondos post-hacienda generados por décadas bajo márgenes estables de ahorros generacionales continuados seguros.
-* [Calculadora de Amortización](/es/calculators/amortization-calculator) - Descubre, tras descontar tus deducciones, qué proporción de la cartera sirve con claridad sin sorpresas impuestas mes tras mes destinadas estrictamente para los prestamistas oficiales sobre propiedades personales del sector de la vivienda regular o refinanciado.
+* [Calculadora de Salario](/es/calculadoras/calculadora-de-salario) - Analiza con minuciosidad pagos equitativos por hora, día o periodos bimensuales precisos y ajustables a un calendario general.
+* [Calculadora de Jubilación](/es/calculadoras/calculadora-de-jubilacion) - Combina esta guía proyectando todos tus fondos post-hacienda generados por décadas bajo márgenes estables de ahorros generacionales continuados seguros.
+* [Calculadora de Amortización](/es/calculadoras/calculadora-de-amortizacion) - Descubre, tras descontar tus deducciones, qué proporción de la cartera sirve con claridad sin sorpresas impuestas mes tras mes destinadas estrictamente para los prestamistas oficiales sobre propiedades personales del sector de la vivienda regular o refinanciado.

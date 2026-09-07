@@ -36,6 +36,15 @@ const LOCALE_TOOL_PREFIX: Record<string, string> = {
   es: 'herramientas',
 };
 
+// Cross-locale calculator path prefixes — when a non-EN locale uses /calculators/ prefix
+// instead of its localized prefix (rechner / calculatrices / calculadoras).
+// Intercepted as fallback for any dynamic calculator not explicitly in CALC_REDIRECT_MAP.
+const LOCALE_CALC_PREFIX: Record<string, string> = {
+  de: 'rechner',
+  fr: 'calculatrices',
+  es: 'calculadoras',
+};
+
 // Cross-locale guides path prefixes — when a locale uses /guides/ instead of
 // its localized prefix (anleitungen / guias; fr uses /guides/ same as en).
 const LOCALE_GUIDES_PREFIX: Record<string, string> = {
@@ -72,6 +81,17 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   // image hub cross-locale redirects
   '/es/image': '/es/imagen',
   '/de/image': '/de/bild',
+  // calculators hub cross-locale redirects
+  '/es/calculators': '/es/calculadoras',
+  '/fr/calculators': '/fr/calculatrices',
+  '/de/calculators': '/de/rechner',
+  // tools hub cross-locale redirects
+  '/es/tools': '/es/herramientas',
+  '/fr/tools': '/fr/outils',
+  '/de/tools': '/de/werkzeuge',
+  // guides hub cross-locale redirects
+  '/es/guides': '/es/guias',
+  '/de/guides': '/de/anleitungen',
 };
 
 // ── Main middleware ────────────────────────────────────────────────────────────
@@ -126,6 +146,18 @@ export default function middleware(request: NextRequest) {
   if (communityAlias) {
     const url = request.nextUrl.clone();
     url.pathname = communityAlias;
+    return NextResponse.redirect(url, { status: 301 });
+  }
+
+  // ── 6b. Cross-locale /[locale]/calculators/[slug] → localized prefix ────────
+  // Fallback for any dynamic calculator path not explicitly in CALC_REDIRECT_MAP.
+  // e.g. /de/calculators/my-calc → /de/rechner/my-calc
+  const calculatorsMismatch = pathname.match(/^\/(de|fr|es)\/calculators\/(.+)$/);
+  if (calculatorsMismatch) {
+    const [, locale, slug] = calculatorsMismatch;
+    const prefix = LOCALE_CALC_PREFIX[locale];
+    const url = request.nextUrl.clone();
+    url.pathname = `/${locale}/${prefix}/${slug}`;
     return NextResponse.redirect(url, { status: 301 });
   }
 

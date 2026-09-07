@@ -40,7 +40,7 @@ Um Ihren TDEE zu berechnen, müssen Sie zunächst Ihren Grundumsatz berechnen un
 *   **Sehr aktiv:** BMR × 1,725
 *   **Extrem aktiv:** BMR × 1,9
 
-Am einfachsten ist die Verwendung unseres [Kalorienrechners](/de/calculators/calorie-calculator).
+Am einfachsten ist die Verwendung unseres [Kalorienrechners](/de/rechner/kalorienrechner).
 
 ## Kalorien an Ihr Ziel anpassen
 

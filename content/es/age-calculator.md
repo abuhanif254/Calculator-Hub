@@ -70,4 +70,4 @@ R: ¡Sí! Puedes cambiar la "Fecha Final" predeterminada (hoy) a cualquier fecha
 R: Nuestro motor evalúa el calendario al nivel del milisegundo UTC y sabe si a febrero le tocan 28 o 29 días, dependiendo del rango seleccionado en las fechas, entregando un cálculo impecable.
 
 ### Conclusión
-Entender el paso del tiempo con exactitud no debería ser complicado. Utiliza nuestra Calculadora de Edad precisa y gratuita en cualquier instante. No olvides complementar tu análisis corporal con la [Calculadora de IMC](/es/calculators/bmi-calculator) o la [Calculadora de BMR](/es/calculators/bmr-calculator).
+Entender el paso del tiempo con exactitud no debería ser complicado. Utiliza nuestra Calculadora de Edad precisa y gratuita en cualquier instante. No olvides complementar tu análisis corporal con la [Calculadora de IMC](/es/calculadoras/calculadora-de-imc) o la [Calculadora de BMR](/es/calculadoras/calculadora-de-tmb).

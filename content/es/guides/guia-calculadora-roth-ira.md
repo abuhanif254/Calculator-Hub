@@ -7,7 +7,7 @@ description: "Aprenda qué es una cuenta Roth IRA, los beneficios de los ingreso
 
 La planificación de la jubilación puede parecer abrumadora, pero utilizar una cuenta Roth IRA es una de las estrategias más poderosas. A diferencia de las cuentas tradicionales, una Roth IRA ofrece el increíble beneficio de retiros libres de impuestos en la jubilación.
 
-En esta guía, exploraremos las reglas y cómo usar nuestra [Calculadora Roth IRA](/es/calculators/roth-ira-calculator) gratuita.
+En esta guía, exploraremos las reglas y cómo usar nuestra [Calculadora Roth IRA](/es/calculadoras/calculadora-roth-ira) gratuita.
 
 ---
 

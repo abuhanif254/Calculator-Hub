@@ -7,7 +7,7 @@ description: "Erfahren Sie, was der interne Zinsfuß (IRR) ist, wie er sich vom 
 
 Bei der Bewertung einer Investition betrachten die meisten Menschen den **ROI (Return on Investment)**. Wenn Sie 100 $ investieren und 120 $ verdienen, beträgt Ihr ROI 20 %. Der ROI ignoriert jedoch einen entscheidenden Faktor: *Zeit*. 20 % in einem Jahr zu verdienen, ist fantastisch; 20 % über 10 Jahre zu verdienen, ist schrecklich.
 
-Hier kommt der **interne Zinsfuß (IRR)** ins Spiel. Der IRR berechnet den annualisierten Prozentsatz, der für jeden investierten Dollar erzielt wird. In diesem Leitfaden erklären wir, wie der IRR funktioniert und wie Sie unseren [IRR-Rechner](/de/calculators/irr-calculator) verwenden.
+Hier kommt der **interne Zinsfuß (IRR)** ins Spiel. Der IRR berechnet den annualisierten Prozentsatz, der für jeden investierten Dollar erzielt wird. In diesem Leitfaden erklären wir, wie der IRR funktioniert und wie Sie unseren [IRR-Rechner](/de/rechner/irr-rechner) verwenden.
 
 ---
 

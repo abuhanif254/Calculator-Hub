@@ -88,8 +88,8 @@ A veces no puedes lograr una noche completa de sueño, y necesitas una inyecció
 ## Relacionado: Herramientas para un Estilo de Vida Saludable
 
 Lograr el sueño perfecto es solo un pilar del bienestar general. Considera combinar tu rutina de sueño saludable con nuestras otras calculadoras de estilo de vida:
-*   [Calculadora de IMC (Índice de Masa Corporal)](/es/calculators/bmi-calculator) - Comprende la relación entre tus patrones de sueño y tu peso.
-*   [Calculadora de Calorías Diarias](/es/calculators/calorie-calculator) - Ajusta tu nutrición según tu cronotipo y salud metabólica.
-*   [Calculadora de Grasa Corporal](/es/calculators/body-fat-calculator) - Evalúa cambios físicos en la recomposición corporal cuando el sueño es óptimo.
+*   [Calculadora de IMC (Índice de Masa Corporal)](/es/calculadoras/calculadora-de-imc) - Comprende la relación entre tus patrones de sueño y tu peso.
+*   [Calculadora de Calorías Diarias](/es/calculadoras/calculadora-de-calorias) - Ajusta tu nutrición según tu cronotipo y salud metabólica.
+*   [Calculadora de Grasa Corporal](/es/calculadoras/calculadora-de-grasa-corporal) - Evalúa cambios físicos en la recomposición corporal cuando el sueño es óptimo.
 
 Al seguir la regla de los 90 minutos de nuestra calculadora, ya no serás esclavo de tu despertador matutino. ¡Transforma tus noches y maximiza el potencial de cada día!

@@ -8,7 +8,7 @@ shortDescription: "Redonnez vie aux photos basse résolution et à l'art génér
 
 ## Le Défi des Images Basse Résolution
 
-L'un des problèmes les plus persistants en conception numérique est de traiter des fichiers basse résolution. Que vous ayez téléchargé une petite icône, trouvé une vieille photo, ou généré de l'art avec un [Générateur d'Images IA](/fr/tools/ai-image-generator) qui a produit un petit fichier, le redimensionner avec des méthodes traditionnelles aboutit toujours à un désastre flou et pixélisé.
+L'un des problèmes les plus persistants en conception numérique est de traiter des fichiers basse résolution. Que vous ayez téléchargé une petite icône, trouvé une vieille photo, ou généré de l'art avec un [Générateur d'Images IA](/fr/outils/ai-image-generator) qui a produit un petit fichier, le redimensionner avec des méthodes traditionnelles aboutit toujours à un désastre flou et pixélisé.
 
 Les algorithmes de mise à l'échelle traditionnels (comme l'interpolation Bicubique) étirent simplement les pixels existants. Ils ne peuvent pas inventer de nouveaux détails.
 
@@ -54,5 +54,5 @@ L'art numérique et les animations 2D ont des lignes nettes que les modèles pho
 
 ### Bonnes Pratiques pour l'Agrandissement
 
-*   **Surveillez la Taille du Fichier :** Agrandir une image 4x signifie que le fichier final aura 16 fois plus de pixels. Le poids en Mégaoctets augmentera considérablement. Après l'agrandissement, nous recommandons de passer l'image finale dans notre outil [Compresser l'Image](/fr/tools/compress-image) pour l'optimiser.
-*   **Convertissez les Formats :** Si vous agrandissez un graphique pour le web, envisagez de convertir le résultat dans un format de nouvelle génération comme le WebP avec notre [Convertisseur d'Images](/fr/tools/image-converter).
+*   **Surveillez la Taille du Fichier :** Agrandir une image 4x signifie que le fichier final aura 16 fois plus de pixels. Le poids en Mégaoctets augmentera considérablement. Après l'agrandissement, nous recommandons de passer l'image finale dans notre outil [Compresser l'Image](/fr/outils/compress-image) pour l'optimiser.
+*   **Convertissez les Formats :** Si vous agrandissez un graphique pour le web, envisagez de convertir le résultat dans un format de nouvelle génération comme le WebP avec notre [Convertisseur d'Images](/fr/outils/image-converter).

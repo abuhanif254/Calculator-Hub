@@ -7,7 +7,7 @@ description: "Découvrez comment fonctionne l'agrandissement d'image par l'IA, l
 
 Que vous essayiez d'imprimer une vieille photographie de famille, d'agrandir un petit logo pour une présentation, ou d'améliorer de l'art généré par l'IA en basse résolution, l'agrandissement d'image est un outil essentiel. Autrefois, agrandir une image signifiait simplement agrandir les pixels existants—résultant en un désordre flou et pixelisé. Aujourd'hui, les **Agrandisseurs d'Image par IA (AI Upscalers)** utilisent l'apprentissage automatique pour "deviner" intelligemment et remplir les détails manquants, offrant des agrandissements d'une clarté cristalline.
 
-Dans ce guide, nous explorerons le fonctionnement de l'agrandissement par l'IA, quand l'utiliser, et comment obtenir les meilleurs résultats possibles en utilisant notre [Agrandisseur d'Image par IA](/fr/tools/ai-image-upscaler) gratuit.
+Dans ce guide, nous explorerons le fonctionnement de l'agrandissement par l'IA, quand l'utiliser, et comment obtenir les meilleurs résultats possibles en utilisant notre [Agrandisseur d'Image par IA](/fr/outils/ai-image-upscaler) gratuit.
 
 ---
 

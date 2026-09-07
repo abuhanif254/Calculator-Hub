@@ -5,7 +5,7 @@ description: "Erfahren Sie, was ein Z-Wert über einen Datenpunkt aussagt, wie e
 
 # So berechnen und interpretieren Sie den Z-Wert in der Statistik
 
-Um Werte aus verschiedenen Verteilungen mathematisch zu vergleichen, verwenden Statistiker den **Z-Wert** (Standardwert). In diesem Leitfaden untersuchen wir die Formel und die Verwendung unseres [Z-Wert-Rechners](/de/calculators/z-score-calculator).
+Um Werte aus verschiedenen Verteilungen mathematisch zu vergleichen, verwenden Statistiker den **Z-Wert** (Standardwert). In diesem Leitfaden untersuchen wir die Formel und die Verwendung unseres [Z-Wert-Rechners](/de/rechner/z-score-rechner).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Aprenda qué le dice un Z-score sobre un punto de datos, cómo cal
 
 # Cómo Calcular e Interpretar el Z-Score en Estadística
 
-Para comparar puntuaciones de diferentes distribuciones matemáticamente, los estadísticos utilizan el **Z-score** (puntuación estándar). En esta guía, exploraremos la fórmula y cómo usar nuestra [Calculadora de Z-Score](/es/calculators/z-score-calculator).
+Para comparar puntuaciones de diferentes distribuciones matemáticamente, los estadísticos utilizan el **Z-score** (puntuación estándar). En esta guía, exploraremos la fórmula y cómo usar nuestra [Calculadora de Z-Score](/es/calculadoras/calculadora-de-valor-z).
 
 ---
 

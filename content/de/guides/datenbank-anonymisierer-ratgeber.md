@@ -9,7 +9,7 @@ Beim Entwickeln oder Testen von Software benötigen Entwickler realistische Date
 
 Dies ohne das Entfernen von personenbezogenen Daten (PII) zu tun, ist jedoch ein massives Sicherheitsrisiko und ein Verstoß gegen die DSGVO. Hier kommt die **Datenbankanonymisierung** ins Spiel.
 
-In diesem Leitfaden untersuchen wir die Techniken und wie Sie unser [Datenbank-Anonymisierer-Tool](/de/tools/database-anonymizer) verwenden können, um Ihre SQL-Dumps sicher vorzubereiten.
+In diesem Leitfaden untersuchen wir die Techniken und wie Sie unser [Datenbank-Anonymisierer-Tool](/de/werkzeuge/database-anonymizer) verwenden können, um Ihre SQL-Dumps sicher vorzubereiten.
 
 ---
 

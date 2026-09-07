@@ -10,7 +10,7 @@ shortDescription: "Extrayez automatiquement les couleurs dominantes et les palet
 
 Choisir la bonne palette de couleurs est sans doute la décision la plus critique dans tout projet de design. Notre **Générateur de Palette de Couleurs depuis Image** comble le fossé entre l'inspiration visuelle et l'exécution technique. En analysant les données de pixels, notre outil extrait mathématiquement les thèmes chromatiques dominants.
 
-Si vous avez seulement besoin de choisir une couleur spécifique, consultez notre [Sélecteur de Couleur depuis Image](/fr/tools/color-picker-from-image).
+Si vous avez seulement besoin de choisir une couleur spécifique, consultez notre [Sélecteur de Couleur depuis Image](/fr/outils/color-picker-from-image).
 
 ---
 
@@ -26,7 +26,7 @@ Contrairement aux sélecteurs basiques, notre générateur utilise un algorithme
 
 ### Confidentialité Zero-Upload
 
-Les agences travaillent avec des actifs confidentiels. Le traitement côté client (Client-Side) garantit que votre image ne quitte jamais votre ordinateur. Aucune donnée n'est transmise à nos serveurs. Pour plus de sécurité avant de partager vos images, vous pouvez utiliser notre [Suppresseur de Métadonnées d'Images](/fr/tools/image-metadata-remover).
+Les agences travaillent avec des actifs confidentiels. Le traitement côté client (Client-Side) garantit que votre image ne quitte jamais votre ordinateur. Aucune donnée n'est transmise à nos serveurs. Pour plus de sécurité avant de partager vos images, vous pouvez utiliser notre [Suppresseur de Métadonnées d'Images](/fr/outils/image-metadata-remover).
 
 ---
 
@@ -38,6 +38,6 @@ Les agences travaillent avec des actifs confidentiels. Le traitement côté clie
 *   **Multiples Variations :** Basculez entre les thèmes Vibrants, Doux, Clairs et Sombres.
 
 **Outils Connexes :**
-*   [Convertisseur d'Image](/fr/tools/image-converter)
-*   [Compresser l'Image](/fr/tools/compress-image)
-*   [Image en Base64](/fr/tools/image-to-base64)
+*   [Convertisseur d'Image](/fr/outils/image-converter)
+*   [Compresser l'Image](/fr/outils/compress-image)
+*   [Image en Base64](/fr/outils/image-to-base64)

@@ -36,7 +36,7 @@ Wenn Sie unseren **Rechner für das genaue Alter** verwenden, ermitteln Sie Ihr 
 
 In der Medizin oder Anti-Aging-Forschung wird stattdessen auf das **biologische Alter** geachtet. Jemand im Alter von 40 Jahren mit ungesunden Lebensgewohnheiten weist oftmals Zellen auf, die eher denen eines 55-Jährigen entsprechen. 
 
-Die Analyse des eigenen chronologischen Alters stellt hier die wertvollste Basis dar, die man mit dem [BMI-Rechner](/de/calculators/bmi-calculator) oder den Grundumsatz (BMR) zur Optimierung heranziehen kann.
+Die Analyse des eigenen chronologischen Alters stellt hier die wertvollste Basis dar, die man mit dem [BMI-Rechner](/de/rechner/bmi-rechner) oder den Grundumsatz (BMR) zur Optimierung heranziehen kann.
 
 ### Lokalisierung des Kalenders (TT/MM/JJJJ)
 
@@ -51,4 +51,4 @@ A: Ja! Während die Standardeinstellung Ihr Alter ab dem Geburtsdatum bis heute 
 A: Ja. Dank einer direkten Berechnung der zwischen den Daten liegenden Millisekunden kann der Schaltjahrestag, so er vorkommt, fehlerfrei abgebildet werden.
 
 ### Fazit
-Daten präzise zu ermitteln muss keine Kopfschmerzen verursachen. Nutzen Sie dieses Tool täglich für alle familiären oder beruflichen Fragestellungen. Falls Sie Ihr eigenes Wohlbefinden anhand messbarer Metriken begutachten wollen, empfehlen wir Ihnen als begleitende Maßnahme unseren [BMI-Rechner](/de/calculators/bmi-calculator) (Body Maß Index) oder die klassische Kalkulation des täglichen [Kalorienbedarfs](/de/calculators/calorie-calculator).
+Daten präzise zu ermitteln muss keine Kopfschmerzen verursachen. Nutzen Sie dieses Tool täglich für alle familiären oder beruflichen Fragestellungen. Falls Sie Ihr eigenes Wohlbefinden anhand messbarer Metriken begutachten wollen, empfehlen wir Ihnen als begleitende Maßnahme unseren [BMI-Rechner](/de/rechner/bmi-rechner) (Body Maß Index) oder die klassische Kalkulation des täglichen [Kalorienbedarfs](/de/rechner/kalorienrechner).

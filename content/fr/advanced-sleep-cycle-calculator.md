@@ -86,8 +86,8 @@ Parfois, une nuit complète est impossible. La nouvelle fonction "Sieste" vous a
 ## Outils Connexes pour un Mode de Vie Sain
 
 Obtenir le sommeil parfait n'est qu'un pilier du bien-être général. Envisagez de combiner votre routine de sommeil avec nos autres outils :
-*   [Calculateur d'IMC](/fr/calculators/bmi-calculator) - Comprenez l'impact du sommeil sur votre poids.
-*   [Calculateur de Calories](/fr/calculators/calorie-calculator) - Ajustez votre nutrition selon votre chronotype.
-*   [Calculateur de Masse Grasse](/fr/calculators/body-fat-calculator) - Évaluez les changements physiques avec un sommeil optimal.
+*   [Calculateur d'IMC](/fr/calculatrices/calculatrice-imc) - Comprenez l'impact du sommeil sur votre poids.
+*   [Calculateur de Calories](/fr/calculatrices/calculateur-de-calories) - Ajustez votre nutrition selon votre chronotype.
+*   [Calculateur de Masse Grasse](/fr/calculatrices/calculatrice-indice-masse-grasse) - Évaluez les changements physiques avec un sommeil optimal.
 
 Suivez la règle des 90 minutes et transformez vos nuits !

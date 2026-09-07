@@ -7,7 +7,7 @@ description: "Aprenda a extraer tablas de documentos PDF a hojas de cálculo de 
 
 Extraer datos de un archivo PDF es una de las tareas más frustrantes. Cuando intenta copiar y pegar una tabla de un PDF a Excel, las filas y columnas colapsan, fusionando todos sus datos estructurados en una sola columna de texto inservible.
 
-Para solucionar esto, necesita un **Convertidor de PDF a Excel** dedicado. En esta guía, exploraremos cómo funciona la extracción de tablas, los errores comunes a evitar y cómo convertir sus documentos de forma segura con nuestra [Herramienta de PDF a Excel](/es/tools/pdf-to-excel) gratuita.
+Para solucionar esto, necesita un **Convertidor de PDF a Excel** dedicado. En esta guía, exploraremos cómo funciona la extracción de tablas, los errores comunes a evitar y cómo convertir sus documentos de forma segura con nuestra [Herramienta de PDF a Excel](/es/herramientas/pdf-to-excel) gratuita.
 
 ---
 
@@ -35,7 +35,7 @@ Nuestra herramienta se basa en una **Arquitectura Zero-Cloud**.
 Siga estas mejores prácticas para asegurarse de que sus hojas de cálculo requieran una limpieza mínima:
 
 ### 1. Asegúrese de que el PDF esté basado en texto (No Escaneado)
-Nuestra herramienta funciona mejor en archivos PDF "nativos" (exportados directamente desde Word o Excel). Si su PDF es una imagen escaneada, primero deberá usar nuestra herramienta [OCR para PDF](/es/tools/pdf-ocr).
+Nuestra herramienta funciona mejor en archivos PDF "nativos" (exportados directamente desde Word o Excel). Si su PDF es una imagen escaneada, primero deberá usar nuestra herramienta [OCR para PDF](/es/herramientas/pdf-ocr).
 
 ### 2. Busque Cuadrículas Limpias
 Los convertidores dependen en gran medida de las líneas de cuadrícula visuales (bordes) dibujadas alrededor de la tabla. Si la tabla del PDF carece de bordes, la conversión es más difícil.

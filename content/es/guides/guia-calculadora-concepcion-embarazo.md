@@ -7,7 +7,7 @@ description: "Descubra cómo los médicos calculan su fecha de concepción, la b
 
 Saber cuándo concibió es un hito emocionante. Ayuda a los médicos a estimar su fecha de parto, rastrear el desarrollo fetal y programar ecografías.
 
-En esta guía, exploraremos la ciencia detrás de las ventanas de concepción y cómo usar nuestra [Calculadora de Concepción](/es/calculators/pregnancy-conception-calculator).
+En esta guía, exploraremos la ciencia detrás de las ventanas de concepción y cómo usar nuestra [Calculadora de Concepción](/es/calculadoras/calculadora-de-concepcion).
 
 ---
 

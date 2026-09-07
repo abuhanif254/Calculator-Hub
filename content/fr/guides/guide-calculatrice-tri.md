@@ -7,7 +7,7 @@ description: "Découvrez ce qu'est le Taux de Rentabilité Interne (TRI), en quo
 
 Lors de l'évaluation d'un investissement, la plupart des gens regardent le **ROI (Retour sur Investissement)**. Si vous investissez 100 $ et gagnez 120 $, votre ROI est de 20 %. Cependant, le ROI ignore un facteur crucial : *le Temps*. Gagner 20 % en un an est fantastique ; gagner 20 % sur 10 ans est terrible.
 
-C'est là qu'intervient le **Taux de Rentabilité Interne (TRI)**. Le TRI calcule le taux de pourcentage annualisé gagné sur chaque dollar investi. Dans ce guide, nous analyserons le fonctionnement du TRI et comment utiliser notre [Calculatrice de TRI](/fr/calculators/irr-calculator).
+C'est là qu'intervient le **Taux de Rentabilité Interne (TRI)**. Le TRI calcule le taux de pourcentage annualisé gagné sur chaque dollar investi. Dans ce guide, nous analyserons le fonctionnement du TRI et comment utiliser notre [Calculatrice de TRI](/fr/calculatrices/calculatrice-tri).
 
 ---
 

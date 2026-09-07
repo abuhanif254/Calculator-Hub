@@ -7,7 +7,7 @@ description: "Découvrez comment les médecins estiment votre date de conception
 
 Savoir quand vous avez conçu est une étape passionnante. Cela aide les médecins à estimer votre date d'accouchement et à planifier les échographies.
 
-Dans ce guide, nous explorerons la science et comment utiliser notre [Calculatrice de Conception de Grossesse](/fr/calculators/pregnancy-conception-calculator).
+Dans ce guide, nous explorerons la science et comment utiliser notre [Calculatrice de Conception de Grossesse](/fr/calculatrices/calculateur-de-date-de-conception).
 
 ---
 

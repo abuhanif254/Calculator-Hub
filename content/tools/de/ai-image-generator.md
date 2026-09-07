@@ -12,7 +12,7 @@ Die Ära der endlosen Suche auf Stockfoto-Websites ist vorbei. Die Ankunft der g
 
 Unser **KI-Bildgenerator** fungiert als Brücke zwischen Ihrer Fantasie und der Realität. Angetrieben von hochmodernen Diffusionsmodellen übersetzt dieses Werkzeug Ihre Textbeschreibungen in hochauflösende, einzigartige Bilder.
 
-Wenn das generierte Bild schön, aber zu klein ist, können Sie es ohne Qualitätsverlust mit unserem [KI-Bild-Upscaler](/de/tools/ai-image-upscaler) vergrößern.
+Wenn das generierte Bild schön, aber zu klein ist, können Sie es ohne Qualitätsverlust mit unserem [KI-Bild-Upscaler](/de/werkzeuge/ai-image-upscaler) vergrößern.
 
 ---
 
@@ -47,7 +47,7 @@ Sagen Sie der KI, was sie *vermeiden* soll. Häufige Begriffe sind: "unscharf, m
 *   **16:9 (Querformat):** Perfekt für YouTube und Blog-Header.
 *   **9:16 (Hochformat):** Der Standard für TikTok und Reels.
 
-Wenn Sie das Bild später manuell zuschneiden müssen, nutzen Sie unser [Bild zuschneiden](/de/tools/crop-image) Werkzeug.
+Wenn Sie das Bild später manuell zuschneiden müssen, nutzen Sie unser [Bild zuschneiden](/de/werkzeuge/crop-image) Werkzeug.
 
 #### Guidance Scale (CFG)
 *   **Niedrige Skala (3-5):** Die KI ist kreativer und nimmt sich Freiheiten.
@@ -64,4 +64,4 @@ In den meisten Ländern sind KI-generierte Bilder, die rein auf Texteingaben bas
 Sie können diese Bilder kommerziell für Ihr Marketing nutzen, aber Sie können niemanden verklagen, wenn er das gleiche generierte Bild ebenfalls verwendet.
 
 ### Nachbearbeitung Ihrer KI-Kreationen
-Nach dem Herunterladen müssen Sie das Bild möglicherweise für das Web vorbereiten. Verwenden Sie unser [Bild komprimieren](/de/tools/compress-image) Werkzeug, um die Dateigröße für SEO zu optimieren. Wenn Sie das Format ändern müssen, probieren Sie unseren [Bildkonverter](/de/tools/image-converter) aus.
+Nach dem Herunterladen müssen Sie das Bild möglicherweise für das Web vorbereiten. Verwenden Sie unser [Bild komprimieren](/de/werkzeuge/compress-image) Werkzeug, um die Dateigröße für SEO zu optimieren. Wenn Sie das Format ändern müssen, probieren Sie unseren [Bildkonverter](/de/werkzeuge/image-converter) aus.

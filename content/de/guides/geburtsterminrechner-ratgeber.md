@@ -5,7 +5,7 @@ description: "Erfahren Sie, wie die Naegele-Regel Ihren Entbindungstermin berech
 
 # Berechnung des Geburtstermins: Wann Ihr Baby ankommt
 
-Die erste Frage bei einer Schwangerschaft lautet oft: "Wann kommt das Baby?" In diesem Leitfaden untersuchen wir die Mathematik hinter den Daten und wie Sie unseren [Geburtsterminrechner](/de/calculators/due-date-calculator) verwenden.
+Die erste Frage bei einer Schwangerschaft lautet oft: "Wann kommt das Baby?" In diesem Leitfaden untersuchen wir die Mathematik hinter den Daten und wie Sie unseren [Geburtsterminrechner](/de/rechner/geburtsterminrechner) verwenden.
 
 ---
 

@@ -7,7 +7,7 @@ description: "Erfahren Sie, wie FHA-Darlehen funktionieren, wer sich für die 3,
 
 Wenn Sie nicht die traditionelle Anzahlung von 20 % angespart haben, könnte ein Darlehen der Federal Housing Administration (FHA) Ihr bester Weg zum Eigenheim sein.
 
-In diesem Leitfaden erklären wir, was ein FHA-Darlehen ist, welche strengen Qualifikationsanforderungen gelten und wie Sie unseren kostenlosen [FHA-Darlehensrechner](/de/calculators/fha-loan-calculator) verwenden.
+In diesem Leitfaden erklären wir, was ein FHA-Darlehen ist, welche strengen Qualifikationsanforderungen gelten und wie Sie unseren kostenlosen [FHA-Darlehensrechner](/de/rechner/fha-kredit-rechner) verwenden.
 
 ---
 

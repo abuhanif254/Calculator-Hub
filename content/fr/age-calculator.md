@@ -30,7 +30,7 @@ Notre outil vous permet d'obtenir votre **âge chronologique**. Soit la mesure i
 
 À l'opposé, les professionnels de la santé observent souvent **l'âge biologique** (ou épigénétique). Un individu de 40 ans dont l'hygiène de vie est mauvaise peut posséder une activité cellulaire équivalente à une personne de 55 ans. Inversement, une alimentation saine, de l'exercice et un sommeil réglé permettront à l'âge biologique de rester très bas.
 
-Si c'est votre santé qui vous intéresse, vous pouvez coupler la donnée indiscutable qu'est votre âge chronologique avec d'autres calculs pertinents : votre Indice de Masse Corporelle via notre [Calculateur d'IMC](/fr/calculators/bmi-calculator), ou encore votre taux métabolique (BMR). 
+Si c'est votre santé qui vous intéresse, vous pouvez coupler la donnée indiscutable qu'est votre âge chronologique avec d'autres calculs pertinents : votre Indice de Masse Corporelle via notre [Calculateur d'IMC](/fr/calculatrices/calculatrice-imc), ou encore votre taux métabolique (BMR). 
 
 ### Cas d'usage pratiques d'un calculateur d'âge
 
@@ -61,4 +61,4 @@ R : Oui, c'est l'essence de l'algorithme : l'ajout rigoureux du 29 Février si c
 
 ### Conclusion
 
-La maîtrise des temporalités est fascinante, bien que mathématiquement complexe. Oubliez vos problèmes de retenues de soustraction de tête, et utilisez régulièrement cette ressource gratuite pour explorer le temps passé. Si vous entamez une démarche de santé, n'hésitez pas à vous référer à votre [Calculatrice de Taux Métabolique (BMR)](/fr/calculators/bmr-calculator) afin de régler finement votre alimentation à votre tranche d'âge exacte.
+La maîtrise des temporalités est fascinante, bien que mathématiquement complexe. Oubliez vos problèmes de retenues de soustraction de tête, et utilisez régulièrement cette ressource gratuite pour explorer le temps passé. Si vous entamez une démarche de santé, n'hésitez pas à vous référer à votre [Calculatrice de Taux Métabolique (BMR)](/fr/calculatrices/calculateur-de-metabolisme-de-base) afin de régler finement votre alimentation à votre tranche d'âge exacte.

@@ -86,8 +86,8 @@ Die neue "Power Nap"-Funktion unseres Tools bietet optimale Zeiten:
 ## Verwandte Tools
 
 Perfekter Schlaf ist nur eine Säule für das allgemeine Wohlbefinden. Kombinieren Sie den Schlafrechner mit unseren anderen Tools:
-*   [BMI-Rechner](/de/calculators/bmi-calculator) - Verstehen Sie die Beziehung zwischen Schlaf und Gewicht.
-*   [Kalorienrechner](/de/calculators/calorie-calculator) - Passen Sie Ihre Ernährung an Ihren Chronotyp an.
-*   [Körperfett-Rechner](/de/calculators/body-fat-calculator) - Bewerten Sie körperliche Veränderungen bei optimalem Schlaf.
+*   [BMI-Rechner](/de/rechner/bmi-rechner) - Verstehen Sie die Beziehung zwischen Schlaf und Gewicht.
+*   [Kalorienrechner](/de/rechner/kalorienrechner) - Passen Sie Ihre Ernährung an Ihren Chronotyp an.
+*   [Körperfett-Rechner](/de/rechner/koerperfettanteil-rechner) - Bewerten Sie körperliche Veränderungen bei optimalem Schlaf.
 
 Befolgen Sie die 90-Minuten-Regel und maximieren Sie Ihr Potenzial!

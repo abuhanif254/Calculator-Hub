@@ -64,4 +64,4 @@ $s = (a + b + c) / 2$
 **Surface = (1/2) × a × b × sin(C)**
 
 ## Utilisation de la Calculatrice
-Entrez simplement vos variables dans notre [Calculatrice de Triangles](/fr/calculators/triangle-calculator).
+Entrez simplement vos variables dans notre [Calculatrice de Triangles](/fr/calculatrices/calculatrice-de-triangle).

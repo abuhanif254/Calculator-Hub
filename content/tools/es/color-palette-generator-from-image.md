@@ -10,7 +10,7 @@ shortDescription: "Extraiga automáticamente colores dominantes y paletas de mar
 
 Elegir la paleta de colores adecuada es posiblemente la decisión más crítica en cualquier proyecto de diseño. Nuestro **Generador de Paleta de Colores desde Imagen** cierra la brecha entre la inspiración visual y la ejecución técnica. Analizando los datos de cualquier fotografía o moodboard, extrae matemáticamente los temas cromáticos dominantes.
 
-Si solo necesita elegir un color específico de una captura, consulte nuestro [Selector de Color desde Imagen](/es/tools/color-picker-from-image).
+Si solo necesita elegir un color específico de una captura, consulte nuestro [Selector de Color desde Imagen](/es/herramientas/color-picker-from-image).
 
 ---
 
@@ -26,7 +26,7 @@ A diferencia de los selectores básicos, nuestro generador utiliza un algoritmo 
 
 ### Privacidad Zero-Upload
 
-Las agencias de diseño trabajan con activos confidenciales. Subirlos a servidores en la nube es un riesgo. Nuestra plataforma elimina este riesgo mediante **Procesamiento 100% Client-Side**. Todo ocurre en la memoria RAM de su dispositivo. Ningún dato se transmite a nuestros servidores. Para mayor seguridad, puede eliminar los metadatos de sus fotos con nuestro [Eliminador de Metadatos](/es/tools/image-metadata-remover).
+Las agencias de diseño trabajan con activos confidenciales. Subirlos a servidores en la nube es un riesgo. Nuestra plataforma elimina este riesgo mediante **Procesamiento 100% Client-Side**. Todo ocurre en la memoria RAM de su dispositivo. Ningún dato se transmite a nuestros servidores. Para mayor seguridad, puede eliminar los metadatos de sus fotos con nuestro [Eliminador de Metadatos](/es/herramientas/image-metadata-remover).
 
 ---
 
@@ -38,6 +38,6 @@ Las agencias de diseño trabajan con activos confidenciales. Subirlos a servidor
 *   **Múltiples Variaciones:** Alterne entre filtros Vibrantes, Apagados, Claros u Oscuros según sus necesidades.
 
 **Herramientas Relacionadas:**
-*   [Convertidor de Imágenes](/es/tools/image-converter)
-*   [Comprimir Imagen](/es/tools/compress-image)
-*   [Imagen a Base64](/es/tools/image-to-base64)
+*   [Convertidor de Imágenes](/es/herramientas/image-converter)
+*   [Comprimir Imagen](/es/herramientas/compress-image)
+*   [Imagen a Base64](/es/herramientas/image-to-base64)

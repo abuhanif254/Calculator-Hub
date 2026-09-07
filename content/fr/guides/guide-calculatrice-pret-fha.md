@@ -7,7 +7,7 @@ description: "Découvrez comment fonctionnent les prêts FHA, qui est admissible
 
 Si vous n'avez pas l'acompte traditionnel de 20 % de côté, un prêt de la Federal Housing Administration (FHA) pourrait être votre meilleure voie vers la propriété.
 
-Dans ce guide, nous expliquerons ce qu'est un prêt FHA, les exigences de qualification strictes et comment utiliser notre [Calculatrice de Prêt FHA](/fr/calculators/fha-loan-calculator) gratuite.
+Dans ce guide, nous expliquerons ce qu'est un prêt FHA, les exigences de qualification strictes et comment utiliser notre [Calculatrice de Prêt FHA](/fr/calculatrices/calculateur-pret-fha) gratuite.
 
 ---
 

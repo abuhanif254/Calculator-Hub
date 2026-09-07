@@ -7,7 +7,7 @@ description: "Démystifiez le fonctionnement des impôts, découvrez la différe
 
 « Si j'obtiens une augmentation, je passerai dans une tranche d'imposition supérieure et je gagnerai moins d'argent ! »
 
-C'est un mythe faux. Dans ce guide, nous expliquerons le fonctionnement des systèmes fiscaux progressifs et comment utiliser notre [Calculatrice d'Impôt sur le Revenu](/fr/calculators/income-tax-calculator).
+C'est un mythe faux. Dans ce guide, nous expliquerons le fonctionnement des systèmes fiscaux progressifs et comment utiliser notre [Calculatrice d'Impôt sur le Revenu](/fr/calculatrices/calculatrice-impot-revenu).
 
 ---
 

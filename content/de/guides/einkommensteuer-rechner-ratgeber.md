@@ -7,7 +7,7 @@ description: "Entmystifizieren Sie, wie Steuern funktionieren, lernen Sie den Un
 
 "Wenn ich eine Gehaltserhöhung bekomme, rutsche ich in eine höhere Steuerklasse und habe am Ende weniger Geld!"
 
-Das ist ein falscher Mythos. In diesem Leitfaden erklären wir, wie progressive Steuersysteme funktionieren und wie Sie unseren [Einkommensteuerrechner](/de/calculators/income-tax-calculator) verwenden.
+Das ist ein falscher Mythos. In diesem Leitfaden erklären wir, wie progressive Steuersysteme funktionieren und wie Sie unseren [Einkommensteuerrechner](/de/rechner/einkommensteuer-rechner) verwenden.
 
 ---
 

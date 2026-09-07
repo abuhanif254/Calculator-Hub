@@ -5,7 +5,7 @@ description: "Descubra cómo calcular su fondo de jubilación, comprenda la regl
 
 # Planificación de la Jubilación 101: ¿Cuánto Necesita Realmente?
 
-¿Tendrá suficiente dinero para jubilarse cómodamente? En esta guía, desglosaremos las matemáticas fundamentales, explicaremos la "Regla del 4%" y le mostraremos cómo usar nuestra [Calculadora de Jubilación](/es/calculators/retirement-calculator).
+¿Tendrá suficiente dinero para jubilarse cómodamente? En esta guía, desglosaremos las matemáticas fundamentales, explicaremos la "Regla del 4%" y le mostraremos cómo usar nuestra [Calculadora de Jubilación](/es/calculadoras/calculadora-de-jubilacion).
 
 ---
 

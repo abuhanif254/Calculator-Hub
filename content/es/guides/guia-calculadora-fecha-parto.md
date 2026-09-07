@@ -5,7 +5,7 @@ description: "Aprenda cómo la regla de Naegele calcula su fecha de parto, cómo
 
 # Matemáticas de la Fecha de Parto: Cómo Calcular Cuándo Llegará su Bebé
 
-La primera pregunta al saber que está embarazada suele ser: "¿Cuándo nace el bebé?". En esta guía, exploraremos las matemáticas detrás de las fechas y cómo usar nuestra [Calculadora de Fecha de Parto](/es/calculators/due-date-calculator).
+La primera pregunta al saber que está embarazada suele ser: "¿Cuándo nace el bebé?". En esta guía, exploraremos las matemáticas detrás de las fechas y cómo usar nuestra [Calculadora de Fecha de Parto](/es/calculadoras/calculadora-de-fecha-de-parto).
 
 ---
 

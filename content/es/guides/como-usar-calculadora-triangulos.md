@@ -65,4 +65,4 @@ $s = (a + b + c) / 2$
 
 ## Uso de la Calculadora de Triángulos
 
-Intentar resolver a mano es propenso a errores. Al ingresar sus variables conocidas en una [Calculadora de Triángulos](/es/calculators/triangle-calculator), la herramienta determina automáticamente qué ley utilizar.
+Intentar resolver a mano es propenso a errores. Al ingresar sus variables conocidas en una [Calculadora de Triángulos](/es/calculadoras/calculadora-de-triangulos), la herramienta determina automáticamente qué ley utilizar.

@@ -7,7 +7,7 @@ description: "Descubra cómo funcionan los préstamos FHA, quién califica para 
 
 Comprar una casa es la transacción financiera más grande que la mayoría de las personas hará jamás. Si no tiene el 20% de pago inicial tradicional ahorrado, un préstamo de la Administración Federal de Vivienda (FHA) podría ser su mejor opción.
 
-En esta guía, desglosaremos qué es un préstamo FHA, los estrictos requisitos de calificación y cómo usar nuestra [Calculadora de Préstamos FHA](/es/calculators/fha-loan-calculator) gratuita.
+En esta guía, desglosaremos qué es un préstamo FHA, los estrictos requisitos de calificación y cómo usar nuestra [Calculadora de Préstamos FHA](/es/calculadoras/calculadora-prestamo-fha) gratuita.
 
 ---
 

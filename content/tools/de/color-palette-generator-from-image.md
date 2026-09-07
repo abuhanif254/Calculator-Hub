@@ -10,7 +10,7 @@ shortDescription: "Extrahieren Sie automatisch dominante Farben und markenspezif
 
 Die Wahl der richtigen Farbpalette ist wohl die kritischste Entscheidung in jedem Designprojekt. Unser **Farbpaletten-Generator aus Bild** schließt die Lücke zwischen visueller Inspiration und technischer Ausführung. Durch die Analyse von Pixeldaten extrahiert er mathematisch die dominanten chromatischen Themen.
 
-Wenn Sie nur eine bestimmte Farbe auswählen müssen, schauen Sie sich unsere [Farbpipette für Bilder](/de/tools/color-picker-from-image) an.
+Wenn Sie nur eine bestimmte Farbe auswählen müssen, schauen Sie sich unsere [Farbpipette für Bilder](/de/werkzeuge/color-picker-from-image) an.
 
 ---
 
@@ -26,7 +26,7 @@ Im Gegensatz zu einfachen Farbpipetten nutzt unser Generator einen fortschrittli
 
 ### Zero-Upload-Datenschutz
 
-Designagenturen arbeiten mit vertraulichen Assets. Das Hochladen auf Cloud-Server ist ein Risiko. Unsere Plattform eliminiert dieses Risiko durch **100% Client-Side-Verarbeitung**. Alles geschieht im Arbeitsspeicher Ihres Geräts. Keine Daten werden an unsere Server übertragen. Für noch mehr Sicherheit vor dem Teilen von Assets, verwenden Sie unseren [Bild-Metadaten-Entferner](/de/tools/image-metadata-remover).
+Designagenturen arbeiten mit vertraulichen Assets. Das Hochladen auf Cloud-Server ist ein Risiko. Unsere Plattform eliminiert dieses Risiko durch **100% Client-Side-Verarbeitung**. Alles geschieht im Arbeitsspeicher Ihres Geräts. Keine Daten werden an unsere Server übertragen. Für noch mehr Sicherheit vor dem Teilen von Assets, verwenden Sie unseren [Bild-Metadaten-Entferner](/de/werkzeuge/image-metadata-remover).
 
 ---
 
@@ -38,6 +38,6 @@ Designagenturen arbeiten mit vertraulichen Assets. Das Hochladen auf Cloud-Serve
 *   **Mehrere Variationen:** Wechseln Sie zwischen lebhaften, gedeckten, hellen und dunklen Filtern.
 
 **Verwandte Werkzeuge:**
-*   [Bildkonverter](/de/tools/image-converter)
-*   [Bild komprimieren](/de/tools/compress-image)
-*   [Bild zu Base64](/de/tools/image-to-base64)
+*   [Bildkonverter](/de/werkzeuge/image-converter)
+*   [Bild komprimieren](/de/werkzeuge/compress-image)
+*   [Bild zu Base64](/de/werkzeuge/image-to-base64)

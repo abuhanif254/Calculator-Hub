@@ -12,7 +12,7 @@ L'ère de la recherche interminable sur les sites de photos libres de droits est
 
 Notre **Générateur d'Images IA** agit comme un pont entre votre imagination et la réalité. Propulsé par des modèles de diffusion de pointe, cet outil traduit vos descriptions textuelles en images haute résolution uniques.
 
-Si vous générez une belle image mais qu'elle est trop petite, vous pouvez l'agrandir sans perte de qualité avec notre [Agrandisseur d'Images IA](/fr/tools/ai-image-upscaler).
+Si vous générez une belle image mais qu'elle est trop petite, vous pouvez l'agrandir sans perte de qualité avec notre [Agrandisseur d'Images IA](/fr/outils/ai-image-upscaler).
 
 ---
 
@@ -47,7 +47,7 @@ Dites à l'IA ce qu'elle doit *éviter*. (ex. "flou, filigrane, texte, laid").
 *   **16:9 (Paysage) :** Parfait pour YouTube et les blogs.
 *   **9:16 (Portrait) :** Le standard pour TikTok et Reels.
 
-Si vous devez recadrer physiquement l'image, utilisez notre outil pour [Recadrer l'Image](/fr/tools/crop-image).
+Si vous devez recadrer physiquement l'image, utilisez notre outil pour [Recadrer l'Image](/fr/outils/crop-image).
 
 #### Échelle de Guidage (Guidance Scale)
 *   **Échelle Basse (3-5) :** L'IA est plus créative.
@@ -64,4 +64,4 @@ Dans la plupart des juridictions, les images générées par IA ne peuvent pas �
 Vous pouvez les utiliser commercialement pour vos blogs ou vos ventes, mais vous ne pouvez pas poursuivre un tiers qui utiliserait la même image générée.
 
 ### Post-Traitement
-Si le fichier est trop lourd, passez-le dans notre utilitaire pour [Compresser l'Image](/fr/tools/compress-image). Si vous avez généré un logo plat et avez besoin d'un autre format, utilisez notre [Convertisseur d'Image](/fr/tools/image-converter).
+Si le fichier est trop lourd, passez-le dans notre utilitaire pour [Compresser l'Image](/fr/outils/compress-image). Si vous avez généré un logo plat et avez besoin d'un autre format, utilisez notre [Convertisseur d'Image](/fr/outils/image-converter).

@@ -25,7 +25,7 @@ Donde:
 *   **r:** Tasa de interés mensual (Tasa de Porcentaje Anual (APR) dividida por 12).
 *   **n:** Número de meses (Plazo del Préstamo).
 
-Si bien es posible calcular esto a mano, es increíblemente tedioso. El uso de una [Calculadora de Préstamos para Automóviles](/es/calculators/auto-loan-calculator) hace los cálculos matemáticos instantáneamente por usted, lo que le permite comparar rápidamente diferentes escenarios.
+Si bien es posible calcular esto a mano, es increíblemente tedioso. El uso de una [Calculadora de Préstamos para Automóviles](/es/calculadoras/calculadora-prestamo-auto) hace los cálculos matemáticos instantáneamente por usted, lo que le permite comparar rápidamente diferentes escenarios.
 
 ## Factores Clave Que Afectan Su Préstamo
 

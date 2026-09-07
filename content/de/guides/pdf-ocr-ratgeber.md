@@ -7,7 +7,7 @@ description: "Erfahren Sie, wie die optische Zeichenerkennung (OCR) funktioniert
 
 Haben Sie jemals ein PDF erhalten, das nur ein gescanntes Bild eines Stücks Papier war? Wenn Sie versuchen, den Text zu markieren oder zu kopieren, stellen Sie fest, dass es nicht geht – weil der Text im Bild gefangen ist. Hier kommt die **optische Zeichenerkennung (OCR)** ins Spiel.
 
-Die OCR-Technologie analysiert die Formen der Buchstaben in einem Bild und wandelt sie wieder in bearbeitbaren, durchsuchbaren Text um. In diesem Leitfaden untersuchen wir, wie OCR funktioniert und wie Sie unser kostenloses, sicheres [PDF-OCR-Tool](/de/tools/pdf-ocr) verwenden.
+Die OCR-Technologie analysiert die Formen der Buchstaben in einem Bild und wandelt sie wieder in bearbeitbaren, durchsuchbaren Text um. In diesem Leitfaden untersuchen wir, wie OCR funktioniert und wie Sie unser kostenloses, sicheres [PDF-OCR-Tool](/de/werkzeuge/pdf-ocr) verwenden.
 
 ---
 
@@ -61,4 +61,4 @@ Unser Tool unterstützt mehrere Sprachen. OCR-Engines verwenden sprachspezifisch
 Standard-OCR-Engines sind für gedruckten Text (Schriftarten) optimiert. Sie sind nicht für kursive oder unordentliche Notizen konzipiert.
 
 ### Bleibt die Formatierung erhalten?
-Unser OCR-Tool konzentriert sich auf das Extrahieren von reinem Text. Obwohl es versucht, Absatzumbrüche beizubehalten, werden komplexe Formatierungen wie Tabellen nicht perfekt repliziert. Für Tabellen sollten Sie stattdessen unser [PDF zu Excel](/de/tools/pdf-to-excel)-Tool in Betracht ziehen.
+Unser OCR-Tool konzentriert sich auf das Extrahieren von reinem Text. Obwohl es versucht, Absatzumbrüche beizubehalten, werden komplexe Formatierungen wie Tabellen nicht perfekt repliziert. Für Tabellen sollten Sie stattdessen unser [PDF zu Excel](/de/werkzeuge/pdf-to-excel)-Tool in Betracht ziehen.

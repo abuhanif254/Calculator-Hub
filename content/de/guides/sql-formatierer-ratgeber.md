@@ -7,7 +7,7 @@ description: "Erfahren Sie, warum SQL-Formatierung wichtig ist, welche Standardr
 
 SQL ist unglaublich fehlertolerant. Sie können eine massive 50-Zeilen-Abfrage vollständig in einer Zeile schreiben. Doch auch wenn die Datenbank sich nicht um die Formatierung kümmert, Ihre Entwicklerkollegen tun es.
 
-Das Schreiben von sauberem, lesbarem SQL ist entscheidend für Code-Reviews, Debugging und Wartung. In diesem Leitfaden behandeln wir die Grundprinzipien und wie Sie die Formatierung mit unserem [SQL-Formatierer](/de/tools/sql-formatter) automatisieren können.
+Das Schreiben von sauberem, lesbarem SQL ist entscheidend für Code-Reviews, Debugging und Wartung. In diesem Leitfaden behandeln wir die Grundprinzipien und wie Sie die Formatierung mit unserem [SQL-Formatierer](/de/werkzeuge/sql-formatter) automatisieren können.
 
 ---
 

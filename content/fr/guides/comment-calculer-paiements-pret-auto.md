@@ -25,7 +25,7 @@ Où :
 *   **r :** Taux d'intérêt mensuel (Taux Annuel Effectif Global (TAEG) divisé par 12).
 *   **n :** Nombre de mois (Durée du prêt).
 
-L'utilisation d'une [Calculatrice de Prêt Auto](/fr/calculators/auto-loan-calculator) fait instantanément les calculs mathématiques pour vous.
+L'utilisation d'une [Calculatrice de Prêt Auto](/fr/calculatrices/calculatrice-pret-auto) fait instantanément les calculs mathématiques pour vous.
 
 ## Facteurs Clés Qui Affectent Votre Prêt Auto
 

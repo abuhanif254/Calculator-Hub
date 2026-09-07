@@ -7,7 +7,7 @@ description: "Descubra por qué importa el formato SQL, las reglas de sangría e
 
 SQL es increíblemente indulgente. Puede escribir una consulta masiva de 50 líneas enteramente en una sola línea. Sin embargo, aunque a la base de datos no le importa el formato, a sus compañeros desarrolladores sí.
 
-Escribir SQL limpio y legible es crítico para las revisiones de código, la depuración y el mantenimiento. En esta guía, cubriremos los principios básicos y cómo automatizar el formato usando nuestro [Formateador SQL](/es/tools/sql-formatter).
+Escribir SQL limpio y legible es crítico para las revisiones de código, la depuración y el mantenimiento. En esta guía, cubriremos los principios básicos y cómo automatizar el formato usando nuestro [Formateador SQL](/es/herramientas/sql-formatter).
 
 ---
 

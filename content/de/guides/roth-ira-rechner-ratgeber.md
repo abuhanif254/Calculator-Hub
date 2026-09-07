@@ -7,7 +7,7 @@ description: "Erfahren Sie, was eine Roth IRA ist, welche Vorteile steuerfreies 
 
 Die Planung für den Ruhestand kann überwältigend sein, aber die Nutzung einer Roth IRA ist eine der mächtigsten Strategien. Im Gegensatz zu traditionellen Konten bietet eine Roth IRA den unglaublichen Vorteil von steuerfreien Abhebungen im Ruhestand.
 
-In diesem Leitfaden untersuchen wir die Regeln und die Verwendung unseres kostenlosen [Roth IRA-Rechners](/de/calculators/roth-ira-calculator).
+In diesem Leitfaden untersuchen wir die Regeln und die Verwendung unseres kostenlosen [Roth IRA-Rechners](/de/rechner/roth-ira-rechner).
 
 ---
 

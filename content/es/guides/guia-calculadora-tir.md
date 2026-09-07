@@ -7,7 +7,7 @@ description: "Aprenda qué es la Tasa Interna de Retorno (TIR), en qué se difer
 
 Al evaluar una inversión, la mayoría de la gente se fija en el **ROI (Retorno de Inversión)**. Si invierte $100 y gana $120, su ROI es del 20%. Sin embargo, el ROI ignora un factor crucial: *el tiempo*. Ganar un 20% en un año es fantástico; ganar un 20% en 10 años es terrible.
 
-Aquí es donde entra la **Tasa Interna de Retorno (TIR)**. La TIR calcula la tasa de porcentaje anualizada ganada por cada dólar invertido. En esta guía, desglosaremos cómo funciona la TIR y cómo usar nuestra [Calculadora de TIR](/es/calculators/irr-calculator).
+Aquí es donde entra la **Tasa Interna de Retorno (TIR)**. La TIR calcula la tasa de porcentaje anualizada ganada por cada dólar invertido. En esta guía, desglosaremos cómo funciona la TIR y cómo usar nuestra [Calculadora de TIR](/es/calculadoras/calculadora-tir).
 
 ---
 

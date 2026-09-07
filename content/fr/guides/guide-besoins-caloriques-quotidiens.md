@@ -40,7 +40,7 @@ Pour calculer votre TDEE, vous devez d'abord calculer votre TMB, puis le multipl
 *   **Très Actif :** TMB × 1,725
 *   **Extrêmement Actif :** TMB × 1,9
 
-La méthode la plus simple est d'utiliser notre [Calculatrice de Calories](/fr/calculators/calorie-calculator).
+La méthode la plus simple est d'utiliser notre [Calculatrice de Calories](/fr/calculatrices/calculateur-de-calories).
 
 ## Ajustement des Calories pour Votre Objectif
 

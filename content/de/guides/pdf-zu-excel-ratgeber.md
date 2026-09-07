@@ -7,7 +7,7 @@ description: "Erfahren Sie, wie Sie Tabellen aus PDF-Dokumenten präzise in Exce
 
 Das Extrahieren von Daten aus einer PDF-Datei ist eine der frustrierendsten Aufgaben im modernen Büro. Wenn Sie versuchen, eine Tabelle aus einer PDF in Excel zu kopieren, stürzen die Zeilen und Spalten ein und verschmelzen alle Ihre strukturierten Daten zu einer einzigen, unbrauchbaren Textspalte.
 
-Um dies zu lösen, benötigen Sie einen dedizierten **PDF-zu-Excel-Konverter**. In diesem Leitfaden untersuchen wir, wie die Tabellenextraktion funktioniert, welche Fehler vermieden werden sollten und wie Sie Ihre Dokumente mit unserem kostenlosen [PDF-zu-Excel-Tool](/de/tools/pdf-to-excel) sicher konvertieren können.
+Um dies zu lösen, benötigen Sie einen dedizierten **PDF-zu-Excel-Konverter**. In diesem Leitfaden untersuchen wir, wie die Tabellenextraktion funktioniert, welche Fehler vermieden werden sollten und wie Sie Ihre Dokumente mit unserem kostenlosen [PDF-zu-Excel-Tool](/de/werkzeuge/pdf-to-excel) sicher konvertieren können.
 
 ---
 
@@ -35,7 +35,7 @@ Unser PDF-zu-Excel-Tool basiert auf einer **Zero-Cloud-Architektur**.
 Befolgen Sie diese Best Practices, um sicherzustellen, dass Ihre Tabellen nach der Konvertierung nur minimal bereinigt werden müssen:
 
 ### 1. Stellen Sie sicher, dass das PDF textbasiert ist (nicht gescannt)
-Unser Tool funktioniert am besten bei "nativen" PDFs (die direkt aus Word oder Excel exportiert wurden). Wenn Ihr PDF ein gescanntes Bild ist, müssen Sie zuerst unser [PDF-OCR-Tool](/de/tools/pdf-ocr) verwenden.
+Unser Tool funktioniert am besten bei "nativen" PDFs (die direkt aus Word oder Excel exportiert wurden). Wenn Ihr PDF ein gescanntes Bild ist, müssen Sie zuerst unser [PDF-OCR-Tool](/de/werkzeuge/pdf-ocr) verwenden.
 
 ### 2. Achten Sie auf saubere Gitternetzlinien
 Konverter verlassen sich stark auf die visuellen Gitternetzlinien (Rahmen), die um die Tabelle gezeichnet sind. Wenn der Tabelle im PDF die Rahmen fehlen, ist die Konvertierung schwieriger.

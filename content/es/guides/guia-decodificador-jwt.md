@@ -7,7 +7,7 @@ description: "Aprenda cómo se estructuran los JWT, cómo decodificarlos de form
 
 Los JSON Web Tokens (JWT) se han convertido en el estándar de la industria para asegurar APIs. Sin embargo, a menudo son malinterpretados, lo que lleva a fallas de seguridad.
 
-En esta guía, desglosaremos la anatomía de un JWT, explicaremos cómo funciona y le mostraremos cómo inspeccionar sus tokens de forma segura utilizando nuestra [Herramienta Decodificadora de JWT](/es/tools/jwt-decoder).
+En esta guía, desglosaremos la anatomía de un JWT, explicaremos cómo funciona y le mostraremos cómo inspeccionar sus tokens de forma segura utilizando nuestra [Herramienta Decodificadora de JWT](/es/herramientas/jwt-decoder).
 
 ---
 

@@ -7,7 +7,7 @@ description: "Découvrez comment utiliser un Test T de Student pour déterminer 
 
 En statistiques, il est facile de calculer la moyenne de deux groupes. Mais comment savoir si la différence est significative ou due au hasard ?
 
-C'est là qu'intervient le **Test T de Student**. Dans ce guide, nous explorerons ce qu'est un Test T et comment interpréter les résultats avec notre [Calculatrice de Test T](/fr/calculators/t-test-calculator).
+C'est là qu'intervient le **Test T de Student**. Dans ce guide, nous explorerons ce qu'est un Test T et comment interpréter les résultats avec notre [Calculatrice de Test T](/fr/calculatrices/calculatrice-test-t).
 
 ---
 

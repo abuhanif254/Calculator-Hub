@@ -16,9 +16,9 @@ faqs:
   - question: "Qu'est-ce qu'une sieste (power nap) et quelle devrait être sa durée ?"
     answer: "Une sieste (power nap) est conçue pour vous revitaliser rapidement. La durée idéale est de 20 minutes, ce qui vous permet de profiter du sommeil léger sans entrer dans le sommeil profond. Si vous avez besoin de plus, faites un cycle complet de 90 minutes."
   - question: "Calculer mes cycles de sommeil peut-il aider à perdre du poids ?"
-    answer: "Oui, indirectement. Un mauvais sommeil perturbe la ghréline et la leptine, augmentant l'appétit. Un sommeil optimal améliore le métabolisme. Utilisez-le avec notre [Calculatrice IMC](/fr/calculators/bmi-calculator) ou [Calculatrice de Calories](/fr/calculators/calorie-calculator)."
+    answer: "Oui, indirectement. Un mauvais sommeil perturbe la ghréline et la leptine, augmentant l'appétit. Un sommeil optimal améliore le métabolisme. Utilisez-le avec notre [Calculatrice IMC](/fr/calculatrices/calculatrice-imc) ou [Calculatrice de Calories](/fr/calculatrices/calculateur-de-calories)."
   - question: "Quel est le rapport entre le sommeil et la performance physique ?"
-    answer: "C'est pendant le sommeil que la réparation musculaire se produit. Pour les sportifs, respectez vos cycles pour récupérer. Vous pouvez aussi suivre vos temps avec notre [Calculatrice d'Allure (Pace)](/fr/calculators/pace-calculator)."
+    answer: "C'est pendant le sommeil que la réparation musculaire se produit. Pour les sportifs, respectez vos cycles pour récupérer. Vous pouvez aussi suivre vos temps avec notre [Calculatrice d'Allure (Pace)](/fr/calculatrices/calculateur-allure)."
   - question: "Quelles sont les 4 grandes phases du sommeil ?"
     answer: "Phase 1 (sommeil léger), Phase 2 (sommeil léger), Phase 3 (sommeil profond) et REM (mouvements oculaires rapides). Une nuit typique répète ce cycle 4 à 6 fois."
   - question: "Qu'est-ce que l'inertie du sommeil ?"
@@ -68,8 +68,8 @@ Les heures idéales seront générées instantanément, avec des recommandations
 Appuyer sur "snooze" pendant 9 minutes dit à votre cerveau de recommencer un cycle de 90 minutes. Il tentera de replonger en sommeil profond. 9 minutes plus tard, l'alarme vous arrachera au début d'un nouveau cycle, garantissant une forte inertie du sommeil. Utilisez la calculatrice et réveillez-vous naturellement !
 
 ### Outils de Santé Connexes
-- [Calculatrice de Calories](/fr/calculators/calorie-calculator) - Découvrez vos besoins quotidiens.
-- [Calculatrice IMC](/fr/calculators/bmi-calculator) - Vérifiez votre indice de masse corporelle.
-- [Calculatrice d'Allure](/fr/calculators/pace-calculator) - Calculez votre rythme de course.
-- [Calculatrice de Macros](/fr/calculators/macro-calculator) - Divisez vos macronutriments.
-- [Calculatrice de Date d'Accouchement](/fr/calculators/due-date-calculator) - Suivez votre grossesse.
+- [Calculatrice de Calories](/fr/calculatrices/calculateur-de-calories) - Découvrez vos besoins quotidiens.
+- [Calculatrice IMC](/fr/calculatrices/calculatrice-imc) - Vérifiez votre indice de masse corporelle.
+- [Calculatrice d'Allure](/fr/calculatrices/calculateur-allure) - Calculez votre rythme de course.
+- [Calculatrice de Macros](/fr/calculatrices/calculateur-de-macros) - Divisez vos macronutriments.
+- [Calculatrice de Date d'Accouchement](/fr/calculatrices/calculateur-de-date-d-accouchement) - Suivez votre grossesse.

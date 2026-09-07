@@ -5,7 +5,7 @@ description: "Découvrez comment la règle de Naegele calcule votre date prévue
 
 # Mathématiques de la Date d'Accouchement : Comment Calculer l'Arrivée de Votre Bébé
 
-La première question en apprenant une grossesse est souvent : « C'est pour quand ? » Dans ce guide, nous explorerons les mathématiques derrière les dates et comment utiliser notre [Calculatrice de Date d'Accouchement](/fr/calculators/due-date-calculator).
+La première question en apprenant une grossesse est souvent : « C'est pour quand ? » Dans ce guide, nous explorerons les mathématiques derrière les dates et comment utiliser notre [Calculatrice de Date d'Accouchement](/fr/calculatrices/calculateur-de-date-d-accouchement).
 
 ---
 

@@ -12,7 +12,7 @@ La era de buscar interminablemente en sitios web de fotos de archivo ha terminad
 
 Nuestro **Generador de Imágenes con IA** actúa como un puente entre su imaginación y la realidad. Impulsado por modelos de difusión de última generación, esta herramienta traduce sus descripciones de texto en imágenes únicas de alta resolución. Ya sea que necesite gráficos para marketing o arte conceptual, este motor le ofrece un estudio de arte personal a pedido.
 
-Si genera una imagen hermosa pero es demasiado pequeña, puede ampliarla sin perder calidad utilizando nuestro [Escalador de Imágenes por IA](/es/tools/ai-image-upscaler).
+Si genera una imagen hermosa pero es demasiado pequeña, puede ampliarla sin perder calidad utilizando nuestro [Escalador de Imágenes por IA](/es/herramientas/ai-image-upscaler).
 
 ---
 
@@ -51,7 +51,7 @@ El Prompt Negativo le dice a la IA qué *evitar*. Si nota que la IA añade gafas
 *   **16:9 (Apaisado):** Perfecto para miniaturas de YouTube o fondos de pantalla.
 *   **9:16 (Retrato):** El estándar para TikTok y Reels.
 
-Si necesita recortar físicamente la imagen después, use nuestra herramienta para [Recortar Imagen](/es/tools/crop-image).
+Si necesita recortar físicamente la imagen después, use nuestra herramienta para [Recortar Imagen](/es/herramientas/crop-image).
 
 #### Escala de Guía (Guidance Scale / CFG)
 Dicta cuán estrictamente la IA debe adherirse a su texto. 
@@ -70,4 +70,4 @@ En la mayoría de las jurisdicciones, las imágenes generadas por IA puramente a
 **¿Puede usarlas comercialmente?** Sí. Puede usar las imágenes para su blog o marketing. Sin embargo, no puede demandar a otra persona por usar la misma imagen generada.
 
 ### Post-Procesamiento de sus Creaciones
-Una vez descargada su obra maestra, puede que necesite prepararla para la web. Si el archivo es demasiado grande, páselo por nuestra utilidad para [Comprimir Imagen](/es/tools/compress-image) y optimícelo para SEO. Si generó un logo vectorial plano y lo necesita en otro formato, utilice nuestro [Convertidor de Imágenes](/es/tools/image-converter).
+Una vez descargada su obra maestra, puede que necesite prepararla para la web. Si el archivo es demasiado grande, páselo por nuestra utilidad para [Comprimir Imagen](/es/herramientas/compress-image) y optimícelo para SEO. Si generó un logo vectorial plano y lo necesita en otro formato, utilice nuestro [Convertidor de Imágenes](/es/herramientas/image-converter).

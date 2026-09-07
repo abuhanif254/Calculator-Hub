@@ -9,7 +9,7 @@ Lors du développement ou du test de logiciels, les développeurs ont besoin de 
 
 Cependant, faire cela sans supprimer les Informations Personnellement Identifiables (PII) est un risque de sécurité massif et une violation du RGPD. C'est là qu'intervient **l'Anonymisation des Bases de Données**.
 
-Dans ce guide, nous explorerons les techniques disponibles et comment utiliser notre [Outil d'Anonymisation](/fr/tools/database-anonymizer) pour préparer vos fichiers SQL.
+Dans ce guide, nous explorerons les techniques disponibles et comment utiliser notre [Outil d'Anonymisation](/fr/outils/database-anonymizer) pour préparer vos fichiers SQL.
 
 ---
 

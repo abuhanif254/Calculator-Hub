@@ -7,7 +7,7 @@ description: "Découvrez ce qu'est un Roth IRA, les avantages des revenus de ret
 
 La planification de la retraite peut sembler écrasante, mais l'utilisation d'un Roth IRA est l'une des stratégies les plus puissantes. Contrairement aux comptes traditionnels, un Roth IRA offre l'avantage incroyable de retraits non imposables à la retraite.
 
-Dans ce guide, nous explorerons les règles et comment utiliser notre [Calculatrice Roth IRA](/fr/calculators/roth-ira-calculator) gratuite.
+Dans ce guide, nous explorerons les règles et comment utiliser notre [Calculatrice Roth IRA](/fr/calculatrices/calculatrice-roth-ira) gratuite.
 
 ---
 

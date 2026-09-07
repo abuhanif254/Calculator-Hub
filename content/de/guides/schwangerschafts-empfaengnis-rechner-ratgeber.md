@@ -7,7 +7,7 @@ description: "Erfahren Sie, wie Ärzte Ihr Empfängnisdatum schätzen, die Biolo
 
 Zu wissen, wann Sie schwanger wurden, ist ein aufregender Meilenstein. Es hilft Ärzten, Ihren Geburtstermin abzuschätzen und Ultraschalluntersuchungen zu planen.
 
-In diesem Leitfaden untersuchen wir die Wissenschaft und die Verwendung unseres [Schwangerschafts-Empfängnisrechners](/de/calculators/pregnancy-conception-calculator).
+In diesem Leitfaden untersuchen wir die Wissenschaft und die Verwendung unseres [Schwangerschafts-Empfängnisrechners](/de/rechner/empfaengnisrechner).
 
 ---
 

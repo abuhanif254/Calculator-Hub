@@ -8,7 +8,7 @@ shortDescription: "Hauchen Sie niedrig aufgelösten Fotos und KI-generierter Kun
 
 ## Die Herausforderung bei Bildern mit geringer Auflösung
 
-Eines der hartnäckigsten Probleme im digitalen Design ist der Umgang mit niedrig aufgelösten Dateien. Ob Sie ein altes Familienfoto gefunden haben oder Kunst mit einem [KI-Bildgenerator](/de/tools/ai-image-generator) erstellt haben – die Vergrößerung mit herkömmlichen Methoden führt immer zu einem unscharfen, verpixelten Desaster.
+Eines der hartnäckigsten Probleme im digitalen Design ist der Umgang mit niedrig aufgelösten Dateien. Ob Sie ein altes Familienfoto gefunden haben oder Kunst mit einem [KI-Bildgenerator](/de/werkzeuge/ai-image-generator) erstellt haben – die Vergrößerung mit herkömmlichen Methoden führt immer zu einem unscharfen, verpixelten Desaster.
 
 Herkömmliche Skalierungsalgorithmen (wie bikubische Interpolation) strecken einfach vorhandene Pixel. Sie können keine neuen Details erfinden.
 
@@ -52,5 +52,5 @@ Digitale Kunst und 2D-Animationen haben scharfe Linien, die fotografische Modell
 
 ### Best Practices für das Upscaling
 
-*   **Achten Sie auf die Dateigröße:** Die Vergrößerung um das 4-fache bedeutet 16-mal so viele Pixel. Wir empfehlen, das finale Bild mit unserem Werkzeug [Bild komprimieren](/de/tools/compress-image) zu optimieren.
-*   **Formate konvertieren:** Wenn Sie eine Grafik für das Web vergrößern, sollten Sie sie mit unserem [Bildkonverter](/de/tools/image-converter) in ein Next-Gen-Format wie WebP konvertieren.
+*   **Achten Sie auf die Dateigröße:** Die Vergrößerung um das 4-fache bedeutet 16-mal so viele Pixel. Wir empfehlen, das finale Bild mit unserem Werkzeug [Bild komprimieren](/de/werkzeuge/compress-image) zu optimieren.
+*   **Formate konvertieren:** Wenn Sie eine Grafik für das Web vergrößern, sollten Sie sie mit unserem [Bildkonverter](/de/werkzeuge/image-converter) in ein Next-Gen-Format wie WebP konvertieren.

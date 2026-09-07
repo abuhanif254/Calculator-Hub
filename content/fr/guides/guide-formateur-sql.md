@@ -7,7 +7,7 @@ description: "Découvrez pourquoi le formatage SQL est important, les règles d'
 
 SQL est incroyablement indulgent. Vous pouvez écrire une requête massive de 50 lignes entièrement sur une seule ligne. Cependant, même si la base de données ne se soucie pas du formatage, vos collègues développeurs s'en soucient.
 
-Écrire un SQL propre et lisible est essentiel pour les revues de code, le débogage et la maintenance. Dans ce guide, nous couvrirons les principes de base et comment automatiser le formatage avec notre [Formateur SQL](/fr/tools/sql-formatter).
+Écrire un SQL propre et lisible est essentiel pour les revues de code, le débogage et la maintenance. Dans ce guide, nous couvrirons les principes de base et comment automatiser le formatage avec notre [Formateur SQL](/fr/outils/sql-formatter).
 
 ---
 

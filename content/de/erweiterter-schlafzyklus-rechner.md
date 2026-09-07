@@ -16,9 +16,9 @@ faqs:
   - question: "Was ist ein Power-Nap und wie lange sollte er sein?"
     answer: "Ein Power-Nap ist ein kurzes Nickerchen zur schnellen Revitalisierung. Das ideale Power-Nap dauert 20 Minuten. Dadurch profitieren Sie von leichtem Schlaf, ohne in den Tiefschlaf zu fallen. Wenn Sie ein längeres Nickerchen benötigen, sollten Sie einen ganzen 90-Minuten-Zyklus schlafen."
   - question: "Kann die Berechnung meiner Schlafzyklen beim Abnehmen helfen?"
-    answer: "Ja, indirekt. Schlechter Schlaf stört Hormone wie Ghrelin und Leptin, was den Appetit steigert. Sie können unsere Schlafempfehlungen mit unserem [BMI-Rechner](/de/calculators/bmi-calculator) oder [Kalorienrechner](/de/calculators/calorie-calculator) kombinieren."
+    answer: "Ja, indirekt. Schlechter Schlaf stört Hormone wie Ghrelin und Leptin, was den Appetit steigert. Sie können unsere Schlafempfehlungen mit unserem [BMI-Rechner](/de/rechner/bmi-rechner) oder [Kalorienrechner](/de/rechner/kalorienrechner) kombinieren."
   - question: "Wie verhält sich Schlaf zur körperlichen Leistungsfähigkeit?"
-    answer: "Im Schlaf findet die Muskelreparatur statt. Für Sportler ist die richtige Schlafarchitektur entscheidend für die Erholung. Um Ihre Laufziele zu verfolgen, verwenden Sie unseren [Pace-Rechner](/de/calculators/pace-calculator)."
+    answer: "Im Schlaf findet die Muskelreparatur statt. Für Sportler ist die richtige Schlafarchitektur entscheidend für die Erholung. Um Ihre Laufziele zu verfolgen, verwenden Sie unseren [Pace-Rechner](/de/rechner/pace-rechner)."
   - question: "Was sind die vier Hauptschlafphasen?"
     answer: "Phase 1 (Leichtschlaf), Phase 2 (Leichtschlaf), Phase 3 (Tiefschlaf) und REM-Schlaf (Rapid Eye Movement). Eine normale Nacht umfasst 4 bis 6 dieser Phasen."
   - question: "Was ist Schlafträgheit?"
@@ -85,8 +85,8 @@ Das Tool generiert sofort eine Liste idealer Zeiten. Die in **Indigo** hervorgeh
 Wenn Ihr Wecker am Ende eines 90-Minuten-Zyklus klingelt, befinden Sie sich im leichten Schlaf. Wenn Sie die Schlummertaste für 9 Minuten drücken, interpretiert Ihr Gehirn die Rückkehr zum Schlaf als Beginn eines neuen 90-Minuten-Zyklus. Es versucht sofort, in den Tiefschlaf zu fallen. Wenn der Wecker 9 Minuten später klingelt, werden Sie aus dem Beginn eines neuen Zyklus gerissen. Verwenden Sie unseren Rechner und wachen Sie natürlich auf!
 
 ### Verwandte Gesundheits- und Fitness-Tools
-- [Kalorienrechner](/de/calculators/calorie-calculator) - Entdecken Sie Ihren täglichen Kalorienbedarf.
-- [BMI-Rechner](/de/calculators/bmi-calculator) - Überprüfen Sie Ihren Body-Mass-Index.
-- [Pace-Rechner](/de/calculators/pace-calculator) - Berechnen Sie Ihr Lauftempo.
-- [Makro-Rechner](/de/calculators/macro-calculator) - Teilen Sie Ihren Makronährstoffbedarf auf.
-- [Schwangerschaftsrechner](/de/calculators/due-date-calculator) - Verfolgen Sie Ihre Schwangerschaftsmeilensteine.
+- [Kalorienrechner](/de/rechner/kalorienrechner) - Entdecken Sie Ihren täglichen Kalorienbedarf.
+- [BMI-Rechner](/de/rechner/bmi-rechner) - Überprüfen Sie Ihren Body-Mass-Index.
+- [Pace-Rechner](/de/rechner/pace-rechner) - Berechnen Sie Ihr Lauftempo.
+- [Makro-Rechner](/de/rechner/makro-rechner) - Teilen Sie Ihren Makronährstoffbedarf auf.
+- [Schwangerschaftsrechner](/de/rechner/geburtsterminrechner) - Verfolgen Sie Ihre Schwangerschaftsmeilensteine.

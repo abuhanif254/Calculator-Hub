@@ -7,7 +7,7 @@ description: "Aprenda a generar códigos QR perfectos para impresión y web, inc
 
 Los códigos QR (Respuesta Rápida) se han convertido en un puente esencial entre el mundo físico y el digital. Ya sea que agregue un código QR al menú de un restaurante o a una valla publicitaria, asegurarse de que se escanee de manera confiable es fundamental.
 
-En esta guía, exploraremos la anatomía de un código QR, los errores comunes que causan fallas de escaneo y cómo usar nuestro [Estudio de Código QR](/es/tools/qr-code-studio) para generar códigos de nivel profesional.
+En esta guía, exploraremos la anatomía de un código QR, los errores comunes que causan fallas de escaneo y cómo usar nuestro [Estudio de Código QR](/es/herramientas/qr-code-studio) para generar códigos de nivel profesional.
 
 ---
 

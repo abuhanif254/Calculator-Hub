@@ -64,4 +64,4 @@ $s = (a + b + c) / 2$
 **Fläche = (1/2) × a × b × sin(C)**
 
 ## Verwendung des Dreiecksrechners
-Die manuelle Lösung ist fehleranfällig. Durch die Eingabe in einen [Dreiecksrechner](/de/calculators/triangle-calculator) ermittelt das Werkzeug automatisch, welches Gesetz anzuwenden ist.
+Die manuelle Lösung ist fehleranfällig. Durch die Eingabe in einen [Dreiecksrechner](/de/rechner/dreiecksrechner) ermittelt das Werkzeug automatisch, welches Gesetz anzuwenden ist.

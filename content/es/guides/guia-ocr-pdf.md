@@ -7,7 +7,7 @@ description: "Descubra cómo funciona el Reconocimiento Óptico de Caracteres (O
 
 ¿Alguna vez ha recibido un PDF que era solo una imagen escaneada de un papel? Al intentar resaltar o copiar el texto, se da cuenta de que no puede, porque el texto está atrapado dentro de la imagen. Aquí es donde entra el **Reconocimiento Óptico de Caracteres (OCR)**.
 
-La tecnología OCR analiza las formas de las letras en una imagen y las convierte nuevamente en texto editable y con capacidad de búsqueda. En esta guía, exploraremos cómo funciona el OCR y cómo usar nuestra [Herramienta OCR para PDF](/es/tools/pdf-ocr) gratuita y segura.
+La tecnología OCR analiza las formas de las letras en una imagen y las convierte nuevamente en texto editable y con capacidad de búsqueda. En esta guía, exploraremos cómo funciona el OCR y cómo usar nuestra [Herramienta OCR para PDF](/es/herramientas/pdf-ocr) gratuita y segura.
 
 ---
 
@@ -61,4 +61,4 @@ Nuestra herramienta admite varios idiomas. Los motores de OCR utilizan diccionar
 Los motores de OCR estándar están optimizados para texto impreso (fuentes). No están diseñados para cursiva o notas desordenadas.
 
 ### ¿Mantiene el formato original?
-Nuestra herramienta de OCR se centra en extraer texto sin formato. Si bien intenta preservar los saltos de párrafo, el formato complejo como diseños de varias columnas o tablas no se replicará perfectamente. Para tablas, considere usar nuestra herramienta [PDF a Excel](/es/tools/pdf-to-excel).
+Nuestra herramienta de OCR se centra en extraer texto sin formato. Si bien intenta preservar los saltos de párrafo, el formato complejo como diseños de varias columnas o tablas no se replicará perfectamente. Para tablas, considere usar nuestra herramienta [PDF a Excel](/es/herramientas/pdf-to-excel).

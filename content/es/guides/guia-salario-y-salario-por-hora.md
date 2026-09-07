@@ -75,4 +75,4 @@ Las deducciones estándar incluyen:
 *   Primas de seguro médico
 *   Contribuciones para la jubilación
 
-Su pago neto suele ser entre el **65% y el 75%** de su pago bruto. Use una [Calculadora de Salario](/es/calculators/salary-calculator) para obtener cifras precisas.
+Su pago neto suele ser entre el **65% y el 75%** de su pago bruto. Use una [Calculadora de Salario](/es/calculadoras/calculadora-de-salario) para obtener cifras precisas.

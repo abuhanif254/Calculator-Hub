@@ -8,7 +8,7 @@ shortDescription: "Dé nueva vida a fotos de baja resolución y arte generado po
 
 ## El Desafío de las Imágenes de Baja Resolución
 
-Uno de los problemas más persistentes en el diseño digital es lidiar con archivos de baja resolución. Ya sea que haya descargado un icono pequeño, encontrado una foto antigua, o generado arte con un [Generador de Imágenes por IA](/es/tools/ai-image-generator) que produjo un archivo pequeño, redimensionarlo con métodos tradicionales siempre resulta en un desastre borroso y pixelado.
+Uno de los problemas más persistentes en el diseño digital es lidiar con archivos de baja resolución. Ya sea que haya descargado un icono pequeño, encontrado una foto antigua, o generado arte con un [Generador de Imágenes por IA](/es/herramientas/ai-image-generator) que produjo un archivo pequeño, redimensionarlo con métodos tradicionales siempre resulta en un desastre borroso y pixelado.
 
 Los algoritmos de escalado tradicionales (como la interpolación Bicúbica) simplemente estiran los píxeles existentes. No pueden inventar nuevos detalles.
 
@@ -55,5 +55,5 @@ El arte digital y las animaciones 2D tienen líneas nítidas que los modelos fot
 ### Mejores Prácticas para el Escalado
 
 *   **Basura entra, basura sale:** Aunque la IA es poderosa, no puede hacer milagros en imágenes completamente destruidas por la compresión extrema. Cuanto mejor sea su imagen inicial, más espectacular será el escalado 4x.
-*   **Vigile el Tamaño del Archivo:** Escalar una imagen 4x significa que el archivo final tendrá 16 veces más píxeles. El tamaño en Megabytes aumentará drásticamente. Después del escalado, recomendamos pasar la imagen final por nuestra herramienta [Comprimir Imagen](/es/tools/compress-image) para optimizarla.
-*   **Convierta Formatos:** Si está escalando un gráfico para diseño web, considere convertir el resultado a un formato de próxima generación como WebP usando nuestro [Convertidor de Imágenes](/es/tools/image-converter).
+*   **Vigile el Tamaño del Archivo:** Escalar una imagen 4x significa que el archivo final tendrá 16 veces más píxeles. El tamaño en Megabytes aumentará drásticamente. Después del escalado, recomendamos pasar la imagen final por nuestra herramienta [Comprimir Imagen](/es/herramientas/compress-image) para optimizarla.
+*   **Convierta Formatos:** Si está escalando un gráfico para diseño web, considere convertir el resultado a un formato de próxima generación como WebP usando nuestro [Convertidor de Imágenes](/es/herramientas/image-converter).

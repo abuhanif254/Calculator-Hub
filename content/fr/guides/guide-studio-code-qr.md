@@ -7,7 +7,7 @@ description: "Découvrez comment générer des codes QR parfaits pour l'impressi
 
 Les codes QR (Quick Response) sont devenus un pont essentiel entre les mondes physique et numérique. Que vous ajoutiez un code QR au menu d'un restaurant ou à un immense panneau publicitaire, il est essentiel de s'assurer qu'il soit scanné de manière fiable.
 
-Dans ce guide, nous explorerons l'anatomie d'un code QR, les erreurs courantes qui causent des échecs de numérisation, et comment utiliser notre [Studio de Code QR](/fr/tools/qr-code-studio) pour générer des codes professionnels.
+Dans ce guide, nous explorerons l'anatomie d'un code QR, les erreurs courantes qui causent des échecs de numérisation, et comment utiliser notre [Studio de Code QR](/fr/outils/qr-code-studio) pour générer des codes professionnels.
 
 ---
 

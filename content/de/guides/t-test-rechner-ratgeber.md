@@ -7,7 +7,7 @@ description: "Erfahren Sie, wie Sie einen Student's T-Test verwenden, um festzus
 
 In der Statistik ist es einfach, den Durchschnitt zweier Gruppen zu berechnen. Aber woher wissen Sie, ob der Unterschied signifikant oder zufällig ist?
 
-Hier kommt der **Student's T-Test** ins Spiel. In diesem Leitfaden untersuchen wir, was ein T-Test ist und wie Sie die Ergebnisse mit unserem [T-Test-Rechner](/de/calculators/t-test-calculator) interpretieren.
+Hier kommt der **Student's T-Test** ins Spiel. In diesem Leitfaden untersuchen wir, was ein T-Test ist und wie Sie die Ergebnisse mit unserem [T-Test-Rechner](/de/rechner/t-test-rechner) interpretieren.
 
 ---
 

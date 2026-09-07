@@ -7,7 +7,7 @@ description: "Erfahren Sie, wie KI-Bildvergrößerung funktioniert, was der Unte
 
 Egal, ob Sie ein altes Familienfoto drucken, ein kleines Logo für eine Präsentation vergrößern oder niedrigauflösende, KI-generierte Kunst verbessern möchten, die Bildvergrößerung (Upscaling) ist ein entscheidendes Werkzeug. In der Vergangenheit bedeutete das Vergrößern eines Bildes einfach, die vorhandenen Pixel größer zu machen – was zu einem verschwommenen, pixeligen Chaos führte. Heute nutzen **KI-Bild-Upscaler** maschinelles Lernen, um fehlende Details intelligent zu "erraten" und auszufüllen, wodurch kristallklare Vergrößerungen entstehen.
 
-In diesem Leitfaden untersuchen wir, wie KI-Upscaling funktioniert, wann man es verwendet und wie Sie mit unserem kostenlosen [KI-Bild-Upscaler](/de/tools/ai-image-upscaler) die absolut besten Ergebnisse erzielen.
+In diesem Leitfaden untersuchen wir, wie KI-Upscaling funktioniert, wann man es verwendet und wie Sie mit unserem kostenlosen [KI-Bild-Upscaler](/de/werkzeuge/ai-image-upscaler) die absolut besten Ergebnisse erzielen.
 
 ---
 

@@ -56,7 +56,15 @@ function buildEntry(
     } else if (routeMapping && typeof routeMapping === 'string') {
       relativePath = `/${locale}${routeMapping}`;
     } else {
-      relativePath = `/${locale}${pathnameKey}`;
+      if (pathnameKey.startsWith('/calculators/')) {
+        const prefix = locale === 'es' ? '/calculadoras/' : locale === 'fr' ? '/calculatrices/' : locale === 'de' ? '/rechner/' : '/calculators/';
+        relativePath = `/${locale}${prefix}[slug]`;
+      } else if (pathnameKey.startsWith('/tools/')) {
+        const prefix = locale === 'es' ? '/herramientas/' : locale === 'fr' ? '/outils/' : locale === 'de' ? '/werkzeuge/' : '/tools/';
+        relativePath = `/${locale}${prefix}[slug]`;
+      } else {
+        relativePath = `/${locale}${pathnameKey}`;
+      }
     }
 
     if (genericSlug) {
@@ -150,7 +158,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   allCalcSlugs.sort((a, b) => a.slug.localeCompare(b.slug));
 
   const calcEntries = allCalcSlugs.map(({ slug, priority, lastUpdated }) => {
-    const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2026-05-25');
+    const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2026-09-07');
     const routeKey = `/calculators/${slug}`;
     const existsInRouting = (routing.pathnames as any)[routeKey];
     const ogImageUrl = `${baseUrl}/en/calculators/${slug}/opengraph-image`;
@@ -163,7 +171,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // ─── DEVELOPER TOOLS ──────────────────
   const processedTools = new Set<string>();
-  const toolsLastMod = new Date('2026-05-25');
+  const toolsLastMod = new Date('2026-09-07');
 
   const toolEntries = developerToolSlugs
     .filter((slug) => {
@@ -180,7 +188,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ─── DATA PRIVACY PLATFORM — PUBLIC LANDING ONLY ─────────────────
   // Authenticated sub-routes (/dashboard, /scanner, /jobs, etc.) are intentionally
   // excluded — they require login and return 401/302 to crawlers, wasting crawl budget.
-  const dpLastMod = new Date('2026-08-08');
+  const dpLastMod = new Date('2026-09-07');
   const dataPrivacyEntries: MetadataRoute.Sitemap = routing.locales.map((locale) => ({
     url: `${baseUrl}/${locale}/database-privacy`,
     lastModified: dpLastMod,

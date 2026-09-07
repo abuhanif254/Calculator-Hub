@@ -25,7 +25,7 @@ Wobei:
 *   **r:** Monatlicher Zinssatz (effektiver Jahreszins geteilt durch 12).
 *   **n:** Anzahl der Monate (Kreditlaufzeit).
 
-Obwohl es möglich ist, dies von Hand zu berechnen, ist es unglaublich mühsam. Die Verwendung eines [Autokredit-Rechners](/de/calculators/auto-loan-calculator) übernimmt die Berechnungen sofort für Sie.
+Obwohl es möglich ist, dies von Hand zu berechnen, ist es unglaublich mühsam. Die Verwendung eines [Autokredit-Rechners](/de/rechner/autokreditrechner) übernimmt die Berechnungen sofort für Sie.
 
 ## Schlüsselfaktoren, die Ihren Autokredit beeinflussen
 

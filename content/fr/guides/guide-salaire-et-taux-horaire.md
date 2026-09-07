@@ -64,4 +64,4 @@ Bien que ce soit l'équivalent mathématique, les employés salariés travaillen
 ## Salaire Brut vs Salaire Net
 
 N'oubliez pas que tous les calculs ci-dessus donnent le **Salaire Brut** — le montant d'argent avant déductions. Votre **Salaire Net** sera nettement inférieur. Votre salaire net représente généralement de **65 % à 75 %** de votre salaire brut. 
-Utilisez notre [Calculatrice de Salaire](/fr/calculators/salary-calculator) pour des calculs plus précis.
+Utilisez notre [Calculatrice de Salaire](/fr/calculatrices/calculatrice-de-salaire) pour des calculs plus précis.

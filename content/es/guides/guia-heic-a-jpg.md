@@ -7,7 +7,7 @@ description: "Comprenda la diferencia entre los formatos HEIC y JPG, por qué Ap
 
 Si alguna vez ha transferido fotos desde un iPhone a una PC con Windows, es posible que haya encontrado archivos terminados en `.heic`. Al intentar abrirlos, obtiene un error.
 
-En esta guía, exploraremos qué es el formato HEIC, por qué Apple lo adoptó y cómo usar nuestro [Convertidor de HEIC a JPG](/es/tools/heic-to-jpg) para hacer que sus fotos sean compatibles.
+En esta guía, exploraremos qué es el formato HEIC, por qué Apple lo adoptó y cómo usar nuestro [Convertidor de HEIC a JPG](/es/herramientas/heic-to-jpg) para hacer que sus fotos sean compatibles.
 
 ---
 

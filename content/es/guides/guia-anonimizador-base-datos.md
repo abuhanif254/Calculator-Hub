@@ -9,7 +9,7 @@ Al desarrollar o probar software, los desarrolladores necesitan datos realistas.
 
 Sin embargo, hacer esto sin eliminar la Información de Identificación Personal (PII) es un riesgo de seguridad masivo y una violación directa de regulaciones como GDPR. Aquí es donde entra la **Anonimización de Bases de Datos**.
 
-En esta guía, exploraremos las técnicas disponibles y cómo usar nuestra [Herramienta Anonimizadora de Bases de Datos](/es/tools/database-anonymizer) para preparar de forma segura sus volcados SQL.
+En esta guía, exploraremos las técnicas disponibles y cómo usar nuestra [Herramienta Anonimizadora de Bases de Datos](/es/herramientas/database-anonymizer) para preparar de forma segura sus volcados SQL.
 
 ---
 
