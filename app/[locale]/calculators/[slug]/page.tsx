@@ -14,6 +14,7 @@ import { getFormulaForCalculator, getFormulaFaq } from "@/lib/data/calculatorFor
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { EmbedButton } from "@/app/components/EmbedButton";
+import { ShareButton } from "@/app/components/ShareButton";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
@@ -401,6 +402,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 href={`/calculators/${calc.slug}`}
               />
               <EmbedButton
+                slug={calc.slug}
+                title={pageTitle}
+                locale={resolvedParams.locale}
+              />
+              <ShareButton
                 slug={calc.slug}
                 title={pageTitle}
                 locale={resolvedParams.locale}

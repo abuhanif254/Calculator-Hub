@@ -85,9 +85,11 @@ export function ExportResultsPanel({
       const lang = pathParts[1] || 'en';
       const category = pathParts[2] || 'calculators';
       const slug = pathParts[3] || '';
-      const embedUrl = `${url.origin}/${lang}/embed/${category}/${slug}${url.search}`;
+      const baseUrl = "https://www.nexuscalculator.net";
+      const embedUrl = `${baseUrl}/${lang}/embed/${category}/${slug}${url.search}`;
+      const canonicalPageUrl = `${baseUrl}/${lang}/${category}/${slug}`;
       
-      const code = `<iframe src="${embedUrl}" width="100%" height="800" frameborder="0" allowfullscreen style="border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1);"></iframe>`;
+      const code = `<iframe src="${embedUrl}" width="100%" height="800" frameborder="0" style="border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 10px 25px -5px rgb(0 0 0 / 0.1);" title="${title}"></iframe>\n<p style="font-size:11px;color:#64748b;margin-top:6px;text-align:right;">Powered by <a href="${canonicalPageUrl}" target="_blank" rel="noopener" style="color:#518231;font-weight:600;text-decoration:underline;">Nexus Calculator</a></p>`;
       await navigator.clipboard.writeText(code);
       setCopiedEmbed(true);
       setTimeout(() => setCopiedEmbed(false), 2500);
@@ -248,7 +250,7 @@ export function ExportResultsPanel({
       {/* Share Calculation Button */}
       <button 
         onClick={handleOpenShare}
-        className="flex items-center gap-2 px-3.5 sm:px-4 py-2 min-h-[40px] bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold transition-all shadow-sm shadow-emerald-600/20 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        className="flex items-center gap-2 px-3.5 sm:px-4 py-2 min-h-[40px] bg-[#518231] hover:bg-[#436a28] text-white rounded-xl text-sm font-semibold transition-all shadow-sm shadow-[#518231]/20 focus:outline-none focus:ring-2 focus:ring-[#518231]"
         title="Share your customized calculation via URL or QR Code"
       >
         <Share2 className="w-4 h-4 shrink-0" />
@@ -322,7 +324,7 @@ export function ExportResultsPanel({
                 onClick={() => setActiveTab("link")}
                 className={`pb-3 flex items-center gap-2 border-b-2 transition-colors ${
                   activeTab === "link"
-                    ? "border-emerald-600 text-emerald-600 dark:text-emerald-400"
+                    ? "border-[#518231] text-[#518231] dark:text-[#6fa844]"
                     : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-300"
                 }`}
               >
@@ -333,7 +335,7 @@ export function ExportResultsPanel({
                 onClick={() => setActiveTab("embed")}
                 className={`pb-3 flex items-center gap-2 border-b-2 transition-colors ${
                   activeTab === "embed"
-                    ? "border-emerald-600 text-emerald-600 dark:text-emerald-400"
+                    ? "border-[#518231] text-[#518231] dark:text-[#6fa844]"
                     : "border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-300"
                 }`}
               >
@@ -361,8 +363,8 @@ export function ExportResultsPanel({
                         onClick={copyShareLink}
                         className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm text-white shrink-0 transition-all ${
                           copiedLink 
-                            ? "bg-emerald-700 shadow-md shadow-emerald-700/20" 
-                            : "bg-emerald-600 hover:bg-emerald-700"
+                            ? "bg-[#436a28] shadow-md shadow-[#436a28]/20" 
+                            : "bg-[#518231] hover:bg-[#436a28]"
                         }`}
                       >
                         {copiedLink ? (
@@ -467,16 +469,23 @@ export function ExportResultsPanel({
                       const lang = parts[1] || 'en';
                       const cat = parts[2] || 'calculators';
                       const slug = parts[3] || '';
-                      return `${url.origin}/${lang}/embed/${cat}/${slug}${url.search}`;
-                    })()}" width="100%" height="800" frameborder="0" allowfullscreen style="border: 1px solid #e2e8f0; border-radius: 16px; box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1);"></iframe>`}
+                      return `https://www.nexuscalculator.net/${lang}/embed/${cat}/${slug}${url.search}`;
+                    })()}" width="100%" height="800" frameborder="0" style="border:1px solid #e2e8f0;border-radius:16px;box-shadow:0 10px 25px -5px rgb(0 0 0 / 0.1);" title="${title}"></iframe>\n<p style="font-size:11px;color:#64748b;margin-top:6px;text-align:right;">Powered by <a href="${(() => {
+                      const url = new URL(shareUrl || window.location.href);
+                      const parts = url.pathname.split('/');
+                      const lang = parts[1] || 'en';
+                      const cat = parts[2] || 'calculators';
+                      const slug = parts[3] || '';
+                      return `https://www.nexuscalculator.net/${lang}/${cat}/${slug}`;
+                    })()}" target="_blank" rel="noopener" style="color:#518231;font-weight:600;text-decoration:underline;">Nexus Calculator</a></p>`}
                     className="w-full p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-mono text-slate-800 dark:text-slate-300 resize-none focus:outline-none"
                   />
                   <button 
                     onClick={copyEmbedCode}
                     className={`w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 transition-colors ${
                       copiedEmbed 
-                        ? "bg-purple-700 shadow-md shadow-purple-700/20" 
-                        : "bg-purple-600 hover:bg-purple-700"
+                        ? "bg-[#436a28] shadow-md shadow-[#436a28]/20" 
+                        : "bg-[#518231] hover:bg-[#436a28]"
                     }`}
                   >
                     {copiedEmbed ? (

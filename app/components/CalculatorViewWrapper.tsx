@@ -4,7 +4,7 @@ import React, { useState, useEffect, ComponentType } from "react";
 import { getCalculatorComponent } from "@/lib/componentRegistry";
 import { CalculatorDef } from "@/lib/types";
 import { ErrorBoundary } from "./platform/ui/ErrorBoundary";
-import { useCalculatorUrlHydration } from "@/lib/hooks/useCalculatorUrlHydration";
+import { useCalculatorStateSync } from "@/lib/hooks/useCalculatorUrlHydration";
 
 interface CalculatorViewWrapperProps {
   calcDef: CalculatorDef;
@@ -14,8 +14,8 @@ interface CalculatorViewWrapperProps {
 export function CalculatorViewWrapper({ calcDef, locale }: CalculatorViewWrapperProps) {
   const [Component, setComponent] = useState<ComponentType<any> | null>(null);
 
-  // Automatically hydrates inputs if query parameters are present in the URL
-  useCalculatorUrlHydration("calculator-export-target");
+  // Automatically hydrates inputs from URL params on mount AND continuously syncs user inputs back to URL
+  useCalculatorStateSync("calculator-export-target");
 
   useEffect(() => {
     // Retrieve the dynamic component strictly on the client side after mounting
