@@ -126,6 +126,19 @@ export function ExportResultsPanel({
     // Temporarily add a class to clean up scrollbars and animations during capture
     element.classList.add("pdf-exporting");
 
+    // Current deep-linked calculation URL
+    const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://www.nexuscalculator.net';
+    let qrDataUrl = '';
+    try {
+      qrDataUrl = await QRCode.toDataURL(currentUrl, {
+        width: 140,
+        margin: 1,
+        color: { dark: '#0f172a', light: '#ffffff' }
+      });
+    } catch {
+      qrDataUrl = '';
+    }
+
     try {
       const canvas = await html2canvas(element, {
         scale: 2, // Retina resolution
@@ -140,7 +153,7 @@ export function ExportResultsPanel({
             clonedTarget.classList.remove('dark');
             clonedTarget.style.background = '#ffffff';
             clonedTarget.style.color = '#0f172a';
-            clonedTarget.style.padding = '24px';
+            clonedTarget.style.padding = '28px 24px';
             clonedTarget.style.borderRadius = '16px';
 
             // Insert a branded report header at the top of the cloned calculation
@@ -151,12 +164,20 @@ export function ExportResultsPanel({
             header.innerHTML = `
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <div>
-                  <div style="font-size: 20px; font-weight: 800; color: #518231; letter-spacing: -0.5px;">NEXUS CALCULATOR HUB</div>
-                  <div style="font-size: 14px; font-weight: 600; color: #1e293b; margin-top: 2px;">${title}</div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 12px; height: 12px; border-radius: 3px; background: #518231;"></div>
+                    <div style="font-size: 20px; font-weight: 900; color: #518231; letter-spacing: -0.5px;">NEXUS CALCULATOR</div>
+                  </div>
+                  <div style="font-size: 15px; font-weight: 700; color: #0f172a; margin-top: 4px;">${title}</div>
+                  <div style="font-size: 10px; color: #64748b; margin-top: 2px;">Official Verified Calculation Report • https://www.nexuscalculator.net</div>
                 </div>
-                <div style="text-align: right; font-size: 11px; color: #64748b;">
-                  <div>Date: ${new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</div>
-                  <div>Verified Calculation Report</div>
+                <div style="display: flex; align-items: center; gap: 12px; text-align: right;">
+                  <div>
+                    <div style="font-size: 11px; font-weight: 600; color: #0f172a;">Date: ${new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+                    <div style="font-size: 10px; color: #518231; font-weight: 700; text-transform: uppercase; margin-top: 2px;">✓ Verified Calculation</div>
+                    <div style="font-size: 9px; color: #94a3b8; margin-top: 2px;">Scan QR to verify live</div>
+                  </div>
+                  ${qrDataUrl ? `<img src="${qrDataUrl}" style="width: 52px; height: 52px; border-radius: 6px; border: 1px solid #e2e8f0;" alt="QR Code" />` : ''}
                 </div>
               </div>
             `;
@@ -165,12 +186,17 @@ export function ExportResultsPanel({
             // Insert a branded report footer
             const footer = clonedDoc.createElement('div');
             footer.style.borderTop = '1px solid #e2e8f0';
-            footer.style.paddingTop = '12px';
-            footer.style.marginTop = '24px';
-            footer.style.textAlign = 'center';
-            footer.style.fontSize = '11px';
+            footer.style.paddingTop = '14px';
+            footer.style.marginTop = '28px';
+            footer.style.display = 'flex';
+            footer.style.justifyContent = 'space-between';
+            footer.style.alignItems = 'center';
+            footer.style.fontSize = '10px';
             footer.style.color = '#94a3b8';
-            footer.innerHTML = `Calculated on <strong>nexuscalculator.net</strong> • Free, confidential, client-side tools`;
+            footer.innerHTML = `
+              <div>Calculated on <strong>nexuscalculator.net</strong> • Accurate, confidential, client-side math</div>
+              <div>Nexus Verified Document Engine</div>
+            `;
             clonedTarget.appendChild(footer);
           }
         }

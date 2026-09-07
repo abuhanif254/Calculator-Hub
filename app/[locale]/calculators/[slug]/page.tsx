@@ -368,7 +368,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Breadcrumbs for SEO */}
-      <nav aria-label="Breadcrumb" className="mb-6 font-sans text-sm text-slate-500 dark:text-slate-400">
+      <nav aria-label="Breadcrumb" className="mb-6 font-sans text-sm text-slate-500 dark:text-slate-400 print:hidden">
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <li>
             <Link href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</Link>
@@ -387,11 +387,29 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         </ol>
       </nav>
 
+      {/* Branded Print Header (Visible only when printed via Ctrl+P or window.print()) */}
+      <div className="hidden print:block mb-8 pb-4 border-b-2 border-[#518231]">
+        <div className="flex justify-between items-center">
+          <div>
+            <div className="flex items-center gap-2">
+              <div className="w-3.5 h-3.5 rounded bg-[#518231]" />
+              <span className="text-xl font-black text-[#518231] tracking-tight">NEXUS CALCULATOR</span>
+            </div>
+            <div className="text-base font-bold text-slate-900 mt-1">{pageTitle}</div>
+            <div className="text-[11px] text-slate-500">Official Verified Calculation Report • https://www.nexuscalculator.net</div>
+          </div>
+          <div className="text-right text-xs text-slate-500">
+            <div className="font-semibold text-slate-800">Verified by Nexus Engine</div>
+            <div className="text-[#518231] font-bold text-[11px] uppercase tracking-wider mt-0.5">✓ Confirmed Calculation</div>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
         {/* Main Content Area (Left/Top) */}
         <div className="flex-1 w-full max-w-5xl min-w-0">
           <header className="mb-10">
-            <div className="flex items-center gap-3 mb-4 flex-wrap">
+            <div className="flex items-center gap-3 mb-4 flex-wrap print:hidden">
               <span className="inline-block px-3 py-1 bg-[#518231]/10 border border-[#518231]/20 text-[#518231] dark:text-[#6fa844] rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
                 {calc.category}
               </span>
@@ -450,12 +468,18 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           />
 
           {/* Ad Placement above calculator (Top Content) */}
-          <div className="mb-8 w-full">
+          <div className="mb-8 w-full print:hidden">
             <AdSenseContainer slot="calculator_content_top" />
           </div>
 
           <div id="calculator-export-target" className="print-target calculator-view">
             <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
+          </div>
+
+          {/* Branded Print Footer (Visible only when printed via Ctrl+P or window.print()) */}
+          <div className="hidden print:flex justify-between items-center mt-8 pt-4 border-t border-slate-200 text-[10px] text-slate-500">
+            <div>Calculated on <strong>nexuscalculator.net</strong> • Accurate, confidential, client-side verified math</div>
+            <div>Nexus Verified Document Engine</div>
           </div>
 
           <ExportResultsPanel 
@@ -501,7 +525,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           )}
 
           {/* Ad Placement below calculator (Main Content) */}
-          <div className="my-10 w-full">
+          <div className="my-10 w-full print:hidden">
             <AdSenseContainer slot="calculator_content_bottom" style={{ minHeight: '90px' }} format="auto" />
           </div>
 
@@ -554,7 +578,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
         </div>
 
         {/* Sidebar Area (Right/Bottom) */}
-        <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0 flex flex-col gap-8">
+        <aside className="w-full lg:w-[360px] xl:w-[400px] shrink-0 flex flex-col gap-8 print:hidden">
 
           {/* Search Box */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">

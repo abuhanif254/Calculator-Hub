@@ -263,23 +263,33 @@ details[data-animated] > div {
 
 /* ── Print Stylesheet Optimization ───────────────────────── */
 @media print {
+  @page {
+    size: auto;
+    margin: 12mm 15mm 15mm 15mm;
+  }
+
   nav,
   footer,
   aside,
   .print\:hidden,
   .back-to-top,
   .adsbygoogle,
+  .adsense-container,
   #cookie-banner,
-  .global-settings-bar {
+  .global-settings-bar,
+  button,
+  [role="dialog"] {
     display: none !important;
   }
 
   body,
   html {
     background: #ffffff !important;
-    color: #000000 !important;
-    font-size: 12pt !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
     overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   #calculator-export-target,
@@ -288,16 +298,17 @@ details[data-animated] > div {
     margin: 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
-    color: #000000 !important;
+    color: #0f172a !important;
     box-shadow: none !important;
     border: none !important;
   }
 
   table,
   canvas,
-  .recharts-responsive-container {
-    break-inside: avoid;
-    page-break-inside: avoid;
+  .recharts-responsive-container,
+  .print-avoid-break {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
   }
 }
 
