@@ -10,6 +10,7 @@ import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
+import { DirectAnswerCard } from "@/app/components/DirectAnswerCard";
 import { getFormulaForCalculator, getFormulaFaq } from "@/lib/data/calculatorFormulas";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
@@ -306,6 +307,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     })
   };
 
+  const formulaDef = getFormulaForCalculator(calc.slug);
+
   // MathSolver JSON-LD Schema for Google Math Solvers
   const mathSolverSchema = {
     "@context": "https://schema.org",
@@ -313,6 +316,17 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     "name": pageTitle,
     "description": pageDesc,
     "url": canonicalUrl,
+    ...(formulaDef && {
+      "mathExpression": formulaDef.latex || formulaDef.formula,
+      "hasPart": [
+        {
+          "@type": "HowToStep",
+          "name": formulaDef.name,
+          "text": formulaDef.stepByStep,
+          "url": `${canonicalUrl}#math-formula`
+        }
+      ]
+    }),
     "potentialAction": {
       "@type": "SolveMathAction",
       "target": canonicalUrl,
@@ -465,6 +479,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             title={calc.title}
             type="calculator"
             href={`/calculators/${calc.slug}`}
+          />
+
+          {/* Direct Answer & Formula at a Glance Card (Position 0 Snippet) */}
+          <DirectAnswerCard
+            slug={calc.slug}
+            title={pageTitle}
+            category={calc.category}
+            locale={resolvedParams.locale}
           />
 
           {/* Ad Placement above calculator (Top Content) */}
