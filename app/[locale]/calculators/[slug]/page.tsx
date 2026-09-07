@@ -13,6 +13,7 @@ import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { getFormulaForCalculator, getFormulaFaq } from "@/lib/data/calculatorFormulas";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
+import { EmbedButton } from "@/app/components/EmbedButton";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
@@ -398,6 +399,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 title={calc.title}
                 type="calculator"
                 href={`/calculators/${calc.slug}`}
+              />
+              <EmbedButton
+                slug={calc.slug}
+                title={pageTitle}
+                locale={resolvedParams.locale}
               />
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
