@@ -230,7 +230,7 @@ export default async function CategoryPage({
       itemListElement: categoryCalcs.map((calc, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        name: calc.title,
+        name: calc.translations?.[resolvedParams.locale]?.title || calc.title,
         url: getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, calc.slug),
       })),
     },
@@ -354,32 +354,36 @@ export default async function CategoryPage({
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularCalcs.map((calc) => (
-              <Link
-                key={calc.slug}
-                href={resolveIntlHref(`/calculators/${calc.slug}`)}
-                className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center group-hover:bg-[#518231]/10 transition-colors">
-                    <Calculator
-                      className="text-slate-500 group-hover:text-[#518231] transition-colors"
-                      size={20}
+            {popularCalcs.map((calc) => {
+              const title = calc.translations?.[resolvedParams.locale]?.title || calc.title;
+              const description = calc.translations?.[resolvedParams.locale]?.description || calc.description;
+              return (
+                <Link
+                  key={calc.slug}
+                  href={resolveIntlHref(`/calculators/${calc.slug}`)}
+                  className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center group-hover:bg-[#518231]/10 transition-colors">
+                      <Calculator
+                        className="text-slate-500 group-hover:text-[#518231] transition-colors"
+                        size={20}
+                      />
+                    </div>
+                    <ArrowRight
+                      size={16}
+                      className="text-slate-300 group-hover:text-[#518231] transition-colors mt-2"
                     />
                   </div>
-                  <ArrowRight
-                    size={16}
-                    className="text-slate-300 group-hover:text-[#518231] transition-colors mt-2"
-                  />
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">
-                  {calc.title}
-                </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
-                  {calc.description}
-                </p>
-              </Link>
-            ))}
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">
+                    {title}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                    {description}
+                  </p>
+                </Link>
+              );
+            })}
           </div>
         </section>
 
@@ -487,7 +491,7 @@ export default async function CategoryPage({
                           href={resolveIntlHref(`/calculators/${calc.slug}`)}
                           className="block px-5 py-3.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-[#518231] transition-colors font-medium"
                         >
-                          {calc.title}
+                          {calc.translations?.[resolvedParams.locale]?.title || calc.title}
                         </Link>
                       </li>
                     ))}

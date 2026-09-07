@@ -38,7 +38,7 @@ export default async function EmbedCalculatorPage({
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-[#518231]" />
             <h1 className="text-lg font-bold text-slate-800 dark:text-slate-100 tracking-tight">
-              {calc.title}
+              {calc.translations?.[resolvedParams.locale]?.title || calc.title}
             </h1>
           </div>
           <a 

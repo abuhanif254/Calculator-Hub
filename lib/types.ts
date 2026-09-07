@@ -10,6 +10,16 @@ export interface CalculatorField {
   helpText?: string;
 }
 
+export interface CalculatorTranslation {
+  title: string;
+  description: string;
+  meta: {
+    title: string;
+    description: string;
+    keywords?: string;
+  };
+}
+
 export interface CalculatorDef {
   slug: string;
   slugs?: Record<string, string>;
@@ -27,4 +37,6 @@ export interface CalculatorDef {
   seoContent?: string; // Markdown or HTML for the bottom section
   parentSlug?: string; // Slugs delegating to a parent calculation engine (pSEO)
   defaultValues?: Record<string, string | number>; // Pre-configured initial input parameters
+  translations?: Record<string, CalculatorTranslation>; // Localized metadata per locale (es, fr, de, etc.)
 }
+

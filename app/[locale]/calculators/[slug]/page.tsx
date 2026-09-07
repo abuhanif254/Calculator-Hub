@@ -154,11 +154,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const localizedSlug = calc.slugs && calc.slugs[locale as keyof typeof calc.slugs];
   const mdData = getMarkdownContent(calc.slug, locale, localizedSlug, slug);
+  const translation = calc.translations?.[locale];
 
-  // Use markdown matter if available, fallback to hardcoded
-  const metaTitle = mdData?.data?.metaTitle || calc.meta.title;
-  const metaDescription = mdData?.data?.metaDescription || calc.meta.description;
-  const metaKeywords = mdData?.data?.metaKeywords || calc.meta.keywords;
+  // Use markdown matter if available, fallback to translation or hardcoded
+  const metaTitle = mdData?.data?.metaTitle || translation?.meta?.title || calc.meta.title;
+  const metaDescription = mdData?.data?.metaDescription || translation?.meta?.description || calc.meta.description;
+  const metaKeywords = mdData?.data?.metaKeywords || translation?.meta?.keywords || calc.meta.keywords;
 
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
@@ -190,10 +191,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
   const localizedSlug = calc.slugs && calc.slugs[resolvedParams.locale as keyof typeof calc.slugs];
   const mdData = getMarkdownContent(calc.slug, resolvedParams.locale, localizedSlug, resolvedParams.slug);
+  const translation = calc.translations?.[resolvedParams.locale];
 
-  // Replace defaults with markdown data
-  const pageTitle = mdData?.data?.title || calc.title;
-  const pageDesc = mdData?.data?.description || calc.description;
+  // Replace defaults with markdown data or localized translations
+  const pageTitle = mdData?.data?.title || translation?.title || calc.title;
+  const pageDesc = mdData?.data?.description || translation?.description || calc.description;
   const seoContent = mdData?.content || calc.seoContent;
 
   const faqs: { question: string; answer: string }[] = (mdData?.data?.faqs && Array.isArray(mdData.data.faqs) && mdData.data.faqs.length > 0)
@@ -731,6 +733,8 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           {relatedTools.slice(0, 4).map((toolSlug) => {
             const targetCalc = getCalculatorBySlug(toolSlug);
             if (!targetCalc) return null;
+            const targetTitle = targetCalc.translations?.[resolvedParams.locale]?.title || targetCalc.title;
+            const targetDesc = targetCalc.translations?.[resolvedParams.locale]?.description || targetCalc.description;
             return (
               <Link
                 key={toolSlug}
@@ -740,9 +744,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 <div className="w-10 h-10 rounded-full bg-[#518231]/10 text-[#518231] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                   <CalculatorIcon className="w-5 h-5" />
                 </div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">{targetCalc.title}</h3>
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">{targetTitle}</h3>
                 <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-                  {targetCalc.description}
+                  {targetDesc}
                 </p>
               </Link>
             );

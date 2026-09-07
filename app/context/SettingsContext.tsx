@@ -19,8 +19,28 @@ interface SettingsContextType extends Settings {
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
-export function SettingsProvider({ children }: { children: React.ReactNode }) {
-  const [settings, setSettings] = useState<Settings>({ currency: 'USD', locale: 'en-US', unitSystem: 'imperial' });
+export function getLocaleDefaults(locale?: string): Settings {
+  switch (locale) {
+    case 'de':
+      return { currency: 'EUR', locale: 'de-DE', unitSystem: 'metric' };
+    case 'fr':
+      return { currency: 'EUR', locale: 'fr-FR', unitSystem: 'metric' };
+    case 'es':
+      return { currency: 'EUR', locale: 'es-ES', unitSystem: 'metric' };
+    case 'en':
+    default:
+      return { currency: 'USD', locale: 'en-US', unitSystem: 'imperial' };
+  }
+}
+
+export function SettingsProvider({
+  children,
+  initialLocale,
+}: {
+  children: React.ReactNode;
+  initialLocale?: string;
+}) {
+  const [settings, setSettings] = useState<Settings>(() => getLocaleDefaults(initialLocale));
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -29,11 +49,13 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
       try { 
         setSettings(JSON.parse(stored)); 
       } catch (e) {}
+    } else if (initialLocale && initialLocale !== 'en') {
+      setSettings(getLocaleDefaults(initialLocale));
     } else {
-      // Auto-detect settings based on region (timeZone or language)
+      // Auto-detect settings based on region (timeZone or language) for en/default
       let defaultCurrency: CurrencyCode = 'USD';
       let defaultLocale: LocaleCode = 'en-US';
-      let defaultUnitSystem: UnitSystem = 'metric';
+      let defaultUnitSystem: UnitSystem = 'imperial';
 
       try {
         const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
@@ -109,7 +131,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     }
      
     setMounted(true);
-  }, []);
+  }, [initialLocale]);
 
   const setCurrencyAndLocale = (currency: CurrencyCode, locale: LocaleCode) => {
     setSettings((prev) => {

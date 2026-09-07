@@ -166,7 +166,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AuthProvider>
-              <SettingsProvider>
+              <SettingsProvider initialLocale={locale}>
                 <div id="global-header" className="sticky top-0 z-50 w-full flex flex-col shadow-sm">
                   <GlobalSettingsBar />
                   <Navbar />

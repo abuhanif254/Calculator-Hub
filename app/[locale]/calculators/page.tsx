@@ -196,6 +196,8 @@ export default async function AllCalculatorsPage({
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 pt-6">
                   {catCalculators.map((calc) => {
                     const localizedSlug = calc.slugs?.[locale as keyof typeof calc.slugs] || calc.slug;
+                    const title = calc.translations?.[locale]?.title || calc.title;
+                    const description = calc.translations?.[locale]?.description || calc.description;
                     return (
                       <Link
                         key={calc.slug}
@@ -204,11 +206,11 @@ export default async function AllCalculatorsPage({
                       >
                         <div>
                           <h3 className="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors flex items-center justify-between gap-2">
-                            <span>{calc.title}</span>
+                            <span>{title}</span>
                             <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 transition-all shrink-0" />
                           </h3>
                           <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                            {calc.description}
+                            {description}
                           </p>
                         </div>
                       </Link>
