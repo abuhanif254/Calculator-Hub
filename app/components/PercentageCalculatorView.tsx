@@ -13,18 +13,18 @@ export function PercentageCalculatorView({ calcDef }: PercentageCalculatorViewPr
   const t = useTranslations("PercentageCalculator");
 
   // State for Calc 1: What is X% of Y?
-  const [c1X, setC1X] = useState("");
-  const [c1Y, setC1Y] = useState("");
+  const [c1X, setC1X] = useState(() => String(calcDef?.defaultValues?.c1X ?? ""));
+  const [c1Y, setC1Y] = useState(() => String(calcDef?.defaultValues?.c1Y ?? ""));
   const [c1Res, setC1Res] = useState<number | null>(null);
 
   // State for Calc 2: X is what % of Y?
-  const [c2X, setC2X] = useState("");
-  const [c2Y, setC2Y] = useState("");
+  const [c2X, setC2X] = useState(() => String(calcDef?.defaultValues?.c2X ?? ""));
+  const [c2Y, setC2Y] = useState(() => String(calcDef?.defaultValues?.c2Y ?? ""));
   const [c2Res, setC2Res] = useState<number | null>(null);
 
   // State for Calc 3: Percentage change from X to Y
-  const [c3X, setC3X] = useState("");
-  const [c3Y, setC3Y] = useState("");
+  const [c3X, setC3X] = useState(() => String(calcDef?.defaultValues?.c3X ?? ""));
+  const [c3Y, setC3Y] = useState(() => String(calcDef?.defaultValues?.c3Y ?? ""));
   const [c3Res, setC3Res] = useState<{ value: number; type: "increase" | "decrease" | "none" } | null>(null);
 
   const calculate1 = () => {
@@ -60,6 +60,12 @@ export function PercentageCalculatorView({ calcDef }: PercentageCalculatorViewPr
       setC3Res(null);
     }
   };
+
+  React.useEffect(() => {
+    if (c1X && c1Y) calculate1();
+    if (c2X && c2Y) calculate2();
+    if (c3X && c3Y) calculate3();
+  }, []);
 
   return (
     <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">

@@ -25,4 +25,6 @@ export interface CalculatorDef {
   fields: CalculatorField[];
   logicModule: string; // to dynamically import the logic
   seoContent?: string; // Markdown or HTML for the bottom section
+  parentSlug?: string; // Slugs delegating to a parent calculation engine (pSEO)
+  defaultValues?: Record<string, string | number>; // Pre-configured initial input parameters
 }

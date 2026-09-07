@@ -1137,6 +1137,145 @@ export const routing = defineRouting({
         fr: '/calculatrices/calculatrice-avancee-cycle-de-sommeil',
         de: '/rechner/erweiterter-schlafzyklus-rechner'
       },
+      // Programmatic SEO (pSEO) Preset Calculators
+      '/calculators/used-car-loan-calculator': {
+        en: '/calculators/used-car-loan-calculator',
+        es: '/calculadoras/calculadora-de-prestamos-de-autos-usados',
+        fr: '/calculatrices/calculatrice-de-pret-auto-d-occasion',
+        de: '/rechner/gebrauchtwagen-kreditrechner'
+      },
+      '/calculators/new-car-loan-calculator': {
+        en: '/calculators/new-car-loan-calculator',
+        es: '/calculadoras/calculadora-de-prestamos-de-autos-nuevos',
+        fr: '/calculatrices/calculatrice-de-pret-auto-neuve',
+        de: '/rechner/neuwagen-kreditrechner'
+      },
+      '/calculators/motorcycle-loan-calculator': {
+        en: '/calculators/motorcycle-loan-calculator',
+        es: '/calculadoras/calculadora-de-prestamos-de-motos',
+        fr: '/calculatrices/calculatrice-de-pret-moto',
+        de: '/rechner/motorrad-kreditrechner'
+      },
+      '/calculators/rv-loan-calculator': {
+        en: '/calculators/rv-loan-calculator',
+        es: '/calculadoras/calculadora-de-prestamos-para-casas-rodantes',
+        fr: '/calculatrices/calculatrice-de-pret-camping-car',
+        de: '/rechner/wohnmobil-kreditrechner'
+      },
+      '/calculators/15-year-mortgage-calculator': {
+        en: '/calculators/15-year-mortgage-calculator',
+        es: '/calculadoras/calculadora-de-hipoteca-a-15-anos',
+        fr: '/calculatrices/calculatrice-hypothecaire-15-ans',
+        de: '/rechner/15-jahre-hypothekenrechner'
+      },
+      '/calculators/30-year-mortgage-calculator': {
+        en: '/calculators/30-year-mortgage-calculator',
+        es: '/calculadoras/calculadora-de-hipoteca-a-30-anos',
+        fr: '/calculatrices/calculatrice-hypothecaire-30-ans',
+        de: '/rechner/30-jahre-hypothekenrechner'
+      },
+      '/calculators/jumbo-mortgage-calculator': {
+        en: '/calculators/jumbo-mortgage-calculator',
+        es: '/calculadoras/calculadora-de-hipotecas-jumbo',
+        fr: '/calculatrices/calculatrice-hypothecaire-jumbo',
+        de: '/rechner/jumbo-hypothekenrechner'
+      },
+      '/calculators/va-loan-calculator': {
+        en: '/calculators/va-loan-calculator',
+        es: '/calculadoras/calculadora-de-prestamos-va',
+        fr: '/calculatrices/calculatrice-de-pret-va',
+        de: '/rechner/va-darlehensrechner'
+      },
+      '/calculators/s-and-p-500-calculator': {
+        en: '/calculators/s-and-p-500-calculator',
+        es: '/calculadoras/calculadora-de-rendimiento-sp500',
+        fr: '/calculatrices/calculatrice-de-rendement-sp500',
+        de: '/rechner/sp500-renditerechner'
+      },
+      '/calculators/dividend-reinvestment-calculator': {
+        en: '/calculators/dividend-reinvestment-calculator',
+        es: '/calculadoras/calculadora-de-reinversion-de-dividendos',
+        fr: '/calculatrices/calculatrice-de-reinvestissement-des-dividendes',
+        de: '/rechner/dividenden-reinvestitionsrechner'
+      },
+      '/calculators/high-yield-savings-calculator': {
+        en: '/calculators/high-yield-savings-calculator',
+        es: '/calculadoras/calculadora-de-cuenta-de-ahorros-de-alto-rendimiento',
+        fr: '/calculatrices/calculatrice-de-compte-d-epargne-a-haut-rendement',
+        de: '/rechner/tagesgeld-zinsrechner'
+      },
+      '/calculators/certificate-of-deposit-calculator': {
+        en: '/calculators/certificate-of-deposit-calculator',
+        es: '/calculadoras/calculadora-de-certificado-de-deposito',
+        fr: '/calculatrices/calculatrice-de-certificat-de-depot',
+        de: '/rechner/festgeld-rechner'
+      },
+      '/calculators/hourly-to-salary-calculator': {
+        en: '/calculators/hourly-to-salary-calculator',
+        es: '/calculadoras/calculadora-de-salario-por-hora-a-anual',
+        fr: '/calculatrices/calculatrice-de-salaire-horaire-en-annuel',
+        de: '/rechner/stundenlohn-in-jahresgehalt-rechner'
+      },
+      '/calculators/salary-to-hourly-calculator': {
+        en: '/calculators/salary-to-hourly-calculator',
+        es: '/calculadoras/calculadora-de-salario-anual-a-por-hora',
+        fr: '/calculatrices/calculatrice-de-salaire-annuel-en-horaire',
+        de: '/rechner/jahresgehalt-in-stundenlohn-rechner'
+      },
+      '/calculators/biweekly-salary-calculator': {
+        en: '/calculators/biweekly-salary-calculator',
+        es: '/calculadoras/calculadora-de-salario-quincenal',
+        fr: '/calculatrices/calculatrice-de-salaire-bihebdomadaire',
+        de: '/rechner/zweiwochentliches-gehalt-rechner'
+      },
+      '/calculators/bmi-calculator-for-men': {
+        en: '/calculators/bmi-calculator-for-men',
+        es: '/calculadoras/calculadora-de-imc-para-hombres',
+        fr: '/calculatrices/calculatrice-imc-pour-hommes',
+        de: '/rechner/bmi-rechner-fur-manner'
+      },
+      '/calculators/bmi-calculator-for-women': {
+        en: '/calculators/bmi-calculator-for-women',
+        es: '/calculadoras/calculadora-de-imc-para-mujeres',
+        fr: '/calculatrices/calculatrice-imc-pour-femmes',
+        de: '/rechner/bmi-rechner-fur-frauen'
+      },
+      '/calculators/percentage-increase-calculator': {
+        en: '/calculators/percentage-increase-calculator',
+        es: '/calculadoras/calculadora-de-aumento-porcentual',
+        fr: '/calculatrices/calculatrice-d-augmentation-en-pourcentage',
+        de: '/rechner/prozentuale-steigerung-rechner'
+      },
+      '/calculators/percentage-decrease-calculator': {
+        en: '/calculators/percentage-decrease-calculator',
+        es: '/calculadoras/calculadora-de-disminucion-porcentual',
+        fr: '/calculatrices/calculatrice-de-diminution-en-pourcentage',
+        de: '/rechner/prozentuale-abnahme-rechner'
+      },
+      '/calculators/percentage-difference-calculator': {
+        en: '/calculators/percentage-difference-calculator',
+        es: '/calculadoras/calculadora-de-diferencia-porcentual',
+        fr: '/calculatrices/calculatrice-de-difference-en-pourcentage',
+        de: '/rechner/prozentuale-differenz-rechner'
+      },
+      '/calculators/early-retirement-fire-calculator': {
+        en: '/calculators/early-retirement-fire-calculator',
+        es: '/calculadoras/calculadora-fire-retiro-anticipado',
+        fr: '/calculatrices/calculatrice-fire-retraite-anticipee',
+        de: '/rechner/fire-rechner-fruhe-rente'
+      },
+      '/calculators/401k-growth-calculator': {
+        en: '/calculators/401k-growth-calculator',
+        es: '/calculadoras/calculadora-de-crecimiento-401k',
+        fr: '/calculatrices/calculatrice-de-croissance-401k',
+        de: '/rechner/401k-wachstumsrechner'
+      },
+      '/calculators/credit-card-minimum-payment-calculator': {
+        en: '/calculators/credit-card-minimum-payment-calculator',
+        es: '/calculadoras/calculadora-de-pago-minimo-de-tarjeta-de-credito',
+        fr: '/calculatrices/calculatrice-de-paiement-minimum-carte-de-credit',
+        de: '/rechner/kreditkarten-mindestzahlungsrechner'
+      },
       // Category landing pages (pillar pages for topical authority)
     '/calculators/category/[category]': {
       en: '/calculators/category/[category]',

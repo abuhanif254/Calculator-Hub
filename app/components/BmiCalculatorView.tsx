@@ -17,10 +17,10 @@ export const BmiCalculatorView: React.FC<{ calcDef: CalculatorDef }> = ({ calcDe
   const t = useTranslations("BmiCalculator");
 
   // Internal state always stores metric (kg and cm)
-  const [weightKg, setWeightKg] = useState(70); 
-  const [heightCm, setHeightCm] = useState(175); 
-  const [age, setAge] = useState<number | ''>(25);
-  const [gender, setGender] = useState<"male" | "female">("male");
+  const [weightKg, setWeightKg] = useState<number>(() => Number(calcDef?.defaultValues?.weightKg ?? 70)); 
+  const [heightCm, setHeightCm] = useState<number>(() => Number(calcDef?.defaultValues?.heightCm ?? 175)); 
+  const [age, setAge] = useState<number | ''>(() => (calcDef?.defaultValues?.age !== undefined ? Number(calcDef.defaultValues.age) : 25));
+  const [gender, setGender] = useState<"male" | "female">(() => (calcDef?.defaultValues?.gender === "female" ? "female" : "male"));
 
   // Handle Input Changes correctly parsing conversions back to metric state
   const handleWeightChange = (e: React.ChangeEvent<HTMLInputElement>) => {

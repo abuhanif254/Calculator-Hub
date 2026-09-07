@@ -132,11 +132,21 @@ function applyParamsToContainer(container: HTMLElement, params: URLSearchParams)
  * Automatically inspects the URL query string on mount and populates
  * calculator inputs using React prototype setters to trigger math recalculation.
  */
-export function useCalculatorUrlHydration(containerId: string = 'calculator-export-target') {
+export function useCalculatorUrlHydration(
+  containerId: string = 'calculator-export-target',
+  defaultParams?: Record<string, string | number>
+) {
   useEffect(() => {
-    if (typeof window === 'undefined' || !window.location.search) return;
+    if (typeof window === 'undefined') return;
 
-    const params = new URLSearchParams(window.location.search);
+    let params = new URLSearchParams(window.location.search);
+    if ([...params.keys()].length === 0 && defaultParams && Object.keys(defaultParams).length > 0) {
+      params = new URLSearchParams();
+      Object.entries(defaultParams).forEach(([k, v]) => {
+        params.set(k, String(v));
+      });
+    }
+
     if ([...params.keys()].length === 0) return;
 
     isHydratingState = true;
@@ -224,8 +234,9 @@ export function useCalculatorUrlSync(
  */
 export function useCalculatorStateSync(
   containerId: string = 'calculator-export-target',
+  defaultParams?: Record<string, string | number>,
   debounceMs: number = 400
 ) {
-  useCalculatorUrlHydration(containerId);
+  useCalculatorUrlHydration(containerId, defaultParams);
   useCalculatorUrlSync(containerId, debounceMs);
 }

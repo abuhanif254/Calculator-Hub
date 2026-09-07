@@ -12,10 +12,10 @@ interface AutoLoanCalculatorViewProps {
 export function AutoLoanCalculatorView({ calcDef }: AutoLoanCalculatorViewProps) {
   const t = useTranslations("AutoLoanCalculator");
   
-  const [vehiclePrice, setVehiclePrice] = useState<number>(30000);
-  const [downPayment, setDownPayment] = useState<number>(6000);
-  const [loanTerm, setLoanTerm] = useState<number>(60);
-  const [interestRate, setInterestRate] = useState<number>(5.5);
+  const [vehiclePrice, setVehiclePrice] = useState<number>(() => Number(calcDef?.defaultValues?.vehiclePrice ?? 30000));
+  const [downPayment, setDownPayment] = useState<number>(() => Number(calcDef?.defaultValues?.downPayment ?? 6000));
+  const [loanTerm, setLoanTerm] = useState<number>(() => Number(calcDef?.defaultValues?.loanTerm ?? 60));
+  const [interestRate, setInterestRate] = useState<number>(() => Number(calcDef?.defaultValues?.interestRate ?? 5.5));
   
   const [monthlyPayment, setMonthlyPayment] = useState<number | null>(null);
   const [totalInterest, setTotalInterest] = useState<number | null>(null);

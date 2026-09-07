@@ -4,6 +4,8 @@
 // and semantic formula FAQ embeddings for Nexus Calculator Hub.
 // ═══════════════════════════════════════════════════════════════════════
 
+import { getCalculatorBySlug } from './calculators';
+
 export interface FormulaVariable {
   symbol: string;
   name: string;
@@ -462,7 +464,15 @@ export const calculatorFormulas: CalculatorFormulaDef[] = [
  * Retrieve formula definition for a specific calculator slug
  */
 export function getFormulaForCalculator(slug: string): CalculatorFormulaDef | undefined {
-  return calculatorFormulas.find((f) => f.slugs.includes(slug));
+  const direct = calculatorFormulas.find((f) => f.slugs.includes(slug));
+  if (direct) return direct;
+
+  // Fallback to parent calculator formula for programmatic presets
+  const calc = getCalculatorBySlug(slug);
+  if (calc?.parentSlug) {
+    return calculatorFormulas.find((f) => f.slugs.includes(calc.parentSlug!));
+  }
+  return undefined;
 }
 
 /**

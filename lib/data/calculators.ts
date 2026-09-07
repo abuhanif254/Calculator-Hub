@@ -1,6 +1,7 @@
 import { CalculatorDef } from "../types";
+import { programmaticPresets } from "./programmaticPresets";
 
-export const calculators: CalculatorDef[] = [
+const baseCalculators: CalculatorDef[] = [
   {
     slug: "confidence-interval-calculator",
     slugs: {
@@ -4359,6 +4360,32 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
     fields: [],
     logicModule: "physics"
   }
+];
+
+// Hydrate programmatic presets with parent fields if not explicitly defined
+const resolvedPresets: CalculatorDef[] = programmaticPresets.map((preset) => {
+  if (preset.parentSlug && (!preset.fields || preset.fields.length === 0)) {
+    const parent = baseCalculators.find((c) => c.slug === preset.parentSlug);
+    if (parent && parent.fields) {
+      const clonedFields = parent.fields.map((field) => ({
+        ...field,
+        defaultValue: preset.defaultValues?.[field.id] !== undefined 
+          ? preset.defaultValues[field.id] 
+          : field.defaultValue,
+      }));
+      return {
+        ...preset,
+        fields: clonedFields,
+        logicModule: preset.logicModule || parent.logicModule,
+      };
+    }
+  }
+  return preset;
+});
+
+export const calculators: CalculatorDef[] = [
+  ...baseCalculators,
+  ...resolvedPresets,
 ];
 
 export const getCalculatorBySlug = (slug: string): CalculatorDef | undefined => {

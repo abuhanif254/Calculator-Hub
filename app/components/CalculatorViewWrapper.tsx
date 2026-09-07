@@ -15,7 +15,7 @@ export function CalculatorViewWrapper({ calcDef, locale }: CalculatorViewWrapper
   const [Component, setComponent] = useState<ComponentType<any> | null>(null);
 
   // Automatically hydrates inputs from URL params on mount AND continuously syncs user inputs back to URL
-  useCalculatorStateSync("calculator-export-target");
+  useCalculatorStateSync("calculator-export-target", calcDef.defaultValues);
 
   useEffect(() => {
     // Retrieve the dynamic component strictly on the client side after mounting

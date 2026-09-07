@@ -4,6 +4,8 @@
 // Pre-rendered in static HTML to capture Google SERP table snippets.
 // ═══════════════════════════════════════════════════════════════════════
 
+import { getCalculatorBySlug } from './calculators';
+
 export interface MatrixRow {
   label: string;
   values: string[];
@@ -211,5 +213,13 @@ export const calculatorMatrices: CalculatorMatrixDef[] = [
  * Retrieve matrix definition for a specific calculator slug
  */
 export function getMatrixForCalculator(slug: string): CalculatorMatrixDef | undefined {
-  return calculatorMatrices.find((m) => m.slugs.includes(slug));
+  const direct = calculatorMatrices.find((m) => m.slugs.includes(slug));
+  if (direct) return direct;
+
+  // Fallback to parent calculator matrix for programmatic presets
+  const calc = getCalculatorBySlug(slug);
+  if (calc?.parentSlug) {
+    return calculatorMatrices.find((m) => m.slugs.includes(calc.parentSlug!));
+  }
+  return undefined;
 }

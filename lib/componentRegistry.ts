@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
 import type { CalculatorDef } from '@/lib/types';
+import { getCalculatorBySlug } from '@/lib/data/calculators';
 
 // ═══════════════════════════════════════════════════════
 // CALCULATOR COMPONENT REGISTRY
@@ -215,5 +216,13 @@ const FallbackCalculator = dynamic(() => import('@/app/components/Calculator').t
  * Falls back to the generic Calculator component if no custom view exists.
  */
 export function getCalculatorComponent(slug: string): ComponentType<CalcComponentProps> {
-  return registry[slug] ?? FallbackCalculator;
+  if (registry[slug]) return registry[slug];
+
+  // Check if this is a programmatic preset delegating to a parent calculator engine
+  const calc = getCalculatorBySlug(slug);
+  if (calc?.parentSlug && registry[calc.parentSlug]) {
+    return registry[calc.parentSlug];
+  }
+
+  return FallbackCalculator;
 }

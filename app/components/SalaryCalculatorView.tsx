@@ -12,11 +12,11 @@ interface SalaryCalculatorViewProps {
 export function SalaryCalculatorView({ calcDef }: SalaryCalculatorViewProps) {
   const t = useTranslations("SalaryCalculator");
   
-  const [amount, setAmount] = useState<number>(50000);
-  const [period, setPeriod] = useState<string>("annually");
-  const [hoursPerWeek, setHoursPerWeek] = useState<number>(40);
-  const [daysPerWeek, setDaysPerWeek] = useState<number>(5);
-  const [unpaidWeeks, setUnpaidWeeks] = useState<number>(0);
+  const [amount, setAmount] = useState<number>(() => Number(calcDef?.defaultValues?.amount ?? 50000));
+  const [period, setPeriod] = useState<string>(() => String(calcDef?.defaultValues?.period ?? "annually"));
+  const [hoursPerWeek, setHoursPerWeek] = useState<number>(() => Number(calcDef?.defaultValues?.hoursPerWeek ?? 40));
+  const [daysPerWeek, setDaysPerWeek] = useState<number>(() => Number(calcDef?.defaultValues?.daysPerWeek ?? 5));
+  const [unpaidWeeks, setUnpaidWeeks] = useState<number>(() => Number(calcDef?.defaultValues?.unpaidWeeks ?? 0));
   
   const [results, setResults] = useState<{ 
     hourly: number;

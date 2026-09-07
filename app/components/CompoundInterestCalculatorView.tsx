@@ -12,11 +12,11 @@ interface CompoundInterestCalculatorViewProps {
 export function CompoundInterestCalculatorView({ calcDef }: CompoundInterestCalculatorViewProps) {
   const t = useTranslations("CompoundInterestCalculator");
   
-  const [principal, setPrincipal] = useState<number>(10000);
-  const [monthlyContribution, setMonthlyContribution] = useState<number>(500);
-  const [interestRate, setInterestRate] = useState<number>(7.0);
-  const [years, setYears] = useState<number>(20);
-  const [frequency, setFrequency] = useState<number>(12); // Default Monthly
+  const [principal, setPrincipal] = useState<number>(() => Number(calcDef?.defaultValues?.principal ?? 10000));
+  const [monthlyContribution, setMonthlyContribution] = useState<number>(() => Number(calcDef?.defaultValues?.monthlyContribution ?? 500));
+  const [interestRate, setInterestRate] = useState<number>(() => Number(calcDef?.defaultValues?.interestRate ?? 7.0));
+  const [years, setYears] = useState<number>(() => Number(calcDef?.defaultValues?.years ?? 20));
+  const [frequency, setFrequency] = useState<number>(() => Number(calcDef?.defaultValues?.frequency ?? 12)); // Default Monthly
   
   const [results, setResults] = useState<{ 
     futureValue: number; 

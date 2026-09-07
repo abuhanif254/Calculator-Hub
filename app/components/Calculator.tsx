@@ -16,7 +16,7 @@ export const Calculator: React.FC<CalculatorProps> = ({ calcDef }) => {
   const initialValues = useMemo(() => {
     const vals: Record<string, string | number> = {};
     calcDef.fields.forEach((f) => {
-      vals[f.id] = f.defaultValue;
+      vals[f.id] = calcDef.defaultValues?.[f.id] !== undefined ? calcDef.defaultValues[f.id] : f.defaultValue;
     });
     return vals;
   }, [calcDef]);
@@ -34,9 +34,9 @@ export const Calculator: React.FC<CalculatorProps> = ({ calcDef }) => {
           const financialModule = await import("../../lib/formulas/financial");
           if (!isMounted) return;
 
-          if (calcDef.slug === "mortgage-calculator") {
+          if (calcDef.slug === "mortgage-calculator" || calcDef.parentSlug === "mortgage-calculator") {
             setResult(financialModule.calculateMortgage(values as any));
-          } else if (calcDef.slug === "canadian-mortgage-calculator") {
+          } else if (calcDef.slug === "canadian-mortgage-calculator" || calcDef.parentSlug === "canadian-mortgage-calculator") {
             setResult(financialModule.calculateCanadianMortgage(values as any));
           } else {
             setResult(null);
