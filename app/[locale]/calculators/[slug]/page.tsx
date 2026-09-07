@@ -17,6 +17,7 @@ import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { EmbedButton } from "@/app/components/EmbedButton";
 import { ShareButton } from "@/app/components/ShareButton";
+import { HistoryButton } from "@/app/components/HistoryButton";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
@@ -446,6 +447,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 title={pageTitle}
                 locale={resolvedParams.locale}
               />
+              <HistoryButton
+                slug={calc.slug}
+                title={pageTitle || calc.title}
+                locale={resolvedParams.locale}
+              />
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
               {pageTitle}
@@ -511,6 +517,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             targetId="calculator-export-target" 
             fileName={`${calc.slug}-results`} 
             title={pageTitle || calc.title} 
+            calcSlug={calc.slug}
           />
           <CalculatorMath slug={calc.slug} category={calc.category} />
           <StaticCalculationMatrix slug={calc.slug} title={pageTitle} locale={resolvedParams.locale} />

@@ -56,9 +56,9 @@ export function serializeCalculatorInputs(containerId: string = 'calculator-expo
 }
 
 /**
- * Helper to hydrate container inputs from query parameters.
+ * Helper to hydrate container inputs from query parameters or history records.
  */
-function applyParamsToContainer(container: HTMLElement, params: URLSearchParams) {
+export function applyParamsToContainer(container: HTMLElement, params: URLSearchParams) {
   const elements = container.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
     'input, select, textarea'
   );

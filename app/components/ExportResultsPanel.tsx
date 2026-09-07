@@ -3,23 +3,30 @@
 import React, { useState, useRef } from "react";
 import { 
   Copy, Printer, Share2, Download, FileText, Check, 
-  QrCode, ExternalLink, Mail, Image as ImageIcon, X, Code, Globe
+  QrCode, ExternalLink, Mail, Image as ImageIcon, X, Code, Globe,
+  Bookmark, BookmarkCheck
 } from "lucide-react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import QRCode from "qrcode";
 import { serializeCalculatorInputs } from "@/lib/hooks/useCalculatorUrlHydration";
+import { 
+  saveCalculationToHistory, 
+  extractResultsFromContainer 
+} from "@/lib/utils/calculationHistory";
 
 interface ExportResultsPanelProps {
   targetId?: string;
   fileName?: string;
   title?: string;
+  calcSlug?: string;
 }
 
 export function ExportResultsPanel({ 
   targetId = "calculator-export-target", 
   fileName = "nexus-calculation-results",
-  title = "Calculation Results"
+  title = "Calculation Results",
+  calcSlug,
 }: ExportResultsPanelProps) {
   const [isExportingPDF, setIsExportingPDF] = useState(false);
   const [isExportingPNG, setIsExportingPNG] = useState(false);
@@ -29,12 +36,46 @@ export function ExportResultsPanel({
   const [qrCodeDataUrl, setQrCodeDataUrl] = useState<string | null>(null);
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedEmbed, setCopiedEmbed] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  // Helper to persist current calculation run to localStorage
+  const saveCurrentToHistory = () => {
+    if (typeof window === 'undefined') return;
+    try {
+      const inputsParams = serializeCalculatorInputs(targetId);
+      const inputs: Record<string, string | number> = {};
+      inputsParams.forEach((val, key) => {
+        inputs[key] = isNaN(Number(val)) || val === '' ? val : Number(val);
+      });
+
+      const { primaryResult, resultsSummary } = extractResultsFromContainer(targetId);
+      const detectedSlug = calcSlug || window.location.pathname.split('/').filter(Boolean).pop() || 'calculator';
+
+      saveCalculationToHistory({
+        calcSlug: detectedSlug,
+        calcTitle: title,
+        inputs,
+        primaryResult,
+        resultsSummary,
+        url: window.location.href,
+      });
+    } catch (err) {
+      console.error("Error saving calculation run to history:", err);
+    }
+  };
+
+  const handleSaveScenario = () => {
+    saveCurrentToHistory();
+    setIsSaved(true);
+    setTimeout(() => setIsSaved(false), 2500);
+  };
 
   // Generate shareable link with inputs encoded
   const handleOpenShare = async () => {
     if (typeof window === 'undefined') return;
 
     try {
+      saveCurrentToHistory(); // Auto-save run when sharing
       const inputsParams = serializeCalculatorInputs(targetId);
       const url = new URL(window.location.href);
 
@@ -209,6 +250,7 @@ export function ExportResultsPanel({
 
   const handleExportPDF = async () => {
     try {
+      saveCurrentToHistory(); // Auto-save run when exporting PDF
       setIsExportingPDF(true);
       const canvas = await createReportCanvas();
       const imgData = canvas.toDataURL('image/png');
@@ -250,6 +292,7 @@ export function ExportResultsPanel({
 
   const handleExportPNG = async () => {
     try {
+      saveCurrentToHistory(); // Auto-save run when saving image
       setIsExportingPNG(true);
       const canvas = await createReportCanvas();
       const imgData = canvas.toDataURL('image/png');
@@ -272,6 +315,29 @@ export function ExportResultsPanel({
       <span className="hidden sm:inline text-xs uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 mr-1">
         Save &amp; Share:
       </span>
+
+      {/* Save Scenario Button */}
+      <button 
+        onClick={handleSaveScenario}
+        className={`flex items-center gap-1.5 px-3.5 sm:px-4 py-2 min-h-[40px] border rounded-xl text-sm font-medium transition-all shadow-sm focus:outline-none ${
+          isSaved
+            ? "bg-emerald-50 dark:bg-emerald-950/40 border-emerald-500 text-emerald-700 dark:text-emerald-400"
+            : "bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700/80"
+        }`}
+        title="Save this calculation scenario to your local history"
+      >
+        {isSaved ? (
+          <>
+            <BookmarkCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+            <span className="text-emerald-700 dark:text-emerald-400 font-semibold">Saved!</span>
+          </>
+        ) : (
+          <>
+            <Bookmark className="w-4 h-4 text-[#518231] shrink-0" />
+            <span>Save Scenario</span>
+          </>
+        )}
+      </button>
 
       {/* Share Calculation Button */}
       <button 
