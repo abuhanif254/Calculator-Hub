@@ -9,7 +9,8 @@
     "preview": "npm run pages:build && wrangler pages dev .vercel/output/static",
     "start": "next start",
     "lint": "eslint .",
-    "clean": "next clean"
+    "clean": "next clean",
+    "extension:pack": "node scripts/bundle-extension.js"
   },
   "dependencies": {
     "@babel/standalone": "^7.29.7",

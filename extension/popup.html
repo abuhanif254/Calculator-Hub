@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Calculator & Converter Hub</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Extension Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo">N</div>
+        <div class="brand-info">
+          <span class="brand-name">NEXUS</span>
+          <span class="brand-tag">Calculator Hub</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <a href="https://www.nexuscalculator.net" target="_blank" rel="noopener" class="icon-btn" title="Open Nexus Calculator Website">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="nav-tab active" data-tab="calc" role="tab" aria-selected="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+        <span>Calc</span>
+      </button>
+      <button class="nav-tab" data-tab="conv" role="tab" aria-selected="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m16 3 4 4-4 4"/><path d="M20 7H4"/><path d="m8 21-4-4 4-4"/><path d="M4 17h16"/></svg>
+        <span>Convert</span>
+      </button>
+      <button class="nav-tab" data-tab="dev" role="tab" aria-selected="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        <span>Dev Tools</span>
+      </button>
+      <button class="nav-tab" data-tab="hub" role="tab" aria-selected="false">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <span>Explore</span>
+      </button>
+    </nav>
+
+    <!-- Tab 1: Smart Scientific Calculator -->
+    <main id="panel-calc" class="tab-panel active">
+      <div class="calc-display-wrap">
+        <div class="calc-history-preview" id="calc-preview"></div>
+        <div class="calc-main-input-wrap">
+          <input type="text" id="calc-input" class="calc-input" placeholder="0" autocomplete="off" autofocus />
+        </div>
+      </div>
+
+      <!-- Quick Scientific Keypad -->
+      <div class="calc-keypad">
+        <div class="keypad-row">
+          <button class="btn fn-btn" data-key="(">(</button>
+          <button class="btn fn-btn" data-key=")">)</button>
+          <button class="btn fn-btn" data-key="%">%</button>
+          <button class="btn fn-btn" data-key="^">^</button>
+          <button class="btn fn-btn" data-key="sqrt">√</button>
+          <button class="btn action-btn text-danger" id="btn-clear">AC</button>
+        </div>
+        <div class="keypad-grid">
+          <button class="btn num-btn" data-key="7">7</button>
+          <button class="btn num-btn" data-key="8">8</button>
+          <button class="btn num-btn" data-key="9">9</button>
+          <button class="btn op-btn" data-key="/">÷</button>
+          <button class="btn action-btn" id="btn-backspace">⌫</button>
+
+          <button class="btn num-btn" data-key="4">4</button>
+          <button class="btn num-btn" data-key="5">5</button>
+          <button class="btn num-btn" data-key="6">6</button>
+          <button class="btn op-btn" data-key="*">×</button>
+          <button class="btn fn-btn" data-key="pi">π</button>
+
+          <button class="btn num-btn" data-key="1">1</button>
+          <button class="btn num-btn" data-key="2">2</button>
+          <button class="btn num-btn" data-key="3">3</button>
+          <button class="btn op-btn" data-key="-">−</button>
+          <button class="btn fn-btn" data-key="e">e</button>
+
+          <button class="btn num-btn" data-key="0">0</button>
+          <button class="btn num-btn" data-key=".">.</button>
+          <button class="btn equals-btn" id="btn-equals">=</button>
+          <button class="btn op-btn" data-key="+">+</button>
+          <button class="btn action-btn" id="btn-copy" title="Copy Result">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- History Dropdown Bar -->
+      <div class="calc-footer-bar">
+        <button class="pill-btn" id="btn-toggle-history">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+          <span>History (<span id="history-count">0</span>)</span>
+        </button>
+        <span class="tip-text">Enter = Calculate</span>
+      </div>
+
+      <!-- History Drawer (Overlay) -->
+      <div id="calc-history-drawer" class="history-drawer hidden">
+        <div class="history-header">
+          <span>Recent Calculations</span>
+          <button id="btn-clear-history" class="text-btn">Clear</button>
+        </div>
+        <div id="history-list" class="history-list"></div>
+      </div>
+    </main>
+
+    <!-- Tab 2: Smart Unit Converter -->
+    <main id="panel-conv" class="tab-panel hidden">
+      <div class="conv-category-tabs">
+        <button class="conv-cat-btn active" data-category="length">Length</button>
+        <button class="conv-cat-btn" data-category="mass">Weight</button>
+        <button class="conv-cat-btn" data-category="temperature">Temp</button>
+        <button class="conv-cat-btn" data-category="speed">Speed</button>
+        <button class="conv-cat-btn" data-category="digital">Digital</button>
+      </div>
+
+      <div class="conv-card">
+        <!-- From Row -->
+        <div class="conv-input-group">
+          <label for="conv-from-value">From</label>
+          <div class="conv-field">
+            <input type="number" id="conv-from-value" value="1" step="any" />
+            <select id="conv-from-unit"></select>
+          </div>
+        </div>
+
+        <!-- Swap Button -->
+        <div class="conv-swap-wrap">
+          <button id="conv-btn-swap" class="conv-swap-btn" title="Swap Units">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg>
+          </button>
+        </div>
+
+        <!-- To Row -->
+        <div class="conv-input-group">
+          <label for="conv-to-value">To (Result)</label>
+          <div class="conv-field">
+            <input type="text" id="conv-to-value" readonly />
+            <select id="conv-to-unit"></select>
+          </div>
+        </div>
+      </div>
+
+      <div class="conv-formula-card" id="conv-formula">1 meter = 3.28084 feet</div>
+
+      <div class="more-tools-box">
+        <span>Need specialized conversions?</span>
+        <a href="https://www.nexuscalculator.net/en/sitemap" target="_blank" class="link-btn">
+          View All Converters →
+        </a>
+      </div>
+    </main>
+
+    <!-- Tab 3: Quick Dev Tools -->
+    <main id="panel-dev" class="tab-panel hidden">
+      <div class="dev-nav">
+        <button class="dev-nav-btn active" data-dev="json">JSON</button>
+        <button class="dev-nav-btn" data-dev="base64">Base64</button>
+        <button class="dev-nav-btn" data-dev="timestamp">Timestamp</button>
+        <button class="dev-nav-btn" data-dev="uuid">UUID</button>
+      </div>
+
+      <!-- JSON Tool -->
+      <div id="dev-json" class="dev-subpanel active">
+        <textarea id="json-input" placeholder="Paste raw JSON here..."></textarea>
+        <div class="dev-actions">
+          <button id="btn-json-beautify" class="btn primary-btn">Beautify</button>
+          <button id="btn-json-minify" class="btn secondary-btn">Minify</button>
+          <button id="btn-json-copy" class="btn outline-btn">Copy</button>
+        </div>
+        <div id="json-status" class="status-msg"></div>
+      </div>
+
+      <!-- Base64 Tool -->
+      <div id="dev-base64" class="dev-subpanel hidden">
+        <textarea id="b64-input" placeholder="Enter text to encode or decode..."></textarea>
+        <div class="dev-actions">
+          <button id="btn-b64-encode" class="btn primary-btn">Encode</button>
+          <button id="btn-b64-decode" class="btn secondary-btn">Decode</button>
+          <button id="btn-b64-copy" class="btn outline-btn">Copy</button>
+        </div>
+        <div id="b64-status" class="status-msg"></div>
+      </div>
+
+      <!-- Timestamp Tool -->
+      <div id="dev-timestamp" class="dev-subpanel hidden">
+        <div class="timestamp-card">
+          <div class="ts-label">Current Epoch Seconds:</div>
+          <div class="ts-val-wrap">
+            <span id="ts-seconds" class="ts-val">0000000000</span>
+            <button class="copy-tiny-btn" data-target="ts-seconds">Copy</button>
+          </div>
+        </div>
+        <div class="timestamp-card">
+          <div class="ts-label">Current Milliseconds:</div>
+          <div class="ts-val-wrap">
+            <span id="ts-ms" class="ts-val">0000000000000</span>
+            <button class="copy-tiny-btn" data-target="ts-ms">Copy</button>
+          </div>
+        </div>
+        <div class="timestamp-card">
+          <div class="ts-label">UTC Date:</div>
+          <span id="ts-utc" class="ts-subval">...</span>
+        </div>
+      </div>
+
+      <!-- UUID Tool -->
+      <div id="dev-uuid" class="dev-subpanel hidden">
+        <div class="uuid-card">
+          <div id="uuid-display" class="uuid-display">Click Generate</div>
+          <button id="btn-uuid-gen" class="btn primary-btn w-full">Generate New UUID v4</button>
+          <button id="btn-uuid-copy" class="btn outline-btn w-full">Copy to Clipboard</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Tab 4: Nexus Hub Search -->
+    <main id="panel-hub" class="tab-panel hidden">
+      <div class="hub-search-wrap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" id="hub-search-input" placeholder="Search 100+ calculators (e.g. mortgage, bmi, tax)..." />
+      </div>
+
+      <div class="hub-category-pills" id="hub-category-filter">
+        <button class="pill-btn active" data-cat="all">All</button>
+        <button class="pill-btn" data-cat="financial">Finance</button>
+        <button class="pill-btn" data-cat="health">Health</button>
+        <button class="pill-btn" data-cat="math">Math</button>
+        <button class="pill-btn" data-cat="tech">Tech</button>
+      </div>
+
+      <div class="hub-results-list" id="hub-results"></div>
+
+      <div class="hub-footer">
+        <a href="https://www.nexuscalculator.net/en/sitemap" target="_blank" class="hub-footer-link">
+          Browse complete directory on nexuscalculator.net →
+        </a>
+      </div>
+    </main>
+
+    <!-- Global Toast Notification -->
+    <div id="toast" class="toast hidden">Copied to clipboard!</div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
