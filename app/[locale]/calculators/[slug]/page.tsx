@@ -18,6 +18,7 @@ import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { EmbedButton } from "@/app/components/EmbedButton";
 import { ShareButton } from "@/app/components/ShareButton";
 import { HistoryButton } from "@/app/components/HistoryButton";
+import { EmbeddedToolDiscussions } from "@/app/components/community/EmbeddedToolDiscussions";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
@@ -608,6 +609,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               ))}
             </div>
           </div>
+
+          {/* Community Discussions & Real Q&A (Milestone 5.2) */}
+          <EmbeddedToolDiscussions
+            calcSlug={calc.slug}
+            calcTitle={pageTitle}
+            calcCategory={calc.category}
+            locale={resolvedParams.locale}
+          />
         </div>
 
         {/* Sidebar Area (Right/Bottom) */}

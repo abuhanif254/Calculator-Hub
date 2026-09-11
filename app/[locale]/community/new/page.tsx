@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { useState, Suspense } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import { ProtectedRoute } from '@/app/components/ProtectedRoute';
 import { useAuth } from '@/app/components/AuthProvider';
@@ -12,15 +12,17 @@ import slugify from 'slugify';
 import { v4 as uuidv4 } from 'uuid';
 import { COMMUNITY_CATEGORIES } from '@/lib/categories';
 
-export default function NewPostPage() {
+function NewPostForm() {
   const { appUser } = useAuth();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const locale = useLocale();
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('general');
   const [tags, setTags] = useState<string[]>([]);
+
   const [tagInput, setTagInput] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -50,6 +52,27 @@ export default function NewPostPage() {
     };
     fetchDraft();
   }, [appUser]);
+
+  // Pre-fill from URL query parameters (e.g., coming from a tool page)
+  React.useEffect(() => {
+    const queryTag = searchParams?.get('tag');
+    const queryCategory = searchParams?.get('category');
+    const queryTitle = searchParams?.get('title');
+
+    if (queryTag) {
+      const cleanTag = queryTag.trim().toLowerCase().replace(/[^a-z0-9-]/g, '');
+      if (cleanTag) {
+        setTags(prev => (prev.includes(cleanTag) ? prev : [...prev, cleanTag]));
+      }
+    }
+    if (queryCategory) {
+      const valid = COMMUNITY_CATEGORIES.some(c => c.slug === queryCategory);
+      if (valid) setCategory(queryCategory);
+    }
+    if (queryTitle) {
+      setTitle(queryTitle);
+    }
+  }, [searchParams]);
 
   // Auto-save Effect
   React.useEffect(() => {
@@ -243,8 +266,7 @@ export default function NewPostPage() {
   };
 
   return (
-    <ProtectedRoute>
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6">
+    <div className="max-w-4xl mx-auto px-4 py-12 sm:px-6">
         <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-8">
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-8">
             Create a New Discussion
@@ -417,6 +439,23 @@ export default function NewPostPage() {
           </form>
         </div>
       </div>
+  );
+}
+
+export default function NewPostPage() {
+  return (
+    <ProtectedRoute>
+      <Suspense
+        fallback={
+          <div className="max-w-4xl mx-auto px-4 py-20 text-center text-slate-500">
+            <div className="w-8 h-8 border-4 border-[#518231] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-sm font-medium">Loading discussion editor...</p>
+          </div>
+        }
+      >
+        <NewPostForm />
+      </Suspense>
     </ProtectedRoute>
   );
 }
+

@@ -84,3 +84,93 @@ export async function fetchTrendingPosts(limitCount: number = 5) {
     trendingScore: (p as any).trendingScore || 0,
   }));
 }
+
+export interface ToolDiscussionItem {
+  id: string;
+  title: string;
+  slug: string;
+  contentSnippet: string;
+  authorId: string;
+  authorName: string;
+  authorRole?: string;
+  authorBadges?: string[];
+  createdAt: number;
+  upvotes: number;
+  replyCount: number;
+  tags: string[];
+  isToolSpecific: boolean;
+  category?: string;
+}
+
+export async function getDiscussionsForTool(
+  calcSlug: string,
+  calcCategory?: string,
+  limitCount: number = 6
+): Promise<ToolDiscussionItem[]> {
+  try {
+    const { mapCalculatorCategoryToCommunity } = await import('@/lib/utils/communityCategoryMap');
+    const communityCat = mapCalculatorCategoryToCommunity(calcCategory);
+
+    // 1. First priority: Fetch posts specifically tagged with this calculator slug
+    const taggedPosts = await queryPostsRest({
+      tag: calcSlug,
+      sortMethod: 'top',
+      limitCount,
+    }).catch(() => []);
+
+    const results: ToolDiscussionItem[] = taggedPosts.map(p => ({
+      id: p.id,
+      title: p.title,
+      slug: p.slug,
+      contentSnippet: (p.content || '').replace(/<[^>]+>/g, '').replace(/[#*`_~]/g, '').trim().slice(0, 160),
+      authorId: p.authorId,
+      authorName: p.authorName || 'Community Member',
+      authorRole: p.authorRole || 'user',
+      authorBadges: p.authorBadges || [],
+      createdAt: p.createdAt || Date.now(),
+      upvotes: p.upvotes || 0,
+      replyCount: p.replyCount || 0,
+      tags: p.tags || [],
+      isToolSpecific: true,
+      category: p.category || communityCat,
+    }));
+
+    // 2. If fewer than 3 posts exist, supplement with high-quality posts from this category
+    if (results.length < 3 && communityCat) {
+      const needed = limitCount - results.length;
+      const categoryPosts = await queryPostsRest({
+        category: communityCat,
+        sortMethod: 'top',
+        limitCount: needed + 3,
+      }).catch(() => []);
+
+      const existingIds = new Set(results.map(r => r.id));
+      for (const p of categoryPosts) {
+        if (!existingIds.has(p.id) && results.length < limitCount) {
+          results.push({
+            id: p.id,
+            title: p.title,
+            slug: p.slug,
+            contentSnippet: (p.content || '').replace(/<[^>]+>/g, '').replace(/[#*`_~]/g, '').trim().slice(0, 160),
+            authorId: p.authorId,
+            authorName: p.authorName || 'Community Member',
+            authorRole: p.authorRole || 'user',
+            authorBadges: p.authorBadges || [],
+            createdAt: p.createdAt || Date.now(),
+            upvotes: p.upvotes || 0,
+            replyCount: p.replyCount || 0,
+            tags: p.tags || [],
+            isToolSpecific: false,
+            category: p.category || communityCat,
+          });
+        }
+      }
+    }
+
+    return results;
+  } catch (err) {
+    console.error('getDiscussionsForTool error:', err);
+    return [];
+  }
+}
+
