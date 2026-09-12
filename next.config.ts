@@ -44,15 +44,32 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      // ── Security headers (improves Lighthouse Best Practices score) ───────────
+      // ── Security headers for standard pages (exclude embed routes) ────────────
       {
-        source: '/(.*)',
+        source: '/((?!.*embed).*)',
         headers: [
           { key: 'X-Content-Type-Options',   value: 'nosniff' },
           { key: 'X-Frame-Options',           value: 'SAMEORIGIN' },
           { key: 'X-XSS-Protection',          value: '1; mode=block' },
           { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy',        value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+        ],
+      },
+      // ── Embed routes: allow iframe embedding on any website ───────────────────
+      {
+        source: '/:locale/embed/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options',   value: 'nosniff' },
+          { key: 'Content-Security-Policy',   value: "frame-ancestors *" },
+          { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
+        ],
+      },
+      {
+        source: '/embed/:path*',
+        headers: [
+          { key: 'X-Content-Type-Options',   value: 'nosniff' },
+          { key: 'Content-Security-Policy',   value: "frame-ancestors *" },
+          { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
         ],
       },
       // ── Immutable cache for Next.js static chunks (JS/CSS/fonts) ──────────

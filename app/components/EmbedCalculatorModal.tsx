@@ -34,6 +34,7 @@ export function EmbedCalculatorModal({
   const queryStr = embedParams.toString() ? `?${embedParams.toString()}` : "";
   
   const embedUrl = `${baseUrl}/${locale}/embed/calculators/${slug}${queryStr}`;
+  const previewUrl = `/${locale}/embed/calculators/${slug}${queryStr}`;
   const canonicalPageUrl = `${baseUrl}/${locale}/calculators/${slug}`;
 
   // Generated iframe snippet with clean dofollow SEO attribution
@@ -191,11 +192,11 @@ export function EmbedCalculatorModal({
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Live Widget Preview
               </label>
-              <a 
-                href={embedUrl}
+              <a
+                href={previewUrl}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#518231] hover:underline"
+                rel="noopener"
+                className="text-xs font-semibold text-[#518231] dark:text-[#6fa844] hover:underline inline-flex items-center gap-1"
               >
                 Open in new tab
                 <ExternalLink className="w-3 h-3" />
@@ -203,7 +204,7 @@ export function EmbedCalculatorModal({
             </div>
             <div className="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-950 shadow-inner">
               <iframe
-                src={embedUrl}
+                src={previewUrl}
                 width="100%"
                 height="320"
                 className="w-full bg-white dark:bg-slate-900 border-0"
