@@ -505,3 +505,154 @@ export function getFormulaFaq(
     answer: localizedPrefixes[locale] || localizedPrefixes.en,
   };
 }
+
+/**
+ * Maps a calculator slug and category to a Google Search Central recognized
+ * eduQuestionType for MathSolver structured data (e.g. Arithmetic, Algebra, Geometry, Statistics).
+ * Returns null if the calculator is not an educational math/science problem solver.
+ */
+export function getEduQuestionType(slug: string, category?: string): string | null {
+  const s = slug.toLowerCase();
+  const c = (category || '').toLowerCase();
+
+  // Exclude non-educational general utility tools
+  if (
+    s === 'age-calculator' ||
+    s.startsWith('age-') ||
+    s.endsWith('-age-calculator') ||
+    s.includes('dog-age') ||
+    s.includes('cat-age') ||
+    s.includes('date') ||
+    s.includes('time-') ||
+    s.includes('hours-') ||
+    s.includes('gpa') ||
+    s.includes('grade') ||
+    s.includes('password') ||
+    s.includes('subnet') ||
+    s.includes('concrete')
+  ) {
+    return null;
+  }
+
+  // Exclude non-math categories (finance, health, fitness, weather, lifestyle)
+  if (
+    c.includes('financial') ||
+    c.includes('health') ||
+    c.includes('fitness') ||
+    c.includes('lifestyle') ||
+    c.includes('other') ||
+    c.includes('weather')
+  ) {
+    if (
+      s.includes('loan') ||
+      s.includes('mortgage') ||
+      s.includes('bmi') ||
+      s.includes('calorie') ||
+      s.includes('tax') ||
+      s.includes('invest') ||
+      s.includes('retirement') ||
+      s.includes('salary') ||
+      s.includes('payoff') ||
+      s.includes('budget') ||
+      s.includes('insurance') ||
+      s.includes('pregnancy') ||
+      s.includes('ovulation') ||
+      s.includes('body-fat') ||
+      s.includes('rent') ||
+      s.includes('debt') ||
+      s.includes('savings') ||
+      s.includes('interest')
+    ) {
+      return null;
+    }
+  }
+
+  // 1. Statistics & Probability
+  if (
+    c.includes('stat') ||
+    c.includes('probab') ||
+    s.includes('confidence-interval') ||
+    s.includes('t-test') ||
+    s.includes('z-score') ||
+    s.includes('variance') ||
+    s.includes('standard-deviation') ||
+    s.includes('mean') ||
+    s.includes('median') ||
+    s.includes('mode') ||
+    s.includes('p-value') ||
+    s.includes('probability')
+  ) {
+    return 'Statistics';
+  }
+
+  // 2. Geometry
+  if (
+    s.includes('triangle') ||
+    s.includes('circle') ||
+    s.includes('geometry') ||
+    s.includes('pythagor') ||
+    s.includes('volume') ||
+    s.includes('area') ||
+    s.includes('perimeter') ||
+    s.includes('slope') ||
+    s.includes('distance')
+  ) {
+    return 'Geometry';
+  }
+
+  // 3. Trigonometry
+  if (s.includes('trig') || s.includes('sine') || s.includes('cosine') || s.includes('tangent')) {
+    return 'Trigonometry';
+  }
+
+  // 4. Calculus
+  if (s.includes('calculus') || s.includes('derivative') || s.includes('integral') || s.includes('limit')) {
+    return 'Calculus';
+  }
+
+  // 5. Linear Algebra
+  if (s.includes('matrix') || s.includes('vector') || s.includes('eigen')) {
+    return 'Linear Algebra';
+  }
+
+  // 6. Algebra
+  if (
+    s.includes('algebra') ||
+    s.includes('equation') ||
+    s.includes('quadratic') ||
+    s.includes('polynomial') ||
+    s.includes('log') ||
+    s.includes('exponent') ||
+    s.includes('scientific-notation') ||
+    s.includes('graphing')
+  ) {
+    return 'Algebra';
+  }
+
+  // 7. Arithmetic / Basic Math
+  if (
+    s.includes('percentage') ||
+    s.includes('percent') ||
+    s.includes('fraction') ||
+    s.includes('arithmetic') ||
+    s.includes('scientific-calculator') ||
+    s.includes('binary') ||
+    s.includes('ratio')
+  ) {
+    return 'Arithmetic';
+  }
+
+  // 8. Physics & Chemistry equations (mathematical solver nature)
+  if (c.includes('physic')) {
+    return 'Algebra';
+  }
+  if (c.includes('chem')) {
+    return 'Arithmetic';
+  }
+
+  if (c === 'math' || c.includes('mathematics')) {
+    return 'Arithmetic';
+  }
+
+  return null;
+}

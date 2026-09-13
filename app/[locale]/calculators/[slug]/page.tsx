@@ -12,9 +12,11 @@ import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { DirectAnswerCard } from "@/app/components/DirectAnswerCard";
 import { StaticCalculationMatrix } from "@/app/components/StaticCalculationMatrix";
-import { getFormulaForCalculator, getFormulaFaq } from "@/lib/data/calculatorFormulas";
+import { getFormulaForCalculator, getFormulaFaq, getEduQuestionType } from "@/lib/data/calculatorFormulas";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
+
+
 import { EmbedButton } from "@/app/components/EmbedButton";
 import { ShareButton } from "@/app/components/ShareButton";
 import { HistoryButton } from "@/app/components/HistoryButton";
@@ -314,30 +316,30 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
   const formulaDef = getFormulaForCalculator(calc.slug);
 
-  // MathSolver JSON-LD Schema for Google Math Solvers
-  const mathSolverSchema = {
+  // MathSolver JSON-LD Schema for Google Math Solvers (Strict Google Search Central Compliance)
+  const eduQuestionType = getEduQuestionType(calc.slug, calc.category);
+  const mathSolverSchema = eduQuestionType ? {
     "@context": "https://schema.org",
-    "@type": "MathSolver",
+    "@type": ["MathSolver", "LearningResource"],
     "name": pageTitle,
     "description": pageDesc,
     "url": canonicalUrl,
-    ...(formulaDef && {
-      "mathExpression": formulaDef.latex || formulaDef.formula,
-      "hasPart": [
-        {
-          "@type": "HowToStep",
-          "name": formulaDef.name,
-          "text": formulaDef.stepByStep,
-          "url": `${canonicalUrl}#math-formula`
-        }
-      ]
-    }),
-    "potentialAction": {
-      "@type": "SolveMathAction",
-      "target": canonicalUrl,
-      "mathExpression-input": "required"
-    }
-  };
+    "inLanguage": resolvedParams.locale,
+    "learningResourceType": "Math Solver",
+    "usageInfo": `${baseUrl}/${resolvedParams.locale}/privacy-policy`,
+    ...(formulaDef && (formulaDef.latex || formulaDef.formula) ? {
+      "mathExpression": formulaDef.latex || formulaDef.formula
+    } : {}),
+    "potentialAction": [
+      {
+        "@type": "SolveMathAction",
+        "target": `${canonicalUrl}?q={math_expression_string}`,
+        "mathExpression-input": "required name=math_expression_string",
+        "eduQuestionType": eduQuestionType
+      }
+    ]
+  } : null;
+
 
   // FAQPage JSON-LD Schema
   const faqSchema = {
@@ -382,8 +384,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   return (
     <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mathSolverSchema) }} />
+      {mathSolverSchema && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mathSolverSchema) }} />
+      )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Breadcrumbs for SEO */}
