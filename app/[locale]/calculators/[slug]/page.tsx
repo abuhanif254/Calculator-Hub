@@ -504,11 +504,6 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             locale={resolvedParams.locale}
           />
 
-          {/* Ad Placement above calculator (Top Content) */}
-          <div className="mb-8 w-full print:hidden">
-            <AdSenseContainer slot="calculator_content_top" />
-          </div>
-
           <div id="calculator-export-target" className="print-target calculator-view">
             <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
           </div>
@@ -525,8 +520,15 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             title={pageTitle || calc.title} 
             calcSlug={calc.slug}
           />
+
+          {/* Ad Placement below calculation results (Non-intrusive, high CTR) */}
+          <div className="my-8 w-full print:hidden">
+            <AdSenseContainer slot="calculator_content_top" />
+          </div>
+
           <CalculatorMath slug={calc.slug} category={calc.category} />
           <StaticCalculationMatrix slug={calc.slug} title={pageTitle} locale={resolvedParams.locale} />
+
 
           {/* Educational Guide & Math Deep-Dive Callout */}
           {localizedGuide && guideSlug && (

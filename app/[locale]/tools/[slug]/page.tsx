@@ -590,12 +590,8 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           </div>
 
           <div className="space-y-8">
-            {/* Top Sidebar Ad Space */}
-            <div className="w-full">
-              <AdSenseContainer slot="tools_sidebar_top" style={{ minHeight: '250px' }} />
-            </div>
-
             {/* Features */}
+
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <Zap className="text-amber-500" /> Key Features

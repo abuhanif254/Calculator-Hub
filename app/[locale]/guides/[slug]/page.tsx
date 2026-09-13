@@ -30,6 +30,8 @@ import {
 import { getCanonicalAndAlternates, getCanonicalUrl } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
+import { AdSenseContainer } from '@/app/components/AdSenseContainer';
+
 
 // SSG configuration — fully static, no revalidation needed.
 // Guide content is stored in static MDX/TS files and only changes on deploy.
@@ -451,6 +453,11 @@ export default async function GuideArticlePage({
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
 
+        {/* ── In-Content Ad Placement (After In-Depth Guide) ────────────── */}
+        <div className="my-10 w-full print:hidden flex justify-center">
+          <AdSenseContainer slot="guide_content_bottom" />
+        </div>
+
         {/* ── Prev / Next Navigation ─────────────────────────────────── */}
         <nav
           aria-label="Guide navigation"
@@ -493,12 +500,16 @@ export default async function GuideArticlePage({
       </article>
 
       {/* ══════════════════════════════════════════════════════════════
-          RIGHT COLUMN — Sticky Table of Contents
+          RIGHT COLUMN — Sticky Table of Contents & Sidebar Ad
           Hidden on < xl screens; visible xl+
       ══════════════════════════════════════════════════════════════ */}
-      <aside className="hidden xl:block w-56 shrink-0">
+      <aside className="hidden xl:block w-56 shrink-0 space-y-8">
         <GuidesTableOfContents headings={headings} />
+        <div className="sticky top-24 pt-4 print:hidden">
+          <AdSenseContainer slot="guide_sidebar" />
+        </div>
       </aside>
+
 
     </div>
   );

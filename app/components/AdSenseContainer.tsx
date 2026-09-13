@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Server, ShieldCheck } from 'lucide-react';
 
 interface AdSenseContainerProps {
@@ -18,7 +18,19 @@ export function AdSenseContainer({
   style,
   slot,
 }: AdSenseContainerProps) {
-  
+  const [isMounted, setIsMounted] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    setIsDesktop(mediaQuery.matches);
+
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }, []);
+
   // ⚙️ CONFIGURATION: Set everything to 'ad_network' to show Adsterra!
   const adStrategy: Record<string, 'affiliate' | 'ad_network'> = {
     tools_top_leaderboard: 'ad_network', 
@@ -33,7 +45,8 @@ export function AdSenseContainer({
   // ==========================================
   // MODE 1: 3RD PARTY AD NETWORK (Adsterra)
   // ==========================================
-  // We use a safe iframe approach because Adsterra's invoke.js breaks React apps if injected directly.
+  // High-performance single-iframe mounting prevents duplicate network downloads
+  // and protects viewability metrics / eCPM.
   if (currentMode === 'ad_network') {
     const isSidebar = slot?.includes('sidebar');
 
@@ -43,53 +56,58 @@ export function AdSenseContainer({
           className={`ad-network-container w-full flex justify-center items-center overflow-hidden my-4 ${className}`} 
           style={{ minHeight: '600px', ...style }}
         >
-          <iframe 
-            src="/ad-160.html"
-            width={160} 
-            height={600} 
-            frameBorder="0" 
-            scrolling="no"
-            style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
-            title="Advertisement"
-            loading="lazy"
-          />
+          {isMounted && (
+            <iframe 
+              src="/ad-160.html"
+              width={160} 
+              height={600} 
+              style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
+              title="Advertisement"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            />
+          )}
         </div>
       );
     }
 
-    // For non-sidebar ads (content, top, bottom), render responsive iframes
+    // Reserved container height prevents Cumulative Layout Shift (CLS)
+    const containerMinHeight = isMounted ? (isDesktop ? '90px' : '250px') : '90px';
+
     return (
-      <div className={`ad-network-container w-full my-4 ${className}`} style={style}>
-        {/* Desktop / Tablet Ad (728x90) */}
-        <div className="hidden sm:flex justify-center items-center w-full overflow-hidden" style={{ minHeight: '90px' }}>
-          <iframe 
-            src="/ad-728.html"
-            width={728} 
-            height={90} 
-            frameBorder="0" 
-            scrolling="no"
-            style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
-            title="Advertisement Desktop"
-            loading="lazy"
-          />
-        </div>
-        
-        {/* Mobile Ad (300x250) */}
-        <div className="flex sm:hidden justify-center items-center w-full overflow-hidden" style={{ minHeight: '250px' }}>
-          <iframe 
-            src="/ad-300.html"
-            width={300} 
-            height={250} 
-            frameBorder="0" 
-            scrolling="no"
-            style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
-            title="Advertisement Mobile"
-            loading="lazy"
-          />
-        </div>
+      <div 
+        className={`ad-network-container w-full flex justify-center items-center overflow-hidden my-4 ${className}`} 
+        style={{ minHeight: containerMinHeight, ...style }}
+      >
+        {isMounted ? (
+          isDesktop ? (
+            /* Desktop / Large Tablet (>= 768px): 728x90 Leaderboard */
+            <iframe 
+              src="/ad-728.html"
+              width={728} 
+              height={90} 
+              style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
+              title="Advertisement Desktop"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            />
+          ) : (
+            /* Mobile (< 768px): 300x250 Medium Rectangle */
+            <iframe 
+              src="/ad-300.html"
+              width={300} 
+              height={250} 
+              style={{ border: 'none', overflow: 'hidden', background: 'transparent' }}
+              title="Advertisement Mobile"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+            />
+          )
+        ) : null}
       </div>
     );
   }
+
 
   // ==========================================
   // MODE 2: CUSTOM AFFILIATE BANNER
