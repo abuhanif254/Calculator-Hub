@@ -96,8 +96,6 @@ export default function robots(): MetadataRoute.Robots {
           '/*/comunidad/categoria/*',
           '/*/gemeinschaft/kategorie/*',
           '/*/communaute/categorie/*',
-          // ── Database privacy bare paths (auth-required) ───────────────────────
-          '/database-privacy/*',
         ],
       },
       {

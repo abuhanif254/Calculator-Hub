@@ -354,47 +354,47 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {[
                 { id: 'dp-scanner', title: 'PII Scanner', desc: 'Auto-detect 30+ PII types across all databases', items: [
-                  { name: 'Sensitive Data Scanner', href: '/database-privacy/scanner' },
-                  { name: 'Scanner Findings', href: '/database-privacy/scanner/findings' },
+                  { name: 'Sensitive Data Scanner' },
+                  { name: 'Scanner Findings' },
                 ]},
                 { id: 'dp-masking', title: 'Data Masking', desc: 'Apply masking rules and anonymize sensitive columns', items: [
-                  { name: 'Masking Rules Builder', href: '/database-privacy/masking/rules' },
-                  { name: 'Template Library', href: '/database-privacy/masking/templates' },
-                  { name: 'Rule Marketplace', href: '/database-privacy/masking/marketplace' },
-                  { name: 'Preview Before Execute', href: '/database-privacy/masking/preview' },
+                  { name: 'Masking Rules Builder' },
+                  { name: 'Template Library' },
+                  { name: 'Rule Marketplace' },
+                  { name: 'Preview Before Execute' },
                 ]},
                 { id: 'dp-connections', title: 'Connections & Explorer', desc: 'Manage database connections and browse schemas', items: [
-                  { name: 'Database Connections', href: '/database-privacy/connections' },
-                  { name: 'Database Explorer', href: '/database-privacy/explorer' },
-                  { name: 'Projects', href: '/database-privacy/projects' },
-                  { name: 'Organizations', href: '/database-privacy/organizations' },
+                  { name: 'Database Connections' },
+                  { name: 'Database Explorer' },
+                  { name: 'Projects' },
+                  { name: 'Organizations' },
                 ]},
                 { id: 'dp-jobs', title: 'Jobs & Scheduling', desc: 'Automate anonymization with scheduled jobs', items: [
-                  { name: 'Job Management', href: '/database-privacy/jobs' },
-                  { name: 'Job History', href: '/database-privacy/jobs/history' },
-                  { name: 'Job Scheduler', href: '/database-privacy/jobs/scheduler' },
+                  { name: 'Job Management' },
+                  { name: 'Job History' },
+                  { name: 'Job Scheduler' },
                 ]},
                 { id: 'dp-compliance', title: 'Compliance & Audit', desc: 'GDPR, HIPAA, PCI-DSS readiness and audit trails', items: [
-                  { name: 'Compliance Center', href: '/database-privacy/compliance' },
-                  { name: 'Reports & Analytics', href: '/database-privacy/reports' },
-                  { name: 'Audit Logs', href: '/database-privacy/audit' },
+                  { name: 'Compliance Center' },
+                  { name: 'Reports & Analytics' },
+                  { name: 'Audit Logs' },
                 ]},
                 { id: 'dp-io', title: 'Import & Export', desc: 'Upload datasets and export anonymized data', items: [
-                  { name: 'Import Dataset', href: '/database-privacy/import' },
-                  { name: 'Export Data', href: '/database-privacy/export' },
+                  { name: 'Import Dataset' },
+                  { name: 'Export Data' },
                 ]},
                 { id: 'dp-security', title: 'Security & Access', desc: 'API keys, secrets, webhooks, and team access', items: [
-                  { name: 'API Keys', href: '/database-privacy/api-keys' },
-                  { name: 'Secrets Manager', href: '/database-privacy/secrets' },
-                  { name: 'Webhooks', href: '/database-privacy/webhooks' },
-                  { name: 'User Management', href: '/database-privacy/users' },
-                  { name: 'Roles & Permissions', href: '/database-privacy/users/roles' },
+                  { name: 'API Keys' },
+                  { name: 'Secrets Manager' },
+                  { name: 'Webhooks' },
+                  { name: 'User Management' },
+                  { name: 'Roles & Permissions' },
                 ]},
                 { id: 'dp-monitoring', title: 'Monitoring', desc: 'Real-time performance and worker node monitoring', items: [
-                  { name: 'Performance Monitor', href: '/database-privacy/monitoring' },
-                  { name: 'Worker Nodes', href: '/database-privacy/monitoring/workers' },
-                  { name: 'Queue Manager', href: '/database-privacy/monitoring/queue' },
-                  { name: 'Settings', href: '/database-privacy/settings' },
+                  { name: 'Performance Monitor' },
+                  { name: 'Worker Nodes' },
+                  { name: 'Queue Manager' },
+                  { name: 'Settings' },
                 ]},
               ].map((category) => (
                 <section key={category.id} id={category.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-violet-100 dark:border-violet-900/30 shadow-sm hover:shadow-md hover:border-violet-400/40 transition-all scroll-mt-24">
@@ -408,7 +408,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   <ul className="space-y-2">
                     {category.items.map((item) => (
                       <li key={item.name}>
-                        <Link href={item.href as any} className="group flex items-center justify-between text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 py-0.5 transition-colors">
+                        <Link href={'/database-privacy' as any} className="group flex items-center justify-between text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 py-0.5 transition-colors">
                           <span>{item.name}</span>
                           <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                         </Link>
