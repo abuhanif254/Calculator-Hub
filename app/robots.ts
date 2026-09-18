@@ -1,7 +1,10 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
-  // IMPORTANT: canonical domain is www. Using non-www causes redirect chains.
+  // IMPORTANT: Canonical domain is www. Using non-www causes redirect chains.
+  // Googlebot crawl equity optimization: Public calculators, guides, category pillars,
+  // and landing pages remain 100% accessible (200 OK / 1-hop canonical).
+  // Private authenticated user areas, dashboard routes, and internal APIs are strictly disallowed.
   const baseUrl = 'https://www.nexuscalculator.net';
 
   return {
