@@ -17,7 +17,7 @@ const intlMiddleware = createMiddleware(routing);
 const GARBAGE_PATHS = new Set([
   '/Author', '/Producer', '/Kids', '/P', '/XObject', '/28', '/Contents',
   '/page', '/$', '/&', '/egneodunq', '/admin', '/admin/', '/wp-admin', '/wp-admin/',
-  '/images/*', '/new-path/:slug', '/old-path/:slug', '/4', '/4/',
+  '/images/*', '/new-path/:slug', '/old-path/:slug', '/4', '/4/', '/Metadata',
 ]);
 
 // Legacy or misspelled tool URLs → canonical tool path
@@ -36,7 +36,8 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
   '/en/tools/sitemap.xml-generator': '/en/tools/sitemap-xml-generator',
 };
 
-// Deprecated or renamed calculators → canonical destination
+// Truly deprecated or renamed calculators → canonical destination
+// Note: active calculators (molarity, tip, pace) must not be listed here.
 const DEPRECATED_CALC_REDIRECTS: Record<string, string> = {
   'refinance-calculator': '/en/calculators/mortgage-calculator',
   'number-sequence-calculator': '/en/calculators/category/math',
@@ -47,19 +48,16 @@ const DEPRECATED_CALC_REDIRECTS: Record<string, string> = {
   'bandwidth-calculator': '/en/calculators/category/other',
   'circle-calculator': '/en/calculators/category/math',
   'mass-calculator': '/en/calculators/category/math',
-  'gdp-calculator': '/en/calculators/category/finance',
+  'gdp-calculator': '/en/calculators/category/financial',
   'mean-median-mode-range-calculator': '/en/calculators/statistics-calculator',
-  'permutation-and-combination-calculator': '/en/calculators/permutation-calculator',
+  'permutation-and-combination-calculator': '/en/calculators/category/math',
   'calories-burned-calculator': '/en/calculators/calorie-calculator',
-  'molarity-calculator': '/en/calculators/category/chemistry',
   'day-counter': '/en/calculators/date-calculator',
   'pregnancy-weight-gain-calculator': '/en/calculators/pregnancy-calculator',
   'lean-body-mass-calculator': '/en/calculators/body-fat-calculator',
   'pythagorean-theorem-calculator': '/en/calculators/category/math',
   'time-zone-calculator': '/en/calculators/time-calculator',
   'savings-calculator': '/en/calculators/investment-calculator',
-  'tip-calculator': '/en/calculators/category/finance',
-  'pace-calculator': '/en/calculators/category/fitness',
   'mutual-fund-calculator': '/en/calculators/investment-calculator',
 };
 
@@ -137,137 +135,81 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   '/de/guides': '/de/anleitungen',
 };
 
-// ── Main middleware ────────────────────────────────────────────────────────────
-
-export default function middleware(request: NextRequest) {
-  const { pathname, hostname, search } = request.nextUrl;
-
-  // ── 0. Non-www → www canonical redirect ───────────────────────────────────
-  if (hostname === 'nexuscalculator.net') {
-    const url = request.nextUrl.clone();
-    url.hostname = 'www.nexuscalculator.net';
-    return NextResponse.redirect(url, { status: 301 });
-  }
-
-  // ── 1. Calculator slug mismatch redirects (O(1) lookup, highest priority) ──
-  // Must run before next-intl so Google gets a clean 301 without a redirect chain.
+// Helper to resolve canonical pathname for any incoming request
+function getCanonicalPath(pathname: string): string | null {
+  // 1. Calculator slug mismatch redirects (O(1) lookup, highest priority)
   const redirectTarget = CALC_REDIRECT_MAP[pathname];
-  if (redirectTarget) {
-    const url = request.nextUrl.clone();
-    url.pathname = redirectTarget;
-    return NextResponse.redirect(url, { status: 301 });
-  }
+  if (redirectTarget) return redirectTarget;
 
-  // ── 1b. Legacy or misspelled tool URLs (O(1) lookup) ───────────────────────
+  // 1b. Legacy or misspelled tool URLs (O(1) lookup)
   const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname];
-  if (legacyToolTarget) {
-    const url = request.nextUrl.clone();
-    url.pathname = legacyToolTarget;
-    return NextResponse.redirect(url, { status: 301 });
-  }
+  if (legacyToolTarget) return legacyToolTarget;
 
-  // ── 1c. Deprecated or merged calculator redirects ──────────────────────────
+  // 1c. Truly deprecated or merged calculator redirects
   const deprecatedMatch = pathname.match(/^\/(?:(en|es|fr|de)\/)?(?:calculators|calculadoras|calculatrices|rechner)\/([a-zA-Z0-9_-]+)$/);
   if (deprecatedMatch) {
-    const [, , slug] = deprecatedMatch;
+    const slug = deprecatedMatch[2];
     const deprecatedTarget = DEPRECATED_CALC_REDIRECTS[slug];
-    if (deprecatedTarget) {
-      const url = request.nextUrl.clone();
-      url.pathname = deprecatedTarget;
-      return NextResponse.redirect(url, { status: 301 });
-    }
+    if (deprecatedTarget) return deprecatedTarget;
   }
 
-  // ── 2. Tracking / UTM / referral query params → canonical (strip params) ───
-  // Prevents /?ref=producthunt, /?utm_source=... from polluting GSC.
-  if (search && /[?&](ref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(search)) {
-    const url = request.nextUrl.clone();
-    const trackingParams = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
-    trackingParams.forEach(param => url.searchParams.delete(param));
-    return NextResponse.redirect(url, { status: 301 });
-  }
-
-  // ── 3. Garbage / PDF-metadata-scraped paths → homepage ─────────────────────
+  // 2. Garbage / PDF-metadata-scraped paths → homepage
   if (GARBAGE_PATHS.has(pathname) || /^\/\d+\/?$/.test(pathname)) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/';
-    return NextResponse.redirect(url, { status: 301 });
+    return '/';
   }
 
-  // ── 4. WordPress / admin probe paths → homepage ────────────────────────────
+  // 3. WordPress / admin probe paths → homepage
   if (
     pathname === '/wp-admin/' || pathname === '/wp-admin' ||
     pathname === '/admin/' || pathname === '/admin'
   ) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/';
-    return NextResponse.redirect(url, { status: 301 });
+    return '/';
   }
 
-  // ── 5. Cross-locale community aliases (/fr/community → /fr/communaute) ─────
+  // 4. Cross-locale community aliases (/fr/community → /fr/communaute)
   const communityAlias = LOCALE_COMMUNITY_ALIAS[pathname];
   if (communityAlias) {
-    const url = request.nextUrl.clone();
-    url.pathname = communityAlias;
-    return NextResponse.redirect(url, { status: 301 });
+    return communityAlias;
   }
 
-  // ── 5b. Old community post format → community index ────────────────────────
+  // 5. Old community post format → community index
   if (/^\/(?:en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/to-use-a-/.test(pathname) || pathname === '/community/to-use-a-bmi-calculator-93') {
     const localeMatch = pathname.match(/^\/(en|es|fr|de)\//);
     const locale = localeMatch ? localeMatch[1] : 'en';
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/community`;
-    return NextResponse.redirect(url, { status: 301 });
+    return `/${locale}/community`;
   }
 
-  // ── 6b. Cross-locale /[locale]/calculators/[slug] → localized prefix ────────
-  // Fallback for any dynamic calculator path not explicitly in CALC_REDIRECT_MAP.
-  // e.g. /de/calculators/my-calc → /de/rechner/my-calc
+  // 6. Cross-locale /[locale]/calculators/[slug] → localized prefix
   const calculatorsMismatch = pathname.match(/^\/(de|fr|es)\/calculators\/(.+)$/);
   if (calculatorsMismatch) {
     const [, locale, slug] = calculatorsMismatch;
     const prefix = LOCALE_CALC_PREFIX[locale];
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/${prefix}/${slug}`;
-    return NextResponse.redirect(url, { status: 301 });
+    return `/${locale}/${prefix}/${slug}`;
   }
 
-  // ── 7. Cross-locale /[locale]/tools/[slug] → localized prefix ──────────────
-  // e.g. /de/tools/html-formatter → /de/werkzeuge/html-formatter
-  // next-intl handles this but we intercept for a direct 301 (no extra hop).
+  // 7. Cross-locale /[locale]/tools/[slug] → localized prefix
   const toolsMismatch = pathname.match(/^\/(de|fr|es)\/tools\/(.+)$/);
   if (toolsMismatch) {
     const [, locale, slug] = toolsMismatch;
     const prefix = LOCALE_TOOL_PREFIX[locale];
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/${prefix}/${slug}`;
-    return NextResponse.redirect(url, { status: 301 });
+    return `/${locale}/${prefix}/${slug}`;
   }
 
-  // ── 8. Cross-locale /[locale]/guides/[slug] → localized prefix ─────────────
-  // e.g. /de/guides/ideal-weight-guide → /de/anleitungen/ideal-weight-guide
-  // (French uses /guides/ same as EN, so only de and es need this.)
+  // 8. Cross-locale /[locale]/guides/[slug] → localized prefix
   const guidesMismatch = pathname.match(/^\/(de|es)\/guides\/(.+)$/);
   if (guidesMismatch) {
     const [, locale, slug] = guidesMismatch;
     const prefix = LOCALE_GUIDES_PREFIX[locale];
-    const url = request.nextUrl.clone();
-    url.pathname = `/${locale}/${prefix}/${slug}`;
-    return NextResponse.redirect(url, { status: 301 });
+    return `/${locale}/${prefix}/${slug}`;
   }
 
-  // ── 9. Cross-locale static page redirects ──────────────────────────────────
-  // e.g. /fr/terms-of-use → /fr/conditions-d-utilisation
+  // 9. Cross-locale static page redirects
   const staticRedirect = LOCALE_STATIC_REDIRECTS[pathname];
   if (staticRedirect) {
-    const url = request.nextUrl.clone();
-    url.pathname = staticRedirect;
-    return NextResponse.redirect(url, { status: 301 });
+    return staticRedirect;
   }
 
-  // ── 10. Bare paths without locale prefix → /en/... ─────────────────────────
-  // next-intl would double-hop these; we short-circuit with an explicit 301.
+  // 10. Bare paths without locale prefix → /en/...
   if (
     pathname.startsWith('/embed/') ||
     pathname.startsWith('/calculators/') ||
@@ -289,19 +231,45 @@ export default function middleware(request: NextRequest) {
     pathname === '/login' ||
     pathname === '/signup'
   ) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/en${pathname}`;
-    return NextResponse.redirect(url, { status: 301 });
+    return `/en${pathname}`;
   }
 
-  // ── 12. /en/ trailing slash → /en (Next.js should handle but belt+braces) ──
+  // 11. /en/ trailing slash → /en
   if (pathname === '/en/') {
+    return '/en';
+  }
+
+  return null;
+}
+
+// ── Main middleware ────────────────────────────────────────────────────────────
+
+export default function middleware(request: NextRequest) {
+  const { pathname, hostname, search } = request.nextUrl;
+
+  const isNonWww = hostname === 'nexuscalculator.net';
+  const canonicalPath = getCanonicalPath(pathname);
+  const hasTracking = Boolean(search && /[?&](ref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(search));
+
+  // Atomic 1-Hop 301 Canonical Redirect:
+  // Unifies non-www domain normalization, path canonicalization, and UTM stripping into exactly 1 HTTP 301 response.
+  // Completely eliminates multi-hop redirect chains to maximize SEO crawl budget and PageRank equity.
+  if (isNonWww || canonicalPath !== null || hasTracking) {
     const url = request.nextUrl.clone();
-    url.pathname = '/en';
+    if (isNonWww) {
+      url.hostname = 'www.nexuscalculator.net';
+    }
+    if (canonicalPath !== null) {
+      url.pathname = canonicalPath;
+    }
+    if (hasTracking) {
+      const trackingParams = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+      trackingParams.forEach(param => url.searchParams.delete(param));
+    }
     return NextResponse.redirect(url, { status: 301 });
   }
 
-  // ── 14. Hand off all other routing to next-intl ────────────────────────────
+  // Hand off all other routing to next-intl
   return intlMiddleware(request);
 }
 
