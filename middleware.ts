@@ -9,6 +9,9 @@ import { routing } from './i18n/routing';
 // To regenerate: node scripts/generateRedirectMap.js
 import { CALC_REDIRECT_MAP } from './lib/calcRedirectMap';
 
+// ─── Guide slug redirect map ──────────────────────────────────────────────────
+import { GUIDE_REDIRECT_MAP } from './lib/guideRedirectMap';
+
 const intlMiddleware = createMiddleware(routing);
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -137,9 +140,24 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
 
 // Helper to resolve canonical pathname for any incoming request
 function getCanonicalPath(pathname: string): string | null {
+  // 0. Explicit root redirect to /en
+  if (pathname === '/') {
+    return '/en';
+  }
+
+  // 0b. Strip trailing slash on non-root paths (e.g. /en/ → /en, /es/ → /es, /tools/foo/ → /en/tools/foo)
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    const unslashed = pathname.replace(/\/+$/, '');
+    return getCanonicalPath(unslashed) || unslashed;
+  }
+
   // 1. Calculator slug mismatch redirects (O(1) lookup, highest priority)
   const redirectTarget = CALC_REDIRECT_MAP[pathname];
   if (redirectTarget) return redirectTarget;
+
+  // 1a. Guide slug redirect map (O(1) lookup)
+  const guideRedirectTarget = GUIDE_REDIRECT_MAP[pathname];
+  if (guideRedirectTarget) return guideRedirectTarget;
 
   // 1b. Legacy or misspelled tool URLs (O(1) lookup)
   const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname];
@@ -153,23 +171,29 @@ function getCanonicalPath(pathname: string): string | null {
     if (deprecatedTarget) return deprecatedTarget;
   }
 
-  // 2. Garbage / PDF-metadata-scraped paths → homepage
+  // 2. Garbage / PDF-metadata-scraped paths → canonical homepage
   if (GARBAGE_PATHS.has(pathname) || /^\/\d+\/?$/.test(pathname)) {
-    return '/';
+    return '/en';
   }
 
-  // 3. WordPress / admin probe paths → homepage
+  // 3. WordPress / admin probe paths → canonical homepage
   if (
     pathname === '/wp-admin/' || pathname === '/wp-admin' ||
     pathname === '/admin/' || pathname === '/admin'
   ) {
-    return '/';
+    return '/en';
   }
 
-  // 4. Cross-locale community aliases (/fr/community → /fr/communaute)
-  const communityAlias = LOCALE_COMMUNITY_ALIAS[pathname];
-  if (communityAlias) {
-    return communityAlias;
+  // 4. Cross-locale community aliases (/de/community/* → /de/gemeinschaft/*, etc.)
+  const communityMatch = pathname.match(/^\/(de|fr|es)\/community(\/.*)?$/);
+  if (communityMatch) {
+    const [, loc, rest = ''] = communityMatch;
+    const targetMap: Record<string, string> = {
+      de: '/de/gemeinschaft',
+      fr: '/fr/communaute',
+      es: '/es/comunidad',
+    };
+    return `${targetMap[loc]}${rest}`;
   }
 
   // 5. Old community post format → community index
@@ -217,12 +241,15 @@ function getCanonicalPath(pathname: string): string | null {
     pathname.startsWith('/tools/') ||
     pathname === '/tools' ||
     pathname === '/pdf' ||
+    pathname.startsWith('/pdf/') ||
     pathname === '/image' ||
+    pathname.startsWith('/image/') ||
     pathname.startsWith('/guides/') ||
+    pathname === '/guides' ||
     pathname.startsWith('/community') ||
     pathname.startsWith('/collections/') ||
     pathname.startsWith('/compare/') ||
-    pathname.startsWith('/database-privacy/') ||
+    pathname.startsWith('/database-privacy') ||
     pathname === '/about-us' ||
     pathname === '/privacy-policy' ||
     pathname === '/terms-of-use' ||
@@ -232,11 +259,6 @@ function getCanonicalPath(pathname: string): string | null {
     pathname === '/signup'
   ) {
     return `/en${pathname}`;
-  }
-
-  // 11. /en/ trailing slash → /en
-  if (pathname === '/en/') {
-    return '/en';
   }
 
   return null;

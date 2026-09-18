@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
-import Link from "next/link";
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { 
   Play, Pause, RotateCcw, Info, Printer, Copy, Share2, 
   CheckCircle2, ChevronRight, Zap, Activity, Sparkles, AlertTriangle, ArrowRight, Layers, Sliders, Cpu, Flame, Sun, Thermometer, ShieldAlert, ArrowDown, Plus, Trash2, Scale, ExternalLink, ShieldCheck, Gauge, FlaskConical, Beaker, Atom, BookOpen, Snowflake, Compass, RefreshCw, Network, Layers3, Droplet, ArrowRightLeft, GitCommit, Binary, Dna, Table, Clock, Shield
@@ -283,13 +283,13 @@ Temperature Change (ΔT): ${results.deltaTPercent.toFixed(1)}%`;
           <span className="px-3 py-1.5 bg-[#518231] text-white rounded-xl text-xs font-bold shadow-sm">
             Combined Gas Law
           </span>
-          <Link href="/calculators/ideal-gas-law-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/ideal-gas-law-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Ideal Gas Law Calculator
           </Link>
-          <Link href="/calculators/specific-heat-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/specific-heat-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Specific Heat Calculator
           </Link>
-          <Link href="/calculators/calorimetry-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/calorimetry-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Calorimetry Calculator
           </Link>
         </div>
@@ -525,7 +525,7 @@ Temperature Change (ΔT): ${results.deltaTPercent.toFixed(1)}%`;
               <span className="text-[11px] text-slate-500">Try our companion Ideal Gas Law Calculator</span>
             </div>
             <Link
-              href="/calculators/ideal-gas-law-calculator"
+              href={resolveIntlHref("/calculators/ideal-gas-law-calculator")}
               className="flex items-center gap-1 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors shrink-0"
             >
               Ideal Gas Tool

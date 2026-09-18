@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
-import Link from "next/link";
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { 
   Play, Pause, RotateCcw, Info, Printer, Copy, Share2, 
   CheckCircle2, ChevronRight, Zap, Activity, Sparkles, AlertTriangle, ArrowRight, Layers, Sliders, Cpu, Flame, Sun, DollarSign, Thermometer, ShieldAlert, ArrowDown, ExternalLink, RefreshCw
@@ -285,16 +285,16 @@ Circuit Efficiency: ${results.powerEfficiencyPct.toFixed(1)}%`;
           <span className="px-3 py-1.5 bg-[#518231] text-white rounded-xl text-xs font-bold shadow-sm">
             LED Resistor
           </span>
-          <Link href="/calculators/ohms-law-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/ohms-law-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Ohm's Law
           </Link>
-          <Link href="/calculators/voltage-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/voltage-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Voltage
           </Link>
-          <Link href="/calculators/current-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/current-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Current
           </Link>
-          <Link href="/calculators/wire-resistance-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/wire-resistance-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Wire Resistance
           </Link>
         </div>
@@ -518,7 +518,7 @@ Circuit Efficiency: ${results.powerEfficiencyPct.toFixed(1)}%`;
               <span className="text-[11px] text-slate-500">Solve V = I · R across all electronics</span>
             </div>
             <Link
-              href="/calculators/ohms-law-calculator"
+              href={resolveIntlHref("/calculators/ohms-law-calculator")}
               className="flex items-center gap-1 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors shrink-0"
             >
               Ohm's Law

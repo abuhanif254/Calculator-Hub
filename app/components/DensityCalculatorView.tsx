@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect, useRef } from "react";
-import Link from "next/link";
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { 
   Play, Pause, RotateCcw, Info, Printer, Copy, Share2, 
   CheckCircle2, ChevronRight, Gauge, Zap, Car, Plane, 
@@ -365,16 +365,16 @@ Volume: ${results.vSI.toFixed(4)} m³`;
           Physics Hub:
         </span>
         <div className="flex items-center gap-1 shrink-0">
-          <Link href="/calculators/kinetic-energy-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/kinetic-energy-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Kinetic Energy
           </Link>
-          <Link href="/calculators/potential-energy-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/potential-energy-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Potential Energy
           </Link>
-          <Link href="/calculators/work-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/work-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Work
           </Link>
-          <Link href="/calculators/power-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/power-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Power
           </Link>
           <span className="px-3 py-1.5 bg-[#518231] text-white rounded-xl text-xs font-bold shadow-sm">

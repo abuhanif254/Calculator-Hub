@@ -164,12 +164,6 @@ const nextConfig: NextConfig = {
         destination: '/de/werkzeuge/:slug*',
         permanent: true,
       },
-      // ── EN path with image/pdf for non-en locales ────────────────────────────
-      {
-        source: '/es/pdf',
-        destination: '/es/pdf',
-        permanent: false, // already correct, but ensure it resolves
-      },
       // ── Credit cards payoff slug normalization ───────────────────────────────
       {
         source: '/en/calculators/credit-cards-payoff-calculator',
@@ -205,7 +199,7 @@ const nextConfig: NextConfig = {
       // ── Non-existent calculator slugs → nearest category ────────────────────
       {
         source: '/:locale/rechner/day-counter',
-        destination: '/:locale/rechner/category/math-science',
+        destination: '/:locale/rechner/category/math',
         permanent: true,
       },
       {
@@ -215,42 +209,42 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/:locale/calculatrices/bandwidth-calculator',
-        destination: '/:locale/calculatrices/category/math-science',
+        destination: '/:locale/calculatrices/category/other',
         permanent: true,
       },
       {
         source: '/:locale/calculators/pregnancy-weight-gain-calculator',
-        destination: '/:locale/calculators/category/health-fitness',
+        destination: '/:locale/calculators/category/health',
         permanent: true,
       },
       {
         source: '/:locale/calculators/lean-body-mass-calculator',
-        destination: '/:locale/calculators/category/health-fitness',
+        destination: '/:locale/calculators/category/health',
         permanent: true,
       },
       {
         source: '/:locale/rechner/body-type-calculator',
-        destination: '/:locale/rechner/category/health-fitness',
+        destination: '/:locale/rechner/category/health',
         permanent: true,
       },
       {
         source: '/:locale/calculadoras/electricity-calculator',
-        destination: '/:locale/calculadoras/category/electrical',
+        destination: '/:locale/calculadoras/category/physics',
         permanent: true,
       },
       {
         source: '/:locale/calculatrices/pythagorean-theorem-calculator',
-        destination: '/:locale/calculatrices/category/math-science',
+        destination: '/:locale/calculatrices/category/math',
         permanent: true,
       },
       {
         source: '/:locale/calculators/pythagorean-theorem-calculator',
-        destination: '/:locale/calculators/category/math-science',
+        destination: '/:locale/calculators/category/math',
         permanent: true,
       },
       {
         source: '/:locale/calculators/number-sequence-calculator',
-        destination: '/:locale/calculators/category/math-science',
+        destination: '/:locale/calculators/category/math',
         permanent: true,
       },
       {
@@ -270,22 +264,22 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/:locale/calculatrices/hex-calculator',
-        destination: '/:locale/calculatrices/category/math-science',
+        destination: '/:locale/calculatrices/category/math',
         permanent: true,
       },
       {
         source: '/:locale/calculadoras/bandwidth-calculator',
-        destination: '/:locale/calculadoras/category/math-science',
+        destination: '/:locale/calculadoras/category/other',
         permanent: true,
       },
       {
         source: '/:locale/rechner/circle-calculator',
-        destination: '/:locale/rechner/category/math-science',
+        destination: '/:locale/rechner/category/math',
         permanent: true,
       },
       {
         source: '/:locale/calculators/mass-calculator',
-        destination: '/:locale/calculators/category/math-science',
+        destination: '/:locale/calculators/category/math',
         permanent: true,
       },
       {
@@ -310,33 +304,28 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/:locale/calculators/permutation-and-combination-calculator',
-        destination: '/:locale/calculators/category/math-science',
+        destination: '/:locale/calculators/category/math',
         permanent: true,
       },
       {
         source: '/:locale/calculatrices/permutation-and-combination-calculator',
-        destination: '/:locale/calculatrices/category/math-science',
+        destination: '/:locale/calculatrices/category/math',
         permanent: true,
       },
       {
         source: '/:locale/calculatrices/calories-burned-calculator',
-        destination: '/:locale/calculatrices/category/health-fitness',
+        destination: '/:locale/calculatrices/category/health',
         permanent: true,
       },
       {
         source: '/:locale/calculators/calories-burned-calculator',
-        destination: '/:locale/calculators/category/health-fitness',
+        destination: '/:locale/calculators/category/health',
         permanent: true,
       },
       {
         source: '/:locale/calculatrices/college-cost-calculator',
         destination: '/:locale/calculatrices/calculateur-cout-etudes',
         permanent: true,
-      },
-      {
-        source: '/:locale/calculators/college-cost-calculator',
-        destination: '/:locale/calculators/college-cost-calculator',
-        permanent: false,
       },
       // ── Tool slug that moved to /tools/ ──────────────────────────────────────
       {
@@ -364,12 +353,12 @@ const nextConfig: NextConfig = {
       // ── Non-existent number/body calculators ────────────────────────────────
       {
         source: '/:locale/calculators/number-sequence-calculator',
-        destination: '/:locale/calculators/category/math-science',
+        destination: '/:locale/calculators/category/math',
         permanent: true,
       },
       {
         source: '/:locale/rechner/number-sequence-calculator',
-        destination: '/:locale/rechner/category/math-science',
+        destination: '/:locale/rechner/category/math',
         permanent: true,
       },
     ];

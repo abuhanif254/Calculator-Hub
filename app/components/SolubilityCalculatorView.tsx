@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
-import Link from "next/link";
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { 
   Play, Pause, RotateCcw, Info, Printer, Copy, Share2, 
   CheckCircle2, ChevronRight, Zap, Activity, Sparkles, AlertTriangle, ArrowRight, Layers, Sliders, Cpu, Flame, Sun, Thermometer, ShieldAlert, ArrowDown, Plus, Trash2, Scale, ExternalLink, ShieldCheck, Gauge, FlaskConical, Beaker, Atom, BookOpen, Snowflake, Compass, RefreshCw, Network, Layers3, Droplet, ArrowRightLeft, GitCommit, Binary, Dna, Table
@@ -307,13 +307,13 @@ Saturation State: ${results.saturationState}`;
           <span className="px-3 py-1.5 bg-[#518231] text-white rounded-xl text-xs font-bold shadow-sm">
             Solubility Calculator
           </span>
-          <Link href="/calculators/ksp-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/ksp-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Ksp Calculator
           </Link>
-          <Link href="/calculators/equilibrium-constant-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/equilibrium-constant-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Equilibrium Constant Calculator
           </Link>
-          <Link href="/calculators/molarity-calculator" className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
+          <Link href={resolveIntlHref("/calculators/molarity-calculator")} className="px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-xl text-xs font-semibold transition-colors">
             Molarity Calculator
           </Link>
         </div>
@@ -487,7 +487,7 @@ Saturation State: ${results.saturationState}`;
               <span className="text-[11px] text-slate-500">Try our companion Ksp Solubility Product Calculator</span>
             </div>
             <Link
-              href="/calculators/ksp-calculator"
+              href={resolveIntlHref("/calculators/ksp-calculator")}
               className="flex items-center gap-1 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-bold px-3 py-2 rounded-xl transition-colors shrink-0"
             >
               Ksp Tool
