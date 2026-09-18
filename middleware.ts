@@ -21,6 +21,7 @@ const GARBAGE_PATHS = new Set([
   '/Author', '/Producer', '/Kids', '/P', '/XObject', '/28', '/Contents',
   '/page', '/$', '/&', '/egneodunq', '/admin', '/admin/', '/wp-admin', '/wp-admin/',
   '/images/*', '/new-path/:slug', '/old-path/:slug', '/4', '/4/', '/Metadata',
+  '/*.xls$', '/*.xls', '/.xls$', '/.xls'
 ]);
 
 // Legacy or misspelled tool URLs → canonical tool path
@@ -172,7 +173,12 @@ function getCanonicalPath(pathname: string): string | null {
   }
 
   // 2. Garbage / PDF-metadata-scraped paths → canonical homepage
-  if (GARBAGE_PATHS.has(pathname) || /^\/\d+\/?$/.test(pathname)) {
+  if (
+    GARBAGE_PATHS.has(pathname) ||
+    /^\/\d+\/?$/.test(pathname) ||
+    pathname.endsWith('.xls$') ||
+    pathname.endsWith('.xls')
+  ) {
     return '/en';
   }
 

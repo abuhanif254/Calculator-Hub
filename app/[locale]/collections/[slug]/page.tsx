@@ -1,29 +1,46 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { getCollectionBySlug } from '../../../../lib/data/collections';
+import { getCollectionBySlug, collections } from '../../../../lib/data/collections';
 import { allTools } from '../../../../lib/registry';
-import { Link } from '../../../../i18n/routing';
+import { Link, routing, resolveIntlHref } from '../../../../i18n/routing';
 import { ChevronRight, Layers, ArrowRight, Code2, Calculator } from 'lucide-react';
 import { Metadata } from 'next';
+
+export const revalidate = false;
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return routing.locales.flatMap((locale) =>
+    collections.map((c) => ({ locale, slug: c.slug }))
+  );
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { slug, locale } = await params;
   const collection = getCollectionBySlug(slug);
   if (!collection) return {};
 
+  const t = collection.translations?.[locale] || collection;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
-    title: collection.seoTitle,
-    description: collection.seoDescription,
+    title: t.seoTitle,
+    description: t.seoDescription,
     openGraph: {
-      title: collection.seoTitle,
-      description: collection.seoDescription,
+      title: t.seoTitle,
+      description: t.seoDescription,
       type: 'website'
     },
     alternates: getCanonicalAndAlternates('/collections/[slug]', locale, slug),
   };
 }
+
+const uiLabels: Record<string, { home: string; collections: string; included: string; toolsCount: string; step: string; openTool: string }> = {
+  en: { home: "Home", collections: "Collections", included: "Included in this bundle", toolsCount: "Tools", step: "Step", openTool: "Open Tool" },
+  es: { home: "Inicio", collections: "Colecciones", included: "Incluido en este paquete", toolsCount: "Herramientas", step: "Paso", openTool: "Abrir Herramienta" },
+  fr: { home: "Accueil", collections: "Collections", included: "Inclus dans ce pack", toolsCount: "Outils", step: "Étape", openTool: "Ouvrir l'Outil" },
+  de: { home: "Startseite", collections: "Sammlungen", included: "In diesem Paket enthalten", toolsCount: "Tools", step: "Schritt", openTool: "Tool öffnen" }
+};
 
 export default async function CollectionPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug, locale } = await params;
@@ -32,6 +49,9 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
   if (!collection) {
     notFound();
   }
+
+  const t = collection.translations?.[locale] || collection;
+  const ui = uiLabels[locale] || uiLabels.en;
 
   // Resolve tools from registry
   const tools = collection.toolSlugs.map(toolSlug => {
@@ -44,17 +64,19 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/collections/[slug]', locale, collection.slug);
 
+  const collectionsPath = locale === 'es' ? '/es/colecciones' : locale === 'fr' ? '/fr/collections' : locale === 'de' ? '/de/sammlungen' : '/en/collections';
+
   // Schema Generation
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": collection.title,
-    "description": collection.description,
+    "name": t.title,
+    "description": t.description,
     "url": canonicalUrl,
     "hasPart": tools.map((tool, index) => ({
       "@type": "WebPage",
       "position": index + 1,
-      "url": `${baseUrl}/${locale}${tool.href.startsWith('/') ? tool.href : `/${tool.href}`}`,
+      "url": `${baseUrl}${resolveIntlHref(tool.href)}`,
       "name": tool.title
     }))
   };
@@ -63,9 +85,9 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": `${baseUrl}/${locale}` },
-      { "@type": "ListItem", "position": 2, "name": "Collections", "item": `${baseUrl}/${locale}/sitemap` },
-      { "@type": "ListItem", "position": 3, "name": collection.title, "item": canonicalUrl }
+      { "@type": "ListItem", "position": 1, "name": ui.home, "item": `${baseUrl}/${locale}` },
+      { "@type": "ListItem", "position": 2, "name": ui.collections, "item": `${baseUrl}${collectionsPath}` },
+      { "@type": "ListItem", "position": 3, "name": t.title, "item": canonicalUrl }
     ]
   };
 
@@ -77,9 +99,11 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
       {/* Breadcrumb */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
-          <Link href="/" className="hover:text-[#518231] transition-colors">Home</Link>
+          <Link href="/" className="hover:text-[#518231] transition-colors">{ui.home}</Link>
           <ChevronRight size={14} />
-          <span className="text-slate-900 dark:text-slate-200 font-medium">{collection.title}</span>
+          <span className="text-slate-900 dark:text-slate-200 font-medium">{ui.collections}</span>
+          <ChevronRight size={14} />
+          <span className="text-slate-900 dark:text-slate-200 font-medium">{t.title}</span>
         </nav>
       </div>
 
@@ -91,19 +115,19 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
             <Layers size={40} />
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
-            {collection.title}
+            {t.title}
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            {collection.description}
+            {t.description}
           </p>
         </section>
 
         {/* Tools Grid */}
         <section>
           <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Included in this bundle</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{ui.included}</h2>
             <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-bold">
-              {tools.length} Tools
+              {tools.length} {ui.toolsCount}
             </span>
           </div>
 
@@ -111,11 +135,11 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
             {tools.map((tool, index) => (
               <Link 
                 key={tool.slug} 
-                href={tool.href as any}
+                href={resolveIntlHref(tool.href)}
                 className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all flex flex-col h-full relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 text-xs font-bold px-3 py-1 rounded-bl-xl">
-                  Step {index + 1}
+                  {ui.step} {index + 1}
                 </div>
                 
                 <div className="w-12 h-12 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#518231]/10 transition-colors shrink-0">
@@ -132,7 +156,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
                   {tool.description}
                 </p>
                 <div className="flex items-center gap-2 text-sm font-semibold text-[#518231] mt-auto">
-                  Open Tool <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  {ui.openTool} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             ))}
