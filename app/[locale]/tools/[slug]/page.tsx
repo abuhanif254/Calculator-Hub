@@ -320,6 +320,63 @@ const toolPathSegments: Record<string, string> = {
   de: 'werkzeuge',
 };
 
+const toolPageTranslations: Record<string, {
+  home: string;
+  developerTools: string;
+  howToUse: (title: string) => string;
+  step: string;
+  realExamples: string;
+  faq: string;
+  keyFeatures: string;
+  commonUseCases: string;
+  relatedTools: string;
+}> = {
+  en: {
+    home: "Home",
+    developerTools: "Developer Tools",
+    howToUse: (title) => `How to Use ${title}`,
+    step: "Step",
+    realExamples: "Real Examples",
+    faq: "Frequently Asked Questions",
+    keyFeatures: "Key Features",
+    commonUseCases: "Common Use Cases",
+    relatedTools: "Related Tools",
+  },
+  es: {
+    home: "Inicio",
+    developerTools: "Herramientas de Desarrollador",
+    howToUse: (title) => `Cómo usar ${title}`,
+    step: "Paso",
+    realExamples: "Ejemplos Reales",
+    faq: "Preguntas Frecuentes",
+    keyFeatures: "Características Principales",
+    commonUseCases: "Casos de Uso Comunes",
+    relatedTools: "Herramientas Relacionadas",
+  },
+  de: {
+    home: "Startseite",
+    developerTools: "Entwickler-Tools",
+    howToUse: (title) => `Anleitung: ${title} verwenden`,
+    step: "Schritt",
+    realExamples: "Praxisbeispiele",
+    faq: "Häufig gestellte Fragen (FAQ)",
+    keyFeatures: "Hauptmerkmale",
+    commonUseCases: "Typische Anwendungsbereiche",
+    relatedTools: "Verwandte Tools",
+  },
+  fr: {
+    home: "Accueil",
+    developerTools: "Outils Développeur",
+    howToUse: (title) => `Comment utiliser ${title}`,
+    step: "Étape",
+    realExamples: "Exemples Concrets",
+    faq: "Foire Aux Questions (FAQ)",
+    keyFeatures: "Fonctionnalités Clés",
+    commonUseCases: "Cas d'Utilisation Fréquents",
+    relatedTools: "Outils Connexes",
+  }
+};
+
 // SSG configuration — fully static, no revalidation needed.
 // All tool data lives in TypeScript source files (lib/data/tools/).
 // Content only changes when code is deployed, so revalidate=false (build-time only)
@@ -394,13 +451,19 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const pageFeatures = mdData?.data?.features || config.features;
   const pageUseCases = mdData?.data?.useCases || config.useCases;
 
+  const t = toolPageTranslations[locale] || toolPageTranslations.en;
+  const homePath = locale === 'en' ? '/' : `/${locale}`;
+  const toolsSegment = toolPathSegments[locale] || 'tools';
+  const toolsPath = locale === 'en' ? '/tools' : `/${locale}/${toolsSegment}`;
+  const currentToolHref = locale === 'en' ? `/tools/${config.slug}` : `/${locale}/${toolsSegment}/${config.slug}`;
+
   // Generate Schemas
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-      { "@type": "ListItem", "position": 2, "name": "Developer Tools", "item": getCanonicalUrl('/tools', locale) },
+      { "@type": "ListItem", "position": 1, "name": t.home, "item": getCanonicalUrl('/', locale) },
+      { "@type": "ListItem", "position": 2, "name": t.developerTools, "item": getCanonicalUrl('/tools', locale) },
       { "@type": "ListItem", "position": 3, "name": pageTitle, "item": canonicalUrl }
     ]
   };
@@ -438,13 +501,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const howToSchema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": `How to Use ${pageTitle}`,
+    "name": t.howToUse(pageTitle),
     "description": pageShortDesc,
     "url": canonicalUrl,
     "step": pageHowToSteps.map((stepText: string, index: number) => ({
       "@type": "HowToStep",
       "position": index + 1,
-      "name": `Step ${index + 1}`,
+      "name": `${t.step} ${index + 1}`,
       "text": stepText
     }))
   };
@@ -460,9 +523,9 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
       {/* Breadcrumb */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
-          <Link href="/" className="hover:text-[#518231] transition-colors">Home</Link>
+          <Link href={homePath as any} className="hover:text-[#518231] transition-colors">{t.home}</Link>
           <ChevronRight size={14} />
-          <Link href="/tools" className="hover:text-[#518231] transition-colors">Developer Tools</Link>
+          <Link href={toolsPath as any} className="hover:text-[#518231] transition-colors">{t.developerTools}</Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-slate-200 font-medium">{pageTitle}</span>
         </nav>
@@ -482,7 +545,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
               slug={config.slug}
               title={pageTitle}
               type="developer-tool"
-              href={`/tools/${config.slug}`}
+              href={currentToolHref}
             />
           </div>
         </section>
@@ -491,7 +554,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           slug={config.slug}
           title={pageTitle}
           type="developer-tool"
-          href={`/tools/${config.slug}`}
+          href={currentToolHref}
         />
 
         {/* Top Leaderboard Ad Space (728x90 or 970x90/250) */}
@@ -525,7 +588,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             {/* How To Use */}
             <section className="space-y-6">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Lightbulb className="text-[#518231]" /> How to Use {pageTitle}
+                <Lightbulb className="text-[#518231]" /> {t.howToUse(pageTitle)}
               </h2>
               <div className="grid gap-4">
                 {pageHowToSteps.map((step: string, idx: number) => (
@@ -543,7 +606,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             {config.examples.length > 0 && (
               <section className="space-y-6">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                  <Code className="text-[#518231]" /> Real Examples
+                  <Code className="text-[#518231]" /> {t.realExamples}
                 </h2>
                 <div className="space-y-8">
                   {config.examples.map((ex, idx) => (
@@ -571,7 +634,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             {/* FAQ Section */}
             <section className="space-y-6">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <HelpCircle className="text-[#518231]" /> Frequently Asked Questions
+                <HelpCircle className="text-[#518231]" /> {t.faq}
               </h2>
               <div className="space-y-4">
                 {pageFaqs.map((faq: any, idx: number) => (
@@ -594,7 +657,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <Zap className="text-amber-500" /> Key Features
+                <Zap className="text-amber-500" /> {t.keyFeatures}
               </h3>
               <ul className="space-y-3">
                 {pageFeatures.map((feature: string, idx: number) => (
@@ -609,7 +672,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             {/* Use Cases */}
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <Layers className="text-blue-500" /> Common Use Cases
+                <Layers className="text-blue-500" /> {t.commonUseCases}
               </h3>
               <ul className="space-y-3">
                 {pageUseCases.map((useCase: string, idx: number) => (
@@ -623,14 +686,17 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
             {/* Related Tools */}
             <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Related Tools</h3>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{t.relatedTools}</h3>
               <div className="space-y-2">
-                {config.relatedTools.map((tool, idx) => (
-                  <Link key={idx} href={`/tools/${tool.slug}` as any} className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg hover:shadow-md transition-all border border-slate-100 dark:border-slate-800 group">
-                    <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-[#518231] transition-colors">{tool.name}</span>
-                    <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all" />
-                  </Link>
-                ))}
+                {config.relatedTools.map((tool, idx) => {
+                  const toolHref = locale === 'en' ? `/tools/${tool.slug}` : `/${locale}/${toolsSegment}/${tool.slug}`;
+                  return (
+                    <Link key={idx} href={toolHref as any} className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg hover:shadow-md transition-all border border-slate-100 dark:border-slate-800 group">
+                      <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-[#518231] transition-colors">{tool.name}</span>
+                      <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all" />
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
