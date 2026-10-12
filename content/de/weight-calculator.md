@@ -180,7 +180,7 @@ Da der Jupiter unvorstellbar massiv ist, beträgt seine Oberflächenschwerkraft 
 
 Ihr „wahres Gewicht“ ($W = mg$) ändert sich nie, solange Sie auf der Erdoberfläche bleiben. Ihr **scheinbares Gewicht** – wie schwer Sie sich *fühlen* – kann sich jedoch aufgrund Ihrer vertikalen Beschleunigung dramatisch ändern.
 
-Das scheinbare Gewicht ist einfach die *Normalkraft* ($F_N$), die nach oben gegen Ihre Füße drückt. 
+Das scheinbare Gewicht ist einfach die *Normalkraft* ($F_N$), die nach oben gegen Ihre Füße drückt.
 - **Stillstehen:** $F_N = m \cdot g$. Sie fühlen sich normal.
 - **Aufzug beschleunigt nach oben:** Der Boden drückt härter gegen Ihre Füße, um Ihre Masse nach oben zu beschleunigen. $F_N = m(g + a)$. Sie fühlen sich vorübergehend schwerer.
 - **Aufzug beschleunigt nach unten:** Der Boden sinkt unter Ihren Füßen weg. $F_N = m(g - a)$. Sie fühlen sich vorübergehend leichter.
@@ -328,7 +328,7 @@ gantt
     Triebwerkszündung :active, 00:00:00, 00:00:05
     Schub baut sich auf, aber Schub < Gewicht :active, 00:00:05, 00:00:08
     section Abheben
-    Schub übersteigt Gewicht (T over W Greater Than 1) :crit, done, 00:00:08, 00:00:10
+Schub übersteigt Gewicht (T over W Greater Than 1) :crit, done, 00:00:08, 00:00:10
     Turm passiert (beschleunigt) :done, 00:00:10, 00:00:15
     section Flug
     Treibstoffverbrennung (Gewicht nimmt schnell ab) :active, 00:00:15, 00:00:40

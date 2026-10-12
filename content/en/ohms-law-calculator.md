@@ -153,7 +153,7 @@ In this exhaustive 4,000+ word SEO guide, we will aggressively deconstruct the f
 To master electronics, you must intuitively understand the relationship between the three core variables of Ohm's Law. The most common and accurate analogy used by physicists is the **Water Pipe Analogy**.
 
 ### Voltage ($V$): The Water Pressure
-**Voltage**, officially known as *Electric Potential Difference*, is the force that pushes electrons through a circuit. 
+**Voltage**, officially known as *Electric Potential Difference*, is the force that pushes electrons through a circuit.
 - In our water analogy, Voltage is the **water pressure** in the pipe (or the height of the water tower).
 - The higher the voltage, the harder the electrons are pushed. 
 - **SI Unit:** Volt ($\text{V}$). 
@@ -185,7 +185,7 @@ From this single algebraic equation, we can derive the other two by simple isola
 
 ## 3. The Danger of Power and Joule Heating ($P = VI$)
 
-While Ohm's Law ($V = IR$) dictates how electrons move, **Watt's Law** ($P = VI$) dictates the thermodynamic consequences of that movement. 
+While Ohm's Law ($V = IR$) dictates how electrons move, **Watt's Law** ($P = VI$) dictates the thermodynamic consequences of that movement.
 
 Electrical **Power ($P$)** is the rate at which electrical energy is transformed into another form of energy—usually mechanical work (motors), light (LEDs), or most commonly, thermal heat. The SI unit for Power is the **Watt ($\text{W}$)**.
 
@@ -197,7 +197,7 @@ By algebraically combining Ohm's Law ($V = IR$) with Watt's Law ($P = VI$), we c
 2. **Power via Voltage and Resistance:** $P = \frac{V^2}{R}$
 
 ### The Square Rule of Joule Heating
-Look closely at the equation $P = I^2 \cdot R$. Notice that Current ($I$) is squared. This means that if you double the current flowing through a circuit wire, the power dissipated as raw heat doesn't just double—it **quadruples**. 
+Look closely at the equation $P = I^2 \cdot R$. Notice that Current ($I$) is squared. This means that if you double the current flowing through a circuit wire, the power dissipated as raw heat doesn't just double—it **quadruples**.
 If you triple the current, the heat increases by a factor of nine! 
 
 This is exactly why electrical utility companies transmit power across long distances using insanely high voltages (like $500,000\text{ Volts}$). By jacking up the voltage to astronomical levels, they can transmit the same amount of total Power ($P = VI$) while keeping the Current ($I$) extremely low. Low current completely minimizes the $I^2 R$ heat losses in the power lines.
@@ -257,7 +257,7 @@ This logic flowchart illustrates the classic variable isolation technique for Vo
 
 ```mermaid
 flowchart LR
-    A["Core Formula:<br/>Voltage = Current * Resistance"] --> B{"What is<br/>Unknown?"}
+A["Core Formula:<br/>Voltage = Current * Resistance"] --> B{"What is<br/>Unknown?"}
     
     B -->|"Need Voltage"| C["Multiply Current by Resistance<br/>V = I * R"]
     B -->|"Need Current"| D["Divide Voltage by Resistance<br/>I = V / R"]
@@ -298,7 +298,7 @@ xychart-beta
 ### Example 3: The Quadratic Power Dissipation Curve (Joule Heating)
 
 **The Scenario:**
-Using the exact same $10\ \Omega$ resistor and power supply from Example 2, we now want to track the total heat generated (Power) as we turn up the Current dial from $1\text{A}$ to $5\text{A}$. 
+Using the exact same $10\ \Omega$ resistor and power supply from Example 2, we now want to track the total heat generated (Power) as we turn up the Current dial from $1\text{A}$ to $5\text{A}$.
 
 **The Mathematics:**
 We use the Joule heating formula $P = I^2 \cdot R$. Notice that the Current is squared!

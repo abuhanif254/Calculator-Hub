@@ -142,7 +142,7 @@ In this exhaustive 4,000+ word SEO guide, we will violently deconstruct the weig
 
 ## 1. Defining Weight: The Downward Force of Gravity
 
-In classical Newtonian mechanics, **Weight** ($W$) is strictly defined as the downward vector force exerted on an object's mass by a local gravitational field. 
+In classical Newtonian mechanics, **Weight** ($W$) is strictly defined as the downward vector force exerted on an object's mass by a local gravitational field.
 
 $$ W = m \cdot g $$
 
@@ -180,7 +180,7 @@ Because Jupiter is unimaginably massive, its surface gravity is roughly $24.79\t
 
 Your "True Weight" ($W = mg$) never changes as long as you remain on Earth's surface. However, your **Apparent Weight**—how heavy you *feel*—can change dramatically based on your vertical acceleration.
 
-Apparent weight is simply the *Normal Force* ($F_N$) pushing back up against your feet. 
+Apparent weight is simply the *Normal Force* ($F_N$) pushing back up against your feet.
 - **Standing Still:** $F_N = m \cdot g$. You feel normal.
 - **Elevator Accelerating Upward:** The floor pushes into your feet harder to accelerate your mass upward. $F_N = m(g + a)$. You temporarily feel heavier.
 - **Elevator Accelerating Downward:** The floor drops away from your feet. $F_N = m(g - a)$. You temporarily feel lighter.

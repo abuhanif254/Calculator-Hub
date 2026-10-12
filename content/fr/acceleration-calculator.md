@@ -296,7 +296,7 @@ Cet organigramme visualise la séquence de cinématique utilisée par le moteur 
 
 ```mermaid
 flowchart TD
-    A[Variables d'Entrée :<br/>vi = 33,3 m/s<br/>vf = 0 m/s<br/>a = -8,5 m/s²] --> B{Calculer le Temps}
+A[Variables d'Entrée :<br/>vi = 33,3 m/s<br/>vf = 0 m/s<br/>a = -8,5 m/s²] --> B{Calculer le Temps}
     B -->|"t = (vf - vi) / a"| C[Temps = 3,92 s]
     C --> D{Calculer la Distance}
     A --> D

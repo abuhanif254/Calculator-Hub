@@ -71,12 +71,12 @@ Im tiefen Morast des Codes (CSS/JS) wird die Stärke dieser Dioden brutal in das
 ---
 
 ### 2. Die Kompressions-Maschine: Autopsie des HEX (Hexadezimal)
-Der allgegenwärtige **HEX-Code (Hexadezimal)** ist nichts anderes als die gewaltsame, asombrosamente kompakte Base-16-Komprimierung des fetten, ratternden Dezimal-Konstrukts RGB. Da die klobige Schreibweise `rgb(81, 130, 49)` zu viel Platz und Lesezeit beanspruchte, presste die frühe Web-Architektur diese Werte paramatrisch in kurze Ketten.
+Der allgegenwärtige **HEX-Code (Hexadezimal)** ist nichts anderes als die gewaltsame, kompakte Base-16-Komprimierung des fetten, ratternden Dezimal-Konstrukts RGB. Da die klobige Schreibweise `rgb(81, 130, 49)` zu viel Platz und Lesezeit beanspruchte, presste die frühe Web-Architektur diese Werte paramatrisch in kurze Ketten.
 
 Ein regulärer, klassischer HEX-Block von 6 Zeichen (wie der stoische Soldat `#518231`) wird vom Parser sofort in 3 feindliche Paires zerhackt:
-1.  **Der Rote Fluss (Red Channel):** Das erste Hex-Paar (`51`), das vom Prozessor rücksichtslos in den Basis-10 Dezimalwert `81` transformiert und zermalmt wird.
-2.  **Die Grüne DNA (Green Channel):** Das mittlere Stück (`82`), paramatrisch hingerichtet und als reine Dezimalzahl `130` in den Code injiziert.
-3.  **Die Blaue Kälte (Blue Channel):** Das Schlusslicht (`31`), das in den unscheinbaren paramatrischen Wert von `49` verdampft.
+1. **Der Rote Fluss (Red Channel):** Das erste Hex-Paar (`51`), das vom Prozessor rücksichtslos in den Basis-10 Dezimalwert `81` transformiert und zermalmt wird.
+2. **Die Grüne DNA (Green Channel):** Das mittlere Stück (`82`), paramatrisch hingerichtet und als reine Dezimalzahl `130` in den Code injiziert.
+3. **Die Blaue Kälte (Blue Channel):** Das Schlusslicht (`31`), das in den unscheinbaren paramatrischen Wert von `49` verdampft.
 
 Doch das CSS von heute fordert Blut und Opazität, weshalb die 8-stellige Mutation **(HEXA)** geboren wurde. Der Parser schlägt einfach noch zwei paramatrische Hex-Zeichen an das Ende der Schlange. Wollen Sie Weiß um 50% durchsichtig schneiden? Rammen Sie den Code `80` hinten an (`#FFFFFF80`). Der Browser verrechnet die `80` in den puren, mittigen Dezimalwert `128` und macht das massive Weiß milchig transluzent.
 

@@ -130,7 +130,7 @@ In this exhaustive 4,000+ word SEO guide, we will aggressively deconstruct the p
 
 ## 1. What Exactly is Electrical Resistance? (The Physics Definition)
 
-**Electrical Resistance**, scientifically measured in **Ohms ($\Omega$)**, is the fundamental opposition to the flow of electric current through a conductive material. 
+**Electrical Resistance**, scientifically measured in **Ohms ($\Omega$)**, is the fundamental opposition to the flow of electric current through a conductive material.
 
 To intuitively understand Resistance, electrical engineers universally rely on the **Water Pipe Analogy**:
 - Imagine a massive water tower pushing water through a pipe. If the pipe is massive and wide, the water flows easily (Low Resistance).
@@ -144,7 +144,7 @@ The official SI unit for Resistance is the **Ohm ($\Omega$)**, named after Germa
 
 ## 2. Deriving Resistance from Ohm's Law ($R = V / I$)
 
-Georg Simon Ohm proved that Resistance is mathematically locked in a three-way relationship with Voltage ($V$) and Current ($I$). 
+Georg Simon Ohm proved that Resistance is mathematically locked in a three-way relationship with Voltage ($V$) and Current ($I$).
 
 $$R = \frac{V}{I}$$
 
@@ -358,7 +358,7 @@ If you respect Resistance and size your resistors with the correct Wattage ratin
 
 To guarantee you have mastered these concepts, boot up our interactive Simulator and attempt to solve these final challenges:
 1. **The LED Blocker:** You have a $9\text{V}$ battery and a $2\text{V}$ LED. The LED can only survive $0.02\text{A}$ of current. Calculate the exact Resistance ($R = V/I$) required to drop the remaining $7\text{V}$ and choke the current down to $0.02\text{A}$.
-2. **The Space Heater:** An industrial $2,000\text{W}$ space heater runs on $240\text{V}$. Calculate the exact resistance of its internal heating coil using $R = V^2 / P$. 
+2. **The Space Heater:** An industrial $2,000\text{W}$ space heater runs on $240\text{V}$. Calculate the exact resistance of its internal heating coil using $R = V^2 / P$.
 3. **The Parallel Split:** You wire three identical $300\ \Omega$ resistors in parallel. Calculate the total equivalent resistance of the network.
 
 Rely on this calculator to double-check your math, decode those confusing color bands, and always remember: Resistance is the friction that allows us to control the violent power of electricity.

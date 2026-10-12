@@ -132,18 +132,18 @@ Notre calculateur de la loi de Hess est conçu à la fois pour la résolution de
 
 ### 5.1 Mode : Manipulation Manuelle des Réactions
 
-1.  **Définir la Réaction Cible :** Saisissez ou sélectionnez un préréglage de réaction cible (ex. Synthèse du Monoxyde de Carbone).
-2.  **Inspecter les Étapes :** Chargez les réactions d'étapes intermédiaires disponibles et leurs valeurs $\Delta H_i$ de base.
+1. **Définir la Réaction Cible :** Saisissez ou sélectionnez un préréglage de réaction cible (ex. Synthèse du Monoxyde de Carbone).
+2. **Inspecter les Étapes :** Chargez les réactions d'étapes intermédiaires disponibles et leurs valeurs $\Delta H_i$ de base.
 3.  **Appliquer les Règles Algébriques :** 
-    *   Cliquez sur "Inverser" pour échanger les réactifs/produits et inverser le signe de l'enthalpie.
-    *   Ajustez le "Multiplicateur" (ex. $1, 2, 0.5$) pour mettre à l'échelle la stœchiométrie et l'enthalpie.
-4.  **Vérifier l'Annulation :** Le moteur affichera dynamiquement la somme de vos étapes manipulées, mettant en évidence les espèces intermédiaires qui n'ont pas réussi à s'annuler.
-5.  **Calculer l'Enthalpie Nette :** Une fois que la somme correspond parfaitement à la cible, l'outil affiche le $\Delta H_{\text{cible}}$ final.
+*   Cliquez sur "Inverser" pour échanger les réactifs/produits et inverser le signe de l'enthalpie.
+*   Ajustez le "Multiplicateur" (ex. $1, 2, 0.5$) pour mettre à l'échelle la stœchiométrie et l'enthalpie.
+4. **Vérifier l'Annulation :** Le moteur affichera dynamiquement la somme de vos étapes manipulées, mettant en évidence les espèces intermédiaires qui n'ont pas réussi à s'annuler.
+5. **Calculer l'Enthalpie Nette :** Une fois que la somme correspond parfaitement à la cible, l'outil affiche le $\Delta H_{\text{cible}}$ final.
 
 ### 5.2 Mode : Résolveur Automatique par Combinaison Linéaire
 
-1.  **Système d'Entrée :** Fournissez la réaction cible et toutes les équations d'étapes intermédiaires disponibles.
-2.  **Exécuter le Résolveur :** L'outil vectorise la stœchiométrie en une matrice d'algèbre linéaire et résout automatiquement les multiplicateurs de combinaison optimaux.
+1. **Système d'Entrée :** Fournissez la réaction cible et toutes les équations d'étapes intermédiaires disponibles.
+2. **Exécuter le Résolveur :** L'outil vectorise la stœchiométrie en une matrice d'algèbre linéaire et résout automatiquement les multiplicateurs de combinaison optimaux.
 
 ---
 
@@ -163,10 +163,10 @@ $$C(s) + \frac{1}{2}O_2(g) \to CO(g) \quad \Delta H = ?$$
 
 **Dérivation Mathématique :**
 
-1.  **Aligner les Réactifs :** Nous avons besoin de $C(s)$ à gauche. L'Étape 1 a $C(s)$ à gauche. 
+1. **Aligner les Réactifs :** Nous avons besoin de $C(s)$ à gauche. L'Étape 1 a $C(s)$ à gauche.
     *   **Gardez l'Étape 1 exactement telle quelle :**
     *   $C(s) + O_2(g) \to CO_2(g) \quad \Delta H = -393.5\text{ kJ}$
-2.  **Aligner les Produits :** Nous avons besoin de $CO(g)$ à droite. L'Étape 2 a $CO(g)$ à gauche. 
+2. **Aligner les Produits :** Nous avons besoin de $CO(g)$ à droite. L'Étape 2 a $CO(g)$ à gauche.
     *   **Inverser l'Étape 2 (Inverser le signe de $\Delta H$) :**
     *   $CO_2(g) \to CO(g) + \frac{1}{2}O_2(g) \quad \Delta H = +283.0\text{ kJ}$
 3.  **Additionner les Équations et Annuler :**
@@ -176,7 +176,7 @@ $$C(s) + \frac{1}{2}O_2(g) \to CO(g) \quad \Delta H = ?$$
     *   Le $\frac{1}{2}O_2(g)$ à droite annule la moitié du $O_2(g)$ à gauche.
     *   Net : $C(s) + \frac{1}{2}O_2(g) \to CO(g)$ (Correspond à la Cible !)
 4.  **Sommer les Enthalpies :**
-    $$ \Delta H_{\text{cible}} = -393.5\text{ kJ} + 283.0\text{ kJ} = -110.5\text{ kJ} $$
+$$ \Delta H_{\text{cible}} = -393.5\text{ kJ} + 283.0\text{ kJ} = -110.5\text{ kJ} $$
 
 **Conclusion :** La synthèse du Monoxyde de Carbone est exothermique, libérant $-110.5\text{ kJ/mol}$.
 
@@ -186,23 +186,21 @@ $$C(s) + \frac{1}{2}O_2(g) \to CO(g) \quad \Delta H = ?$$
 $$C(s) + 2H_2(g) \to CH_4(g) \quad \Delta H = ?$$
 
 **Réactions d'Étapes Disponibles :**
-1.  $C(s) + O_2(g) \to CO_2(g) \quad \Delta H_1 = -393.5\text{ kJ}$
 2.  $H_2(g) + \frac{1}{2}O_2(g) \to H_2O(l) \quad \Delta H_2 = -285.8\text{ kJ}$
-3.  $CH_4(g) + 2O_2(g) \to CO_2(g) + 2H_2O(l) \quad \Delta H_3 = -890.3\text{ kJ}$
+3. $CH_4(g) + 2O_2(g) \to CO_2(g) + 2H_2O(l) \quad \Delta H_3 = -890.3\text{ kJ}$
 
 **Dérivation Mathématique :**
 
 1.  **Aligner $C(s)$ :** Gardez l'Étape 1 telle quelle.
-    *   $C(s) + O_2(g) \to CO_2(g) \quad \Delta H = -393.5\text{ kJ}$
 2.  **Aligner $H_2(g)$ :** Nous avons besoin de $2H_2$. L'Étape 2 a $1H_2$. 
     *   **Multiplier l'Étape 2 par 2 :**
-    *   $2H_2(g) + 1O_2(g) \to 2H_2O(l) \quad \Delta H = 2 \times (-285.8) = -571.6\text{ kJ}$
-3.  **Aligner $CH_4(g)$ :** Nous avons besoin de $CH_4$ à droite. L'Étape 3 l'a à gauche.
+*   $2H_2(g) + 1O_2(g) \to 2H_2O(l) \quad \Delta H = 2 \times (-285.8) = -571.6\text{ kJ}$
+3. **Aligner $CH_4(g)$ :** Nous avons besoin de $CH_4$ à droite. L'Étape 3 l'a à gauche.
     *   **Inverser l'Étape 3 (Inverser le signe) :**
     *   $CO_2(g) + 2H_2O(l) \to CH_4(g) + 2O_2(g) \quad \Delta H = +890.3\text{ kJ}$
 4.  **Sommer et Annuler :**
     *   Les intermédiaires $CO_2(g)$ et $2H_2O(l)$ s'annulent parfaitement.
-    *   Les $2O_2(g)$ à droite annulent parfaitement le $1O_2 + 1O_2 = 2O_2$ à gauche.
+*   Les $2O_2(g)$ à droite annulent parfaitement le $1O_2 + 1O_2 = 2O_2$ à gauche.
 5.  **Sommer les Enthalpies :**
     $$ \Delta H_{\text{cible}} = -393.5 - 571.6 + 890.3 = -74.8\text{ kJ} $$
 
@@ -212,9 +210,9 @@ $$C(s) + 2H_2(g) \to CH_4(g) \quad \Delta H = ?$$
 
 ```mermaid
 flowchart TD
-    A["État Initial : C(s) + 2H2(g) + 2O2(g)"] -->|Combustion C : ΔH = -393.5 kJ| B["Intermédiaire 1 : CO2(g) + 2H2(g) + O2(g)"]
+A["État Initial : C(s) + 2H2(g) + 2O2(g)"] -->|Combustion C : ΔH = -393.5 kJ| B["Intermédiaire 1 : CO2(g) + 2H2(g) + O2(g)"]
     B -->|Combustion H2 : ΔH = -571.6 kJ| C["État le Plus Bas : CO2(g) + 2H2O(l)"]
-    C -->|Inverser Combustion CH4 : ΔH = +890.3 kJ| D["État Final : CH4(g) + 2O2(g)"]
+C -->|Inverser Combustion CH4 : ΔH = +890.3 kJ| D["État Final : CH4(g) + 2O2(g)"]
     A -.->|Réaction Cible Nette : ΔH = -74.8 kJ| D
     style C fill:#c62828,stroke:#b71c1c,stroke-width:2px,color:white
     style A fill:#1565c0,stroke:#0d47a1,stroke-width:2px,color:white
@@ -239,7 +237,7 @@ $$C(\text{graphite}) \to C(g) \quad \Delta H = ?$$
 3.  **Sommer les Enthalpies :**
     $$ \Delta H_{\text{cible}} = -393.5 + 1108 = +714.5\text{ kJ} $$
 
-**Conclusion :** La vaporisation du graphite solide en gaz est massivement endothermique, nécessitant $+714.5\text{ kJ/mol}$. 
+**Conclusion :** La vaporisation du graphite solide en gaz est massivement endothermique, nécessitant $+714.5\text{ kJ/mol}$.
 
 ### Exemple 4 : Formation de Peroxyde d'Hydrogène
 
@@ -254,12 +252,12 @@ $$H_2(g) + O_2(g) \to H_2O_2(l) \quad \Delta H = ?$$
 
 1.  **Aligner $H_2(g)$ :** Gardez l'Étape 1 telle quelle.
     *   $H_2(g) + \frac{1}{2}O_2(g) \to H_2O(l) \quad \Delta H = -285.8\text{ kJ}$
-2.  **Aligner $H_2O_2(l)$ :** Nous avons besoin de $1H_2O_2$ à droite. L'Étape 2 a $2H_2O_2$ à gauche.
+2. **Aligner $H_2O_2(l)$ :** Nous avons besoin de $1H_2O_2$ à droite. L'Étape 2 a $2H_2O_2$ à gauche.
     *   **Inverser ET Diviser l'Étape 2 par 2 :**
-    *   $H_2O(l) + \frac{1}{2}O_2(g) \to H_2O_2(l) \quad \Delta H = +196.0 / 2 = +98.0\text{ kJ}$
+*   $H_2O(l) + \frac{1}{2}O_2(g) \to H_2O_2(l) \quad \Delta H = +196.0 / 2 = +98.0\text{ kJ}$
 3.  **Sommer et Annuler :**
     *   Les intermédiaires $H_2O(l)$ s'annulent parfaitement.
-    *   Le $\frac{1}{2}O_2$ de l'Étape 1 et le $\frac{1}{2}O_2$ de l'Étape 2 inversée s'additionnent pour former exactement $1 O_2$ à gauche !
+*   Le $\frac{1}{2}O_2$ de l'Étape 1 et le $\frac{1}{2}O_2$ de l'Étape 2 inversée s'additionnent pour former exactement $1 O_2$ à gauche !
 4.  **Sommer les Enthalpies :**
     $$ \Delta H_{\text{cible}} = -285.8 + 98.0 = -187.8\text{ kJ} $$
 
@@ -277,15 +275,15 @@ $$4NH_3(g) + 5O_2(g) \to 4NO(g) + 6H_2O(g) \quad \Delta H = ?$$
 
 **Dérivation Mathématique :**
 
-1.  **Aligner $NH_3(g)$ :** Nous avons besoin de $4NH_3$ à gauche. L'Étape 1 a $2NH_3$ à droite.
+1. **Aligner $NH_3(g)$ :** Nous avons besoin de $4NH_3$ à gauche. L'Étape 1 a $2NH_3$ à droite.
     *   **Inverser et Multiplier l'Étape 1 par 2 :**
-    *   $4NH_3(g) \to 2N_2(g) + 6H_2(g) \quad \Delta H = 2 \times (+91.8) = +183.6\text{ kJ}$
-2.  **Aligner $NO(g)$ :** Nous avons besoin de $4NO$ à droite. L'Étape 2 a $2NO$ à droite.
+*   $4NH_3(g) \to 2N_2(g) + 6H_2(g) \quad \Delta H = 2 \times (+91.8) = +183.6\text{ kJ}$
+2. **Aligner $NO(g)$ :** Nous avons besoin de $4NO$ à droite. L'Étape 2 a $2NO$ à droite.
     *   **Multiplier l'Étape 2 par 2 :**
-    *   $2N_2(g) + 2O_2(g) \to 4NO(g) \quad \Delta H = 2 \times (180.6) = +361.2\text{ kJ}$
-3.  **Aligner $H_2O(g)$ :** Nous avons besoin de $6H_2O$ à droite. L'Étape 3 a $2H_2O$ à droite.
+*   $2N_2(g) + 2O_2(g) \to 4NO(g) \quad \Delta H = 2 \times (180.6) = +361.2\text{ kJ}$
+3. **Aligner $H_2O(g)$ :** Nous avons besoin de $6H_2O$ à droite. L'Étape 3 a $2H_2O$ à droite.
     *   **Multiplier l'Étape 3 par 3 :**
-    *   $6H_2(g) + 3O_2(g) \to 6H_2O(g) \quad \Delta H = 3 \times (-483.6) = -1450.8\text{ kJ}$
+*   $6H_2(g) + 3O_2(g) \to 6H_2O(g) \quad \Delta H = 3 \times (-483.6) = -1450.8\text{ kJ}$
 4.  **Sommer et Annuler :**
     *   Les intermédiaires $2N_2(g)$ s'annulent.
     *   Les intermédiaires $6H_2(g)$ s'annulent.

@@ -153,7 +153,7 @@ Dans ce guide SEO exhaustif de plus de 4 000 mots, nous allons déconstruire agr
 Pour maîtriser l'électronique, vous devez comprendre intuitivement la relation entre les trois variables fondamentales de la loi d'Ohm. L'analogie la plus commune et précise utilisée par les physiciens est l'**Analogie du Tuyau d'Eau**.
 
 ### Tension ($V$) : La Pression de l'Eau
-La **Tension**, officiellement connue sous le nom de *Différence de Potentiel Électrique*, est la force qui pousse les électrons à travers un circuit. 
+La **Tension**, officiellement connue sous le nom de *Différence de Potentiel Électrique*, est la force qui pousse les électrons à travers un circuit.
 - Dans notre analogie de l'eau, la Tension est la **pression de l'eau** dans le tuyau (ou la hauteur du château d'eau).
 - Plus la tension est élevée, plus les électrons sont poussés fort. 
 - **Unité SI :** Volt ($\text{V}$). 
@@ -185,7 +185,7 @@ $$V = I \cdot R$$
 
 ## 3. Le Danger de la Puissance et de l'Effet Joule ($P = VI$)
 
-Alors que la loi d'Ohm ($V = IR$) dicte comment les électrons se déplacent, la **Loi de Watt** ($P = VI$) dicte les conséquences thermodynamiques de ce mouvement. 
+Alors que la loi d'Ohm ($V = IR$) dicte comment les électrons se déplacent, la **Loi de Watt** ($P = VI$) dicte les conséquences thermodynamiques de ce mouvement.
 
 La **Puissance Électrique ($P$)** est le taux auquel l'énergie électrique est transformée en une autre forme d'énergie — généralement en travail mécanique (moteurs), en lumière (LED), ou le plus souvent, en chaleur thermique. L'unité SI de la Puissance est le **Watt ($\text{W}$)**.
 
@@ -197,7 +197,7 @@ En combinant algébriquement la loi d'Ohm ($V = IR$) avec la loi de Watt ($P = V
 2. **Puissance via la Tension et la Résistance :** $P = \frac{V^2}{R}$
 
 ### La Règle du Carré de l'Effet Joule
-Regardez attentivement l'équation $P = I^2 \cdot R$. Remarquez que le Courant ($I$) est au carré. Cela signifie que si vous doublez le courant circulant à travers un fil de circuit, la puissance dissipée sous forme de chaleur brute ne fait pas que doubler — elle **quadruple**. 
+Regardez attentivement l'équation $P = I^2 \cdot R$. Remarquez que le Courant ($I$) est au carré. Cela signifie que si vous doublez le courant circulant à travers un fil de circuit, la puissance dissipée sous forme de chaleur brute ne fait pas que doubler — elle **quadruple**.
 Si vous triplez le courant, la chaleur augmente d'un facteur neuf ! 
 
 C'est exactement pourquoi les compagnies de distribution électrique transmettent l'énergie sur de longues distances en utilisant des tensions follement élevées (comme $500 000\text{ Volts}$). En augmentant la tension à des niveaux astronomiques, elles peuvent transmettre la même quantité de Puissance totale ($P = VI$) tout en gardant le Courant ($I$) extrêmement bas. Un courant faible minimise complètement les pertes de chaleur $I^2 R$ dans les lignes électriques.
@@ -238,7 +238,7 @@ Utilisez la navigation supérieure pour sélectionner la variable inconnue que v
 Évitez la saisie manuelle de données en choisissant parmi nos 8 préréglages intégrés. Besoin de calculer le courant de sécurité maximal pour un port USB standard ? Sélectionnez **USB 5V**, et le calculateur remplit instantanément $V = 5,0\text{V}$ et cartographie dynamiquement les courbes de courant.
 
 ### Étape 3 : Surveillez la Jauge de Dissipation de Chaleur
-Chaque fois que vous calculez la Puissance ($P$), observez la jauge thermodynamique interactive. 
+Chaque fois que vous calculez la Puissance ($P$), observez la jauge thermodynamique interactive.
 Les résistances standard de plaque d'essais ne sont prévues que pour **$0,25\text{ Watts}$** ($250\text{ mW}$). Si votre puissance calculée dépasse $0,25\text{W}$, la jauge deviendra Rouge, vous avertissant que le composant physique va griller et tomber en panne. Vous devez soit réduire la tension, soit augmenter la résistance, ou acheter une résistance physiquement plus grande prévue pour une puissance plus élevée (ex. une résistance en céramique de $1\text{W}$ ou $5\text{W}$).
 
 ---
@@ -257,7 +257,7 @@ Cet organigramme logique illustre la technique classique d'isolation des variabl
 
 ```mermaid
 flowchart LR
-    A["Formule de Base:<br/>Tension = Courant * Résistance"] --> B{"Qu'est-ce qui est<br/>Inconnu ?"}
+A["Formule de Base:<br/>Tension = Courant * Résistance"] --> B{"Qu'est-ce qui est<br/>Inconnu ?"}
     
     B -->|"Besoin de Tension"| C["Multiplier Courant par Résistance<br/>V = I * R"]
     B -->|"Besoin de Courant"| D["Diviser Tension par Résistance<br/>I = V / R"]
@@ -298,7 +298,7 @@ xychart-beta
 ### Exemple 3 : La Courbe Quadratique de Dissipation de Puissance (Effet Joule)
 
 **Le Scénario :**
-En utilisant exactement la même résistance de $10\ \Omega$ et la même alimentation de l'Exemple 2, nous voulons maintenant suivre la chaleur totale générée (Puissance) alors que nous montons le cadran du Courant de $1\text{A}$ à $5\text{A}$. 
+En utilisant exactement la même résistance de $10\ \Omega$ et la même alimentation de l'Exemple 2, nous voulons maintenant suivre la chaleur totale générée (Puissance) alors que nous montons le cadran du Courant de $1\text{A}$ à $5\text{A}$.
 
 **Les Mathématiques :**
 Nous utilisons la formule de l'effet Joule $P = I^2 \cdot R$. Remarquez que le Courant est au carré !
@@ -311,7 +311,7 @@ Ce graphique à barres démontre violemment comment la génération de chaleur d
 
 ```mermaid
 xychart-beta
-    title "Courbe de Dissipation de Puissance Thermique pour une Résistance de 10 Ohms"
+title "Courbe de Dissipation de Puissance Thermique pour une Résistance de 10 Ohms"
     x-axis "Flux de Courant (Ampères)" [1, 2, 3, 4, 5]
     y-axis "Puissance Thermique (Watts)" 0 --> 250
     bar [10, 40, 90, 160, 250]
@@ -329,13 +329,13 @@ Cet organigramme décrit la procédure de fonctionnement standard pour utiliser 
 
 ```mermaid
 flowchart TD
-    A["Circuit est Mort<br/>LED Éteintes"] --> B{"Vérifier Tension<br/>Alimentation"}
+A["Circuit est Mort<br/>LED Éteintes"] --> B{"Vérifier Tension<br/>Alimentation"}
     
     B -->|"Tension égale à Zéro"| C["Pile Défectueuse ou<br/>Disjoncteur Déclenché"]
     B -->|"Tension Existe"| D{"Vérifier Résistance<br/>Totale"}
     
     D -->|"Résistance est Infinie"| E["Défaut Circuit Ouvert<br/>Fil Cassé ou LED"]
-    D -->|"Résistance est Zéro"| F["Défaut Court-Circuit<br/>Fils se Touchant Directement"]
+D -->|"Résistance est Zéro"| F["Défaut Court-Circuit<br/>Fils se Touchant Directement"]
     D -->|"Résistance est Normale"| G{"Mesurer le Flux<br/>de Courant"}
     
     G -->|"Courant égal à Zéro"| H["Composant Installé<br/>à l'Envers (Diode)"]

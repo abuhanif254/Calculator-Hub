@@ -130,7 +130,7 @@ Dans ce guide SEO exhaustif de plus de 4 000 mots, nous allons déconstruire agr
 
 ## 1. Qu'est-ce qu'exactement la Résistance Électrique ? (La Définition Physique)
 
-**La Résistance Électrique**, scientifiquement mesurée en **Ohms ($\Omega$)**, est l'opposition fondamentale à la circulation du courant électrique à travers un matériau conducteur. 
+**La Résistance Électrique**, scientifiquement mesurée en **Ohms ($\Omega$)**, est l'opposition fondamentale à la circulation du courant électrique à travers un matériau conducteur.
 
 Pour comprendre intuitivement la Résistance, les ingénieurs en électricité s'appuient universellement sur l'**Analogie de la Conduite d'Eau** :
 - Imaginez un énorme château d'eau poussant de l'eau à travers un tuyau. Si le tuyau est massif et large, l'eau s'écoule facilement (Faible Résistance).
@@ -144,7 +144,7 @@ L'unité SI officielle pour la Résistance est l'**Ohm ($\Omega$)**, nommée d'a
 
 ## 2. Dériver la Résistance de la Loi d'Ohm ($R = V / I$)
 
-Georg Simon Ohm a prouvé que la Résistance est mathématiquement verrouillée dans une relation tripartite avec la Tension ($V$) et le Courant ($I$). 
+Georg Simon Ohm a prouvé que la Résistance est mathématiquement verrouillée dans une relation tripartite avec la Tension ($V$) et le Courant ($I$).
 
 $$R = \frac{V}{I}$$
 
@@ -167,7 +167,7 @@ En isolant algébriquement la Résistance ($R$), nous obtenons deux formules d'i
 2. **Résistance dérivée de la Tension et de la Puissance :** $R = \frac{V^2}{P}$
 
 Ces formules sont absolument obligatoires pour concevoir des éléments chauffants. Si un ingénieur mécanique doit concevoir un radiateur électrique qui produit exactement $1 500\text{W}$ de chaleur thermique lorsqu'il est branché sur une prise murale de $120\text{V}$, quelle résistance exacte la bobine chauffante en nichrome doit-elle avoir ?
-En utilisant la formule : $R = \frac{120^2}{1500} = \frac{14400}{1500} = 9.6\ \Omega$. 
+En utilisant la formule : $R = \frac{120^2}{1500} = \frac{14400}{1500} = 9.6\ \Omega$.
 L'ingénieur doit couper exactement $9.6\ \Omega$ de fil nichrome !
 
 ---
@@ -246,8 +246,8 @@ flowchart LR
     A["Cible :<br/>Trouver la Résistance"] --> B{"Variables<br/>Disponibles ?"}
     
     B -->|"A la Tension et le Courant"| C["Utiliser la Loi d'Ohm<br/>R = V / I"]
-    B -->|"A la Tension et la Puissance"| D["Utiliser la Loi de Puissance<br/>R = V * V / P"]
-    B -->|"A la Puissance et le Courant"| E["Utiliser la Loi de Courant<br/>R = P / I * I"]
+B -->|"A la Tension et la Puissance"| D["Utiliser la Loi de Puissance<br/>R = V * V / P"]
+B -->|"A la Puissance et le Courant"| E["Utiliser la Loi de Courant<br/>R = P / I * I"]
     
     C --> F(("Calculer<br/>les Ohms"))
     D --> F
@@ -271,7 +271,7 @@ Ce graphique trace la ligne parfaitement droite de la résistance qui s'accumule
 
 ```mermaid
 xychart-beta
-    title "Accumulation Linéaire de la Résistance d'un Fil de Cuivre sur la Distance"
+title "Accumulation Linéaire de la Résistance d'un Fil de Cuivre sur la Distance"
     x-axis "Longueur du Fil (Mètres)" [10, 20, 30, 40, 50]
     y-axis "Résistance Totale du Fil (Ohms)" 0 --> 1
     line [0.2, 0.4, 0.6, 0.8, 1.0]
@@ -292,7 +292,7 @@ Ce graphique à barres illustre la courbe inverse agressive. Doubler l'épaisseu
 
 ```mermaid
 xychart-beta
-    title "Réduction de la Résistance par l'Augmentation de la Section Transversale du Fil"
+title "Réduction de la Résistance par l'Augmentation de la Section Transversale du Fil"
     x-axis "Section Transversale du Fil (mm carrés)" [1, 2, 4, 8, 16]
     y-axis "Résistance Totale du Fil (Ohms)" 0 --> 16
     bar [16, 8, 4, 2, 1]
@@ -310,7 +310,7 @@ Cet organigramme de haut en bas catégorise strictement les mathématiques requi
 
 ```mermaid
 flowchart TD
-    A["Besoin d'une Résistance<br/>Cible"] --> B{"Topologie Actuelle<br/>du Réseau ?"}
+A["Besoin d'une Résistance<br/>Cible"] --> B{"Topologie Actuelle<br/>du Réseau ?"}
     
     B -->|"Câblé bout à bout"| C["Circuit en Série<br/>La Résistance Augmente"]
     C --> D["Additionner directement<br/>Req = R1 + R2 + R3"]
@@ -358,7 +358,7 @@ Si vous respectez la Résistance et dimensionnez vos résistances avec les bonne
 
 Pour garantir que vous avez maîtrisé ces concepts, démarrez notre Simulateur interactif et essayez de résoudre ces défis finaux :
 1. **Le Bloqueur de LED :** Vous avez une batterie de $9\text{V}$ et une LED de $2\text{V}$. La LED ne peut survivre qu'à $0.02\text{A}$ de courant. Calculez la Résistance exacte ($R = V/I$) requise pour faire chuter les $7\text{V}$ restants et réduire le courant à $0.02\text{A}$.
-2. **Le Radiateur Électrique :** Un radiateur électrique industriel de $2 000\text{W}$ fonctionne sur $240\text{V}$. Calculez la résistance exacte de sa bobine chauffante interne en utilisant $R = V^2 / P$. 
+2. **Le Radiateur Électrique :** Un radiateur électrique industriel de $2 000\text{W}$ fonctionne sur $240\text{V}$. Calculez la résistance exacte de sa bobine chauffante interne en utilisant $R = V^2 / P$.
 3. **Le Diviseur en Parallèle :** Vous câblez trois résistances identiques de $300\ \Omega$ en parallèle. Calculez la résistance équivalente totale du réseau.
 
 Fiez-vous à ce calculateur pour revérifier vos calculs, décoder ces bandes de couleurs confuses, et rappelez-vous toujours : la Résistance est la friction qui nous permet de contrôler la puissance violente de l'électricité.

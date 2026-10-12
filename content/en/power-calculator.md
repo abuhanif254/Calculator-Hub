@@ -148,7 +148,7 @@ In this exhaustive 4,000+ word SEO guide, we will aggressively deconstruct the f
 
 ## 1. Defining Power: The Speed of Work
 
-In classical physics, **Power** is defined as the time derivative of Work. It measures exactly how fast energy is being transferred, consumed, or generated. 
+In classical physics, **Power** is defined as the time derivative of Work. It measures exactly how fast energy is being transferred, consumed, or generated.
 
 $$ P = \frac{W}{t} = \frac{\Delta E}{\Delta t} $$
 
@@ -207,7 +207,7 @@ A modern $200\text{ hp}$ car engine is technically capable of doing the continuo
 
 ## 4. Comprehensive Usage Guide: Maximizing the Calculator
 
-Our interactive Power Calculator acts as a universal bridge across all engineering domains. 
+Our interactive Power Calculator acts as a universal bridge across all engineering domains.
 
 ### Step 1: Select Your Calculation Target
 Use the top navigation to select your known variables:
@@ -236,7 +236,7 @@ To fully grasp the dynamics of Power generation, we will explore five detailed p
 An engineering student needs to quickly route their known variables through the correct power formula depending on their test question (Thermodynamic, Kinematic, or Electrical).
 
 **2D Visualization:**
-This flowchart visually breaks down the three massive pillars of power calculation. 
+This flowchart visually breaks down the three massive pillars of power calculation.
 
 ```mermaid
 flowchart LR
@@ -331,7 +331,7 @@ flowchart TD
 ### Example 5: Pro Cyclist Output (Sprint vs Endurance Gantt)
 
 **The Scenario:**
-Let's analyze the biological power output of a professional Tour de France cyclist. Human physiology has two different energy systems: Anaerobic (massive, short-term power without oxygen) and Aerobic (sustained, long-term power using oxygen). 
+Let's analyze the biological power output of a professional Tour de France cyclist. Human physiology has two different energy systems: Anaerobic (massive, short-term power without oxygen) and Aerobic (sustained, long-term power using oxygen).
 
 A pro cyclist might generate a staggering $1,500\text{ Watts}$ ($2\text{ hp}$) during a final finish-line sprint. However, they can only sustain that for about $15\text{ seconds}$ before their muscles flood with lactic acid. For a multi-hour mountain climb, they must drop to their aerobic threshold of roughly $400\text{ Watts}$.
 
@@ -356,11 +356,11 @@ gantt
 ## 6. Frequently Asked Questions (FAQ) Deep Dive
 
 **Q: What is a Kilowatt-hour (kWh) on my electricity bill?**
-**A:** This is highly confusing for students. A Kilowatt ($\text{kW}$) is a unit of *Power*. But a Kilowatt-hour ($\text{kWh}$) is a unit of *Energy*! It is equal to exactly $1,000\text{ Watts}$ of power running continuously for $1\text{ hour}$ ($3,600\text{ seconds}$). 
+**A:** This is highly confusing for students. A Kilowatt ($\text{kW}$) is a unit of *Power*. But a Kilowatt-hour ($\text{kWh}$) is a unit of *Energy*! It is equal to exactly $1,000\text{ Watts}$ of power running continuously for $1\text{ hour}$ ($3,600\text{ seconds}$).
 $1,000\text{ W} \times 3,600\text{ s} = 3,600,000\text{ Joules}$. Your power company bills you for total energy (Joules), not power (Watts)!
 
 **Q: Is torque the same as horsepower?**
-**A:** No. Torque is a rotational force (a twist). Horsepower is how *fast* you can apply that twist. 
+**A:** No. Torque is a rotational force (a twist). Horsepower is how *fast* you can apply that twist.
 The automotive formula is: $\text{Horsepower} = (\text{Torque} \times \text{RPM}) / 5252$.
 A tractor has massive torque but low RPM, so it has low horsepower. A Formula 1 car has low torque but screams at $15,000\text{ RPM}$, generating massive horsepower!
 

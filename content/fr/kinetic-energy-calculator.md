@@ -149,7 +149,7 @@ faqs:
 
 Bienvenue dans le **Calculateur d'Énergie Cinétique** définitif et le guide de physique complet. Que vous soyez un ingénieur automobile concevant des systèmes de freinage avancés pour dissiper l'énergie d'un accident, un planétologue modélisant les cratères d'impact d'astéroïdes, ou un étudiant en physique préparant un examen final sur le théorème de l'énergie cinétique, cet outil est conçu pour une précision absolue.
 
-L'énergie cinétique est l'énergie fondamentale du mouvement. C'est la raison pour laquelle un glacier se déplaçant lentement peut creuser des vallées massives au fil des millénaires, et c'est la raison pour laquelle une minuscule balle peut percer un blindage en une fraction de milliseconde. 
+L'énergie cinétique est l'énergie fondamentale du mouvement. C'est la raison pour laquelle un glacier se déplaçant lentement peut creuser des vallées massives au fil des millénaires, et c'est la raison pour laquelle une minuscule balle peut percer un blindage en une fraction de milliseconde.
 
 Dans cette plongée massive de plus de 4 000 mots, nous allons déconstruire de manière exhaustive la mécanique de l'énergie cinétique ($EC = \frac{1}{2} m \cdot v^2$). Nous explorerons les fondements mathématiques du théorème de l'énergie cinétique, analyserons les différences critiques entre la quantité de mouvement linéaire et l'énergie cinétique quadratique, et vous guiderons à travers cinq exemples d'ingénierie du monde réel visualisés avec des diagrammes Mermaid.js détaillés.
 
@@ -181,7 +181,7 @@ L'aspect le plus critique de cette équation — et le concept qui cause le plus
 Cette mise à l'échelle exponentielle explique pourquoi les accidents de voiture à grande vitesse sont exponentiellement plus dévastateurs que les accidents à basse vitesse, et pourquoi les amendes pour excès de vitesse augmentent de manière si agressive.
 
 ### Grandeurs Scalaires vs. Vectorielles
-Contrairement à la Force ($F = ma$) et à la Quantité de Mouvement ($p = mv$), qui sont des **vecteurs** (c'est-à-dire qu'elles ont une direction spécifique comme "Nord" ou "Haut"), l'Énergie Cinétique est une grandeur **scalaire**. 
+Contrairement à la Force ($F = ma$) et à la Quantité de Mouvement ($p = mv$), qui sont des **vecteurs** (c'est-à-dire qu'elles ont une direction spécifique comme "Nord" ou "Haut"), l'Énergie Cinétique est une grandeur **scalaire**.
 
 Une grandeur scalaire n'a qu'une amplitude. Une voiture de $1\ 500\text{ kg}$ se déplaçant vers l'Est à $30\text{ m/s}$ a exactement la même énergie cinétique qu'une voiture identique se déplaçant vers l'Ouest à $30\text{ m/s}$. De plus, parce que la vitesse est au carré ($v^2$), même si vous entrez une vitesse négative dans l'équation, l'énergie cinétique résultante sera toujours positive. L'énergie cinétique ne peut pas être négative ; un objet soit en possède ($v > 0$), soit n'en possède pas ($v = 0$).
 
@@ -196,7 +196,7 @@ Le **Théorème de l'Énergie Cinétique** relie élégamment les lois du mouvem
 
 $$ W_{net} = \Delta EC = EC_{final} - EC_{initial} $$
 
-Si vous poussez un caddie immobile avec $50\text{ N}$ de force sur une distance de $10\text{ mètres}$, vous avez effectué $500\text{ Joules}$ de travail sur le caddie. En supposant qu'il n'y a pas de frottement, le caddie possède maintenant exactement $500\text{ Joules}$ d'énergie cinétique. 
+Si vous poussez un caddie immobile avec $50\text{ N}$ de force sur une distance de $10\text{ mètres}$, vous avez effectué $500\text{ Joules}$ de travail sur le caddie. En supposant qu'il n'y a pas de frottement, le caddie possède maintenant exactement $500\text{ Joules}$ d'énergie cinétique.
 
 Inversement, pour arrêter un objet en mouvement, un travail négatif doit être effectué (comme le frottement des plaquettes de frein). Les freins doivent effectuer exactement assez de travail négatif pour annuler l'énergie cinétique initiale de la voiture.
 
@@ -235,7 +235,7 @@ Le calculateur dispose d'un moteur de conversion robuste.
 - Affichez la sortie d'énergie en **Joules (J)**, **Kilojoules (kJ)**, **Mégajoules (MJ)** standard ou équivalents électriques comme les **Wattheures (Wh)** et **Kilowattheures (kWh)**.
 
 ### Étape 3 : Interpréter l'Arc d'Énergie Logarithmique
-L'énergie évolue de manière drastique. Une pomme qui tombe possède environ $1\text{ J}$ d'énergie cinétique. Un avion de ligne commercial en vol possède plus de $5\ 000\ 000\ 000\text{ J}$. 
+L'énergie évolue de manière drastique. Une pomme qui tombe possède environ $1\text{ J}$ d'énergie cinétique. Un avion de ligne commercial en vol possède plus de $5\ 000\ 000\ 000\text{ J}$.
 La **Jauge d'Énergie à Arc** radiale catégorise votre résultat logarithmiquement :
 - **Micro-Échelle (Vert) :** Balles de baseball, sprinters, objets qui tombent.
 - **Macro-Échelle (Bleu) :** Voitures sur autoroute, machines industrielles, trains.
@@ -267,7 +267,7 @@ L'arbre logique ci-dessous illustre le théorème de l'énergie cinétique en ac
 
 ```mermaid
 flowchart LR
-    A[Énergie Cinétique Initiale<br/>EC = 578,8 kJ] --> C{Force de Freinage Appliquée<br/>F = 12 000 N}
+A[Énergie Cinétique Initiale<br/>EC = 578,8 kJ] --> C{Force de Freinage Appliquée<br/>F = 12 000 N}
     B[Énergie Cinétique Finale<br/>EC = 0 J] --> C
     
     C --> D[Calcul du Travail Requis<br/>W = ΔEC = 578,8 kJ]
@@ -348,7 +348,7 @@ Ce diagramme de flux démontre comment l'énergie mécanique totale reste consta
 
 ```mermaid
 flowchart TD
-    A[Sommet du Balancement<br/>Hauteur = 15m] -->|Chute| B(Point Médian<br/>Hauteur = 7,5m)
+A[Sommet du Balancement<br/>Hauteur = 15m] -->|Chute| B(Point Médian<br/>Hauteur = 7,5m)
     B -->|Accélération| C[Bas du Balancement<br/>Hauteur = 0m]
     
     A -.-> D[EP : 73,5 kJ<br/>EC : 0 kJ<br/>Total : 73,5 kJ]
@@ -374,7 +374,7 @@ $$ EC_{club} = 0,5 \cdot 0,2 \cdot (50)^2 = 250\text{ Joules} $$
 Dans une collision hautement efficace (bien que légèrement inélastique), un grand pourcentage de cette énergie est transféré à la balle. Si la tête de club ralentit à $35\text{ m/s}$ après l'impact :
 $$ EC_{club\_après} = 0,5 \cdot 0,2 \cdot (35)^2 = 122,5\text{ Joules} $$
 
-La différence ($250 - 122,5 = 127,5\text{ Joules}$) est transférée. Cependant, ce transfert d'énergie massif se produit sur une durée d'environ $0,0005\text{ secondes}$ (une demi-milliseconde). 
+La différence ($250 - 122,5 = 127,5\text{ Joules}$) est transférée. Cependant, ce transfert d'énergie massif se produit sur une durée d'environ $0,0005\text{ secondes}$ (une demi-milliseconde).
 La puissance est définie comme le taux de transfert d'énergie ($P = \frac{Énergie}{Temps}$) :
 $$ Puissance = \frac{127,5\text{ J}}{0,0005\text{ s}} = 255\ 000\text{ Watts (255 kW)} $$
 
@@ -389,10 +389,10 @@ gantt
     dateFormat  HH:mm:ss.SSS
     axisFormat  %S.%L
     section Avant l'Impact
-    Phase d'Accélération du Club (Génération 250J EC) :done, 00:00:00.000, 00:00:00.500
+Phase d'Accélération du Club (Génération 250J EC) :done, 00:00:00.000, 00:00:00.500
     section Impact
-    Contact Initial & Compression de la Balle :crit, active, 00:00:00.500, 00:00:00.502
-    Transfert d'Énergie (Puissance de Crête 255kW) :crit, active, 00:00:00.502, 00:00:00.505
+Contact Initial & Compression de la Balle :crit, active, 00:00:00.500, 00:00:00.502
+Transfert d'Énergie (Puissance de Crête 255kW) :crit, active, 00:00:00.502, 00:00:00.505
     Lancement de la Balle (Sortie) :milestone, 00:00:00.505, 0d
 ```
 
@@ -401,16 +401,16 @@ gantt
 ## 6. Foire Aux Questions (FAQ) Détaillée
 
 **Q : L'énergie cinétique peut-elle être négative ?**
-**R :** Non, l'énergie cinétique est strictement positive. Parce que la masse ne peut pas être négative et que le terme de vitesse est mathématiquement au carré ($v^2$), même une vitesse négative (déplacement vers l'arrière) donne une énergie cinétique positive. 
+**R :** Non, l'énergie cinétique est strictement positive. Parce que la masse ne peut pas être négative et que le terme de vitesse est mathématiquement au carré ($v^2$), même une vitesse négative (déplacement vers l'arrière) donne une énergie cinétique positive.
 
 **Q : Quelle est la différence entre l'Énergie Cinétique et la Quantité de Mouvement ?**
 **R :** C'est le point de confusion le plus courant en physique. Les deux dépendent de la masse et de la vitesse. La **Quantité de Mouvement** ($p = m \cdot v$) est un *vecteur* et évolue *linéairement* avec la vitesse. Elle détermine à quel point un objet est difficile à arrêter. L'**Énergie Cinétique** ($EC = 0,5 \cdot m \cdot v^2$) est un *scalaire* et évolue *quadratiquement* avec la vitesse. Elle détermine la quantité de travail destructeur qu'un objet fera lorsqu'il touchera une cible.
 
 **Q : L'énergie cinétique dépend-elle de votre référentiel ?**
-**R :** Oui, absolument. Si vous êtes assis dans un train à grande vitesse se déplaçant à $300\text{ km/h}$, votre vitesse par rapport au train est nulle, donc votre énergie cinétique par rapport au train est nulle. Cependant, par rapport à une personne debout à l'extérieur sur le sol, vous vous déplacez à $300\text{ km/h}$ et possédez d'énormes quantités d'énergie cinétique. 
+**R :** Oui, absolument. Si vous êtes assis dans un train à grande vitesse se déplaçant à $300\text{ km/h}$, votre vitesse par rapport au train est nulle, donc votre énergie cinétique par rapport au train est nulle. Cependant, par rapport à une personne debout à l'extérieur sur le sol, vous vous déplacez à $300\text{ km/h}$ et possédez d'énormes quantités d'énergie cinétique.
 
 **Q : Qu'est-ce que l'Énergie Thermique par rapport à l'Énergie Cinétique ?**
-**R :** L'énergie thermique (chaleur) est en fait simplement de l'énergie cinétique microscopique. Lorsque vous mesurez la température d'une tasse d'eau, vous mesurez l'énergie cinétique de translation moyenne des molécules d'eau individuelles qui vibrent et rebondissent à l'intérieur de la tasse. 
+**R :** L'énergie thermique (chaleur) est en fait simplement de l'énergie cinétique microscopique. Lorsque vous mesurez la température d'une tasse d'eau, vous mesurez l'énergie cinétique de translation moyenne des molécules d'eau individuelles qui vibrent et rebondissent à l'intérieur de la tasse.
 
 **Q : Qu'arrive-t-il à l'énergie cinétique dans un accident de voiture ?**
 **R :** Selon la première loi de la thermodynamique, l'énergie ne peut être ni créée ni détruite. Dans un accident de voiture, l'énergie cinétique massive du véhicule ne disparaît pas ; elle est rapidement convertie en d'autres formes d'énergie. Elle se transforme en travail mécanique pour plier l'acier (déformation), en énergie thermique (le métal devient en fait extrêmement chaud) et en énergie acoustique (le grand bang de l'accident).

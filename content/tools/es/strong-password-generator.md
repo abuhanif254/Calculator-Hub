@@ -62,13 +62,13 @@ Crear, administrar y almacenar credenciales extremadamente largas, auténticamen
 
 ### ¿Qué Constituye una Contraseña Verdaderamente Segura?
 
-Históricamente, las anticuadas directrices de seguridad de las empresas obligaban inútilmente a los usuarios a compilar contraseñas cortas, abrumándolos con reglas arbitrarias e irritantes (por ejemplo, *'la contraseña debe tener al menos 8 caracteres, al menos una letra mayúscula obligatoria, un número y un símbolo especial'*). 
+Históricamente, las anticuadas directrices de seguridad de las empresas obligaban inútilmente a los usuarios a compilar contraseñas cortas, abrumándolos con reglas arbitrarias e irritantes (por ejemplo, *'la contraseña debe tener al menos 8 caracteres, al menos una letra mayúscula obligatoria, un número y un símbolo especial'*).
 
 Sin embargo, las autoridades de ciberseguridad modernas, como el influyente Instituto Nacional de Estándares y Tecnología de los EE.UU. (**NIST**), han revisado, reescrito y modernizado drásticamente estos obsoletos estándares de la industria. El consenso criptográfico moderno y absoluto se centra en los siguientes tres atributos principales:
 
-1.  **Longitud (Length):** La longitud es, sin lugar a dudas, el factor más crítico y decisivo en la complejidad de una contraseña. Una contraseña de 16 caracteres compuesta únicamente por letras minúsculas es matemáticamente órdenes de magnitud más fuerte e inquebrantable que una contraseña corta y comprimida de solo 8 caracteres que presente una mezcla desordenada de mayúsculas, números y símbolos aleatorios.
-2.  **Entropía (Entropy):** La métrica matemática de la imprevisibilidad en una cadena de caracteres. Una mayor entropía certifica que no existen patrones de repetición (`abcabc`), secuencias obvias del teclado (`qwerty` o `12345`), ni palabras fáciles y evidentes que se encuentren en un diccionario normal.
-3.  **Singularidad (Uniqueness - Regla de Oro):** Nunca, bajo ninguna circunstancia, reutilice la misma contraseña para dos sitios web diferentes. Si ocurre una filtración catastrófica de datos (Data Breach) en un servicio o foro mal protegido, las implacables redes de bots (botnets) probarán automáticamente esos detalles de inicio de sesión recién filtrados contra miles de otras plataformas populares (bancos, correos electrónicos, redes sociales).
+1. **Longitud (Length):** La longitud es, sin lugar a dudas, el factor más crítico y decisivo en la complejidad de una contraseña. Una contraseña de 16 caracteres compuesta únicamente por letras minúsculas es matemáticamente órdenes de magnitud más fuerte e inquebrantable que una contraseña corta y comprimida de solo 8 caracteres que presente una mezcla desordenada de mayúsculas, números y símbolos aleatorios.
+2. **Entropía (Entropy):** La métrica matemática de la imprevisibilidad en una cadena de caracteres. Una mayor entropía certifica que no existen patrones de repetición (`abcabc`), secuencias obvias del teclado (`qwerty` o `12345`), ni palabras fáciles y evidentes que se encuentren en un diccionario normal.
+3. **Singularidad (Uniqueness - Regla de Oro):** Nunca, bajo ninguna circunstancia, reutilice la misma contraseña para dos sitios web diferentes. Si ocurre una filtración catastrófica de datos (Data Breach) en un servicio o foro mal protegido, las implacables redes de bots (botnets) probarán automáticamente esos detalles de inicio de sesión recién filtrados contra miles de otras plataformas populares (bancos, correos electrónicos, redes sociales).
 
 ---
 
@@ -95,7 +95,7 @@ El método **Diceware Passphrase** resuelve de manera brillante y contundente es
 
 #### ¿Por qué funcionan tan bien las Frases de Contraseña (Passphrases)?
 *   **Alta y Poderosa Retención de Memoria:** El cerebro humano evolutivamente visualiza y vincula con inmensa facilidad cinco o seis palabras o conceptos vívidos y distintos en una imagen mental hilarante o memorable, en comparación rotunda con la ardua tarea de intentar memorizar mecánicamente una estéril cadena de 16 caracteres alfanuméricos.
-*   **Vasto Espacio de Búsqueda de Entropía:** Elegir una palabra de un diccionario o lista Wordlist estandarizada de 7.776 palabras diferentes, proporciona matemáticamente y sin lugar a fallos aproximadamente 12,9 bits de entropía real por cada palabra. Una humilde frase de contraseña Diceware de 5 palabras rinde asombrosamente $5 \times 12,9 = 64,5$ bits estelares de entropía, un valor extremadamente seguro y suficiente para proteger las cuentas bancarias estándar. Si saltamos a una frase de contraseña de **6 palabras**, esta rinde más de 77 bits de entropía total, lo que significa categóricamente que llevaría décadas, siglos o milenios intentar descifrarla utilizando los súper-clústeres informáticos actuales.
+*   **Vasto Espacio de Búsqueda de Entropía:** Elegir una palabra de un diccionario o lista Wordlist estandarizada de 7.776 palabras diferentes, proporciona matemáticamente y sin lugar a fallos aproximadamente 12,9 bits de entropía real por cada palabra. Una humilde frase de contraseña Diceware de 5 palabras rinde $5 \times 12,9 = 64,5$ bits estelares de entropía, un valor extremadamente seguro y suficiente para proteger las cuentas bancarias estándar. Si saltamos a una frase de contraseña de **6 palabras**, esta rinde más de 77 bits de entropía total, lo que significa categóricamente que llevaría décadas, siglos o milenios intentar descifrarla utilizando los súper-clústeres informáticos actuales.
 
 ---
 
@@ -112,7 +112,7 @@ Donde, para comprenderlo:
 *   $R$ representa el tamaño (la base) del conjunto del "pool" de caracteres disponible para la contraseña (por ejemplo, si usa números, letras y símbolos, la base será de 94 caracteres diferentes).
 
 #### Evaluación y Clasificación de Niveles de Fuerza Criptográfica:
-*   **Menos de 28 bits:** **Extremadamente Débil (Very Weak)**. Absoluta y lastimosamente vulnerable a desciframientos o craqueos instantáneos (fracciones de segundo). 
+*   **Menos de 28 bits:** **Extremadamente Débil (Very Weak)**. Absoluta y lastimosamente vulnerable a desciframientos o craqueos instantáneos (fracciones de segundo).
 *   **De 28 a 59 bits:** **Débil a Medio (Weak / Medium)**. Terriblemente vulnerable a persistentes e intensivos ataques de fuerza bruta realizados por adversarios offline.
 *   **De 60 a 127 bits:** **Fuerte y Seguro (Strong)**. Altamente confiable, formidable y perfectamente seguro para el blindaje de la enorme mayoría de las cuentas de usuarios en internet, correo electrónico o redes corporativas.
 *   **Más de 128 bits:** **Muy Fuerte / Nivel Criptográfico y Militar**. Matemáticamente intratable, inquebrantable e indescifrable para todas y cada una de las tecnologías de cálculo hoy disponibles.

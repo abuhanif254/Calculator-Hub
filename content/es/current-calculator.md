@@ -136,7 +136,7 @@ En esta exhaustiva guía de SEO de más de 4,000 palabras, analizaremos agresiva
 
 ## 1. ¿Qué es Exactamente la Corriente Eléctrica? (La Definición Física)
 
-La **Corriente Eléctrica**, medida científicamente en **Amperios** (o "Amps"), es la tasa fundamental a la que la carga eléctrica fluye a través de un punto específico en un circuito cerrado. 
+La **Corriente Eléctrica**, medida científicamente en **Amperios** (o "Amps"), es la tasa fundamental a la que la carga eléctrica fluye a través de un punto específico en un circuito cerrado.
 
 Para comprender la Corriente intuitivamente, los ingenieros eléctricos confían universalmente en la **Analogía de la Tubería de Agua**:
 - Imagine un río que fluye a través de un cañón. El gran volumen de agua que pasa agresivamente por un punto de control cada segundo es la Corriente.
@@ -152,7 +152,7 @@ Debido a que un solo electrón tiene una carga dolorosamente pequeña, se requie
 
 ## 2. Derivando la Corriente con la Ley de Ohm ($I = V / R$)
 
-Georg Simon Ohm demostró que la Corriente está matemáticamente bloqueada en una relación a tres bandas con el Voltaje ($V$) y la Resistencia ($R$). 
+Georg Simon Ohm demostró que la Corriente está matemáticamente bloqueada en una relación a tres bandas con el Voltaje ($V$) y la Resistencia ($R$).
 
 $$I = \frac{V}{R}$$
 
@@ -174,7 +174,7 @@ Al aislar algebraicamente la Corriente ($I$), obtenemos dos fórmulas de ingenie
 1. **Corriente derivada de Potencia y Voltaje:** $I = \frac{P}{V}$
 2. **Corriente derivada de Potencia y Resistencia:** $I = \sqrt{\frac{P}{R}}$
 
-Estas fórmulas son absolutamente obligatorias para los electricistas. Si un propietario compra un calentador de espacio eléctrico masivo de $1,500\text{W}$ y lo conecta a un tomacorriente de pared estándar de $120\text{V}$, el electricista debe saber instantáneamente cuántos Amperios consumirá ese calentador para asegurarse de que no salte el disyuntor de la casa. 
+Estas fórmulas son absolutamente obligatorias para los electricistas. Si un propietario compra un calentador de espacio eléctrico masivo de $1,500\text{W}$ y lo conecta a un tomacorriente de pared estándar de $120\text{V}$, el electricista debe saber instantáneamente cuántos Amperios consumirá ese calentador para asegurarse de que no salte el disyuntor de la casa.
 Usando la fórmula: $I = 1500 / 120 = 12.5\text{A}$. Debido a que $12.5\text{A}$ está por debajo de forma segura del límite estándar de un disyuntor de $15\text{A}$, el calentador funcionará perfectamente.
 
 ---
@@ -200,7 +200,7 @@ La corriente es lo que causa los incendios eléctricos. A medida que la corrient
 Para evitar esto, el Código Eléctrico Nacional (NEC) exige un estricto dimensionamiento del cable (AWG) y Dispositivos de Protección contra Sobrecorriente (Disyuntores/Fusibles):
 
 1. **La Regla del 125%:** Un disyuntor de circuito debe estar dimensionado para manejar el 125% de la corriente de carga continua. Si una máquina consume continuamente $16\text{A}$, no puede usar un disyuntor de $16\text{A}$; debe subir a un disyuntor de $20\text{A}$ ($16 \cdot 1.25 = 20$).
-2. **Dimensionamiento del Calibre de Cable (AWG):** El grosor del alambre de cobre debe coincidir con la clasificación del disyuntor. 
+2. **Dimensionamiento del Calibre de Cable (AWG):** El grosor del alambre de cobre debe coincidir con la clasificación del disyuntor.
    - El disyuntor de $15\text{A}$ requiere cable 14 AWG.
    - El disyuntor de $20\text{A}$ requiere cable 12 AWG.
    - El disyuntor de $30\text{A}$ requiere cable 10 AWG.
@@ -271,7 +271,7 @@ Este gráfico traza la aterradora curva exponencial de la Corriente. A medida qu
 
 ```mermaid
 xychart-beta
-    title "Escalada de Flujo de Corriente cuando la Resistencia se acerca a Cero (Fuente de 100V)"
+title "Escalada de Flujo de Corriente cuando la Resistencia se acerca a Cero (Fuente de 100V)"
     x-axis "Carga de Resistencia (Ohmios)" [100, 50, 25, 10, 5]
     y-axis "Corriente Resultante (Amperios)" 0 --> 25
     bar [1, 2, 4, 10, 20]
@@ -294,7 +294,7 @@ A diferencia de la curva exponencial anterior, este gráfico de líneas demuestr
 
 ```mermaid
 xychart-beta
-    title "Aumento Lineal de Corriente con Presión de Voltaje Creciente (Carga de 10 Ohmios)"
+title "Aumento Lineal de Corriente con Presión de Voltaje Creciente (Carga de 10 Ohmios)"
     x-axis "Voltaje Aplicado (Voltios)" [10, 20, 30, 40, 50]
     y-axis "Corriente Resultante (Amperios)" 0 --> 6
     line [1, 2, 3, 4, 5]
@@ -312,7 +312,7 @@ Este diagrama de flujo de arriba hacia abajo clasifica estrictamente las matemá
 
 ```mermaid
 flowchart TD
-    A["Calcular Corriente<br/>de Carga Total"] --> B["Multiplicar por 1.25<br/>(Factor de Seguridad)"]
+A["Calcular Corriente<br/>de Carga Total"] --> B["Multiplicar por 1.25<br/>(Factor de Seguridad)"]
     
     B --> C{"Seleccionar Tamaño<br/>Estándar de Disyuntor"}
     

@@ -72,11 +72,11 @@ $$\text{Molekülformel} = (\text{Empirische Formel})_n \quad \text{wobei} \quad 
 
 ```
    Schritt 1: Bestimmen Sie die empirische Formel der Verbindung.
-   Schritt 2: Berechnen Sie die empirische Formelmasse (Summe der Atommassen der empirischen Indizes).
-   Schritt 3: Erhalten Sie die experimentelle molekulare Molmasse (z.B. aus der Massenspektrometrie).
-   Schritt 4: Berechnen Sie den ganzzahligen Multiplikator n = molekulare Molmasse / empirische Masse.
-   Schritt 5: Multiplizieren Sie jeden empirischen Index mit n, um die endgültige Molekülformel zu erhalten.
-   Schritt 6: Überprüfen Sie, ob die berechnete molekulare Molmasse mit der Ziel-Molmasse übereinstimmt.
+Schritt 2: Berechnen Sie die empirische Formelmasse (Summe der Atommassen der empirischen Indizes).
+Schritt 3: Erhalten Sie die experimentelle molekulare Molmasse (z.B. aus der Massenspektrometrie).
+Schritt 4: Berechnen Sie den ganzzahligen Multiplikator n = molekulare Molmasse / empirische Masse.
+Schritt 5: Multiplizieren Sie jeden empirischen Index mit n, um die endgültige Molekülformel zu erhalten.
+Schritt 6: Überprüfen Sie, ob die berechnete molekulare Molmasse mit der Ziel-Molmasse übereinstimmt.
 ```
 
 ---
@@ -86,7 +86,7 @@ $$\text{Molekülformel} = (\text{Empirische Formel})_n \quad \text{wobei} \quad 
 
 ## 4. Der umfassende Leitfaden zu Molekülformeln
 
-Willkommen beim definitiven Leitfaden zum Verständnis, zur Berechnung und zur Anwendung von Molekülformeln in der Chemie. Egal, ob Sie ein Gymnasiast sind, der zum ersten Mal mit Stöchiometrie zu tun hat, ein AP-Chemie-Schüler, der sich auf Prüfungen vorbereitet, oder ein Labortechniker, der Massenspektrometriedaten analysiert, diese umfassende Ressource wurde entwickelt, um die faszinierende Welt der chemischen Formeln zu beleuchten. 
+Willkommen beim definitiven Leitfaden zum Verständnis, zur Berechnung und zur Anwendung von Molekülformeln in der Chemie. Egal, ob Sie ein Gymnasiast sind, der zum ersten Mal mit Stöchiometrie zu tun hat, ein AP-Chemie-Schüler, der sich auf Prüfungen vorbereitet, oder ein Labortechniker, der Massenspektrometriedaten analysiert, diese umfassende Ressource wurde entwickelt, um die faszinierende Welt der chemischen Formeln zu beleuchten.
 
 Im Kern ist die Chemie das Studium der Materie und ihrer Umwandlungen. Um diese Umwandlungen zu verstehen, müssen wir eine genaue Sprache haben, um die Zusammensetzung der Materie zu beschreiben. Diese Sprache wird in chemischen Formeln geschrieben. Während empirische Formeln uns das einfachste Verhältnis von Elementen in einer Verbindung geben, erzählen sie nicht die ganze Geschichte. Die **Molekülformel** ist die wahre Identität eines Moleküls und offenbart die genaue Anzahl aller vorhandenen Atomarten.
 
@@ -100,9 +100,9 @@ Im Gegensatz dazu liefert eine **empirische Formel** nur das einfachste ganzzahl
 
 ### 4.2 Die Rolle der molaren Masse
 
-Wenn die empirische Formel das Verhältnis und die Molekülformel die genaue Anzahl angibt, wie gelangen wir dann von der einen zur anderen? Das fehlende Glied ist die **molare Masse** (oder das Molekulargewicht). 
+Wenn die empirische Formel das Verhältnis und die Molekülformel die genaue Anzahl angibt, wie gelangen wir dann von der einen zur anderen? Das fehlende Glied ist die **molare Masse** (oder das Molekulargewicht).
 
-Wenn ein Chemiker eine neue Verbindung synthetisiert, könnte er eine Elementaranalyse verwenden, um die Massenprozentsätze jedes Elements zu ermitteln, was sich leicht in eine empirische Formel umwandeln lässt. Um jedoch die wahre Molekülformel zu finden, muss er die molare Masse der Verbindung mit Techniken wie der Massenspektrometrie oder der Gefrierpunktserniedrigung bestimmen. 
+Wenn ein Chemiker eine neue Verbindung synthetisiert, könnte er eine Elementaranalyse verwenden, um die Massenprozentsätze jedes Elements zu ermitteln, was sich leicht in eine empirische Formel umwandeln lässt. Um jedoch die wahre Molekülformel zu finden, muss er die molare Masse der Verbindung mit Techniken wie der Massenspektrometrie oder der Gefrierpunktserniedrigung bestimmen.
 
 Indem wir die theoretische Masse der empirischen Formel (die empirische Masse) mit der tatsächlichen molaren Masse der Verbindung vergleichen, können wir bestimmen, wie viele empirische "Einheiten" in ein reales Molekül passen.
 
@@ -128,7 +128,7 @@ Unser Molekülformel-Rechner ist als intuitives und dennoch äußerst leistungsf
 
 ### 5.1 Auswahl des Berechnungsmodus
 
-Der Rechner verfügt über mehrere Modi, um den unterschiedlichen Arten gerecht zu werden, wie chemische Daten in Problemen und Labors präsentiert werden. 
+Der Rechner verfügt über mehrere Modi, um den unterschiedlichen Arten gerecht zu werden, wie chemische Daten in Problemen und Labors präsentiert werden.
 
 1. **Empirische Formel + Molare Masse:** Der häufigste Modus. Sie geben die empirische Formel und die experimentell ermittelte molare Masse ein. Der Rechner findet den Multiplikator $n$ und gibt die Molekülformel aus.
 2. **Modus für relative Masse (Mr):** Ähnlich wie oben, verwendet jedoch die relative Molekülmasse, die dimensionslos ist, aber numerisch der molaren Masse entspricht.
@@ -177,7 +177,7 @@ Ein Biochemiker isoliert eine reine kristalline Substanz aus Pflanzensaft. Die E
     *   O: $1 \times 15.999\text{ g/mol} = 15.999$
     *   $M_{\text{emp}} = 12.011 + 2.016 + 15.999 = 30.026\text{ g/mol}$
 3.  **Bestimmen Sie den Multiplikator ($n$):**
-    $$ n = \frac{\text{Molare Masse}}{M_{\text{emp}}} = \frac{180.16}{30.026} \approx 6 $$
+$$ n = \frac{\text{Molare Masse}}{M_{\text{emp}}} = \frac{180.16}{30.026} \approx 6 $$
 4.  **Berechnen Sie die Molekülformel:**
     $$ (\text{CH}_2\text{O}) \times 6 = \text{C}_6\text{H}_{12}\text{O}_6 $$
 
@@ -203,7 +203,6 @@ Luft- und Raumfahrtingenieure der NASA testen eine hochreaktive Stickstoff-Wasse
 **Mathematische Ableitung:**
 
 1.  **Identifizieren Sie die empirische Formel:** $\text{NH}_2$
-2.  **Berechnen Sie die empirische Masse ($M_{\text{emp}}$):**
     *   N: $1 \times 14.007 = 14.007$
     *   H: $2 \times 1.008 = 2.016$
     *   $M_{\text{emp}} = 14.007 + 2.016 = 16.023\text{ g/mol}$
@@ -228,8 +227,7 @@ Ein Pharmalabor synthetisiert eine Charge Ibuprofen. Die empirische Formel wird 
 
 **Mathematische Ableitung:**
 
-1.  **Identifizieren Sie die empirische Formel:** $\text{C}_{13}\text{H}_{18}\text{O}_2$
-2.  **Berechnen Sie die empirische Masse ($M_{\text{emp}}$):**
+1. **Identifizieren Sie die empirische Formel:** $\text{C}_{13}\text{H}_{18}\text{O}_2$
     *   C: $13 \times 12.011 = 156.143$
     *   H: $18 \times 1.008 = 18.144$
     *   O: $2 \times 15.999 = 31.998$
@@ -237,7 +235,7 @@ Ein Pharmalabor synthetisiert eine Charge Ibuprofen. Die empirische Formel wird 
 3.  **Bestimmen Sie den Multiplikator ($n$):**
     $$ n = \frac{206.29}{206.285} \approx 1 $$
 4.  **Berechnen Sie die Molekülformel:**
-    $$ (\text{C}_{13}\text{H}_{18}\text{O}_2) \times 1 = \text{C}_{13}\text{H}_{18}\text{O}_2 $$
+$$ (\text{C}_{13}\text{H}_{18}\text{O}_2) \times 1 = \text{C}_{13}\text{H}_{18}\text{O}_2 $$
 
 **Visualisierung: Die "n = 1"-Szenario-Zeitachse**
 
@@ -261,12 +259,11 @@ gantt
 ### Beispiel 4: Der aromatische Kohlenwasserstoff (Benzol)
 
 **Szenario:**
-Ein organischer Chemiker untersucht eine leicht entzündliche, süßlich riechende Flüssigkeit. Die empirische Formel ist einfach $\text{CH}$, was auf ein 1:1-Verhältnis von Kohlenstoff zu Wasserstoff hinweist. Die molare Masse wird durch Gefrierpunktserniedrigung auf $78.11\text{ g/mol}$ bestimmt. 
+Ein organischer Chemiker untersucht eine leicht entzündliche, süßlich riechende Flüssigkeit. Die empirische Formel ist einfach $\text{CH}$, was auf ein 1:1-Verhältnis von Kohlenstoff zu Wasserstoff hinweist. Die molare Masse wird durch Gefrierpunktserniedrigung auf $78.11\text{ g/mol}$ bestimmt.
 
 **Mathematische Ableitung:**
 
 1.  **Identifizieren Sie die empirische Formel:** $\text{CH}$
-2.  **Berechnen Sie die empirische Masse ($M_{\text{emp}}$):**
     *   $12.011 + 1.008 = 13.019\text{ g/mol}$
 3.  **Bestimmen Sie den Multiplikator ($n$):**
     $$ n = \frac{78.11}{13.019} \approx 6 $$
@@ -277,7 +274,7 @@ Ein organischer Chemiker untersucht eine leicht entzündliche, süßlich riechen
 
 ```mermaid
 flowchart LR
-    A["Empirisch: C1 H1"] -->|Multipliziere mit n=6| B["Zwischenschritt: C(1*6) H(1*6)"]
+A["Empirisch: C1 H1"] -->|Multipliziere mit n=6| B["Zwischenschritt: C(1*6) H(1*6)"]
     B --> C["Finale: C6H6 (Benzol)"]
     style C fill:#2196F3,stroke:#1565C0,stroke-width:2px,color:white
 ```
@@ -292,7 +289,6 @@ Eine petrochemische Anlage raffiniert einen Gasstrom. Die Analyse zeigt eine emp
 **Mathematische Ableitung:**
 
 1.  **Identifizieren Sie die empirische Formel:** $\text{CH}_2$
-2.  **Berechnen Sie die empirische Masse ($M_{\text{emp}}$):**
     *   $12.011 + (2 \times 1.008) = 14.027\text{ g/mol}$
 3.  **Bestimmen Sie den Multiplikator ($n$):**
     $$ n = \frac{56.11}{14.027} \approx 4 $$
@@ -308,7 +304,7 @@ Eine petrochemische Anlage raffiniert einen Gasstrom. Die Analyse zeigt eine emp
 Wenn Sie den Molekülformel-Rechner für komplexere AP-Chemie- oder universitäre Probleme verwenden, können Sie auf Grenzfälle stoßen. Dieser FAQ-Bereich befasst sich mit den Nuancen der Molekülmathematik.
 
 **F: Was passiert, wenn mein berechnetes $n$ eine Zahl wie 4,5 ist?**
-**A:** Bei Standardproblemen zur Molekülformel muss $n$ eine ganze Zahl sein. Wenn Sie $n = 4,5$ berechnen, haben Sie wahrscheinlich einen Fehler bei der Bestimmung der empirischen Formel gemacht. Wenn Sie beispielsweise fälschlicherweise eine empirische Formel von $\text{CH}_3$ (Masse $\approx 15$) für eine Verbindung mit einer molaren Masse von $\approx 58$ berechnet haben, ist $58 / 15 = 3,86$. Dies bedeutet, dass $\text{CH}_3$ falsch war (die wahre empirische Formel war wahrscheinlich $\text{C}_2\text{H}_5$, Masse $\approx 29$, was $n=2$ für $\text{C}_4\text{H}_{10}$ ergibt). 
+**A:** Bei Standardproblemen zur Molekülformel muss $n$ eine ganze Zahl sein. Wenn Sie $n = 4,5$ berechnen, haben Sie wahrscheinlich einen Fehler bei der Bestimmung der empirischen Formel gemacht. Wenn Sie beispielsweise fälschlicherweise eine empirische Formel von $\text{CH}_3$ (Masse $\approx 15$) für eine Verbindung mit einer molaren Masse von $\approx 58$ berechnet haben, ist $58 / 15 = 3,86$. Dies bedeutet, dass $\text{CH}_3$ falsch war (die wahre empirische Formel war wahrscheinlich $\text{C}_2\text{H}_5$, Masse $\approx 29$, was $n=2$ für $\text{C}_4\text{H}_{10}$ ergibt).
 
 **F: Verwendet der Rechner exakte Isotopenmassen?**
 **A:** Der Rechner verwendet die standardmäßigen, nach natürlicher Häufigkeit gewichteten durchschnittlichen Atommassen (z. B. Kohlenstoff = 12,011), die von der IUPAC genehmigt wurden. Für die chemische Standardsynthese und Hausaufgaben ist dies sehr genau. Wenn Sie eine hochauflösende Massenspektrometrie (HRMS) durchführen und sich spezifische Isotope (wie Kohlenstoff-13) ansehen, müssen Sie die exakte Isotopenmasse manuell berücksichtigen.

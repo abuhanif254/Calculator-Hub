@@ -153,7 +153,7 @@ En esta exhaustiva guía SEO de más de 4000 palabras, deconstruiremos agresivam
 Para dominar la electrónica, debe comprender intuitivamente la relación entre las tres variables centrales de la Ley de Ohm. La analogía más común y precisa utilizada por los físicos es la **Analogía de la Tubería de Agua**.
 
 ### Voltaje ($V$): La Presión del Agua
-El **Voltaje**, conocido oficialmente como *Diferencia de Potencial Eléctrico*, es la fuerza que empuja los electrones a través de un circuito. 
+El **Voltaje**, conocido oficialmente como *Diferencia de Potencial Eléctrico*, es la fuerza que empuja los electrones a través de un circuito.
 - En nuestra analogía del agua, el Voltaje es la **presión del agua** en la tubería (o la altura de la torre de agua).
 - Cuanto mayor es el voltaje, más fuerte son empujados los electrones. 
 - **Unidad del SI:** Voltio ($\text{V}$). 
@@ -185,7 +185,7 @@ A partir de esta sola ecuación algebraica, podemos derivar las otras dos median
 
 ## 3. El Peligro de la Potencia y el Calentamiento de Joule ($P = VI$)
 
-Mientras que la Ley de Ohm ($V = IR$) dicta cómo se mueven los electrones, la **Ley de Watt** ($P = VI$) dicta las consecuencias termodinámicas de ese movimiento. 
+Mientras que la Ley de Ohm ($V = IR$) dicta cómo se mueven los electrones, la **Ley de Watt** ($P = VI$) dicta las consecuencias termodinámicas de ese movimiento.
 
 La **Potencia Eléctrica ($P$)** es la velocidad a la que la energía eléctrica se transforma en otra forma de energía, generalmente trabajo mecánico (motores), luz (LEDs) o más comúnmente, calor térmico. La unidad del SI para la Potencia es el **Vatio ($\text{W}$)**.
 
@@ -197,7 +197,7 @@ Al combinar algebraicamente la Ley de Ohm ($V = IR$) con la Ley de Watt ($P = VI
 2. **Potencia a través de Voltaje y Resistencia:** $P = \frac{V^2}{R}$
 
 ### La Regla Cuadrática del Calentamiento de Joule
-Mire detenidamente la ecuación $P = I^2 \cdot R$. Note que la Corriente ($I$) está al cuadrado. Esto significa que si usted duplica la corriente que fluye a través de un cable del circuito, la potencia disipada como calor puro no solo se duplica, se **cuadruplica**. 
+Mire detenidamente la ecuación $P = I^2 \cdot R$. Note que la Corriente ($I$) está al cuadrado. Esto significa que si usted duplica la corriente que fluye a través de un cable del circuito, la potencia disipada como calor puro no solo se duplica, se **cuadruplica**.
 ¡Si usted triplica la corriente, el calor se incrementa en un factor de nueve! 
 
 Esta es exactamente la razón por la cual las empresas de servicios eléctricos transmiten energía a través de largas distancias utilizando voltajes increíblemente altos (como $500,000\text{ Voltios}$). Al elevar el voltaje a niveles astronómicos, pueden transmitir la misma cantidad de Potencia total ($P = VI$) mientras mantienen la Corriente ($I$) extremadamente baja. La corriente baja minimiza completamente las pérdidas de calor por $I^2 R$ en las líneas de transmisión.
@@ -238,7 +238,7 @@ Utilice la navegación superior para seleccionar la variable desconocida que nec
 Omita la entrada manual de datos seleccionando de nuestros 8 preajustes integrados. ¿Necesita calcular la corriente máxima segura para un puerto USB estándar? Seleccione **USB 5V**, y la calculadora completará instantáneamente $V = 5.0\text{V}$ y mapeará dinámicamente las curvas de corriente.
 
 ### Paso 3: Monitoree el Medidor de Disipación de Calor
-Cada vez que calcule la Potencia ($P$), observe el medidor termodinámico interactivo. 
+Cada vez que calcule la Potencia ($P$), observe el medidor termodinámico interactivo.
 Las resistencias estándar para placas de pruebas solo están clasificadas para **$0.25\text{ Vatios}$** ($250\text{ mW}$). Si su potencia calculada excede los $0.25\text{W}$, el medidor se volverá Rojo, advirtiéndole que el componente físico se quemará y fallará. Usted debe entonces reducir el voltaje, aumentar la resistencia o comprar una resistencia físicamente más grande clasificada para un mayor vataje (ej., una resistencia de cerámica de $1\text{W}$ o $5\text{W}$).
 
 ---
@@ -257,11 +257,11 @@ Este diagrama de flujo lógico ilustra la técnica clásica de aislamiento de va
 
 ```mermaid
 flowchart LR
-    A["Fórmula Central:<br/>Voltaje = Corriente * Resistencia"] --> B{"¿Cuál es la<br/>Incógnita?"}
+A["Fórmula Central:<br/>Voltaje = Corriente * Resistencia"] --> B{"¿Cuál es la<br/>Incógnita?"}
     
-    B -->|"Se necesita Voltaje"| C["Multiplicar Corriente por Resistencia<br/>V = I * R"]
-    B -->|"Se necesita Corriente"| D["Dividir Voltaje entre Resistencia<br/>I = V / R"]
-    B -->|"Se necesita Resistencia"| E["Dividir Voltaje entre Corriente<br/>R = V / I"]
+B -->|"Se necesita Voltaje"| C["Multiplicar Corriente por Resistencia<br/>V = I * R"]
+B -->|"Se necesita Corriente"| D["Dividir Voltaje entre Resistencia<br/>I = V / R"]
+B -->|"Se necesita Resistencia"| E["Dividir Voltaje entre Corriente<br/>R = V / I"]
     
     C --> F(("Respuesta<br/>Final"))
     D --> F
@@ -298,7 +298,7 @@ xychart-beta
 ### Ejemplo 3: La Curva Cuadrática de Disipación de Potencia (Calentamiento de Joule)
 
 **El Escenario:**
-Utilizando exactamente la misma resistencia de $10\ \Omega$ y la misma fuente de alimentación del Ejemplo 2, ahora queremos rastrear el calor total generado (Potencia) a medida que aumentamos el dial de la Corriente de $1\text{A}$ a $5\text{A}$. 
+Utilizando exactamente la misma resistencia de $10\ \Omega$ y la misma fuente de alimentación del Ejemplo 2, ahora queremos rastrear el calor total generado (Potencia) a medida que aumentamos el dial de la Corriente de $1\text{A}$ a $5\text{A}$.
 
 **Las Matemáticas:**
 Usamos la fórmula de calentamiento de Joule $P = I^2 \cdot R$. ¡Note que la Corriente está al cuadrado!
@@ -311,7 +311,7 @@ Este gráfico de barras demuestra violentamente cómo la generación de calor se
 
 ```mermaid
 xychart-beta
-    title "Curva de Disipación de Potencia Térmica para una Resistencia de 10 Ohmios"
+title "Curva de Disipación de Potencia Térmica para una Resistencia de 10 Ohmios"
     x-axis "Flujo de Corriente (Amperios)" [1, 2, 3, 4, 5]
     y-axis "Potencia Térmica (Vatios)" 0 --> 250
     bar [10, 40, 90, 160, 250]
@@ -329,13 +329,13 @@ Este diagrama de flujo describe el procedimiento operativo estándar para utiliz
 
 ```mermaid
 flowchart TD
-    A["El Circuito está Muerto<br/>LEDs Apagados"] --> B{"Revisar Voltaje<br/>de la Fuente"}
+A["El Circuito está Muerto<br/>LEDs Apagados"] --> B{"Revisar Voltaje<br/>de la Fuente"}
     
     B -->|"El Voltaje es Cero"| C["Batería Defectuosa o<br/>Disyuntor Activado"]
     B -->|"El Voltaje Existe"| D{"Revisar Resistencia<br/>Total"}
     
-    D -->|"La Resistencia es Infinita"| E["Fallo por Circuito Abierto<br/>Cable o LED Roto"]
-    D -->|"La Resistencia es Cero"| F["Fallo por Cortocircuito<br/>Cables Tocándose Directamente"]
+D -->|"La Resistencia es Infinita"| E["Fallo por Circuito Abierto<br/>Cable o LED Roto"]
+D -->|"La Resistencia es Cero"| F["Fallo por Cortocircuito<br/>Cables Tocándose Directamente"]
     D -->|"La Resistencia es Normal"| G{"Medir Flujo<br/>de Corriente"}
     
     G -->|"La Corriente es Cero"| H["Componente Instalado<br/>Al Revés (Diodo)"]
@@ -369,7 +369,7 @@ gantt
     section Recolección de Datos
     Activar Fuente de Alimentación :done, 00:00:50, 5s
     Barrer Voltaje y Registrar Datos de Corriente :active, 00:00:55, 30s
-    Calcular Resistencia igual a Voltaje dividido por Corriente :milestone, 00:01:25, 5s
+Calcular Resistencia igual a Voltaje dividido por Corriente :milestone, 00:01:25, 5s
 ```
 
 ---

@@ -130,7 +130,7 @@ En esta guía de SEO exhaustiva de más de 4,000 palabras, deconstruiremos agres
 
 ## 1. ¿Qué es Exactamente la Resistencia Eléctrica? (La Definición Física)
 
-La **Resistencia Eléctrica**, medida científicamente en **Ohmios ($\Omega$)**, es la oposición fundamental al flujo de corriente eléctrica a través de un material conductor. 
+La **Resistencia Eléctrica**, medida científicamente en **Ohmios ($\Omega$)**, es la oposición fundamental al flujo de corriente eléctrica a través de un material conductor.
 
 Para entender la Resistencia de forma intuitiva, los ingenieros eléctricos confían universalmente en la **Analogía de la Tubería de Agua**:
 - Imagine una enorme torre de agua empujando el agua a través de una tubería. Si la tubería es enorme y ancha, el agua fluye fácilmente (Baja Resistencia).
@@ -144,7 +144,7 @@ La unidad oficial del SI para la Resistencia es el **Ohmio ($\Omega$)**, nombrad
 
 ## 2. Derivación de la Resistencia a partir de la Ley de Ohm ($R = V / I$)
 
-Georg Simon Ohm demostró que la Resistencia está bloqueada matemáticamente en una relación tripartita con el Voltaje ($V$) y la Corriente ($I$). 
+Georg Simon Ohm demostró que la Resistencia está bloqueada matemáticamente en una relación tripartita con el Voltaje ($V$) y la Corriente ($I$).
 
 $$R = \frac{V}{I}$$
 
@@ -312,10 +312,10 @@ Este diagrama de flujo de arriba hacia abajo clasifica estrictamente la matemát
 flowchart TD
     A["Necesita Resistencia<br/>Objetivo"] --> B{"¿Topología de<br/>Red Actual?"}
     
-    B -->|"Conectado extremo a extremo"| C["Circuito en Serie<br/>Resistencia Aumenta"]
+B -->|"Conectado extremo a extremo"| C["Circuito en Serie<br/>Resistencia Aumenta"]
     C --> D["Sumar directamente<br/>Req = R1 + R2 + R3"]
     
-    B -->|"Conectado lado a lado"| E["Circuito en Paralelo<br/>Resistencia Disminuye"]
+B -->|"Conectado lado a lado"| E["Circuito en Paralelo<br/>Resistencia Disminuye"]
     E --> F["Sumar recíprocos<br/>1/Req = 1/R1 + 1/R2"]
 ```
 
@@ -358,7 +358,7 @@ Si respeta la Resistencia y selecciona el tamaño de sus resistores con las clas
 
 Para garantizar que ha dominado estos conceptos, inicie nuestro Simulador interactivo e intente resolver estos desafíos finales:
 1. **El Bloqueador de LED:** Tiene una batería de $9\text{V}$ y un LED de $2\text{V}$. El LED solo puede sobrevivir a $0.02\text{A}$ de corriente. Calcule la Resistencia exacta ($R = V/I$) requerida para reducir los $7\text{V}$ restantes y limitar la corriente a $0.02\text{A}$.
-2. **El Calentador Ambiental:** Un calentador ambiental industrial de $2,000\text{W}$ funciona con $240\text{V}$. Calcule la resistencia exacta de su bobina calefactora interna usando $R = V^2 / P$. 
+2. **El Calentador Ambiental:** Un calentador ambiental industrial de $2,000\text{W}$ funciona con $240\text{V}$. Calcule la resistencia exacta de su bobina calefactora interna usando $R = V^2 / P$.
 3. **La División Paralela:** Conecta tres resistores idénticos de $300\ \Omega$ en paralelo. Calcule la resistencia total equivalente de la red.
 
 Confíe en esta calculadora para verificar dos veces sus cálculos, decodificar esas confusas bandas de colores y recuerde siempre: la Resistencia es la fricción que nos permite controlar el poder violento de la electricidad.

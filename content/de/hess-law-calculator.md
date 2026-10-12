@@ -132,18 +132,18 @@ Unser Rechner für den Hess'schen Wärmesatz ist sowohl für die Problemlösung 
 
 ### 5.1 Modus: Manuelle Reaktionsmanipulation
 
-1.  **Zielreaktion definieren:** Geben Sie eine Zielreaktionsvoreinstellung ein oder wählen Sie eine aus (z. B. Synthese von Kohlenmonoxid).
-2.  **Schritte untersuchen:** Laden Sie die verfügbaren Zwischenschrittreaktionen und deren Basis-$\Delta H_i$-Werte.
+1. **Zielreaktion definieren:** Geben Sie eine Zielreaktionsvoreinstellung ein oder wählen Sie eine aus (z. B. Synthese von Kohlenmonoxid).
+2. **Schritte untersuchen:** Laden Sie die verfügbaren Zwischenschrittreaktionen und deren Basis-$\Delta H_i$-Werte.
 3.  **Algebraische Regeln anwenden:**
-    *   Klicken Sie auf "Umkehren", um Edukte/Produkte zu tauschen und das Vorzeichen der Enthalpie umzudrehen.
-    *   Passen Sie den "Multiplikator" (z. B. $1, 2, 0.5$) an, um die Stöchiometrie und Enthalpie zu skalieren.
-4.  **Kürzung überprüfen:** Die Engine zeigt dynamisch die Summe Ihrer manipulierten Schritte an und hebt alle Zwischenprodukte hervor, die sich nicht herauskürzen ließen.
-5.  **Netto-Enthalpie berechnen:** Sobald die Summe perfekt mit dem Ziel übereinstimmt, zeigt das Werkzeug das endgültige $\Delta H_{\text{target}}$ an.
+*   Klicken Sie auf "Umkehren", um Edukte/Produkte zu tauschen und das Vorzeichen der Enthalpie umzudrehen.
+*   Passen Sie den "Multiplikator" (z. B. $1, 2, 0.5$) an, um die Stöchiometrie und Enthalpie zu skalieren.
+4. **Kürzung überprüfen:** Die Engine zeigt dynamisch die Summe Ihrer manipulierten Schritte an und hebt alle Zwischenprodukte hervor, die sich nicht herauskürzen ließen.
+5. **Netto-Enthalpie berechnen:** Sobald die Summe perfekt mit dem Ziel übereinstimmt, zeigt das Werkzeug das endgültige $\Delta H_{\text{target}}$ an.
 
 ### 5.2 Modus: Automatischer linearer Kombinationslöser
 
-1.  **System eingeben:** Geben Sie die Zielreaktion und alle verfügbaren Zwischenschrittgleichungen an.
-2.  **Löser ausführen:** Das Tool vektorisiert die Stöchiometrie in eine Matrix der linearen Algebra und berechnet automatisch die optimalen Kombinationsmultiplikatoren.
+1. **System eingeben:** Geben Sie die Zielreaktion und alle verfügbaren Zwischenschrittgleichungen an.
+2. **Löser ausführen:** Das Tool vektorisiert die Stöchiometrie in eine Matrix der linearen Algebra und berechnet automatisch die optimalen Kombinationsmultiplikatoren.
 
 ---
 
@@ -163,20 +163,20 @@ $$C(s) + \frac{1}{2}O_2(g) \to CO(g) \quad \Delta H = ?$$
 
 **Mathematische Ableitung:**
 
-1.  **Edukte ausrichten:** Wir brauchen $C(s)$ auf der linken Seite. Schritt 1 hat $C(s)$ auf der linken Seite.
+1. **Edukte ausrichten:** Wir brauchen $C(s)$ auf der linken Seite. Schritt 1 hat $C(s)$ auf der linken Seite.
     *   **Schritt 1 genau so belassen:**
     *   $C(s) + O_2(g) \to CO_2(g) \quad \Delta H = -393.5\text{ kJ}$
-2.  **Produkte ausrichten:** Wir brauchen $CO(g)$ auf der rechten Seite. Schritt 2 hat $CO(g)$ auf der linken Seite.
+2. **Produkte ausrichten:** Wir brauchen $CO(g)$ auf der rechten Seite. Schritt 2 hat $CO(g)$ auf der linken Seite.
     *   **Schritt 2 umkehren (Vorzeichen von $\Delta H$ umdrehen):**
     *   $CO_2(g) \to CO(g) + \frac{1}{2}O_2(g) \quad \Delta H = +283.0\text{ kJ}$
 3.  **Gleichungen summieren und kürzen:**
     *   Linke Seite: $C(s) + O_2(g) + CO_2(g)$
     *   Rechte Seite: $CO_2(g) + CO(g) + \frac{1}{2}O_2(g)$
     *   Das Zwischenprodukt $CO_2(g)$ kürzt sich vollständig weg.
-    *   Das $\frac{1}{2}O_2(g)$ auf der rechten Seite kürzt die Hälfte des $O_2(g)$ auf der linken Seite.
+*   Das $\frac{1}{2}O_2(g)$ auf der rechten Seite kürzt die Hälfte des $O_2(g)$ auf der linken Seite.
     *   Netto: $C(s) + \frac{1}{2}O_2(g) \to CO(g)$ (Stimmt mit Ziel überein!)
 4.  **Enthalpien summieren:**
-    $$ \Delta H_{\text{target}} = -393.5\text{ kJ} + 283.0\text{ kJ} = -110.5\text{ kJ} $$
+$$ \Delta H_{\text{target}} = -393.5\text{ kJ} + 283.0\text{ kJ} = -110.5\text{ kJ} $$
 
 **Fazit:** Die Synthese von Kohlenmonoxid ist exotherm und setzt $-110.5\text{ kJ/mol}$ frei.
 
@@ -186,23 +186,21 @@ $$C(s) + \frac{1}{2}O_2(g) \to CO(g) \quad \Delta H = ?$$
 $$C(s) + 2H_2(g) \to CH_4(g) \quad \Delta H = ?$$
 
 **Verfügbare Schrittreaktionen:**
-1.  $C(s) + O_2(g) \to CO_2(g) \quad \Delta H_1 = -393.5\text{ kJ}$
 2.  $H_2(g) + \frac{1}{2}O_2(g) \to H_2O(l) \quad \Delta H_2 = -285.8\text{ kJ}$
-3.  $CH_4(g) + 2O_2(g) \to CO_2(g) + 2H_2O(l) \quad \Delta H_3 = -890.3\text{ kJ}$
+3. $CH_4(g) + 2O_2(g) \to CO_2(g) + 2H_2O(l) \quad \Delta H_3 = -890.3\text{ kJ}$
 
 **Mathematische Ableitung:**
 
 1.  **$C(s)$ ausrichten:** Schritt 1 unverändert lassen.
-    *   $C(s) + O_2(g) \to CO_2(g) \quad \Delta H = -393.5\text{ kJ}$
 2.  **$H_2(g)$ ausrichten:** Wir brauchen $2H_2$. Schritt 2 hat $1H_2$.
     *   **Schritt 2 mit 2 multiplizieren:**
-    *   $2H_2(g) + 1O_2(g) \to 2H_2O(l) \quad \Delta H = 2 \times (-285.8) = -571.6\text{ kJ}$
-3.  **$CH_4(g)$ ausrichten:** Wir brauchen $CH_4$ auf der rechten Seite. Schritt 3 hat es auf der linken Seite.
+*   $2H_2(g) + 1O_2(g) \to 2H_2O(l) \quad \Delta H = 2 \times (-285.8) = -571.6\text{ kJ}$
+3. **$CH_4(g)$ ausrichten:** Wir brauchen $CH_4$ auf der rechten Seite. Schritt 3 hat es auf der linken Seite.
     *   **Schritt 3 umkehren (Vorzeichen umdrehen):**
     *   $CO_2(g) + 2H_2O(l) \to CH_4(g) + 2O_2(g) \quad \Delta H = +890.3\text{ kJ}$
 4.  **Summieren und kürzen:**
     *   Zwischenprodukte $CO_2(g)$ und $2H_2O(l)$ kürzen sich perfekt heraus.
-    *   Das $2O_2(g)$ auf der rechten Seite kürzt das $1O_2 + 1O_2 = 2O_2$ auf der linken Seite perfekt heraus.
+*   Das $2O_2(g)$ auf der rechten Seite kürzt das $1O_2 + 1O_2 = 2O_2$ auf der linken Seite perfekt heraus.
 5.  **Enthalpien summieren:**
     $$ \Delta H_{\text{target}} = -393.5 - 571.6 + 890.3 = -74.8\text{ kJ} $$
 
@@ -212,9 +210,9 @@ $$C(s) + 2H_2(g) \to CH_4(g) \quad \Delta H = ?$$
 
 ```mermaid
 flowchart TD
-    A["Anfangszustand: C(s) + 2H2(g) + 2O2(g)"] -->|Verbrennung C: ΔH = -393.5 kJ| B["Zwischenprodukt 1: CO2(g) + 2H2(g) + O2(g)"]
+A["Anfangszustand: C(s) + 2H2(g) + 2O2(g)"] -->|Verbrennung C: ΔH = -393.5 kJ| B["Zwischenprodukt 1: CO2(g) + 2H2(g) + O2(g)"]
     B -->|Verbrennung H2: ΔH = -571.6 kJ| C["Niedrigster Zustand: CO2(g) + 2H2O(l)"]
-    C -->|Umgekehrte CH4-Verbrennung: ΔH = +890.3 kJ| D["Endzustand: CH4(g) + 2O2(g)"]
+C -->|Umgekehrte CH4-Verbrennung: ΔH = +890.3 kJ| D["Endzustand: CH4(g) + 2O2(g)"]
     A -.->|Netto-Zielreaktion: ΔH = -74.8 kJ| D
     style C fill:#c62828,stroke:#b71c1c,stroke-width:2px,color:white
     style A fill:#1565c0,stroke:#0d47a1,stroke-width:2px,color:white
@@ -254,12 +252,12 @@ $$H_2(g) + O_2(g) \to H_2O_2(l) \quad \Delta H = ?$$
 
 1.  **$H_2(g)$ ausrichten:** Schritt 1 unverändert lassen.
     *   $H_2(g) + \frac{1}{2}O_2(g) \to H_2O(l) \quad \Delta H = -285.8\text{ kJ}$
-2.  **$H_2O_2(l)$ ausrichten:** Wir brauchen $1H_2O_2$ auf der rechten Seite. Schritt 2 hat $2H_2O_2$ auf der linken Seite.
+2. **$H_2O_2(l)$ ausrichten:** Wir brauchen $1H_2O_2$ auf der rechten Seite. Schritt 2 hat $2H_2O_2$ auf der linken Seite.
     *   **Schritt 2 umkehren UND durch 2 dividieren:**
-    *   $H_2O(l) + \frac{1}{2}O_2(g) \to H_2O_2(l) \quad \Delta H = +196.0 / 2 = +98.0\text{ kJ}$
+*   $H_2O(l) + \frac{1}{2}O_2(g) \to H_2O_2(l) \quad \Delta H = +196.0 / 2 = +98.0\text{ kJ}$
 3.  **Summieren und kürzen:**
     *   Die Zwischenprodukte $H_2O(l)$ kürzen sich perfekt heraus.
-    *   Das $\frac{1}{2}O_2$ aus Schritt 1 und das $\frac{1}{2}O_2$ aus dem umgekehrten Schritt 2 addieren sich zu genau $1 O_2$ auf der linken Seite!
+*   Das $\frac{1}{2}O_2$ aus Schritt 1 und das $\frac{1}{2}O_2$ aus dem umgekehrten Schritt 2 addieren sich zu genau $1 O_2$ auf der linken Seite!
 4.  **Enthalpien summieren:**
     $$ \Delta H_{\text{target}} = -285.8 + 98.0 = -187.8\text{ kJ} $$
 
@@ -277,15 +275,15 @@ $$4NH_3(g) + 5O_2(g) \to 4NO(g) + 6H_2O(g) \quad \Delta H = ?$$
 
 **Mathematische Ableitung:**
 
-1.  **$NH_3(g)$ ausrichten:** Wir brauchen $4NH_3$ auf der linken Seite. Schritt 1 hat $2NH_3$ auf der rechten Seite.
+1. **$NH_3(g)$ ausrichten:** Wir brauchen $4NH_3$ auf der linken Seite. Schritt 1 hat $2NH_3$ auf der rechten Seite.
     *   **Schritt 1 umkehren und mit 2 multiplizieren:**
-    *   $4NH_3(g) \to 2N_2(g) + 6H_2(g) \quad \Delta H = 2 \times (+91.8) = +183.6\text{ kJ}$
-2.  **$NO(g)$ ausrichten:** Wir brauchen $4NO$ auf der rechten Seite. Schritt 2 hat $2NO$ auf der rechten Seite.
+*   $4NH_3(g) \to 2N_2(g) + 6H_2(g) \quad \Delta H = 2 \times (+91.8) = +183.6\text{ kJ}$
+2. **$NO(g)$ ausrichten:** Wir brauchen $4NO$ auf der rechten Seite. Schritt 2 hat $2NO$ auf der rechten Seite.
     *   **Schritt 2 mit 2 multiplizieren:**
-    *   $2N_2(g) + 2O_2(g) \to 4NO(g) \quad \Delta H = 2 \times (180.6) = +361.2\text{ kJ}$
-3.  **$H_2O(g)$ ausrichten:** Wir brauchen $6H_2O$ auf der rechten Seite. Schritt 3 hat $2H_2O$ auf der rechten Seite.
+*   $2N_2(g) + 2O_2(g) \to 4NO(g) \quad \Delta H = 2 \times (180.6) = +361.2\text{ kJ}$
+3. **$H_2O(g)$ ausrichten:** Wir brauchen $6H_2O$ auf der rechten Seite. Schritt 3 hat $2H_2O$ auf der rechten Seite.
     *   **Schritt 3 mit 3 multiplizieren:**
-    *   $6H_2(g) + 3O_2(g) \to 6H_2O(g) \quad \Delta H = 3 \times (-483.6) = -1450.8\text{ kJ}$
+*   $6H_2(g) + 3O_2(g) \to 6H_2O(g) \quad \Delta H = 3 \times (-483.6) = -1450.8\text{ kJ}$
 4.  **Summieren und kürzen:**
     *   Die Zwischenprodukte $2N_2(g)$ kürzen sich heraus.
     *   Die Zwischenprodukte $6H_2(g)$ kürzen sich heraus.

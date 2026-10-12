@@ -30,6 +30,8 @@ const inter = Inter({
   weight: ['400', '500', '600', '700'],
 });
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -116,7 +118,6 @@ export default async function RootLayout({
 
   // Enable static rendering
   setRequestLocale(locale);
-  const messages = await getMessages();
 
   // Retrieve AdSense Client ID
   const adClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
@@ -163,7 +164,7 @@ export default async function RootLayout({
 
         {/* Skip to Content — WCAG 2.4.1 Level A */}
         <a href="#global-content" className="skip-to-content">Skip to main content</a>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={{}}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AuthProvider>
               <SettingsProvider initialLocale={locale}>

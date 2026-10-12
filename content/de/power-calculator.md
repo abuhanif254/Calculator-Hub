@@ -148,7 +148,7 @@ In diesem ausführlichen, 4.000+ Wörter umfassenden SEO-Leitfaden werden wir di
 
 ## 1. Leistung definieren: Die Geschwindigkeit der Arbeit
 
-In der klassischen Physik ist **Leistung** (Power) definiert als die zeitliche Ableitung der Arbeit. Sie misst genau, wie schnell Energie übertragen, verbraucht oder erzeugt wird. 
+In der klassischen Physik ist **Leistung** (Power) definiert als die zeitliche Ableitung der Arbeit. Sie misst genau, wie schnell Energie übertragen, verbraucht oder erzeugt wird.
 
 $$ P = \frac{W}{t} = \frac{\Delta E}{\Delta t} $$
 
@@ -207,7 +207,7 @@ Ein moderner $200\text{ PS}$ Automotor ist technisch in der Lage, gleichzeitig d
 
 ## 4. Umfassender Benutzerleitfaden: Maximierung des Rechners
 
-Unser interaktiver Leistungsrechner fungiert als universelle Brücke über alle Ingenieursbereiche hinweg. 
+Unser interaktiver Leistungsrechner fungiert als universelle Brücke über alle Ingenieursbereiche hinweg.
 
 ### Schritt 1: Wählen Sie Ihr Berechnungsziel
 Nutzen Sie die obere Navigation, um Ihre bekannten Variablen auszuwählen:
@@ -236,7 +236,7 @@ Um die Dynamik der Leistungserzeugung vollständig zu erfassen, werden wir fünf
 Ein Ingenieurstudent muss seine bekannten Variablen schnell durch die richtige Leistungsformel leiten, abhängig von seiner Prüfungsfrage (Thermodynamisch, Kinematisch oder Elektrisch).
 
 **2D-Visualisierung:**
-Dieses Flussdiagramm schlüsselt die drei massiven Säulen der Leistungsberechnung visuell auf. 
+Dieses Flussdiagramm schlüsselt die drei massiven Säulen der Leistungsberechnung visuell auf.
 
 ```mermaid
 flowchart LR
@@ -331,7 +331,7 @@ flowchart TD
 ### Beispiel 5: Leistungsabgabe eines Profi-Radfahrers (Sprint vs. Ausdauer Gantt)
 
 **Das Szenario:**
-Lassen Sie uns die biologische Leistungsabgabe eines professionellen Tour-de-France-Radfahrers analysieren. Die menschliche Physiologie verfügt über zwei verschiedene Energiesysteme: Anaerob (massive, kurzfristige Leistung ohne Sauerstoff) und Aerob (anhaltende, langfristige Leistung unter Verwendung von Sauerstoff). 
+Lassen Sie uns die biologische Leistungsabgabe eines professionellen Tour-de-France-Radfahrers analysieren. Die menschliche Physiologie verfügt über zwei verschiedene Energiesysteme: Anaerob (massive, kurzfristige Leistung ohne Sauerstoff) und Aerob (anhaltende, langfristige Leistung unter Verwendung von Sauerstoff).
 
 Ein Profi-Radfahrer kann während eines finalen Zielsprints schwindelerregende $1.500\text{ Watt}$ ($2\text{ PS}$) erzeugen. Er kann diese Leistung jedoch nur etwa $15\text{ Sekunden}$ aufrechterhalten, bevor seine Muskeln mit Milchsäure überflutet werden. Bei einem mehrstündigen Berganstieg muss er auf seine aerobe Schwelle von etwa $400\text{ Watt}$ zurückfallen.
 
@@ -356,11 +356,11 @@ gantt
 ## 6. Häufig gestellte Fragen (FAQ) Deep Dive
 
 **F: Was ist eine Kilowattstunde (kWh) auf meiner Stromrechnung?**
-**A:** Dies ist für Schüler oft sehr verwirrend. Ein Kilowatt ($\text{kW}$) ist eine Einheit der *Leistung*. Aber eine Kilowattstunde ($\text{kWh}$) ist eine Einheit der *Energie*! Sie entspricht exakt $1.000\text{ Watt}$ Leistung, die kontinuierlich für $1\text{ Stunde}$ ($3.600\text{ Sekunden}$) fließt. 
+**A:** Dies ist für Schüler oft sehr verwirrend. Ein Kilowatt ($\text{kW}$) ist eine Einheit der *Leistung*. Aber eine Kilowattstunde ($\text{kWh}$) ist eine Einheit der *Energie*! Sie entspricht exakt $1.000\text{ Watt}$ Leistung, die kontinuierlich für $1\text{ Stunde}$ ($3.600\text{ Sekunden}$) fließt.
 $1.000\text{ W} \times 3.600\text{ s} = 3.600.000\text{ Joule}$. Ihr Stromversorger stellt Ihnen die Gesamtenergie (Joule) in Rechnung, nicht die Leistung (Watt)!
 
 **F: Ist Drehmoment dasselbe wie Pferdestärke?**
-**A:** Nein. Drehmoment ist eine Rotationskraft (ein Drehen). Pferdestärke ist, wie *schnell* Sie dieses Drehen anwenden können. 
+**A:** Nein. Drehmoment ist eine Rotationskraft (ein Drehen). Pferdestärke ist, wie *schnell* Sie dieses Drehen anwenden können.
 Die automobile Formel lautet: $\text{Pferdestärke (hp)} = (\text{Drehmoment} \times \text{U/min}) / 5252$.
 Ein Traktor hat ein massives Drehmoment, aber eine niedrige Drehzahl, daher hat er wenig PS. Ein Formel-1-Auto hat ein geringes Drehmoment, dreht aber mit $15.000\text{ U/min}$ und erzeugt so massive Pferdestärken!
 

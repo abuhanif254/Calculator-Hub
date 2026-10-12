@@ -1,9 +1,10 @@
-import React from "react";
+import React, { cache } from "react";
 import { fetchPostBySlugRest, fetchUserRest, RestPost } from "../../../../lib/firebase-rest";
 import { Link } from "../../../../i18n/routing";
 import { ArrowLeft, User as UserIcon, Home, ChevronRight, Clock, Share2, MoreHorizontal } from "lucide-react";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { setRequestLocale } from "next-intl/server";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -25,6 +26,8 @@ import { RelatedPosts } from "./RelatedPosts";
 import { CategoryPill } from "@/lib/categories";
 import { ViewCounter } from "./ViewCounter";
 
+export const revalidate = 86400; // Cache discussion pages at the edge for 24 hours
+
 interface UserProfile {
   displayName: string | null;
   photoURL: string | null;
@@ -32,7 +35,7 @@ interface UserProfile {
   badges?: string[];
 }
 
-async function getPost(slug: string): Promise<{ post: RestPost; author: UserProfile | null } | null> {
+const getPost = cache(async (slug: string): Promise<{ post: RestPost; author: UserProfile | null } | null> => {
   const post = await fetchPostBySlugRest(slug);
   if (!post) return null;
   
@@ -42,7 +45,7 @@ async function getPost(slug: string): Promise<{ post: RestPost; author: UserProf
   }
   
   return { post, author };
-}
+});
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string, slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -81,6 +84,7 @@ function timeAgo(timestamp: number) {
 
 export default async function PostPage({ params }: { params: Promise<{ locale: string, slug: string }> }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const data = await getPost(slug);
 
   if (!data) {

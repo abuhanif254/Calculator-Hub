@@ -244,7 +244,7 @@ flowchart LR
     
     B -->|"Habe Spannung und Widerstand"| C["Nutze Ohmsches Gesetz<br/>I = V / R"]
     B -->|"Habe Leistung und Spannung"| D["Nutze Wattsches Gesetz<br/>I = P / V"]
-    B -->|"Habe Leistung und Widerstand"| E["Nutze abgeleitetes Gesetz<br/>I = sqrt(P / R)"]
+B -->|"Habe Leistung und Widerstand"| E["Nutze abgeleitetes Gesetz<br/>I = sqrt(P / R)"]
     
     C --> F(("Berechne<br/>Ampere"))
     D --> F
@@ -312,7 +312,7 @@ Dieses Top-Down-Flussdiagramm kategorisiert strikt die Mathematik, die zur ordnu
 
 ```mermaid
 flowchart TD
-    A["Berechne Gesamt-<br/>Laststrom"] --> B["Multipliziere mit 1,25<br/>Sicherheitsfaktor"]
+A["Berechne Gesamt-<br/>Laststrom"] --> B["Multipliziere mit 1,25<br/>Sicherheitsfaktor"]
     
     B --> C{"Wähle Standard-<br/>Schaltergröße"}
     

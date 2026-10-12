@@ -126,7 +126,7 @@ faqs:
 
 Welcome to the ultimate **Voltage Calculator** and comprehensive physics guide. Whether you are an embedded systems engineer attempting to step down a noisy $24\text{V}$ industrial supply for a sensitive $5\text{V}$ microcontroller, a master electrician verifying residential $120\text{V}$ grid drop, or a hobbyist checking the state of charge on a LiPo battery, this interactive suite provides the exact mathematical derivations you require.
 
-Voltage is the fundamental driving force of all electronics. Without Voltage, electrons do not move, current does not flow, and power is never transferred. 
+Voltage is the fundamental driving force of all electronics. Without Voltage, electrons do not move, current does not flow, and power is never transferred.
 
 In this exhaustive 4,000+ word SEO guide, we will aggressively deconstruct the physics of Electric Potential Difference, explore the mathematical limits of Ohm's Law ($V = IR$) and Watt's Law ($V = P/I$), decode the international safety standards for High Voltage (HV), and analyze five detailed electrical scenarios visually represented by interactive, parser-safe Mermaid.js diagrams.
 
@@ -134,7 +134,7 @@ In this exhaustive 4,000+ word SEO guide, we will aggressively deconstruct the p
 
 ## 1. What Exactly is Voltage? (The Physics Definition)
 
-**Voltage**, scientifically referred to as *Electric Potential Difference* or *Electromotive Force (EMF)*, is the fundamental "pressure" that pushes electric charge through a conductive loop. 
+**Voltage**, scientifically referred to as *Electric Potential Difference* or *Electromotive Force (EMF)*, is the fundamental "pressure" that pushes electric charge through a conductive loop.
 
 To intuitively understand Voltage, electrical engineers universally rely on the **Water Pipe Analogy**:
 - Imagine a massive water tower. The physical height of the water tower dictates the gravitational water pressure at the bottom.
@@ -148,7 +148,7 @@ The official SI unit for Voltage is the **Volt ($\text{V}$)**, named after the p
 
 ## 2. Deriving Voltage from Ohm's Law ($V = I \cdot R$)
 
-Georg Simon Ohm proved that Voltage is mathematically locked in a three-way relationship with Current ($I$) and Resistance ($R$). 
+Georg Simon Ohm proved that Voltage is mathematically locked in a three-way relationship with Current ($I$) and Resistance ($R$).
 
 $$V = I \cdot R$$
 
@@ -342,13 +342,13 @@ gantt
 
 ## 8. Conclusion and Engineering Challenge
 
-Mastering Voltage is the first mandatory step toward electrical engineering dominance. Every battery you use, every USB cable you plug in, and every wall outlet you interact with operates on the strict, unforgiving mathematical laws of Electric Potential Difference. 
+Mastering Voltage is the first mandatory step toward electrical engineering dominance. Every battery you use, every USB cable you plug in, and every wall outlet you interact with operates on the strict, unforgiving mathematical laws of Electric Potential Difference.
 
 If you respect the Voltage and calculate your parameters accurately, your circuits will run perfectly cold and efficient. If you underestimate the Voltage, you risk blown capacitors, melted silicon, and catastrophic thermal runaway.
 
 To guarantee you have mastered these concepts, boot up our interactive Simulator and attempt to solve these final challenges:
 1. **The Long Extension Cord:** A contractor uses a massive $300\text{-foot}$ extension cord with a total internal wire resistance of $4\ \Omega$. His circular saw pulls a heavy $15\text{A}$ of current. Calculate the exact Voltage Drop lost to the cord ($V = I \cdot R$). Will his saw have enough voltage left from the $120\text{V}$ outlet to run?
-2. **The Space Heater:** An industrial $4,600\text{W}$ space heater has a heating coil with exactly $50\ \Omega$ of resistance. Calculate the required Voltage to power it using $V = \sqrt{P \cdot R}$. 
+2. **The Space Heater:** An industrial $4,600\text{W}$ space heater has a heating coil with exactly $50\ \Omega$ of resistance. Calculate the required Voltage to power it using $V = \sqrt{P \cdot R}$.
 3. **The Microcontroller:** You have a $5\text{V}$ Arduino microcontroller that consumes $0.25\text{W}$ of power. Calculate exactly how much Current ($I$) it is drawing from the USB port.
 
 Rely on this calculator to double-check your math, respect the International Safety limits, and always remember: Voltage is the pressure that brings your circuits to life.

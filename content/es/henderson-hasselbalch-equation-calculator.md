@@ -128,8 +128,8 @@ Esto se conoce como el **Punto de Semi-Equivalencia** en una titulación. A este
 Si bien un tampón resiste el cambio de pH, no puede resistir indefinidamente. La **Capacidad del Tampón ($\beta$)** es una medida cuantitativa de cuánto ácido fuerte o base fuerte puede absorber un tampón antes de que su pH cambie significativamente (generalmente en 1 unidad).
 
 La capacidad del tampón depende de dos factores críticos:
-1.  **Concentración Absoluta ($C_{\text{total}}$):** Un tampón que contiene $1.0\text{ M}$ de HA y $1.0\text{ M}$ de $\text{A}^-$ tiene diez veces la capacidad de un tampón que contiene $0.1\text{ M}$ de HA y $0.1\text{ M}$ de $\text{A}^-$, a pesar de que su pH es idéntico. Más moléculas = más poder de neutralización.
-2.  **La Relación:** La capacidad del tampón se maximiza cuando $[\text{A}^-] = [\text{HA}]$ (es decir, cuando $\text{pH} = \text{p}K_a$).
+1. **Concentración Absoluta ($C_{\text{total}}$):** Un tampón que contiene $1.0\text{ M}$ de HA y $1.0\text{ M}$ de $\text{A}^-$ tiene diez veces la capacidad de un tampón que contiene $0.1\text{ M}$ de HA y $0.1\text{ M}$ de $\text{A}^-$, a pesar de que su pH es idéntico. Más moléculas = más poder de neutralización.
+2. **La Relación:** La capacidad del tampón se maximiza cuando $[\text{A}^-] = [\text{HA}]$ (es decir, cuando $\text{pH} = \text{p}K_a$).
 
 Como regla general en química analítica, un tampón solo se considera efectivo dentro de **$\pm 1\text{ unidad de pH}$ de su $\text{p}K_a$**.
 - Si $\text{pH} = \text{p}K_a - 1$, la relación $[\text{A}^-]/[\text{HA}]$ es $1:10$. El tampón tiene muy poca capacidad para absorber más ácido.
@@ -139,9 +139,9 @@ Como regla general en química analítica, un tampón solo se considera efectivo
 
 La ecuación de Henderson-Hasselbalch es una *aproximación*. Supone que las concentraciones de equilibrio de $[\text{HA}]$ y $[\text{A}^-]$ son exactamente iguales a las cantidades iniciales que usted colocó en el vaso de precipitados.
 Esta suposición comienza a fallar gravemente bajo tres condiciones:
-1.  **Dilución Extrema:** Si el tampón se diluye por debajo de $1 \times 10^{-4}\text{ M}$, la autoionización del agua ($[\text{H}^+] = 10^{-7}\text{ M}$) comienza a interferir significativamente.
-2.  **Ácidos/Bases Fuertes:** La ecuación no se puede utilizar para ácidos fuertes como $\text{HCl}$ o $\text{HNO}_3$, ya que sus valores de $K_a$ tienden al infinito y no queda $[\text{HA}]$ intacto en la solución.
-3.  **Relaciones Extremas:** Si la relación de $[\text{A}^-]$ a $[\text{HA}]$ supera $100:1$ o cae por debajo de $1:100$, la aproximación falla ya que el efecto amortiguador del agua toma el control.
+1. **Dilución Extrema:** Si el tampón se diluye por debajo de $1 \times 10^{-4}\text{ M}$, la autoionización del agua ($[\text{H}^+] = 10^{-7}\text{ M}$) comienza a interferir significativamente.
+2. **Ácidos/Bases Fuertes:** La ecuación no se puede utilizar para ácidos fuertes como $\text{HCl}$ o $\text{HNO}_3$, ya que sus valores de $K_a$ tienden al infinito y no queda $[\text{HA}]$ intacto en la solución.
+3. **Relaciones Extremas:** Si la relación de $[\text{A}^-]$ a $[\text{HA}]$ supera $100:1$ o cae por debajo de $1:100$, la aproximación falla ya que el efecto amortiguador del agua toma el control.
 
 ---
 
@@ -153,15 +153,15 @@ Nuestra calculadora actúa como un laboratorio analítico digital, ofreciendo re
 
 Si está mezclando una cantidad conocida de ácido débil y base conjugada:
 1.  **Seleccione el Modo:** Elija "Calcular pH del Tampón".
-2.  **Ingrese los Parámetros:** Ingrese el $\text{p}K_a$ de su ácido, la concentración de la base conjugada $[\text{A}^-]$, y la concentración del ácido débil $[\text{HA}]$.
-3.  **Lea el Resultado:** La calculadora proporciona inmediatamente el pH final de la mezcla, la relación y evalúa si el tampón se encuentra dentro del rango de capacidad ideal de $\pm 1$.
+2. **Ingrese los Parámetros:** Ingrese el $\text{p}K_a$ de su ácido, la concentración de la base conjugada $[\text{A}^-]$, y la concentración del ácido débil $[\text{HA}]$.
+3. **Lea el Resultado:** La calculadora proporciona inmediatamente el pH final de la mezcla, la relación y evalúa si el tampón se encuentra dentro del rango de capacidad ideal de $\pm 1$.
 
 ### 5.2 Diseño de Tampón de Laboratorio (Apuntando a un pH)
 
 Si su protocolo de laboratorio requiere un tampón a un pH específico (ej. pH 7.40 para células biológicas):
-1.  **Seleccione el Modo:** Elija "Calcular Relación $[\text{A}^-]/[\text{HA}]$".
-2.  **Ingrese los Parámetros:** Ingrese su pH objetivo y el $\text{p}K_a$ de su agente amortiguador elegido (ej. $7.20$ para Fosfato).
-3.  **Ejecutar:** La herramienta utiliza la función del logaritmo inverso $10^{(\text{pH} - \text{p}K_a)}$ para indicarle exactamente cuántos moles de base conjugada necesita por cada mol de ácido débil. 
+1. **Seleccione el Modo:** Elija "Calcular Relación $[\text{A}^-]/[\text{HA}]$".
+2. **Ingrese los Parámetros:** Ingrese su pH objetivo y el $\text{p}K_a$ de su agente amortiguador elegido (ej. $7.20$ para Fosfato).
+3. **Ejecutar:** La herramienta utiliza la función del logaritmo inverso $10^{(\text{pH} - \text{p}K_a)}$ para indicarle exactamente cuántos moles de base conjugada necesita por cada mol de ácido débil.
 
 ---
 
@@ -181,7 +181,6 @@ Un bioquímico prepara una solución tampón que contiene $0.25\text{ M}$ de Ác
     Base Conjugada $[\text{A}^-] = 0.15\text{ M}$
     $\text{p}K_a$ del Ácido $= 4.76$
 2.  **Aplicar Henderson-Hasselbalch:**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 4.76 + \log_{10}\left(\frac{0.15}{0.25}\right) $$
     $$ \text{pH} = 4.76 + \log_{10}(0.60) $$
     $$ \text{pH} = 4.76 - 0.222 $$
@@ -200,7 +199,7 @@ El plasma sanguíneo humano está estrictamente amortiguado a un pH de $7.40$. E
     $\text{pH}$ Objetivo $= 7.40$
     $\text{p}K_a$ del Ácido $= 6.10$
 2.  **Aislar la Relación Logarítmica:**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
+$$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
     $$ 7.40 = 6.10 + \log_{10}(\text{Relación}) $$
     $$ 1.30 = \log_{10}(\text{Relación}) $$
 3.  **Ejecutar el Logaritmo Inverso:**
@@ -212,7 +211,7 @@ El plasma sanguíneo humano está estrictamente amortiguado a un pH de $7.40$. E
 
 ```mermaid
 flowchart LR
-    A["pH de la Sangre = 7.40"] -->|Restar pKa 6.10| B["Logaritmo de la Relación = +1.30"]
+A["pH de la Sangre = 7.40"] -->|Restar pKa 6.10| B["Logaritmo de la Relación = +1.30"]
     B -->|Logaritmo Inverso 10^1.3| C["Relación [Base]:[Ácido] = 20:1"]
     C -->|Alto Exceso de Base| D["Resistencia Masiva al Ácido Láctico"]
     style C fill:#2E7D32,stroke:#1B5E20,stroke-width:2px,color:white
@@ -228,7 +227,7 @@ Un laboratorio necesita diseñar una solución de Solución Salina Tamponada con
 **Derivación Matemática:**
 
 1.  **Calcular la Relación Requerida:**
-    $$ \text{pH} - \text{p}K_a = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
+$$ \text{pH} - \text{p}K_a = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ 7.00 - 7.20 = -0.20 $$
     $$ \text{Relación} = 10^{-0.20} = 0.631 $$
 2.  **Calcular la Concentración de Base Conjugada Requerida:**
@@ -241,7 +240,7 @@ Un laboratorio necesita diseñar una solución de Solución Salina Tamponada con
 ### Ejemplo 4: El Ataque Ácido (Neutralización de Tampón)
 
 **Escenario:**
-Tomemos $1.0\text{ Litro}$ de un tampón perfecto que contiene $0.10\text{ M}$ de ácido débil genérico ($\text{HA}$, $\text{p}K_a = 5.00$) y $0.10\text{ M}$ de base conjugada ($\text{A}^-$). El pH inicial es 5.00. 
+Tomemos $1.0\text{ Litro}$ de un tampón perfecto que contiene $0.10\text{ M}$ de ácido débil genérico ($\text{HA}$, $\text{p}K_a = 5.00$) y $0.10\text{ M}$ de base conjugada ($\text{A}^-$). El pH inicial es 5.00.
 Luego añadimos agresivamente $0.02\text{ Moles}$ de ácido clorhídrico puro ($\text{HCl}$, un ácido fuerte). ¿Cuál es el nuevo pH?
 
 **Derivación Matemática:**
@@ -250,11 +249,10 @@ Luego añadimos agresivamente $0.02\text{ Moles}$ de ácido clorhídrico puro ($
     $[\text{HA}] = 0.10\text{ mol}$
     $[\text{A}^-] = 0.10\text{ mol}$
 2.  **Neutralización Estequiométrica:**
-    Los $0.02\text{ mol}$ de ácido fuerte ($\text{H}^+$) atacarán completamente la base conjugada ($\text{A}^-$), convirtiéndola en ácido débil ($\text{HA}$).
+Los $0.02\text{ mol}$ de ácido fuerte ($\text{H}^+$) atacarán completamente la base conjugada ($\text{A}^-$), convirtiéndola en ácido débil ($\text{HA}$).
     **Nuevo $[\text{A}^-]$:** $0.10 - 0.02 = 0.08\text{ mol}$
     **Nuevo $[\text{HA}]$:** $0.10 + 0.02 = 0.12\text{ mol}$
 3.  **Aplicar Henderson-Hasselbalch al Nuevo Estado:**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 5.00 + \log_{10}\left(\frac{0.08}{0.12}\right) $$
     $$ \text{pH} = 5.00 + \log_{10}(0.667) $$
     $$ \text{pH} = 5.00 - 0.176 = 4.82 $$

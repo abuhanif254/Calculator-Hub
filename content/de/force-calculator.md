@@ -368,7 +368,7 @@ gantt
     Max Q (Aerodynamischer Widerstand kulminiert) :crit, id2, after id1, 30s
     section Später Aufstieg
     Rapider Masseverlust (Verbrannter Treibstoff) : id3, after id2, 60s
-    Spitzenkraft vor Stufentrennung (Hohe Beschleunigung 4g) :milestone, id4, after id3, 0s
+Spitzenkraft vor Stufentrennung (Hohe Beschleunigung 4g) :milestone, id4, after id3, 0s
 ```
 
 ---

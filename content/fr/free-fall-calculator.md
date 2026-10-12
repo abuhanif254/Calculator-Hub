@@ -256,7 +256,7 @@ L'arborescence logique ci-dessous illustre comment nous choisissons la bonne éq
 
 ```mermaid
 flowchart LR
-    A[Connu : Temps<br/>t = 6,5s] --> C{Sélection de l'Équation<br/>h = 0.5 * g * t^2}
+A[Connu : Temps<br/>t = 6,5s] --> C{Sélection de l'Équation<br/>h = 0.5 * g * t^2}
     B[Connu : Gravité<br/>g = 9,81 m/s²] --> C
     
     C --> D[Calculer le Carré<br/>t² = 42,25]

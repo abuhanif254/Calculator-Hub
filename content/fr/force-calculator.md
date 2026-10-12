@@ -297,7 +297,7 @@ Ce Diagramme du Corps Libre classique cartographie visuellement les forces oppos
 
 ```mermaid
 flowchart TD
-    A[Force Normale de la Route<br/>14 715 N HAUT] --> C((Centre de Masse<br/>de la Voiture))
+A[Force Normale de la Route<br/>14 715 N HAUT] --> C((Centre de Masse<br/>de la Voiture))
     B[Poids Gravité<br/>14 715 N BAS] --> C
     D[Force Motrice du Moteur<br/>8 000 N AVANT] --> C
     E[Traînée Aéro + Frottement<br/>2 500 N ARRIÈRE] --> C
@@ -392,7 +392,7 @@ Ce graphique montre que si le camion était plus lourd (masse plus élevée), la
 
 ```mermaid
 xychart-beta
-    title "Masse du Camion vs Décélération (à une force de freinage constante de 60 kN)"
+title "Masse du Camion vs Décélération (à une force de freinage constante de 60 kN)"
     x-axis "Masse du Camion (kg)" [5000, 10000, 15000, 20000, 25000]
     y-axis "Décélération (m/s²)" 0 --> 14
     line [12.0, 6.0, 4.0, 3.0, 2.4]

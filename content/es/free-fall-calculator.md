@@ -144,25 +144,25 @@ En esta enorme guía técnica de más de 4,000 palabras, deconstruiremos exhaust
 
 ## 1. La Física de la Caída Libre: Movimiento Bajo la Gravedad
 
-En la física newtoniana, la **Caída Libre** se define como el movimiento de un cuerpo donde la gravedad es la *única* fuerza que actúa sobre él. 
+En la física newtoniana, la **Caída Libre** se define como el movimiento de un cuerpo donde la gravedad es la *única* fuerza que actúa sobre él.
 
-Esto significa que, en un verdadero sentido físico, un paracaidista que cae a través del aire *no* está en perfecta caída libre, porque la resistencia del aire atmosférico (arrastre) lo empuja hacia arriba. La verdadera caída libre solo ocurre en un vacío perfecto, como en la superficie de la Luna o dentro de cámaras de caída de vacío especializadas. 
+Esto significa que, en un verdadero sentido físico, un paracaidista que cae a través del aire *no* está en perfecta caída libre, porque la resistencia del aire atmosférico (arrastre) lo empuja hacia arriba. La verdadera caída libre solo ocurre en un vacío perfecto, como en la superficie de la Luna o dentro de cámaras de caída de vacío especializadas.
 
 Sin embargo, para objetos densos y pesados que caen distancias relativamente cortas en la Tierra (como dejar caer un rodamiento de bolas de acero desde un escritorio), la resistencia del aire es matemáticamente tan insignificante que lo tratamos como una verdadera caída libre.
 
 ### Galileo y la Igualdad de las Masas en Caída
-Antes de finales del siglo XVI, el consenso científico (defendido por Aristóteles) era que los objetos más pesados caían más rápido que los objetos más ligeros. Galileo Galilei destrozó este paradigma. 
+Antes de finales del siglo XVI, el consenso científico (defendido por Aristóteles) era que los objetos más pesados caían más rápido que los objetos más ligeros. Galileo Galilei destrozó este paradigma.
 
-A través de sus legendarios experimentos (a menudo vinculados apócrifamente con el lanzamiento de esferas desde la Torre Inclinada de Pisa), Galileo demostró que **en ausencia de resistencia del aire, todos los objetos aceleran hacia abajo exactamente al mismo ritmo, independientemente de su masa.** 
+A través de sus legendarios experimentos (a menudo vinculados apócrifamente con el lanzamiento de esferas desde la Torre Inclinada de Pisa), Galileo demostró que **en ausencia de resistencia del aire, todos los objetos aceleran hacia abajo exactamente al mismo ritmo, independientemente de su masa.**
 
-Si dejas caer una bola de demolición de $5,000\text{ kg}$ y una pelota de golf de $0.05\text{ kg}$ en una cámara de vacío exactamente al mismo tiempo y desde la misma altura exacta, golpearán el suelo en el mismo milisegundo exacto. 
+Si dejas caer una bola de demolición de $5,000\text{ kg}$ y una pelota de golf de $0.05\text{ kg}$ en una cámara de vacío exactamente al mismo tiempo y desde la misma altura exacta, golpearán el suelo en el mismo milisegundo exacto.
 
 ### Aceleración Estándar Debida a la Gravedad ($g$)
-En la Tierra, la tasa estándar de aceleración gravitacional se denota con la letra minúscula $g$. 
+En la Tierra, la tasa estándar de aceleración gravitacional se denota con la letra minúscula $g$.
 
 $$ g \approx 9.81\text{ m/s}^2 $$
 
-Esto significa que por cada segundo que un objeto está en caída libre, su velocidad descendente aumenta en $9.81\text{ metros por segundo}$ ($35.3\text{ km/h}$ o $21.9\text{ mph}$). 
+Esto significa que por cada segundo que un objeto está en caída libre, su velocidad descendente aumenta en $9.81\text{ metros por segundo}$ ($35.3\text{ km/h}$ o $21.9\text{ mph}$).
 
 ---
 
@@ -187,7 +187,7 @@ Si tomas el tiempo de cuánto tarda un objeto en golpear el suelo, puedes hacer 
 $$ h = \frac{1}{2} \cdot g \cdot t^2 $$
 
 ### La Curva Parabólica de la Distancia
-La característica más crítica de la ecuación de distancia es que el tiempo está **elevado al cuadrado** ($t^2$). Un objeto no cae a una velocidad constante; acelera. 
+La característica más crítica de la ecuación de distancia es que el tiempo está **elevado al cuadrado** ($t^2$). Un objeto no cae a una velocidad constante; acelera.
 - En el 1er segundo, un objeto cae aproximadamente $4.9\text{ metros}$.
 - En el 2do segundo, no cae otros $4.9\text{ metros}$—¡cae otros $14.7\text{ metros}$! 
 - Después de 2 segundos de vuelo total, ha caído $19.6\text{ metros}$ ($4.9 \times 4$).
@@ -200,13 +200,13 @@ La distancia de caída se escala parabólicamente, no linealmente.
 
 Aunque las ecuaciones anteriores asumen un vacío perfecto, vivimos en un planeta con una atmósfera densa. A medida que un objeto acelera hacia abajo, debe empujar las moléculas de aire fuera de su camino. Esto crea arrastre aerodinámico.
 
-La fuerza de arrastre aumenta cuadráticamente con la velocidad ($F_D \propto v^2$). Por lo tanto, a medida que el objeto cae cada vez más rápido, la fuerza de arrastre hacia arriba que lo empuja se vuelve exponencialmente más fuerte. 
+La fuerza de arrastre aumenta cuadráticamente con la velocidad ($F_D \propto v^2$). Por lo tanto, a medida que el objeto cae cada vez más rápido, la fuerza de arrastre hacia arriba que lo empuja se vuelve exponencialmente más fuerte.
 
 Eventualmente, la fuerza de arrastre hacia arriba llega a ser exactamente igual al peso gravitacional descendente del objeto. Cuando estas fuerzas se equilibran, la aceleración neta se vuelve cero. El objeto deja de acelerar y cae a una velocidad máxima y constante conocida como **Velocidad Terminal**.
 
 $$ v_t = \sqrt{\frac{2 \cdot m \cdot g}{\rho \cdot A \cdot C_d}} $$
 
-Donde $\rho$ es la densidad del aire, $A$ es el área de la sección transversal frontal y $C_d$ es el coeficiente de arrastre aerodinámico. 
+Donde $\rho$ es la densidad del aire, $A$ es el área de la sección transversal frontal y $C_d$ es el coeficiente de arrastre aerodinámico.
 
 Debido a que la masa ($m$) está en el numerador, los objetos más pesados (como las bolas de boliche) tienen una velocidad terminal mucho más alta que los objetos más ligeros con áreas de superficie similares (como los globos). Es por esto que una pluma cae más lento que un martillo en tu sala de estar, pero caen exactamente a la misma velocidad en una cámara de vacío.
 
@@ -256,7 +256,7 @@ El árbol lógico a continuación ilustra cómo elegimos la ecuación cinemátic
 
 ```mermaid
 flowchart LR
-    A[Conocido: Tiempo<br/>t = 6.5s] --> C{Selección de Ecuación<br/>h = 0.5 * g * t^2}
+A[Conocido: Tiempo<br/>t = 6.5s] --> C{Selección de Ecuación<br/>h = 0.5 * g * t^2}
     B[Conocido: Gravedad<br/>g = 9.81 m/s²] --> C
     
     C --> D[Calcular Cuadrado<br/>t² = 42.25]
@@ -320,10 +320,10 @@ xychart-beta
 ### Ejemplo 4: Física en el Vacío vs. Velocidad Terminal
 
 **El Escenario:**
-Un paracaidista humano salta desde un avión a $4,000\text{ metros}$. Queremos comparar su curva de velocidad real (que toma en cuenta la resistencia atmosférica) frente a su velocidad teórica si saltara en un vacío total (donde $v = gt$ continúa para siempre). 
+Un paracaidista humano salta desde un avión a $4,000\text{ metros}$. Queremos comparar su curva de velocidad real (que toma en cuenta la resistencia atmosférica) frente a su velocidad teórica si saltara en un vacío total (donde $v = gt$ continúa para siempre).
 
 **Las Matemáticas:**
-En realidad, un paracaidista humano en una posición de arco estándar de vientre a tierra genera una resistencia del aire masiva. Aproximadamente en la marca de 12 a 15 segundos de su caída, alcanzarán una velocidad terminal de aproximadamente $54\text{ m/s}$ ($195\text{ km/h}$ o $120\text{ mph}$). 
+En realidad, un paracaidista humano en una posición de arco estándar de vientre a tierra genera una resistencia del aire masiva. Aproximadamente en la marca de 12 a 15 segundos de su caída, alcanzarán una velocidad terminal de aproximadamente $54\text{ m/s}$ ($195\text{ km/h}$ o $120\text{ mph}$).
 
 Si no hubiera aire, seguirían acelerando infinitamente hasta estrellarse contra el suelo a velocidades supersónicas.
 
@@ -348,7 +348,7 @@ xychart-beta
 Tracemos el cronograma exacto de un salto en paracaídas recreativo estándar. El saltador sale de la aeronave a $4,000\text{ metros}$ ($13,000\text{ pies}$). Cae en caída libre hasta los $1,500\text{ metros}$ ($5,000\text{ pies}$) antes de desplegar su paracaídas principal. ¿Cuánto dura la fase de caída libre?
 
 **Las Matemáticas:**
-Necesitan caer en caída libre una distancia total de $2,500\text{ metros}$ ($4,000 - 1,500$). 
+Necesitan caer en caída libre una distancia total de $2,500\text{ metros}$ ($4,000 - 1,500$).
 Debido a que este es un salto largo, no podemos usar la simple ecuación del vacío $t = \sqrt{2h/g}$. Alcanzarán la velocidad terminal ($54\text{ m/s}$) en aproximadamente $12\text{ segundos}$, habiendo caído aproximadamente $450\text{ metros}$ durante esa fase de aceleración.
 Para los $2,050\text{ metros}$ restantes ($2,500 - 450$), caerán a una constante de $54\text{ m/s}$.
 $$ t_{constante} = \frac{Distancia}{Velocidad} = \frac{2050}{54} = 37.9\text{ segundos} $$
@@ -367,7 +367,7 @@ gantt
     Salida de Aeronave y Acelerar :done, 00:00:00, 00:00:12
     Velocidad Terminal Constante (54 m/s) :crit, active, 00:00:12, 00:00:50
     section Paracaídas
-    Despliegue de Paracaídas Principal (Alta Desaceleración) :milestone, 00:00:50, 0d
+Despliegue de Paracaídas Principal (Alta Desaceleración) :milestone, 00:00:50, 0d
     Viaje en Dosel (descenso de 5 m/s) :active, 00:00:54, 00:05:54
     Aterrizaje Seguro en Suelo :milestone, 00:05:54, 0d
 ```
@@ -377,7 +377,7 @@ gantt
 ## 6. Respuestas a Preguntas Frecuentes (FAQ) a Profundidad
 
 **P: ¿Por qué los astronautas flotan en el espacio si hay gravedad en todas partes?**
-**R:** ¡Este es el concepto erróneo más común en astrofísica! Los astronautas a bordo de la Estación Espacial Internacional (ISS) *no* están en gravedad cero. A $400\text{ km}$ sobre la Tierra, la gravedad es todavía un $90\%$ tan fuerte como en la superficie. Los astronautas flotan porque están en un estado de **caída libre continua y perpetua**. La ISS se mueve hacia los lados de manera increíblemente rápida ($28,000\text{ km/h}$) de tal forma que a medida que cae hacia la Tierra, la Tierra se curva por debajo de ella. Están literalmente cayendo alrededor del planeta para siempre. 
+**R:** ¡Este es el concepto erróneo más común en astrofísica! Los astronautas a bordo de la Estación Espacial Internacional (ISS) *no* están en gravedad cero. A $400\text{ km}$ sobre la Tierra, la gravedad es todavía un $90\%$ tan fuerte como en la superficie. Los astronautas flotan porque están en un estado de **caída libre continua y perpetua**. La ISS se mueve hacia los lados de manera increíblemente rápida ($28,000\text{ km/h}$) de tal forma que a medida que cae hacia la Tierra, la Tierra se curva por debajo de ella. Están literalmente cayendo alrededor del planeta para siempre.
 
 **P: ¿Los objetos más pesados caen más rápido?**
 **R:** En el vacío, en absoluto. La masa tiene cero efecto sobre la tasa de aceleración gravitacional. Sin embargo, en nuestra atmósfera, los objetos más pesados (que normalmente tienen una mayor relación masa-área de superficie) pueden superar la resistencia aerodinámica de manera más efectiva, lo que significa que tienen una velocidad terminal más alta y, en última instancia, golpearán el suelo más rápido si se dejan caer desde una altitud muy alta.
@@ -399,7 +399,7 @@ Las matemáticas de la caída libre son elegantemente simples pero definen el mo
 
 Para dominar verdaderamente estos conceptos, utiliza nuestra Calculadora de Caída Libre para resolver los siguientes desafíos de física conceptual:
 1. **La Caída en la Luna:** Los astronautas del Apolo 15 dejaron caer un martillo desde una altura de $1.2\text{ metros}$ en la Luna ($g = 1.62\text{ m/s}^2$). ¿Cuántos segundos exactos tardó en golpear el polvo lunar?
-2. **El Abismo de Júpiter:** Si dejaras caer una esfera pesada de titanio en la atmósfera gaseosa de Júpiter ($g = 24.79\text{ m/s}^2$) desde un globo aerostático a gran altitud, ¿cuál sería su velocidad después de exactamente $10\text{ segundos}$ de caída libre equivalente al vacío puro? 
+2. **El Abismo de Júpiter:** Si dejaras caer una esfera pesada de titanio en la atmósfera gaseosa de Júpiter ($g = 24.79\text{ m/s}^2$) desde un globo aerostático a gran altitud, ¿cuál sería su velocidad después de exactamente $10\text{ segundos}$ de caída libre equivalente al vacío puro?
 3. **El Salto Acrobático:** Un doble de acrobacias de Hollywood necesita dejarse caer desde un edificio y golpear un colchón de aire especializado exactamente $3.5\text{ segundos}$ después de dar el paso fuera de la cornisa. ¿A qué altura se debe construir la cornisa para que esta sincronización sea perfectamente precisa?
 
 Experimenta con el simulador, analiza las agresivas curvas parabólicas de distancia y confía en esta calculadora para iluminar las fuerzas gravitacionales masivas que gobiernan el universo.

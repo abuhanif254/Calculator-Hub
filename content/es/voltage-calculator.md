@@ -260,7 +260,7 @@ Este gráfico traza la característica de línea perfectamente recta de una fuen
 
 ```mermaid
 xychart-beta
-    title "Voltaje Requerido para Forzar 2 Amperios a Través de Resistencia Creciente"
+title "Voltaje Requerido para Forzar 2 Amperios a Través de Resistencia Creciente"
     x-axis "Carga de Resistencia (Ohmios)" [10, 20, 30, 40, 50]
     y-axis "Voltaje Requerido (Voltios)" 0 --> 100
     line [20, 40, 60, 80, 100]

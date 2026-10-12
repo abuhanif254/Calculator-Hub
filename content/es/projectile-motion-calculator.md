@@ -331,8 +331,8 @@ xychart-beta
 
 **El Desglose Físico:**
 La Luna es un entorno físico radicalmente diferente.
-1.  **Cero Resistencia del Aire:** No hay atmósfera, por lo que usamos las ecuaciones de vacío puro. La pelota de golf no se curvará ni frenará.
-2.  **Baja Gravedad:** La atracción gravitatoria es de solo $1.62 \text{ m/s}^2$ (aproximadamente 1/6 de la gravedad de la Tierra).
+1. **Cero Resistencia del Aire:** No hay atmósfera, por lo que usamos las ecuaciones de vacío puro. La pelota de golf no se curvará ni frenará.
+2. **Baja Gravedad:** La atracción gravitatoria es de solo $1.62 \text{ m/s}^2$ (aproximadamente 1/6 de la gravedad de la Tierra).
 
 Debido a que la gravedad tira de la pelota hacia abajo 6 veces menos fuerza, la pelota permanece en el aire 6 veces más. Debido a que está en el aire 6 veces más, su velocidad horizontal constante la lleva 6 veces más lejos.
 *   **Alcance en la Tierra:** $141 \text{ metros}$
@@ -363,8 +363,8 @@ Esto es lo que es una **órbita**. La Estación Espacial Internacional (ISS) es 
 
 ### Artillería y el Efecto Coriolis
 Para los francotiradores militares y las tripulaciones de artillería de largo alcance, la ecuación básica $R = \frac{v_0^2 \sin(2\theta)}{g}$ es lamentablemente insuficiente. Al disparar un proyectil a kilómetros de distancia, los ingenieros deben tener en cuenta:
-1.  **Densidad Variable del Aire:** El aire es más delgado en el vértice de la trayectoria que en el punto de lanzamiento, cambiando el coeficiente de resistencia aerodinámica dinámicamente durante el vuelo.
-2.  **El Efecto Coriolis:** La Tierra gira bajo el proyectil mientras está en el aire. Si se dispara un proyectil de artillería hacia el norte en el hemisferio norte, el objetivo se mueve hacia el este más rápido que el punto de lanzamiento. El proyectil parecerá curvarse hacia la derecha. Las computadoras balísticas deben calcular esta fuerza ficticia para garantizar la precisión.
+1. **Densidad Variable del Aire:** El aire es más delgado en el vértice de la trayectoria que en el punto de lanzamiento, cambiando el coeficiente de resistencia aerodinámica dinámicamente durante el vuelo.
+2. **El Efecto Coriolis:** La Tierra gira bajo el proyectil mientras está en el aire. Si se dispara un proyectil de artillería hacia el norte en el hemisferio norte, el objetivo se mueve hacia el este más rápido que el punto de lanzamiento. El proyectil parecerá curvarse hacia la derecha. Las computadoras balísticas deben calcular esta fuerza ficticia para garantizar la precisión.
 
 ### Ciencia del Deporte: El Efecto Magnus
 En nuestro simulador, tratamos los objetos como masas puntuales no rotativas. En realidad, las esferas como pelotas de tenis, balones de fútbol y pelotas de béisbol giran rápidamente.

@@ -341,7 +341,7 @@ Este diagrama de flujo demuestra cómo la energía mecánica permanece perfectam
 
 ```mermaid
 flowchart TD
-    A[Pico de la Montaña Rusa<br/>Altura = 75m] -->|Caída Aterradora| B(Mitad de la Caída<br/>Altura = 37.5m)
+A[Pico de la Montaña Rusa<br/>Altura = 75m] -->|Caída Aterradora| B(Mitad de la Caída<br/>Altura = 37.5m)
     B -->|Aceleración Máxima| C[Fondo de la Caída<br/>Altura = 0m]
     
     A -.-> D[EP: 5.88 MJ<br/>EC: 0 MJ<br/>Total: 5.88 MJ]

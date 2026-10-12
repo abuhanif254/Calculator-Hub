@@ -153,7 +153,7 @@ In classical physics, **Density** (represented by the Greek letter $\rho$, *rho*
 $$ \rho = \frac{m}{V} $$
 
 ### The Pillow vs. The Lead Brick Analogy
-To intuitively grasp density, imagine holding a standard bed pillow in your left hand, and a solid block of lead of the exact same physical dimensions (Volume) in your right hand. 
+To intuitively grasp density, imagine holding a standard bed pillow in your left hand, and a solid block of lead of the exact same physical dimensions (Volume) in your right hand.
 - The pillow is mostly filled with empty space and trapped air. It possesses very little mass within that volume. It has extremely **low density**.
 - The solid lead block has its heavy atomic nuclei densely packed together in a tight crystalline lattice. It contains an immense amount of mass within the same exact volume. It has incredibly **high density** (and will likely break your wrist).
 
@@ -195,7 +195,7 @@ $$ F_{\text{Buoyancy}} = \rho_{\text{fluid}} \cdot V_{\text{submerged}} \cdot g 
 
 ### How Ships Float
 A solid block of steel ($\text{SG} = 7.85$) will violently sink to the bottom of the ocean. How, then, does a massive steel aircraft carrier float?
-By hammering the steel into a wide, hollow bowl shape (a hull), the ship encloses a massive volume of air ($\text{SG} = 0.001$). The *average* density of the entire ship structure (heavy steel + massive volume of light air) drops significantly below the density of seawater ($1,025\text{ kg/m}^3$). 
+By hammering the steel into a wide, hollow bowl shape (a hull), the ship encloses a massive volume of air ($\text{SG} = 0.001$). The *average* density of the entire ship structure (heavy steel + massive volume of light air) drops significantly below the density of seawater ($1,025\text{ kg/m}^3$).
 The ship displaces an amount of seawater equal to its own immense weight long before the water breaches the upper deck, allowing it to achieve buoyant equilibrium.
 
 ---
@@ -228,7 +228,7 @@ To fully master the relationships between Mass, Volume, Density, and Buoyancy, w
 A high school chemistry student needs to quickly visualize the algebraic permutations of the density formula ($\rho = m/V$) to solve three different test questions.
 
 **2D Visualization:**
-This logic flowchart illustrates the classic "Density Triangle" used to isolate variables. 
+This logic flowchart illustrates the classic "Density Triangle" used to isolate variables.
 
 ```mermaid
 flowchart LR
@@ -258,7 +258,7 @@ This bar chart plots the staggering differences in density across common materia
 ```mermaid
 xychart-beta
     title "Density Comparison of Common Materials (kg/m3)"
-    x-axis "Material Type" ["Water", "Concrete", "Aluminum", "Steel", "Lead", "Gold"]
+x-axis "Material Type" ["Water", "Concrete", "Aluminum", "Steel", "Lead", "Gold"]
     y-axis "Density (kg per Cubic Meter)" 0 --> 20000
     bar [1000, 2400, 2700, 7850, 11340, 19300]
 ```

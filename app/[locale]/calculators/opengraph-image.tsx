@@ -1,8 +1,8 @@
 import { ImageResponse } from 'next/og';
 import { calculators } from '@/lib/data/calculators';
 
-// On-demand dynamic generation with 24-hour CDN caching
-export const revalidate = 86400;
+// On-demand generation when shared (cached 1yr at CDN edge via next.config.ts headers)
+export const dynamic = 'force-dynamic';
 
 export const alt = 'Nexus All Calculators Directory';
 export const size = {

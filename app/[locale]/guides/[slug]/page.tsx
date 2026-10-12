@@ -37,24 +37,30 @@ import { AdSenseContainer } from '@/app/components/AdSenseContainer';
 // Guide content is stored in static MDX/TS files and only changes on deploy.
 // revalidate=false eliminates ISR background re-renders, saving Vercel quota.
 export const revalidate = false;
+export const dynamicParams = false;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Static params — pre-render all guide slugs at build time
 // ─────────────────────────────────────────────────────────────────────────────
-export async function generateStaticParams() {
-  const params: { slug: string; locale: string }[] = [];
+export async function generateStaticParams({ params }: { params: { locale: string } }) {
+  const locales = params?.locale ? [params.locale] : routing.locales;
+  const result: { slug: string }[] = [];
+  const seen = new Set<string>();
 
-  routing.locales.forEach((locale) => {
+  locales.forEach((locale) => {
     allGuides.forEach((guide) => {
       let slugToUse = guide.slug;
       if (guide.slugs && guide.slugs[locale as keyof typeof guide.slugs]) {
         slugToUse = guide.slugs[locale as keyof typeof guide.slugs];
       }
-      params.push({ slug: slugToUse, locale });
+      if (!seen.has(slugToUse)) {
+        seen.add(slugToUse);
+        result.push({ slug: slugToUse });
+      }
     });
   });
 
-  return params;
+  return result;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -68,6 +74,8 @@ function slugifyHeading(text: string): string {
     .replace(/-+/g, '-')
     .trim();
 }
+
+const guideMarkdownCache = new Map<string, { content: string; htmlContent: string }>();
 
 function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: string, localizedSlug?: string): { content: string; htmlContent: string } | null {
   // 1. Try currentSlug in locale folder
@@ -84,6 +92,10 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
     // 4. Fallback to English folder
     filePath = path.join(process.cwd(), 'content', 'en', 'guides', `${guideSlug}.md`);
     if (!fs.existsSync(filePath)) return null;
+  }
+
+  if (guideMarkdownCache.has(filePath)) {
+    return guideMarkdownCache.get(filePath)!;
   }
 
   const raw = fs.readFileSync(filePath, 'utf-8');
@@ -108,7 +120,9 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
   };
 
   const htmlContent = marked(content, { renderer }) as string;
-  return { content, htmlContent };
+  const res = { content, htmlContent };
+  guideMarkdownCache.set(filePath, res);
+  return res;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

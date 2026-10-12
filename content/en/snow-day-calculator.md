@@ -168,7 +168,7 @@ For most school districts, the decision-making process begins in the middle of t
 Our **Snow Day Calculator** uses several meteorological variables to estimate closure probability. Understanding these inputs helps explain the output.
 
 ### 1. Snowfall Accumulation
-Snow accumulation is the most visible driver of closures. However, the physical height of the snow is only part of the story. 
+Snow accumulation is the most visible driver of closures. However, the physical height of the snow is only part of the story.
 
 - **Under 2 Inches (5 cm):** Rarely causes closures in winter-prepared regions, but can cause delays or full closures in southern districts.
 - **2 to 6 Inches (5 to 15 cm):** Often results in delays or closures depending on plow speed and temperature.
@@ -225,13 +225,10 @@ A key factor in snow day predictions is regional infrastructure capability.
 +--------------------------+----------------------------------+
 | High Sensitivity         | Closes for 1-2 inches of snow    |
 | (Southern US / UK)       | Limited snow removal equipment.  |
-+--------------------------+----------------------------------+
 | Medium Sensitivity       | Closes for 4-6 inches of snow    |
 | (Mid-Atlantic US)        | Average equipment fleets.        |
-+--------------------------+----------------------------------+
 | Low Sensitivity          | Closes for 8-12+ inches of snow  |
 | (Canada / Northern US)   | Heavy plow fleets, winter tires. |
-+--------------------------+----------------------------------+
 ```
 
 1. **Plow Fleet Capacity:** Northern cities maintain large plow fleets and salt storage domes. Southern cities do not invest in this equipment because winter storms are infrequent.

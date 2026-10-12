@@ -97,7 +97,7 @@ En esta guía exhaustiva de más de 4000 palabras, dominaremos la lógica de las
 
 La Ley de Hess está matemáticamente garantizada por la Primera Ley de la Termodinámica, específicamente el hecho de que la **Entalpía (H) es una Función de Estado**.
 
-Una función de estado depende *únicamente* del estado termodinámico actual del sistema (temperatura, presión, composición), y es totalmente independiente de la ruta tomada para alcanzar ese estado. 
+Una función de estado depende *únicamente* del estado termodinámico actual del sistema (temperatura, presión, composición), y es totalmente independiente de la ruta tomada para alcanzar ese estado.
 Imagina subir a una montaña. Tu cambio total de altitud (Entalpía) es idéntico ya sea que tomes un vuelo directo en helicóptero hacia la cima (la reacción objetivo), o si caminas por senderos sinuosos, acampas a mitad de camino y asciendes en zigzag (las reacciones de paso intermedias).
 
 ¡Por esto, podemos combinar matemáticamente cualquier secuencia de reacciones químicas medibles para calcular el $\Delta H$ de una reacción objetivo inmedible!
@@ -121,7 +121,7 @@ Las especies intermedias son moléculas que aparecen en las ecuaciones de paso p
 
 ### 4.3 Estados de Fase: El Peligro Oculto
 
-Un error común en la Ley de Hess es ignorar los estados de fase: sólido ($s$), líquido ($l$), gas ($g$) y acuoso ($ac$). 
+Un error común en la Ley de Hess es ignorar los estados de fase: sólido ($s$), líquido ($l$), gas ($g$) y acuoso ($ac$).
 **No puedes** cancelar $H_2O(l)$ en el lado de los reactivos con $H_2O(g)$ en el lado de los productos. Contienen cantidades diferentes de entalpía (separadas por el Calor Latente de Vaporización). ¡Debes introducir una reacción de paso de cambio de fase adicional para resolverlos!
 
 ---
@@ -132,18 +132,18 @@ Nuestra calculadora de la Ley de Hess está diseñada tanto para la resolución 
 
 ### 5.1 Modo: Manipulación Manual de Reacciones
 
-1.  **Definir Reacción Objetivo:** Ingresa o selecciona un ajuste de reacción objetivo (ej. Síntesis de Monóxido de Carbono).
-2.  **Inspeccionar Pasos:** Carga las reacciones de paso intermedio disponibles y sus valores de $\Delta H_i$ base.
+1. **Definir Reacción Objetivo:** Ingresa o selecciona un ajuste de reacción objetivo (ej. Síntesis de Monóxido de Carbono).
+2. **Inspeccionar Pasos:** Carga las reacciones de paso intermedio disponibles y sus valores de $\Delta H_i$ base.
 3.  **Aplicar Reglas Algebraicas:** 
-    *   Haz clic en "Invertir" para intercambiar reactivos/productos e invertir el signo de entalpía.
-    *   Ajusta el "Multiplicador" (ej. $1, 2, 0.5$) para escalar la estequiometría y la entalpía.
-4.  **Verificar Cancelación:** El motor mostrará dinámicamente la suma de tus pasos manipulados, destacando cualquier especie intermedia que no se haya cancelado.
-5.  **Calcular Entalpía Neta:** Una vez que la suma coincida perfectamente con el objetivo, la herramienta mostrará el $\Delta H_{\text{objetivo}}$ final.
+*   Haz clic en "Invertir" para intercambiar reactivos/productos e invertir el signo de entalpía.
+*   Ajusta el "Multiplicador" (ej. $1, 2, 0.5$) para escalar la estequiometría y la entalpía.
+4. **Verificar Cancelación:** El motor mostrará dinámicamente la suma de tus pasos manipulados, destacando cualquier especie intermedia que no se haya cancelado.
+5. **Calcular Entalpía Neta:** Una vez que la suma coincida perfectamente con el objetivo, la herramienta mostrará el $\Delta H_{\text{objetivo}}$ final.
 
 ### 5.2 Modo: Solucionador Automático de Combinación Lineal
 
-1.  **Sistema de Entrada:** Proporciona la reacción objetivo y todas las ecuaciones de paso intermedio disponibles.
-2.  **Ejecutar Solucionador:** La herramienta vectoriza la estequiometría en una matriz de álgebra lineal y resuelve automáticamente los multiplicadores de combinación óptimos.
+1. **Sistema de Entrada:** Proporciona la reacción objetivo y todas las ecuaciones de paso intermedio disponibles.
+2. **Ejecutar Solucionador:** La herramienta vectoriza la estequiometría en una matriz de álgebra lineal y resuelve automáticamente los multiplicadores de combinación óptimos.
 
 ---
 
@@ -163,20 +163,20 @@ $$C(s) + \frac{1}{2}O_2(g) \to CO(g) \quad \Delta H = ?$$
 
 **Derivación Matemática:**
 
-1.  **Alinear Reactivos:** Necesitamos $C(s)$ a la izquierda. El Paso 1 tiene $C(s)$ a la izquierda. 
+1. **Alinear Reactivos:** Necesitamos $C(s)$ a la izquierda. El Paso 1 tiene $C(s)$ a la izquierda.
     *   **Mantener el Paso 1 exactamente como está:**
     *   $C(s) + O_2(g) \to CO_2(g) \quad \Delta H = -393.5\text{ kJ}$
-2.  **Alinear Productos:** Necesitamos $CO(g)$ a la derecha. El Paso 2 tiene $CO(g)$ a la izquierda. 
+2. **Alinear Productos:** Necesitamos $CO(g)$ a la derecha. El Paso 2 tiene $CO(g)$ a la izquierda.
     *   **Invertir Paso 2 (Invertir signo de $\Delta H$):**
     *   $CO_2(g) \to CO(g) + \frac{1}{2}O_2(g) \quad \Delta H = +283.0\text{ kJ}$
 3.  **Sumar Ecuaciones y Cancelar:**
     *   Lado izquierdo: $C(s) + O_2(g) + CO_2(g)$
     *   Lado derecho: $CO_2(g) + CO(g) + \frac{1}{2}O_2(g)$
     *   El intermedio $CO_2(g)$ se cancela por completo. 
-    *   El $\frac{1}{2}O_2(g)$ a la derecha cancela la mitad del $O_2(g)$ de la izquierda.
+*   El $\frac{1}{2}O_2(g)$ a la derecha cancela la mitad del $O_2(g)$ de la izquierda.
     *   Neto: $C(s) + \frac{1}{2}O_2(g) \to CO(g)$ (¡Coincide con el Objetivo!)
 4.  **Sumar Entalpías:**
-    $$ \Delta H_{\text{objetivo}} = -393.5\text{ kJ} + 283.0\text{ kJ} = -110.5\text{ kJ} $$
+$$ \Delta H_{\text{objetivo}} = -393.5\text{ kJ} + 283.0\text{ kJ} = -110.5\text{ kJ} $$
 
 **Conclusión:** La síntesis de Monóxido de Carbono es exotérmica, liberando $-110.5\text{ kJ/mol}$.
 
@@ -186,23 +186,21 @@ $$C(s) + \frac{1}{2}O_2(g) \to CO(g) \quad \Delta H = ?$$
 $$C(s) + 2H_2(g) \to CH_4(g) \quad \Delta H = ?$$
 
 **Reacciones de Paso Disponibles:**
-1.  $C(s) + O_2(g) \to CO_2(g) \quad \Delta H_1 = -393.5\text{ kJ}$
 2.  $H_2(g) + \frac{1}{2}O_2(g) \to H_2O(l) \quad \Delta H_2 = -285.8\text{ kJ}$
-3.  $CH_4(g) + 2O_2(g) \to CO_2(g) + 2H_2O(l) \quad \Delta H_3 = -890.3\text{ kJ}$
+3. $CH_4(g) + 2O_2(g) \to CO_2(g) + 2H_2O(l) \quad \Delta H_3 = -890.3\text{ kJ}$
 
 **Derivación Matemática:**
 
 1.  **Alinear $C(s)$:** Mantener el Paso 1 como está.
-    *   $C(s) + O_2(g) \to CO_2(g) \quad \Delta H = -393.5\text{ kJ}$
 2.  **Alinear $H_2(g)$:** Necesitamos $2H_2$. El Paso 2 tiene $1H_2$. 
     *   **Multiplicar Paso 2 por 2:**
-    *   $2H_2(g) + 1O_2(g) \to 2H_2O(l) \quad \Delta H = 2 \times (-285.8) = -571.6\text{ kJ}$
-3.  **Alinear $CH_4(g)$:** Necesitamos $CH_4$ a la derecha. El Paso 3 lo tiene a la izquierda.
+*   $2H_2(g) + 1O_2(g) \to 2H_2O(l) \quad \Delta H = 2 \times (-285.8) = -571.6\text{ kJ}$
+3. **Alinear $CH_4(g)$:** Necesitamos $CH_4$ a la derecha. El Paso 3 lo tiene a la izquierda.
     *   **Invertir Paso 3 (Invertir signo):**
     *   $CO_2(g) + 2H_2O(l) \to CH_4(g) + 2O_2(g) \quad \Delta H = +890.3\text{ kJ}$
 4.  **Sumar y Cancelar:**
     *   Los intermedios $CO_2(g)$ y $2H_2O(l)$ se cancelan perfectamente.
-    *   El $2O_2(g)$ a la derecha cancela perfectamente el $1O_2 + 1O_2 = 2O_2$ a la izquierda.
+*   El $2O_2(g)$ a la derecha cancela perfectamente el $1O_2 + 1O_2 = 2O_2$ a la izquierda.
 5.  **Sumar Entalpías:**
     $$ \Delta H_{\text{objetivo}} = -393.5 - 571.6 + 890.3 = -74.8\text{ kJ} $$
 
@@ -212,9 +210,9 @@ $$C(s) + 2H_2(g) \to CH_4(g) \quad \Delta H = ?$$
 
 ```mermaid
 flowchart TD
-    A["Estado Inicial: C(s) + 2H2(g) + 2O2(g)"] -->|Combustión C: ΔH = -393.5 kJ| B["Intermedio 1: CO2(g) + 2H2(g) + O2(g)"]
+A["Estado Inicial: C(s) + 2H2(g) + 2O2(g)"] -->|Combustión C: ΔH = -393.5 kJ| B["Intermedio 1: CO2(g) + 2H2(g) + O2(g)"]
     B -->|Combustión H2: ΔH = -571.6 kJ| C["Estado Más Bajo: CO2(g) + 2H2O(l)"]
-    C -->|Invertir Combustión CH4: ΔH = +890.3 kJ| D["Estado Final: CH4(g) + 2O2(g)"]
+C -->|Invertir Combustión CH4: ΔH = +890.3 kJ| D["Estado Final: CH4(g) + 2O2(g)"]
     A -.->|Reacción Objetivo Neta: ΔH = -74.8 kJ| D
     style C fill:#c62828,stroke:#b71c1c,stroke-width:2px,color:white
     style A fill:#1565c0,stroke:#0d47a1,stroke-width:2px,color:white
@@ -239,7 +237,7 @@ $$C(\text{grafito}) \to C(g) \quad \Delta H = ?$$
 3.  **Sumar Entalpías:**
     $$ \Delta H_{\text{objetivo}} = -393.5 + 1108 = +714.5\text{ kJ} $$
 
-**Conclusión:** Vaporizar grafito sólido en un gas es masivamente endotérmico, requiriendo $+714.5\text{ kJ/mol}$. 
+**Conclusión:** Vaporizar grafito sólido en un gas es masivamente endotérmico, requiriendo $+714.5\text{ kJ/mol}$.
 
 ### Ejemplo 4: Formación de Peróxido de Hidrógeno
 
@@ -254,12 +252,12 @@ $$H_2(g) + O_2(g) \to H_2O_2(l) \quad \Delta H = ?$$
 
 1.  **Alinear $H_2(g)$:** Mantener el Paso 1 como está.
     *   $H_2(g) + \frac{1}{2}O_2(g) \to H_2O(l) \quad \Delta H = -285.8\text{ kJ}$
-2.  **Alinear $H_2O_2(l)$:** Necesitamos $1H_2O_2$ a la derecha. El Paso 2 tiene $2H_2O_2$ a la izquierda.
+2. **Alinear $H_2O_2(l)$:** Necesitamos $1H_2O_2$ a la derecha. El Paso 2 tiene $2H_2O_2$ a la izquierda.
     *   **Invertir Y Dividir el Paso 2 entre 2:**
-    *   $H_2O(l) + \frac{1}{2}O_2(g) \to H_2O_2(l) \quad \Delta H = +196.0 / 2 = +98.0\text{ kJ}$
+*   $H_2O(l) + \frac{1}{2}O_2(g) \to H_2O_2(l) \quad \Delta H = +196.0 / 2 = +98.0\text{ kJ}$
 3.  **Sumar y Cancelar:**
     *   Los intermedios $H_2O(l)$ se cancelan perfectamente.
-    *   El $\frac{1}{2}O_2$ del Paso 1 y el $\frac{1}{2}O_2$ del Paso 2 invertido se suman para formar exactamente $1 O_2$ a la izquierda.
+*   El $\frac{1}{2}O_2$ del Paso 1 y el $\frac{1}{2}O_2$ del Paso 2 invertido se suman para formar exactamente $1 O_2$ a la izquierda.
 4.  **Sumar Entalpías:**
     $$ \Delta H_{\text{objetivo}} = -285.8 + 98.0 = -187.8\text{ kJ} $$
 
@@ -277,15 +275,15 @@ $$4NH_3(g) + 5O_2(g) \to 4NO(g) + 6H_2O(g) \quad \Delta H = ?$$
 
 **Derivación Matemática:**
 
-1.  **Alinear $NH_3(g)$:** Necesitamos $4NH_3$ a la izquierda. El Paso 1 tiene $2NH_3$ a la derecha.
+1. **Alinear $NH_3(g)$:** Necesitamos $4NH_3$ a la izquierda. El Paso 1 tiene $2NH_3$ a la derecha.
     *   **Invertir y Multiplicar el Paso 1 por 2:**
-    *   $4NH_3(g) \to 2N_2(g) + 6H_2(g) \quad \Delta H = 2 \times (+91.8) = +183.6\text{ kJ}$
-2.  **Alinear $NO(g)$:** Necesitamos $4NO$ a la derecha. El Paso 2 tiene $2NO$ a la derecha.
+*   $4NH_3(g) \to 2N_2(g) + 6H_2(g) \quad \Delta H = 2 \times (+91.8) = +183.6\text{ kJ}$
+2. **Alinear $NO(g)$:** Necesitamos $4NO$ a la derecha. El Paso 2 tiene $2NO$ a la derecha.
     *   **Multiplicar Paso 2 por 2:**
-    *   $2N_2(g) + 2O_2(g) \to 4NO(g) \quad \Delta H = 2 \times (180.6) = +361.2\text{ kJ}$
-3.  **Alinear $H_2O(g)$:** Necesitamos $6H_2O$ a la derecha. El Paso 3 tiene $2H_2O$ a la derecha.
+*   $2N_2(g) + 2O_2(g) \to 4NO(g) \quad \Delta H = 2 \times (180.6) = +361.2\text{ kJ}$
+3. **Alinear $H_2O(g)$:** Necesitamos $6H_2O$ a la derecha. El Paso 3 tiene $2H_2O$ a la derecha.
     *   **Multiplicar Paso 3 por 3:**
-    *   $6H_2(g) + 3O_2(g) \to 6H_2O(g) \quad \Delta H = 3 \times (-483.6) = -1450.8\text{ kJ}$
+*   $6H_2(g) + 3O_2(g) \to 6H_2O(g) \quad \Delta H = 3 \times (-483.6) = -1450.8\text{ kJ}$
 4.  **Sumar y Cancelar:**
     *   Los intermedios $2N_2(g)$ se cancelan.
     *   Los intermedios $6H_2(g)$ se cancelan.

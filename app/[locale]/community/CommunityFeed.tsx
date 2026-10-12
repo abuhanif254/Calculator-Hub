@@ -93,7 +93,12 @@ export default function CommunityFeed({ initialPosts, initialSearchQuery = '' }:
   }
 
   useEffect(() => {
-    setSearchQuery(initialSearchQuery);
+    if (initialSearchQuery) {
+      setSearchQuery(initialSearchQuery);
+    } else if (typeof window !== 'undefined') {
+      const q = new URLSearchParams(window.location.search).get('q');
+      if (q) setSearchQuery(q);
+    }
   }, [initialSearchQuery]);
 
   const [isSearching, setIsSearching] = useState(false);

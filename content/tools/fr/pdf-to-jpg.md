@@ -53,7 +53,7 @@ howToSteps:
 
 Le format **PDF (Portable Document Format)** est la forteresse technologique du monde de l'entreprise. Il garantit que le rendu architectural d'un document (polices de caractères, calques, vecteurs mathématiques) reste inmaculado, peu importe le système d'exploitation utilisé. Néanmoins, cette rigidité structurelle est souvent un obstacle majeur. Le PDF n'est pas conçu pour être facilement partagé sur les plateformes sociales, il ne s'intègre pas nativement dans le balisage <img> des pages HTML sans recourir à des plugins lourds, et il bloque souvent l'extraction visuelle rapide.
 
-La solution radicale à ce verrouillage est la **Rasterisation Paramétrique**. Convertir un PDF en formats matriciels (images JPG, PNG, WebP) revient à briser l'enveloppe rigide du document pour libérer son contenu sous forme de grilles de pixels asombrosamente universelles.
+La solution radicale à ce verrouillage est la **Rasterisation Paramétrique**. Convertir un PDF en formats matriciels (images JPG, PNG, WebP) revient à briser l'enveloppe rigide du document pour libérer son contenu sous forme de grilles de pixels universelles.
 
 Notre outil d'extraction **PDF vers JPG** déploie une ingénierie de pointe basée sur le **Canevas HTML5 et l'exécution WebAssembly Client-Side**, pulvérisant définitivement la lenteur et les risques de confidentialité inhérents aux serveurs Cloud classiques.
 
@@ -66,7 +66,7 @@ L'écueil dramatique des convertisseurs PDF grand public réside dans leur dépe
 Notre système asombroso annihile cette procédure :
 *   **Calcul Matériel Quantique en RAM :** En glissant votre fichier dans la fenêtre, le transfert réseau est nul (0 octet). Notre moteur de conversion (forgé autour des protocoles pdf.js) est téléchargé localement. Il lit et traite votre PDF en utilisant exclusivement la puissance du processeur (CPU) et la mémoire volatile (RAM) de votre machine.
 *   **Conformité Institutionnelle (Privacy By Design) :** Puisque le PDF ne quitte jamais votre disque dur physique, les données échappent totalement à notre contrôle. Ce processus en vase clos garantit une adhésion totale aux exigences du RGPD européen et des réglementations bancaires strictes.
-*   **Vitesse Brute et Résilience Offline :** L'extraction des images n'est plus bridée par votre fournisseur d'accès internet, mais uniquement dictée par la puissance de vos cœurs CPU. Déconnectez physiquement votre connexion Wi-Fi : l'outil convertira 200 pages asombrosamente cruda en un temps record en totale autonomie.
+*   **Vitesse Brute et Résilience Offline :** L'extraction des images n'est plus bridée par votre fournisseur d'accès internet, mais uniquement dictée par la puissance de vos cœurs CPU. Déconnectez physiquement votre connexion Wi-Fi : l'outil convertira 200 pages cruda en un temps record en totale autonomie.
 
 ---
 
@@ -74,16 +74,16 @@ Notre système asombroso annihile cette procédure :
 
 Transformer un arbre mathématique de vecteurs (le fichier PDF) en une matrice statique de pixels (JPG/PNG) requiert un procédé de re-calcul géométrique complexe.
 
-1.  **Déchiffrement de l'Arbre Vectoriel (Object Tree) :** L'algorithme WebAssembly déchiffre la syntaxe binaire du document. Il identifie les coordonnées de chaque bloc de texte, les courbes asombrosamente de Bézier des dessins, et le dictionnaire de polices (Fonts) enfouis dans l'archive.
-2.  **Rendu sur la Matrice Virtuelle (Canvas) :** Pour chaque page, le processeur déploie un écran virtuel (HTML5 Canvas) dans la mémoire RAM. Le moteur utilise les données décodées pour 'peindre' la page de zéro, traduisant les vecteurs en informations colorimétriques (RGB).
-3.  **Multiplicateur d'Échelle Paramétrique (Scale Factor) :** C'est ici que l'outil déploie sa supériorité. Contrairement aux convertisseurs de bas étage générant des images floues (pixelated), vous définissez la densité géométrique (1x, 2x, 3x, 4x Ultra HD). Si vous choisissez 4x, le canevas virtuel est élargi à des résolutions massives (ex: 4000x5000 pixels) avant le rendu, offrant une netteté asombrosamente chirurgicale même sur des textes de 4 points typographiques.
-4.  **Compression et Encodage (Códec) :** La matrice peinte est ensuite écrasée et encodée par l'algorithme choisi (JPG/PNG/WebP), formant le fichier image terminal.
+1. **Déchiffrement de l'Arbre Vectoriel (Object Tree) :** L'algorithme WebAssembly déchiffre la syntaxe binaire du document. Il identifie les coordonnées de chaque bloc de texte, les courbes de Bézier des dessins, et le dictionnaire de polices (Fonts) enfouis dans l'archive.
+2. **Rendu sur la Matrice Virtuelle (Canvas) :** Pour chaque page, le processeur déploie un écran virtuel (HTML5 Canvas) dans la mémoire RAM. Le moteur utilise les données décodées pour 'peindre' la page de zéro, traduisant les vecteurs en informations colorimétriques (RGB).
+3. **Multiplicateur d'Échelle Paramétrique (Scale Factor) :** C'est ici que l'outil déploie sa supériorité. Contrairement aux convertisseurs de bas étage générant des images floues (pixelated), vous définissez la densité géométrique (1x, 2x, 3x, 4x Ultra HD). Si vous choisissez 4x, le canevas virtuel est élargi à des résolutions massives (ex: 4000x5000 pixels) avant le rendu, offrant une netteté chirurgicale même sur des textes de 4 points typographiques.
+4. **Compression et Encodage (Códec) :** La matrice peinte est ensuite écrasée et encodée par l'algorithme choisi (JPG/PNG/WebP), formant le fichier image terminal.
 
 ---
 
 ### 3. La Tactique des Formats : Sélection du Codec Optimal
 
-La qualité de l'extraction dépend crucialement du format de sortie. Chaque Codec sert un objectif asombrosamente paramétrique spécifique :
+La qualité de l'extraction dépend crucialement du format de sortie. Chaque Codec sert un objectif paramétrique spécifique :
 
 #### JPG (Joint Photographic Experts Group)
 *   **Mission :** Compatibilité absolue et poids minimal. Idéal pour les PDF remplis de photographies ou les vieux documents scannés (où le fond du papier présente du 'bruit').
@@ -91,7 +91,7 @@ La qualité de l'extraction dépend crucialement du format de sortie. Chaque Cod
 
 #### PNG (Portable Network Graphics)
 *   **Mission :** Pureté typographique et intégration graphique. Obligatoire pour les documents générés numériquement (Word/Illustrator vers PDF) comprenant des textes, logos et graphiques vectoriels pointus.
-*   **Technique :** Encodage mathématique sans perte (Lossless). Chaque ligne est préservée avec une dureté inmaculada. Le canal Alpha (Transparence) est supporté : si le PDF n'a pas de calque de fond défini, les éléments extraits flotteront asombrosamente sur un fond transparent (idéal pour les créateurs web).
+*   **Technique :** Encodage mathématique sans perte (Lossless). Chaque ligne est préservée avec une dureté inmaculada. Le canal Alpha (Transparence) est supporté : si le PDF n'a pas de calque de fond défini, les éléments extraits flotteront sur un fond transparent (idéal pour les créateurs web).
 
 #### WebP (L'Arme de Déploiement de Google)
 *   **Mission :** L'excellence pour l'écosystème web moderne, les CMS (WordPress, Shopify) et les temps de chargement éclair (SEO).
@@ -101,10 +101,10 @@ La qualité de l'extraction dépend crucialement du format de sortie. Chaque Cod
 
 ### 4. Automatisation Séquentielle et Ecosystème ZIP
 
-Générer des images est facile, gérer l'extraction de 300 pages asombrosamente cruda est une crise administrative.
+Générer des images est facile, gérer l'extraction de 300 pages cruda est une crise administrative.
 
 L'architecture intègre un **Moteur de Compilation ZIP Client-Side**. Pendant que le processus HTML5 extrait chaque page (les renommant intelligemment `document_page_01`, `document_page_02`, etc.), il ne les télécharge pas unitairement, ce qui provoquerait le blocage de votre navigateur.
 
-Au contraire, il stocke chaque image dans un flux binaire temporaire, et une fois la dernière page rasterisée, il enferme mathématiquement toutes les images dans une archive `.zip` unique. 
+Au contraire, il stocke chaque image dans un flux binaire temporaire, et une fois la dernière page rasterisée, il enferme mathématiquement toutes les images dans une archive `.zip` unique.
 
-Un clic final, et vous téléchargez un dossier structuré, asombrosamente paramétrique, et parfaitement organisé. L'extraction asombrosamente inmaculada massive est désormais une opération instantanée, sécurisée et d'une précision dévastatrice.
+Un clic final, et vous téléchargez un dossier structuré, paramétrique, et parfaitement organisé. L'extraction inmaculada massive est désormais une opération instantanée, sécurisée et d'une précision dévastatrice.

@@ -12,24 +12,13 @@ import { COMMUNITY_CATEGORIES } from '../../../lib/categories';
 // COMMUNITY INDEX PAGE — SERVER COMPONENT
 // ═══════════════════════════════════════════════════════
 
-export const revalidate = 3600; // ISR: revalidate every 1 hour (was 5 mins) to save Vercel free tier limits
+export const revalidate = 86400; // ISR: revalidate every 24 hours to conserve Vercel limits
 
 // The Post interface is now exported from CommunityFeed.tsx
 
-export async function generateMetadata({ params, searchParams }: { params: Promise<{ locale: string }>; searchParams?: Promise<{ q?: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const resolvedSearch = searchParams ? await searchParams : {};
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
-
-  // ?q= community search pages are duplicates — block indexing to eliminate
-  // "Alternative page with proper canonical tag" entries in GSC.
-  if (resolvedSearch.q) {
-    return {
-      title: 'Community Discussions | NexusCalculator',
-      robots: { index: false, follow: false },
-      alternates: getCanonicalAndAlternates('/community', locale),
-    };
-  }
 
   return {
     title: 'Community Discussions | NexusCalculator',
@@ -63,24 +52,29 @@ async function fetchPosts(): Promise<Post[]> {
 
 
 export default async function CommunityIndex({ 
-  params,
-  searchParams
+  params
 }: { 
   params: Promise<{ locale: string }>;
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
 
-  const resolvedSearchParams = searchParams ? await searchParams : {};
-  const initialQuery = typeof resolvedSearchParams.q === 'string' ? resolvedSearchParams.q : '';
+  const initialQuery = '';
 
   const posts = await fetchPosts();
   const t = await getTranslations({ locale: resolvedParams.locale, namespace: 'Community' });
 
-  // Fetch trending sidebar data in parallel
-  const { fetchTrendingPosts } = await import('../../actions/community');
-  const trendingPosts = await fetchTrendingPosts(5).catch(() => []);
+  // Compute trending sidebar data directly from already-fetched posts (avoids duplicate Firestore query)
+  const now = Date.now();
+  const trendingPosts = [...posts]
+    .map(p => {
+      const ageDays = Math.max(0.1, (now - p.createdAt) / (1000 * 60 * 60 * 24));
+      const score = ((p.upvotes || 0) * 3 + (p.replyCount || 0) * 2) / Math.pow(ageDays + 2, 1.5);
+      return { post: p, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5)
+    .map(s => s.post);
 
   const forumSchema = {
     '@context': 'https://schema.org',

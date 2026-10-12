@@ -8,9 +8,7 @@ import { getCanonicalAndAlternates, getCanonicalUrl } from "@/lib/utils/seoUtils
 import { Link, resolveIntlHref } from "@/i18n/routing";
 import { Calculator, ArrowRight, Sparkles, CheckCircle2, Search } from "lucide-react";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+export const revalidate = false;
 
 export async function generateMetadata({
   params,

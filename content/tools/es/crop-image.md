@@ -59,7 +59,7 @@ A diferencia del software de escritorio anticuado, esta herramienta ha sido dise
 
 ### La Geometría del Recorte: Comprendiendo las Proporciones (Aspect Ratios)
 
-Cuando se utiliza una **herramienta para cortar fotos**, comprender los principios fundamentales de las proporciones (Aspect Ratios) es la diferencia entre un trabajo de aficionado y uno profesional. 
+Cuando se utiliza una **herramienta para cortar fotos**, comprender los principios fundamentales de las proporciones (Aspect Ratios) es la diferencia entre un trabajo de aficionado y uno profesional.
 
 La "Relación de Aspecto" o Proporción es la correlación matemática entre el ancho y la altura de una imagen. En el ámbito del diseño digital, conocer cómo recortar una fotografía de manera eficiente mejora drásticamente el impacto visual del contenido.
 
@@ -94,28 +94,28 @@ Cuando utiliza nuestra plataforma para *recortar imágenes JPG o PNG* y las dest
 En la actualidad, existen cientos de aplicaciones web que afirman permitir "recortar fotos online". El 99% de ellas esconden un oscuro secreto: cuando usted sube la foto, el archivo se transfiere a un servidor remoto, se recorta en la nube, y se envía de vuelta a su ordenador.
 
 Esta metodología antigua presenta dos problemas gigantescos:
-1.  **Lentitud:** Subir un archivo fotográfico RAW de 15 Megabytes toma tiempo, ralentizando su flujo de trabajo.
-2.  **Seguridad de Datos Severa:** Si está recortando el DNI de un cliente, facturas, fotos de hijos o documentos empresariales confidenciales, **está regalando sus datos** a un servidor desconocido.
+1. **Lentitud:** Subir un archivo fotográfico RAW de 15 Megabytes toma tiempo, ralentizando su flujo de trabajo.
+2. **Seguridad de Datos Severa:** Si está recortando el DNI de un cliente, facturas, fotos de hijos o documentos empresariales confidenciales, **está regalando sus datos** a un servidor desconocido.
 
 Nuestra arquitectura está programada en Javascript moderno utilizando la **API HTML5 Canvas**. ¿Qué significa esto?
-Todo el motor de recorte matemático y renderizado de píxeles vive temporalmente dentro de la memoria RAM de su propio navegador web (Chrome, Edge, Firefox, Safari). **Sus imágenes jamás se suben a Internet.** 
+Todo el motor de recorte matemático y renderizado de píxeles vive temporalmente dentro de la memoria RAM de su propio navegador web (Chrome, Edge, Firefox, Safari). **Sus imágenes jamás se suben a Internet.**
 Es un software de privacidad de grado militar ejecutado localmente, sin instalaciones, garantizando cumplimiento legal (RGPD/GDPR) para entornos corporativos y profesionales de la salud o abogacía.
 
 ---
 
 ### Recorte de Precisión: Coordinadas Geométricas y SEO Web
 
-Más allá del arrastre con el ratón, los profesionales necesitan control matemático. Nuestra herramienta ofrece un **Recorte de Precisión** basado en píxeles. 
+Más allá del arrastre con el ratón, los profesionales necesitan control matemático. Nuestra herramienta ofrece un **Recorte de Precisión** basado en píxeles.
 
 Usted puede definir la coordenada de inicio X (horizontal) y la Y (vertical), seguidas del Ancho (Width) y Alto (Height). Si su gestor de contenido (CMS como WordPress) requiere que un *Hero Banner* mida estrictamente 1200 píxeles de ancho por 400 píxeles de alto, nuestra interfaz de precisión extraerá un bloque de píxeles milimétricamente exacto.
 
 #### Optimización SEO y Tiempos de Carga (Core Web Vitals)
-El recorte de imágenes es una estrategia subestimada de SEO técnico (Search Engine Optimization). 
-Al recortar (eliminar) vastas zonas de píxeles inútiles (como cielos vacíos o paredes blancas a los lados de un producto), se reduce drásticamente el peso del archivo físico (Kilobytes). 
+El recorte de imágenes es una estrategia subestimada de SEO técnico (Search Engine Optimization).
+Al recortar (eliminar) vastas zonas de píxeles inútiles (como cielos vacíos o paredes blancas a los lados de un producto), se reduce drásticamente el peso del archivo físico (Kilobytes).
 
 Recomendamos seguir este flujo de trabajo:
 1.  Recorte agresivamente para mantener solo el "Sujeto Principal".
-2.  En el menú de Descarga, elija **Formato WebP** (El formato ultra ligero de Google).
+2. En el menú de Descarga, elija **Formato WebP** (El formato ultra ligero de Google).
 3.  Ajuste la calidad al 80%.
 
-El resultado será un recorte asombrosamente rápido de cargar, mejorando la métrica **LCP (Largest Contentful Paint)** de su web en Google PageSpeed, lo que catapultará su posicionamiento en buscadores y retendrá el doble de tráfico móvil.
+El resultado será un recorte rápido de cargar, mejorando la métrica **LCP (Largest Contentful Paint)** de su web en Google PageSpeed, lo que catapultará su posicionamiento en buscadores y retendrá el doble de tráfico móvil.

@@ -1,3 +1,4 @@
+import React from 'react';
 import {defineRouting} from 'next-intl/routing';
 import {createNavigation} from 'next-intl/navigation';
 
@@ -1450,7 +1451,13 @@ export const routing = defineRouting({
   }
 });
 
-export const {Link, redirect, usePathname, useRouter} = createNavigation(routing);
+const {Link: IntlLink, redirect, usePathname, useRouter} = createNavigation(routing);
+
+export function Link(props: React.ComponentProps<typeof IntlLink>) {
+  return React.createElement(IntlLink, { prefetch: false, ...props });
+}
+
+export { redirect, usePathname, useRouter };
 
 /**
  * Resolves flat string URLs into next-intl compatible objects for dynamic routes.

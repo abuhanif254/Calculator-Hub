@@ -331,8 +331,8 @@ xychart-beta
 
 **Die physikalische Aufschlüsselung:**
 Der Mond ist eine radikal andere physikalische Umgebung.
-1.  **Kein Luftwiderstand:** Es gibt keine Atmosphäre, daher verwenden wir die reinen Vakuumgleichungen. Der Golfball wird sich weder krümmen noch langsamer werden.
-2.  **Geringe Schwerkraft:** Die Anziehungskraft beträgt nur $1.62 \text{ m/s}^2$ (etwa 1/6 der Schwerkraft der Erde).
+1. **Kein Luftwiderstand:** Es gibt keine Atmosphäre, daher verwenden wir die reinen Vakuumgleichungen. Der Golfball wird sich weder krümmen noch langsamer werden.
+2. **Geringe Schwerkraft:** Die Anziehungskraft beträgt nur $1.62 \text{ m/s}^2$ (etwa 1/6 der Schwerkraft der Erde).
 
 Da die Schwerkraft den Ball mit 6-mal weniger Kraft nach unten zieht, bleibt der Ball 6-mal länger in der Luft. Da er 6-mal länger in der Luft ist, trägt ihn seine konstante horizontale Geschwindigkeit 6-mal weiter.
 *   **Reichweite auf der Erde:** $141 \text{ Meter}$
@@ -363,8 +363,8 @@ Das ist es, was ein **Orbit** ist. Die Internationale Raumstation (ISS) ist tech
 
 ### Artillerie und der Coriolis-Effekt
 Für militärische Scharfschützen und Artilleriebesatzungen mit großer Reichweite ist die grundlegende Gleichung $R = \frac{v_0^2 \sin(2\theta)}{g}$ unzureichend. Wenn ein Projektil kilometerweit abgefeuert wird, müssen Ingenieure Folgendes berücksichtigen:
-1.  **Variable Luftdichte:** Die Luft ist am Scheitelpunkt der Flugbahn dünner als am Abschusspunkt, wodurch sich der Widerstandskoeffizient während des Fluges dynamisch ändert.
-2.  **Der Coriolis-Effekt:** Die Erde rotiert unter dem Projektil, während es sich in der Luft befindet. Wenn ein Artilleriegeschoss auf der Nordhalbkugel nach Norden abgefeuert wird, bewegt sich das Ziel schneller nach Osten als der Startpunkt. Das Projektil scheint sich nach rechts zu krümmen. Ballistische Computer müssen diese fiktive Kraft berechnen, um Genauigkeit zu gewährleisten.
+1. **Variable Luftdichte:** Die Luft ist am Scheitelpunkt der Flugbahn dünner als am Abschusspunkt, wodurch sich der Widerstandskoeffizient während des Fluges dynamisch ändert.
+2. **Der Coriolis-Effekt:** Die Erde rotiert unter dem Projektil, während es sich in der Luft befindet. Wenn ein Artilleriegeschoss auf der Nordhalbkugel nach Norden abgefeuert wird, bewegt sich das Ziel schneller nach Osten als der Startpunkt. Das Projektil scheint sich nach rechts zu krümmen. Ballistische Computer müssen diese fiktive Kraft berechnen, um Genauigkeit zu gewährleisten.
 
 ### Sportwissenschaft: Der Magnus-Effekt
 In unserem Simulator behandeln wir Objekte als nicht rotierende Punktmassen. In der Realität drehen sich Kugeln wie Tennisbälle, Fußbälle und Baseballs schnell.

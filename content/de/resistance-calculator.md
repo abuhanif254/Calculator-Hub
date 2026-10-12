@@ -130,7 +130,7 @@ In diesem ausführlichen, 4.000+ Wörter umfassenden SEO-Leitfaden werden wir di
 
 ## 1. Was Genau ist der Elektrische Widerstand? (Die Physikalische Definition)
 
-Der **elektrische Widerstand**, wissenschaftlich gemessen in **Ohm ($\Omega$)**, ist der grundlegende Widerstand gegen den Fluss von elektrischem Strom durch ein leitfähiges Material. 
+Der **elektrische Widerstand**, wissenschaftlich gemessen in **Ohm ($\Omega$)**, ist der grundlegende Widerstand gegen den Fluss von elektrischem Strom durch ein leitfähiges Material.
 
 Um den Widerstand intuitiv zu verstehen, stützen sich Elektroingenieure universell auf die **Wasserrohr-Analogie**:
 - Stellen Sie sich einen massiven Wasserturm vor, der Wasser durch ein Rohr drückt. Wenn das Rohr massiv und breit ist, fließt das Wasser leicht (Geringer Widerstand).
@@ -144,7 +144,7 @@ Die offizielle SI-Einheit für den Widerstand ist das **Ohm ($\Omega$)**, benann
 
 ## 2. Ableitung des Widerstands aus dem Ohmschen Gesetz ($R = U / I$)
 
-Georg Simon Ohm bewies, dass der Widerstand in einer dreiseitigen mathematischen Beziehung zu Spannung ($U$) und Strom ($I$) steht. 
+Georg Simon Ohm bewies, dass der Widerstand in einer dreiseitigen mathematischen Beziehung zu Spannung ($U$) und Strom ($I$) steht.
 
 $$R = \frac{U}{I}$$
 
@@ -167,7 +167,7 @@ Indem wir den Widerstand ($R$) algebraisch isolieren, erhalten wir zwei unglaubl
 2. **Widerstand abgeleitet aus Spannung und Leistung:** $R = \frac{U^2}{P}$
 
 Diese Formeln sind absolut zwingend für die Konstruktion von Heizelementen. Wenn ein Maschinenbauingenieur eine Raumheizung entwerfen muss, die beim Einstecken in eine $120\text{V}$-Steckdose genau $1.500\text{W}$ thermische Wärme abgibt, welchen genauen Widerstand muss die Nichrom-Heizwendel haben?
-Unter Verwendung der Formel: $R = \frac{120^2}{1500} = \frac{14400}{1500} = 9,6\ \Omega$. 
+Unter Verwendung der Formel: $R = \frac{120^2}{1500} = \frac{14400}{1500} = 9,6\ \Omega$.
 Der Ingenieur muss genau $9,6\ \Omega$ Nichromdraht abschneiden!
 
 ---
@@ -358,7 +358,7 @@ Wenn Sie den Widerstand respektieren und Ihre Widerstände mit den korrekten Wat
 
 Um sicherzustellen, dass Sie diese Konzepte beherrschen, starten Sie unseren interaktiven Simulator und versuchen Sie, diese letzten Herausforderungen zu lösen:
 1. **Der LED-Blocker:** Sie haben eine $9\text{V}$-Batterie und eine $2\text{V}$-LED. Die LED überlebt nur $0,02\text{A}$ Strom. Berechnen Sie den genauen Widerstand ($R = U/I$), der erforderlich ist, um die restlichen $7\text{V}$ abzubauen und den Strom auf $0,02\text{A}$ zu drosseln.
-2. **Die Raumheizung:** Eine industrielle $2.000\text{W}$-Raumheizung wird mit $240\text{V}$ betrieben. Berechnen Sie den genauen Widerstand ihrer internen Heizwendel mit $R = U^2 / P$. 
+2. **Die Raumheizung:** Eine industrielle $2.000\text{W}$-Raumheizung wird mit $240\text{V}$ betrieben. Berechnen Sie den genauen Widerstand ihrer internen Heizwendel mit $R = U^2 / P$.
 3. **Der parallele Split:** Sie verdrahten drei identische $300\ \Omega$-Widerstände parallel. Berechnen Sie den gesamten Ersatzwiderstand des Netzwerks.
 
 Verlassen Sie sich auf diesen Rechner, um Ihre Berechnungen noch einmal zu überprüfen, diese verwirrenden Farbringe zu entschlüsseln, und denken Sie immer daran: Der Widerstand ist die Reibung, die es uns ermöglicht, die gewaltige Kraft der Elektrizität zu kontrollieren.

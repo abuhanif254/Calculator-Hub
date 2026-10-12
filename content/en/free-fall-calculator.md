@@ -144,25 +144,25 @@ In this massive, 4,000+ word technical guide, we will comprehensively deconstruc
 
 ## 1. The Physics of Free Fall: Motion Under Gravity
 
-In Newtonian physics, **Free Fall** is defined as the motion of a body where gravity is the *only* force acting upon it. 
+In Newtonian physics, **Free Fall** is defined as the motion of a body where gravity is the *only* force acting upon it.
 
-This means that in a true physics sense, a skydiver falling through the air is *not* in perfect free fall, because atmospheric air resistance (drag) is pushing back up against them. True free fall only occurs in a perfect vacuum, such as on the surface of the Moon or inside specialized vacuum drop chambers. 
+This means that in a true physics sense, a skydiver falling through the air is *not* in perfect free fall, because atmospheric air resistance (drag) is pushing back up against them. True free fall only occurs in a perfect vacuum, such as on the surface of the Moon or inside specialized vacuum drop chambers.
 
 However, for dense, heavy objects falling relatively short distances on Earth (like dropping a steel ball-bearing from a desk), air resistance is so mathematically negligible that we treat it as a true free fall.
 
 ### Galileo and the Equality of Falling Masses
-Before the late 16th century, the scientific consensus (championed by Aristotle) was that heavier objects fell faster than lighter objects. Galileo Galilei shattered this paradigm. 
+Before the late 16th century, the scientific consensus (championed by Aristotle) was that heavier objects fell faster than lighter objects. Galileo Galilei shattered this paradigm.
 
-Through his legendary experiments (often apocryphally linked to dropping spheres from the Leaning Tower of Pisa), Galileo proved that **in the absence of air resistance, all objects accelerate downward at the exact same rate, regardless of their mass.** 
+Through his legendary experiments (often apocryphally linked to dropping spheres from the Leaning Tower of Pisa), Galileo proved that **in the absence of air resistance, all objects accelerate downward at the exact same rate, regardless of their mass.**
 
-If you drop a $5,000\text{ kg}$ wrecking ball and a $0.05\text{ kg}$ golf ball in a vacuum chamber at the exact same time from the exact same height, they will hit the floor at the exact same millisecond. 
+If you drop a $5,000\text{ kg}$ wrecking ball and a $0.05\text{ kg}$ golf ball in a vacuum chamber at the exact same time from the exact same height, they will hit the floor at the exact same millisecond.
 
 ### Standard Acceleration Due to Gravity ($g$)
-On Earth, the standard rate of gravitational acceleration is denoted by the lowercase letter $g$. 
+On Earth, the standard rate of gravitational acceleration is denoted by the lowercase letter $g$.
 
 $$ g \approx 9.81\text{ m/s}^2 $$
 
-This means that for every single second an object is in free fall, its downward velocity increases by $9.81\text{ meters per second}$ ($35.3\text{ km/h}$ or $21.9\text{ mph}$). 
+This means that for every single second an object is in free fall, its downward velocity increases by $9.81\text{ meters per second}$ ($35.3\text{ km/h}$ or $21.9\text{ mph}$).
 
 ---
 
@@ -187,7 +187,7 @@ If you time how long an object takes to hit the ground, you can reverse-engineer
 $$ h = \frac{1}{2} \cdot g \cdot t^2 $$
 
 ### The Parabolic Curve of Distance
-The most critical feature of the distance equation is that time is **squared** ($t^2$). An object does not fall at a constant speed; it accelerates. 
+The most critical feature of the distance equation is that time is **squared** ($t^2$). An object does not fall at a constant speed; it accelerates.
 - In the 1st second, an object falls about $4.9\text{ meters}$.
 - In the 2nd second, it doesn't fall another $4.9\text{ meters}$—it falls another $14.7\text{ meters}$! 
 - After 2 seconds of total flight, it has fallen $19.6\text{ meters}$ ($4.9 \times 4$).
@@ -200,13 +200,13 @@ Distance fallen scales parabolically, not linearly.
 
 While the equations above assume a perfect vacuum, we live on a planet with a thick atmosphere. As an object accelerates downward, it must push air molecules out of its way. This creates aerodynamic drag.
 
-Drag force increases quadratically with speed ($F_D \propto v^2$). Therefore, as the object falls faster and faster, the upward drag force pushing against it gets exponentially stronger. 
+Drag force increases quadratically with speed ($F_D \propto v^2$). Therefore, as the object falls faster and faster, the upward drag force pushing against it gets exponentially stronger.
 
 Eventually, the upward drag force becomes exactly equal to the downward gravitational weight of the object. When these forces balance, the net acceleration becomes zero. The object stops speeding up and falls at a constant, maximum speed known as **Terminal Velocity**.
 
 $$ v_t = \sqrt{\frac{2 \cdot m \cdot g}{\rho \cdot A \cdot C_d}} $$
 
-Where $\rho$ is air density, $A$ is the frontal cross-sectional area, and $C_d$ is the aerodynamic drag coefficient. 
+Where $\rho$ is air density, $A$ is the frontal cross-sectional area, and $C_d$ is the aerodynamic drag coefficient.
 
 Because mass ($m$) is in the numerator, heavier objects (like bowling balls) have a much higher terminal velocity than lighter objects with similar surface areas (like balloons). This is why a feather falls slower than a hammer in your living room, but they fall at the exact same speed in a vacuum chamber.
 
@@ -320,10 +320,10 @@ xychart-beta
 ### Example 4: Vacuum Physics vs. Terminal Velocity
 
 **The Scenario:**
-A human skydiver jumps from a plane at $4,000\text{ meters}$. We want to compare their actual velocity curve (which factors in atmospheric air drag) versus their theoretical velocity if they jumped in a complete vacuum (where $v = gt$ continues forever). 
+A human skydiver jumps from a plane at $4,000\text{ meters}$. We want to compare their actual velocity curve (which factors in atmospheric air drag) versus their theoretical velocity if they jumped in a complete vacuum (where $v = gt$ continues forever).
 
 **The Mathematics:**
-In reality, a human skydiver in a standard belly-to-earth arch position generates massive air resistance. By around the 12 to 15-second mark of their fall, they will max out at a terminal velocity of roughly $54\text{ m/s}$ ($195\text{ km/h}$ or $120\text{ mph}$). 
+In reality, a human skydiver in a standard belly-to-earth arch position generates massive air resistance. By around the 12 to 15-second mark of their fall, they will max out at a terminal velocity of roughly $54\text{ m/s}$ ($195\text{ km/h}$ or $120\text{ mph}$).
 
 If there were no air, they would just keep accelerating infinitely until they smashed into the ground at supersonic speeds.
 
@@ -348,7 +348,7 @@ xychart-beta
 Let's map out the exact timeline of a standard recreational skydive. The jumper exits the aircraft at $4,000\text{ meters}$ ($13,000\text{ ft}$). They free fall down to $1,500\text{ meters}$ ($5,000\text{ ft}$) before deploying their main parachute. How long does the free fall phase last?
 
 **The Mathematics:**
-They need to free fall a total distance of $2,500\text{ meters}$ ($4,000 - 1,500$). 
+They need to free fall a total distance of $2,500\text{ meters}$ ($4,000 - 1,500$).
 Because this is a long jump, we cannot use the simple vacuum equation $t = \sqrt{2h/g}$. They will hit terminal velocity ($54\text{ m/s}$) in about $12\text{ seconds}$, having fallen roughly $450\text{ meters}$ during that acceleration phase.
 For the remaining $2,050\text{ meters}$ ($2,500 - 450$), they are falling at a constant $54\text{ m/s}$.
 $$ t_{constant} = \frac{Distance}{Velocity} = \frac{2050}{54} = 37.9\text{ seconds} $$
@@ -377,7 +377,7 @@ gantt
 ## 6. Frequently Asked Questions (FAQ) Deep Dive
 
 **Q: Why do astronauts float in space if gravity is everywhere?**
-**A:** This is the most common misconception in astrophysics! Astronauts aboard the International Space Station (ISS) are *not* in zero gravity. At $400\text{ km}$ above Earth, gravity is still $90\%$ as strong as it is on the surface. Astronauts float because they are in a state of **continuous, perpetual free fall**. The ISS is moving sideways so insanely fast ($28,000\text{ km/h}$) that as it falls downward toward Earth, the Earth curves away beneath it. They are literally falling around the planet forever. 
+**A:** This is the most common misconception in astrophysics! Astronauts aboard the International Space Station (ISS) are *not* in zero gravity. At $400\text{ km}$ above Earth, gravity is still $90\%$ as strong as it is on the surface. Astronauts float because they are in a state of **continuous, perpetual free fall**. The ISS is moving sideways so insanely fast ($28,000\text{ km/h}$) that as it falls downward toward Earth, the Earth curves away beneath it. They are literally falling around the planet forever.
 
 **Q: Do heavier objects fall faster?**
 **A:** In a vacuum, absolutely not. Mass has zero effect on the rate of gravitational acceleration. However, in our atmosphere, heavier objects (which typically have a higher mass-to-surface-area ratio) can overcome aerodynamic drag more effectively, meaning they have a higher terminal velocity and will ultimately hit the ground sooner if dropped from a very high altitude.
@@ -399,7 +399,7 @@ The mathematics of free fall are elegantly simple yet define the motion of every
 
 To truly master these concepts, utilize our Free Fall Calculator to solve the following conceptual physics challenges:
 1. **The Moon Drop:** The Apollo 15 astronauts dropped a hammer from a height of $1.2\text{ meters}$ on the Moon ($g = 1.62\text{ m/s}^2$). Exactly how many seconds did it take to hit the lunar dust?
-2. **The Jupiter Abyss:** If you dropped a heavy titanium sphere into the gaseous atmosphere of Jupiter ($g = 24.79\text{ m/s}^2$) from a high-altitude balloon, what would its velocity be after exactly $10\text{ seconds}$ of pure vacuum-equivalent free fall? 
+2. **The Jupiter Abyss:** If you dropped a heavy titanium sphere into the gaseous atmosphere of Jupiter ($g = 24.79\text{ m/s}^2$) from a high-altitude balloon, what would its velocity be after exactly $10\text{ seconds}$ of pure vacuum-equivalent free fall?
 3. **The Stunt Jump:** A Hollywood stunt double needs to drop off a building and hit a specialized airbag exactly $3.5\text{ seconds}$ after stepping off the ledge. How high must the ledge be built to make this timing perfectly accurate?
 
 Experiment with the simulator, analyze the aggressive parabolic distance curves, and rely on this calculator to illuminate the massive gravitational forces governing the universe.

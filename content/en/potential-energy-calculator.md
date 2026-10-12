@@ -148,9 +148,9 @@ In this massive, 4,000+ word technical guide, we will comprehensively deconstruc
 
 ## 1. The Physics of Potential Energy: Stored Power
 
-In classical mechanics, **Energy** is the capacity to do work. While Kinetic Energy is the energy of active motion, **Potential Energy** is the energy of position, state, or arrangement. 
+In classical mechanics, **Energy** is the capacity to do work. While Kinetic Energy is the energy of active motion, **Potential Energy** is the energy of position, state, or arrangement.
 
-It is "potential" because the energy is stored, quietly waiting to be released and converted into active kinetic work. 
+It is "potential" because the energy is stored, quietly waiting to be released and converted into active kinetic work.
 
 ### The Core Gravitational Formula ($PE = m \cdot g \cdot h$)
 When dealing with objects near the surface of the Earth (or any other planet), we deal specifically with **Gravitational Potential Energy**. The fundamental formula is elegantly simple, relying on just three variables:
@@ -173,7 +173,7 @@ Unlike Kinetic Energy, which scales quadratically with velocity ($v^2$), Gravita
 ### The Importance of the Reference Datum ($h=0$)
 A critical, often misunderstood concept in physics is that potential energy is completely relative. The value of $h$ requires a designated starting point—a **reference datum** where height is defined as exactly zero.
 
-For example, a book sitting on a table might be $1\text{ meter}$ above the floor, giving it a positive potential energy relative to the floor. However, if the floor is on the 10th story of an apartment building, the book is $30\text{ meters}$ above the street level, giving it a much larger potential energy relative to the street. 
+For example, a book sitting on a table might be $1\text{ meter}$ above the floor, giving it a positive potential energy relative to the floor. However, if the floor is on the 10th story of an apartment building, the book is $30\text{ meters}$ above the street level, giving it a much larger potential energy relative to the street.
 
 Because potential energy is relative, it can absolutely be negative! If your reference datum ($h=0$) is ground level, and you lower a heavy bucket $5\text{ meters}$ down into a well, the height is $-5\text{ m}$, resulting in a mathematically correct negative potential energy.
 
@@ -181,7 +181,7 @@ Because potential energy is relative, it can absolutely be negative! If your ref
 
 ## 2. Universal Gravitation vs. Local Gravity ($g$)
 
-The standard equation $PE = mgh$ is actually a simplified approximation that only works close to a planet's surface. 
+The standard equation $PE = mgh$ is actually a simplified approximation that only works close to a planet's surface.
 
 ### Standard Earth Gravity ($g \approx 9.81\text{ m/s}^2$)
 On Earth, the gravitational pull is incredibly consistent at sea level. Physics classes standardly use $9.8\text{ m/s}^2$ or $9.81\text{ m/s}^2$. This means that if you drop an object in a vacuum, its velocity increases by $9.81\text{ m/s}$ every single second it falls.
@@ -189,7 +189,7 @@ On Earth, the gravitational pull is incredibly consistent at sea level. Physics 
 However, gravity does fluctuate slightly based on elevation and geological density. At the peak of Mount Everest, gravity is actually slightly weaker than at sea level.
 
 ### Universal Gravitational Potential Energy
-If you are an aerospace engineer calculating orbital satellite mechanics or rocket launches to Mars, the $PE = mgh$ equation fails because $g$ is no longer constant. As you move far away from Earth, gravity weakens rapidly according to the inverse-square law. 
+If you are an aerospace engineer calculating orbital satellite mechanics or rocket launches to Mars, the $PE = mgh$ equation fails because $g$ is no longer constant. As you move far away from Earth, gravity weakens rapidly according to the inverse-square law.
 
 In astrophysics, we use the Universal Gravitational Potential Energy formula:
 
@@ -227,7 +227,7 @@ In the main interface, select the variable you wish to isolate and solve for:
 - **Solve for Gravity (g):** Input known energy, mass, and height to determine the gravitational strength of an unknown planet!
 
 ### Step 2: Utilize Planet Presets
-The calculator features a robust gravity preset engine. Rather than manually typing in $9.81\text{ m/s}^2$, simply select **Earth**. 
+The calculator features a robust gravity preset engine. Rather than manually typing in $9.81\text{ m/s}^2$, simply select **Earth**.
 
 Want to see how high a crane could lift a steel beam on Mars using the same amount of energy? Swap the gravity preset to **Mars** ($3.71\text{ m/s}^2$). The calculator instantly updates, revealing that because Mars has less than 40% of Earth's gravity, the exact same amount of work energy can lift a heavy object much, much higher.
 
@@ -341,7 +341,7 @@ This flow diagram demonstrates how mechanical energy remains perfectly conserved
 
 ```mermaid
 flowchart TD
-    A[Coaster Peak<br/>Height = 75m] -->|Terrifying Drop| B(Mid-Drop<br/>Height = 37.5m)
+A[Coaster Peak<br/>Height = 75m] -->|Terrifying Drop| B(Mid-Drop<br/>Height = 37.5m)
     B -->|Maximum Acceleration| C[Bottom of Drop<br/>Height = 0m]
     
     A -.-> D[PE: 5.88 MJ<br/>KE: 0 MJ<br/>Total: 5.88 MJ]
@@ -358,7 +358,7 @@ flowchart TD
 ### Example 5: Hydroelectric Dam Power Generation (Gantt Process Timeline)
 
 **The Scenario:**
-Hydroelectric dams are basically massive, concrete "potential energy batteries." Water is stored in a high-elevation reservoir. When power is needed, the gates open, and gravity pulls the water down massive pipes called penstocks. 
+Hydroelectric dams are basically massive, concrete "potential energy batteries." Water is stored in a high-elevation reservoir. When power is needed, the gates open, and gravity pulls the water down massive pipes called penstocks.
 Let's analyze the energy transformation process for a $1,000,000\text{ kg}$ massive volume of water falling $150\text{ meters}$ through a dam.
 
 **The Mathematics:**

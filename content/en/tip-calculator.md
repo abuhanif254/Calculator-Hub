@@ -135,7 +135,7 @@ faqs:
 
 ## Tip Calculator Guide: Everything You Need to Know About Tipping and Bill Splitting
 
-When dining out, traveling, or receiving a personal service, calculating the appropriate tip can sometimes feel stressful. Should you tip on the pre-tax or post-tax amount? How do you split a bill fairly when people order different items? What are the tipping customs in other countries? 
+When dining out, traveling, or receiving a personal service, calculating the appropriate tip can sometimes feel stressful. Should you tip on the pre-tax or post-tax amount? How do you split a bill fairly when people order different items? What are the tipping customs in other countries?
 
 This comprehensive guide covers everything from basic calculations to complex tipping etiquettes worldwide, helping you navigate any service situation with confidence.
 
@@ -248,19 +248,19 @@ By using this tool, you can eliminate the guesswork and ensure that your server 
   "@context": "https://schema.org",
   "@type": "HowTo",
   "name": "How to Use the Tip Calculator",
-  "description": "Step-by-step instructions to calculate tips, apply taxes, discounts, and split bills among a group.",
+"description": "Step-by-step instructions to calculate tips, apply taxes, discounts, and split bills among a group.",
   "step": [
     {
       "@type": "HowToStep",
       "position": 1,
       "name": "Input Bill Amount",
-      "text": "Enter the base bill subtotal from your receipt and select the currency."
+"text": "Enter the base bill subtotal from your receipt and select the currency."
     },
     {
       "@type": "HowToStep",
       "position": 2,
       "name": "Select Tip Percentage",
-      "text": "Choose a standard percentage (e.g., 15%, 18%, 20%) or use the slider to set a custom rate."
+"text": "Choose a standard percentage (e.g., 15%, 18%, 20%) or use the slider to set a custom rate."
     },
     {
       "@type": "HowToStep",
@@ -272,13 +272,13 @@ By using this tool, you can eliminate the guesswork and ensure that your server 
       "@type": "HowToStep",
       "position": 4,
       "name": "Add Advanced Options",
-      "text": "Optionally expand the advanced settings to include tax rates, discounts, or flat service charges."
+"text": "Optionally expand the advanced settings to include tax rates, discounts, or flat service charges."
     },
     {
       "@type": "HowToStep",
       "position": 5,
       "name": "Review and Export",
-      "text": "Examine the breakdown cards and visual chart, then copy the share link or download as a CSV spreadsheet."
+"text": "Examine the breakdown cards and visual chart, then copy the share link or download as a CSV spreadsheet."
     }
   ]
 }
@@ -292,7 +292,7 @@ By using this tool, you can eliminate the guesswork and ensure that your server 
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript",
-  "description": "An interactive, multi-currency Tip Calculator supporting bill splitting, advanced tax and discount modeling, and global tipping customs advice.",
+"description": "An interactive, multi-currency Tip Calculator supporting bill splitting, advanced tax and discount modeling, and global tipping customs advice.",
   "offers": {
     "@type": "Offer",
     "price": "0",

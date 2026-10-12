@@ -331,8 +331,8 @@ xychart-beta
 
 **La Décomposition Physique:**
 La Lune est un environnement physique radicalement différent.
-1.  **Zéro Résistance de l'Air:** Il n'y a pas d'atmosphère, nous utilisons donc les équations du vide pur. La balle de golf ne courbera ni ne ralentira.
-2.  **Faible Gravité:** L'attraction gravitationnelle n'est que de $1.62 \text{ m/s}^2$ (environ 1/6ème de la gravité terrestre).
+1. **Zéro Résistance de l'Air:** Il n'y a pas d'atmosphère, nous utilisons donc les équations du vide pur. La balle de golf ne courbera ni ne ralentira.
+2. **Faible Gravité:** L'attraction gravitationnelle n'est que de $1.62 \text{ m/s}^2$ (environ 1/6ème de la gravité terrestre).
 
 Parce que la gravité tire la balle vers le bas avec 6 fois moins de force, la balle reste en l'air 6 fois plus longtemps. Parce qu'elle est en l'air 6 fois plus longtemps, sa vitesse horizontale constante la porte 6 fois plus loin.
 *   **Portée sur Terre:** $141 \text{ mètres}$
@@ -363,8 +363,8 @@ C'est ce qu'est une **orbite**. La Station Spatiale Internationale (ISS) n'est t
 
 ### L'Artillerie et l'Effet Coriolis
 Pour les tireurs d'élite militaires et les équipes d'artillerie à longue portée, l'équation de base $R = \frac{v_0^2 \sin(2\theta)}{g}$ est tristement insuffisante. Lors du tir d'un obus à des kilomètres de distance, les ingénieurs doivent tenir compte de :
-1.  **Densité de l'Air Variable:** L'air est plus fin au sommet de la trajectoire qu'au point de lancement, modifiant dynamiquement le coefficient de traînée pendant le vol.
-2.  **L'Effet Coriolis:** La Terre tourne sous le projectile pendant qu'il est en l'air. Si un obus d'artillerie est tiré vers le nord dans l'hémisphère nord, la cible se déplace vers l'est plus rapidement que le point de lancement. Le projectile semblera s'incurver vers la droite. Les ordinateurs balistiques doivent calculer cette force fictive pour garantir la précision.
+1. **Densité de l'Air Variable:** L'air est plus fin au sommet de la trajectoire qu'au point de lancement, modifiant dynamiquement le coefficient de traînée pendant le vol.
+2. **L'Effet Coriolis:** La Terre tourne sous le projectile pendant qu'il est en l'air. Si un obus d'artillerie est tiré vers le nord dans l'hémisphère nord, la cible se déplace vers l'est plus rapidement que le point de lancement. Le projectile semblera s'incurver vers la droite. Les ordinateurs balistiques doivent calculer cette force fictive pour garantir la précision.
 
 ### Science du Sport : L'Effet Magnus
 Dans notre simulateur, nous traitons les objets comme des masses ponctuelles non rotatives. En réalité, les sphères comme les balles de tennis, les ballons de football et les balles de baseball tournent rapidement.

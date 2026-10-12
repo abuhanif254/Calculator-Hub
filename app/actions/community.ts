@@ -1,6 +1,6 @@
-'use server';
-
 import { fetchPostsRest, queryPostsRest } from '@/lib/firebase-rest';
+
+const toolDiscussionsCache = new Map<string, ToolDiscussionItem[]>();
 
 export async function loadMorePosts(lastTimestamp: number) {
   const restPosts = await fetchPostsRest(lastTimestamp);
@@ -107,6 +107,10 @@ export async function getDiscussionsForTool(
   calcCategory?: string,
   limitCount: number = 6
 ): Promise<ToolDiscussionItem[]> {
+  const cacheKey = `${calcSlug}::${calcCategory || ''}::${limitCount}`;
+  const cached = toolDiscussionsCache.get(cacheKey);
+  if (cached) return cached;
+
   try {
     const { mapCalculatorCategoryToCommunity } = await import('@/lib/utils/communityCategoryMap');
     const communityCat = mapCalculatorCategoryToCommunity(calcCategory);
@@ -167,6 +171,7 @@ export async function getDiscussionsForTool(
       }
     }
 
+    toolDiscussionsCache.set(cacheKey, results);
     return results;
   } catch (err) {
     console.error('getDiscussionsForTool error:', err);

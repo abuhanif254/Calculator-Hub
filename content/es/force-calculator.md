@@ -297,7 +297,7 @@ Este clásico Diagrama de Cuerpo Libre mapea visualmente las fuerzas en conflict
 
 ```mermaid
 flowchart TD
-    A[Fuerza Normal del Camino<br/>14,715 N ARRIBA] --> C((Centro de Masa<br/>del Auto))
+A[Fuerza Normal del Camino<br/>14,715 N ARRIBA] --> C((Centro de Masa<br/>del Auto))
     B[Peso por Gravedad<br/>14,715 N ABAJO] --> C
     D[Fuerza Motriz del Motor<br/>8,000 N ADELANTE] --> C
     E[Arrastre Aero + Fricción<br/>2,500 N ATRÁS] --> C

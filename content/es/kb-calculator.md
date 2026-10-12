@@ -166,20 +166,20 @@ Nuestra herramienta opera bidireccionalmente: puede introducir un $K_b$ para pre
 ### 5.1 Modo: Calcular pH a partir de un $K_b$ conocido
 
 1.  **Seleccionar Modo:** Elija "Concentraciones de Equilibrio a partir de Kb".
-2.  **Ingresar Parámetros:** Ingrese la Concentración Inicial ($C$) y el $K_b$ (o $\text{p}K_b$) conocido de su base débil.
-3.  **Leer Salida:** La calculadora genera la tabla ICE completa, ejecuta el resolvedor cuadrático exacto para $[\text{OH}^-]$, y devuelve el $\text{pOH}$ final, pH de equilibrio, $[\text{OH}^-]$ exacto, y Porcentaje de Ionización.
+2. **Ingresar Parámetros:** Ingrese la Concentración Inicial ($C$) y el $K_b$ (o $\text{p}K_b$) conocido de su base débil.
+3. **Leer Salida:** La calculadora genera la tabla ICE completa, ejecuta el resolvedor cuadrático exacto para $[\text{OH}^-]$, y devuelve el $\text{pOH}$ final, pH de equilibrio, $[\text{OH}^-]$ exacto, y Porcentaje de Ionización.
 
 ### 5.2 Modo: Descubriendo un $K_b$ desconocido a partir de datos de pH
 
 1.  **Seleccionar Modo:** Elija "Kb a partir de pH".
-2.  **Ingresar Parámetros:** Ingrese la Concentración Inicial ($C$) de la base, y el pH final que midió.
-3.  **Ejecutar:** La herramienta primero convierte su pH en pOH ($\text{pOH} = 14 - \text{pH}$). Calcula a la inversa $x$ ($[\text{OH}^-] = 10^{-\text{pOH}}$) y lo sustituye directamente en la fórmula $K_b = x^2 / (C - x)$ para revelar la identidad de la base.
+2. **Ingresar Parámetros:** Ingrese la Concentración Inicial ($C$) de la base, y el pH final que midió.
+3. **Ejecutar:** La herramienta primero convierte su pH en pOH ($\text{pOH} = 14 - \text{pH}$). Calcula a la inversa $x$ ($[\text{OH}^-] = 10^{-\text{pOH}}$) y lo sustituye directamente en la fórmula $K_b = x^2 / (C - x)$ para revelar la identidad de la base.
 
 ### 5.3 Modo: Porcentaje de Ionización
 
 1.  **Seleccionar Modo:** Elija "Kb a partir de Porcentaje de Ionización".
-2.  **Ingresar Parámetros:** Ingrese la Concentración Inicial ($C$) y el porcentaje de la base que se ionizó.
-3.  **Ejecutar:** La herramienta calcula $x$ tomando ese porcentaje de $C$, y luego resuelve para el $K_b$.
+2. **Ingresar Parámetros:** Ingrese la Concentración Inicial ($C$) y el porcentaje de la base que se ionizó.
+3. **Ejecutar:** La herramienta calcula $x$ tomando ese porcentaje de $C$, y luego resuelve para el $K_b$.
 
 ---
 
@@ -224,7 +224,7 @@ Calcule el pH exacto de una solución de $0.050\text{ M}$ de Amoníaco ($\text{N
     $$ x^2 + (1.80 \times 10^{-5})x - (1.80 \times 10^{-5})(0.050) = 0 $$
     $$ x^2 + 1.80 \times 10^{-5}x - 9.00 \times 10^{-7} = 0 $$
 2.  **Resolver mediante Fórmula Cuadrática:**
-    $$ x = \frac{-1.80 \times 10^{-5} + \sqrt{(1.80 \times 10^{-5})^2 - 4(1)(-9.00 \times 10^{-7})}}{2} $$
+$$ x = \frac{-1.80 \times 10^{-5} + \sqrt{(1.80 \times 10^{-5})^2 - 4(1)(-9.00 \times 10^{-7})}}{2} $$
     $$ x = 9.39 \times 10^{-4}\text{ M } [\text{OH}^-] $$
 3.  **Calcular pOH y pH:**
     $$ \text{pOH} = -\log_{10}(9.39 \times 10^{-4}) = 3.03 $$
@@ -240,11 +240,11 @@ Usando el amoníaco $0.050\text{ M}$ del Ejemplo 2 ($[\text{OH}^-] = 9.39 \times
 **Derivación Matemática:**
 
 1.  **Calcular el % de Ionización inicial (a $0.050\text{ M}$):**
-    $$ \% \text{ Ionizado} = \left(\frac{9.39 \times 10^{-4}}{0.050}\right) \times 100 = 1.88\% $$
+$$ \% \text{ Ionizado} = \left(\frac{9.39 \times 10^{-4}}{0.050}\right) \times 100 = 1.88\% $$
 2.  **Diluir por 10x (Nuevo $C = 0.0050\text{ M}$):**
-    Usando la aprox. de x pequeña por velocidad: $x \approx \sqrt{K_b \cdot C} = \sqrt{(1.8 \times 10^{-5})(0.0050)} = 3.00 \times 10^{-4}\text{ M}$
+Usando la aprox. de x pequeña por velocidad: $x \approx \sqrt{K_b \cdot C} = \sqrt{(1.8 \times 10^{-5})(0.0050)} = 3.00 \times 10^{-4}\text{ M}$
 3.  **Calcular nuevo % de Ionización (a $0.0050\text{ M}$):**
-    $$ \% \text{ Ionizado} = \left(\frac{3.00 \times 10^{-4}}{0.0050}\right) \times 100 = 6.00\% $$
+$$ \% \text{ Ionizado} = \left(\frac{3.00 \times 10^{-4}}{0.0050}\right) \times 100 = 6.00\% $$
 
 **Conclusión:** Al diluir la base 10 veces, el porcentaje de ionización aumentó del 1.88% a más del 6.00%. Al igual que con los ácidos, diluir una base débil fuerza al equilibrio a desplazarse hacia la derecha para producir más partículas disociadas.
 
@@ -290,8 +290,8 @@ Calcule el $[\text{OH}^-]$ de una solución muy diluida $0.0010\text{ M}$ de Eti
     $$ x = \sqrt{(5.6 \times 10^{-4})(0.0010)} $$
     $$ x = \sqrt{5.6 \times 10^{-7}} = 7.48 \times 10^{-4}\text{ M OH}^- $$
 2.  **Comprobar la Regla del 5%:**
-    $$ \% \text{ Ionizado} = \left(\frac{7.48 \times 10^{-4}}{0.0010}\right) \times 100 = 74.8\% $$
-    La regla se rompe violentamente (75% $\gg$ 5%). La aproximación es completamente inválida.
+$$ \% \text{ Ionizado} = \left(\frac{7.48 \times 10^{-4}}{0.0010}\right) \times 100 = 74.8\% $$
+La regla se rompe violentamente (75% $\gg$ 5%). La aproximación es completamente inválida.
 
 **Derivación Matemática (Cuadrática Exacta):**
 
@@ -324,7 +324,7 @@ gantt
 ## 7. Preguntas Frecuentes Detalladas y Resolución de Problemas Avanzada
 
 **P: ¿Necesito incluir el Agua en la expresión de $K_b$?**
-**R:** No. En soluciones acuosas diluidas, la concentración de agua es asombrosamente alta ($\sim 55.5\text{ M}$) y permanece efectivamente constante durante la reacción. Se integra matemáticamente en la constante $K_b$ en sí, por lo que nunca escribimos $[\text{H}_2\text{O}]$ en el denominador.
+**R:** No. En soluciones acuosas diluidas, la concentración de agua es alta ($\sim 55.5\text{ M}$) y permanece efectivamente constante durante la reacción. Se integra matemáticamente en la constante $K_b$ en sí, por lo que nunca escribimos $[\text{H}_2\text{O}]$ en el denominador.
 
 **P: ¿Puede una base débil tener un pH menor a 7?**
 **R:** No, no si es lo único disuelto en el agua. Si disuelve cualquier base débil pura en agua pura, producirá $\text{OH}^-$ y elevará el pH por encima de 7.00. Sin embargo, si la base se agrega a un amortiguador ácido, la solución resultante puede tener un pH por debajo de 7.

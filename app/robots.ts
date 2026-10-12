@@ -15,6 +15,8 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/api/',                              // Internal API endpoints
           '/private/',                          // Admin / internal routes
+          '/*/embed/*',                         // Iframe calculator embeds (not indexable pages)
+          '/*/opengraph-image',                 // Dynamic OpenGraph image endpoints
           // ── Auth-required pages (redirect unauthenticated crawlers) ───────────
           // These cause "Page with redirect" in GSC. Block crawl budget waste.
           '/login',

@@ -294,7 +294,7 @@ El siguiente diagrama de flujo ilustra la canalización de conversión entre uni
 
 ```mermaid
 flowchart LR
-    A[Metros por Segundo <br/> m/s] -->|Multiplicar por 3.6| B(Kilómetros por Hora <br/> km/h)
+A[Metros por Segundo <br/> m/s] -->|Multiplicar por 3.6| B(Kilómetros por Hora <br/> km/h)
     A -->|Multiplicar por 2.237| C(Millas por Hora <br/> mph)
     B -->|Dividir por 1.609| C
     C -->|Multiplicar por 1.609| B
@@ -404,7 +404,7 @@ El gráfico de barras a continuación compara las velocidades de escape de vario
 ```mermaid
 xychart-beta
     title "Velocidades de Escape de los Cuerpos del Sistema Solar (km/s)"
-    x-axis "Cuerpo Celeste" ["Luna", "Mercurio", "Marte", "Tierra", "Neptuno", "Júpiter"]
+x-axis "Cuerpo Celeste" ["Luna", "Mercurio", "Marte", "Tierra", "Neptuno", "Júpiter"]
     y-axis "Velocidad (km/s)" 0 --> 65
     bar [2.38, 4.25, 5.03, 11.19, 23.5, 59.5]
 ```

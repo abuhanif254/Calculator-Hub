@@ -160,7 +160,7 @@ En esta extensa inmersión de más de 4000 palabras, desglosaremos exhaustivamen
 
 Para entender el momento, debemos referirnos a la raíz latina de la palabra, *movimentum*, que significa "movimiento". Sir Isaac Newton se refería originalmente al momento simplemente como la "Cantidad de Movimiento".
 
-El momento es una **magnitud vectorial**, lo que significa que tiene tanto una magnitud (qué tan grande es el valor) como una dirección (hacia dónde se dirige el objeto). 
+El momento es una **magnitud vectorial**, lo que significa que tiene tanto una magnitud (qué tan grande es el valor) como una dirección (hacia dónde se dirige el objeto).
 
 ### La Fórmula Principal ($p = m \cdot v$)
 El momento lineal ($p$) de cualquier objeto es el producto matemático de su masa ($m$) por su velocidad ($v$).
@@ -195,11 +195,11 @@ $$ F_{neta} \cdot \Delta t = \Delta p $$
 Este producto de la Fuerza y el Tiempo ($F \cdot \Delta t$) se llama **Impulso ($J$)**, y se mide en Newton-segundos ($N \cdot s$). El teorema nos dice que para cambiar el momento de un objeto, se debe aplicar una fuerza durante un periodo de tiempo específico.
 
 ### La Física de la Seguridad Automotriz
-El Teorema del Impulso-Momento es el fundamento entero de la seguridad en choques automotrices. 
+El Teorema del Impulso-Momento es el fundamento entero de la seguridad en choques automotrices.
 
 Imagina un automóvil chocando contra un muro de concreto a velocidades de autopista. El cambio en el momento ($\Delta p$) es completamente fijo: el automóvil se movía rápido, y ahora debe detenerse. No puedes cambiar $\Delta p$. Sin embargo, *sí puedes* cambiar la Fuerza ($F$) ejercida sobre el conductor manipulando el Tiempo ($\Delta t$).
 
-Sin zonas de deformación, el automóvil se detiene contra el concreto instantáneamente (ej. $0.01\text{ segundos}$). Para satisfacer la ecuación, la Fuerza debe ser astronómicamente alta, probablemente matando al conductor. Al diseñar el capó del auto para que se arrugue como un acordeón, la duración del impacto se extiende a $0.20\text{ segundos}$. Al aumentar $\Delta t$ por un factor de 20, la Fuerza máxima letal cae por un factor de 20. 
+Sin zonas de deformación, el automóvil se detiene contra el concreto instantáneamente (ej. $0.01\text{ segundos}$). Para satisfacer la ecuación, la Fuerza debe ser astronómicamente alta, probablemente matando al conductor. Al diseñar el capó del auto para que se arrugue como un acordeón, la duración del impacto se extiende a $0.20\text{ segundos}$. Al aumentar $\Delta t$ por un factor de 20, la Fuerza máxima letal cae por un factor de 20.
 
 ---
 
@@ -266,7 +266,7 @@ El árbol lógico a continuación mapea el flujo del cálculo de Impulso-Momento
 
 ```mermaid
 flowchart LR
-    A[Momento Inicial<br/>+5.8 kg·m/s] --> C(Cambio en el Momento<br/>Δp = -13.05 kg·m/s)
+A[Momento Inicial<br/>+5.8 kg·m/s] --> C(Cambio en el Momento<br/>Δp = -13.05 kg·m/s)
     B[Momento Final<br/>-7.25 kg·m/s] --> C
     
     C --> D[Dividir por Tiempo de Contacto<br/>Δt = 0.002 s]
@@ -419,13 +419,13 @@ gantt
 ## 6. Sumersión Profunda en Preguntas Frecuentes (FAQ)
 
 **P: ¿Puede el momento ser negativo?**
-**R:** Sí, absolutamente. Debido a que el momento es una cantidad vectorial, un signo negativo simplemente indica dirección. Si a un automóvil que viaja hacia el este se le asigna un momento positivo de $+10,000\text{ kg}\cdot\text{m/s}$, un automóvil que viaje hacia el oeste a la misma velocidad exacta tendrá un momento de $-10,000\text{ kg}\cdot\text{m/s}$. 
+**R:** Sí, absolutamente. Debido a que el momento es una cantidad vectorial, un signo negativo simplemente indica dirección. Si a un automóvil que viaja hacia el este se le asigna un momento positivo de $+10,000\text{ kg}\cdot\text{m/s}$, un automóvil que viaje hacia el oeste a la misma velocidad exacta tendrá un momento de $-10,000\text{ kg}\cdot\text{m/s}$.
 
 **P: ¿La gravedad afecta el momento?**
 **R:** Sí, la gravedad es una fuerza externa. Cuando dejas caer una pelota, la gravedad ejerce una fuerza descendente continua a lo largo del tiempo ($F \cdot \Delta t$), lo que resulta en un Impulso descendente continuo, causando que el momento de la pelota aumente hasta que golpea el suelo.
 
 **P: ¿Cuál es la diferencia entre la velocidad del Centro de Masa y la velocidad del objeto individual en una colisión?**
-**R:** El centro de masa de un sistema cerrado se mueve a una velocidad completamente constante antes, durante y después de una colisión. Incluso si dos bolas de billar rebotan violentamente entre sí y cambian sus velocidades individuales, el punto central matemático entre ellas continúa avanzando como si nada hubiera pasado. 
+**R:** El centro de masa de un sistema cerrado se mueve a una velocidad completamente constante antes, durante y después de una colisión. Incluso si dos bolas de billar rebotan violentamente entre sí y cambian sus velocidades individuales, el punto central matemático entre ellas continúa avanzando como si nada hubiera pasado.
 
 **P: ¿Cómo se propulsan los motores a reacción y los cohetes sin empujar contra nada?**
 **R:** Se basan enteramente en la Ley de Conservación del Momento. Un cohete quema combustible para crear gas a alta presión. Luego expulsa ese gas por la boquilla trasera a velocidades extremas. El gas se lleva cantidades masivas de momento negativo. Para mantener el momento total del sistema equilibrado en cero, el pesado casco del cohete debe ganar una cantidad exactamente equivalente de momento positivo hacia adelante.

@@ -6,7 +6,7 @@ import { Link } from '@/i18n/routing';
 import { Trophy, Star, Crown, MessageSquare, ArrowRight, ChevronRight, User as UserIcon } from 'lucide-react';
 import { BADGES } from '@/lib/badges';
 
-export const revalidate = 3600; // ISR: revalidate every hour
+export const revalidate = 86400; // ISR: revalidate every 24 hours
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

@@ -296,7 +296,7 @@ Dieses Flussdiagramm visualisiert die Abfolge von Kinematik-Schritten, die von d
 
 ```mermaid
 flowchart TD
-    A[Input Variables:<br/>vi = 33.3 m/s<br/>vf = 0 m/s<br/>a = -8.5 m/s²] --> B{Calculate Time}
+A[Input Variables:<br/>vi = 33.3 m/s<br/>vf = 0 m/s<br/>a = -8.5 m/s²] --> B{Calculate Time}
     B -->|"t = (vf - vi) / a"| C[Time = 3.92 s]
     C --> D{Calculate Distance}
     A --> D

@@ -267,7 +267,7 @@ Der folgende Logikbaum veranschaulicht das Arbeit-Energie-Theorem in Aktion.
 
 ```mermaid
 flowchart LR
-    A[Anfängliche kinetische Energie<br/>KE = 578,8 kJ] --> C{Bremskraft ausgeübt<br/>F = 12.000 N}
+A[Anfängliche kinetische Energie<br/>KE = 578,8 kJ] --> C{Bremskraft ausgeübt<br/>F = 12.000 N}
     B[Endgültige kinetische Energie<br/>KE = 0 J] --> C
     
     C --> D[Benötigte Arbeit berechnen<br/>W = ΔKE = 578,8 kJ]
@@ -348,7 +348,7 @@ Dieses Flussdiagramm demonstriert, wie die gesamte mechanische Energie konstant 
 
 ```mermaid
 flowchart TD
-    A[Scheitelpunkt des Schwungs<br/>Höhe = 15m] -->|Fallend| B(Mittelpunkt<br/>Höhe = 7,5m)
+A[Scheitelpunkt des Schwungs<br/>Höhe = 15m] -->|Fallend| B(Mittelpunkt<br/>Höhe = 7,5m)
     B -->|Beschleunigend| C[Tiefster Punkt des Schwungs<br/>Höhe = 0m]
     
     A -.-> D[PE: 73,5 kJ<br/>KE: 0 kJ<br/>Gesamt: 73,5 kJ]
@@ -389,10 +389,10 @@ gantt
     dateFormat  HH:mm:ss.SSS
     axisFormat  %S.%L
     section Vor dem Aufprall
-    Beschleunigungsphase des Schlägers (Aufbau 250J KE) :done, 00:00:00.000, 00:00:00.500
+Beschleunigungsphase des Schlägers (Aufbau 250J KE) :done, 00:00:00.000, 00:00:00.500
     section Aufprall
     Erster Kontakt & Ballkompression :crit, active, 00:00:00.500, 00:00:00.502
-    Energieübertragung (255kW Spitzenleistung) :crit, active, 00:00:00.502, 00:00:00.505
+Energieübertragung (255kW Spitzenleistung) :crit, active, 00:00:00.502, 00:00:00.505
     Ballfreigabe (Abschuss) :milestone, 00:00:00.505, 0d
 ```
 

@@ -128,8 +128,8 @@ This is known as the **Half-Equivalence Point** in a titration. At this specific
 While a buffer resists pH change, it cannot resist indefinitely. **Buffer Capacity ($\beta$)** is a quantitative measure of how much strong acid or strong base a buffer can absorb before its pH changes significantly (usually by 1 unit).
 
 Buffer capacity depends on two critical factors:
-1.  **Absolute Concentration ($C_{\text{total}}$):** A buffer containing $1.0\text{ M}$ of HA and $1.0\text{ M}$ of $\text{A}^-$ has ten times the capacity of a buffer containing $0.1\text{ M}$ of HA and $0.1\text{ M}$ of $\text{A}^-$, even though their pH is identical. More molecules = more neutralizing power.
-2.  **The Ratio:** Buffer capacity is maximized when $[\text{A}^-] = [\text{HA}]$ (i.e., when $\text{pH} = \text{p}K_a$).
+1. **Absolute Concentration ($C_{\text{total}}$):** A buffer containing $1.0\text{ M}$ of HA and $1.0\text{ M}$ of $\text{A}^-$ has ten times the capacity of a buffer containing $0.1\text{ M}$ of HA and $0.1\text{ M}$ of $\text{A}^-$, even though their pH is identical. More molecules = more neutralizing power.
+2. **The Ratio:** Buffer capacity is maximized when $[\text{A}^-] = [\text{HA}]$ (i.e., when $\text{pH} = \text{p}K_a$).
 
 As a general rule in analytical chemistry, a buffer is only considered effective within **$\pm 1\text{ pH}$ unit of its $\text{p}K_a$**.
 - If $\text{pH} = \text{p}K_a - 1$, the ratio $[\text{A}^-]/[\text{HA}]$ is $1:10$. The buffer has very little ability to absorb more acid.
@@ -139,9 +139,9 @@ As a general rule in analytical chemistry, a buffer is only considered effective
 
 The Henderson-Hasselbalch equation is an *approximation*. It assumes that the equilibrium concentrations of $[\text{HA}]$ and $[\text{A}^-]$ are exactly equal to the initial amounts you placed in the beaker.
 This assumption begins to severely fail under three conditions:
-1.  **Extreme Dilution:** If the buffer is diluted past $1 \times 10^{-4}\text{ M}$, the autoionization of water ($[\text{H}^+] = 10^{-7}\text{ M}$) begins to significantly interfere.
-2.  **Strong Acids/Bases:** The equation cannot be used for strong acids like $\text{HCl}$ or $\text{HNO}_3$, as their $K_a$ values approach infinity and there is no intact $[\text{HA}]$ left in solution.
-3.  **Extreme Ratios:** If the ratio of $[\text{A}^-]$ to $[\text{HA}]$ exceeds $100:1$ or drops below $1:100$, the approximation breaks down as water's buffering effect takes over.
+1. **Extreme Dilution:** If the buffer is diluted past $1 \times 10^{-4}\text{ M}$, the autoionization of water ($[\text{H}^+] = 10^{-7}\text{ M}$) begins to significantly interfere.
+2. **Strong Acids/Bases:** The equation cannot be used for strong acids like $\text{HCl}$ or $\text{HNO}_3$, as their $K_a$ values approach infinity and there is no intact $[\text{HA}]$ left in solution.
+3. **Extreme Ratios:** If the ratio of $[\text{A}^-]$ to $[\text{HA}]$ exceeds $100:1$ or drops below $1:100$, the approximation breaks down as water's buffering effect takes over.
 
 ---
 
@@ -153,15 +153,15 @@ Our calculator acts as a digital analytical laboratory, offering seamless bidire
 
 If you are mixing a known amount of weak acid and conjugate base:
 1.  **Select the Mode:** Choose "Calculate Buffer pH".
-2.  **Input the Parameters:** Enter your acid's $\text{p}K_a$, the concentration of the conjugate base $[\text{A}^-]$, and the concentration of the weak acid $[\text{HA}]$.
-3.  **Read Output:** The calculator immediately provides the final pH of the mixture, the ratio, and assesses if the buffer falls within the ideal $\pm 1$ capacity range.
+2. **Input the Parameters:** Enter your acid's $\text{p}K_a$, the concentration of the conjugate base $[\text{A}^-]$, and the concentration of the weak acid $[\text{HA}]$.
+3. **Read Output:** The calculator immediately provides the final pH of the mixture, the ratio, and assesses if the buffer falls within the ideal $\pm 1$ capacity range.
 
 ### 5.2 Laboratory Buffer Design (Targeting a pH)
 
 If your laboratory protocol requires a buffer at a specific pH (e.g., pH 7.40 for biological cells):
 1.  **Select the Mode:** Choose "Calculate Ratio $[\text{A}^-]/[\text{HA}]$".
-2.  **Input Parameters:** Enter your target pH and the $\text{p}K_a$ of your chosen buffering agent (e.g., $7.20$ for Phosphate).
-3.  **Execute:** The tool uses the inverse logarithm function $10^{(\text{pH} - \text{p}K_a)}$ to tell you exactly how many moles of conjugate base you need for every mole of weak acid. 
+2. **Input Parameters:** Enter your target pH and the $\text{p}K_a$ of your chosen buffering agent (e.g., $7.20$ for Phosphate).
+3. **Execute:** The tool uses the inverse logarithm function $10^{(\text{pH} - \text{p}K_a)}$ to tell you exactly how many moles of conjugate base you need for every mole of weak acid.
 
 ---
 
@@ -181,7 +181,6 @@ A biochemist prepares a buffer solution containing $0.25\text{ M}$ Acetic Acid (
     Conjugate Base $[\text{A}^-] = 0.15\text{ M}$
     Acid $\text{p}K_a = 4.76$
 2.  **Apply Henderson-Hasselbalch:**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 4.76 + \log_{10}\left(\frac{0.15}{0.25}\right) $$
     $$ \text{pH} = 4.76 + \log_{10}(0.60) $$
     $$ \text{pH} = 4.76 - 0.222 $$
@@ -200,7 +199,7 @@ Human blood plasma is strictly buffered at a pH of $7.40$. The primary buffer is
     Target $\text{pH} = 7.40$
     Acid $\text{p}K_a = 6.10$
 2.  **Isolate the Logarithmic Ratio:**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
+$$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
     $$ 7.40 = 6.10 + \log_{10}(\text{Ratio}) $$
     $$ 1.30 = \log_{10}(\text{Ratio}) $$
 3.  **Execute the Inverse Logarithm:**
@@ -228,7 +227,7 @@ A laboratory needs to design a Phosphate Buffered Saline (PBS) solution at exact
 **Mathematical Derivation:**
 
 1.  **Calculate the Required Ratio:**
-    $$ \text{pH} - \text{p}K_a = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
+$$ \text{pH} - \text{p}K_a = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ 7.00 - 7.20 = -0.20 $$
     $$ \text{Ratio} = 10^{-0.20} = 0.631 $$
 2.  **Calculate Required Conjugate Base Concentration:**
@@ -241,7 +240,7 @@ A laboratory needs to design a Phosphate Buffered Saline (PBS) solution at exact
 ### Example 4: The Acid Attack (Buffer Neutralization)
 
 **Scenario:**
-Let's take $1.0\text{ Liter}$ of a perfect buffer containing $0.10\text{ M}$ generic weak acid ($\text{HA}$, $\text{p}K_a = 5.00$) and $0.10\text{ M}$ conjugate base ($\text{A}^-$). The initial pH is 5.00. 
+Let's take $1.0\text{ Liter}$ of a perfect buffer containing $0.10\text{ M}$ generic weak acid ($\text{HA}$, $\text{p}K_a = 5.00$) and $0.10\text{ M}$ conjugate base ($\text{A}^-$). The initial pH is 5.00.
 We then aggressively add $0.02\text{ Moles}$ of pure Hydrochloric acid ($\text{HCl}$, a strong acid). What is the new pH?
 
 **Mathematical Derivation:**
@@ -250,11 +249,10 @@ We then aggressively add $0.02\text{ Moles}$ of pure Hydrochloric acid ($\text{H
     $[\text{HA}] = 0.10\text{ mol}$
     $[\text{A}^-] = 0.10\text{ mol}$
 2.  **Stoichiometric Neutralization:**
-    The $0.02\text{ mol}$ of strong acid ($\text{H}^+$) will completely attack the conjugate base ($\text{A}^-$), turning it into weak acid ($\text{HA}$).
+The $0.02\text{ mol}$ of strong acid ($\text{H}^+$) will completely attack the conjugate base ($\text{A}^-$), turning it into weak acid ($\text{HA}$).
     **New $[\text{A}^-]$:** $0.10 - 0.02 = 0.08\text{ mol}$
     **New $[\text{HA}]$:** $0.10 + 0.02 = 0.12\text{ mol}$
 3.  **Apply Henderson-Hasselbalch to the New State:**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 5.00 + \log_{10}\left(\frac{0.08}{0.12}\right) $$
     $$ \text{pH} = 5.00 + \log_{10}(0.667) $$
     $$ \text{pH} = 5.00 - 0.176 = 4.82 $$

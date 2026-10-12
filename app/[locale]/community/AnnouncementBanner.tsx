@@ -1,11 +1,13 @@
-'use server';
+'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import appletConfig from "@/firebase-applet-config.json";
+import { AnnouncementBannerClient } from './AnnouncementBannerClient';
 
 const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || appletConfig.projectId;
 const API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY || appletConfig.apiKey;
 const BASE_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
+const CACHE_KEY = 'nexus_active_announcement_v1';
 
 function parseValue(value: any): any {
   if (!value) return null;
@@ -17,6 +19,14 @@ function parseValue(value: any): any {
 
 async function fetchActiveAnnouncement() {
   try {
+    const cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      if (parsed && Date.now() - parsed.ts < 3600_000) {
+        return parsed.data;
+      }
+    }
+
     const response = await fetch(`${BASE_URL}:runQuery?key=${API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -34,24 +44,28 @@ async function fetchActiveAnnouncement() {
           limit: 1
         }
       }),
-      next: { revalidate: 3600 }
     });
 
     if (!response.ok) return null;
     const data = await response.json();
-    if (!data[0]?.document) return null;
+    if (!data[0]?.document) {
+      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: null }));
+      return null;
+    }
 
     const doc = data[0].document;
     const id = doc.name.split('/').pop() as string;
     const fields = doc.fields || {};
 
-    return {
+    const result = {
       id,
       message: parseValue(fields.message) || '',
       type: parseValue(fields.type) || 'info',
       link: parseValue(fields.link) || '',
       linkLabel: parseValue(fields.linkLabel) || 'Learn more',
     };
+    sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: result }));
+    return result;
   } catch {
     return null;
   }
@@ -81,11 +95,15 @@ const TYPE_STYLES = {
   },
 } as const;
 
-// Client wrapper for dismiss functionality
-import { AnnouncementBannerClient } from './AnnouncementBannerClient';
+export function AnnouncementBanner() {
+  const [announcement, setAnnouncement] = useState<any>(null);
 
-export async function AnnouncementBanner() {
-  const announcement = await fetchActiveAnnouncement();
+  useEffect(() => {
+    fetchActiveAnnouncement().then((res) => {
+      if (res && res.message) setAnnouncement(res);
+    });
+  }, []);
+
   if (!announcement || !announcement.message) return null;
 
   const styles = TYPE_STYLES[announcement.type as keyof typeof TYPE_STYLES] || TYPE_STYLES.info;

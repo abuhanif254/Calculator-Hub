@@ -211,7 +211,8 @@ export function Navbar() {
               </button>
 
               {/* Dev Tools: Full-width dropdown — 5-column compact layout */}
-              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'devTools' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+              {activeMegaMenu === 'devTools' && (
+              <div className="absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 opacity-100 visible">
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-5 gap-x-5 gap-y-0">
@@ -247,6 +248,7 @@ export function Navbar() {
                   </div>
                 </div>
               </div>
+              )}
             </div>
 
             {/* ── PDF Tools Mega Menu ── */}
@@ -260,7 +262,8 @@ export function Navbar() {
                 <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'pdfTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
-              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'pdfTools' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+              {activeMegaMenu === 'pdfTools' && (
+              <div className="absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 opacity-100 visible">
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-4 gap-x-5 gap-y-0">
@@ -282,6 +285,7 @@ export function Navbar() {
                   </div>
                 </div>
               </div>
+              )}
             </div>
 
             {/* ── Image Tools Mega Menu ── */}
@@ -295,7 +299,8 @@ export function Navbar() {
                 <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'imageTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
-              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'imageTools' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+              {activeMegaMenu === 'imageTools' && (
+              <div className="absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 opacity-100 visible">
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-3 gap-x-5 gap-y-0">
@@ -316,6 +321,7 @@ export function Navbar() {
                   </div>
                 </div>
               </div>
+              )}
             </div>
 
             {/* ── Calculators Unified Mega Menu ── */}
@@ -330,7 +336,8 @@ export function Navbar() {
               </button>
 
               {/* Calculators: Full-width 4-column mega menu */}
-              <div className={`absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 ${activeMegaMenu === 'calculators' ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+              {activeMegaMenu === 'calculators' && (
+              <div className="absolute top-full left-0 w-full pt-0 transition-all duration-300 ease-out z-50 opacity-100 visible">
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="flex overflow-x-auto gap-x-5 pb-4 custom-scrollbar snap-x">
@@ -387,6 +394,7 @@ export function Navbar() {
                   </div>
                 </div>
               </div>
+              )}
             </div>
 
             <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700 flex items-center space-x-3">
@@ -439,11 +447,8 @@ export function Navbar() {
            - Subtracts: 64px (navbar) + 44px (GlobalSettingsBar) = 108px total header
            - Falls back to 100vh - 108px for older browsers that don't support dvh
       */}
-      <div className={`lg:hidden transition-all duration-300 ease-in-out ${
-        isMobileMenuOpen
-          ? "max-h-[calc(100dvh-108px)] border-b border-slate-200 dark:border-slate-800 overflow-y-auto"
-          : "max-h-0 overflow-hidden"
-      } bg-white dark:bg-slate-900 custom-scrollbar overscroll-contain`}>
+      {isMobileMenuOpen && (
+      <div className="lg:hidden transition-all duration-300 ease-in-out max-h-[calc(100dvh-108px)] border-b border-slate-200 dark:border-slate-800 overflow-y-auto bg-white dark:bg-slate-900 custom-scrollbar overscroll-contain">
         <div className="px-4 pt-2 pb-6 space-y-1">
 
           {/* Developer Tools Mobile Accordion */}
@@ -678,6 +683,7 @@ export function Navbar() {
           </div>
         </div>
       </div>
+      )}
     </header>
   );
 }

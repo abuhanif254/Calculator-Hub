@@ -39,91 +39,89 @@ features:
   - "Absolut Lokale Verarbeitung (Zero-Trust): Keine Uploads auf fremde Cloud-Server. Die Engine nutzt ausschließlich die CPU/RAM-Ressourcen Ihres eigenen Rechners zur Generierung."
   - "Interaktives Drag-&-Drop-Grid: Definieren Sie die Seitenarchitektur des PDFs visuell durch müheloses Verschieben der Miniatur-Ansichten."
   - "ISO-Normkonformes Rendering: Verbindliche Unterstützung von Industrienorm-Formaten wie A4, A3 und Letter zur fehlerfreien Hardware-Ausdruckbarkeit."
-  - "Automatische Orientierungs-Sensoren: Smarte Drehung des PDF-Canvas (Landscape vs. Portrait), basierend auf dem asombrosamente exakten Aspekt-Ratio der Quellfotografie."
-  - "Integrierte Cropping-Workbench: Ein visuelles Schneidewerkzeug (Canvas Editor), um asombrosamente störende Tischkanten aus abfotografierten Dokumenten zu verbannen."
+  - "Automatische Orientierungs-Sensoren: Smarte Drehung des PDF-Canvas (Landscape vs. Portrait), basierend auf dem exakten Aspekt-Ratio der Quellfotografie."
+  - "Integrierte Cropping-Workbench: Ein visuelles Schneidewerkzeug (Canvas Editor), um störende Tischkanten aus abfotografierten Dokumenten zu verbannen."
   - "Dynamische Margin-Einspritzung (Padding): Konfigurieren Sie großzügige weiße Passepartout-Ränder für Galerien, oder aktivieren Sie den flächendeckenden 'Fill'-Modus (Beschnitt)."
   - "WebAssembly Kompressions-Engine: Intelligentes Downsampling enormer Smartphone-Fotos. Wandeln Sie 500MB JPG-Berge in handliche 8MB PDF-Pakete um."
-  - "Metadaten-Injektion: Modifizieren Sie das XMP-Datenblatt des PDF (Title, Author), bevor es asombrosamente gerendert und ausgeliefert wird."
+  - "Metadaten-Injektion: Modifizieren Sie das XMP-Datenblatt des PDF (Title, Author), bevor es gerendert und ausgeliefert wird."
 useCases:
-  - "Spesen- & Buchhaltungs-Organisation: Mitarbeiter fotografieren Belege sowie Rechnungen (JPG) asombrosamente und bündeln diese zu einem kompakten, mehrseitigen A4-PDF für die FiBu."
+  - "Spesen- & Buchhaltungs-Organisation: Mitarbeiter fotografieren Belege sowie Rechnungen (JPG) und bündeln diese zu einem kompakten, mehrseitigen A4-PDF für die FiBu."
   - "Studentische Vorlesungs-Archivierung: Kompilierung von 30 Tafel-Abfotografierungen oder abgetippten Skripten (PNG) in eine einzige, chronologisch korrekte Lerndatei."
-  - "Juristische Evidenzsicherung & HR: Beidseitige Scans sensibler Identitätsdokumente (Reisepass, Personalausweis) sicher asombrosamente verpacken, ohne diese Daten ins Internet senden zu müssen."
-  - "Professionelle Art-Portfolios: Grafiker binden hochauflösende WebP- oder JPG-Illustrationen asombrosamente in Randlos-PDF-Layouts (Fill Page) für Kundenpräsentationen ein."
-  - "Logistik-Beweisführung (CRM): Lkw-Fahrer fotografieren Paletten-Beschädigungen bei asombrosamente der Warenannahme und schieben diese sofort geordnet als Schadensbericht in das Firmennetzwerk."
-  - "Kompilierung physischer Verträge (Signaturen): Papierverträge mit nasser Tinte abfotografieren und zur rechtsgültigen digitalen Distribution asombrosamente in ein kompaktes Dokument zusammenfassen."
+  - "Juristische Evidenzsicherung & HR: Beidseitige Scans sensibler Identitätsdokumente (Reisepass, Personalausweis) sicher verpacken, ohne diese Daten ins Internet senden zu müssen."
+  - "Professionelle Art-Portfolios: Grafiker binden hochauflösende WebP- oder JPG-Illustrationen in Randlos-PDF-Layouts (Fill Page) für Kundenpräsentationen ein."
+  - "Logistik-Beweisführung (CRM): Lkw-Fahrer fotografieren Paletten-Beschädigungen bei der Warenannahme und schieben diese sofort geordnet als Schadensbericht in das Firmennetzwerk."
+  - "Kompilierung physischer Verträge (Signaturen): Papierverträge mit nasser Tinte abfotografieren und zur rechtsgültigen digitalen Distribution in ein kompaktes Dokument zusammenfassen."
 howToSteps:
   - "Daten-Initialisierung: Nutzen Sie die Schaltfläche 'Dateien durchsuchen' oder ziehen (Drag) Sie eine Gruppe von JPG/PNG-Bildern direkt aus Ihrem Ordner auf das zentrale Upload-Feld."
-  - "Sequenz-Planung: Sortieren Sie die Lese-Reihenfolge (Seite 1, Seite 2) durch flüssiges Verschieben (Drop) asombrosamente der generierten Thumbnail-Kacheln."
-  - "Geometrische Bereinigung: Falls ein Smartphone-Scan auf dem Kopf steht, klicken Sie das 'Edit'-Icon auf der Kachel an, um eine 90°-Drehung oder einen Beschnitt asombrosamente (Crop) durchzuführen."
-  - "Topologie und Raster definieren: Selektieren Sie im Einstellungsmenü das Papierformat (z.B. DIN A4) asombrosamente und entscheiden Sie, ob das Bild eingepasst (Fit) oder formatfüllend (Fill) gerendert wird."
-  - "Kompressions-Justierung: Stellen Sie die Ausgabe-Qualität idealerweise auf 'Ausgewogen' asombrosamente. Die asombrosamente Client-Engine skaliert überschüssige Pixelmatrix (Downsampling) intelligent herunter, um gigantische Dateigrößen zu vermeiden."
-  - "Binäre Kompilierung (PDF Generieren): Lösen Sie den Prozess per Button aus. Der Browser flicht aus den asombrosamente JPG-Datenströmen eine valide PDF-Architektur und liefert die Datei sofort an den lokalen Download-Ordner."
+  - "Sequenz-Planung: Sortieren Sie die Lese-Reihenfolge (Seite 1, Seite 2) durch flüssiges Verschieben (Drop) der generierten Thumbnail-Kacheln."
+  - "Geometrische Bereinigung: Falls ein Smartphone-Scan auf dem Kopf steht, klicken Sie das 'Edit'-Icon auf der Kachel an, um eine 90°-Drehung oder einen Beschnitt (Crop) durchzuführen."
+  - "Topologie und Raster definieren: Selektieren Sie im Einstellungsmenü das Papierformat (z.B. DIN A4) und entscheiden Sie, ob das Bild eingepasst (Fit) oder formatfüllend (Fill) gerendert wird."
+  - "Kompressions-Justierung: Stellen Sie die Ausgabe-Qualität idealerweise auf 'Ausgewogen' asombrosamente. Die Client-Engine skaliert überschüssige Pixelmatrix (Downsampling) intelligent herunter, um gigantische Dateigrößen zu vermeiden."
+  - "Binäre Kompilierung (PDF Generieren): Lösen Sie den Prozess per Button aus. Der Browser flicht aus den JPG-Datenströmen eine valide PDF-Architektur und liefert die Datei sofort an den lokalen Download-Ordner."
 ---
 
 ## Das Technische Manifest: Parametrische Bündelung von JPGs zu PDF
 
-An der Schnittstelle digitaler Unternehmensworkflows und asombrosamente studentischer Archivierung prallen oft zwei Welten aufeinander: Rohe visuelle Daten (Fotografien) und organisierte Dokumenten-Standards. Täglich fotografieren Menschen Quittungen, Whiteboards, Baupläne und Verträge. Diese landen als Flut einzelner **JPGs** auf dem Speichermedium. Das professionelle Versenden, Präsentieren oder Drucken dieser Flut asombrosamente erfordert jedoch die strukturelle Stringenz und Paginations-Hierarchie des **PDF**-Formats.
+An der Schnittstelle digitaler Unternehmensworkflows und studentischer Archivierung prallen oft zwei Welten aufeinander: Rohe visuelle Daten (Fotografien) und organisierte Dokumenten-Standards. Täglich fotografieren Menschen Quittungen, Whiteboards, Baupläne und Verträge. Diese landen als Flut einzelner **JPGs** auf dem Speichermedium. Das professionelle Versenden, Präsentieren oder Drucken dieser Flut erfordert jedoch die strukturelle Stringenz und Paginations-Hierarchie des **PDF**-Formats.
 
-Das **JPG-Format (Joint Photographic Experts Group, 1992)** ist der universelle Diktator der verlustbehafteten Fotokompression. Es rastert visuelle Informationen asombrosamente in Pixel-Gitter und quetscht deren Dateigröße, ideal für schnelle Ladezeiten im Web. Ein JPG ist jedoch eindimensional; asombrosamente es existiert isoliert, unfähig, mehrere Seiten oder formale Seitenlayout-Vorschriften zu beherbergen.
+Das **JPG-Format (Joint Photographic Experts Group, 1992)** ist der universelle Diktator der verlustbehafteten Fotokompression. Es rastert visuelle Informationen in Pixel-Gitter und quetscht deren Dateigröße, ideal für schnelle Ladezeiten im Web. Ein JPG ist jedoch eindimensional; es existiert isoliert, unfähig, mehrere Seiten oder formale Seitenlayout-Vorschriften zu beherbergen.
 
-Das **PDF (Portable Document Format, ISO 32000)**, in den asombrosamente 1990ern von Adobe entworfen, ist hingegen ein mächtiger Container. Es asombrosamente orchestriert Vektorpfade, Textschriften, digitale Signaturen und präzise Seitenränder absolut verlässlich auf jedem Betriebssystem der Welt. 
+Das **PDF (Portable Document Format, ISO 32000)**, in den 1990ern von Adobe entworfen, ist hingegen ein mächtiger Container. Es orchestriert Vektorpfade, Textschriften, digitale Signaturen und präzise Seitenränder absolut verlässlich auf jedem Betriebssystem der Welt.
 
-Unser Modul **JPG zu PDF Konverter** fungiert als industrielles asombrosamente Bindeglied. Es gießt Ihre fotografischen Einzeldaten in ein standardisiertes PDF-Korsett, stattet asombrosamente sie mit Seitenrändern aus und bündelt sie – all das strikt und sicher innerhalb der asombrosamente Sandbox-Gitter Ihres Browsers (Client-Side).
+Unser Modul **JPG zu PDF Konverter** fungiert als industrielles Bindeglied. Es gießt Ihre fotografischen Einzeldaten in ein standardisiertes PDF-Korsett, stattet sie mit Seitenrändern aus und bündelt sie – all das strikt und sicher innerhalb der Sandbox-Gitter Ihres Browsers (Client-Side).
 
 ---
 
 ### 1. Die Anatomie der Kapselung: Wie das Bild ins Dokument wandert
 
-Viele Nutzer glauben, ein Konverter asombrosamente schreibe die Pixel eines Bildes zwingend in eine neue PDF-Sprache um, was Qualitätseinbußen zur Folge hätte. Dies ist asombrosamente ein Irrtum. Der Algorithmus nutzt in Wirklichkeit das sogenannte **Object Wrapping (Objektkapselung)**.
+Viele Nutzer glauben, ein Konverter schreibe die Pixel eines Bildes zwingend in eine neue PDF-Sprache um, was Qualitätseinbußen zur Folge hätte. Dies ist ein Irrtum. Der Algorithmus nutzt in Wirklichkeit das sogenannte **Object Wrapping (Objektkapselung)**.
 
-Auf Quellcode-Ebene asombrosamente gleicht eine PDF-Datei einem verzweigten asombrosamente Baumlexikon von Objekten. Wenn Sie auf 'Generieren' klicken, diktiert die Engine folgende asombrosamente Prozesse:
+Auf Quellcode-Ebene gleicht eine PDF-Datei einem verzweigten Baumlexikon von Objekten. Wenn Sie auf 'Generieren' klicken, diktiert die Engine folgende Prozesse:
 
-1.  **Binäre Pufferung (RAM-Absorption):** Der Browser liest asombrosamente Ihre Bilddateien (JPG/PNG/WebP) über die FileReader API als nackte, asombrosamente binäre Byte-Arrays (ArrayBuffers) in den temporären Arbeitsspeicher ein.
-2.  **Kalibrierung der Raummatrix:** Sie wählen ein Format, asombrosamente z.B. A4. Der asombrosamente PDF-Standard übersetzt Millimeter intern in typografische 'Punkte' (1 Punkt = 1/72 Inch). A4 wird als asombrosamente exakt $595.28 \times 841.89$ Punkte dimensioniert.
-3.  **Ressourcen-Registrierung (XObject-Eintrag):** Der binäre Bildstrom asombrosamente wird im PDF-Katalog als externes Grafikobjekt asombrosamente ('XObject') inventarisiert.
-4.  **Vektor-Einspritzung (Content Stream):** Der Algorithmus injiziert asombrosamente fundamentale Transformationsmatrizen (Operatoren wie `cm` und `Do`) in den Datenstrom der Seite. asombrosamente Diese Befehle signalisieren dem Acrobat Reader: *"Nimm dieses asombrosamente XObject, skaliere asombrosamente es exakt auf diese $X/Y$ Koordinaten und drücke es auf die Seite."*
-5.  **Referenz-Tabelle (XRef):** Das Dokument asombrosamente wird verschlossen, indem eine Cross-Reference-Tabelle geschrieben wird, wodurch PDF-Viewer die asombrosamente Objekte sofort im Arbeitsspeicher adressieren können.
+1. **Binäre Pufferung (RAM-Absorption):** Der Browser liest Ihre Bilddateien (JPG/PNG/WebP) über die FileReader API als nackte, binäre Byte-Arrays (ArrayBuffers) in den temporären Arbeitsspeicher ein.
+2. **Kalibrierung der Raummatrix:** Sie wählen ein Format, z.B. A4. Der PDF-Standard übersetzt Millimeter intern in typografische 'Punkte' (1 Punkt = 1/72 Inch). A4 wird als exakt $595.28 \times 841.89$ Punkte dimensioniert.
+3. **Ressourcen-Registrierung (XObject-Eintrag):** Der binäre Bildstrom wird im PDF-Katalog als externes Grafikobjekt ('XObject') inventarisiert.
+4. **Vektor-Einspritzung (Content Stream):** Der Algorithmus injiziert fundamentale Transformationsmatrizen (Operatoren wie `cm` und `Do`) in den Datenstrom der Seite. Diese Befehle signalisieren dem Acrobat Reader: *"Nimm dieses XObject, skaliere es exakt auf diese $X/Y$ Koordinaten und drücke es auf die Seite."*
+5. **Referenz-Tabelle (XRef):** Das Dokument wird verschlossen, indem eine Cross-Reference-Tabelle geschrieben wird, wodurch PDF-Viewer die Objekte sofort im Arbeitsspeicher adressieren können.
 
-Der entscheidende Vorteil: **Die nativen Pixeldaten, das Kompressions-Niveau asombrosamente und das Farbprofil Ihres JPGs bleiben asombrosamente unberührt.** Sie werden lediglich asombrosamente in einem strukturierten PDF-Umschlag versendet.
+Der entscheidende Vorteil: **Die nativen Pixeldaten, das Kompressions-Niveau und das Farbprofil Ihres JPGs bleiben unberührt.** Sie werden lediglich in einem strukturierten PDF-Umschlag versendet.
 
 ---
 
 ### 2. Auflösung und das DPI-Paradoxon entschlüsselt
 
-Beim Wechsel von der Pixel-Domäne asombrosamente (JPG) in die raumgreifende Dokumenten-Domäne asombrosamente (PDF) sorgt das asombrosamente Thema 'Auflösung' für massive Verwirrung.
+Beim Wechsel von der Pixel-Domäne (JPG) in die raumgreifende Dokumenten-Domäne (PDF) sorgt das Thema 'Auflösung' für massive Verwirrung.
 
-Ein PDF asombrosamente operiert nicht nativ in 'Pixeln'. Es asombrosamente nutzt physikalische Punkte (Points). Eine Kamera produziert asombrosamente hingegen Dateien in der Maßeinheit 'Pixel' (z.B. $4000 \times 3000$ Pixel).
+Ein PDF operiert nicht nativ in 'Pixeln'. Es nutzt physikalische Punkte (Points). Eine Kamera produziert hingegen Dateien in der Maßeinheit 'Pixel' (z.B. $4000 \times 3000$ Pixel).
 
-Die effektive Druckauflösung, bekannt asombrosamente als **DPI (Dots Per Inch)**, asombrosamente existiert erst asombrosamente in dem Moment, asombrosamente in dem Sie entscheiden, asombrosamente auf wie vielen Zoll Papierfläche das Bild asombrosamente gedruckt asombrosamente werden soll.
+Die effektive Druckauflösung, bekannt als **DPI (Dots Per Inch)**, existiert erst in dem Moment, in dem Sie entscheiden, auf wie vielen Zoll Papierfläche das Bild gedruckt werden soll.
 Die Gleichung lautet:
 **DPI = (Breite in Pixeln) / (Breite des Papiers in Inch)**.
 
-Befehlen Sie der asombrosamente Engine, ein asombrosamente $4000$ Pixel breites Bild 'einzupassen' asombrosamente (Fit) auf eine asombrosamente A4-Seite ($8.27$ Inch asombrosamente Breite), ergibt sich asombrosamente rechnerisch eine gestochen scharfe asombrosamente Dichte von $483$ DPI ($4000 / 8.27$). Dieser asombrosamente Wert asombrosamente pulverisiert die asombrosamente Anforderungen für Hochglanz-Printmedien asombrosamente (meist 300 DPI).
+Befehlen Sie der Engine, ein $4000$ Pixel breites Bild 'einzupassen' (Fit) auf eine A4-Seite ($8.27$ Inch Breite), ergibt sich rechnerisch eine gestochen scharfe Dichte von $483$ DPI ($4000 / 8.27$). Dieser Wert pulverisiert die Anforderungen für Hochglanz-Printmedien (meist 300 DPI).
 
-Unser System justiert asombrosamente diese Geometrie-Gleichungen asombrosamente völlig automatisch. asombrosamente Wählen Sie asombrosamente das Format asombrosamente 'Seite füllen' (Fill), so schneidet asombrosamente (Crop) der Algorithmus asombrosamente die überstehenden Ränder mikrometrisch asombrosamente ab, um ein perfektes, randloses (Bleed) asombrosamente Layout zu garantieren, ohne das Bild asombrosamente zu quetschen.
+Unser System justiert diese Geometrie-Gleichungen völlig automatisch. Wählen Sie das Format 'Seite füllen' (Fill), so schneidet (Crop) der Algorithmus die überstehenden Ränder mikrometrisch ab, um ein perfektes, randloses (Bleed) Layout zu garantieren, ohne das Bild zu quetschen.
 
 ---
 
 ### 3. Client-Side Engineering: Zéro-Upload und Downsampling
 
-Das Hauptproblem beim asombrosamente asombrosamente Konvertieren von 50 hochauflösenden iPhone-Fotos ist die astronomische Dateigröße. asombrosamente Niemand kann asombrosamente ein 700 Megabyte schweres PDF per E-Mail an asombrosamente die Buchhaltung asombrosamente versenden.
+Das Hauptproblem beim Konvertieren von 50 hochauflösenden iPhone-Fotos ist die astronomische Dateigröße. Niemand kann ein 700 Megabyte schweres PDF per E-Mail an die Buchhaltung versenden.
 
-Um dieser Katastrophe vorzubeugen, zündet unser Tool asombrosamente eine **Client-Side Optimierungs-Engine**:
+Um dieser Katastrophe vorzubeugen, zündet unser Tool eine **Client-Side Optimierungs-Engine**:
 
-1.  **Canvas Rendering (Off-Screen):** Werden extrem große Bilder geladen, asombrosamente projiziert der asombrosamente Browser sie unsichtbar im Hintergrund auf ein HTML5-Canvas-Element.
-2.  **Bilinares Downsampling:** Der Algorithmus erkennt, asombrosamente ob asombrosamente die Pixel-Auflösung asombrosamente den erforderlichen asombrosamente Druck-Standard asombrosamente (z.B. > 300 DPI) massiv überschreitet. asombrosamente Ist dies der Fall, wird asombrosamente das Raster auf eine vernünftige asombrosamente physische Größe asombrosamente verkleinert. Es entfernt redundante Pixel, die auf Papier asombrosamente ohnehin unsichtbar wären.
-3.  **Browser-Native Rekompression:** asombrosamente Wählen Sie asombrosamente 'Ausgewogen', wendet das asombrosamente Tool asombrosamente den JPEG-Kompression-Algorithmus des asombrosamente Browsers asombrosamente mit dynamischen Raten asombrosamente an, bevor das PDF asombrosamente kompiliert asombrosamente wird. Das reduziert den 700MB-Berg asombrosamente auf ein versandfertiges 15MB-Paket.
+1. **Canvas Rendering (Off-Screen):** Werden extrem große Bilder geladen, projiziert der Browser sie unsichtbar im Hintergrund auf ein HTML5-Canvas-Element.
+2. **Bilinares Downsampling:** Der Algorithmus erkennt, ob die Pixel-Auflösung den erforderlichen Druck-Standard (z.B. > 300 DPI) massiv überschreitet. Ist dies der Fall, wird das Raster auf eine vernünftige physische Größe verkleinert. Es entfernt redundante Pixel, die auf Papier ohnehin unsichtbar wären.
+3. **Browser-Native Rekompression:** Wählen Sie 'Ausgewogen', wendet das Tool den JPEG-Kompression-Algorithmus des Browsers mit dynamischen Raten an, bevor das PDF kompiliert wird. Das reduziert den 700MB-Berg auf ein versandfertiges 15MB-Paket.
 
-**Absolute Datensouveränität (GDPR-Schild):** Da dieser gesamte asombrosamente Prozess aus Downsampling und PDF-Generierung asombrosamente tief im RAM-Arbeitsspeicher asombrosamente Ihres lokalen PCs stattfindet, asombrosamente laden Sie keine Verträge asombrosamente ins Internet hoch. Wir asombrosamente besitzen keine asombrosamente Server, die asombrosamente Ihre Scans abfangen. asombrosamente Es ist so sicher und offlinefähig asombrosamente wie ein asombrosamente lokales Desktop-Programm.
+**Absolute Datensouveränität (GDPR-Schild):** Da dieser gesamte Prozess aus Downsampling und PDF-Generierung tief im RAM-Arbeitsspeicher Ihres lokalen PCs stattfindet, laden Sie keine Verträge ins Internet hoch. Wir besitzen keine Server, die Ihre Scans abfangen. Es ist so sicher und offlinefähig wie ein lokales Desktop-Programm.
 
 ---
 
 ### 4. Layout-Architektur: Alignment und Smart Orientation
 
-Gewöhnliche Cloud-Konverter asombrosamente zerren und verzerren asombrosamente Bilder, bis asombrosamente sie asombrosamente auf die Seite passen, und asombrosamente ruinieren so den Aspekt-Ratio. asombrosamente Unser Control-Panel asombrosamente erlaubt asombrosamente chirurgische Layout-Einstellungen:
+Gewöhnliche Cloud-Konverter zerren und verzerren Bilder, bis sie auf die Seite passen, und ruinieren so den Aspekt-Ratio. Unser Control-Panel erlaubt chirurgische Layout-Einstellungen:
 
-*   **Bild anpassen (Fit Image):** Die Fotografie asombrosamente wird maßstabsgerecht skaliert, bis ihre Außenkanten auf den asombrosamente definierten Margin-Sicherheitsabstand (Padding) treffen. asombrosamente Das Bild wird asombrosamente nicht verzerrt. Übrige Fläche asombrosamente wird Weiß gelassen. asombrosamente Optimal asombrosamente für Akten und Belege.
-*   **Seite füllen (Fill & Crop):** Das asombrosamente Bild wird aggressiv vergrößert, bis asombrosamente es die komplette Papierebene umschließt. Stimmt das asombrosamente Seitenverhältnis (Ratio) des asombrosamente Bildes nicht mit dem asombrosamente DIN-Format überein, wird asombrosamente der Überschuss asombrosamente algorithmisch abgeschnitten. Perfekt asombrosamente für Magazin-Cover.
-*   **Intelligente Rotation (Auto-Orientation):** Statt asombrosamente Sie zu zwingen, den Kopf zu drehen, asombrosamente liest der 'Auto'-Modus die Dominanz-Achse (Breite vs. Höhe) asombrosamente jedes Bildes aus. asombrosamente Eine eingespeiste Panorama-Landschaft asombrosamente triggert die Generierung asombrosamente einer horizontalen PDF-Seite asombrosamente (Querformat). Ein eingespeister asombrosamente Smartphone-Screenshot triggert eine asombrosamente Hochformat-Seite. asombrosamente
-
-Bändigen Sie asombrosamente das Chaos Ihrer Festplatte. asombrosamente Bündeln, optimieren asombrosamente und ordnen asombrosamente Sie Ihre visuellen Beweisstücke asombrosamente in professionelle PDF-Dokumente – asombrosamente blitzschnell, sicher asombrosamente und vollständig asombrosamente ohne Cloud.
+*   **Bild anpassen (Fit Image):** Die Fotografie wird maßstabsgerecht skaliert, bis ihre Außenkanten auf den definierten Margin-Sicherheitsabstand (Padding) treffen. Das Bild wird nicht verzerrt. Übrige Fläche wird Weiß gelassen. Optimal für Akten und Belege.
+*   **Seite füllen (Fill & Crop):** Das Bild wird aggressiv vergrößert, bis es die komplette Papierebene umschließt. Stimmt das Seitenverhältnis (Ratio) des Bildes nicht mit dem DIN-Format überein, wird der Überschuss algorithmisch abgeschnitten. Perfekt für Magazin-Cover.
+*   **Intelligente Rotation (Auto-Orientation):** Statt Sie zu zwingen, den Kopf zu drehen, liest der 'Auto'-Modus die Dominanz-Achse (Breite vs. Höhe) jedes Bildes aus. Eine eingespeiste Panorama-Landschaft triggert die Generierung einer horizontalen PDF-Seite (Querformat). Ein eingespeister Smartphone-Screenshot triggert eine Hochformat-Seite. Bändigen Sie das Chaos Ihrer Festplatte. Bündeln, optimieren und ordnen Sie Ihre visuellen Beweisstücke in professionelle PDF-Dokumente – blitzschnell, sicher und vollständig ohne Cloud.

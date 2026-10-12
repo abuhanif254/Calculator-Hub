@@ -148,9 +148,9 @@ In diesem massiven, über 4.000 Wörter umfassenden technischen Leitfaden werden
 
 ## 1. Die Physik der potenziellen Energie: Gespeicherte Kraft
 
-In der klassischen Mechanik ist **Energie** die Fähigkeit, Arbeit zu verrichten. Während kinetische Energie die Energie der aktiven Bewegung ist, ist **potenzielle Energie** die Energie der Position, des Zustands oder der Anordnung. 
+In der klassischen Mechanik ist **Energie** die Fähigkeit, Arbeit zu verrichten. Während kinetische Energie die Energie der aktiven Bewegung ist, ist **potenzielle Energie** die Energie der Position, des Zustands oder der Anordnung.
 
-Sie ist "potenziell", weil die Energie gespeichert ist und leise darauf wartet, freigesetzt und in aktive kinetische Arbeit umgewandelt zu werden. 
+Sie ist "potenziell", weil die Energie gespeichert ist und leise darauf wartet, freigesetzt und in aktive kinetische Arbeit umgewandelt zu werden.
 
 ### Die grundlegende Gravitationsformel ($PE = m \cdot g \cdot h$)
 Wenn wir mit Objekten in der Nähe der Oberfläche der Erde (oder eines anderen Planeten) arbeiten, befassen wir uns speziell mit **potenzieller Gravitationsenergie**. Die grundlegende Formel ist elegant einfach und stützt sich auf nur drei Variablen:
@@ -173,7 +173,7 @@ Im Gegensatz zur kinetischen Energie, die quadratisch mit der Geschwindigkeit ($
 ### Die Bedeutung der Bezugsebene ($h=0$)
 Ein entscheidendes, oft missverstandenes Konzept in der Physik ist, dass die potenzielle Energie völlig relativ ist. Der Wert von $h$ erfordert einen festgelegten Ausgangspunkt – eine **Bezugsebene**, auf der die Höhe als genau Null definiert ist.
 
-Zum Beispiel könnte ein Buch, das auf einem Tisch liegt, $1\text{ Meter}$ über dem Boden sein, was ihm eine positive potenzielle Energie relativ zum Boden verleiht. Wenn sich der Boden jedoch im 10. Stockwerk eines Wohnhauses befindet, ist das Buch $30\text{ Meter}$ über dem Straßenniveau, was ihm eine viel größere potenzielle Energie relativ zur Straße verleiht. 
+Zum Beispiel könnte ein Buch, das auf einem Tisch liegt, $1\text{ Meter}$ über dem Boden sein, was ihm eine positive potenzielle Energie relativ zum Boden verleiht. Wenn sich der Boden jedoch im 10. Stockwerk eines Wohnhauses befindet, ist das Buch $30\text{ Meter}$ über dem Straßenniveau, was ihm eine viel größere potenzielle Energie relativ zur Straße verleiht.
 
 Weil die potenzielle Energie relativ ist, kann sie absolut negativ sein! Wenn Ihre Bezugsebene ($h=0$) der Boden ist und Sie einen schweren Eimer $5\text{ Meter}$ in einen Brunnen hinablassen, beträgt die Höhe $-5\text{ m}$, was zu einer mathematisch korrekten negativen potenziellen Energie führt.
 
@@ -181,7 +181,7 @@ Weil die potenzielle Energie relativ ist, kann sie absolut negativ sein! Wenn Ih
 
 ## 2. Universelle Gravitation vs. Lokale Schwerkraft ($g$)
 
-Die Standardgleichung $PE = mgh$ ist eigentlich eine vereinfachte Näherung, die nur in der Nähe der Oberfläche eines Planeten funktioniert. 
+Die Standardgleichung $PE = mgh$ ist eigentlich eine vereinfachte Näherung, die nur in der Nähe der Oberfläche eines Planeten funktioniert.
 
 ### Standard-Erdbeschleunigung ($g \approx 9,81\text{ m/s}^2$)
 Auf der Erde ist die Anziehungskraft auf Meereshöhe unglaublich konstant. Der Physikunterricht verwendet standardmäßig $9,8\text{ m/s}^2$ oder $9,81\text{ m/s}^2$. Das bedeutet, dass die Geschwindigkeit eines im Vakuum fallengelassenen Objekts in jeder Sekunde des Falls um $9,81\text{ m/s}$ zunimmt.
@@ -189,7 +189,7 @@ Auf der Erde ist die Anziehungskraft auf Meereshöhe unglaublich konstant. Der P
 Die Schwerkraft schwankt jedoch leicht aufgrund von Höhe und geologischer Dichte. Auf dem Gipfel des Mount Everest ist die Schwerkraft tatsächlich etwas schwächer als auf Meereshöhe.
 
 ### Universelle potenzielle Gravitationsenergie
-Wenn Sie als Raumfahrtingenieur orbitale Satellitenmechaniken oder Raketenstarts zum Mars berechnen, versagt die $PE = mgh$-Gleichung, da $g$ nicht mehr konstant ist. Je weiter man sich von der Erde entfernt, desto schneller nimmt die Schwerkraft gemäß dem quadratischen Abstandsgesetz ab. 
+Wenn Sie als Raumfahrtingenieur orbitale Satellitenmechaniken oder Raketenstarts zum Mars berechnen, versagt die $PE = mgh$-Gleichung, da $g$ nicht mehr konstant ist. Je weiter man sich von der Erde entfernt, desto schneller nimmt die Schwerkraft gemäß dem quadratischen Abstandsgesetz ab.
 
 In der Astrophysik verwenden wir die Formel der universellen potenziellen Gravitationsenergie:
 
@@ -227,7 +227,7 @@ Wählen Sie in der Hauptoberfläche die Variable aus, die Sie isolieren und nach
 - **Nach Gravitation (g) auflösen:** Geben Sie bekannte Energie, Masse und Höhe ein, um die Gravitationsstärke eines unbekannten Planeten zu bestimmen!
 
 ### Schritt 2: Nutzen Sie die Planeten-Voreinstellungen
-Der Rechner verfügt über eine leistungsstarke Engine für Gravitations-Voreinstellungen. Anstatt manuell $9,81\text{ m/s}^2$ einzugeben, wählen Sie einfach **Erde**. 
+Der Rechner verfügt über eine leistungsstarke Engine für Gravitations-Voreinstellungen. Anstatt manuell $9,81\text{ m/s}^2$ einzugeben, wählen Sie einfach **Erde**.
 
 Möchten Sie sehen, wie hoch ein Kran auf dem Mars mit der gleichen Energiemenge einen Stahlträger heben könnte? Ändern Sie die Gravitations-Voreinstellung auf **Mars** ($3,71\text{ m/s}^2$). Der Rechner wird sofort aktualisiert und zeigt, dass, weil der Mars weniger als 40 % der Schwerkraft der Erde hat, genau dieselbe Menge an Arbeitsenergie ein schweres Objekt sehr, sehr viel höher heben kann.
 
@@ -341,7 +341,7 @@ Dieses Flussdiagramm demonstriert, wie die mechanische Energie perfekt erhalten 
 
 ```mermaid
 flowchart TD
-    A[Achterbahngipfel<br/>Höhe = 75m] -->|Furchteinflößender Abhang| B(Mitte des Abhangs<br/>Höhe = 37,5m)
+A[Achterbahngipfel<br/>Höhe = 75m] -->|Furchteinflößender Abhang| B(Mitte des Abhangs<br/>Höhe = 37,5m)
     B -->|Maximale Beschleunigung| C[Ende des Abhangs<br/>Höhe = 0m]
     
     A -.-> D[PE: 5,88 MJ<br/>KE: 0 MJ<br/>Gesamt: 5,88 MJ]
@@ -358,7 +358,7 @@ flowchart TD
 ### Beispiel 5: Energieerzeugung in einem Wasserkraftwerk (Gantt-Prozesszeitplan)
 
 **Das Szenario:**
-Wasserkraftwerke sind im Grunde massive "Potenzielle-Energie-Batterien" aus Beton. Wasser wird in einem hochgelegenen Reservoir gespeichert. Wenn Strom benötigt wird, öffnen sich die Tore, und die Schwerkraft zieht das Wasser riesige Rohre, die sogenannten Druckrohrleitungen, hinunter. 
+Wasserkraftwerke sind im Grunde massive "Potenzielle-Energie-Batterien" aus Beton. Wasser wird in einem hochgelegenen Reservoir gespeichert. Wenn Strom benötigt wird, öffnen sich die Tore, und die Schwerkraft zieht das Wasser riesige Rohre, die sogenannten Druckrohrleitungen, hinunter.
 Lassen Sie uns den Prozess der Energieumwandlung für ein riesiges Wasservolumen von $1.000.000\text{ kg}$ analysieren, das in einem Damm $150\text{ Meter}$ tief fällt.
 
 **Die Mathematik:**
@@ -380,7 +380,7 @@ gantt
     Wasser ruht in hohem Reservoir (Maximale PE) :done, 00:00:00, 00:00:10
     section Freier Fall
     Tore öffnen, Wasser fällt durch Druckrohr :crit, active, 00:00:10, 00:00:20
-    PE wandelt sich schnell in kinetische Energie um :crit, active, 00:00:10, 00:00:20
+PE wandelt sich schnell in kinetische Energie um :crit, active, 00:00:10, 00:00:20
     section Erzeugung
     Kinetisches Wasser trifft auf Turbinenschaufeln :milestone, 00:00:20, 0d
     Turbine dreht Magnetgenerator :active, 00:00:20, 00:00:30

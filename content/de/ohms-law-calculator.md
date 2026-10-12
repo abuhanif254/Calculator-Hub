@@ -257,9 +257,9 @@ Dieses Logikflussdiagramm veranschaulicht die klassische Variablenisolationstech
 
 ```mermaid
 flowchart LR
-    A["Kernformel:<br/>Spannung = Strom * Widerstand"] --> B{"Was ist<br/>unbekannt?"}
+A["Kernformel:<br/>Spannung = Strom * Widerstand"] --> B{"Was ist<br/>unbekannt?"}
     
-    B -->|"Benötige Spannung"| C["Strom mit Widerstand multiplizieren<br/>V = I * R"]
+B -->|"Benötige Spannung"| C["Strom mit Widerstand multiplizieren<br/>V = I * R"]
     B -->|"Benötige Strom"| D["Spannung durch Widerstand teilen<br/>I = V / R"]
     B -->|"Benötige Widerstand"| E["Spannung durch Strom teilen<br/>R = V / I"]
     
@@ -334,8 +334,8 @@ flowchart TD
     B -->|"Spannung ist Null"| C["Defekte Batterie oder<br/>ausgelöste Sicherung"]
     B -->|"Spannung vorhanden"| D{"Gesamt-<br/>widerstand prüfen"}
     
-    D -->|"Widerstand ist unendlich"| E["Fehler: Offener Stromkreis<br/>Kabelbruch oder LED defekt"]
-    D -->|"Widerstand ist Null"| F["Fehler: Kurzschluss<br/>Kabel berühren sich direkt"]
+D -->|"Widerstand ist unendlich"| E["Fehler: Offener Stromkreis<br/>Kabelbruch oder LED defekt"]
+D -->|"Widerstand ist Null"| F["Fehler: Kurzschluss<br/>Kabel berühren sich direkt"]
     D -->|"Widerstand ist normal"| G{"Stromfluss<br/>messen"}
     
     G -->|"Strom ist Null"| H["Bauteil falsch herum installiert<br/>Sperrdiode"]

@@ -149,7 +149,7 @@ faqs:
 
 Welcome to the definitive **Kinetic Energy Calculator** and comprehensive physics guide. Whether you are an automotive engineer designing advanced braking systems to dissipate crash energy, a planetary scientist modeling asteroid impact craters, or a physics student preparing for a final exam on the Work-Energy Theorem, this tool is built for absolute precision.
 
-Kinetic energy is the fundamental energy of motion. It is the reason a slow-moving glacier can carve out massive valleys over millennia, and it is the reason a tiny bullet can pierce armor plating in a fraction of a millisecond. 
+Kinetic energy is the fundamental energy of motion. It is the reason a slow-moving glacier can carve out massive valleys over millennia, and it is the reason a tiny bullet can pierce armor plating in a fraction of a millisecond.
 
 In this massive, 4,000+ word deep-dive, we will comprehensively deconstruct the mechanics of kinetic energy ($KE = \frac{1}{2} m \cdot v^2$). We will explore the mathematical foundations of the Work-Energy Theorem, analyze the critical differences between linear momentum and quadratic kinetic energy, and guide you through five real-world engineering examples visualized with detailed Mermaid.js diagrams.
 
@@ -181,7 +181,7 @@ The most critical aspect of this equation—and the concept that causes the most
 This exponential scaling is why high-speed car crashes are so exponentially more devastating than low-speed crashes, and why speeding tickets scale so aggressively.
 
 ### Scalar vs. Vector Quantities
-Unlike Force ($F = ma$) and Momentum ($p = mv$), which are **vectors** (meaning they have a specific direction like "North" or "Up"), Kinetic Energy is a **scalar** quantity. 
+Unlike Force ($F = ma$) and Momentum ($p = mv$), which are **vectors** (meaning they have a specific direction like "North" or "Up"), Kinetic Energy is a **scalar** quantity.
 
 A scalar quantity only has a magnitude. A $1,500\text{ kg}$ car moving East at $30\text{ m/s}$ has the exact same kinetic energy as an identical car moving West at $30\text{ m/s}$. Furthermore, because velocity is squared ($v^2$), even if you input a negative velocity into the equation, the resulting kinetic energy will always be positive. Kinetic energy cannot be negative; an object either has it ($v > 0$) or it doesn't ($v = 0$).
 
@@ -196,7 +196,7 @@ The **Work-Energy Theorem** elegantly bridges Newton's Laws of Motion with the L
 
 $$ W_{net} = \Delta KE = KE_{final} - KE_{initial} $$
 
-If you push a stationary shopping cart with $50\text{ N}$ of force over a distance of $10\text{ meters}$, you have done $500\text{ Joules}$ of work on the cart. Assuming no friction, the cart now possesses exactly $500\text{ Joules}$ of kinetic energy. 
+If you push a stationary shopping cart with $50\text{ N}$ of force over a distance of $10\text{ meters}$, you have done $500\text{ Joules}$ of work on the cart. Assuming no friction, the cart now possesses exactly $500\text{ Joules}$ of kinetic energy.
 
 Conversely, to stop a moving object, negative work must be done (like the friction from brake pads). The brakes must do exactly enough negative work to cancel out the car's initial kinetic energy.
 
@@ -235,7 +235,7 @@ The calculator features a robust conversion engine.
 - View energy output in standard **Joules (J)**, **Kilojoules (kJ)**, **Megajoules (MJ)**, or electrical equivalents like **Watt-hours (Wh)** and **Kilowatt-hours (kWh)**.
 
 ### Step 3: Interpret the Logarithmic Energy Arc
-Energy scales drastically. A dropped apple possesses roughly $1\text{ J}$ of kinetic energy. A commercial jetliner in flight possesses over $5,000,000,000\text{ J}$. 
+Energy scales drastically. A dropped apple possesses roughly $1\text{ J}$ of kinetic energy. A commercial jetliner in flight possesses over $5,000,000,000\text{ J}$.
 The radial **Energy Arc Gauge** categorizes your result logarithmically:
 - **Micro-Scale (Green):** Baseballs, sprinters, falling objects.
 - **Macro-Scale (Blue):** Highway cars, industrial machinery, trains.
@@ -267,7 +267,7 @@ The logic tree below illustrates the Work-Energy Theorem in action.
 
 ```mermaid
 flowchart LR
-    A[Initial Kinetic Energy<br/>KE = 578.8 kJ] --> C{Braking Force Applied<br/>F = 12,000 N}
+A[Initial Kinetic Energy<br/>KE = 578.8 kJ] --> C{Braking Force Applied<br/>F = 12,000 N}
     B[Final Kinetic Energy<br/>KE = 0 J] --> C
     
     C --> D[Calculate Required Work<br/>W = ΔKE = 578.8 kJ]
@@ -374,7 +374,7 @@ $$ KE_{club} = 0.5 \cdot 0.2 \cdot (50)^2 = 250\text{ Joules} $$
 In a highly efficient (though slightly inelastic) collision, a large percentage of this energy is transferred to the ball. If the club head slows down to $35\text{ m/s}$ after impact:
 $$ KE_{club\_after} = 0.5 \cdot 0.2 \cdot (35)^2 = 122.5\text{ Joules} $$
 
-The difference ($250 - 122.5 = 127.5\text{ Joules}$) is transferred. However, this massive energy transfer happens in a duration of roughly $0.0005\text{ seconds}$ (half a millisecond). 
+The difference ($250 - 122.5 = 127.5\text{ Joules}$) is transferred. However, this massive energy transfer happens in a duration of roughly $0.0005\text{ seconds}$ (half a millisecond).
 Power is defined as the rate of energy transfer ($P = \frac{Energy}{Time}$):
 $$ Power = \frac{127.5\text{ J}}{0.0005\text{ s}} = 255,000\text{ Watts (255 kW)} $$
 
@@ -401,16 +401,16 @@ gantt
 ## 6. Frequently Asked Questions (FAQ) Deep Dive
 
 **Q: Can kinetic energy be negative?**
-**A:** No, kinetic energy is strictly positive. Because mass cannot be negative, and the velocity term is mathematically squared ($v^2$), even a negative velocity (moving backward) results in a positive kinetic energy output. 
+**A:** No, kinetic energy is strictly positive. Because mass cannot be negative, and the velocity term is mathematically squared ($v^2$), even a negative velocity (moving backward) results in a positive kinetic energy output.
 
 **Q: What is the difference between Kinetic Energy and Momentum?**
 **A:** This is the most common point of confusion in physics. Both rely on mass and velocity. **Momentum** ($p = m \cdot v$) is a *vector* and scales *linearly* with velocity. It determines how hard an object is to stop. **Kinetic Energy** ($KE = 0.5 \cdot m \cdot v^2$) is a *scalar* and scales *quadratically* with velocity. It determines how much destructive work an object will do when it hits a target.
 
 **Q: Does kinetic energy depend on your frame of reference?**
-**A:** Yes, absolutely. If you are sitting on a bullet train moving at $300\text{ km/h}$, your velocity relative to the train is zero, so your kinetic energy relative to the train is zero. However, relative to a person standing outside on the ground, you are moving at $300\text{ km/h}$ and possess massive amounts of kinetic energy. 
+**A:** Yes, absolutely. If you are sitting on a bullet train moving at $300\text{ km/h}$, your velocity relative to the train is zero, so your kinetic energy relative to the train is zero. However, relative to a person standing outside on the ground, you are moving at $300\text{ km/h}$ and possess massive amounts of kinetic energy.
 
 **Q: What is Thermal Energy in relation to Kinetic Energy?**
-**A:** Thermal energy (heat) is actually just microscopic kinetic energy. When you measure the temperature of a cup of water, you are measuring the average translational kinetic energy of the individual water molecules vibrating and bouncing around inside the cup. 
+**A:** Thermal energy (heat) is actually just microscopic kinetic energy. When you measure the temperature of a cup of water, you are measuring the average translational kinetic energy of the individual water molecules vibrating and bouncing around inside the cup.
 
 **Q: What happens to kinetic energy in a car crash?**
 **A:** According to the First Law of Thermodynamics, energy cannot be created or destroyed. In a car crash, the massive kinetic energy of the vehicle doesn't disappear; it is rapidly converted into other forms of energy. It goes into the mechanical work of bending steel (deformation), thermal energy (the metal actually gets extremely hot), and acoustic energy (the loud bang of the crash).

@@ -142,7 +142,7 @@ Dans ce guide SEO exhaustif de plus de 4 000 mots, nous allons déconstruire vio
 
 ## 1. Définition du Poids : La Force Descendante de la Gravité
 
-En mécanique classique newtonienne, le **Poids** ($P$) est strictement défini comme la force vectorielle descendante exercée sur la masse d'un objet par un champ gravitationnel local. 
+En mécanique classique newtonienne, le **Poids** ($P$) est strictement défini comme la force vectorielle descendante exercée sur la masse d'un objet par un champ gravitationnel local.
 
 $$ P = m \cdot g $$
 
@@ -180,7 +180,7 @@ Parce que Jupiter est incroyablement massive, la gravité à sa surface est d'en
 
 Votre "Poids Réel" ($P = mg$) ne change jamais tant que vous restez à la surface de la Terre. Cependant, votre **Poids Apparent** — la façon dont vous vous sentez lourd — peut changer considérablement en fonction de votre accélération verticale.
 
-Le poids apparent est simplement la *Force Normale* ($F_N$) repoussant vers le haut contre vos pieds. 
+Le poids apparent est simplement la *Force Normale* ($F_N$) repoussant vers le haut contre vos pieds.
 - **Debout Immobile :** $F_N = m \cdot g$. Vous vous sentez normal.
 - **Ascenseur Accélérant vers le Haut :** Le plancher pousse plus fort dans vos pieds pour accélérer votre masse vers le haut. $F_N = m(g + a)$. Vous vous sentez temporairement plus lourd.
 - **Ascenseur Accélérant vers le Bas :** Le plancher se dérobe sous vos pieds. $F_N = m(g - a)$. Vous vous sentez temporairement plus léger.
@@ -270,9 +270,9 @@ Cet organigramme visualise l'addition vectorielle de la gravité et de l'accél�
 flowchart TD
     A[Personne de 80 kg dans<br/>un Ascenseur] --> B{État de<br/>l'Ascenseur}
     
-    B -->|Accélère vers le Haut (+a)| C[F_N = m(g + a)<br/>La Balance Indique > 784 N]
+B -->|Accélère vers le Haut (+a)| C[F_N = m(g + a)<br/>La Balance Indique > 784 N]
     B -->|Vitesse Constante| D[F_N = m(g)<br/>La Balance Indique = 784 N]
-    B -->|Accélère vers le Bas (-a)| E[F_N = m(g - a)<br/>La Balance Indique < 784 N]
+B -->|Accélère vers le Bas (-a)| E[F_N = m(g - a)<br/>La Balance Indique < 784 N]
     B -->|Rupture de Câbles (a = -g)| F[F_N = m(g - g)<br/>La Balance Indique = 0 N]
     
     C --> G((Se sent<br/>Lourd))
@@ -303,8 +303,8 @@ Ce graphique illustre la décroissance en carré inverse de l'accélération gra
 
 ```mermaid
 xychart-beta
-    title "Accélération Gravitationnelle de la Terre vs Altitude au-dessus du Niveau de la Mer"
-    x-axis "Altitude au-dessus de la Surface de la Terre (km)" [0, 1000, 2000, 3000, 4000, 5000]
+title "Accélération Gravitationnelle de la Terre vs Altitude au-dessus du Niveau de la Mer"
+x-axis "Altitude au-dessus de la Surface de la Terre (km)" [0, 1000, 2000, 3000, 4000, 5000]
     y-axis "Gravité (m/s²)" 0 --> 10
     line [9.8, 7.3, 5.6, 4.4, 3.6, 3.0]
 ```
@@ -331,7 +331,7 @@ gantt
     La Poussée Dépasse le Poids (P/P > 1) :crit, done, 00:00:08, 00:00:10
     Tour Dégagée (En Accélération) :done, 00:00:10, 00:00:15
     section Vol
-    Combustion du Carburant (Le Poids diminue rapidement) :active, 00:00:15, 00:00:40
+Combustion du Carburant (Le Poids diminue rapidement) :active, 00:00:15, 00:00:40
     Pression Aérodynamique Maximale (Max-Q) :milestone, 00:00:40, 00:00:45
 ```
 

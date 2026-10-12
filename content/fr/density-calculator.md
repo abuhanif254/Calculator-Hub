@@ -232,7 +232,7 @@ Cet organigramme logique illustre le "Triangle de la Densité" classique utilis�
 
 ```mermaid
 flowchart LR
-    A[Formule de Base :<br/>Densité = Masse / Volume] --> B{Quelle est<br/>l'Inconnue ?}
+A[Formule de Base :<br/>Densité = Masse / Volume] --> B{Quelle est<br/>l'Inconnue ?}
     
     B -->|Besoin de Densité| C[Diviser Masse par Volume<br/>ρ = m / V]
     B -->|Besoin de Masse| D[Multiplier Densité par Volume<br/>m = ρ * V]

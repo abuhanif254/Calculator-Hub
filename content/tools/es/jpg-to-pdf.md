@@ -78,11 +78,11 @@ Contrario a la creencia popular, convertir un JPG a PDF no significa que los pí
 
 Bajo el capó de nuestro motor Client-Side, un documento PDF es esencialmente un árbol genealógico de objetos interconectados. Cuando nuestra herramienta unifica sus fotografías, orquesta los siguientes comandos matemáticos:
 
-1.  **Lectura Binaria en RAM:** El navegador ingiere las fotografías seleccionadas (JPG, PNG o WebP) asignándolas a buffers de memoria temporales en forma de matrices de bytes crudos (Array Buffers).
-2.  **Mapeo del Lienzo Matemático (Coordenadas):** El usuario dicta la topología (por ejemplo, A4). El motor traduce milímetros a 'puntos de impresora' (Points): $1 \text{ pulgada} = 72 \text{ puntos}$. (Un A4 se mapea estrictamente a $595.28 \times 841.89$ puntos).
-3.  **Registro de Objeto (XObject):** La fotografía se cataloga dentro del Diccionario de Recursos del PDF como un 'External Object' (Objeto Externo).
-4.  **Dibujo por Matriz Transformacional (Current Transformation Matrix):** El motor escribe flujos de instrucciones vectoriales en la página usando operadores del núcleo PDF (como `cm` o `Do`) para decirle al visor: *"Toma el objeto fotográfico, aplástalo y posicionalo exactamente en estas coordenadas $X,Y$ con este factor de escala"*.
-5.  **Tabla de Referencia Cruzada (XRef):** Se sella el documento creando un mapa de memoria para que aplicaciones como Acrobat Reader o Chrome puedan localizar la imagen y dibujarla a 60 fotogramas por segundo sin latencia.
+1. **Lectura Binaria en RAM:** El navegador ingiere las fotografías seleccionadas (JPG, PNG o WebP) asignándolas a buffers de memoria temporales en forma de matrices de bytes crudos (Array Buffers).
+2. **Mapeo del Lienzo Matemático (Coordenadas):** El usuario dicta la topología (por ejemplo, A4). El motor traduce milímetros a 'puntos de impresora' (Points): $1 \text{ pulgada} = 72 \text{ puntos}$. (Un A4 se mapea estrictamente a $595.28 \times 841.89$ puntos).
+3. **Registro de Objeto (XObject):** La fotografía se cataloga dentro del Diccionario de Recursos del PDF como un 'External Object' (Objeto Externo).
+4. **Dibujo por Matriz Transformacional (Current Transformation Matrix):** El motor escribe flujos de instrucciones vectoriales en la página usando operadores del núcleo PDF (como `cm` o `Do`) para decirle al visor: *"Toma el objeto fotográfico, aplástalo y posicionalo exactamente en estas coordenadas $X,Y$ con este factor de escala"*.
+5. **Tabla de Referencia Cruzada (XRef):** Se sella el documento creando un mapa de memoria para que aplicaciones como Acrobat Reader o Chrome puedan localizar la imagen y dibujarla a 60 fotogramas por segundo sin latencia.
 
 Al encapsular el objeto rasterizado, **el detalle de los píxeles originales y los perfiles de color permanecen prístinos**, inalterables dentro de su nueva bóveda PDF.
 
@@ -92,15 +92,15 @@ Al encapsular el objeto rasterizado, **el detalle de los píxeles originales y l
 
 El concepto que más confunde a los usuarios al migrar de imágenes a PDFs es la correlación entre Píxeles (Digital) y Puntos/Milímetros (Físico).
 
-Un documento PDF no tiene una "resolución" nativa; tiene dimensiones geométricas puras medidas en Puntos (1 punto = 1/72 pulgadas). 
+Un documento PDF no tiene una "resolución" nativa; tiene dimensiones geométricas puras medidas en Puntos (1 punto = 1/72 pulgadas).
 Una fotografía, por su parte, solo tiene Píxeles (Por ejemplo: $3000 \times 2000$ píxeles).
 
 La resolución real, conocida como **DPI** (Dots Per Inch) o **PPI** (Pixels Per Inch), nace únicamente en el instante en que usted decide *qué tan grande* va a estirar esa fotografía sobre la página PDF de destino. La ecuación inmutable es:
 **DPI = (Dimensión en Píxeles de la Foto) / (Dimensión de la Hoja Física en Pulgadas)**.
 
-Si usted ajusta (Fit) una fotografía de $3000$ píxeles a lo ancho de un papel de formato Carta (Letter) de $8.5$ pulgadas de ancho, la resolución resultante será de $352$ DPI ($3000 / 8.5$); un número sobresaliente para impresiones láser de calidad fotográfica. 
+Si usted ajusta (Fit) una fotografía de $3000$ píxeles a lo ancho de un papel de formato Carta (Letter) de $8.5$ pulgadas de ancho, la resolución resultante será de $352$ DPI ($3000 / 8.5$); un número sobresaliente para impresiones láser de calidad fotográfica.
 
-Nuestro algoritmo asombrosamente calcula y compensa todos estos factores de escala por detrás de escena. Si usted solicita un diseño "Sin Márgenes" (Fill Page), la imagen se recortará micrométricamente para garantizar que ningún pixel blanco arruine el borde de impresión, preservando el aspecto ratio estricto original.
+Nuestro algoritmo calcula y compensa todos estos factores de escala por detrás de escena. Si usted solicita un diseño "Sin Márgenes" (Fill Page), la imagen se recortará micrométricamente para garantizar que ningún pixel blanco arruine el borde de impresión, preservando el aspecto ratio estricto original.
 
 ---
 
@@ -110,11 +110,11 @@ El problema al compilar fotos de smartphones modernos es la explosión del tama�
 
 Para mitigar este desastre, nuestra plataforma activa automáticamente un **Motor Asombroso de Optimización Client-Side**:
 
-1.  **Resampling en HTML5 Canvas:** Las imágenes de resolución masiva son proyectadas en un lienzo invisible en el fondo de su navegador.
-2.  **Downscaling Geométrico (Interpolación Bilineal):** Si detecta que la foto excede el umbral de impresión lógica (por ejemplo, superando los $300$ DPI netos), la malla de píxeles se encoge algorítmicamente para reducir datos estériles que el ojo humano no percibe en papel.
-3.  **Compresión de Rango Variable:** Según su selección ('Equilibrado', 'Alta Calidad'), la herramienta inyecta un nuevo algoritmo de compresión JPG, aplastando el peso de la imagen hasta un 90%.
+1. **Resampling en HTML5 Canvas:** Las imágenes de resolución masiva son proyectadas en un lienzo invisible en el fondo de su navegador.
+2. **Downscaling Geométrico (Interpolación Bilineal):** Si detecta que la foto excede el umbral de impresión lógica (por ejemplo, superando los $300$ DPI netos), la malla de píxeles se encoge algorítmicamente para reducir datos estériles que el ojo humano no percibe en papel.
+3. **Compresión de Rango Variable:** Según su selección ('Equilibrado', 'Alta Calidad'), la herramienta inyecta un nuevo algoritmo de compresión JPG, aplastando el peso de la imagen hasta un 90%.
 
-**Seguridad Cuántica (El Efecto Zero-Trust):** La magia suprema de este motor es que sucede 100% en la memoria de su computadora. A diferencia de portales que exigen que usted suba (Upload) sus identificaciones gubernamentales a servidores extraños en Rusia o EE.UU. para procesarlas (arriesgándose al robo de identidad), nuestra arquitectura no usa red alguna. No poseemos discos duros que guarden sus archivos. El PDF nace, se comprime y se entrega asombrosamente directo desde la RAM de su PC hacia su carpeta de descargas, cumpliendo sobradamente los mandatos corporativos europeos (GDPR).
+**Seguridad Cuántica (El Efecto Zero-Trust):** La magia suprema de este motor es que sucede 100% en la memoria de su computadora. A diferencia de portales que exigen que usted suba (Upload) sus identificaciones gubernamentales a servidores extraños en Rusia o EE.UU. para procesarlas (arriesgándose al robo de identidad), nuestra arquitectura no usa red alguna. No poseemos discos duros que guarden sus archivos. El PDF nace, se comprime y se entrega directo desde la RAM de su PC hacia su carpeta de descargas, cumpliendo sobradamente los mandatos corporativos europeos (GDPR).
 
 ---
 
@@ -126,4 +126,4 @@ Los convertidores arcaicos estiran desastrosamente fotos rectangulares para llen
 *   **Llenar Página (Fill & Crop):** Amplía la imagen forzadamente hasta extinguir todo margen blanco, sacrificando bordes (Cortando / Cropping) si el ratio de la foto no coincide con el del papel (ej: A4). Perfecto para portadas de catálogos y portfolios de fotógrafos.
 *   **Rotación Automática de Orientación (Smart Orientation):** El motor lee la topología de cada JPG (Ancho x Alto). Si la foto es apaisada (Landscape), la hoja PDF generada específicamente para esa foto se rotará 90 grados a horizontal, impidiendo encogimientos drásticos y facilitando su lectura sin tener que girar la cabeza.
 
-Unifique sus procesos de negocio. Compile, ordene y enmarque digitalmente sus evidencias, sin instalar software propietario, sin costes ocultos, y con un escudo de privacidad asombrosamente inquebrantable.
+Unifique sus procesos de negocio. Compile, ordene y enmarque digitalmente sus evidencias, sin instalar software propietario, sin costes ocultos, y con un escudo de privacidad inquebrantable.

@@ -152,7 +152,7 @@ faqs:
 
 Welcome to the definitive **Force Calculator** and comprehensive physics guide. Whether you are an aerospace engineer calculating the exact mega-newtons of thrust required to put a satellite into orbit, an automotive designer analyzing braking friction, or a physics student preparing for a grueling final exam on Newton's laws of motion, this tool is engineered for absolute precision.
 
-Force is the fundamental interaction that drives all change in the physical universe. Without force, the universe is perfectly static—objects at rest stay exactly where they are, and objects moving through a vacuum continue forever at the same speed. Force breaks that inertia. 
+Force is the fundamental interaction that drives all change in the physical universe. Without force, the universe is perfectly static—objects at rest stay exactly where they are, and objects moving through a vacuum continue forever at the same speed. Force breaks that inertia.
 
 In this massive, 4,000+ word deep-dive, we will completely deconstruct the concept of mechanical force. We will explore the mathematical foundations of Newton's Second Law ($F = m \cdot a$), analyze the difference between net force and balanced force, guide you through advanced calculation strategies, and walk through five real-world engineering examples visualized with detailed Mermaid.js diagrams.
 
@@ -163,10 +163,10 @@ In this massive, 4,000+ word deep-dive, we will completely deconstruct the conce
 To understand force, we must first understand inertia, as defined by **Sir Isaac Newton's First Law of Motion**:
 > *An object at rest stays at rest and an object in motion stays in motion with the same speed and in the same direction unless acted upon by an unbalanced force.*
 
-Force is the mechanism by which we override inertia. It is a **vector quantity**, meaning it possesses both a magnitude (how strong the push or pull is) and a direction (where the push or pull is aimed). 
+Force is the mechanism by which we override inertia. It is a **vector quantity**, meaning it possesses both a magnitude (how strong the push or pull is) and a direction (where the push or pull is aimed).
 
 ### Balanced vs. Unbalanced Forces
-Imagine a heavy safe resting on the floor. Gravity is pulling the safe downward toward the center of the Earth with a force of $10,000\text{ N}$. The solid concrete floor is pushing upward against the safe with a Normal Force of exactly $10,000\text{ N}$. 
+Imagine a heavy safe resting on the floor. Gravity is pulling the safe downward toward the center of the Earth with a force of $10,000\text{ N}$. The solid concrete floor is pushing upward against the safe with a Normal Force of exactly $10,000\text{ N}$.
 Because the upward force perfectly cancels out the downward force, the **Net Force** is exactly zero ($0\text{ N}$). These are **balanced forces**. Therefore, the safe does not accelerate; it stays exactly where it is.
 
 Now imagine you attach a winch to the safe and pull it horizontally to the right with a force of $500\text{ N}$. The friction from the floor resists with a force of $200\text{ N}$ to the left.
@@ -183,7 +183,7 @@ While our calculator deals with macroscopic classical mechanics (often called Co
 
 ## 2. The Core Mathematics: Newton's Second Law
 
-If the First Law defines what happens when there is *no* net force, **Newton's Second Law** defines exactly what happens when there *is* a net force. 
+If the First Law defines what happens when there is *no* net force, **Newton's Second Law** defines exactly what happens when there *is* a net force.
 
 The Second Law states that the acceleration of an object is directly proportional to the net force acting upon it, and inversely proportional to its mass. Mathematically, this is expressed as:
 
@@ -197,7 +197,7 @@ Where:
 ### The Proportional Relationship
 The equation $F = m \cdot a$ is elegantly simple but profoundly powerful. It tells us two critical things about the universe:
 1. **Direct Proportionality:** If you want to double the acceleration of a given object, you must double the applied force.
-2. **Inverse Proportionality:** If you apply the exact same force to an object that is twice as massive, it will accelerate at half the rate. 
+2. **Inverse Proportionality:** If you apply the exact same force to an object that is twice as massive, it will accelerate at half the rate.
 
 ### Deriving Mass and Acceleration
 Using basic algebra, we can rearrange Newton's Second Law to solve for the other variables.
@@ -229,7 +229,7 @@ You do not need to perform manual unit conversions before using the tool.
 - The calculator's backend engine instantly normalizes all inputs to standard SI units (Kilograms and $m/s^2$) before running the $F = ma$ algorithm.
 
 ### Step 3: Interpret the Logarithmic Force Gauge
-Force scales exponentially in the real world. A human pushing a shopping cart exerts roughly $50\text{ N}$. A SpaceX rocket launch exerts $22,000,000\text{ N}$. 
+Force scales exponentially in the real world. A human pushing a shopping cart exerts roughly $50\text{ N}$. A SpaceX rocket launch exerts $22,000,000\text{ N}$.
 To represent this visually, our **Force Arc Gauge** operates on a logarithmic scale. It categorizes your result into real-world tiers:
 - **Micro-Forces (Green):** Insects walking, apples falling, human footsteps.
 - **Macro-Forces (Blue):** Cars accelerating, industrial machinery, elevators.
@@ -261,7 +261,7 @@ $$ F = 5,000,000 \times 0.2 = 1,000,000\text{ Newtons (1 Meganewton)} $$
 The locomotive must generate a net forward force of 1 Mega-Newton just to achieve that slight acceleration.
 
 **2D Visualization:**
-The logic tree below illustrates how Newton's Second Law scales linearly when mass is constant. 
+The logic tree below illustrates how Newton's Second Law scales linearly when mass is constant.
 
 ```mermaid
 flowchart LR
@@ -404,16 +404,16 @@ xychart-beta
 ## 5. Frequently Asked Questions (FAQ) Deep Dive
 
 **Q: Can you have force without movement?**
-**A:** Absolutely. If you push against a solid brick wall with all your strength ($500\text{ N}$ of force), the wall pushes back with exactly $500\text{ N}$ of normal force. Because the forces are balanced, the net force is zero, and there is no movement. You are applying force, but generating no work and no acceleration. 
+**A:** Absolutely. If you push against a solid brick wall with all your strength ($500\text{ N}$ of force), the wall pushes back with exactly $500\text{ N}$ of normal force. Because the forces are balanced, the net force is zero, and there is no movement. You are applying force, but generating no work and no acceleration.
 
 **Q: What is the difference between Weight and Mass?**
 **A:** This is the most critical distinction in introductory physics. **Mass** is a measure of how much matter is in an object (measured in kilograms). It is the same everywhere in the universe. **Weight** is a *force* (measured in Newtons). It is the result of gravity acting on mass ($W = m \cdot g$). An astronaut with a mass of $80\text{ kg}$ weighs $784\text{ N}$ on Earth, but only $130\text{ N}$ on the Moon. Their mass never changed, only the gravitational force did.
 
 **Q: Why do heavier objects fall at the same speed as lighter objects in a vacuum?**
-**A:** Gravity pulls harder on heavier objects (a boulder has more downward weight force than a pebble). However, heavier objects also have more *mass* (inertia), meaning they require proportionally more force to accelerate. According to $a = F/m$, if the gravitational Force ($F$) increases at the exact same rate as the Mass ($m$), the resulting Acceleration ($a$) remains perfectly constant ($9.81\text{ m/s}^2$). 
+**A:** Gravity pulls harder on heavier objects (a boulder has more downward weight force than a pebble). However, heavier objects also have more *mass* (inertia), meaning they require proportionally more force to accelerate. According to $a = F/m$, if the gravitational Force ($F$) increases at the exact same rate as the Mass ($m$), the resulting Acceleration ($a$) remains perfectly constant ($9.81\text{ m/s}^2$).
 
 **Q: What is Centrifugal Force, and is it "fake"?**
-**A:** Centrifugal force is often called a "fictitious" or "inertial" force. When you are in a car taking a sharp left turn, you feel thrown to the right. There is no actual force pushing you right; instead, your body's mass wants to continue in a straight line (inertia) while the car turns into you. The only true force is the **Centripetal Force** (friction from the tires) pulling the car to the left. 
+**A:** Centrifugal force is often called a "fictitious" or "inertial" force. When you are in a car taking a sharp left turn, you feel thrown to the right. There is no actual force pushing you right; instead, your body's mass wants to continue in a straight line (inertia) while the car turns into you. The only true force is the **Centripetal Force** (friction from the tires) pulling the car to the left.
 
 **Q: How do airbags relate to Force and Newton's Second Law?**
 **A:** An alternative way to write Newton's Second Law is $F = \frac{\Delta p}{\Delta t}$ (Force equals the change in momentum divided by the change in time). In a car crash, your momentum goes to zero regardless of whether you hit the steering wheel or an airbag. However, the airbag drastically increases the *time* ($\Delta t$) it takes for you to stop. By dividing the same momentum change by a much larger time, the resulting peak force ($F$) exerted on your skull is exponentially reduced, saving your life.
@@ -425,7 +425,7 @@ xychart-beta
 Newton's Second Law ($F = ma$) is the keystone of mechanical engineering, aerospace trajectory planning, and classical physics. It proves that the universe operates on a system of balanced and unbalanced energetic exchanges.
 
 To truly master these concepts, utilize our Force Calculator to solve the following conceptual engineering challenges:
-1. **The Bullet Train:** Calculate the thrust force required to accelerate a $400,000\text{ kg}$ magnetic levitation train from rest to $100\text{ m/s}$ in $60\text{ seconds}$. 
+1. **The Bullet Train:** Calculate the thrust force required to accelerate a $400,000\text{ kg}$ magnetic levitation train from rest to $100\text{ m/s}$ in $60\text{ seconds}$.
 2. **The Asteroid Deflection:** A $10,000,000\text{ kg}$ asteroid is heading toward Earth. If a satellite engine pushes against it with a constant $500\text{ N}$ of force for exactly one year, what will the asteroid's final lateral velocity change be?
 3. **The Tow Truck:** If a tow truck cable is rated to snap at $30,000\text{ N}$ of tension, what is the absolute maximum acceleration rate it can safely apply to a stalled $3,000\text{ kg}$ SUV?
 

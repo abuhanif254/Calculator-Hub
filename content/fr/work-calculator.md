@@ -150,7 +150,7 @@ Dans ce guide technique massif de plus de 4 000 mots, nous allons complètement 
 
 ## 1. Qu'est-ce que le Travail Mécanique ? (La Définition en Physique)
 
-Dans la mécanique classique newtonienne, le Travail est le produit scalaire du vecteur Force ($\vec{F}$) et du vecteur Déplacement ($\vec{d}$). 
+Dans la mécanique classique newtonienne, le Travail est le produit scalaire du vecteur Force ($\vec{F}$) et du vecteur Déplacement ($\vec{d}$).
 
 Parce que ce sont des vecteurs (ils ont à la fois une amplitude et une direction spécifique), nous ne pouvons pas simplement multiplier leurs nombres bruts ensemble. Nous devons tenir compte de l'angle entre eux en utilisant la trigonométrie, en particulier la fonction cosinus.
 
@@ -185,7 +185,7 @@ Si vous soulevez une lourde boîte de $50\text{ kg}$ et que vous la transportez 
 - **Résultat :** $W = 0$. Bien que vos muscles brûlent et consomment des calories physiologiques (travail métabolique), d'un point de vue strictement physique, vous avez effectué exactement ZÉRO travail mécanique sur la boîte car vous n'avez pas modifié son énergie cinétique ou sa hauteur.
 
 ### Travail Négatif ($90^\circ < \theta \le 180^\circ$)
-Si une voiture en mouvement freine brusquement, la force de frottement des pneus pousse vers l'arrière ($180^\circ$) pendant que la voiture continue de glisser vers l'avant. 
+Si une voiture en mouvement freine brusquement, la force de frottement des pneus pousse vers l'arrière ($180^\circ$) pendant que la voiture continue de glisser vers l'avant.
 - $\cos(180^\circ) = -1$
 - **Résultat :** $W = -F \cdot d$. La route a effectué le Travail Négatif Maximum. Le travail négatif signifie que l'énergie est *retirée* de l'objet (dans ce cas, l'énergie cinétique est drainée et convertie en chaleur et en son).
 
@@ -214,7 +214,7 @@ Utilisez les onglets de navigation supérieurs pour sélectionner ce que vous vo
 - **Angle ($\theta$) :** Calculez l'angle géométrique du vecteur force en fonction de la sortie d'énergie.
 
 ### Étape 2 : Utilisez le Simulateur de Direction de Force
-Lors du calcul du Travail, utilisez le curseur d'angle interactif (de $0^\circ$ à $180^\circ$). Observez comment le travail résultant passe de $100\%$ d'efficacité à $0^\circ$, à $0\%$ à $90^\circ$, et plonge en territoire négatif à mesure que vous approchez de $180^\circ$. 
+Lors du calcul du Travail, utilisez le curseur d'angle interactif (de $0^\circ$ à $180^\circ$). Observez comment le travail résultant passe de $100\%$ d'efficacité à $0^\circ$, à $0\%$ à $90^\circ$, et plonge en territoire négatif à mesure que vous approchez de $180^\circ$.
 
 ### Étape 3 : Gérez les Conversions d'Unités Avancées
 Le calculateur gère automatiquement la mise à l'échelle métrique complexe :
@@ -322,7 +322,7 @@ Cet organigramme de haut en bas déconstruit la chaîne conceptuelle reliant la 
 
 ```mermaid
 flowchart TD
-    A[Appliquer la Force Nette F sur la Distance d] --> B(Calculer le Travail Net : W = F * d)
+A[Appliquer la Force Nette F sur la Distance d] --> B(Calculer le Travail Net : W = F * d)
     B --> C{Théorème de l'Énergie Cinétique}
     C -->|W = ΔKE| D(Variation de l'Énergie Cinétique)
     D --> E[KE Finale = KE Initiale + W]

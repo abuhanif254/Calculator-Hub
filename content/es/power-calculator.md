@@ -340,14 +340,14 @@ Este diagrama de Gantt visualiza el cronograma del final de una carrera, contras
 
 ```mermaid
 gantt
-    title Cronograma de Potencia de Salida del Ciclista Profesional en el Último Kilómetro
+title Cronograma de Potencia de Salida del Ciclista Profesional en el Último Kilómetro
     dateFormat  HH:mm:ss
     axisFormat  %M:%S
     section Aeróbico (Sostenido)
     Pelotón en Crucero (300 Vatios) :active, 00:00:00, 00:00:45
     Empuje de Tren de Lanzamiento (600 Vatios) :crit, done, 00:00:45, 00:01:00
     section Anaeróbico (Sprint)
-    Sprint Máximo en la Línea de Meta (¡1,500 Vatios!) :milestone, 00:01:00, 00:01:15
+Sprint Máximo en la Línea de Meta (¡1,500 Vatios!) :milestone, 00:01:00, 00:01:15
     Agotamiento Post-Carrera (50 Vatios) :active, 00:01:15, 00:01:40
 ```
 

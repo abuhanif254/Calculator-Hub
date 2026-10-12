@@ -51,7 +51,7 @@ howToSteps:
 
 ## El Manual Definitivo de Conversión Paramétrica (PDF a JPG/PNG/WebP)
 
-El formato **PDF (Portable Document Format)** se ha consolidado como el monarca indiscutible para preservar la integridad estructural (diseño, tipografías, vectores) de un documento al compartirlo entre diferentes sistemas operativos. Sin embargo, esta rigidez arquitectónica tiene un precio: un PDF es intrínsecamente un contenedor cerrado. Requiere software especializado (lectores PDF) para abrirse, es hostil para ser incrustado directamente en el cuerpo de una página web, y es imposible de publicar orgánicamente como un álbum en redes sociales como Instagram o LinkedIn. 
+El formato **PDF (Portable Document Format)** se ha consolidado como el monarca indiscutible para preservar la integridad estructural (diseño, tipografías, vectores) de un documento al compartirlo entre diferentes sistemas operativos. Sin embargo, esta rigidez arquitectónica tiene un precio: un PDF es intrínsecamente un contenedor cerrado. Requiere software especializado (lectores PDF) para abrirse, es hostil para ser incrustado directamente en el cuerpo de una página web, y es imposible de publicar orgánicamente como un álbum en redes sociales como Instagram o LinkedIn.
 
 Aquí es donde la conversión rasterizada asume un rol crítico. **Convertir páginas PDF a formatos de imagen estándar (JPG, PNG, WebP)** desbloquea el contenido atrapado en el documento, transformándolo en matrices de píxeles universales que cualquier navegador, teléfono móvil y red social puede renderizar instantáneamente.
 
@@ -74,10 +74,10 @@ Nuestra arquitectura subvierte este modelo obsoleto:
 
 Transformar un contenedor de vectores matemáticos (PDF) en un mapa de bits (JPG/PNG) no es tomar una simple captura de pantalla; es un proceso riguroso de renderizado geométrico.
 
-1.  **Interpretación del Árbol de Objetos (Object Tree):** Nuestro motor descodifica el flujo binario del PDF. Analiza los diccionarios de fuentes embebidas, las curvas de Bezier (ilustraciones), y las matrices de imágenes comprimidas en cada página.
-2.  **Pintado en la Matriz Virtual (Canvas Rendering):** Por cada página, el motor crea un lienzo HTML5 invisible (Canvas) en la memoria de su navegador. El motor dibuja geométricamente cada letra y cada vector en este lienzo, respetando los colores CMYK/RGB originales.
-3.  **Escalado Paramétrico de Alta Resolución:** Aquí reside el poder de la herramienta. A diferencia de soluciones mediocres que generan imágenes borrosas, nuestra herramienta le permite inyectar un factor de escala (Scale Factor: 1x, 2x, 3x, 4x). Si usted elige Ultra HD (4x), el motor multiplica la matriz matemática antes del pintado, generando imágenes masivas de más de 4000 píxeles de ancho donde hasta el texto más minúsculo (como en planos de AutoCAD) es perfectamente legible.
-4.  **Codificación a Mapa de Bits:** El lienzo renderizado final se comprime utilizando el algoritmo (Códec) seleccionado por el usuario, transformando los objetos en una matriz inmaculada de píxeles JPG, PNG o WebP.
+1. **Interpretación del Árbol de Objetos (Object Tree):** Nuestro motor descodifica el flujo binario del PDF. Analiza los diccionarios de fuentes embebidas, las curvas de Bezier (ilustraciones), y las matrices de imágenes comprimidas en cada página.
+2. **Pintado en la Matriz Virtual (Canvas Rendering):** Por cada página, el motor crea un lienzo HTML5 invisible (Canvas) en la memoria de su navegador. El motor dibuja geométricamente cada letra y cada vector en este lienzo, respetando los colores CMYK/RGB originales.
+3. **Escalado Paramétrico de Alta Resolución:** Aquí reside el poder de la herramienta. A diferencia de soluciones mediocres que generan imágenes borrosas, nuestra herramienta le permite inyectar un factor de escala (Scale Factor: 1x, 2x, 3x, 4x). Si usted elige Ultra HD (4x), el motor multiplica la matriz matemática antes del pintado, generando imágenes masivas de más de 4000 píxeles de ancho donde hasta el texto más minúsculo (como en planos de AutoCAD) es perfectamente legible.
+4. **Codificación a Mapa de Bits:** El lienzo renderizado final se comprime utilizando el algoritmo (Códec) seleccionado por el usuario, transformando los objetos en una matriz inmaculada de píxeles JPG, PNG o WebP.
 
 ---
 
@@ -103,6 +103,6 @@ No todas las imágenes son iguales. Nuestra herramienta le permite elegir el for
 
 Manejar páginas sueltas es caótico. Si usted extrae imágenes de un eBook PDF de 250 páginas, no queremos inundar su carpeta de descargas con 250 archivos individuales.
 
-Nuestra arquitectura integra un **Compilador ZIP Nativo en RAM (Client-Side)**. Una vez que el motor termina de pintar y codificar la última página del documento, recopila secuencialmente las 250 imágenes generadas (nombrándolas paramétricamente `documento_pag_1.jpg`, `documento_pag_2.jpg`, etc.) y las empaqueta en un único archivo comprimido `.zip` superligero. 
+Nuestra arquitectura integra un **Compilador ZIP Nativo en RAM (Client-Side)**. Una vez que el motor termina de pintar y codificar la última página del documento, recopila secuencialmente las 250 imágenes generadas (nombrándolas paramétricamente `documento_pag_1.jpg`, `documento_pag_2.jpg`, etc.) y las empaqueta en un único archivo comprimido `.zip` superligero.
 
-Con un solo clic, usted descarga un ecosistema perfectamente estructurado. Extraer imágenes de alta resolución de matrices rígidas nunca había sido tan seguro, rápido y asombrosamente preciso.
+Con un solo clic, usted descarga un ecosistema perfectamente estructurado. Extraer imágenes de alta resolución de matrices rígidas nunca había sido tan seguro, rápido y preciso.

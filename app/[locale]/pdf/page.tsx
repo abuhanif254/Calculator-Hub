@@ -16,9 +16,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+export const revalidate = false;
 
 export async function generateMetadata({
   params,

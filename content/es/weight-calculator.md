@@ -142,7 +142,7 @@ En esta exhaustiva guía SEO de más de 4,000 palabras, deconstruiremos violenta
 
 ## 1. Definiendo el Peso: La Fuerza Descendente de la Gravedad
 
-En la mecánica newtoniana clásica, el **Peso** ($W$) se define estrictamente como la fuerza vectorial hacia abajo ejercida sobre la masa de un objeto por un campo gravitacional local. 
+En la mecánica newtoniana clásica, el **Peso** ($W$) se define estrictamente como la fuerza vectorial hacia abajo ejercida sobre la masa de un objeto por un campo gravitacional local.
 
 $$ W = m \cdot g $$
 
@@ -180,7 +180,7 @@ Debido a que Júpiter es inimaginablemente masivo, su gravedad superficial es de
 
 Tu "Peso Real" ($W = mg$) nunca cambia siempre y cuando permanezcas en la superficie de la Tierra. Sin embargo, tu **Peso Aparente**—qué tan pesado te *sientes*—puede cambiar drásticamente según tu aceleración vertical.
 
-El peso aparente es simplemente la *Fuerza Normal* ($F_N$) empujando hacia arriba contra tus pies. 
+El peso aparente es simplemente la *Fuerza Normal* ($F_N$) empujando hacia arriba contra tus pies.
 - **De Pie y Quieto:** $F_N = m \cdot g$. Te sientes normal.
 - **Ascensor Acelerando Hacia Arriba:** El suelo empuja tus pies con más fuerza para acelerar tu masa hacia arriba. $F_N = m(g + a)$. Temporalmente te sientes más pesado.
 - **Ascensor Acelerando Hacia Abajo:** El piso se aleja de tus pies. $F_N = m(g - a)$. Temporalmente te sientes más ligero.
@@ -304,7 +304,7 @@ Este gráfico traza la decadencia de la ley de la inversa del cuadrado de la ace
 ```mermaid
 xychart-beta
     title "Aceleración Gravitacional Terrestre vs Altitud sobre el Nivel del Mar"
-    x-axis "Altitud sobre la Superficie de la Tierra (km)" [0, 1000, 2000, 3000, 4000, 5000]
+x-axis "Altitud sobre la Superficie de la Tierra (km)" [0, 1000, 2000, 3000, 4000, 5000]
     y-axis "Gravedad (m/s²)" 0 --> 10
     line [9.8, 7.3, 5.6, 4.4, 3.6, 3.0]
 ```
@@ -328,7 +328,7 @@ gantt
     Secuencia de Ignición de Motores :active, 00:00:00, 00:00:05
     El Empuje se Acumula pero Empuje < Peso :active, 00:00:05, 00:00:08
     section Despegue
-    El Empuje Excede al Peso (T over W Greater Than 1) :crit, done, 00:00:08, 00:00:10
+El Empuje Excede al Peso (T over W Greater Than 1) :crit, done, 00:00:08, 00:00:10
     Torre Despejada (Acelerando) :done, 00:00:10, 00:00:15
     section Vuelo
     Quema de Combustible (El peso disminuye rápidamente) :active, 00:00:15, 00:00:40

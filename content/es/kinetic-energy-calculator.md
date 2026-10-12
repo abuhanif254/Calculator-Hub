@@ -267,7 +267,7 @@ El árbol lógico a continuación ilustra el Teorema del Trabajo y la Energía e
 
 ```mermaid
 flowchart LR
-    A[Energía Cinética Inicial<br/>EC = 578,8 kJ] --> C{Fuerza de Frenado Aplicada<br/>F = 12.000 N}
+A[Energía Cinética Inicial<br/>EC = 578,8 kJ] --> C{Fuerza de Frenado Aplicada<br/>F = 12.000 N}
     B[Energía Cinética Final<br/>EC = 0 J] --> C
     
     C --> D[Calcular Trabajo Requerido<br/>W = ΔEC = 578,8 kJ]
@@ -348,7 +348,7 @@ Este diagrama de flujo demuestra cómo la energía mecánica total permanece con
 
 ```mermaid
 flowchart TD
-    A[Vértice del Balanceo<br/>Altura = 15m] -->|Cayendo| B(Punto Medio<br/>Altura = 7,5m)
+A[Vértice del Balanceo<br/>Altura = 15m] -->|Cayendo| B(Punto Medio<br/>Altura = 7,5m)
     B -->|Acelerando| C[Fondo del Balanceo<br/>Altura = 0m]
     
     A -.-> D[EP: 73,5 kJ<br/>EC: 0 kJ<br/>Total: 73,5 kJ]
@@ -392,7 +392,7 @@ gantt
     Fase Aceleración del Palo (Generando 250J EC) :done, 00:00:00.000, 00:00:00.500
     section Impacto
     Contacto Inicial & Compresión de Bola :crit, active, 00:00:00.500, 00:00:00.502
-    Transferencia de Energía (255kW Potencia Máx) :crit, active, 00:00:00.502, 00:00:00.505
+Transferencia de Energía (255kW Potencia Máx) :crit, active, 00:00:00.502, 00:00:00.505
     Lanzamiento de la Bola :milestone, 00:00:00.505, 0d
 ```
 

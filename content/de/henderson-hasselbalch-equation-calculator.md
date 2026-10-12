@@ -128,8 +128,8 @@ Dies ist als der **Halbäquivalenzpunkt** in einer Titration bekannt. Bei diesem
 Während ein Puffer einer pH-Änderung widersteht, kann er dies nicht unbegrenzt tun. Die **Pufferkapazität ($\beta$)** ist ein quantitatives Maß dafür, wie viel starke Säure oder starke Base ein Puffer absorbieren kann, bevor sich sein pH-Wert signifikant ändert (normalerweise um 1 Einheit).
 
 Die Pufferkapazität hängt von zwei kritischen Faktoren ab:
-1.  **Absolute Konzentration ($C_{\text{total}}$):** Ein Puffer, der $1,0\text{ M}$ von HA und $1,0\text{ M}$ von $\text{A}^-$ enthält, hat die zehnfache Kapazität eines Puffers, der $0,1\text{ M}$ von HA und $0,1\text{ M}$ von $\text{A}^-$ enthält, obwohl ihr pH-Wert identisch ist. Mehr Moleküle = mehr Neutralisationskraft.
-2.  **Das Verhältnis:** Die Pufferkapazität ist maximiert, wenn $[\text{A}^-] = [\text{HA}]$ (d.h., wenn $\text{pH} = \text{p}K_s$).
+1. **Absolute Konzentration ($C_{\text{total}}$):** Ein Puffer, der $1,0\text{ M}$ von HA und $1,0\text{ M}$ von $\text{A}^-$ enthält, hat die zehnfache Kapazität eines Puffers, der $0,1\text{ M}$ von HA und $0,1\text{ M}$ von $\text{A}^-$ enthält, obwohl ihr pH-Wert identisch ist. Mehr Moleküle = mehr Neutralisationskraft.
+2. **Das Verhältnis:** Die Pufferkapazität ist maximiert, wenn $[\text{A}^-] = [\text{HA}]$ (d.h., wenn $\text{pH} = \text{p}K_s$).
 
 Als allgemeine Regel in der analytischen Chemie gilt ein Puffer nur innerhalb von **$\pm 1\text{ pH}$-Einheit seines $\text{p}K_s$** als effektiv.
 - Wenn $\text{pH} = \text{p}K_s - 1$, ist das Verhältnis $[\text{A}^-]/[\text{HA}]$ gleich $1:10$. Der Puffer hat sehr wenig Fähigkeit, mehr Säure zu absorbieren.
@@ -139,9 +139,9 @@ Als allgemeine Regel in der analytischen Chemie gilt ein Puffer nur innerhalb vo
 
 Die Henderson-Hasselbalch-Gleichung ist eine *Näherung*. Sie geht davon aus, dass die Gleichgewichtskonzentrationen von $[\text{HA}]$ und $[\text{A}^-]$ genau den anfänglichen Mengen entsprechen, die Sie in das Becherglas gegeben haben.
 Diese Annahme beginnt unter drei Bedingungen stark zu versagen:
-1.  **Extreme Verdünnung:** Wenn der Puffer über $1 \times 10^{-4}\text{ M}$ verdünnt wird, beginnt die Autoprotolyse des Wassers ($[\text{H}^+] = 10^{-7}\text{ M}$) signifikant zu stören.
-2.  **Starke Säuren/Basen:** Die Gleichung kann nicht für starke Säuren wie $\text{HCl}$ oder $\text{HNO}_3$ verwendet werden, da ihre $K_s$-Werte gegen unendlich gehen und keine intakte $[\text{HA}]$ in der Lösung mehr vorhanden ist.
-3.  **Extreme Verhältnisse:** Wenn das Verhältnis von $[\text{A}^-]$ zu $[\text{HA}]$ $100:1$ überschreitet oder unter $1:100$ fällt, bricht die Näherung zusammen, da die Pufferwirkung des Wassers übernimmt.
+1. **Extreme Verdünnung:** Wenn der Puffer über $1 \times 10^{-4}\text{ M}$ verdünnt wird, beginnt die Autoprotolyse des Wassers ($[\text{H}^+] = 10^{-7}\text{ M}$) signifikant zu stören.
+2. **Starke Säuren/Basen:** Die Gleichung kann nicht für starke Säuren wie $\text{HCl}$ oder $\text{HNO}_3$ verwendet werden, da ihre $K_s$-Werte gegen unendlich gehen und keine intakte $[\text{HA}]$ in der Lösung mehr vorhanden ist.
+3. **Extreme Verhältnisse:** Wenn das Verhältnis von $[\text{A}^-]$ zu $[\text{HA}]$ $100:1$ überschreitet oder unter $1:100$ fällt, bricht die Näherung zusammen, da die Pufferwirkung des Wassers übernimmt.
 
 ---
 
@@ -153,15 +153,15 @@ Unser Rechner fungiert als digitales analytisches Labor und bietet eine nahtlose
 
 Wenn Sie eine bekannte Menge einer schwachen Säure und konjugierter Base mischen:
 1.  **Modus auswählen:** Wählen Sie "Puffer-pH berechnen".
-2.  **Parameter eingeben:** Geben Sie den $\text{p}K_s$-Wert Ihrer Säure, die Konzentration der konjugierten Base $[\text{A}^-]$ und die Konzentration der schwachen Säure $[\text{HA}]$ ein.
-3.  **Ausgabe lesen:** Der Rechner liefert sofort den endgültigen pH-Wert der Mischung, das Verhältnis und beurteilt, ob der Puffer innerhalb des idealen Kapazitätsbereichs von $\pm 1$ liegt.
+2. **Parameter eingeben:** Geben Sie den $\text{p}K_s$-Wert Ihrer Säure, die Konzentration der konjugierten Base $[\text{A}^-]$ und die Konzentration der schwachen Säure $[\text{HA}]$ ein.
+3. **Ausgabe lesen:** Der Rechner liefert sofort den endgültigen pH-Wert der Mischung, das Verhältnis und beurteilt, ob der Puffer innerhalb des idealen Kapazitätsbereichs von $\pm 1$ liegt.
 
 ### 5.2 Labor-Pufferdesign (Ausrichtung auf einen pH-Wert)
 
 Wenn Ihr Laborprotokoll einen Puffer bei einem bestimmten pH-Wert erfordert (z.B. pH 7,40 für biologische Zellen):
-1.  **Modus auswählen:** Wählen Sie "Verhältnis $[\text{A}^-]/[\text{HA}]$ berechnen".
-2.  **Parameter eingeben:** Geben Sie Ihren Ziel-pH-Wert und den $\text{p}K_s$-Wert Ihres gewählten Puffermittels ein (z.B. $7,20$ für Phosphat).
-3.  **Ausführen:** Das Tool verwendet die inverse Logarithmusfunktion $10^{(\text{pH} - \text{p}K_s)}$, um Ihnen genau zu sagen, wie viele Mol konjugierter Base Sie für jedes Mol schwacher Säure benötigen. 
+1. **Modus auswählen:** Wählen Sie "Verhältnis $[\text{A}^-]/[\text{HA}]$ berechnen".
+2. **Parameter eingeben:** Geben Sie Ihren Ziel-pH-Wert und den $\text{p}K_s$-Wert Ihres gewählten Puffermittels ein (z.B. $7,20$ für Phosphat).
+3. **Ausführen:** Das Tool verwendet die inverse Logarithmusfunktion $10^{(\text{pH} - \text{p}K_s)}$, um Ihnen genau zu sagen, wie viele Mol konjugierter Base Sie für jedes Mol schwacher Säure benötigen.
 
 ---
 
@@ -181,7 +181,6 @@ Ein Biochemiker stellt eine Pufferlösung her, die $0,25\text{ M}$ Essigsäure (
     Konjugierte Base $[\text{A}^-] = 0,15\text{ M}$
     Säure $\text{p}K_s = 4,76$
 2.  **Henderson-Hasselbalch anwenden:**
-    $$ \text{pH} = \text{p}K_s + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 4,76 + \log_{10}\left(\frac{0,15}{0,25}\right) $$
     $$ \text{pH} = 4,76 + \log_{10}(0,60) $$
     $$ \text{pH} = 4,76 - 0,222 $$
@@ -200,7 +199,7 @@ Menschliches Blutplasma wird streng auf einen pH-Wert von $7,40$ gepuffert. Der 
     Ziel-$\text{pH} = 7,40$
     Säure $\text{p}K_s = 6,10$
 2.  **Logarithmisches Verhältnis isolieren:**
-    $$ \text{pH} = \text{p}K_s + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
+$$ \text{pH} = \text{p}K_s + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
     $$ 7,40 = 6,10 + \log_{10}(\text{Verhältnis}) $$
     $$ 1,30 = \log_{10}(\text{Verhältnis}) $$
 3.  **Inversen Logarithmus ausführen:**
@@ -228,7 +227,7 @@ Ein Labor muss eine phosphatgepufferte Salzlösung (PBS) mit exakt pH 7,00 entwe
 **Mathematische Ableitung:**
 
 1.  **Erforderliches Verhältnis berechnen:**
-    $$ \text{pH} - \text{p}K_s = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
+$$ \text{pH} - \text{p}K_s = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ 7,00 - 7,20 = -0,20 $$
     $$ \text{Verhältnis} = 10^{-0,20} = 0,631 $$
 2.  **Erforderliche Konzentration der konjugierten Base berechnen:**
@@ -241,7 +240,7 @@ Ein Labor muss eine phosphatgepufferte Salzlösung (PBS) mit exakt pH 7,00 entwe
 ### Beispiel 4: Der Säureangriff (Pufferneutralisation)
 
 **Szenario:**
-Nehmen wir $1,0\text{ Liter}$ eines perfekten Puffers, der $0,10\text{ M}$ generische schwache Säure ($\text{HA}$, $\text{p}K_s = 5,00$) und $0,10\text{ M}$ konjugierte Base ($\text{A}^-$) enthält. Der anfängliche pH-Wert beträgt 5,00. 
+Nehmen wir $1,0\text{ Liter}$ eines perfekten Puffers, der $0,10\text{ M}$ generische schwache Säure ($\text{HA}$, $\text{p}K_s = 5,00$) und $0,10\text{ M}$ konjugierte Base ($\text{A}^-$) enthält. Der anfängliche pH-Wert beträgt 5,00.
 Wir fügen dann aggressiv $0,02\text{ Mol}$ reine Salzsäure ($\text{HCl}$, eine starke Säure) hinzu. Wie hoch ist der neue pH-Wert?
 
 **Mathematische Ableitung:**
@@ -250,11 +249,10 @@ Wir fügen dann aggressiv $0,02\text{ Mol}$ reine Salzsäure ($\text{HCl}$, eine
     $[\text{HA}] = 0,10\text{ mol}$
     $[\text{A}^-] = 0,10\text{ mol}$
 2.  **Stöchiometrische Neutralisation:**
-    Die $0,02\text{ mol}$ starke Säure ($\text{H}^+$) greift die konjugierte Base ($\text{A}^-$) vollständig an und verwandelt sie in schwache Säure ($\text{HA}$).
+Die $0,02\text{ mol}$ starke Säure ($\text{H}^+$) greift die konjugierte Base ($\text{A}^-$) vollständig an und verwandelt sie in schwache Säure ($\text{HA}$).
     **Neues $[\text{A}^-]$:** $0,10 - 0,02 = 0,08\text{ mol}$
     **Neues $[\text{HA}]$:** $0,10 + 0,02 = 0,12\text{ mol}$
 3.  **Henderson-Hasselbalch auf den neuen Zustand anwenden:**
-    $$ \text{pH} = \text{p}K_s + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 5,00 + \log_{10}\left(\frac{0,08}{0,12}\right) $$
     $$ \text{pH} = 5,00 + \log_{10}(0,667) $$
     $$ \text{pH} = 5,00 - 0,176 = 4,82 $$

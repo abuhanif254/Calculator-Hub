@@ -136,7 +136,7 @@ In this exhaustive 4,000+ word SEO guide, we will aggressively deconstruct the p
 
 ## 1. What Exactly is Electric Current? (The Physics Definition)
 
-**Electric Current**, scientifically measured in **Amperes** (or "Amps"), is the fundamental rate at which electric charge flows past a specific point in a closed circuit. 
+**Electric Current**, scientifically measured in **Amperes** (or "Amps"), is the fundamental rate at which electric charge flows past a specific point in a closed circuit.
 
 To intuitively understand Current, electrical engineers universally rely on the **Water Pipe Analogy**:
 - Imagine a river flowing through a canyon. The sheer volume of water aggressively surging past a checkpoint every second is the Current.
@@ -152,7 +152,7 @@ Because one single electron carries a painfully small charge, it requires approx
 
 ## 2. Deriving Current from Ohm's Law ($I = V / R$)
 
-Georg Simon Ohm proved that Current is mathematically locked in a three-way relationship with Voltage ($V$) and Resistance ($R$). 
+Georg Simon Ohm proved that Current is mathematically locked in a three-way relationship with Voltage ($V$) and Resistance ($R$).
 
 $$I = \frac{V}{R}$$
 
@@ -174,7 +174,7 @@ By algebraically isolating Current ($I$), we get two incredibly powerful enginee
 1. **Current derived from Power and Voltage:** $I = \frac{P}{V}$
 2. **Current derived from Power and Resistance:** $I = \sqrt{\frac{P}{R}}$
 
-These formulas are absolutely mandatory for electricians. If a homeowner buys a massive $1,500\text{W}$ electric space heater and plugs it into a standard $120\text{V}$ wall outlet, the electrician must instantly know how many Amperes that heater will draw to ensure the house's circuit breaker doesn't trip. 
+These formulas are absolutely mandatory for electricians. If a homeowner buys a massive $1,500\text{W}$ electric space heater and plugs it into a standard $120\text{V}$ wall outlet, the electrician must instantly know how many Amperes that heater will draw to ensure the house's circuit breaker doesn't trip.
 Using the formula: $I = 1500 / 120 = 12.5\text{A}$. Because $12.5\text{A}$ is safely under the standard $15\text{A}$ breaker limit, the heater will run perfectly.
 
 ---
@@ -200,7 +200,7 @@ Current is what causes electrical fires. As current flows through copper wire, t
 To prevent this, the National Electrical Code (NEC) mandates strict wire sizing (AWG) and Overcurrent Protection Devices (Breakers/Fuses):
 
 1. **The 125% Rule:** A circuit breaker must be sized to handle 125% of the continuous load current. If a machine pulls a continuous $16\text{A}$, you cannot use a $16\text{A}$ breaker; you must step up to a $20\text{A}$ breaker ($16 \cdot 1.25 = 20$).
-2. **Wire Gauge Sizing (AWG):** The thickness of the copper wire must match the breaker rating. 
+2. **Wire Gauge Sizing (AWG):** The thickness of the copper wire must match the breaker rating.
    - $15\text{A}$ Breaker requires 14 AWG wire.
    - $20\text{A}$ Breaker requires 12 AWG wire.
    - $30\text{A}$ Breaker requires 10 AWG wire.
@@ -312,7 +312,7 @@ This top-down flowchart strictly categorizes the math required to properly size 
 
 ```mermaid
 flowchart TD
-    A["Calculate Total<br/>Load Current"] --> B["Multiply by 1.25<br/>Safety Factor"]
+A["Calculate Total<br/>Load Current"] --> B["Multiply by 1.25<br/>Safety Factor"]
     
     B --> C{"Select Standard<br/>Breaker Size"}
     

@@ -278,7 +278,7 @@ flowchart TD
     A[Objekt eingetaucht<br/>in Fluid] --> B{Dichten<br/>vergleichen}
     
     B -->|ρ_objekt < ρ_fluid| C[Objekt ist leichter<br/>als das verdrängte Fluid]
-    B -->|ρ_objekt = ρ_fluid| D[Objekt ist gleich schwer<br/>wie das verdrängte Fluid]
+B -->|ρ_objekt = ρ_fluid| D[Objekt ist gleich schwer<br/>wie das verdrängte Fluid]
     B -->|ρ_objekt > ρ_fluid| E[Objekt ist schwerer<br/>als das verdrängte Fluid]
     
     C --> F((SCHWIMMT<br/>Positiver Auftrieb))

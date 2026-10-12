@@ -1,5 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ToastProvider } from '../../../components/platform/ui/Toast';
 import { getToolConfig, allToolsConfig } from '../../../../lib/data/tools';
 import dynamic from 'next/dynamic';
@@ -289,23 +291,31 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
+const toolMarkdownCache = new Map<string, matter.GrayMatterFile<string> | null>();
+
 // Helper function to read markdown content for tools
 function getMarkdownContent(slug: string, locale: string) {
   try {
-    const filePath = path.join(process.cwd(), "content", "tools", locale, `${slug}.md`);
+    let targetPath = path.join(process.cwd(), "content", "tools", locale, `${slug}.md`);
 
     // Fallback to english if language file is missing
-    if (!fs.existsSync(filePath)) {
+    if (!fs.existsSync(targetPath)) {
       const fallbackPath = path.join(process.cwd(), "content", "tools", "en", `${slug}.md`);
       if (fs.existsSync(fallbackPath)) {
-        const fileContent = fs.readFileSync(fallbackPath, "utf-8");
-        return matter(fileContent);
+        targetPath = fallbackPath;
+      } else {
+        return null;
       }
-      return null;
     }
 
-    const fileContent = fs.readFileSync(filePath, "utf-8");
-    return matter(fileContent);
+    if (toolMarkdownCache.has(targetPath)) {
+      return toolMarkdownCache.get(targetPath)!;
+    }
+
+    const fileContent = fs.readFileSync(targetPath, "utf-8");
+    const parsed = matter(fileContent);
+    toolMarkdownCache.set(targetPath, parsed);
+    return parsed;
   } catch (e) {
     console.error("Error reading markdown for tool", slug, locale, e);
     return null;
@@ -387,9 +397,7 @@ export const dynamicParams = false;
 // SSG: pre-render every locale × tool slug combination at build time
 // This produces static HTML served from CDN edge — much better LCP than SSR
 export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    Object.keys(allToolsConfig).map((slug) => ({ locale, slug }))
-  );
+  return Object.keys(allToolsConfig).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -425,6 +433,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function ToolPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const resolvedParams = await params;
   const { locale, slug: resolvedSlug } = resolvedParams;
+  setRequestLocale(locale);
   const config = getToolConfig(resolvedSlug);
 
   if (!config) {
@@ -566,9 +575,20 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
         {/* Main Tool Interface */}
         <section className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-2 sm:p-6 lg:p-8">
-          <ToastProvider>
-            <ToolComponent />
-          </ToastProvider>
+          <NextIntlClientProvider
+            locale={locale}
+            messages={await getMessages().then((m: any) => ({
+              Tools: m?.Tools,
+              tools: m?.tools,
+              HmacGenerator: m?.HmacGenerator,
+              PasswordGenerator: m?.PasswordGenerator,
+              QrCodeGenerator: m?.QrCodeGenerator,
+            }))}
+          >
+            <ToastProvider>
+              <ToolComponent />
+            </ToastProvider>
+          </NextIntlClientProvider>
         </section>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8">

@@ -27,6 +27,7 @@ import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 // SSG configuration — fully static, no revalidation needed.
 // Guide listing data is static TypeScript and only changes on deploy.
 export const revalidate = false;
+export const dynamicParams = false;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SEO Metadata
@@ -56,14 +57,13 @@ export async function generateMetadata({
         name: t('metaTitle'),
         description: t('metaDescription'),
         numberOfItems: allGuides.length,
-        itemListElement: allGuides.map((g, idx) => {
+        itemListElement: featuredGuides.slice(0, 20).map((g, idx) => {
           const locGuide = getLocalizedGuide(g, locale);
           return {
             '@type': 'ListItem',
             position: idx + 1,
             name: locGuide.title,
-            description: locGuide.description,
-            url: `https://nexuscalculator.net/${locale}/guides/${locGuide.slug}`,
+            url: `https://www.nexuscalculator.net/${locale}/guides/${locGuide.slug}`,
           };
         }),
       }),

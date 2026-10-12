@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   transpilePackages: ['motion'],
   experimental: {
-    cpus: process.env.CI_ENV === 'local' ? 1 : undefined,
+    ...(process.env.CI_ENV === 'local' ? { cpus: 1 } : {}),
     optimizePackageImports: ['lucide-react', 'date-fns', 'chart.js', 'katex'],
   },
   async headers() {
@@ -97,6 +97,13 @@ const nextConfig: NextConfig = {
         source: '/favicon.ico',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=86400' },
+        ],
+      },
+      // ── OpenGraph images: generate on-demand when shared, cache 1yr at CDN edge ──
+      {
+        source: '/:path*/opengraph-image',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=31536000' },
         ],
       },
       // ── API routes: no cache by default, CORS allowed ────────────────────

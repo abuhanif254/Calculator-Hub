@@ -232,7 +232,7 @@ Este diagrama de flujo lógico ilustra el clásico "Triángulo de Densidad" usad
 
 ```mermaid
 flowchart LR
-    A[Fórmula Central:<br/>Densidad = Masa / Volumen] --> B{¿Qué es<br/>Desconocido?}
+A[Fórmula Central:<br/>Densidad = Masa / Volumen] --> B{¿Qué es<br/>Desconocido?}
     
     B -->|Necesito Densidad| C[Dividir Masa por Volumen<br/>ρ = m / V]
     B -->|Necesito Masa| D[Multiplicar Densidad por Volumen<br/>m = ρ * V]
@@ -258,7 +258,7 @@ Este gráfico de barras traza las asombrosas diferencias en la densidad entre ma
 ```mermaid
 xychart-beta
     title "Comparación de Densidad de Materiales Comunes (kg/m3)"
-    x-axis "Tipo de Material" ["Agua", "Hormigón", "Aluminio", "Acero", "Plomo", "Oro"]
+x-axis "Tipo de Material" ["Agua", "Hormigón", "Aluminio", "Acero", "Plomo", "Oro"]
     y-axis "Densidad (kg por Metro Cúbico)" 0 --> 20000
     bar [1000, 2400, 2700, 7850, 11340, 19300]
 ```
@@ -307,7 +307,7 @@ Este gráfico traza la caída hiperbólica del volumen requerido a medida que la
 
 ```mermaid
 xychart-beta
-    title "Volumen Requerido para almacenar 1,000 kg de Masa vs Densidad del Material"
+title "Volumen Requerido para almacenar 1,000 kg de Masa vs Densidad del Material"
     x-axis "Densidad del Material (kg/m3)" [100, 500, 1000, 5000, 10000, 20000]
     y-axis "Volumen Requerido (Metros Cúbicos)" 0 --> 10
     line [10.0, 2.0, 1.0, 0.2, 0.1, 0.05]

@@ -27,7 +27,9 @@ import Mermaid from "@/app/components/Mermaid";
 import { Link, routing, resolveIntlHref } from "@/i18n/routing";
 import { Search, ChevronRight, CalculatorIcon, BookOpen, Clock, ArrowRight } from "lucide-react";
 
-import { setRequestLocale } from 'next-intl/server';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, setRequestLocale } from 'next-intl/server';
+import { pickCalculatorMessages, toClientCalcDef } from '@/lib/utils/getCalculatorMessages';
 
 import fs from "fs";
 import path from "path";
@@ -39,6 +41,8 @@ import matter from "gray-matter";
 // eliminates all ISR background re-renders, saving Vercel free tier limits.
 export const revalidate = false;
 export const dynamicParams = false;
+
+const calcMarkdownCache = new Map<string, matter.GrayMatterFile<string> | null>();
 
 // Helper function to read markdown content
 function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: string, urlSlug?: string) {
@@ -75,6 +79,10 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
       }
     }
 
+    if (calcMarkdownCache.has(targetPath)) {
+      return calcMarkdownCache.get(targetPath)!;
+    }
+
     const fileContent = fs.readFileSync(targetPath, "utf-8");
     const parsed = matter(fileContent);
 
@@ -102,6 +110,7 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
       parsed.content = parsed.content.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '').trim();
     }
 
+    calcMarkdownCache.set(targetPath, parsed);
     return parsed;
   } catch (e) {
     console.error("Error reading markdown for", baseSlug, locale, e);
@@ -110,37 +119,35 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
 }
 
 // Dynamic routing parameter generation
-export async function generateStaticParams() {
-  const params: { slug: string; locale: string }[] = [];
+export async function generateStaticParams({ params }: { params: { locale: string } }) {
+  const locales = params?.locale ? [params.locale] : routing.locales;
+  const result: { slug: string }[] = [];
   const seen = new Set<string>();
 
-  routing.locales.forEach((locale) => {
+  locales.forEach((locale) => {
     calculators.forEach((calc) => {
       const isExplicitlyMapped = `/calculators/${calc.slug}` in routing.pathnames;
       const localizedSlug = calc.slugs?.[locale as keyof typeof calc.slugs];
 
       // Always add the English (canonical) slug so the base route works
-      const enKey = `${locale}::${calc.slug}`;
-      if (!seen.has(enKey)) {
-        seen.add(enKey);
-        params.push({ slug: calc.slug, locale });
+      if (!seen.has(calc.slug)) {
+        seen.add(calc.slug);
+        result.push({ slug: calc.slug });
       }
 
       // For explicitly-mapped calculators that have a localized slug, next-intl
       // rewrites the URL (e.g. /de/rechner/potenzielle-energie-rechner → [slug]),
-      // passing the LOCALIZED slug as the param. With dynamicParams=false this
-      // caused a 404. Adding the localized slug fixes it.
+      // passing the LOCALIZED slug as the param.
       if (isExplicitlyMapped && localizedSlug && localizedSlug !== calc.slug) {
-        const localKey = `${locale}::${localizedSlug}`;
-        if (!seen.has(localKey)) {
-          seen.add(localKey);
-          params.push({ slug: localizedSlug, locale });
+        if (!seen.has(localizedSlug)) {
+          seen.add(localizedSlug);
+          result.push({ slug: localizedSlug });
         }
       }
     });
   });
 
-  return params;
+  return result;
 }
 
 
@@ -505,7 +512,12 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           />
 
           <div id="calculator-export-target" className="print-target calculator-view">
-            <CalculatorViewWrapper calcDef={calc} locale={resolvedParams.locale} />
+            <NextIntlClientProvider
+              locale={resolvedParams.locale}
+              messages={pickCalculatorMessages(calc, (await getMessages()) as Record<string, any>)}
+            >
+              <CalculatorViewWrapper calcDef={toClientCalcDef(calc, resolvedParams.locale)} locale={resolvedParams.locale} />
+            </NextIntlClientProvider>
           </div>
 
           {/* Branded Print Footer (Visible only when printed via Ctrl+P or window.print()) */}

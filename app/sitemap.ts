@@ -121,7 +121,7 @@ function buildEntry(
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ─── STATIC & CORE PAGES ──────────────
   const coreEntries = [
-    buildEntry('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/en/opengraph-image`, `${baseUrl}/icons/icon-512x512.png`]),
+    buildEntry('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/icons/icon-512x512.png`]),
     buildEntry('/sitemap', 'weekly', 0.8),
     buildEntry('/community', 'daily', 0.7),
     // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
@@ -130,12 +130,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     buildEntry('/privacy-policy', 'yearly', 0.3),
     buildEntry('/terms-of-use', 'yearly', 0.3),
     buildEntry('/guides', 'weekly', 0.85),
-    buildEntry('/calculators', 'weekly', 0.95, undefined, undefined, [`${baseUrl}/en/calculators/opengraph-image`]),
-    buildEntry('/tools', 'weekly', 0.9, undefined, undefined, [`${baseUrl}/en/tools/opengraph-image`]),
+    buildEntry('/calculators', 'weekly', 0.95),
+    buildEntry('/tools', 'weekly', 0.9),
     buildEntry('/pdf', 'weekly', 0.9),
     buildEntry('/image', 'weekly', 0.9),
-    ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated), [`${baseUrl}/en/guides/${guide.slug}/opengraph-image`])),
-    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id, undefined, [`${baseUrl}/en/calculators/category/${cat.id}/opengraph-image`])),
+    ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
+    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)),
     ...collections.map((collection) => buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)),
     ...comparisons.map((comparison) => buildEntry('/compare/[slug]', 'monthly', 0.8, comparison.slug)),
   ];
@@ -161,12 +161,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2026-09-07');
     const routeKey = `/calculators/${slug}`;
     const existsInRouting = (routing.pathnames as any)[routeKey];
-    const ogImageUrl = `${baseUrl}/en/calculators/${slug}/opengraph-image`;
 
     if (existsInRouting) {
-      return buildEntry(routeKey, 'weekly', priority, undefined, lastMod, [ogImageUrl]);
+      return buildEntry(routeKey, 'weekly', priority, undefined, lastMod);
     }
-    return buildEntry('/calculators/[slug]', 'weekly', priority, slug, lastMod, [ogImageUrl]);
+    return buildEntry('/calculators/[slug]', 'weekly', priority, slug, lastMod);
   });
 
   // ─── DEVELOPER TOOLS ──────────────────
@@ -181,8 +180,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
     .sort()
     .map((slug) => {
-      const ogImageUrl = `${baseUrl}/en/tools/${slug}/opengraph-image`;
-      return buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod, [ogImageUrl]);
+      return buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod);
     });
 
   // ─── DATA PRIVACY PLATFORM — PUBLIC LANDING ONLY ─────────────────
@@ -207,19 +205,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ─── COMMUNITY POSTS ──────────────────
   let communityEntries: MetadataRoute.Sitemap = [];
   try {
-    const { collection, getDocs } = await import('firebase/firestore');
-    const { db } = await import('../lib/firebase');
-    const postsSnapshot = await getDocs(collection(db, 'posts'));
-    communityEntries = postsSnapshot.docs.map(doc => {
-      const data = doc.data();
-      return buildEntry(
-        '/community/[slug]', 
-        'daily', 
-        0.7, 
-        data.slug, 
-        data.updatedAt?.toDate() || new Date(data.createdAt?.toMillis() || Date.now())
-      );
-    });
+    const { fetchPostsRest } = await import('../lib/firebase-rest');
+    const posts = await fetchPostsRest(undefined, 100);
+    communityEntries = posts.map(post =>
+      buildEntry(
+        '/community/[slug]',
+        'weekly',
+        0.7,
+        post.slug,
+        new Date(post.createdAt || Date.now())
+      )
+    );
   } catch (err) {
     console.error("Failed to fetch community posts for sitemap", err);
   }

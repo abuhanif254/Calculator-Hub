@@ -144,25 +144,25 @@ In diesem massiven, über 4.000 Wörter umfassenden technischen Leitfaden werden
 
 ## 1. Die Physik des freien Falls: Bewegung unter Schwerkraft
 
-In der Newtonschen Physik ist der **freie Fall** als die Bewegung eines Körpers definiert, bei der die Schwerkraft die *einzige* darauf einwirkende Kraft ist. 
+In der Newtonschen Physik ist der **freie Fall** als die Bewegung eines Körpers definiert, bei der die Schwerkraft die *einzige* darauf einwirkende Kraft ist.
 
-Das bedeutet, dass im eigentlichen physikalischen Sinne ein Fallschirmspringer, der durch die Luft fällt, sich *nicht* im perfekten freien Fall befindet, da der atmosphärische Luftwiderstand (Strömungswiderstand) ihn nach oben drückt. Echter freier Fall findet nur in einem perfekten Vakuum statt, wie z.B. auf der Oberfläche des Mondes oder im Inneren spezieller Vakuum-Fallkammern. 
+Das bedeutet, dass im eigentlichen physikalischen Sinne ein Fallschirmspringer, der durch die Luft fällt, sich *nicht* im perfekten freien Fall befindet, da der atmosphärische Luftwiderstand (Strömungswiderstand) ihn nach oben drückt. Echter freier Fall findet nur in einem perfekten Vakuum statt, wie z.B. auf der Oberfläche des Mondes oder im Inneren spezieller Vakuum-Fallkammern.
 
 Für dichte, schwere Objekte, die auf der Erde relativ kurze Strecken fallen (wie etwa das Fallenlassen einer Stahlkugel von einem Schreibtisch), ist der Luftwiderstand jedoch mathematisch so vernachlässigbar, dass wir dies als echten freien Fall behandeln.
 
 ### Galilei und die Gleichheit fallender Massen
-Vor dem späten 16. Jahrhundert war der wissenschaftliche Konsens (verfochten von Aristoteles), dass schwerere Objekte schneller fallen als leichtere. Galileo Galilei zerstörte dieses Paradigma. 
+Vor dem späten 16. Jahrhundert war der wissenschaftliche Konsens (verfochten von Aristoteles), dass schwerere Objekte schneller fallen als leichtere. Galileo Galilei zerstörte dieses Paradigma.
 
-Durch seine legendären Experimente (die oft apokryph mit dem Fallenlassen von Kugeln vom Schiefen Turm von Pisa in Verbindung gebracht werden) bewies Galilei, dass **in Abwesenheit von Luftwiderstand alle Objekte unabhängig von ihrer Masse mit exakt der gleichen Rate nach unten beschleunigen.** 
+Durch seine legendären Experimente (die oft apokryph mit dem Fallenlassen von Kugeln vom Schiefen Turm von Pisa in Verbindung gebracht werden) bewies Galilei, dass **in Abwesenheit von Luftwiderstand alle Objekte unabhängig von ihrer Masse mit exakt der gleichen Rate nach unten beschleunigen.**
 
-Wenn Sie in einer Vakuumkammer eine $5.000\text{ kg}$ schwere Abrissbirne und einen $0,05\text{ kg}$ leichten Golfball genau zur gleichen Zeit aus exakt derselben Höhe fallen lassen, werden sie genau in derselben Millisekunde auf dem Boden aufschlagen. 
+Wenn Sie in einer Vakuumkammer eine $5.000\text{ kg}$ schwere Abrissbirne und einen $0,05\text{ kg}$ leichten Golfball genau zur gleichen Zeit aus exakt derselben Höhe fallen lassen, werden sie genau in derselben Millisekunde auf dem Boden aufschlagen.
 
 ### Standard-Erdbeschleunigung ($g$)
-Auf der Erde wird die Standardrate der Gravitationsbeschleunigung mit dem Kleinbuchstaben $g$ bezeichnet. 
+Auf der Erde wird die Standardrate der Gravitationsbeschleunigung mit dem Kleinbuchstaben $g$ bezeichnet.
 
 $$ g \approx 9,81\text{ m/s}^2 $$
 
-Das bedeutet, dass für jede einzelne Sekunde, die sich ein Objekt im freien Fall befindet, seine Abwärtsgeschwindigkeit um $9,81\text{ Meter pro Sekunde}$ ($35,3\text{ km/h}$ oder $21,9\text{ mph}$) zunimmt. 
+Das bedeutet, dass für jede einzelne Sekunde, die sich ein Objekt im freien Fall befindet, seine Abwärtsgeschwindigkeit um $9,81\text{ Meter pro Sekunde}$ ($35,3\text{ km/h}$ oder $21,9\text{ mph}$) zunimmt.
 
 ---
 
@@ -187,7 +187,7 @@ Wenn Sie messen, wie lange ein Objekt braucht, um auf den Boden zu treffen, kön
 $$ h = \frac{1}{2} \cdot g \cdot t^2 $$
 
 ### Die parabolische Kurve der Strecke
-Die wichtigste Eigenschaft der Streckengleichung ist, dass die Zeit **quadriert** wird ($t^2$). Ein Objekt fällt nicht mit konstanter Geschwindigkeit; es beschleunigt. 
+Die wichtigste Eigenschaft der Streckengleichung ist, dass die Zeit **quadriert** wird ($t^2$). Ein Objekt fällt nicht mit konstanter Geschwindigkeit; es beschleunigt.
 - In der 1. Sekunde fällt ein Objekt etwa $4,9\text{ Meter}$.
 - In der 2. Sekunde fällt es nicht weitere $4,9\text{ Meter}$—es fällt weitere $14,7\text{ Meter}$! 
 - Nach 2 Sekunden Gesamtflugzeit ist es $19,6\text{ Meter}$ ($4,9 \times 4$) gefallen.
@@ -200,13 +200,13 @@ Die gefallene Strecke skaliert parabolisch, nicht linear.
 
 Während die obigen Gleichungen von einem perfekten Vakuum ausgehen, leben wir auf einem Planeten mit einer dichten Atmosphäre. Wenn ein Objekt nach unten beschleunigt, muss es Luftmoleküle aus seinem Weg schieben. Dies erzeugt einen aerodynamischen Widerstand.
 
-Die Widerstandskraft steigt quadratisch mit der Geschwindigkeit ($F_D \propto v^2$). Daher wird, während das Objekt immer schneller fällt, die ihm entgegenwirkende aufwärts gerichtete Widerstandskraft exponentiell stärker. 
+Die Widerstandskraft steigt quadratisch mit der Geschwindigkeit ($F_D \propto v^2$). Daher wird, während das Objekt immer schneller fällt, die ihm entgegenwirkende aufwärts gerichtete Widerstandskraft exponentiell stärker.
 
 Irgendwann wird die aufwärts gerichtete Widerstandskraft genau gleich dem abwärts gerichteten Schwerkraftgewicht des Objekts. Wenn sich diese Kräfte ausgleichen, wird die Nettobeschleunigung null. Das Objekt hört auf, schneller zu werden, und fällt mit einer konstanten, maximalen Geschwindigkeit, bekannt als **Endgeschwindigkeit**.
 
 $$ v_t = \sqrt{\frac{2 \cdot m \cdot g}{\rho \cdot A \cdot C_d}} $$
 
-Wobei $\rho$ die Luftdichte, $A$ die stirnseitige Querschnittsfläche und $C_d$ der aerodynamische Widerstandsbeiwert ist. 
+Wobei $\rho$ die Luftdichte, $A$ die stirnseitige Querschnittsfläche und $C_d$ der aerodynamische Widerstandsbeiwert ist.
 
 Da die Masse ($m$) im Zähler steht, haben schwerere Objekte (wie Bowlingkugeln) eine viel höhere Endgeschwindigkeit als leichtere Objekte mit ähnlichen Oberflächen (wie Luftballons). Deshalb fällt eine Feder in Ihrem Wohnzimmer langsamer als ein Hammer, aber in einer Vakuumkammer fallen sie mit exakt derselben Geschwindigkeit.
 
@@ -320,10 +320,10 @@ xychart-beta
 ### Beispiel 4: Vakuumphysik vs. Endgeschwindigkeit
 
 **Das Szenario:**
-Ein menschlicher Fallschirmspringer springt aus einem Flugzeug bei $4.000\text{ Metern}$. Wir möchten seine tatsächliche Geschwindigkeitskurve (die den atmosphärischen Luftwiderstand berücksichtigt) mit seiner theoretischen Geschwindigkeit vergleichen, wenn er in einem vollständigen Vakuum springen würde (wo $v = gt$ ewig andauert). 
+Ein menschlicher Fallschirmspringer springt aus einem Flugzeug bei $4.000\text{ Metern}$. Wir möchten seine tatsächliche Geschwindigkeitskurve (die den atmosphärischen Luftwiderstand berücksichtigt) mit seiner theoretischen Geschwindigkeit vergleichen, wenn er in einem vollständigen Vakuum springen würde (wo $v = gt$ ewig andauert).
 
 **Die Mathematik:**
-In der Realität erzeugt ein menschlicher Fallschirmspringer in einer Standard-Bauch-zur-Erde-Haltung einen massiven Luftwiderstand. Etwa ab der 12. bis 15. Sekunde seines Falls wird er bei einer Endgeschwindigkeit von rund $54\text{ m/s}$ ($195\text{ km/h}$ oder $120\text{ mph}$) sein Maximum erreichen. 
+In der Realität erzeugt ein menschlicher Fallschirmspringer in einer Standard-Bauch-zur-Erde-Haltung einen massiven Luftwiderstand. Etwa ab der 12. bis 15. Sekunde seines Falls wird er bei einer Endgeschwindigkeit von rund $54\text{ m/s}$ ($195\text{ km/h}$ oder $120\text{ mph}$) sein Maximum erreichen.
 
 Gäbe es keine Luft, würde er einfach endlos weiter beschleunigen, bis er mit Überschallgeschwindigkeit auf dem Boden zerschmettert.
 
@@ -348,7 +348,7 @@ xychart-beta
 Lassen Sie uns die genaue Zeitachse eines normalen Freizeit-Fallschirmsprungs abbilden. Der Springer verlässt das Flugzeug auf $4.000\text{ Metern}$ ($13.000\text{ ft}$). Er fällt im freien Fall bis auf $1.500\text{ Meter}$ ($5.000\text{ ft}$), bevor er seinen Hauptfallschirm öffnet. Wie lange dauert die Freifallphase?
 
 **Die Mathematik:**
-Er muss eine Gesamtdistanz von $2.500\text{ Metern}$ im freien Fall zurücklegen ($4.000 - 1.500$). 
+Er muss eine Gesamtdistanz von $2.500\text{ Metern}$ im freien Fall zurücklegen ($4.000 - 1.500$).
 Da dies ein langer Sprung ist, können wir nicht die einfache Vakuumgleichung $t = \sqrt{2h/g}$ verwenden. Er wird nach etwa $12\text{ Sekunden}$ die Endgeschwindigkeit ($54\text{ m/s}$) erreichen und hat in dieser Beschleunigungsphase ungefähr $450\text{ Meter}$ zurückgelegt.
 Für die verbleibenden $2.050\text{ Meter}$ ($2.500 - 450$) fällt er mit konstanten $54\text{ m/s}$.
 $$ t_{konstant} = \frac{Strecke}{Geschwindigkeit} = \frac{2050}{54} = 37,9\text{ Sekunden} $$
@@ -377,7 +377,7 @@ gantt
 ## 6. Häufig gestellte Fragen (FAQ) Deep Dive
 
 **F: Warum schweben Astronauten im Weltraum, wenn die Schwerkraft überall ist?**
-**A:** Dies ist das häufigste Missverständnis in der Astrophysik! Astronauten an Bord der Internationalen Raumstation (ISS) befinden sich *nicht* in der Schwerelosigkeit. Auf $400\text{ km}$ Höhe über der Erde ist die Schwerkraft immer noch $90\%$ so stark wie an der Oberfläche. Astronauten schweben, weil sie sich in einem Zustand des **kontinuierlichen, ewigen freien Falls** befinden. Die ISS bewegt sich seitwärts so wahnsinnig schnell ($28.000\text{ km/h}$), dass sich die Erde, während die ISS nach unten in Richtung Erde fällt, unter ihr wegbiegt. Sie fallen buchstäblich für immer um den Planeten herum. 
+**A:** Dies ist das häufigste Missverständnis in der Astrophysik! Astronauten an Bord der Internationalen Raumstation (ISS) befinden sich *nicht* in der Schwerelosigkeit. Auf $400\text{ km}$ Höhe über der Erde ist die Schwerkraft immer noch $90\%$ so stark wie an der Oberfläche. Astronauten schweben, weil sie sich in einem Zustand des **kontinuierlichen, ewigen freien Falls** befinden. Die ISS bewegt sich seitwärts so wahnsinnig schnell ($28.000\text{ km/h}$), dass sich die Erde, während die ISS nach unten in Richtung Erde fällt, unter ihr wegbiegt. Sie fallen buchstäblich für immer um den Planeten herum.
 
 **F: Fallen schwerere Objekte schneller?**
 **A:** In einem Vakuum absolut nicht. Die Masse hat keinerlei Auswirkung auf die Rate der Gravitationsbeschleunigung. In unserer Atmosphäre können jedoch schwerere Objekte (die typischerweise ein höheres Verhältnis von Masse zu Oberfläche haben) den aerodynamischen Widerstand effektiver überwinden, was bedeutet, dass sie eine höhere Endgeschwindigkeit haben und letztendlich früher auf dem Boden aufschlagen, wenn sie aus sehr großer Höhe fallen gelassen werden.
@@ -399,7 +399,7 @@ Die Mathematik des freien Falls ist elegant einfach, definiert jedoch die Bewegu
 
 Um diese Konzepte wirklich zu beherrschen, nutzen Sie unseren Freifall-Rechner, um die folgenden konzeptionellen Physik-Herausforderungen zu lösen:
 1. **Der Mond-Fall:** Die Apollo 15 Astronauten ließen einen Hammer aus einer Höhe von $1,2\text{ Metern}$ auf dem Mond ($g = 1,62\text{ m/s}^2$) fallen. Wie viele Sekunden dauerte es genau, bis er auf den Mondstaub traf?
-2. **Der Jupiter-Abgrund:** Wenn Sie eine schwere Titankugel aus einem Hochballon in die gasförmige Atmosphäre des Jupiters ($g = 24,79\text{ m/s}^2$) fallen lassen würden, welche Geschwindigkeit hätte sie nach genau $10\text{ Sekunden}$ reinem vakuumäquivalenten freiem Fall? 
+2. **Der Jupiter-Abgrund:** Wenn Sie eine schwere Titankugel aus einem Hochballon in die gasförmige Atmosphäre des Jupiters ($g = 24,79\text{ m/s}^2$) fallen lassen würden, welche Geschwindigkeit hätte sie nach genau $10\text{ Sekunden}$ reinem vakuumäquivalenten freiem Fall?
 3. **Der Stunt-Sprung:** Ein Hollywood-Stuntdouble muss sich von einem Gebäude fallen lassen und genau $3,5\text{ Sekunden}$ nach dem Verlassen des Sims auf ein spezielles Luftkissen treffen. Wie hoch muss der Sims gebaut sein, um dieses Timing perfekt einzuhalten?
 
 Experimentieren Sie mit dem Simulator, analysieren Sie die aggressiven parabolischen Streckenkurven und verlassen Sie sich auf diesen Rechner, um die gewaltigen Gravitationskräfte zu beleuchten, die das Universum regieren.

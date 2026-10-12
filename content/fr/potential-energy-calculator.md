@@ -286,7 +286,7 @@ Contrairement à la terrifiante courbe quadratique exponentielle de l'énergie c
 
 ```mermaid
 xychart-beta
-    title "Énergie Potentielle de l'Ascenseur vs Hauteur (Masse constante de 2500 kg)"
+title "Énergie Potentielle de l'Ascenseur vs Hauteur (Masse constante de 2500 kg)"
     x-axis "Hauteur de l'ascenseur (mètres)" [0, 10, 20, 30, 40]
     y-axis "Énergie Potentielle (Kilojoules)" 0 --> 1000
     line [0, 245, 490, 735, 981]
@@ -341,7 +341,7 @@ Ce diagramme de flux démontre comment l'énergie mécanique reste parfaitement 
 
 ```mermaid
 flowchart TD
-    A["Sommet des montagnes russes<br/>Hauteur = 75 m"] -->|"Chute vertigineuse"| B("Mi-chute<br/>Hauteur = 37,5 m")
+A["Sommet des montagnes russes<br/>Hauteur = 75 m"] -->|"Chute vertigineuse"| B("Mi-chute<br/>Hauteur = 37,5 m")
     B -->|"Accélération maximale"| C["Bas de la chute<br/>Hauteur = 0 m"]
     
     A -.-> D["EP: 5,88 MJ<br/>EC: 0 MJ<br/>Total: 5,88 MJ"]

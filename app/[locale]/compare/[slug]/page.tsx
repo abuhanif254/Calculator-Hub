@@ -10,9 +10,7 @@ export const revalidate = false;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    comparisons.map((c) => ({ locale, slug: c.slug }))
-  );
+  return comparisons.map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {

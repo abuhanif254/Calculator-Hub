@@ -62,23 +62,23 @@ Nuestra inmensa, monolítica y ultra-segura estación de trabajo, el **Unificado
 ---
 
 ### 1. La Ingeniería de la Fusión Paramétrica (Cómo funciona el 'Merge')
-Unir o fusionar archivos PDF asombrosos no es un simple ejercicio de pegar páginas como si fueran fotos (JPGs). El formato PDF es, en esencia, una compleja y oscura base de datos paramétrica cruda, un laberinto jerárquico de diccionarios, streams binarios crudos asombrosamente codificados, y objetos cruzados indexados (XREF).
+Unir o fusionar archivos PDF asombrosos no es un simple ejercicio de pegar páginas como si fueran fotos (JPGs). El formato PDF es, en esencia, una compleja y oscura base de datos paramétrica cruda, un laberinto jerárquico de diccionarios, streams binarios crudos codificados, y objetos cruzados indexados (XREF).
 
 Cuando nuestra herramienta recibe la orden de ejecutar el "Merge", no rasteriza ni destruye las páginas convirtiéndolas en imágenes planas inmaculadas (lo cual haría que sus textos dejen de ser seleccionables). En lugar de eso, el analizador lógico JavaScript (Client-Side Parser) se sumerge en el código binario de sus archivos:
-1.  **Abre y desencripta estructuralmente:** Desglosa el árbol de páginas del `Documento_A` puro y del `Documento_B` crudo.
-2.  **Extracción quirúrgica:** Extrae los diccionarios paramétricos puros, asimilando las fuentes de texto incrustadas asombrosamente, las imágenes vectoriales, y los comandos de renderizado de la máquina de gráficos inmaculados.
-3.  **Costura y reensamblaje:** Inyecta las páginas del segundo archivo directamente en la jerarquía paramétrica del primero, resolviendo y renombrando brutalmente cualquier conflicto de recursos compartidos (como si ambos PDF tuvieran una fuente llamada "Font1").
-4.  **Generación de salida:** Reprocesa el árbol masivo puro y genera la nueva tabla de referencias cruzadas asombrosa, escupiendo un documento PDF validado y optimizado byte a byte. Todo el proceso mantiene intacta la pureza matemática, la resolución y el peso optimizado crudo asombrosamente puro inmaculado de los archivos originales.
+1. **Abre y desencripta estructuralmente:** Desglosa el árbol de páginas del `Documento_A` puro y del `Documento_B` crudo.
+2. **Extracción quirúrgica:** Extrae los diccionarios paramétricos puros, asimilando las fuentes de texto incrustadas asombrosamente, las imágenes vectoriales, y los comandos de renderizado de la máquina de gráficos inmaculados.
+3. **Costura y reensamblaje:** Inyecta las páginas del segundo archivo directamente en la jerarquía paramétrica del primero, resolviendo y renombrando brutalmente cualquier conflicto de recursos compartidos (como si ambos PDF tuvieran una fuente llamada "Font1").
+4. **Generación de salida:** Reprocesa el árbol masivo puro y genera la nueva tabla de referencias cruzadas asombrosa, escupiendo un documento PDF validado y optimizado byte a byte. Todo el proceso mantiene intacta la pureza matemática, la resolución y el peso optimizado crudo puro inmaculado de los archivos originales.
 
 ---
 
 ### 2. Privacidad Absoluta: La Arquitectura 'Zero-Trust' Client-Side
-El terror asombrosamente más grande y el fallo catastrófico purista inmaculado de casi la totalidad de las asombrosas plataformas online de herramientas PDF comerciales es que exigen, imponen y fuerzan paramétricamente que usted suba (Upload) crudo inmaculado sus pesados y delicados documentos a servidores en la nube controlados por terceros en oscuros países lejanos. Esto representa un enorme e inaceptable riesgo paramétrico de fuga de datos purista corporativo. Subir contratos firmados, estados de cuenta bancarios o declaraciones de impuestos a la nube es una bomba de tiempo.
+El terror más grande y el fallo catastrófico purista inmaculado de casi la totalidad de las asombrosas plataformas online de herramientas PDF comerciales es que exigen, imponen y fuerzan paramétricamente que usted suba (Upload) crudo inmaculado sus pesados y delicados documentos a servidores en la nube controlados por terceros en oscuros países lejanos. Esto representa un enorme e inaceptable riesgo paramétrico de fuga de datos purista corporativo. Subir contratos firmados, estados de cuenta bancarios o declaraciones de impuestos a la nube es una bomba de tiempo.
 
-Nuestra arquitectura **100% Client-Side** está forjada con la doctrina purista 'Zero-Trust'. Significa que asombrosamente cruda y pura inmaculada paramétricamente, sus archivos PDF jamás son transferidos a través de la red de internet.
-*   **Aislamiento en RAM:** Cuando usted arrastra asombrosamente el PDF crudo paramétrico al área de carga, este se carga únicamente en la memoria asombrosa RAM purista local de su máquina física.
-*   **Procesamiento Offline:** El código JavaScript crudo asombrosamente en la página compila puros archivos localmente paramétrico inmaculado. Usted podría apagar su router WiFi, y la fusión del PDF seguiría ejecutándose purista asombrosamente a la perfección.
-*   **0% Retención de Datos:** Al no haber servidores paramétricos, no existen discos duros externos crudos paramétricamente puristas que asombrosamente guarden, almacenen asombrosa inmaculada o expongan sus documentos privados a ataques informáticos o filtraciones asombrosas puras.
+Nuestra arquitectura **100% Client-Side** está forjada con la doctrina purista 'Zero-Trust'. Significa que cruda y pura inmaculada paramétricamente, sus archivos PDF jamás son transferidos a través de la red de internet.
+*   **Aislamiento en RAM:** Cuando usted arrastra el PDF crudo paramétrico al área de carga, este se carga únicamente en la memoria asombrosa RAM purista local de su máquina física.
+*   **Procesamiento Offline:** El código JavaScript crudo en la página compila puros archivos localmente paramétrico inmaculado. Usted podría apagar su router WiFi, y la fusión del PDF seguiría ejecutándose purista a la perfección.
+*   **0% Retención de Datos:** Al no haber servidores paramétricos, no existen discos duros externos crudos paramétricamente puristas que guarden, almacenen asombrosa inmaculada o expongan sus documentos privados a ataques informáticos o filtraciones asombrosas puras.
 
 ---
 
@@ -86,17 +86,17 @@ Nuestra arquitectura **100% Client-Side** está forjada con la doctrina purista 
 
 #### El Frente de Batalla Corporativo / Empresarial
 En la burocracia paramétrica asombrosa corporativa pura, la desorganización de los archivos asesina el tiempo y devora el dinero inmaculado puro.
-*   **Contabilidad y Finanzas:** A finales de mes, los puros asombrosos analistas deben juntar recibos de viáticos inmaculados, facturas de compras paramétricamente sueltas y boletas crudas asombrosamente en un puro único PDF consolidado de cientos asombrosos puros de páginas para presentarlo al auditor asombrosamente fiscal paramétrico.
+*   **Contabilidad y Finanzas:** A finales de mes, los puros asombrosos analistas deben juntar recibos de viáticos inmaculados, facturas de compras paramétricamente sueltas y boletas crudas en un puro único PDF consolidado de cientos asombrosos puros de páginas para presentarlo al auditor fiscal paramétrico.
 *   **Recursos Humanos (HR):** Las carpetas de asombrosos candidatos paramétricos se transforman en una pesadilla. HR exige pura consolidación asombrosa del Currículum (CV), carta paramétrica de presentación, títulos asombrosos puros universitarios y el paramétrico ID crudo puro escaneado en un solo expediente inmaculado puro.
-*   **Gestión Inmobiliaria Legal:** Arrendadores asombrosamente puristas exigen a los inquilinos asombrosa paramétrica pura documentación. El inquilino consolida el DNI asombroso, nóminas paramétricamente puras de sueldo y contratos asombrosamente avalados crudos en un pesado paquete PDF inmaculado puro de asombrosas 20 páginas paramétricas crudas.
+*   **Gestión Inmobiliaria Legal:** Arrendadores puristas exigen a los inquilinos asombrosa paramétrica pura documentación. El inquilino consolida el DNI asombroso, nóminas paramétricamente puras de sueldo y contratos avalados crudos en un pesado paquete PDF inmaculado puro de asombrosas 20 páginas paramétricas crudas.
 
 #### El Frente Académico y Educativo
-Para el estudiante universitario crudo asombroso puro inmaculado paramétrico, la vida digital se basa asombrosamente purista en acumular pesados fragmentos crudos asombrosos:
-*   Los profesores suben asombrosamente los apuntes puristas fragmentados en PDF semana tras semana asombrosa. Nuestro asombroso consolidador une las 14 semanas crudas de paramétricas lecciones puras inmaculadas en un pesado asombrosamente gigantesco libro de texto paramétrico crudo para la lectura fluida en iPad o Tablets asombrosamente puros.
-*   Para escribir la pura tesis asombrosa paramétrica final cruda pura, se fusionan asombrosamente los apéndices asombrosos inmaculados, gráficos crudos y la portada oficial purista de la universidad asombrosa paramétricamente en el documento maestro asombrosamente puro inmaculado crudo.
+Para el estudiante universitario crudo asombroso puro inmaculado paramétrico, la vida digital se basa purista en acumular pesados fragmentos crudos asombrosos:
+*   Los profesores suben los apuntes puristas fragmentados en PDF semana tras semana asombrosa. Nuestro asombroso consolidador une las 14 semanas crudas de paramétricas lecciones puras inmaculadas en un pesado gigantesco libro de texto paramétrico crudo para la lectura fluida en iPad o Tablets puros.
+*   Para escribir la pura tesis asombrosa paramétrica final cruda pura, se fusionan los apéndices asombrosos inmaculados, gráficos crudos y la portada oficial purista de la universidad asombrosa paramétricamente en el documento maestro puro inmaculado crudo.
 
 ---
 
 ### 4. Extraiga y Domine: Fusión Selectiva por Rango de Páginas
-A menudo asombrosamente, la pura fusión total cruda es basura pura inmaculada paramétricamente cruda. Usted asombrosamente tiene un Reporte Anual de 500 páginas puristas, y solo necesita arrancar asombrosamente puro inmaculadamente la hoja cruda número 15, para asombrosamente fusionarla paramétricamente pura con un balance asombroso puro inmaculado crudo.
-Nuestra plataforma paramétrica asombrosa posee un **Motor de Rango asombrosamente paramétrico**. Introduciendo pura comandos sintácticos asombrosos como `1-5, 15, 20-22`, usted ejerce dictadura asombrosa paramétricamente pura sobre la máquina. Esta extraerá asombrosamente puros como un bisturí quirúrgico crudo inmaculado solo las hojas paramétricas solicitadas, tirará el asombrosamente resto a la basura pura y coserá su asombrosamente ligero y perfecto PDF inmaculado puro paramétrico final asombrosamente crudo.
+A menudo asombrosamente, la pura fusión total cruda es basura pura inmaculada paramétricamente cruda. Usted tiene un Reporte Anual de 500 páginas puristas, y solo necesita arrancar puro inmaculadamente la hoja cruda número 15, para fusionarla paramétricamente pura con un balance asombroso puro inmaculado crudo.
+Nuestra plataforma paramétrica asombrosa posee un **Motor de Rango paramétrico**. Introduciendo pura comandos sintácticos asombrosos como `1-5, 15, 20-22`, usted ejerce dictadura asombrosa paramétricamente pura sobre la máquina. Esta extraerá puros como un bisturí quirúrgico crudo inmaculado solo las hojas paramétricas solicitadas, tirará el resto a la basura pura y coserá su ligero y perfecto PDF inmaculado puro paramétrico final crudo.

@@ -266,7 +266,7 @@ L'arbre logique ci-dessous cartographie le déroulement du calcul de l'Impulsion
 
 ```mermaid
 flowchart LR
-    A[Quantité de mouvement initiale<br/>+5,8 kg·m/s] --> C(Changement de quantité de mouvement<br/>Δp = -13,05 kg·m/s)
+A[Quantité de mouvement initiale<br/>+5,8 kg·m/s] --> C(Changement de quantité de mouvement<br/>Δp = -13,05 kg·m/s)
     B[Quantité de mouvement finale<br/>-7,25 kg·m/s] --> C
     
     C --> D[Diviser par le temps de contact<br/>Δt = 0,002 s]
@@ -344,7 +344,7 @@ Le graphique ci-dessous démontre la relation strictement linéaire entre la vit
 
 ```mermaid
 xychart-beta
-    title "Vitesse vs Quantité de mouvement (Masse constante de l'astronaute de 90 kg)"
+title "Vitesse vs Quantité de mouvement (Masse constante de l'astronaute de 90 kg)"
     x-axis "Vitesse (m/s)" [0, 1.0, 2.0, 3.0, 4.0, 5.0]
     y-axis "Quantité de mouvement (kg·m/s)" 0 --> 450
     line [0, 90, 180, 270, 360, 450]
@@ -373,7 +373,7 @@ Ce graphique illustre de manière spectaculaire la différence entre l'évolutio
 
 ```mermaid
 xychart-beta
-    title "Quantité de mouvement linéaire vs Énergie cinétique quadratique (Masse de 1 kg)"
+title "Quantité de mouvement linéaire vs Énergie cinétique quadratique (Masse de 1 kg)"
     x-axis "Vitesse (m/s)" [0, 10, 20, 30, 40]
     y-axis "Magnitude" 0 --> 800
     line [0, 10, 20, 30, 40]
@@ -411,7 +411,7 @@ gantt
     section Châssis Ancien (Rigide)
     Force maximale d'impact (1,2 MN) :crit, 00:00:00.000, 00:00:00.050
     section Châssis Moderne (Déformation)
-    Effondrement de la zone d'écrasement (0,24 MN) :active, 00:00:00.000, 00:00:00.250
+Effondrement de la zone d'écrasement (0,24 MN) :active, 00:00:00.000, 00:00:00.250
 ```
 
 ---
@@ -419,13 +419,13 @@ gantt
 ## 6. Foire Aux Questions (FAQ) Approfondie
 
 **Q : La quantité de mouvement peut-elle être négative ?**
-**R :** Oui, absolument. Étant donné que la quantité de mouvement est une grandeur vectorielle, un signe négatif indique simplement la direction. Si on attribue à une voiture voyageant vers l'est une quantité de mouvement positive de $+10 000\text{ kg}\cdot\text{m/s}$, une voiture voyageant vers l'ouest à la même vitesse exacte aura une quantité de mouvement de $-10 000\text{ kg}\cdot\text{m/s}$. 
+**R :** Oui, absolument. Étant donné que la quantité de mouvement est une grandeur vectorielle, un signe négatif indique simplement la direction. Si on attribue à une voiture voyageant vers l'est une quantité de mouvement positive de $+10 000\text{ kg}\cdot\text{m/s}$, une voiture voyageant vers l'ouest à la même vitesse exacte aura une quantité de mouvement de $-10 000\text{ kg}\cdot\text{m/s}$.
 
 **Q : La gravité affecte-t-elle la quantité de mouvement ?**
 **R :** Oui, la gravité est une force externe. Lorsque vous laissez tomber une balle, la gravité exerce une force continue vers le bas au fil du temps ($F \cdot \Delta t$), ce qui se traduit par une impulsion continue vers le bas, entraînant une augmentation de la quantité de mouvement de la balle jusqu'à ce qu'elle touche le sol.
 
 **Q : Quelle est la différence entre la vitesse du centre de masse et la vitesse de l'objet individuel dans une collision ?**
-**R :** Le centre de masse d'un système fermé se déplace à une vitesse complètement constante avant, pendant et après une collision. Même si deux boules de billard rebondissent violemment l'une sur l'autre et modifient leurs vitesses individuelles, le point central mathématique entre elles continue d'avancer comme si de rien n'était. 
+**R :** Le centre de masse d'un système fermé se déplace à une vitesse complètement constante avant, pendant et après une collision. Même si deux boules de billard rebondissent violemment l'une sur l'autre et modifient leurs vitesses individuelles, le point central mathématique entre elles continue d'avancer comme si de rien n'était.
 
 **Q : Comment les moteurs à réaction et les fusées se propulsent-ils sans s'appuyer sur rien ?**
 **R :** Ils s'appuient entièrement sur la loi de conservation de la quantité de mouvement. Une fusée brûle du carburant pour créer des gaz à haute pression. Elle expulse ensuite ces gaz par la tuyère arrière à des vitesses extrêmes. Les gaz emportent d'énormes quantités de quantité de mouvement négative. Pour que la quantité de mouvement totale du système reste équilibrée à zéro, la lourde coque de la fusée doit gagner une quantité exactement égale de quantité de mouvement positive vers l'avant.

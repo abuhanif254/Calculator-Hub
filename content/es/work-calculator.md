@@ -322,7 +322,7 @@ Este diagrama de flujo de arriba hacia abajo deconstruye la cadena conceptual qu
 
 ```mermaid
 flowchart TD
-    A[Aplicar Fuerza Neta F sobre Distancia d] --> B(Calcular Trabajo Neto: W = F * d)
+A[Aplicar Fuerza Neta F sobre Distancia d] --> B(Calcular Trabajo Neto: W = F * d)
     B --> C{Teorema del Trabajo y Energía}
     C -->|W = ΔEC| D(Cambio en la Energía Cinética)
     D --> E[EC Final = EC Inicial + W]
@@ -350,7 +350,7 @@ gantt
     section Ciclo del Motor
     Carrera de Admisión (Trabajo Negativo) :active, 00:00:00, 00:00:01
     Carrera de Compresión (Trabajo Negativo) :active, 00:00:01, 00:00:02
-    Ignición y Carrera de Trabajo (Trabajo Positivo Masivo) :crit, done, 00:00:02, 00:00:03
+Ignición y Carrera de Trabajo (Trabajo Positivo Masivo) :crit, done, 00:00:02, 00:00:03
     Carrera de Escape (Trabajo Negativo) :active, 00:00:03, 00:00:04
 ```
 *(Nota: Los plazos son ilustrativos. ¡En un motor real a 3.000 RPM, todo este ciclo de 4 tiempos ocurre en 0,04 segundos!)*

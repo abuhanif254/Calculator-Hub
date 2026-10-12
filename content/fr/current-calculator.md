@@ -242,9 +242,9 @@ Cet organigramme logique cartographie les trois chemins mathématiques distincts
 flowchart LR
     A["Cible :<br/>Trouver le Courant"] --> B{"Variables<br/>Disponibles ?"}
     
-    B -->|"Avoir la Tension et la Résistance"| C["Utiliser la Loi d'Ohm<br/>I = V / R"]
-    B -->|"Avoir la Puissance et la Tension"| D["Utiliser la Loi de Watt<br/>I = P / V"]
-    B -->|"Avoir la Puissance et la Résistance"| E["Utiliser la Loi Dérivée<br/>I = sqrt(P / R)"]
+B -->|"Avoir la Tension et la Résistance"| C["Utiliser la Loi d'Ohm<br/>I = V / R"]
+B -->|"Avoir la Puissance et la Tension"| D["Utiliser la Loi de Watt<br/>I = P / V"]
+B -->|"Avoir la Puissance et la Résistance"| E["Utiliser la Loi Dérivée<br/>I = sqrt(P / R)"]
     
     C --> F(("Calculer<br/>les Ampères"))
     D --> F
@@ -271,7 +271,7 @@ Ce graphique trace la terrifiante courbe exponentielle du courant. À mesure que
 
 ```mermaid
 xychart-beta
-    title "Escalade du Flux de Courant lorsque la Résistance approche de Zéro (Source 100V)"
+title "Escalade du Flux de Courant lorsque la Résistance approche de Zéro (Source 100V)"
     x-axis "Charge de Résistance (Ohms)" [100, 50, 25, 10, 5]
     y-axis "Courant Résultant (Ampères)" 0 --> 25
     bar [1, 2, 4, 10, 20]
@@ -294,7 +294,7 @@ Contrairement à la courbe exponentielle ci-dessus, ce graphique linéaire démo
 
 ```mermaid
 xychart-beta
-    title "Augmentation Linéaire du Courant avec l'Augmentation de la Pression de Tension (Charge 10 Ohm)"
+title "Augmentation Linéaire du Courant avec l'Augmentation de la Pression de Tension (Charge 10 Ohm)"
     x-axis "Tension Appliquée (Volts)" [10, 20, 30, 40, 50]
     y-axis "Courant Résultant (Ampères)" 0 --> 6
     line [1, 2, 3, 4, 5]
@@ -312,7 +312,7 @@ Cet organigramme descendant catégorise strictement les mathématiques requises 
 
 ```mermaid
 flowchart TD
-    A["Calculer le Courant<br/>de Charge Total"] --> B["Multiplier par le Facteur<br/>de Sécurité de 1,25"]
+A["Calculer le Courant<br/>de Charge Total"] --> B["Multiplier par le Facteur<br/>de Sécurité de 1,25"]
     
     B --> C{"Sélectionner la Taille<br/>de Disjoncteur Standard"}
     

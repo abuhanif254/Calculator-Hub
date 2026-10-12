@@ -23,6 +23,9 @@ import ReactMarkdown from 'react-markdown';
 //   - Flattens crawl depth (homepage → category → calculator)
 // ═══════════════════════════════════════════════════════
 
+export const revalidate = false;
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return categories.map((cat) => ({ category: cat.id }));
 }

@@ -125,7 +125,7 @@ Si la Potencia es la velocidad de su automóvil, la Energía es la distancia tot
 - **Potencia** = Tasa Instantánea (Vatios)
 - **Energía** = Volumen Acumulado (Julios o kWh)
 
-En términos termodinámicos estrictos, $1\text{ Julio}$ se define como el trabajo realizado al transferir $1\text{ Vatio}$ de potencia durante exactamente $1\text{ segundo}$. 
+En términos termodinámicos estrictos, $1\text{ Julio}$ se define como el trabajo realizado al transferir $1\text{ Vatio}$ de potencia durante exactamente $1\text{ segundo}$.
 Debido a que un Julio es una cantidad de energía microscópicamente pequeña, la industria eléctrica se basa universalmente en el **Kilovatio-Hora (kWh)**.
 
 $$1\text{ Kilovatio-Hora (kWh)} = 3,600,000\text{ Julios}$$
@@ -136,7 +136,7 @@ Un kilovatio-hora es exactamente lo que parece: ejecutar $1,000\text{ Vatios}$ d
 
 ## 2. Derivación de Energía a partir de Potencia y Tiempo ($E = P \cdot t$)
 
-La ecuación fundamental de todos los cálculos de energía eléctrica es asombrosamente simple:
+La ecuación fundamental de todos los cálculos de energía eléctrica es simple:
 
 $$E = P \cdot t$$
 
@@ -280,7 +280,7 @@ Este gráfico de barras demuestra la curva inversa agresiva. Duplicar el consumo
 
 ```mermaid
 xychart-beta
-    title "Reducción del Tiempo de Funcionamiento por Aumento de Vatios de Carga (Batería 10kWh)"
+title "Reducción del Tiempo de Funcionamiento por Aumento de Vatios de Carga (Batería 10kWh)"
     x-axis "Carga del Aparato (Vatios)" [500, 1000, 2000, 4000, 8000]
     y-axis "Tiempo de Funcionamiento (Horas)" 0 --> 20
     bar [20, 10, 5, 2.5, 1.25]

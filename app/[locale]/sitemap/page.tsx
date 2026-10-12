@@ -6,6 +6,9 @@ import { Search, Compass, ExternalLink, ChevronDown, Shield } from 'lucide-react
 import { setRequestLocale } from 'next-intl/server';
 import Script from 'next/script';
 
+export const revalidate = false;
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
@@ -34,11 +37,11 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
     "@type": "ItemList",
     "name": "Nexus Tools and Calculators Directory",
     "description": "A comprehensive collection of calculators and developer utilities.",
-    "itemListElement": allItems.map((item, index) => ({
+    "numberOfItems": allItems.length,
+    "itemListElement": allItems.slice(0, 30).map((item, index) => ({
       "@type": "ListItem",
       "position": index + 1,
-      "name": item.name,
-      "description": `Free ${item.name} in the ${item.category} category.`
+      "name": item.name
     }))
   };
 

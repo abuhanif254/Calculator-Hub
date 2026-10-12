@@ -7,9 +7,7 @@ import { getCanonicalAndAlternates, getCanonicalUrl } from "@/lib/utils/seoUtils
 import { Link } from "@/i18n/routing";
 import { Wrench, ArrowRight, Sparkles, Terminal, Code2, ShieldCheck, Image as ImageIcon, FileText } from "lucide-react";
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+export const revalidate = false;
 
 export async function generateMetadata({
   params,

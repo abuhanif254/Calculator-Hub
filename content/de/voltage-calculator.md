@@ -126,7 +126,7 @@ faqs:
 
 Willkommen beim ultimativen **Spannungsrechner** und umfassenden Physikleitfaden. Ganz gleich, ob Sie ein Ingenieur für eingebettete Systeme sind, der versucht, eine verrauschte industrielle $24\text{V}$-Versorgung für einen empfindlichen $5\text{V}$-Mikrocontroller herunterzutransformieren, ein Elektromeister, der den Abfall im $120\text{V}$-Netz überprüft, oder ein Bastler, der den Ladezustand eines LiPo-Akkus kontrolliert – diese interaktive Suite liefert die exakten mathematischen Ableitungen, die Sie benötigen.
 
-Die Spannung ist die grundlegende treibende Kraft in der gesamten Elektronik. Ohne Spannung bewegen sich keine Elektronen, fließt kein Strom und es wird niemals Leistung übertragen. 
+Die Spannung ist die grundlegende treibende Kraft in der gesamten Elektronik. Ohne Spannung bewegen sich keine Elektronen, fließt kein Strom und es wird niemals Leistung übertragen.
 
 In diesem umfassenden 4.000+ Wörter umfassenden SEO-Leitfaden werden wir die Physik der elektrischen Potentialdifferenz rigoros entschlüsseln, die mathematischen Grenzen des Ohmschen Gesetzes ($U = I \cdot R$) und der Leistungsformel ($U = P/I$) erforschen, die internationalen Sicherheitsstandards für Hochspannung (HV) entschlüsseln und fünf detaillierte elektrische Szenarien analysieren, die visuell durch interaktive, parser-sichere Mermaid.js-Diagramme dargestellt werden.
 
@@ -134,7 +134,7 @@ In diesem umfassenden 4.000+ Wörter umfassenden SEO-Leitfaden werden wir die Ph
 
 ## 1. Was genau ist Spannung? (Die physikalische Definition)
 
-**Spannung**, wissenschaftlich als *elektrische Potentialdifferenz* oder *elektromotorische Kraft (EMK)* bezeichnet, ist der grundlegende "Druck", der elektrische Ladungen durch eine leitende Schleife drückt. 
+**Spannung**, wissenschaftlich als *elektrische Potentialdifferenz* oder *elektromotorische Kraft (EMK)* bezeichnet, ist der grundlegende "Druck", der elektrische Ladungen durch eine leitende Schleife drückt.
 
 Um Spannung intuitiv zu verstehen, verlassen sich Elektroingenieure weltweit auf die **Wasserrohr-Analogie**:
 - Stellen Sie sich einen massiven Wasserturm vor. Die physische Höhe des Wasserturms bestimmt den Wasserdruck durch die Schwerkraft unten.
@@ -148,7 +148,7 @@ Die offizielle SI-Einheit für Spannung ist das **Volt ($\text{V}$)**, benannt n
 
 ## 2. Ableitung der Spannung aus dem Ohmschen Gesetz ($U = I \cdot R$)
 
-Georg Simon Ohm bewies, dass die Spannung mathematisch in einer Dreiecksbeziehung mit Stromstärke ($I$) und Widerstand ($R$) fest verknüpft ist. 
+Georg Simon Ohm bewies, dass die Spannung mathematisch in einer Dreiecksbeziehung mit Stromstärke ($I$) und Widerstand ($R$) fest verknüpft ist.
 
 $$U = I \cdot R$$
 
@@ -234,7 +234,7 @@ flowchart LR
     
     B -->|"Habe Strom und Widerstand"| C["Ohmsches Gesetz nutzen<br/>V = I * R"]
     B -->|"Habe Leistung und Strom"| D["Leistungsgesetz nutzen<br/>V = P / I"]
-    B -->|"Habe Leistung und Widerstand"| E["Abgeleitetes Gesetz nutzen<br/>V = sqrt(P * R)"]
+B -->|"Habe Leistung und Widerstand"| E["Abgeleitetes Gesetz nutzen<br/>V = sqrt(P * R)"]
     
     C --> F(("Berechne<br/>Volt"))
     D --> F
@@ -342,13 +342,13 @@ gantt
 
 ## 8. Fazit und Ingenieurs-Herausforderung
 
-Die Beherrschung der Spannung ist der erste obligatorische Schritt zur Vorherrschaft in der Elektrotechnik. Jede Batterie, die Sie verwenden, jedes USB-Kabel, das Sie einstecken, und jede Steckdose, mit der Sie interagieren, arbeitet nach den strengen, unerbittlichen mathematischen Gesetzen der elektrischen Potentialdifferenz. 
+Die Beherrschung der Spannung ist der erste obligatorische Schritt zur Vorherrschaft in der Elektrotechnik. Jede Batterie, die Sie verwenden, jedes USB-Kabel, das Sie einstecken, und jede Steckdose, mit der Sie interagieren, arbeitet nach den strengen, unerbittlichen mathematischen Gesetzen der elektrischen Potentialdifferenz.
 
 Wenn Sie die Spannung respektieren und Ihre Parameter genau berechnen, laufen Ihre Schaltkreise perfekt kühl und effizient. Wenn Sie die Spannung unterschätzen, riskieren Sie durchgebrannte Kondensatoren, geschmolzenes Silizium und ein katastrophales thermisches Durchgehen (Thermal Runaway).
 
 Um sicherzustellen, dass Sie diese Konzepte verinnerlicht haben, starten Sie unseren interaktiven Simulator und versuchen Sie, diese abschließenden Herausforderungen zu lösen:
 1. **Das lange Verlängerungskabel:** Ein Bauunternehmer verwendet ein massives $300\text{ Fuß}$ langes Verlängerungskabel mit einem inneren Gesamtwiderstand von $4\ \Omega$. Seine Kreissäge zieht einen starken Strom von $15\text{A}$. Berechnen Sie den exakten Spannungsabfall, der an das Kabel verloren geht ($U = I \cdot R$). Wird seine Säge noch genug Spannung aus der $120\text{V}$-Steckdose übrig haben, um zu laufen?
-2. **Die Raumheizung:** Eine industrielle $4.600\text{W}$ Raumheizung hat eine Heizspirale mit genau $50\ \Omega$ Widerstand. Berechnen Sie die benötigte Spannung, um sie zu betreiben, indem Sie $U = \sqrt{P \cdot R}$ verwenden. 
+2. **Die Raumheizung:** Eine industrielle $4.600\text{W}$ Raumheizung hat eine Heizspirale mit genau $50\ \Omega$ Widerstand. Berechnen Sie die benötigte Spannung, um sie zu betreiben, indem Sie $U = \sqrt{P \cdot R}$ verwenden.
 3. **Der Mikrocontroller:** Sie haben einen $5\text{V}$-Arduino-Mikrocontroller, der $0,25\text{W}$ Leistung verbraucht. Berechnen Sie genau, wie viel Stromstärke ($I$) er aus dem USB-Anschluss zieht.
 
 Verlassen Sie sich auf diesen Rechner, um Ihre Mathematik zu überprüfen, respektieren Sie die internationalen Sicherheitsgrenzwerte und denken Sie immer daran: Die Spannung ist der Druck, der Ihre Schaltkreise zum Leben erweckt.

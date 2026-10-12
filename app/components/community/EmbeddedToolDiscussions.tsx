@@ -60,15 +60,21 @@ export function EmbeddedToolDiscussions({
     return map;
   });
 
-  // Client hydration check and data load
+  // Client hydration check and lazy viewport data load
   const [mounted, setMounted] = useState(false);
+  const sectionRef = React.useRef<HTMLElement | null>(null);
+
   useEffect(() => {
     setMounted(true);
 
-    // If initial discussions are empty (e.g. during SSG build to preserve build speed),
-    // fetch live discussions for this tool asynchronously on client mount.
-    if (initialDiscussions.length === 0) {
-      let isSubscribed = true;
+    if (initialDiscussions.length > 0) return;
+
+    let isSubscribed = true;
+    let hasTriggered = false;
+
+    const triggerFetch = () => {
+      if (hasTriggered) return;
+      hasTriggered = true;
       import('@/app/actions/community').then(({ getDiscussionsForTool }) => {
         getDiscussionsForTool(calcSlug, calcCategory, 6)
           .then((items) => {
@@ -87,11 +93,29 @@ export function EmbeddedToolDiscussions({
           })
           .catch(() => {});
       });
+    };
 
-      return () => {
-        isSubscribed = false;
-      };
+    const el = sectionRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') {
+      return;
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          triggerFetch();
+        }
+      },
+      { rootMargin: '250px' }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      isSubscribed = false;
+      observer.disconnect();
+    };
   }, [calcSlug, calcCategory, initialDiscussions.length]);
 
   const prompts = useMemo(
@@ -304,6 +328,7 @@ export function EmbeddedToolDiscussions({
 
   return (
     <section
+      ref={sectionRef}
       id="community-discussions"
       className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 transition-colors"
       aria-label={`Community Q&A and Discussions for ${calcTitle}`}

@@ -234,7 +234,7 @@ flowchart LR
     
     B -->|"A le Courant et la Résistance"| C["Utiliser la Loi d'Ohm<br/>V = I * R"]
     B -->|"A la Puissance et le Courant"| D["Utiliser la Loi de Watt<br/>V = P / I"]
-    B -->|"A la Puissance et la Résistance"| E["Utiliser la Loi Dérivée<br/>V = sqrt(P * R)"]
+B -->|"A la Puissance et la Résistance"| E["Utiliser la Loi Dérivée<br/>V = sqrt(P * R)"]
     
     C --> F(("Calculer<br/>les Volts"))
     D --> F
@@ -260,7 +260,7 @@ Ce graphique trace la ligne caractéristique parfaitement droite d'une source de
 
 ```mermaid
 xychart-beta
-    title "Tension Requise pour Forcer 2 Ampères à Travers une Résistance Croissante"
+title "Tension Requise pour Forcer 2 Ampères à Travers une Résistance Croissante"
     x-axis "Charge de Résistance (Ohms)" [10, 20, 30, 40, 50]
     y-axis "Tension Requise (Volts)" 0 --> 100
     line [20, 40, 60, 80, 100]

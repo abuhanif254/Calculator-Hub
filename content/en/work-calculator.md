@@ -142,7 +142,7 @@ faqs:
 
 Welcome to the ultimate **Mechanical Work Calculator** and comprehensive physics guide. Whether you are a civil engineer evaluating the load capacity of a construction crane, a high school physics student studying the Work-Energy Theorem, or a thermodynamicist analyzing gas cylinder expansion, this calculator is designed for you.
 
-In physics, "work" is not the physiological effort you feel when holding a heavy dumbbell stationary. In physics, Work ($W$) is the rigorous mathematical measurement of how much energy is transferred into or out of an object by an external force causing a physical displacement. 
+In physics, "work" is not the physiological effort you feel when holding a heavy dumbbell stationary. In physics, Work ($W$) is the rigorous mathematical measurement of how much energy is transferred into or out of an object by an external force causing a physical displacement.
 
 In this massive, 4,000+ word technical guide, we will completely deconstruct the primary mechanical work equation ($W = F \cdot d \cdot \cos\theta$). We will explore the critical nuances of force vector angles, define the difference between positive, negative, and zero work, and walk through five real-world engineering and kinematic scenarios utilizing detailed Mermaid.js visualizations.
 
@@ -150,7 +150,7 @@ In this massive, 4,000+ word technical guide, we will completely deconstruct the
 
 ## 1. What is Mechanical Work? (The Physics Definition)
 
-In classical Newtonian mechanics, Work is the scalar dot product of the Force vector ($\vec{F}$) and the Displacement vector ($\vec{d}$). 
+In classical Newtonian mechanics, Work is the scalar dot product of the Force vector ($\vec{F}$) and the Displacement vector ($\vec{d}$).
 
 Because these are vectors (they have both a magnitude and a specific direction), we cannot simply multiply their raw numbers together. We must account for the angle between them using trigonometry, specifically the cosine function.
 
@@ -185,7 +185,7 @@ If you lift a heavy $50\text{ kg}$ box and carry it horizontally across a room a
 - **Result:** $W = 0$. Despite your muscles burning and burning physiological calories (metabolic work), from a strict physics perspective, you did exactly ZERO mechanical work on the box because you did not change its kinetic energy or height.
 
 ### Negative Work ($90^\circ < \theta \le 180^\circ$)
-If a moving car slams on the brakes, the friction force of the tires is pushing backwards ($180^\circ$) while the car continues to slide forwards. 
+If a moving car slams on the brakes, the friction force of the tires is pushing backwards ($180^\circ$) while the car continues to slide forwards.
 - $\cos(180^\circ) = -1$
 - **Result:** $W = -F \cdot d$. The road did Maximum Negative Work. Negative work means energy is being *removed* from the object (in this case, kinetic energy is being drained and converted into heat and sound).
 
@@ -214,7 +214,7 @@ Use the top navigation tabs to select what you want to solve for:
 - **Angle ($\theta$):** Calculate the geometric angle of the force vector based on energy output.
 
 ### Step 2: Utilize the Force Direction Simulator
-When calculating Work, use the interactive angle slider (from $0^\circ$ to $180^\circ$). Watch how the resulting work scales from $100\%$ efficiency at $0^\circ$, down to $0\%$ at $90^\circ$, and plunges into negative territory as you approach $180^\circ$. 
+When calculating Work, use the interactive angle slider (from $0^\circ$ to $180^\circ$). Watch how the resulting work scales from $100\%$ efficiency at $0^\circ$, down to $0\%$ at $90^\circ$, and plunges into negative territory as you approach $180^\circ$.
 
 ### Step 3: Handle Advanced Unit Conversions
 The calculator automatically handles complex metric scaling:

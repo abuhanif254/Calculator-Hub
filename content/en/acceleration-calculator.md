@@ -160,12 +160,12 @@ Acceleration is the engine of change in the physical world. It is the thrilling 
 
 ## 1. The Human Experience of Acceleration
 
-Before we dive into the mathematics, it is crucial to understand how humans experience acceleration. As biological organisms, we are entirely blind to constant velocity. If you are sitting in a bullet train traveling at a perfectly smooth 300 km/h with the windows closed, you could easily pour a cup of coffee. Your body feels as though it is completely stationary. 
+Before we dive into the mathematics, it is crucial to understand how humans experience acceleration. As biological organisms, we are entirely blind to constant velocity. If you are sitting in a bullet train traveling at a perfectly smooth 300 km/h with the windows closed, you could easily pour a cup of coffee. Your body feels as though it is completely stationary.
 
-What humans *can* feel is **acceleration**—the rate of change in that velocity. When the bullet train departs the station, you feel pushed back into your seat. When it brakes, you lurch forward. Our inner ear (the vestibular system) is essentially a highly sensitive, three-dimensional biological accelerometer. 
+What humans *can* feel is **acceleration**—the rate of change in that velocity. When the bullet train departs the station, you feel pushed back into your seat. When it brakes, you lurch forward. Our inner ear (the vestibular system) is essentially a highly sensitive, three-dimensional biological accelerometer.
 
 ### Why Acceleration Matters in Engineering
-In the engineering world, managing acceleration is often more important than managing top speed. 
+In the engineering world, managing acceleration is often more important than managing top speed.
 - **Automotive:** Designing anti-lock braking systems (ABS) is an exercise in maximizing negative acceleration (deceleration) without breaking static friction.
 - **Aerospace:** A space shuttle must reach 28,000 km/h to orbit the Earth, but if it accelerates too quickly (above 3g), the astronauts will black out, and the immense aerodynamic pressure (Max Q) will tear the vehicle apart.
 - **Architecture:** Skyscrapers and suspension bridges are designed not just to hold weight, but to resist lateral acceleration caused by gale-force winds and earthquakes.
@@ -174,7 +174,7 @@ In the engineering world, managing acceleration is often more important than man
 
 ## 2. The Core Mathematics: Scalars, Vectors, and Equations
 
-In physics, acceleration ($a$) is defined as the rate at which an object changes its velocity over time. Because velocity is a **vector** (meaning it has both a magnitude and a direction), acceleration is also a vector. 
+In physics, acceleration ($a$) is defined as the rate at which an object changes its velocity over time. Because velocity is a **vector** (meaning it has both a magnitude and a direction), acceleration is also a vector.
 
 This leads to a critical realization: **You can accelerate without ever changing your speed.**
 If you drive your car in a perfect circle at a constant speed of 30 mph, your velocity is constantly changing because your *direction* is constantly changing. Therefore, you are in a state of continuous acceleration (specifically, centripetal acceleration pushing you toward the center of the circle).
@@ -218,7 +218,7 @@ At the top of the dashboard, choose what you want to solve for:
 - **Time (t):** Select this if you need to know how long it will take a vehicle to reach a target speed at a specific acceleration rate.
 
 ### Step 2: Input Values and Manage Units
-Unlike traditional calculators, you do not need to convert your units beforehand. 
+Unlike traditional calculators, you do not need to convert your units beforehand.
 - You can enter initial velocity in **mph**, final velocity in **km/h**, and time in **minutes**. 
 - The calculator's conversion engine instantly normalizes all inputs to SI units (meters and seconds), performs the physics calculation, and outputs the result.
 - Output units for acceleration include $m/s^2$, $ft/s^2$, $km/h/s$, and **G-Force ($g$)**.
@@ -230,7 +230,7 @@ Once a calculation is complete, the **G-Force Arc Gauge** immediately updates.
 - If your acceleration is negative (deceleration), the gauge swings to the left, indicating braking force.
 
 ### Step 4: Utilize the Motion Simulator and Graphs
-By toggling **Advanced Mode**, you gain access to the Recharts interactive graphs. 
+By toggling **Advanced Mode**, you gain access to the Recharts interactive graphs.
 - The **Velocity vs. Time graph** plots the speed trajectory. For constant acceleration, this will be a straight sloped line.
 - The **Position vs. Time graph** will show a curved parabola, demonstrating how displacement increases exponentially under acceleration.
 
@@ -296,7 +296,7 @@ This flowchart visualizes the sequence of kinematics utilized by our calculator'
 
 ```mermaid
 flowchart TD
-    A[Input Variables:<br/>vi = 33.3 m/s<br/>vf = 0 m/s<br/>a = -8.5 m/s²] --> B{Calculate Time}
+A[Input Variables:<br/>vi = 33.3 m/s<br/>vf = 0 m/s<br/>a = -8.5 m/s²] --> B{Calculate Time}
     B -->|"t = (vf - vi) / a"| C[Time = 3.92 s]
     C --> D{Calculate Distance}
     A --> D
@@ -340,9 +340,9 @@ xychart-beta
 ### Example 4: The Space Rocket Staging Timeline
 
 **The Scenario:**
-A multi-stage orbital launch vehicle does not experience constant acceleration. As fuel is rapidly burned, the mass of the rocket decreases dramatically. According to $a = F/m$, if the thrust force ($F$) remains constant while the mass ($m$) decreases, the acceleration ($a$) must continually increase. 
+A multi-stage orbital launch vehicle does not experience constant acceleration. As fuel is rapidly burned, the mass of the rocket decreases dramatically. According to $a = F/m$, if the thrust force ($F$) remains constant while the mass ($m$) decreases, the acceleration ($a$) must continually increase.
 
-When the rocket drops an empty fuel stage (staging), the mass instantly changes, creating a massive jolt in acceleration. 
+When the rocket drops an empty fuel stage (staging), the mass instantly changes, creating a massive jolt in acceleration.
 
 **2D Visualization:**
 The Gantt chart below illustrates a simplified rocket launch timeline, mapping the mission events to the rapidly shifting acceleration environments experienced by the crew.
@@ -416,7 +416,7 @@ flowchart LR
 **A:** Yes. In fact, if you are reading this on Earth, you are currently hurtling around the Sun at approximately 67,000 mph (107,000 km/h). However, because that velocity is relatively constant and the radius of our orbit is so massive, the centripetal acceleration we feel is near zero, so we don't notice it. Zero acceleration simply means your current speed and direction are perfectly stable.
 
 **Q: What is the highest acceleration a human can survive?**
-**A:** Human tolerance to G-forces depends entirely on the direction of the force and the duration. 
+**A:** Human tolerance to G-forces depends entirely on the direction of the force and the duration.
 - **Vertical G-forces (Head to Toe):** Blood drains from the brain, causing a blackout (G-LOC). Fighter pilots wearing specialized compression G-suits and practicing straining maneuvers can sustain 9g for a few seconds.
 - **Horizontal G-forces (Chest to Back):** Humans are much more resilient to "eyeballs in" acceleration. Astronauts on the Space Shuttle experienced 3g for minutes during launch. In 1954, Dr. John Stapp rode a rocket sled and decelerated at 46.2g for a fraction of a second, proving humans could survive massive instant impacts, though he suffered severe bruising and temporary blindness.
 
@@ -424,10 +424,10 @@ flowchart LR
 
 ## 6. Conclusion and Classroom Exercises
 
-The concepts of kinematics and acceleration provide the mathematical framework required to engineer everything from roller coasters to interplanetary rockets. 
+The concepts of kinematics and acceleration provide the mathematical framework required to engineer everything from roller coasters to interplanetary rockets.
 
 To test your understanding using our interactive calculator, try the following practical exercises:
-1. **The Quarter Mile Drop:** Calculate how long it takes an object in free-fall ($a = 9.81\text{ m/s}^2$) to drop a quarter mile (402 meters) starting from rest ($v_i = 0$). 
+1. **The Quarter Mile Drop:** Calculate how long it takes an object in free-fall ($a = 9.81\text{ m/s}^2$) to drop a quarter mile (402 meters) starting from rest ($v_i = 0$).
 2. **The F1 Brake Test:** A Formula 1 car decelerates from 300 km/h to 80 km/h in just 1.5 seconds entering a tight chicane. Use the calculator to find the deceleration in $m/s^2$ and convert it to G-force.
 3. **The Lunar Lander:** The Apollo Lunar Module used a descent engine to land on the Moon, where gravity is only $1.62\text{ m/s}^2$. Calculate the braking force needed to counter lunar gravity.
 

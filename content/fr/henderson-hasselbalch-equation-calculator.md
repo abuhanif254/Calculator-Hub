@@ -128,8 +128,8 @@ Ceci est connu sous le nom de **Point de Demi-équivalence** dans un titrage. À
 Bien qu'un tampon résiste au changement de pH, il ne peut pas résister indéfiniment. La **Capacité Tampon ($\beta$)** est une mesure quantitative de la quantité d'acide fort ou de base forte qu'un tampon peut absorber avant que son pH ne change de manière significative (généralement d'une unité).
 
 La capacité tampon dépend de deux facteurs critiques :
-1.  **Concentration Absolue ($C_{\text{total}}$) :** Un tampon contenant $1,0\text{ M}$ de HA et $1,0\text{ M}$ de $\text{A}^-$ a dix fois la capacité d'un tampon contenant $0,1\text{ M}$ de HA et $0,1\text{ M}$ de $\text{A}^-$, même si leur pH est identique. Plus de molécules = plus de pouvoir neutralisant.
-2.  **Le Rapport :** La capacité tampon est maximisée lorsque $[\text{A}^-] = [\text{HA}]$ (c'est-à-dire, lorsque $\text{pH} = \text{p}K_a$).
+1. **Concentration Absolue ($C_{\text{total}}$) :** Un tampon contenant $1,0\text{ M}$ de HA et $1,0\text{ M}$ de $\text{A}^-$ a dix fois la capacité d'un tampon contenant $0,1\text{ M}$ de HA et $0,1\text{ M}$ de $\text{A}^-$, même si leur pH est identique. Plus de molécules = plus de pouvoir neutralisant.
+2. **Le Rapport :** La capacité tampon est maximisée lorsque $[\text{A}^-] = [\text{HA}]$ (c'est-à-dire, lorsque $\text{pH} = \text{p}K_a$).
 
 En règle générale en chimie analytique, un tampon n'est considéré comme efficace que dans la plage de **$\pm 1\text{ unité de pH}$ de son $\text{p}K_a$**.
 - Si $\text{pH} = \text{p}K_a - 1$, le rapport $[\text{A}^-]/[\text{HA}]$ est de $1:10$. Le tampon a très peu de capacité à absorber plus d'acide.
@@ -139,9 +139,9 @@ En règle générale en chimie analytique, un tampon n'est considéré comme eff
 
 L'équation d'Henderson-Hasselbalch est une *approximation*. Elle suppose que les concentrations à l'équilibre de $[\text{HA}]$ et $[\text{A}^-]$ sont exactement égales aux quantités initiales que vous avez placées dans le bécher.
 Cette hypothèse commence à échouer gravement dans trois conditions :
-1.  **Dilution Extrême :** Si le tampon est dilué au-delà de $1 \times 10^{-4}\text{ M}$, l'auto-ionisation de l'eau ($[\text{H}^+] = 10^{-7}\text{ M}$) commence à interférer significativement.
-2.  **Acides/Bases Forts :** L'équation ne peut pas être utilisée pour des acides forts comme le $\text{HCl}$ ou le $\text{HNO}_3$, car leurs valeurs de $K_a$ approchent l'infini et il n'y a plus de $[\text{HA}]$ intact en solution.
-3.  **Rapports Extrêmes :** Si le rapport de $[\text{A}^-]$ à $[\text{HA}]$ dépasse $100:1$ ou chute en dessous de $1:100$, l'approximation s'effondre car l'effet tampon de l'eau prend le dessus.
+1. **Dilution Extrême :** Si le tampon est dilué au-delà de $1 \times 10^{-4}\text{ M}$, l'auto-ionisation de l'eau ($[\text{H}^+] = 10^{-7}\text{ M}$) commence à interférer significativement.
+2. **Acides/Bases Forts :** L'équation ne peut pas être utilisée pour des acides forts comme le $\text{HCl}$ ou le $\text{HNO}_3$, car leurs valeurs de $K_a$ approchent l'infini et il n'y a plus de $[\text{HA}]$ intact en solution.
+3. **Rapports Extrêmes :** Si le rapport de $[\text{A}^-]$ à $[\text{HA}]$ dépasse $100:1$ ou chute en dessous de $1:100$, l'approximation s'effondre car l'effet tampon de l'eau prend le dessus.
 
 ---
 
@@ -153,15 +153,15 @@ Notre calculateur agit comme un laboratoire analytique numérique, offrant une r
 
 Si vous mélangez une quantité connue d'acide faible et de base conjuguée :
 1.  **Sélectionnez le Mode :** Choisissez "Calculer le pH du tampon".
-2.  **Entrez les Paramètres :** Entrez le $\text{p}K_a$ de votre acide, la concentration de la base conjuguée $[\text{A}^-]$, et la concentration de l'acide faible $[\text{HA}]$.
-3.  **Lisez le Résultat :** Le calculateur fournit immédiatement le pH final du mélange, le rapport, et évalue si le tampon se situe dans la plage idéale de capacité $\pm 1$.
+2. **Entrez les Paramètres :** Entrez le $\text{p}K_a$ de votre acide, la concentration de la base conjuguée $[\text{A}^-]$, et la concentration de l'acide faible $[\text{HA}]$.
+3. **Lisez le Résultat :** Le calculateur fournit immédiatement le pH final du mélange, le rapport, et évalue si le tampon se situe dans la plage idéale de capacité $\pm 1$.
 
 ### 5.2 Conception de Tampon en Laboratoire (Cibler un pH)
 
 Si votre protocole de laboratoire nécessite un tampon à un pH spécifique (par ex., pH 7,40 pour les cellules biologiques) :
-1.  **Sélectionnez le Mode :** Choisissez "Calculer le Rapport $[\text{A}^-]/[\text{HA}]$".
-2.  **Entrez les Paramètres :** Entrez votre pH cible et le $\text{p}K_a$ de votre agent tampon choisi (par ex., $7,20$ pour le Phosphate).
-3.  **Exécutez :** L'outil utilise la fonction logarithmique inverse $10^{(\text{pH} - \text{p}K_a)}$ pour vous indiquer exactement combien de moles de base conjuguée vous avez besoin pour chaque mole d'acide faible. 
+1. **Sélectionnez le Mode :** Choisissez "Calculer le Rapport $[\text{A}^-]/[\text{HA}]$".
+2. **Entrez les Paramètres :** Entrez votre pH cible et le $\text{p}K_a$ de votre agent tampon choisi (par ex., $7,20$ pour le Phosphate).
+3. **Exécutez :** L'outil utilise la fonction logarithmique inverse $10^{(\text{pH} - \text{p}K_a)}$ pour vous indiquer exactement combien de moles de base conjuguée vous avez besoin pour chaque mole d'acide faible.
 
 ---
 
@@ -181,7 +181,6 @@ Un biochimiste prépare une solution tampon contenant $0,25\text{ M}$ d'Acide Ac
     Base Conjuguée $[\text{A}^-] = 0,15\text{ M}$
     $\text{p}K_a$ de l'Acide = 4,76
 2.  **Appliquer Henderson-Hasselbalch :**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 4,76 + \log_{10}\left(\frac{0,15}{0,25}\right) $$
     $$ \text{pH} = 4,76 + \log_{10}(0,60) $$
     $$ \text{pH} = 4,76 - 0,222 $$
@@ -200,7 +199,7 @@ Le plasma sanguin humain est strictement tamponné à un pH de $7,40$. Le princi
     $\text{pH}$ Cible = 7,40
     $\text{p}K_a$ de l'Acide = 6,10
 2.  **Isoler le Rapport Logarithmique :**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
+$$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{HCO}_3^-]}{[\text{H}_2\text{CO}_3]}\right) $$
     $$ 7,40 = 6,10 + \log_{10}(\text{Rapport}) $$
     $$ 1,30 = \log_{10}(\text{Rapport}) $$
 3.  **Exécuter le Logarithme Inverse :**
@@ -228,7 +227,7 @@ Un laboratoire doit concevoir une solution saline tamponnée au phosphate (PBS) 
 **Dérivation Mathématique :**
 
 1.  **Calculer le Rapport Requis :**
-    $$ \text{pH} - \text{p}K_a = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
+$$ \text{pH} - \text{p}K_a = \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ 7,00 - 7,20 = -0,20 $$
     $$ \text{Rapport} = 10^{-0,20} = 0,631 $$
 2.  **Calculer la Concentration en Base Conjuguée Requise :**
@@ -241,7 +240,7 @@ Un laboratoire doit concevoir une solution saline tamponnée au phosphate (PBS) 
 ### Exemple 4 : L'Attaque Acide (Neutralisation du Tampon)
 
 **Scénario :**
-Prenons $1,0\text{ Litre}$ d'un tampon parfait contenant $0,10\text{ M}$ d'acide faible générique ($\text{HA}$, $\text{p}K_a = 5,00$) et $0,10\text{ M}$ de base conjuguée ($\text{A}^-$). Le pH initial est de 5,00. 
+Prenons $1,0\text{ Litre}$ d'un tampon parfait contenant $0,10\text{ M}$ d'acide faible générique ($\text{HA}$, $\text{p}K_a = 5,00$) et $0,10\text{ M}$ de base conjuguée ($\text{A}^-$). Le pH initial est de 5,00.
 Nous y ajoutons ensuite agressivement $0,02\text{ Moles}$ d'acide chlorhydrique pur ($\text{HCl}$, un acide fort). Quel est le nouveau pH ?
 
 **Dérivation Mathématique :**
@@ -250,11 +249,10 @@ Nous y ajoutons ensuite agressivement $0,02\text{ Moles}$ d'acide chlorhydrique 
     $[\text{HA}] = 0,10\text{ mol}$
     $[\text{A}^-] = 0,10\text{ mol}$
 2.  **Neutralisation Stœchiométrique :**
-    Les $0,02\text{ mol}$ d'acide fort ($\text{H}^+$) vont complètement attaquer la base conjuguée ($\text{A}^-$), la transformant en acide faible ($\text{HA}$).
+Les $0,02\text{ mol}$ d'acide fort ($\text{H}^+$) vont complètement attaquer la base conjuguée ($\text{A}^-$), la transformant en acide faible ($\text{HA}$).
     **Nouveau $[\text{A}^-]$ :** $0,10 - 0,02 = 0,08\text{ mol}$
     **Nouveau $[\text{HA}]$ :** $0,10 + 0,02 = 0,12\text{ mol}$
 3.  **Appliquer Henderson-Hasselbalch au Nouvel État :**
-    $$ \text{pH} = \text{p}K_a + \log_{10}\left(\frac{[\text{A}^-]}{[\text{HA}]}\right) $$
     $$ \text{pH} = 5,00 + \log_{10}\left(\frac{0,08}{0,12}\right) $$
     $$ \text{pH} = 5,00 + \log_{10}(0,667) $$
     $$ \text{pH} = 5,00 - 0,176 = 4,82 $$

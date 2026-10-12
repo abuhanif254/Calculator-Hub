@@ -296,7 +296,7 @@ Este diagrama de flujo visualiza la secuencia de cinemática utilizada por el mo
 
 ```mermaid
 flowchart TD
-    A[Variables Ingresadas:<br/>vi = 33.3 m/s<br/>vf = 0 m/s<br/>a = -8.5 m/s²] --> B{Calcular Tiempo}
+A[Variables Ingresadas:<br/>vi = 33.3 m/s<br/>vf = 0 m/s<br/>a = -8.5 m/s²] --> B{Calcular Tiempo}
     B -->|"t = (vf - vi) / a"| C[Tiempo = 3.92 s]
     C --> D{Calcular Distancia}
     A --> D
@@ -416,7 +416,7 @@ flowchart LR
 **R:** Sí. De hecho, si estás leyendo esto en la Tierra, actualmente estás viajando alrededor del Sol a aproximadamente 67,000 mph (107,000 km/h). Sin embargo, debido a que esa velocidad es relativamente constante y el radio de nuestra órbita es tan masivo, la aceleración centrípeta que sentimos es casi cero, así que no la notamos. Aceleración cero simplemente significa que tu rapidez actual y dirección son perfectamente estables.
 
 **P: ¿Cuál es la mayor aceleración que puede sobrevivir un humano?**
-**R:** La tolerancia humana a las fuerzas G depende completamente de la dirección de la fuerza y la duración. 
+**R:** La tolerancia humana a las fuerzas G depende completamente de la dirección de la fuerza y la duración.
 - **Fuerzas G Verticales (Cabeza a Pies):** La sangre drena del cerebro, causando un desmayo (G-LOC). Los pilotos de combate que usan trajes G de compresión especializados y practican maniobras de esfuerzo pueden sostener 9g durante unos segundos.
 - **Fuerzas G Horizontales (Pecho a Espalda):** Los humanos son mucho más resistentes a la aceleración de "globos oculares hacia adentro". Los astronautas en el transbordador espacial experimentaban 3g durante minutos en el lanzamiento. En 1954, el Dr. John Stapp montó en un trineo propulsado por cohetes y desaceleró a 46.2g durante una fracción de segundo, probando que los humanos podían sobrevivir impactos instantáneos masivos, aunque sufrió hematomas severos y ceguera temporal.
 
@@ -424,10 +424,10 @@ flowchart LR
 
 ## 6. Conclusión y Ejercicios Prácticos
 
-Los conceptos de cinemática y aceleración proporcionan el marco matemático necesario para diseñar desde montañas rusas hasta cohetes interplanetarios. 
+Los conceptos de cinemática y aceleración proporcionan el marco matemático necesario para diseñar desde montañas rusas hasta cohetes interplanetarios.
 
 Para poner a prueba tu comprensión usando nuestra calculadora interactiva, intenta los siguientes ejercicios prácticos:
-1. **La Caída del Cuarto de Milla:** Calcula cuánto tiempo le toma a un objeto en caída libre ($a = 9.81\text{ m/s}^2$) caer un cuarto de milla (402 metros) empezando desde el reposo ($v_i = 0$). 
+1. **La Caída del Cuarto de Milla:** Calcula cuánto tiempo le toma a un objeto en caída libre ($a = 9.81\text{ m/s}^2$) caer un cuarto de milla (402 metros) empezando desde el reposo ($v_i = 0$).
 2. **La Prueba de Frenado F1:** Un coche de Fórmula 1 desacelera de 300 km/h a 80 km/h en solo 1.5 segundos entrando en una chicana cerrada. Usa la calculadora para encontrar la desaceleración en $m/s^2$ y conviértela en fuerza G.
 3. **El Módulo Lunar:** El Módulo Lunar Apolo utilizó un motor de descenso para aterrizar en la Luna, donde la gravedad es de solo $1.62\text{ m/s}^2$. Calcula la fuerza de frenado necesaria para contrarrestar la gravedad lunar.
 

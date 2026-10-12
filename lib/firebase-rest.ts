@@ -69,16 +69,18 @@ export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: n
       };
     }
 
+    const isServer = typeof window === 'undefined';
     const response = await fetch(`${BASE_URL}:runQuery?key=${API_KEY}`, {
       method: 'POST',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Origin': 'https://www.nexuscalculator.net',
-        'Referer': 'https://nexuscalculator.net/'
+        ...(isServer ? {
+          'Origin': 'https://www.nexuscalculator.net',
+          'Referer': 'https://nexuscalculator.net/'
+        } : {})
       },
       body: JSON.stringify({ structuredQuery }),
-      // Revalidate based on Next.js ISR cache settings from the caller, but we can set default revalidate
-      next: { revalidate: 3600 }
+      ...(isServer ? { next: { revalidate: 86400 } } : {})
     });
 
     if (!response.ok) {
@@ -126,6 +128,7 @@ export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: n
 
 export async function fetchTopUsersRest(limitCount: number = 10): Promise<any[]> {
   try {
+    const isServer = typeof window === 'undefined';
     const response = await fetch(`${BASE_URL}:runQuery?key=${API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -136,7 +139,7 @@ export async function fetchTopUsersRest(limitCount: number = 10): Promise<any[]>
           limit: limitCount
         }
       }),
-      next: { revalidate: 3600 } // Cache for 1 hour
+      ...(isServer ? { next: { revalidate: 86400 } } : {})
     });
 
     if (!response.ok) return [];
@@ -245,11 +248,12 @@ export async function queryPostsRest(options: {
       }
     }
 
+    const isServer = typeof window === 'undefined';
     const response = await fetch(`${BASE_URL}:runQuery?key=${API_KEY}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ structuredQuery }),
-      next: { revalidate: 3600 } // Longer cache for dynamic queries to save ISR usage
+      ...(isServer ? { next: { revalidate: 86400 } } : {})
     });
 
     if (!response.ok) {
@@ -304,12 +308,15 @@ export async function queryPostsRest(options: {
 
 export async function fetchPostBySlugRest(slug: string): Promise<RestPost | null> {
   try {
+    const isServer = typeof window === 'undefined';
     const response = await fetch(`${BASE_URL}:runQuery?key=${API_KEY}`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        'Origin': 'https://www.nexuscalculator.net',
-        'Referer': 'https://nexuscalculator.net/'
+        ...(isServer ? {
+          'Origin': 'https://www.nexuscalculator.net',
+          'Referer': 'https://nexuscalculator.net/'
+        } : {})
       },
       body: JSON.stringify({
         structuredQuery: {
@@ -324,7 +331,7 @@ export async function fetchPostBySlugRest(slug: string): Promise<RestPost | null
           limit: 1
         }
       }),
-      next: { revalidate: 3600 }
+      ...(isServer ? { next: { revalidate: 86400 } } : {})
     });
 
     if (!response.ok) {
@@ -384,13 +391,16 @@ export async function fetchPostBySlugRest(slug: string): Promise<RestPost | null
 
 export async function fetchUserRest(userId: string): Promise<{ displayName: string | null; photoURL: string | null; role: string; badges: string[] } | null> {
   try {
+    const isServer = typeof window === 'undefined';
     const response = await fetch(`${BASE_URL}/users/${userId}?key=${API_KEY}`, {
       method: 'GET',
       headers: {
-        'Origin': 'https://www.nexuscalculator.net',
-        'Referer': 'https://nexuscalculator.net/'
+        ...(isServer ? {
+          'Origin': 'https://www.nexuscalculator.net',
+          'Referer': 'https://nexuscalculator.net/'
+        } : {})
       },
-      next: { revalidate: 3600 } // cache users for an hour
+      ...(isServer ? { next: { revalidate: 86400 } } : {})
     });
     
     if (!response.ok) return null;

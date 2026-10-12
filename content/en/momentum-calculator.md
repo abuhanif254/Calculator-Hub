@@ -160,7 +160,7 @@ In this massive, 4,000+ word deep-dive, we will comprehensively deconstruct the 
 
 To understand momentum, we must refer to the Latin root of the word, *movimentum*, meaning "movement." Sir Isaac Newton originally referred to momentum simply as the "Quantity of Motion."
 
-Momentum is a **vector quantity**, which means it has both a magnitude (how large the value is) and a direction (where the object is going). 
+Momentum is a **vector quantity**, which means it has both a magnitude (how large the value is) and a direction (where the object is going).
 
 ### The Core Formula ($p = m \cdot v$)
 The linear momentum ($p$) of any object is the mathematical product of its mass ($m$) and its velocity ($v$).
@@ -195,11 +195,11 @@ $$ F_{net} \cdot \Delta t = \Delta p $$
 This product of Force and Time ($F \cdot \Delta t$) is called **Impulse ($J$)**, measured in Newton-seconds ($N \cdot s$). The theorem tells us that to change the momentum of an object, you must apply a force over a specific duration of time.
 
 ### The Physics of Automotive Safety
-The Impulse-Momentum Theorem is the entire foundation of automotive crash safety. 
+The Impulse-Momentum Theorem is the entire foundation of automotive crash safety.
 
 Imagine a car crashing into a concrete wall at highway speeds. The change in momentum ($\Delta p$) is completely fixed: the car was moving fast, and now it must stop. You cannot change $\Delta p$. However, you *can* change the Force ($F$) exerted on the driver by manipulating the Time ($\Delta t$).
 
-Without crumple zones, the car stops against the concrete instantly (e.g., $0.01\text{ seconds}$). To satisfy the equation, the Force must be astronomically high, likely killing the driver. By engineering the car's hood to crumple like an accordion, the impact duration extends to $0.20\text{ seconds}$. By increasing $\Delta t$ by a factor of 20, the lethal peak Force drops by a factor of 20. 
+Without crumple zones, the car stops against the concrete instantly (e.g., $0.01\text{ seconds}$). To satisfy the equation, the Force must be astronomically high, likely killing the driver. By engineering the car's hood to crumple like an accordion, the impact duration extends to $0.20\text{ seconds}$. By increasing $\Delta t$ by a factor of 20, the lethal peak Force drops by a factor of 20.
 
 ---
 
@@ -251,7 +251,7 @@ Let's explore five detailed examples of momentum mechanics, utilizing Mermaid.js
 A baseball pitcher throws a $0.145\text{ kg}$ baseball horizontally at $40\text{ m/s}$ (+x direction). The batter swings and hits it straight back at $50\text{ m/s}$ (-x direction). The bat is only in physical contact with the ball for $0.002\text{ seconds}$. What was the average impact force on the bat?
 
 **The Mathematics:**
-First, calculate the change in momentum ($\Delta p = m \cdot v_f - m \cdot v_i$). 
+First, calculate the change in momentum ($\Delta p = m \cdot v_f - m \cdot v_i$).
 *Pay close attention to vector direction signs!* The ball arrived at $+40\text{ m/s}$ and left at $-50\text{ m/s}$.
 $$ \Delta p = 0.145 \times (-50) - 0.145 \times (40) $$
 $$ \Delta p = -7.25 - 5.8 = -13.05\text{ kg} \cdot \text{m/s} $$
@@ -266,7 +266,7 @@ The logic tree below maps the flow of the Impulse-Momentum calculation.
 
 ```mermaid
 flowchart LR
-    A[Initial Momentum<br/>+5.8 kg·m/s] --> C(Change in Momentum<br/>Δp = -13.05 kg·m/s)
+A[Initial Momentum<br/>+5.8 kg·m/s] --> C(Change in Momentum<br/>Δp = -13.05 kg·m/s)
     B[Final Momentum<br/>-7.25 kg·m/s] --> C
     
     C --> D[Divide by Contact Time<br/>Δt = 0.002 s]
@@ -419,13 +419,13 @@ gantt
 ## 6. Frequently Asked Questions (FAQ) Deep Dive
 
 **Q: Can momentum be negative?**
-**A:** Yes, absolutely. Because momentum is a vector quantity, a negative sign simply indicates direction. If a car traveling east is assigned a positive momentum of $+10,000\text{ kg}\cdot\text{m/s}$, a car traveling west at the exact same speed will have a momentum of $-10,000\text{ kg}\cdot\text{m/s}$. 
+**A:** Yes, absolutely. Because momentum is a vector quantity, a negative sign simply indicates direction. If a car traveling east is assigned a positive momentum of $+10,000\text{ kg}\cdot\text{m/s}$, a car traveling west at the exact same speed will have a momentum of $-10,000\text{ kg}\cdot\text{m/s}$.
 
 **Q: Does gravity affect momentum?**
 **A:** Yes, gravity is an external force. When you drop a ball, gravity exerts a continuous downward force over time ($F \cdot \Delta t$), which results in a continuous downward Impulse, causing the ball's momentum to increase until it hits the ground.
 
 **Q: What is the difference between Center of Mass velocity and individual object velocity in a collision?**
-**A:** The center of mass of a closed system moves at a completely constant velocity before, during, and after a collision. Even if two billiard balls violently bounce off each other and change their individual velocities, the mathematical center point between them continues moving forward as if nothing happened. 
+**A:** The center of mass of a closed system moves at a completely constant velocity before, during, and after a collision. Even if two billiard balls violently bounce off each other and change their individual velocities, the mathematical center point between them continues moving forward as if nothing happened.
 
 **Q: How do jet engines and rockets propel themselves without pushing against anything?**
 **A:** They rely entirely on the Law of Conservation of Momentum. A rocket burns fuel to create high-pressure gas. It then expels that gas out the back nozzle at extreme velocities. The gas takes away massive amounts of negative momentum. To keep the total system momentum balanced at zero, the heavy rocket hull must gain an exactly equal amount of positive forward momentum.
