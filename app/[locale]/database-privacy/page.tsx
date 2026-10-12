@@ -22,7 +22,7 @@ export async function generateMetadata({
 
   return {
     title:
-      "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance | Nexus",
+      "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance",
     description:
       "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free enterprise platform with 30+ detectors. No data leaves your browser.",
     keywords: [

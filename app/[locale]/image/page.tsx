@@ -1,10 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
-import { Link, routing, resolveIntlHref } from "@/i18n/routing";
+import { Link, resolveIntlHref } from "@/i18n/routing";
 import { imageToolsMenu } from "@/lib/data/sitemapData";
 import { resolveHref } from "@/lib/utils/linkResolver";
 import { getCanonicalAndAlternates, getCanonicalUrl } from "@/lib/utils/seoUtils";
+import { getLocalizedToolMeta } from "@/lib/utils/toolLocalization";
 import {
   Image as ImageIcon,
   Palette,
@@ -18,6 +19,141 @@ import {
 
 export const revalidate = false;
 
+const imageCopy: Record<string, {
+  title: string;
+  description: string;
+  home: string;
+  breadcrumb: string;
+  badge: (n: number) => string;
+  h1: string;
+  subtitle: string;
+  jumpTo: string;
+  toolsCount: (n: number) => string;
+  faqTitle: string;
+  faqs: { q: string; a: string }[];
+}> = {
+  en: {
+    title: "Free Online Image Tools – Compress, Resize, Convert & Edit Photos",
+    description: "Comprehensive suite of free client-side image tools. Compress, resize, crop, convert formats (WebP, PNG, JPG, SVG), and edit photos instantly. 100% private in-browser processing.",
+    home: "Home",
+    breadcrumb: "Image Tools",
+    badge: (n) => `${n}+ Free Online Image Utilities`,
+    h1: "Free Online Image & Photo Tools Hub",
+    subtitle: "Compress, resize, crop, convert, upscale, and edit photos directly in your browser. Experience instant client-side speeds without compromising your privacy or visual fidelity.",
+    jumpTo: "Jump To:",
+    toolsCount: (n) => `${n} tools`,
+    faqTitle: "Frequently Asked Questions About Nexus Image Tools",
+    faqs: [
+      {
+        q: "Are Nexus Image tools free to use?",
+        a: "Yes, all image editing, conversion, and compression tools are 100% free with no hidden charges, watermarks, or subscription paywalls.",
+      },
+      {
+        q: "Are my images uploaded to external cloud servers?",
+        a: "No! Your privacy is protected. Processing happens directly inside your web browser using HTML5 Canvas, WebGL, and WebAssembly APIs. Your photos never leave your device.",
+      },
+      {
+        q: "What file formats are supported?",
+        a: "Our suite supports PNG, JPG/JPEG, WebP, SVG, GIF, ICO, AVIF, and Apple HEIC image formats for compression, conversion, and editing.",
+      },
+      {
+        q: "Can I use these image tools on mobile devices?",
+        a: "Yes! All tools are fully responsive and optimized to run seamlessly on iOS Safari, Android Chrome, tablets, and desktop workstations.",
+      },
+    ],
+  },
+  es: {
+    title: "Herramientas de Imagen Online – Comprimir, Redimensionar y Convertir Fotos",
+    description: "Herramientas gratuitas para imágenes online. Comprime, cambia tamaño, recorta, convierte formatos (WebP, PNG, JPG, SVG) y edita fotos en tu navegador de forma 100% privada.",
+    home: "Inicio",
+    breadcrumb: "Herramientas de Imagen",
+    badge: (n) => `+${n} Utilidades de Imagen Gratuitas en Línea`,
+    h1: "Centro de Herramientas de Imagen y Fotografía Online",
+    subtitle: "Comprima, redimensione, recorte, convierta, mejore y edite fotos directamente en su navegador con velocidad instantánea y privacidad total del lado del cliente.",
+    jumpTo: "Ir a:",
+    toolsCount: (n) => `${n} herramientas`,
+    faqTitle: "Preguntas Frecuentes sobre las Herramientas de Imagen",
+    faqs: [
+      {
+        q: "¿Son gratuitas las herramientas de imagen de Nexus?",
+        a: "Sí, todas las herramientas de edición, conversión y compresión de imágenes son 100 % gratuitas, sin cargos ocultos ni marcas de agua.",
+      },
+      {
+        q: "¿Mis imágenes se suben a servidores externos?",
+        a: "No. El procesamiento ocurre directamente dentro de su navegador web utilizando HTML5 Canvas, WebGL y WebAssembly. Sus fotos nunca salen de su dispositivo.",
+      },
+      {
+        q: "¿Qué formatos de archivo son compatibles?",
+        a: "Admitimos PNG, JPG/JPEG, WebP, SVG, GIF, ICO, AVIF y HEIC para compresión, conversión y edición.",
+      },
+      {
+        q: "¿Puedo usar estas herramientas en dispositivos móviles?",
+        a: "Sí, todas las herramientas están optimizadas para funcionar de manera fluida en iOS Safari, Android Chrome, tabletas y ordenadores.",
+      },
+    ],
+  },
+  fr: {
+    title: "Outils d'Image Gratuits en Ligne – Compresser, Redimensionner et Convertir",
+    description: "Suite complète d'outils d'image en ligne gratuits. Compressez, redimensionnez, rognez, convertissez et éditez des photos directement dans votre navigateur. 100% privé.",
+    home: "Accueil",
+    breadcrumb: "Outils d'Image",
+    badge: (n) => `Plus de ${n} Utilitaires Photo et Image Gratuits`,
+    h1: "Centre d'Outils d'Image et de Photo en Ligne",
+    subtitle: "Compressez, redimensionnez, recadrez, convertissez et éditez vos photos directement dans votre navigateur avec une confidentialité totale et une qualité optimale.",
+    jumpTo: "Aller à :",
+    toolsCount: (n) => `${n} outils`,
+    faqTitle: "Questions Fréquentes sur les Outils d'Image Nexus",
+    faqs: [
+      {
+        q: "Les outils d'image Nexus sont-ils gratuits ?",
+        a: "Oui, tous nos outils d'édition, de conversion et de compression d'images sont 100 % gratuits, sans filigrane ni abonnement.",
+      },
+      {
+        q: "Mes photos sont-elles envoyées sur des serveurs externes ?",
+        a: "Non ! Le traitement s'effectue directement dans votre navigateur via HTML5 Canvas, WebGL et WebAssembly. Vos images ne quittent jamais votre appareil.",
+      },
+      {
+        q: "Quels formats d'image sont pris en charge ?",
+        a: "Notre suite prend en charge les formats PNG, JPG/JPEG, WebP, SVG, GIF, ICO, AVIF et HEIC.",
+      },
+      {
+        q: "Puis-je utiliser ces outils sur smartphone et tablette ?",
+        a: "Oui, tous nos outils sont entièrement responsives et fonctionnent sur iOS Safari, Android Chrome, tablettes et ordinateurs.",
+      },
+    ],
+  },
+  de: {
+    title: "Kostenlose Online-Bild-Tools – Komprimieren, Skalieren & Konvertieren",
+    description: "Kostenlose Bildbearbeitungs-Tools im Browser: Bilder komprimieren, skalieren, zuschneiden, konvertieren (WebP, PNG, JPG, SVG) und bearbeiten. 100 % privat und sicher.",
+    home: "Startseite",
+    breadcrumb: "Bild-Tools",
+    badge: (n) => `Über ${n} Kostenlose Online-Bild-Tools`,
+    h1: "Kostenloser Online-Bild- & Foto-Tools Hub",
+    subtitle: "Bilder direkt im Browser komprimieren, skalieren, zuschneiden, konvertieren und bearbeiten. Sofortige Verarbeitung auf Ihrem Gerät bei vollem Datenschutz.",
+    jumpTo: "Springen zu:",
+    toolsCount: (n) => `${n} Tools`,
+    faqTitle: "Häufig gestellte Fragen zu den Nexus Bild-Tools",
+    faqs: [
+      {
+        q: "Sind die Bild-Tools von Nexus kostenlos?",
+        a: "Ja, alle Werkzeuge zur Bildbearbeitung, Konvertierung und Komprimierung sind zu 100 % kostenlos – ohne Wasserzeichen oder versteckte Gebühren.",
+      },
+      {
+        q: "Werden meine Bilder auf externe Server hochgeladen?",
+        a: "Nein! Die gesamte Verarbeitung erfolgt direkt in Ihrem Browser über HTML5 Canvas, WebGL und WebAssembly. Ihre Fotos verlassen Ihr Gerät nicht.",
+      },
+      {
+        q: "Welche Dateiformate werden unterstützt?",
+        a: "Unterstützt werden PNG, JPG/JPEG, WebP, SVG, GIF, ICO, AVIF sowie Apple HEIC.",
+      },
+      {
+        q: "Funktionieren die Bild-Tools auch auf dem Smartphone?",
+        a: "Ja, alle Tools sind vollständig responsiv und laufen problemlos auf iOS, Android, Tablets und Desktop-PCs.",
+      },
+    ],
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -25,32 +161,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const alternates = getCanonicalAndAlternates("/image", locale);
-
-  const titles: Record<string, string> = {
-    en: "Free Online Image Tools | Compress, Resize, Convert & Edit Photos",
-    es: "Herramientas de Imagen Online | Comprimir, Redimensionar y Convertir Fotos",
-    fr: "Outils d'Image Gratuits en Ligne | Compresser, Redimensionner et Convertir",
-    de: "Kostenlose Online-Bild-Tools | Komprimieren, Skalieren & Konvertieren",
-  };
-
-  const descriptions: Record<string, string> = {
-    en: "Comprehensive suite of free client-side image tools. Compress, resize, crop, convert formats (WebP, PNG, JPG, SVG), and edit photos instantly. 100% private in-browser processing.",
-    es: "Herramientas gratuitas para imágenes online. Comprime, cambia tamaño, recorta, convierte formatos (WebP, PNG, JPG, SVG) y edita fotos en tu navegador de forma 100% privada.",
-    fr: "Suite complète d'outils d'image en ligne gratuits. Compressez, redimensionnez, rognez, convertissez et éditez des photos directement dans votre navigateur. 100% privé.",
-    de: "Kostenlose Bildbearbeitungs-Tools im Browser: Bilder komprimieren, skalieren, zuschneiden, konvertieren (WebP, PNG, JPG, SVG) und bearbeiten. 100 % privat und sicher.",
-  };
-
-  const title = titles[locale] || titles.en;
-  const description = descriptions[locale] || descriptions.en;
+  const t = imageCopy[locale] || imageCopy.en;
 
   return {
-    title,
-    description,
+    title: t.title,
+    description: t.description,
     keywords:
       "image tools, free online image editor, compress image, resize image, convert image to webp, png to jpg, heic to jpg, image upscaler, remove image background, client-side photo tools",
     openGraph: {
-      title,
-      description,
+      title: t.title,
+      description: t.description,
       type: "website",
     },
     alternates,
@@ -68,6 +188,7 @@ export default async function ImageToolsPage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = imageCopy[locale] || imageCopy.en;
 
   const baseUrl = (process.env.APP_URL || "https://www.nexuscalculator.net").replace(/\/$/, "");
   const canonicalUrl = getCanonicalUrl("/image", locale);
@@ -78,8 +199,8 @@ export default async function ImageToolsPage({
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Nexus Image Tools Directory",
-    "description": "Comprehensive suite of free client-side image editing, conversion, and optimization tools.",
+    "name": t.h1,
+    "description": t.subtitle,
     "url": canonicalUrl,
     "publisher": {
       "@type": "Organization",
@@ -95,13 +216,13 @@ export default async function ImageToolsPage({
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
+        "name": t.home,
         "item": `${baseUrl}/${locale}`,
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Image Tools",
+        "name": t.breadcrumb,
         "item": canonicalUrl,
       },
     ],
@@ -111,41 +232,24 @@ export default async function ImageToolsPage({
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "Image Tools List",
+    "name": t.h1,
     "itemListElement": allImageItems.slice(0, 30).map((item, idx) => {
       const rawHref = "slug" in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name);
-      const itemUrl = rawHref.startsWith('/tools/')
-        ? getCanonicalUrl('/tools/[slug]', locale, rawHref.replace('/tools/', ''))
+      const toolSlug = rawHref.startsWith('/tools/') ? rawHref.replace('/tools/', '') : undefined;
+      const locMeta = toolSlug ? getLocalizedToolMeta(toolSlug, locale, item.name, item.desc) : { title: item.name, description: item.desc };
+      const itemUrl = toolSlug
+        ? getCanonicalUrl('/tools/[slug]', locale, toolSlug)
         : rawHref.startsWith('/calculators/')
           ? getCanonicalUrl('/calculators/[slug]', locale, rawHref.replace('/calculators/', ''))
           : getCanonicalUrl(rawHref, locale);
       return {
         "@type": "ListItem",
         "position": idx + 1,
-        "name": item.name,
+        "name": locMeta.title,
         "url": itemUrl,
       };
     }),
   };
-
-  const faqs = [
-    {
-      q: "Are Nexus Image tools free to use?",
-      a: "Yes, all image editing, conversion, and compression tools are 100% free with no hidden charges, watermarks, or subscription paywalls.",
-    },
-    {
-      q: "Are my images uploaded to external cloud servers?",
-      a: "No! Your privacy is protected. Processing happens directly inside your web browser using HTML5 Canvas, WebGL, and WebAssembly APIs. Your photos never leave your device.",
-    },
-    {
-      q: "What file formats are supported?",
-      a: "Our suite supports PNG, JPG/JPEG, WebP, SVG, GIF, ICO, AVIF, and Apple HEIC image formats for compression, conversion, and editing.",
-    },
-    {
-      q: "Can I use these image tools on mobile devices?",
-      a: "Yes! All tools are fully responsive and optimized to run seamlessly on iOS Safari, Android Chrome, tablets, and desktop workstations.",
-    },
-  ];
 
   return (
     <main className="min-h-screen bg-slate-50/50 dark:bg-slate-950 pb-20">
@@ -170,12 +274,12 @@ export default async function ImageToolsPage({
             <ol className="flex items-center gap-2">
               <li>
                 <Link href="/" className="hover:text-[#518231] hover:underline">
-                  Home
+                  {t.home}
                 </Link>
               </li>
               <li>/</li>
               <li className="text-slate-800 dark:text-slate-200 font-semibold" aria-current="page">
-                Image Tools
+                {t.breadcrumb}
               </li>
             </ol>
           </nav>
@@ -183,20 +287,20 @@ export default async function ImageToolsPage({
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#518231]/10 text-[#518231] dark:text-[#6fa844] text-xs font-bold uppercase tracking-wider mb-4 border border-[#518231]/20">
               <ImageIcon className="w-3.5 h-3.5" />
-              {totalToolsCount}+ Free Online Image Utilities
+              {t.badge(totalToolsCount)}
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
-              Free Online Image &amp; Photo Tools Hub
+              {t.h1}
             </h1>
             <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-              Compress, resize, crop, convert, upscale, and edit photos directly in your browser. Experience instant client-side speeds without compromising your privacy or visual fidelity.
+              {t.subtitle}
             </p>
           </div>
 
           {/* Quick Jump Bar */}
           <div className="mt-8 flex flex-wrap gap-2 pt-4 border-t border-slate-200/70 dark:border-slate-800/80">
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 self-center mr-2">
-              Jump To:
+              {t.jumpTo}
             </span>
             {imageToolsMenu.map((category) => (
               <a
@@ -276,7 +380,7 @@ export default async function ImageToolsPage({
                     <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
                       <span>{category.title}</span>
                       <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold">
-                        {category.items.length} tools
+                        {t.toolsCount(category.items.length)}
                       </span>
                     </h2>
                     <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
@@ -288,14 +392,16 @@ export default async function ImageToolsPage({
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
                 {category.items.map((item: any) => {
+                  const rawHref =
+                    "slug" in item && item.slug
+                      ? `/tools/${item.slug}`
+                      : resolveHref(item.name);
+                  const toolSlug = rawHref.startsWith('/tools/') ? rawHref.replace('/tools/', '') : undefined;
+                  const locMeta = toolSlug ? getLocalizedToolMeta(toolSlug, locale, item.name, item.desc) : { title: item.name, description: item.desc };
                   const resolvedHref =
                     "href" in item && item.href
                       ? (item.href as any)
-                      : resolveIntlHref(
-                          "slug" in item && item.slug
-                            ? `/tools/${item.slug}`
-                            : resolveHref(item.name)
-                        );
+                      : resolveIntlHref(rawHref);
 
                   return (
                     <Link
@@ -306,12 +412,12 @@ export default async function ImageToolsPage({
                       <div>
                         <div className="flex items-center justify-between gap-2">
                           <h3 className="font-semibold text-slate-900 dark:text-white text-sm sm:text-[15px] group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors">
-                            {item.name}
+                            {locMeta.title}
                           </h3>
                           <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 transition-all shrink-0" />
                         </div>
                         <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2">
-                          {item.desc}
+                          {locMeta.description}
                         </p>
                       </div>
                       {item.isNew && (
@@ -336,12 +442,12 @@ export default async function ImageToolsPage({
           <div className="flex items-center gap-3 mb-6">
             <HelpCircle className="w-6 h-6 text-[#518231]" />
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              Frequently Asked Questions About Nexus Image Tools
+              {t.faqTitle}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-            {faqs.map((faq, i) => (
+            {t.faqs.map((faq, i) => (
               <div
                 key={i}
                 className="p-5 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800"

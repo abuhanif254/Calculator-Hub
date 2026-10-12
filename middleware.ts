@@ -38,6 +38,20 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
   '/en/tools/next.js-discussions': '/en/tools',
   '/de/werkzeuge/sitemap.xml-generator': '/de/werkzeuge/sitemap-xml-generator',
   '/en/tools/sitemap.xml-generator': '/en/tools/sitemap-xml-generator',
+  '/calculators/password-generator': '/en/tools/password-generator',
+  '/en/calculators/password-generator': '/en/tools/password-generator',
+  '/es/calculators/password-generator': '/es/herramientas/password-generator',
+  '/fr/calculators/password-generator': '/fr/outils/password-generator',
+  '/de/calculators/password-generator': '/de/werkzeuge/password-generator',
+  '/es/calculadoras/password-generator': '/es/herramientas/password-generator',
+  '/fr/calculatrices/password-generator': '/fr/outils/password-generator',
+  '/de/rechner/password-generator': '/de/werkzeuge/password-generator',
+  '/es/calculadoras/generador-de-contrasenas': '/es/herramientas/password-generator',
+  '/fr/calculatrices/generateur-de-mots-de-passe': '/fr/outils/password-generator',
+  '/de/rechner/passwort-generator': '/de/werkzeuge/password-generator',
+  '/en/calculators/passwort-generator': '/en/tools/password-generator',
+  '/en/calculators/generador-de-contrasenas': '/en/tools/password-generator',
+  '/en/calculators/generateur-de-mots-de-passe': '/en/tools/password-generator',
 };
 
 // Truly deprecated or renamed calculators → canonical destination

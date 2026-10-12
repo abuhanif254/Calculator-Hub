@@ -30,6 +30,7 @@ import {
 import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
+import { getLocalizedToolMeta, getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
 import { AdSenseContainer } from '@/app/components/AdSenseContainer';
 
 
@@ -100,7 +101,8 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
   }
 
   const raw = fs.readFileSync(filePath, 'utf-8');
-  const { content } = matter(raw);
+  const parsed = matter(raw);
+  const content = parsed.content.replace(/^\s*#\s+[^\r\n]+\r?\n*/, '').trim();
 
   // marked v18 uses token objects — we create a fresh instance per call
   // to avoid global state accumulation across concurrent SSG renders.
@@ -109,8 +111,9 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
   // marked v18 heading token: { type, raw, depth, text, tokens }
   // 'text' is the plain-text string of the heading content
   renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
+    const safeDepth = depth === 1 ? 2 : depth;
     const id = slugifyHeading(text);
-    return `<h${depth} id="${id}" class="heading-anchor">${text}</h${depth}>\n`;
+    return `<h${safeDepth} id="${id}" class="heading-anchor">${text}</h${safeDepth}>\n`;
   };
 
   // Wrap tables in a scrollable div for mobile
@@ -291,12 +294,91 @@ export default async function GuideArticlePage({
     }),
   };
 
+  const guideUiCopy: Record<string, {
+    home: string;
+    guides: string;
+    minRead: string;
+    updated: string;
+    relatedTool: string;
+    relatedCalc: string;
+    usePrefix: string;
+    useSuffix: string;
+    open: string;
+    onThisPage: string;
+    previous: string;
+    next: string;
+  }> = {
+    en: {
+      home: 'Home',
+      guides: 'Guides',
+      minRead: 'min read',
+      updated: 'Updated',
+      relatedTool: 'Related Tool',
+      relatedCalc: 'Related Calculator',
+      usePrefix: 'Use the ',
+      useSuffix: ' to apply what you learn in this guide.',
+      open: 'Open',
+      onThisPage: 'On this page',
+      previous: 'Previous',
+      next: 'Next',
+    },
+    es: {
+      home: 'Inicio',
+      guides: 'Guías',
+      minRead: 'min de lectura',
+      updated: 'Actualizado el',
+      relatedTool: 'Herramienta Relacionada',
+      relatedCalc: 'Calculadora Relacionada',
+      usePrefix: 'Utilice ',
+      useSuffix: ' para poner en práctica lo aprendido en esta guía.',
+      open: 'Abrir',
+      onThisPage: 'En esta página',
+      previous: 'Anterior',
+      next: 'Siguiente',
+    },
+    fr: {
+      home: 'Accueil',
+      guides: 'Guides',
+      minRead: 'min de lecture',
+      updated: 'Mis à jour le',
+      relatedTool: 'Outil Associé',
+      relatedCalc: 'Calculatrice Associée',
+      usePrefix: 'Utilisez ',
+      useSuffix: ' pour mettre en pratique les concepts de ce guide.',
+      open: 'Ouvrir',
+      onThisPage: 'Sur cette page',
+      previous: 'Précédent',
+      next: 'Suivant',
+    },
+    de: {
+      home: 'Startseite',
+      guides: 'Ratgeber',
+      minRead: 'Min. Lesezeit',
+      updated: 'Aktualisiert am',
+      relatedTool: 'Passendes Werkzeug',
+      relatedCalc: 'Passender Rechner',
+      usePrefix: 'Nutzen Sie ',
+      useSuffix: ', um das Wissen aus diesem Ratgeber direkt anzuwenden.',
+      open: 'Öffnen',
+      onThisPage: 'Auf dieser Seite',
+      previous: 'Zurück',
+      next: 'Weiter',
+    },
+  };
+  const ui = guideUiCopy[locale] || guideUiCopy.en;
+
+  const relatedItemTitle = guide.relatedCalculator
+    ? (guide.relatedType === 'tool'
+        ? getLocalizedToolMeta(guide.relatedCalculator, locale).title
+        : getLocalizedCalcMeta(guide.relatedCalculator, locale).title)
+    : '';
+
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}/${locale}` },
-      { '@type': 'ListItem', position: 2, name: 'Guides', item: guidesIndexUrl },
+      { '@type': 'ListItem', position: 1, name: ui.home, item: `${baseUrl}/${locale}` },
+      { '@type': 'ListItem', position: 2, name: ui.guides, item: guidesIndexUrl },
       { '@type': 'ListItem', position: 3, name: guide.title, item: canonicalUrl },
     ],
   };
@@ -326,14 +408,14 @@ export default async function GuideArticlePage({
             href="/"
             className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors"
           >
-            Home
+            {ui.home}
           </Link>
           <ChevronRight size={11} />
           <Link
             href="/guides"
             className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors"
           >
-            Guides
+            {ui.guides}
           </Link>
           <ChevronRight size={11} />
           <span className="text-slate-600 dark:text-slate-300 font-medium line-clamp-1">
@@ -365,11 +447,11 @@ export default async function GuideArticlePage({
           <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 pb-6 border-b border-slate-100 dark:border-white/5">
             <span className="flex items-center gap-1.5">
               <Clock size={14} />
-              {guide.readingTime} min read
+              {guide.readingTime} {ui.minRead}
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
-              Updated {formattedDate}
+              {ui.updated} {formattedDate}
             </span>
             <span className="flex items-center gap-1.5">
               <catIcon.Icon size={14} />
@@ -390,10 +472,10 @@ export default async function GuideArticlePage({
             </div>
             <div className="flex-1 min-w-0">
               <p className="text-xs font-semibold text-[#518231] dark:text-[#6fa844] uppercase tracking-wide mb-0.5">
-                {guide.relatedType === 'tool' ? 'Related Tool' : 'Related Calculator'}
+                {guide.relatedType === 'tool' ? ui.relatedTool : ui.relatedCalc}
               </p>
               <p className="text-sm text-slate-700 dark:text-slate-300">
-                Use the{' '}
+                {ui.usePrefix}
                 <Link
                   href={
                     guide.relatedType === 'tool'
@@ -402,11 +484,9 @@ export default async function GuideArticlePage({
                   }
                   className="font-semibold text-[#518231] dark:text-[#6fa844] hover:underline"
                 >
-                  {guide.relatedCalculator
-                    .replace(/-/g, ' ')
-                    .replace(/\b\w/g, (c) => c.toUpperCase())}
-                </Link>{' '}
-                to apply what you learn in this guide.
+                  {relatedItemTitle}
+                </Link>
+                {ui.useSuffix}
               </p>
             </div>
             <Link
@@ -417,7 +497,7 @@ export default async function GuideArticlePage({
               }
               className="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-[#518231] dark:text-[#6fa844] bg-[#518231]/10 dark:bg-[#518231]/20 hover:bg-[#518231]/20 dark:hover:bg-[#518231]/30 px-3 py-2 rounded-lg transition-colors"
             >
-              Open
+              {ui.open}
               <ExternalLink size={12} />
             </Link>
           </div>
@@ -429,7 +509,7 @@ export default async function GuideArticlePage({
             <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none">
               <span className="flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#518231]" />
-                On this page
+                {ui.onThisPage}
               </span>
               <ChevronRight
                 size={15}
@@ -492,7 +572,7 @@ export default async function GuideArticlePage({
             >
               <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 dark:text-slate-500 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors">
                 <ArrowLeft size={13} />
-                Previous
+                {ui.previous}
               </span>
               <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-snug">
                 {prevGuide.title}
@@ -508,7 +588,7 @@ export default async function GuideArticlePage({
               className="group flex flex-col items-end gap-1 p-4 rounded-xl border border-slate-200 dark:border-white/8 hover:border-[#518231]/30 dark:hover:border-[#518231]/30 bg-white dark:bg-slate-800/50 hover:shadow-md transition-all duration-200 text-right"
             >
               <span className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 dark:text-slate-500 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors">
-                Next
+                {ui.next}
                 <ArrowRight size={13} />
               </span>
               <span className="text-sm font-semibold text-slate-700 dark:text-slate-300 leading-snug">

@@ -39,7 +39,7 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   transpilePackages: ['motion'],
   experimental: {
-    ...(process.env.CI_ENV === 'local' ? { cpus: 1 } : {}),
+    ...(process.platform === 'win32' || process.env.CI_ENV === 'local' ? { cpus: 1 } : {}),
     optimizePackageImports: ['lucide-react', 'date-fns', 'chart.js', 'katex'],
   },
   async headers() {
@@ -53,6 +53,13 @@ const nextConfig: NextConfig = {
           { key: 'X-XSS-Protection',          value: '1; mode=block' },
           { key: 'Referrer-Policy',           value: 'strict-origin-when-cross-origin' },
           { key: 'Permissions-Policy',        value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()' },
+        ],
+      },
+      // ── PWA Manifest: prevent Google from trying to index JSON manifest as a webpage ──
+      {
+        source: '/manifest.webmanifest',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
         ],
       },
       // ── Embed routes: allow iframe embedding on any website ───────────────────

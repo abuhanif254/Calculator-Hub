@@ -3,28 +3,43 @@ import { Link as CustomLink } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { Mail, Phone, MapPin, MessageSquare, Send } from 'lucide-react';
 
+export const revalidate = false;
+export const dynamicParams = false;
+
+const metaByLocale: Record<string, { title: string; description: string; home: string; h1: string; subtitle: string }> = {
+  en: {
+    title: 'Contact Us — Support, Feedback & Feature Requests',
+    description: 'Get in touch with the Nexus Calculator team. We are here to help with your questions, feedback, and technical support inquiries.',
+    home: 'Home',
+    h1: 'Contact Us',
+    subtitle: 'Whether you have a question about our calculators, need technical support, or want to suggest a new feature, our team is ready to listen.',
+  },
+  es: {
+    title: 'Contáctenos — Soporte Técnico, Comentarios y Sugerencias',
+    description: 'Póngase en contacto con el equipo de Nexus Calculator. Estamos aquí para ayudar con sus preguntas, comentarios y soporte técnico.',
+    home: 'Inicio',
+    h1: 'Contáctenos',
+    subtitle: 'Si tienes alguna pregunta sobre nuestras calculadoras, necesitas soporte técnico o deseas sugerir una nueva herramienta, nuestro equipo está listo para ayudarte.',
+  },
+  fr: {
+    title: 'Nous Contacter — Support Technique, Avis et Suggestions',
+    description: 'Contactez l’équipe Nexus Calculator. Nous sommes là pour répondre à vos questions, suggestions de fonctionnalités et demandes d’assistance.',
+    home: 'Accueil',
+    h1: 'Nous Contacter',
+    subtitle: 'Que vous ayez une question sur nos calculatrices, besoin d’une assistance technique ou envie de suggérer un nouvel outil, notre équipe est à votre écoute.',
+  },
+  de: {
+    title: 'Kontaktieren Sie Uns — Support, Feedback & Funktionswünsche',
+    description: 'Nehmen Sie Kontakt mit dem Nexus Calculator-Team auf. Wir helfen Ihnen gerne bei Fragen, Feedback und technischen Supportanfragen weiter.',
+    home: 'Startseite',
+    h1: 'Kontaktieren Sie Uns',
+    subtitle: 'Ob Sie eine Frage zu unseren Rechnern haben, technischen Support benötigen oder ein neues Tool vorschlagen möchten — unser Team hilft Ihnen gerne weiter.',
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
-
-  const metaByLocale: Record<string, { title: string; description: string }> = {
-    en: {
-      title: 'Contact Us | Nexus Calculator',
-      description: 'Get in touch with the Nexus Calculator team. We are here to help with your questions, feedback, and support inquiries.',
-    },
-    es: {
-      title: 'Contáctenos | Nexus Calculator',
-      description: 'Póngase en contacto con el equipo de Nexus Calculator. Estamos aquí para ayudar con sus preguntas, comentarios y soporte.',
-    },
-    fr: {
-      title: 'Nous Contacter | Nexus Calculator',
-      description: 'Contactez l\'équipe Nexus Calculator. Nous sommes là pour répondre à vos questions, suggestions et demandes d\'assistance.',
-    },
-    de: {
-      title: 'Kontaktieren Sie Uns | Nexus Calculator',
-      description: 'Nehmen Sie Kontakt mit dem Nexus Calculator-Team auf. Wir helfen Ihnen gerne bei Fragen, Feedback und Supportanfragen weiter.',
-    },
-  };
 
   const meta = metaByLocale[locale] || metaByLocale.en;
 
@@ -32,7 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     robots: {
-      index: locale === 'en',
+      index: true,
       follow: true,
     },
     alternates: getCanonicalAndAlternates('/contact-us', locale),
@@ -41,7 +56,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ContactUsPage({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
-  setRequestLocale(resolvedParams.locale);
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
+  const meta = metaByLocale[locale] || metaByLocale.en;
   
   return (
     <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
@@ -50,10 +67,10 @@ export default async function ContactUsPage({ params }: { params: Promise<{ loca
       <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
         <ol className="flex items-center space-x-2">
           <li>
-            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
+            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{meta.home}</CustomLink>
           </li>
           <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
-          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">Contact Us</li>
+          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">{meta.h1}</li>
         </ol>
       </nav>
 
@@ -62,10 +79,10 @@ export default async function ContactUsPage({ params }: { params: Promise<{ loca
           <div className="bg-[#518231]/10 p-3 rounded-xl text-[#518231] dark:text-[#6fa844]">
             <MessageSquare size={32} />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">{meta.h1}</h1>
         </div>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed mt-6">
-          Whether you have a question about our calculators, need technical support, or want to suggest a new feature, our team is ready to listen.
+          {meta.subtitle}
         </p>
       </header>
 

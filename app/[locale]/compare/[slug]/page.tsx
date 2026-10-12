@@ -2,7 +2,8 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { getComparisonBySlug, comparisons } from '../../../../lib/data/comparisons';
 import { allTools } from '../../../../lib/registry';
-import { Link, routing, resolveIntlHref } from '../../../../i18n/routing';
+import { Link, resolveIntlHref } from '../../../../i18n/routing';
+import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
 import { ChevronRight, ArrowRight, Check, Scale } from 'lucide-react';
 import { Metadata } from 'next';
 
@@ -19,13 +20,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!comparison) return {};
 
   const t = comparison.translations?.[locale] || comparison;
+  const cleanSeoTitle = t.seoTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
-    title: t.seoTitle,
+    title: cleanSeoTitle,
     description: t.seoDescription,
     openGraph: {
-      title: t.seoTitle,
+      title: cleanSeoTitle,
       description: t.seoDescription,
       type: 'article'
     },
@@ -33,11 +35,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const uiLabels: Record<string, { home: string; compare: string; guideBadge: string; verdictTitle: string; features: string; openCalc: string }> = {
-  en: { home: "Home", compare: "Compare", guideBadge: "Comparison Guide", verdictTitle: "The Verdict", features: "Features", openCalc: "Open Calculator" },
-  es: { home: "Inicio", compare: "Comparar", guideBadge: "Guía de Comparación", verdictTitle: "El Veredicto", features: "Características", openCalc: "Abrir Calculadora" },
-  fr: { home: "Accueil", compare: "Comparer", guideBadge: "Guide Comparatif", verdictTitle: "Le Verdict", features: "Fonctionnalités", openCalc: "Ouvrir le Calculateur" },
-  de: { home: "Startseite", compare: "Vergleich", guideBadge: "Vergleichsratgeber", verdictTitle: "Das Fazit", features: "Eigenschaften", openCalc: "Rechner öffnen" }
+const uiLabels: Record<string, { home: string; compare: string; guideBadge: string; verdictTitle: string; features: string; openCalc: string; moreComparisons: string }> = {
+  en: { home: "Home", compare: "Compare", guideBadge: "Comparison Guide", verdictTitle: "The Verdict", features: "Features", openCalc: "Open Calculator", moreComparisons: "More Side-by-Side Comparisons" },
+  es: { home: "Inicio", compare: "Comparar", guideBadge: "Guía de Comparación", verdictTitle: "El Veredicto", features: "Características", openCalc: "Abrir Calculadora", moreComparisons: "Más Comparativas Lado a Lado" },
+  fr: { home: "Accueil", compare: "Comparer", guideBadge: "Guide Comparatif", verdictTitle: "Le Verdict", features: "Fonctionnalités", openCalc: "Ouvrir le Calculateur", moreComparisons: "Plus de Comparatifs Côte à Côte" },
+  de: { home: "Startseite", compare: "Vergleich", guideBadge: "Vergleichsratgeber", verdictTitle: "Das Fazit", features: "Eigenschaften", openCalc: "Rechner öffnen", moreComparisons: "Weitere Direktvergleiche" }
 };
 
 export default async function ComparePage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -48,12 +50,22 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     notFound();
   }
 
-  const toolA = allTools.find(t => t.slug === comparison.toolA);
-  const toolB = allTools.find(t => t.slug === comparison.toolB);
+  const toolARaw = allTools.find(t => t.slug === comparison.toolA);
+  const toolBRaw = allTools.find(t => t.slug === comparison.toolB);
 
-  if (!toolA || !toolB) {
+  if (!toolARaw || !toolBRaw) {
     return <div className="p-8 text-center text-red-500">Error: One or both tools in this comparison were not found.</div>;
   }
+
+  const metaA = toolARaw.type === 'developer-tool'
+    ? getLocalizedToolMeta(toolARaw.slug, locale, toolARaw.title, toolARaw.description)
+    : getLocalizedCalcMeta(toolARaw.slug, locale, toolARaw.title, toolARaw.description);
+  const metaB = toolBRaw.type === 'developer-tool'
+    ? getLocalizedToolMeta(toolBRaw.slug, locale, toolBRaw.title, toolBRaw.description)
+    : getLocalizedCalcMeta(toolBRaw.slug, locale, toolBRaw.title, toolBRaw.description);
+
+  const toolA = { ...toolARaw, localizedTitle: metaA.title };
+  const toolB = { ...toolBRaw, localizedTitle: metaB.title };
 
   const t = comparison.translations?.[locale] || comparison;
   const ui = uiLabels[locale] || uiLabels.en;
@@ -63,15 +75,16 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/compare/[slug]', locale, comparison.slug);
+  const sitemapUrl = getCanonicalUrl('/sitemap', locale);
 
-  const comparePath = locale === 'es' ? '/es/comparar' : locale === 'fr' ? '/fr/comparer' : locale === 'de' ? '/de/vergleichen' : '/en/compare';
+  const otherComparisons = comparisons.filter((c) => c.slug !== comparison.slug);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": ui.home, "item": `${baseUrl}/${locale}` },
-      { "@type": "ListItem", "position": 2, "name": ui.compare, "item": `${baseUrl}${comparePath}` },
+      { "@type": "ListItem", "position": 2, "name": ui.compare, "item": sitemapUrl },
       { "@type": "ListItem", "position": 3, "name": t.title, "item": canonicalUrl }
     ]
   };
@@ -84,7 +97,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
           <Link href="/" className="hover:text-[#518231] transition-colors">{ui.home}</Link>
           <ChevronRight size={14} />
-          <span className="text-slate-900 dark:text-slate-200 font-medium">{ui.compare}</span>
+          <Link href="/sitemap" className="hover:text-[#518231] transition-colors">{ui.compare}</Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-slate-200 font-medium">{t.title}</span>
         </nav>
@@ -122,13 +135,13 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
                 <span className="text-sm font-bold text-slate-400 uppercase tracking-wider">{ui.features}</span>
               </div>
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{toolA.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{toolA.localizedTitle}</h3>
                 <Link href={resolveIntlHref(toolA.href)} className="inline-flex items-center gap-1 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
                   {ui.openCalc} <ArrowRight size={14} />
                 </Link>
               </div>
               <div className="p-6 text-center">
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{toolB.title}</h3>
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{toolB.localizedTitle}</h3>
                 <Link href={resolveIntlHref(toolB.href)} className="inline-flex items-center gap-1 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
                   {ui.openCalc} <ArrowRight size={14} />
                 </Link>
@@ -142,11 +155,11 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
                     <span className="font-semibold text-slate-700 dark:text-slate-300">{diff.label}</span>
                   </div>
                   <div className="p-4 md:p-6 text-slate-600 dark:text-slate-400">
-                    <span className="md:hidden text-xs font-bold text-slate-400 uppercase mb-1 block">{toolA.title}</span>
+                    <span className="md:hidden text-xs font-bold text-slate-400 uppercase mb-1 block">{toolA.localizedTitle}</span>
                     {diff.a}
                   </div>
                   <div className="p-4 md:p-6 text-slate-600 dark:text-slate-400">
-                    <span className="md:hidden text-xs font-bold text-slate-400 uppercase mb-1 block">{toolB.title}</span>
+                    <span className="md:hidden text-xs font-bold text-slate-400 uppercase mb-1 block">{toolB.localizedTitle}</span>
                     {diff.b}
                   </div>
                 </div>
@@ -154,7 +167,41 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
             </div>
           </div>
         </section>
+
+        {/* Cross-Linking to Other Comparisons */}
+        {otherComparisons.length > 0 && (
+          <section className="pt-8 border-t border-slate-200 dark:border-slate-800">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+              {ui.moreComparisons}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherComparisons.map((other) => {
+                const ot = other.translations?.[locale] || other;
+                return (
+                  <Link
+                    key={other.slug}
+                    href={{ pathname: '/compare/[slug]', params: { slug: other.slug } }}
+                    className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-md hover:border-[#518231]/30 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors mb-2">
+                        {ot.title}
+                      </h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                        {ot.seoDescription}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end text-xs font-semibold text-[#518231]">
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
 }
+

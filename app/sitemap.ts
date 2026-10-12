@@ -35,14 +35,14 @@ const developerToolSlugs: string[] = Object.keys(allToolsConfig);
 // A non-www baseUrl causes ALL sitemap entries to show as "Page with redirect" in GSC.
 const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '').replace('://nexuscalculator.net', '://www.nexuscalculator.net');
 
-function buildEntry(
+function buildEntries(
   pathnameKey: string,
   changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never',
   priority: number,
   genericSlug?: string,
   lastMod?: Date,
   images?: string[]
-): MetadataRoute.Sitemap[number] {
+): MetadataRoute.Sitemap {
   const languages: Record<string, string> = {};
   const routeMapping = (routing.pathnames as any)[pathnameKey];
 
@@ -108,36 +108,36 @@ function buildEntry(
 
   languages['x-default'] = languages['en'] || `${baseUrl}/en${defaultPath}`;
 
-  return {
-    url: languages['en'] || `${baseUrl}/en${defaultPath}`,
+  return routing.locales.map((locale) => ({
+    url: languages[locale] || `${baseUrl}/${locale}${defaultPath}`,
     ...(lastMod ? { lastModified: lastMod } : {}),
     changeFrequency,
     priority,
     alternates: { languages },
     ...(images && images.length > 0 ? { images } : {}),
-  };
+  }));
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ─── STATIC & CORE PAGES ──────────────
-  const coreEntries = [
-    buildEntry('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/icons/icon-512x512.png`]),
-    buildEntry('/sitemap', 'weekly', 0.8),
-    buildEntry('/community', 'daily', 0.7),
+  const coreEntries: MetadataRoute.Sitemap = [
+    ...buildEntries('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/icons/icon-512x512.png`]),
+    ...buildEntries('/sitemap', 'weekly', 0.8),
+    ...buildEntries('/community', 'daily', 0.7),
     // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
     // REMOVED: /login, /signup — auth pages always redirect, waste crawl budget
-    buildEntry('/about-us', 'monthly', 0.5),
-    buildEntry('/privacy-policy', 'yearly', 0.3),
-    buildEntry('/terms-of-use', 'yearly', 0.3),
-    buildEntry('/guides', 'weekly', 0.85),
-    buildEntry('/calculators', 'weekly', 0.95),
-    buildEntry('/tools', 'weekly', 0.9),
-    buildEntry('/pdf', 'weekly', 0.9),
-    buildEntry('/image', 'weekly', 0.9),
-    ...allGuides.map((guide) => buildEntry('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
-    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).map((cat) => buildEntry('/calculators/category/[category]', 'weekly', 0.9, cat.id)),
-    ...collections.map((collection) => buildEntry('/collections/[slug]', 'weekly', 0.8, collection.slug)),
-    ...comparisons.map((comparison) => buildEntry('/compare/[slug]', 'monthly', 0.8, comparison.slug)),
+    ...buildEntries('/about-us', 'monthly', 0.5),
+    ...buildEntries('/privacy-policy', 'yearly', 0.3),
+    ...buildEntries('/terms-of-use', 'yearly', 0.3),
+    ...buildEntries('/guides', 'weekly', 0.85),
+    ...buildEntries('/calculators', 'weekly', 0.95),
+    ...buildEntries('/tools', 'weekly', 0.9),
+    ...buildEntries('/pdf', 'weekly', 0.9),
+    ...buildEntries('/image', 'weekly', 0.9),
+    ...allGuides.flatMap((guide) => buildEntries('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
+    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).flatMap((cat) => buildEntries('/calculators/category/[category]', 'weekly', 0.9, cat.id)),
+    ...collections.flatMap((collection) => buildEntries('/collections/[slug]', 'weekly', 0.8, collection.slug)),
+    ...comparisons.flatMap((comparison) => buildEntries('/compare/[slug]', 'monthly', 0.8, comparison.slug)),
   ];
 
   // ─── CALCULATOR PAGES ─────────────
@@ -157,15 +157,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   allCalcSlugs.sort((a, b) => a.slug.localeCompare(b.slug));
 
-  const calcEntries = allCalcSlugs.map(({ slug, priority, lastUpdated }) => {
+  const calcEntries = allCalcSlugs.flatMap(({ slug, priority, lastUpdated }) => {
     const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2026-09-07');
     const routeKey = `/calculators/${slug}`;
     const existsInRouting = (routing.pathnames as any)[routeKey];
 
     if (existsInRouting) {
-      return buildEntry(routeKey, 'weekly', priority, undefined, lastMod);
+      return buildEntries(routeKey, 'weekly', priority, undefined, lastMod);
     }
-    return buildEntry('/calculators/[slug]', 'weekly', priority, slug, lastMod);
+    return buildEntries('/calculators/[slug]', 'weekly', priority, slug, lastMod);
   });
 
   // ─── DEVELOPER TOOLS ──────────────────
@@ -179,8 +179,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return true;
     })
     .sort()
-    .map((slug) => {
-      return buildEntry('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod);
+    .flatMap((slug) => {
+      return buildEntries('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod);
     });
 
   // ─── DATA PRIVACY PLATFORM — PUBLIC LANDING ONLY ─────────────────
@@ -207,8 +207,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const { fetchPostsRest } = await import('../lib/firebase-rest');
     const posts = await fetchPostsRest(undefined, 100);
-    communityEntries = posts.map(post =>
-      buildEntry(
+    communityEntries = posts.flatMap(post =>
+      buildEntries(
         '/community/[slug]',
         'weekly',
         0.7,

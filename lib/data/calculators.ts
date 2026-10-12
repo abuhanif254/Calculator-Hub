@@ -2502,6 +2502,38 @@ Because bond prices and yields move in opposite directions, understanding the re
     },
     fields: [],
     logicModule: "financial",
+    translations: {
+      es: {
+        title: "Calculadora de Rendimiento Promedio",
+        description: "Calcule el rendimiento promedio aritmético y el rendimiento geométrico (CAGR) de una cartera de inversión al instante.",
+        meta: {
+          title: "Calculadora de Rendimiento Promedio – Media Aritmética vs Geométrica",
+          description: "Calculadora gratuita de rendimiento promedio. Calcule la media aritmética simple y la media geométrica precisa (CAGR) de su cartera para evaluar el rendimiento de su inversión.",
+          keywords: "calculadora de rendimiento promedio, rendimiento medio geometrico, rendimiento medio aritmetico, cagr, rentabilidad cartera",
+          lastUpdated: "2026-06-01"
+        }
+      },
+      fr: {
+        title: "Calculateur de Rendement Moyen",
+        description: "Calculez instantanément le rendement moyen arithmétique et le rendement géométrique (TCAC / CAGR) d'un portefeuille d'investissement.",
+        meta: {
+          title: "Calculateur de Rendement Moyen – Moyenne Arithmétique vs Géométrique",
+          description: "Calculateur gratuit de rendement moyen en ligne. Calculez la moyenne arithmétique simple et la moyenne géométrique exacte (CAGR) de votre portefeuille d'investissement.",
+          keywords: "calculateur rendement moyen, moyenne geometrique rendement, moyenne arithmetique rendement, cagr portefeuille, rentabilite investissement",
+          lastUpdated: "2026-06-01"
+        }
+      },
+      de: {
+        title: "Durchschnittliche-Rendite-Rechner",
+        description: "Berechnen Sie sofort die arithmetische Durchschnittsrendite und die geometrische Rendite (CAGR) für ein Anlageportfolio.",
+        meta: {
+          title: "Durchschnittliche-Rendite-Rechner – Arithmetisch vs. Geometrisch",
+          description: "Kostenloser Online-Rechner für die durchschnittliche Rendite. Berechnen Sie das einfache arithmetische Mittel und das präzise geometrische Mittel (CAGR) Ihres Portfolios.",
+          keywords: "durchschnittliche rendite rechner, geometrische rendite, arithmetische rendite, cagr rechner, portfoliorendite berechnen",
+          lastUpdated: "2026-06-01"
+        }
+      }
+    },
     seoContent: `
 ## How to Use the Average Return Calculator
 
@@ -3037,6 +3069,38 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
       keywords: "tip calculator, bill splitter, split bill, restaurant tip, gratuity calculator, calculate tip, tip splitting, international tipping, dining calculator",
       lastUpdated: "2026-07-19"
     },
+    translations: {
+      es: {
+        title: "Calculadora de Propinas",
+        description: "Calcule propinas estándar, cargos por servicio, descuentos, impuestos y divida cuentas de restaurante al instante.",
+        meta: {
+          title: "Calculadora de Propinas – Calcule Propinas y Divida la Cuenta al Instante",
+          description: "Calcule porcentajes de propina, divida la cuenta entre amigos, aplique impuestos o descuentos y consulte las costumbres internacionales de propinas con nuestra calculadora gratuita.",
+          keywords: "calculadora de propinas, dividir cuenta restaurante, calcular propina, porcentaje propina, calculadora restaurante",
+          lastUpdated: "2026-07-19"
+        }
+      },
+      fr: {
+        title: "Calculateur de Pourboire",
+        description: "Calculez les pourboires, frais de service, remises, taxes et partagez l'addition de restaurant instantanément.",
+        meta: {
+          title: "Calculateur de Pourboire – Calculez le Pourboire et Partagez l'Addition",
+          description: "Calculez facilement le pourcentage de pourboire, divisez l'addition entre plusieurs personnes et appliquez les taxes ou réductions avec notre calculateur gratuit.",
+          keywords: "calculateur de pourboire, partager addition restaurant, calculer pourboire, pourcentage pourboire",
+          lastUpdated: "2026-07-19"
+        }
+      },
+      de: {
+        title: "Trinkgeldrechner",
+        description: "Berechnen Sie Trinkgeld, Servicegebühren, Rabatte und Steuern und teilen Sie Restaurantrechnungen sofort auf.",
+        meta: {
+          title: "Trinkgeldrechner – Trinkgeld Berechnen & Rechnung Teilen",
+          description: "Berechnen Sie Trinkgeld-Prozentsätze, teilen Sie Rechnungen auf bis zu 100 Personen auf und berücksichtigen Sie Steuern und Rabatte mit unserem kostenlosen Trinkgeldrechner.",
+          keywords: "trinkgeldrechner, trinkgeld berechnen, rechnung teilen rechner, restaurant trinkgeld",
+          lastUpdated: "2026-07-19"
+        }
+      }
+    },
     fields: [],
     logicModule: "financial"
   },
@@ -3056,6 +3120,38 @@ Lenders use specific criteria to determine the maximum loan they will offer you.
       description: "Free online Islamic Zakat Calculator. Calculate Zakat on your assets (cash, gold, silver, stocks, crypto, business) and subtract liabilities based on Nisab.",
       keywords: "zakat calculator, islamic zakat calculator, gold nisab, silver nisab, calculate zakat, zakat wealth calculator, alms calculator",
       lastUpdated: "2026-07-19"
+    },
+    translations: {
+      es: {
+        title: "Calculadora de Zakat",
+        description: "Calcule su Zakat anual en línea sobre efectivo, oro, plata, inversiones, criptomonedas e inventario comercial utilizando los umbrales de Nisab.",
+        meta: {
+          title: "Calculadora de Zakat – Calcule su Zakat Anual al Instante",
+          description: "Calculadora gratuita de Zakat islámico en línea. Calcule el Zakat sobre sus activos (efectivo, oro, plata, acciones, criptomonedas) y reste pasivos según el Nisab.",
+          keywords: "calculadora de zakat, calcular zakat, zakat islamico, nisab oro, nisab plata, calculadora azaque",
+          lastUpdated: "2026-07-19"
+        }
+      },
+      fr: {
+        title: "Calculateur de Zakat",
+        description: "Calculez votre Zakat annuelle en ligne sur les espèces, l'or, l'argent, les investissements et les actifs commerciaux selon le seuil du Nisab.",
+        meta: {
+          title: "Calculateur de Zakat – Calculez Votre Zakat Annuelle en Ligne",
+          description: "Calculateur de Zakat islamique gratuit en ligne. Calculez la Zakat sur votre patrimoine (espèces, or, argent, actions, crypto) et déduisez vos dettes selon le Nisab.",
+          keywords: "calculateur de zakat, calculer zakat, zakat islamique, nisab or, nisab argent, zakat al maal",
+          lastUpdated: "2026-07-19"
+        }
+      },
+      de: {
+        title: "Zakat-Rechner",
+        description: "Berechnen Sie Ihre jährliche Zakat online für Bargeld, Gold, Silber, Investitionen und Geschäftsvermögen anhand der Nisab-Schwellenwerte.",
+        meta: {
+          title: "Zakat-Rechner – Berechnen Sie Ihre Jährliche Zakat Online",
+          description: "Kostenloser islamischer Online-Zakat-Rechner. Berechnen Sie die Zakat auf Ihr Vermögen (Bargeld, Gold, Silber, Aktien, Krypto) abzüglich Verbindlichkeiten nach Nisab.",
+          keywords: "zakat rechner, zakat berechnen, islamischer zakat rechner, gold nisab, silber nisab",
+          lastUpdated: "2026-07-19"
+        }
+      }
     },
     fields: [],
     logicModule: "financial"

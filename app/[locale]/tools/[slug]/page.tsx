@@ -147,7 +147,9 @@ import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
 import { FavoriteButton } from '../../../components/FavoriteButton';
 import { AdSenseContainer } from '../../../components/AdSenseContainer';
-import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers } from 'lucide-react';
+import { getGuideForCalculator } from '@/lib/data/guides';
+import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
+import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers, BookOpen, Clock, Wrench } from 'lucide-react';
 
 const toolComponents: Record<string, React.ComponentType> = {
   "json-formatter": JsonFormatterTool,
@@ -314,6 +316,32 @@ function getMarkdownContent(slug: string, locale: string) {
 
     const fileContent = fs.readFileSync(targetPath, "utf-8");
     const parsed = matter(fileContent);
+    parsed.data = parsed.data || {};
+
+    // Extract leading H1 from markdown body if frontmatter title is missing, and strip leading H1 to avoid duplicate <h1>
+    const leadingH1Match = parsed.content.match(/^\s*#\s+([^\r\n]+)\r?\n*/);
+    if (leadingH1Match) {
+      const extractedH1 = leadingH1Match[1]
+        .replace(/\*\*/g, '')
+        .split(/\s*[:|–—]\s*/)[0]
+        .trim();
+      if (!parsed.data.title && extractedH1) {
+        parsed.data.title = extractedH1;
+      }
+      parsed.content = parsed.content.slice(leadingH1Match[0].length).trim();
+    }
+
+    if (!parsed.data.title && typeof parsed.data.metaTitle === 'string') {
+      parsed.data.title = parsed.data.metaTitle.split(/\s*[|–—-]\s*/)[0].trim();
+    }
+    if (!parsed.data.shortDescription) {
+      if (typeof parsed.data.description === 'string' && parsed.data.description.trim()) {
+        parsed.data.shortDescription = parsed.data.description.trim();
+      } else if (typeof parsed.data.metaDescription === 'string' && parsed.data.metaDescription.trim()) {
+        parsed.data.shortDescription = parsed.data.metaDescription.trim();
+      }
+    }
+
     toolMarkdownCache.set(targetPath, parsed);
     return parsed;
   } catch (e) {
@@ -340,6 +368,11 @@ const toolPageTranslations: Record<string, {
   keyFeatures: string;
   commonUseCases: string;
   relatedTools: string;
+  moreToolsHeading: string;
+  viewAllTools: string;
+  guideBadge: string;
+  guideCta: string;
+  minRead: string;
 }> = {
   en: {
     home: "Home",
@@ -351,6 +384,11 @@ const toolPageTranslations: Record<string, {
     keyFeatures: "Key Features",
     commonUseCases: "Common Use Cases",
     relatedTools: "Related Tools",
+    moreToolsHeading: "Explore More Tools in This Category",
+    viewAllTools: "View All Developer & Utility Tools",
+    guideBadge: "In-Depth Technical Guide",
+    guideCta: "Read Complete Guide",
+    minRead: "min read",
   },
   es: {
     home: "Inicio",
@@ -362,6 +400,11 @@ const toolPageTranslations: Record<string, {
     keyFeatures: "Características Principales",
     commonUseCases: "Casos de Uso Comunes",
     relatedTools: "Herramientas Relacionadas",
+    moreToolsHeading: "Explorar Más Herramientas de Esta Categoría",
+    viewAllTools: "Ver Todas las Herramientas",
+    guideBadge: "Guía Técnica Detallada",
+    guideCta: "Leer la Guía Completa",
+    minRead: "min de lectura",
   },
   de: {
     home: "Startseite",
@@ -373,6 +416,11 @@ const toolPageTranslations: Record<string, {
     keyFeatures: "Hauptmerkmale",
     commonUseCases: "Typische Anwendungsbereiche",
     relatedTools: "Verwandte Tools",
+    moreToolsHeading: "Weitere Tools in dieser Kategorie entdecken",
+    viewAllTools: "Alle Entwickler-Tools anzeigen",
+    guideBadge: "Ausführlicher Technik-Ratgeber",
+    guideCta: "Vollständigen Ratgeber Lesen",
+    minRead: "Min. Lesezeit",
   },
   fr: {
     home: "Accueil",
@@ -384,6 +432,11 @@ const toolPageTranslations: Record<string, {
     keyFeatures: "Fonctionnalités Clés",
     commonUseCases: "Cas d'Utilisation Fréquents",
     relatedTools: "Outils Connexes",
+    moreToolsHeading: "Découvrir Plus d'Outils dans Cette Catégorie",
+    viewAllTools: "Voir Tous les Outils",
+    guideBadge: "Guide Technique Complet",
+    guideCta: "Lire le Guide Complet",
+    minRead: "min de lecture",
   }
 };
 
@@ -409,8 +462,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
   const mdData = getMarkdownContent(slug, locale);
 
-  const metaTitle = mdData?.data?.metaTitle || `${config.title} | Nexus Calculator`;
-  const metaDescription = mdData?.data?.metaDescription || config.shortDescription;
+  const rawMetaTitle = mdData?.data?.metaTitle || mdData?.data?.title || config.title;
+  const metaTitle = rawMetaTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
+  const metaDescription = mdData?.data?.metaDescription || mdData?.data?.shortDescription || config.shortDescription;
   const metaKeywords = mdData?.data?.metaKeywords || config.keywords.join(", ");
 
   return {
@@ -463,6 +517,36 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const t = toolPageTranslations[locale] || toolPageTranslations.en;
   const toolsSegment = toolPathSegments[locale] || 'tools';
   const currentToolHref = `/${locale}/${toolsSegment}/${config.slug}`;
+
+  // Companion guide lookup
+  const relatedGuide = getGuideForCalculator(config.slug);
+  const localizedGuide = relatedGuide ? getLocalizedGuide(relatedGuide, locale) : null;
+  const guideSlug = relatedGuide ? (relatedGuide.slugs?.[locale as keyof typeof relatedGuide.slugs] || relatedGuide.slug) : null;
+
+  // Circular window of 8 sibling tools in the same category (guarantees uniform internal link graph degree across all 135 tools)
+  const allToolsList = Object.values(allToolsConfig);
+  const categoryTools = allToolsList.filter((item) => item.category === config.category);
+  const currentCategoryIdx = Math.max(0, categoryTools.findIndex((item) => item.slug === config.slug));
+  const siblingTools: typeof allToolsList = [];
+  const seenSlugs = new Set<string>([config.slug]);
+
+  for (let offset = 1; offset < categoryTools.length && siblingTools.length < 8; offset++) {
+    const candidate = categoryTools[(currentCategoryIdx + offset) % categoryTools.length];
+    if (candidate && !seenSlugs.has(candidate.slug)) {
+      seenSlugs.add(candidate.slug);
+      siblingTools.push(candidate);
+    }
+  }
+  if (siblingTools.length < 8) {
+    const currentGlobalIdx = Math.max(0, allToolsList.findIndex((item) => item.slug === config.slug));
+    for (let offset = 1; offset < allToolsList.length && siblingTools.length < 8; offset++) {
+      const candidate = allToolsList[(currentGlobalIdx + offset) % allToolsList.length];
+      if (candidate && !seenSlugs.has(candidate.slug)) {
+        seenSlugs.add(candidate.slug);
+        siblingTools.push(candidate);
+      }
+    }
+  }
 
   // Generate Schemas
   const breadcrumbSchema = {
@@ -591,10 +675,48 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-8">
           <div className="lg:col-span-2 space-y-12">
+            {/* Companion Guide Callout */}
+            {localizedGuide && guideSlug && (
+              <aside aria-label="Technical Guide" className="p-6 md:p-8 bg-gradient-to-br from-emerald-50/40 via-white to-slate-50 dark:from-[#518231]/10 dark:via-slate-900 dark:to-slate-900/60 rounded-2xl border border-[#518231]/25 dark:border-[#518231]/35 shadow-sm relative overflow-hidden group">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-2.5 rounded-xl bg-[#518231]/10 text-[#518231] dark:text-[#6fa844] shrink-0">
+                      <BookOpen className="w-5 h-5" />
+                    </div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#518231] dark:text-[#6fa844]">
+                      {t.guideBadge}
+                    </span>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 self-start sm:self-auto shrink-0">
+                    <Clock className="w-3.5 h-3.5 text-slate-400" />
+                    {localizedGuide.readingTime} {t.minRead}
+                  </span>
+                </div>
+                <h2 className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors">
+                  {localizedGuide.title}
+                </h2>
+                <p className="text-slate-600 dark:text-slate-300 text-sm md:text-base leading-relaxed mb-6 max-w-3xl">
+                  {localizedGuide.description}
+                </p>
+                <div>
+                  <Link
+                    href={{ pathname: '/guides/[slug]', params: { slug: guideSlug } }}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#518231] hover:bg-[#436a28] text-white text-sm font-semibold shadow-sm transition-all hover:gap-3"
+                  >
+                    <span>{t.guideCta}</span>
+                    <ArrowRight className="w-4 h-4 rtl:rotate-180" />
+                  </Link>
+                </div>
+              </aside>
+            )}
+
             {/* Explanation / SEO Article */}
             <section className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-[#518231] prose-a:text-[#518231]">
               <ReactMarkdown
                 components={{
+                  h1({ node, children, ...props }: any) {
+                    return <h2 {...props}>{children}</h2>;
+                  },
                   a({ node, href, children, ...props }: any) {
                     const resolvedHref = canonicalizeInternalHref(href, locale);
                     return (
@@ -719,16 +841,20 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{t.relatedTools}</h3>
               <div className="space-y-2">
-                {config.relatedTools.map((tool, idx) => (
-                  <Link
-                    key={idx}
-                    href={{ pathname: '/tools/[slug]', params: { slug: tool.slug } }}
-                    className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg hover:shadow-md transition-all border border-slate-100 dark:border-slate-800 group"
-                  >
-                    <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-[#518231] transition-colors">{tool.name}</span>
-                    <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all" />
-                  </Link>
-                ))}
+                {config.relatedTools.map((tool, idx) => {
+                  const relatedMd = getMarkdownContent(tool.slug, locale);
+                  const localizedToolName = relatedMd?.data?.title || tool.name;
+                  return (
+                    <Link
+                      key={idx}
+                      href={{ pathname: '/tools/[slug]', params: { slug: tool.slug } }}
+                      className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg hover:shadow-md transition-all border border-slate-100 dark:border-slate-800 group"
+                    >
+                      <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-[#518231] transition-colors">{localizedToolName}</span>
+                      <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all" />
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
@@ -738,6 +864,45 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             </div>
           </div>
         </div>
+
+        {/* Circular Category Sibling Tools Grid (Uniform Internal Link Graph) */}
+        {siblingTools.length > 0 && (
+          <section className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-16">
+            <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{t.moreToolsHeading}</h2>
+              <Link
+                href="/tools"
+                className="text-sm font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center"
+              >
+                {t.viewAllTools} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {siblingTools.map((sibling) => {
+                const siblingMd = getMarkdownContent(sibling.slug, locale);
+                const siblingTitle = siblingMd?.data?.title || sibling.title;
+                const siblingDesc = siblingMd?.data?.shortDescription || sibling.shortDescription;
+                return (
+                  <Link
+                    key={sibling.slug}
+                    href={{ pathname: '/tools/[slug]', params: { slug: sibling.slug } }}
+                    className="group flex flex-col bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 dark:hover:border-[#518231]/40 transition-all"
+                  >
+                    <div className="w-10 h-10 rounded-full bg-[#518231]/10 text-[#518231] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                      <Wrench className="w-5 h-5" />
+                    </div>
+                    <h3 className="font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">
+                      {siblingTitle}
+                    </h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                      {siblingDesc}
+                    </p>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );

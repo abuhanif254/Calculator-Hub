@@ -44,12 +44,18 @@ export const dynamicParams = false;
 
 const calcMarkdownCache = new Map<string, matter.GrayMatterFile<string> | null>();
 
+interface MarkdownLookupResult {
+  parsed: matter.GrayMatterFile<string>;
+  isFallback: boolean;
+}
+
 // Helper function to read markdown content
-function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: string, urlSlug?: string) {
+function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: string, urlSlug?: string): MarkdownLookupResult | null {
   try {
     // 1. Try localized folder with canonical base slug (e.g. content/es/down-payment-calculator.md)
     const baseFilePath = path.join(process.cwd(), "content", locale, `${baseSlug}.md`);
     let targetPath = baseFilePath;
+    let isFallback = false;
 
     if (!fs.existsSync(targetPath)) {
       // 2. Try localized folder with localizedSlug (e.g. content/es/calculadora-pago-inicial.md)
@@ -74,17 +80,20 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
       const fallbackPath = path.join(process.cwd(), "content", "en", `${baseSlug}.md`);
       if (fs.existsSync(fallbackPath)) {
         targetPath = fallbackPath;
+        isFallback = locale !== "en";
       } else {
         return null;
       }
     }
 
     if (calcMarkdownCache.has(targetPath)) {
-      return calcMarkdownCache.get(targetPath)!;
+      const cached = calcMarkdownCache.get(targetPath);
+      return cached ? { parsed: cached, isFallback } : null;
     }
 
     const fileContent = fs.readFileSync(targetPath, "utf-8");
     const parsed = matter(fileContent);
+    parsed.data = parsed.data || {};
 
     // If frontmatter faqs are missing, check if an inline JSON-LD FAQPage script exists in the content
     if (!parsed.data?.faqs || !Array.isArray(parsed.data.faqs) || parsed.data.faqs.length === 0) {
@@ -93,7 +102,6 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
         try {
           const jsonLd = JSON.parse(faqScriptMatch[1]);
           if (jsonLd['@type'] === 'FAQPage' && Array.isArray(jsonLd.mainEntity)) {
-            parsed.data = parsed.data || {};
             parsed.data.faqs = jsonLd.mainEntity.map((item: any) => ({
               question: item.name || '',
               answer: item.acceptedAnswer?.text || '',
@@ -110,12 +118,121 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
       parsed.content = parsed.content.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '').trim();
     }
 
+    // Extract leading H1 from markdown body if frontmatter title is missing, and strip leading H1 to avoid duplicate <h1>
+    const leadingH1Match = parsed.content.match(/^\s*#\s+([^\r\n]+)\r?\n*/);
+    if (leadingH1Match) {
+      const extractedH1 = leadingH1Match[1]
+        .replace(/\*\*/g, '')
+        .split(/\s*[:|–—]\s*/)[0]
+        .trim();
+      if (!parsed.data.title && extractedH1) {
+        parsed.data.title = extractedH1;
+      }
+      if (!parsed.data.metaTitle && leadingH1Match[1]) {
+        parsed.data.metaTitle = leadingH1Match[1].replace(/\*\*/g, '').trim();
+      }
+      parsed.content = parsed.content.slice(leadingH1Match[0].length).trim();
+    }
+
+    // Backfill title from metaTitle if missing
+    if (!parsed.data.title && typeof parsed.data.metaTitle === 'string') {
+      parsed.data.title = parsed.data.metaTitle.split(/\s*[|–—-]\s*/)[0].trim();
+    }
+
+    // Backfill description from metaDescription or first paragraph of markdown if missing
+    if (!parsed.data.description) {
+      if (typeof parsed.data.metaDescription === 'string' && parsed.data.metaDescription.trim()) {
+        parsed.data.description = parsed.data.metaDescription.trim();
+      } else {
+        const firstParagraph = parsed.content
+          .split(/\r?\n\r?\n/)
+          .map((p) => p.trim())
+          .find((p) => p.length > 30 && !p.startsWith('#') && !p.startsWith('*') && !p.startsWith('-') && !p.startsWith('|'));
+        if (firstParagraph) {
+          parsed.data.description = firstParagraph
+            .replace(/\*\*([^*]+)\*\*/g, '$1')
+            .replace(/\*([^*]+)\*/g, '$1')
+            .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+            .slice(0, 220)
+            .trim();
+        }
+      }
+    }
+
+    if (!parsed.data.metaTitle && parsed.data.title) {
+      parsed.data.metaTitle = parsed.data.title;
+    }
+    if (!parsed.data.metaDescription && parsed.data.description) {
+      parsed.data.metaDescription = parsed.data.description;
+    }
+
     calcMarkdownCache.set(targetPath, parsed);
-    return parsed;
+    return { parsed, isFallback };
   } catch (e) {
     console.error("Error reading markdown for", baseSlug, locale, e);
     return null;
   }
+}
+
+function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorBySlug>>, locale: string, urlSlug?: string) {
+  const localizedSlug = calc.slugs && calc.slugs[locale as keyof typeof calc.slugs];
+  const mdResult = getMarkdownContent(calc.slug, locale, localizedSlug, urlSlug);
+  const localizedMd = mdResult && !mdResult.isFallback ? mdResult.parsed : null;
+  const fallbackMd = mdResult?.parsed || null;
+  const translation = calc.translations?.[locale];
+
+  const title = (
+    localizedMd?.data?.title ||
+    translation?.title ||
+    (translation?.meta?.title ? translation.meta.title.split(/\s*[|–—-]\s*/)[0].trim() : '') ||
+    fallbackMd?.data?.title ||
+    calc.title
+  ).trim();
+
+  const description = (
+    localizedMd?.data?.description ||
+    translation?.description ||
+    translation?.meta?.description ||
+    fallbackMd?.data?.description ||
+    calc.description
+  ).trim();
+
+  const rawMetaTitle = (
+    localizedMd?.data?.metaTitle ||
+    translation?.meta?.title ||
+    translation?.title ||
+    fallbackMd?.data?.metaTitle ||
+    calc.meta.title ||
+    title
+  ).trim();
+
+  const metaTitle = rawMetaTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
+
+  const metaDescription = (
+    localizedMd?.data?.metaDescription ||
+    translation?.meta?.description ||
+    translation?.description ||
+    fallbackMd?.data?.metaDescription ||
+    calc.meta.description ||
+    description
+  ).trim();
+
+  const metaKeywords = (
+    localizedMd?.data?.metaKeywords ||
+    translation?.meta?.keywords ||
+    fallbackMd?.data?.metaKeywords ||
+    calc.meta.keywords
+  );
+
+  return {
+    title,
+    description,
+    metaTitle,
+    metaDescription,
+    metaKeywords,
+    localizedMd,
+    fallbackMd,
+  };
 }
 
 // Dynamic routing parameter generation
@@ -163,14 +280,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const localizedSlug = calc.slugs && calc.slugs[locale as keyof typeof calc.slugs];
-  const mdData = getMarkdownContent(calc.slug, locale, localizedSlug, slug);
-  const translation = calc.translations?.[locale];
-
-  // Use markdown matter if available, fallback to translation or hardcoded
-  const metaTitle = mdData?.data?.metaTitle || translation?.meta?.title || calc.meta.title;
-  const metaDescription = mdData?.data?.metaDescription || translation?.meta?.description || calc.meta.description;
-  const metaKeywords = mdData?.data?.metaKeywords || translation?.meta?.keywords || calc.meta.keywords;
+  const { metaTitle, metaDescription, metaKeywords } = getLocalizedCalcInfo(calc, locale, slug);
 
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
@@ -200,31 +310,84 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     notFound();
   }
 
-  const localizedSlug = calc.slugs && calc.slugs[resolvedParams.locale as keyof typeof calc.slugs];
-  const mdData = getMarkdownContent(calc.slug, resolvedParams.locale, localizedSlug, resolvedParams.slug);
-  const translation = calc.translations?.[resolvedParams.locale];
+  const {
+    title: pageTitle,
+    description: pageDesc,
+    localizedMd,
+    fallbackMd,
+  } = getLocalizedCalcInfo(calc, resolvedParams.locale, resolvedParams.slug);
 
-  // Replace defaults with markdown data or localized translations
-  const pageTitle = mdData?.data?.title || translation?.title || calc.title;
-  const pageDesc = mdData?.data?.description || translation?.description || calc.description;
+  const mdData = localizedMd || fallbackMd;
   const seoContent = mdData?.content || calc.seoContent;
 
-  const faqs: { question: string; answer: string }[] = (mdData?.data?.faqs && Array.isArray(mdData.data.faqs) && mdData.data.faqs.length > 0)
-    ? [...mdData.data.faqs]
-    : [
-        {
-          question: `What is a ${pageTitle}?`,
-          answer: `A ${pageTitle} is a specialized mathematical tool that allows you to calculate and estimate relevant values based on your inputs. It's completely free to use online.`
-        },
-        {
-          question: `How do I use this ${pageTitle}?`,
-          answer: `Simply enter your required information into the fields above and the results will automatically calculate and update on your screen.`
-        },
-        {
-          question: `Is my data safe when using this ${pageTitle}?`,
-          answer: `Yes, protecting your privacy is our priority. All calculations performed by this ${pageTitle} happen locally in your browser. We never store or transmit your personal input data to any servers.`
-        }
-      ];
+  const fallbackFaqByLocale: Record<string, { question: string; answer: string }[]> = {
+    en: [
+      {
+        question: `What is a ${pageTitle}?`,
+        answer: `A ${pageTitle} is a specialized mathematical tool that allows you to calculate and estimate relevant values based on your inputs. It is completely free to use online.`
+      },
+      {
+        question: `How do I use this ${pageTitle}?`,
+        answer: `Simply enter your required information into the fields above and the results will automatically calculate and update on your screen.`
+      },
+      {
+        question: `Is my data safe when using this ${pageTitle}?`,
+        answer: `Yes, protecting your privacy is our priority. All calculations performed by this ${pageTitle} happen locally in your browser. We never store or transmit your personal input data to any servers.`
+      }
+    ],
+    es: [
+      {
+        question: `¿Qué es ${pageTitle}?`,
+        answer: `${pageTitle} es una herramienta matemática gratuita en línea que le permite calcular y estimar valores precisos al instante según los datos ingresados.`
+      },
+      {
+        question: `¿Cómo uso ${pageTitle}?`,
+        answer: `Simplemente ingrese los valores requeridos en los campos de arriba y los resultados se calcularán y actualizarán automáticamente en su pantalla.`
+      },
+      {
+        question: `¿Están seguros mis datos al usar ${pageTitle}?`,
+        answer: `Sí, proteger su privacidad es nuestra prioridad. Todos los cálculos realizados por ${pageTitle} se ejecutan localmente en su navegador sin almacenar ni enviar sus datos a ningún servidor.`
+      }
+    ],
+    fr: [
+      {
+        question: `Qu'est-ce que ${pageTitle} ?`,
+        answer: `${pageTitle} est un outil mathématique gratuit en ligne qui vous permet de calculer et d'estimer instantanément des valeurs précises en fonction de vos données.`
+      },
+      {
+        question: `Comment utiliser ${pageTitle} ?`,
+        answer: `Saisissez simplement vos informations dans les champs ci-dessus et les résultats seront automatiquement calculés et mis à jour à l'écran.`
+      },
+      {
+        question: `Mes données sont-elles sécurisées avec ${pageTitle} ?`,
+        answer: `Oui, la confidentialité est notre priorité. Tous les calculs effectués par ${pageTitle} sont traités localement dans votre navigateur sans jamais être stockés sur un serveur.`
+      }
+    ],
+    de: [
+      {
+        question: `Was ist der ${pageTitle}?`,
+        answer: `Der ${pageTitle} ist ein kostenloses mathematisches Online-Werkzeug, mit dem Sie anhand Ihrer Eingaben relevante Werte sofort und präzise berechnen können.`
+      },
+      {
+        question: `Wie verwende ich diesen ${pageTitle}?`,
+        answer: `Geben Sie einfach Ihre Daten in die Felder oben ein. Die Ergebnisse werden automatisch berechnet und direkt auf Ihrem Bildschirm aktualisiert.`
+      },
+      {
+        question: `Sind meine Daten bei der Nutzung des ${pageTitle} sicher?`,
+        answer: `Ja, der Schutz Ihrer Privatsphäre hat höchste Priorität. Alle Berechnungen im ${pageTitle} erfolgen lokal in Ihrem Browser, ohne dass Daten an Server übertragen werden.`
+      }
+    ]
+  };
+
+  const localizedFaqs = localizedMd?.data?.faqs && Array.isArray(localizedMd.data.faqs) && localizedMd.data.faqs.length > 0
+    ? localizedMd.data.faqs
+    : (resolvedParams.locale === 'en' && fallbackMd?.data?.faqs && Array.isArray(fallbackMd.data.faqs) && fallbackMd.data.faqs.length > 0
+      ? fallbackMd.data.faqs
+      : null);
+
+  const faqs: { question: string; answer: string }[] = localizedFaqs
+    ? [...localizedFaqs]
+    : [...(fallbackFaqByLocale[resolvedParams.locale] || fallbackFaqByLocale.en)];
 
   // Semantic Math FAQ Embedding: inject authoritative mathematical formula FAQ if not already present
   const hasFormulaFaq = faqs.some((f) =>
@@ -241,7 +404,42 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const relatedTools = getRelatedCalculators(calc.slug, 8);
   const categoryDef = getCategoryForCalculator(calc.category);
   const activeCategory = sitemapCategories.find(c => c.title.toLowerCase().includes(calc.category.toLowerCase())) || sitemapCategories[0];
-  const categoryTitle = categoryDef?.title || activeCategory.title;
+  const rawCategoryTitle = categoryDef?.title || activeCategory.title;
+
+  const categoryTitleTranslations: Record<string, Record<string, string>> = {
+    es: {
+      'Financial Calculators': 'Calculadoras Financieras',
+      'Fitness & Health Calculators': 'Calculadoras de Salud y Fitness',
+      'Math Calculators': 'Calculadoras Matemáticas',
+      'Other Calculators': 'Otras Calculadoras',
+      'Financial': 'Finanzas',
+      'Health & Fitness': 'Salud y Fitness',
+      'Math': 'Matemáticas',
+      'Other': 'Otros',
+    },
+    fr: {
+      'Financial Calculators': 'Calculatrices Financières',
+      'Fitness & Health Calculators': 'Calculatrices Santé & Fitness',
+      'Math Calculators': 'Calculatrices Mathématiques',
+      'Other Calculators': 'Autres Calculatrices',
+      'Financial': 'Finance',
+      'Health & Fitness': 'Santé & Fitness',
+      'Math': 'Mathématiques',
+      'Other': 'Autres',
+    },
+    de: {
+      'Financial Calculators': 'Finanzrechner',
+      'Fitness & Health Calculators': 'Gesundheits- & Fitnessrechner',
+      'Math Calculators': 'Mathe-Rechner',
+      'Other Calculators': 'Sonstige Rechner',
+      'Financial': 'Finanzen',
+      'Health & Fitness': 'Gesundheit & Fitness',
+      'Math': 'Mathematik',
+      'Other': 'Sonstiges',
+    },
+  };
+  const categoryTitle = categoryTitleTranslations[resolvedParams.locale]?.[rawCategoryTitle] || rawCategoryTitle;
+  const localizedCategoryBadge = categoryTitleTranslations[resolvedParams.locale]?.[calc.category] || calc.category;
 
   const baseUrl = (process.env.APP_URL || "https://www.nexuscalculator.net")
     .replace(/\/$/, '')
@@ -260,30 +458,80 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     ? getCanonicalUrl('/guides/[slug]', resolvedParams.locale, relatedGuide.slug)
     : undefined;
 
-  const guideTranslations: Record<string, { badge: string; cta: string; minRead: string; featured: string }> = {
+  const guideTranslations: Record<string, {
+    badge: string;
+    cta: string;
+    minRead: string;
+    featured: string;
+    home: string;
+    faqHeading: string;
+    findCalc: string;
+    searchPlaceholder: string;
+    keyFeatures: string;
+    commonUseCases: string;
+    quickLinks: string;
+    relatedCalcs: string;
+    viewAll: string;
+  }> = {
     en: {
       badge: 'In-Depth Guide & Mathematical Breakdown',
       cta: 'Read Complete Guide',
       minRead: 'min read',
       featured: 'Featured Guide',
+      home: 'Home',
+      faqHeading: 'Frequently Asked Questions',
+      findCalc: 'Find a Calculator',
+      searchPlaceholder: 'Search calculators...',
+      keyFeatures: 'Key Features',
+      commonUseCases: 'Common Use Cases',
+      quickLinks: 'Quick Links',
+      relatedCalcs: 'Related Calculators',
+      viewAll: `View all ${categoryTitle.toLowerCase()}`,
     },
     es: {
       badge: 'Guía Educativa y Desglose Matemático',
       cta: 'Leer la Guía Completa',
       minRead: 'min de lectura',
       featured: 'Guía Destacada',
+      home: 'Inicio',
+      faqHeading: 'Preguntas Frecuentes',
+      findCalc: 'Buscar una Calculadora',
+      searchPlaceholder: 'Buscar calculadoras...',
+      keyFeatures: 'Características Principales',
+      commonUseCases: 'Casos de Uso Comunes',
+      quickLinks: 'Enlaces Rápidos',
+      relatedCalcs: 'Calculadoras Relacionadas',
+      viewAll: `Ver todas en ${categoryTitle.toLowerCase()}`,
     },
     fr: {
       badge: 'Guide Pédagogique et Analyse Mathématique',
       cta: 'Lire le Guide Complet',
       minRead: 'min de lecture',
       featured: 'Guide en Vedette',
+      home: 'Accueil',
+      faqHeading: 'Questions Fréquemment Posées',
+      findCalc: 'Trouver une Calculatrice',
+      searchPlaceholder: 'Rechercher des calculatrices...',
+      keyFeatures: 'Fonctionnalités Clés',
+      commonUseCases: 'Cas d’Utilisation Courants',
+      quickLinks: 'Liens Rapides',
+      relatedCalcs: 'Calculatrices Associées',
+      viewAll: `Voir tout dans ${categoryTitle.toLowerCase()}`,
     },
     de: {
       badge: 'Ausführlicher Ratgeber & Formelerklärung',
       cta: 'Vollständigen Ratgeber Lesen',
       minRead: 'Min. Lesezeit',
       featured: 'Empfohlener Ratgeber',
+      home: 'Startseite',
+      faqHeading: 'Häufig gestellte Fragen',
+      findCalc: 'Rechner Finden',
+      searchPlaceholder: 'Rechner durchsuchen...',
+      keyFeatures: 'Hauptmerkmale',
+      commonUseCases: 'Häufige Anwendungsfälle',
+      quickLinks: 'Schnellzugriff',
+      relatedCalcs: 'Ähnliche Rechner',
+      viewAll: `Alle ${categoryTitle} anzeigen`,
     },
   };
   const guideText = guideTranslations[resolvedParams.locale] || guideTranslations.en;
@@ -370,7 +618,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
+        "name": guideText.home,
         "item": `${baseUrl}/${resolvedParams.locale}`
       },
       {
@@ -388,6 +636,30 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     ]
   };
 
+  const displayFeatures = localizedMd?.data?.features || (resolvedParams.locale === 'en' ? mdData?.data?.features : undefined);
+  const displayUseCases = localizedMd?.data?.useCases || (resolvedParams.locale === 'en' ? mdData?.data?.useCases : undefined);
+
+  const quickLinkLabelMap: Record<string, Record<string, string>> = {
+    es: {
+      'Home': 'Inicio',
+      'Privacy Policy': 'Política de Privacidad',
+      'Terms of Use': 'Términos de Uso',
+      'About Us': 'Sobre Nosotros',
+    },
+    fr: {
+      'Home': 'Accueil',
+      'Privacy Policy': 'Politique de Confidentialité',
+      'Terms of Use': 'Conditions d’Utilisation',
+      'About Us': 'À Propos',
+    },
+    de: {
+      'Home': 'Startseite',
+      'Privacy Policy': 'Datenschutzerklärung',
+      'Terms of Use': 'Nutzungsbedingungen',
+      'About Us': 'Über Uns',
+    },
+  };
+
   return (
     <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />
@@ -402,7 +674,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       <nav aria-label="Breadcrumb" className="mb-6 font-sans text-sm text-slate-500 dark:text-slate-400 print:hidden">
         <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <li>
-            <Link href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</Link>
+            <Link href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{guideText.home}</Link>
           </li>
           <li><span className="text-slate-400">/</span></li>
           <li>
@@ -442,11 +714,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           <header className="mb-10">
             <div className="flex items-center gap-3 mb-4 flex-wrap print:hidden">
               <span className="inline-block px-3 py-1 bg-[#518231]/10 border border-[#518231]/20 text-[#518231] dark:text-[#6fa844] rounded-full text-xs font-bold tracking-wider uppercase shadow-sm">
-                {calc.category}
+                {localizedCategoryBadge}
               </span>
               <FavoriteButton
                 slug={calc.slug}
-                title={calc.title}
+                title={pageTitle}
                 type="calculator"
                 href={`/calculators/${calc.slug}`}
               />
@@ -498,7 +770,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
           <ToolVisitTracker
             slug={calc.slug}
-            title={calc.title}
+            title={pageTitle}
             type="calculator"
             href={`/calculators/${calc.slug}`}
           />
@@ -586,6 +858,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <article className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 prose prose-slate dark:prose-invert max-w-none lg:prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[#518231] prose-img:rounded-xl">
               <ReactMarkdown
                 components={{
+                  h1({ node, children, ...props }: any) {
+                    return <h2 {...props}>{children}</h2>;
+                  },
                   a({ node, href, children, ...props }: any) {
                     const resolvedHref = canonicalizeInternalHref(href, resolvedParams.locale);
                     return (
@@ -619,7 +894,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
           {/* FAQ Section — Animated Accordion */}
           <div className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">{guideText.faqHeading}</h2>
             <div className="space-y-3">
               {faqs.map((faq: any, index: number) => (
                 <details key={index} data-animated className="group border border-slate-200 dark:border-slate-800 rounded-xl bg-slate-50 dark:bg-slate-800/50 overflow-hidden [&_summary::-webkit-details-marker]:hidden">
@@ -651,7 +926,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
           {/* Search Box */}
           <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Find a Calculator</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{guideText.findCalc}</h3>
             <form action={`/${resolvedParams.locale}/search`} method="GET" className="relative group">
               <div className="absolute inset-y-0 start-0 ps-3 flex items-center pointer-events-none">
                 <Search className="h-5 w-5 text-slate-400 group-focus-within:text-[#518231] transition-colors" />
@@ -659,7 +934,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               <input
                 type="text"
                 name="q"
-                placeholder="Search calculators..."
+                placeholder={guideText.searchPlaceholder}
                 className="w-full ps-10 pe-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder-slate-400 rounded-xl focus:bg-white dark:focus:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-transparent transition-all"
                 required
               />
@@ -698,14 +973,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           )}
 
           {/* Features */}
-          {mdData?.data?.features && mdData.data.features.length > 0 && (
+          {displayFeatures && displayFeatures.length > 0 && (
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-amber-500"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Key Features
+                {guideText.keyFeatures}
               </h3>
               <ul className="space-y-3">
-                {mdData.data.features.map((feature: string, idx: number) => (
+                {displayFeatures.map((feature: string, idx: number) => (
                   <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
                     <div className="w-1.5 h-1.5 rounded-full bg-[#518231] shrink-0 mt-2"></div>
                     {feature}
@@ -716,14 +991,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           )}
 
           {/* Use Cases */}
-          {mdData?.data?.useCases && mdData.data.useCases.length > 0 && (
+          {displayUseCases && displayUseCases.length > 0 && (
             <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-500"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 12 12 17 22 12"/><polyline points="2 17 12 22 22 17"/></svg>
-                Common Use Cases
+                {guideText.commonUseCases}
               </h3>
               <ul className="space-y-3">
-                {mdData.data.useCases.map((useCase: string, idx: number) => (
+                {displayUseCases.map((useCase: string, idx: number) => (
                   <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-2"></div>
                     {useCase}
@@ -735,20 +1010,21 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
           {/* Page Links / Quick Navigation */}
           <div className="bg-slate-900 rounded-2xl shadow-sm border border-slate-800 p-6 text-white">
-            <h3 className="text-lg font-bold mb-4 pb-4 border-b border-slate-800">Quick Links</h3>
+            <h3 className="text-lg font-bold mb-4 pb-4 border-b border-slate-800">{guideText.quickLinks}</h3>
             <ul className="space-y-3">
               {generalLinks.map((link) => {
                 let href: any = "/";
                 if (link === "Privacy Policy") href = "/privacy-policy";
                 if (link === "Terms of Use") href = "/terms-of-use";
                 if (link === "About Us") href = "/about-us";
+                const linkLabel = quickLinkLabelMap[resolvedParams.locale]?.[link] || link;
                 return (
                   <li key={link}>
                     <Link
                       href={href}
                       className="text-sm font-medium text-slate-400 hover:text-white transition-colors"
                     >
-                      {link}
+                      {linkLabel}
                     </Link>
                   </li>
                 );
@@ -767,17 +1043,19 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       {/* Related Calculators - Moved to bottom */}
       <div className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-16">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Related Calculators</h2>
-          <Link href="/sitemap" className="text-sm font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center">
-            View all {activeCategory.title.toLowerCase()} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">{guideText.relatedCalcs}</h2>
+          <Link
+            href={categoryDef ? resolveIntlHref(`/calculators/category/${categoryDef.id}`) : resolveIntlHref('/sitemap')}
+            className="text-sm font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center"
+          >
+            {guideText.viewAll} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {relatedTools.slice(0, 4).map((toolSlug) => {
+          {relatedTools.slice(0, 8).map((toolSlug) => {
             const targetCalc = getCalculatorBySlug(toolSlug);
             if (!targetCalc) return null;
-            const targetTitle = targetCalc.translations?.[resolvedParams.locale]?.title || targetCalc.title;
-            const targetDesc = targetCalc.translations?.[resolvedParams.locale]?.description || targetCalc.description;
+            const { title: targetTitle, description: targetDesc } = getLocalizedCalcInfo(targetCalc, resolvedParams.locale);
             return (
               <Link
                 key={toolSlug}

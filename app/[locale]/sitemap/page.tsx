@@ -1,23 +1,240 @@
 import { Metadata } from 'next';
-import { Link, routing, resolveIntlHref } from '@/i18n/routing';
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { sitemapCategories, developerToolsMenu, pdfToolsMenu, imageToolsMenu, generalLinks } from '@/lib/data/sitemapData';
+import { calculators } from '@/lib/data/calculators';
+import { collections } from '@/lib/data/collections';
+import { comparisons } from '@/lib/data/comparisons';
 import { resolveHref } from '@/lib/utils/linkResolver';
-import { Search, Compass, ExternalLink, ChevronDown, Shield } from 'lucide-react';
+import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
+import { Search, Compass, ExternalLink, ChevronDown, Shield, Layers, Scale, BookOpen, Calculator } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 import Script from 'next/script';
 
 export const revalidate = false;
 export const dynamicParams = false;
 
+const metaByLocale: Record<string, { title: string; description: string }> = {
+  en: {
+    title: 'All Tools & Calculators Directory — 300+ Free Utilities',
+    description: 'The master directory of all free calculators, developer tools, PDF utilities, image editors, and guides on Nexus Calculator.',
+  },
+  es: {
+    title: 'Directorio Completo de Calculadoras y Herramientas Gratis',
+    description: 'Explora el directorio maestro con más de 300 calculadoras financieras, científicas, herramientas de desarrollo, PDF e imagen gratuitas.',
+  },
+  fr: {
+    title: 'Annuaire Complet des Calculatrices et Outils Gratuits',
+    description: 'Parcourez le répertoire complet de plus de 300 calculatrices gratuites, outils développeur, utilitaires PDF, éditeurs d’images et guides.',
+  },
+  de: {
+    title: 'Alle Rechner & Online-Tools im Überblick — Gesamtverzeichnis',
+    description: 'Das vollständige Verzeichnis aller kostenlosen Finanz-, Mathe- und Wissenschaftsrechner sowie Entwickler-, PDF- und Bild-Tools.',
+  },
+};
+
+const uiByLocale: Record<
+  string,
+  {
+    badge: string;
+    h1: string;
+    subtitle: (count: number) => string;
+    searchPlaceholder: string;
+    searchBtn: string;
+    siloTitle: string;
+    siloBody: string;
+    jumpTo: string;
+    calculatorsHeading: string;
+    moreCalcsTitle: string;
+    moreCalcsDesc: string;
+    devToolsHeading: string;
+    pdfToolsHeading: string;
+    imageToolsHeading: string;
+    collectionsHeading: string;
+    comparisonsHeading: string;
+    guidesCtaTitle: string;
+    guidesCtaDesc: string;
+    guidesCtaBtn: string;
+    faqHeading: string;
+    generalResources: string;
+    faqs: { q: string; a: string }[];
+  }
+> = {
+  en: {
+    badge: 'Master Directory',
+    h1: 'All Tools & Calculators',
+    subtitle: (count) => `Browse our complete collection of ${count}+ free, high-performance calculators and developer utilities.`,
+    searchPlaceholder: 'Search for any tool...',
+    searchBtn: 'Search',
+    siloTitle: 'The Complete Browser-Based Utility Ecosystem',
+    siloBody:
+      'Welcome to the Nexus Calculator master directory. Whether you are calculating an amortization schedule, formatting JSON, merging PDFs, or solving physics equations, every tool runs 100% locally in your browser for instant results and complete privacy.',
+    jumpTo: 'Jump to:',
+    calculatorsHeading: 'Calculators',
+    moreCalcsTitle: 'Specialized & Scientific Calculators',
+    moreCalcsDesc: 'Additional physics, chemistry, weather, and specialized financial calculators.',
+    devToolsHeading: 'Developer Tools',
+    pdfToolsHeading: 'PDF Tools',
+    imageToolsHeading: 'Image Tools',
+    collectionsHeading: 'Curated Toolkits & Collections',
+    comparisonsHeading: 'Side-by-Side Calculator Comparisons',
+    guidesCtaTitle: 'Educational Guides & Formula Tutorials',
+    guidesCtaDesc: 'Explore 190+ in-depth mathematical guides, worked examples, and step-by-step tutorials.',
+    guidesCtaBtn: 'Browse All Guides',
+    faqHeading: 'Frequently Asked Questions',
+    generalResources: 'General Resources',
+    faqs: [
+      {
+        q: 'Are these calculators and developer tools really free to use?',
+        a: 'Yes, all of our tools and calculators are 100% free to use with no paywalls, hidden fees, or usage limits.',
+      },
+      {
+        q: 'Is my data or code saved when I use these tools?',
+        a: 'No. Everything runs locally inside your browser. We do not track, save, or store your inputs on our servers, ensuring complete privacy.',
+      },
+      {
+        q: 'Can I use these tools on mobile and desktop?',
+        a: 'Yes, every calculator and utility is responsive and optimized for both desktop and mobile browsers.',
+      },
+    ],
+  },
+  es: {
+    badge: 'Directorio Maestro',
+    h1: 'Todas las Herramientas y Calculadoras',
+    subtitle: (count) => `Explora nuestra colección completa de más de ${count} calculadoras gratuitas y utilidades para desarrolladores.`,
+    searchPlaceholder: 'Buscar cualquier herramienta...',
+    searchBtn: 'Buscar',
+    siloTitle: 'El Ecosistema Completo de Utilidades en tu Navegador',
+    siloBody:
+      'Bienvenido al directorio maestro de Nexus Calculator. Tanto si calculas una tabla de amortización hipotecaria como si formateas JSON, combinas archivos PDF o resuelves ecuaciones científicas, todas las herramientas se ejecutan localmente en tu navegador.',
+    jumpTo: 'Ir a:',
+    calculatorsHeading: 'Calculadoras',
+    moreCalcsTitle: 'Calculadoras Especializadas y Científicas',
+    moreCalcsDesc: 'Calculadoras adicionales de física, química, meteorología y finanzas especializadas.',
+    devToolsHeading: 'Herramientas para Desarrolladores',
+    pdfToolsHeading: 'Herramientas PDF',
+    imageToolsHeading: 'Herramientas de Imagen',
+    collectionsHeading: 'Colecciones y Paquetes de Herramientas',
+    comparisonsHeading: 'Comparativas Lado a Lado',
+    guidesCtaTitle: 'Guías Educativas y Tutoriales de Fórmulas',
+    guidesCtaDesc: 'Explora más de 190 guías matemáticas detalladas con ejemplos prácticos paso a paso.',
+    guidesCtaBtn: 'Ver Todas las Guías',
+    faqHeading: 'Preguntas Frecuentes',
+    generalResources: 'Recursos Generales',
+    faqs: [
+      {
+        q: '¿Son realmente gratuitas estas calculadoras y herramientas?',
+        a: 'Sí, todas nuestras herramientas y calculadoras son 100 % gratuitas, sin muros de pago ni límites de uso.',
+      },
+      {
+        q: '¿Se guardan mis datos o mi código al usar estas herramientas?',
+        a: 'No. Todo se ejecuta localmente en tu propio navegador. No almacenamos ni enviamos tus datos a servidores externos.',
+      },
+      {
+        q: '¿Puedo utilizar las calculadoras desde el móvil?',
+        a: 'Sí, todas las calculadoras y utilidades están optimizadas para dispositivos móviles, tabletas y ordenadores.',
+      },
+    ],
+  },
+  fr: {
+    badge: 'Répertoire Principal',
+    h1: 'Tous les Outils et Calculatrices',
+    subtitle: (count) => `Parcourez notre collection complète de plus de ${count} calculatrices gratuites et outils pour développeurs.`,
+    searchPlaceholder: 'Rechercher un outil...',
+    searchBtn: 'Rechercher',
+    siloTitle: 'L’Écosystème Complet d’Outils dans Votre Navigateur',
+    siloBody:
+      'Bienvenue dans l’annuaire principal de Nexus Calculator. Que vous calculiez un tableau d’amortissement, formatiez du JSON, fusionniez des PDF ou résolviez des équations scientifiques, tous nos outils s’exécutent localement dans votre navigateur.',
+    jumpTo: 'Aller à :',
+    calculatorsHeading: 'Calculatrices',
+    moreCalcsTitle: 'Calculatrices Scientifiques et Spécialisées',
+    moreCalcsDesc: 'Calculatrices supplémentaires de physique, chimie, météo et finance spécialisée.',
+    devToolsHeading: 'Outils Développeur',
+    pdfToolsHeading: 'Outils PDF',
+    imageToolsHeading: 'Outils Image',
+    collectionsHeading: 'Collections et Packs d’Outils',
+    comparisonsHeading: 'Comparatifs Côte à Côte',
+    guidesCtaTitle: 'Guides Pédagogiques et Tutoriels Mathématiques',
+    guidesCtaDesc: 'Découvrez plus de 190 guides détaillés avec formules et exemples étape par étape.',
+    guidesCtaBtn: 'Voir Tous les Guides',
+    faqHeading: 'Questions Fréquentes',
+    generalResources: 'Ressources Générales',
+    faqs: [
+      {
+        q: 'Ces calculatrices et outils sont-ils vraiment gratuits ?',
+        a: 'Oui, tous nos outils et calculatrices sont 100 % gratuits, sans abonnement ni limite d’utilisation.',
+      },
+      {
+        q: 'Mes données ou mon code sont-ils enregistrés ?',
+        a: 'Non. Tout fonctionne localement dans votre navigateur afin de garantir une confidentialité totale.',
+      },
+      {
+        q: 'Puis-je utiliser ces outils sur smartphone et ordinateur ?',
+        a: 'Oui, chaque calculatrice et utilitaire est entièrement adapté aux écrans mobiles, tablettes et ordinateurs.',
+      },
+    ],
+  },
+  de: {
+    badge: 'Gesamtverzeichnis',
+    h1: 'Alle Tools & Rechner',
+    subtitle: (count) => `Durchsuchen Sie unsere komplette Sammlung von über ${count} kostenlosen Rechnern und Entwickler-Tools.`,
+    searchPlaceholder: 'Nach einem Tool suchen...',
+    searchBtn: 'Suchen',
+    siloTitle: 'Das Komplette Browser-Ökosystem für Rechner & Tools',
+    siloBody:
+      'Willkommen im Gesamtverzeichnis von Nexus Calculator. Ob Tilgungsplan, JSON-Formatierung, PDF-Bearbeitung oder wissenschaftliche Gleichungen — alle Berechnungen erfolgen zu 100 % lokal in Ihrem Browser.',
+    jumpTo: 'Springen zu:',
+    calculatorsHeading: 'Rechner',
+    moreCalcsTitle: 'Wissenschaftliche & Spezialisierte Rechner',
+    moreCalcsDesc: 'Weitere Rechner für Physik, Chemie, Wetter und spezialisierte Finanzanalysen.',
+    devToolsHeading: 'Entwickler-Tools',
+    pdfToolsHeading: 'PDF-Tools',
+    imageToolsHeading: 'Bild-Tools',
+    collectionsHeading: 'Kuratierte Tool-Sammlungen & Pakete',
+    comparisonsHeading: 'Direktvergleiche (Rechner im Vergleich)',
+    guidesCtaTitle: 'Ausführliche Ratgeber & Formelanleitungen',
+    guidesCtaDesc: 'Entdecken Sie über 190 detaillierte Mathematik-, Finanz- und Technik-Ratgeber.',
+    guidesCtaBtn: 'Alle Ratgeber ansehen',
+    faqHeading: 'Häufig gestellte Fragen (FAQ)',
+    generalResources: 'Allgemeine Informationen',
+    faqs: [
+      {
+        q: 'Sind alle Rechner und Entwickler-Tools wirklich kostenlos?',
+        a: 'Ja, sämtliche Rechner und Werkzeuge sind zu 100 % kostenlos und ohne Nutzungslimits verfügbar.',
+      },
+      {
+        q: 'Werden meine eingegebenen Daten oder mein Code gespeichert?',
+        a: 'Nein. Alle Berechnungen laufen lokal in Ihrem Browser ab. Ihre Daten verlassen niemals Ihr Gerät.',
+      },
+      {
+        q: 'Funktionieren die Tools auch auf dem Smartphone?',
+        a: 'Ja, alle Rechner und Dienstprogramme sind vollständig für Smartphones, Tablets und Desktop-PCs optimiert.',
+      },
+    ],
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const meta = metaByLocale[locale] || metaByLocale.en;
 
   return {
-    title: 'All Tools & Calculators Directory | Nexus',
-    description: 'The master directory of all free calculators and developer tools available on Nexus. Browse over 150+ tools for finance, math, fitness, web development, and more.',
+    title: meta.title,
+    description: meta.description,
     alternates: getCanonicalAndAlternates('/sitemap', locale),
   };
+}
+
+function getLocalizedLabelForHref(href: string, fallbackName: string, locale: string): string {
+  if (href.startsWith('/calculators/')) {
+    const slug = href.replace('/calculators/', '');
+    return getLocalizedCalcMeta(slug, locale, fallbackName).title;
+  }
+  if (href.startsWith('/tools/')) {
+    const slug = href.replace('/tools/', '');
+    return getLocalizedToolMeta(slug, locale, fallbackName).title;
+  }
+  return fallbackName;
 }
 
 export default async function SitemapPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -25,18 +242,50 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
   const { locale } = resolvedParams;
   setRequestLocale(locale);
 
+  const ui = uiByLocale[locale] || uiByLocale.en;
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalSitemapUrl = getCanonicalUrl('/sitemap', locale);
+
+  // Find calculators not already covered in sitemapCategories so 0 calculators are orphaned from /sitemap
+  const coveredCalcSlugs = new Set<string>();
+  for (const cat of sitemapCategories) {
+    for (const link of cat.links) {
+      const h = resolveHref(link);
+      if (h.startsWith('/calculators/')) {
+        coveredCalcSlugs.add(h.replace('/calculators/', ''));
+      }
+    }
+  }
+  const additionalCalculators = calculators.filter((c) => !coveredCalcSlugs.has(c.slug));
+
   // Generate Schemas for SEO
   const allItems = [
-    ...sitemapCategories.flatMap(cat => cat.links.map(link => ({ name: link, category: cat.title }))),
-    ...developerToolsMenu.flatMap(cat => cat.items.map(item => ({ name: item.name, category: cat.title }))),
-    ...pdfToolsMenu.flatMap(cat => cat.items.map(item => ({ name: item.name, category: cat.title }))),
-    ...imageToolsMenu.flatMap(cat => cat.items.map(item => ({ name: item.name, category: cat.title })))
+    ...sitemapCategories.flatMap(cat => cat.links.map(link => {
+      const href = resolveHref(link);
+      return { name: getLocalizedLabelForHref(href, link, locale), category: cat.title };
+    })),
+    ...additionalCalculators.map(c => ({
+      name: getLocalizedCalcMeta(c.slug, locale, c.title).title,
+      category: ui.moreCalcsTitle,
+    })),
+    ...developerToolsMenu.flatMap(cat => cat.items.map(item => {
+      const href = resolveHref(item.name);
+      return { name: getLocalizedLabelForHref(href, item.name, locale), category: cat.title };
+    })),
+    ...pdfToolsMenu.flatMap(cat => cat.items.map(item => {
+      const href = resolveHref(item.name);
+      return { name: getLocalizedLabelForHref(href, item.name, locale), category: cat.title };
+    })),
+    ...imageToolsMenu.flatMap(cat => cat.items.map(item => {
+      const href = resolveHref(item.name);
+      return { name: getLocalizedLabelForHref(href, item.name, locale), category: cat.title };
+    }))
   ];
 
   const itemListSchema = {
     "@type": "ItemList",
-    "name": "Nexus Tools and Calculators Directory",
-    "description": "A comprehensive collection of calculators and developer utilities.",
+    "name": ui.h1,
+    "description": (metaByLocale[locale] || metaByLocale.en).description,
     "numberOfItems": allItems.length,
     "itemListElement": allItems.slice(0, 30).map((item, index) => ({
       "@type": "ListItem",
@@ -53,46 +302,28 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
+        "name": locale === 'es' ? 'Inicio' : locale === 'fr' ? 'Accueil' : locale === 'de' ? 'Startseite' : 'Home',
         "item": `${baseUrl}/${locale}`
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "All Tools Directory",
-        "item": `${baseUrl}/${locale}/sitemap`
+        "name": ui.h1,
+        "item": canonicalSitemapUrl
       }
     ]
   };
 
   const faqSchema = {
     "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Are these calculators and developer tools really free to use?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, all of our tools and calculators are 100% free to use with no paywalls, hidden fees, or usage limits."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Is my data or code saved when I use these tools?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. Everything runs locally inside your browser. We do not track, save, or store your inputs on our servers, ensuring ultimate privacy."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I request a new calculator or tool?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes! You can join our Developer Community to request new features, report bugs, or discuss tools with other professionals."
-        }
+    "mainEntity": ui.faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a
       }
-    ]
+    }))
   };
 
   const jsonLd = {
@@ -109,13 +340,13 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
         <div className="max-w-[1000px] mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-900/30 text-[#518231] dark:text-[#78b34f] text-sm font-semibold mb-6">
             <Compass size={16} />
-            <span>Master Directory</span>
+            <span>{ui.badge}</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">
-            All Tools & Calculators
+            {ui.h1}
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
-            Browse our complete collection of {allItems.length}+ free, high-performance calculators and developer utilities.
+            {ui.subtitle(allItems.length)}
           </p>
 
           <form action={`/${locale}/search`} method="GET" className="max-w-[600px] mx-auto relative shadow-xl shadow-slate-200/50 dark:shadow-none rounded-xl mb-12">
@@ -125,19 +356,19 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
             <input 
               name="q"
               type="text" 
-              placeholder="Search for any tool..." 
+              placeholder={ui.searchPlaceholder}
               className="block w-full pl-12 pr-4 py-4 md:py-5 border-2 border-slate-200 dark:border-slate-700 rounded-xl bg-white dark:bg-slate-800 text-slate-900 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-[#518231] transition-colors text-lg"
             />
             <button type="submit" className="absolute inset-y-2 right-2 bg-[#518231] hover:bg-[#436a28] text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-              Search
+              {ui.searchBtn}
             </button>
           </form>
 
           {/* SILO Context SEO Text */}
           <div className="max-w-3xl mx-auto text-left bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
-            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">The Ultimate Professional Developer Ecosystem</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{ui.siloTitle}</h2>
             <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-              Welcome to the Nexus master directory. We believe in providing a seamless, highly optimized experience for professionals. Whether you are formatting JSON, calculating an amortization schedule, or testing API mock data, all of our tools utilize <strong>client-side processing</strong> to deliver <strong>instant results</strong>. Because everything runs securely inside your own browser, our platform is deeply <strong>privacy-focused</strong>—your code, financial data, and personal inputs are never saved or sent to external servers.
+              {ui.siloBody}
             </p>
           </div>
         </div>
@@ -146,7 +377,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
       {/* Sticky Quick Jump Nav */}
       <div className="sticky top-0 z-30 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 py-3 px-4 shadow-sm">
         <div className="max-w-[1400px] mx-auto flex gap-2 overflow-x-auto custom-scrollbar pb-1">
-          <span className="text-sm font-bold text-slate-500 dark:text-slate-400 shrink-0 flex items-center mr-2">Jump to:</span>
+          <span className="text-sm font-bold text-slate-500 dark:text-slate-400 shrink-0 flex items-center mr-2">{ui.jumpTo}</span>
           {sitemapCategories.map(cat => (
             <a key={cat.id} href={`#${cat.id}`} className="shrink-0 px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-sm font-medium transition-colors">
               {cat.title}
@@ -167,8 +398,11 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
               {cat.title}
             </a>
           ))}
-          <a href="#data-privacy" className="shrink-0 px-3 py-1.5 rounded-full bg-violet-100 hover:bg-violet-200 dark:bg-violet-900/30 dark:hover:bg-violet-900/50 text-violet-700 dark:text-violet-300 text-sm font-bold transition-colors">
-            🔒 Data Privacy
+          <a href="#collections" className="shrink-0 px-3 py-1.5 rounded-full bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-900/30 dark:hover:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-sm font-bold transition-colors">
+            {ui.collectionsHeading}
+          </a>
+          <a href="#comparisons" className="shrink-0 px-3 py-1.5 rounded-full bg-blue-100 hover:bg-blue-200 dark:bg-blue-900/30 dark:hover:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-sm font-bold transition-colors">
+            {ui.comparisonsHeading}
           </a>
         </div>
       </div>
@@ -180,7 +414,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
           {/* Calculators Section */}
           <div className="space-y-12">
             <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Calculators</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">{ui.calculatorsHeading}</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -199,13 +433,15 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.links.map((link) => {
+                      const rawHref = resolveHref(link);
+                      const label = getLocalizedLabelForHref(rawHref, link, locale);
                       return (
                         <li key={link}>
                           <Link 
-                            href={resolveIntlHref(resolveHref(link))}
+                            href={resolveIntlHref(rawHref)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                           >
-                            <span className="truncate">{link}</span>
+                            <span className="truncate">{label}</span>
                             <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
                           </Link>
                         </li>
@@ -214,13 +450,45 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </ul>
                 </section>
               ))}
+
+              {additionalCalculators.length > 0 && (
+                <section id="specialized-calculators" className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 transition-all scroll-mt-24">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2.5 bg-green-50 dark:bg-green-900/20 text-[#518231] rounded-lg">
+                      <Calculator size={22} />
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                      {ui.moreCalcsTitle}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-5 leading-relaxed">
+                    {ui.moreCalcsDesc}
+                  </p>
+                  <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
+                    {additionalCalculators.map((calc) => {
+                      const label = getLocalizedCalcMeta(calc.slug, locale, calc.title).title;
+                      return (
+                        <li key={calc.slug}>
+                          <Link
+                            href={resolveIntlHref(`/calculators/${calc.slug}`)}
+                            className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
+                          >
+                            <span className="truncate">{label}</span>
+                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              )}
             </div>
           </div>
 
           {/* Developer Tools Section */}
           <div className="space-y-12 pt-8">
             <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Developer Tools</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">{ui.devToolsHeading}</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -239,14 +507,16 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.items.map((item) => {
+                      const rawHref = resolveHref(item.name);
+                      const label = getLocalizedLabelForHref(rawHref, item.name, locale);
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={resolveIntlHref(resolveHref(item.name))}
+                            href={resolveIntlHref(rawHref)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
-                            <span className="truncate">{item.name}</span>
+                            <span className="truncate">{label}</span>
                             <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
                           </Link>
                         </li>
@@ -261,7 +531,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
           {/* PDF Tools Section */}
           <div className="space-y-12 pt-8">
             <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">PDF Tools</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">{ui.pdfToolsHeading}</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -280,14 +550,16 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.items.map((item) => {
+                      const rawHref = resolveHref(item.name);
+                      const label = getLocalizedLabelForHref(rawHref, item.name, locale);
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={resolveIntlHref(resolveHref(item.name))}
+                            href={resolveIntlHref(rawHref)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
-                            <span className="truncate">{item.name}</span>
+                            <span className="truncate">{label}</span>
                             <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
                           </Link>
                         </li>
@@ -302,7 +574,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
           {/* Image Tools Section */}
           <div className="space-y-12 pt-8">
             <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Image Tools</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">{ui.imageToolsHeading}</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -321,14 +593,16 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                   </p>
                   <ul className="space-y-2 max-h-[320px] overflow-y-auto custom-scrollbar pr-2">
                     {category.items.map((item) => {
+                      const rawHref = resolveHref(item.name);
+                      const label = getLocalizedLabelForHref(rawHref, item.name, locale);
                       return (
                         <li key={item.name}>
                           <Link 
-                            href={resolveIntlHref(resolveHref(item.name))}
+                            href={resolveIntlHref(rawHref)}
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                             title={item.desc}
                           >
-                            <span className="truncate">{item.name}</span>
+                            <span className="truncate">{label}</span>
                             <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
                           </Link>
                         </li>
@@ -338,6 +612,94 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                 </section>
               ))}
             </div>
+          </div>
+
+          {/* Curated Collections & Toolkits Section */}
+          <div className="space-y-8 pt-8 scroll-mt-24" id="collections">
+            <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
+              <div className="p-2.5 bg-emerald-600 rounded-xl">
+                <Layers size={22} className="text-white" />
+              </div>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">{ui.collectionsHeading}</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {collections.map((col) => {
+                const t = col.translations?.[locale] || col;
+                return (
+                  <Link
+                    key={col.slug}
+                    href={{ pathname: '/collections/[slug]', params: { slug: col.slug } }}
+                    className="group bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors mb-2">
+                        {t.title}
+                      </h3>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        {t.description}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-[#518231]">
+                      <span>{col.toolSlugs.length} tools</span>
+                      <ExternalLink size={14} />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Side-by-Side Comparisons Section */}
+          <div className="space-y-8 pt-8 scroll-mt-24" id="comparisons">
+            <div className="flex items-center gap-4 border-b-2 border-slate-200 dark:border-slate-800 pb-4">
+              <div className="p-2.5 bg-blue-600 rounded-xl">
+                <Scale size={22} className="text-white" />
+              </div>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">{ui.comparisonsHeading}</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {comparisons.map((comp) => {
+                const t = comp.translations?.[locale] || comp;
+                return (
+                  <Link
+                    key={comp.slug}
+                    href={{ pathname: '/compare/[slug]', params: { slug: comp.slug } }}
+                    className="group bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors mb-2">
+                        {t.title}
+                      </h3>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        {t.seoDescription}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end text-xs font-semibold text-[#518231]">
+                      <ExternalLink size={14} />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Educational Guides Hub Callout */}
+          <div className="bg-gradient-to-r from-[#518231]/10 to-emerald-500/10 border border-[#518231]/20 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="p-3 bg-[#518231] text-white rounded-xl shrink-0">
+                <BookOpen size={24} />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-1">{ui.guidesCtaTitle}</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base">{ui.guidesCtaDesc}</p>
+              </div>
+            </div>
+            <Link
+              href="/guides"
+              className="shrink-0 bg-[#518231] hover:bg-[#436a28] text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+            >
+              {ui.guidesCtaBtn}
+            </Link>
           </div>
 
           {/* Data Privacy Platform Section */}
@@ -354,78 +716,11 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                 <ExternalLink size={14} /> Open Platform
               </Link>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {[
-                { id: 'dp-scanner', title: 'PII Scanner', desc: 'Auto-detect 30+ PII types across all databases', items: [
-                  { name: 'Sensitive Data Scanner' },
-                  { name: 'Scanner Findings' },
-                ]},
-                { id: 'dp-masking', title: 'Data Masking', desc: 'Apply masking rules and anonymize sensitive columns', items: [
-                  { name: 'Masking Rules Builder' },
-                  { name: 'Template Library' },
-                  { name: 'Rule Marketplace' },
-                  { name: 'Preview Before Execute' },
-                ]},
-                { id: 'dp-connections', title: 'Connections & Explorer', desc: 'Manage database connections and browse schemas', items: [
-                  { name: 'Database Connections' },
-                  { name: 'Database Explorer' },
-                  { name: 'Projects' },
-                  { name: 'Organizations' },
-                ]},
-                { id: 'dp-jobs', title: 'Jobs & Scheduling', desc: 'Automate anonymization with scheduled jobs', items: [
-                  { name: 'Job Management' },
-                  { name: 'Job History' },
-                  { name: 'Job Scheduler' },
-                ]},
-                { id: 'dp-compliance', title: 'Compliance & Audit', desc: 'GDPR, HIPAA, PCI-DSS readiness and audit trails', items: [
-                  { name: 'Compliance Center' },
-                  { name: 'Reports & Analytics' },
-                  { name: 'Audit Logs' },
-                ]},
-                { id: 'dp-io', title: 'Import & Export', desc: 'Upload datasets and export anonymized data', items: [
-                  { name: 'Import Dataset' },
-                  { name: 'Export Data' },
-                ]},
-                { id: 'dp-security', title: 'Security & Access', desc: 'API keys, secrets, webhooks, and team access', items: [
-                  { name: 'API Keys' },
-                  { name: 'Secrets Manager' },
-                  { name: 'Webhooks' },
-                  { name: 'User Management' },
-                  { name: 'Roles & Permissions' },
-                ]},
-                { id: 'dp-monitoring', title: 'Monitoring', desc: 'Real-time performance and worker node monitoring', items: [
-                  { name: 'Performance Monitor' },
-                  { name: 'Worker Nodes' },
-                  { name: 'Queue Manager' },
-                  { name: 'Settings' },
-                ]},
-              ].map((category) => (
-                <section key={category.id} id={category.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-violet-100 dark:border-violet-900/30 shadow-sm hover:shadow-md hover:border-violet-400/40 transition-all scroll-mt-24">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="p-2 bg-violet-50 dark:bg-violet-900/20 rounded-lg">
-                      <Shield size={18} className="text-violet-600 dark:text-violet-400" />
-                    </div>
-                    <h3 className="text-base font-bold text-slate-900 dark:text-white">{category.title}</h3>
-                  </div>
-                  <p className="text-sm text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">{category.desc}</p>
-                  <ul className="space-y-2">
-                    {category.items.map((item) => (
-                      <li key={item.name}>
-                        <Link href={'/database-privacy' as any} className="group flex items-center justify-between text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 py-0.5 transition-colors">
-                          <span>{item.name}</span>
-                          <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ))}
-            </div>
           </div>
 
           {/* Native FAQ Section */}
           <section className="pt-16 max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">Frequently Asked Questions</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">{ui.faqHeading}</h2>
             <div className="space-y-4">
               {faqSchema.mainEntity.map((faq, index) => (
                 <details key={index} className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden [&_summary::-webkit-details-marker]:hidden">
@@ -443,7 +738,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
 
           {/* Footer General Links */}
           <section className="pt-16 border-t border-slate-200 dark:border-slate-800">
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">General Resources</h3>
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{ui.generalResources}</h3>
             <div className="flex flex-wrap gap-4">
               {generalLinks.map((link) => {
                 let href: any = "/";
@@ -468,3 +763,4 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
     </main>
   );
 }
+

@@ -7,9 +7,11 @@ import { GuidesSidebar } from './GuidesSidebar';
 interface GuidesMobileDrawerProps {
   /** Slug of the currently active guide, passed down to sidebar for active state */
   activeSlug?: string;
+  /** Map of canonical guide.slug -> localized title */
+  localizedTitles?: Record<string, string>;
 }
 
-export function GuidesMobileDrawer({ activeSlug }: GuidesMobileDrawerProps) {
+export function GuidesMobileDrawer({ activeSlug, localizedTitles }: GuidesMobileDrawerProps) {
   const [open, setOpen] = useState(false);
   const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -100,12 +102,12 @@ export function GuidesMobileDrawer({ activeSlug }: GuidesMobileDrawerProps) {
           </button>
         </div>
 
-        {/* Sidebar content — scrollable */}
+        {/* Sidebar content — scrollable (lazy-mounted when open so SSR HTML does not duplicate 190 links) */}
         <div
           className="flex-1 overflow-y-auto overscroll-contain"
           onClick={() => setOpen(false)} // Close on any guide link tap
         >
-          <GuidesSidebar activeSlug={activeSlug} />
+          {open && <GuidesSidebar activeSlug={activeSlug} localizedTitles={localizedTitles} />}
         </div>
       </div>
     </>

@@ -3,24 +3,16 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { calculators } from '@/lib/data/calculators';
-import { categories, getCategoryById } from '@/lib/data/categories';
-import { getRelatedCalculators } from '@/lib/data/calculatorRelationships';
+import { categories, getLocalizedCategory } from '@/lib/data/categories';
 import { allGuides } from '@/lib/data/guides';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
+import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
 import { Link, resolveIntlHref } from '@/i18n/routing';
 import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap, Wrench } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 // ═══════════════════════════════════════════════════════
 // CATEGORY LANDING PAGE (SEO Pillar Page)
-// ═══════════════════════════════════════════════════════
-// These pages serve as topical authority anchors for Google.
-// Each category page:
-//   - Has 800+ words of unique pillar content
-//   - Links to every calculator in the category
-//   - Has FAQPage + BreadcrumbList JSON-LD schemas
-//   - Is internally linked from homepage, nav, and footer
-//   - Flattens crawl depth (homepage → category → calculator)
 // ═══════════════════════════════════════════════════════
 
 export const revalidate = false;
@@ -36,27 +28,86 @@ export async function generateMetadata({
   params: Promise<{ locale: string; category: string }>;
 }): Promise<Metadata> {
   const { category, locale } = await params;
-  const cat = getCategoryById(category);
+  const cat = getLocalizedCategory(category, locale);
   if (!cat) return { title: 'Category Not Found' };
 
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
-
-  // Non-English category pages have the same English pillar content as /en/calculators/category/*.
-  // Google overrides our declared canonical with the EN version ("Duplicate, Google chose different
-  // canonical"). Use noindex on non-EN locales to stop the duplicate signal while keeping EN indexed.
-  const isEnglish = locale === 'en';
 
   return {
     title: cat.seoTitle,
     description: cat.seoDescription,
     robots: {
-      index: isEnglish,
+      index: true,
       follow: true,
     },
     alternates: getCanonicalAndAlternates('/calculators/category/[category]', locale, category),
   };
 }
 
+const uiTextByLocale: Record<
+  string,
+  {
+    home: string;
+    calculators: string;
+    freeToolsSuffix: (count: number) => string;
+    mostPopular: string;
+    allCategoryPrefix: (title: string, count: number) => string;
+    relatedDevTools: string;
+    allDevTools: string;
+    inBrowserBadge: string;
+    exploreOther: string;
+    toolsCountSuffix: (count: number) => string;
+  }
+> = {
+  en: {
+    home: 'Home',
+    calculators: 'Calculators',
+    freeToolsSuffix: (count) => `${count} free tools, all running locally in your browser.`,
+    mostPopular: 'Most Popular',
+    allCategoryPrefix: (title, count) => `All ${title} (${count})`,
+    relatedDevTools: 'Related Developer Tools & Utilities',
+    allDevTools: 'All Developer Tools →',
+    inBrowserBadge: '100% Free • In-Browser Tool',
+    exploreOther: 'Explore Other Categories',
+    toolsCountSuffix: (count) => `${count} tools`,
+  },
+  es: {
+    home: 'Inicio',
+    calculators: 'Calculadoras',
+    freeToolsSuffix: (count) => `${count} herramientas gratuitas ejecutándose localmente en tu navegador.`,
+    mostPopular: 'Más Populares',
+    allCategoryPrefix: (title, count) => `Todas las ${title} (${count})`,
+    relatedDevTools: 'Herramientas de Desarrollo y Utilidades Relacionadas',
+    allDevTools: 'Todas las Herramientas →',
+    inBrowserBadge: '100% Gratis • En tu Navegador',
+    exploreOther: 'Explorar Otras Categorías',
+    toolsCountSuffix: (count) => `${count} herramientas`,
+  },
+  fr: {
+    home: 'Accueil',
+    calculators: 'Calculatrices',
+    freeToolsSuffix: (count) => `${count} outils gratuits exécutés localement dans votre navigateur.`,
+    mostPopular: 'Les Plus Populaires',
+    allCategoryPrefix: (title, count) => `Toutes les ${title} (${count})`,
+    relatedDevTools: 'Outils Développeur et Utilitaires Associés',
+    allDevTools: 'Tous les Outils →',
+    inBrowserBadge: '100 % Gratuit • Dans le Navigateur',
+    exploreOther: 'Explorer d’Autres Catégories',
+    toolsCountSuffix: (count) => `${count} outils`,
+  },
+  de: {
+    home: 'Startseite',
+    calculators: 'Rechner',
+    freeToolsSuffix: (count) => `${count} kostenlose Tools, die vollständig lokal in Ihrem Browser laufen.`,
+    mostPopular: 'Beliebteste Rechner',
+    allCategoryPrefix: (title, count) => `Alle ${title} (${count})`,
+    relatedDevTools: 'Passende Entwickler-Tools & Hilfsprogramme',
+    allDevTools: 'Alle Entwickler-Tools →',
+    inBrowserBadge: '100 % Kostenlos • Direkt im Browser',
+    exploreOther: 'Weitere Kategorien entdecken',
+    toolsCountSuffix: (count) => `${count} Tools`,
+  },
+};
 
 export default async function CategoryPage({
   params,
@@ -64,26 +115,35 @@ export default async function CategoryPage({
   params: Promise<{ locale: string; category: string }>;
 }) {
   const resolvedParams = await params;
-  setRequestLocale(resolvedParams.locale);
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
 
-  const cat = getCategoryById(resolvedParams.category);
+  const cat = getLocalizedCategory(resolvedParams.category, locale);
   if (!cat) notFound();
+
+  const ui = uiTextByLocale[locale] || uiTextByLocale.en;
 
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
-  const canonicalCategoryUrl = getCanonicalUrl('/calculators/category/[category]', resolvedParams.locale, cat.id);
+  const canonicalCategoryUrl = getCanonicalUrl('/calculators/category/[category]', locale, cat.id);
 
-  // Get all calculators for this category
-  const categoryCalcs = calculators.filter((c) =>
-    cat.dbCategory.includes(c.category)
-  );
+  // Get all calculators for this category with localized titles/descriptions
+  const categoryCalcs = calculators
+    .filter((c) => cat.dbCategory.includes(c.category))
+    .map((c) => {
+      const meta = getLocalizedCalcMeta(c.slug, locale, c.title, c.description);
+      return {
+        ...c,
+        localizedTitle: meta.title,
+        localizedDescription: meta.description,
+      };
+    });
 
-  // Sort alphabetically for consistency
-  categoryCalcs.sort((a, b) => a.title.localeCompare(b.title));
+  // Sort alphabetically by localized title for consistency
+  categoryCalcs.sort((a, b) => a.localizedTitle.localeCompare(b.localizedTitle));
 
-  // Group into subcategories based on tags/keywords for visual organization
   const popularCalcs = categoryCalcs.slice(0, 6);
 
   // Get all guides associated with calculators in this category
@@ -124,7 +184,14 @@ export default async function CategoryPage({
       { title: 'Markdown Previewer', slug: 'markdown-previewer', desc: 'Live preview Markdown syntax and documentation formulas' },
     ]
   };
-  const relatedTools = categoryRelatedToolsMap[cat.id] || [];
+  const relatedTools = (categoryRelatedToolsMap[cat.id] || []).map((t) => {
+    const meta = getLocalizedToolMeta(t.slug, locale, t.title, t.desc);
+    return {
+      slug: t.slug,
+      title: meta.title,
+      desc: meta.description,
+    };
+  });
 
   const matchingGuideCats = catGuideCategoryMap[cat.id] || [];
   const seenGuideSlugs = new Set(directGuides.map((g) => g.slug));
@@ -136,9 +203,9 @@ export default async function CategoryPage({
   const categoryGuides = [...directGuides, ...additionalGuides];
 
   const localizedGuides = categoryGuides.map((guide) => {
-    const localized = getLocalizedGuide(guide, resolvedParams.locale);
+    const localized = getLocalizedGuide(guide, locale);
     const activeSlug =
-      guide.slugs?.[resolvedParams.locale as keyof typeof guide.slugs] || guide.slug;
+      guide.slugs?.[locale as keyof typeof guide.slugs] || guide.slug;
     return {
       ...localized,
       activeSlug,
@@ -185,14 +252,14 @@ export default async function CategoryPage({
     },
     de: {
       featuredTitle: 'Ausführliche Ratgeber & Mathematische Anleitungen',
-      featuredSubtitle: `Vertiefen Sie Formeln, Schritt-für-Schritt-Methoden und praktische Beispiele für ${cat.title.toLowerCase()}.`,
+      featuredSubtitle: `Vertiefen Sie Formeln, Schritt-für-Schritt-Methoden und praktische Beispiele für ${cat.title}.`,
       allGuidesTitle: `Alle Ratgeber & Anleitungen für ${cat.title}`,
       readGuide: 'Ratgeber Lesen',
       minRead: 'Min. Lesezeit',
       guidesCount: 'Ratgeber',
     },
   };
-  const tGuides = categoryGuideLabels[resolvedParams.locale] || categoryGuideLabels.en;
+  const tGuides = categoryGuideLabels[locale] || categoryGuideLabels.en;
 
   // JSON-LD: BreadcrumbList
   const breadcrumbSchema = {
@@ -202,14 +269,14 @@ export default async function CategoryPage({
       {
         '@type': 'ListItem',
         position: 1,
-        name: 'Home',
-        item: `${baseUrl}/${resolvedParams.locale}`,
+        name: ui.home,
+        item: `${baseUrl}/${locale}`,
       },
       {
         '@type': 'ListItem',
         position: 2,
-        name: 'Calculators',
-        item: getCanonicalUrl('/calculators', resolvedParams.locale),
+        name: ui.calculators,
+        item: getCanonicalUrl('/calculators', locale),
       },
       {
         '@type': 'ListItem',
@@ -233,8 +300,8 @@ export default async function CategoryPage({
       itemListElement: categoryCalcs.map((calc, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        name: calc.translations?.[resolvedParams.locale]?.title || calc.title,
-        url: getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, calc.slug),
+        name: calc.localizedTitle,
+        url: getCanonicalUrl('/calculators/[slug]', locale, calc.slug),
       })),
     },
     ...(localizedGuides.length > 0 && {
@@ -242,62 +309,84 @@ export default async function CategoryPage({
         '@type': 'Article',
         name: guide.title,
         description: guide.description,
-        url: getCanonicalUrl('/guides/[slug]', resolvedParams.locale, guide.slug),
+        url: getCanonicalUrl('/guides/[slug]', locale, guide.slug),
       })),
     }),
   };
 
-  // JSON-LD: FAQPage — unlocks FAQ rich results for high-volume category queries
-  // Built from real category data so answers are always accurate and specific
+  // Localized FAQ questions & answers
+  const faqQuestions =
+    locale === 'es'
+      ? [
+          {
+            q: `¿Qué son las ${cat.title}?`,
+            a: cat.seoDescription,
+          },
+          {
+            q: `¿Cuántas ${cat.title.toLowerCase()} hay disponibles en Nexus Calculator?`,
+            a: `Nexus Calculator ofrece ${categoryCalcs.length} ${cat.title.toLowerCase()} gratuitas que abarcan ${cat.description.toLowerCase()} Todas las herramientas se ejecutan directamente en tu navegador sin necesidad de registro.`,
+          },
+          {
+            q: `¿Son gratuitas las ${cat.title.toLowerCase()}?`,
+            a: `Sí, las ${categoryCalcs.length} ${cat.title.toLowerCase()} de Nexus Calculator son 100 % gratuitas, sin límites de uso y sin enviar tus datos a ningún servidor.`,
+          },
+        ]
+      : locale === 'fr'
+      ? [
+          {
+            q: `Que sont les ${cat.title} ?`,
+            a: cat.seoDescription,
+          },
+          {
+            q: `Combien de ${cat.title.toLowerCase()} sont disponibles sur Nexus Calculator ?`,
+            a: `Nexus Calculator propose ${categoryCalcs.length} ${cat.title.toLowerCase()} gratuites couvrant ${cat.description.toLowerCase()} Tous les outils fonctionnent dans votre navigateur sans inscription.`,
+          },
+          {
+            q: `Les ${cat.title.toLowerCase()} sont-elles gratuites ?`,
+            a: `Oui, les ${categoryCalcs.length} ${cat.title.toLowerCase()} sur Nexus Calculator sont entièrement gratuites et respectent votre vie privée grâce au calcul local.`,
+          },
+        ]
+      : locale === 'de'
+      ? [
+          {
+            q: `Was umfassen die ${cat.title}?`,
+            a: cat.seoDescription,
+          },
+          {
+            q: `Wie viele ${cat.title} gibt es auf Nexus Calculator?`,
+            a: `Nexus Calculator bietet ${categoryCalcs.length} kostenlose ${cat.title} (${cat.description}). Alle Tools laufen direkt im Browser ohne Registrierung.`,
+          },
+          {
+            q: `Sind alle ${cat.title} kostenlos nutzbar?`,
+            a: `Ja, sämtliche ${categoryCalcs.length} ${cat.title} auf Nexus Calculator sind 100 % kostenlos und verarbeiten Ihre Eingaben ausschließlich lokal auf Ihrem Gerät.`,
+          },
+        ]
+      : [
+          {
+            q: `What are ${cat.title}?`,
+            a: cat.seoDescription,
+          },
+          {
+            q: `How many ${cat.title} are available on Nexus Calculator?`,
+            a: `Nexus Calculator offers ${categoryCalcs.length} free ${cat.title.toLowerCase()} covering ${cat.description} All tools run entirely in your browser with no signup required.`,
+          },
+          {
+            q: `Are the ${cat.title} free to use?`,
+            a: `Yes, all ${categoryCalcs.length} ${cat.title.toLowerCase()} on Nexus Calculator are completely free. Every calculation runs locally in your browser, so your data never leaves your device.`,
+          },
+        ];
+
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: `What are ${cat.title}?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: cat.seoDescription,
-        },
+    mainEntity: faqQuestions.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
       },
-      {
-        '@type': 'Question',
-        name: `How many ${cat.title} are available on Nexus Calculator?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Nexus Calculator offers ${categoryCalcs.length} free ${cat.title.toLowerCase()} covering ${cat.description} All tools run entirely in your browser with no signup required.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `Are the ${cat.title} free to use?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Yes, all ${categoryCalcs.length} ${cat.title.toLowerCase()} on Nexus Calculator are completely free. There are no paywalls, no limits on usage, and no account required. Every calculation runs locally in your browser, so your data never leaves your device.`,
-        },
-      },
-      {
-        '@type': 'Question',
-        name: `How do I use the ${cat.title} on Nexus Calculator?`,
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: `Simply select any calculator from the list on this page, enter your values into the input fields, and get instant results. All ${cat.title.toLowerCase()} update in real time as you type, with no need to press a submit button.`,
-        },
-      },
-      ...(localizedGuides.length > 0
-        ? [
-            {
-              '@type': 'Question',
-              name: `Does Nexus Calculator provide tutorials and mathematical formulas for ${cat.title}?`,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: `Yes, Nexus Calculator provides ${localizedGuides.length} comprehensive educational guides and mathematical breakdowns for ${cat.title.toLowerCase()}. Each guide explains the underlying equations, variable definitions, and step-by-step calculation methods with practical real-world examples.`,
-              },
-            },
-          ]
-        : []),
-    ],
+    })),
   };
 
   return (
@@ -325,11 +414,11 @@ export default async function CategoryPage({
         {/* Breadcrumb */}
         <nav className="flex items-center text-sm text-slate-500 mb-8 flex-wrap gap-1">
           <Link href="/" className="hover:text-[#518231] transition-colors">
-            Home
+            {ui.home}
           </Link>
           <ChevronRight size={14} />
           <Link href="/calculators" className="hover:text-[#518231] transition-colors">
-            Calculators
+            {ui.calculators}
           </Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-white font-medium">
@@ -343,8 +432,7 @@ export default async function CategoryPage({
             {cat.title}
           </h1>
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-            {cat.description} — {categoryCalcs.length} free tools, all running
-            locally in your browser.
+            {cat.description} — {ui.freeToolsSuffix(categoryCalcs.length)}
           </p>
         </header>
 
@@ -353,40 +441,36 @@ export default async function CategoryPage({
           <div className="flex items-center gap-2 mb-6">
             <Star className="text-amber-500" size={20} />
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-              Most Popular
+              {ui.mostPopular}
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {popularCalcs.map((calc) => {
-              const title = calc.translations?.[resolvedParams.locale]?.title || calc.title;
-              const description = calc.translations?.[resolvedParams.locale]?.description || calc.description;
-              return (
-                <Link
-                  key={calc.slug}
-                  href={resolveIntlHref(`/calculators/${calc.slug}`)}
-                  className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all"
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center group-hover:bg-[#518231]/10 transition-colors">
-                      <Calculator
-                        className="text-slate-500 group-hover:text-[#518231] transition-colors"
-                        size={20}
-                      />
-                    </div>
-                    <ArrowRight
-                      size={16}
-                      className="text-slate-300 group-hover:text-[#518231] transition-colors mt-2"
+            {popularCalcs.map((calc) => (
+              <Link
+                key={calc.slug}
+                href={resolveIntlHref(`/calculators/${calc.slug}`)}
+                className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-lg hover:border-[#518231]/30 transition-all"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <div className="w-10 h-10 bg-slate-50 dark:bg-slate-800 rounded-xl flex items-center justify-center group-hover:bg-[#518231]/10 transition-colors">
+                    <Calculator
+                      className="text-slate-500 group-hover:text-[#518231] transition-colors"
+                      size={20}
                     />
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">
-                    {title}
-                  </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
-                    {description}
-                  </p>
-                </Link>
-              );
-            })}
+                  <ArrowRight
+                    size={16}
+                    className="text-slate-300 group-hover:text-[#518231] transition-colors mt-2"
+                  />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors">
+                  {calc.localizedTitle}
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                  {calc.localizedDescription}
+                </p>
+              </Link>
+            ))}
           </div>
         </section>
 
@@ -475,7 +559,7 @@ export default async function CategoryPage({
         {/* Full Calculator Directory */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-            All {cat.title} ({categoryCalcs.length})
+            {ui.allCategoryPrefix(cat.title, categoryCalcs.length)}
           </h2>
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-100 dark:divide-slate-800">
@@ -494,7 +578,7 @@ export default async function CategoryPage({
                           href={resolveIntlHref(`/calculators/${calc.slug}`)}
                           className="block px-5 py-3.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-[#518231] transition-colors font-medium"
                         >
-                          {calc.translations?.[resolvedParams.locale]?.title || calc.title}
+                          {calc.localizedTitle}
                         </Link>
                       </li>
                     ))}
@@ -519,14 +603,14 @@ export default async function CategoryPage({
               <div className="flex items-center gap-2">
                 <Wrench className="text-[#518231]" size={20} />
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                  Related Developer Tools &amp; Utilities
+                  {ui.relatedDevTools}
                 </h2>
               </div>
               <Link
                 href="/tools"
                 className="text-sm font-semibold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
               >
-                All Developer Tools →
+                {ui.allDevTools}
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -546,7 +630,7 @@ export default async function CategoryPage({
                     </p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center gap-1.5 text-[11px] font-semibold text-[#518231]">
-                    <span>100% Free • In-Browser Tool</span>
+                    <span>{ui.inBrowserBadge}</span>
                   </div>
                 </Link>
               ))}
@@ -557,14 +641,15 @@ export default async function CategoryPage({
         {/* Browse Other Categories */}
         <section>
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-            Explore Other Categories
+            {ui.exploreOther}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {categories
               .filter((c) => c.id !== cat.id)
-              .map((otherCat) => {
+              .map((otherCatRaw) => {
+                const otherCat = getLocalizedCategory(otherCatRaw.id, locale) || otherCatRaw;
                 const count = calculators.filter((c) =>
-                  otherCat.dbCategory.includes(c.category)
+                  otherCatRaw.dbCategory.includes(c.category)
                 ).length;
                 return (
                   <Link
@@ -576,7 +661,7 @@ export default async function CategoryPage({
                       <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors">
                         {otherCat.title}
                       </h3>
-                      <p className="text-sm text-slate-500">{count} tools</p>
+                      <p className="text-sm text-slate-500">{ui.toolsCountSuffix(count)}</p>
                     </div>
                     <ArrowRight
                       size={16}
@@ -591,3 +676,4 @@ export default async function CategoryPage({
     </>
   );
 }
+

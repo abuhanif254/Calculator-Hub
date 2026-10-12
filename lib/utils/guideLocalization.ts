@@ -3,17 +3,29 @@ import path from 'path';
 import matter from 'gray-matter';
 import { Guide } from '@/lib/data/guides';
 
+const localizedGuideCache = new Map<string, Guide>();
+
 export function getLocalizedGuide(guide: Guide, locale: string): Guide {
   if (locale === 'en') return guide;
+
+  const cacheKey = `${locale}:${guide.slug}`;
+  if (localizedGuideCache.has(cacheKey)) {
+    return localizedGuideCache.get(cacheKey)!;
+  }
 
   const currentSlug = guide.slugs?.[locale as keyof typeof guide.slugs] || guide.slug;
   const filePath = path.join(process.cwd(), 'content', locale, 'guides', `${currentSlug}.md`);
   
+  let result: Guide = {
+    ...guide,
+    slug: currentSlug,
+  };
+
   if (fs.existsSync(filePath)) {
     const raw = fs.readFileSync(filePath, 'utf-8');
     const { data } = matter(raw);
     
-    return {
+    result = {
       ...guide,
       slug: currentSlug,
       title: data.title || guide.title,
@@ -21,9 +33,7 @@ export function getLocalizedGuide(guide: Guide, locale: string): Guide {
     };
   }
   
-  return {
-    ...guide,
-    slug: currentSlug,
-  };
+  localizedGuideCache.set(cacheKey, result);
+  return result;
 }
 

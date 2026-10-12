@@ -1,37 +1,91 @@
 import { Metadata } from 'next';
-import { Link as CustomLink, routing } from '@/i18n/routing';
+import { Link as CustomLink } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { Scale, ShieldAlert, FileText, GlobeLock, RefreshCcw, Mail, Code, FileCode, ImageIcon, Calculator, AlertOctagon, Copyright } from 'lucide-react';
 
+export const revalidate = false;
+export const dynamicParams = false;
+
+const copyByLocale: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    home: string;
+    crumb: string;
+    h1: string;
+    subtitle: string;
+  }
+> = {
+  en: {
+    title: 'Terms of Use & Service Guidelines',
+    description: 'Review the comprehensive Terms of Use, legal disclaimers, and service guidelines for Nexus Calculator and developer utilities.',
+    home: 'Home',
+    crumb: 'Terms of Use',
+    h1: 'Terms of Use & Legal Guidelines',
+    subtitle:
+      'Please review these Terms carefully. By accessing or utilizing the Nexus platform—including our suite of developer utilities, PDF processors, image editors, and high-precision calculators—you agree to be bound by these terms and conditions.',
+  },
+  es: {
+    title: 'Términos de Uso y Condiciones del Servicio',
+    description: 'Consulta los Términos de Uso, avisos legales y directrices del servicio para las calculadoras y herramientas de Nexus Calculator.',
+    home: 'Inicio',
+    crumb: 'Términos de Uso',
+    h1: 'Términos de Uso y Directrices Legales',
+    subtitle:
+      'Por favor, revisa estos Términos detenidamente. Al acceder o utilizar la plataforma Nexus —incluyendo nuestras calculadoras, herramientas para desarrolladores, utilidades PDF y editores de imagen— aceptas estas condiciones de servicio.',
+  },
+  fr: {
+    title: 'Conditions Générales d’Utilisation (CGU)',
+    description: 'Consultez les Conditions d’Utilisation, mentions légales et règles d’usage de la plateforme de calculatrices et d’outils Nexus Calculator.',
+    home: 'Accueil',
+    crumb: 'Conditions d’Utilisation',
+    h1: 'Conditions d’Utilisation et Directives Légales',
+    subtitle:
+      'Veuillez lire attentivement ces conditions. En accédant à la plateforme Nexus — y compris nos calculatrices, outils développeur, utilitaires PDF et éditeurs d’images — vous acceptez les présentes conditions générales d’utilisation.',
+  },
+  de: {
+    title: 'Nutzungsbedingungen & Rechtliche Richtlinien',
+    description: 'Lesen Sie die Nutzungsbedingungen, rechtlichen Hinweise und Richtlinien für die Online-Rechner und Entwickler-Tools von Nexus Calculator.',
+    home: 'Startseite',
+    crumb: 'Nutzungsbedingungen',
+    h1: 'Nutzungsbedingungen & Rechtliche Hinweise',
+    subtitle:
+      'Bitte lesen Sie diese Nutzungsbedingungen sorgfältig durch. Mit dem Zugriff auf die Nexus-Plattform — einschließlich unserer Online-Rechner, Entwickler-Tools, PDF-Werkzeuge und Bildeditoren — erklären Sie sich mit diesen Bedingungen einverstanden.',
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const c = copyByLocale[locale] || copyByLocale.en;
 
   return {
-    title: 'Terms of Use & Legal Disclaimer | Nexus Tools Platform',
-    description: 'Review the comprehensive international Terms of Use, legal disclaimers, and service guidelines for the Nexus Tools Platform. Clear policies for our developer tools, PDF utilities, image editors, and calculators.',
+    title: c.title,
+    description: c.description,
     keywords: ['terms of use', 'legal disclaimer', 'terms of service', 'nexus tools policy', 'developer tools terms', 'pdf utility terms', 'image processing terms', 'international terms'],
     alternates: getCanonicalAndAlternates('/terms-of-use', locale),
     openGraph: {
       type: 'website',
-      title: 'Terms of Use | Nexus Tools Platform',
-      description: 'Understanding our commitments and your responsibilities while using Nexus Tools across the globe.',
+      title: c.title,
+      description: c.description,
       siteName: 'Nexus Calculator & Tools',
     },
     twitter: {
       card: 'summary',
-      title: 'Terms of Use | Nexus Tools',
-      description: 'Review the terms governing the use of Nexus Tools internationally.',
+      title: c.title,
+      description: c.description,
     }
   };
 }
 
 export default async function TermsOfUsePage({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
-  setRequestLocale(resolvedParams.locale);
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
+  const c = copyByLocale[locale] || copyByLocale.en;
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
-  const canonicalUrl = getCanonicalUrl('/terms-of-use', resolvedParams.locale);
+  const canonicalUrl = getCanonicalUrl('/terms-of-use', locale);
   return (
     <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
       {/* JSON-LD Structured Data for WebPage */}
@@ -41,8 +95,8 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Terms of Use - Nexus Tools Platform",
-            "description": "Read the Terms of Use and legal disclaimers for Nexus Tools, outlining user rights and platform rules for our expansive utility suite.",
+            "name": c.title,
+            "description": c.description,
             "url": canonicalUrl,
             "publisher": {
               "@type": "Organization",
@@ -60,10 +114,10 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
       <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
         <ol className="flex items-center space-x-2">
           <li>
-            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
+            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{c.home}</CustomLink>
           </li>
           <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
-          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">Terms of Use</li>
+          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">{c.crumb}</li>
         </ol>
       </nav>
 
@@ -72,16 +126,16 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
           <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-slate-700 dark:text-slate-300">
             <Scale size={32} />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Terms of Use & Legal Guidelines</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">{c.h1}</h1>
         </div>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-          Please review these Terms carefully. By accessing or utilizing the Nexus platform—including our comprehensive suite of developer utilities, PDF processors, image editors, and high-precision calculators—you agree to be bound by these internationally applicable terms and conditions.
+          {c.subtitle}
         </p>
         <div className="mt-6 inline-flex flex-wrap items-center gap-2 bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
           <RefreshCcw size={16} className="text-slate-500 dark:text-slate-400" />
           <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Effective Date: January 1, 2024</span>
           <span className="text-slate-300 dark:text-slate-700 mx-1">|</span>
-          <span className="text-sm text-slate-500 dark:text-slate-400">Last Modified: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">Last Modified: January 15, 2026</span>
         </div>
       </header>
 

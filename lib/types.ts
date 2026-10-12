@@ -17,6 +17,7 @@ export interface CalculatorTranslation {
     title: string;
     description: string;
     keywords?: string;
+    lastUpdated?: string;
   };
 }
 

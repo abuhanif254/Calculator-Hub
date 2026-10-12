@@ -2,6 +2,8 @@ import React from 'react';
 import { setRequestLocale } from 'next-intl/server';
 import { GuidesSidebar } from '@/app/components/GuidesSidebar';
 import { GuidesMobileDrawer } from '@/app/components/GuidesMobileDrawer';
+import { allGuides } from '@/lib/data/guides';
+import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
 interface GuidesLayoutProps {
   children: React.ReactNode;
@@ -14,15 +16,17 @@ interface GuidesLayoutProps {
  *
  * On mobile/tablet (< lg): a sticky "Browse Guides" bar + slide-up bottom
  * drawer replaces the sidebar so users can navigate between guides.
- *
- * The right TOC panel is rendered as a reserved slot; each individual
- * guide page injects its own <GuidesTableOfContents /> into a portal
- * or passes it as a prop. For simplicity the sidebar is server-rendered;
- * TOC is client-rendered inside the article page itself.
  */
 export default async function GuidesLayout({ children, params }: GuidesLayoutProps) {
   const { locale } = await params;
   setRequestLocale(locale);
+
+  const localizedTitles: Record<string, string> = {};
+  if (locale !== 'en') {
+    for (const g of allGuides) {
+      localizedTitles[g.slug] = getLocalizedGuide(g, locale).title;
+    }
+  }
 
   return (
     <div className="w-full max-w-[1400px] mx-auto">
@@ -33,7 +37,7 @@ export default async function GuidesLayout({ children, params }: GuidesLayoutPro
           MOBILE DRAWER (< lg) — sticky trigger bar + slide-up sheet
           Rendered above the flex row so the sticky bar overlays content.
       ══════════════════════════════════════════════════════════════ */}
-      <GuidesMobileDrawer />
+      <GuidesMobileDrawer localizedTitles={localizedTitles} />
 
       <div className="flex min-h-[calc(100vh-4rem)]">
 
@@ -51,7 +55,7 @@ export default async function GuidesLayout({ children, params }: GuidesLayoutPro
             py-6
           "
         >
-          <GuidesSidebar />
+          <GuidesSidebar localizedTitles={localizedTitles} />
         </div>
 
         {/* ══════════════════════════════════════════════════════════════

@@ -3,28 +3,47 @@ import { Link as CustomLink } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { AlertTriangle, Scale, Stethoscope, LineChart, FileText } from 'lucide-react';
 
+export const revalidate = false;
+export const dynamicParams = false;
+
+const metaByLocale: Record<string, { title: string; description: string; home: string; crumb: string; h1: string; subtitle: string }> = {
+  en: {
+    title: 'Medical & Financial Disclaimer — Educational Use Policy',
+    description: 'Read the Nexus Calculator Medical and Financial Disclaimer. All tools and calculators on this platform are for educational and informational purposes only.',
+    home: 'Home',
+    crumb: 'Disclaimer',
+    h1: 'Medical & Financial Disclaimer',
+    subtitle: 'The tools, calculators, and content provided on Nexus Calculator are strictly for educational and informational purposes. They do not constitute professional medical, financial, legal, or tax advice.',
+  },
+  es: {
+    title: 'Descargo de Responsabilidad Médico y Financiero',
+    description: 'Lea el descargo de responsabilidad médico y financiero de Nexus Calculator. Todas las herramientas y calculadoras son únicamente para fines informativos y educativos.',
+    home: 'Inicio',
+    crumb: 'Descargo de Responsabilidad',
+    h1: 'Descargo de Responsabilidad Médico y Financiero',
+    subtitle: 'Las herramientas, calculadoras y contenidos proporcionados en Nexus Calculator tienen fines estrictamente educativos e informativos y no constituyen asesoramiento médico, financiero, legal ni fiscal.',
+  },
+  fr: {
+    title: 'Clause de Non-Responsabilité Médicale et Financière',
+    description: 'Consultez la clause de non-responsabilité médicale et financière de Nexus Calculator. Tous les outils et calculatrices sont fournis à des fins éducatives uniquement.',
+    home: 'Accueil',
+    crumb: 'Clause de Non-Responsabilité',
+    h1: 'Clause de Non-Responsabilité Médicale et Financière',
+    subtitle: 'Les outils, calculatrices et contenus proposés sur Nexus Calculator sont fournis exclusivement à titre éducatif et informatif et ne constituent aucunement un avis médical, financier ou juridique.',
+  },
+  de: {
+    title: 'Medizinischer & Finanzieller Haftungsausschluss',
+    description: 'Lesen Sie den medizinischen und finanziellen Haftungsausschluss von Nexus Calculator. Alle Tools und Rechner dienen ausschließlich Informations- und Bildungszwecken.',
+    home: 'Startseite',
+    crumb: 'Haftungsausschluss',
+    h1: 'Medizinischer & Finanzieller Haftungsausschluss',
+    subtitle: 'Alle auf Nexus Calculator bereitgestellten Rechner, Werkzeuge und Inhalte dienen ausschließlich Informations- und Bildungszwecken und stellen keine medizinische, finanzielle oder rechtliche Beratung dar.',
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
-
-  const metaByLocale: Record<string, { title: string; description: string }> = {
-    en: {
-      title: 'Medical & Financial Disclaimer | Nexus Tools Platform',
-      description: 'Read the Nexus Tools Medical and Financial Disclaimer. All tools and calculators on this platform are for educational and informational purposes only.',
-    },
-    es: {
-      title: 'Descargo de Responsabilidad Médico y Financiero | Nexus',
-      description: 'Lea el descargo de responsabilidad médico y financiero de Nexus. Todas las herramientas y calculadoras son únicamente para fines informativos y educativos.',
-    },
-    fr: {
-      title: 'Clause de Non-Responsabilité Médicale et Financière | Nexus',
-      description: 'Consultez la clause de non-responsabilité médicale et financière de Nexus. Tous les outils et calculatrices sont fournis à des fins éducatives uniquement.',
-    },
-    de: {
-      title: 'Medizinischer & Finanzieller Haftungsausschluss | Nexus',
-      description: 'Lesen Sie den medizinischen und finanziellen Haftungsausschluss von Nexus. Alle Tools und Rechner dienen ausschließlich Informations- und Bildungszwecken.',
-    },
-  };
 
   const meta = metaByLocale[locale] || metaByLocale.en;
 
@@ -32,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: meta.title,
     description: meta.description,
     robots: {
-      index: locale === 'en',
+      index: true,
       follow: true,
     },
     alternates: getCanonicalAndAlternates('/disclaimer', locale),
@@ -41,7 +60,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function DisclaimerPage({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
-  setRequestLocale(resolvedParams.locale);
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
+  const meta = metaByLocale[locale] || metaByLocale.en;
   return (
     <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
       
@@ -49,10 +70,10 @@ export default async function DisclaimerPage({ params }: { params: Promise<{ loc
       <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
         <ol className="flex items-center space-x-2">
           <li>
-            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
+            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{meta.home}</CustomLink>
           </li>
           <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
-          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">Disclaimer</li>
+          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">{meta.crumb}</li>
         </ol>
       </nav>
 
@@ -61,10 +82,10 @@ export default async function DisclaimerPage({ params }: { params: Promise<{ loc
           <div className="bg-amber-100 dark:bg-amber-900/30 p-3 rounded-xl text-amber-700 dark:text-amber-400">
             <AlertTriangle size={32} />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Medical & Financial Disclaimer</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">{meta.h1}</h1>
         </div>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-          The tools, calculators, and content provided on Nexus Calculator are strictly for educational and informational purposes. They do not constitute professional medical, financial, legal, or tax advice.
+          {meta.subtitle}
         </p>
       </header>
 

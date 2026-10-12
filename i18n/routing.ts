@@ -118,12 +118,6 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-sous-reseau',
       de: '/rechner/subnetz-rechner'
     },
-    '/calculators/password-generator': {
-      en: '/calculators/password-generator',
-      es: '/calculadoras/generador-de-contrasenas',
-      fr: '/calculatrices/generateur-de-mots-de-passe',
-      de: '/rechner/passwort-generator'
-    },
     '/calculators/conversion-calculator': {
       en: '/calculators/conversion-calculator',
       es: '/calculadoras/calculadora-de-conversiones',

@@ -2,7 +2,8 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { getCollectionBySlug, collections } from '../../../../lib/data/collections';
 import { allTools } from '../../../../lib/registry';
-import { Link, routing, resolveIntlHref } from '../../../../i18n/routing';
+import { Link, resolveIntlHref } from '../../../../i18n/routing';
+import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
 import { ChevronRight, Layers, ArrowRight, Code2, Calculator } from 'lucide-react';
 import { Metadata } from 'next';
 
@@ -19,13 +20,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!collection) return {};
 
   const t = collection.translations?.[locale] || collection;
+  const cleanSeoTitle = t.seoTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
-    title: t.seoTitle,
+    title: cleanSeoTitle,
     description: t.seoDescription,
     openGraph: {
-      title: t.seoTitle,
+      title: cleanSeoTitle,
       description: t.seoDescription,
       type: 'website'
     },
@@ -33,11 +35,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-const uiLabels: Record<string, { home: string; collections: string; included: string; toolsCount: string; step: string; openTool: string }> = {
-  en: { home: "Home", collections: "Collections", included: "Included in this bundle", toolsCount: "Tools", step: "Step", openTool: "Open Tool" },
-  es: { home: "Inicio", collections: "Colecciones", included: "Incluido en este paquete", toolsCount: "Herramientas", step: "Paso", openTool: "Abrir Herramienta" },
-  fr: { home: "Accueil", collections: "Collections", included: "Inclus dans ce pack", toolsCount: "Outils", step: "Étape", openTool: "Ouvrir l'Outil" },
-  de: { home: "Startseite", collections: "Sammlungen", included: "In diesem Paket enthalten", toolsCount: "Tools", step: "Schritt", openTool: "Tool öffnen" }
+const uiLabels: Record<string, { home: string; collections: string; included: string; toolsCount: string; step: string; openTool: string; moreCollections: string }> = {
+  en: { home: "Home", collections: "Collections", included: "Included in this bundle", toolsCount: "Tools", step: "Step", openTool: "Open Tool", moreCollections: "More Curated Toolkits & Bundles" },
+  es: { home: "Inicio", collections: "Colecciones", included: "Incluido en este paquete", toolsCount: "Herramientas", step: "Paso", openTool: "Abrir Herramienta", moreCollections: "Más Colecciones y Paquetes de Herramientas" },
+  fr: { home: "Accueil", collections: "Collections", included: "Inclus dans ce pack", toolsCount: "Outils", step: "Étape", openTool: "Ouvrir l'Outil", moreCollections: "Plus de Packs et Collections d'Outils" },
+  de: { home: "Startseite", collections: "Sammlungen", included: "In diesem Paket enthalten", toolsCount: "Tools", step: "Schritt", openTool: "Tool öffnen", moreCollections: "Weitere Tool-Sammlungen & Pakete" }
 };
 
 export default async function CollectionPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
@@ -51,18 +53,37 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
   const t = collection.translations?.[locale] || collection;
   const ui = uiLabels[locale] || uiLabels.en;
 
-  // Resolve tools from registry
-  const tools = collection.toolSlugs.map(toolSlug => {
-    return allTools.find(t => t.slug === toolSlug);
-  }).filter(Boolean) as typeof allTools;
-
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/collections/[slug]', locale, collection.slug);
+  const sitemapUrl = getCanonicalUrl('/sitemap', locale);
 
-  const collectionsPath = locale === 'es' ? '/es/colecciones' : locale === 'fr' ? '/fr/collections' : locale === 'de' ? '/de/sammlungen' : '/en/collections';
+  // Resolve tools from registry with localized titles and descriptions
+  const tools = collection.toolSlugs
+    .map((toolSlug) => {
+      const found = allTools.find((item) => item.slug === toolSlug);
+      if (!found) return null;
+      const isDevTool = found.type === 'developer-tool';
+      const meta = isDevTool
+        ? getLocalizedToolMeta(found.slug, locale, found.title, found.description)
+        : getLocalizedCalcMeta(found.slug, locale, found.title, found.description);
+      const canonicalToolUrl = getCanonicalUrl(
+        isDevTool ? '/tools/[slug]' : '/calculators/[slug]',
+        locale,
+        found.slug
+      );
+      return {
+        ...found,
+        localizedTitle: meta.title,
+        localizedDescription: meta.description,
+        canonicalToolUrl,
+      };
+    })
+    .filter(Boolean) as Array<(typeof allTools)[number] & { localizedTitle: string; localizedDescription: string; canonicalToolUrl: string }>;
+
+  const otherCollections = collections.filter((c) => c.slug !== collection.slug);
 
   // Schema Generation
   const collectionSchema = {
@@ -74,8 +95,8 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "hasPart": tools.map((tool, index) => ({
       "@type": "WebPage",
       "position": index + 1,
-      "url": `${baseUrl}${resolveIntlHref(tool.href)}`,
-      "name": tool.title
+      "url": tool.canonicalToolUrl,
+      "name": tool.localizedTitle
     }))
   };
 
@@ -84,7 +105,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": ui.home, "item": `${baseUrl}/${locale}` },
-      { "@type": "ListItem", "position": 2, "name": ui.collections, "item": `${baseUrl}${collectionsPath}` },
+      { "@type": "ListItem", "position": 2, "name": ui.collections, "item": sitemapUrl },
       { "@type": "ListItem", "position": 3, "name": t.title, "item": canonicalUrl }
     ]
   };
@@ -99,7 +120,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
           <Link href="/" className="hover:text-[#518231] transition-colors">{ui.home}</Link>
           <ChevronRight size={14} />
-          <span className="text-slate-900 dark:text-slate-200 font-medium">{ui.collections}</span>
+          <Link href="/sitemap" className="hover:text-[#518231] transition-colors">{ui.collections}</Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-slate-200 font-medium">{t.title}</span>
         </nav>
@@ -148,10 +169,10 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
                   )}
                 </div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-[#518231] transition-colors pr-10">
-                  {tool.title}
+                  {tool.localizedTitle}
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-6 flex-1 line-clamp-3">
-                  {tool.description}
+                  {tool.localizedDescription}
                 </p>
                 <div className="flex items-center gap-2 text-sm font-semibold text-[#518231] mt-auto">
                   {ui.openTool} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -160,7 +181,42 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
             ))}
           </div>
         </section>
+
+        {/* Cross-Linking to Other Collections */}
+        {otherCollections.length > 0 && (
+          <section className="pt-8 border-t border-slate-200 dark:border-slate-800">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+              {ui.moreCollections}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {otherCollections.map((other) => {
+                const ot = other.translations?.[locale] || other;
+                return (
+                  <Link
+                    key={other.slug}
+                    href={{ pathname: '/collections/[slug]', params: { slug: other.slug } }}
+                    className="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 hover:shadow-md hover:border-[#518231]/30 transition-all flex flex-col justify-between"
+                  >
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors mb-2">
+                        {ot.title}
+                      </h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                        {ot.description}
+                      </p>
+                    </div>
+                    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-[#518231]">
+                      <span>{other.toolSlugs.length} {ui.toolsCount}</span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        )}
       </main>
     </div>
   );
 }
+

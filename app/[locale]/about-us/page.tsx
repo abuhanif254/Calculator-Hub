@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Link as CustomLink, routing } from '@/i18n/routing';
+import { Link as CustomLink } from '@/i18n/routing';
 import Image from 'next/image';
 import { 
   Calculator, Zap, Globe, ShieldCheck, Mail, Phone, 
@@ -7,19 +7,71 @@ import {
 } from 'lucide-react';
 import { setRequestLocale } from 'next-intl/server';
 
+export const revalidate = false;
+export const dynamicParams = false;
+
+const copyByLocale: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    home: string;
+    crumb: string;
+    h1: string;
+    subtitle: string;
+  }
+> = {
+  en: {
+    title: 'About Us — Trusted Global Calculators & Developer Tools Platform',
+    description: 'Discover the story behind Nexus Calculator. Learn about our mission to provide accurate calculators, developer utilities, PDF tools, and image tools worldwide.',
+    home: 'Home',
+    crumb: 'About Us',
+    h1: 'Empowering Your Decisions with Precision',
+    subtitle:
+      'Nexus Calculator represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free calculators, developer tools, image editors, and PDF utilities directly to your browser.',
+  },
+  es: {
+    title: 'Sobre Nosotros — Plataforma Global de Calculadoras y Herramientas',
+    description: 'Conoce la historia detrás de Nexus Calculator y nuestra misión de ofrecer calculadoras precisas, herramientas para desarrolladores, PDF e imagen gratis.',
+    home: 'Inicio',
+    crumb: 'Sobre Nosotros',
+    h1: 'Impulsando tus Decisiones con Precisión Matemática',
+    subtitle:
+      'Nexus Calculator es una plataforma integral de utilidades web diseñada bajo estándares internacionales para ofrecer calculadoras gratuitas, herramientas de desarrollo, editores de imágenes y utilidades PDF directamente en tu navegador.',
+  },
+  fr: {
+    title: 'À Propos de Nous — Plateforme Mondiale de Calculatrices et Outils',
+    description: 'Découvrez l’histoire de Nexus Calculator et notre mission : fournir des calculatrices précises, des outils développeur, PDF et image gratuits.',
+    home: 'Accueil',
+    crumb: 'À Propos',
+    h1: 'Éclairer Vos Décisions avec une Précision Mathématique',
+    subtitle:
+      'Nexus Calculator est une plateforme complète d’utilitaires web conçue selon les standards internationaux pour offrir des calculatrices gratuites, des outils développeur, des éditeurs d’images et des utilitaires PDF directement dans votre navigateur.',
+  },
+  de: {
+    title: 'Über Uns — Globale Plattform für Rechner & Entwickler-Tools',
+    description: 'Erfahren Sie mehr über Nexus Calculator und unsere Mission, präzise Online-Rechner, Entwickler-Tools, PDF-Werkzeuge und Bildbearbeitung kostenlos bereitzustellen.',
+    home: 'Startseite',
+    crumb: 'Über Uns',
+    h1: 'Präzise Berechnungen für Fundierte Entscheidungen',
+    subtitle:
+      'Nexus Calculator vereint moderne Web-Werkzeuge auf einer leistungsstarken Plattform — mit kostenlosen Finanz- und Wissenschaftsrechnern, Entwickler-Tools, Bildbearbeitung und PDF-Werkzeugen direkt in Ihrem Browser.',
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const c = copyByLocale[locale] || copyByLocale.en;
 
   return {
-    title: 'About Us | Nexus Calculator - Your Trusted Global Tools Platform',
-    description: 'Discover the story behind Nexus Calculator. Learn about our mission to provide accurate calculators, powerful developer utilities, PDF tools, and image tools for users worldwide.',
+    title: c.title,
+    description: c.description,
     alternates: getCanonicalAndAlternates('/about-us', locale),
     openGraph: {
       type: 'website',
-      title: 'About Us | Nexus Calculator Tools Platform',
-      description: 'Nexus Calculator provides world-class computational tools, developer utilities, image editors, and PDF tools. Meet the minds that built this high-performance platform.',
+      title: c.title,
+      description: c.description,
       siteName: 'Nexus Calculator',
     },
   };
@@ -27,20 +79,22 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function AboutUsPage({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
-  setRequestLocale(resolvedParams.locale);
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
+  const c = copyByLocale[locale] || copyByLocale.en;
   return (
     <main className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
       {/* Breadcrumbs */}
       <div className="text-sm text-slate-500 dark:text-slate-400 mb-8">
-        <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
+        <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{c.home}</CustomLink>
         <span className="mx-2">/</span>
-        <span className="text-slate-700 dark:text-slate-300 font-medium">About Us</span>
+        <span className="text-slate-700 dark:text-slate-300 font-medium">{c.crumb}</span>
       </div>
 
       <header className="mb-16 text-center max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">Empowering Your Decisions with Precision</h1>
+        <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">{c.h1}</h1>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed">
-          Nexus Calculator represents the pinnacle of modern web utilities—a comprehensive, international-standard platform engineered to deliver rapid, reliable, and entirely free calculators, developer tools, image editors, and PDF utilities directly to your browser.
+          {c.subtitle}
         </p>
       </header>
 

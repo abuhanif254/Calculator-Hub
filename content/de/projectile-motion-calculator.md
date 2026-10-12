@@ -1,9 +1,9 @@
 ---
-title: "Projectile Motion Calculator | Interactive Physics Simulator"
-description: "Free online Projectile Motion Calculator. Simulate 2D trajectories, calculate range, maximum height, flight time, and velocity vectors with air resistance."
-metaTitle: "Projectile Motion Calculator | Interactive Physics Simulator"
-metaDescription: "Free online Projectile Motion Calculator. Simulate 2D trajectories, calculate range, maximum height, peak time, velocity vectors, and impact parameters with drag."
-metaKeywords: "projectile motion calculator, projectile motion simulator, trajectory calculator, kinematics solver, flight path physics, physics calculator, projectile target simulator, drag calculator"
+title: "Projektilbewegung-Rechner"
+description: "Kostenloser Online-Projektilbewegung-Rechner. Simulieren Sie 2D-Flugbahnen, berechnen Sie Wurfweite, maximale Höhe, Flugzeit und Geschwindigkeitsvektoren."
+metaTitle: "Projektilbewegung-Rechner | Interaktiver 2D-Physik-Simulator"
+metaDescription: "Kostenloser Online-Projektilbewegung-Rechner. Simulieren Sie parabolische 2D-Flugbahnen, Wurfweite, maximale Wurfhöhe, Flugzeit und Luftwiderstand."
+metaKeywords: "projektilbewegung rechner, schiefer wurf rechner, flugbahn simulator, kinematik 2d, wurfweite berechnen, wurfhoehe, physik rechner"
 features:
   - "Instant updates of horizontal range, maximum height, flight time, and landing parameters as you type"
   - "Interactive trajectory plot with customizable target marker and pointer coordinate tracking"

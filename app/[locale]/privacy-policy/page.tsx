@@ -1,37 +1,91 @@
 import { Metadata } from 'next';
-import { Link as CustomLink, routing } from '@/i18n/routing';
+import { Link as CustomLink } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import { ShieldCheck, Eye, GlobeLock, Cookie, Database, Mail, RefreshCcw, FileText, Code, FileCode, ImageIcon, Calculator } from 'lucide-react';
 
+export const revalidate = false;
+export const dynamicParams = false;
+
+const copyByLocale: Record<
+  string,
+  {
+    title: string;
+    description: string;
+    home: string;
+    crumb: string;
+    h1: string;
+    subtitle: string;
+  }
+> = {
+  en: {
+    title: 'Privacy Policy & Client-Side Data Security',
+    description: 'Comprehensive Privacy Policy for Nexus Calculator. Learn how we prioritize data minimization, local browser execution, and GDPR/CCPA compliance.',
+    home: 'Home',
+    crumb: 'Privacy Policy',
+    h1: 'Privacy Policy & Data Security',
+    subtitle:
+      'We believe privacy is a fundamental human right. As a comprehensive ecosystem of developer utilities, PDF processors, image editors, and high-precision calculators, we employ strict data minimization protocols and client-side processing.',
+  },
+  es: {
+    title: 'Política de Privacidad y Seguridad de Datos en el Navegador',
+    description: 'Política de privacidad de Nexus Calculator. Conoce cómo protegemos tus datos mediante procesamiento local en el navegador y cumplimiento con GDPR y CCPA.',
+    home: 'Inicio',
+    crumb: 'Política de Privacidad',
+    h1: 'Política de Privacidad y Seguridad de Datos',
+    subtitle:
+      'Creemos que la privacidad es un derecho fundamental. Nuestro ecosistema de calculadoras, herramientas para desarrolladores, procesadores PDF y editores de imagen aplica estrictos protocolos de minimización de datos y ejecución local.',
+  },
+  fr: {
+    title: 'Politique de Confidentialité et Sécurité des Données Locales',
+    description: 'Politique de confidentialité de Nexus Calculator. Découvrez notre approche de minimisation des données, d’exécution locale dans le navigateur et de conformité RGPD.',
+    home: 'Accueil',
+    crumb: 'Politique de Confidentialité',
+    h1: 'Politique de Confidentialité et Sécurité des Données',
+    subtitle:
+      'La protection de la vie privée est au cœur de notre architecture. Nos calculatrices, outils développeur, utilitaires PDF et éditeurs d’images privilégient le traitement local côté client et la minimisation stricte des données.',
+  },
+  de: {
+    title: 'Datenschutzerklärung & Lokale Datensicherheit im Browser',
+    description: 'Umfassende Datenschutzerklärung für Nexus Calculator. Erfahren Sie mehr über Datenminimierung, lokale Browser-Verarbeitung und DSGVO-Konformität.',
+    home: 'Startseite',
+    crumb: 'Datenschutzerklärung',
+    h1: 'Datenschutzerklärung & Datensicherheit',
+    subtitle:
+      'Datenschutz ist ein Grundrecht. Als umfassende Plattform für Online-Rechner, Entwickler-Tools, PDF-Bearbeitung und Bildwerkzeuge setzen wir auf strikte Datenminimierung und lokale Verarbeitung direkt in Ihrem Browser.',
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const c = copyByLocale[locale] || copyByLocale.en;
 
   return {
-    title: 'Privacy Policy & Data Security | Nexus Tools Platform',
-    description: 'Comprehensive Privacy Policy for Nexus Tools. Learn how we prioritize data minimalization, utilize client-side WebAssembly for PDF and image tools, and comply with GDPR, CCPA, and global privacy standards.',
+    title: c.title,
+    description: c.description,
     keywords: ['privacy policy', 'data security', 'gdpr compliance', 'ccpa compliance', 'nexus tools privacy', 'secure pdf tools', 'secure developer utilities', 'client-side image processing privacy'],
     alternates: getCanonicalAndAlternates('/privacy-policy', locale),
     openGraph: {
       type: 'website',
-      title: 'Privacy Policy | Nexus Tools Platform',
-      description: 'Understanding how we protect your data footprint across our international computational and developer tools platform.',
+      title: c.title,
+      description: c.description,
       siteName: 'Nexus Calculator & Tools',
     },
     twitter: {
       card: 'summary',
-      title: 'Privacy Policy | Nexus Tools',
-      description: 'Review our commitment to your privacy and international data protection standards.',
+      title: c.title,
+      description: c.description,
     }
   };
 }
 
 export default async function PrivacyPolicyPage({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
-  setRequestLocale(resolvedParams.locale);
+  const locale = resolvedParams.locale;
+  setRequestLocale(locale);
+  const c = copyByLocale[locale] || copyByLocale.en;
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
-  const canonicalUrl = getCanonicalUrl('/privacy-policy', resolvedParams.locale);
+  const canonicalUrl = getCanonicalUrl('/privacy-policy', locale);
   return (
     <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
       {/* JSON-LD Structured Data for WebPage */}
@@ -41,8 +95,8 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            "name": "Privacy Policy - Nexus Tools Platform",
-            "description": "Read the Nexus Tools Privacy Policy. Learn about our strict data handling procedures and global compliance standards.",
+            "name": c.title,
+            "description": c.description,
             "url": canonicalUrl,
             "publisher": {
               "@type": "Organization",
@@ -60,10 +114,10 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
       <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
         <ol className="flex items-center space-x-2">
           <li>
-            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">Home</CustomLink>
+            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{c.home}</CustomLink>
           </li>
           <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
-          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">Privacy Policy</li>
+          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">{c.crumb}</li>
         </ol>
       </nav>
 
@@ -72,16 +126,16 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
           <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-slate-700 dark:text-slate-300">
             <ShieldCheck size={32} />
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Privacy Policy & Data Security</h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">{c.h1}</h1>
         </div>
         <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-          We believe privacy is a fundamental human right. As a comprehensive ecosystem of developer utilities, PDF processors, image editors, and high-precision calculators, we employ strict data minimization protocols. This document outlines our transparent approach to data processing, tracking technologies, client-side operations, and international regulatory compliance.
+          {c.subtitle}
         </p>
         <div className="mt-6 inline-flex flex-wrap items-center gap-2 bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
           <RefreshCcw size={16} className="text-slate-500 dark:text-slate-400" />
           <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Effective Date: January 1, 2024</span>
           <span className="text-slate-300 dark:text-slate-700 mx-1">|</span>
-          <span className="text-sm text-slate-500 dark:text-slate-400">Last Modified: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">Last Modified: January 15, 2026</span>
         </div>
       </header>
 
