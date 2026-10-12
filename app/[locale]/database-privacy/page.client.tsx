@@ -790,51 +790,89 @@ export function AnimatedContent() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                title: "What Is PII Scanning?",
-                desc: "Learn how automated PII detection works, what types of sensitive data databases contain, and how to protect against breaches.",
-                href: `/${locale}/guides/what-is-pii-scanning`,
-                badge: "7 min read",
-                color: "violet",
-              },
-              {
-                title: "GDPR Database Compliance",
-                desc: "A technical guide to GDPR Articles 25 and 32 — encryption, pseudonymisation, data minimisation, and audit logging.",
-                href: `/${locale}/guides/gdpr-database-compliance`,
-                badge: "9 min read",
-                color: "blue",
-              },
-              {
-                title: "Data Masking Techniques",
-                desc: "Compare hashing, tokenization, redaction, pseudonymisation, and format-preserving encryption with real-world use cases.",
-                href: `/${locale}/guides/data-masking-techniques`,
-                badge: "8 min read",
-                color: "emerald",
-              },
-              {
-                title: "HIPAA Data De-Identification",
-                desc: "Safe Harbor vs Expert Determination — which 18 identifiers to remove and how to implement de-identification in SQL.",
-                href: `/${locale}/guides/hipaa-data-de-identification`,
-                badge: "8 min read",
-                color: "rose",
-              },
-              {
-                title: "PCI DSS PAN Masking",
-                desc: "How to truncate, tokenize, and hash Primary Account Numbers to descope your systems from PCI DSS compliance.",
-                href: `/${locale}/guides/pci-dss-pan-masking`,
-                badge: "7 min read",
-                color: "amber",
-              },
-              {
-                title: "View All Privacy Guides",
-                desc: "Browse our full library of data privacy, compliance, and database security guides — all written by engineers.",
-                href: `/${locale}/guides`,
-                badge: "5 guides",
-                color: "sky",
-                isViewAll: true,
-              },
-            ].map((guide, i) => (
+            {(() => {
+              const guidesPrefix = locale === "es" ? "guias" : locale === "de" ? "anleitungen" : "guides";
+              const slugMap: Record<string, Record<string, string>> = {
+                "what-is-pii-scanning": {
+                  en: "what-is-pii-scanning",
+                  es: "que-es-el-escaneo-pii",
+                  fr: "quest-ce-que-le-scan-pii",
+                  de: "was-ist-pii-scanning",
+                },
+                "gdpr-database-compliance": {
+                  en: "gdpr-database-compliance",
+                  es: "cumplimiento-gdpr-base-datos",
+                  fr: "conformite-rgpd-base-de-donnees",
+                  de: "dsgvo-datenbankkonformitaet",
+                },
+                "data-masking-techniques": {
+                  en: "data-masking-techniques",
+                  es: "tecnicas-enmascaramiento-datos",
+                  fr: "techniques-masquage-donnees",
+                  de: "datenmaskierungstechniken",
+                },
+                "hipaa-data-de-identification": {
+                  en: "hipaa-data-de-identification",
+                  es: "desidentificacion-datos-hipaa",
+                  fr: "de-identification-donnees-hipaa",
+                  de: "hipaa-datenanonymisierung",
+                },
+                "pci-dss-pan-masking": {
+                  en: "pci-dss-pan-masking",
+                  es: "enmascaramiento-pan-pci-dss",
+                  fr: "masquage-pan-pci-dss",
+                  de: "pci-dss-pan-maskierung",
+                },
+              };
+              const guideUrl = (enSlug: string) =>
+                `/${locale}/${guidesPrefix}/${slugMap[enSlug]?.[locale] || enSlug}`;
+
+              return [
+                {
+                  title: "What Is PII Scanning?",
+                  desc: "Learn how automated PII detection works, what types of sensitive data databases contain, and how to protect against breaches.",
+                  href: guideUrl("what-is-pii-scanning"),
+                  badge: "7 min read",
+                  color: "violet",
+                },
+                {
+                  title: "GDPR Database Compliance",
+                  desc: "A technical guide to GDPR Articles 25 and 32 — encryption, pseudonymisation, data minimisation, and audit logging.",
+                  href: guideUrl("gdpr-database-compliance"),
+                  badge: "9 min read",
+                  color: "blue",
+                },
+                {
+                  title: "Data Masking Techniques",
+                  desc: "Compare hashing, tokenization, redaction, pseudonymisation, and format-preserving encryption with real-world use cases.",
+                  href: guideUrl("data-masking-techniques"),
+                  badge: "8 min read",
+                  color: "emerald",
+                },
+                {
+                  title: "HIPAA Data De-Identification",
+                  desc: "Safe Harbor vs Expert Determination — which 18 identifiers to remove and how to implement de-identification in SQL.",
+                  href: guideUrl("hipaa-data-de-identification"),
+                  badge: "8 min read",
+                  color: "rose",
+                },
+                {
+                  title: "PCI DSS PAN Masking",
+                  desc: "How to truncate, tokenize, and hash Primary Account Numbers to descope your systems from PCI DSS compliance.",
+                  href: guideUrl("pci-dss-pan-masking"),
+                  badge: "7 min read",
+                  color: "amber",
+                },
+                {
+                  title: "View All Privacy Guides",
+                  desc: "Browse our full library of data privacy, compliance, and database security guides — all written by engineers.",
+                  href: `/${locale}/${guidesPrefix}`,
+                  badge: "5 guides",
+                  color: "sky",
+                  isViewAll: true,
+                },
+              ];
+            })().map((guide, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 16 }}

@@ -1454,7 +1454,24 @@ export const routing = defineRouting({
 const {Link: IntlLink, redirect, usePathname, useRouter} = createNavigation(routing);
 
 export function Link(props: React.ComponentProps<typeof IntlLink>) {
-  return React.createElement(IntlLink, { prefetch: false, ...props });
+  let normalizedHref: any = props.href;
+  if (typeof props.href === 'string') {
+    normalizedHref = resolveIntlHref(props.href);
+  } else if (
+    props.href &&
+    typeof props.href === 'object' &&
+    'pathname' in props.href &&
+    props.href.pathname === '/calculators/[slug]' &&
+    'params' in props.href &&
+    props.href.params &&
+    typeof (props.href.params as any).slug === 'string'
+  ) {
+    const staticCalcPath = `/calculators/${(props.href.params as any).slug}`;
+    if (staticCalcPath in routing.pathnames) {
+      normalizedHref = { pathname: staticCalcPath as any };
+    }
+  }
+  return React.createElement(IntlLink, { prefetch: false, ...props, href: normalizedHref });
 }
 
 export { redirect, usePathname, useRouter };
@@ -1468,34 +1485,45 @@ export function resolveIntlHref(hrefStr: string): any {
   // If hrefStr is missing (e.g. corrupted localStorage data missing the href property),
   // fallback to root to prevent next-intl's Link from crashing during destructuring.
   if (!hrefStr || typeof hrefStr !== 'string') return '/';
-  
+  if (
+    hrefStr.startsWith('http://') ||
+    hrefStr.startsWith('https://') ||
+    hrefStr.startsWith('#') ||
+    hrefStr.startsWith('mailto:')
+  ) {
+    return hrefStr;
+  }
+
+  // Strip accidental locale prefix if present (e.g. /en/tools/foo -> /tools/foo)
+  const cleanHref = hrefStr.replace(/^\/(en|es|fr|de)(?=\/|$)/, '') || '/';
+
   // If the exact path is explicitly statically mapped in routing.pathnames,
-  // we MUST return the string directly. Using the dynamic object catch-all
-  // for a statically mapped path causes next-intl to crash.
-  if (hrefStr in routing.pathnames) {
-    return { pathname: hrefStr as any };
+  // we MUST return the pathname key directly so next-intl uses the localized static route.
+  if (cleanHref in routing.pathnames) {
+    return { pathname: cleanHref as any };
   }
-  
-  if (hrefStr.startsWith('/calculators/category/')) {
-    return { pathname: '/calculators/category/[category]', params: { category: hrefStr.replace('/calculators/category/', '') } };
+
+  if (cleanHref.startsWith('/calculators/category/')) {
+    return { pathname: '/calculators/category/[category]', params: { category: cleanHref.replace('/calculators/category/', '') } };
   }
-  if (hrefStr.startsWith('/calculators/')) {
-    // Check if it's explicitly statically mapped first?
-    // It's safer to just use the dynamic pattern since they resolve identically.
-    return { pathname: '/calculators/[slug]', params: { slug: hrefStr.replace('/calculators/', '') } };
+  if (cleanHref.startsWith('/calculators/')) {
+    return { pathname: '/calculators/[slug]', params: { slug: cleanHref.replace('/calculators/', '') } };
   }
-  if (hrefStr.startsWith('/tools/')) {
-    return { pathname: '/tools/[slug]', params: { slug: hrefStr.replace('/tools/', '') } };
+  if (cleanHref.startsWith('/tools/')) {
+    return { pathname: '/tools/[slug]', params: { slug: cleanHref.replace('/tools/', '') } };
   }
-  if (hrefStr.startsWith('/collections/')) {
-    return { pathname: '/collections/[slug]', params: { slug: hrefStr.replace('/collections/', '') } };
+  if (cleanHref.startsWith('/guides/')) {
+    return { pathname: '/guides/[slug]', params: { slug: cleanHref.replace('/guides/', '') } };
   }
-  if (hrefStr.startsWith('/compare/')) {
-    return { pathname: '/compare/[slug]', params: { slug: hrefStr.replace('/compare/', '') } };
+  if (cleanHref.startsWith('/collections/')) {
+    return { pathname: '/collections/[slug]', params: { slug: cleanHref.replace('/collections/', '') } };
   }
-  if (hrefStr.startsWith('/community/')) {
-    const parts = hrefStr.replace('/community/', '').split('/');
-    if (parts.length === 1 && !['new', 'messages', 'admin'].includes(parts[0])) {
+  if (cleanHref.startsWith('/compare/')) {
+    return { pathname: '/compare/[slug]', params: { slug: cleanHref.replace('/compare/', '') } };
+  }
+  if (cleanHref.startsWith('/community/')) {
+    const parts = cleanHref.replace('/community/', '').split('/');
+    if (parts.length === 1 && !['new', 'messages', 'admin', 'hall-of-fame', 'leaderboard', 'settings'].includes(parts[0])) {
       return { pathname: '/community/[slug]', params: { slug: parts[0] } };
     } else if (parts.length === 2 && parts[1] === 'edit') {
       return { pathname: '/community/[slug]/edit', params: { slug: parts[0] } };
@@ -1507,6 +1535,7 @@ export function resolveIntlHref(hrefStr: string): any {
       return { pathname: '/community/category/[slug]', params: { slug: parts[1] } };
     }
   }
-  
-  return { pathname: hrefStr as any };
+
+  return { pathname: cleanHref as any };
 }
+

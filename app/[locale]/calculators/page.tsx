@@ -104,7 +104,7 @@ export default async function AllCalculatorsPage({
       "@type": "ListItem",
       "position": idx + 1,
       "name": cat.title,
-      "url": `${baseUrl}/${locale}/calculators/category/${cat.id}`,
+      "url": getCanonicalUrl('/calculators/category/[category]', locale, cat.id),
     })),
   };
 

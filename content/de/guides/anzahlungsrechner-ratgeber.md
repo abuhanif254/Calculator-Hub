@@ -5,7 +5,7 @@ description: "Entdecken Sie die Wahrheit über private Hypothekenversicherungen 
 
 # Der 20%-Mythos: Wie viel Anzahlung brauchen Sie wirklich?
 
-20 % für ein Haus zu sparen, dauert Jahre, in denen die Preise steigen. Die Wahrheit ist: Sie brauchen keine 20 %. Wir erklären Ihre Optionen und unseren [Anzahlungsrechner](/de/rechner/anzahlungsrechner).
+20 % für ein Haus zu sparen, dauert Jahre, in denen die Preise steigen. Die Wahrheit ist: Sie brauchen keine 20 %. Wir erklären Ihre Optionen und unseren [Anzahlungsrechner](/de/rechner/anzahlung-rechner).
 
 ---
 

@@ -48,7 +48,7 @@ export const imageToBase64Config: ToolConfig = {
     { name: "Image Converter", slug: "image-converter" },
     { name: "SVG Optimizer", slug: "svg-optimizer" },
     { name: "JSON Formatter", slug: "json-formatter" },
-    { name: "URL Encoder Decoder", slug: "url-encoder-decoder" }
+    { name: "URL Encoder Decoder", slug: "url-encoder" }
   ],
   examples: [],
   faq: [

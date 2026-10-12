@@ -30,6 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function TermsOfUsePage({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/terms-of-use', resolvedParams.locale);
   return (
     <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
       {/* JSON-LD Structured Data for WebPage */}
@@ -41,13 +43,13 @@ export default async function TermsOfUsePage({ params }: { params: Promise<{ loc
             "@type": "WebPage",
             "name": "Terms of Use - Nexus Tools Platform",
             "description": "Read the Terms of Use and legal disclaimers for Nexus Tools, outlining user rights and platform rules for our expansive utility suite.",
-            "url": "https://nexuscalculator.net/terms-of-use",
+            "url": canonicalUrl,
             "publisher": {
               "@type": "Organization",
               "name": "Nexus",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://nexuscalculator.net/icons/icon-512x512.png"
+                "url": "https://www.nexuscalculator.net/icons/icon-512x512.png"
               }
             }
           })

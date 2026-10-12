@@ -5,7 +5,7 @@ description: "Lernen Sie, wie man zukünftige Zahlungsströme diskontiert, den E
 
 # Die Mathematik des Barwerts: Machen Sie ein gutes Investment?
 
-100.000 $ heute oder 150.000 $ in zehn Jahren – was ist besser? Finanzprofis nutzen den **Barwert (PV)**, um das zu beantworten. Wir erklären die Abzinsung (Diskontierung) und unseren [Barwert-Rechner](/de/rechner/barwert-rechner).
+100.000 $ heute oder 150.000 $ in zehn Jahren – was ist besser? Finanzprofis nutzen den **Barwert (PV)**, um das zu beantworten. Wir erklären die Abzinsung (Diskontierung) und unseren [Barwert-Rechner](/de/rechner/barwertrechner).
 
 ---
 

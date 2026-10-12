@@ -114,11 +114,16 @@ export default async function PdfToolsPage({
     "name": "PDF Tools List",
     "itemListElement": allPdfItems.slice(0, 30).map((item, idx) => {
       const rawHref = "slug" in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name);
+      const itemUrl = rawHref.startsWith('/tools/')
+        ? getCanonicalUrl('/tools/[slug]', locale, rawHref.replace('/tools/', ''))
+        : rawHref.startsWith('/calculators/')
+          ? getCanonicalUrl('/calculators/[slug]', locale, rawHref.replace('/calculators/', ''))
+          : getCanonicalUrl(rawHref, locale);
       return {
         "@type": "ListItem",
         "position": idx + 1,
         "name": item.name,
-        "url": `${baseUrl}/${locale}${rawHref.startsWith('/') ? rawHref : `/${rawHref}`}`,
+        "url": itemUrl,
       };
     }),
   };

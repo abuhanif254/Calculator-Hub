@@ -104,7 +104,7 @@ const softwareAppSchema = {
     name: "Nexus Calculator Hub",
     url: "https://www.nexuscalculator.net",
   },
-  screenshot: "https://nexuscalculator.net/og-database-privacy.jpg",
+  screenshot: "https://www.nexuscalculator.net/og-database-privacy.jpg",
 };
 
 // FAQ JSON-LD schema — enables rich FAQ snippets in Google results
@@ -164,13 +164,13 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 1,
       name: "Nexus Calculator",
-      item: "https://nexuscalculator.net/en",
+      item: "https://www.nexuscalculator.net/en",
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Data Privacy Platform",
-      item: "https://nexuscalculator.net/en/database-privacy",
+      item: "https://www.nexuscalculator.net/en/database-privacy",
     },
   ],
 };

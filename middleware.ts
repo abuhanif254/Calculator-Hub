@@ -61,8 +61,16 @@ const DEPRECATED_CALC_REDIRECTS: Record<string, string> = {
   'lean-body-mass-calculator': '/en/calculators/body-fat-calculator',
   'pythagorean-theorem-calculator': '/en/calculators/category/math',
   'time-zone-calculator': '/en/calculators/time-calculator',
-  'savings-calculator': '/en/calculators/investment-calculator',
-  'mutual-fund-calculator': '/en/calculators/investment-calculator',
+};
+
+// Hyphenated or bare legacy calculator path aliases → canonical path
+const LEGACY_CALC_ALIAS_REDIRECTS: Record<string, string> = {
+  '/de/rechner/anleihen-rechner': '/de/rechner/anleihenrechner',
+  '/de/rechner/anzahlungsrechner': '/de/rechner/anzahlung-rechner',
+  '/de/rechner/barwert-rechner': '/de/rechner/barwertrechner',
+  '/de/rechner/binaer-rechner': '/de/rechner/binarrechner',
+  '/mole-calculator': '/en/calculators/mole-calculator',
+  '/stoichiometry-calculator': '/en/calculators/stoichiometry-calculator',
 };
 
 // Cross-locale community path aliases (e.g. /fr/community → /fr/communaute)
@@ -90,11 +98,31 @@ const LOCALE_CALC_PREFIX: Record<string, string> = {
   es: 'calculadoras',
 };
 
+// Cross-locale calculator category prefixes
+const LOCALE_CALC_CATEGORY_PREFIX: Record<string, string> = {
+  de: 'rechner/kategorie',
+  fr: 'calculatrices/categorie',
+  es: 'calculadoras/categoria',
+};
+
 // Cross-locale guides path prefixes — when a locale uses /guides/ instead of
 // its localized prefix (anleitungen / guias; fr uses /guides/ same as en).
 const LOCALE_GUIDES_PREFIX: Record<string, string> = {
   de: 'anleitungen',
   es: 'guias',
+};
+
+// Cross-locale collections path prefixes (fr uses /collections/ same as en)
+const LOCALE_COLLECTIONS_PREFIX: Record<string, string> = {
+  de: 'sammlungen',
+  es: 'colecciones',
+};
+
+// Cross-locale compare path prefixes
+const LOCALE_COMPARE_PREFIX: Record<string, string> = {
+  de: 'vergleichen',
+  fr: 'comparer',
+  es: 'comparar',
 };
 
 // Localized paths for static pages — avoids next-intl doing an extra internal
@@ -123,6 +151,16 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   // sitemap
   '/es/sitemap': '/es/mapa-del-sitio',
   '/fr/sitemap': '/fr/plan-du-site',
+  // dashboard
+  '/es/dashboard': '/es/panel',
+  '/fr/dashboard': '/fr/tableau-de-bord',
+  // login & signup
+  '/es/login': '/es/iniciar-sesion',
+  '/fr/login': '/fr/connexion',
+  '/de/login': '/de/anmelden',
+  '/es/signup': '/es/registrarse',
+  '/fr/signup': '/fr/inscription',
+  '/de/signup': '/de/registrieren',
   // image hub cross-locale redirects
   '/es/image': '/es/imagen',
   '/de/image': '/de/bild',
@@ -160,8 +198,8 @@ function getCanonicalPath(pathname: string): string | null {
   const guideRedirectTarget = GUIDE_REDIRECT_MAP[pathname];
   if (guideRedirectTarget) return guideRedirectTarget;
 
-  // 1b. Legacy or misspelled tool URLs (O(1) lookup)
-  const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname];
+  // 1b. Legacy or misspelled tool & calculator alias URLs (O(1) lookup)
+  const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname] || LEGACY_CALC_ALIAS_REDIRECTS[pathname];
   if (legacyToolTarget) return legacyToolTarget;
 
   // 1c. Truly deprecated or merged calculator redirects
@@ -209,7 +247,14 @@ function getCanonicalPath(pathname: string): string | null {
     return `/${locale}/community`;
   }
 
-  // 6. Cross-locale /[locale]/calculators/[slug] → localized prefix
+  // 6a. Cross-locale /[locale]/calculators/category/[cat] → localized category path
+  const calcCategoryMismatch = pathname.match(/^\/(de|fr|es)\/(?:calculators|rechner|calculatrices|calculadoras)\/category\/(.+)$/);
+  if (calcCategoryMismatch) {
+    const [, locale, cat] = calcCategoryMismatch;
+    return `/${locale}/${LOCALE_CALC_CATEGORY_PREFIX[locale]}/${cat}`;
+  }
+
+  // 6b. Cross-locale /[locale]/calculators/[slug] → localized prefix
   const calculatorsMismatch = pathname.match(/^\/(de|fr|es)\/calculators\/(.+)$/);
   if (calculatorsMismatch) {
     const [, locale, slug] = calculatorsMismatch;
@@ -230,6 +275,22 @@ function getCanonicalPath(pathname: string): string | null {
   if (guidesMismatch) {
     const [, locale, slug] = guidesMismatch;
     const prefix = LOCALE_GUIDES_PREFIX[locale];
+    return `/${locale}/${prefix}/${slug}`;
+  }
+
+  // 8b. Cross-locale /[locale]/collections/[slug] → localized prefix
+  const collectionsMismatch = pathname.match(/^\/(de|es)\/collections\/(.+)$/);
+  if (collectionsMismatch) {
+    const [, locale, slug] = collectionsMismatch;
+    const prefix = LOCALE_COLLECTIONS_PREFIX[locale];
+    return `/${locale}/${prefix}/${slug}`;
+  }
+
+  // 8c. Cross-locale /[locale]/compare/[slug] → localized prefix
+  const compareMismatch = pathname.match(/^\/(de|fr|es)\/compare\/(.+)$/);
+  if (compareMismatch) {
+    const [, locale, slug] = compareMismatch;
+    const prefix = LOCALE_COMPARE_PREFIX[locale];
     return `/${locale}/${prefix}/${slug}`;
   }
 
@@ -257,10 +318,13 @@ function getCanonicalPath(pathname: string): string | null {
     pathname.startsWith('/compare/') ||
     pathname.startsWith('/database-privacy') ||
     pathname === '/about-us' ||
+    pathname === '/contact-us' ||
     pathname === '/privacy-policy' ||
     pathname === '/terms-of-use' ||
     pathname === '/disclaimer' ||
     pathname === '/sitemap' ||
+    pathname === '/search' ||
+    pathname === '/dashboard' ||
     pathname === '/login' ||
     pathname === '/signup'
   ) {

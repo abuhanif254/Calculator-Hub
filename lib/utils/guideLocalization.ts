@@ -15,10 +15,15 @@ export function getLocalizedGuide(guide: Guide, locale: string): Guide {
     
     return {
       ...guide,
+      slug: currentSlug,
       title: data.title || guide.title,
       description: data.description || guide.description,
     };
   }
   
-  return guide;
+  return {
+    ...guide,
+    slug: currentSlug,
+  };
 }
+

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useParams } from 'next/navigation';
 import { Link } from '@/i18n/routing';
 import {
   ChevronDown,
@@ -62,6 +63,8 @@ interface GuidesSidebarProps {
 }
 
 export function GuidesSidebar({ activeSlug }: GuidesSidebarProps) {
+  const params = useParams();
+  const locale = (typeof params?.locale === 'string' ? params.locale : 'en') as 'en' | 'es' | 'fr' | 'de';
   const [query, setQuery] = useState('');
   const [openCategories, setOpenCategories] = useState<Set<GuideCategory>>(
     new Set(['Finance', 'Health', 'Math & Science', 'Privacy & Security', 'Design & Media', 'Productivity & Utilities'])
@@ -148,11 +151,12 @@ export function GuidesSidebar({ activeSlug }: GuidesSidebarProps) {
                 {filteredGuides.map((guide) => {
                   const meta = CATEGORY_META[guide.category];
                   const Icon = meta.icon;
-                  const isActive = guide.slug === activeSlug;
+                  const localizedSlug = guide.slugs?.[locale] || guide.slug;
+                  const isActive = guide.slug === activeSlug || localizedSlug === activeSlug;
                   return (
                     <li key={guide.slug}>
                       <Link
-                        href={{ pathname: '/guides/[slug]', params: { slug: guide.slug } }}
+                        href={{ pathname: '/guides/[slug]', params: { slug: localizedSlug } }}
                         className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all duration-200 group ${
                           isActive
                             ? 'bg-[#518231]/10 text-[#518231] dark:text-[#6fa844] font-medium'
@@ -203,13 +207,14 @@ export function GuidesSidebar({ activeSlug }: GuidesSidebarProps) {
                 {isOpen && (
                   <ul className="mt-0.5 space-y-0.5 ml-2 pl-3 border-l border-slate-100 dark:border-white/5">
                     {guides.map((guide) => {
-                      const isActive = guide.slug === activeSlug;
+                      const localizedSlug = guide.slugs?.[locale] || guide.slug;
+                      const isActive = guide.slug === activeSlug || localizedSlug === activeSlug;
                       return (
                         <li key={guide.slug}>
                           <Link
                             href={{
                               pathname: '/guides/[slug]',
-                              params: { slug: guide.slug },
+                              params: { slug: localizedSlug },
                             }}
                             className={`flex items-center gap-2 px-2.5 py-1.5 rounded-md text-sm transition-all duration-200 leading-snug ${
                               isActive

@@ -18,7 +18,7 @@ export default function GlobalNotFound() {
           <h1 style={{ fontSize: '3rem', margin: '0' }}>404</h1>
           <p>Page Not Found</p>
           <a
-            href="/"
+            href="/en"
             style={{ marginTop: '1rem', color: '#518231', textDecoration: 'none' }}
           >
             Return Home

@@ -246,11 +246,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const baseUrl = (process.env.APP_URL || "https://www.nexuscalculator.net")
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
-  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
-  const canonicalUrl = getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, resolvedParams.slug);
+  const { getCanonicalUrl, canonicalizeInternalHref } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, calc.slug);
   const categoryUrl = categoryDef
     ? getCanonicalUrl('/calculators/category/[category]', resolvedParams.locale, categoryDef.id)
-    : `${baseUrl}/${resolvedParams.locale}/sitemap`;
+    : getCanonicalUrl('/sitemap', resolvedParams.locale);
 
   // Reverse lookup: check if an educational guide exists for this calculator
   const relatedGuide = getGuideForCalculator(calc.slug);
@@ -333,7 +333,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     "url": canonicalUrl,
     "inLanguage": resolvedParams.locale,
     "learningResourceType": "Math Solver",
-    "usageInfo": `${baseUrl}/${resolvedParams.locale}/privacy-policy`,
+    "usageInfo": getCanonicalUrl('/privacy-policy', resolvedParams.locale),
     ...(formulaDef && (formulaDef.latex || formulaDef.formula) ? {
       "mathExpression": formulaDef.latex || formulaDef.formula
     } : {}),
@@ -586,6 +586,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <article className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 prose prose-slate dark:prose-invert max-w-none lg:prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[#518231] prose-img:rounded-xl">
               <ReactMarkdown
                 components={{
+                  a({ node, href, children, ...props }: any) {
+                    const resolvedHref = canonicalizeInternalHref(href, resolvedParams.locale);
+                    return (
+                      <a href={resolvedHref} {...props}>
+                        {children}
+                      </a>
+                    );
+                  },
                   code({ node, className, children, ...props }: any) {
                     const match = /language-(\w+)/.exec(className || '');
                     if (match && match[1] === 'mermaid') {

@@ -30,6 +30,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function PrivacyPolicyPage({ params }: { params: Promise<{ locale: string }> }) {
   const resolvedParams = await params;
   setRequestLocale(resolvedParams.locale);
+  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const canonicalUrl = getCanonicalUrl('/privacy-policy', resolvedParams.locale);
   return (
     <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
       {/* JSON-LD Structured Data for WebPage */}
@@ -41,13 +43,13 @@ export default async function PrivacyPolicyPage({ params }: { params: Promise<{ 
             "@type": "WebPage",
             "name": "Privacy Policy - Nexus Tools Platform",
             "description": "Read the Nexus Tools Privacy Policy. Learn about our strict data handling procedures and global compliance standards.",
-            "url": "https://nexuscalculator.net/privacy-policy",
+            "url": canonicalUrl,
             "publisher": {
               "@type": "Organization",
               "name": "Nexus",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://nexuscalculator.net/icons/icon-512x512.png"
+                "url": "https://www.nexuscalculator.net/icons/icon-512x512.png"
               }
             }
           })

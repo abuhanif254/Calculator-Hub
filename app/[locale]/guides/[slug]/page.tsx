@@ -27,7 +27,7 @@ import {
   getAdjacentGuides,
   type GuideCategory,
 } from '@/lib/data/guides';
-import { getCanonicalAndAlternates, getCanonicalUrl } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { AdSenseContainer } from '@/app/components/AdSenseContainer';
@@ -94,8 +94,9 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
     if (!fs.existsSync(filePath)) return null;
   }
 
-  if (guideMarkdownCache.has(filePath)) {
-    return guideMarkdownCache.get(filePath)!;
+  const cacheKey = `${locale}:${filePath}`;
+  if (guideMarkdownCache.has(cacheKey)) {
+    return guideMarkdownCache.get(cacheKey)!;
   }
 
   const raw = fs.readFileSync(filePath, 'utf-8');
@@ -119,9 +120,16 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
     return `<div class="table-wrapper overflow-x-auto">${tableHtml}</div>`;
   };
 
-  const htmlContent = marked(content, { renderer }) as string;
+  const rawHtml = marked(content, { renderer }) as string;
+  const htmlContent = rawHtml.replace(
+    /<a\s+([^>]*?)href=["']([^"']+)["']([^>]*)>/gi,
+    (_match, before, href, after) => {
+      const canonicalHref = canonicalizeInternalHref(href, locale);
+      return `<a ${before}href="${canonicalHref}"${after}>`;
+    }
+  );
   const res = { content, htmlContent };
-  guideMarkdownCache.set(filePath, res);
+  guideMarkdownCache.set(cacheKey, res);
   return res;
 }
 

@@ -117,7 +117,7 @@ export default async function AllToolsPage({
       "@type": "ListItem",
       "position": idx + 1,
       "name": tool.title,
-      "url": `${baseUrl}/${locale}/tools/${tool.slug}`,
+      "url": getCanonicalUrl('/tools/[slug]', locale, tool.slug),
     })),
   };
 

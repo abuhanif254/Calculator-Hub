@@ -21,7 +21,7 @@ import {
   type Guide,
   type GuideCategory,
 } from '@/lib/data/guides';
-import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, getCanonicalUrl } from '@/lib/utils/seoUtils';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
 // SSG configuration — fully static, no revalidation needed.
@@ -63,7 +63,7 @@ export async function generateMetadata({
             '@type': 'ListItem',
             position: idx + 1,
             name: locGuide.title,
-            url: `https://www.nexuscalculator.net/${locale}/guides/${locGuide.slug}`,
+            url: getCanonicalUrl('/guides/[slug]', locale, g.slug),
           };
         }),
       }),

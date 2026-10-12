@@ -5,7 +5,7 @@ description: "Lernen Sie Binärcode zu lesen, warum Computer nur 1 und 0 verwend
 
 # Binärsystem verstehen: Wie Computer denken
 
-Jedes Foto auf Ihrem Handy besteht aus einer langen Folge von Einsen und Nullen. In diesem Ratgeber erklären wir das Basis-2-System und unseren [Binär-Rechner](/de/rechner/binaer-rechner).
+Jedes Foto auf Ihrem Handy besteht aus einer langen Folge von Einsen und Nullen. In diesem Ratgeber erklären wir das Basis-2-System und unseren [Binär-Rechner](/de/rechner/binarrechner).
 
 ---
 

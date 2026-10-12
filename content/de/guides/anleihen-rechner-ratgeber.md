@@ -5,7 +5,7 @@ description: "Lernen Sie Kuponraten, Rendite auf Endfälligkeit, wie Anleihekurs
 
 # Anleihen verstehen: Das Fundament eines sicheren Portfolios
 
-Um ein Aktienportfolio zu stabilisieren, kauft man **Anleihen (Bonds)**. Eine Anleihe ist ein Kredit, den Sie einem Staat oder Unternehmen geben. Dafür erhalten Sie Zinsen. Wir erklären die Funktionsweise und unseren [Anleihen-Rechner](/de/rechner/anleihen-rechner).
+Um ein Aktienportfolio zu stabilisieren, kauft man **Anleihen (Bonds)**. Eine Anleihe ist ein Kredit, den Sie einem Staat oder Unternehmen geben. Dafür erhalten Sie Zinsen. Wir erklären die Funktionsweise und unseren [Anleihen-Rechner](/de/rechner/anleihenrechner).
 
 ---
 

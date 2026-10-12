@@ -46,7 +46,7 @@ export const base64ToImageConfig: ToolConfig = {
   relatedTools: [
     { name: "Image to Base64", slug: "image-to-base64" },
     { name: "JSON Formatter", slug: "json-formatter" },
-    { name: "URL Encoder Decoder", slug: "url-encoder-decoder" },
+    { name: "URL Encoder Decoder", slug: "url-encoder" },
     { name: "Image Converter", slug: "image-converter" },
     { name: "SVG Optimizer", slug: "svg-optimizer" },
     { name: "JWT Decoder", slug: "jwt-decoder" }

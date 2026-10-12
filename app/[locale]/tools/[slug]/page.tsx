@@ -441,7 +441,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   }
 
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '');
-  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalUrl, canonicalizeInternalHref } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/tools/[slug]', locale, config.slug);
 
   const ToolComponent = toolComponents[config.slug];
@@ -461,10 +461,8 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const pageUseCases = mdData?.data?.useCases || config.useCases;
 
   const t = toolPageTranslations[locale] || toolPageTranslations.en;
-  const homePath = locale === 'en' ? '/' : `/${locale}`;
   const toolsSegment = toolPathSegments[locale] || 'tools';
-  const toolsPath = locale === 'en' ? '/tools' : `/${locale}/${toolsSegment}`;
-  const currentToolHref = locale === 'en' ? `/tools/${config.slug}` : `/${locale}/${toolsSegment}/${config.slug}`;
+  const currentToolHref = `/${locale}/${toolsSegment}/${config.slug}`;
 
   // Generate Schemas
   const breadcrumbSchema = {
@@ -532,9 +530,9 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
       {/* Breadcrumb */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
-          <Link href={homePath as any} className="hover:text-[#518231] transition-colors">{t.home}</Link>
+          <Link href="/" className="hover:text-[#518231] transition-colors">{t.home}</Link>
           <ChevronRight size={14} />
-          <Link href={toolsPath as any} className="hover:text-[#518231] transition-colors">{t.developerTools}</Link>
+          <Link href="/tools" className="hover:text-[#518231] transition-colors">{t.developerTools}</Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-slate-200 font-medium">{pageTitle}</span>
         </nav>
@@ -595,7 +593,20 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           <div className="lg:col-span-2 space-y-12">
             {/* Explanation / SEO Article */}
             <section className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-[#518231] prose-a:text-[#518231]">
-              <ReactMarkdown>{pageLongDesc}</ReactMarkdown>
+              <ReactMarkdown
+                components={{
+                  a({ node, href, children, ...props }: any) {
+                    const resolvedHref = canonicalizeInternalHref(href, locale);
+                    return (
+                      <a href={resolvedHref} {...props}>
+                        {children}
+                      </a>
+                    );
+                  },
+                }}
+              >
+                {pageLongDesc}
+              </ReactMarkdown>
             </section>
 
             {/* In-Article Horizontal Ad (Non-intrusive) */}
@@ -708,15 +719,16 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{t.relatedTools}</h3>
               <div className="space-y-2">
-                {config.relatedTools.map((tool, idx) => {
-                  const toolHref = locale === 'en' ? `/tools/${tool.slug}` : `/${locale}/${toolsSegment}/${tool.slug}`;
-                  return (
-                    <Link key={idx} href={toolHref as any} className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg hover:shadow-md transition-all border border-slate-100 dark:border-slate-800 group">
-                      <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-[#518231] transition-colors">{tool.name}</span>
-                      <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all" />
-                    </Link>
-                  );
-                })}
+                {config.relatedTools.map((tool, idx) => (
+                  <Link
+                    key={idx}
+                    href={{ pathname: '/tools/[slug]', params: { slug: tool.slug } }}
+                    className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg hover:shadow-md transition-all border border-slate-100 dark:border-slate-800 group"
+                  >
+                    <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-[#518231] transition-colors">{tool.name}</span>
+                    <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all" />
+                  </Link>
+                ))}
               </div>
             </div>
 
