@@ -5,7 +5,7 @@ description: "Aprenda cómo construir un fondo de emergencia, qué es el APY y u
 
 # El Poder de Pagarse a Sí Mismo Primero: Guía de Ahorros
 
-"Páguese a usted mismo primero". Es la regla de oro. Trate su cuenta de ahorros como su factura más importante. En esta guía, desglosaremos la mecánica de las Cuentas de Ahorro de Alto Rendimiento (HYSA) y cómo usar nuestra [Calculadora de Ahorros](/es/calculadoras/calculadora-ahorros).
+"Páguese a usted mismo primero". Es la regla de oro. Trate su cuenta de ahorros como su factura más importante. En esta guía, desglosaremos la mecánica de las Cuentas de Ahorro de Alto Rendimiento (HYSA) y cómo usar nuestra [Calculadora de Ahorros](/es/calculadoras/calculadora-de-ahorros).
 
 ---
 

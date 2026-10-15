@@ -5,7 +5,7 @@ description: "Découvrez comment calculer la durée exacte entre deux dates, ajo
 
 # Le Guide de la Calculatrice de Dates : Additionnez, Soustrayez et Mesurez le Temps
 
-Qu'il s'agisse de calculer les jours avant un mariage ou une échéance, les mathématiques calendaires sont compliquées. Dans ce guide, nous explorerons les particularités du calendrier et comment utiliser notre [Calculatrice de Dates](/fr/calculatrices/calculatrice-dates).
+Qu'il s'agisse de calculer les jours avant un mariage ou une échéance, les mathématiques calendaires sont compliquées. Dans ce guide, nous explorerons les particularités du calendrier et comment utiliser notre [Calculatrice de Dates](/fr/calculatrices/calculateur-de-date).
 
 ---
 

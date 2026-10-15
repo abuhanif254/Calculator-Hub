@@ -5,7 +5,7 @@ description: "Aprenda la fórmula matemática universal para calcular los pagos 
 
 # La Guía Universal de Pagos: Calcule Cualquier Cuota Mensual
 
-Casi todos los préstamos a tasa fija (auto, hipoteca, personal) se calculan con la misma fórmula. En esta guía, desglosaremos esta fórmula y le mostraremos cómo usar nuestra [Calculadora de Pagos](/es/calculadoras/calculadora-pagos).
+Casi todos los préstamos a tasa fija (auto, hipoteca, personal) se calculan con la misma fórmula. En esta guía, desglosaremos esta fórmula y le mostraremos cómo usar nuestra [Calculadora de Pagos](/es/calculadoras/calculadora-de-pagos).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Apprenez la différence entre les prêts garantis et non garantis,
 
 # Le Guide Ultime des Prêts Personnels : La Dette Non Garantie Expliquée
 
-Contrairement à un prêt auto, un prêt personnel peut servir à presque tout. Dans ce guide, nous expliquerons comment ils fonctionnent et comment utiliser notre [Calculatrice de Prêt Personnel](/fr/calculatrices/calculatrice-pret-personnel).
+Contrairement à un prêt auto, un prêt personnel peut servir à presque tout. Dans ce guide, nous expliquerons comment ils fonctionnent et comment utiliser notre [Calculatrice de Prêt Personnel](/fr/calculatrices/calculateur-pret-personnel).
 
 ---
 

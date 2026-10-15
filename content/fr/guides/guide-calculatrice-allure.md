@@ -5,7 +5,7 @@ description: "Apprenez la formule pour calculer votre allure de course, prédire
 
 # Comment Calculer son Allure de Course : Les Mathématiques du Marathon
 
-Que vous prépariez un 5 km ou un marathon, contrôler votre allure est essentiel. Dans ce guide, nous expliquerons la formule et comment utiliser notre [Calculatrice d'Allure](/fr/calculatrices/calculatrice-allure).
+Que vous prépariez un 5 km ou un marathon, contrôler votre allure est essentiel. Dans ce guide, nous expliquerons la formule et comment utiliser notre [Calculatrice d'Allure](/fr/calculatrices/calculateur-allure).
 
 ---
 

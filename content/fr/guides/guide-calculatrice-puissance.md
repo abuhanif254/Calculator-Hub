@@ -5,7 +5,7 @@ description: "Maîtrisez la relation entre Travail, Temps et Puissance. Découvr
 
 # La Physique de la Puissance : Le Taux de Travail
 
-Monter des escaliers en marchant ou en courant avec une boîte nécessite le même Travail. Mais en courant, vous générez plus de **Puissance**. En physique, la Puissance est la vitesse à laquelle le Travail est effectué. Apprenez à utiliser notre [Calculatrice de Puissance](/fr/calculatrices/calculatrice-puissance).
+Monter des escaliers en marchant ou en courant avec une boîte nécessite le même Travail. Mais en courant, vous générez plus de **Puissance**. En physique, la Puissance est la vitesse à laquelle le Travail est effectué. Apprenez à utiliser notre [Calculatrice de Puissance](/fr/calculatrices/calculateur-de-puissance).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Découvrez ce qu'est la Molarité, comment calculer les moles par 
 
 # Calculatrice de Molarité : Mesurer la Concentration Chimique
 
-Si vous versez une cuillère de sel dans de l'eau, vous créez une solution. Mais comment décrire précisément sa concentration à un autre chimiste ? Nous utilisons la **Molarité (M)**. Apprenez la formule et utilisez notre [Calculatrice de Molarité](/fr/calculatrices/calculatrice-molarite).
+Si vous versez une cuillère de sel dans de l'eau, vous créez une solution. Mais comment décrire précisément sa concentration à un autre chimiste ? Nous utilisons la **Molarité (M)**. Apprenez la formule et utilisez notre [Calculatrice de Molarité](/fr/calculatrices/calculateur-de-molarite).
 
 ---
 

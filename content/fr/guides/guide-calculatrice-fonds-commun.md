@@ -5,7 +5,7 @@ description: "Apprenez ce que sont les fonds communs de placement, comment les f
 
 # Les Fonds Communs Expliqués : Créer un Portefeuille Diversifié
 
-Investir tout votre argent dans une seule entreprise est risqué. Le secret de la richesse est la **Diversification**. Le moyen le plus simple est d'investir dans un **Fonds Commun de Placement (OPCVM)**. Dans ce guide, nous expliquerons comment ils fonctionnent et comment utiliser notre [Calculatrice de Fonds Communs](/fr/calculatrices/calculatrice-fonds-commun).
+Investir tout votre argent dans une seule entreprise est risqué. Le secret de la richesse est la **Diversification**. Le moyen le plus simple est d'investir dans un **Fonds Commun de Placement (OPCVM)**. Dans ce guide, nous expliquerons comment ils fonctionnent et comment utiliser notre [Calculatrice de Fonds Communs](/fr/calculatrices/calculateur-fonds-communs).
 
 ---
 

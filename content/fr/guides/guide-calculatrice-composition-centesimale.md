@@ -6,7 +6,7 @@ description: "Découvrez comment trouver le pourcentage massique des éléments 
 # Composition Centésimale : Analyser la Matière
 
 L'eau ($H_2O$) contient deux atomes d'Hydrogène pour un d'Oxygène. On pourrait penser que l'eau est surtout faite d'Hydrogène. **C'est faux !** L'Oxygène est bien plus lourd. En masse, l'eau c'est 90 % d'Oxygène !
-Pour le prouver, on utilise la **Composition Centésimale** (ou pourcentage massique). Apprenez à la calculer et utilisez notre [Calculatrice de Composition Centésimale](/fr/calculatrices/calculatrice-composition-centesimale).
+Pour le prouver, on utilise la **Composition Centésimale** (ou pourcentage massique). Apprenez à la calculer et utilisez notre [Calculatrice de Composition Centésimale](/fr/calculatrices/calculateur-de-composition-centesimale).
 
 ---
 

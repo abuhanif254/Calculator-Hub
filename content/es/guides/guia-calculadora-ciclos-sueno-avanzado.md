@@ -6,7 +6,7 @@ description: "Aprenda cómo funcionan los ciclos de sueño, por qué se despiert
 # Calculadora Avanzada de Ciclos de Sueño: Despierte Descansado
 
 ¿Ha dormido 8 horas completas y aun así se ha despertado agotado? ¿O se ha despertado tras solo 6 horas completamente alerta?
-No es aleatorio — se trata de los **ciclos de sueño**. Use nuestra [Calculadora Avanzada de Ciclos de Sueño](/es/calculadoras/calculadora-avanzada-ciclos-sueno) para encontrar su horario óptimo.
+No es aleatorio — se trata de los **ciclos de sueño**. Use nuestra [Calculadora Avanzada de Ciclos de Sueño](/es/calculadoras/calculadora-avanzada-ciclo-de-sueno) para encontrar su horario óptimo.
 
 ---
 

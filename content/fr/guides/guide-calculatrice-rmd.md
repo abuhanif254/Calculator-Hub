@@ -5,7 +5,7 @@ description: "Apprenez ce que sont les distributions minimales requises (RMD), l
 
 # Comprendre les RMD : Ne Perdez pas 25 % de votre Retraite à l'IRS
 
-Le gouvernement américain permet à votre argent de fructifier à l'abri de l'impôt dans un 401(k). Mais finalement, l'IRS vous oblige à retirer de l'argent et à payer des impôts. Ces retraits forcés sont appelés **Distributions Minimales Requises (RMD)**. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice RMD](/fr/calculatrices/calculatrice-rmd).
+Le gouvernement américain permet à votre argent de fructifier à l'abri de l'impôt dans un 401(k). Mais finalement, l'IRS vous oblige à retirer de l'argent et à payer des impôts. Ces retraits forcés sont appelés **Distributions Minimales Requises (RMD)**. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice RMD](/fr/calculatrices/calculateur-rmd).
 
 ---
 

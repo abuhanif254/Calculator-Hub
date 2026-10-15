@@ -6,7 +6,7 @@ description: "Erfahren Sie, warum Gleichungen ausgeglichen werden müssen, wie K
 # Chemische Gleichungen ausgleichen: Massenerhaltung
 
 Wenn Sie einen Kuchen mit 500g Zutaten backen, wiegt er am Ende exakt 500g. Nichts verschwindet, es formt sich nur um!
-In der Chemie besagt der **Massenerhaltungssatz**, dass Materie weder erschaffen noch zerstört werden kann. Die Atome am Anfang müssen denen am Ende entsprechen. Lernen Sie das Ausgleichen und nutzen Sie unseren [Chemische Gleichungen Rechner](/de/rechner/chemische-gleichungen-rechner).
+In der Chemie besagt der **Massenerhaltungssatz**, dass Materie weder erschaffen noch zerstört werden kann. Die Atome am Anfang müssen denen am Ende entsprechen. Lernen Sie das Ausgleichen und nutzen Sie unseren [Chemische Gleichungen Rechner](/de/rechner/chemische-gleichungen-balancieren-rechner).
 
 ---
 

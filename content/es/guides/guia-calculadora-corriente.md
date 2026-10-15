@@ -5,7 +5,7 @@ description: "Aprenda qué es la corriente eléctrica, cómo se mide el amperaje
 
 # Corriente Eléctrica: El Flujo de Electrones
 
-Si el voltaje es la presión, la **Corriente** es el agua fluyendo. Es la métrica más importante en electrónica, ya que dicta el grosor de los cables y la seguridad. En esta guía, explicaremos la mecánica de la corriente y cómo usar nuestra [Calculadora de Corriente](/es/calculadoras/calculadora-corriente).
+Si el voltaje es la presión, la **Corriente** es el agua fluyendo. Es la métrica más importante en electrónica, ya que dicta el grosor de los cables y la seguridad. En esta guía, explicaremos la mecánica de la corriente y cómo usar nuestra [Calculadora de Corriente](/es/calculadoras/calculadora-de-corriente).
 
 ---
 

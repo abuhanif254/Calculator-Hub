@@ -170,7 +170,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     "@type": "Organization",
     "name": "Nexus Calculator",
     "alternateName": ["Nexus Tools Hub", "Nexus Calculator Platform"],
-    "url": baseUrl,
+    "url": `${baseUrl}/en`,
     "logo": `${baseUrl}/icons/icon-512x512.png`,
     "contactPoint": {
       "@type": "ContactPoint",

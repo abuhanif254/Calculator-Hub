@@ -5,7 +5,7 @@ description: "Comprenda el Número de Avogadro, qué es un mol, cómo convertir 
 
 # El Mol: La Docena de la Química
 
-Los átomos son tan pequeños que contarlos uno por uno es imposible. Para resolver esto, los químicos inventaron el "Mol". En esta guía explicaremos qué es exactamente un mol, el Número de Avogadro, y cómo usar nuestra [Calculadora de Moles](/es/calculadoras/calculadora-moles).
+Los átomos son tan pequeños que contarlos uno por uno es imposible. Para resolver esto, los químicos inventaron el "Mol". En esta guía explicaremos qué es exactamente un mol, el Número de Avogadro, y cómo usar nuestra [Calculadora de Moles](/es/calculadoras/calculadora-de-moles).
 
 ---
 

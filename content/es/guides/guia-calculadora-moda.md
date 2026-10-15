@@ -5,7 +5,7 @@ description: "Descubra cómo encontrar la moda en un conjunto de datos, comprend
 
 # Entendiendo la Moda en Estadística: Definición y Ejemplos
 
-Cuando hablamos de "promedios", la mayoría piensa en la media o la mediana. Sin embargo, hay un tercer pilar en estadística: la **Moda**. En esta guía completa, exploraremos qué es la moda, cómo identificarla, por qué es ideal para datos categóricos y cómo usar nuestra [Calculadora de Moda](/es/calculadoras/calculadora-moda).
+Cuando hablamos de "promedios", la mayoría piensa en la media o la mediana. Sin embargo, hay un tercer pilar en estadística: la **Moda**. En esta guía completa, exploraremos qué es la moda, cómo identificarla, por qué es ideal para datos categóricos y cómo usar nuestra [Calculadora de Moda](/es/calculadoras/calculadora-de-moda).
 
 ---
 

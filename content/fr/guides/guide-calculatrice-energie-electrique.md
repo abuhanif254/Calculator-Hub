@@ -5,7 +5,7 @@ description: "Apprenez la différence entre les Watts et les Watts-heures, et ut
 
 # Énergie Électrique : Comprendre votre Facture d'Électricité
 
-Votre fournisseur ne vous facture pas la *Puissance*, mais l'**Énergie** consommée. Quelle est la différence ? Ce guide vous explique tout et vous montre comment utiliser notre [Calculatrice d'Énergie Électrique](/fr/calculatrices/calculatrice-energie-electrique).
+Votre fournisseur ne vous facture pas la *Puissance*, mais l'**Énergie** consommée. Quelle est la différence ? Ce guide vous explique tout et vous montre comment utiliser notre [Calculatrice d'Énergie Électrique](/fr/calculatrices/calculateur-d-energie-electrique).
 
 ---
 

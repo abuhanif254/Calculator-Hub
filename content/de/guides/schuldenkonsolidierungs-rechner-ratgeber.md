@@ -5,7 +5,7 @@ description: "Lernen Sie, wie Umschuldungskredite funktionieren, die Gefahren vo
 
 # Die Wahrheit über Schuldenkonsolidierung: So senken Sie Ihre Zinsen
 
-Mehrere Kreditkarten mit 25 % Zinsen zu bedienen, macht es unmöglich, schuldenfrei zu werden. Eine Konsolidierung (Umschuldung) fasst diese zusammen in eine einzige Rate mit niedrigerem Zins. Wir erklären, wie Sie unseren [Schuldenkonsolidierungs-Rechner](/de/rechner/schuldenkonsolidierungs-rechner) nutzen.
+Mehrere Kreditkarten mit 25 % Zinsen zu bedienen, macht es unmöglich, schuldenfrei zu werden. Eine Konsolidierung (Umschuldung) fasst diese zusammen in eine einzige Rate mit niedrigerem Zins. Wir erklären, wie Sie unseren [Schuldenkonsolidierungs-Rechner](/de/rechner/schuldenkonsolidierungsrechner) nutzen.
 
 ---
 

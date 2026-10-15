@@ -6,7 +6,7 @@ description: "Découvrez comment l'Équation de Nernst prédit le potentiel de c
 # Calculatrice de l'Équation de Nernst : Électrochimie
 
 Chaque pile utilise une réaction chimique pour pousser des électrons (tension). Neuve, la tension est forte, puis elle chute à zéro.
-Pour calculer la tension exacte à un instant T, on utilise **l'Équation de Nernst**. Découvrez son fonctionnement et utilisez notre [Calculatrice de l'Équation de Nernst](/fr/calculatrices/calculatrice-equation-nernst).
+Pour calculer la tension exacte à un instant T, on utilise **l'Équation de Nernst**. Découvrez son fonctionnement et utilisez notre [Calculatrice de l'Équation de Nernst](/fr/calculatrices/calculateur-d-equation-de-nernst).
 
 ---
 

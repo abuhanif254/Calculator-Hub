@@ -5,7 +5,7 @@ description: "Verstehen Sie die pH-Skala, lernen Sie die logarithmische Berechnu
 
 # pH-Rechner: Säuregrad berechnen
 
-Zitronensaft schmeckt sauer, Seife schmeckt bitter. Um zu messen, wie sauer oder basisch eine Flüssigkeit ist, nutzen Chemiker die **pH-Skala**. Erfahren Sie hier mehr über die Mathematik dahinter und testen Sie unseren [pH-Rechner](/de/rechner/ph-rechner).
+Zitronensaft schmeckt sauer, Seife schmeckt bitter. Um zu messen, wie sauer oder basisch eine Flüssigkeit ist, nutzen Chemiker die **pH-Skala**. Erfahren Sie hier mehr über die Mathematik dahinter und testen Sie unseren [pH-Rechner](/de/rechner/ph-wert-rechner).
 
 ---
 

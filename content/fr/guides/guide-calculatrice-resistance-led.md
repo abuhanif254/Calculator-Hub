@@ -5,7 +5,7 @@ description: "Découvrez pourquoi les LED ont besoin de résistances, comment é
 
 # Résistance pour LED : Protéger vos Composants
 
-Si vous branchez une LED directement sur une pile 9V, elle fera un "pop", fumera et mourra. Vous **devez** utiliser une résistance. Apprenez à protéger vos circuits et utilisez notre [Calculatrice de Résistance pour LED](/fr/calculatrices/calculatrice-resistance-led).
+Si vous branchez une LED directement sur une pile 9V, elle fera un "pop", fumera et mourra. Vous **devez** utiliser une résistance. Apprenez à protéger vos circuits et utilisez notre [Calculatrice de Résistance pour LED](/fr/calculatrices/calculateur-de-resistance-led).
 
 ---
 

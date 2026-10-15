@@ -6,7 +6,7 @@ description: "Apprenez à lire les poids atomiques sur le tableau périodique, �
 # Masse Molaire : Lire le Tableau Périodique
 
 Si vous avez besoin d'exactement 1 mole d'Eau ($H_2O$) pour une expérience, combien de grammes devez-vous peser ? 
-Vous avez besoin de la **Masse Molaire**. Découvrez comment la calculer et utilisez notre [Calculatrice de Masse Molaire](/fr/calculatrices/calculatrice-masse-molaire).
+Vous avez besoin de la **Masse Molaire**. Découvrez comment la calculer et utilisez notre [Calculatrice de Masse Molaire](/fr/calculatrices/calculateur-de-masse-molaire).
 
 ---
 

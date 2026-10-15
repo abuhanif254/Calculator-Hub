@@ -5,7 +5,7 @@ description: "Aprenda la diferencia crucial entre margen y markup, cómo calcula
 
 # Margen vs. Margen de Beneficio (Markup): Guía para Precios Minoristas
 
-Fijar correctamente los precios es vital para cualquier negocio. Sin embargo, muchos dueños de negocios confunden **Margen** con **Markup**. En esta guía, desglosaremos las fórmulas y cómo usar nuestra [Calculadora de Margen](/es/calculadoras/calculadora-margen).
+Fijar correctamente los precios es vital para cualquier negocio. Sin embargo, muchos dueños de negocios confunden **Margen** con **Markup**. En esta guía, desglosaremos las fórmulas y cómo usar nuestra [Calculadora de Margen](/es/calculadoras/calculadora-de-margen).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Comprenez l'IMC, la composition corporelle, et déterminez une fou
 # Calculatrice de Poids Santé : Trouver votre Fourchette Idéale
 
 Avec tant de conseils contradictoires, savoir combien on "devrait" peser est stressant. En réalité, le chiffre parfait n'existe pas.
-Les médecins recommandent de viser une **Fourchette de Poids Santé** basée sur votre taille, âge et sexe. Découvrez comment cela fonctionne et utilisez notre [Calculatrice de Poids Santé](/fr/calculatrices/calculatrice-poids-sante).
+Les médecins recommandent de viser une **Fourchette de Poids Santé** basée sur votre taille, âge et sexe. Découvrez comment cela fonctionne et utilisez notre [Calculatrice de Poids Santé](/fr/calculatrices/calculateur-de-poids-sante).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Lernen Sie, warum LEDs Vorwiderstände brauchen, wie Sie Ihre Ardu
 
 # LED-Vorwiderstand: Bauteile schützen
 
-Schließen Sie eine LED direkt an eine 9V-Batterie an, leuchtet sie kurz hell auf, raucht und ist kaputt. Sie **müssen** einen Vorwiderstand verwenden. Wir erklären die Mathematik dahinter und unseren [LED-Widerstands-Rechner](/de/rechner/led-widerstands-rechner).
+Schließen Sie eine LED direkt an eine 9V-Batterie an, leuchtet sie kurz hell auf, raucht und ist kaputt. Sie **müssen** einen Vorwiderstand verwenden. Wir erklären die Mathematik dahinter und unseren [LED-Widerstands-Rechner](/de/rechner/led-widerstand-rechner).
 
 ---
 

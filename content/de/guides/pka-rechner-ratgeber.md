@@ -6,7 +6,7 @@ description: "Verstehen Sie die Säuredissoziationskonstante (Ka), wie man den p
 # pKa-Rechner: Säurestärke berechnen
 
 Nicht alle Säuren sind gleich. Essig auf der Haut ist harmlos, Schwefelsäure verursacht schwere Verätzungen.
-Um die *Stärke* einer Säure zu messen, nutzen Chemiker die **Säuredissoziationskonstante ($K_a$)** und deren logarithmischen Wert, den **pKa-Wert**. Erfahren Sie den Unterschied zwischen starken und schwachen Säuren und testen Sie unseren [pKa-Rechner](/de/rechner/pka-rechner).
+Um die *Stärke* einer Säure zu messen, nutzen Chemiker die **Säuredissoziationskonstante ($K_a$)** und deren logarithmischen Wert, den **pKa-Wert**. Erfahren Sie den Unterschied zwischen starken und schwachen Säuren und testen Sie unseren [pKa-Rechner](/de/rechner/pka-wert-rechner).
 
 ---
 

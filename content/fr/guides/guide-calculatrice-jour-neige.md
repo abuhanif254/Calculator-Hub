@@ -5,7 +5,7 @@ description: "Découvrez les facteurs pris en compte par les écoles pour fermer
 
 # Calculatrice de Jour de Neige : L'École sera-t-elle Annulée ?
 
-Chaque hiver, les élèves espèrent une tempête pour rester à la maison. Mais prédire un "Jour de Neige" est complexe pour les directeurs d'école. Découvrez les critères cachés et testez notre [Calculatrice de Jour de Neige](/fr/calculatrices/calculatrice-jour-neige).
+Chaque hiver, les élèves espèrent une tempête pour rester à la maison. Mais prédire un "Jour de Neige" est complexe pour les directeurs d'école. Découvrez les critères cachés et testez notre [Calculatrice de Jour de Neige](/fr/calculatrices/calculateur-jour-de-neige).
 
 ---
 

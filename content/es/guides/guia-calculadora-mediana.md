@@ -7,7 +7,7 @@ description: "Aprenda qué es la mediana en estadística, cómo encontrarla para
 
 Al analizar un conjunto de números, a menudo se desea encontrar el valor "medio" o "promedio" para representar todo el conjunto de datos. Aunque la mayoría de las personas piensan inmediatamente en la media aritmética, la **Mediana** suele ser una representación mucho más precisa de los datos típicos, especialmente cuando se trata de valores atípicos extremos como ingresos o precios de viviendas.
 
-En esta guía completa, exploraremos exactamente qué es la mediana, instrucciones paso a paso sobre cómo calcularla manualmente, aplicaciones del mundo real donde la mediana supera a la media, y cómo usar nuestra [Calculadora de Mediana](/es/calculadoras/calculadora-mediana) gratuita para procesar grandes conjuntos de datos al instante.
+En esta guía completa, exploraremos exactamente qué es la mediana, instrucciones paso a paso sobre cómo calcularla manualmente, aplicaciones del mundo real donde la mediana supera a la media, y cómo usar nuestra [Calculadora de Mediana](/es/calculadoras/calculadora-de-mediana) gratuita para procesar grandes conjuntos de datos al instante.
 
 ---
 

@@ -6,7 +6,7 @@ description: "Aprenda la etiqueta social de las propinas, los porcentajes están
 # Calculadora de Propinas: ¿Cuánto Dejar de Propina?
 
 Acaba de terminar una deliciosa cena. ¿Cuánto debe dejar de propina? Calcular propinas — especialmente al dividir la cuenta entre varias personas — puede causar confusión y ansiedad social.
-Nuestra [Calculadora de Propinas](/es/calculadoras/calculadora-propinas) lo hace sin esfuerzo. Primero, aprendamos las normas sociales de las propinas.
+Nuestra [Calculadora de Propinas](/es/calculadoras/calculadora-de-propinas) lo hace sin esfuerzo. Primero, aprendamos las normas sociales de las propinas.
 
 ---
 

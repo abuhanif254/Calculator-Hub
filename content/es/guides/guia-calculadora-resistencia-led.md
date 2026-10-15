@@ -5,7 +5,7 @@ description: "Aprenda por qué los LEDs necesitan resistencias, cómo evitar que
 
 # Resistencias para LED: Protegiendo sus Componentes
 
-Si conecta un LED directamente a una batería de 9V, brillará un segundo, hará "pop", echará humo y morirá. Para evitarlo, **debe** usar una resistencia. Aprenda las matemáticas detrás de esto y use nuestra [Calculadora de Resistencias para LED](/es/calculadoras/calculadora-resistencia-led).
+Si conecta un LED directamente a una batería de 9V, brillará un segundo, hará "pop", echará humo y morirá. Para evitarlo, **debe** usar una resistencia. Aprenda las matemáticas detrás de esto y use nuestra [Calculadora de Resistencias para LED](/es/calculadoras/calculadora-de-resistencia-led).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Aprenda cómo la constante Ka mide la fuerza de un ácido, cómo c
 # Calculadora de Ka: Constante de Disociación Ácida
 
 Cuando pone un ácido fuerte en agua, se disocia (separa) por completo. Pero con un ácido *débil*, solo una pequeña fracción se separa.
-Para medir qué porcentaje exacto se separa, calculamos la **Constante de Disociación Ácida ($K_a$)**. Aprenda la química detrás del $K_a$ y use nuestra [Calculadora de Ka](/es/calculadoras/calculadora-ka).
+Para medir qué porcentaje exacto se separa, calculamos la **Constante de Disociación Ácida ($K_a$)**. Aprenda la química detrás del $K_a$ y use nuestra [Calculadora de Ka](/es/calculadoras/calculadora-de-ka).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Aprenda cómo la escala de pOH mide la alcalinidad, la relación e
 # Calculadora de pOH: El Inverso del pH
 
 El pH mide qué tan *ácida* es una solución. Pero, ¿y si quiere medir qué tan *básica* (alcalina) es? 
-Para bases fuertes como la lejía o el amoníaco, los químicos usan la **Escala de pOH**. Aprenda qué es, cómo se relaciona con el pH y use nuestra [Calculadora de pOH](/es/calculadoras/calculadora-poh).
+Para bases fuertes como la lejía o el amoníaco, los químicos usan la **Escala de pOH**. Aprenda qué es, cómo se relaciona con el pH y use nuestra [Calculadora de pOH](/es/calculadoras/calculadora-de-poh).
 
 ---
 

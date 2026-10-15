@@ -5,7 +5,7 @@ description: "Comprenez les risques d'une marge de crédit sur valeur domiciliai
 
 # HELOC Expliqué : Devez-vous Utiliser votre Maison comme Guichet Automatique ?
 
-Une **Marge de Crédit sur Valeur Domiciliaire (HELOC)** vous permet d'emprunter sur la valeur de votre maison. C'est idéal pour les rénovations, mais comporte des risques uniques. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice HELOC](/fr/calculatrices/calculatrice-heloc).
+Une **Marge de Crédit sur Valeur Domiciliaire (HELOC)** vous permet d'emprunter sur la valeur de votre maison. C'est idéal pour les rénovations, mais comporte des risques uniques. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice HELOC](/fr/calculatrices/calculateur-heloc).
 
 ---
 

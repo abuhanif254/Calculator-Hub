@@ -6,7 +6,7 @@ description: "Comprenda la relación inversa entre la presión y el volumen de u
 # Calculadora de la Ley de Boyle: Presión vs. Volumen
 
 Si aprieta un globo, finalmente explotará. Al reducir el volumen (aplastarlo), las moléculas chocan más, aumentando la presión hasta que la goma se rompe.
-Esta relación inversa fue descubierta en 1662 y se conoce como **Ley de Boyle**. Aprenda cómo funciona y use nuestra [Calculadora de la Ley de Boyle](/es/calculadoras/calculadora-ley-boyle).
+Esta relación inversa fue descubierta en 1662 y se conoce como **Ley de Boyle**. Aprenda cómo funciona y use nuestra [Calculadora de la Ley de Boyle](/es/calculadoras/calculadora-de-ley-de-boyle).
 
 ---
 

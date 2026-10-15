@@ -5,7 +5,7 @@ description: "Maîtrisez la physique du mouvement de projectile. Découvrez l'an
 
 # Mouvement de Projectile : La Physique des Trajectoires
 
-Si vous tirez un boulet de canon horizontalement et en laissez tomber un autre de la même hauteur, ils touchent le sol en même temps ! C'est le secret du **Mouvement de Projectile**. Dans ce guide, nous expliquerons l'indépendance des axes et comment utiliser notre [Calculatrice de Mouvement de Projectile](/fr/calculatrices/calculatrice-mouvement-projectile).
+Si vous tirez un boulet de canon horizontalement et en laissez tomber un autre de la même hauteur, ils touchent le sol en même temps ! C'est le secret du **Mouvement de Projectile**. Dans ce guide, nous expliquerons l'indépendance des axes et comment utiliser notre [Calculatrice de Mouvement de Projectile](/fr/calculatrices/calculateur-de-mouvement-de-projectile).
 
 ---
 

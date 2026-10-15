@@ -6,7 +6,7 @@ description: "Découvrez comment la constante Ka mesure la force d'un acide, com
 # Calculatrice de Ka : La Constante de Dissociation Acide
 
 Quand on met un acide fort dans l'eau, chaque molécule se brise (se dissocie). Avec un acide *faible*, seule une infime partie se dissocie.
-Pour mesurer ce pourcentage, les chimistes calculent la **Constante de Dissociation Acide ($K_a$)**. Découvrez la chimie derrière le $K_a$ et utilisez notre [Calculatrice de Ka](/fr/calculatrices/calculatrice-ka).
+Pour mesurer ce pourcentage, les chimistes calculent la **Constante de Dissociation Acide ($K_a$)**. Découvrez la chimie derrière le $K_a$ et utilisez notre [Calculatrice de Ka](/fr/calculatrices/calculateur-de-ka).
 
 ---
 

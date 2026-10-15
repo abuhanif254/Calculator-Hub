@@ -5,7 +5,7 @@ description: "Découvrez pourquoi votre poids change sur la Lune alors que votre
 
 # Masse vs Poids : Quelle est la Différence ?
 
-Dans la vie courante, nous confondons "masse" et "poids". En physique, ce sont deux choses très différentes ! Nous allons clarifier cela et vous montrer comment utiliser notre [Calculatrice de Poids](/fr/calculatrices/calculatrice-poids).
+Dans la vie courante, nous confondons "masse" et "poids". En physique, ce sont deux choses très différentes ! Nous allons clarifier cela et vous montrer comment utiliser notre [Calculatrice de Poids](/fr/calculatrices/calculateur-de-poids).
 
 ---
 

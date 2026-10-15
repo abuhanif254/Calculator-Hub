@@ -5,7 +5,7 @@ description: "Lernen Sie den Unterschied zwischen arithmetischer und geometrisch
 
 # Durchschnittsrendite erklärt: So messen Sie Ihren Anlageerfolg
 
-Wenn Ihr Portfolio in einem Jahr um 50 % steigt und im nächsten um 50 % fällt, ist Ihre Rendite dann 0 %? Nein! Aus 10.000 $ werden 15.000 $, dann 7.500 $. Sie haben 25 % verloren! Wir erklären die richtige Berechnung und unseren [Durchschnittsrendite-Rechner](/de/rechner/durchschnittsrendite-rechner).
+Wenn Ihr Portfolio in einem Jahr um 50 % steigt und im nächsten um 50 % fällt, ist Ihre Rendite dann 0 %? Nein! Aus 10.000 $ werden 15.000 $, dann 7.500 $. Sie haben 25 % verloren! Wir erklären die richtige Berechnung und unseren [Durchschnittsrendite-Rechner](/de/rechner/durchschnittliche-rendite-rechner).
 
 ---
 

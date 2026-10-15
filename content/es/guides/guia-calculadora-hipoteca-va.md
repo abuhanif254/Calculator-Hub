@@ -5,7 +5,7 @@ description: "Aprenda cómo funciona la Tarifa de Financiamiento del VA, los ben
 
 # La Guía Definitiva de Préstamos VA: Cero Inicial, Cero PMI
 
-Para militares y veteranos, el préstamo VA es el producto hipotecario más poderoso. Elimina las mayores barreras para ser propietario. En esta guía, desglosaremos cómo funcionan y cómo usar nuestra [Calculadora de Hipotecas VA](/es/calculadoras/calculadora-hipoteca-va).
+Para militares y veteranos, el préstamo VA es el producto hipotecario más poderoso. Elimina las mayores barreras para ser propietario. En esta guía, desglosaremos cómo funcionan y cómo usar nuestra [Calculadora de Hipotecas VA](/es/calculadoras/calculadora-de-hipotecas-va).
 
 ---
 

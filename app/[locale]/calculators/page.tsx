@@ -127,7 +127,7 @@ export default async function AllCalculatorsPage({
     "publisher": {
       "@type": "Organization",
       "name": "Nexus Calculator Hub",
-      "url": baseUrl,
+      "url": `${baseUrl}/en`,
     },
   };
 

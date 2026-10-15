@@ -6,7 +6,7 @@ description: "Verstehen Sie das ideale Gasgesetz, wie Druck, Volumen, Temperatur
 # Ideales Gasgesetz Rechner: PV = nRT
 
 Bläst man einen Ballon im Warmen auf und nimmt ihn mit in den Schnee, schrumpft er sofort. Warum? Die Temperatur eines Gases beeinflusst direkt Volumen und Druck.
-Um diese Variablen zu verstehen, nutzt man das **ideale Gasgesetz**. Lernen Sie die Wissenschaft dahinter und nutzen Sie unseren [Ideales Gasgesetz Rechner](/de/rechner/ideales-gasgesetz-rechner).
+Um diese Variablen zu verstehen, nutzt man das **ideale Gasgesetz**. Lernen Sie die Wissenschaft dahinter und nutzen Sie unseren [Ideales Gasgesetz Rechner](/de/rechner/ideales-gas-gesetz-rechner).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Maîtrisez la cinématique des objets en chute. Découvrez la grav
 
 # La Physique de la Chute Libre : La Gravité dans le Vide
 
-Si vous lâchez une plume et une boule de bowling, la boule tombe en premier à cause de la **résistance de l'air**. Dans le vide parfait, **elles toucheraient le sol en même temps !** Sans air, tous les objets tombent à la même vitesse, quelle que soit leur masse. Apprenez à utiliser notre [Calculatrice de Chute Libre](/fr/calculatrices/calculatrice-chute-libre).
+Si vous lâchez une plume et une boule de bowling, la boule tombe en premier à cause de la **résistance de l'air**. Dans le vide parfait, **elles toucheraient le sol en même temps !** Sans air, tous les objets tombent à la même vitesse, quelle que soit leur masse. Apprenez à utiliser notre [Calculatrice de Chute Libre](/fr/calculatrices/calculateur-de-chute-libre).
 
 ---
 

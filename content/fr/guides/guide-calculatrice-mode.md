@@ -5,7 +5,7 @@ description: "Découvrez comment trouver le mode, comprenez les distributions bi
 
 # Comprendre le Mode en Statistiques : Définition et Exemples
 
-Le **Mode** est le troisième pilier de la tendance centrale en statistiques. Dans ce guide complet, nous explorerons ce qu'est le mode, comment l'identifier, et comment utiliser notre [Calculatrice de Mode](/fr/calculatrices/calculatrice-mode).
+Le **Mode** est le troisième pilier de la tendance centrale en statistiques. Dans ce guide complet, nous explorerons ce qu'est le mode, comment l'identifier, et comment utiliser notre [Calculatrice de Mode](/fr/calculatrices/calculatrice-de-mode).
 
 ---
 

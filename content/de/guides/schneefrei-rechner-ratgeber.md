@@ -5,7 +5,7 @@ description: "Erfahren Sie, nach welchen Kriterien Schulen Hitzefrei oder Schnee
 
 # Schneefrei-Rechner: Fällt die Schule aus?
 
-Jeden Winter hoffen Schüler auf den perfekten Schneesturm, um zu Hause zu bleiben. Doch "Schneefrei" hängt von mehr ab als nur der Schneemenge. Wir erklären die geheimen Kriterien der Schulleitungen und unseren [Schneefrei-Rechner](/de/rechner/schneefrei-rechner).
+Jeden Winter hoffen Schüler auf den perfekten Schneesturm, um zu Hause zu bleiben. Doch "Schneefrei" hängt von mehr ab als nur der Schneemenge. Wir erklären die geheimen Kriterien der Schulleitungen und unseren [Schneefrei-Rechner](/de/rechner/schneefreier-tag-rechner).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Domine las matemáticas del espacio 3D. Aprenda las fórmulas para
 
 # La Guía Definitiva para Calcular el Volumen: Fórmulas para Cada Forma
 
-El volumen mide la cantidad de espacio 3D que ocupa un objeto. En esta guía, desglosaremos las fórmulas esenciales y cómo usar nuestra [Calculadora de Volumen](/es/calculadoras/calculadora-volumen).
+El volumen mide la cantidad de espacio 3D que ocupa un objeto. En esta guía, desglosaremos las fórmulas esenciales y cómo usar nuestra [Calculadora de Volumen](/es/calculadoras/calculadora-de-volumen).
 
 ---
 

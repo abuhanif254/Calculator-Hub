@@ -6,7 +6,7 @@ description: "Découvrez comment calculer la chaleur standard de réaction avec 
 # Calculatrice de Chaleur de Réaction : Thermodynamique
 
 Chaque réaction chimique libère de l'énergie ou en vole à l'univers. Pour savoir quelle quantité exacte est transférée, on calcule la **Chaleur de Réaction ($\Delta H^\circ_{rxn}$)**.
-Découvrez les états standards, les chaleurs de formation et utilisez notre [Calculatrice de Chaleur de Réaction](/fr/calculatrices/calculatrice-chaleur-reaction).
+Découvrez les états standards, les chaleurs de formation et utilisez notre [Calculatrice de Chaleur de Réaction](/fr/calculatrices/calculateur-de-chaleur-de-reaction).
 
 ---
 

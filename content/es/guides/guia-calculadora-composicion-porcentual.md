@@ -6,7 +6,7 @@ description: "Aprenda a encontrar el porcentaje en masa de los elementos en un c
 # Composición Porcentual: Analizando Químicos
 
 El agua ($H_2O$) tiene dos átomos de Hidrógeno y uno de Oxígeno. Podría pensar que el agua es casi todo Hidrógeno. **¡Es un error!** Los átomos de Oxígeno son mucho más pesados. En realidad, por peso, ¡el agua es casi 90% Oxígeno!
-Para probarlo, usamos la **Composición Porcentual**. Aprenda la fórmula y use nuestra [Calculadora de Composición Porcentual](/es/calculadoras/calculadora-composicion-porcentual).
+Para probarlo, usamos la **Composición Porcentual**. Aprenda la fórmula y use nuestra [Calculadora de Composición Porcentual](/es/calculadoras/calculadora-de-composicion-porcentual).
 
 ---
 

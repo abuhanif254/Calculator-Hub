@@ -6,7 +6,7 @@ description: "Lernen Sie die sozialen Normen beim Trinkgeldgeben, Standardprozen
 # Trinkgeld Rechner: Wie Viel Trinkgeld Geben?
 
 Sie haben gerade ein fantastisches Abendessen beendet. Die Rechnung kommt. Wie viel Trinkgeld sollten Sie hinterlassen? Das Berechnen von Trinkgeldern — besonders beim Aufteilen unter mehreren Personen — kann für überraschende Verwirrung sorgen.
-Unser [Trinkgeld Rechner](/de/rechner/trinkgeld-rechner) macht es mühelos. Aber zuerst: die sozialen Normen beim Trinkgeldgeben.
+Unser [Trinkgeld Rechner](/de/rechner/trinkgeldrechner) macht es mühelos. Aber zuerst: die sozialen Normen beim Trinkgeldgeben.
 
 ---
 

@@ -5,7 +5,7 @@ description: "Domine la ley de conservación del momento. Aprenda la diferencia 
 
 # Entendiendo el Momento: La Física de las Colisiones
 
-Si un mosquito a 10 km/h choca contra su parabrisas, no pasa nada. Si una bola de boliche a 10 km/h choca contra él, lo rompe. Aunque la velocidad sea la misma, la bola tiene mucho más **Momento**. En física, el momento es la "masa en movimiento". En esta guía, explicaremos la fórmula y cómo usar nuestra [Calculadora de Momento](/es/calculadoras/calculadora-momento).
+Si un mosquito a 10 km/h choca contra su parabrisas, no pasa nada. Si una bola de boliche a 10 km/h choca contra él, lo rompe. Aunque la velocidad sea la misma, la bola tiene mucho más **Momento**. En física, el momento es la "masa en movimiento". En esta guía, explicaremos la fórmula y cómo usar nuestra [Calculadora de Momento](/es/calculadoras/calculadora-de-momento).
 
 ---
 

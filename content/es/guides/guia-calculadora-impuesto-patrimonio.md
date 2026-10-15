@@ -5,7 +5,7 @@ description: "Comprenda la diferencia entre el impuesto al patrimonio y el impue
 
 # Impuesto al Patrimonio vs. Impuesto a la Herencia: Lo Que Necesita Saber
 
-Al planificar su legado financiero, los impuestos suelen ser el mayor obstáculo. En esta guía, desglosaremos las diferencias cruciales entre los impuestos al patrimonio y a la herencia, y cómo usar nuestra [Calculadora de Impuestos al Patrimonio](/es/calculadoras/calculadora-impuesto-patrimonio).
+Al planificar su legado financiero, los impuestos suelen ser el mayor obstáculo. En esta guía, desglosaremos las diferencias cruciales entre los impuestos al patrimonio y a la herencia, y cómo usar nuestra [Calculadora de Impuestos al Patrimonio](/es/calculadoras/calculadora-de-impuestos-sucesorios).
 
 ---
 

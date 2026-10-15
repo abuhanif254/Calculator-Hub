@@ -5,7 +5,7 @@ description: "Comprenda la Hipótesis Nula, qué significa p < 0.05, y cómo usa
 
 # Valor P: ¿Son Sus Datos Estadísticamente Significativos?
 
-Si prueba una píldora para adelgazar y los pacientes pierden 1 kg, ¿funcionó la píldora o fue casualidad? En estadística, usamos el **Valor P** para saber si los resultados de un experimento tienen significado real o si fueron suerte aleatoria. Aprenda cómo usar nuestra [Calculadora de Valor P](/es/calculadoras/calculadora-valor-p).
+Si prueba una píldora para adelgazar y los pacientes pierden 1 kg, ¿funcionó la píldora o fue casualidad? En estadística, usamos el **Valor P** para saber si los resultados de un experimento tienen significado real o si fueron suerte aleatoria. Aprenda cómo usar nuestra [Calculadora de Valor P](/es/calculadoras/calculadora-de-valor-p).
 
 ---
 

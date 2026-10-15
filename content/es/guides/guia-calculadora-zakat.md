@@ -6,7 +6,7 @@ description: "Aprenda los fundamentos del Zakat, cómo calcular el Nisab con el 
 # Calculadora de Zakat: Entendiendo el Nisab
 
 El Zakat es el tercer pilar del Islam. Requiere que los musulmanes cuya riqueza supere un umbral (Nisab) donen el 2.5% a los necesitados. 
-Como la riqueza hoy está en efectivo, oro y acciones, calcularlo puede ser difícil. Aprenda cómo funciona y use nuestra [Calculadora de Zakat](/es/calculadoras/calculadora-zakat).
+Como la riqueza hoy está en efectivo, oro y acciones, calcularlo puede ser difícil. Aprenda cómo funciona y use nuestra [Calculadora de Zakat](/es/calculadoras/calculadora-de-zakat).
 
 ---
 

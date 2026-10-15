@@ -5,7 +5,7 @@ description: "Apprenez à trouver le ratio d'atomes le plus simple dans un compo
 
 # Formule Empirique : Le Ratio le Plus Simple
 
-Si vous analysez une poudre mystérieuse composée de 40.0% de Carbone, 6.7% d'Hydrogène et 53.3% d'Oxygène (en masse), comment savoir de quoi il s'agit ? Vous devez trouver sa **Formule Empirique**. Découvrez comment et utilisez notre [Calculatrice de Formule Empirique](/fr/calculatrices/calculatrice-formule-empirique).
+Si vous analysez une poudre mystérieuse composée de 40.0% de Carbone, 6.7% d'Hydrogène et 53.3% d'Oxygène (en masse), comment savoir de quoi il s'agit ? Vous devez trouver sa **Formule Empirique**. Découvrez comment et utilisez notre [Calculatrice de Formule Empirique](/fr/calculatrices/calculateur-de-formule-brute).
 
 ---
 

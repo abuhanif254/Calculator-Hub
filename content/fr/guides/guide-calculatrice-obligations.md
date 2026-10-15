@@ -5,7 +5,7 @@ description: "Apprenez ce que sont les taux de coupon, le rendement à l'échéa
 
 # Comprendre les Obligations : La Base d'un Portefeuille Sûr
 
-Pour stabiliser un portefeuille face à la volatilité des actions, on achète des **Obligations**. C'est un prêt que vous accordez à une entreprise ou un gouvernement. En échange, ils paient des intérêts réguliers. Dans ce guide, nous expliquerons la tarification des obligations et comment utiliser notre [Calculatrice d'Obligations](/fr/calculatrices/calculatrice-obligations).
+Pour stabiliser un portefeuille face à la volatilité des actions, on achète des **Obligations**. C'est un prêt que vous accordez à une entreprise ou un gouvernement. En échange, ils paient des intérêts réguliers. Dans ce guide, nous expliquerons la tarification des obligations et comment utiliser notre [Calculatrice d'Obligations](/fr/calculatrices/calculateur-d-obligations).
 
 ---
 

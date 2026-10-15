@@ -5,7 +5,7 @@ description: "Comprenez les coûts cachés, l'impact de l'inflation sur les frai
 
 # Le Vrai Coût de l'Université : Budgétiser les Études Supérieures
 
-Payer l'université est l'un des investissements les plus chers d'une vie. Pour éviter les dettes étudiantes écrasantes, vous devez prévoir le coût total, en tenant compte de l'inflation. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Coût Universitaire](/fr/calculatrices/calculatrice-cout-universite).
+Payer l'université est l'un des investissements les plus chers d'une vie. Pour éviter les dettes étudiantes écrasantes, vous devez prévoir le coût total, en tenant compte de l'inflation. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Coût Universitaire](/fr/calculatrices/calculateur-cout-etudes).
 
 ---
 

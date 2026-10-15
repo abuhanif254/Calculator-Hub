@@ -18,7 +18,7 @@ A loan is a contract between a borrower and a lender in which the borrower recei
 Many consumer loans fall into this category of loans that have regular payments that are amortized uniformly over their lifetime. Routine payments are made on principal and interest until the loan reaches maturity (is entirely paid off). Some of the most familiar amortized loans include mortgages, car loans, student loans, and personal loans. The word loan will probably refer to this type in everyday conversation.
 
 Below are links to calculators related to loans that fall under this category, which can provide more information or allow specific calculations involving each type of loan. Instead of using this Loan Calculator, it may be more useful to use any of the following for each specific need:
-- [Mortgage Calculator](/calculators/mortgage-calculator)
+- [Mortgage Calculator](/es/calculadoras/calculadora-de-hipotecas)
 - Auto Loan Calculator
 - Student Loan Calculator
 - Personal Loan Calculator

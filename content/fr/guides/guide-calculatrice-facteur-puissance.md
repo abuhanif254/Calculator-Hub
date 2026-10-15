@@ -5,7 +5,7 @@ description: "Comprenez le Facteur de Puissance. Découvrez la différence entre
 
 # Facteur de Puissance : L'Analogie de la Bière
 
-En courant alternatif (AC), toute l'électricité n'est pas utilisée pour travailler. Une partie rebondit inutilement ! Découvrez le Facteur de Puissance avec l'analogie de la bière et notre [Calculatrice de Facteur de Puissance](/fr/calculatrices/calculatrice-facteur-puissance).
+En courant alternatif (AC), toute l'électricité n'est pas utilisée pour travailler. Une partie rebondit inutilement ! Découvrez le Facteur de Puissance avec l'analogie de la bière et notre [Calculatrice de Facteur de Puissance](/fr/calculatrices/calculateur-de-facteur-de-puissance).
 
 ---
 

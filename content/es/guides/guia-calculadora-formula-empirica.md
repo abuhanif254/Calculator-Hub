@@ -5,7 +5,7 @@ description: "Aprenda a encontrar la proporción de números enteros más simple
 
 # Fórmula Empírica: La Proporción Más Simple
 
-Si es un químico forense y encuentra un polvo misterioso (40.0% Carbono, 6.7% Hidrógeno, 53.3% Oxígeno en masa), ¿cómo sabe qué es? Debe calcular su **Fórmula Empírica**. Aprenda cómo hacerlo y use nuestra [Calculadora de Fórmula Empírica](/es/calculadoras/calculadora-formula-empirica).
+Si es un químico forense y encuentra un polvo misterioso (40.0% Carbono, 6.7% Hidrógeno, 53.3% Oxígeno en masa), ¿cómo sabe qué es? Debe calcular su **Fórmula Empírica**. Aprenda cómo hacerlo y use nuestra [Calculadora de Fórmula Empírica](/es/calculadoras/calculadora-de-formula-empirica).
 
 ---
 

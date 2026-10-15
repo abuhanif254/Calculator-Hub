@@ -5,7 +5,7 @@ description: "Aprenda qué es el subnetting, cómo funciona la notación CIDR, p
 
 # Subnetting: Dividiendo la Red
 
-Para los principiantes en TI, el "Subnetting" suele ser el tema más confuso. En esta guía, explicaremos el concepto de forma sencilla, por qué lo usamos y cómo aprovechar nuestra [Calculadora de Subredes](/es/calculadoras/calculadora-subred).
+Para los principiantes en TI, el "Subnetting" suele ser el tema más confuso. En esta guía, explicaremos el concepto de forma sencilla, por qué lo usamos y cómo aprovechar nuestra [Calculadora de Subredes](/es/calculadoras/calculadora-de-subredes).
 
 ---
 

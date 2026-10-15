@@ -5,7 +5,7 @@ description: "Aprenda cómo funciona la aceleración, la diferencia entre aceler
 
 # La Física de la Aceleración: Más que Solo Ir Rápido
 
-Cuando pisa el acelerador, se siente empujado contra el asiento. Eso no es velocidad, es **Aceleración**. En física, es la tasa a la que un objeto cambia su velocidad. En esta guía, desglosaremos la cinemática y cómo usar nuestra [Calculadora de Aceleración](/es/calculadoras/calculadora-aceleracion).
+Cuando pisa el acelerador, se siente empujado contra el asiento. Eso no es velocidad, es **Aceleración**. En física, es la tasa a la que un objeto cambia su velocidad. En esta guía, desglosaremos la cinemática y cómo usar nuestra [Calculadora de Aceleración](/es/calculadoras/calculadora-de-aceleracion).
 
 ---
 

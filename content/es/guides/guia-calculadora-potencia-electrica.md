@@ -5,7 +5,7 @@ description: "Domine la Ley de Watt. Aprenda a calcular el consumo de potencia e
 
 # Potencia Eléctrica: Calculando Vatios (P=VI)
 
-¿Por qué un microondas calienta rápido y una luz nocturna apenas emite calor? La respuesta es su consumo de **Potencia Eléctrica**. En esta guía explicaremos los Vatios (Watts), la ecuación de Potencia y nuestra [Calculadora de Potencia Eléctrica](/es/calculadoras/calculadora-potencia-electrica).
+¿Por qué un microondas calienta rápido y una luz nocturna apenas emite calor? La respuesta es su consumo de **Potencia Eléctrica**. En esta guía explicaremos los Vatios (Watts), la ecuación de Potencia y nuestra [Calculadora de Potencia Eléctrica](/es/calculadoras/calculadora-de-potencia-electrica).
 
 ---
 

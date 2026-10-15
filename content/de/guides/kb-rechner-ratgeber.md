@@ -6,7 +6,7 @@ description: "Verstehen Sie die Kb-Konstante für schwache Basen, die Beziehung 
 # Kb-Rechner: Die Basendissoziationskonstante
 
 Säuren geben Wasserstoffionen ab, Basen geben Hydroxidionen ($OH^-$) ab. Es gibt starke Basen (Lauge) und schwache (Ammoniak).
-Um die genaue Stärke einer Base zu messen, berechnet man die **Basendissoziationskonstante ($K_b$)**. Erfahren Sie mehr über die Chemie hinter $K_b$ und unseren [Kb-Rechner](/de/rechner/kb-rechner).
+Um die genaue Stärke einer Base zu messen, berechnet man die **Basendissoziationskonstante ($K_b$)**. Erfahren Sie mehr über die Chemie hinter $K_b$ und unseren [Kb-Rechner](/de/rechner/kb-wert-rechner).
 
 ---
 

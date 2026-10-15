@@ -6,7 +6,7 @@ description: "Aprenda cómo se estructuran las comisiones, la diferencia entre t
 # Calculadora de Comisiones: Rastree sus Ganancias de Ventas
 
 Si trabaja en bienes raíces o ventas, su salario base es solo una parte de sus ingresos. El dinero real proviene de las **Comisiones** (un porcentaje de los ingresos que genera).
-Entender su estructura de comisiones es vital para predecir sus ingresos. Aprenda cómo calcularlas y use nuestra [Calculadora de Comisiones](/es/calculadoras/calculadora-comisiones).
+Entender su estructura de comisiones es vital para predecir sus ingresos. Aprenda cómo calcularlas y use nuestra [Calculadora de Comisiones](/es/calculadoras/calculadora-de-comisiones).
 
 ---
 

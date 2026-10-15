@@ -5,7 +5,7 @@ description: "Comprenez l'échelle de pH, apprenez à calculer la concentration 
 
 # Calculatrice de pH : Mesurer l'Acidité
 
-Le jus de citron est acide, le savon est amer. Pour mesurer l'acidité d'un liquide, les chimistes utilisent **l'échelle de pH**. Découvrez les mathématiques derrière le pH et utilisez notre [Calculatrice de pH](/fr/calculatrices/calculatrice-ph).
+Le jus de citron est acide, le savon est amer. Pour mesurer l'acidité d'un liquide, les chimistes utilisent **l'échelle de pH**. Découvrez les mathématiques derrière le pH et utilisez notre [Calculatrice de pH](/fr/calculatrices/calculateur-de-ph).
 
 ---
 

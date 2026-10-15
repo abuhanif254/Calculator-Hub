@@ -5,7 +5,7 @@ description: "Aprenda la diferencia entre Molaridad y Molalidad, por qué los qu
 
 # Molalidad: La Concentración a Prueba de Temperatura
 
-En química básica, usamos Molaridad (moles por litro). Pero en laboratorios avanzados, usamos **Molalidad (m)**. ¿Por qué necesitamos dos formas de medir? La respuesta está en la termodinámica. Aprenda cómo funciona y use nuestra [Calculadora de Molalidad](/es/calculadoras/calculadora-molalidad).
+En química básica, usamos Molaridad (moles por litro). Pero en laboratorios avanzados, usamos **Molalidad (m)**. ¿Por qué necesitamos dos formas de medir? La respuesta está en la termodinámica. Aprenda cómo funciona y use nuestra [Calculadora de Molalidad](/es/calculadoras/calculadora-de-molalidad).
 
 ---
 

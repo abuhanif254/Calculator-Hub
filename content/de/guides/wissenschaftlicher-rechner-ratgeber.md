@@ -5,7 +5,7 @@ description: "Ein umfassendes Handbuch zur Verwendung eines wissenschaftlichen T
 
 # So meistern Sie den wissenschaftlichen Taschenrechner: Funktionen & Tastenkombinationen
 
-Wissenschaftliche Taschenrechner sind unverzichtbare Werkzeuge. In diesem Leitfaden erklären wir die Funktionen unseres [wissenschaftlichen Rechners](/de/rechner/wissenschaftlicher-rechner).
+Wissenschaftliche Taschenrechner sind unverzichtbare Werkzeuge. In diesem Leitfaden erklären wir die Funktionen unseres [wissenschaftlichen Rechners](/de/rechner/wissenschaftlicher-taschenrechner).
 
 ---
 

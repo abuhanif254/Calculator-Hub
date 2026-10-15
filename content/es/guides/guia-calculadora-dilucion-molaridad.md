@@ -6,7 +6,7 @@ description: "Aprenda a preparar soluciones de laboratorio desde un stock concen
 # Dilución de Molaridad: La Fórmula M1V1 = M2V2
 
 Las empresas químicas no envían ácidos diluidos a los laboratorios; envían "soluciones stock" altamente concentradas (ej. 12.0 M) para ahorrar espacio.
-El estudiante debe diluir esa solución a una concentración segura (ej. 1.5 M). Para ello, usamos la **Fórmula de Dilución**. Aprenda cómo funciona y use nuestra [Calculadora de Dilución de Molaridad](/es/calculadoras/calculadora-dilucion-molaridad).
+El estudiante debe diluir esa solución a una concentración segura (ej. 1.5 M). Para ello, usamos la **Fórmula de Dilución**. Aprenda cómo funciona y use nuestra [Calculadora de Dilución de Molaridad](/es/calculadoras/calculadora-de-dilucion-de-molaridad).
 
 ---
 

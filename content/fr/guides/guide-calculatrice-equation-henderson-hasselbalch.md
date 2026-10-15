@@ -6,7 +6,7 @@ description: "Découvrez comment fonctionne l'équation de Henderson-Hasselbalch
 # Équation de Henderson-Hasselbalch : Les Solutions Tampons
 
 Si vous ajoutez de l'acide à de l'eau, le pH s'effondre. Pourtant, boire du jus d'orange acide ne modifie pas le pH de votre sang (7,4). Pourquoi ?
-Car votre sang est une **Solution Tampon**. Il possède un "bouclier" chimique qui résiste aux variations de pH. Pour le calculer, les chimistes utilisent **l'Équation de Henderson-Hasselbalch**. Découvrez comment avec notre [Calculatrice de Henderson-Hasselbalch](/fr/calculatrices/calculatrice-equation-henderson-hasselbalch).
+Car votre sang est une **Solution Tampon**. Il possède un "bouclier" chimique qui résiste aux variations de pH. Pour le calculer, les chimistes utilisent **l'Équation de Henderson-Hasselbalch**. Découvrez comment avec notre [Calculatrice de Henderson-Hasselbalch](/fr/calculatrices/calculateur-d-equation-de-henderson-hasselbalch).
 
 ---
 

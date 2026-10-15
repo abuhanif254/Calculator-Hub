@@ -6,7 +6,7 @@ description: "Lernen Sie, wie galvanische Zellen Strom erzeugen, wie man das Sta
 # Elektrochemische Zellen-Rechner: Batterien erklärt
 
 Eine Batterie ist eine miniaturisierte **elektrochemische Zelle**. Eine chemische Reaktion drückt Elektronen durch ein Kabel.
-Um die Spannung einer Metallkombination zu berechnen, nutzt man **Standardreduktionspotenziale**. Erfahren Sie, wie diese Zellen funktionieren und testen Sie unseren [Elektrochemische Zellen-Rechner](/de/rechner/elektrochemische-zellen-rechner).
+Um die Spannung einer Metallkombination zu berechnen, nutzt man **Standardreduktionspotenziale**. Erfahren Sie, wie diese Zellen funktionieren und testen Sie unseren [Elektrochemische Zellen-Rechner](/de/rechner/elektrochemische-zelle-rechner).
 
 ---
 

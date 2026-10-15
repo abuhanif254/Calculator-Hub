@@ -54,7 +54,7 @@ export const icoToPngConfig: ToolConfig = {
     { name: "SVG to PNG", slug: "svg-to-png" },
     { name: "PNG to SVG", slug: "png-to-svg" },
     { name: "Image Converter", slug: "image-converter" },
-    { name: "Resize Image", slug: "image-resizer" }
+    { name: "Resize Image", slug: "resize-image" }
   ],
   examples: [],
   faq: [

@@ -6,7 +6,7 @@ description: "Comprenda cómo la Ecuación de Nernst predice el potencial de cel
 # Calculadora de Ecuación de Nernst: Electroquímica
 
 Toda batería usa una reacción química para empujar electrones (voltaje). Nueva, tiene alto voltaje, pero al agotarse cae a cero.
-Para calcular el voltaje exacto en cualquier momento, se usa la **Ecuación de Nernst**. Aprenda la mecánica del potencial de celda y use nuestra [Calculadora de Ecuación de Nernst](/es/calculadoras/calculadora-ecuacion-nernst).
+Para calcular el voltaje exacto en cualquier momento, se usa la **Ecuación de Nernst**. Aprenda la mecánica del potencial de celda y use nuestra [Calculadora de Ecuación de Nernst](/es/calculadoras/calculadora-de-ecuacion-de-nernst).
 
 ---
 

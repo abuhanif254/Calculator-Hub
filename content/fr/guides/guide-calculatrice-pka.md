@@ -6,7 +6,7 @@ description: "Comprenez les constantes de dissociation acide (Ka), comment calcu
 # Calculatrice de pKa : Mesurer la Force d'un Acide
 
 Tous les acides ne se valent pas. Le vinaigre est inoffensif sur la peau, mais l'acide sulfurique provoque de graves brûlures.
-Pour mesurer la *force* d'un acide, les chimistes utilisent la **Constante de Dissociation Acide ($K_a$)** et son logarithme, le **pKa**. Découvrez la différence entre acides forts et faibles et utilisez notre [Calculatrice de pKa](/fr/calculatrices/calculatrice-pka).
+Pour mesurer la *force* d'un acide, les chimistes utilisent la **Constante de Dissociation Acide ($K_a$)** et son logarithme, le **pKa**. Découvrez la différence entre acides forts et faibles et utilisez notre [Calculatrice de pKa](/fr/calculatrices/calculateur-de-pka).
 
 ---
 

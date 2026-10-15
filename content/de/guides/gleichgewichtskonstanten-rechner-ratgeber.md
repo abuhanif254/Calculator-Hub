@@ -6,7 +6,7 @@ description: "Lernen Sie, wie die Keq-Konstante das Gleichgewicht zwischen Produ
 # Gleichgewichtskonstanten-Rechner: Chemisches Gleichgewicht
 
 Viele chemische Reaktionen sind **reversibel**. Während Edukte zu Produkten werden, zerfallen Produkte wieder zu Edukten!
-Irgendwann stellt sich ein "dynamisches Gleichgewicht" ein. Um diesen Zustand zu messen, nutzen Chemiker die **Gleichgewichtskonstante ($K_{eq}$)**. Lernen Sie, wie das funktioniert, mit unserem [Gleichgewichtskonstanten-Rechner](/de/rechner/gleichgewichtskonstanten-rechner).
+Irgendwann stellt sich ein "dynamisches Gleichgewicht" ein. Um diesen Zustand zu messen, nutzen Chemiker die **Gleichgewichtskonstante ($K_{eq}$)**. Lernen Sie, wie das funktioniert, mit unserem [Gleichgewichtskonstanten-Rechner](/de/rechner/gleichgewichtskonstante-rechner).
 
 ---
 

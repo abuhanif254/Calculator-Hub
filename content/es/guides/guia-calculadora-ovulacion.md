@@ -5,7 +5,7 @@ description: "Aprenda a calcular su ventana fértil, comprenda los signos de la 
 
 # La Guía Definitiva para Rastrear su Ciclo de Ovulación
 
-Ya sea que esté tratando activamente de concebir o simplemente quiera comprender mejor su cuerpo, el seguimiento de su ovulación es fundamental. En esta guía, desglosaremos la ciencia del ciclo menstrual y le mostraremos cómo usar nuestra [Calculadora de Ovulación](/es/calculadoras/calculadora-ovulacion).
+Ya sea que esté tratando activamente de concebir o simplemente quiera comprender mejor su cuerpo, el seguimiento de su ovulación es fundamental. En esta guía, desglosaremos la ciencia del ciclo menstrual y le mostraremos cómo usar nuestra [Calculadora de Ovulación](/es/calculadoras/calculadora-de-ovulacion).
 
 ---
 

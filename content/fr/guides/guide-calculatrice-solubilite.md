@@ -6,7 +6,7 @@ description: "Découvrez comment la température affecte la solubilité, comment
 # Calculatrice de Solubilité : La Chimie de la Dissolution
 
 Le sucre a du mal à se dissoudre dans un thé glacé, mais fond instantanément dans un café chaud. Pourquoi la chaleur change-t-elle la donne ?
-Pour comprendre comment les solides et les liquides se mélangent, on étudie la **Solubilité**. Découvrez les facteurs en jeu et utilisez notre [Calculatrice de Solubilité](/fr/calculatrices/calculatrice-solubilite).
+Pour comprendre comment les solides et les liquides se mélangent, on étudie la **Solubilité**. Découvrez les facteurs en jeu et utilisez notre [Calculatrice de Solubilité](/fr/calculatrices/calculateur-de-solubilite).
 
 ---
 

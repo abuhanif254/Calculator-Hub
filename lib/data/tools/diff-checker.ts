@@ -110,7 +110,7 @@ Whether you are auditing code, reviewing legal documents, or troubleshooting ser
 
   relatedTools: [
     { name: "JSON Formatter", slug: "json-formatter" },
-    { name: "JSON Validator", slug: "json-validator" },
+    { name: "JSON Formatter", slug: "json-formatter" },
     { name: "CSS Beautifier", slug: "css-beautifier" }
   ],
   lastUpdated: "2024-05-17"

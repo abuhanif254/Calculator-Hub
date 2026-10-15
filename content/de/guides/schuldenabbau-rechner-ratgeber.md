@@ -5,7 +5,7 @@ description: "Vergleichen Sie die Schneeball-Methode mit den Einsparungen der La
 
 # Schneeball- vs. Lawinen-Methode: Die ultimative Schuldenstrategie
 
-Um schuldenfrei zu werden, müssen Sie **eine Schuld nach der anderen** angreifen. Aber welche zuerst? Wir vergleichen die beiden besten Strategien und zeigen unseren [Schuldenabbau-Rechner](/de/rechner/schuldenabbau-rechner).
+Um schuldenfrei zu werden, müssen Sie **eine Schuld nach der anderen** angreifen. Aber welche zuerst? Wir vergleichen die beiden besten Strategien und zeigen unseren [Schuldenabbau-Rechner](/de/rechner/schulden-tilgungs-rechner).
 
 ---
 

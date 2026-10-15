@@ -5,7 +5,7 @@ description: "Découvrez le secret des paiements anticipés, des échéances bim
 
 # Comment Rembourser votre Hypothèque des Années plus Tôt
 
-Dans une hypothèque de 30 ans, la banque concentre les intérêts au début. Pour battre la banque, vous devez briser son calendrier. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Remboursement Hypothécaire](/fr/calculatrices/calculatrice-remboursement-hypothecaire).
+Dans une hypothèque de 30 ans, la banque concentre les intérêts au début. Pour battre la banque, vous devez briser son calendrier. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Remboursement Hypothécaire](/fr/calculatrices/calculateur-remboursement-hypothecaire).
 
 ---
 

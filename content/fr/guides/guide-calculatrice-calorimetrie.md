@@ -6,7 +6,7 @@ description: "Découvrez le fonctionnement d'un calorimètre, les mathématiques
 # Calculatrice de Calorimétrie : Mesurer le Transfert de Chaleur
 
 Pour connaître les calories d'un aliment, les scientifiques le brûlent littéralement pour mesurer la chaleur produite !
-L'appareil utilisé s'appelle un **Calorimètre**. Découvrez la science de la calorimétrie et utilisez notre [Calculatrice de Calorimétrie](/fr/calculatrices/calculatrice-calorimetrie).
+L'appareil utilisé s'appelle un **Calorimètre**. Découvrez la science de la calorimétrie et utilisez notre [Calculatrice de Calorimétrie](/fr/calculatrices/calculateur-de-calorimetrie).
 
 ---
 

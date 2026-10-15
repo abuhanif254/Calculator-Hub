@@ -5,7 +5,7 @@ description: "Aprenda a leer su factura de luz, calcular los kilovatios-hora (kW
 
 # Costo de Electricidad: ¿Cuánto Cuesta Usar sus Electrodomésticos?
 
-¿Se ha preguntado cuánto cuesta dejar un calentador encendido toda la noche o una PC funcionando 24/7? En esta guía, desglosaremos las matemáticas de su factura de luz y le mostraremos cómo usar nuestra [Calculadora de Costo de Electricidad](/es/calculadoras/calculadora-costo-electricidad).
+¿Se ha preguntado cuánto cuesta dejar un calentador encendido toda la noche o una PC funcionando 24/7? En esta guía, desglosaremos las matemáticas de su factura de luz y le mostraremos cómo usar nuestra [Calculadora de Costo de Electricidad](/es/calculadoras/calculadora-de-costo-de-electricidad).
 
 ---
 

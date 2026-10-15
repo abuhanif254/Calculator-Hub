@@ -5,7 +5,7 @@ description: "Aprenda a convertir minutos a decimales para la nómina, calcular 
 
 # Clase Magistral de Nómina: Cálculo de Hojas de Tiempo y Horas de Trabajo
 
-Si es un empleado por hora, su hoja de tiempo es su cheque de pago. Calcular sus horas puede ser complicado debido a los descansos y la conversión de minutos a decimales. En esta guía, le mostraremos cómo usar nuestra [Calculadora de Horas](/es/calculadoras/calculadora-horas).
+Si es un empleado por hora, su hoja de tiempo es su cheque de pago. Calcular sus horas puede ser complicado debido a los descansos y la conversión de minutos a decimales. En esta guía, le mostraremos cómo usar nuestra [Calculadora de Horas](/es/calculadoras/calculadora-de-horas).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Erfahren Sie, wie Kreditgeber Ihr Einkommen bewerten, verstehen Si
 
 # Wie viel Haus kann ich mir leisten? Die 28/36-Regel erklärt
 
-Nur weil die Bank Ihnen einen Kredit genehmigt, heißt das nicht, dass Sie ihn sich leisten können. In diesem Leitfaden erklären wir die 28/36-Regel und die Nutzung unseres [Haus-Erschwinglichkeitsrechners](/de/rechner/haus-erschwinglichkeitsrechner).
+Nur weil die Bank Ihnen einen Kredit genehmigt, heißt das nicht, dass Sie ihn sich leisten können. In diesem Leitfaden erklären wir die 28/36-Regel und die Nutzung unseres [Haus-Erschwinglichkeitsrechners](/de/rechner/haus-erschwinglichkeits-rechner).
 
 ---
 

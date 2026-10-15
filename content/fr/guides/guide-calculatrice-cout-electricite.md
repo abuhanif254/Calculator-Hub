@@ -5,7 +5,7 @@ description: "Apprenez à lire votre facture, à calculer les kilowattheures (kW
 
 # Coût de l'Électricité : Combien Coûtent vos Appareils ?
 
-Vous êtes-vous déjà demandé combien coûte un chauffage d'appoint allumé toute la nuit ? Dans ce guide, nous décryptons votre facture et vous expliquons comment utiliser notre [Calculatrice de Coût de l'Électricité](/fr/calculatrices/calculatrice-cout-electricite).
+Vous êtes-vous déjà demandé combien coûte un chauffage d'appoint allumé toute la nuit ? Dans ce guide, nous décryptons votre facture et vous expliquons comment utiliser notre [Calculatrice de Coût de l'Électricité](/fr/calculatrices/calculateur-de-cout-d-electricite).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Erfahren Sie, wie sich Gase bei Hitze ausdehnen, entdecken Sie das
 # Charles'sches Gesetz Rechner: Volumen vs. Temperatur
 
 Ein Basketball, der in einer frostigen Nacht draußen bleibt, wirkt morgens platt. Bringt man ihn ins Warme, wird er wieder prall! Warum?
-Jacques Charles entdeckte in den 1780ern den direkten Zusammenhang zwischen Temperatur und Gasvolumen. Erfahren Sie mehr über das **Gesetz von Charles** und nutzen Sie unseren [Charles'sches Gesetz Rechner](/de/rechner/charles-sches-gesetz-rechner).
+Jacques Charles entdeckte in den 1780ern den direkten Zusammenhang zwischen Temperatur und Gasvolumen. Erfahren Sie mehr über das **Gesetz von Charles** und nutzen Sie unseren [Charles'sches Gesetz Rechner](/de/rechner/charles-gesetz-rechner).
 
 ---
 

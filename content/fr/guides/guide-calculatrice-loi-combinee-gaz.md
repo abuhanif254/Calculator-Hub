@@ -6,7 +6,7 @@ description: "Découvrez comment la Loi Combinée fusionne celles de Boyle, Char
 # Calculatrice de la Loi Combinée des Gaz : Conditions Changeantes
 
 Si vous prenez une grande inspiration et plongez profondément, la pression augmente et la température chute. Que devient le volume d'air dans vos poumons ?
-Quand un gaz subit un changement affectant plusieurs variables à la fois, on utilise la **Loi Combinée des Gaz**. Découvrez son fonctionnement et utilisez notre [Calculatrice de la Loi Combinée des Gaz](/fr/calculatrices/calculatrice-loi-combinee-gaz).
+Quand un gaz subit un changement affectant plusieurs variables à la fois, on utilise la **Loi Combinée des Gaz**. Découvrez son fonctionnement et utilisez notre [Calculatrice de la Loi Combinée des Gaz](/fr/calculatrices/calculateur-de-loi-combinee-des-gaz).
 
 ---
 

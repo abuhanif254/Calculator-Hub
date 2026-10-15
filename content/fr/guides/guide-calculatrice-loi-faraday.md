@@ -6,7 +6,7 @@ description: "Découvrez comment les Lois de Faraday relient la charge électriq
 # Calculatrice de la Loi de Faraday sur l'Électrolyse
 
 Quand vous faites passer un courant électrique dans une solution de métaux dissous, les atomes de métal se déposent sur l'électrode ! C'est la base de la **galvanoplastie** — comment on recouvre des objets bon marché d'une couche de or, argent ou chrome.
-La quantité déposée est prédite par les **Lois de Faraday**. Utilisez notre [Calculatrice de la Loi de Faraday](/fr/calculatrices/calculatrice-loi-faraday).
+La quantité déposée est prédite par les **Lois de Faraday**. Utilisez notre [Calculatrice de la Loi de Faraday](/fr/calculatrices/calculateur-de-loi-de-faraday).
 
 ---
 

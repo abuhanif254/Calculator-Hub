@@ -5,7 +5,7 @@ description: "Comprenda el impacto financiero de casarse. Aprenda sobre la Penal
 
 # Calculadora de Impuestos por Matrimonio: ¿Bono o Penalización?
 
-Al casarse, puede presentar impuestos "Conjuntamente" o "Por Separado". Para muchas parejas, combinar ingresos resulta en un recorte de impuestos (Bono de Matrimonio). Pero para otras, casarse las obliga a pagar *más* (Penalización por Matrimonio). Aprenda por qué y use nuestra [Calculadora de Impuestos por Matrimonio](/es/calculadoras/calculadora-impuestos-matrimonio).
+Al casarse, puede presentar impuestos "Conjuntamente" o "Por Separado". Para muchas parejas, combinar ingresos resulta en un recorte de impuestos (Bono de Matrimonio). Pero para otras, casarse las obliga a pagar *más* (Penalización por Matrimonio). Aprenda por qué y use nuestra [Calculadora de Impuestos por Matrimonio](/es/calculadoras/calculadora-impuesto-matrimonio).
 
 ---
 

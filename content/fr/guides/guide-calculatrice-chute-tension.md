@@ -5,7 +5,7 @@ description: "Comprenez pourquoi l'électricité perd de la pression sur de long
 
 # Chute de Tension : Pourquoi les Câbles Longs Perdent de la Puissance
 
-Si vous branchez plusieurs longues rallonges pour utiliser un outil au fond du jardin, il fonctionnera mal. C'est la **Chute de Tension**. Ce guide vous explique pourquoi et comment utiliser notre [Calculatrice de Chute de Tension](/fr/calculatrices/calculatrice-chute-tension).
+Si vous branchez plusieurs longues rallonges pour utiliser un outil au fond du jardin, il fonctionnera mal. C'est la **Chute de Tension**. Ce guide vous explique pourquoi et comment utiliser notre [Calculatrice de Chute de Tension](/fr/calculatrices/calculateur-de-chute-de-tension).
 
 ---
 

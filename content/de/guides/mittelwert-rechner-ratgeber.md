@@ -5,7 +5,7 @@ description: "Entdecken Sie die verschiedenen Arten von Mittelwerten, wann sie v
 
 # So berechnen Sie den Mittelwert: Arithmetisch, Geometrisch und Harmonisch
 
-Wenn jemand nach dem "Durchschnitt" fragt, meint er fast immer das **arithmetische Mittel**. Es gibt jedoch noch andere entscheidende Arten. In diesem Leitfaden untersuchen wir die drei häufigsten und die Verwendung unseres [Mittelwertrechners](/de/rechner/mittelwert-rechner).
+Wenn jemand nach dem "Durchschnitt" fragt, meint er fast immer das **arithmetische Mittel**. Es gibt jedoch noch andere entscheidende Arten. In diesem Leitfaden untersuchen wir die drei häufigsten und die Verwendung unseres [Mittelwertrechners](/de/rechner/mittelwertrechner).
 
 ---
 

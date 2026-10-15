@@ -5,7 +5,7 @@ description: "Cesser de jeter l'argent par les fenêtres en louant ? Apprenez la
 
 # Louer vs Acheter : La Règle des 5 % et les Coûts Irrécupérables
 
-"Louer, c'est jeter l'argent par les fenêtres !" C'est un mythe. Acheter comporte d'énormes **coûts irrécupérables**. Dans ce guide, nous expliquerons les mathématiques et comment utiliser notre [Calculatrice Louer vs Acheter](/fr/calculatrices/calculatrice-louer-vs-acheter).
+"Louer, c'est jeter l'argent par les fenêtres !" C'est un mythe. Acheter comporte d'énormes **coûts irrécupérables**. Dans ce guide, nous expliquerons les mathématiques et comment utiliser notre [Calculatrice Louer vs Acheter](/fr/calculatrices/calculateur-louer-vs-acheter).
 
 ---
 

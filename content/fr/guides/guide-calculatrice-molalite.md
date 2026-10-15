@@ -5,7 +5,7 @@ description: "Apprenez la différence entre Molarité et Molalité, pourquoi uti
 
 # Molalité : La Concentration à l'Épreuve de la Température
 
-Au lycée, on utilise la Molarité (moles par litre). En laboratoire avancé, on utilise la **Molalité (m)**. Pourquoi deux méthodes ? La réponse est dans la thermodynamique. Découvrez la formule et utilisez notre [Calculatrice de Molalité](/fr/calculatrices/calculatrice-molalite).
+Au lycée, on utilise la Molarité (moles par litre). En laboratoire avancé, on utilise la **Molalité (m)**. Pourquoi deux méthodes ? La réponse est dans la thermodynamique. Découvrez la formule et utilisez notre [Calculatrice de Molalité](/fr/calculatrices/calculateur-de-molalite).
 
 ---
 

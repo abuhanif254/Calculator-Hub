@@ -5,7 +5,7 @@ description: "Apprenez comment fonctionne l'énergie potentielle gravitationnell
 
 # L'Énergie Potentielle : L'Énergie Stockée en Attente
 
-Imaginez un wagon de montagnes russes au sommet, juste avant la chute. Bien qu'il soit presque à l'arrêt, il est rempli d'énergie. C'est **l'Énergie Potentielle**. Dans ce guide, nous expliquerons l'énergie potentielle gravitationnelle et comment utiliser notre [Calculatrice d'Énergie Potentielle](/fr/calculatrices/calculatrice-energie-potentielle).
+Imaginez un wagon de montagnes russes au sommet, juste avant la chute. Bien qu'il soit presque à l'arrêt, il est rempli d'énergie. C'est **l'Énergie Potentielle**. Dans ce guide, nous expliquerons l'énergie potentielle gravitationnelle et comment utiliser notre [Calculatrice d'Énergie Potentielle](/fr/calculatrices/calculateur-d-energie-potentielle).
 
 ---
 

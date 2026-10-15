@@ -6,7 +6,7 @@ description: "Comprenda la Ley de los Gases Ideales, cómo interactúan la presi
 # Calculadora de la Ley de los Gases Ideales: PV = nRT
 
 Si infla un globo en una casa cálida y lo saca a la nieve, se encogerá de inmediato. ¿Por qué? La temperatura de un gas afecta directamente su volumen y presión.
-Para entender cómo interactúan estas variables, usamos la **Ley de los Gases Ideales**. Aprenda la ciencia detrás de la ecuación y use nuestra [Calculadora de la Ley de los Gases Ideales](/es/calculadoras/calculadora-ley-gases-ideales).
+Para entender cómo interactúan estas variables, usamos la **Ley de los Gases Ideales**. Aprenda la ciencia detrás de la ecuación y use nuestra [Calculadora de la Ley de los Gases Ideales](/es/calculadoras/calculadora-de-ley-de-gases-ideales).
 
 ---
 

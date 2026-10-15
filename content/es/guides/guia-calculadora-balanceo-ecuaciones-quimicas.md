@@ -6,7 +6,7 @@ description: "Aprenda por qué las ecuaciones deben estar balanceadas, cómo usa
 # Balanceo de Ecuaciones Químicas: Ley de Conservación
 
 Si hornea un pastel con 500g de ingredientes, el pastel final pesará exactamente 500g. ¡Nada desaparece, solo se transforma!
-En química, la **Ley de Conservación de la Masa** dice que la materia no se crea ni se destruye. Los átomos iniciales deben coincidir con los finales. Aprenda a balancear ecuaciones y use nuestra [Calculadora de Balanceo de Ecuaciones Químicas](/es/calculadoras/calculadora-balanceo-ecuaciones-quimicas).
+En química, la **Ley de Conservación de la Masa** dice que la materia no se crea ni se destruye. Los átomos iniciales deben coincidir con los finales. Aprenda a balancear ecuaciones y use nuestra [Calculadora de Balanceo de Ecuaciones Químicas](/es/calculadoras/calculadora-de-balanceo-de-ecuaciones-quimicas).
 
 ---
 

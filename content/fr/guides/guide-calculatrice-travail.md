@@ -5,7 +5,7 @@ description: "Comprenez la définition scientifique du Travail (W = F × d). Dé
 
 # La Physique du Travail : Force et Déplacement
 
-Si vous poussez un mur pendant des heures, vous serez épuisé. Mais en physique, vous avez fait zéro Travail. Le **Travail** nécessite qu'une force déplace un objet. Apprenez comment utiliser notre [Calculatrice de Travail](/fr/calculatrices/calculatrice-travail).
+Si vous poussez un mur pendant des heures, vous serez épuisé. Mais en physique, vous avez fait zéro Travail. Le **Travail** nécessite qu'une force déplace un objet. Apprenez comment utiliser notre [Calculatrice de Travail](/fr/calculatrices/calculateur-de-travail).
 
 ---
 

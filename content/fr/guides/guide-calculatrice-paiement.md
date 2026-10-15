@@ -5,7 +5,7 @@ description: "Apprenez la formule mathématique universelle pour calculer les me
 
 # Le Guide Universel des Paiements : Calculez N'importe Quelle Mensualité
 
-Presque tous les prêts à taux fixe utilisent la même formule. Dans ce guide, nous expliquerons cette formule et comment utiliser notre [Calculatrice de Paiement](/fr/calculatrices/calculatrice-paiement).
+Presque tous les prêts à taux fixe utilisent la même formule. Dans ce guide, nous expliquerons cette formule et comment utiliser notre [Calculatrice de Paiement](/fr/calculatrices/calculatrice-de-paiement).
 
 ---
 

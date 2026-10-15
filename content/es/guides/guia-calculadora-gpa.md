@@ -5,7 +5,7 @@ description: "Aprenda cómo funciona el sistema GPA, la diferencia entre GPA pon
 
 # La Guía Definitiva para Calcular su GPA
 
-Su Promedio de Calificaciones (GPA) es una de las métricas más importantes. En esta guía, desglosaremos las matemáticas, explicaremos la diferencia entre puntajes ponderados y no ponderados, y le mostraremos cómo usar nuestra [Calculadora de GPA](/es/calculadoras/calculadora-gpa).
+Su Promedio de Calificaciones (GPA) es una de las métricas más importantes. En esta guía, desglosaremos las matemáticas, explicaremos la diferencia entre puntajes ponderados y no ponderados, y le mostraremos cómo usar nuestra [Calculadora de GPA](/es/calculadoras/calculadora-de-gpa).
 
 ---
 

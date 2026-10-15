@@ -5,7 +5,7 @@ description: "Apprenez la différence entre l'intérêt simple et composé, comm
 
 # Intérêt Simple vs Composé : Quelle est la Différence ?
 
-L'intérêt est calculé de deux manières : **Simple** ou **Composé**. Comprendre la différence est crucial. Dans ce guide, nous expliquerons la mécanique et comment utiliser notre [Calculatrice d'Intérêt Simple](/fr/calculatrices/calculatrice-interet-simple).
+L'intérêt est calculé de deux manières : **Simple** ou **Composé**. Comprendre la différence est crucial. Dans ce guide, nous expliquerons la mécanique et comment utiliser notre [Calculatrice d'Intérêt Simple](/fr/calculatrices/calculateur-d-interet-simple).
 
 ---
 

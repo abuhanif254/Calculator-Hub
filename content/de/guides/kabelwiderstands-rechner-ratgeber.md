@@ -5,7 +5,7 @@ description: "Lernen Sie, wie Länge, Querschnitt und Material eines Kabels den 
 
 # Kabelwiderstand: Warum Kabel warm werden
 
-Kein Kabel leitet Strom perfekt; jedes Kabel wehrt sich ein bisschen. Dieser **Kabelwiderstand** (Leitungswiderstand) ist der Grund, warum Ladegeräte warm werden. Wir erklären die drei wichtigsten Faktoren und unseren [Kabelwiderstands-Rechner](/de/rechner/kabelwiderstands-rechner).
+Kein Kabel leitet Strom perfekt; jedes Kabel wehrt sich ein bisschen. Dieser **Kabelwiderstand** (Leitungswiderstand) ist der Grund, warum Ladegeräte warm werden. Wir erklären die drei wichtigsten Faktoren und unseren [Kabelwiderstands-Rechner](/de/rechner/drahtwiderstand-rechner).
 
 ---
 

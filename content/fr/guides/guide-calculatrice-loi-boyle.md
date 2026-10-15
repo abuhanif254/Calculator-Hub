@@ -6,7 +6,7 @@ description: "Comprenez la relation inverse entre la pression et le volume d'un 
 # Calculatrice de la Loi de Boyle-Mariotte : Pression vs Volume
 
 Si vous pressez un ballon, il finit par éclater. En réduisant le volume, les molécules frappent les parois plus souvent, augmentant drastiquement la pression.
-Cette relation inverse a été découverte au 17e siècle : c'est la **Loi de Boyle-Mariotte**. Découvrez comment elle fonctionne et utilisez notre [Calculatrice de la Loi de Boyle-Mariotte](/fr/calculatrices/calculatrice-loi-boyle).
+Cette relation inverse a été découverte au 17e siècle : c'est la **Loi de Boyle-Mariotte**. Découvrez comment elle fonctionne et utilisez notre [Calculatrice de la Loi de Boyle-Mariotte](/fr/calculatrices/calculateur-de-loi-de-boyle).
 
 ---
 

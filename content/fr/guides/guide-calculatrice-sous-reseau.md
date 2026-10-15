@@ -5,7 +5,7 @@ description: "Découvrez ce qu'est le subnetting, comment fonctionne la notation
 
 # Subnetting : Diviser le Réseau
 
-Pour les débutants en informatique, le "Subnetting" (découpage en sous-réseaux) est souvent le sujet le plus complexe. Ce guide explique le concept simplement, pourquoi on l'utilise, et comment vous servir de notre [Calculatrice de Sous-réseau](/fr/calculatrices/calculatrice-sous-reseau).
+Pour les débutants en informatique, le "Subnetting" (découpage en sous-réseaux) est souvent le sujet le plus complexe. Ce guide explique le concept simplement, pourquoi on l'utilise, et comment vous servir de notre [Calculatrice de Sous-réseau](/fr/calculatrices/calculateur-de-sous-reseau).
 
 ---
 

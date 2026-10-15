@@ -5,7 +5,7 @@ description: "Découvrez ce qu'est la tension (Voltage), comment la différence 
 
 # Comprendre la Tension : La Pression de l'Électricité
 
-Une pile AA indique "1,5V". Une batterie de voiture "12V". Que signifie ce "V" ? Dans ce guide, nous expliquerons la **Tension**, la différence de potentiel, et comment utiliser notre [Calculatrice de Tension](/fr/calculatrices/calculatrice-tension).
+Une pile AA indique "1,5V". Une batterie de voiture "12V". Que signifie ce "V" ? Dans ce guide, nous expliquerons la **Tension**, la différence de potentiel, et comment utiliser notre [Calculatrice de Tension](/fr/calculatrices/calculateur-de-tension).
 
 ---
 

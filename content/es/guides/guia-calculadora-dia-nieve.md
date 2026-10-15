@@ -5,7 +5,7 @@ description: "Descubra qué factores usan los distritos escolares para cancelar 
 
 # Calculadora de Día de Nieve: ¿Se Cancelarán las Clases?
 
-Cada invierno, estudiantes (y maestros) esperan que caiga suficiente nieve para quedarse en casa. Pero predecir un "Día de Nieve" no es solo mirar cuántos centímetros caerán. Los directores de escuelas usan fórmulas complejas. Aprenda cómo funciona y pruebe nuestra [Calculadora de Día de Nieve](/es/calculadoras/calculadora-dia-nieve).
+Cada invierno, estudiantes (y maestros) esperan que caiga suficiente nieve para quedarse en casa. Pero predecir un "Día de Nieve" no es solo mirar cuántos centímetros caerán. Los directores de escuelas usan fórmulas complejas. Aprenda cómo funciona y pruebe nuestra [Calculadora de Día de Nieve](/es/calculadoras/calculadora-de-dia-de-nieve).
 
 ---
 

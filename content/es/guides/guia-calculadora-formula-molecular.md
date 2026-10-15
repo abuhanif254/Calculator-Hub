@@ -6,7 +6,7 @@ description: "Aprenda la diferencia entre fórmulas Empíricas y Moleculares, c�
 # Fórmula Molecular: Encontrando el Compuesto Real
 
 Si un análisis le dice que un polvo tiene una fórmula empírica de **$CH_2O$**, aún no sabe qué es.
-$CH_2O$ es solo una *proporción*. El químico real podría ser $C_2H_4O_2$ (Vinagre) o $C_6H_{12}O_6$ (Glucosa). Para descubrirlo, debe calcular su **Fórmula Molecular**. Aprenda cómo hacerlo y use nuestra [Calculadora de Fórmula Molecular](/es/calculadoras/calculadora-formula-molecular).
+$CH_2O$ es solo una *proporción*. El químico real podría ser $C_2H_4O_2$ (Vinagre) o $C_6H_{12}O_6$ (Glucosa). Para descubrirlo, debe calcular su **Fórmula Molecular**. Aprenda cómo hacerlo y use nuestra [Calculadora de Fórmula Molecular](/es/calculadoras/calculadora-de-formula-molecular).
 
 ---
 

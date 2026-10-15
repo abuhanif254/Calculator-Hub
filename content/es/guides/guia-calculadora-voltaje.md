@@ -5,7 +5,7 @@ description: "Aprenda qué es realmente el voltaje, cómo la diferencia de poten
 
 # Entendiendo el Voltaje: La Presión de la Electricidad
 
-Una batería AA dice "1.5V". Una batería de auto dice "12V". ¿Qué significa esa "V"? En esta guía, explicaremos el **Voltaje**, la diferencia de potencial eléctrico y cómo usar nuestra [Calculadora de Voltaje](/es/calculadoras/calculadora-voltaje).
+Una batería AA dice "1.5V". Una batería de auto dice "12V". ¿Qué significa esa "V"? En esta guía, explicaremos el **Voltaje**, la diferencia de potencial eléctrico y cómo usar nuestra [Calculadora de Voltaje](/es/calculadoras/calculadora-de-voltaje).
 
 ---
 

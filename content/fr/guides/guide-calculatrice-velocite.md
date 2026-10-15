@@ -5,7 +5,7 @@ description: "Apprenez la différence entre vitesse scalaire et vélocité en ph
 
 # Comprendre la Vélocité : La Vitesse avec une Direction
 
-En physique, la "vitesse" (speed) et la "vélocité" (velocity) sont deux choses différentes. Dans ce guide, nous expliquerons les quantités vectorielles, le déplacement, et comment utiliser notre [Calculatrice de Vélocité](/fr/calculatrices/calculatrice-velocite).
+En physique, la "vitesse" (speed) et la "vélocité" (velocity) sont deux choses différentes. Dans ce guide, nous expliquerons les quantités vectorielles, le déplacement, et comment utiliser notre [Calculatrice de Vélocité](/fr/calculatrices/calculateur-de-vitesse).
 
 ---
 

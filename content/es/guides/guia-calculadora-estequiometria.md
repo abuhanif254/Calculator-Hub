@@ -6,7 +6,7 @@ description: "Domine el concepto más importante en química. Aprenda a balancea
 # Estequiometría: La Matemática de las Reacciones
 
 Si quiere hornear 10 galletas, necesita una receta que le diga cuánta harina usar.
-La química funciona igual. La **Estequiometría** es la "matemática de las recetas" químicas. Permite calcular exactamente cuánto reactivo se necesita para crear un producto. Aprenda los conceptos clave y use nuestra [Calculadora de Estequiometría](/es/calculadoras/calculadora-estequiometria).
+La química funciona igual. La **Estequiometría** es la "matemática de las recetas" químicas. Permite calcular exactamente cuánto reactivo se necesita para crear un producto. Aprenda los conceptos clave y use nuestra [Calculadora de Estequiometría](/es/calculadoras/calculadora-de-estequiometria).
 
 ---
 

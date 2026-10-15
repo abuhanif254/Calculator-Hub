@@ -5,7 +5,7 @@ description: "Aprenda la física de la energía cinética, por qué la velocidad
 
 # La Energía del Movimiento: Entendiendo la Energía Cinética
 
-Todo lo que se mueve posee **Energía Cinética**. En física, es la energía que tiene un objeto debido a su movimiento. En esta guía, desglosaremos la fórmula y le mostraremos cómo usar nuestra [Calculadora de Energía Cinética](/es/calculadoras/calculadora-energia-cinetica).
+Todo lo que se mueve posee **Energía Cinética**. En física, es la energía que tiene un objeto debido a su movimiento. En esta guía, desglosaremos la fórmula y le mostraremos cómo usar nuestra [Calculadora de Energía Cinética](/es/calculadoras/calculadora-de-energia-cinetica).
 
 ---
 

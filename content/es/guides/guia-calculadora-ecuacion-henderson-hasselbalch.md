@@ -6,7 +6,7 @@ description: "Aprenda cómo funciona la ecuación de Henderson-Hasselbalch, cóm
 # Ecuación de Henderson-Hasselbalch: Soluciones Amortiguadoras
 
 Si añade una gota de ácido al agua pura, su pH cae a 3. Pero su sangre tiene un pH de 7.4. Si bebe jugo de naranja (ácido), ¿por qué no muere?
-Porque su sangre es una **Solución Amortiguadora (Buffer)**. Tiene un "escudo" químico que resiste cambios de pH. Para calcular esto, se usa la **Ecuación de Henderson-Hasselbalch**. Aprenda a usarla con nuestra [Calculadora de Henderson-Hasselbalch](/es/calculadoras/calculadora-ecuacion-henderson-hasselbalch).
+Porque su sangre es una **Solución Amortiguadora (Buffer)**. Tiene un "escudo" químico que resiste cambios de pH. Para calcular esto, se usa la **Ecuación de Henderson-Hasselbalch**. Aprenda a usarla con nuestra [Calculadora de Henderson-Hasselbalch](/es/calculadoras/calculadora-de-ecuacion-de-henderson-hasselbalch).
 
 ---
 

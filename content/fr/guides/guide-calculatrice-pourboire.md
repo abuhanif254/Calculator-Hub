@@ -6,7 +6,7 @@ description: "Apprenez les normes sociales du pourboire, les pourcentages standa
 # Calculatrice de Pourboire : Combien Donner ?
 
 Vous venez de terminer un excellent repas au restaurant. L'addition arrive. Combien laisser en pourboire ? Ce calcul — surtout en partageant entre plusieurs personnes — peut causer de la confusion.
-Notre [Calculatrice de Pourboire](/fr/calculatrices/calculatrice-pourboire) rend tout cela sans effort. Mais d'abord, découvrez les normes sociales du pourboire.
+Notre [Calculatrice de Pourboire](/fr/calculatrices/calculateur-de-pourboire) rend tout cela sans effort. Mais d'abord, découvrez les normes sociales du pourboire.
 
 ---
 

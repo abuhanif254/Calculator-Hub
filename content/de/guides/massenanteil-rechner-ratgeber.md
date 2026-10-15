@@ -6,7 +6,7 @@ description: "Lernen Sie, den prozentualen Massenanteil (die prozentuale Zusamme
 # Massenanteil berechnen: Chemische Zusammensetzung
 
 Wasser ($H_2O$) besteht aus zwei Wasserstoffatomen und einem Sauerstoffatom. Man könnte denken, Wasser besteht größtenteils aus Wasserstoff. **Falsch!** Sauerstoffatome sind viel schwerer. Nach Gewicht besteht Wasser zu fast 90% aus Sauerstoff!
-Chemiker beweisen das mit der **prozentualen Zusammensetzung** (Massenanteil). Wir erklären die Mathematik und unseren [Massenanteil-Rechner](/de/rechner/massenanteil-rechner).
+Chemiker beweisen das mit der **prozentualen Zusammensetzung** (Massenanteil). Wir erklären die Mathematik und unseren [Massenanteil-Rechner](/de/rechner/prozentuale-zusammensetzung-rechner).
 
 ---
 

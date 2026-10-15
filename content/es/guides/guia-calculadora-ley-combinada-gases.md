@@ -6,7 +6,7 @@ description: "Aprenda cómo la Ley Combinada fusiona las leyes de Boyle, Charles
 # Calculadora de la Ley Combinada de los Gases: Condiciones Cambiantes
 
 Si respira profundo y bucea, la presión aumenta drásticamente y la temperatura baja. ¿Qué pasa con el volumen de aire en sus pulmones?
-Cuando un gas sufre un cambio donde varias variables cambian a la vez, usamos la **Ley Combinada de los Gases**. Aprenda cómo funciona y use nuestra [Calculadora de la Ley Combinada de los Gases](/es/calculadoras/calculadora-ley-combinada-gases).
+Cuando un gas sufre un cambio donde varias variables cambian a la vez, usamos la **Ley Combinada de los Gases**. Aprenda cómo funciona y use nuestra [Calculadora de la Ley Combinada de los Gases](/es/calculadoras/calculadora-de-ley-combinada-de-gases).
 
 ---
 

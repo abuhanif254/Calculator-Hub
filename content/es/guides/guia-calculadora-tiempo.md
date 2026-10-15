@@ -5,7 +5,7 @@ description: "Domine las matemáticas de base 60. Aprenda a sumar horas y minuto
 
 # Cómo Sumar y Restar Tiempo: La Guía Definitiva
 
-Calcular el tiempo con precisión es una habilidad esencial. Sin embargo, debido a que nuestros relojes se basan en el sistema sexagesimal (base 60), las calculadoras estándar son inútiles para el tiempo. En esta guía, desglosaremos las reglas y le mostraremos cómo usar nuestra [Calculadora de Tiempo](/es/calculadoras/calculadora-tiempo).
+Calcular el tiempo con precisión es una habilidad esencial. Sin embargo, debido a que nuestros relojes se basan en el sistema sexagesimal (base 60), las calculadoras estándar son inútiles para el tiempo. En esta guía, desglosaremos las reglas y le mostraremos cómo usar nuestra [Calculadora de Tiempo](/es/calculadoras/calculadora-de-tiempo).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Aprenda a elegir la Fuente de Alimentación (PSU) correcta para su
 
 # Fuente de Alimentación: ¿Cuántos Vatios Necesita?
 
-Al armar una PC, es tentador gastar todo en la tarjeta gráfica (GPU) y descuidar la Fuente de Alimentación (PSU). ¡Es un error peligroso! Si la PSU no entrega suficientes vatios, su sistema se apagará o incluso podría dañarse. Aprenda cómo usar nuestra [Calculadora de Fuente de Alimentación](/es/calculadoras/calculadora-fuente-alimentacion).
+Al armar una PC, es tentador gastar todo en la tarjeta gráfica (GPU) y descuidar la Fuente de Alimentación (PSU). ¡Es un error peligroso! Si la PSU no entrega suficientes vatios, su sistema se apagará o incluso podría dañarse. Aprenda cómo usar nuestra [Calculadora de Fuente de Alimentación](/es/calculadoras/calculadora-de-fuente-de-alimentacion).
 
 ---
 

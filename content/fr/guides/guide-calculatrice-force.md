@@ -5,7 +5,7 @@ description: "Maîtrisez la 2ème loi du mouvement (F=ma). Découvrez comment la
 
 # La Deuxième Loi de Newton : Comprendre la Force et la Masse
 
-Pourquoi est-il plus dur de pousser un camion qu'un vélo ? La réponse est la 2ème loi de Newton : **F = ma**. Dans ce guide, nous expliquerons cette équation et comment utiliser notre [Calculatrice de Force](/fr/calculatrices/calculatrice-force).
+Pourquoi est-il plus dur de pousser un camion qu'un vélo ? La réponse est la 2ème loi de Newton : **F = ma**. Dans ce guide, nous expliquerons cette équation et comment utiliser notre [Calculatrice de Force](/fr/calculatrices/calculateur-de-force).
 
 ---
 

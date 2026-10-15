@@ -5,7 +5,7 @@ description: "Meistern Sie die Impulserhaltung. Lernen Sie elastische und inelas
 
 # Impuls verstehen: Die Physik von Kollisionen
 
-Wenn eine Mücke mit 10 km/h gegen Ihre Windschutzscheibe fliegt, passiert nichts. Bei einer Bowlingkugel mit 10 km/h zerspringt sie. Die Kugel hat viel mehr **Impuls** (Momentum). Impuls ist "Masse in Bewegung". Wir erklären das Gesetz der Impulserhaltung und unseren [Impuls-Rechner](/de/rechner/impuls-rechner).
+Wenn eine Mücke mit 10 km/h gegen Ihre Windschutzscheibe fliegt, passiert nichts. Bei einer Bowlingkugel mit 10 km/h zerspringt sie. Die Kugel hat viel mehr **Impuls** (Momentum). Impuls ist "Masse in Bewegung". Wir erklären das Gesetz der Impulserhaltung und unseren [Impuls-Rechner](/de/rechner/impulsrechner).
 
 ---
 

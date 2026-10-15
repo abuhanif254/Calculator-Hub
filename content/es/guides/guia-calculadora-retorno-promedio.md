@@ -5,7 +5,7 @@ description: "Aprenda la diferencia entre retornos aritméticos y geométricos, 
 
 # Retorno Promedio Explicado: Cómo Medir su Inversión
 
-Si su portafolio sube 50% un año y baja 50% al siguiente, ¿cuál es su retorno? Matemáticamente parece 0%. Pero si empezó con $10,000, sube a $15,000, y luego baja a $7,500. ¡Perdió el 25%! Medir el rendimiento es engañoso. Le enseñaremos cómo usar nuestra [Calculadora de Retorno Promedio](/es/calculadoras/calculadora-retorno-promedio).
+Si su portafolio sube 50% un año y baja 50% al siguiente, ¿cuál es su retorno? Matemáticamente parece 0%. Pero si empezó con $10,000, sube a $15,000, y luego baja a $7,500. ¡Perdió el 25%! Medir el rendimiento es engañoso. Le enseñaremos cómo usar nuestra [Calculadora de Retorno Promedio](/es/calculadoras/calculadora-rendimiento-promedio).
 
 ---
 

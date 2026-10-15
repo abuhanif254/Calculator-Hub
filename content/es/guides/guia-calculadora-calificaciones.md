@@ -5,7 +5,7 @@ description: "Aprenda cómo funcionan los sistemas de calificación, la matemát
 
 # Cómo Calcular su Calificación Final: Promedios Ponderados
 
-A medida que se acerca el final del semestre, los estudiantes se preguntan: *"¿Qué necesito sacar en el examen final para aprobar?"* En esta guía, desglosaremos cómo funcionan los promedios ponderados y cómo usar nuestra [Calculadora de Calificaciones](/es/calculadoras/calculadora-calificaciones).
+A medida que se acerca el final del semestre, los estudiantes se preguntan: *"¿Qué necesito sacar en el examen final para aprobar?"* En esta guía, desglosaremos cómo funcionan los promedios ponderados y cómo usar nuestra [Calculadora de Calificaciones](/es/calculadoras/calculadora-de-calificaciones).
 
 ---
 

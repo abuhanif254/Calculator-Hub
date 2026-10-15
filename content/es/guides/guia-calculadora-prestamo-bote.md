@@ -5,7 +5,7 @@ description: "Comprenda los plazos de los préstamos marinos, la rápida depreci
 
 # La Realidad de los Préstamos para Botes: Depreciación y Costos Ocultos
 
-Tener un bote es una gran mejora en el estilo de vida, pero es un activo que se deprecia rápidamente. Financiar un bote requiere una estrategia diferente a la de un auto. En esta guía, le mostraremos cómo usar nuestra [Calculadora de Préstamos para Botes](/es/calculadoras/calculadora-prestamo-bote).
+Tener un bote es una gran mejora en el estilo de vida, pero es un activo que se deprecia rápidamente. Financiar un bote requiere una estrategia diferente a la de un auto. En esta guía, le mostraremos cómo usar nuestra [Calculadora de Préstamos para Botes](/es/calculadoras/calculadora-prestamo-barco).
 
 ---
 

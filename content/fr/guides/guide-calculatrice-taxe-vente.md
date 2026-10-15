@@ -5,7 +5,7 @@ description: "Découvrez comment fonctionne la taxe de vente, le calcul inversé
 
 # Le Guide Ultime pour Calculer la Taxe de Vente
 
-Que vous soyez consommateur ou propriétaire d'entreprise, comprendre la taxe de vente est inévitable. Dans ce guide, nous expliquerons les mathématiques et comment utiliser notre [Calculatrice de Taxe de Vente](/fr/calculatrices/calculatrice-taxe-vente).
+Que vous soyez consommateur ou propriétaire d'entreprise, comprendre la taxe de vente est inévitable. Dans ce guide, nous expliquerons les mathématiques et comment utiliser notre [Calculatrice de Taxe de Vente](/fr/calculatrices/calculatrice-taxe-de-vente).
 
 ---
 

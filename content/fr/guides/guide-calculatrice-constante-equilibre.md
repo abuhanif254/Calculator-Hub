@@ -6,7 +6,7 @@ description: "Découvrez comment la constante Keq mesure l'équilibre entre prod
 # Calculatrice de Constante d'Équilibre : Mesurer la Balance Chimique
 
 En réalité, beaucoup de réactions chimiques sont **réversibles**. Pendant que les réactifs forment des produits, les produits se reforment en réactifs !
-La réaction finit par atteindre un "Équilibre Dynamique". Pour mesurer ce point, on utilise la **Constante d'Équilibre ($K_{eq}$)**. Découvrez comment cela fonctionne et utilisez notre [Calculatrice de Constante d'Équilibre](/fr/calculatrices/calculatrice-constante-equilibre).
+La réaction finit par atteindre un "Équilibre Dynamique". Pour mesurer ce point, on utilise la **Constante d'Équilibre ($K_{eq}$)**. Découvrez comment cela fonctionne et utilisez notre [Calculatrice de Constante d'Équilibre](/fr/calculatrices/calculateur-de-constante-d-equilibre).
 
 ---
 

@@ -166,7 +166,6 @@ Bookmark this JSON Formatter & Validator as your go-to utility. Its combination 
   ],
 
   relatedTools: [
-    { name: "JSON Validator", slug: "json-validator" },
     { name: "Base64 Encode", slug: "base64-encode" },
     { name: "XML Formatter", slug: "xml-formatter" },
     { name: "JWT Decoder", slug: "jwt-decoder" }

@@ -6,7 +6,7 @@ description: "Aprenda cómo funcionan las anualidades, la diferencia entre pagos
 # Calculadora de Pago de Anualidad: Asegurando su Jubilación
 
 El mayor miedo en la jubilación es quedarse sin dinero antes de morir. Si tiene $500,000 ahorrados, ¿cómo sabe que le durarán toda la vida?
-Para resolver esto, muchos compran una **Anualidad**. Aprenda qué son, cómo protegen sus ingresos y use nuestra [Calculadora de Pago de Anualidad](/es/calculadoras/calculadora-pago-anualidad).
+Para resolver esto, muchos compran una **Anualidad**. Aprenda qué son, cómo protegen sus ingresos y use nuestra [Calculadora de Pago de Anualidad](/es/calculadoras/calculadora-de-pagos-de-anualidades).
 
 ---
 

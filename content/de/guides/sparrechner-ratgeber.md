@@ -5,7 +5,7 @@ description: "Lernen Sie, wie Sie einen Notgroschen aufbauen, Zinsen (APY) verst
 
 # Die Macht des Sparens: Ein Leitfaden für Ihre Sparziele
 
-"Bezahle dich selbst zuerst." Behandeln Sie Ihr Sparkonto wie Ihre wichtigste Rechnung. Wir erklären hochverzinsliche Sparkonten und die Nutzung unseres [Sparrechners](/de/rechner/sparrechner).
+"Bezahle dich selbst zuerst." Behandeln Sie Ihr Sparkonto wie Ihre wichtigste Rechnung. Wir erklären hochverzinsliche Sparkonten und die Nutzung unseres [Sparrechners](/de/rechner/spar-rechner).
 
 ---
 

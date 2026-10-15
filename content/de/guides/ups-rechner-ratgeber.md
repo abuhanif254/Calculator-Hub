@@ -5,7 +5,7 @@ description: "Lernen Sie, was eine USV (Unterbrechungsfreie Stromversorgung) ist
 
 # USV-Rechner: Die richtige Notstrom-Batterie finden
 
-Fällt der Strom nur für eine Sekunde aus, stürzt der PC ab und ungespeicherte Arbeit ist weg. Dagegen hilft eine **USV (Unterbrechungsfreie Stromversorgung)** (englisch: UPS). Wir erklären die Grundlagen und unseren [USV-Rechner](/de/rechner/ups-rechner).
+Fällt der Strom nur für eine Sekunde aus, stürzt der PC ab und ungespeicherte Arbeit ist weg. Dagegen hilft eine **USV (Unterbrechungsfreie Stromversorgung)** (englisch: UPS). Wir erklären die Grundlagen und unseren [USV-Rechner](/de/rechner/usv-rechner).
 
 ---
 

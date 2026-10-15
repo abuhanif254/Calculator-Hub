@@ -5,7 +5,7 @@ description: "Comprenez les règles uniques des hypothèques canadiennes, la com
 
 # Hypothèques Canadiennes vs Américaines : Les Différences Cruciales
 
-Si vous achetez une maison au Canada, appliquer les mathématiques américaines donnera des estimations inexactes. Dans ce guide, nous explorerons les différences et comment utiliser notre [Calculatrice Hypothécaire Canadienne](/fr/calculatrices/calculatrice-hypotheque-canadienne).
+Si vous achetez une maison au Canada, appliquer les mathématiques américaines donnera des estimations inexactes. Dans ce guide, nous explorerons les différences et comment utiliser notre [Calculatrice Hypothécaire Canadienne](/fr/calculatrices/calculatrice-hypothecaire-canadienne).
 
 ---
 

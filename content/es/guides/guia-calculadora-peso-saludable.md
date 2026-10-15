@@ -6,7 +6,7 @@ description: "Comprenda el IMC, la composición corporal y cómo determinar un r
 # Calculadora de Peso Saludable: Encuentre su Rango Ideal
 
 Con tantos consejos contradictorios, saber cuánto "debería" pesar puede ser estresante. En realidad, no hay un número perfecto.
-Los médicos recomiendan apuntar a un **Rango de Peso Saludable** basado en su altura, edad y sexo. Aprenda sobre las pautas de peso y use nuestra [Calculadora de Peso Saludable](/es/calculadoras/calculadora-peso-saludable).
+Los médicos recomiendan apuntar a un **Rango de Peso Saludable** basado en su altura, edad y sexo. Aprenda sobre las pautas de peso y use nuestra [Calculadora de Peso Saludable](/es/calculadoras/calculadora-de-peso-saludable).
 
 ---
 

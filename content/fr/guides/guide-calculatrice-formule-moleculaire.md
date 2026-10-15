@@ -6,7 +6,7 @@ description: "Apprenez la différence entre formule empirique et moléculaire, c
 # Formule Moléculaire : Trouver le Vrai Composé
 
 Si l'analyse d'une poudre donne une formule empirique de **$CH_2O$**, vous ne savez toujours pas de quoi il s'agit.
-$CH_2O$ n'est qu'un *ratio*. La vraie molécule pourrait être $C_2H_4O_2$ (Vinaigre) ou $C_6H_{12}O_6$ (Glucose). Il vous faut la **Formule Moléculaire**. Découvrez comment la trouver et utilisez notre [Calculatrice de Formule Moléculaire](/fr/calculatrices/calculatrice-formule-moleculaire).
+$CH_2O$ n'est qu'un *ratio*. La vraie molécule pourrait être $C_2H_4O_2$ (Vinaigre) ou $C_6H_{12}O_6$ (Glucose). Il vous faut la **Formule Moléculaire**. Découvrez comment la trouver et utilisez notre [Calculatrice de Formule Moléculaire](/fr/calculatrices/calculateur-de-formule-moleculaire).
 
 ---
 

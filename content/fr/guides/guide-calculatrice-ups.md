@@ -5,7 +5,7 @@ description: "Découvrez ce qu'est un onduleur (UPS), comment calculer vos besoi
 
 # Calculatrice Onduleur (UPS) : Choisir sa Batterie de Secours
 
-Si le courant coupe une seconde, votre PC s'éteint et vous perdez votre travail. Pour éviter cela, on utilise un **Onduleur (UPS)**. Découvrez comment ça marche et utilisez notre [Calculatrice Onduleur](/fr/calculatrices/calculatrice-ups) pour bien le choisir.
+Si le courant coupe une seconde, votre PC s'éteint et vous perdez votre travail. Pour éviter cela, on utilise un **Onduleur (UPS)**. Découvrez comment ça marche et utilisez notre [Calculatrice Onduleur](/fr/calculatrices/calculateur-d-onduleur) pour bien le choisir.
 
 ---
 

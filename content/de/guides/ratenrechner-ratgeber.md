@@ -5,7 +5,7 @@ description: "Lernen Sie die universelle Formel zur Berechnung monatlicher Raten
 
 # Der universelle Raten-Leitfaden: Berechnen Sie jede monatliche Rate
 
-Fast alle Festzinskredite verwenden dieselbe Formel. Wir erklären diese Formel und zeigen Ihnen, wie Sie unseren [Ratenrechner](/de/rechner/ratenrechner) verwenden.
+Fast alle Festzinskredite verwenden dieselbe Formel. Wir erklären diese Formel und zeigen Ihnen, wie Sie unseren [Ratenrechner](/de/rechner/zahlungsrechner) verwenden.
 
 ---
 

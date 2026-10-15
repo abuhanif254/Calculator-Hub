@@ -5,7 +5,7 @@ description: "Maîtrisez la conservation de la quantité de mouvement et utilise
 
 # Comprendre la Quantité de Mouvement : La Physique des Collisions
 
-Si un moustique à 10 km/h frappe votre pare-brise, rien ne se passe. Si une boule de bowling à 10 km/h le frappe, il se brise. La boule a beaucoup plus de **Quantité de Mouvement** (Momentum). C'est la "masse en mouvement". Découvrez comment utiliser notre [Calculatrice de Quantité de Mouvement](/fr/calculatrices/calculatrice-quantite-mouvement).
+Si un moustique à 10 km/h frappe votre pare-brise, rien ne se passe. Si une boule de bowling à 10 km/h le frappe, il se brise. La boule a beaucoup plus de **Quantité de Mouvement** (Momentum). C'est la "masse en mouvement". Découvrez comment utiliser notre [Calculatrice de Quantité de Mouvement](/fr/calculatrices/calculateur-de-quantite-de-mouvement).
 
 ---
 

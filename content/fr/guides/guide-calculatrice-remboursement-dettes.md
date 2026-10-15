@@ -5,7 +5,7 @@ description: "Comparez les avantages psychologiques de la Boule de Neige aux éc
 
 # Boule de Neige vs Avalanche de Dettes : La Stratégie Ultime
 
-Pour vous désendetter, vous devez attaquer **une dette à la fois**. Mais laquelle en premier ? Dans ce guide, nous comparerons les deux meilleures stratégies et comment utiliser notre [Calculatrice de Remboursement de Dettes](/fr/calculatrices/calculatrice-remboursement-dettes).
+Pour vous désendetter, vous devez attaquer **une dette à la fois**. Mais laquelle en premier ? Dans ce guide, nous comparerons les deux meilleures stratégies et comment utiliser notre [Calculatrice de Remboursement de Dettes](/fr/calculatrices/calculateur-remboursement-dette).
 
 ---
 

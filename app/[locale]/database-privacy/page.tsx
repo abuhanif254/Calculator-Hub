@@ -102,7 +102,7 @@ const softwareAppSchema = {
   creator: {
     "@type": "Organization",
     name: "Nexus Calculator Hub",
-    url: "https://www.nexuscalculator.net",
+    url: "https://www.nexuscalculator.net/en",
   },
   screenshot: "https://www.nexuscalculator.net/og-database-privacy.jpg",
 };

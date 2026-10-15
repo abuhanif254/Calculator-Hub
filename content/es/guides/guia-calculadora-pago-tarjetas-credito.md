@@ -5,7 +5,7 @@ description: "Aprenda las dos estrategias más efectivas para eliminar la deuda 
 
 # El Método Bola de Nieve vs. Avalancha: Cómo Pagar Tarjetas de Crédito
 
-La deuda de tarjetas de crédito es tóxica. Hacer solo los pagos mínimos garantiza que permanecerá endeudado durante décadas. En esta guía, desglosaremos los dos métodos más famosos de destrucción de deudas y cómo usar nuestra [Calculadora de Pago de Tarjetas de Crédito](/es/calculadoras/calculadora-pago-tarjetas-credito).
+La deuda de tarjetas de crédito es tóxica. Hacer solo los pagos mínimos garantiza que permanecerá endeudado durante décadas. En esta guía, desglosaremos los dos métodos más famosos de destrucción de deudas y cómo usar nuestra [Calculadora de Pago de Tarjetas de Crédito](/es/calculadoras/pago-tarjetas-de-credito).
 
 ---
 

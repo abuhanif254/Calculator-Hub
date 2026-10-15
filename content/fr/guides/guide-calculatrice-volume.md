@@ -5,7 +5,7 @@ description: "Maîtrisez les mathématiques de l'espace 3D. Apprenez les formule
 
 # Le Guide Ultime pour Calculer le Volume : Formules pour Chaque Forme
 
-Le volume mesure la quantité d'espace 3D qu'un objet occupe. Dans ce guide, nous expliquerons les formules essentielles et comment utiliser notre [Calculatrice de Volume](/fr/calculatrices/calculatrice-volume).
+Le volume mesure la quantité d'espace 3D qu'un objet occupe. Dans ce guide, nous expliquerons les formules essentielles et comment utiliser notre [Calculatrice de Volume](/fr/calculatrices/calculateur-de-volume).
 
 ---
 

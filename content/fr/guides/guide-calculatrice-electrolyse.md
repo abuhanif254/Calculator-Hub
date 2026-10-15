@@ -6,7 +6,7 @@ description: "Apprenez comment l'électrolyse utilise l'énergie électrique pou
 # Calculatrice d'Électrolyse : L'Électricité au Service de la Chimie
 
 Pour extraire de l'aluminium pur du minerai de bauxite, la réaction ne se produit pas seule — elle n'est pas spontanée. Mais en forçant un courant électrique massif à travers la solution, on peut contraindre la chimie elle-même à agir.
-Ce processus est l'**Électrolyse**. C'est ainsi que l'on produit l'aluminium, le gaz chlore et l'hydrogène. Utilisez notre [Calculatrice d'Électrolyse](/fr/calculatrices/calculatrice-electrolyse).
+Ce processus est l'**Électrolyse**. C'est ainsi que l'on produit l'aluminium, le gaz chlore et l'hydrogène. Utilisez notre [Calculatrice d'Électrolyse](/fr/calculatrices/calculateur-d-electrolyse).
 
 ---
 

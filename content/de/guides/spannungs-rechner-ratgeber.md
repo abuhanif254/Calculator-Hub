@@ -5,7 +5,7 @@ description: "Lernen Sie, was Spannung (Volt) wirklich ist, wie Potenzialdiffere
 
 # Elektrische Spannung verstehen: Der Druck des Stroms
 
-Eine AA-Batterie hat "1,5V". Eine Autobatterie "12V". Was bedeutet dieses "V"? Wir erklären die **Spannung** (elektrische Potenzialdifferenz) und unseren [Spannungs-Rechner](/de/rechner/spannungs-rechner).
+Eine AA-Batterie hat "1,5V". Eine Autobatterie "12V". Was bedeutet dieses "V"? Wir erklären die **Spannung** (elektrische Potenzialdifferenz) und unseren [Spannungs-Rechner](/de/rechner/spannung-rechner).
 
 ---
 

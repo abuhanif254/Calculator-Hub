@@ -5,7 +5,7 @@ description: "Lernen Sie, wie die Umsatzsteuer funktioniert, den Unterschied zwi
 
 # Mehrwertsteuer (MwSt) verstehen: Der globale Standard
 
-Wenn Sie in Europa Geschäfte machen, haben Sie täglich mit der **Mehrwertsteuer (Umsatzsteuer)** zu tun. Sie wird auf jeder Stufe der Lieferkette erhoben. Wir erklären die Mechanik und unseren [MwSt-Rechner](/de/rechner/mwst-rechner).
+Wenn Sie in Europa Geschäfte machen, haben Sie täglich mit der **Mehrwertsteuer (Umsatzsteuer)** zu tun. Sie wird auf jeder Stufe der Lieferkette erhoben. Wir erklären die Mechanik und unseren [MwSt-Rechner](/de/rechner/mehrwertsteuer-rechner).
 
 ---
 

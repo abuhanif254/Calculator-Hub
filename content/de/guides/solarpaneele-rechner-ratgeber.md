@@ -5,7 +5,7 @@ description: "Lernen Sie, wie Solarpaneele funktionieren, was Sonnenstunden sind
 
 # Solarpaneele: Ihre Off-Grid Solaranlage berechnen
 
-Der Umstieg auf Solarstrom erfordert genaue Mathematik. Wer falsch rechnet, sitzt nachts im Dunkeln! Wir erklären die Grundlagen, "Peak Sun Hours" und unseren [Solarpaneele-Rechner](/de/rechner/solarpaneele-rechner).
+Der Umstieg auf Solarstrom erfordert genaue Mathematik. Wer falsch rechnet, sitzt nachts im Dunkeln! Wir erklären die Grundlagen, "Peak Sun Hours" und unseren [Solarpaneele-Rechner](/de/rechner/solarpanel-rechner).
 
 ---
 

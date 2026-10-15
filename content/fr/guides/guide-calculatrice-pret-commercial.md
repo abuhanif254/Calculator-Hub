@@ -5,7 +5,7 @@ description: "Comprenez le coût réel de la dette commerciale, la différence e
 
 # Guide des Prêts Commerciaux : Financer la Croissance de votre Entreprise
 
-Que vous ayez besoin de machinerie ou de capital pour embaucher, les prêts commerciaux alimentent l'expansion. Dans ce guide, nous expliquerons les types de financement et comment utiliser notre [Calculatrice de Prêt Commercial](/fr/calculatrices/calculatrice-pret-commercial).
+Que vous ayez besoin de machinerie ou de capital pour embaucher, les prêts commerciaux alimentent l'expansion. Dans ce guide, nous expliquerons les types de financement et comment utiliser notre [Calculatrice de Prêt Commercial](/fr/calculatrices/calculateur-pret-professionnel).
 
 ---
 

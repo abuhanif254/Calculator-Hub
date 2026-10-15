@@ -5,7 +5,7 @@ description: "Lernen Sie den Verdünnungsfaktor, wie man serielle Verdünnungen 
 
 # Verdünnungsreihen: Präzise Konzentrationen herstellen
 
-Molaritäts-Verdünnung nutzt man in der Chemie. In der Biologie und Medizin misst man Konzentrationen oft in Prozent, mg/L oder Zellen. Dafür nutzt man den allgemeinen **Verdünnungsfaktor**. Wir erklären das Prinzip und unseren [Verdünnungs-Rechner](/de/rechner/verduennungs-rechner).
+Molaritäts-Verdünnung nutzt man in der Chemie. In der Biologie und Medizin misst man Konzentrationen oft in Prozent, mg/L oder Zellen. Dafür nutzt man den allgemeinen **Verdünnungsfaktor**. Wir erklären das Prinzip und unseren [Verdünnungs-Rechner](/de/rechner/verduennungsrechner).
 
 ---
 

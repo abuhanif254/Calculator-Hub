@@ -5,7 +5,7 @@ description: "Apprenez à actualiser les flux de trésorerie futurs, l'impact de
 
 # Les Mathématiques de la Valeur Actuelle : Fait-on un Bon Investissement ?
 
-Si on vous offrait 100 000 $ aujourd'hui ou 150 000 $ dans 10 ans, quelle est la meilleure offre ? Les professionnels de la finance utilisent la **Valeur Actuelle (PV)** pour y répondre. Dans ce guide, nous expliquerons comment actualiser les flux de trésorerie et utiliser notre [Calculatrice de Valeur Actuelle](/fr/calculatrices/calculatrice-valeur-actuelle).
+Si on vous offrait 100 000 $ aujourd'hui ou 150 000 $ dans 10 ans, quelle est la meilleure offre ? Les professionnels de la finance utilisent la **Valeur Actuelle (PV)** pour y répondre. Dans ce guide, nous expliquerons comment actualiser les flux de trésorerie et utiliser notre [Calculatrice de Valeur Actuelle](/fr/calculatrices/calculateur-valeur-actuelle).
 
 ---
 

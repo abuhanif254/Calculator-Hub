@@ -6,7 +6,7 @@ description: "Apprenez à préparer des solutions à partir d'une solution mère
 # Dilution de Molarité : La Formule C1V1 = C2V2 (ou M1V1 = M2V2)
 
 Les fournisseurs de produits chimiques n'expédient pas de l'eau. Ils livrent des "solutions mères" ultra-concentrées (ex. 12.0 M).
-C'est à l'étudiant de diluer cette solution dangereuse pour obtenir la concentration voulue (ex. 1.5 M). On utilise pour cela la **Formule de Dilution**. Découvrez comment et utilisez notre [Calculatrice de Dilution de Molarité](/fr/calculatrices/calculatrice-dilution-molarite).
+C'est à l'étudiant de diluer cette solution dangereuse pour obtenir la concentration voulue (ex. 1.5 M). On utilise pour cela la **Formule de Dilution**. Découvrez comment et utilisez notre [Calculatrice de Dilution de Molarité](/fr/calculatrices/calculateur-de-dilution-de-molarite).
 
 ---
 

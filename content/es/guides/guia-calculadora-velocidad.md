@@ -5,7 +5,7 @@ description: "Aprenda la diferencia entre rapidez y velocidad en física, las ma
 
 # Entendiendo la Velocidad: Rapidez con Dirección
 
-En la vida cotidiana, "rapidez" y "velocidad" se usan como sinónimos. En física, son conceptos completamente diferentes. En esta guía, desglosaremos las magnitudes vectoriales, el desplazamiento y cómo usar nuestra [Calculadora de Velocidad](/es/calculadoras/calculadora-velocidad) para sus tareas de física.
+En la vida cotidiana, "rapidez" y "velocidad" se usan como sinónimos. En física, son conceptos completamente diferentes. En esta guía, desglosaremos las magnitudes vectoriales, el desplazamiento y cómo usar nuestra [Calculadora de Velocidad](/es/calculadoras/calculadora-de-velocidad) para sus tareas de física.
 
 ---
 

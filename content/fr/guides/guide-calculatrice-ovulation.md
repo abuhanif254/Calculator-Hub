@@ -5,7 +5,7 @@ description: "Apprenez à calculer votre fenêtre de fertilité, comprenez les s
 
 # Le Guide Ultime pour Suivre Votre Cycle d'Ovulation
 
-Que vous essayiez de concevoir ou de mieux comprendre votre corps, le suivi de l'ovulation est essentiel. Dans ce guide, nous expliquerons la science du cycle menstruel et comment utiliser notre [Calculatrice d'Ovulation](/fr/calculatrices/calculatrice-ovulation).
+Que vous essayiez de concevoir ou de mieux comprendre votre corps, le suivi de l'ovulation est essentiel. Dans ce guide, nous expliquerons la science du cycle menstruel et comment utiliser notre [Calculatrice d'Ovulation](/fr/calculatrices/calculateur-d-ovulation).
 
 ---
 

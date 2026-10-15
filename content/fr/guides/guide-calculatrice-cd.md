@@ -5,7 +5,7 @@ description: "Apprenez ce qu'est un certificat de dépôt, comment fonctionne la
 
 # Comprendre les CD : Comment Bloquer des Taux d'Intérêt Élevés
 
-Un **Certificat de Dépôt (CD)** offre le juste milieu entre l'épargne classique et la bourse. Dans ce guide, nous expliquerons comment fonctionnent les CD et comment utiliser notre [Calculatrice de CD](/fr/calculatrices/calculatrice-cd).
+Un **Certificat de Dépôt (CD)** offre le juste milieu entre l'épargne classique et la bourse. Dans ce guide, nous expliquerons comment fonctionnent les CD et comment utiliser notre [Calculatrice de CD](/fr/calculatrices/calculateur-de-compte-de-depot).
 
 ---
 

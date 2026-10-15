@@ -6,7 +6,7 @@ description: "Aprenda cómo las celdas galvánicas generan electricidad, cómo c
 # Calculadora de Celda Electroquímica: Baterías Explicadas
 
 Una batería es una **Celda Electroquímica** en miniatura. Una reacción química empuja electrones a través de un cable.
-Para calcular cuánto voltaje producirá una combinación de metales, usamos los **Potenciales Estándar de Reducción**. Aprenda cómo funcionan estas celdas y use nuestra [Calculadora de Celda Electroquímica](/es/calculadoras/calculadora-celda-electroquimica).
+Para calcular cuánto voltaje producirá una combinación de metales, usamos los **Potenciales Estándar de Reducción**. Aprenda cómo funcionan estas celdas y use nuestra [Calculadora de Celda Electroquímica](/es/calculadoras/calculadora-de-celda-electroquimica).
 
 ---
 

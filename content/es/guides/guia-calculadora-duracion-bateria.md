@@ -6,7 +6,7 @@ description: "Aprenda a leer la capacidad de las baterías (mAh y Ah), calcular 
 # Duración de la Batería: ¿Cuánto Tiempo Durará?
 
 Ya sea que esté armando un dron, cableando una furgoneta (camper) o comprando un banco de energía (power bank), la pregunta es: **"¿Cuánto durará?"**
-En esta guía explicaremos cómo se mide la capacidad y cómo usar nuestra [Calculadora de Duración de Batería](/es/calculadoras/calculadora-duracion-bateria).
+En esta guía explicaremos cómo se mide la capacidad y cómo usar nuestra [Calculadora de Duración de Batería](/es/calculadoras/calculadora-de-autonomia-de-bateria).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Apprenez à convertir les minutes en décimales, à calculer le sa
 
 # Maîtrise de la Paie : Calculer les Feuilles de Temps et les Heures
 
-Si vous êtes payé à l'heure, votre feuille de temps est vitale. Calculer vos heures est compliqué à cause des pauses et de la conversion des minutes en décimales. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice d'Heures](/fr/calculatrices/calculatrice-heures).
+Si vous êtes payé à l'heure, votre feuille de temps est vitale. Calculer vos heures est compliqué à cause des pauses et de la conversion des minutes en décimales. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice d'Heures](/fr/calculatrices/calculateur-d-heures).
 
 ---
 

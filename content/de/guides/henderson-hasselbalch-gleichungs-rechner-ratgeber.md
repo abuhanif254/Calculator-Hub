@@ -6,7 +6,7 @@ description: "Erfahren Sie, wie die Henderson-Hasselbalch-Gleichung funktioniert
 # Henderson-Hasselbalch-Gleichung: Pufferlösungen
 
 Ein Tropfen Säure im Wasser lässt den pH-Wert abstürzen. Aber wenn Sie sauren Orangensaft trinken, bleibt der pH-Wert Ihres Blutes (7,4) stabil. Warum?
-Weil Ihr Blut eine **Pufferlösung** ist. Puffer haben einen chemischen "Schild", der pH-Änderungen widersteht. Chemiker berechnen dies mit der **Henderson-Hasselbalch-Gleichung**. Lernen Sie, wie das geht, mit unserem [Henderson-Hasselbalch-Rechner](/de/rechner/henderson-hasselbalch-gleichungs-rechner).
+Weil Ihr Blut eine **Pufferlösung** ist. Puffer haben einen chemischen "Schild", der pH-Änderungen widersteht. Chemiker berechnen dies mit der **Henderson-Hasselbalch-Gleichung**. Lernen Sie, wie das geht, mit unserem [Henderson-Hasselbalch-Rechner](/de/rechner/henderson-hasselbalch-gleichung-rechner).
 
 ---
 

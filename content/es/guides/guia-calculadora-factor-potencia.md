@@ -5,7 +5,7 @@ description: "Comprenda el Factor de Potencia. Aprenda la diferencia entre Poten
 
 # Factor de Potencia: La Analogía de la Cerveza
 
-En los circuitos de Corriente Alterna (AC), no toda la electricidad se usa para trabajar. ¡Parte de ella solo rebota inútilmente! En esta guía, explicaremos el Factor de Potencia usando la "Analogía de la Cerveza" y cómo usar nuestra [Calculadora de Factor de Potencia](/es/calculadoras/calculadora-factor-potencia).
+En los circuitos de Corriente Alterna (AC), no toda la electricidad se usa para trabajar. ¡Parte de ella solo rebota inútilmente! En esta guía, explicaremos el Factor de Potencia usando la "Analogía de la Cerveza" y cómo usar nuestra [Calculadora de Factor de Potencia](/es/calculadoras/calculadora-de-factor-de-potencia).
 
 ---
 

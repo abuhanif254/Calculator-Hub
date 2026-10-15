@@ -6,7 +6,7 @@ description: "Découvrez pourquoi il faut équilibrer les équations, comment ut
 # Équilibrer des Équations Chimiques : Loi de Conservation
 
 Si vous cuisinez avec 500g d'ingrédients, le gâteau pèsera exactement 500g. Rien ne disparaît, tout se transforme !
-En chimie, la **Loi de Conservation de la Masse** dit que la matière ne se crée pas ni ne se perd. Les atomes du début doivent correspondre à la fin. Découvrez comment équilibrer et utilisez notre [Calculatrice pour Équilibrer les Équations Chimiques](/fr/calculatrices/calculatrice-equilibrage-equations-chimiques).
+En chimie, la **Loi de Conservation de la Masse** dit que la matière ne se crée pas ni ne se perd. Les atomes du début doivent correspondre à la fin. Découvrez comment équilibrer et utilisez notre [Calculatrice pour Équilibrer les Équations Chimiques](/fr/calculatrices/calculateur-d-equilibrage-d-equations-chimiques).
 
 ---
 

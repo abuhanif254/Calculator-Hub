@@ -6,7 +6,7 @@ description: "Aprenda cómo reaccionan ácidos y bases para formar agua y sal, e
 # Calculadora de Ácido-Base: Dominando la Neutralización
 
 ¿Qué pasa al mezclar un ácido peligroso con una base peligrosa? ¡Se destruyen mutuamente!
-Esto se llama **Reacción de Neutralización**. Se cancelan dejando solo agua salada inofensiva. Aprenda cómo funcionan, las matemáticas de la titulación y use nuestra [Calculadora de Ácido-Base](/es/calculadoras/calculadora-acido-base).
+Esto se llama **Reacción de Neutralización**. Se cancelan dejando solo agua salada inofensiva. Aprenda cómo funcionan, las matemáticas de la titulación y use nuestra [Calculadora de Ácido-Base](/es/calculadoras/calculadora-de-acido-base).
 
 ---
 

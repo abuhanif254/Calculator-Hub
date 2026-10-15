@@ -6,7 +6,7 @@ description: "Découvrez comment lire la capacité d'une batterie (mAh et Ah), c
 # Autonomie d'une Batterie : Combien de Temps Va-t-elle Durer ?
 
 Que ce soit pour un drone, un van aménagé ou une batterie externe, la question est toujours : **"Combien de temps ça va tenir ?"**
-Découvrez comment mesurer l'autonomie et utiliser notre [Calculatrice d'Autonomie de Batterie](/fr/calculatrices/calculatrice-autonomie-batterie).
+Découvrez comment mesurer l'autonomie et utiliser notre [Calculatrice d'Autonomie de Batterie](/fr/calculatrices/calculateur-d-autonomie-de-batterie).
 
 ---
 

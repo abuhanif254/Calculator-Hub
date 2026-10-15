@@ -5,7 +5,7 @@ description: "Découvrez le fonctionnement des systèmes de notation, les mathé
 
 # Comment Calculer votre Note Finale : Les Moyennes Pondérées
 
-À l'approche des examens, les étudiants se demandent : *"Combien dois-je obtenir à l'examen final pour réussir ?"* Dans ce guide, nous expliquerons les moyennes pondérées et comment utiliser notre [Calculatrice de Notes](/fr/calculatrices/calculatrice-notes).
+À l'approche des examens, les étudiants se demandent : *"Combien dois-je obtenir à l'examen final pour réussir ?"* Dans ce guide, nous expliquerons les moyennes pondérées et comment utiliser notre [Calculatrice de Notes](/fr/calculatrices/calculateur-de-notes).
 
 ---
 

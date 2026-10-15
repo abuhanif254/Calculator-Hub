@@ -5,7 +5,7 @@ description: "Comprenez l'impact financier du mariage. Découvrez le Bonus et la
 
 # Calculatrice d'Impôts Mariage : Bonus ou Pénalité ?
 
-En vous mariant, vous pouvez déclarer vos impôts "conjointement" ou "séparément". Pour beaucoup, combiner les revenus réduit considérablement les impôts (Bonus de Mariage). Mais pour d'autres, le mariage fait payer *plus* d'impôts (Pénalité de Mariage). Découvrez pourquoi et utilisez notre [Calculatrice d'Impôts Mariage](/fr/calculatrices/calculatrice-impots-mariage).
+En vous mariant, vous pouvez déclarer vos impôts "conjointement" ou "séparément". Pour beaucoup, combiner les revenus réduit considérablement les impôts (Bonus de Mariage). Mais pour d'autres, le mariage fait payer *plus* d'impôts (Pénalité de Mariage). Découvrez pourquoi et utilisez notre [Calculatrice d'Impôts Mariage](/fr/calculatrices/calculateur-impot-mariage).
 
 ---
 

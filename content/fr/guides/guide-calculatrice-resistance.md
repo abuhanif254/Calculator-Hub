@@ -5,7 +5,7 @@ description: "Comprenez la résistance électrique, la conductivité, comment le
 
 # Résistance Électrique : Contrôler le Flux
 
-Si vous branchez une petite LED sur une pile 9V, elle explosera à cause de l'excès de courant. Vous avez besoin d'une **Résistance**. Dans ce guide, nous expliquerons la résistance et comment utiliser notre [Calculatrice de Résistance](/fr/calculatrices/calculatrice-resistance).
+Si vous branchez une petite LED sur une pile 9V, elle explosera à cause de l'excès de courant. Vous avez besoin d'une **Résistance**. Dans ce guide, nous expliquerons la résistance et comment utiliser notre [Calculatrice de Résistance](/fr/calculatrices/calculateur-de-resistance).
 
 ---
 

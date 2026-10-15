@@ -5,7 +5,7 @@ description: "Comprenda la resistencia eléctrica, la conductividad de los mater
 
 # Resistencia Eléctrica: Controlando el Flujo
 
-Si conecta un pequeño LED a una batería de 9V, el LED explotará. La batería empuja demasiada corriente. Para evitar esto, necesita un **Resistor**. En esta guía, explicaremos la resistencia eléctrica y cómo usar nuestra [Calculadora de Resistencia](/es/calculadoras/calculadora-resistencia).
+Si conecta un pequeño LED a una batería de 9V, el LED explotará. La batería empuja demasiada corriente. Para evitar esto, necesita un **Resistor**. En esta guía, explicaremos la resistencia eléctrica y cómo usar nuestra [Calculadora de Resistencia](/es/calculadoras/calculadora-de-resistencia).
 
 ---
 

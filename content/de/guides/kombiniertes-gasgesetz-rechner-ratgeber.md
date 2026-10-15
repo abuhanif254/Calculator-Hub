@@ -6,7 +6,7 @@ description: "Erfahren Sie, wie das kombinierte Gasgesetz die Gesetze von Boyle,
 # Kombiniertes Gasgesetz Rechner: Veränderliche Bedingungen
 
 Atmen Sie tief ein und tauchen Sie tief, steigt der Druck drastisch und die Temperatur fällt. Was passiert mit dem Luftvolumen in Ihren Lungen?
-Wenn sich bei einem Gas mehrere Variablen gleichzeitig ändern, nutzt man das **kombinierte Gasgesetz**. Erfahren Sie mehr darüber und nutzen Sie unseren [Kombiniertes Gasgesetz Rechner](/de/rechner/kombiniertes-gasgesetz-rechner).
+Wenn sich bei einem Gas mehrere Variablen gleichzeitig ändern, nutzt man das **kombinierte Gasgesetz**. Erfahren Sie mehr darüber und nutzen Sie unseren [Kombiniertes Gasgesetz Rechner](/de/rechner/kombiniertes-gas-gesetz-rechner).
 
 ---
 

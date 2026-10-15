@@ -5,7 +5,7 @@ description: "Descubra cómo se calcula la edad en diferentes culturas, el dilem
 
 # La Fórmula Matemática de la Edad: Cómo Calcular la Edad Exacta
 
-Matemáticamente, calcular la edad exacta de alguien hasta el día implica una lógica de calendario compleja. En esta guía, exploraremos las matemáticas detrás del cálculo de la edad y cómo usar nuestra [Calculadora de Edad](/es/calculadoras/calculadora-edad).
+Matemáticamente, calcular la edad exacta de alguien hasta el día implica una lógica de calendario compleja. En esta guía, exploraremos las matemáticas detrás del cálculo de la edad y cómo usar nuestra [Calculadora de Edad](/es/calculadoras/calculadora-de-edad).
 
 ---
 

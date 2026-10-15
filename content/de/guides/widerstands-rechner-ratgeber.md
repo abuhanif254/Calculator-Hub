@@ -5,7 +5,7 @@ description: "Verstehen Sie den elektrischen Widerstand, Leitfähigkeit, wie Wid
 
 # Elektrischer Widerstand: Den Stromfluss kontrollieren
 
-Schließen Sie eine winzige LED direkt an eine 9V-Batterie an, brennt sie sofort durch (zu viel Strom). Sie benötigen einen **Widerstand** (Resistor). Wir erklären Leitfähigkeit und unseren [Widerstands-Rechner](/de/rechner/widerstands-rechner).
+Schließen Sie eine winzige LED direkt an eine 9V-Batterie an, brennt sie sofort durch (zu viel Strom). Sie benötigen einen **Widerstand** (Resistor). Wir erklären Leitfähigkeit und unseren [Widerstands-Rechner](/de/rechner/widerstand-rechner).
 
 ---
 

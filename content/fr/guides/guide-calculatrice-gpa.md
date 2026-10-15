@@ -5,7 +5,7 @@ description: "Découvrez comment fonctionne le système GPA, la différence entr
 
 # Le Guide Ultime pour Calculer Votre GPA
 
-Votre moyenne cumulative (GPA) est une mesure très importante. Dans ce guide, nous expliquerons les mathématiques, la différence entre les scores pondérés et non pondérés, et comment utiliser notre [Calculatrice GPA](/fr/calculatrices/calculatrice-gpa).
+Votre moyenne cumulative (GPA) est une mesure très importante. Dans ce guide, nous expliquerons les mathématiques, la différence entre les scores pondérés et non pondérés, et comment utiliser notre [Calculatrice GPA](/fr/calculatrices/calculateur-de-gpa).
 
 ---
 

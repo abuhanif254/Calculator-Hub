@@ -5,7 +5,7 @@ description: "Découvrez comment la longueur, l'épaisseur et le matériau d'un 
 
 # Résistance des Câbles : Pourquoi ils Chauffent
 
-Nous pensons souvent que les fils sont parfaits, mais chaque fil résiste à l'électricité. Cette **Résistance du Câble** explique pourquoi votre chargeur chauffe. Découvrez les trois facteurs clés et comment utiliser notre [Calculatrice de Résistance de Câble](/fr/calculatrices/calculatrice-resistance-cable).
+Nous pensons souvent que les fils sont parfaits, mais chaque fil résiste à l'électricité. Cette **Résistance du Câble** explique pourquoi votre chargeur chauffe. Découvrez les trois facteurs clés et comment utiliser notre [Calculatrice de Résistance de Câble](/fr/calculatrices/calculateur-de-resistance-de-fil).
 
 ---
 

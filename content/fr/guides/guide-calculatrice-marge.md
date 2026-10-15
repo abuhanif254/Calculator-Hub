@@ -5,7 +5,7 @@ description: "Découvrez la différence cruciale entre la marge et la majoration
 
 # Marge vs Majoration (Markup) : Le Guide Ultime de la Tarification
 
-Fixer correctement les prix est vital pour toute entreprise. Cependant, beaucoup confondent **Marge** et **Majoration**. Dans ce guide, nous détaillerons les formules et comment utiliser notre [Calculatrice de Marge](/fr/calculatrices/calculatrice-marge).
+Fixer correctement les prix est vital pour toute entreprise. Cependant, beaucoup confondent **Marge** et **Majoration**. Dans ce guide, nous détaillerons les formules et comment utiliser notre [Calculatrice de Marge](/fr/calculatrices/calculatrice-de-marge).
 
 ---
 

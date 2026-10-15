@@ -5,7 +5,7 @@ description: "Apprenez à calculer le volume de béton, tenez compte du gaspilla
 
 # Comment Estimer le Béton pour votre Prochain Projet de Bricolage
 
-Si vous mélangez trop peu de béton, il durcira de manière inégale. Si vous en commandez trop, vous gaspillez de l'argent. Dans ce guide, nous expliquerons les mathématiques du volume et comment utiliser notre [Calculatrice de Béton](/fr/calculatrices/calculatrice-beton).
+Si vous mélangez trop peu de béton, il durcira de manière inégale. Si vous en commandez trop, vous gaspillez de l'argent. Dans ce guide, nous expliquerons les mathématiques du volume et comment utiliser notre [Calculatrice de Béton](/fr/calculatrices/calculateur-de-beton).
 
 ---
 

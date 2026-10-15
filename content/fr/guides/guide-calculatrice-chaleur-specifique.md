@@ -6,7 +6,7 @@ description: "Découvrez ce qu'est la capacité thermique massique, pourquoi l'e
 # Calculatrice de Chaleur Spécifique : Capacité Thermique
 
 Si vous laissez une cuillère en métal et une en bois dans une casserole, le métal chauffe vite, pas le bois. Cela s'explique car chaque matériau nécessite une quantité d'énergie différente pour changer de température.
-Cette propriété s'appelle la **Capacité Thermique Massique** (ou Chaleur Spécifique). Découvrez comment elle fonctionne et utilisez notre [Calculatrice de Chaleur Spécifique](/fr/calculatrices/calculatrice-chaleur-specifique).
+Cette propriété s'appelle la **Capacité Thermique Massique** (ou Chaleur Spécifique). Découvrez comment elle fonctionne et utilisez notre [Calculatrice de Chaleur Spécifique](/fr/calculatrices/calculateur-de-chaleur-massique).
 
 ---
 

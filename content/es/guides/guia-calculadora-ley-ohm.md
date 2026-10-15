@@ -5,7 +5,7 @@ description: "Domine la Ley de Ohm (V = IR). Comprenda la relación entre voltaj
 
 # La Ley de Ohm Explicada: La Base de la Electrónica
 
-Para entender cómo funciona un circuito, debe comenzar con la **Ley de Ohm**. Es la base de toda la electricidad. En esta guía, usaremos una analogía de agua para explicar la electricidad y cómo usar nuestra [Calculadora de la Ley de Ohm](/es/calculadoras/calculadora-ley-ohm).
+Para entender cómo funciona un circuito, debe comenzar con la **Ley de Ohm**. Es la base de toda la electricidad. En esta guía, usaremos una analogía de agua para explicar la electricidad y cómo usar nuestra [Calculadora de la Ley de Ohm](/es/calculadoras/calculadora-ley-de-ohm).
 
 ---
 

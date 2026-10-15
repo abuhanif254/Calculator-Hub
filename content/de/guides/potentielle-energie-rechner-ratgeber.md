@@ -5,7 +5,7 @@ description: "Lernen Sie, wie die potentielle Energie funktioniert, wie sie sich
 
 # Potentielle Energie: Gespeicherte Energie der Lage
 
-Stellen Sie sich eine Achterbahn ganz oben auf dem Hügel vor. Bevor sie fällt, bewegt sie sich kaum, ist aber voller Energie. Diese gespeicherte Energie nennt man **Potentielle Energie** (Lageenergie). Wir erklären die Formel und unseren [Potentielle Energie-Rechner](/de/rechner/potentielle-energie-rechner).
+Stellen Sie sich eine Achterbahn ganz oben auf dem Hügel vor. Bevor sie fällt, bewegt sie sich kaum, ist aber voller Energie. Diese gespeicherte Energie nennt man **Potentielle Energie** (Lageenergie). Wir erklären die Formel und unseren [Potentielle Energie-Rechner](/de/rechner/potenzielle-energie-rechner).
 
 ---
 

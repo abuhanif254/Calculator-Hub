@@ -5,7 +5,7 @@ description: "Découvrez comment l'âge de la retraite à taux plein (FRA) affec
 
 # Quand Devrais-je Prendre ma Sécurité Sociale ? Maximiser vos Avantages
 
-L'âge auquel vous demandez vos prestations de sécurité sociale modifie de façon permanente votre paiement mensuel. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice de Sécurité Sociale](/fr/calculatrices/calculatrice-securite-sociale).
+L'âge auquel vous demandez vos prestations de sécurité sociale modifie de façon permanente votre paiement mensuel. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice de Sécurité Sociale](/fr/calculatrices/calculateur-de-securite-sociale).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Domine la física del movimiento de proyectiles. Aprenda sobre án
 
 # Movimiento de Proyectiles: La Física de las Trayectorias
 
-Si dispara una bala de cañón horizontalmente y deja caer otra desde la misma altura, ¡ambas tocan el suelo al mismo tiempo! Este hecho alucinante es el núcleo del **Movimiento de Proyectiles**. En esta guía, explicaremos los ejes independientes y cómo usar nuestra [Calculadora de Movimiento de Proyectiles](/es/calculadoras/calculadora-movimiento-proyectiles).
+Si dispara una bala de cañón horizontalmente y deja caer otra desde la misma altura, ¡ambas tocan el suelo al mismo tiempo! Este hecho alucinante es el núcleo del **Movimiento de Proyectiles**. En esta guía, explicaremos los ejes independientes y cómo usar nuestra [Calculadora de Movimiento de Proyectiles](/es/calculadoras/calculadora-de-movimiento-de-proyectiles).
 
 ---
 

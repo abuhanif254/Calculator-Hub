@@ -5,7 +5,7 @@ description: "Comprenda por qué la electricidad pierde presión a largas distan
 
 # Caída de Voltaje: Por Qué los Cables Largos Pierden Energía
 
-Si une varios cables de extensión largos para usar una herramienta en el patio, es posible que la herramienta casi no funcione. Esto no es un defecto, es la **Caída de Voltaje**. En esta guía explicaremos este fenómeno y cómo usar nuestra [Calculadora de Caída de Voltaje](/es/calculadoras/calculadora-caida-voltaje).
+Si une varios cables de extensión largos para usar una herramienta en el patio, es posible que la herramienta casi no funcione. Esto no es un defecto, es la **Caída de Voltaje**. En esta guía explicaremos este fenómeno y cómo usar nuestra [Calculadora de Caída de Voltaje](/es/calculadoras/calculadora-de-caida-de-voltaje).
 
 ---
 

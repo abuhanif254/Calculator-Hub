@@ -5,7 +5,7 @@ description: "Desmitifique las fórmulas de arrendamiento de automóviles (leasi
 
 # Arrendamiento de Autos Explicado: Calcule su Pago Mensual Real
 
-Arrendar un automóvil (leasing) puede ser una excelente manera de conducir un vehículo nuevo con un pago mensual más bajo. Sin embargo, las matemáticas son confusas. En esta guía, traduciremos la jerga del concesionario y le mostraremos cómo usar nuestra [Calculadora de Arrendamiento](/es/calculadoras/calculadora-arrendamiento).
+Arrendar un automóvil (leasing) puede ser una excelente manera de conducir un vehículo nuevo con un pago mensual más bajo. Sin embargo, las matemáticas son confusas. En esta guía, traduciremos la jerga del concesionario y le mostraremos cómo usar nuestra [Calculadora de Arrendamiento](/es/calculadoras/calculadora-de-arrendamiento).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Aprenda a calcular su límite diario de carbohidratos para la diet
 # Calculadora de Carbohidratos: Controlando sus Macros
 
 Ya sea que intente perder peso con la dieta Keto o ganar músculo ("bulking"), controlar sus carbohidratos diarios es el factor más importante.
-Los carbohidratos son energía, pero comer demasiados se almacena como grasa. Aprenda cómo calcular su límite, qué son los "carbohidratos netos" y use nuestra [Calculadora de Carbohidratos](/es/calculadoras/calculadora-carbohidratos).
+Los carbohidratos son energía, pero comer demasiados se almacena como grasa. Aprenda cómo calcular su límite, qué son los "carbohidratos netos" y use nuestra [Calculadora de Carbohidratos](/es/calculadoras/calculadora-de-carbohidratos).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Maîtrisez la valeur temporelle de l'argent. Apprenez les mathéma
 
 # Valeur Future Expliquée : Prédire la Valeur de vos Investissements
 
-Un dollar aujourd'hui ne vaut pas un dollar demain. Ce concept fondamental est appelé la **Valeur Temporelle de l'Argent (TVM)**. Dans ce guide, nous expliquerons comment calculer exactement ce que vaudront vos investissements dans plusieurs décennies et comment utiliser notre [Calculatrice de Valeur Future](/fr/calculatrices/calculatrice-valeur-future).
+Un dollar aujourd'hui ne vaut pas un dollar demain. Ce concept fondamental est appelé la **Valeur Temporelle de l'Argent (TVM)**. Dans ce guide, nous expliquerons comment calculer exactement ce que vaudront vos investissements dans plusieurs décennies et comment utiliser notre [Calculatrice de Valeur Future](/fr/calculatrices/calculateur-valeur-future).
 
 ---
 

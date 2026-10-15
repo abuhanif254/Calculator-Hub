@@ -5,7 +5,7 @@ description: "Allez plus loin dans le subnetting IPv4. Apprenez à calculer les 
 
 # Subnetting IP : Plages d'Hôtes et Broadcast
 
-Si vous êtes administrateur réseau, vous devez savoir trouver la première et la dernière IP utilisable d'un sous-réseau. Simplifiez-vous la vie avec notre [Calculatrice de Sous-réseau IP](/fr/calculatrices/calculatrice-sous-reseau-ip).
+Si vous êtes administrateur réseau, vous devez savoir trouver la première et la dernière IP utilisable d'un sous-réseau. Simplifiez-vous la vie avec notre [Calculatrice de Sous-réseau IP](/fr/calculatrices/calculateur-de-sous-reseau-ip).
 
 ---
 

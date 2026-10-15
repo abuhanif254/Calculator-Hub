@@ -6,7 +6,7 @@ description: "Découvrez comment sont structurées les commissions, la différen
 # Calculatrice de Commission : Suivez vos Revenus de Vente
 
 Dans la vente, le salaire de base n'est souvent qu'une petite partie de vos revenus. Le vrai gain vient des **Commissions** (un pourcentage des ventes générées).
-Comprendre votre système de commission est vital pour anticiper vos revenus. Découvrez comment les calculer et utilisez notre [Calculatrice de Commission](/fr/calculatrices/calculatrice-commission).
+Comprendre votre système de commission est vital pour anticiper vos revenus. Découvrez comment les calculer et utilisez notre [Calculatrice de Commission](/fr/calculatrices/calculateur-de-commission).
 
 ---
 

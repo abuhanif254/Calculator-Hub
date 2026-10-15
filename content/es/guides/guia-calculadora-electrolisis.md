@@ -6,7 +6,7 @@ description: "Aprenda cómo la electrólisis usa energía eléctrica para forzar
 # Calculadora de Electrólisis: La Electricidad al Servicio de la Química
 
 Si quiere extraer aluminio puro del mineral bauxita, la reacción nunca ocurre sola — no es espontánea. Pero si fuerza una corriente eléctrica masiva a través de la solución, puede anular la química misma y hacerlo realidad.
-Este proceso es la **Electrólisis**. Así producimos aluminio, gas cloro e hidrógeno. Use nuestra [Calculadora de Electrólisis](/es/calculadoras/calculadora-electrolisis).
+Este proceso es la **Electrólisis**. Así producimos aluminio, gas cloro e hidrógeno. Use nuestra [Calculadora de Electrólisis](/es/calculadoras/calculadora-de-electrolisis).
 
 ---
 

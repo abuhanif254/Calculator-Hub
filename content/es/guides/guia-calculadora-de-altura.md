@@ -5,7 +5,7 @@ description: "Explore la genética del crecimiento, el método Khamis-Roche y us
 
 # ¿Qué Tan Alto Será mi Hijo? La Ciencia de la Predicción de Estatura
 
-Los científicos estiman que aproximadamente el **80% de la estatura está determinada por el ADN**. En esta guía, exploraremos la ciencia del crecimiento humano y cómo usar nuestra [Calculadora de Estatura](/es/calculadoras/calculadora-estatura).
+Los científicos estiman que aproximadamente el **80% de la estatura está determinada por el ADN**. En esta guía, exploraremos la ciencia del crecimiento humano y cómo usar nuestra [Calculadora de Estatura](/es/calculadoras/calculadora-de-altura).
 
 ---
 

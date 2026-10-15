@@ -7,7 +7,7 @@ description: "Découvrez ce qu'est la médiane en statistiques, comment la trouv
 
 Lors de l'analyse d'un ensemble de nombres, vous souhaitez souvent trouver la valeur "centrale" ou "moyenne" pour représenter l'ensemble des données. Bien que la plupart des gens pensent immédiatement à la moyenne arithmétique, la **Médiane** est souvent une représentation beaucoup plus précise des données typiques, surtout lorsqu'il s'agit de valeurs extrêmes comme les revenus ou les prix de l'immobilier.
 
-Dans ce guide complet, nous explorerons exactement ce qu'est la médiane, les instructions étape par étape sur la façon de la calculer manuellement, les applications du monde réel où la médiane bat la moyenne, et comment utiliser notre [Calculatrice de Médiane](/fr/calculatrices/calculatrice-mediane) gratuite pour traiter instantanément de grands ensembles de données.
+Dans ce guide complet, nous explorerons exactement ce qu'est la médiane, les instructions étape par étape sur la façon de la calculer manuellement, les applications du monde réel où la médiane bat la moyenne, et comment utiliser notre [Calculatrice de Médiane](/fr/calculatrices/calculatrice-de-mediane) gratuite pour traiter instantanément de grands ensembles de données.
 
 ---
 

@@ -5,7 +5,7 @@ description: "Descubra cómo funcionan realmente las tasas de interés, el costo
 
 # Tasas de Interés Explicadas: APR Nominal vs. Efectiva
 
-Cuando firma un documento de préstamo, el banco anuncia una tasa. Sin embargo, esa tasa casi nunca es la tasa matemática *real* que termina pagando. En esta guía, desglosaremos las matemáticas y le mostraremos cómo usar nuestra [Calculadora de Tasas de Interés](/es/calculadoras/calculadora-tasas-interes).
+Cuando firma un documento de préstamo, el banco anuncia una tasa. Sin embargo, esa tasa casi nunca es la tasa matemática *real* que termina pagando. En esta guía, desglosaremos las matemáticas y le mostraremos cómo usar nuestra [Calculadora de Tasas de Interés](/es/calculadoras/calculadora-tasa-de-interes).
 
 ---
 

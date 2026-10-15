@@ -6,7 +6,7 @@ description: "Découvrez comment chauffer un gaz le fait s'étendre, la relation
 # Calculatrice de la Loi de Charles : Volume vs Température
 
 Un ballon de basket laissé dehors par une nuit glaciale paraîtra dégonflé au matin. Mais ramenez-le au chaud, et il gonflera à nouveau ! Pourquoi ?
-Jacques Charles a étudié ce phénomène en 1780, découvrant la relation directe entre température et volume. Découvrez la **Loi de Charles** et utilisez notre [Calculatrice de la Loi de Charles](/fr/calculatrices/calculatrice-loi-charles).
+Jacques Charles a étudié ce phénomène en 1780, découvrant la relation directe entre température et volume. Découvrez la **Loi de Charles** et utilisez notre [Calculatrice de la Loi de Charles](/fr/calculatrices/calculateur-de-loi-de-charles).
 
 ---
 

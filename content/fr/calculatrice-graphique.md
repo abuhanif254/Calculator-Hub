@@ -16,4 +16,4 @@ Les calculatrices graphiques analysent les expressions à l'aide d'un AST (Abstr
 ### Outils Connexes
 - [Calculatrice Scientifique](/fr/calculatrices/calculatrice-scientifique)
 - [Calculatrice de Fractions](/fr/calculatrices/calculatrice-de-fractions)
-- [Calculatrice de Pourcentages](/fr/calculatrices/calculatrice-de-pourcentages)
+- [Calculatrice de Pourcentages](/fr/calculatrices/calculatrice-de-pourcentage)

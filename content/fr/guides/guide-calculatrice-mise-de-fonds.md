@@ -5,7 +5,7 @@ description: "Découvrez la vérité sur l'assurance prêt hypothécaire (PMI), 
 
 # Le Mythe des 20 % : De Combien de Mise de Fonds Avez-vous Vraiment Besoin ?
 
-Économiser 20 % peut prendre des années, pendant lesquelles les prix des maisons augmenteront. La vérité est que vous n'avez pas besoin de 20 %. Dans ce guide, nous expliquerons vos options et comment utiliser notre [Calculatrice de Mise de Fonds](/fr/calculatrices/calculatrice-mise-de-fonds).
+Économiser 20 % peut prendre des années, pendant lesquelles les prix des maisons augmenteront. La vérité est que vous n'avez pas besoin de 20 %. Dans ce guide, nous expliquerons vos options et comment utiliser notre [Calculatrice de Mise de Fonds](/fr/calculatrices/calculateur-apport-initial).
 
 ---
 

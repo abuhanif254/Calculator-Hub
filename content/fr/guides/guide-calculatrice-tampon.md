@@ -6,7 +6,7 @@ description: "Comprenez comment fonctionnent les solutions tampons, comment calc
 # Calculatrice de Tampon : Maintenir la Stabilité du pH
 
 En chimie, une chute brutale du pH peut ruiner une expérience. Pour l'éviter, on utilise des **Solutions Tampons** qui bloquent le pH d'un liquide.
-Découvrez la mécanique des tampons, comment les préparer, et utilisez notre [Calculatrice de Tampon](/fr/calculatrices/calculatrice-tampon).
+Découvrez la mécanique des tampons, comment les préparer, et utilisez notre [Calculatrice de Tampon](/fr/calculatrices/calculateur-de-tampon).
 
 ---
 

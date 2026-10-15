@@ -6,7 +6,7 @@ description: "Comprenez l'enthalpie, la différence entre réactions exothermiqu
 # Calculatrice d'Enthalpie : La Chaleur des Réactions
 
 Brûler du bois dégage énormément de chaleur. Craquer une poche de froid médicale absorbe instantanément la chaleur. D'où vient cette chaleur ?
-En chimie, l'énergie thermique totale s'appelle **l'Enthalpie**. Découvrez comment la chaleur se transfère et utilisez notre [Calculatrice d'Enthalpie](/fr/calculatrices/calculatrice-enthalpie).
+En chimie, l'énergie thermique totale s'appelle **l'Enthalpie**. Découvrez comment la chaleur se transfère et utilisez notre [Calculatrice d'Enthalpie](/fr/calculatrices/calculateur-d-enthalpie).
 
 ---
 

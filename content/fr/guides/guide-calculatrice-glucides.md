@@ -6,7 +6,7 @@ description: "Apprenez à calculer votre limite quotidienne de glucides pour un 
 # Calculatrice de Glucides : Gérer vos Macros
 
 Que vous essayiez de perdre du poids avec un régime Keto, ou de prendre du muscle, la gestion de vos glucides (carbohydrates) quotidiens est primordiale.
-Les glucides sont l'énergie de votre corps, mais l'excès est stocké sous forme de graisse. Apprenez à calculer votre limite et utilisez notre [Calculatrice de Glucides](/fr/calculatrices/calculatrice-glucides).
+Les glucides sont l'énergie de votre corps, mais l'excès est stocké sous forme de graisse. Apprenez à calculer votre limite et utilisez notre [Calculatrice de Glucides](/fr/calculatrices/calculateur-de-glucides).
 
 ---
 

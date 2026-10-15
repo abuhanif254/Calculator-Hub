@@ -5,7 +5,7 @@ description: "Maîtrisez le concept de densité. Découvrez la différence entre
 
 # Comprendre la Densité : Pourquoi la Glace Flotte
 
-Qu'est-ce qui est plus lourd : un kilo de plumes ou un kilo de plomb ? Ils ont la même Masse, mais les plumes prennent plus de place (Volume). La différence est la **Densité**. Découvrez comment utiliser notre [Calculatrice de Densité](/fr/calculatrices/calculatrice-densite).
+Qu'est-ce qui est plus lourd : un kilo de plumes ou un kilo de plomb ? Ils ont la même Masse, mais les plumes prennent plus de place (Volume). La différence est la **Densité**. Découvrez comment utiliser notre [Calculatrice de Densité](/fr/calculatrices/calculateur-de-masse-volumique).
 
 ---
 

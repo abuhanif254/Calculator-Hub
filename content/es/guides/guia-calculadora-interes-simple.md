@@ -5,7 +5,7 @@ description: "Aprenda en qué difiere el interés simple del compuesto, cómo se
 
 # Interés Simple vs. Compuesto: ¿Cuál es la Diferencia?
 
-Cuando pide prestado o invierte dinero, el interés se calcula de dos maneras: **Simple** o **Compuesto**. Comprender la diferencia es vital. En esta guía, explicaremos la mecánica y cómo usar nuestra [Calculadora de Interés Simple](/es/calculadoras/calculadora-interes-simple).
+Cuando pide prestado o invierte dinero, el interés se calcula de dos maneras: **Simple** o **Compuesto**. Comprender la diferencia es vital. En esta guía, explicaremos la mecánica y cómo usar nuestra [Calculadora de Interés Simple](/es/calculadoras/calculadora-de-interes-simple).
 
 ---
 

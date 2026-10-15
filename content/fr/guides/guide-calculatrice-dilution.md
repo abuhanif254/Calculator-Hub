@@ -5,7 +5,7 @@ description: "Découvrez le facteur de dilution, comment réaliser des dilutions
 
 # Dilution en Série : Créer des Concentrations Précises
 
-La dilution molaire s'utilise pour les moles, mais en biologie ou en médecine, on utilise des pourcentages, des mg/L ou des cellules. On utilise alors le **Facteur de Dilution** généralisé. Découvrez comment cela fonctionne et utilisez notre [Calculatrice de Dilution](/fr/calculatrices/calculatrice-dilution).
+La dilution molaire s'utilise pour les moles, mais en biologie ou en médecine, on utilise des pourcentages, des mg/L ou des cellules. On utilise alors le **Facteur de Dilution** généralisé. Découvrez comment cela fonctionne et utilisez notre [Calculatrice de Dilution](/fr/calculatrices/calculateur-de-dilution).
 
 ---
 

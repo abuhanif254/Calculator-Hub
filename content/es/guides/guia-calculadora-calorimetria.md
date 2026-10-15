@@ -6,7 +6,7 @@ description: 'Aprenda cómo funciona un calorímetro, la matemática de la trans
 # Calculadora de Calorimetría: Midiendo la Transferencia de Calor
 
 Para saber cuántas calorías tiene un alimento, ¡los científicos lo queman y miden su calor!
-El dispositivo para capturar este calor es un **Calorímetro**. Aprenda la ciencia de la calorimetría y use nuestra [Calculadora de Calorimetría](/es/calculadoras/calculadora-calorimetria).
+El dispositivo para capturar este calor es un **Calorímetro**. Aprenda la ciencia de la calorimetría y use nuestra [Calculadora de Calorimetría](/es/calculadoras/calculadora-de-calorimetria).
 
 ---
 

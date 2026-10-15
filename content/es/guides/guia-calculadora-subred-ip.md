@@ -5,7 +5,7 @@ description: "Profundice en el subnetting IPv4. Aprenda a calcular IDs de red, d
 
 # Subnetting IP: Rangos de Hosts y Broadcasts
 
-Si es un administrador de sistemas, debe entender cómo encontrar la primera y última dirección IP utilizable en cualquier subred. Explicaremos las matemáticas y cómo evitar las tediosas conversiones binarias usando nuestra [Calculadora de Subredes IP](/es/calculadoras/calculadora-subred-ip).
+Si es un administrador de sistemas, debe entender cómo encontrar la primera y última dirección IP utilizable en cualquier subred. Explicaremos las matemáticas y cómo evitar las tediosas conversiones binarias usando nuestra [Calculadora de Subredes IP](/es/calculadoras/calculadora-de-subred-ip).
 
 ---
 

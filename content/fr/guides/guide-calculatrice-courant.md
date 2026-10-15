@@ -5,7 +5,7 @@ description: "Découvrez ce qu'est le courant électrique, comment mesurer l'amp
 
 # Courant Électrique : Le Flux des Électrons
 
-Si la tension est la pression de l'eau, le **Courant** est le débit d'eau. C'est la métrique la plus importante en électricité pour la sécurité. Apprenez à utiliser notre [Calculatrice de Courant](/fr/calculatrices/calculatrice-courant).
+Si la tension est la pression de l'eau, le **Courant** est le débit d'eau. C'est la métrique la plus importante en électricité pour la sécurité. Apprenez à utiliser notre [Calculatrice de Courant](/fr/calculatrices/calculateur-de-courant).
 
 ---
 

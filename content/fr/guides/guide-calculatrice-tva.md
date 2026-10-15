@@ -5,7 +5,7 @@ description: "Apprenez comment fonctionne la Taxe sur la Valeur Ajoutée (TVA), 
 
 # Comprendre la TVA : La Norme Mondiale pour les Taxes
 
-Si vous avez une entreprise en Europe, vous gérez la **Taxe sur la Valeur Ajoutée (TVA)**. Contrairement à la taxe de vente américaine, la TVA est perçue à chaque étape de la chaîne d'approvisionnement. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de TVA](/fr/calculatrices/calculatrice-tva).
+Si vous avez une entreprise en Europe, vous gérez la **Taxe sur la Valeur Ajoutée (TVA)**. Contrairement à la taxe de vente américaine, la TVA est perçue à chaque étape de la chaîne d'approvisionnement. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de TVA](/fr/calculatrices/calculateur-tva).
 
 ---
 

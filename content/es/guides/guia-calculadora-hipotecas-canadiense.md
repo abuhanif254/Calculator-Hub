@@ -5,7 +5,7 @@ description: "Comprenda las reglas únicas de las hipotecas canadienses, la capi
 
 # Hipotecas Canadienses vs. Estadounidenses: Diferencias Cruciales
 
-Si compra una casa en Canadá, aplicar las matemáticas hipotecarias estadounidenses dará estimaciones inexactas. En esta guía, exploraremos las diferencias cruciales y cómo usar nuestra [Calculadora de Hipotecas Canadienses](/es/calculadoras/calculadora-hipotecas-canadiense).
+Si compra una casa en Canadá, aplicar las matemáticas hipotecarias estadounidenses dará estimaciones inexactas. En esta guía, exploraremos las diferencias cruciales y cómo usar nuestra [Calculadora de Hipotecas Canadienses](/es/calculadoras/calculadora-de-hipotecas-canadiense).
 
 ---
 

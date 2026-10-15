@@ -6,7 +6,7 @@ description: "Lernen Sie, wie die pOH-Skala Basizität misst, die Beziehung zwis
 # pOH-Rechner: Das Gegenteil vom pH-Wert
 
 Der pH-Wert misst, wie *sauer* eine Lösung ist. Aber was ist, wenn Sie messen wollen, wie *basisch* (alkalisch) sie ist?
-Für starke Basen wie Bleichmittel oder Ammoniak nutzen Chemiker den **pOH-Wert**. Wir erklären, was der pOH-Wert ist, wie er mit dem pH-Wert zusammenhängt, und unseren [pOH-Rechner](/de/rechner/poh-rechner).
+Für starke Basen wie Bleichmittel oder Ammoniak nutzen Chemiker den **pOH-Wert**. Wir erklären, was der pOH-Wert ist, wie er mit dem pH-Wert zusammenhängt, und unseren [pOH-Rechner](/de/rechner/poh-wert-rechner).
 
 ---
 

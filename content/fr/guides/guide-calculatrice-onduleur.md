@@ -5,7 +5,7 @@ description: "Découvrez comment fonctionne un onduleur, la différence entre pu
 
 # Onduleurs : Convertir la Batterie en Courant AC
 
-Si vous aménagez un van, vous avez un problème : votre batterie fournit du 12V **DC (Continu)**, mais vos appareils ont besoin de 230V **AC (Alternatif)**. Il vous faut un **Onduleur** (Convertisseur de tension). Apprenez à le choisir avec notre [Calculatrice d'Onduleur](/fr/calculatrices/calculatrice-onduleur).
+Si vous aménagez un van, vous avez un problème : votre batterie fournit du 12V **DC (Continu)**, mais vos appareils ont besoin de 230V **AC (Alternatif)**. Il vous faut un **Onduleur** (Convertisseur de tension). Apprenez à le choisir avec notre [Calculatrice d'Onduleur](/fr/calculatrices/calculateur-d-onduleur).
 
 ---
 

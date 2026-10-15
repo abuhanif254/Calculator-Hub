@@ -5,7 +5,7 @@ description: "Démystifiez les formules de location (leasing), comprenez la vale
 
 # Location de Voiture Expliquée : Calculez Votre Vrai Paiement Mensuel
 
-La location d'une voiture (leasing) peut être un excellent moyen de conduire un véhicule neuf avec un paiement mensuel inférieur. Cependant, les mathématiques sont confuses. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice de Location](/fr/calculatrices/calculatrice-location).
+La location d'une voiture (leasing) peut être un excellent moyen de conduire un véhicule neuf avec un paiement mensuel inférieur. Cependant, les mathématiques sont confuses. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice de Location](/fr/calculatrices/calculatrice-de-location).
 
 ---
 

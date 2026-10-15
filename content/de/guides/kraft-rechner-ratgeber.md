@@ -5,7 +5,7 @@ description: "Meistern Sie Newtons zweites Gesetz (F=ma). Lernen Sie den Untersc
 
 # Das Zweite Newtonsche Gesetz: Kraft und Masse verstehen
 
-Warum ist es schwerer, einen LKW zu schieben als ein Fahrrad? Die Antwort ist Newtons 2. Gesetz: **F = ma**. Wir erklären die Formel und zeigen unseren [Kraft-Rechner](/de/rechner/kraft-rechner).
+Warum ist es schwerer, einen LKW zu schieben als ein Fahrrad? Die Antwort ist Newtons 2. Gesetz: **F = ma**. Wir erklären die Formel und zeigen unseren [Kraft-Rechner](/de/rechner/kraftrechner).
 
 ---
 

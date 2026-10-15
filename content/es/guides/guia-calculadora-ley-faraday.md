@@ -6,7 +6,7 @@ description: "Aprenda cómo las Leyes de Faraday conectan la carga eléctrica co
 # Calculadora de la Ley de Faraday de la Electrólisis
 
 Al pasar corriente eléctrica por una solución con metales disueltos, ¡los átomos de metal se depositan en el electrodo! Esta es la base del **galvanizado** — así se cubren objetos metálicos baratos con capas de oro, plata o cromo.
-La cantidad exacta depositada la predicen las **Leyes de Faraday**. Aprenda cómo y use nuestra [Calculadora de la Ley de Faraday](/es/calculadoras/calculadora-ley-faraday).
+La cantidad exacta depositada la predicen las **Leyes de Faraday**. Aprenda cómo y use nuestra [Calculadora de la Ley de Faraday](/es/calculadoras/calculadora-de-ley-de-faraday).
 
 ---
 

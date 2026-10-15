@@ -5,7 +5,7 @@ description: "Meistern Sie die Physik der Wurfparabeln. Lernen Sie über Abwurfw
 
 # Wurfbewegungen: Die Physik der Flugbahnen
 
-Schießt man eine Kanonenkugel exakt horizontal ab und lässt gleichzeitig eine zweite fallen, treffen beide exakt zeitgleich den Boden! Diese verblüffende Tatsache ist der Kern der **Wurfbewegung**. Wir erklären unabhängige Achsen und unseren [Wurfbewegungs-Rechner](/de/rechner/wurfbewegungs-rechner).
+Schießt man eine Kanonenkugel exakt horizontal ab und lässt gleichzeitig eine zweite fallen, treffen beide exakt zeitgleich den Boden! Diese verblüffende Tatsache ist der Kern der **Wurfbewegung**. Wir erklären unabhängige Achsen und unseren [Wurfbewegungs-Rechner](/de/rechner/projektilbewegung-rechner).
 
 ---
 

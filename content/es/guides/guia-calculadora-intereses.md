@@ -5,7 +5,7 @@ description: "Aprenda la diferencia crucial entre el interés simple y compuesto
 
 # Interés Simple vs. Compuesto: Una Guía Completa de Crecimiento
 
-Albert Einstein supuestamente llamó al interés compuesto la "octava maravilla del mundo". Comprender cómo funciona el interés es la lección más importante en finanzas personales. En esta guía, desglosaremos los dos tipos principales de interés y le mostraremos cómo usar nuestra [Calculadora de Intereses](/es/calculadoras/calculadora-intereses).
+Albert Einstein supuestamente llamó al interés compuesto la "octava maravilla del mundo". Comprender cómo funciona el interés es la lección más importante en finanzas personales. En esta guía, desglosaremos los dos tipos principales de interés y le mostraremos cómo usar nuestra [Calculadora de Intereses](/es/calculadoras/calculadora-de-interes).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Verstehen Sie den Hess'schen Wärmesatz, warum Enthalpie eine Zust
 # Hess'scher Wärmesatz-Rechner: Enthalpie addieren
 
 Wenn Sie einen Berg besteigen, gewinnen Sie potenzielle Energie. Ob über einen steilen Direktweg oder einen langen Serpentinenpfad, ist egal. Die Zielhöhe ist gleich, also ist die Energieänderung gleich!
-In der Chemie gilt dasselbe. Germain Hess entdeckte, dass die Gesamtwärme einer Reaktion unabhängig vom Weg ist. Lernen Sie den **Hess'schen Wärmesatz** kennen und nutzen Sie unseren [Hess'scher Wärmesatz-Rechner](/de/rechner/hess-scher-waermesatz-rechner).
+In der Chemie gilt dasselbe. Germain Hess entdeckte, dass die Gesamtwärme einer Reaktion unabhängig vom Weg ist. Lernen Sie den **Hess'schen Wärmesatz** kennen und nutzen Sie unseren [Hess'scher Wärmesatz-Rechner](/de/rechner/hess-gesetz-rechner).
 
 ---
 

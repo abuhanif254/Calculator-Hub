@@ -7,7 +7,7 @@ description: "Sollten Sie beim Autokauf den Rabatt oder die 0%-Finanzierung wäh
 
 Beim Kauf eines Neuwagens stehen Sie oft vor der Wahl: **Einen hohen Cashback-Rabatt nehmen** ODER **Einen niedrigen (oder 0%) Zinssatz wählen.**
 
-Hersteller lassen Sie diese beiden Angebote selten kombinieren. Auf den ersten Blick scheinen 0 % unschlagbar. Aber der Verzicht auf einen massiven Rabatt bedeutet, dass Sie einen viel höheren Kreditbetrag finanzieren müssen. Wir zeigen Ihnen, wie Sie unseren [Cashback vs. Niedriger Zins Rechner](/de/rechner/cashback-vs-niedriger-zins-rechner) verwenden.
+Hersteller lassen Sie diese beiden Angebote selten kombinieren. Auf den ersten Blick scheinen 0 % unschlagbar. Aber der Verzicht auf einen massiven Rabatt bedeutet, dass Sie einen viel höheren Kreditbetrag finanzieren müssen. Wir zeigen Ihnen, wie Sie unseren [Cashback vs. Niedriger Zins Rechner](/de/rechner/cashback-oder-niedriger-zinssatz-rechner) verwenden.
 
 ---
 

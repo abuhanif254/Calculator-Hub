@@ -5,7 +5,7 @@ description: "Aprenda cómo el Índice de Precios al Consumidor (IPC) mide la in
 
 # Entendiendo la Inflación: Cómo Roba su Poder Adquisitivo
 
-La inflación es la pérdida gradual del poder adquisitivo de una moneda. Significa que se necesita más dinero para comprar exactamente los mismos bienes. En esta guía, explicaremos cómo se mide y cómo usar nuestra [Calculadora de Inflación](/es/calculadoras/calculadora-inflacion).
+La inflación es la pérdida gradual del poder adquisitivo de una moneda. Significa que se necesita más dinero para comprar exactamente los mismos bienes. En esta guía, explicaremos cómo se mide y cómo usar nuestra [Calculadora de Inflación](/es/calculadoras/calculadora-de-inflacion).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Aprenda qué es un Certificado de Depósito, cómo funciona la esc
 
 # Entendiendo los CD: Cómo Asegurar Altas Tasas de Interés
 
-Un **Certificado de Depósito (CD)** es el punto medio perfecto entre una cuenta de ahorros y el mercado de valores. En esta guía, desglosaremos cómo funcionan los CD, la estrategia de "Escalera de CD" y cómo usar nuestra [Calculadora de CD](/es/calculadoras/calculadora-cd).
+Un **Certificado de Depósito (CD)** es el punto medio perfecto entre una cuenta de ahorros y el mercado de valores. En esta guía, desglosaremos cómo funcionan los CD, la estrategia de "Escalera de CD" y cómo usar nuestra [Calculadora de CD](/es/calculadoras/calculadora-de-cd).
 
 ---
 

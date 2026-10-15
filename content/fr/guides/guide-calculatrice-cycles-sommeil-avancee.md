@@ -6,7 +6,7 @@ description: "Découvrez comment fonctionnent les cycles de sommeil, pourquoi vo
 # Calculatrice Avancée de Cycles de Sommeil : Réveillez-vous Reposé
 
 Avez-vous déjà dormi 8 heures et vous êtes réveillé épuisé ? Ou été réveillé après seulement 6 heures et vous senti parfaitement alerte ?
-Ce n'est pas un hasard — c'est une question de **cycles de sommeil**. Utilisez notre [Calculatrice Avancée de Cycles de Sommeil](/fr/calculatrices/calculatrice-cycles-sommeil-avancee) pour trouver l'heure idéale.
+Ce n'est pas un hasard — c'est une question de **cycles de sommeil**. Utilisez notre [Calculatrice Avancée de Cycles de Sommeil](/fr/calculatrices/calculatrice-avancee-cycle-de-sommeil) pour trouver l'heure idéale.
 
 ---
 

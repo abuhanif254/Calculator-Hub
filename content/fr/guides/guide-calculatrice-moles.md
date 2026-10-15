@@ -5,7 +5,7 @@ description: "Comprenez le Nombre d'Avogadro, ce qu'est une mole, comment conver
 
 # La Mole : La Douzaine du Chimiste
 
-Les atomes sont si petits qu'il est impossible de les compter. Pour résoudre ce problème, les chimistes ont inventé la "Mole". Découvrez le Nombre d'Avogadro et utilisez notre [Calculatrice de Moles](/fr/calculatrices/calculatrice-moles).
+Les atomes sont si petits qu'il est impossible de les compter. Pour résoudre ce problème, les chimistes ont inventé la "Mole". Découvrez le Nombre d'Avogadro et utilisez notre [Calculatrice de Moles](/fr/calculatrices/calculateur-de-moles).
 
 ---
 

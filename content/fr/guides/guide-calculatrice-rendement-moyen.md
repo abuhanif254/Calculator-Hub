@@ -6,7 +6,7 @@ description: "Apprenez la différence entre les rendements arithmétiques et gé
 # Rendement Moyen Expliqué : Comment Mesurer vos Investissements
 
 Si vos actions montent de 50 % un an, puis baissent de 50 % l'année suivante, quel est votre rendement ? Un calcul simple dirait 0 %. Mais si vous aviez 10 000 $, vous montez à 15 000 $, puis chutez à 7 500 $. Vous avez perdu 25 % !
-Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Rendement Moyen](/fr/calculatrices/calculatrice-rendement-moyen).
+Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Rendement Moyen](/fr/calculatrices/calculateur-rendement-moyen).
 
 ---
 

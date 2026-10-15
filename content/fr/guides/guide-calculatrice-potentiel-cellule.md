@@ -6,7 +6,7 @@ description: "Apprenez à calculer le potentiel standard d'une cellule électroc
 # Calculatrice de Potentiel de Cellule : Réactions Spontanées
 
 Pourquoi le fer rouille-t-il mais l'or reste-t-il brillant pendant des millénaires ?
-La réponse est dans l'**Électrochimie**. Le **Potentiel de Cellule** mesure la puissance d'une cellule électrochimique. Découvrez comment et utilisez notre [Calculatrice de Potentiel de Cellule](/fr/calculatrices/calculatrice-potentiel-cellule).
+La réponse est dans l'**Électrochimie**. Le **Potentiel de Cellule** mesure la puissance d'une cellule électrochimique. Découvrez comment et utilisez notre [Calculatrice de Potentiel de Cellule](/fr/calculatrices/calculateur-de-potentiel-de-pile).
 
 ---
 

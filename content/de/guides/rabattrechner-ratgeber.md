@@ -6,7 +6,7 @@ description: "Lernen Sie, wie Sie Rabatte im Kopf berechnen, den Trick mit dem D
 # Rabattrechner: Prozentrechnung beim Einkaufen
 
 Wenn eine 120 € Jacke mit "30% Rabatt" beworben wird, was kostet sie dann? Und was ist, wenn Sie noch einen Gutschein für "20% extra" haben?
-Händler machen die Mathematik absichtlich verwirrend. Wir erklären den Trick mit dem Doppelrabatt, wie Sie im Kopf rechnen, und unseren [Rabattrechner](/de/rechner/rabattrechner).
+Händler machen die Mathematik absichtlich verwirrend. Wir erklären den Trick mit dem Doppelrabatt, wie Sie im Kopf rechnen, und unseren [Rabattrechner](/de/rechner/prozentsatz-rabatt-rechner).
 
 ---
 

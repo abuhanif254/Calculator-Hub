@@ -6,7 +6,7 @@ description: "Comprenda cómo funcionan los amortiguadores químicos (buffers), 
 # Calculadora de Amortiguadores: Manteniendo la Estabilidad del pH
 
 En química, una caída repentina del pH puede arruinar un experimento. Para evitarlo, se usan **Soluciones Amortiguadoras (Buffers)** para bloquear el pH de un líquido.
-Aprenda la mecánica de los amortiguadores, cómo prepararlos y use nuestra [Calculadora de Amortiguadores](/es/calculadoras/calculadora-amortiguador).
+Aprenda la mecánica de los amortiguadores, cómo prepararlos y use nuestra [Calculadora de Amortiguadores](/es/calculadoras/calculadora-de-tampon-quimico).
 
 ---
 

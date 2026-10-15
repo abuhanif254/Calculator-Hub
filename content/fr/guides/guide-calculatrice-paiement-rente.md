@@ -6,7 +6,7 @@ description: "Découvrez comment fonctionnent les rentes, la différence entre p
 # Calculatrice de Rente : Sécuriser votre Retraite
 
 La plus grande peur à la retraite est de survivre à son argent. Si vous avez 500 000 € d'économies, comment être sûr qu'ils dureront toute votre vie ?
-Pour résoudre ce problème, beaucoup achètent une **Rente**. Découvrez comment cela protège vos revenus et utilisez notre [Calculatrice de Rente](/fr/calculatrices/calculatrice-paiement-rente).
+Pour résoudre ce problème, beaucoup achètent une **Rente**. Découvrez comment cela protège vos revenus et utilisez notre [Calculatrice de Rente](/fr/calculatrices/calculateur-de-versement-de-rente).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Lernen Sie, wie das Standardzellpotential berechnet wird und ob ei
 # Zellpotential Rechner: Spontane Redoxreaktionen vorhersagen
 
 Warum rostet Eisen, aber Gold bleibt glänzend für Jahrtausende?
-Die Antwort liegt in der **Elektrochemie**. Das **Zellpotential** misst, wie leistungsfähig eine elektrochemische Zelle ist. Erfahren Sie mehr und nutzen Sie unseren [Zellpotential Rechner](/de/rechner/zellpotential-rechner).
+Die Antwort liegt in der **Elektrochemie**. Das **Zellpotential** misst, wie leistungsfähig eine elektrochemische Zelle ist. Erfahren Sie mehr und nutzen Sie unseren [Zellpotential Rechner](/de/rechner/zellpotenzial-rechner).
 
 ---
 

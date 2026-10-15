@@ -5,7 +5,7 @@ description: "Comprenez les durées des prêts maritimes, la dépréciation rapi
 
 # La Réalité des Prêts Bateau : Dépréciation et Coûts Cachés
 
-Posséder un bateau est fantastique, mais c'est un actif qui se déprécie extrêmement vite. Financer un bateau requiert une stratégie très différente du financement automobile. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Prêt Bateau](/fr/calculatrices/calculatrice-pret-bateau).
+Posséder un bateau est fantastique, mais c'est un actif qui se déprécie extrêmement vite. Financer un bateau requiert une stratégie très différente du financement automobile. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Prêt Bateau](/fr/calculatrices/calculateur-pret-bateau).
 
 ---
 

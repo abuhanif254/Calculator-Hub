@@ -5,7 +5,7 @@ description: "Verstehen Sie die finanziellen Auswirkungen einer Heirat. Erfahren
 
 # Heirats-Steuerrechner: Bonus oder Strafe?
 
-Wenn Sie heiraten, können Sie Ihre Steuern "zusammen" oder "getrennt" veranlagen (Stichwort: Ehegattensplitting). Für viele Paare bedeutet das eine massive Steuerersparnis (Heirats-Bonus). Für andere kann die Heirat jedoch zu *höheren* Steuern führen (Heirats-Strafe). Wir erklären warum und zeigen unseren [Heirats-Steuerrechner](/de/rechner/heirats-steuerrechner).
+Wenn Sie heiraten, können Sie Ihre Steuern "zusammen" oder "getrennt" veranlagen (Stichwort: Ehegattensplitting). Für viele Paare bedeutet das eine massive Steuerersparnis (Heirats-Bonus). Für andere kann die Heirat jedoch zu *höheren* Steuern führen (Heirats-Strafe). Wir erklären warum und zeigen unseren [Heirats-Steuerrechner](/de/rechner/heiratsstrafe-rechner).
 
 ---
 

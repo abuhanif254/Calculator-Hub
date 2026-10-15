@@ -6,7 +6,7 @@ description: "Découvrez comment l'Énergie Libre de Gibbs détermine si une ré
 # Calculatrice d'Énergie Libre de Gibbs : Réactions Spontanées
 
 Si vous laissez du fer sous la pluie, il rouillera spontanément. Mais la rouille ne redeviendra jamais du fer seule. Pourquoi ?
-Pour prédire si une réaction se fera d'elle-même, on calcule **l'Énergie Libre de Gibbs ($\Delta G$)**. Découvrez l'enthalpie et l'entropie, et utilisez notre [Calculatrice d'Énergie Libre de Gibbs](/fr/calculatrices/calculatrice-energie-libre-gibbs).
+Pour prédire si une réaction se fera d'elle-même, on calcule **l'Énergie Libre de Gibbs ($\Delta G$)**. Découvrez l'enthalpie et l'entropie, et utilisez notre [Calculatrice d'Énergie Libre de Gibbs](/fr/calculatrices/calculateur-d-energie-libre-de-gibbs).
 
 ---
 

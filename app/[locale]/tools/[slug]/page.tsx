@@ -149,6 +149,8 @@ import { FavoriteButton } from '../../../components/FavoriteButton';
 import { AdSenseContainer } from '../../../components/AdSenseContainer';
 import { getGuideForCalculator } from '@/lib/data/guides';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
+import { getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
+import { getCalculatorBySlug } from '@/lib/data/calculators';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers, BookOpen, Clock, Wrench } from 'lucide-react';
 
 const toolComponents: Record<string, React.ComponentType> = {
@@ -842,12 +844,21 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">{t.relatedTools}</h3>
               <div className="space-y-2">
                 {config.relatedTools.map((tool, idx) => {
-                  const relatedMd = getMarkdownContent(tool.slug, locale);
-                  const localizedToolName = relatedMd?.data?.title || tool.name;
+                  // Link-integrity guard: only emit links that resolve to a real page.
+                  // A slug can be a developer tool OR a calculator (e.g. UK mortgage tool → calculators).
+                  const isTool = Boolean(allToolsConfig[tool.slug]);
+                  const isCalc = !isTool && Boolean(getCalculatorBySlug(tool.slug));
+                  if (!isTool && !isCalc) return null;
+                  const relatedMd = isTool ? getMarkdownContent(tool.slug, locale) : null;
+                  const localizedToolName = isCalc
+                    ? getLocalizedCalcMeta(tool.slug, locale, tool.name).title
+                    : (relatedMd?.data?.title || tool.name);
                   return (
                     <Link
                       key={idx}
-                      href={{ pathname: '/tools/[slug]', params: { slug: tool.slug } }}
+                      href={isCalc
+                        ? ({ pathname: '/calculators/[slug]', params: { slug: tool.slug } } as any)
+                        : { pathname: '/tools/[slug]', params: { slug: tool.slug } }}
                       className="flex items-center justify-between p-3 bg-white dark:bg-slate-900 rounded-lg hover:shadow-md transition-all border border-slate-100 dark:border-slate-800 group"
                     >
                       <span className="font-medium text-slate-700 dark:text-slate-300 group-hover:text-[#518231] transition-colors">{localizedToolName}</span>

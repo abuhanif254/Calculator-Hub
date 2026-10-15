@@ -6,7 +6,7 @@ description: "Comprenez la constante Kb pour les bases faibles, la relation entr
 # Calculatrice de Kb : Constante de Dissociation Basique
 
 Les acides libèrent des ions hydrogène, mais les bases libèrent des ions Hydroxyde ($OH^-$). Il existe des bases fortes (lessive) et faibles (ammoniac).
-Pour mesurer leur force exacte, on calcule la **Constante de Dissociation Basique ($K_b$)**. Découvrez la chimie derrière le $K_b$ et utilisez notre [Calculatrice de Kb](/fr/calculatrices/calculatrice-kb).
+Pour mesurer leur force exacte, on calcule la **Constante de Dissociation Basique ($K_b$)**. Découvrez la chimie derrière le $K_b$ et utilisez notre [Calculatrice de Kb](/fr/calculatrices/calculateur-de-kb).
 
 ---
 

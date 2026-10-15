@@ -6,7 +6,7 @@ description: "Aprenda cómo calentar un gas lo expande, explore la relación dir
 # Calculadora de la Ley de Charles: Volumen vs. Temperatura
 
 Si deja una pelota de baloncesto afuera en una noche helada, amanecerá desinflada. Pero al calentarla, ¡se vuelve a inflar! ¿Por qué la temperatura cambia su tamaño?
-Jacques Charles descubrió en 1780 la relación directa entre la temperatura y el volumen de un gas. Aprenda cómo funciona la **Ley de Charles** y use nuestra [Calculadora de la Ley de Charles](/es/calculadoras/calculadora-ley-charles).
+Jacques Charles descubrió en 1780 la relación directa entre la temperatura y el volumen de un gas. Aprenda cómo funciona la **Ley de Charles** y use nuestra [Calculadora de la Ley de Charles](/es/calculadoras/calculadora-de-ley-de-charles).
 
 ---
 

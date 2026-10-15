@@ -5,7 +5,7 @@ description: "Comprenez la différence entre l'impôt sur les successions et les
 
 # Impôt sur les Successions vs Droits de Succession : Ce Qu'il Faut Savoir
 
-Lors de la planification de votre héritage, les impôts sont souvent le plus grand obstacle. Dans ce guide, nous expliquerons les différences cruciales et comment utiliser notre [Calculatrice d'Impôt sur les Successions](/fr/calculatrices/calculatrice-impot-succession).
+Lors de la planification de votre héritage, les impôts sont souvent le plus grand obstacle. Dans ce guide, nous expliquerons les différences cruciales et comment utiliser notre [Calculatrice d'Impôt sur les Successions](/fr/calculatrices/calculateur-droits-de-succession).
 
 ---
 

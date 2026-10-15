@@ -6,7 +6,7 @@ description: "Lernen Sie, wie die Ka-Konstante die Säurestärke misst, wie man 
 # Ka-Rechner: Die Säuredissoziationskonstante
 
 Gibt man eine starke Säure in Wasser, zerfällt (dissoziiert) jedes Molekül in Ionen. Bei einer *schwachen* Säure zerfällt nur ein winziger Bruchteil.
-Um zu messen, wie viel genau zerfällt, berechnen Chemiker die **Säuredissoziationskonstante ($K_a$)**. Wir erklären die Chemie hinter $K_a$ und zeigen unseren [Ka-Rechner](/de/rechner/ka-rechner).
+Um zu messen, wie viel genau zerfällt, berechnen Chemiker die **Säuredissoziationskonstante ($K_a$)**. Wir erklären die Chemie hinter $K_a$ und zeigen unseren [Ka-Rechner](/de/rechner/ka-wert-rechner).
 
 ---
 

@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "eslint .",
     "clean": "next clean",
-    "extension:pack": "node scripts/bundle-extension.js"
+    "extension:pack": "node scripts/bundle-extension.js",
+    "audit:links": "node scripts/audit-internal-links.js"
   },
   "dependencies": {
     "@babel/standalone": "^7.29.7",

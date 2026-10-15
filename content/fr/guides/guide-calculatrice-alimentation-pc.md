@@ -5,7 +5,7 @@ description: "Découvrez comment choisir la bonne alimentation (PSU) pour votre 
 
 # Alimentation PC : De Combien de Watts Avez-Vous Besoin ?
 
-Lors du montage d'un PC, ne négligez jamais l'Alimentation (PSU) ! Si elle ne fournit pas assez de puissance, votre PC plantera. Apprenez à calculer vos besoins et utilisez notre [Calculatrice d'Alimentation PC](/fr/calculatrices/calculatrice-alimentation-pc).
+Lors du montage d'un PC, ne négligez jamais l'Alimentation (PSU) ! Si elle ne fournit pas assez de puissance, votre PC plantera. Apprenez à calculer vos besoins et utilisez notre [Calculatrice d'Alimentation PC](/fr/calculatrices/calculateur-d-alimentation-electrique).
 
 ---
 

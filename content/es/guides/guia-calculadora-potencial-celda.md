@@ -6,7 +6,7 @@ description: "Aprenda a calcular el potencial estándar de celda y a predecir si
 # Calculadora de Potencial de Celda: Reacciones Espontáneas
 
 ¿Por qué el hierro se oxida pero el oro permanece brillante por miles de años?
-La respuesta está en la **Electroquímica**. El **Potencial de Celda** mide qué tan poderosa es una celda electroquímica. Aprenda cómo funciona y use nuestra [Calculadora de Potencial de Celda](/es/calculadoras/calculadora-potencial-celda).
+La respuesta está en la **Electroquímica**. El **Potencial de Celda** mide qué tan poderosa es una celda electroquímica. Aprenda cómo funciona y use nuestra [Calculadora de Potencial de Celda](/es/calculadoras/calculadora-de-potencial-de-celda).
 
 ---
 

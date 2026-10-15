@@ -6,7 +6,7 @@ description: "Aprenda cómo la constante Keq mide el equilibrio entre productos 
 # Calculadora de Constante de Equilibrio: Midiendo el Balance Químico
 
 En la realidad, muchas reacciones químicas son **reversibles**. Mientras los reactivos forman productos, ¡los productos se vuelven a romper en reactivos!
-Eventualmente, llegan a un balance llamado "Equilibrio Dinámico". Para medir esto, usamos la **Constante de Equilibrio ($K_{eq}$)**. Aprenda cómo funciona y use nuestra [Calculadora de Constante de Equilibrio](/es/calculadoras/calculadora-constante-equilibrio).
+Eventualmente, llegan a un balance llamado "Equilibrio Dinámico". Para medir esto, usamos la **Constante de Equilibrio ($K_{eq}$)**. Aprenda cómo funciona y use nuestra [Calculadora de Constante de Equilibrio](/es/calculadoras/calculadora-de-constante-de-equilibrio).
 
 ---
 

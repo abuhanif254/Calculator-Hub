@@ -6,7 +6,7 @@ description: "Comprenda cómo se fijan los tipos de cambio de divisas, qué es e
 # Calculadora de Divisas: Tipos de Cambio Explicados
 
 Si viaja de Estados Unidos a Europa, no puede comprar café con un Dólar. Debe cambiarlo por Euros. ¡Pero la cantidad de Euros que recibe cambia todos los días!
-¿Por qué el dinero cambia de valor? Aprenda sobre el mercado de divisas (Forex), las comisiones ocultas y use nuestra [Calculadora de Divisas](/es/calculadoras/calculadora-divisas).
+¿Por qué el dinero cambia de valor? Aprenda sobre el mercado de divisas (Forex), las comisiones ocultas y use nuestra [Calculadora de Divisas](/es/calculadoras/calculadora-de-divisas).
 
 ---
 

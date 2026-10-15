@@ -5,7 +5,7 @@ description: "Comprenez comment votre paiement est réparti entre le capital et 
 
 # La Magie de l'Amortissement Hypothécaire : Économisez 100 000 $ sur votre Maison
 
-La banque utilise l'**amortissement** pour concentrer les paiements d'intérêts au début du prêt. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice d'Amortissement Hypothécaire](/fr/calculatrices/calculatrice-amortissement-hypothecaire) pour économiser une fortune.
+La banque utilise l'**amortissement** pour concentrer les paiements d'intérêts au début du prêt. Dans ce guide, nous vous montrerons comment utiliser notre [Calculatrice d'Amortissement Hypothécaire](/fr/calculatrices/calculateur-amortissement-hypothecaire) pour économiser une fortune.
 
 ---
 

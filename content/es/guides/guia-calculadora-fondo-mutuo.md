@@ -5,7 +5,7 @@ description: "Aprenda qué son los fondos mutuos, cómo los índices de gastos c
 
 # Fondos Mutuos Explicados: Cómo Crear un Portafolio Diversificado
 
-Invertir todo su dinero en una sola empresa es muy riesgoso. El secreto de la riqueza a largo plazo es la **Diversificación**. La forma más fácil de lograrlo es invirtiendo en un **Fondo Mutuo**. En esta guía, explicaremos cómo funcionan y cómo usar nuestra [Calculadora de Fondos Mutuos](/es/calculadoras/calculadora-fondo-mutuo).
+Invertir todo su dinero en una sola empresa es muy riesgoso. El secreto de la riqueza a largo plazo es la **Diversificación**. La forma más fácil de lograrlo es invirtiendo en un **Fondo Mutuo**. En esta guía, explicaremos cómo funcionan y cómo usar nuestra [Calculadora de Fondos Mutuos](/es/calculadoras/calculadora-fondos-mutuos).
 
 ---
 

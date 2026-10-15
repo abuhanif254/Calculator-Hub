@@ -5,7 +5,7 @@ description: "Conozca cómo su Plena Edad de Jubilación (FRA) afecta su pago, l
 
 # ¿Cuándo Debería Reclamar el Seguro Social? Maximizando sus Beneficios
 
-Para millones de personas, el Seguro Social es la base de sus ingresos de jubilación. Pero el sistema es complejo, y la edad a la que reclame alterará permanentemente su pago mensual. En esta guía, le mostraremos cómo usar nuestra [Calculadora del Seguro Social](/es/calculadoras/calculadora-seguro-social).
+Para millones de personas, el Seguro Social es la base de sus ingresos de jubilación. Pero el sistema es complejo, y la edad a la que reclame alterará permanentemente su pago mensual. En esta guía, le mostraremos cómo usar nuestra [Calculadora del Seguro Social](/es/calculadoras/calculadora-de-seguro-social).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Aprenda cómo la Energía Libre de Gibbs determina si una reacció
 # Calculadora de Energía Libre de Gibbs: Reacciones Espontáneas
 
 Si deja hierro en un bosque húmedo, se oxidará espontáneamente. Pero el óxido nunca volverá a ser hierro brillante por sí solo. ¿Por qué algunas reacciones ocurren solas y otras necesitan energía externa?
-Para predecir si una reacción será espontánea, calculamos la **Energía Libre de Gibbs ($\Delta G$)**. Aprenda sobre la entalpía y la entropía, y use nuestra [Calculadora de Energía Libre de Gibbs](/es/calculadoras/calculadora-energia-libre-gibbs).
+Para predecir si una reacción será espontánea, calculamos la **Energía Libre de Gibbs ($\Delta G$)**. Aprenda sobre la entalpía y la entropía, y use nuestra [Calculadora de Energía Libre de Gibbs](/es/calculadoras/calculadora-de-energia-libre-de-gibbs).
 
 ---
 

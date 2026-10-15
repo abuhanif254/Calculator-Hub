@@ -5,7 +5,7 @@ description: "Aprenda cómo funcionan los préstamos de consolidación, los peli
 
 # La Verdad sobre la Consolidación de Deudas: Cómo Bajar sus Tasas
 
-Hacer malabares con múltiples pagos de tarjetas de crédito con un 25% de interés hace que sea imposible salir de deudas. La consolidación combina estas deudas de alto interés en un solo pago con una tasa mucho más baja. Aprenda cómo funciona y cómo usar nuestra [Calculadora de Consolidación de Deudas](/es/calculadoras/calculadora-consolidacion-deudas).
+Hacer malabares con múltiples pagos de tarjetas de crédito con un 25% de interés hace que sea imposible salir de deudas. La consolidación combina estas deudas de alto interés en un solo pago con una tasa mucho más baja. Aprenda cómo funciona y cómo usar nuestra [Calculadora de Consolidación de Deudas](/es/calculadoras/calculadora-de-consolidacion-de-deuda).
 
 ---
 

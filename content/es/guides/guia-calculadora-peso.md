@@ -5,7 +5,7 @@ description: "Descubra por qué su peso cambia en la Luna pero su masa sigue igu
 
 # Masa vs. Peso: ¿Cuál es la Diferencia?
 
-En el día a día usamos "masa" y "peso" como sinónimos. Pero en física, son cosas totalmente distintas. En esta guía aclararemos la confusión y le mostraremos cómo usar nuestra [Calculadora de Peso](/es/calculadoras/calculadora-peso).
+En el día a día usamos "masa" y "peso" como sinónimos. Pero en física, son cosas totalmente distintas. En esta guía aclararemos la confusión y le mostraremos cómo usar nuestra [Calculadora de Peso](/es/calculadoras/calculadora-de-peso).
 
 ---
 

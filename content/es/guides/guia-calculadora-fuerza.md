@@ -5,7 +5,7 @@ description: "Domine la Segunda Ley del Movimiento de Newton (F=ma). Aprenda có
 
 # Segunda Ley de Newton: Entendiendo la Fuerza y la Masa
 
-¿Por qué es más difícil empujar un camión que una bicicleta? La respuesta es la Segunda Ley de Newton: **F = ma**. En esta guía, desglosaremos esta famosa ecuación y le mostraremos cómo usar nuestra [Calculadora de Fuerza](/es/calculadoras/calculadora-fuerza).
+¿Por qué es más difícil empujar un camión que una bicicleta? La respuesta es la Segunda Ley de Newton: **F = ma**. En esta guía, desglosaremos esta famosa ecuación y le mostraremos cómo usar nuestra [Calculadora de Fuerza](/es/calculadoras/calculadora-de-fuerza).
 
 ---
 

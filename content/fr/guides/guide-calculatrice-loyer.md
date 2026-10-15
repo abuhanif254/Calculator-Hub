@@ -5,7 +5,7 @@ description: "Apprenez à calculer un budget de loyer abordable en utilisant la 
 
 # Quel Loyer Puis-je Payer ? La Règle des 30 % Expliquée
 
-Ce n'est pas parce qu'un propriétaire vous accepte que vous pouvez vous le permettre. Dans ce guide, nous expliquerons les règles de budgétisation et comment utiliser notre [Calculatrice de Loyer](/fr/calculatrices/calculatrice-loyer).
+Ce n'est pas parce qu'un propriétaire vous accepte que vous pouvez vous le permettre. Dans ce guide, nous expliquerons les règles de budgétisation et comment utiliser notre [Calculatrice de Loyer](/fr/calculatrices/calculateur-de-loyer).
 
 ---
 

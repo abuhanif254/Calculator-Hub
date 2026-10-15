@@ -6,7 +6,7 @@ description: "Comprenez comment sont fixés les taux de change mondiaux, ce qu'e
 # Calculatrice de Devises : Taux de Change Expliqués
 
 Si vous voyagez des États-Unis vers l'Europe, vous ne pouvez pas payer en Dollars. Vous devez acheter des Euros. Mais le montant d'Euros que vous recevez change chaque jour !
-Pourquoi l'argent change-t-il de valeur ? Découvrez le marché des changes (Forex), les frais cachés, et utilisez notre [Calculatrice de Devises](/fr/calculatrices/calculatrice-devises).
+Pourquoi l'argent change-t-il de valeur ? Découvrez le marché des changes (Forex), les frais cachés, et utilisez notre [Calculatrice de Devises](/fr/calculatrices/convertisseur-de-devises).
 
 ---
 

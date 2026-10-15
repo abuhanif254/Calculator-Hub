@@ -5,7 +5,7 @@ description: "Apprenez comment fonctionnent les frais de financement VA, les ava
 
 # Le Guide Ultime des Prêts VA : Zéro Acompte, Zéro PMI
 
-Pour les militaires et les anciens combattants américains, le prêt VA élimine les plus grands obstacles à la propriété. Dans ce guide, nous expliquerons le fonctionnement des prêts VA et comment utiliser notre [Calculatrice Hypothécaire VA](/fr/calculatrices/calculatrice-hypotheque-va).
+Pour les militaires et les anciens combattants américains, le prêt VA élimine les plus grands obstacles à la propriété. Dans ce guide, nous expliquerons le fonctionnement des prêts VA et comment utiliser notre [Calculatrice Hypothécaire VA](/fr/calculatrices/calculateur-de-pret-hypothecaire-va).
 
 ---
 

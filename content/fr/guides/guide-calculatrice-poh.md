@@ -6,7 +6,7 @@ description: "Découvrez comment l'échelle de pOH mesure l'alcalinité, la rela
 # Calculatrice de pOH : L'Inverse du pH
 
 Le pH mesure l'acidité d'une solution en comptant les ions Hydrogène ($H^+$). Mais comment mesurer à quel point une solution est *basique* (alcaline) ?
-Pour les bases fortes comme l'ammoniac ou la javel, on utilise **l'échelle de pOH**. Découvrez ce qu'est le pOH, son lien avec le pH, et utilisez notre [Calculatrice de pOH](/fr/calculatrices/calculatrice-poh).
+Pour les bases fortes comme l'ammoniac ou la javel, on utilise **l'échelle de pOH**. Découvrez ce qu'est le pOH, son lien avec le pH, et utilisez notre [Calculatrice de pOH](/fr/calculatrices/calculateur-de-poh).
 
 ---
 

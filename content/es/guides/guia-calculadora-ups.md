@@ -5,7 +5,7 @@ description: "Aprenda qué es un Sistema de Alimentación Ininterrumpida (UPS), 
 
 # Calculadora de UPS: Dimensionando su Batería de Respaldo
 
-Si la energía de su casa parpadea un segundo, su PC se apagará y perderá su trabajo. Para evitarlo, usamos un **Sistema de Alimentación Ininterrumpida (UPS)** (o SAI). Aprenda cómo funciona y use nuestra [Calculadora de UPS](/es/calculadoras/calculadora-ups) para elegir el correcto.
+Si la energía de su casa parpadea un segundo, su PC se apagará y perderá su trabajo. Para evitarlo, usamos un **Sistema de Alimentación Ininterrumpida (UPS)** (o SAI). Aprenda cómo funciona y use nuestra [Calculadora de UPS](/es/calculadoras/calculadora-de-ups) para elegir el correcto.
 
 ---
 

@@ -5,7 +5,7 @@ description: "Aprenda la diferencia entre Vatios y Vatios-hora. Comprenda cómo 
 
 # Energía Eléctrica: Entendiendo su Factura de Luz
 
-La compañía eléctrica no le cobra por la *Potencia*, le cobra por la **Energía** que consume. ¿Cuál es la diferencia? En esta guía explicaremos cómo se mide la energía y cómo usar nuestra [Calculadora de Energía Eléctrica](/es/calculadoras/calculadora-energia-electrica).
+La compañía eléctrica no le cobra por la *Potencia*, le cobra por la **Energía** que consume. ¿Cuál es la diferencia? En esta guía explicaremos cómo se mide la energía y cómo usar nuestra [Calculadora de Energía Eléctrica](/es/calculadoras/calculadora-de-energia-electrica).
 
 ---
 

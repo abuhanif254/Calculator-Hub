@@ -6,7 +6,7 @@ description: "Comprenez la Loi des Gaz Parfaits, l'interaction entre pression, v
 # Calculatrice de la Loi des Gaz Parfaits : PV = nRT
 
 Si vous gonflez un ballon au chaud puis le sortez dans la neige, il rétrécit. Pourquoi ? La température d'un gaz affecte son volume et sa pression.
-Pour comprendre ces interactions, on utilise la **Loi des Gaz Parfaits**. Découvrez la science de cette équation et utilisez notre [Calculatrice de la Loi des Gaz Parfaits](/fr/calculatrices/calculatrice-loi-gaz-parfaits).
+Pour comprendre ces interactions, on utilise la **Loi des Gaz Parfaits**. Découvrez la science de cette équation et utilisez notre [Calculatrice de la Loi des Gaz Parfaits](/fr/calculatrices/calculateur-de-loi-des-gaz-parfaits).
 
 ---
 

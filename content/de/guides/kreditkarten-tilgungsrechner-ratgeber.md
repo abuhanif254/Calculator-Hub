@@ -5,7 +5,7 @@ description: "Lernen Sie die zwei effektivsten Strategien zur Beseitigung von Kr
 
 # Schneeball- vs. Lawinenmethode: So zahlen Sie Kreditkarten ab
 
-Kreditkartenschulden sind toxisch. Wenn Sie nur den Mindestbetrag zahlen, bleiben Sie jahrzehntelang verschuldet. Wir erklären die zwei berühmtesten Methoden und wie Sie unseren [Kreditkarten-Tilgungsrechner](/de/rechner/kreditkarten-tilgungsrechner) nutzen.
+Kreditkartenschulden sind toxisch. Wenn Sie nur den Mindestbetrag zahlen, bleiben Sie jahrzehntelang verschuldet. Wir erklären die zwei berühmtesten Methoden und wie Sie unseren [Kreditkarten-Tilgungsrechner](/de/rechner/kreditkarten-abbezahlen) nutzen.
 
 ---
 

@@ -6,7 +6,7 @@ description: "Aprenda a leer los pesos atómicos en la tabla periódica, calcula
 # Masa Molar: Leyendo la Tabla Periódica
 
 Si necesita exactamente 1 mol de Agua ($H_2O$) para un experimento, ¿cuántos gramos debe pesar en la balanza? 
-No puede saberlo sin conocer la **Masa Molar** del compuesto. En esta guía, explicaremos cómo calcularla y cómo usar nuestra [Calculadora de Masa Molar](/es/calculadoras/calculadora-masa-molar).
+No puede saberlo sin conocer la **Masa Molar** del compuesto. En esta guía, explicaremos cómo calcularla y cómo usar nuestra [Calculadora de Masa Molar](/es/calculadoras/calculadora-de-masa-molar).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Aprenda cómo los paneles solares generan electricidad, cómo usar
 
 # Paneles Solares: Dimensionando su Sistema
 
-Pasar a la energía solar es emocionante, pero requiere cálculos cuidadosos. Si subestima su consumo o sobrestima el sol, se quedará sin energía. Aprenda los conceptos básicos y use nuestra [Calculadora de Paneles Solares](/es/calculadoras/calculadora-paneles-solares).
+Pasar a la energía solar es emocionante, pero requiere cálculos cuidadosos. Si subestima su consumo o sobrestima el sol, se quedará sin energía. Aprenda los conceptos básicos y use nuestra [Calculadora de Paneles Solares](/es/calculadoras/calculadora-de-paneles-solares).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Comprenda la entalpía, la diferencia entre reacciones exotérmica
 # Calculadora de Entalpía: Calor en Reacciones Químicas
 
 Quemar madera libera mucho calor. Romper un paquete de hielo médico absorbe calor al instante. ¿De dónde sale ese calor?
-En química, la energía térmica total de un sistema se llama **Entalpía**. Aprenda cómo se transfiere el calor en las reacciones y use nuestra [Calculadora de Entalpía](/es/calculadoras/calculadora-entalpia).
+En química, la energía térmica total de un sistema se llama **Entalpía**. Aprenda cómo se transfiere el calor en las reacciones y use nuestra [Calculadora de Entalpía](/es/calculadoras/calculadora-de-entalpia).
 
 ---
 

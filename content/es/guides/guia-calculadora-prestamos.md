@@ -5,7 +5,7 @@ description: "Domine la mecánica de pedir dinero prestado. Aprenda sobre capita
 
 # La Guía Completa para Entender y Calcular Préstamos
 
-Pedir un préstamo es una de las decisiones financieras más importantes. Desafortunadamente, muchos prestatarios solo miran el pago mensual e ignoran el costo total. En esta guía, desglosaremos cómo funcionan los préstamos y le mostraremos cómo usar nuestra [Calculadora de Préstamos](/es/calculadoras/calculadora-prestamos).
+Pedir un préstamo es una de las decisiones financieras más importantes. Desafortunadamente, muchos prestatarios solo miran el pago mensual e ignoran el costo total. En esta guía, desglosaremos cómo funcionan los préstamos y le mostraremos cómo usar nuestra [Calculadora de Préstamos](/es/calculadoras/calculadora-de-prestamos).
 
 ---
 

@@ -205,7 +205,7 @@ export default async function ImageToolsPage({
     "publisher": {
       "@type": "Organization",
       "name": "Nexus Calculator Hub",
-      "url": baseUrl,
+      "url": `${baseUrl}/en`,
     },
   };
 

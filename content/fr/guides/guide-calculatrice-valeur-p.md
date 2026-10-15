@@ -5,7 +5,7 @@ description: "Comprenez l'Hypothèse Nulle, ce que signifie p < 0.05, et utilise
 
 # Valeur P : Vos Données Sont-Elles Statistiquement Significatives ?
 
-Si vous testez une pilule pour maigrir et que les patients perdent 1 kg, la pilule a-t-elle fonctionné, ou est-ce une coïncidence ? En statistiques, on utilise la **Valeur P (P-Value)** pour le savoir. Découvrez l'Hypothèse Nulle et utilisez notre [Calculatrice de Valeur P](/fr/calculatrices/calculatrice-valeur-p).
+Si vous testez une pilule pour maigrir et que les patients perdent 1 kg, la pilule a-t-elle fonctionné, ou est-ce une coïncidence ? En statistiques, on utilise la **Valeur P (P-Value)** pour le savoir. Découvrez l'Hypothèse Nulle et utilisez notre [Calculatrice de Valeur P](/fr/calculatrices/calculateur-de-valeur-p).
 
 ---
 

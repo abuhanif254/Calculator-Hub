@@ -6,7 +6,7 @@ description: "Aprenda por qué algunas sales se disuelven y otras no, cómo calc
 # Calculadora de Ksp: Constante del Producto de Solubilidad
 
 Si pone sal de mesa en agua, se disuelve. Si pone Cloruro de Plata, se hunde como arena. ¿Por qué algunas sales se disuelven y otras no?
-Para saber cuánto de una sal sólida se disolverá, usamos la **Constante del Producto de Solubilidad ($K_{sp}$)**. Aprenda la química de la solubilidad y use nuestra [Calculadora de Ksp](/es/calculadoras/calculadora-ksp).
+Para saber cuánto de una sal sólida se disolverá, usamos la **Constante del Producto de Solubilidad ($K_{sp}$)**. Aprenda la química de la solubilidad y use nuestra [Calculadora de Ksp](/es/calculadoras/calculadora-de-ksp).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Maîtrisez les règles des fractions. Apprenez à trouver des dén
 
 # Le Guide Complet des Fractions : Addition, Soustraction, Multiplication & Division
 
-Pour beaucoup, les fractions sont intimidantes. Dans ce guide complet, nous détaillerons les règles fondamentales et comment utiliser notre [Calculatrice de Fractions](/fr/calculatrices/calculatrice-fractions).
+Pour beaucoup, les fractions sont intimidantes. Dans ce guide complet, nous détaillerons les règles fondamentales et comment utiliser notre [Calculatrice de Fractions](/fr/calculatrices/calculatrice-de-fractions).
 
 ---
 

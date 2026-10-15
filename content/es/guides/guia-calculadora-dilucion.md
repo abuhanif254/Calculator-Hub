@@ -5,7 +5,7 @@ description: "Aprenda la fórmula del factor de dilución, cómo hacer dilucione
 
 # Dilución Seriada: Creando Concentraciones Precisas
 
-La dilución de Molaridad es para químicos, pero a veces la concentración se mide en porcentajes, miligramos o células. En biología y medicina, usamos el **Factor de Dilución** general. Aprenda cómo funciona y use nuestra [Calculadora de Dilución](/es/calculadoras/calculadora-dilucion).
+La dilución de Molaridad es para químicos, pero a veces la concentración se mide en porcentajes, miligramos o células. En biología y medicina, usamos el **Factor de Dilución** general. Aprenda cómo funciona y use nuestra [Calculadora de Dilución](/es/calculadoras/calculadora-de-dilucion).
 
 ---
 

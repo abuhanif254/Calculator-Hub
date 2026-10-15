@@ -46,7 +46,7 @@ export const memeGeneratorConfig: ToolConfig = {
   relatedTools: [
     { name: "Watermark Image", slug: "watermark-image" },
     { name: "Crop Image", slug: "crop-image" },
-    { name: "Resize Image", slug: "image-resizer" },
+    { name: "Resize Image", slug: "resize-image" },
     { name: "Compress Image", slug: "compress-image" },
     { name: "AI Image Generator", slug: "ai-image-generator" }
   ],

@@ -6,7 +6,7 @@ description: "Lernen Sie, wie man Lösungen aus einer Stammlösung verdünnt. Ve
 # Molaritäts-Verdünnung: Die c1V1 = c2V2 Formel
 
 Chemielieferanten verschicken keine stark verdünnten Säuren, sondern hochkonzentrierte "Stammlösungen" (z.B. 12.0 M). 
-Im Labor muss diese gefährliche Stammlösung auf eine nutzbare Konzentration (z.B. 1.5 M) verdünnt werden. Dazu nutzt man die **Verdünnungsgleichung**. Wir erklären die Mathematik und unseren [Molaritäts-Verdünnungs-Rechner](/de/rechner/molaritaets-verduennungs-rechner).
+Im Labor muss diese gefährliche Stammlösung auf eine nutzbare Konzentration (z.B. 1.5 M) verdünnt werden. Dazu nutzt man die **Verdünnungsgleichung**. Wir erklären die Mathematik und unseren [Molaritäts-Verdünnungs-Rechner](/de/rechner/molaritaets-verduennungsrechner).
 
 ---
 

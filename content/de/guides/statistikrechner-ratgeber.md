@@ -5,7 +5,7 @@ description: "Ein vollständiger Leitfaden zur deskriptiven Statistik. Erfahren 
 
 # Deskriptive Statistik erklärt: So analysieren Sie jeden Datensatz
 
-Egal ob Student, Vermarkter oder Data Scientist, der erste Schritt ist immer die **deskriptive Statistik**. In diesem umfassenden Leitfaden erklären wir die Kernkomponenten und die Verwendung unseres [Statistikrechners](/de/rechner/statistikrechner).
+Egal ob Student, Vermarkter oder Data Scientist, der erste Schritt ist immer die **deskriptive Statistik**. In diesem umfassenden Leitfaden erklären wir die Kernkomponenten und die Verwendung unseres [Statistikrechners](/de/rechner/statistik-rechner).
 
 ---
 

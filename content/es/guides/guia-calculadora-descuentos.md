@@ -6,7 +6,7 @@ description: "Aprenda a calcular descuentos mentalmente, entienda los descuentos
 # Calculadora de Descuentos: Matemáticas de Ventas
 
 Si una chaqueta de $120 tiene un "30% de Descuento", ¿cuánto cuesta realmente? ¿Y si tiene un cupón de "20% adicional"?
-Las tiendas hacen que las matemáticas sean confusas para que sienta que ahorra más. Aprenda a calcular descuentos, el truco del "doble descuento" y use nuestra [Calculadora de Descuentos](/es/calculadoras/calculadora-descuentos).
+Las tiendas hacen que las matemáticas sean confusas para que sienta que ahorra más. Aprenda a calcular descuentos, el truco del "doble descuento" y use nuestra [Calculadora de Descuentos](/es/calculadoras/calculadora-descuento).
 
 ---
 

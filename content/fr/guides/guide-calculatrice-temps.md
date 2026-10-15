@@ -5,7 +5,7 @@ description: "Maîtrisez les mathématiques en base 60. Apprenez à additionner 
 
 # Comment Additionner et Soustraire le Temps : Le Guide Ultime
 
-Calculer le temps avec précision est essentiel. Cependant, nos horloges sont basées sur le système sexagésimal (base 60). Dans ce guide, nous expliquerons les règles et comment utiliser notre [Calculatrice de Temps](/fr/calculatrices/calculatrice-temps).
+Calculer le temps avec précision est essentiel. Cependant, nos horloges sont basées sur le système sexagésimal (base 60). Dans ce guide, nous expliquerons les règles et comment utiliser notre [Calculatrice de Temps](/fr/calculatrices/calculateur-de-temps).
 
 ---
 

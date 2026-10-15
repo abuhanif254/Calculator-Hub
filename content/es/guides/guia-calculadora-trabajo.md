@@ -5,7 +5,7 @@ description: "Comprenda la definición científica del Trabajo (W = F × d). Apr
 
 # La Física del Trabajo: Fuerza y Desplazamiento
 
-Si pasa tres horas empujando una pared de ladrillos, estará agotado. Pero en física, hizo cero Trabajo. En física, el **Trabajo** solo ocurre cuando una fuerza mueve un objeto. En esta guía, explicaremos la fórmula y cómo usar nuestra [Calculadora de Trabajo](/es/calculadoras/calculadora-trabajo).
+Si pasa tres horas empujando una pared de ladrillos, estará agotado. Pero en física, hizo cero Trabajo. En física, el **Trabajo** solo ocurre cuando una fuerza mueve un objeto. En esta guía, explicaremos la fórmula y cómo usar nuestra [Calculadora de Trabajo](/es/calculadoras/calculadora-de-trabajo).
 
 ---
 

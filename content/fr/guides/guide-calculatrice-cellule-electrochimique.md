@@ -6,7 +6,7 @@ description: "Découvrez comment les cellules galvaniques produisent de l'élect
 # Calculatrice de Cellule Électrochimique : Les Piles Expliquées
 
 Une pile est une **Cellule Électrochimique** miniature. Une réaction chimique y pousse des électrons dans un fil.
-Pour calculer la tension exacte produite par deux métaux, on utilise les **Potentiels Standards de Réduction**. Découvrez le fonctionnement de ces cellules et utilisez notre [Calculatrice de Cellule Électrochimique](/fr/calculatrices/calculatrice-cellule-electrochimique).
+Pour calculer la tension exacte produite par deux métaux, on utilise les **Potentiels Standards de Réduction**. Découvrez le fonctionnement de ces cellules et utilisez notre [Calculatrice de Cellule Électrochimique](/fr/calculatrices/calculateur-de-pile-electrochimique).
 
 ---
 

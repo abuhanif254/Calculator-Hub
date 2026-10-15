@@ -5,7 +5,7 @@ description: "Erfahren Sie, wie Ihr reguläres Renteneintrittsalter (FRA) Ihre A
 
 # Wann sollte ich Sozialversicherung beziehen? Maximieren Sie Ihre Leistungen
 
-Das Alter, in dem Sie Ihre Sozialversicherungsleistungen (Social Security) in den USA beantragen, verändert Ihre monatliche Auszahlung dauerhaft. Wir zeigen Ihnen die Nutzung unseres [Sozialversicherungsrechners](/de/rechner/sozialversicherungs-rechner).
+Das Alter, in dem Sie Ihre Sozialversicherungsleistungen (Social Security) in den USA beantragen, verändert Ihre monatliche Auszahlung dauerhaft. Wir zeigen Ihnen die Nutzung unseres [Sozialversicherungsrechners](/de/rechner/rentenrechner).
 
 ---
 

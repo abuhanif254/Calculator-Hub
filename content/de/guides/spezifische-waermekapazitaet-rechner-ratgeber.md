@@ -6,7 +6,7 @@ description: "Erfahren Sie, was spezifische Wärmekapazität ist, warum Wasser s
 # Spezifische Wärmekapazität Rechner: Thermische Eigenschaften
 
 Lassen Sie einen Metalllöffel und einen Holzlöffel im heißen Topf, wird das Metall sofort heiß, das Holz bleibt kühl. Unterschiedliche Materialien benötigen unterschiedliche Energiemengen, um sich zu erwärmen.
-Diese Eigenschaft nennt man **spezifische Wärmekapazität**. Erfahren Sie, wie das funktioniert, und nutzen Sie unseren [Spezifische Wärmekapazität Rechner](/de/rechner/spezifische-waermekapazitaet-rechner).
+Diese Eigenschaft nennt man **spezifische Wärmekapazität**. Erfahren Sie, wie das funktioniert, und nutzen Sie unseren [Spezifische Wärmekapazität Rechner](/de/rechner/spezifische-waerme-rechner).
 
 ---
 

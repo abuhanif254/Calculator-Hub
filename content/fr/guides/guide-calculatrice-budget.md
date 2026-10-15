@@ -5,7 +5,7 @@ description: "Prenez le contrôle de vos finances avec la règle des 50/30/20, l
 
 # Le Guide Ultime du Budget Personnel : 50/30/20 Expliqué
 
-Un bon budget ne restreint pas votre liberté, il la *crée* en vous permettant de dépenser sans culpabilité. Dans ce guide, nous expliquerons les stratégies et comment utiliser notre [Calculatrice de Budget](/fr/calculatrices/calculatrice-budget).
+Un bon budget ne restreint pas votre liberté, il la *crée* en vous permettant de dépenser sans culpabilité. Dans ce guide, nous expliquerons les stratégies et comment utiliser notre [Calculatrice de Budget](/fr/calculatrices/calculateur-budget).
 
 ---
 

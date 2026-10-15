@@ -6,7 +6,7 @@ description: "Apprenez à calculer les pourcentages de réduction de tête, comp
 # Calculatrice de Réductions : Les Mathématiques des Soldes
 
 Si une veste à 120 € est affichée à "-30 %", combien coûte-t-elle réellement ? Et si vous avez un bon pour "-20 % supplémentaires" ?
-Les magasins rendent les calculs confus pour vous faire croire à d'énormes économies. Découvrez le piège de la double remise et utilisez notre [Calculatrice de Réductions](/fr/calculatrices/calculatrice-reductions).
+Les magasins rendent les calculs confus pour vous faire croire à d'énormes économies. Découvrez le piège de la double remise et utilisez notre [Calculatrice de Réductions](/fr/calculatrices/calculateur-pourcentage-reduction).
 
 ---
 

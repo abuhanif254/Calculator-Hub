@@ -5,7 +5,7 @@ description: "Maîtrisez la Loi de Watt. Apprenez à calculer la consommation é
 
 # Puissance Électrique : Calculer les Watts (P=VI)
 
-Pourquoi un micro-ondes chauffe-t-il si vite alors qu'une veilleuse chauffe à peine ? C'est une question de **Puissance Électrique**. Découvrez ce que sont les Watts et comment utiliser notre [Calculatrice de Puissance Électrique](/fr/calculatrices/calculatrice-puissance-electrique).
+Pourquoi un micro-ondes chauffe-t-il si vite alors qu'une veilleuse chauffe à peine ? C'est une question de **Puissance Électrique**. Découvrez ce que sont les Watts et comment utiliser notre [Calculatrice de Puissance Électrique](/fr/calculatrices/calculateur-de-puissance-electrique).
 
 ---
 

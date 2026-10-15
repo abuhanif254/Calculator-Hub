@@ -5,7 +5,7 @@ description: "Maîtrisez la mécanique de l'emprunt. Apprenez le capital, les in
 
 # Le Guide Complet pour Comprendre et Calculer les Prêts
 
-Contracter un prêt est une décision financière majeure. Malheureusement, beaucoup ne regardent que la mensualité. Dans ce guide, nous expliquerons le fonctionnement des prêts et comment utiliser notre [Calculatrice de Prêt](/fr/calculatrices/calculatrice-pret).
+Contracter un prêt est une décision financière majeure. Malheureusement, beaucoup ne regardent que la mensualité. Dans ce guide, nous expliquerons le fonctionnement des prêts et comment utiliser notre [Calculatrice de Prêt](/fr/calculatrices/calculatrice-de-pret).
 
 ---
 

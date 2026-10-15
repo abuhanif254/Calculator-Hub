@@ -5,7 +5,7 @@ description: "Domine la relación entre Trabajo, Tiempo y Potencia. Aprenda qué
 
 # Física de la Potencia: La Tasa de Hacer Trabajo
 
-Si sube una caja por las escaleras caminando o corriendo, hace el mismo Trabajo. Pero si corre, genera más **Potencia**. En física, la Potencia es la tasa a la que se realiza el Trabajo en el tiempo. Aprenda a usar nuestra [Calculadora de Potencia](/es/calculadoras/calculadora-potencia).
+Si sube una caja por las escaleras caminando o corriendo, hace el mismo Trabajo. Pero si corre, genera más **Potencia**. En física, la Potencia es la tasa a la que se realiza el Trabajo en el tiempo. Aprenda a usar nuestra [Calculadora de Potencia](/es/calculadoras/calculadora-de-potencia).
 
 ---
 

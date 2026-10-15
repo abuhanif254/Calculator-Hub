@@ -6,7 +6,7 @@ description: "Erfahren Sie, wie Rentenversicherungen funktionieren, den Untersch
 # Rentenrechner (Annuität): Den Ruhestand absichern
 
 Die größte Angst vieler Rentner ist es, ihr Geld zu überleben. Wenn Sie 500.000 € gespart haben, woher wissen Sie, dass es für den Rest Ihres Lebens reicht?
-Die Lösung ist oft eine **Leibrente (Annuität)**. Wir erklären, wie sie Ihr Einkommen schützt, und zeigen unseren [Renten-Auszahlungsrechner](/de/rechner/renten-auszahlungs-rechner).
+Die Lösung ist oft eine **Leibrente (Annuität)**. Wir erklären, wie sie Ihr Einkommen schützt, und zeigen unseren [Renten-Auszahlungsrechner](/de/rechner/rentenauszahlungsrechner).
 
 ---
 

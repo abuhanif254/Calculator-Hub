@@ -5,7 +5,7 @@ description: "Domine las reglas de las fracciones. Aprenda cómo encontrar denom
 
 # Guía Completa de Fracciones: Sumar, Restar, Multiplicar y Dividir
 
-Para muchos, las fracciones son intimidantes. En esta guía completa, desglosaremos las reglas fundamentales de la aritmética de fracciones y le mostraremos cómo usar nuestra [Calculadora de Fracciones](/es/calculadoras/calculadora-fracciones) para resolver problemas matemáticos complejos.
+Para muchos, las fracciones son intimidantes. En esta guía completa, desglosaremos las reglas fundamentales de la aritmética de fracciones y le mostraremos cómo usar nuestra [Calculadora de Fracciones](/es/calculadoras/calculadora-de-fracciones) para resolver problemas matemáticos complejos.
 
 ---
 

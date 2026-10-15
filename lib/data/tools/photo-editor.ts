@@ -243,9 +243,8 @@ Web page headers demand horizontal layouts and fast loading times.
     { name: "Compress Image", slug: "compress-image" },
     { name: "Crop Image", slug: "crop-image" },
     { name: "Image Converter", slug: "image-converter" },
-    { name: "WebP Converter", slug: "webp-converter" },
-    { name: "JPG to PNG", slug: "jpg-to-png" },
-    { name: "PNG to WebP", slug: "png-to-webp" },
+    { name: "WebP Converter", slug: "convert-to-webp" },
+    { name: "JPG to PNG", slug: "convert-to-png" },
     { name: "QR Code Generator", slug: "qr-code-generator" }
   ]
 };

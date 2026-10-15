@@ -5,7 +5,7 @@ description: "Verstehen Sie versteckte Kosten, den Einfluss der Inflation und nu
 
 # Die wahren Kosten des Studiums: Studienfinanzierung planen
 
-Ein Universitätsstudium (besonders in den USA oder Großbritannien) ist extrem teuer. Um erdrückende Schulden zu vermeiden, müssen Sie die Gesamtkosten inkl. Inflation prognostizieren. Wir erklären unseren [Studienkosten-Rechner](/de/rechner/studienkosten-rechner).
+Ein Universitätsstudium (besonders in den USA oder Großbritannien) ist extrem teuer. Um erdrückende Schulden zu vermeiden, müssen Sie die Gesamtkosten inkl. Inflation prognostizieren. Wir erklären unseren [Studienkosten-Rechner](/de/rechner/studienkostenrechner).
 
 ---
 

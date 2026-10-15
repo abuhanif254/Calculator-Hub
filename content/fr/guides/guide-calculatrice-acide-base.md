@@ -6,7 +6,7 @@ description: "Découvrez comment les acides et les bases réagissent, comprenez 
 # Calculatrice Acide-Base : Maîtriser la Neutralisation
 
 Que se passe-t-il si vous mélangez un acide dangereux et une base dangereuse ? Ils se détruisent mutuellement !
-C'est une **Réaction de Neutralisation**. Ils s'annulent pour ne laisser que de l'eau salée inoffensive. Découvrez comment cela fonctionne et utilisez notre [Calculatrice Acide-Base](/fr/calculatrices/calculatrice-acide-base).
+C'est une **Réaction de Neutralisation**. Ils s'annulent pour ne laisser que de l'eau salée inoffensive. Découvrez comment cela fonctionne et utilisez notre [Calculatrice Acide-Base](/fr/calculatrices/calculateur-acide-base).
 
 ---
 

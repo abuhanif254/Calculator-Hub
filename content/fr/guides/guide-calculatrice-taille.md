@@ -5,7 +5,7 @@ description: "Explorez la génétique de la croissance, la méthode Khamis-Roche
 
 # Quelle Taille Fera mon Enfant ? La Science de la Prédiction de la Taille
 
-Les scientifiques estiment qu'environ **80 % de la taille est déterminée par l'ADN**. Dans ce guide, nous explorerons la science de la croissance humaine et comment utiliser notre [Calculatrice de Taille](/fr/calculatrices/calculatrice-taille).
+Les scientifiques estiment qu'environ **80 % de la taille est déterminée par l'ADN**. Dans ce guide, nous explorerons la science de la croissance humaine et comment utiliser notre [Calculatrice de Taille](/fr/calculatrices/calculateur-de-taille).
 
 ---
 

@@ -6,7 +6,7 @@ description: "Aprenda qué es la capacidad calorífica específica, por qué el 
 # Calculadora de Calor Específico: Capacidad Térmica
 
 Si deja una cuchara de metal y una de madera en una olla, el metal se calienta rápido y la madera no. Esto ocurre porque diferentes materiales requieren diferentes cantidades de energía para cambiar su temperatura.
-Esta propiedad es la **Capacidad Calorífica Específica**. Aprenda cómo funciona y use nuestra [Calculadora de Calor Específico](/es/calculadoras/calculadora-calor-especifico).
+Esta propiedad es la **Capacidad Calorífica Específica**. Aprenda cómo funciona y use nuestra [Calculadora de Calor Específico](/es/calculadoras/calculadora-de-calor-especifico).
 
 ---
 

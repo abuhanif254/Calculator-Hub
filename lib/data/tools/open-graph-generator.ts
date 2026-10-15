@@ -253,8 +253,8 @@ Using our advanced, client-side Open Graph Generator, you can easily select your
 
   relatedTools: [
     { name: "Meta Tag Generator", slug: "meta-tag-generator" },
-    { name: "Sitemap Generator", slug: "sitemap-generator" },
-    { name: "HTML Minifier", slug: "html-minifier" },
+    { name: "Sitemap XML Generator", slug: "sitemap-xml-generator" },
+    { name: "HTML Formatter", slug: "html-formatter" },
     { name: "URL Encoder", slug: "url-encoder" }
   ],
 

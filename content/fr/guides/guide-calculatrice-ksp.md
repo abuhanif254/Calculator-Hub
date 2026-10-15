@@ -6,7 +6,7 @@ description: "Découvrez pourquoi certains sels se dissolvent et d'autres non, c
 # Calculatrice de Ksp : Constante du Produit de Solubilité
 
 Si vous mettez du sel de table dans l'eau, il se dissout. Si vous mettez du Chlorure d'Argent, il coule comme du sable. Pourquoi ?
-Pour savoir exactement quelle quantité d'un sel solide va se dissoudre, on utilise la **Constante du Produit de Solubilité ($K_{sp}$)** (ou Ks). Découvrez la chimie de la solubilité et utilisez notre [Calculatrice de Ksp](/fr/calculatrices/calculatrice-ksp).
+Pour savoir exactement quelle quantité d'un sel solide va se dissoudre, on utilise la **Constante du Produit de Solubilité ($K_{sp}$)** (ou Ks). Découvrez la chimie de la solubilité et utilisez notre [Calculatrice de Ksp](/fr/calculatrices/calculateur-de-ksp).
 
 ---
 

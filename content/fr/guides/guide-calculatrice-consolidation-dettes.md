@@ -5,7 +5,7 @@ description: "Apprenez comment fonctionnent les prêts de consolidation, les dan
 
 # La Vérité sur la Consolidation de Dettes : Comment Réduire vos Taux
 
-Jongler avec plusieurs cartes de crédit à 25 % d'intérêt rend impossible le remboursement du capital. La consolidation combine ces dettes à taux élevé en un seul paiement à un taux beaucoup plus bas. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Consolidation de Dettes](/fr/calculatrices/calculatrice-consolidation-dettes).
+Jongler avec plusieurs cartes de crédit à 25 % d'intérêt rend impossible le remboursement du capital. La consolidation combine ces dettes à taux élevé en un seul paiement à un taux beaucoup plus bas. Dans ce guide, nous expliquerons comment utiliser notre [Calculatrice de Consolidation de Dettes](/fr/calculatrices/calculateur-de-consolidation-de-dettes).
 
 ---
 

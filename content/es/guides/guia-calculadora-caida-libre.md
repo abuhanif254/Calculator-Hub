@@ -5,7 +5,7 @@ description: "Domine la cinemática de los objetos en caída. Aprenda sobre la g
 
 # La Física de la Caída Libre: Gravedad en el Vacío
 
-Si deja caer una pluma y una bola de boliche, la bola cae primero debido a la **resistencia del aire**. Pero en un vacío perfecto, **¡ambas caerían exactamente al mismo tiempo!** En ausencia de aire, todos los objetos caen al mismo ritmo sin importar su masa. En esta guía explicaremos cómo usar nuestra [Calculadora de Caída Libre](/es/calculadoras/calculadora-caida-libre).
+Si deja caer una pluma y una bola de boliche, la bola cae primero debido a la **resistencia del aire**. Pero en un vacío perfecto, **¡ambas caerían exactamente al mismo tiempo!** En ausencia de aire, todos los objetos caen al mismo ritmo sin importar su masa. En esta guía explicaremos cómo usar nuestra [Calculadora de Caída Libre](/es/calculadoras/calculadora-de-caida-libre).
 
 ---
 

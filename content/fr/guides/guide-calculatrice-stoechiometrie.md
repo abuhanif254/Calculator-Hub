@@ -6,7 +6,7 @@ description: "Maîtrisez le concept clé de la chimie. Apprenez à équilibrer l
 # Stœchiométrie : Les Mathématiques des Réactions
 
 Si vous voulez cuire 10 cookies, il vous faut une recette précise.
-La chimie fonctionne pareil. La **Stœchiométrie** est la "recette mathématique" de la chimie. Elle permet de calculer les quantités exactes de réactifs nécessaires. Découvrez les bases et utilisez notre [Calculatrice de Stœchiométrie](/fr/calculatrices/calculatrice-stoechiometrie).
+La chimie fonctionne pareil. La **Stœchiométrie** est la "recette mathématique" de la chimie. Elle permet de calculer les quantités exactes de réactifs nécessaires. Découvrez les bases et utilisez notre [Calculatrice de Stœchiométrie](/fr/calculatrices/calculateur-de-stoechiometrie).
 
 ---
 

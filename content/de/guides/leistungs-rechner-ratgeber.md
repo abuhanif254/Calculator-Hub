@@ -5,7 +5,7 @@ description: "Meistern Sie die Beziehung zwischen Arbeit, Zeit und Leistung. Ler
 
 # Physik der Leistung: Wie schnell Arbeit verrichtet wird
 
-Tragen Sie eine Kiste langsam oder rennend die Treppe hoch, verrichten Sie dieselbe Arbeit. Rennend generieren Sie aber mehr **Leistung** (Power). Leistung ist Arbeit pro Zeit. Wir erklären die Formel und unseren [Leistungs-Rechner](/de/rechner/leistungs-rechner).
+Tragen Sie eine Kiste langsam oder rennend die Treppe hoch, verrichten Sie dieselbe Arbeit. Rennend generieren Sie aber mehr **Leistung** (Power). Leistung ist Arbeit pro Zeit. Wir erklären die Formel und unseren [Leistungs-Rechner](/de/rechner/leistung-rechner).
 
 ---
 

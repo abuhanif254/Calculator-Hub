@@ -6,7 +6,7 @@ description: "Comprenda la constante Kb para bases débiles, la relación entre 
 # Calculadora de Kb: Constante de Disociación Básica
 
 Los ácidos liberan iones de hidrógeno, pero las bases liberan iones de Hidróxido ($OH^-$). Hay bases fuertes (lejía) y bases débiles (amoníaco).
-Para medir qué tan fuerte es una base, calculamos la **Constante de Disociación Básica ($K_b$)**. Aprenda la química detrás de $K_b$ y use nuestra [Calculadora de Kb](/es/calculadoras/calculadora-kb).
+Para medir qué tan fuerte es una base, calculamos la **Constante de Disociación Básica ($K_b$)**. Aprenda la química detrás de $K_b$ y use nuestra [Calculadora de Kb](/es/calculadoras/calculadora-de-kb).
 
 ---
 

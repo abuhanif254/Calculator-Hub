@@ -5,7 +5,7 @@ description: "Domine el concepto de densidad. Aprenda la diferencia entre masa y
 
 # Entendiendo la Densidad: Por Qué el Hielo Flota
 
-¿Qué pesa más, un kilo de plumas o un kilo de plomo? Pesan lo mismo (Masa), pero las plumas ocupan más espacio (Volumen). La diferencia es la **Densidad**. Aprenda cómo usar nuestra [Calculadora de Densidad](/es/calculadoras/calculadora-densidad).
+¿Qué pesa más, un kilo de plumas o un kilo de plomo? Pesan lo mismo (Masa), pero las plumas ocupan más espacio (Volumen). La diferencia es la **Densidad**. Aprenda cómo usar nuestra [Calculadora de Densidad](/es/calculadoras/calculadora-de-densidad).
 
 ---
 

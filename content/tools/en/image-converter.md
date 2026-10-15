@@ -10,11 +10,11 @@ faqs:
   - question: "Can I convert multiple images at once?"
     answer: "Yes! Our bulk image format converter allows you to drag and drop dozens of files simultaneously. The system processes them in a queue directly in your browser, saving you time when converting entire folders of photography or web assets."
   - question: "Which image formats are supported?"
-    answer: "We support the conversion of all modern web and photography formats. You can effortlessly convert between JPG, PNG, WEBP, BMP, TIFF, and even vector formats like SVG. If you specifically need iOS photos, try our dedicated [HEIC to JPG converter](/tools/heic-to-jpg)."
+    answer: "We support the conversion of all modern web and photography formats. You can effortlessly convert between JPG, PNG, WEBP, BMP, TIFF, and even vector formats like SVG. If you specifically need iOS photos, try our dedicated [HEIC to JPG converter](/en/tools/heic-to-jpg)."
   - question: "Is it safe to convert private photos online?"
     answer: "Absolutely. Unlike other cloud-based converters, our tool runs entirely locally on your device using Client-Side processing (HTML5 Canvas API). Your images are never uploaded to any external server, ensuring 100% privacy for sensitive documents or personal photos."
   - question: "What is the best format for websites?"
-    answer: "For modern web design, WEBP is highly recommended by Google as it provides superior compression compared to JPG or PNG while retaining a transparent background. If you need to reduce file sizes further after converting, you can use our [Image Compressor](/tools/compress-image)."
+    answer: "For modern web design, WEBP is highly recommended by Google as it provides superior compression compared to JPG or PNG while retaining a transparent background. If you need to reduce file sizes further after converting, you can use our [Image Compressor](/en/tools/compress-image)."
 ---
 
 ## The Ultimate Guide to Online Image Conversion
@@ -36,7 +36,7 @@ When you are building a website or sharing a photo online, the format you choose
 ### The Impact on Website SEO
 Google and other search engines explicitly use Page Load Speed as a primary ranking factor. If your website is serving 5MB uncompressed PNG images, your server response time will plummet, and your mobile users will abandon the page before it even loads. By converting your heavy graphics into next-generation formats like WEBP, you can drastically reduce your page weight. This simple conversion process is often the most effective SEO optimization a web developer can make. 
 
-If you want to maximize your website's performance, it is highly recommended to first convert your images to the optimal format, and then run them through our [Free Image Compressor](/tools/compress-image) to strip out any remaining bloat.
+If you want to maximize your website's performance, it is highly recommended to first convert your images to the optimal format, and then run them through our [Free Image Compressor](/en/tools/compress-image) to strip out any remaining bloat.
 
 ---
 
@@ -48,7 +48,7 @@ To use an image converter effectively, you must understand the strengths and wea
 The Joint Photographic Experts Group (JPEG) created this format specifically for digital photography. 
 - **The Strengths:** JPG is famous for its highly efficient "lossy" compression. It analyzes blocks of pixels and discards data that the human eye cannot easily perceive. This results in massive file size reductions, making it perfect for complex, multi-colored photographs.
 - **The Weaknesses:** JPG does not support transparency (an alpha channel). Furthermore, because it uses lossy compression, saving a JPG multiple times will result in generational degradation (artifacting).
-- **When to Convert:** If you have a massive TIFF or BMP photograph, use our [Convert to JPG](/tools/convert-to-jpg) tool to make it web-ready.
+- **When to Convert:** If you have a massive TIFF or BMP photograph, use our [Convert to JPG](/en/tools/convert-to-jpg) tool to make it web-ready.
 
 ### 2. The PNG Format
 The Portable Network Graphics (PNG) format was developed as an open-source alternative to GIFs.
@@ -66,7 +66,7 @@ Developed by Google, WEBP is widely considered the future of web imagery.
 High-Efficiency Image Container (HEIC) is the default image format used by Apple on modern iPhones.
 - **The Strengths:** It offers incredible compression, often halving the size of a JPG while maintaining better color depth.
 - **The Weaknesses:** It is heavily locked into the Apple ecosystem. If you try to upload a HEIC file to a standard website portal, Windows PC, or an Android app, it will likely be rejected.
-- **When to Convert:** If you just transferred photos from your iPhone to your Windows desktop and need to share them, you will absolutely need to run them through a [HEIC to JPG Converter](/tools/heic-to-jpg).
+- **When to Convert:** If you just transferred photos from your iPhone to your Windows desktop and need to share them, you will absolutely need to run them through a [HEIC to JPG Converter](/en/tools/heic-to-jpg).
 
 ### 5. The SVG Format
 Scalable Vector Graphics (SVG) are entirely different from the pixel-based (raster) formats listed above.

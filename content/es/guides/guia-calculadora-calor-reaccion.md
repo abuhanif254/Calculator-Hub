@@ -6,7 +6,7 @@ description: "Aprenda a calcular el calor estándar de reacción a partir de las
 # Calculadora de Calor de Reacción: Termodinámica
 
 Toda reacción química libera energía al universo o se la roba. Para saber cuánta energía exacta se transfiere, calculamos el **Calor de Reacción ($\Delta H^\circ_{rxn}$)**.
-Aprenda sobre los estados estándar, los calores de formación y use nuestra [Calculadora de Calor de Reacción](/es/calculadoras/calculadora-calor-reaccion).
+Aprenda sobre los estados estándar, los calores de formación y use nuestra [Calculadora de Calor de Reacción](/es/calculadoras/calculadora-de-calor-de-reaccion).
 
 ---
 

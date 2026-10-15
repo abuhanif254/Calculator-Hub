@@ -5,7 +5,7 @@ description: "Découvrez ce que signifie le pourcentage d'erreur, comment le cal
 
 # Comment Calculer le Pourcentage d'Erreur : Formule et Exemples
 
-En sciences, les mesures expérimentales sont rarement parfaites. Le **Pourcentage d'Erreur** exprime l'écart entre votre mesure et la valeur réelle. Dans ce guide, nous expliquerons la formule et comment utiliser notre [Calculatrice de Pourcentage d'Erreur](/fr/calculatrices/calculatrice-pourcentage-erreur).
+En sciences, les mesures expérimentales sont rarement parfaites. Le **Pourcentage d'Erreur** exprime l'écart entre votre mesure et la valeur réelle. Dans ce guide, nous expliquerons la formule et comment utiliser notre [Calculatrice de Pourcentage d'Erreur](/fr/calculatrices/calculateur-d-erreur-pourcentage).
 
 ---
 

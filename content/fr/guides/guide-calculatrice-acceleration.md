@@ -5,7 +5,7 @@ description: "Apprenez comment fonctionne l'accélération, la différence entre
 
 # La Physique de l'Accélération : Plus qu'une Simple Vitesse
 
-Quand vous accélérez en voiture, vous êtes collé à votre siège. Ce n'est pas la vitesse, c'est **l'Accélération**. En physique, c'est le taux de changement de la vélocité. Dans ce guide, nous expliquerons la cinématique et comment utiliser notre [Calculatrice d'Accélération](/fr/calculatrices/calculatrice-acceleration).
+Quand vous accélérez en voiture, vous êtes collé à votre siège. Ce n'est pas la vitesse, c'est **l'Accélération**. En physique, c'est le taux de changement de la vélocité. Dans ce guide, nous expliquerons la cinématique et comment utiliser notre [Calculatrice d'Accélération](/fr/calculatrices/calculateur-d-acceleration).
 
 ---
 

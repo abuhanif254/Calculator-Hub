@@ -6,7 +6,7 @@ description: "Comprenez la loi de Hess, pourquoi l'enthalpie est une fonction d'
 # Calculatrice de la Loi de Hess : Additionner l'Enthalpie
 
 Si vous grimpez une montagne, vous gagnez de l'énergie potentielle. Que le chemin soit direct ou sinueux importe peu. La hauteur finale est la même, l'énergie aussi !
-En chimie, c'est pareil. Germain Hess a découvert que la chaleur totale d'une réaction est identique, qu'elle se fasse en une ou plusieurs étapes. Découvrez la **Loi de Hess** et utilisez notre [Calculatrice de la Loi de Hess](/fr/calculatrices/calculatrice-loi-hess).
+En chimie, c'est pareil. Germain Hess a découvert que la chaleur totale d'une réaction est identique, qu'elle se fasse en une ou plusieurs étapes. Découvrez la **Loi de Hess** et utilisez notre [Calculatrice de la Loi de Hess](/fr/calculatrices/calculateur-de-loi-de-hess).
 
 ---
 

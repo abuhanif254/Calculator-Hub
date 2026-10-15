@@ -5,7 +5,7 @@ description: "Apprenez à calculer le rendement Cash-on-Cash, la règle des 1 %,
 
 # Les Mathématiques de l'Immobilier : Comment Analyser un Bien Locatif
 
-Les investisseurs prospères n'achètent pas sur l'émotion ; ils achètent sur les mathématiques. Dans ce guide, nous expliquerons les métriques clés et comment utiliser notre [Calculatrice de Bien Locatif](/fr/calculatrices/calculatrice-propriete-locative).
+Les investisseurs prospères n'achètent pas sur l'émotion ; ils achètent sur les mathématiques. Dans ce guide, nous expliquerons les métriques clés et comment utiliser notre [Calculatrice de Bien Locatif](/fr/calculatrices/calculateur-propriete-locative).
 
 ---
 

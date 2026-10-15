@@ -5,7 +5,7 @@ description: "Aprenda cómo calcular duraciones exactas entre dos fechas, sumar 
 
 # La Guía Definitiva de la Calculadora de Fechas: Sumar, Restar y Medir el Tiempo
 
-Ya sea que intente averiguar cuántos días faltan para su boda o calcular una fecha límite, las matemáticas de fechas pueden ser complicadas. En esta guía, exploraremos las peculiaridades del calendario y cómo usar nuestra [Calculadora de Fechas](/es/calculadoras/calculadora-fechas).
+Ya sea que intente averiguar cuántos días faltan para su boda o calcular una fecha límite, las matemáticas de fechas pueden ser complicadas. En esta guía, exploraremos las peculiaridades del calendario y cómo usar nuestra [Calculadora de Fechas](/es/calculadoras/calculadora-de-fechas).
 
 ---
 

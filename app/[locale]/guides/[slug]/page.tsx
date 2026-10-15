@@ -272,12 +272,12 @@ export default async function GuideArticlePage({
     author: {
       '@type': 'Organization',
       name: 'Nexus Calculator',
-      url: baseUrl,
+      url: `${baseUrl}/en`,
     },
     publisher: {
       '@type': 'Organization',
       name: 'Nexus Calculator',
-      url: baseUrl,
+      url: `${baseUrl}/en`,
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/icons/icon-512x512.png`,

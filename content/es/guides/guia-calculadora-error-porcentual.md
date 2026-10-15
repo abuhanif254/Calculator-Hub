@@ -7,7 +7,7 @@ description: "Aprenda qué significa el error porcentual en ciencia y estadísti
 
 En ciencia e ingeniería, las mediciones experimentales rara vez son perfectas. El **Error Porcentual** es la forma matemática de expresar qué tan lejos estuvo su medición del valor real, como un porcentaje.
 
-En esta guía, desglosaremos la fórmula y le mostraremos cómo usar nuestra [Calculadora de Error Porcentual](/es/calculadoras/calculadora-error-porcentual) para sus informes de laboratorio.
+En esta guía, desglosaremos la fórmula y le mostraremos cómo usar nuestra [Calculadora de Error Porcentual](/es/calculadoras/calculadora-de-error-porcentual) para sus informes de laboratorio.
 
 ---
 

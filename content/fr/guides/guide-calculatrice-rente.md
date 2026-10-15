@@ -7,7 +7,7 @@ description: "Comprenez les rentes fixes, variables et indexées, et utilisez no
 
 La plus grande peur des retraités est de survivre à leurs économies. Pour éliminer ce risque, beaucoup achètent une **Rente**. Vous donnez une somme forfaitaire à une compagnie d'assurance aujourd'hui, et elle vous garantit un chèque mensuel fixe pour le reste de votre vie. 
 
-Dans ce guide, nous expliquerons les différents types et comment utiliser notre [Calculatrice de Rentes](/fr/calculatrices/calculatrice-rente).
+Dans ce guide, nous expliquerons les différents types et comment utiliser notre [Calculatrice de Rentes](/fr/calculatrices/calculateur-rente).
 
 ---
 

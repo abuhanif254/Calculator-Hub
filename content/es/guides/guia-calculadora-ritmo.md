@@ -5,7 +5,7 @@ description: "Aprenda la fórmula para calcular el ritmo de carrera, convierta e
 
 # Cómo Calcular el Ritmo de Carrera: Las Matemáticas de su Maratón
 
-Ya sea que esté entrenando para su primer 5K o intentando calificar para un maratón, comprender su ritmo de carrera es clave. En esta guía, desglosaremos la fórmula y le mostraremos cómo usar nuestra [Calculadora de Ritmo](/es/calculadoras/calculadora-ritmo).
+Ya sea que esté entrenando para su primer 5K o intentando calificar para un maratón, comprender su ritmo de carrera es clave. En esta guía, desglosaremos la fórmula y le mostraremos cómo usar nuestra [Calculadora de Ritmo](/es/calculadoras/calculadora-de-ritmo).
 
 ---
 

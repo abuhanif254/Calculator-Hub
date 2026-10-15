@@ -5,7 +5,7 @@ description: "Découvrez comment les panneaux solaires fonctionnent, l'importanc
 
 # Panneaux Solaires : Dimensionner votre Système Autonome
 
-Passer au solaire nécessite des calculs précis. Si vous sous-estimez vos besoins ou surestimez le soleil, vous n'aurez plus d'électricité au pire moment. Découvrez les bases et utilisez notre [Calculatrice de Panneaux Solaires](/fr/calculatrices/calculatrice-panneaux-solaires).
+Passer au solaire nécessite des calculs précis. Si vous sous-estimez vos besoins ou surestimez le soleil, vous n'aurez plus d'électricité au pire moment. Découvrez les bases et utilisez notre [Calculatrice de Panneaux Solaires](/fr/calculatrices/calculateur-de-panneau-solaire).
 
 ---
 

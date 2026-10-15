@@ -255,9 +255,8 @@ Google evaluates search rankings based on **Core Web Vitals**.
     { name: "Image Converter", slug: "image-converter" },
     { name: "Crop Image", slug: "crop-image" },
     { name: "Compress PDF", slug: "compress-pdf" },
-    { name: "WebP Converter", slug: "webp-converter" },
-    { name: "JPG to PNG", slug: "jpg-to-png" },
-    { name: "PNG to WebP", slug: "png-to-webp" },
+    { name: "WebP Converter", slug: "convert-to-webp" },
+    { name: "JPG to PNG", slug: "convert-to-png" },
     { name: "QR Code Generator", slug: "qr-code-generator" }
   ]
 };

@@ -5,7 +5,7 @@ description: "Aprenda cómo funciona la energía potencial gravitatoria, cómo s
 
 # Energía Potencial: Energía Almacenada Lista para Liberarse
 
-Imagine una montaña rusa en la cima, justo antes de caer. Aunque casi no se mueve, está llena de energía. Esta energía almacenada se llama **Energía Potencial**. En esta guía, nos centraremos en la Energía Potencial Gravitatoria (Epg) y cómo usar nuestra [Calculadora de Energía Potencial](/es/calculadoras/calculadora-energia-potencial).
+Imagine una montaña rusa en la cima, justo antes de caer. Aunque casi no se mueve, está llena de energía. Esta energía almacenada se llama **Energía Potencial**. En esta guía, nos centraremos en la Energía Potencial Gravitatoria (Epg) y cómo usar nuestra [Calculadora de Energía Potencial](/es/calculadoras/calculadora-de-energia-potencial).
 
 ---
 

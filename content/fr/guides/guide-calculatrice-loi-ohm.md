@@ -5,7 +5,7 @@ description: "Maîtrisez la Loi d'Ohm (V = IR). Comprenez la tension, le courant
 
 # La Loi d'Ohm Expliquée : La Base de l'Électronique
 
-Pour comprendre l'électricité, il faut commencer par la **Loi d'Ohm**. C'est la base de tous les circuits. Dans ce guide, nous utiliserons l'analogie de l'eau et vous montrerons comment utiliser notre [Calculatrice de la Loi d'Ohm](/fr/calculatrices/calculatrice-loi-ohm).
+Pour comprendre l'électricité, il faut commencer par la **Loi d'Ohm**. C'est la base de tous les circuits. Dans ce guide, nous utiliserons l'analogie de l'eau et vous montrerons comment utiliser notre [Calculatrice de la Loi d'Ohm](/fr/calculatrices/calculateur-loi-d-ohm).
 
 ---
 

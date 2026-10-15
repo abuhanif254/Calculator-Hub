@@ -5,7 +5,7 @@ description: "Aprenda cómo la longitud, el grosor y el material de un cable afe
 
 # Resistencia de Cables: Por Qué se Calientan
 
-Pensamos en los cables como túneles perfectos para la electricidad, pero la verdad es que cada cable opone resistencia. Esta **Resistencia del Cable** es la razón por la que su cargador se calienta. En esta guía, explicaremos los tres factores clave y cómo usar nuestra [Calculadora de Resistencia de Cables](/es/calculadoras/calculadora-resistencia-cables).
+Pensamos en los cables como túneles perfectos para la electricidad, pero la verdad es que cada cable opone resistencia. Esta **Resistencia del Cable** es la razón por la que su cargador se calienta. En esta guía, explicaremos los tres factores clave y cómo usar nuestra [Calculadora de Resistencia de Cables](/es/calculadoras/calculadora-de-resistencia-de-cable).
 
 ---
 

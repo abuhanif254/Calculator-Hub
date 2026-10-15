@@ -5,7 +5,7 @@ description: "Aprenda qué es la Molaridad, cómo calcular moles por litro y use
 
 # Calculadora de Molaridad: Midiendo la Concentración Química
 
-Si echa una cucharada de sal en agua, crea una solución. Pero ¿cómo describe exactamente "qué tan salada" está el agua a otro químico? Usamos la **Molaridad (M)**. Aprenda la fórmula matemática y cómo usar nuestra [Calculadora de Molaridad](/es/calculadoras/calculadora-molaridad).
+Si echa una cucharada de sal en agua, crea una solución. Pero ¿cómo describe exactamente "qué tan salada" está el agua a otro químico? Usamos la **Molaridad (M)**. Aprenda la fórmula matemática y cómo usar nuestra [Calculadora de Molaridad](/es/calculadoras/calculadora-de-molaridad).
 
 ---
 

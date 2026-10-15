@@ -5,7 +5,7 @@ description: "Apprenez les deux stratégies les plus efficaces pour éliminer vo
 
 # La Méthode Boule de Neige vs Avalanche : Rembourser ses Cartes de Crédit
 
-La dette de carte de crédit est toxique. Ne payer que le minimum garantit des décennies de dettes. Dans ce guide, nous expliquerons les deux méthodes les plus célèbres et comment utiliser notre [Calculatrice de Remboursement de Carte de Crédit](/fr/calculatrices/calculatrice-remboursement-carte-credit).
+La dette de carte de crédit est toxique. Ne payer que le minimum garantit des décennies de dettes. Dans ce guide, nous expliquerons les deux méthodes les plus célèbres et comment utiliser notre [Calculatrice de Remboursement de Carte de Crédit](/fr/calculatrices/remboursement-cartes-de-credit).
 
 ---
 

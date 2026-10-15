@@ -5,7 +5,7 @@ description: "Aprenda a calcular un presupuesto de alquiler asequible utilizando
 
 # ¿Cuánto Alquiler Puedo Pagar? La Regla del 30% Explicada
 
-Que un propietario lo apruebe no significa que realmente pueda pagar el alquiler. Firmar un contrato que exceda su presupuesto puede causar estrés financiero. En esta guía, explicaremos las reglas de presupuesto y cómo usar nuestra [Calculadora de Alquiler](/es/calculadoras/calculadora-alquiler).
+Que un propietario lo apruebe no significa que realmente pueda pagar el alquiler. Firmar un contrato que exceda su presupuesto puede causar estrés financiero. En esta guía, explicaremos las reglas de presupuesto y cómo usar nuestra [Calculadora de Alquiler](/es/calculadoras/calculadora-de-alquiler).
 
 ---
 

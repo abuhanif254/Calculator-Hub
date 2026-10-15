@@ -6,7 +6,7 @@ description: "Comprenda la Ley de Hess, cómo la entalpía es una función de es
 # Calculadora de la Ley de Hess: Sumando Entalpía
 
 Si sube una montaña, gana energía potencial. No importa si tomó un camino directo y empinado o uno largo y sinuoso. Llegó a la misma altura, ¡así que su cambio de energía es igual!
-Esto aplica a la química. Germain Hess descubrió que el calor total de una reacción es idéntico si ocurre en un paso o en varios. Aprenda la **Ley de Hess** y use nuestra [Calculadora de la Ley de Hess](/es/calculadoras/calculadora-ley-hess).
+Esto aplica a la química. Germain Hess descubrió que el calor total de una reacción es idéntico si ocurre en un paso o en varios. Aprenda la **Ley de Hess** y use nuestra [Calculadora de la Ley de Hess](/es/calculadoras/calculadora-de-ley-de-hess).
 
 ---
 

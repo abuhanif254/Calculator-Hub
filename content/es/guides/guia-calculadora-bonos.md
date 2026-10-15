@@ -5,7 +5,7 @@ description: "Aprenda sobre tasas de cupón, rendimiento al vencimiento, cómo r
 
 # Entendiendo los Bonos: La Base de un Portafolio Seguro
 
-Para estabilizar un portafolio, los inversores compran **Bonos**. Un bono es un préstamo que usted le hace a una empresa o gobierno. A cambio, le pagan intereses regulares y le devuelven su dinero en una fecha específica. En esta guía, explicaremos cómo funcionan y cómo usar nuestra [Calculadora de Bonos](/es/calculadoras/calculadora-bonos).
+Para estabilizar un portafolio, los inversores compran **Bonos**. Un bono es un préstamo que usted le hace a una empresa o gobierno. A cambio, le pagan intereses regulares y le devuelven su dinero en una fecha específica. En esta guía, explicaremos cómo funcionan y cómo usar nuestra [Calculadora de Bonos](/es/calculadoras/calculadora-de-bonos).
 
 ---
 

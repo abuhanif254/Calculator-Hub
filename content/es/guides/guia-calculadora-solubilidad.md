@@ -6,7 +6,7 @@ description: "Aprenda cómo la temperatura afecta la solubilidad, cómo calcular
 # Calculadora de Solubilidad: Química de la Disolución
 
 El azúcar no se disuelve bien en té helado, pero sí en café caliente. ¿Por qué el calor cambia la cantidad de azúcar que se puede disolver?
-Para entender cómo se mezclan sólidos y líquidos, los químicos estudian la **Solubilidad**. Aprenda los factores que la afectan y use nuestra [Calculadora de Solubilidad](/es/calculadoras/calculadora-solubilidad).
+Para entender cómo se mezclan sólidos y líquidos, los químicos estudian la **Solubilidad**. Aprenda los factores que la afectan y use nuestra [Calculadora de Solubilidad](/es/calculadoras/calculadora-de-solubilidad).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Comprenda la escala de pH, aprenda a calcular la concentración de
 
 # Calculadora de pH: Midiendo la Acidez
 
-El jugo de limón es agrio y el jabón es amargo. Esto se debe a los ácidos y bases. Para medir qué tan ácido o básico es un líquido, los químicos usan la **Escala de pH**. Aprenda la matemática detrás del pH y use nuestra [Calculadora de pH](/es/calculadoras/calculadora-ph).
+El jugo de limón es agrio y el jabón es amargo. Esto se debe a los ácidos y bases. Para medir qué tan ácido o básico es un líquido, los químicos usan la **Escala de pH**. Aprenda la matemática detrás del pH y use nuestra [Calculadora de pH](/es/calculadoras/calculadora-de-ph).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Apprenez comment les prêteurs évaluent vos revenus, comprenez la
 
 # Quelle Maison Puis-je M'offrir ? La Règle des 28/36 Expliquée
 
-L'approbation d'une banque ne signifie pas que vous pouvez vous le permettre. Dans ce guide, nous expliquerons la règle des 28/36 et comment utiliser notre [Calculatrice d'Abordabilité d'une Maison](/fr/calculatrices/calculatrice-abordabilite-maison).
+L'approbation d'une banque ne signifie pas que vous pouvez vous le permettre. Dans ce guide, nous expliquerons la règle des 28/36 et comment utiliser notre [Calculatrice d'Abordabilité d'une Maison](/fr/calculatrices/calculateur-abordabilite-maison).
 
 ---
 

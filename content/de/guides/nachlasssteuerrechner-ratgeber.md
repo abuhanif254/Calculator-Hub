@@ -5,7 +5,7 @@ description: "Verstehen Sie den Unterschied zwischen Bundesnachlasssteuer und st
 
 # Erbschaftssteuer vs. Nachlasssteuer: Was Sie wissen müssen
 
-Bei der Planung Ihres finanziellen Erbes sind Steuern oft die größte Hürde. In diesem Leitfaden erklären wir die entscheidenden Unterschiede und die Verwendung unseres [Nachlasssteuerrechners](/de/rechner/nachlasssteuerrechner).
+Bei der Planung Ihres finanziellen Erbes sind Steuern oft die größte Hürde. In diesem Leitfaden erklären wir die entscheidenden Unterschiede und die Verwendung unseres [Nachlasssteuerrechners](/de/rechner/erbschaftssteuerrechner).
 
 ---
 

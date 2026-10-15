@@ -5,7 +5,7 @@ description: "Apprenez la physique de l'énergie cinétique, pourquoi la vitesse
 
 # L'Énergie du Mouvement : Comprendre l'Énergie Cinétique
 
-Tout ce qui bouge possède de **l'Énergie Cinétique**. Dans ce guide, nous expliquerons la formule, pourquoi la vitesse est si dangereuse en voiture, et comment utiliser notre [Calculatrice d'Énergie Cinétique](/fr/calculatrices/calculatrice-energie-cinetique).
+Tout ce qui bouge possède de **l'Énergie Cinétique**. Dans ce guide, nous expliquerons la formule, pourquoi la vitesse est si dangereuse en voiture, et comment utiliser notre [Calculatrice d'Énergie Cinétique](/fr/calculatrices/calculateur-d-energie-cinetique).
 
 ---
 

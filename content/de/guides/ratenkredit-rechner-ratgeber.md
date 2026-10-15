@@ -5,7 +5,7 @@ description: "Lernen Sie den Unterschied zwischen besicherten und unbesicherten 
 
 # Der ultimative Ratenkredit-Ratgeber: Ungesicherte Schulden erklärt
 
-Ein Ratenkredit (Privatkredit) kann für fast alles verwendet werden. In diesem Leitfaden erklären wir die Gefahren ungesicherter Schulden und die Verwendung unseres [Ratenkreditrechners](/de/rechner/ratenkredit-rechner).
+Ein Ratenkredit (Privatkredit) kann für fast alles verwendet werden. In diesem Leitfaden erklären wir die Gefahren ungesicherter Schulden und die Verwendung unseres [Ratenkreditrechners](/de/rechner/privatkredit-rechner).
 
 ---
 

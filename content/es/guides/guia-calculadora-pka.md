@@ -6,7 +6,7 @@ description: "Comprenda las constantes de disociación ácida (Ka), cómo calcul
 # Calculadora de pKa: Midiendo la Fuerza de un Ácido
 
 No todos los ácidos son iguales. El vinagre es inofensivo en la piel, pero el ácido sulfúrico causa quemaduras graves. 
-Para medir la *fuerza* de un ácido, los químicos usan la **Constante de Disociación Ácida ($K_a$)** y su contraparte logarítmica, **pKa**. Aprenda la diferencia entre ácidos fuertes y débiles, y use nuestra [Calculadora de pKa](/es/calculadoras/calculadora-pka).
+Para medir la *fuerza* de un ácido, los químicos usan la **Constante de Disociación Ácida ($K_a$)** y su contraparte logarítmica, **pKa**. Aprenda la diferencia entre ácidos fuertes y débiles, y use nuestra [Calculadora de pKa](/es/calculadoras/calculadora-de-pka).
 
 ---
 

@@ -5,7 +5,7 @@ description: "Aprenda cómo funciona un inversor, la diferencia entre onda sinus
 
 # Inversores: Convirtiendo Energía de Batería en AC
 
-Si está armando un sistema solar, tiene un gran problema: sus baterías dan 12 Voltios **DC (Corriente Continua)**, pero su TV y microondas usan 120 Voltios **AC (Corriente Alterna)**. Para solucionar esto, necesita un **Inversor**. Aprenda a dimensionarlo con nuestra [Calculadora de Inversores](/es/calculadoras/calculadora-inversor).
+Si está armando un sistema solar, tiene un gran problema: sus baterías dan 12 Voltios **DC (Corriente Continua)**, pero su TV y microondas usan 120 Voltios **AC (Corriente Alterna)**. Para solucionar esto, necesita un **Inversor**. Aprenda a dimensionarlo con nuestra [Calculadora de Inversores](/es/calculadoras/calculadora-de-inversor).
 
 ---
 

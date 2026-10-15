@@ -5,7 +5,7 @@ description: "Erfahren Sie, was der prozentuale Fehler bedeutet, wie Sie ihn mit
 
 # So berechnen Sie den prozentualen Fehler: Formel und Beispiele
 
-In der Wissenschaft sind experimentelle Messungen selten perfekt. Der **prozentuale Fehler** drückt aus, wie weit Ihre Messung vom wahren Wert entfernt war. In diesem Leitfaden erklären wir die Formel und wie Sie unseren [Prozentualen Fehlerrechner](/de/rechner/prozentfehler-rechner) verwenden.
+In der Wissenschaft sind experimentelle Messungen selten perfekt. Der **prozentuale Fehler** drückt aus, wie weit Ihre Messung vom wahren Wert entfernt war. In diesem Leitfaden erklären wir die Formel und wie Sie unseren [Prozentualen Fehlerrechner](/de/rechner/prozentualer-fehler-rechner) verwenden.
 
 ---
 
