@@ -31,6 +31,9 @@ import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref } 
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedToolMeta, getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
+import { getCalculatorBySlug } from '@/lib/data/calculators';
+import { toClientCalcDef } from '@/lib/utils/getCalculatorMessages';
+import { enrichGuideSeoContent, getLocalizedReviewerByline } from '@/lib/utils/seoContentEnricher';
 import { AdSenseContainer } from '@/app/components/AdSenseContainer';
 
 
@@ -76,9 +79,34 @@ function slugifyHeading(text: string): string {
     .trim();
 }
 
-const guideMarkdownCache = new Map<string, { content: string; htmlContent: string }>();
+const guideMarkdownCache = new Map<string, string>();
 
-function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: string, localizedSlug?: string): { content: string; htmlContent: string } | null {
+function renderGuideMarkdownToHtml(markdownText: string, locale: string): string {
+  const renderer = new marked.Renderer();
+
+  renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
+    const safeDepth = depth === 1 ? 2 : depth;
+    const id = slugifyHeading(text);
+    return `<h${safeDepth} id="${id}" class="heading-anchor">${text}</h${safeDepth}>\n`;
+  };
+
+  const originalTable = renderer.table.bind(renderer);
+  renderer.table = function (token: Parameters<typeof originalTable>[0]) {
+    const tableHtml = originalTable(token);
+    return `<div class="table-wrapper overflow-x-auto">${tableHtml}</div>`;
+  };
+
+  const rawHtml = marked(markdownText, { renderer }) as string;
+  return rawHtml.replace(
+    /<a\s+([^>]*?)href=["']([^"']+)["']([^>]*)>/gi,
+    (_match, before, href, after) => {
+      const canonicalHref = canonicalizeInternalHref(href, locale);
+      return `<a ${before}href="${canonicalHref}"${after}>`;
+    }
+  );
+}
+
+function loadGuideRawMarkdown(guideSlug: string, locale: string, currentSlug: string, localizedSlug?: string): string | null {
   // 1. Try currentSlug in locale folder
   let filePath = path.join(process.cwd(), 'content', locale, 'guides', `${currentSlug}.md`);
   if (!fs.existsSync(filePath) && localizedSlug) {
@@ -90,8 +118,10 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
     filePath = path.join(process.cwd(), 'content', locale, 'guides', `${guideSlug}.md`);
   }
   if (!fs.existsSync(filePath)) {
-    // 4. Fallback to English folder
-    filePath = path.join(process.cwd(), 'content', 'en', 'guides', `${guideSlug}.md`);
+    // 4. Fallback to English folder only for en
+    if (locale === 'en') {
+      filePath = path.join(process.cwd(), 'content', 'en', 'guides', `${guideSlug}.md`);
+    }
     if (!fs.existsSync(filePath)) return null;
   }
 
@@ -103,37 +133,8 @@ function loadGuideMarkdown(guideSlug: string, locale: string, currentSlug: strin
   const raw = fs.readFileSync(filePath, 'utf-8');
   const parsed = matter(raw);
   const content = parsed.content.replace(/^\s*#\s+[^\r\n]+\r?\n*/, '').trim();
-
-  // marked v18 uses token objects — we create a fresh instance per call
-  // to avoid global state accumulation across concurrent SSG renders.
-  const renderer = new marked.Renderer();
-
-  // marked v18 heading token: { type, raw, depth, text, tokens }
-  // 'text' is the plain-text string of the heading content
-  renderer.heading = function ({ text, depth }: { text: string; depth: number }) {
-    const safeDepth = depth === 1 ? 2 : depth;
-    const id = slugifyHeading(text);
-    return `<h${safeDepth} id="${id}" class="heading-anchor">${text}</h${safeDepth}>\n`;
-  };
-
-  // Wrap tables in a scrollable div for mobile
-  const originalTable = renderer.table.bind(renderer);
-  renderer.table = function (token: Parameters<typeof originalTable>[0]) {
-    const tableHtml = originalTable(token);
-    return `<div class="table-wrapper overflow-x-auto">${tableHtml}</div>`;
-  };
-
-  const rawHtml = marked(content, { renderer }) as string;
-  const htmlContent = rawHtml.replace(
-    /<a\s+([^>]*?)href=["']([^"']+)["']([^>]*)>/gi,
-    (_match, before, href, after) => {
-      const canonicalHref = canonicalizeInternalHref(href, locale);
-      return `<a ${before}href="${canonicalHref}"${after}>`;
-    }
-  );
-  const res = { content, htmlContent };
-  guideMarkdownCache.set(cacheKey, res);
-  return res;
+  guideMarkdownCache.set(cacheKey, content);
+  return content;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -233,8 +234,36 @@ export default async function GuideArticlePage({
   const guide = getLocalizedGuide(baseGuide, locale);
   const localizedSlug = baseGuide.slugs?.[locale as keyof typeof baseGuide.slugs];
 
-  const markdownData = loadGuideMarkdown(baseGuide.slug, locale, slug, localizedSlug);
-  const htmlContent = markdownData?.htmlContent ?? `<p>Content coming soon. Check back shortly!</p>`;
+  const pairedCalc =
+    guide.relatedCalculator && guide.relatedType !== 'tool'
+      ? getCalculatorBySlug(guide.relatedCalculator)
+      : undefined;
+  const localizedCalcInputs = pairedCalc ? toClientCalcDef(pairedCalc, locale).fields : [];
+  const relatedItemMeta = guide.relatedCalculator
+    ? (guide.relatedType === 'tool'
+        ? getLocalizedToolMeta(guide.relatedCalculator, locale)
+        : getLocalizedCalcMeta(guide.relatedCalculator, locale))
+    : { title: guide.title, description: guide.description };
+  const relatedItemTitle = relatedItemMeta.title;
+
+  const rawMdContent = loadGuideRawMarkdown(baseGuide.slug, locale, slug, localizedSlug) || '';
+  const { enrichedContent, faqs: guideFaqs } = enrichGuideSeoContent({
+    locale,
+    guideTitle: guide.title,
+    guideDescription: guide.description,
+    rawContent: rawMdContent,
+    calc: pairedCalc,
+    localizedCalcTitle: relatedItemMeta.title || guide.title,
+    localizedCalcDesc: relatedItemMeta.description || guide.description,
+    localizedInputs: localizedCalcInputs,
+    localizedCalcFaqs: [],
+  });
+
+  const htmlContent = enrichedContent
+    ? renderGuideMarkdownToHtml(enrichedContent, locale)
+    : `<p>${guide.description}</p>`;
+
+  const reviewerByline = getLocalizedReviewerByline(guide.category, locale, guide.lastUpdated);
 
   const headings = extractHeadings(htmlContent);
   const { prev, next } = getAdjacentGuides(slug);
@@ -267,12 +296,13 @@ export default async function GuideArticlePage({
     '@type': 'Article',
     headline: guide.title,
     description: guide.description,
+    inLanguage: locale,
     datePublished: guide.lastUpdated,
     dateModified: guide.lastUpdated,
     author: {
-      '@type': 'Organization',
-      name: 'Nexus Calculator',
-      url: `${baseUrl}/en`,
+      '@type': 'Person',
+      name: 'MD Abu Hanif Mia',
+      url: `${baseUrl}/${locale}/about-us`,
     },
     publisher: {
       '@type': 'Organization',
@@ -287,11 +317,24 @@ export default async function GuideArticlePage({
       '@type': 'WebPage',
       '@id': canonicalUrl,
     },
-    timeRequired: `PT${guide.readingTime}M`,
+    timeRequired: `PT${Math.max(guide.readingTime || 5, 6)}M`,
     articleSection: guide.category,
     ...(relatedUrl && {
       relatedLink: relatedUrl,
     }),
+  };
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: guideFaqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
   };
 
   const guideUiCopy: Record<string, {
@@ -307,6 +350,7 @@ export default async function GuideArticlePage({
     onThisPage: string;
     previous: string;
     next: string;
+    faqHeading: string;
   }> = {
     en: {
       home: 'Home',
@@ -321,6 +365,7 @@ export default async function GuideArticlePage({
       onThisPage: 'On this page',
       previous: 'Previous',
       next: 'Next',
+      faqHeading: 'Frequently Asked Questions',
     },
     es: {
       home: 'Inicio',
@@ -335,6 +380,7 @@ export default async function GuideArticlePage({
       onThisPage: 'En esta página',
       previous: 'Anterior',
       next: 'Siguiente',
+      faqHeading: 'Preguntas Frecuentes',
     },
     fr: {
       home: 'Accueil',
@@ -349,6 +395,7 @@ export default async function GuideArticlePage({
       onThisPage: 'Sur cette page',
       previous: 'Précédent',
       next: 'Suivant',
+      faqHeading: 'Questions Fréquemment Posées',
     },
     de: {
       home: 'Startseite',
@@ -363,15 +410,10 @@ export default async function GuideArticlePage({
       onThisPage: 'Auf dieser Seite',
       previous: 'Zurück',
       next: 'Weiter',
+      faqHeading: 'Häufig gestellte Fragen',
     },
   };
   const ui = guideUiCopy[locale] || guideUiCopy.en;
-
-  const relatedItemTitle = guide.relatedCalculator
-    ? (guide.relatedType === 'tool'
-        ? getLocalizedToolMeta(guide.relatedCalculator, locale).title
-        : getLocalizedCalcMeta(guide.relatedCalculator, locale).title)
-    : '';
 
   const breadcrumbSchema = {
     '@context': 'https://schema.org',
@@ -388,6 +430,10 @@ export default async function GuideArticlePage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <script
         type="application/ld+json"
@@ -443,11 +489,11 @@ export default async function GuideArticlePage({
             {guide.description}
           </p>
 
-          {/* Meta row */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 pb-6 border-b border-slate-100 dark:border-white/5">
+          {/* Meta & E-E-A-T Reviewer row */}
+          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 pb-4 border-b border-slate-100 dark:border-white/5">
             <span className="flex items-center gap-1.5">
               <Clock size={14} />
-              {guide.readingTime} {ui.minRead}
+              {Math.max(guide.readingTime || 5, 6)} {ui.minRead}
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar size={14} />
@@ -457,6 +503,9 @@ export default async function GuideArticlePage({
               <catIcon.Icon size={14} />
               {guide.category}
             </span>
+          </div>
+          <div className="mt-4 text-xs text-slate-500 dark:text-slate-400">
+            <span className="font-semibold text-slate-800 dark:text-slate-200">{reviewerByline.reviewedBy} MD Abu Hanif Mia</span> • {reviewerByline.reviewer} • {reviewerByline.verifiedBadge}
           </div>
         </header>
 
@@ -554,6 +603,30 @@ export default async function GuideArticlePage({
           "
           dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
+
+        {/* ── Guide FAQ Section (matches FAQPage JSON-LD) ────────────── */}
+        {guideFaqs && guideFaqs.length > 0 && (
+          <section className="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
+              {ui.faqHeading}
+            </h2>
+            <div className="space-y-4">
+              {guideFaqs.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="p-5 rounded-2xl bg-slate-50/70 dark:bg-slate-800/40 border border-slate-200/70 dark:border-slate-800"
+                >
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                    {faq.question}
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── In-Content Ad Placement (After In-Depth Guide) ────────────── */}
         <div className="my-10 w-full print:hidden flex justify-center">

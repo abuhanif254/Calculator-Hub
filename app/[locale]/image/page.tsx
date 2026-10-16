@@ -251,6 +251,45 @@ export default async function ImageToolsPage({
     }),
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": t.faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a,
+      },
+    })),
+  };
+
+  const catTranslations: Record<string, Record<string, { title: string; desc: string }>> = {
+    es: {
+      "image-editing": { title: "Edición y Optimización de Imágenes", desc: "Comprima, redimensione, recorte, mejore con IA y edite sus fotos rápidamente." },
+      "image-conversion": { title: "Conversión de Formatos de Imagen", desc: "Convierta fácilmente entre JPG, PNG, WebP, SVG, HEIC, GIF e ICO." },
+      "advanced-image-tools": { title: "Herramientas Avanzadas de Imagen", desc: "Utilidades avanzadas para diseñadores y desarrolladores: eliminar fondo, Base64 e IA." },
+    },
+    fr: {
+      "image-editing": { title: "Édition et Optimisation d'Images", desc: "Compressez, redimensionnez, recadrez, améliorez par IA et retouchez vos images rapidement." },
+      "image-conversion": { title: "Conversion de Formats d'Image", desc: "Convertissez facilement vos images entre JPG, PNG, WebP, SVG, HEIC, GIF et ICO." },
+      "advanced-image-tools": { title: "Outils d'Image Avancés", desc: "Utilitaires avancés pour développeurs et designers : suppression d'arrière-plan, Base64 et IA." },
+    },
+    de: {
+      "image-editing": { title: "Bildbearbeitung & Optimierung", desc: "Bilder schnell komprimieren, zuschneiden, skalieren, per KI vergrößern und bearbeiten." },
+      "image-conversion": { title: "Bildformat-Konvertierung", desc: "Konvertieren Sie Bilder mühelos zwischen JPG, PNG, WebP, SVG, HEIC, GIF und ICO." },
+      "advanced-image-tools": { title: "Erweiterte Bild-Werkzeuge", desc: "Spezial-Tools für Entwickler und Designer: Hintergrund entfernen, Base64 & KI-Generator." },
+    },
+  };
+
+  const badgeLabels: Record<string, { b1t: string; b1d: string; b2t: string; b2d: string; b3t: string; b3d: string; b4t: string; b4d: string; newLabel: string }> = {
+    en: { b1t: "100% In-Browser", b1d: "Never leaves device", b2t: "Instant Processing", b2d: "Hardware accelerated", b3t: "Lossless Quality", b3d: "Pixel-perfect exports", b4t: "Zero Watermarks", b4d: "Free forever", newLabel: "NEW" },
+    es: { b1t: "100% en el Navegador", b1d: "Tus fotos no salen del equipo", b2t: "Procesamiento Instantáneo", b2d: "Acelerado por hardware", b3t: "Calidad sin Pérdidas", b3d: "Exportación píxel a píxel", b4t: "Sin Marcas de Agua", b4d: "100% gratis siempre", newLabel: "NUEVO" },
+    fr: { b1t: "100% dans le Navigateur", b1d: "Ne quitte jamais l'appareil", b2t: "Traitement Instantané", b2d: "Accélération matérielle", b3t: "Qualité Sans Perte", b3d: "Exportation au pixel près", b4t: "Zéro Filigrane", b4d: "Gratuit pour toujours", newLabel: "NOUVEAU" },
+    de: { b1t: "100 % im Browser", b1d: "Verlässt nie Ihr Gerät", b2t: "Sofort-Verarbeitung", b2d: "Hardwarebeschleunigt", b3t: "Verlustfreie Qualität", b3d: "Pixelgenaue Exporte", b4t: "Keine Wasserzeichen", b4d: "Dauerhaft kostenlos", newLabel: "NEU" },
+  };
+  const bl = badgeLabels[locale] || badgeLabels.en;
+
   return (
     <main className="min-h-screen bg-slate-50/50 dark:bg-slate-950 pb-20">
       <script
@@ -264,6 +303,10 @@ export default async function ImageToolsPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* Hero Header */}
@@ -302,15 +345,18 @@ export default async function ImageToolsPage({
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 self-center mr-2">
               {t.jumpTo}
             </span>
-            {imageToolsMenu.map((category) => (
-              <a
-                key={category.id}
-                href={`#${category.id}`}
-                className="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-[#518231] hover:text-[#518231] dark:hover:border-[#518231] transition-all shadow-sm"
-              >
-                {category.title}
-              </a>
-            ))}
+            {imageToolsMenu.map((category) => {
+              const locCat = catTranslations[locale]?.[category.id];
+              return (
+                <a
+                  key={category.id}
+                  href={`#${category.id}`}
+                  className="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-[#518231] hover:text-[#518231] dark:hover:border-[#518231] transition-all shadow-sm"
+                >
+                  {locCat?.title || category.title}
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -323,8 +369,8 @@ export default async function ImageToolsPage({
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">100% In-Browser</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Never leaves device</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b1t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b1d}</div>
             </div>
           </div>
 
@@ -333,8 +379,8 @@ export default async function ImageToolsPage({
               <Zap className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Instant Processing</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Hardware accelerated</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b2t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b2d}</div>
             </div>
           </div>
 
@@ -343,8 +389,8 @@ export default async function ImageToolsPage({
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Lossless Quality</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Pixel-perfect exports</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b3t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b3d}</div>
             </div>
           </div>
 
@@ -353,8 +399,8 @@ export default async function ImageToolsPage({
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Zero Watermarks</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Free forever</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b4t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b4d}</div>
             </div>
           </div>
         </div>
@@ -364,6 +410,7 @@ export default async function ImageToolsPage({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 space-y-16">
         {imageToolsMenu.map((category) => {
           const CategoryIcon = category.icon || Palette;
+          const locCat = catTranslations[locale]?.[category.id];
 
           return (
             <div
@@ -378,13 +425,13 @@ export default async function ImageToolsPage({
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                      <span>{category.title}</span>
+                      <span>{locCat?.title || category.title}</span>
                       <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold">
                         {t.toolsCount(category.items.length)}
                       </span>
                     </h2>
                     <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                      {category.description}
+                      {locCat?.desc || category.description}
                     </p>
                   </div>
                 </div>
@@ -423,7 +470,7 @@ export default async function ImageToolsPage({
                       {item.isNew && (
                         <div className="mt-3">
                           <span className="text-[10px] font-bold text-white bg-violet-600 rounded-full px-2 py-0.5 leading-none">
-                            NEW
+                            {bl.newLabel}
                           </span>
                         </div>
                       )}

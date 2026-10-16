@@ -16,13 +16,33 @@ export const revalidate = 86400; // ISR: revalidate every 24 hours to conserve V
 
 // The Post interface is now exported from CommunityFeed.tsx
 
+const communityMetaByLocale: Record<string, { title: string; description: string }> = {
+  en: {
+    title: 'Community Discussions & Q&A Forum | NexusCalculator',
+    description: 'Join the NexusCalculator professional community. Ask questions, share formulas, and discuss financial calculators, developer utilities, PDF tools, and engineering models.',
+  },
+  es: {
+    title: 'Foro de la Comunidad y Preguntas Técnicas | NexusCalculator',
+    description: 'Únete a la comunidad profesional de NexusCalculator. Comparte fórmulas, resuelve dudas y debate sobre calculadoras financieras, científicas y herramientas de desarrollo.',
+  },
+  fr: {
+    title: 'Forum de la Communauté et Discussions Techniques | NexusCalculator',
+    description: 'Rejoignez la communauté NexusCalculator. Posez vos questions, partagez vos formules et échangez sur les calculateurs financiers, scientifiques et outils développeurs.',
+  },
+  de: {
+    title: 'Community-Forum & Fachdiskussionen | NexusCalculator',
+    description: 'Werden Sie Teil der NexusCalculator-Community. Diskutieren Sie über Finanzrechner, mathematische Formeln, Entwickler-Tools und technische Berechnungen.',
+  },
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const meta = communityMetaByLocale[locale] || communityMetaByLocale.en;
 
   return {
-    title: 'Community Discussions | NexusCalculator',
-    description: 'Join the NexusCalculator community. Ask questions, share tips, and discuss developer tools, PDF utilities, image editing, and calculators with fellow professionals.',
+    title: meta.title,
+    description: meta.description,
     alternates: getCanonicalAndAlternates('/community', locale),
   };
 }

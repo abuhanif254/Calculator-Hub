@@ -30,6 +30,7 @@ import { Search, ChevronRight, CalculatorIcon, BookOpen, Clock, ArrowRight } fro
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { pickCalculatorMessages, toClientCalcDef } from '@/lib/utils/getCalculatorMessages';
+import { enrichCalculatorSeoContent, getLocalizedReviewerByline } from '@/lib/utils/seoContentEnricher';
 
 import fs from "fs";
 import path from "path";
@@ -317,8 +318,19 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     fallbackMd,
   } = getLocalizedCalcInfo(calc, resolvedParams.locale, resolvedParams.slug);
 
+  const clientCalcDef = toClientCalcDef(calc, resolvedParams.locale);
   const mdData = localizedMd || fallbackMd;
-  const seoContent = mdData?.content || calc.seoContent;
+  const seoContent = enrichCalculatorSeoContent({
+    calc,
+    locale: resolvedParams.locale,
+    localizedTitle: pageTitle,
+    localizedDescription: pageDesc,
+    localizedInputs: clientCalcDef.fields,
+    localizedMdContent: localizedMd?.content,
+    hasLocalizedMd: Boolean(localizedMd?.content),
+    fallbackEnContent: fallbackMd?.content || calc.seoContent,
+  });
+  const reviewerByline = getLocalizedReviewerByline(calc.category, resolvedParams.locale, calc.meta?.lastUpdated);
 
   const fallbackFaqByLocale: Record<string, { question: string; answer: string }[]> = {
     en: [
@@ -548,17 +560,11 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     "operatingSystem": "All",
     "browserRequirements": "Requires JavaScript",
     "url": canonicalUrl,
+    "inLanguage": resolvedParams.locale,
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "ratingCount": "148",
-      "bestRating": "5",
-      "worstRating": "1"
     },
     ...(relatedGuideUrl && localizedGuide && {
       "isRelatedTo": {
@@ -759,10 +765,10 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               </div>
               <div>
                 <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                  Reviewed by <Link href="/about-us" className="text-[#518231] hover:underline">MD Abu Hanif Mia</Link>
+                  {reviewerByline.reviewedBy} <Link href="/about-us" className="text-[#518231] hover:underline">MD Abu Hanif Mia</Link> • <span className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewer}</span>
                 </p>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
-                  Full Stack Web Architect • Last Updated: June 2026
+                  {reviewerByline.verifiedBadge} • {reviewerByline.updatedLabel}: {reviewerByline.lastUpdated}
                 </p>
               </div>
             </div>
@@ -788,7 +794,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               locale={resolvedParams.locale}
               messages={pickCalculatorMessages(calc, (await getMessages()) as Record<string, any>)}
             >
-              <CalculatorViewWrapper calcDef={toClientCalcDef(calc, resolvedParams.locale)} locale={resolvedParams.locale} />
+              <CalculatorViewWrapper calcDef={clientCalcDef} locale={resolvedParams.locale} />
             </NextIntlClientProvider>
           </div>
 
@@ -810,7 +816,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <AdSenseContainer slot="calculator_content_top" />
           </div>
 
-          <CalculatorMath slug={calc.slug} category={calc.category} />
+          <CalculatorMath slug={calc.slug} category={calc.category} locale={resolvedParams.locale} />
           <StaticCalculationMatrix slug={calc.slug} title={pageTitle} locale={resolvedParams.locale} />
 
 

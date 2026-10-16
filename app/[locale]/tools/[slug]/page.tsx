@@ -151,6 +151,7 @@ import { getGuideForCalculator } from '@/lib/data/guides';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
 import { getCalculatorBySlug } from '@/lib/data/calculators';
+import { enrichToolSeoContent, getLocalizedReviewerByline } from '@/lib/utils/seoContentEnricher';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers, BookOpen, Clock, Wrench } from 'lucide-react';
 
 const toolComponents: Record<string, React.ComponentType> = {
@@ -507,14 +508,34 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   }
 
   const mdData = getMarkdownContent(resolvedSlug, locale);
+  const hasLocalizedMd = fs.existsSync(path.join(process.cwd(), "content", "tools", locale, `${resolvedSlug}.md`));
 
   const pageTitle = mdData?.data?.title || config.title;
   const pageShortDesc = mdData?.data?.shortDescription || config.shortDescription;
-  const pageLongDesc = mdData?.content || config.longDescription;
+  const rawLongDesc = mdData?.content || config.longDescription;
   const pageFaqs = mdData?.data?.faqs || config.faq;
   const pageHowToSteps = mdData?.data?.howToSteps || config.howToSteps;
   const pageFeatures = mdData?.data?.features || config.features;
   const pageUseCases = mdData?.data?.useCases || config.useCases;
+
+  const { enrichedMarkdown: pageLongDesc, localizedExamples: pageExamples } = enrichToolSeoContent({
+    config,
+    locale,
+    localizedTitle: pageTitle,
+    localizedShortDesc: pageShortDesc,
+    rawMarkdown: rawLongDesc,
+    hasLocalizedMd,
+    localizedFeatures: pageFeatures,
+    localizedUseCases: pageUseCases,
+  });
+  const reviewerByline = getLocalizedReviewerByline(config.category || 'Engineering', locale, '2026-10-01');
+  const ioLabels: Record<string, { input: string; output: string }> = {
+    en: { input: 'Input', output: 'Output' },
+    es: { input: 'Entrada', output: 'Salida' },
+    fr: { input: 'Entrée', output: 'Sortie' },
+    de: { input: 'Eingabe', output: 'Ausgabe' },
+  };
+  const io = ioLabels[locale] || ioLabels.en;
 
   const t = toolPageTranslations[locale] || toolPageTranslations.en;
   const toolsSegment = toolPathSegments[locale] || 'tools';
@@ -633,13 +654,17 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400">
             {pageShortDesc}
           </p>
-          <div className="flex items-center justify-center gap-3 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs text-slate-500 dark:text-slate-400">
             <FavoriteButton
               slug={config.slug}
               title={pageTitle}
               type="developer-tool"
               href={currentToolHref}
             />
+            <span>•</span>
+            <span>
+              <strong className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewedBy} MD Abu Hanif Mia</strong> ({reviewerByline.verifiedBadge})
+            </span>
           </div>
         </section>
 
@@ -649,13 +674,6 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           type="developer-tool"
           href={currentToolHref}
         />
-
-        {/* Top Leaderboard Ad Space (728x90 or 970x90/250) */}
-        <div className="w-full flex justify-center overflow-hidden">
-          <div className="w-full max-w-[970px]">
-            <AdSenseContainer slot="tools_top_leaderboard" style={{ minHeight: '90px' }} />
-          </div>
-        </div>
 
         {/* Main Tool Interface */}
         <section className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-2 sm:p-6 lg:p-8">
@@ -758,13 +776,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             </section>
 
             {/* Real Examples */}
-            {config.examples.length > 0 && (
+            {pageExamples.length > 0 && (
               <section className="space-y-6">
                 <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <Code className="text-[#518231]" /> {t.realExamples}
                 </h2>
                 <div className="space-y-8">
-                  {config.examples.map((ex, idx) => (
+                  {pageExamples.map((ex, idx) => (
                     <div key={idx} className="bg-slate-900 rounded-xl overflow-hidden shadow-lg border border-slate-800">
                       <div className="px-6 py-4 bg-slate-800 border-b border-slate-700">
                         <h3 className="text-lg font-bold text-white">{ex.title}</h3>
@@ -772,11 +790,11 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                       </div>
                       <div className="grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-800">
                         <div className="p-4">
-                          <div className="text-xs font-semibold text-slate-500 mb-2 uppercase">Input</div>
+                          <div className="text-xs font-semibold text-slate-500 mb-2 uppercase">{io.input}</div>
                           <pre className="text-sm text-slate-300 overflow-x-auto p-2 bg-slate-950 rounded-lg custom-scrollbar"><code>{ex.input}</code></pre>
                         </div>
                         <div className="p-4">
-                          <div className="text-xs font-semibold text-[#518231] mb-2 uppercase">Output</div>
+                          <div className="text-xs font-semibold text-[#518231] mb-2 uppercase">{io.output}</div>
                           <pre className="text-sm text-green-400 overflow-x-auto p-2 bg-slate-950 rounded-lg custom-scrollbar"><code>{ex.output}</code></pre>
                         </div>
                       </div>

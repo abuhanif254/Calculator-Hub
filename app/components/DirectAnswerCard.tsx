@@ -12,35 +12,48 @@ interface DirectAnswerCardProps {
 
 const directAnswerTranslations: Record<string, {
   badge: string;
+  verifiedLabel: string;
   variablesTitle: string;
   methodologyTitle: string;
+  localizedMethodologyNote: (title: string) => string;
 }> = {
   en: {
     badge: "Formula at a Glance",
+    verifiedLabel: "Verified Formula",
     variablesTitle: "Key Formula Variables:",
     methodologyTitle: "Calculation Methodology:",
+    localizedMethodologyNote: (title) =>
+      `Enter your values into the ${title} fields below to compute instant, double-precision results.`,
   },
   es: {
     badge: "Fórmula de un Vistazo",
+    verifiedLabel: "Fórmula Verificada",
     variablesTitle: "Variables Clave de la Fórmula:",
     methodologyTitle: "Metodología de Cálculo:",
+    localizedMethodologyNote: (title) =>
+      `Introduzca sus datos en los campos de ${title} a continuación para obtener resultados instantáneos con precisión matemática verificada.`,
   },
   fr: {
     badge: "Formule en un Coup d'Œil",
+    verifiedLabel: "Formule Vérifiée",
     variablesTitle: "Variables Clés de la Formule :",
     methodologyTitle: "Méthodologie de Calcul :",
+    localizedMethodologyNote: (title) =>
+      `Saisissez vos valeurs dans les champs de ${title} ci-dessous pour obtenir des résultats instantanés avec une précision mathématique vérifiée.`,
   },
   de: {
     badge: "Formel auf einen Blick",
+    verifiedLabel: "Geprüfte Formel",
     variablesTitle: "Wichtigste Formelvariablen:",
     methodologyTitle: "Berechnungsmethodik:",
+    localizedMethodologyNote: (title) =>
+      `Geben Sie Ihre Werte in die Felder des ${title} unten ein, um sofortige Ergebnisse mit geprüfter mathematischer Präzision zu berechnen.`,
   },
 };
 
 export function DirectAnswerCard({
   slug,
   title,
-  category,
   locale = "en",
 }: DirectAnswerCardProps) {
   const formulaDef = getFormulaForCalculator(slug);
@@ -48,10 +61,11 @@ export function DirectAnswerCard({
   if (!formulaDef) return null;
 
   const t = directAnswerTranslations[locale] || directAnswerTranslations.en;
+  const isEn = locale === "en";
 
   return (
     <section
-      aria-label={`${title} Quick Answer & Mathematical Formula`}
+      aria-label={`${title} — ${t.badge}`}
       id="math-formula"
       className="mb-8 p-5 sm:p-6 bg-gradient-to-br from-slate-50 via-white to-emerald-50/20 dark:from-slate-900 dark:via-slate-900/90 dark:to-[#518231]/10 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-sm print:hidden"
     >
@@ -66,13 +80,13 @@ export function DirectAnswerCard({
               {t.badge}
             </span>
             <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight">
-              {formulaDef.name}
+              {isEn ? formulaDef.name : title}
             </h2>
           </div>
         </div>
         <div className="flex items-center gap-1.5 text-[11px] font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 px-3 py-1 rounded-full border border-slate-200 dark:border-slate-700 shadow-xs">
           <CheckCircle2 className="w-3.5 h-3.5 text-[#518231] dark:text-[#6fa844]" />
-          <span>Verified Formula</span>
+          <span>{t.verifiedLabel}</span>
         </div>
       </div>
 
@@ -85,8 +99,8 @@ export function DirectAnswerCard({
         />
       </div>
 
-      {/* Variables Grid */}
-      {formulaDef.variables.length > 0 && (
+      {/* Variables Grid (English uses detailed variable definitions; non-EN avoids untranslated English bleed) */}
+      {isEn && formulaDef.variables.length > 0 && (
         <div className="mb-4">
           <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
             {t.variablesTitle}
@@ -113,17 +127,15 @@ export function DirectAnswerCard({
       )}
 
       {/* Step-by-Step Methodology Snippet */}
-      {formulaDef.stepByStep && (
-        <div className="text-xs text-slate-600 dark:text-slate-400 bg-emerald-50/50 dark:bg-[#518231]/5 p-3 rounded-xl border border-[#518231]/20 flex items-start gap-2">
-          <ChevronRight className="w-4 h-4 text-[#518231] dark:text-[#6fa844] shrink-0 mt-0.5" />
-          <span>
-            <strong className="text-slate-900 dark:text-slate-200 font-semibold">
-              {t.methodologyTitle}
-            </strong>{" "}
-            {formulaDef.stepByStep}
-          </span>
-        </div>
-      )}
+      <div className="text-xs text-slate-600 dark:text-slate-400 bg-emerald-50/50 dark:bg-[#518231]/5 p-3 rounded-xl border border-[#518231]/20 flex items-start gap-2">
+        <ChevronRight className="w-4 h-4 text-[#518231] dark:text-[#6fa844] shrink-0 mt-0.5" />
+        <span>
+          <strong className="text-slate-900 dark:text-slate-200 font-semibold">
+            {t.methodologyTitle}
+          </strong>{" "}
+          {isEn && formulaDef.stepByStep ? formulaDef.stepByStep : t.localizedMethodologyNote(title)}
+        </span>
+      </div>
     </section>
   );
 }

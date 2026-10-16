@@ -251,6 +251,48 @@ export default async function PdfToolsPage({
     }),
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": t.faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a,
+      },
+    })),
+  };
+
+  const catTranslations: Record<string, Record<string, { title: string; desc: string }>> = {
+    es: {
+      "pdf-manipulation": { title: "Manipulación y Organización de PDF", desc: "Una, divida, comprima, rote y organice sus archivos PDF fácilmente." },
+      "convert-from-pdf": { title: "Convertir desde PDF", desc: "Convierta documentos PDF a formatos editables (Word, Excel, PPTX) e imágenes." },
+      "convert-to-pdf": { title: "Convertir a PDF", desc: "Transforme documentos Office, libros electrónicos, imágenes y texto a formato PDF estándar." },
+      "pdf-security": { title: "Seguridad y Firma de PDF", desc: "Añada contraseñas AES, elimine restricciones, firme y censure documentos PDF." },
+    },
+    fr: {
+      "pdf-manipulation": { title: "Manipulation et Organisation PDF", desc: "Fusionnez, divisez, compressez, faites pivoter et organisez vos fichiers PDF facilement." },
+      "convert-from-pdf": { title: "Convertir depuis PDF", desc: "Convertissez vos fichiers PDF en documents modifiables (Word, Excel, PPTX) et images." },
+      "convert-to-pdf": { title: "Convertir en PDF", desc: "Transformez vos documents Office, ebooks, images et textes en fichiers PDF standards." },
+      "pdf-security": { title: "Sécurité et Signature PDF", desc: "Ajoutez des mots de passe, déverrouillez, signez et protégez vos documents PDF." },
+    },
+    de: {
+      "pdf-manipulation": { title: "PDF-Bearbeitung & Organisation", desc: "PDF-Dateien einfach zusammenfügen, teilen, komprimieren, drehen und organisieren." },
+      "convert-from-pdf": { title: "Aus PDF konvertieren", desc: "PDF-Dateien in bearbeitbare Formate (Word, Excel, PPTX) und Bilder umwandeln." },
+      "convert-to-pdf": { title: "In PDF konvertieren", desc: "Verschiedene Dateiformate, Bilder, Text und E-Books in Standard-PDF-Dokumente umwandeln." },
+      "pdf-security": { title: "PDF-Sicherheit & Signatur", desc: "Passwörter hinzufügen, Schutz aufheben, digital unterschreiben und PDFs schwärzen." },
+    },
+  };
+
+  const badgeLabels: Record<string, { b1t: string; b1d: string; b2t: string; b2d: string; b3t: string; b3d: string; b4t: string; b4d: string; newLabel: string }> = {
+    en: { b1t: "100% Private", b1d: "Client-side execution", b2t: "Lightning Fast", b2d: "Zero queue delays", b3t: "No Watermarks", b3d: "Clean original quality", b4t: "No Sign-Up", b4d: "Instant access", newLabel: "NEW" },
+    es: { b1t: "100% Privado", b1d: "Ejecución en tu navegador", b2t: "Ultra Rápido", b2d: "Sin colas de espera", b3t: "Sin Marcas de Agua", b3d: "Calidad original limpia", b4t: "Sin Registro", b4d: "Acceso instantáneo", newLabel: "NUEVO" },
+    fr: { b1t: "100% Privé", b1d: "Exécution locale navigateur", b2t: "Ultra Rapide", b2d: "Aucun délai d'attente", b3t: "Sans Filigrane", b3d: "Qualité originale intacte", b4t: "Sans Inscription", b4d: "Accès immédiat", newLabel: "NOUVEAU" },
+    de: { b1t: "100 % Privat", b1d: "Lokale Browser-Ausführung", b2t: "Blitzschnell", b2d: "Keine Warteschlangen", b3t: "Ohne Wasserzeichen", b3d: "Saubere Originalqualität", b4t: "Ohne Anmeldung", b4d: "Sofortiger Zugriff", newLabel: "NEU" },
+  };
+  const bl = badgeLabels[locale] || badgeLabels.en;
+
   return (
     <main className="min-h-screen bg-slate-50/50 dark:bg-slate-950 pb-20">
       <script
@@ -264,6 +306,10 @@ export default async function PdfToolsPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       {/* Hero Header */}
@@ -302,15 +348,18 @@ export default async function PdfToolsPage({
             <span className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 self-center mr-2">
               {t.jumpTo}
             </span>
-            {pdfToolsMenu.map((category) => (
-              <a
-                key={category.id}
-                href={`#${category.id}`}
-                className="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-[#518231] hover:text-[#518231] dark:hover:border-[#518231] transition-all shadow-sm"
-              >
-                {category.title}
-              </a>
-            ))}
+            {pdfToolsMenu.map((category) => {
+              const locCat = catTranslations[locale]?.[category.id];
+              return (
+                <a
+                  key={category.id}
+                  href={`#${category.id}`}
+                  className="px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:border-[#518231] hover:text-[#518231] dark:hover:border-[#518231] transition-all shadow-sm"
+                >
+                  {locCat?.title || category.title}
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -323,8 +372,8 @@ export default async function PdfToolsPage({
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">100% Private</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Client-side execution</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b1t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b1d}</div>
             </div>
           </div>
 
@@ -333,8 +382,8 @@ export default async function PdfToolsPage({
               <Zap className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">Lightning Fast</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Zero queue delays</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b2t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b2d}</div>
             </div>
           </div>
 
@@ -343,8 +392,8 @@ export default async function PdfToolsPage({
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">No Watermarks</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Clean original quality</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b3t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b3d}</div>
             </div>
           </div>
 
@@ -353,8 +402,8 @@ export default async function PdfToolsPage({
               <CheckCircle2 className="w-5 h-5" />
             </div>
             <div>
-              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">No Sign-Up</div>
-              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">Instant access</div>
+              <div className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm">{bl.b4t}</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">{bl.b4d}</div>
             </div>
           </div>
         </div>
@@ -364,6 +413,7 @@ export default async function PdfToolsPage({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 space-y-16">
         {pdfToolsMenu.map((category) => {
           const CategoryIcon = category.icon || FileText;
+          const locCat = catTranslations[locale]?.[category.id];
 
           return (
             <div
@@ -378,13 +428,13 @@ export default async function PdfToolsPage({
                   </div>
                   <div>
                     <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                      <span>{category.title}</span>
+                      <span>{locCat?.title || category.title}</span>
                       <span className="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold">
                         {t.toolsCount(category.items.length)}
                       </span>
                     </h2>
                     <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                      {category.description}
+                      {locCat?.desc || category.description}
                     </p>
                   </div>
                 </div>
@@ -423,7 +473,7 @@ export default async function PdfToolsPage({
                       {item.isNew && (
                         <div className="mt-3">
                           <span className="text-[10px] font-bold text-white bg-violet-600 rounded-full px-2 py-0.5 leading-none">
-                            NEW
+                            {bl.newLabel}
                           </span>
                         </div>
                       )}

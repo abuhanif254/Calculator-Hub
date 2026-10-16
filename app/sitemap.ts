@@ -127,6 +127,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
     // REMOVED: /login, /signup — auth pages always redirect, waste crawl budget
     ...buildEntries('/about-us', 'monthly', 0.5),
+    ...buildEntries('/contact-us', 'monthly', 0.5),
+    ...buildEntries('/disclaimer', 'yearly', 0.4),
     ...buildEntries('/privacy-policy', 'yearly', 0.3),
     ...buildEntries('/terms-of-use', 'yearly', 0.3),
     ...buildEntries('/guides', 'weekly', 0.85),
