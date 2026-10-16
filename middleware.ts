@@ -12,6 +12,9 @@ import { CALC_REDIRECT_MAP } from './lib/calcRedirectMap';
 // ─── Guide slug redirect map ──────────────────────────────────────────────────
 import { GUIDE_REDIRECT_MAP } from './lib/guideRedirectMap';
 
+// ─── Legacy localized calculator & tool alias redirect map (1,810 entries) ────
+import { LEGACY_CALC_ALIAS_REDIRECTS } from './lib/legacyCalcAliasRedirects';
+
 const intlMiddleware = createMiddleware(routing);
 
 // ── Constants ──────────────────────────────────────────────────────────────────
@@ -23,6 +26,55 @@ const GARBAGE_PATHS = new Set([
   '/images/*', '/new-path/:slug', '/old-path/:slug', '/4', '/4/', '/Metadata',
   '/*.xls$', '/*.xls', '/.xls$', '/.xls'
 ]);
+
+// Legacy or misspelled tool slugs → canonical tool slug
+const LEGACY_TOOL_SLUG_MAP: Record<string, string> = {
+  'url-encoder-decoder': 'url-encoder',
+  'image-resizer': 'resize-image',
+  'webp-converter': 'convert-to-webp',
+  'jpg-to-png': 'convert-to-png',
+  'png-to-webp': 'convert-to-webp',
+  'sitemap-generator': 'sitemap-xml-generator',
+  'sitemap.xml-generator': 'sitemap-xml-generator',
+  'robots.txt-generator': 'robots-txt-generator',
+  '.htaccess-generator': 'htaccess-generator',
+  'html-minifier': 'html-formatter',
+  'json-validator': 'json-formatter',
+};
+
+// Calculators that were historically linked under /tools/ → canonical localized calculator path
+const TOOL_TO_CALC_REDIRECTS: Record<string, Record<string, string>> = {
+  'mortgage-calculator-uk': {
+    en: '/en/calculators/mortgage-calculator-uk',
+    es: '/es/calculadoras/calculadora-hipoteca-reino-unido',
+    fr: '/fr/calculatrices/calculateur-hypotheque-royaume-uni',
+    de: '/de/rechner/hypothekenrechner-uk',
+  },
+  'stamp-duty-calculator': {
+    en: '/en/calculators/stamp-duty-calculator',
+    es: '/es/calculadoras/calculadora-impuesto-timbre',
+    fr: '/fr/calculatrices/calculateur-droits-mutation',
+    de: '/de/rechner/grunderwerbsteuer-rechner-uk',
+  },
+  'overpayment-calculator': {
+    en: '/en/calculators/overpayment-calculator',
+    es: '/es/calculadoras/calculadora-amortizacion-anticipada',
+    fr: '/fr/calculatrices/calculateur-remboursement-anticipe',
+    de: '/de/rechner/sondertilgungsrechner',
+  },
+  'remortgage-calculator': {
+    en: '/en/calculators/remortgage-calculator',
+    es: '/es/calculadoras/calculadora-rehipoteca',
+    fr: '/fr/calculatrices/calculateur-rachat-credit-immobilier',
+    de: '/de/rechner/umschuldungsrechner-hypothek',
+  },
+  'buy-to-let-calculator': {
+    en: '/en/calculators/buy-to-let-calculator',
+    es: '/es/calculadoras/calculadora-hipoteca-alquiler',
+    fr: '/fr/calculatrices/calculateur-investissement-locatif',
+    de: '/de/rechner/kapitalanlage-immobilien-rechner',
+  },
+};
 
 // Legacy or misspelled tool URLs → canonical tool path
 const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
@@ -36,8 +88,20 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
   '/tools/url-encoder-decoder': '/en/tools/url-encoder',
   '/de/werkzeuge/next.js-discussions': '/de/werkzeuge',
   '/en/tools/next.js-discussions': '/en/tools',
+  '/es/herramientas/next.js-discussions': '/es/herramientas',
+  '/fr/outils/next.js-discussions': '/fr/outils',
+  '/de/tools/next.js-discussions': '/de/werkzeuge',
+  '/es/tools/next.js-discussions': '/es/herramientas',
+  '/fr/tools/next.js-discussions': '/fr/outils',
+  '/tools/next.js-discussions': '/en/tools',
   '/de/werkzeuge/sitemap.xml-generator': '/de/werkzeuge/sitemap-xml-generator',
   '/en/tools/sitemap.xml-generator': '/en/tools/sitemap-xml-generator',
+  '/es/herramientas/sitemap.xml-generator': '/es/herramientas/sitemap-xml-generator',
+  '/fr/outils/sitemap.xml-generator': '/fr/outils/sitemap-xml-generator',
+  '/de/tools/sitemap.xml-generator': '/de/werkzeuge/sitemap-xml-generator',
+  '/es/tools/sitemap.xml-generator': '/es/herramientas/sitemap-xml-generator',
+  '/fr/tools/sitemap.xml-generator': '/fr/outils/sitemap-xml-generator',
+  '/tools/sitemap.xml-generator': '/en/tools/sitemap-xml-generator',
   '/calculators/password-generator': '/en/tools/password-generator',
   '/en/calculators/password-generator': '/en/tools/password-generator',
   '/es/calculators/password-generator': '/es/herramientas/password-generator',
@@ -52,6 +116,14 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
   '/en/calculators/passwort-generator': '/en/tools/password-generator',
   '/en/calculators/generador-de-contrasenas': '/en/tools/password-generator',
   '/en/calculators/generateur-de-mots-de-passe': '/en/tools/password-generator',
+  '/calculators/random-number-generator': '/en/tools/random-number-generator',
+  '/en/calculators/random-number-generator': '/en/tools/random-number-generator',
+  '/es/calculators/random-number-generator': '/es/herramientas/random-number-generator',
+  '/fr/calculators/random-number-generator': '/fr/outils/random-number-generator',
+  '/de/calculators/random-number-generator': '/de/werkzeuge/random-number-generator',
+  '/es/calculadoras/random-number-generator': '/es/herramientas/random-number-generator',
+  '/fr/calculatrices/random-number-generator': '/fr/outils/random-number-generator',
+  '/de/rechner/random-number-generator': '/de/werkzeuge/random-number-generator',
 };
 
 // Truly deprecated or renamed calculators → canonical destination
@@ -75,16 +147,6 @@ const DEPRECATED_CALC_REDIRECTS: Record<string, string> = {
   'lean-body-mass-calculator': '/en/calculators/body-fat-calculator',
   'pythagorean-theorem-calculator': '/en/calculators/category/math',
   'time-zone-calculator': '/en/calculators/time-calculator',
-};
-
-// Hyphenated or bare legacy calculator path aliases → canonical path
-const LEGACY_CALC_ALIAS_REDIRECTS: Record<string, string> = {
-  '/de/rechner/anleihen-rechner': '/de/rechner/anleihenrechner',
-  '/de/rechner/anzahlungsrechner': '/de/rechner/anzahlung-rechner',
-  '/de/rechner/barwert-rechner': '/de/rechner/barwertrechner',
-  '/de/rechner/binaer-rechner': '/de/rechner/binarrechner',
-  '/mole-calculator': '/en/calculators/mole-calculator',
-  '/stoichiometry-calculator': '/en/calculators/stoichiometry-calculator',
 };
 
 // Cross-locale community path aliases (e.g. /fr/community → /fr/communaute)
@@ -216,12 +278,32 @@ function getCanonicalPath(pathname: string): string | null {
   const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname] || LEGACY_CALC_ALIAS_REDIRECTS[pathname];
   if (legacyToolTarget) return legacyToolTarget;
 
+  // 1b-2. Legacy tool slug resolution & UK mortgage calculators historically linked under /tools/
+  const toolSlugMatch = pathname.match(/^(?:\/(en|es|fr|de))?\/(tools|herramientas|outils|werkzeuge)\/([^/]+)$/);
+  if (toolSlugMatch) {
+    const [, loc = 'en', , rawSlug] = toolSlugMatch;
+    const calcByLoc = TOOL_TO_CALC_REDIRECTS[rawSlug];
+    if (calcByLoc) {
+      return calcByLoc[loc] || calcByLoc.en;
+    }
+    const mappedToolSlug = LEGACY_TOOL_SLUG_MAP[rawSlug];
+    if (mappedToolSlug) {
+      const toolPrefix = loc === 'en' ? 'tools' : LOCALE_TOOL_PREFIX[loc];
+      return `/${loc}/${toolPrefix}/${mappedToolSlug}`;
+    }
+  }
+
   // 1c. Truly deprecated or merged calculator redirects
   const deprecatedMatch = pathname.match(/^\/(?:(en|es|fr|de)\/)?(?:calculators|calculadoras|calculatrices|rechner)\/([a-zA-Z0-9_-]+)$/);
   if (deprecatedMatch) {
     const slug = deprecatedMatch[2];
     const deprecatedTarget = DEPRECATED_CALC_REDIRECTS[slug];
     if (deprecatedTarget) return deprecatedTarget;
+  }
+
+  // 1d. Leaked redirect-checker documentation example paths (/new-path/*, /old-path/*)
+  if (pathname.startsWith('/new-path/') || pathname.startsWith('/old-path/') || pathname === '/new-path' || pathname === '/old-path') {
+    return '/en/tools/redirect-checker';
   }
 
   // 2. Garbage / PDF-metadata-scraped paths → canonical homepage
@@ -254,11 +336,17 @@ function getCanonicalPath(pathname: string): string | null {
     return `${targetMap[loc]}${rest}`;
   }
 
-  // 5. Old community post format → community index
+  // 5. Old community post format → canonical localized community index
   if (/^\/(?:en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/to-use-a-/.test(pathname) || pathname === '/community/to-use-a-bmi-calculator-93') {
     const localeMatch = pathname.match(/^\/(en|es|fr|de)\//);
     const locale = localeMatch ? localeMatch[1] : 'en';
-    return `/${locale}/community`;
+    const commMap: Record<string, string> = {
+      en: '/en/community',
+      es: '/es/comunidad',
+      fr: '/fr/communaute',
+      de: '/de/gemeinschaft',
+    };
+    return commMap[locale] || '/en/community';
   }
 
   // 6a. Cross-locale /[locale]/calculators/category/[cat] → localized category path
@@ -381,6 +469,9 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next|_vercel|.*\\..*).*)',
+    // Only skip internal Next/Vercel routes and real static asset file extensions at the end of the URL.
+    // This ensures dot-containing legacy slugs (e.g. /de/werkzeuge/sitemap.xml-generator, next.js-discussions, /*.xls$)
+    // are intercepted by middleware and 301-redirected in 1 hop.
+    '/((?!api|_next|_vercel|.*\\.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mjs|map|woff|woff2|ttf|eot|otf|txt|xml|json|webmanifest|pdf|wasm)$).*)',
   ],
 };

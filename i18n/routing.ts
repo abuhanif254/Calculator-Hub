@@ -1488,8 +1488,12 @@ export function resolveIntlHref(hrefStr: string): any {
     return hrefStr;
   }
 
+  // Strip any hash fragment or query string before matching static route pathnames,
+  // preventing next-intl from emitting malformed `/en/#trending-today` trailing-slash URLs.
+  const withoutHashOrQuery = hrefStr.split('#')[0].split('?')[0] || '/';
+
   // Strip accidental locale prefix if present (e.g. /en/tools/foo -> /tools/foo)
-  const cleanHref = hrefStr.replace(/^\/(en|es|fr|de)(?=\/|$)/, '') || '/';
+  const cleanHref = withoutHashOrQuery.replace(/^\/(en|es|fr|de)(?=\/|$)/, '') || '/';
 
   // If the exact path is explicitly statically mapped in routing.pathnames,
   // we MUST return the pathname key directly so next-intl uses the localized static route.
