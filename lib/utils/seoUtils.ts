@@ -264,3 +264,46 @@ export function canonicalizeInternalHref(href: string | undefined, currentLocale
   return localeMatch ? `${p}${search}${hash}` : `/${targetLocale}${p}${search}${hash}`;
 }
 
+/**
+ * Enriches short bare titles (< 32 chars) with localized high-CTR modifiers
+ * while strictly keeping the final title (including "| NexusCalculator" layout template)
+ * within 60 characters to prevent SERP truncation.
+ */
+export function optimizeSerpTitle(
+  rawTitle: string,
+  locale: string,
+  type: 'calculator' | 'tool' = 'calculator'
+): string {
+  const cleaned = rawTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
+  // Layout appends " | NexusCalculator" (18 chars), so keep base title <= 44 chars when adding modifiers
+  if (cleaned.length >= 32 || cleaned.includes('—') || cleaned.includes(' - ')) {
+    return cleaned;
+  }
+
+  const modifiers: Record<string, { calculator: string; tool: string }> = {
+    en: { calculator: ' — Free Online Formula', tool: ' — Free Online Tool' },
+    es: { calculator: ' — Fórmula Gratis Online', tool: ' — Herramienta Gratis' },
+    fr: { calculator: ' — Formule Gratuite', tool: ' — Outil Gratuit en Ligne' },
+    de: { calculator: ' — Kostenlos Online', tool: ' — Kostenloses Tool' },
+  };
+
+  const mod = (modifiers[locale] || modifiers.en)[type];
+  if (cleaned.length + mod.length <= 44) {
+    return `${cleaned}${mod}`;
+  }
+
+  const shortMod: Record<string, string> = {
+    en: ' (Free Online)',
+    es: ' (Gratis Online)',
+    fr: ' (Gratuit)',
+    de: ' (Kostenlos)',
+  };
+  const fallback = shortMod[locale] || shortMod.en;
+  if (cleaned.length + fallback.length <= 44) {
+    return `${cleaned}${fallback}`;
+  }
+
+  return cleaned;
+}
+
+

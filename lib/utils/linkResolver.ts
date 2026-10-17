@@ -1,21 +1,14 @@
-import { allTools } from '@/lib/registry';
+import { DEV_TOOL_SLUGS, CALC_SLUGS, NON_STANDARD_TITLE_HREFS } from '@/lib/data/linkResolverMap';
 
 // ═══════════════════════════════════════════════════════
 // LINK RESOLVER — Single source of truth for title→href mapping.
-// Replaces the 170+ hardcoded if-statements duplicated across
-// Navbar.tsx (desktop + mobile) and Footer.tsx.
+// Uses lightweight 13 KB lookup sets instead of importing the 1.1 MB
+// calculator/tool registries into client components like Navbar.tsx.
 // ═══════════════════════════════════════════════════════
-
-// Build the slug map once at module load time
-const titleToHrefMap = new Map<string, string>();
-
-allTools.forEach((tool) => {
-  titleToHrefMap.set(tool.title, tool.href);
-  titleToHrefMap.set(tool.slug, tool.href);
-});
 
 // Handle edge cases where sitemapData.ts titles don't exactly match calculator titles
 const titleOverrides: Record<string, string> = {
+  ...NON_STANDARD_TITLE_HREFS,
   // Developer Community Links
   "Latest Discussions": "/community",
   "Ask a Question": "/community",
@@ -115,32 +108,19 @@ const titleOverrides: Record<string, string> = {
   "Animated GIF Creator": "/tools/convert-to-gif",
 };
 
-Object.entries(titleOverrides).forEach(([title, href]) => {
-  titleToHrefMap.set(title, href);
-});
-
 /**
  * Resolves a calculator/tool title string to its internal href.
  * Falls back to `/sitemap` for unrecognized titles.
- *
- * Usage:
- *   resolveHref("Mortgage Calculator") → "/calculators/mortgage-calculator"
- *   resolveHref("JSON Formatter")      → "/tools/json-formatter" (via toolTitles)
- *   resolveHref("Unknown Tool")        → "/sitemap"
  */
 export function resolveHref(title: string): string {
-  // Check calculator map first
-  const calcHref = titleToHrefMap.get(title);
-  if (calcHref) return calcHref;
-
-  // Check title overrides
+  // Check exact title or non-standard title overrides first
   const overrideHref = titleOverrides[title];
   if (overrideHref) return overrideHref;
 
+  if (DEV_TOOL_SLUGS.has(title)) return `/tools/${title}`;
+  if (CALC_SLUGS.has(title)) return `/calculators/${title}`;
+
   // Auto-generate slug from title as a best-effort fallback
-  // This handles cases where sitemapData.ts has titles like "BMI Calculator"
-  // that we haven't manually mapped.
-  // We replace dots with dashes first to correctly handle robots.txt and sitemap.xml.
   const generatedSlug = title
     .toLowerCase()
     .replace(/\./g, '-')
@@ -149,10 +129,11 @@ export function resolveHref(title: string): string {
     .replace(/(^-|-$)+/g, '')
     .replace(/-+/g, '-');
 
-  // Check if a tool exists with this generated slug
-  const toolBySlug = allTools.find((t) => t.slug === generatedSlug);
-  if (toolBySlug) {
-    return toolBySlug.href;
+  if (DEV_TOOL_SLUGS.has(generatedSlug)) {
+    return `/tools/${generatedSlug}`;
+  }
+  if (CALC_SLUGS.has(generatedSlug)) {
+    return `/calculators/${generatedSlug}`;
   }
 
   return '/sitemap';

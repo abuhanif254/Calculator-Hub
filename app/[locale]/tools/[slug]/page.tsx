@@ -4,144 +4,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ToastProvider } from '../../../components/platform/ui/Toast';
 import { getToolConfig, allToolsConfig } from '../../../../lib/data/tools';
-import dynamic from 'next/dynamic';
-
-const JsonFormatterTool = dynamic(() => import('../../../components/tools/JsonFormatterTool').then(m => m.JsonFormatterTool));
-const DiffCheckerTool = dynamic(() => import('../../../components/tools/DiffCheckerTool').then(m => m.DiffCheckerTool));
-const HtmlFormatterTool = dynamic(() => import('../../../components/tools/HtmlFormatterTool').then(m => m.HtmlFormatterTool));
-const CssBeautifierTool = dynamic(() => import('../../../components/tools/CssBeautifierTool').then(m => m.CssBeautifierTool));
-const JsBeautifierTool = dynamic(() => import('../../../components/tools/JsBeautifierTool').then(m => m.JsBeautifierTool));
-const XmlFormatterTool = dynamic(() => import('../../../components/tools/XmlFormatterTool').then(m => m.XmlFormatterTool));
-const MarkdownPreviewerTool = dynamic(() => import('../../../components/tools/MarkdownPreviewerTool').then(m => m.MarkdownPreviewerTool));
-const SqlFormatterTool = dynamic(() => import('../../../components/tools/SqlFormatterTool').then(m => m.SqlFormatterTool));
-const YamlFormatterTool = dynamic(() => import('../../../components/tools/YamlFormatterTool').then(m => m.YamlFormatterTool));
-const CsvViewerTool = dynamic(() => import('../../../components/tools/CsvViewerTool').then(m => m.CsvViewerTool));
-const Base64EncodeTool = dynamic(() => import('../../../components/tools/Base64EncodeTool').then(m => m.Base64EncodeTool));
-const Base64DecodeTool = dynamic(() => import('../../../components/tools/Base64DecodeTool').then(m => m.Base64DecodeTool));
-const UrlEncoderTool = dynamic(() => import('../../../components/tools/UrlEncoderTool').then(m => m.UrlEncoderTool));
-const UrlDecoderTool = dynamic(() => import('../../../components/tools/UrlDecoderTool').then(m => m.UrlDecoderTool));
-const JwtDecoderTool = dynamic(() => import('../../../components/tools/JwtDecoderTool').then(m => m.JwtDecoderTool));
-const HashGeneratorTool = dynamic(() => import('../../../components/tools/HashGeneratorTool').then(m => m.HashGeneratorTool));
-const Md5GeneratorTool = dynamic(() => import('../../../components/tools/Md5GeneratorTool').then(m => m.Md5GeneratorTool));
-const Sha256GeneratorTool = dynamic(() => import('../../../components/tools/Sha256GeneratorTool').then(m => m.Sha256GeneratorTool));
-const PasswordGeneratorTool = dynamic(() => import('../../../components/tools/PasswordGeneratorTool').then(m => m.PasswordGeneratorTool));
-const HmacGeneratorTool = dynamic(() => import('../../../components/tools/HmacGeneratorTool').then(m => m.HmacGeneratorTool));
-const QrCodeGeneratorTool = dynamic(() => import('../../../components/tools/QrCodeGeneratorTool').then(m => m.QrCodeGeneratorTool));
-const MetaTagGeneratorTool = dynamic(() => import('../../../components/tools/meta-tag-generator').then(m => m.MetaTagGeneratorTool));
-const OpenGraphGeneratorTool = dynamic(() => import('../../../components/tools/open-graph-generator').then(m => m.OpenGraphGeneratorTool));
-const TwitterCardGeneratorTool = dynamic(() => import('../../../components/tools/twitter-card-generator').then(m => m.TwitterCardGeneratorTool));
-const RobotsTxtGeneratorTool = dynamic(() => import('../../../components/tools/robots-txt-generator').then(m => m.RobotsTxtGeneratorTool));
-const SitemapXmlGeneratorTool = dynamic(() => import('../../../components/tools/sitemap-xml-generator').then(m => m.SitemapXmlGeneratorTool));
-const HtaccessGeneratorTool = dynamic(() => import('../../../components/tools/htaccess-generator').then(m => m.HtaccessGeneratorTool));
-const ResponsiveScreenTesterTool = dynamic(() => import('../../../components/tools/responsive-screen-tester').then(m => m.ResponsiveScreenTesterTool));
-const HttpHeaderCheckerTool = dynamic(() => import('../../../components/tools/http-header-checker').then(m => m.HttpHeaderCheckerTool));
-const RedirectCheckerTool = dynamic(() => import('../../../components/tools/redirect-checker').then(m => m.RedirectCheckerTool));
-const WebsiteScreenshotTool = dynamic(() => import('../../../components/tools/website-screenshot-tool').then(m => m.WebsiteScreenshotTool));
-const DnsLookupTool = dynamic(() => import('../../../components/tools/dns-lookup').then(m => m.DnsLookupTool));
-const IpLookupTool = dynamic(() => import('../../../components/tools/ip-lookup').then(m => m.IpLookupTool));
-const UserAgentParserTool = dynamic(() => import('../../../components/tools/user-agent-parser').then(m => m.UserAgentParserTool));
-const MimeTypeCheckerTool = dynamic(() => import('../../../components/tools/mime-type-checker').then(m => m.MimeTypeCheckerTool));
-const ColorPickerTool = dynamic(() => import('../../../components/tools/color-picker').then(m => m.ColorPickerTool));
-const GradientGeneratorTool = dynamic(() => import('../../../components/tools/GradientGeneratorTool').then(m => m.GradientGeneratorTool));
-const TailwindColorPaletteTool = dynamic(() => import('../../../components/tools/TailwindColorPaletteTool').then(m => m.TailwindColorPaletteTool));
-const CssShadowGeneratorTool = dynamic(() => import('../../../components/tools/CssShadowGeneratorTool').then(m => m.CssShadowGeneratorTool));
-const GlassmorphismGeneratorTool = dynamic(() => import('../../../components/tools/GlassmorphismGeneratorTool').then(m => m.GlassmorphismGeneratorTool));
-const NeumorphismGeneratorTool = dynamic(() => import('../../../components/tools/NeumorphismGeneratorTool').then(m => m.NeumorphismGeneratorTool));
-const ContrastCheckerTool = dynamic(() => import('../../../components/tools/ContrastCheckerTool').then(m => m.ContrastCheckerTool));
-const ColorPaletteGeneratorTool = dynamic(() => import('../../../components/tools/ColorPaletteGeneratorTool').then(m => m.ColorPaletteGeneratorTool));
-const HexToRgbTool = dynamic(() => import('../../../components/tools/hex-to-rgb').then(m => m.HexToRgbTool));
-const UuidGeneratorTool = dynamic(() => import('../../../components/tools/UuidGeneratorTool').then(m => m.UuidGeneratorTool));
-const SlugGeneratorTool = dynamic(() => import('../../../components/tools/SlugGeneratorTool').then(m => m.SlugGeneratorTool));
-const LoremIpsumGeneratorTool = dynamic(() => import('../../../components/tools/LoremIpsumGeneratorTool').then(m => m.LoremIpsumGeneratorTool));
-const FakeUserDataGeneratorTool = dynamic(() => import('../../../components/tools/FakeUserDataGeneratorTool').then(m => m.FakeUserDataGeneratorTool));
-const RandomNumberGeneratorTool = dynamic(() => import('../../../components/tools/RandomNumberGeneratorTool').then(m => m.RandomNumberGeneratorTool));
-const ApiMockDataGeneratorTool = dynamic(() => import('../../../components/tools/ApiMockDataGeneratorTool').then(m => m.ApiMockDataGeneratorTool));
-const HtmlTableGeneratorTool = dynamic(() => import('../../../components/tools/HtmlTableGeneratorTool').then(m => m.HtmlTableGeneratorTool));
-const UsernameGeneratorTool = dynamic(() => import('../../../components/tools/UsernameGeneratorTool').then(m => m.UsernameGeneratorTool));
-const RandomStringGeneratorTool = dynamic(() => import('../../../components/tools/RandomStringGeneratorTool').then(m => m.RandomStringGeneratorTool));
-const StrongPasswordGeneratorTool = dynamic(() => import('../../../components/tools/StrongPasswordGeneratorTool').then(m => m.StrongPasswordGeneratorTool));
-const RgbToHexTool = dynamic(() => import('../../../components/tools/RgbToHexTool').then(m => m.RgbToHexTool));
-const MergePdfTool = dynamic(() => import('../../../components/tools/MergePdfTool').then(m => m.MergePdfTool));
-const SplitPdfTool = dynamic(() => import('../../../components/tools/SplitPdfTool').then(m => m.SplitPdfTool));
-const CompressPdfTool = dynamic(() => import('../../../components/tools/CompressPdfTool').then(m => m.CompressPdfTool));
-const EditPdfTool = dynamic(() => import('../../../components/tools/EditPdfTool').then(m => m.EditPdfTool));
-const PdfToJpgTool = dynamic(() => import('../../../components/tools/PdfToJpgTool').then(m => m.PdfToJpgTool));
-const JpgToPdfTool = dynamic(() => import('../../../components/tools/JpgToPdfTool').then(m => m.JpgToPdfTool));
-const RemovePdfPagesTool = dynamic(() => import('../../../components/tools/RemovePdfPagesTool').then(m => m.RemovePdfPagesTool));
-const RotatePdfTool = dynamic(() => import('../../../components/tools/RotatePdfTool').then(m => m.RotatePdfTool));
-const WatermarkPdfTool = dynamic(() => import('../../../components/tools/WatermarkPdfTool').then(m => m.WatermarkPdfTool));
-const ProtectPdfTool = dynamic(() => import('../../../components/tools/ProtectPdfTool').then(m => m.ProtectPdfTool));
-const UnlockPdfTool = dynamic(() => import('../../../components/tools/UnlockPdfTool').then(m => m.UnlockPdfTool));
-const OrganizePdfTool = dynamic(() => import('../../../components/tools/OrganizePdfTool').then(m => m.OrganizePdfTool));
-const AddPageNumbersPdfTool = dynamic(() => import('../../../components/tools/AddPageNumbersPdfTool').then(m => m.AddPageNumbersPdfTool));
-const PdfMetadataEditorTool = dynamic(() => import('../../../components/tools/PdfMetadataEditorTool').then(m => m.PdfMetadataEditorTool));
-const PdfMetadataViewerTool = dynamic(() => import('../../../components/tools/PdfMetadataViewerTool').then(m => m.PdfMetadataViewerTool));
-const PdfExtractPagesTool = dynamic(() => import('../../../components/tools/PdfExtractPagesTool').then(m => m.PdfExtractPagesTool));
-const PdfCropPagesTool = dynamic(() => import('../../../components/tools/PdfCropPagesTool').then(m => m.PdfCropPagesTool));
-const PdfOcrTool = dynamic(() => import('../../../components/tools/PdfOcrTool').then(m => m.PdfOcrTool));
-const PdfToWordTool = dynamic(() => import('../../../components/tools/PdfToWordTool').then(m => m.PdfToWordTool));
-const WordToPdfTool = dynamic(() => import('../../../components/tools/WordToPdfTool').then(m => m.WordToPdfTool));
-const ExcelToPdfTool = dynamic(() => import('../../../components/tools/ExcelToPdfTool').then(m => m.ExcelToPdfTool));
-const PowerPointToPdfTool = dynamic(() => import('../../../components/tools/PowerPointToPdfTool').then(m => m.PowerPointToPdfTool));
-const ImageToPdfTool = dynamic(() => import('../../../components/tools/ImageToPdfTool').then(m => m.ImageToPdfTool));
-const CompressImageTool = dynamic(() => import('../../../components/tools/CompressImageTool').then(m => m.CompressImageTool));
-const ResizeImageTool = dynamic(() => import('../../../components/tools/ResizeImageTool').then(m => m.ResizeImageTool));
-const PhotoEditorTool = dynamic(() => import('../../../components/tools/PhotoEditorTool').then(m => m.PhotoEditorTool));
-const WordCounterTool = dynamic(() => import('../../../components/tools/WordCounterTool').then(m => m.WordCounterTool));
-const CaseConverterTool = dynamic(() => import('../../../components/tools/CaseConverterTool').then(m => m.CaseConverterTool));
-const AIPromptHelperTool = dynamic(() => import('../../../components/tools/AIPromptHelperTool').then(m => m.AIPromptHelperTool));
-const InstagramTiktokHashtagGeneratorTool = dynamic(() => import('../../../components/tools/InstagramTiktokHashtagGeneratorTool').then(m => m.InstagramTiktokHashtagGeneratorTool));
-const BioLinkPageGeneratorTool = dynamic(() => import('../../../components/tools/BioLinkPageGeneratorTool').then(m => m.BioLinkPageGeneratorTool));
-const HtmlCssJsPlaygroundTool = dynamic(() => import('../../../components/tools/HtmlCssJsPlaygroundTool').then(m => m.HtmlCssJsPlaygroundTool));
-const BackgroundRemoverTool = dynamic(() => import('../../../components/tools/BackgroundRemoverTool').then(m => m.BackgroundRemoverTool));
-const QrCodeStudioTool = dynamic(() => import('../../../components/tools/QrCodeStudioTool').then(m => m.QrCodeStudioTool));
-const PdfToExcelTool = dynamic(() => import('../../../components/tools/PdfToExcelTool').then(m => m.PdfToExcelTool));
-const PdfToPowerPointTool = dynamic(() => import('../../../components/tools/PdfToPowerPointTool').then(m => m.PdfToPowerPointTool));
-const PdfToHtmlTool = dynamic(() => import('../../../components/tools/PdfToHtmlTool').then(m => m.PdfToHtmlTool));
-const PdfToTextTool = dynamic(() => import('../../../components/tools/PdfToTextTool').then(m => m.PdfToTextTool));
-const PdfToPngTool = dynamic(() => import('../../../components/tools/PdfToPngTool').then(m => m.PdfToPngTool));
-const PngToPdfTool = dynamic(() => import('../../../components/tools/PngToPdfTool').then(m => m.PngToPdfTool));
-const HtmlToPdfTool = dynamic(() => import('../../../components/tools/HtmlToPdfTool').then(m => m.HtmlToPdfTool));
-const TextToPdfTool = dynamic(() => import('../../../components/tools/TextToPdfTool').then(m => m.TextToPdfTool));
-const EpubToPdfTool = dynamic(() => import('../../../components/tools/EpubToPdfTool').then(m => m.EpubToPdfTool));
-const PdfToEpubTool = dynamic(() => import('../../../components/tools/PdfToEpubTool').then(m => m.PdfToEpubTool));
-const FlattenPdfTool = dynamic(() => import('../../../components/tools/FlattenPdfTool').then(m => m.FlattenPdfTool));
-const SignPdfTool = dynamic(() => import('../../../components/tools/SignPdfTool').then(m => m.SignPdfTool));
-const RedactPdfTool = dynamic(() => import('../../../components/tools/RedactPdfTool').then(m => m.RedactPdfTool));
-const RepairPdfTool = dynamic(() => import('../../../components/tools/RepairPdfTool').then(m => m.RepairPdfTool));
-const ScanToPdfTool = dynamic(() => import('../../../components/tools/ScanToPdfTool').then(m => m.ScanToPdfTool));
-const CropImageTool = dynamic(() => import('../../../components/tools/CropImageTool').then(m => m.CropImageTool));
-const RotateImageTool = dynamic(() => import('../../../components/tools/RotateImageTool').then(m => m.RotateImageTool));
-const FlipImageTool = dynamic(() => import('../../../components/tools/FlipImageTool').then(m => m.FlipImageTool));
-const ImageConverterTool = dynamic(() => import('../../../components/tools/ImageConverterTool').then(m => m.ImageConverterTool));
-const BlurFacesInImageTool = dynamic(() => import('../../../components/tools/BlurFacesInImageTool').then(m => m.default));
-const WatermarkImageTool = dynamic(() => import('../../../components/tools/WatermarkImageTool').then(m => m.WatermarkImageTool));
-const PixelateImageTool = dynamic(() => import('../../../components/tools/PixelateImageTool').then(m => m.PixelateImageTool));
-const BlurImageTool = dynamic(() => import('../../../components/tools/BlurImageTool').then(m => m.BlurImageTool));
-const HeicToJpgTool = dynamic(() => import('../../../components/tools/HeicToJpgTool').then(m => m.HeicToJpgTool));
-const SvgToPngTool = dynamic(() => import('../../../components/tools/SvgToPngTool').then(m => m.SvgToPngTool));
-const FaviconGeneratorTool = dynamic(() => import('../../../components/tools/FaviconGeneratorTool').then(m => m.FaviconGeneratorTool));
-const PngToSvgTool = dynamic(() => import('../../../components/tools/PngToSvgTool').then(m => m.PngToSvgTool));
-const SvgOptimizerTool = dynamic(() => import('../../../components/tools/SvgOptimizerTool').then(m => m.SvgOptimizerTool));
-const ConvertToWebpTool = dynamic(() => import('../../../components/tools/ConvertToWebpTool').then(m => m.ConvertToWebpTool));
-const ConvertToPngTool = dynamic(() => import('../../../components/tools/ConvertToPngTool').then(m => m.ConvertToPngTool));
-const ConvertToJpgTool = dynamic(() => import('../../../components/tools/ConvertToJpgTool').then(m => m.ConvertToJpgTool));
-const ConvertToSvgTool = dynamic(() => import('../../../components/tools/ConvertToSvgTool').then(m => m.ConvertToSvgTool));
-const ConvertToGifTool = dynamic(() => import('../../../components/tools/ConvertToGifTool').then(m => m.ConvertToGifTool));
-const ImageMetadataViewerTool = dynamic(() => import('../../../components/tools/ImageMetadataViewerTool').then(m => m.ImageMetadataViewerTool));
-const ImageMetadataRemoverTool = dynamic(() => import('../../../components/tools/ImageMetadataRemoverTool').then(m => m.ImageMetadataRemoverTool));
-const ColorPickerFromImageTool = dynamic(() => import('../../../components/tools/ColorPickerFromImageTool').then(m => m.ColorPickerFromImageTool));
-const ColorPaletteGeneratorFromImageTool = dynamic(() => import('../../../components/tools/ColorPaletteGeneratorFromImageTool'));
-const AiImageUpscalerTool = dynamic(() => import('../../../components/tools/AiImageUpscalerTool'));
-const IcoToPngTool = dynamic(() => import('../../../components/tools/IcoToPngTool').then(m => m.IcoToPngTool));
-const AiImageGeneratorTool = dynamic(() => import('../../../components/tools/AiImageGeneratorTool').then(m => m.AiImageGeneratorTool));
-const MemeGeneratorTool = dynamic(() => import('../../../components/tools/MemeGeneratorTool').then(m => m.MemeGeneratorTool));
-const ImageToBase64Tool = dynamic(() => import('../../../components/tools/ImageToBase64Tool').then(m => m.ImageToBase64Tool));
-const Base64ToImageTool = dynamic(() => import('../../../components/tools/Base64ToImageTool').then(m => m.Base64ToImageTool));
-const MortgageCalculatorUkTool = dynamic(() => import('../../../components/tools/MortgageCalculatorUkTool').then(m => m.MortgageCalculatorUkTool));
-const DatabaseAnonymizerTool = dynamic(() => import('../../../components/platform/ui/DatabaseAnonymizerTool').then(m => m.DatabaseAnonymizerTool));
-const TextToSpeechTool = dynamic(() => import('../../../components/tools/TextToSpeechTool').then(m => m.TextToSpeechTool));
-
+import { ToolViewWrapper } from '../../../components/ToolViewWrapper';
 import { Link, routing, resolveIntlHref } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
@@ -154,144 +17,6 @@ import { getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
 import { getCalculatorBySlug } from '@/lib/data/calculators';
 import { enrichToolSeoContent, getLocalizedReviewerByline } from '@/lib/utils/seoContentEnricher';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers, BookOpen, Clock, Wrench } from 'lucide-react';
-
-const toolComponents: Record<string, React.ComponentType> = {
-  "json-formatter": JsonFormatterTool,
-  "diff-checker": DiffCheckerTool,
-  "html-formatter": HtmlFormatterTool,
-  "css-beautifier": CssBeautifierTool,
-  "js-beautifier": JsBeautifierTool,
-  "xml-formatter": XmlFormatterTool,
-  "markdown-previewer": MarkdownPreviewerTool,
-  "sql-formatter": SqlFormatterTool,
-  "yaml-formatter": YamlFormatterTool,
-  "csv-viewer": CsvViewerTool,
-  "base64-encode": Base64EncodeTool,
-  "base64-decode": Base64DecodeTool,
-  "url-encoder": UrlEncoderTool,
-  "url-decoder": UrlDecoderTool,
-  "jwt-decoder": JwtDecoderTool,
-  "hash-generator": HashGeneratorTool,
-  "md5-generator": Md5GeneratorTool,
-  "sha256-generator": Sha256GeneratorTool,
-  "password-generator": PasswordGeneratorTool,
-  "hmac-generator": HmacGeneratorTool,
-  "qr-code-generator": QrCodeGeneratorTool,
-  "meta-tag-generator": MetaTagGeneratorTool,
-  "open-graph-generator": OpenGraphGeneratorTool,
-  "twitter-card-generator": TwitterCardGeneratorTool,
-  "robots-txt-generator": RobotsTxtGeneratorTool,
-  "sitemap-xml-generator": SitemapXmlGeneratorTool,
-  "htaccess-generator": HtaccessGeneratorTool,
-  "responsive-screen-tester": ResponsiveScreenTesterTool,
-  "http-header-checker": HttpHeaderCheckerTool,
-  "redirect-checker": RedirectCheckerTool,
-  "website-screenshot-tool": WebsiteScreenshotTool,
-  "dns-lookup": DnsLookupTool,
-  "ip-lookup": IpLookupTool,
-  "user-agent-parser": UserAgentParserTool,
-  "mime-type-checker": MimeTypeCheckerTool,
-  "color-picker": ColorPickerTool,
-  "gradient-generator": GradientGeneratorTool,
-  "tailwind-color-palette": TailwindColorPaletteTool,
-  "css-shadow-generator": CssShadowGeneratorTool,
-  "glassmorphism-generator": GlassmorphismGeneratorTool,
-  "neumorphism-generator": NeumorphismGeneratorTool,
-  "contrast-checker": ContrastCheckerTool,
-  "color-palette-generator": ColorPaletteGeneratorTool,
-  "hex-to-rgb": HexToRgbTool,
-  "uuid-generator": UuidGeneratorTool,
-  "slug-generator": SlugGeneratorTool,
-  "lorem-ipsum-generator": LoremIpsumGeneratorTool,
-  "fake-user-data-generator": FakeUserDataGeneratorTool,
-  "random-number-generator": RandomNumberGeneratorTool,
-  "api-mock-data-generator": ApiMockDataGeneratorTool,
-  "html-table-generator": HtmlTableGeneratorTool,
-  "username-generator": UsernameGeneratorTool,
-  "random-string-generator": RandomStringGeneratorTool,
-  "strong-password-generator": StrongPasswordGeneratorTool,
-  "rgb-to-hex": RgbToHexTool,
-  "merge-pdf": MergePdfTool,
-  "split-pdf": SplitPdfTool,
-  "compress-pdf": CompressPdfTool,
-  "edit-pdf": EditPdfTool,
-  "pdf-to-jpg": PdfToJpgTool,
-  "jpg-to-pdf": JpgToPdfTool,
-  "remove-pdf-pages": RemovePdfPagesTool,
-  "rotate-pdf": RotatePdfTool,
-  "watermark-pdf": WatermarkPdfTool,
-  "protect-pdf": ProtectPdfTool,
-  "unlock-pdf": UnlockPdfTool,
-  "organize-pdf": OrganizePdfTool,
-  "add-page-numbers-pdf": AddPageNumbersPdfTool,
-  "pdf-metadata-editor": PdfMetadataEditorTool,
-  "pdf-metadata-viewer": PdfMetadataViewerTool,
-  "pdf-extract-pages": PdfExtractPagesTool,
-  "pdf-crop-pages": PdfCropPagesTool,
-  "pdf-ocr": PdfOcrTool,
-  "pdf-to-word": PdfToWordTool,
-  "word-to-pdf": WordToPdfTool,
-  "excel-to-pdf": ExcelToPdfTool,
-  "powerpoint-to-pdf": PowerPointToPdfTool,
-  "image-to-pdf": ImageToPdfTool,
-  "compress-image": CompressImageTool,
-  "resize-image": ResizeImageTool,
-  "photo-editor": PhotoEditorTool,
-  "word-counter": WordCounterTool,
-  "case-converter": CaseConverterTool,
-  "ai-prompt-helper": AIPromptHelperTool,
-  "instagram-tiktok-hashtag-generator": InstagramTiktokHashtagGeneratorTool,
-  "bio-link-page-generator": BioLinkPageGeneratorTool,
-  "html-css-js-playground": HtmlCssJsPlaygroundTool,
-  "background-remover": BackgroundRemoverTool,
-  "qr-code-studio": QrCodeStudioTool,
-  "pdf-to-excel": PdfToExcelTool,
-  "pdf-to-powerpoint": PdfToPowerPointTool,
-  "pdf-to-html": PdfToHtmlTool,
-  "pdf-to-text": PdfToTextTool,
-  "pdf-to-png": PdfToPngTool,
-  "png-to-pdf": PngToPdfTool,
-  "html-to-pdf": HtmlToPdfTool,
-  "text-to-pdf": TextToPdfTool,
-  'epub-to-pdf': EpubToPdfTool,
-  'pdf-to-epub': PdfToEpubTool,
-  'flatten-pdf': FlattenPdfTool,
-  'sign-pdf': SignPdfTool,
-  'redact-pdf': RedactPdfTool,
-  'repair-pdf': RepairPdfTool,
-  'scan-to-pdf': ScanToPdfTool,
-  'crop-image': CropImageTool,
-  'rotate-image': RotateImageTool,
-  'flip-image': FlipImageTool,
-  'image-converter': ImageConverterTool,
-  'image-metadata-viewer': ImageMetadataViewerTool,
-  'image-metadata-remover': ImageMetadataRemoverTool,
-  'color-picker-from-image': ColorPickerFromImageTool,
-  'color-palette-generator-from-image': ColorPaletteGeneratorFromImageTool,
-  'ai-image-upscaler': AiImageUpscalerTool,
-  'blur-faces-in-image': BlurFacesInImageTool,
-  'watermark-image': WatermarkImageTool,
-  'pixelate-image': PixelateImageTool,
-  'blur-image': BlurImageTool,
-  'heic-to-jpg': HeicToJpgTool,
-  'svg-to-png': SvgToPngTool,
-  'favicon-generator': FaviconGeneratorTool,
-  'png-to-svg': PngToSvgTool,
-  'svg-optimizer': SvgOptimizerTool,
-  'convert-to-webp': ConvertToWebpTool,
-  'convert-to-png': ConvertToPngTool,
-  'convert-to-jpg': ConvertToJpgTool,
-  'convert-to-svg': ConvertToSvgTool,
-  'convert-to-gif': ConvertToGifTool,
-  'ico-to-png': IcoToPngTool,
-  'ai-image-generator': AiImageGeneratorTool,
-  'meme-generator': MemeGeneratorTool,
-  'image-to-base64': ImageToBase64Tool,
-  'base64-to-image': Base64ToImageTool,
-  'mortgage-calculator-uk': MortgageCalculatorUkTool,
-  'database-anonymizer': DatabaseAnonymizerTool,
-  'text-to-speech': TextToSpeechTool,
-};
 
 import fs from "fs";
 import path from "path";
@@ -473,13 +198,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const config = getToolConfig(slug);
   if (!config) return {};
 
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const mdData = getMarkdownContent(slug, locale);
 
   const rawMetaTitle = mdData?.data?.metaTitle || mdData?.data?.title || config.title;
-  const metaTitle = rawMetaTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
+  const metaTitle = optimizeSerpTitle(rawMetaTitle, locale, 'tool');
   const metaDescription = mdData?.data?.metaDescription || mdData?.data?.shortDescription || config.shortDescription;
   const metaKeywords = mdData?.data?.metaKeywords || config.keywords.join(", ");
+  const alternates = getCanonicalAndAlternates('/tools/[slug]', locale, slug);
 
   return {
     title: metaTitle,
@@ -488,13 +214,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: metaTitle,
       description: metaDescription,
+      url: alternates.canonical,
+      siteName: 'NexusCalculator',
+      locale,
       type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle,
+      description: metaDescription,
     },
     robots: {
       index: true,
       follow: true,
     },
-    alternates: getCanonicalAndAlternates('/tools/[slug]', locale, slug),
+    alternates,
   };
 }
 
@@ -511,12 +245,6 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '');
   const { getCanonicalUrl, canonicalizeInternalHref } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/tools/[slug]', locale, config.slug);
-
-  const ToolComponent = toolComponents[config.slug];
-
-  if (!ToolComponent) {
-    return <div className="p-8 text-center">Tool component not found for this slug.</div>;
-  }
 
   const mdData = getMarkdownContent(resolvedSlug, locale);
   const hasLocalizedMd = fs.existsSync(path.join(process.cwd(), "content", "tools", locale, `${resolvedSlug}.md`));
@@ -632,8 +360,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
       "url": baseUrl
     },
     "reviewedBy": {
-      "@type": "Person",
-      "name": "MD Abu Hanif Mia"
+      "@type": "Organization",
+      "name": reviewerByline.reviewer,
+      "url": getCanonicalUrl('/about-us', locale)
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", "#tool-hero-desc"]
     },
     "offers": {
       "@type": "Offer",
@@ -682,7 +415,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
           <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
             {pageTitle}
           </h1>
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400">
+          <p id="tool-hero-desc" className="text-lg md:text-xl text-slate-600 dark:text-slate-400">
             {pageShortDesc}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs text-slate-500 dark:text-slate-400">
@@ -694,7 +427,10 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             />
             <span>•</span>
             <span>
-              <strong className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewedBy} MD Abu Hanif Mia</strong> ({reviewerByline.verifiedBadge})
+              <Link href="/about-us" className="hover:text-[#518231] transition-colors">
+                <strong className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewedBy} {reviewerByline.reviewer}</strong>
+              </Link>{' '}
+              ({reviewerByline.verifiedBadge})
             </span>
           </div>
         </section>
@@ -719,7 +455,12 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             }))}
           >
             <ToastProvider>
-              <ToolComponent />
+              <ToolViewWrapper
+                slug={config.slug}
+                title={pageTitle}
+                shortDesc={pageShortDesc}
+                locale={locale}
+              />
             </ToastProvider>
           </NextIntlClientProvider>
         </section>

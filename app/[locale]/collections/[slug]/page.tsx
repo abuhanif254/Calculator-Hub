@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = collection.translations?.[locale] || collection;
   const cleanSeoTitle = t.seoTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const alternates = getCanonicalAndAlternates('/collections/[slug]', locale, slug);
 
   return {
     title: cleanSeoTitle,
@@ -29,9 +30,17 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: cleanSeoTitle,
       description: t.seoDescription,
-      type: 'website'
+      url: alternates.canonical,
+      siteName: 'NexusCalculator',
+      locale,
+      type: 'website',
     },
-    alternates: getCanonicalAndAlternates('/collections/[slug]', locale, slug),
+    twitter: {
+      card: 'summary_large_image',
+      title: cleanSeoTitle,
+      description: t.seoDescription,
+    },
+    alternates,
   };
 }
 

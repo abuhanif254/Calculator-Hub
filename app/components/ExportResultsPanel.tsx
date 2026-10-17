@@ -6,9 +6,6 @@ import {
   QrCode, ExternalLink, Mail, Image as ImageIcon, X, Code, Globe,
   Bookmark, BookmarkCheck
 } from "lucide-react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import QRCode from "qrcode";
 import { serializeCalculatorInputs } from "@/lib/hooks/useCalculatorUrlHydration";
 import { 
   saveCalculationToHistory, 
@@ -90,7 +87,8 @@ export function ExportResultsPanel({
       // Update address bar quietly so the URL matches the share link
       window.history.replaceState({ ...window.history.state }, '', fullUrl);
 
-      // Generate QR Code
+      // Generate QR Code lazily on demand
+      const QRCode = (await import("qrcode")).default;
       const qr = await QRCode.toDataURL(fullUrl, {
         width: 240,
         margin: 1,
@@ -171,6 +169,7 @@ export function ExportResultsPanel({
     const currentUrl = typeof window !== 'undefined' ? window.location.href : 'https://www.nexuscalculator.net';
     let qrDataUrl = '';
     try {
+      const QRCode = (await import("qrcode")).default;
       qrDataUrl = await QRCode.toDataURL(currentUrl, {
         width: 140,
         margin: 1,
@@ -181,6 +180,7 @@ export function ExportResultsPanel({
     }
 
     try {
+      const html2canvas = (await import("html2canvas")).default;
       const canvas = await html2canvas(element, {
         scale: 2, // Retina resolution
         useCORS: true,
@@ -254,6 +254,7 @@ export function ExportResultsPanel({
       setIsExportingPDF(true);
       const canvas = await createReportCanvas();
       const imgData = canvas.toDataURL('image/png');
+      const { jsPDF } = await import("jspdf");
 
       const pdf = new jsPDF({
         orientation: 'portrait',

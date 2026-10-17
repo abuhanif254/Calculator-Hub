@@ -3,8 +3,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { Bell, X, Zap, Star, Info, CheckCheck, Package, MessageCircle, Heart, CheckCircle } from "lucide-react";
 import { useAuth } from "./AuthProvider";
-import { db } from "@/lib/firebase";
-import { collection, query, orderBy, limit, onSnapshot, updateDoc, doc } from "firebase/firestore";
 
 // ── Notification data ─────────────────────────────────────────────────────────
 export type NotificationType = "new_tool" | "update" | "tip" | "announcement" | "reply" | "upvote" | "accepted";
@@ -137,17 +135,33 @@ export function NotificationsPanel() {
       setUserNotifications([]);
       return;
     }
-    const q = query(collection(db, `users/${appUser.uid}/notifications`), orderBy('timestamp', 'desc'), limit(20));
-    const unsub = onSnapshot(q, (snap) => {
-      const notifs = snap.docs.map(d => ({
-        id: d.id,
-        ...d.data(),
-        isUserSpecific: true,
-        read: d.data().read || false
-      })) as AppNotification[];
-      setUserNotifications(notifs);
-    });
-    return () => unsub();
+    let unsub: (() => void) | undefined;
+    let active = true;
+    (async () => {
+      try {
+        const [{ collection, query, orderBy, limit, onSnapshot }, { db }] = await Promise.all([
+          import("firebase/firestore"),
+          import("@/lib/firebase"),
+        ]);
+        if (!active) return;
+        const q = query(collection(db, `users/${appUser.uid}/notifications`), orderBy('timestamp', 'desc'), limit(20));
+        unsub = onSnapshot(q, (snap) => {
+          const notifs = snap.docs.map(d => ({
+            id: d.id,
+            ...d.data(),
+            isUserSpecific: true,
+            read: d.data().read || false
+          })) as AppNotification[];
+          setUserNotifications(notifs);
+        });
+      } catch {
+        // Ignore firestore errors
+      }
+    })();
+    return () => {
+      active = false;
+      if (unsub) unsub();
+    };
   }, [appUser]);
 
   // Close on outside click
@@ -180,22 +194,38 @@ export function NotificationsPanel() {
     ? allNotifications.filter((n) => n.isUserSpecific ? !n.read : !readIds.has(n.id)).length
     : 0;
 
-  const markAllRead = useCallback(() => {
+  const markAllRead = useCallback(async () => {
     const allSystem = new Set(SYSTEM_NOTIFICATIONS.map((n) => n.id));
     setReadIds(allSystem);
     saveReadIds(allSystem);
     
     // Mark user notifications read in firestore
     if (appUser) {
-       userNotifications.filter(n => !n.read).forEach(n => {
-          updateDoc(doc(db, `users/${appUser.uid}/notifications`, n.id), { read: true }).catch(()=>null);
-       });
+      try {
+        const [{ updateDoc, doc }, { db }] = await Promise.all([
+          import("firebase/firestore"),
+          import("@/lib/firebase"),
+        ]);
+        userNotifications.filter(n => !n.read).forEach(n => {
+          updateDoc(doc(db, `users/${appUser.uid}/notifications`, n.id), { read: true }).catch(() => null);
+        });
+      } catch {
+        // Ignore
+      }
     }
   }, [userNotifications, appUser]);
 
-  const markRead = useCallback((id: string, isUserSpecific?: boolean) => {
+  const markRead = useCallback(async (id: string, isUserSpecific?: boolean) => {
     if (isUserSpecific && appUser) {
-       updateDoc(doc(db, `users/${appUser.uid}/notifications`, id), { read: true }).catch(()=>null);
+      try {
+        const [{ updateDoc, doc }, { db }] = await Promise.all([
+          import("firebase/firestore"),
+          import("@/lib/firebase"),
+        ]);
+        updateDoc(doc(db, `users/${appUser.uid}/notifications`, id), { read: true }).catch(() => null);
+      } catch {
+        // Ignore
+      }
     } else {
        setReadIds((prev) => {
          const next = new Set(prev);

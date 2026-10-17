@@ -283,9 +283,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     };
   }
 
-  const { metaTitle, metaDescription, metaKeywords } = getLocalizedCalcInfo(calc, locale, slug);
+  const { metaTitle: rawMetaTitle, metaDescription, metaKeywords } = getLocalizedCalcInfo(calc, locale, slug);
 
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
+  const metaTitle = optimizeSerpTitle(rawMetaTitle, locale, 'calculator');
+  const alternates = getCanonicalAndAlternates('/calculators/[slug]', locale, calc.slug);
 
   return {
     title: metaTitle,
@@ -294,13 +296,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: metaTitle,
       description: metaDescription,
+      url: alternates.canonical,
+      siteName: "NexusCalculator",
+      locale,
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: metaTitle,
+      description: metaDescription,
     },
     robots: {
       index: true,
       follow: true,
     },
-    alternates: getCanonicalAndAlternates('/calculators/[slug]', locale, calc.slug),
+    alternates,
   };
 }
 
@@ -536,7 +546,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   };
   const guideText = guideTranslations[resolvedParams.locale] || guideTranslations.en;
 
-  // SoftwareApplication JSON-LD Schema enriched with E-E-A-T Author, Reviewer & DateModified
+  // SoftwareApplication JSON-LD Schema enriched with E-E-A-T Author, Reviewer, DateModified & SpeakableSpecification
   const softwareAppSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -556,8 +566,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       "url": baseUrl
     },
     "reviewedBy": {
-      "@type": "Person",
-      "name": reviewerByline.reviewer
+      "@type": "Organization",
+      "name": reviewerByline.reviewer,
+      "url": getCanonicalUrl('/about-us', resolvedParams.locale)
+    },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", "#calc-hero-desc", "#math-formula"]
     },
     "offers": {
       "@type": "Offer",
@@ -575,6 +590,122 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
 
   const formulaDef = getFormulaForCalculator(calc.slug);
+
+  // Field-driven localized HowTo JSON-LD Schema — unlocks step-by-step rich results for all 1,398 calculator URLs
+  const fieldLabelsList = (clientCalcDef.fields || [])
+    .slice(0, 4)
+    .map((f) => (f.unit ? `${f.label} (${f.unit})` : f.label))
+    .join(', ');
+  const formulaExpr = formulaDef?.formula || pageTitle;
+  const howToTemplates: Record<string, { name: string; steps: { name: string; text: string }[] }> = {
+    en: {
+      name: `How to Use the ${pageTitle}`,
+      steps: [
+        {
+          name: 'Enter Your Input Parameters',
+          text: fieldLabelsList
+            ? `Enter your values for ${fieldLabelsList} into the ${pageTitle} input form.`
+            : `Enter your numerical parameters into the ${pageTitle} input fields.`,
+        },
+        {
+          name: 'Verify Units & Assumptions',
+          text: `Confirm your selected measurement units, rates, or compounding periods match your scenario.`,
+        },
+        {
+          name: 'Run the Verified Mathematical Formula',
+          text: `The engine evaluates the verified formula (${formulaExpr}) in real time using double-precision floating-point arithmetic.`,
+        },
+        {
+          name: 'Analyze Breakdown & Export Report',
+          text: `Review the primary result, reference benchmark table, and optional PDF/CSV calculation report.`,
+        },
+      ],
+    },
+    es: {
+      name: `Cómo usar la ${pageTitle}`,
+      steps: [
+        {
+          name: 'Introduzca los parámetros de entrada',
+          text: fieldLabelsList
+            ? `Ingrese sus valores para ${fieldLabelsList} en el formulario de ${pageTitle}.`
+            : `Ingrese sus datos numéricos en los campos de entrada de ${pageTitle}.`,
+        },
+        {
+          name: 'Verifique las unidades y supuestos',
+          text: `Confirme que las unidades de medida, tasas o períodos seleccionados coincidan con su escenario.`,
+        },
+        {
+          name: 'Ejecute la fórmula matemática verificada',
+          text: `El motor evalúa la fórmula verificada (${formulaExpr}) en tiempo real con precisión matemática de doble punto flotante.`,
+        },
+        {
+          name: 'Analice el desglose y exporte resultados',
+          text: `Revise el resultado principal, la tabla comparativa de referencia y descargue el informe opcional en PDF.`,
+        },
+      ],
+    },
+    fr: {
+      name: `Comment utiliser ${pageTitle}`,
+      steps: [
+        {
+          name: 'Saisissez vos paramètres d’entrée',
+          text: fieldLabelsList
+            ? `Entrez vos valeurs pour ${fieldLabelsList} dans le formulaire de ${pageTitle}.`
+            : `Saisissez vos valeurs numériques dans les champs de ${pageTitle}.`,
+        },
+        {
+          name: 'Vérifiez les unités et hypothèses',
+          text: `Assurez-vous que les unités de mesure, taux ou périodes correspondent exactement à votre situation.`,
+        },
+        {
+          name: 'Exécutez la formule mathématique vérifiée',
+          text: `Le moteur calcule la formule vérifiée (${formulaExpr}) instantanément en virgule flottante double précision.`,
+        },
+        {
+          name: 'Analysez les résultats et exportez le rapport',
+          text: `Consultez le résultat principal, le tableau de référence et exportez votre rapport en PDF si nécessaire.`,
+        },
+      ],
+    },
+    de: {
+      name: `So verwenden Sie den ${pageTitle}`,
+      steps: [
+        {
+          name: 'Eingabeparameter eintragen',
+          text: fieldLabelsList
+            ? `Geben Sie Ihre Werte für ${fieldLabelsList} in das Formular des ${pageTitle} ein.`
+            : `Tragen Sie Ihre numerischen Parameter in die Eingabefelder des ${pageTitle} ein.`,
+        },
+        {
+          name: 'Einheiten und Annahmen prüfen',
+          text: `Stellen Sie sicher, dass Maßeinheiten, Zinssätze oder Zeiträume Ihrem Szenario entsprechen.`,
+        },
+        {
+          name: 'Geprüfte mathematische Formel berechnen',
+          text: `Die Engine wertet die verifizierte Formel (${formulaExpr}) in Echtzeit mit doppelter Gleitkommagenauigkeit aus.`,
+        },
+        {
+          name: 'Ergebnisse analysieren & Bericht exportieren',
+          text: `Prüfen Sie das Hauptergebnis sowie die Referenztabelle und exportieren Sie bei Bedarf den PDF-Bericht.`,
+        },
+      ],
+    },
+  };
+  const localizedHowTo = howToTemplates[resolvedParams.locale] || howToTemplates.en;
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": localizedHowTo.name,
+    "description": pageDesc,
+    "url": canonicalUrl,
+    "inLanguage": resolvedParams.locale,
+    "step": localizedHowTo.steps.map((s, idx) => ({
+      "@type": "HowToStep",
+      "position": idx + 1,
+      "name": s.name,
+      "text": s.text,
+    })),
+  };
 
   // MathSolver JSON-LD Schema for Google Math Solvers (Strict Google Search Central Compliance)
   const eduQuestionType = getEduQuestionType(calc.slug, calc.category);
@@ -668,6 +799,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   return (
     <main className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       {mathSolverSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mathSolverSchema) }} />
       )}
@@ -746,7 +878,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
               {pageTitle}
             </h1>
-            <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+            <p id="calc-hero-desc" className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
               {pageDesc}
             </p>
             
@@ -755,7 +887,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700">
                 <img
                   src="https://ik.imagekit.io/ubwpdqyav/my_photo-removebg-preview.png?updatedAt=1776774813574"
-                  alt="MD Abu Hanif Mia"
+                  alt="Md. Shamim Hossain"
                   width={40}
                   height={40}
                   loading="lazy"
@@ -764,7 +896,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               </div>
               <div>
                 <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                  {reviewerByline.reviewedBy} <Link href="/about-us" className="text-[#518231] hover:underline">MD Abu Hanif Mia</Link> • <span className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewer}</span>
+                  {reviewerByline.reviewedBy} <Link href="/about-us" className="text-[#518231] hover:underline">Md. Shamim Hossain</Link> • <span className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewer}</span>
                 </p>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   {reviewerByline.verifiedBadge} • {reviewerByline.updatedLabel}: {reviewerByline.lastUpdated}

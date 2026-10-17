@@ -1,7 +1,6 @@
 import dynamic from 'next/dynamic';
 import type { ComponentType } from 'react';
 import type { CalculatorDef } from '@/lib/types';
-import { getCalculatorBySlug } from '@/lib/data/calculators';
 
 // ═══════════════════════════════════════════════════════
 // CALCULATOR COMPONENT REGISTRY
@@ -11,10 +10,8 @@ import { getCalculatorBySlug } from '@/lib/data/calculators';
 // only the component for the current calculator slug is
 // loaded, reducing bundle size significantly.
 //
-// To add a new calculator:
-//   1. Create the component in app/components/
-//   2. Add one line to this registry
-//   3. Done — no ternary chains, no repeated imports
+// IMPORTANT: Do NOT import '@/lib/data/calculators' here,
+// as this module is imported by Client Components.
 // ═══════════════════════════════════════════════════════
 
 type CalcComponentProps = { calcDef?: CalculatorDef; locale?: string };
@@ -215,13 +212,12 @@ const FallbackCalculator = dynamic(() => import('@/app/components/Calculator').t
  * Returns the appropriate calculator component for a given slug.
  * Falls back to the generic Calculator component if no custom view exists.
  */
-export function getCalculatorComponent(slug: string): ComponentType<CalcComponentProps> {
+export function getCalculatorComponent(slug: string, parentSlug?: string): ComponentType<CalcComponentProps> {
   if (registry[slug]) return registry[slug];
 
   // Check if this is a programmatic preset delegating to a parent calculator engine
-  const calc = getCalculatorBySlug(slug);
-  if (calc?.parentSlug && registry[calc.parentSlug]) {
-    return registry[calc.parentSlug];
+  if (parentSlug && registry[parentSlug]) {
+    return registry[parentSlug];
   }
 
   return FallbackCalculator;

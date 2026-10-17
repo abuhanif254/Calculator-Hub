@@ -2,10 +2,17 @@ import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   // IMPORTANT: Canonical domain is www. Using non-www causes redirect chains.
-  // Googlebot crawl equity optimization: Public calculators, guides, category pillars,
-  // and landing pages remain 100% accessible (200 OK / 1-hop canonical).
-  // Private authenticated user areas, dashboard routes, and internal APIs are strictly disallowed.
+  // Googlebot & AI Search (GEO) optimization: Public calculators, tools, guides,
+  // category pillars, comparisons, collections, and /llms.txt are 100% accessible.
+  // Private authenticated user areas, dashboard routes, and internal APIs are disallowed.
   const baseUrl = 'https://www.nexuscalculator.net';
+
+  const publicDisallow = [
+    '/api/',                              // Internal API endpoints
+    '/private/',                          // Admin / internal routes
+    '/*/embed/*',                         // Iframe calculator embeds (not standalone pages)
+    '/embed/*',
+  ];
 
   return {
     rules: [
@@ -13,23 +20,46 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: '*',
         allow: [
           '/',
-          '/api/users/',                        // Allow legacy documentation example path so 301 redirect in next.config.ts resolves in GSC
+          '/llms.txt',
+          '/api/users/',                  // Allow legacy documentation example path so 301 redirect in next.config.ts resolves in GSC
         ],
-        disallow: [
-          '/api/',                              // Internal API endpoints
-          '/private/',                          // Admin / internal routes
-          '/*/embed/*',                         // Iframe calculator embeds (not standalone pages)
-          '/embed/*',
-        ],
+        disallow: publicDisallow,
       },
       {
-        // Block aggressive SEO crawlers and AI bots that waste crawl budget
+        // Explicitly allow AI Search & Answer Engine citation bots (GEO) + Social Preview crawlers
         userAgent: [
-          'AhrefsBot', 'SemrushBot', 'DotBot', 'MJ12bot',
-          'GPTBot', 'ChatGPT-User', 'Google-Extended', 'Anthropic-ai',
-          'Claude-Web', 'ClaudeBot', 'Omgili', 'Omgilibot', 'FacebookBot',
-          'Bytespider', 'Amazonbot', 'TurnitinBot', 'Barkrowler',
-          'AwarioRssBot', 'AwarioSmartBot', 'DataForSeoBot'
+          'GPTBot',
+          'OAI-SearchBot',
+          'ChatGPT-User',
+          'Google-Extended',
+          'ClaudeBot',
+          'Claude-Web',
+          'Anthropic-ai',
+          'PerplexityBot',
+          'Applebot-Extended',
+          'FacebookBot',
+          'facebookexternalhit',
+          'Twitterbot',
+          'LinkedInBot',
+        ],
+        allow: ['/', '/llms.txt'],
+        disallow: publicDisallow,
+      },
+      {
+        // Block aggressive commercial backlink scrapers & non-search crawlers that waste crawl budget
+        userAgent: [
+          'AhrefsBot',
+          'SemrushBot',
+          'DotBot',
+          'MJ12bot',
+          'Omgili',
+          'Omgilibot',
+          'Bytespider',
+          'TurnitinBot',
+          'Barkrowler',
+          'AwarioRssBot',
+          'AwarioSmartBot',
+          'DataForSeoBot',
         ],
         disallow: ['/'],
       },
@@ -39,3 +69,4 @@ export default function robots(): MetadataRoute.Robots {
     host: baseUrl,
   };
 }
+

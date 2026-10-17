@@ -5,10 +5,12 @@ import { setRequestLocale } from 'next-intl/server';
 import { calculators } from '@/lib/data/calculators';
 import { categories, getLocalizedCategory } from '@/lib/data/categories';
 import { allGuides } from '@/lib/data/guides';
+import { comparisons } from '@/lib/data/comparisons';
+import { collections } from '@/lib/data/collections';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
 import { Link, resolveIntlHref } from '@/i18n/routing';
-import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap, Wrench } from 'lucide-react';
+import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap, Wrench, Scale, Layers } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 
 // ═══════════════════════════════════════════════════════
@@ -32,15 +34,30 @@ export async function generateMetadata({
   if (!cat) return { title: 'Category Not Found' };
 
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const alternates = getCanonicalAndAlternates('/calculators/category/[category]', locale, category);
+  const cleanTitle = cat.seoTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
 
   return {
-    title: cat.seoTitle,
+    title: cleanTitle,
     description: cat.seoDescription,
+    openGraph: {
+      title: cleanTitle,
+      description: cat.seoDescription,
+      url: alternates.canonical,
+      siteName: 'NexusCalculator',
+      locale,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: cleanTitle,
+      description: cat.seoDescription,
+    },
     robots: {
       index: true,
       follow: true,
     },
-    alternates: getCanonicalAndAlternates('/calculators/category/[category]', locale, category),
+    alternates,
   };
 }
 
@@ -55,6 +72,10 @@ const uiTextByLocale: Record<
     relatedDevTools: string;
     allDevTools: string;
     inBrowserBadge: string;
+    comparisonsTitle: string;
+    allComparisons: string;
+    collectionsTitle: string;
+    allCollections: string;
     exploreOther: string;
     toolsCountSuffix: (count: number) => string;
   }
@@ -68,6 +89,10 @@ const uiTextByLocale: Record<
     relatedDevTools: 'Related Developer Tools & Utilities',
     allDevTools: 'All Developer Tools →',
     inBrowserBadge: '100% Free • In-Browser Tool',
+    comparisonsTitle: 'Side-by-Side Formula & Strategy Comparisons',
+    allComparisons: 'All Comparisons →',
+    collectionsTitle: 'Curated Role-Based Workflow Toolkits',
+    allCollections: 'All Collections →',
     exploreOther: 'Explore Other Categories',
     toolsCountSuffix: (count) => `${count} tools`,
   },
@@ -80,6 +105,10 @@ const uiTextByLocale: Record<
     relatedDevTools: 'Herramientas de Desarrollo y Utilidades Relacionadas',
     allDevTools: 'Todas las Herramientas →',
     inBrowserBadge: '100% Gratis • En tu Navegador',
+    comparisonsTitle: 'Comparaciones de Fórmulas y Estrategias',
+    allComparisons: 'Todas las Comparaciones →',
+    collectionsTitle: 'Kits de Herramientas y Flujos de Trabajo',
+    allCollections: 'Todas las Colecciones →',
     exploreOther: 'Explorar Otras Categorías',
     toolsCountSuffix: (count) => `${count} herramientas`,
   },
@@ -92,6 +121,10 @@ const uiTextByLocale: Record<
     relatedDevTools: 'Outils Développeur et Utilitaires Associés',
     allDevTools: 'Tous les Outils →',
     inBrowserBadge: '100 % Gratuit • Dans le Navigateur',
+    comparisonsTitle: 'Comparatifs Côte à Côte de Formules et Stratégies',
+    allComparisons: 'Tous les Comparatifs →',
+    collectionsTitle: 'Boîtes à Outils et Flux de Travail Thématiques',
+    allCollections: 'Toutes les Collections →',
     exploreOther: 'Explorer d’Autres Catégories',
     toolsCountSuffix: (count) => `${count} outils`,
   },
@@ -104,6 +137,10 @@ const uiTextByLocale: Record<
     relatedDevTools: 'Passende Entwickler-Tools & Hilfsprogramme',
     allDevTools: 'Alle Entwickler-Tools →',
     inBrowserBadge: '100 % Kostenlos • Direkt im Browser',
+    comparisonsTitle: 'Direkte Formel- & Strategievergleiche',
+    allComparisons: 'Alle Vergleiche →',
+    collectionsTitle: 'Kuratierte Workflow-Toolkits & Sammlungen',
+    allCollections: 'Alle Sammlungen →',
     exploreOther: 'Weitere Kategorien entdecken',
     toolsCountSuffix: (count) => `${count} Tools`,
   },
@@ -637,6 +674,103 @@ export default async function CategoryPage({
             </div>
           </section>
         )}
+
+        {/* Side-by-Side Formula & Strategy Comparisons */}
+        {(() => {
+          const matchedComparisons = comparisons.filter(
+            (comp) => categoryCalcSlugs.has(comp.toolA) || categoryCalcSlugs.has(comp.toolB)
+          );
+          const displayComparisons = (matchedComparisons.length > 0 ? matchedComparisons : comparisons).slice(0, 3);
+          const matchedCollections = collections.filter((col) =>
+            col.toolSlugs.some((s) => categoryCalcSlugs.has(s))
+          );
+          const displayCollections = (matchedCollections.length > 0 ? matchedCollections : collections).slice(0, 3);
+
+          return (
+            <>
+              <section className="mb-16">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    <Scale className="text-[#518231]" size={20} />
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      {ui.comparisonsTitle}
+                    </h2>
+                  </div>
+                  <Link
+                    href="/compare"
+                    className="text-sm font-semibold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
+                  >
+                    {ui.allComparisons}
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {displayComparisons.map((comp) => {
+                    const tr = comp.translations?.[locale];
+                    return (
+                      <Link
+                        key={comp.slug}
+                        href={resolveIntlHref(`/compare/${comp.slug}`)}
+                        className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#518231]/40 hover:shadow-sm transition-all group flex flex-col justify-between"
+                      >
+                        <div>
+                          <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors flex items-center justify-between gap-2">
+                            <span>{tr?.title || comp.title}</span>
+                            <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 transition-all shrink-0" />
+                          </h3>
+                          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                            {tr?.verdict || comp.verdict}
+                          </p>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+
+              <section className="mb-16">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    <Layers className="text-[#518231]" size={20} />
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                      {ui.collectionsTitle}
+                    </h2>
+                  </div>
+                  <Link
+                    href="/collections"
+                    className="text-sm font-semibold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
+                  >
+                    {ui.allCollections}
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {displayCollections.map((col) => {
+                    const tr = col.translations?.[locale];
+                    return (
+                      <Link
+                        key={col.slug}
+                        href={resolveIntlHref(`/collections/${col.slug}`)}
+                        className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-[#518231]/40 hover:shadow-sm transition-all group flex flex-col justify-between"
+                      >
+                        <div>
+                          <h3 className="font-bold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors flex items-center justify-between gap-2">
+                            <span>{tr?.title || col.title}</span>
+                            <ArrowRight size={16} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 transition-all shrink-0" />
+                          </h3>
+                          <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                            {tr?.description || col.description}
+                          </p>
+                        </div>
+                        <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center gap-1.5 text-[11px] font-semibold text-[#518231]">
+                          <span>{ui.toolsCountSuffix(col.toolSlugs.length)}</span>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            </>
+          );
+        })()}
 
         {/* Browse Other Categories */}
         <section>

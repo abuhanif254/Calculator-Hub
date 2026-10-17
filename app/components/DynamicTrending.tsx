@@ -1,9 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
-import { allTools } from '../../lib/registry';
 import { Link } from '../../i18n/routing';
 import { TrendingUp, Clock, History } from 'lucide-react';
 
@@ -12,6 +9,22 @@ interface TrendingData {
   updated: { name: string; href: string }[];
 }
 
+const DEFAULT_TRENDING = [
+  { name: "JSON Formatter", href: "/tools/json-formatter" },
+  { name: "Mortgage Calculator", href: "/calculators/mortgage-calculator" },
+  { name: "BMI Calculator", href: "/calculators/bmi-calculator" },
+  { name: "HTML Formatter", href: "/tools/html-formatter" },
+  { name: "Diff Checker", href: "/tools/diff-checker" }
+];
+
+const DEFAULT_UPDATED = [
+  { name: "Income Tax Calculator", href: "/calculators/income-tax-calculator" },
+  { name: "Compound Interest", href: "/calculators/compound-interest-calculator" },
+  { name: "HTML Formatter", href: "/tools/html-formatter" },
+  { name: "Credit Card Payoff", href: "/calculators/credit-cards-payoff" },
+  { name: "Diff Checker", href: "/tools/diff-checker" }
+];
+
 export function DynamicTrending() {
   const [data, setData] = useState<TrendingData | null>(null);
 
@@ -19,56 +32,42 @@ export function DynamicTrending() {
     let cancelled = false;
 
     async function loadData() {
-      // 1. Get Recently Updated from local registry
-      const recentlyUpdated = [...allTools]
-        .filter(t => t.lastUpdated)
-        .sort((a, b) => new Date(b.lastUpdated!).getTime() - new Date(a.lastUpdated!).getTime())
-        .slice(0, 5)
-        .map(t => ({
-          name: t.title,
-          href: t.href
-        }));
-
-      // 2. Fetch Trending from Firestore
-      let trendingList = [
-        { name: "JSON Formatter", href: "/tools/json-formatter" },
-        { name: "Mortgage Calculator", href: "/calculators/mortgage-calculator" },
-        { name: "BMI Calculator", href: "/calculators/bmi-calculator" },
-        { name: "HTML Formatter", href: "/tools/html-formatter" },
-        { name: "Diff Checker", href: "/tools/diff-checker" }
-      ];
+      let trendingList = DEFAULT_TRENDING;
 
       try {
-        if (db) {
+        const [{ collection, getDocs, query, orderBy, limit }, { db }, res] = await Promise.all([
+          import('firebase/firestore'),
+          import('../../lib/firebase'),
+          fetch('/search-index.json').catch(() => null),
+        ]);
+
+        const rawData = res && res.ok ? await res.json() : null;
+        const searchItems: { title: string; slug: string; href: string }[] = Array.isArray(rawData) ? rawData : (rawData?.tools || []);
+
+        if (db && searchItems.length > 0) {
           const q = query(collection(db, 'toolVisits'), orderBy('visits', 'desc'), limit(5));
           const snapshot = await getDocs(q);
-          
+
           if (!snapshot.empty) {
             const fetched = snapshot.docs.map(doc => {
-              const toolId = doc.id; // Assuming doc id is slug
-              const tool = allTools.find(t => t.slug === toolId);
+              const toolId = doc.id;
+              const tool = searchItems.find(t => t.slug === toolId);
               return tool ? { name: tool.title, href: tool.href } : null;
             }).filter(Boolean) as { name: string; href: string }[];
-            
+
             if (fetched.length > 0) {
               trendingList = fetched;
             }
           }
         }
-      } catch (err) {
+      } catch {
         // Silently use fallback if firestore permissions fail or network errors occur
       }
 
       if (!cancelled) {
         setData({
           trending: trendingList,
-          updated: recentlyUpdated.length > 0 ? recentlyUpdated : [
-            { name: "Income Tax Calculator 2024", href: "/calculators/income-tax-calculator" },
-            { name: "Compound Interest", href: "/calculators/compound-interest-calculator" },
-            { name: "HTML Formatter", href: "/tools/html-formatter" },
-            { name: "Credit Card Payoff", href: "/calculators/credit-cards-payoff" },
-            { name: "Diff Checker", href: "/tools/diff-checker" }
-          ]
+          updated: DEFAULT_UPDATED,
         });
       }
     }

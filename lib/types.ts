@@ -7,6 +7,7 @@ export interface CalculatorField {
   min?: number;
   max?: number;
   step?: number;
+  unit?: string;
   helpText?: string;
 }
 

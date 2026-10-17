@@ -136,6 +136,7 @@ export default async function RootLayout({
         <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
         <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="alternate" type="application/rss+xml" title="NexusCalculator — Guides, Comparisons & Engineering Updates" href="/feed.xml" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

@@ -1,8 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { collection, query, orderBy, limit, getDocs } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
 import { MessageSquare, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 
@@ -85,6 +83,10 @@ export function RecentDiscussions() {
 
     async function fetchDiscussions() {
       try {
+        const [{ collection, query, orderBy, limit, getDocs }, { db }] = await Promise.all([
+          import('firebase/firestore'),
+          import('@/lib/firebase'),
+        ]);
         const q = query(
           collection(db, 'posts'),
           orderBy('createdAt', 'desc'),
