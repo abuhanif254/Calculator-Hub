@@ -6,6 +6,7 @@ import { comparisons } from '../lib/data/comparisons';
 import { routing } from '../i18n/routing';
 import { allToolsConfig } from '../lib/data/tools/index';
 import { allGuides, getGuideBySlug } from '../lib/data/guides';
+import { COMMUNITY_CATEGORIES } from '../lib/categories';
 
 // SSG: sitemap is built from static TypeScript data files.
 // No revalidation needed — only changes on new deployments.
@@ -124,6 +125,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...buildEntries('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/icons/icon-512x512.png`]),
     ...buildEntries('/sitemap', 'weekly', 0.8),
     ...buildEntries('/community', 'daily', 0.7),
+    ...buildEntries('/community/hall-of-fame', 'weekly', 0.65),
+    ...COMMUNITY_CATEGORIES.flatMap((cat) => buildEntries('/community/category/[slug]', 'weekly', 0.7, cat.slug)),
     // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
     // REMOVED: /login, /signup — auth pages always redirect, waste crawl budget
     ...buildEntries('/about-us', 'monthly', 0.5),
@@ -134,6 +137,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...buildEntries('/guides', 'weekly', 0.85),
     ...buildEntries('/calculators', 'weekly', 0.95),
     ...buildEntries('/tools', 'weekly', 0.9),
+    ...buildEntries('/collections', 'weekly', 0.85),
+    ...buildEntries('/compare', 'weekly', 0.85),
     ...buildEntries('/pdf', 'weekly', 0.9),
     ...buildEntries('/image', 'weekly', 0.9),
     ...allGuides.flatMap((guide) => buildEntries('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
@@ -204,12 +209,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
 
-  // ─── COMMUNITY POSTS ──────────────────
+  // ─── COMMUNITY POSTS (Filtered for Indexability & Redirect Hygiene) ──────────────────
   let communityEntries: MetadataRoute.Sitemap = [];
   try {
     const { fetchPostsRest } = await import('../lib/firebase-rest');
     const posts = await fetchPostsRest(undefined, 100);
-    communityEntries = posts.flatMap(post =>
+    const indexablePosts = posts.filter((post) => {
+      if (!post.slug) return false;
+      // Exclude redirected test/auto-generated slugs that 308 redirect in next.config.ts / page.tsx
+      if (post.slug === 'hello-cca921ec' || post.slug.startsWith('to-use-a-')) return false;
+      const bodyLen = (post.content || '').trim().length;
+      return bodyLen >= 150;
+    });
+    communityEntries = indexablePosts.flatMap(post =>
       buildEntries(
         '/community/[slug]',
         'weekly',
@@ -224,3 +236,4 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [...coreEntries, ...calcEntries, ...toolEntries, ...dataPrivacyEntries, ...communityEntries];
 }
+

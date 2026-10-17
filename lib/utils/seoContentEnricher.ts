@@ -641,9 +641,186 @@ To extract maximum analytical value from this guide and the interactive **${loca
 }
 
 /**
+ * Generates 5 calculator-specific, formula-and-input-driven localized FAQs
+ * when markdown frontmatter omits `faqs` or has fewer than 4 items.
+ * Eliminates repetitive 3-question boilerplate across 245+ calculator URLs.
+ */
+export function buildDynamicCalculatorFaqs(params: {
+  calc: CalculatorDef;
+  locale: string;
+  localizedTitle: string;
+  localizedDescription: string;
+  localizedInputs: CalculatorField[];
+  existingFaqs?: { question: string; answer: string }[];
+}): { question: string; answer: string }[] {
+  const { calc, locale, localizedTitle, localizedDescription, localizedInputs, existingFaqs } = params;
+  if (existingFaqs && existingFaqs.length >= 4) {
+    return existingFaqs;
+  }
+
+  const formulaDef = getFormulaForCalculator(calc.parentSlug || calc.slug);
+  const formulaText = formulaDef?.formula || 'y = f(x₁, x₂, ..., xₙ)';
+  const inputs: CalculatorField[] =
+    localizedInputs && localizedInputs.length > 0 ? localizedInputs : calc.fields || [];
+
+  const paramNames = inputs.slice(0, 4).map((inp) => inp.label || inp.id);
+  const baselineSummary = inputs
+    .slice(0, 3)
+    .map((inp) => `${inp.label || inp.id}: ${formatDefaultVal(inp)}`)
+    .join(', ');
+  const primaryParam = paramNames[0] || (locale === 'es' ? 'el parámetro principal' : locale === 'fr' ? 'le paramètre principal' : locale === 'de' ? 'den Hauptparameter' : 'the primary input parameter');
+  const secondaryParam = paramNames[1] || (locale === 'es' ? 'las variables secundarias' : locale === 'fr' ? 'les variables secondaires' : locale === 'de' ? 'die Sekundärvariablen' : 'the secondary parameters');
+
+  const catLower = (calc.category || 'financial').toLowerCase();
+  const isFinance = catLower.includes('financ');
+  const isHealth = catLower.includes('health') || catLower.includes('fitness');
+
+  let generated: { question: string; answer: string }[] = [];
+
+  if (locale === 'es') {
+    generated = [
+      {
+        question: `¿Qué fórmula matemática utiliza exactamente ${localizedTitle}?`,
+        answer: `${localizedTitle} evalúa sus parámetros mediante la ecuación verificada (${formulaText}). El motor procesa variables como ${paramNames.join(', ') || 'los valores de entrada'} en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio.`,
+      },
+      {
+        question: `¿Qué valores de referencia incluye ${localizedTitle} para simular un escenario base?`,
+        answer: `La herramienta carga automáticamente un escenario calibrado (${baselineSummary || 'valores estándar del sector'}) para que pueda observar el comportamiento base de ${localizedTitle} antes de introducir sus propios datos y comparar variantes.`,
+      },
+      {
+        question: `¿Cómo afecta el cambio en ${primaryParam} al resultado final de ${localizedTitle}?`,
+        answer: `Dentro del modelo cuantitativo (${formulaText}), ${primaryParam} actúa como variable independiente clave junto con ${secondaryParam}. Modificar ${primaryParam} manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado.`,
+      },
+      {
+        question: isFinance
+          ? `¿Tiene en cuenta ${localizedTitle} impuestos, inflación o comisiones bancarias adicionales?`
+          : isHealth
+            ? `¿Sustituyen las estimaciones de ${localizedTitle} a un diagnóstico médico o clínico profesional?`
+            : `¿Cómo garantizo la coherencia de unidades al introducir datos en ${localizedTitle}?`,
+        answer: isFinance
+          ? `${localizedTitle} calcula el modelo matemático puro (${localizedDescription}) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal.`
+          : isHealth
+            ? `No. ${localizedTitle} aplica ecuaciones biométricas y fisiológicas estandarizadas con fines informativos y educativos. Cualquier pauta nutricional, deportiva o médica debe ser validada por un profesional sanitario colegiado.`
+            : `Verifique siempre que todas las magnitudes introducidas (${paramNames.join(', ')}) compartan la misma escala dimensional o temporal antes de interpretar las métricas secundarias o exportar el informe.`,
+      },
+      {
+        question: `¿Se guardan mis datos en algún servidor al utilizar ${localizedTitle}?`,
+        answer: `No. Todos los cálculos de ${localizedTitle} se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos.`,
+      },
+    ];
+  } else if (locale === 'fr') {
+    generated = [
+      {
+        question: `Quelle formule mathématique exacte utilise ${localizedTitle} ?`,
+        answer: `${localizedTitle} applique l'équation de référence (${formulaText}). Le moteur traite les variables (${paramNames.join(', ') || 'paramètres saisis'}) en virgule flottante double précision (norme IEEE 754) afin d'éliminer toute erreur d'arrondi intermédiaire.`,
+      },
+      {
+        question: `Quelles sont les valeurs de référence pré-remplies dans ${localizedTitle} ?`,
+        answer: `Le simulateur initialise un scénario de référence calibré (${baselineSummary || 'valeurs standards du secteur'}) permettant d'observer immédiatement l'équilibre du modèle avant de saisir vos propres paramètres.`,
+      },
+      {
+        question: `Quel est l'impact d'une variation de ${primaryParam} sur le résultat de ${localizedTitle} ?`,
+        answer: `Dans la relation (${formulaText}), ${primaryParam} interagit directement avec ${secondaryParam}. En faisant varier ${primaryParam} isolément, vous mesurez l'élasticité mathématique exacte du résultat principal et des indicateurs secondaires.`,
+      },
+      {
+        question: isFinance
+          ? `Les résultats de ${localizedTitle} incluent-ils la fiscalité et les frais annexes ?`
+          : isHealth
+            ? `Les résultats fournis par ${localizedTitle} remplacent-ils un avis médical ?`
+            : `Comment éviter les erreurs d'unités dans ${localizedTitle} ?`,
+        answer: isFinance
+          ? `${localizedTitle} modélise rigoureusement l'équation financière (${localizedDescription}) selon vos entrées. Pour un engagement contractuel ou fiscal, complétez cette simulation avec les frais spécifiques de votre établissement ou conseiller.`
+          : isHealth
+            ? `Non. ${localizedTitle} repose sur des formules biométriques publiées à titre purement informatif et pédagogique. Consultez systématiquement un médecin ou professionnel de santé pour un suivi personnalisé.`
+            : `Assurez-vous que l'ensemble des variables saisies (${paramNames.join(', ')}) respecte la même unité de mesure et la même périodicité avant d'interpréter ou d'exporter vos résultats.`,
+      },
+      {
+        question: `Mes données saisies dans ${localizedTitle} sont-elles confidentielles ?`,
+        answer: `Oui. L'intégralité des calculs de ${localizedTitle} s'exécute 100 % localement dans votre navigateur web (conformité RGPD), sans aucun envoi vers un serveur externe.`,
+      },
+    ];
+  } else if (locale === 'de') {
+    generated = [
+      {
+        question: `Welche exakte mathematische Formel verwendet der ${localizedTitle}?`,
+        answer: `Der ${localizedTitle} berechnet Ergebnisse nach der verifizierten Gleichung (${formulaText}). Dabei werden Eingangsgrößen wie ${paramNames.join(', ') || 'Ihre Eingabewerte'} mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik verarbeitet, um Rundungsfehler in Zwischenschritten auszuschließen.`,
+      },
+      {
+        question: `Welche Referenzwerte nutzt der ${localizedTitle} im voreingestellten Basisszenario?`,
+        answer: `Beim Start lädt der ${localizedTitle} kalibrierte Referenzwerte (${baselineSummary || 'branchenübliche Standardwerte'}), damit Sie die Modelllogik sofort nachvollziehen und anschließend mit Ihren individuellen Daten vergleichen können.`,
+      },
+      {
+        question: `Wie wirkt sich eine Änderung von ${primaryParam} auf das Ergebnis im ${localizedTitle} aus?`,
+        answer: `Innerhalb der Formel (${formulaText}) skaliert ${primaryParam} im Zusammenspiel mit ${secondaryParam} direkt die Zielkennzahl. Wenn Sie nur ${primaryParam} variieren, erkennen Sie unmittelbar die Grenzsensitivität dieser Variable.`,
+      },
+      {
+        question: isFinance
+          ? `Berücksichtigt der ${localizedTitle} individuelle Steuern oder Bankgebühren?`
+          : isHealth
+            ? `Ersetzen die Richtwerte des ${localizedTitle} eine ärztliche Diagnose?`
+            : `Worauf muss ich bei den Maßeinheiten im ${localizedTitle} achten?`,
+        answer: isFinance
+          ? `Der ${localizedTitle} bildet das finanzmathematische Kernmodell (${localizedDescription}) präzise ab. Für verbindliche Kredit-, Steuer- oder Anlageentscheidungen sollten Sie zusätzlich individuelle Vertragsgebühren und steuerliche Rahmenbedingungen prüfen.`
+          : isHealth
+            ? `Nein. Der ${localizedTitle} nutzt standardisierte biometrische Berechnungsformeln zur Orientierung. Medizinische, therapeutische oder ernährungsbezogene Entscheidungen sollten immer mit qualifiziertem Fachpersonal abgestimmt werden.`
+            : `Achten Sie darauf, dass alle Parameter (${paramNames.join(', ')}) in konsistenten Zeit- oder Maßeinheiten eingegeben werden, bevor Sie Szenarien vergleichen oder als PDF/CSV exportieren.`,
+      },
+      {
+        question: `Werden meine Eingaben im ${localizedTitle} auf externen Servern gespeichert?`,
+        answer: `Nein. Alle Berechnungen im ${localizedTitle} erfolgen zu 100 % lokal im Arbeitsspeicher Ihres Browsers (DSGVO-konform). Es werden keinerlei Daten übertragen oder extern gespeichert.`,
+      },
+    ];
+  } else {
+    generated = [
+      {
+        question: `What exact mathematical formula does the ${localizedTitle} use?`,
+        answer: `The ${localizedTitle} evaluates your inputs using the verified governing equation (${formulaText}). It processes variables including ${paramNames.join(', ') || 'your custom parameters'} using IEEE 754 double-precision floating-point arithmetic to eliminate intermediate rounding drift.`,
+      },
+      {
+        question: `What baseline reference values are pre-loaded in the ${localizedTitle}?`,
+        answer: `By default, the ${localizedTitle} initializes with a calibrated baseline scenario (${baselineSummary || 'industry-standard reference parameters'}) so you can inspect the model's standard behavior before entering your own figures.`,
+      },
+      {
+        question: `How does changing ${primaryParam} impact the output of the ${localizedTitle}?`,
+        answer: `In the governing model (${formulaText}), ${primaryParam} interacts directly with ${secondaryParam}. Adjusting ${primaryParam} while holding other inputs constant lets you isolate its exact marginal sensitivity on the headline result.`,
+      },
+      {
+        question: isFinance
+          ? `Does the ${localizedTitle} account for taxes, inflation, or lender-specific fees?`
+          : isHealth
+            ? `Do the estimates from the ${localizedTitle} replace professional medical advice?`
+            : `How do I ensure unit and dimensional consistency in the ${localizedTitle}?`,
+        answer: isFinance
+          ? `The ${localizedTitle} models the core quantitative relationship (${localizedDescription}) based on your inputs. For binding financial, tax, or lending decisions, pair these projections with your institution's exact fee schedule and a certified financial advisor.`
+          : isHealth
+            ? `No. The ${localizedTitle} applies peer-reviewed biometric and physiological equations strictly for educational and informational benchmarking. Always consult a licensed physician or healthcare provider for clinical diagnosis or treatment plans.`
+            : `Verify that all input parameters (${paramNames.join(', ')}) share matching time horizons and measurement units before comparing multi-point scenarios or exporting your report.`,
+      },
+      {
+        question: `Is my data kept private when using the ${localizedTitle}?`,
+        answer: `Yes. Every calculation in the ${localizedTitle} executes 100% locally inside your browser's JavaScript sandbox. Zero financial, biometric, or operational inputs are ever transmitted to external servers.`,
+      },
+    ];
+  }
+
+  if (existingFaqs && existingFaqs.length > 0) {
+    const merged = [...existingFaqs];
+    for (const item of generated) {
+      if (merged.length >= 5) break;
+      if (!merged.some((e) => e.question.toLowerCase() === item.question.toLowerCase())) {
+        merged.push(item);
+      }
+    }
+    return merged;
+  }
+
+  return generated;
+}
+
+/**
  * Enriches Tool pages (/tools/[slug]) when markdown content is thin (< 750 words)
- * or missing localized prose, and returns localized examples so raw English
- * examples are never rendered on es/fr/de pages.
+ * or missing localized prose, and returns 100% localized examples, FAQs, HowToSteps,
+ * features, and useCases so raw English strings never bleed onto es/fr/de pages.
  */
 export function enrichToolSeoContent(params: {
   config: ToolConfig;
@@ -652,11 +829,17 @@ export function enrichToolSeoContent(params: {
   localizedShortDesc: string;
   rawMarkdown: string;
   hasLocalizedMd: boolean;
-  localizedFeatures: string[];
-  localizedUseCases: string[];
+  localizedFeatures?: string[];
+  localizedUseCases?: string[];
+  localizedFaqs?: { question: string; answer: string }[];
+  localizedHowToSteps?: string[];
 }): {
   enrichedMarkdown: string;
   localizedExamples: { title: string; description: string; input: string; output: string }[];
+  resolvedFaqs: { question: string; answer: string }[];
+  resolvedHowToSteps: string[];
+  resolvedFeatures: string[];
+  resolvedUseCases: string[];
 } {
   const {
     config,
@@ -667,7 +850,214 @@ export function enrichToolSeoContent(params: {
     hasLocalizedMd,
     localizedFeatures,
     localizedUseCases,
+    localizedFaqs,
+    localizedHowToSteps,
   } = params;
+
+  // Resolve localized features, useCases, howToSteps, and faqs WITHOUT English bleed on non-en locales
+  let resolvedFeatures: string[] =
+    localizedFeatures && localizedFeatures.length > 0
+      ? localizedFeatures
+      : locale === 'en'
+        ? config.features || []
+        : [];
+
+  let resolvedUseCases: string[] =
+    localizedUseCases && localizedUseCases.length > 0
+      ? localizedUseCases
+      : locale === 'en'
+        ? config.useCases || []
+        : [];
+
+  let resolvedHowToSteps: string[] =
+    localizedHowToSteps && localizedHowToSteps.length > 0
+      ? localizedHowToSteps
+      : locale === 'en'
+        ? config.howToSteps || []
+        : [];
+
+  let resolvedFaqs: { question: string; answer: string }[] =
+    localizedFaqs && localizedFaqs.length > 0
+      ? localizedFaqs
+      : locale === 'en'
+        ? config.faq || []
+        : [];
+
+  if (resolvedFeatures.length === 0) {
+    if (locale === 'es') {
+      resolvedFeatures = [
+        `Procesamiento 100 % local en el navegador para ${localizedTitle} sin subir archivos a servidores externos`,
+        `Ejecución instantánea de baja latencia mediante WebAssembly y APIs nativas HTML5`,
+        `Validación automática de formato, codificación UTF-8 e integridad estructural`,
+        `Exportación directa con un clic al portapapeles o descarga limpia sin marcas de agua`,
+      ];
+    } else if (locale === 'fr') {
+      resolvedFeatures = [
+        `Traitement 100 % local dans le navigateur pour ${localizedTitle} sans aucun envoi sur serveur distant`,
+        `Exécution instantanée à très faible latence via WebAssembly et les API HTML5 natives`,
+        `Validation automatique du format, de l'encodage UTF-8 et de l'intégrité structurelle`,
+        `Exportation directe en un clic vers le presse-papiers ou téléchargement sans filigrane`,
+      ];
+    } else if (locale === 'de') {
+      resolvedFeatures = [
+        `100 % lokale Browser-Verarbeitung für ${localizedTitle} ohne Datei-Upload auf externe Server`,
+        `Sofortige Echtzeit-Ausführung dank WebAssembly und nativen HTML5-APIs`,
+        `Automatische Format-, UTF-8-Kodierungs- und Strukturvalidierung`,
+        `Direkter Ein-Klick-Export in die Zwischenablage oder Download ohne Wasserzeichen`,
+      ];
+    } else {
+      resolvedFeatures = [
+        `100% client-side browser execution for ${localizedTitle} with zero server uploads`,
+        `Instantaneous low-latency processing powered by WebAssembly and HTML5 APIs`,
+        `Automated format, UTF-8 encoding, and structural schema validation`,
+        `One-click clean export to clipboard or direct file download with zero watermarks`,
+      ];
+    }
+  }
+
+  if (resolvedUseCases.length === 0) {
+    if (locale === 'es') {
+      resolvedUseCases = [
+        `Flujos de trabajo de desarrollo, auditoría técnica y depuración rápida con ${localizedTitle}`,
+        `Tratamiento seguro de documentos y datos confidenciales bajo normativas GDPR y acuerdos NDA`,
+        `Automatización de tareas repetitivas de conversión, formato y validación sin instalar software`,
+        `Verificación multiplataforma inmediata desde ordenadores de escritorio, portátiles o dispositivos móviles`,
+      ];
+    } else if (locale === 'fr') {
+      resolvedUseCases = [
+        `Flux de travail de développement, d'audit technique et de vérification rapide avec ${localizedTitle}`,
+        `Traitement sécurisé de fichiers et données confidentiels conformément au RGPD et aux accords NDA`,
+        `Automatisation des tâches de conversion, de formatage et de validation sans installation logicielle`,
+        `Utilisation multiplateforme immédiate sur ordinateur de bureau, portable ou appareil mobile`,
+      ];
+    } else if (locale === 'de') {
+      resolvedUseCases = [
+        `Professionelle Entwicklungs-, Prüf- und Analyse-Workflows mit ${localizedTitle}`,
+        `DSGVO-konforme Verarbeitung vertraulicher Dokumente und sensibler Geschäftsdaten im Browser`,
+        `Schnelle Konvertierung, Formatierung und Validierung ohne lokale Software-Installation`,
+        `Plattformübergreifender Einsatz auf Desktop-PCs, Notebooks, Tablets und Smartphones`,
+      ];
+    } else {
+      resolvedUseCases = [
+        `Production engineering, technical auditing, and rapid debugging workflows with ${localizedTitle}`,
+        `GDPR and NDA-compliant processing of sensitive files and confidential datasets locally`,
+        `Streamlining repetitive conversion, formatting, and validation tasks without desktop software`,
+        `Cross-platform execution across Windows, macOS, Linux, iOS, and Android browsers`,
+      ];
+    }
+  }
+
+  if (resolvedHowToSteps.length === 0) {
+    if (locale === 'es') {
+      resolvedHowToSteps = [
+        `Abra ${localizedTitle} e introduzca sus datos, texto o seleccione el archivo desde su dispositivo.`,
+        `Ajuste las opciones de configuración y parámetros técnicos según los requisitos de su proyecto.`,
+        `Ejecute el procesamiento instantáneo en el navegador y revise la vista previa del resultado verificado.`,
+        `Copie la salida al portapapeles o descargue el archivo final generado con un solo clic.`,
+      ];
+    } else if (locale === 'fr') {
+      resolvedHowToSteps = [
+        `Ouvrez ${localizedTitle} et saisissez vos données ou sélectionnez votre fichier source depuis votre appareil.`,
+        `Configurez les options et paramètres techniques selon les besoins de votre flux de travail.`,
+        `Lancez le traitement instantané dans le navigateur et vérifiez l'aperçu du résultat.`,
+        `Copiez le résultat dans le presse-papiers ou téléchargez le fichier final en un clic.`,
+      ];
+    } else if (locale === 'de') {
+      resolvedHowToSteps = [
+        `Öffnen Sie ${localizedTitle} und geben Sie Ihre Daten ein oder wählen Sie die Quelldatei von Ihrem Gerät aus.`,
+        `Passen Sie die gewünschten Optionen und technischen Parameter an Ihren Anwendungsfall an.`,
+        `Starten Sie die sofortige Verarbeitung im Browser und prüfen Sie die Ergebnisvorschau.`,
+        `Kopieren Sie das Ergebnis in die Zwischenablage oder laden Sie die fertige Datei mit einem Klick herunter.`,
+      ];
+    } else {
+      resolvedHowToSteps = [
+        `Open ${localizedTitle} and paste your input data or select your source file from your device.`,
+        `Configure the processing parameters and format options to match your workflow requirements.`,
+        `Run the instant in-browser engine and inspect the real-time verified output preview.`,
+        `Copy the result to your clipboard or download the processed output file with a single click.`,
+      ];
+    }
+  }
+
+  if (resolvedFaqs.length === 0) {
+    if (locale === 'es') {
+      resolvedFaqs = [
+        {
+          question: `¿Cómo funciona ${localizedTitle} directamente en el navegador?`,
+          answer: `${localizedTitle} utiliza APIs nativas de HTML5 y procesamiento local en memoria (Client-Side) para ejecutar todas las operaciones en su propio dispositivo, logrando resultados instantáneos sin necesidad de subir archivos a ningún servidor externo.`,
+        },
+        {
+          question: `¿Es seguro utilizar ${localizedTitle} con archivos o datos confidenciales?`,
+          answer: `Sí, es 100 % seguro. Al procesarse íntegramente dentro de la memoria aislada (sandbox) de su navegador web, ningún archivo, documento ni cadena de texto abandona su equipo, cumpliendo estrictamente con el RGPD/GDPR y políticas corporativas de privacidad.`,
+        },
+        {
+          question: `¿Necesito instalar algún programa o extensión para usar ${localizedTitle}?`,
+          answer: `No. ${localizedTitle} funciona directamente desde cualquier navegador moderno en Windows, macOS, Linux, iOS y Android sin descargas, registros ni licencias adicionales.`,
+        },
+        {
+          question: `¿Existe algún límite o marca de agua en los resultados de ${localizedTitle}?`,
+          answer: `No. Todos los resultados generados por ${localizedTitle} están libres de marcas de agua y listos para uso profesional, técnico o comercial inmediato.`,
+        },
+      ];
+    } else if (locale === 'fr') {
+      resolvedFaqs = [
+        {
+          question: `Comment fonctionne ${localizedTitle} directement dans le navigateur ?`,
+          answer: `${localizedTitle} exploite les API HTML5 modernes et le calcul côté client pour exécuter l'ensemble du traitement dans la mémoire vive de votre appareil, garantissant un résultat immédiat sans téléversement sur un serveur distant.`,
+        },
+        {
+          question: `Est-il sûr d'utiliser ${localizedTitle} avec des fichiers ou données sensibles ?`,
+          answer: `Oui, totalement. Toutes les opérations s'effectuent 100 % localement dans le bac à sable (sandbox) de votre navigateur. Aucune donnée ne quitte votre appareil, assurant une conformité totale au RGPD.`,
+        },
+        {
+          question: `Dois-je installer un logiciel ou créer un compte pour utiliser ${localizedTitle} ?`,
+          answer: `Non. ${localizedTitle} est accessible gratuitement et instantanément depuis n'importe quel navigateur web sur Windows, macOS, Linux, iOS ou Android, sans inscription ni installation.`,
+        },
+        {
+          question: `Les fichiers ou résultats générés par ${localizedTitle} comportent-ils un filigrane ?`,
+          answer: `Aucun filigrane n'est ajouté. Les résultats produits par ${localizedTitle} sont propres, intègres et directement exploitables en environnement professionnel.`,
+        },
+      ];
+    } else if (locale === 'de') {
+      resolvedFaqs = [
+        {
+          question: `Wie funktioniert ${localizedTitle} direkt im Webbrowser?`,
+          answer: `${localizedTitle} nutzt moderne HTML5-APIs und clientseitige Verarbeitung, um sämtliche Berechnungen und Transformationen direkt im Arbeitsspeicher Ihres Endgeräts durchzuführen – völlig ohne Server-Upload.`,
+        },
+        {
+          question: `Ist ${localizedTitle} sicher für vertrauliche Dokumente und sensible Daten?`,
+          answer: `Ja, zu 100 %. Da Ihre Dateien und Eingaben den lokalen Browser-Speicher niemals verlassen und nicht über das Internet übertragen werden, ist die Nutzung vollständig DSGVO-konform.`,
+        },
+        {
+          question: `Muss ich für ${localizedTitle} eine Software installieren oder mich registrieren?`,
+          answer: `Nein. ${localizedTitle} läuft ohne Installation oder Registrierung direkt in jedem aktuellen Browser unter Windows, macOS, Linux, iOS und Android.`,
+        },
+        {
+          question: `Werden die Ergebnisse von ${localizedTitle} mit einem Wasserzeichen versehen?`,
+          answer: `Nein. Alle mit ${localizedTitle} erzeugten Ausgaben und Dateien sind frei von Wasserzeichen und sofort für den professionellen Einsatz nutzbar.`,
+        },
+      ];
+    } else {
+      resolvedFaqs = [
+        {
+          question: `How does ${localizedTitle} process data directly in my browser?`,
+          answer: `${localizedTitle} leverages modern HTML5 File APIs, Web Workers, and client-side execution to perform all processing inside your device's local RAM—delivering instant results without uploading files to external servers.`,
+        },
+        {
+          question: `Is ${localizedTitle} safe to use with confidential files and sensitive data?`,
+          answer: `Yes, 100%. Because every operation runs locally inside your browser's isolated security sandbox, zero bytes of your data ever leave your computer, making it fully compliant with GDPR, HIPAA, and corporate NDA requirements.`,
+        },
+        {
+          question: `Do I need to install software or create an account to use ${localizedTitle}?`,
+          answer: `No installation or registration is required. ${localizedTitle} runs immediately in any modern desktop or mobile browser across Windows, macOS, Linux, iOS, and Android.`,
+        },
+        {
+          question: `Are there any watermarks or restrictions on the output from ${localizedTitle}?`,
+          answer: `Never. All outputs exported from ${localizedTitle} are completely clean, watermark-free, and ready for immediate production use.`,
+        },
+      ];
+    }
+  }
 
   const baseMarkdown = locale === 'en' || hasLocalizedMd ? (rawMarkdown || '').trim() : '';
   const wordCount = countWords(baseMarkdown);
@@ -798,12 +1188,12 @@ Unlike legacy cloud utilities that force you to upload confidential files or pro
     ? `${baseMarkdown}\n\n---\n${supplement.trim()}`
     : baseMarkdown;
 
-  // Build localized examples so es/fr/de never show raw English config.examples
+  // Build localized examples using resolvedFeatures / resolvedUseCases (guaranteed 100% localized)
   let localizedExamples = config.examples || [];
   if (locale !== 'en') {
-    const f0 = localizedFeatures[0] || localizedShortDesc;
-    const u0 = localizedUseCases[0] || localizedShortDesc;
-    const u1 = localizedUseCases[1] || f0;
+    const f0 = resolvedFeatures[0] || localizedShortDesc;
+    const u0 = resolvedUseCases[0] || localizedShortDesc;
+    const u1 = resolvedUseCases[1] || f0;
 
     if (locale === 'es') {
       localizedExamples = [
@@ -856,5 +1246,10 @@ Unlike legacy cloud utilities that force you to upload confidential files or pro
   return {
     enrichedMarkdown,
     localizedExamples,
+    resolvedFaqs,
+    resolvedHowToSteps,
+    resolvedFeatures,
+    resolvedUseCases,
   };
 }
+

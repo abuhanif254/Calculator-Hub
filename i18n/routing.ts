@@ -1321,6 +1321,12 @@ export const routing = defineRouting({
       fr: '/tableau-de-bord',
       de: '/dashboard'
     },
+    '/collections': {
+      en: '/collections',
+      es: '/colecciones',
+      fr: '/collections',
+      de: '/sammlungen'
+    },
     '/collections/[slug]': {
       en: '/collections/[slug]',
       es: '/colecciones/[slug]',
@@ -1329,6 +1335,12 @@ export const routing = defineRouting({
     },
     '/embed/calculators/[slug]': '/embed/calculators/[slug]',
     '/embed/tools/[slug]': '/embed/tools/[slug]',
+    '/compare': {
+      en: '/compare',
+      es: '/comparar',
+      fr: '/comparer',
+      de: '/vergleichen'
+    },
     '/compare/[slug]': {
       en: '/compare/[slug]',
       es: '/comparar/[slug]',

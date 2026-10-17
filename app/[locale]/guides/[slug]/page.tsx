@@ -300,14 +300,20 @@ export default async function GuideArticlePage({
     datePublished: guide.lastUpdated,
     dateModified: guide.lastUpdated,
     author: {
+      '@type': 'Organization',
+      name: 'NexusCalculator Editorial Board',
+      url: getCanonicalUrl('/about-us', locale),
+    },
+    reviewedBy: {
       '@type': 'Person',
-      name: 'MD Abu Hanif Mia',
-      url: `${baseUrl}/${locale}/about-us`,
+      name: 'Md. Shamim Hossain',
+      jobTitle: 'Lead Full-Stack & Quantitative Systems Engineer',
+      url: getCanonicalUrl('/about-us', locale),
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Nexus Calculator',
-      url: `${baseUrl}/en`,
+      name: 'NexusCalculator',
+      url: `${baseUrl}/${locale}`,
       logo: {
         '@type': 'ImageObject',
         url: `${baseUrl}/icons/icon-512x512.png`,

@@ -142,12 +142,13 @@ const MortgageCalculatorUkTool = dynamic(() => import('../../../components/tools
 const DatabaseAnonymizerTool = dynamic(() => import('../../../components/platform/ui/DatabaseAnonymizerTool').then(m => m.DatabaseAnonymizerTool));
 const TextToSpeechTool = dynamic(() => import('../../../components/tools/TextToSpeechTool').then(m => m.TextToSpeechTool));
 
-import { Link, routing } from '../../../../i18n/routing';
+import { Link, routing, resolveIntlHref } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
 import { FavoriteButton } from '../../../components/FavoriteButton';
 import { AdSenseContainer } from '../../../components/AdSenseContainer';
-import { getGuideForCalculator } from '@/lib/data/guides';
+import { getGuideForTool } from '@/lib/data/guides';
+import { getCollectionsForSlug } from '@/lib/data/collections';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
 import { getCalculatorBySlug } from '@/lib/data/calculators';
@@ -376,6 +377,8 @@ const toolPageTranslations: Record<string, {
   guideBadge: string;
   guideCta: string;
   minRead: string;
+  collectionsHeading: string;
+  viewAllCollections: string;
 }> = {
   en: {
     home: "Home",
@@ -392,6 +395,8 @@ const toolPageTranslations: Record<string, {
     guideBadge: "In-Depth Technical Guide",
     guideCta: "Read Complete Guide",
     minRead: "min read",
+    collectionsHeading: "Curated Workflow Toolkits",
+    viewAllCollections: "Explore all toolkits",
   },
   es: {
     home: "Inicio",
@@ -408,6 +413,8 @@ const toolPageTranslations: Record<string, {
     guideBadge: "Guía Técnica Detallada",
     guideCta: "Leer la Guía Completa",
     minRead: "min de lectura",
+    collectionsHeading: "Paquetes de Herramientas",
+    viewAllCollections: "Ver todas las colecciones",
   },
   de: {
     home: "Startseite",
@@ -424,6 +431,8 @@ const toolPageTranslations: Record<string, {
     guideBadge: "Ausführlicher Technik-Ratgeber",
     guideCta: "Vollständigen Ratgeber Lesen",
     minRead: "Min. Lesezeit",
+    collectionsHeading: "Kuratierte Workflow-Toolkits",
+    viewAllCollections: "Alle Sammlungen entdecken",
   },
   fr: {
     home: "Accueil",
@@ -440,6 +449,8 @@ const toolPageTranslations: Record<string, {
     guideBadge: "Guide Technique Complet",
     guideCta: "Lire le Guide Complet",
     minRead: "min de lecture",
+    collectionsHeading: "Packs d'Outils Thématiques",
+    viewAllCollections: "Explorer toutes les collections",
   }
 };
 
@@ -509,24 +520,30 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
 
   const mdData = getMarkdownContent(resolvedSlug, locale);
   const hasLocalizedMd = fs.existsSync(path.join(process.cwd(), "content", "tools", locale, `${resolvedSlug}.md`));
+  const localizedData = (locale === 'en' || hasLocalizedMd) ? mdData?.data : undefined;
 
-  const pageTitle = mdData?.data?.title || config.title;
-  const pageShortDesc = mdData?.data?.shortDescription || config.shortDescription;
-  const rawLongDesc = mdData?.content || config.longDescription;
-  const pageFaqs = mdData?.data?.faqs || config.faq;
-  const pageHowToSteps = mdData?.data?.howToSteps || config.howToSteps;
-  const pageFeatures = mdData?.data?.features || config.features;
-  const pageUseCases = mdData?.data?.useCases || config.useCases;
+  const pageTitle = localizedData?.title || config.title;
+  const pageShortDesc = localizedData?.shortDescription || config.shortDescription;
+  const rawLongDesc = (locale === 'en' || hasLocalizedMd) ? (mdData?.content || config.longDescription) : '';
 
-  const { enrichedMarkdown: pageLongDesc, localizedExamples: pageExamples } = enrichToolSeoContent({
+  const {
+    enrichedMarkdown: pageLongDesc,
+    localizedExamples: pageExamples,
+    resolvedFaqs: pageFaqs,
+    resolvedHowToSteps: pageHowToSteps,
+    resolvedFeatures: pageFeatures,
+    resolvedUseCases: pageUseCases,
+  } = enrichToolSeoContent({
     config,
     locale,
     localizedTitle: pageTitle,
     localizedShortDesc: pageShortDesc,
     rawMarkdown: rawLongDesc,
     hasLocalizedMd,
-    localizedFeatures: pageFeatures,
-    localizedUseCases: pageUseCases,
+    localizedFeatures: localizedData?.features,
+    localizedUseCases: localizedData?.useCases,
+    localizedFaqs: localizedData?.faqs,
+    localizedHowToSteps: localizedData?.howToSteps,
   });
   const reviewerByline = getLocalizedReviewerByline(config.category || 'Engineering', locale, '2026-10-01');
   const ioLabels: Record<string, { input: string; output: string }> = {
@@ -541,10 +558,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const toolsSegment = toolPathSegments[locale] || 'tools';
   const currentToolHref = `/${locale}/${toolsSegment}/${config.slug}`;
 
-  // Companion guide lookup
-  const relatedGuide = getGuideForCalculator(config.slug);
+  // Companion guide lookup (matches exact tool guide or category-matched tool guide)
+  const relatedGuide = getGuideForTool(config.slug, config.category);
   const localizedGuide = relatedGuide ? getLocalizedGuide(relatedGuide, locale) : null;
   const guideSlug = relatedGuide ? (relatedGuide.slugs?.[locale as keyof typeof relatedGuide.slugs] || relatedGuide.slug) : null;
+
+  // Curated workflow collections lookup for bidirectional internal linking
+  const relatedCollections = getCollectionsForSlug(config.slug, config.category, 2);
 
   // Circular window of 8 sibling tools in the same category (guarantees uniform internal link graph degree across all 135 tools)
   const allToolsList = Object.values(allToolsConfig);
@@ -604,6 +624,17 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     "browserRequirements": "Requires JavaScript. Requires HTML5.",
     "description": pageShortDesc,
     "url": canonicalUrl,
+    "inLanguage": locale,
+    "dateModified": reviewerByline.lastUpdated,
+    "author": {
+      "@type": "Organization",
+      "name": "NexusCalculator",
+      "url": baseUrl
+    },
+    "reviewedBy": {
+      "@type": "Person",
+      "name": "MD Abu Hanif Mia"
+    },
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -886,6 +917,47 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                 })}
               </div>
             </div>
+
+            {/* Curated Workflow Collections */}
+            {relatedCollections.length > 0 && (
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <Layers className="w-5 h-5 text-[#518231]" /> {t.collectionsHeading}
+                  </h3>
+                  <Link
+                    href={resolveIntlHref('/collections')}
+                    className="text-xs font-bold text-[#518231] hover:underline"
+                  >
+                    {t.viewAllCollections}
+                  </Link>
+                </div>
+                <div className="space-y-3">
+                  {relatedCollections.map((col) => {
+                    const colTr = col.translations?.[locale];
+                    const colTitle = colTr?.title || col.title;
+                    const colDesc = colTr?.description || col.description;
+                    return (
+                      <Link
+                        key={col.slug}
+                        href={resolveIntlHref(`/collections/${col.slug}`)}
+                        className="group block p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 hover:border-[#518231]/35 transition-all"
+                      >
+                        <div className="flex items-center justify-between gap-2 mb-1">
+                          <span className="font-semibold text-sm text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors">
+                            {colTitle}
+                          </span>
+                          <ArrowRight size={14} className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all shrink-0" />
+                        </div>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                          {colDesc}
+                        </p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Ad Placement Sidebar */}
             <div className="sticky top-24 pt-4">

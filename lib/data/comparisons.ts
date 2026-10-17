@@ -457,3 +457,34 @@ export const comparisons: ComparisonDef[] = [
 export function getComparisonBySlug(slug: string): ComparisonDef | undefined {
   return comparisons.find(c => c.slug === slug);
 }
+
+export function getComparisonsForSlug(slug: string, category?: string, maxCount = 3): ComparisonDef[] {
+  const direct = comparisons.filter(c => c.toolA === slug || c.toolB === slug);
+  if (direct.length >= maxCount) return direct.slice(0, maxCount);
+
+  const catLower = (category || '').toLowerCase();
+  const isHealth = catLower.includes('health') || catLower.includes('fitness') || slug.includes('bmi') || slug.includes('calorie') || slug.includes('weight');
+
+  const pool = isHealth
+    ? [
+        ...comparisons.filter(c => c.slug === 'bmi-vs-body-fat'),
+        ...comparisons.filter(c => c.slug !== 'bmi-vs-body-fat'),
+      ]
+    : comparisons;
+
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = ((hash << 5) - hash + slug.charCodeAt(i)) | 0;
+  }
+  const startIdx = Math.abs(hash) % pool.length;
+
+  const result = [...direct];
+  for (let i = 0; i < pool.length && result.length < maxCount; i++) {
+    const candidate = pool[(startIdx + i) % pool.length];
+    if (!result.some(r => r.slug === candidate.slug)) {
+      result.push(candidate);
+    }
+  }
+  return result;
+}
+

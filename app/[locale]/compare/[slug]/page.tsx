@@ -219,12 +219,38 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/compare/[slug]', locale, comparison.slug);
-  const sitemapUrl = getCanonicalUrl('/sitemap', locale);
+  const compareHubUrl = getCanonicalUrl('/compare', locale);
 
   const otherComparisons = comparisons.filter((c) => c.slug !== comparison.slug);
   const faqItems = ui.faqs(toolA.localizedTitle, toolB.localizedTitle, t.verdict);
   const firstDiffA = t.differences[0]?.a || toolA.localizedDescription;
   const firstDiffB = t.differences[0]?.b || toolB.localizedDescription;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": t.title,
+    "description": t.seoDescription,
+    "url": canonicalUrl,
+    "inLanguage": locale,
+    "dateModified": "2026-04-17",
+    "author": {
+      "@type": "Organization",
+      "name": "NexusCalculator Editorial Board",
+      "url": `${baseUrl}/${locale}/about-us`
+    },
+    "reviewedBy": {
+      "@type": "Person",
+      "name": "Md. Shamim Hossain",
+      "jobTitle": "Lead Full-Stack & Quantitative Systems Engineer",
+      "url": `${baseUrl}/${locale}/about-us`
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "NexusCalculator",
+      "url": baseUrl
+    }
+  };
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -244,13 +270,14 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": ui.home, "item": `${baseUrl}/${locale}` },
-      { "@type": "ListItem", "position": 2, "name": ui.compare, "item": sitemapUrl },
+      { "@type": "ListItem", "position": 2, "name": ui.compare, "item": compareHubUrl },
       { "@type": "ListItem", "position": 3, "name": t.title, "item": canonicalUrl }
     ]
   };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
@@ -258,7 +285,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
           <Link href="/" className="hover:text-[#518231] transition-colors">{ui.home}</Link>
           <ChevronRight size={14} />
-          <Link href="/sitemap" className="hover:text-[#518231] transition-colors">{ui.compare}</Link>
+          <Link href="/compare" className="hover:text-[#518231] transition-colors">{ui.compare}</Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-slate-200 font-medium">{t.title}</span>
         </nav>

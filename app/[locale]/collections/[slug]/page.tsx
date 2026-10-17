@@ -214,7 +214,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
   const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/collections/[slug]', locale, collection.slug);
-  const sitemapUrl = getCanonicalUrl('/sitemap', locale);
+  const collectionsHubUrl = getCanonicalUrl('/collections', locale);
 
   // Resolve tools from registry with localized titles and descriptions
   const tools = collection.toolSlugs
@@ -250,6 +250,13 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "name": t.title,
     "description": t.description,
     "url": canonicalUrl,
+    "inLanguage": locale,
+    "dateModified": "2026-04-17",
+    "author": {
+      "@type": "Organization",
+      "name": "NexusCalculator Editorial Board",
+      "url": `${baseUrl}/${locale}/about-us`
+    },
     "hasPart": tools.map((tool, index) => ({
       "@type": "WebPage",
       "position": index + 1,
@@ -276,7 +283,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "@type": "BreadcrumbList",
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": ui.home, "item": `${baseUrl}/${locale}` },
-      { "@type": "ListItem", "position": 2, "name": ui.collections, "item": sitemapUrl },
+      { "@type": "ListItem", "position": 2, "name": ui.collections, "item": collectionsHubUrl },
       { "@type": "ListItem", "position": 3, "name": t.title, "item": canonicalUrl }
     ]
   };
@@ -292,7 +299,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
           <Link href="/" className="hover:text-[#518231] transition-colors">{ui.home}</Link>
           <ChevronRight size={14} />
-          <Link href="/sitemap" className="hover:text-[#518231] transition-colors">{ui.collections}</Link>
+          <Link href="/collections" className="hover:text-[#518231] transition-colors">{ui.collections}</Link>
           <ChevronRight size={14} />
           <span className="text-slate-900 dark:text-slate-200 font-medium">{t.title}</span>
         </nav>

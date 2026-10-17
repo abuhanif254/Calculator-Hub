@@ -1,11 +1,159 @@
 import React from 'react';
+import { getLocale } from 'next-intl/server';
 import { Link, resolveIntlHref } from '../../i18n/routing';
 import { Calculator } from 'lucide-react';
 import { sitemapCategories } from '../../lib/data/sitemapData';
 import { resolveHref } from '../../lib/utils/linkResolver';
 
-export function Footer() {
+const FOOTER_TRANSLATIONS: Record<
+  string,
+  {
+    brandDesc: string;
+    seeAll: string;
+    ecosystemHeading: string;
+    calculatorsDir: string;
+    devTools: string;
+    comparisonsHub: string;
+    collectionsHub: string;
+    pdfTools: string;
+    imageTools: string;
+    community: string;
+    guides: string;
+    aboutUs: string;
+    contactUs: string;
+    termsOfUse: string;
+    privacyPolicy: string;
+    disclaimer: string;
+    sitemap: string;
+    disclaimerLabel: string;
+    disclaimerBody: string;
+    rightsReserved: string;
+    categoryTitles: Record<string, string>;
+  }
+> = {
+  en: {
+    brandDesc:
+      'An all-in-one quantitative engineering platform featuring peer-reviewed financial, health, and mathematical calculators alongside 100% client-side developer, PDF, and image utilities.',
+    seeAll: 'See all',
+    ecosystemHeading: 'Ecosystem & Hubs',
+    calculatorsDir: 'Calculators Directory',
+    devTools: 'Developer Tools',
+    comparisonsHub: 'Side-by-Side Comparisons',
+    collectionsHub: 'Curated Workflow Toolkits',
+    pdfTools: 'PDF Tools',
+    imageTools: 'Image Tools',
+    community: 'Community Forum',
+    guides: 'Technical Guides',
+    aboutUs: 'About Us',
+    contactUs: 'Contact Us',
+    termsOfUse: 'Terms of Use',
+    privacyPolicy: 'Privacy Policy',
+    disclaimer: 'Disclaimer',
+    sitemap: 'Sitemap',
+    disclaimerLabel: 'Editorial & Regulatory Disclaimer:',
+    disclaimerBody:
+      'All calculators, quantitative models, utilities, and editorial guides on NexusCalculator are provided strictly for informational and educational purposes. They do not constitute personalized financial, investment, tax, medical, or legal advice. Always consult a qualified, licensed professional before making financial, clinical, or engineering decisions. Calculator and browser-utility inputs are processed locally in your browser; see our Privacy Policy for details on optional account and platform services.',
+    rightsReserved: 'All Rights Reserved.',
+    categoryTitles: {
+      'Financial Calculators': 'Financial Calculators',
+      'Fitness & Health Calculators': 'Fitness & Health Calculators',
+    },
+  },
+  es: {
+    brandDesc:
+      'Plataforma integral de ingeniería cuantitativa con calculadoras financieras, médicas y matemáticas verificadas por expertos, junto con utilidades locales para desarrolladores, PDF e imágenes.',
+    seeAll: 'Ver todas',
+    ecosystemHeading: 'Ecosistema y Centros',
+    calculatorsDir: 'Directorio de Calculadoras',
+    devTools: 'Herramientas de Desarrollo',
+    comparisonsHub: 'Comparativas Lado a Lado',
+    collectionsHub: 'Kits y Colecciones',
+    pdfTools: 'Herramientas PDF',
+    imageTools: 'Herramientas de Imagen',
+    community: 'Comunidad Técnica',
+    guides: 'Guías Educativas',
+    aboutUs: 'Sobre Nosotros',
+    contactUs: 'Contáctenos',
+    termsOfUse: 'Términos de Uso',
+    privacyPolicy: 'Política de Privacidad',
+    disclaimer: 'Aviso Legal',
+    sitemap: 'Mapa del Sitio',
+    disclaimerLabel: 'Aviso Editorial y Normativo:',
+    disclaimerBody:
+      'Todas las calculadoras, modelos cuantitativos, herramientas y guías editoriales de NexusCalculator se ofrecen exclusivamente con fines informativos y educativos. No constituyen asesoramiento financiero, fiscal, médico ni jurídico personalizado. Consulte siempre a un profesional colegiado antes de tomar decisiones económicas o de salud. Los cálculos se ejecutan localmente en su navegador; consulte nuestra Política de Privacidad para más detalles.',
+    rightsReserved: 'Todos los derechos reservados.',
+    categoryTitles: {
+      'Financial Calculators': 'Calculadoras Financieras',
+      'Fitness & Health Calculators': 'Calculadoras de Salud y Fitness',
+    },
+  },
+  fr: {
+    brandDesc:
+      'Plateforme complète d’ingénierie quantitative réunissant des calculatrices financières, médicales et mathématiques vérifiées ainsi que des outils développeur, PDF et image exécutés 100 % localement.',
+    seeAll: 'Voir tout',
+    ecosystemHeading: 'Écosystème & Hubs',
+    calculatorsDir: 'Annuaire des Calculatrices',
+    devTools: 'Outils Développeur',
+    comparisonsHub: 'Comparatifs Côte à Côte',
+    collectionsHub: 'Packs d’Outils Thématiques',
+    pdfTools: 'Outils PDF',
+    imageTools: 'Outils Image',
+    community: 'Communauté',
+    guides: 'Guides Techniques',
+    aboutUs: 'À Propos',
+    contactUs: 'Nous Contacter',
+    termsOfUse: 'Conditions d’Utilisation',
+    privacyPolicy: 'Politique de Confidentialité',
+    disclaimer: 'Clause de Non-Responsabilité',
+    sitemap: 'Plan du Site',
+    disclaimerLabel: 'Avertissement Éditorial et Réglementaire :',
+    disclaimerBody:
+      'L’ensemble des calculatrices, modèles quantitatifs, outils et guides publiés sur NexusCalculator est fourni à titre strictement informatif et pédagogique. Ils ne constituent en aucun cas un conseil financier, fiscal, médical ou juridique personnalisé. Consultez toujours un professionnel qualifié avant toute décision importante. Vos calculs s’exécutent localement dans votre navigateur ; consultez notre Politique de Confidentialité pour plus d’informations.',
+    rightsReserved: 'Tous droits réservés.',
+    categoryTitles: {
+      'Financial Calculators': 'Calculatrices Financières',
+      'Fitness & Health Calculators': 'Calculatrices Santé & Fitness',
+    },
+  },
+  de: {
+    brandDesc:
+      'Umfassende Plattform für quantitative Analysen mit fachlich geprüften Finanz-, Gesundheits- und Mathematikrechnern sowie 100 % lokalen Entwickler-, PDF- und Bild-Werkzeugen.',
+    seeAll: 'Alle anzeigen',
+    ecosystemHeading: 'Ökosystem & Hubs',
+    calculatorsDir: 'Rechner-Verzeichnis',
+    devTools: 'Entwickler-Tools',
+    comparisonsHub: 'Direkte Systemvergleiche',
+    collectionsHub: 'Kuratierte Toolkits',
+    pdfTools: 'PDF-Werkzeuge',
+    imageTools: 'Bild-Werkzeuge',
+    community: 'Fach-Community',
+    guides: 'Praxis-Ratgeber',
+    aboutUs: 'Über Uns',
+    contactUs: 'Kontakt',
+    termsOfUse: 'Nutzungsbedingungen',
+    privacyPolicy: 'Datenschutzerklärung',
+    disclaimer: 'Haftungsausschluss',
+    sitemap: 'Sitemap',
+    disclaimerLabel: 'Redaktioneller & Rechtlicher Hinweis:',
+    disclaimerBody:
+      'Sämtliche Rechner, quantitativen Modelle, Werkzeuge und Leitfäden auf NexusCalculator dienen ausschließlich allgemeinen Informations- und Bildungszwecken. Sie stellen keine individuelle Finanz-, Steuer-, Anlage-, Medizin- oder Rechtsberatung dar. Konsultieren Sie vor weitreichenden Entscheidungen stets qualifiziertes Fachpersonal. Alle Berechnungen laufen lokal in Ihrem Browser; Details finden Sie in unserer Datenschutzerklärung.',
+    rightsReserved: 'Alle Rechte vorbehalten.',
+    categoryTitles: {
+      'Financial Calculators': 'Finanzrechner',
+      'Fitness & Health Calculators': 'Gesundheits- & Fitnessrechner',
+    },
+  },
+};
+
+export async function Footer() {
   const currentYear = new Date().getFullYear();
+  let locale = 'en';
+  try {
+    locale = await getLocale();
+  } catch {
+    locale = 'en';
+  }
+  const t = FOOTER_TRANSLATIONS[locale] || FOOTER_TRANSLATIONS.en;
 
   return (
     <footer className="bg-slate-50 text-slate-600 dark:bg-[#090E17] dark:text-slate-300 py-16 lg:py-20 border-t border-slate-200 dark:border-white/5 mt-auto relative overflow-hidden [content-visibility:auto] [contain-intrinsic-size:1px_400px]">
@@ -27,7 +175,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm leading-relaxed">
-              An all-in-one platform featuring a comprehensive suite of developer utilities, PDF processors, image editors, and hundreds of high-precision calculators. Built for global standards and reliability.
+              {t.brandDesc}
             </p>
             
             {/* Social Links — Glassmorphic */}
@@ -81,9 +229,11 @@ export function Footer() {
           </div>
 
           {/* Dynamic Link Columns */}
-          {sitemapCategories.slice(0, 2).map((category, index) => (
+          {sitemapCategories.slice(0, 2).map((category) => (
              <div key={category.id}>
-               <h3 className="text-slate-900 dark:text-white font-bold mb-6 text-lg tracking-tight">{category.title}</h3>
+               <h3 className="text-slate-900 dark:text-white font-bold mb-6 text-lg tracking-tight">
+                 {t.categoryTitles[category.title] || category.title}
+               </h3>
                <ul className="space-y-4">
                  {category.links.slice(0, 7).map((link) => (
                    <li key={link}>
@@ -94,51 +244,56 @@ export function Footer() {
                  ))}
                  <li>
                    <Link href="/sitemap" className="text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] font-semibold flex items-center gap-1 mt-2 py-2 text-sm transition-colors">
-                     See all <span className="text-lg leading-none">&rarr;</span>
+                     {t.seeAll} <span className="text-lg leading-none">&rarr;</span>
                    </Link>
                  </li>
                </ul>
              </div>
           ))}
 
-          {/* Ecosystem Column */}
+          {/* Ecosystem Column (Includes /compare & /collections Hubs at Click Depth = 1) */}
           <div>
-            <h3 className="text-slate-900 dark:text-white font-bold mb-6 text-lg tracking-tight">Ecosystem</h3>
-            <ul className="space-y-4 text-sm">
+            <h3 className="text-slate-900 dark:text-white font-bold mb-6 text-lg tracking-tight">{t.ecosystemHeading}</h3>
+            <ul className="space-y-3.5 text-sm">
               <li>
-                <Link href="/calculators" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  Calculators Directory
+                <Link href="/calculators" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.calculatorsDir}
                 </Link>
               </li>
               <li>
-                <Link href="/tools" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  Developer Tools
+                <Link href="/tools" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.devTools}
                 </Link>
               </li>
               <li>
-                <Link href="/pdf" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  PDF Tools
+                <Link href={resolveIntlHref('/compare')} className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.comparisonsHub}
                 </Link>
               </li>
               <li>
-                <Link href="/image" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  Image Tools
+                <Link href={resolveIntlHref('/collections')} className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.collectionsHub}
                 </Link>
               </li>
               <li>
-                <Link href="/community" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  Community
+                <Link href="/guides" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.guides}
                 </Link>
               </li>
               <li>
-                <Link href="/guides" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300">
-                  Guides
+                <Link href="/pdf" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.pdfTools}
                 </Link>
               </li>
               <li>
-                <span className="text-slate-400 dark:text-slate-600 inline-block py-1.5 cursor-not-allowed" title="Coming soon">
-                  API (Coming Soon)
-                </span>
+                <Link href="/image" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.imageTools}
+                </Link>
+              </li>
+              <li>
+                <Link href="/community" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.community}
+                </Link>
               </li>
             </ul>
           </div>
@@ -148,23 +303,24 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col items-center gap-6">
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <Link href="/about-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">About Us</Link>
-            <Link href="/contact-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Contact Us</Link>
-            <Link href="/terms-of-use" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Terms of Use</Link>
-            <Link href="/privacy-policy" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Privacy Policy</Link>
-            <Link href="/disclaimer" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Disclaimer</Link>
-            <Link href="/sitemap" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">Sitemap</Link>
+            <Link href="/about-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.aboutUs}</Link>
+            <Link href="/contact-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.contactUs}</Link>
+            <Link href="/terms-of-use" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.termsOfUse}</Link>
+            <Link href="/privacy-policy" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.privacyPolicy}</Link>
+            <Link href="/disclaimer" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.disclaimer}</Link>
+            <Link href="/sitemap" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.sitemap}</Link>
           </div>
           
           <div className="text-xs text-slate-400 dark:text-slate-500 text-center max-w-4xl mx-auto leading-relaxed">
-            <strong>Disclaimer:</strong> All calculators, tools, and content provided on this platform are for educational and informational purposes only. They do not constitute financial, medical, or legal advice. Always consult with a qualified professional before making significant financial or health-related decisions based on these estimates And Some Cases We Collect Information, Like Data Privacy Platform
+            <strong>{t.disclaimerLabel}</strong> {t.disclaimerBody}
           </div>
 
           <div className="text-sm text-slate-500 text-center">
-            &copy; {currentYear} Nexus Calculator. All Rights Reserved. · Bangladesh
+            &copy; {currentYear} Nexus Calculator. {t.rightsReserved} · Bangladesh
           </div>
         </div>
       </div>
     </footer>
   );
 }
+

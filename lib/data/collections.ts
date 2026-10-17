@@ -358,3 +358,50 @@ export const collections: CollectionDef[] = [
 export function getCollectionBySlug(slug: string): CollectionDef | undefined {
   return collections.find(c => c.slug === slug);
 }
+
+export function getCollectionsForSlug(slug: string, category?: string, maxCount = 2): CollectionDef[] {
+  const direct = collections.filter(c => c.toolSlugs.includes(slug));
+  if (direct.length >= maxCount) return direct.slice(0, maxCount);
+
+  const catLower = (category || '').toLowerCase();
+  let preferredSlugs: string[] = [];
+  if (catLower.includes('health') || catLower.includes('fitness')) {
+    preferredSlugs = ['fitness-transformation', 'student-finance-pack'];
+  } else if (catLower.includes('math') || catLower.includes('education')) {
+    preferredSlugs = ['student-finance-pack', 'developer-starter-pack'];
+  } else if (
+    catLower.includes('dev') ||
+    catLower.includes('security') ||
+    catLower.includes('text') ||
+    catLower.includes('image') ||
+    catLower.includes('pdf') ||
+    catLower.includes('converter')
+  ) {
+    preferredSlugs = ['developer-starter-pack', 'developer-security-pack'];
+  } else {
+    preferredSlugs = [
+      'home-buyer-toolkit',
+      'retirement-planning-suite',
+      'debt-freedom-plan',
+      'real-estate-investor-kit',
+      'crypto-investor-tools',
+    ];
+  }
+
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = ((hash << 5) - hash + slug.charCodeAt(i)) | 0;
+  }
+  const offset = Math.abs(hash);
+
+  const result = [...direct];
+  for (let i = 0; i < preferredSlugs.length && result.length < maxCount; i++) {
+    const targetSlug = preferredSlugs[(offset + i) % preferredSlugs.length];
+    const found = collections.find(c => c.slug === targetSlug);
+    if (found && !result.some(r => r.slug === found.slug)) {
+      result.push(found);
+    }
+  }
+  return result;
+}
+

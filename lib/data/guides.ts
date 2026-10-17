@@ -3160,6 +3160,28 @@ export function getGuideForCalculator(calcSlug: string): Guide | undefined {
   return allGuides.find((g) => g.relatedCalculator === calcSlug);
 }
 
+/** Get the related educational guide for a developer tool slug, falling back to a category-matched tool guide. */
+export function getGuideForTool(toolSlug: string, category?: string): Guide | undefined {
+  const direct = allGuides.find((g) => g.relatedCalculator === toolSlug);
+  if (direct) return direct;
+
+  const catLower = (category || '').toLowerCase();
+  let pool: Guide[] = productivityUtilitiesGuides;
+  if (catLower.includes('security') || catLower.includes('crypto') || catLower.includes('privacy')) {
+    pool = privacyGuides;
+  } else if (catLower.includes('image') || catLower.includes('design') || catLower.includes('media') || catLower.includes('color')) {
+    pool = designMediaGuides;
+  }
+
+  if (pool.length === 0) return allGuides[0];
+  let hash = 0;
+  for (let i = 0; i < toolSlug.length; i++) {
+    hash = ((hash << 5) - hash + toolSlug.charCodeAt(i)) | 0;
+  }
+  return pool[Math.abs(hash) % pool.length];
+}
+
+
 /** Get the previous and next guides relative to a given slug (for article navigation) */
 export function getAdjacentGuides(slug: string): {
   prev: Guide | null;

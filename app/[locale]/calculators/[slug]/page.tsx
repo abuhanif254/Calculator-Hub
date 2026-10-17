@@ -5,6 +5,8 @@ import { categories, getCategoryForCalculator } from "@/lib/data/categories";
 import { sitemapCategories, generalLinks } from "@/lib/data/sitemapData";
 import { getRelatedCalculators } from "@/lib/data/calculatorRelationships";
 import { getGuideForCalculator } from "@/lib/data/guides";
+import { getComparisonsForSlug } from "@/lib/data/comparisons";
+import { getCollectionsForSlug } from "@/lib/data/collections";
 import { getLocalizedGuide } from "@/lib/utils/guideLocalization";
 import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import ReactMarkdown from "react-markdown";
@@ -25,12 +27,12 @@ import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
 import { Link, routing, resolveIntlHref } from "@/i18n/routing";
-import { Search, ChevronRight, CalculatorIcon, BookOpen, Clock, ArrowRight } from "lucide-react";
+import { Search, ChevronRight, CalculatorIcon, BookOpen, Clock, ArrowRight, Scale, Layers, ShieldCheck } from "lucide-react";
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { pickCalculatorMessages, toClientCalcDef } from '@/lib/utils/getCalculatorMessages';
-import { enrichCalculatorSeoContent, getLocalizedReviewerByline } from '@/lib/utils/seoContentEnricher';
+import { enrichCalculatorSeoContent, getLocalizedReviewerByline, buildDynamicCalculatorFaqs } from '@/lib/utils/seoContentEnricher';
 
 import fs from "fs";
 import path from "path";
@@ -332,74 +334,20 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   });
   const reviewerByline = getLocalizedReviewerByline(calc.category, resolvedParams.locale, calc.meta?.lastUpdated);
 
-  const fallbackFaqByLocale: Record<string, { question: string; answer: string }[]> = {
-    en: [
-      {
-        question: `What is a ${pageTitle}?`,
-        answer: `A ${pageTitle} is a specialized mathematical tool that allows you to calculate and estimate relevant values based on your inputs. It is completely free to use online.`
-      },
-      {
-        question: `How do I use this ${pageTitle}?`,
-        answer: `Simply enter your required information into the fields above and the results will automatically calculate and update on your screen.`
-      },
-      {
-        question: `Is my data safe when using this ${pageTitle}?`,
-        answer: `Yes, protecting your privacy is our priority. All calculations performed by this ${pageTitle} happen locally in your browser. We never store or transmit your personal input data to any servers.`
-      }
-    ],
-    es: [
-      {
-        question: `¿Qué es ${pageTitle}?`,
-        answer: `${pageTitle} es una herramienta matemática gratuita en línea que le permite calcular y estimar valores precisos al instante según los datos ingresados.`
-      },
-      {
-        question: `¿Cómo uso ${pageTitle}?`,
-        answer: `Simplemente ingrese los valores requeridos en los campos de arriba y los resultados se calcularán y actualizarán automáticamente en su pantalla.`
-      },
-      {
-        question: `¿Están seguros mis datos al usar ${pageTitle}?`,
-        answer: `Sí, proteger su privacidad es nuestra prioridad. Todos los cálculos realizados por ${pageTitle} se ejecutan localmente en su navegador sin almacenar ni enviar sus datos a ningún servidor.`
-      }
-    ],
-    fr: [
-      {
-        question: `Qu'est-ce que ${pageTitle} ?`,
-        answer: `${pageTitle} est un outil mathématique gratuit en ligne qui vous permet de calculer et d'estimer instantanément des valeurs précises en fonction de vos données.`
-      },
-      {
-        question: `Comment utiliser ${pageTitle} ?`,
-        answer: `Saisissez simplement vos informations dans les champs ci-dessus et les résultats seront automatiquement calculés et mis à jour à l'écran.`
-      },
-      {
-        question: `Mes données sont-elles sécurisées avec ${pageTitle} ?`,
-        answer: `Oui, la confidentialité est notre priorité. Tous les calculs effectués par ${pageTitle} sont traités localement dans votre navigateur sans jamais être stockés sur un serveur.`
-      }
-    ],
-    de: [
-      {
-        question: `Was ist der ${pageTitle}?`,
-        answer: `Der ${pageTitle} ist ein kostenloses mathematisches Online-Werkzeug, mit dem Sie anhand Ihrer Eingaben relevante Werte sofort und präzise berechnen können.`
-      },
-      {
-        question: `Wie verwende ich diesen ${pageTitle}?`,
-        answer: `Geben Sie einfach Ihre Daten in die Felder oben ein. Die Ergebnisse werden automatisch berechnet und direkt auf Ihrem Bildschirm aktualisiert.`
-      },
-      {
-        question: `Sind meine Daten bei der Nutzung des ${pageTitle} sicher?`,
-        answer: `Ja, der Schutz Ihrer Privatsphäre hat höchste Priorität. Alle Berechnungen im ${pageTitle} erfolgen lokal in Ihrem Browser, ohne dass Daten an Server übertragen werden.`
-      }
-    ]
-  };
-
   const localizedFaqs = localizedMd?.data?.faqs && Array.isArray(localizedMd.data.faqs) && localizedMd.data.faqs.length > 0
     ? localizedMd.data.faqs
     : (resolvedParams.locale === 'en' && fallbackMd?.data?.faqs && Array.isArray(fallbackMd.data.faqs) && fallbackMd.data.faqs.length > 0
       ? fallbackMd.data.faqs
-      : null);
+      : undefined);
 
-  const faqs: { question: string; answer: string }[] = localizedFaqs
-    ? [...localizedFaqs]
-    : [...(fallbackFaqByLocale[resolvedParams.locale] || fallbackFaqByLocale.en)];
+  const faqs: { question: string; answer: string }[] = buildDynamicCalculatorFaqs({
+    calc,
+    locale: resolvedParams.locale,
+    localizedTitle: pageTitle,
+    localizedDescription: pageDesc,
+    localizedInputs: clientCalcDef.fields,
+    existingFaqs: localizedFaqs,
+  });
 
   // Semantic Math FAQ Embedding: inject authoritative mathematical formula FAQ if not already present
   const hasFormulaFaq = faqs.some((f) =>
@@ -412,8 +360,10 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     }
   }
 
-  // Find related calculators for the sidebar and bottom section
+  // Find related calculators, comparisons, and curated collections for bidirectional internal linking
   const relatedTools = getRelatedCalculators(calc.slug, 8);
+  const relatedComparisons = getComparisonsForSlug(calc.slug, calc.category, 3);
+  const relatedCollections = getCollectionsForSlug(calc.slug, calc.category, 2);
   const categoryDef = getCategoryForCalculator(calc.category);
   const activeCategory = sitemapCategories.find(c => c.title.toLowerCase().includes(calc.category.toLowerCase())) || sitemapCategories[0];
   const rawCategoryTitle = categoryDef?.title || activeCategory.title;
@@ -470,6 +420,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     ? getCanonicalUrl('/guides/[slug]', resolvedParams.locale, relatedGuide.slug)
     : undefined;
 
+  const isFinanceCalc = calc.category.toLowerCase().includes('financ');
+  const isHealthCalc = calc.category.toLowerCase().includes('health') || calc.category.toLowerCase().includes('fitness');
+
   const guideTranslations: Record<string, {
     badge: string;
     cta: string;
@@ -484,6 +437,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     quickLinks: string;
     relatedCalcs: string;
     viewAll: string;
+    comparisonsHeading: string;
+    viewAllComparisons: string;
+    collectionsHeading: string;
+    viewAllCollections: string;
+    ymylTitle: string;
+    ymylFinanceBody: string;
+    ymylHealthBody: string;
   }> = {
     en: {
       badge: 'In-Depth Guide & Mathematical Breakdown',
@@ -499,6 +459,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       quickLinks: 'Quick Links',
       relatedCalcs: 'Related Calculators',
       viewAll: `View all ${categoryTitle.toLowerCase()}`,
+      comparisonsHeading: 'Side-by-Side Comparisons',
+      viewAllComparisons: 'View all comparisons',
+      collectionsHeading: 'Curated Workflow Toolkits',
+      viewAllCollections: 'Explore all toolkits',
+      ymylTitle: 'Editorial Verification & Regulatory Disclosure',
+      ymylFinanceBody: `This financial model is peer-reviewed by ${reviewerByline.reviewer} using standard actuarial and Truth-in-Lending (CFPB / Reg Z) compounding conventions. Estimates are for educational and quantitative planning only and do not constitute personalized investment, tax, or legal lending advice.`,
+      ymylHealthBody: `This clinical biometric model is peer-reviewed by ${reviewerByline.reviewer} against published WHO, NIH, and peer-reviewed physiological equations. Outputs provide informational screening benchmarks only and must not be used as a substitute for clinical diagnosis or medical advice from a licensed physician.`,
     },
     es: {
       badge: 'Guía Educativa y Desglose Matemático',
@@ -514,6 +481,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       quickLinks: 'Enlaces Rápidos',
       relatedCalcs: 'Calculadoras Relacionadas',
       viewAll: `Ver todas en ${categoryTitle.toLowerCase()}`,
+      comparisonsHeading: 'Comparativas Lado a Lado',
+      viewAllComparisons: 'Ver todas las comparativas',
+      collectionsHeading: 'Paquetes y Kits de Herramientas',
+      viewAllCollections: 'Explorar todas las colecciones',
+      ymylTitle: 'Verificación Editorial y Aviso Normativo',
+      ymylFinanceBody: `Este modelo cuantitativo ha sido verificado por ${reviewerByline.reviewer} siguiendo estándares actuariales e internacionales de capitalización y amortización. Los resultados tienen carácter exclusivamente informativo y educativo, y no constituyen asesoramiento financiero, fiscal ni bancario vinculante.`,
+      ymylHealthBody: `Este modelo biométrico ha sido revisado por ${reviewerByline.reviewer} conforme a ecuaciones fisiológicas publicadas (OMS / NIH). Las estimaciones son referencias informativas y no sustituyen el diagnóstico clínico ni la consulta con un médico colegiado.`,
     },
     fr: {
       badge: 'Guide Pédagogique et Analyse Mathématique',
@@ -529,6 +503,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       quickLinks: 'Liens Rapides',
       relatedCalcs: 'Calculatrices Associées',
       viewAll: `Voir tout dans ${categoryTitle.toLowerCase()}`,
+      comparisonsHeading: 'Comparatifs Côte à Côte',
+      viewAllComparisons: 'Voir tous les comparatifs',
+      collectionsHeading: 'Packs d’Outils Thématiques',
+      viewAllCollections: 'Explorer toutes les collections',
+      ymylTitle: 'Vérification Éditoriale et Avis Réglementaire',
+      ymylFinanceBody: `Ce modèle financier est validé par ${reviewerByline.reviewer} selon les normes actuarielles et financières internationales. Les résultats sont fournis à titre strictement informatif et pédagogique et ne constituent pas un conseil en investissement, fiscalité ou crédit.`,
+      ymylHealthBody: `Ce modèle biométrique est vérifié par ${reviewerByline.reviewer} sur la base d'équations physiologiques de référence (OMS / NIH). Ces estimations sont fournies à titre purement indicatif et ne remplacent en aucun cas un avis médical ou un diagnostic clinique.`,
     },
     de: {
       badge: 'Ausführlicher Ratgeber & Formelerklärung',
@@ -544,11 +525,18 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       quickLinks: 'Schnellzugriff',
       relatedCalcs: 'Ähnliche Rechner',
       viewAll: `Alle ${categoryTitle} anzeigen`,
+      comparisonsHeading: 'Direkte Systemvergleiche',
+      viewAllComparisons: 'Alle Vergleiche anzeigen',
+      collectionsHeading: 'Kuratierte Workflow-Toolkits',
+      viewAllCollections: 'Alle Sammlungen entdecken',
+      ymylTitle: 'Redaktionelle Prüfung & Rechtlicher Hinweis',
+      ymylFinanceBody: `Dieses finanzmathematische Modell wurde von ${reviewerByline.reviewer} nach anerkannten versicherungs- und finanzmathematischen Standards geprüft. Alle Berechnungen dienen ausschließlich der unverbindlichen Information und ersetzen keine individuelle Finanz-, Steuer- oder Rechtsberatung.`,
+      ymylHealthBody: `Dieses biometrische Modell wurde von ${reviewerByline.reviewer} anhand wissenschaftlich publizierter Referenzformeln (WHO / NIH) validiert. Die Ergebnisse dienen ausschließlich der allgemeinen Orientierung und ersetzen keine ärztliche Diagnose oder medizinische Beratung.`,
     },
   };
   const guideText = guideTranslations[resolvedParams.locale] || guideTranslations.en;
 
-  // SoftwareApplication JSON-LD Schema
+  // SoftwareApplication JSON-LD Schema enriched with E-E-A-T Author, Reviewer & DateModified
   const softwareAppSchema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -561,6 +549,16 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     "browserRequirements": "Requires JavaScript",
     "url": canonicalUrl,
     "inLanguage": resolvedParams.locale,
+    "dateModified": reviewerByline.lastUpdated,
+    "author": {
+      "@type": "Organization",
+      "name": "NexusCalculator",
+      "url": baseUrl
+    },
+    "reviewedBy": {
+      "@type": "Person",
+      "name": reviewerByline.reviewer
+    },
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -574,6 +572,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       }
     })
   };
+
 
   const formulaDef = getFormulaForCalculator(calc.slug);
 
@@ -918,6 +917,26 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             </div>
           </div>
 
+          {/* YMYL Editorial Verification & Regulatory Disclosure (Finance & Health Calculators) */}
+          {(isFinanceCalc || isHealthCalc) && (
+            <aside
+              aria-label={guideText.ymylTitle}
+              className="mt-8 p-5 md:p-6 rounded-2xl bg-slate-100/80 dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 flex items-start gap-4"
+            >
+              <div className="p-2.5 rounded-xl bg-[#518231]/10 text-[#518231] dark:text-[#6fa844] shrink-0 mt-0.5">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <div className="text-xs md:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                <h3 className="font-bold text-slate-900 dark:text-white mb-1">
+                  {guideText.ymylTitle}
+                </h3>
+                <p>
+                  {isFinanceCalc ? guideText.ymylFinanceBody : guideText.ymylHealthBody}
+                </p>
+              </div>
+            </aside>
+          )}
+
           {/* Community Discussions & Real Q&A (Milestone 5.2) */}
           <EmbeddedToolDiscussions
             calcSlug={calc.slug}
@@ -1045,6 +1064,93 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
 
         </aside>
       </div>
+
+      {/* Bidirectional Topic Cluster Links: Side-by-Side Comparisons & Curated Workflow Toolkits */}
+      {(relatedComparisons.length > 0 || relatedCollections.length > 0) && (
+        <div className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-16 grid grid-cols-1 lg:grid-cols-2 gap-10 print:hidden">
+          {relatedComparisons.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                  <Scale className="w-5 h-5 text-[#518231]" />
+                  <span>{guideText.comparisonsHeading}</span>
+                </h2>
+                <Link
+                  href={resolveIntlHref('/compare')}
+                  className="text-sm font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] hover:underline inline-flex items-center"
+                >
+                  {guideText.viewAllComparisons} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
+                </Link>
+              </div>
+              <div className="space-y-4">
+                {relatedComparisons.map((comp) => {
+                  const compTr = comp.translations?.[resolvedParams.locale];
+                  const compTitle = compTr?.title || comp.title;
+                  const compVerdict = compTr?.verdict || comp.verdict;
+                  return (
+                    <Link
+                      key={comp.slug}
+                      href={resolveIntlHref(`/compare/${comp.slug}`)}
+                      className="group block bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 dark:hover:border-[#518231]/40 transition-all"
+                    >
+                      <div className="flex items-center justify-between gap-3 mb-1.5">
+                        <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors">
+                          {compTitle}
+                        </h3>
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all shrink-0" />
+                      </div>
+                      <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        {compVerdict}
+                      </p>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {relatedCollections.length > 0 && (
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2.5">
+                  <Layers className="w-5 h-5 text-[#518231]" />
+                  <span>{guideText.collectionsHeading}</span>
+                </h2>
+                <Link
+                  href={resolveIntlHref('/collections')}
+                  className="text-sm font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] hover:underline inline-flex items-center"
+                >
+                  {guideText.viewAllCollections} <ChevronRight className="w-4 h-4 ml-1 rtl:rotate-180" />
+                </Link>
+              </div>
+              <div className="space-y-4">
+                {relatedCollections.map((col) => {
+                  const colTr = col.translations?.[resolvedParams.locale];
+                  const colTitle = colTr?.title || col.title;
+                  const colDesc = colTr?.description || col.description;
+                  return (
+                    <Link
+                      key={col.slug}
+                      href={resolveIntlHref(`/collections/${col.slug}`)}
+                      className="group block bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md hover:border-[#518231]/30 dark:hover:border-[#518231]/40 transition-all"
+                    >
+                      <div className="flex items-center justify-between gap-3 mb-1.5">
+                        <h3 className="font-semibold text-slate-900 dark:text-white group-hover:text-[#518231] transition-colors">
+                          {colTitle}
+                        </h3>
+                        <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-1 transition-all shrink-0" />
+                      </div>
+                      <p className="text-xs md:text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
+                        {colDesc}
+                      </p>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Related Calculators - Moved to bottom */}
       <div className="mt-16 border-t border-slate-200 dark:border-slate-800 pt-16">

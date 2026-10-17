@@ -177,9 +177,50 @@ export default async function GuidesIndexPage({
   const t = await getTranslations('GuidesIndex');
 
   const categories = Object.keys(guidesByCategory) as GuideCategory[];
+  const canonicalUrl = getCanonicalUrl('/guides', locale);
+  const homeUrl = getCanonicalUrl('/', locale);
+
+  const collectionPageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t('metaTitle'),
+    description: t('metaDescription'),
+    url: canonicalUrl,
+    inLanguage: locale,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: allGuides.length,
+      itemListElement: featuredGuides.slice(0, 20).map((g, idx) => {
+        const locGuide = getLocalizedGuide(g, locale);
+        return {
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: locGuide.title,
+          url: getCanonicalUrl('/guides/[slug]', locale, g.slug),
+        };
+      }),
+    },
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t('home'), item: homeUrl },
+      { '@type': 'ListItem', position: 2, name: t('guides'), item: canonicalUrl },
+    ],
+  };
 
   return (
     <div className="max-w-4xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       {/* ── Breadcrumb ───────────────────────────────────────────────── */}
       <nav
         aria-label="Breadcrumb"
