@@ -13,11 +13,14 @@ import { Search } from 'lucide-react';
 export async function generateMetadata({ params, searchParams }: { params: Promise<{ locale: string }>, searchParams: Promise<{ q?: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const { q } = await searchParams;
-  
+  const hasQuery = Boolean(q && q.trim().length > 0);
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+
   return {
-    title: q ? `Search results for "${q}" | Nexus Calculator` : 'Search | Nexus Calculator',
-    description: 'Find the right calculator or developer tool for your needs.',
-    robots: { index: false, follow: true },
+    title: hasQuery ? `Search results for "${q}" | Nexus Calculator` : 'Search Calculators & Developer Tools | Nexus Calculator',
+    description: 'Search 300+ free online financial, math, health, and science calculators, PDF utilities, image tools, and developer utilities on Nexus Calculator.',
+    robots: { index: !hasQuery, follow: true },
+    ...(!hasQuery ? { alternates: getCanonicalAndAlternates('/search', locale) } : {}),
   };
 }
 

@@ -39,7 +39,7 @@ const titleOverrides: Record<string, string> = {
   "Cash Back or Low Interest Calculator": "/calculators/cash-back-vs-low-interest-calculator",
   "401K Calculator": "/calculators/401k-calculator",
   "Roth IRA Calculator": "/calculators/roth-ira-calculator",
-  "Mortgage Calculator UK": "/calculators/mortgage-calculator-uk",
+  "Mortgage Calculator UK": "/tools/mortgage-calculator-uk",
   "Remove Background": "/tools/background-remover",
   "QR Code Studio": "/tools/qr-code-studio",
   "PDF to Excel": "/tools/pdf-to-excel",

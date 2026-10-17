@@ -40,41 +40,62 @@ const LEGACY_TOOL_SLUG_MAP: Record<string, string> = {
   '.htaccess-generator': 'htaccess-generator',
   'html-minifier': 'html-formatter',
   'json-validator': 'json-formatter',
+  'add-page-numbers': 'add-page-numbers-pdf',
+  'txt-to-pdf': 'text-to-pdf',
+  'pdf-to-ppt': 'pdf-to-powerpoint',
+  'ppt-to-pdf': 'powerpoint-to-pdf',
+  'css-minifier': 'css-beautifier',
+  'javascript-beautifier': 'js-beautifier',
+  'js-minifier': 'js-beautifier',
 };
 
-// Calculators that were historically linked under /tools/ → canonical localized calculator path
-const TOOL_TO_CALC_REDIRECTS: Record<string, Record<string, string>> = {
-  'mortgage-calculator-uk': {
-    en: '/en/calculators/mortgage-calculator-uk',
-    es: '/es/calculadoras/calculadora-hipoteca-reino-unido',
-    fr: '/fr/calculatrices/calculateur-hypotheque-royaume-uni',
-    de: '/de/rechner/hypothekenrechner-uk',
-  },
-  'stamp-duty-calculator': {
-    en: '/en/calculators/stamp-duty-calculator',
-    es: '/es/calculadoras/calculadora-impuesto-timbre',
-    fr: '/fr/calculatrices/calculateur-droits-mutation',
-    de: '/de/rechner/grunderwerbsteuer-rechner-uk',
-  },
-  'overpayment-calculator': {
-    en: '/en/calculators/overpayment-calculator',
-    es: '/es/calculadoras/calculadora-amortizacion-anticipada',
-    fr: '/fr/calculatrices/calculateur-remboursement-anticipe',
-    de: '/de/rechner/sondertilgungsrechner',
-  },
-  'remortgage-calculator': {
-    en: '/en/calculators/remortgage-calculator',
-    es: '/es/calculadoras/calculadora-rehipoteca',
-    fr: '/fr/calculatrices/calculateur-rachat-credit-immobilier',
-    de: '/de/rechner/umschuldungsrechner-hypothek',
-  },
-  'buy-to-let-calculator': {
-    en: '/en/calculators/buy-to-let-calculator',
-    es: '/es/calculadoras/calculadora-hipoteca-alquiler',
-    fr: '/fr/calculatrices/calculateur-investissement-locatif',
-    de: '/de/rechner/kapitalanlage-immobilien-rechner',
-  },
-};
+// Leaked community & navigation menu links historically generated under /tools/<slug>
+const TOOL_COMMUNITY_LEAK_SLUGS = new Set([
+  'next.js-discussions',
+  'nextjs-discussions',
+  'seo-discussions',
+  'react-discussions',
+  'firebase-discussions',
+  'api-discussions',
+  'bug-reports',
+  'ask-a-question',
+  'tool-requests',
+  'latest-discussions',
+  'share-code-snippets',
+]);
+
+const TOOL_HUB_LEAK_SLUGS = new Set([
+  'most-used-today',
+  'popular-among-developers',
+  'recently-added',
+  'editors-picks',
+  "editor's-picks",
+  'editor’s-picks',
+]);
+
+// UK mortgage calculator & companion slugs (mortgage-calculator-uk is implemented under /tools/mortgage-calculator-uk)
+const UK_MORTGAGE_CALC_SLUGS = new Set([
+  'mortgage-calculator-uk',
+  'calculadora-hipoteca-reino-unido',
+  'calculateur-hypotheque-royaume-uni',
+  'hypothekenrechner-uk',
+  'stamp-duty-calculator',
+  'calculadora-impuesto-timbre',
+  'calculateur-droits-mutation',
+  'grunderwerbsteuer-rechner-uk',
+  'overpayment-calculator',
+  'calculadora-amortizacion-anticipada',
+  'calculateur-remboursement-anticipe',
+  'sondertilgungsrechner',
+  'remortgage-calculator',
+  'calculadora-rehipoteca',
+  'calculateur-rachat-credit-immobilier',
+  'umschuldungsrechner-hypothek',
+  'buy-to-let-calculator',
+  'calculadora-hipoteca-alquiler',
+  'calculateur-investissement-locatif',
+  'kapitalanlage-immobilien-rechner',
+]);
 
 // Legacy or misspelled tool URLs → canonical tool path
 const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
@@ -86,14 +107,6 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
   '/es/herramientas/url-encoder-decoder': '/es/herramientas/url-encoder',
   '/fr/outils/url-encoder-decoder': '/fr/outils/url-encoder',
   '/tools/url-encoder-decoder': '/en/tools/url-encoder',
-  '/de/werkzeuge/next.js-discussions': '/de/werkzeuge',
-  '/en/tools/next.js-discussions': '/en/tools',
-  '/es/herramientas/next.js-discussions': '/es/herramientas',
-  '/fr/outils/next.js-discussions': '/fr/outils',
-  '/de/tools/next.js-discussions': '/de/werkzeuge',
-  '/es/tools/next.js-discussions': '/es/herramientas',
-  '/fr/tools/next.js-discussions': '/fr/outils',
-  '/tools/next.js-discussions': '/en/tools',
   '/de/werkzeuge/sitemap.xml-generator': '/de/werkzeuge/sitemap-xml-generator',
   '/en/tools/sitemap.xml-generator': '/en/tools/sitemap-xml-generator',
   '/es/herramientas/sitemap.xml-generator': '/es/herramientas/sitemap-xml-generator',
@@ -126,27 +139,45 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
   '/de/rechner/random-number-generator': '/de/werkzeuge/random-number-generator',
 };
 
-// Truly deprecated or renamed calculators → canonical destination
-// Note: active calculators (molarity, tip, pace) must not be listed here.
-const DEPRECATED_CALC_REDIRECTS: Record<string, string> = {
-  'refinance-calculator': '/en/calculators/mortgage-calculator',
-  'number-sequence-calculator': '/en/calculators/category/math',
-  'body-type-calculator': '/en/calculators/body-fat-calculator',
-  'electricity-calculator': '/en/calculators/electricity-cost-calculator',
-  'time-card-calculator': '/en/calculators/hours-calculator',
-  'hex-calculator': '/en/calculators/binary-calculator',
-  'bandwidth-calculator': '/en/calculators/category/other',
-  'circle-calculator': '/en/calculators/category/math',
-  'mass-calculator': '/en/calculators/category/math',
-  'gdp-calculator': '/en/calculators/category/financial',
-  'mean-median-mode-range-calculator': '/en/calculators/statistics-calculator',
-  'permutation-and-combination-calculator': '/en/calculators/category/math',
-  'calories-burned-calculator': '/en/calculators/calorie-calculator',
-  'day-counter': '/en/calculators/date-calculator',
-  'pregnancy-weight-gain-calculator': '/en/calculators/pregnancy-calculator',
-  'lean-body-mass-calculator': '/en/calculators/body-fat-calculator',
-  'pythagorean-theorem-calculator': '/en/calculators/category/math',
-  'time-zone-calculator': '/en/calculators/time-calculator',
+// Truly deprecated or renamed calculators → canonical English calculator slug or category id
+// Resolved dynamically per locale in getCanonicalPath so /de/*, /fr/*, /es/* redirect in 1 hop to their localized canonical URL.
+const DEPRECATED_CALC_TO_CANONICAL_SLUG: Record<string, { type: 'calc' | 'category'; target: string }> = {
+  'refinance-calculator': { type: 'calc', target: 'mortgage-calculator' },
+  'number-sequence-calculator': { type: 'category', target: 'math' },
+  'body-type-calculator': { type: 'calc', target: 'body-fat-calculator' },
+  'electricity-calculator': { type: 'calc', target: 'electricity-cost-calculator' },
+  'time-card-calculator': { type: 'calc', target: 'hours-calculator' },
+  'hex-calculator': { type: 'calc', target: 'binary-calculator' },
+  'bandwidth-calculator': { type: 'category', target: 'other' },
+  'circle-calculator': { type: 'category', target: 'math' },
+  'mass-calculator': { type: 'calc', target: 'weight-calculator' },
+  'gdp-calculator': { type: 'category', target: 'financial' },
+  'mean-median-mode-range-calculator': { type: 'calc', target: 'statistics-calculator' },
+  'permutation-and-combination-calculator': { type: 'calc', target: 'probability-calculator' },
+  'calories-burned-calculator': { type: 'calc', target: 'calorie-calculator' },
+  'day-counter': { type: 'calc', target: 'date-calculator' },
+  'pregnancy-weight-gain-calculator': { type: 'calc', target: 'pregnancy-calculator' },
+  'lean-body-mass-calculator': { type: 'calc', target: 'body-fat-calculator' },
+  'pythagorean-theorem-calculator': { type: 'calc', target: 'triangle-calculator' },
+  'time-zone-calculator': { type: 'calc', target: 'time-calculator' },
+  'conception-calculator': { type: 'calc', target: 'pregnancy-conception-calculator' },
+  'bac-calculator': { type: 'calc', target: 'bmi-calculator' },
+  'gfr-calculator': { type: 'calc', target: 'bmi-calculator' },
+  'engine-horsepower-calculator': { type: 'calc', target: 'power-calculator' },
+  'tdee-calculator': { type: 'calc', target: 'calorie-calculator' },
+  'sleep-calculator': { type: 'calc', target: 'advanced-sleep-cycle-calculator' },
+  'tile-calculator': { type: 'calc', target: 'concrete-calculator' },
+  'gas-mileage-calculator': { type: 'calc', target: 'conversion-calculator' },
+  'payback-period-calculator': { type: 'calc', target: 'irr-calculator' },
+  'molecular-weight-calculator': { type: 'calc', target: 'molar-mass-calculator' },
+  'speed-calculator': { type: 'calc', target: 'velocity-calculator' },
+  'credit-card-calculator': { type: 'calc', target: 'credit-cards-payoff' },
+  'home-equity-loan-calculator': { type: 'calc', target: 'heloc-calculator' },
+  'ira-calculator': { type: 'calc', target: 'roth-ira-calculator' },
+  'pension-calculator': { type: 'calc', target: 'retirement-calculator' },
+  'mortgage-calculator-for-your-site': { type: 'calc', target: 'mortgage-calculator' },
+  'love-calculator-for-your-site': { type: 'calc', target: 'percentage-calculator' },
+  'math-calculator-for-your-site': { type: 'calc', target: 'scientific-calculator' },
 };
 
 // Cross-locale community path aliases (e.g. /fr/community → /fr/communaute)
@@ -278,14 +309,42 @@ function getCanonicalPath(pathname: string): string | null {
   const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname] || LEGACY_CALC_ALIAS_REDIRECTS[pathname];
   if (legacyToolTarget) return legacyToolTarget;
 
-  // 1b-2. Legacy tool slug resolution & UK mortgage calculators historically linked under /tools/
+  // 1b-2. Legacy tool slug resolution & leaked community/menu links under /tools/
   const toolSlugMatch = pathname.match(/^(?:\/(en|es|fr|de))?\/(tools|herramientas|outils|werkzeuge)\/([^/]+)$/);
   if (toolSlugMatch) {
-    const [, loc = 'en', , rawSlug] = toolSlugMatch;
-    const calcByLoc = TOOL_TO_CALC_REDIRECTS[rawSlug];
-    if (calcByLoc) {
-      return calcByLoc[loc] || calcByLoc.en;
+    const [, loc = 'en', , rawEncodedSlug] = toolSlugMatch;
+    let rawSlug = rawEncodedSlug;
+    try {
+      rawSlug = decodeURIComponent(rawEncodedSlug);
+    } catch {
+      rawSlug = rawEncodedSlug;
     }
+
+    if (UK_MORTGAGE_CALC_SLUGS.has(rawSlug)) {
+      const toolPrefix = loc === 'en' ? 'tools' : LOCALE_TOOL_PREFIX[loc];
+      const canonicalUkPath = `/${loc}/${toolPrefix}/mortgage-calculator-uk`;
+      return pathname === canonicalUkPath ? null : canonicalUkPath;
+    }
+
+    if (TOOL_COMMUNITY_LEAK_SLUGS.has(rawSlug)) {
+      const commMap: Record<string, string> = {
+        en: '/en/community',
+        es: '/es/comunidad',
+        fr: '/fr/communaute',
+        de: '/de/gemeinschaft',
+      };
+      return commMap[loc] || '/en/community';
+    }
+
+    if (TOOL_HUB_LEAK_SLUGS.has(rawSlug)) {
+      if (rawSlug === 'most-used-today') {
+        const calcHub = loc === 'en' ? '/en/calculators' : `/${loc}/${LOCALE_CALC_PREFIX[loc]}`;
+        return calcHub;
+      }
+      const toolHub = loc === 'en' ? '/en/tools' : `/${loc}/${LOCALE_TOOL_PREFIX[loc]}`;
+      return toolHub;
+    }
+
     const mappedToolSlug = LEGACY_TOOL_SLUG_MAP[rawSlug];
     if (mappedToolSlug) {
       const toolPrefix = loc === 'en' ? 'tools' : LOCALE_TOOL_PREFIX[loc];
@@ -293,12 +352,28 @@ function getCanonicalPath(pathname: string): string | null {
     }
   }
 
-  // 1c. Truly deprecated or merged calculator redirects
+  // 1c. Truly deprecated or merged calculator redirects & UK mortgage calculator under /calculators/
   const deprecatedMatch = pathname.match(/^\/(?:(en|es|fr|de)\/)?(?:calculators|calculadoras|calculatrices|rechner)\/([a-zA-Z0-9_-]+)$/);
   if (deprecatedMatch) {
+    const loc = deprecatedMatch[1] || 'en';
     const slug = deprecatedMatch[2];
-    const deprecatedTarget = DEPRECATED_CALC_REDIRECTS[slug];
-    if (deprecatedTarget) return deprecatedTarget;
+
+    if (UK_MORTGAGE_CALC_SLUGS.has(slug)) {
+      const toolPrefix = loc === 'en' ? 'tools' : LOCALE_TOOL_PREFIX[loc];
+      return `/${loc}/${toolPrefix}/mortgage-calculator-uk`;
+    }
+
+    const depEntry = DEPRECATED_CALC_TO_CANONICAL_SLUG[slug];
+    if (depEntry) {
+      if (depEntry.type === 'category') {
+        if (loc === 'en') return `/en/calculators/category/${depEntry.target}`;
+        return `/${loc}/${LOCALE_CALC_CATEGORY_PREFIX[loc]}/${depEntry.target}`;
+      }
+      const enPath = `/en/calculators/${depEntry.target}`;
+      if (loc === 'en') return enPath;
+      const locPrefixPath = `/${loc}/${LOCALE_CALC_PREFIX[loc]}/${depEntry.target}`;
+      return CALC_REDIRECT_MAP[locPrefixPath] || locPrefixPath;
+    }
   }
 
   // 1d. Leaked redirect-checker documentation example paths (/new-path/*, /old-path/*)
