@@ -307,6 +307,7 @@ export default function DatabasePrivacyLayout({
                   <Link
                     key={item.name}
                     href={item.href}
+                    rel="nofollow"
                     className={`flex items-center gap-2.5 py-2 text-sm font-medium rounded-lg mx-2 transition-all duration-150
                       ${
                         isActive
@@ -373,81 +374,78 @@ export default function DatabasePrivacyLayout({
 
   return (
     <ToastProvider>
-      {/* Prevent search engines from indexing authenticated dashboard routes */}
-      <meta name="robots" content="noindex, nofollow" />
-      <div className="w-full">
-        {/* Mobile Header */}
-        <div className="lg:hidden flex items-center justify-between bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-4 sticky top-0 z-30">
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="p-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
-            <span className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Shield className="w-5 h-5 text-violet-600" />
-              DataPrivacy Platform
-            </span>
-          </div>
-          <Link
-            href={`/${locale}/database-privacy/dashboard`}
-            className="text-xs font-semibold text-violet-600 dark:text-violet-400 flex items-center gap-1"
-          >
-            Dashboard <ArrowRight className="w-3 h-3" />
-          </Link>
-        </div>
-
-        {/* Mobile Drawer */}
-        <AnimatePresence>
-          {mobileMenuOpen && (
-            <>
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={() => setMobileMenuOpen(false)}
-                className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden"
-              />
-              <motion.div
-                initial={{ x: "-100%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "-100%" }}
-                transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-                className="fixed inset-y-0 left-0 w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-50 lg:hidden flex flex-col overflow-y-auto"
+      <PlatformAuthGuard>
+        <div className="w-full">
+          {/* Mobile Header */}
+          <div className="lg:hidden flex items-center justify-between bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 p-4 sticky top-0 z-30">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800"
               >
-                <div className="flex items-center justify-end p-4">
-                  <button
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
+                <Menu className="w-5 h-5" />
+              </button>
+              <span className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <Shield className="w-5 h-5 text-violet-600" />
+                DataPrivacy Platform
+              </span>
+            </div>
+            <Link
+              href={`/${locale}/database-privacy/dashboard`}
+              rel="nofollow"
+              className="text-xs font-semibold text-violet-600 dark:text-violet-400 flex items-center gap-1"
+            >
+              Dashboard <ArrowRight className="w-3 h-3" />
+            </Link>
+          </div>
+
+          {/* Mobile Drawer */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden"
+                />
+                <motion.div
+                  initial={{ x: "-100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "-100%" }}
+                  transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+                  className="fixed inset-y-0 left-0 w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-50 lg:hidden flex flex-col overflow-y-auto"
+                >
+                  <div className="flex items-center justify-end p-4">
+                    <button
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="p-1.5 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  {renderSidebarContent()}
+                </motion.div>
+              </>
+            )}
+          </AnimatePresence>
+
+          <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+            <div className="flex gap-6 lg:gap-8 items-start">
+              {/* Desktop sidebar - sticky */}
+              <aside className="hidden lg:block w-60 shrink-0 sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm custom-scrollbar">
                 {renderSidebarContent()}
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
+              </aside>
 
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
-          <div className="flex gap-6 lg:gap-8 items-start">
-            {/* Desktop sidebar - sticky */}
-            <aside className="hidden lg:block w-60 shrink-0 sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm custom-scrollbar">
-              {renderSidebarContent()}
-            </aside>
-
-            {/* Main content — auth guard skips login, signup, and landing page */}
-            <main className="flex-1 min-w-0">
-              {isAuthPage || isLandingPage ? (
-                children
-              ) : (
-                <PlatformAuthGuard>{children}</PlatformAuthGuard>
-              )}
-            </main>
+              {/* Main content */}
+              <main className="flex-1 min-w-0">
+                {children}
+              </main>
+            </div>
           </div>
         </div>
-      </div>
+      </PlatformAuthGuard>
     </ToastProvider>
   );
 }

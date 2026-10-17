@@ -11,105 +11,15 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: '/',
+        allow: [
+          '/',
+          '/api/users/',                        // Allow legacy documentation example path so 301 redirect in next.config.ts resolves in GSC
+        ],
         disallow: [
           '/api/',                              // Internal API endpoints
           '/private/',                          // Admin / internal routes
-          '/*/embed/*',                         // Iframe calculator embeds (not indexable pages)
-          '/*/opengraph-image',                 // Dynamic OpenGraph image endpoints
-          // ── Auth-required pages (redirect unauthenticated crawlers) ───────────
-          // These cause "Page with redirect" in GSC. Block crawl budget waste.
-          '/login',
-          '/signup',
-          '/*/login',
-          '/*/iniciar-sesion',
-          '/*/connexion',
-          '/*/anmelden',
-          '/*/signup',
-          '/*/registrarse',
-          '/*/inscription',
-          '/*/registrieren',
-          '/*/community/new',
-          '/*/community/messages',
-          '/*/community/messages/*',
-          '/*/community/settings',
-          '/*/comunidad/nuevo',
-          '/*/comunidad/mensajes',
-          '/*/comunidad/mensajes/*',
-          '/*/comunidad/ajustes',
-          '/*/comunidad/configuracion',
-          '/*/communaute/nouveau',
-          '/*/communaute/messages',
-          '/*/communaute/messages/*',
-          '/*/communaute/parametres',
-          '/*/gemeinschaft/neu',
-          '/*/gemeinschaft/nachrichten',
-          '/*/gemeinschaft/nachrichten/*',
-          '/*/gemeinschaft/einstellungen',
-          '/*/dashboard',
-          '/*/panel',
-          '/*/tableau-de-bord',
-          '/*/admin/*',
-          '/admin/',
-          // ── Bare community categories & utility paths ─────────────────────────
-          '/community/category/*',
-          '/community/hall-of-fame',
-          '/community/leaderboard',
-          // ── Community search params (create duplicate/redirect URLs) ──────────
-          '/*/community?q=*',
-          '/*/comunidad?q=*',
-          '/*/communaute?q=*',
-          '/*/gemeinschaft?q=*',
-          // ── Data Privacy Platform — authenticated app routes ──────────────────
-          '/*/database-privacy/dashboard',
-          '/*/database-privacy/scanner',
-          '/*/database-privacy/scanner/',
-          '/*/database-privacy/masking/',
-          '/*/database-privacy/anonymize',
-          '/*/database-privacy/connections',
-          '/*/database-privacy/explorer',
-          '/*/database-privacy/jobs',
-          '/*/database-privacy/jobs/',
-          '/*/database-privacy/compliance',
-          '/*/database-privacy/reports',
-          '/*/database-privacy/audit',
-          '/*/database-privacy/import',
-          '/*/database-privacy/export',
-          '/*/database-privacy/api-keys',
-          '/*/database-privacy/secrets',
-          '/*/database-privacy/webhooks',
-          '/*/database-privacy/users',
-          '/*/database-privacy/monitoring',
-          '/*/database-privacy/monitoring/',
-          '/*/database-privacy/organizations',
-          '/*/database-privacy/projects',
-          '/*/database-privacy/settings',
-          // ── Community leaderboard / hall-of-fame (thin UGC) ──────────────────
-          '/*/community/leaderboard',
-          '/*/comunidad/tabla-de-posiciones',
-          '/*/comunidad/salon-de-la-fama',
-          '/*/gemeinschaft/ruhmeshalle',
-          '/*/communaute/tableau-de-classement',
-          // ── Malformed / garbage URLs crawled via bad external links ──────────
-          '/*.xls',
-          '/*.xls$',
-          '/images/*',
-          '/new-path/*',
-          '/old-path/*',
-          // ── Tracking / referral query params (cause infinite redirect variants) ─
-          '/*?ref=*',
-          '/*?utm_source=*',
-          '/*?utm_medium=*',
-          '/*?utm_campaign=*',
-          '/*?utm_content=*',
-          '/*?utm_term=*',
-          // ── Trailing slash variants of locale roots ───────────────────────────
-
-          // ── Community category archive pages (thin, duplicate-prone) ──────────
-          '/*/community/category/*',
-          '/*/comunidad/categoria/*',
-          '/*/gemeinschaft/kategorie/*',
-          '/*/communaute/categorie/*',
+          '/*/embed/*',                         // Iframe calculator embeds (not standalone pages)
+          '/embed/*',
         ],
       },
       {

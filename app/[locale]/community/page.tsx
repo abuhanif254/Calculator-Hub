@@ -126,6 +126,7 @@ export default async function CommunityIndex({
             </div>
             <Link
               href="/community/new"
+              rel="nofollow"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#518231] hover:bg-[#436a28] text-white px-6 py-3 rounded-xl font-semibold shadow-lg shadow-[#518231]/20 hover:shadow-[#518231]/40 transition-all transform hover:-translate-y-0.5"
             >
               <MessageSquarePlus size={20} />

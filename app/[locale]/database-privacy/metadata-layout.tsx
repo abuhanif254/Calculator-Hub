@@ -66,7 +66,7 @@ export async function generateMetadata(): Promise<Metadata> {
         "Scan, mask, and anonymize sensitive database columns. GDPR · HIPAA · PCI-DSS ready.",
       images: [`${baseUrl}/icons/icon-512x512.png`],
     },
-    robots: isPublic ? { index: true, follow: true } : { index: false, follow: false },
+    robots: { index: true, follow: true },
     alternates: {
       canonical: `${baseUrl}/en/database-privacy`,
     },

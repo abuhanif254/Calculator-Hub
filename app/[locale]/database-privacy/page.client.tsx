@@ -401,6 +401,7 @@ export function AnimatedContent() {
           >
             <Link
               href={dashboardHref}
+              rel="nofollow"
               className="group flex items-center gap-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold text-lg px-8 py-4 rounded-2xl transition-all duration-200 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-[1.02]"
             >
               Launch Free Platform
@@ -549,6 +550,7 @@ export function AnimatedContent() {
             >
               <Link
                 href={dashboardHref}
+                rel="nofollow"
                 className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
               >
                 Start for Free <ChevronRight className="w-4 h-4" />
@@ -751,6 +753,7 @@ export function AnimatedContent() {
               <div className="shrink-0 text-center mt-6 md:mt-0">
                 <Link
                   href={dashboardHref}
+                  rel="nofollow"
                   className="inline-flex flex-col items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-bold text-lg px-10 py-5 rounded-2xl transition-all shadow-lg shadow-violet-500/25 hover:scale-[1.02]"
                 >
                   Launch Platform
@@ -1048,6 +1051,7 @@ export function AnimatedContent() {
           </p>
           <Link
             href={dashboardHref}
+            rel="nofollow"
             className="inline-flex items-center gap-3 bg-violet-600 hover:bg-violet-500 text-white font-bold text-xl px-10 py-5 rounded-2xl transition-all shadow-2xl shadow-violet-500/30 hover:scale-[1.02]"
           >
             Open the Platform Free

@@ -408,7 +408,19 @@ function getCanonicalPath(pathname: string): string | null {
       fr: '/fr/communaute',
       es: '/es/comunidad',
     };
-    return `${targetMap[loc]}${rest}`;
+    let localizedRest = rest;
+    if (rest === '/new') {
+      localizedRest = loc === 'de' ? '/neu' : loc === 'fr' ? '/nouveau' : '/nuevo';
+    } else if (rest === '/messages' || rest.startsWith('/messages/')) {
+      const msgPrefix = loc === 'de' ? '/nachrichten' : loc === 'es' ? '/mensajes' : '/messages';
+      localizedRest = rest.replace(/^\/messages/, msgPrefix);
+    } else if (rest === '/settings') {
+      localizedRest = loc === 'de' ? '/einstellungen' : loc === 'fr' ? '/parametres' : '/configuracion';
+    } else if (rest.startsWith('/category/')) {
+      const catPrefix = loc === 'de' ? '/kategorie/' : loc === 'fr' ? '/categorie/' : '/categoria/';
+      localizedRest = rest.replace(/^\/category\//, catPrefix);
+    }
+    return `${targetMap[loc]}${localizedRest}`;
   }
 
   // 5. Old community post format → canonical localized community index
@@ -511,19 +523,63 @@ function getCanonicalPath(pathname: string): string | null {
   return null;
 }
 
+// Resolves a 1-hop canonical hub target when a search engine / inspection crawler
+// requests a client-side Firebase-auth-guarded route (which otherwise renders an
+// unauthenticated session spinner and redirects on the client).
+function getCrawlerAuthRedirect(pathname: string): string | null {
+  // 1. Authenticated Data Privacy Platform sub-routes → public Data Privacy landing page
+  const dpMatch = pathname.match(/^\/(?:(en|es|fr|de)\/)?database-privacy\/.+$/);
+  if (dpMatch) {
+    const loc = dpMatch[1] || 'en';
+    return `/${loc}/database-privacy`;
+  }
+
+  // 2. Authenticated Community sub-routes (new post, messages, settings, admin) → localized Community hub
+  const commAuthMatch = pathname.match(
+    /^\/(?:(en|es|fr|de)\/)?(?:community|comunidad|communaute|gemeinschaft)\/(?:new|nuevo|nouveau|neu|messages|mensajes|nachrichten|settings|ajustes|configuracion|parametres|einstellungen)(?:\/.*)?$/
+  );
+  if (commAuthMatch) {
+    const loc = commAuthMatch[1] || 'en';
+    const commHubMap: Record<string, string> = {
+      en: '/en/community',
+      es: '/es/comunidad',
+      fr: '/fr/communaute',
+      de: '/de/gemeinschaft',
+    };
+    return commHubMap[loc] || '/en/community';
+  }
+
+  // 3. Standalone Login / Signup / User Dashboard routes → localized Homepage
+  const authMatch = pathname.match(
+    /^\/(?:(en|es|fr|de)\/)?(?:login|iniciar-sesion|connexion|anmelden|signup|registrarse|inscription|registrieren|dashboard|panel|tableau-de-bord)(?:\/.*)?$/
+  );
+  if (authMatch) {
+    const loc = authMatch[1] || 'en';
+    return `/${loc}`;
+  }
+
+  return null;
+}
+
+const SEARCH_CRAWLER_REGEX = /Googlebot|Google-InspectionTool|Storebot-Google|GoogleOther|Mediapartners-Google|AdsBot-Google|bingbot|AdIdxBot|DuckDuckBot|Applebot|Slurp|YandexBot|Baiduspider|facebookexternalhit|Twitterbot|LinkedInBot/i;
+
 // ── Main middleware ────────────────────────────────────────────────────────────
 
 export default function middleware(request: NextRequest) {
   const { pathname, hostname, search } = request.nextUrl;
+  const userAgent = request.headers.get('user-agent') || '';
+  const isSearchCrawler = SEARCH_CRAWLER_REGEX.test(userAgent);
 
   const isNonWww = hostname === 'nexuscalculator.net';
-  const canonicalPath = getCanonicalPath(pathname);
+  const crawlerAuthTarget = isSearchCrawler ? getCrawlerAuthRedirect(pathname) : null;
+  const canonicalPath = crawlerAuthTarget ?? getCanonicalPath(pathname);
   const hasTracking = Boolean(search && /[?&](ref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(search));
+  const hasCrawlerSearchQuery = Boolean(isSearchCrawler && search && /[?&]q=/.test(search));
 
   // Atomic 1-Hop 301 Canonical Redirect:
   // Unifies non-www domain normalization, path canonicalization, and UTM stripping into exactly 1 HTTP 301 response.
   // Completely eliminates multi-hop redirect chains to maximize SEO crawl budget and PageRank equity.
-  if (isNonWww || canonicalPath !== null || hasTracking) {
+  if (isNonWww || canonicalPath !== null || hasTracking || hasCrawlerSearchQuery) {
     const url = request.nextUrl.clone();
     if (isNonWww) {
       url.hostname = 'www.nexuscalculator.net';
@@ -534,6 +590,9 @@ export default function middleware(request: NextRequest) {
     if (hasTracking) {
       const trackingParams = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
       trackingParams.forEach(param => url.searchParams.delete(param));
+    }
+    if (hasCrawlerSearchQuery) {
+      url.searchParams.delete('q');
     }
     return NextResponse.redirect(url, { status: 301 });
   }

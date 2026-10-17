@@ -123,6 +123,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/api/users/:path*',
+        destination: '/en/tools/url-encoder',
+        permanent: true,
+      },
+    ];
+  },
   webpack: (config, { dev, isServer, webpack }) => {
     // Fix pdfjs-dist canvas dependency issue
     config.resolve.alias.canvas = false;
