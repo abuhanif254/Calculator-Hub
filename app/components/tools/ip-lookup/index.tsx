@@ -62,7 +62,7 @@ export function IpLookupTool() {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   // Trigger search execution
-  const triggerLookup = useCallback(async (queryVal: string) => {
+  const triggerLookup = useCallback(async (queryVal: string, syncUrl = true) => {
     setLoading(true);
     setError(null);
     setResults(null);
@@ -82,11 +82,13 @@ export function IpLookupTool() {
         setResults(data);
         setIpInput(data.ip);
         
-        // Sync URL query parameters for shareability
-        const newParams = new URLSearchParams(window.location.search);
-        newParams.set('ip', data.ip);
-        const newUrl = `${window.location.pathname}?${newParams.toString()}`;
-        window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+        // Sync URL query parameters for shareability only on explicit user action
+        if (syncUrl && typeof window !== 'undefined') {
+          const newParams = new URLSearchParams(window.location.search);
+          newParams.set('ip', data.ip);
+          const newUrl = `${window.location.pathname}?${newParams.toString()}`;
+          window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+        }
       }
     } catch (err: any) {
       setError(err.message || 'An error occurred during the IP lookup execution.');
@@ -102,10 +104,10 @@ export function IpLookupTool() {
       const urlIp = params.get('ip') || params.get('query');
       if (urlIp) {
         setIpInput(urlIp);
-        triggerLookup(urlIp);
+        triggerLookup(urlIp, false);
       } else {
-        // Automatically look up user's own IP on load
-        triggerLookup('');
+        // Automatically look up user's own IP on load without mutating canonical URL
+        triggerLookup('', false);
       }
     }
   }, [triggerLookup]);

@@ -48,16 +48,22 @@ const getPost = cache(async (slug: string): Promise<{ post: RestPost; author: Us
 });
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string, slug: string }> }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const data = await getPost(slug);
   
   if (!data) return { title: "Post Not Found | Nexus Community" };
   
   const plainTextDescription = data.post.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...';
+  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
 
   return {
     title: `${data.post.title} | Nexus Community`,
     description: plainTextDescription,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: getCanonicalAndAlternates('/community/[slug]', locale, slug),
     openGraph: {
       title: data.post.title,
       description: plainTextDescription,
@@ -92,7 +98,8 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
   }
 
   const { post, author } = data;
-  const baseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
+  const rawBaseUrl = process.env.APP_URL || 'https://www.nexuscalculator.net';
+  const baseUrl = rawBaseUrl.replace('://nexuscalculator.net', '://www.nexuscalculator.net').replace(/\/$/, '');
   const authorName = author?.displayName || post.authorName || "Community Member";
 
   const jsonLd = {

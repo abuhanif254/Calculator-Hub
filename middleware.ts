@@ -423,8 +423,11 @@ function getCanonicalPath(pathname: string): string | null {
     return `${targetMap[loc]}${localizedRest}`;
   }
 
-  // 5. Old community post format → canonical localized community index
-  if (/^\/(?:en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/to-use-a-/.test(pathname) || pathname === '/community/to-use-a-bmi-calculator-93') {
+  // 5. Old community post format, thin test posts, & legacy duplicate leaderboard routes → canonical localized community index
+  if (
+    /^\/(?:en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/(?:to-use-a-|hello-cca921ec|leaderboard|tabla-de-posiciones|classement|tableau-de-classement|bestenliste)(?:\/.*)?$/.test(pathname) ||
+    pathname === '/community/to-use-a-bmi-calculator-93'
+  ) {
     const localeMatch = pathname.match(/^\/(en|es|fr|de)\//);
     const locale = localeMatch ? localeMatch[1] : 'en';
     const commMap: Record<string, string> = {
@@ -534,9 +537,9 @@ function getCrawlerAuthRedirect(pathname: string): string | null {
     return `/${loc}/database-privacy`;
   }
 
-  // 2. Authenticated Community sub-routes (new post, messages, settings, admin) → localized Community hub
+  // 2. Authenticated Community sub-routes (new post, messages, settings, admin, edit) → localized Community hub
   const commAuthMatch = pathname.match(
-    /^\/(?:(en|es|fr|de)\/)?(?:community|comunidad|communaute|gemeinschaft)\/(?:new|nuevo|nouveau|neu|messages|mensajes|nachrichten|settings|ajustes|configuracion|parametres|einstellungen)(?:\/.*)?$/
+    /^\/(?:(en|es|fr|de)\/)?(?:(?:community|comunidad|communaute|gemeinschaft)\/(?:new|nuevo|nouveau|neu|messages|mensajes|nachrichten|settings|ajustes|configuracion|parametres|einstellungen|admin|[^/]+\/edit)|admin\/(?:community|comunidad|communaute|gemeinschaft))(?:\/.*)?$/
   );
   if (commAuthMatch) {
     const loc = commAuthMatch[1] || 'en';
@@ -574,12 +577,24 @@ export default function middleware(request: NextRequest) {
   const crawlerAuthTarget = isSearchCrawler ? getCrawlerAuthRedirect(pathname) : null;
   const canonicalPath = crawlerAuthTarget ?? getCanonicalPath(pathname);
   const hasTracking = Boolean(search && /[?&](ref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(search));
-  const hasCrawlerSearchQuery = Boolean(isSearchCrawler && search && /[?&]q=/.test(search));
+  const isCommunityHub = /^\/(?:(en|es|fr|de)\/)?(?:community|comunidad|communaute|gemeinschaft)$/.test(pathname);
+  const hasLegacyCommunityQuery = Boolean(isCommunityHub && search && /[?&]q=/.test(search));
+  const hasBotUaQuery = Boolean(search && /[?&]ua=[^&]*Googlebot/i.test(search));
+  const hasCrawlerToolOrSearchQuery = Boolean(
+    isSearchCrawler && search && /[?&](q|ua|ip|domain)=/.test(search)
+  );
 
   // Atomic 1-Hop 301 Canonical Redirect:
-  // Unifies non-www domain normalization, path canonicalization, and UTM stripping into exactly 1 HTTP 301 response.
+  // Unifies non-www domain normalization, path canonicalization, and query parameter stripping into exactly 1 HTTP 301 response.
   // Completely eliminates multi-hop redirect chains to maximize SEO crawl budget and PageRank equity.
-  if (isNonWww || canonicalPath !== null || hasTracking || hasCrawlerSearchQuery) {
+  if (
+    isNonWww ||
+    canonicalPath !== null ||
+    hasTracking ||
+    hasLegacyCommunityQuery ||
+    hasBotUaQuery ||
+    hasCrawlerToolOrSearchQuery
+  ) {
     const url = request.nextUrl.clone();
     if (isNonWww) {
       url.hostname = 'www.nexuscalculator.net';
@@ -591,8 +606,14 @@ export default function middleware(request: NextRequest) {
       const trackingParams = ['ref', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
       trackingParams.forEach(param => url.searchParams.delete(param));
     }
-    if (hasCrawlerSearchQuery) {
+    if (hasLegacyCommunityQuery) {
       url.searchParams.delete('q');
+    }
+    if (hasBotUaQuery) {
+      url.searchParams.delete('ua');
+    }
+    if (hasCrawlerToolOrSearchQuery) {
+      ['q', 'ua', 'ip', 'domain'].forEach(param => url.searchParams.delete(param));
     }
     return NextResponse.redirect(url, { status: 301 });
   }

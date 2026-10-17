@@ -260,7 +260,7 @@ export function UserAgentParserTool() {
   const [botB, setBotB] = useState<BotInfo>({ isBot: false, name: '', type: '', purpose: '', link: null });
 
   // Core Parsing Handler
-  const executeParse = useCallback((uaStr: string) => {
+  const executeParse = useCallback((uaStr: string, syncUrl = true) => {
     if (!uaStr.trim()) return;
     const parser = new UAParser(uaStr);
     const parsed = parser.getResult();
@@ -295,11 +295,13 @@ export function UserAgentParserTool() {
     }
     setWarnings(legacyAlerts);
 
-    // Sync query parameters for shareability
-    const newParams = new URLSearchParams(window.location.search);
-    newParams.set('ua', uaStr);
-    const newUrl = `${window.location.pathname}?${newParams.toString()}`;
-    window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+    // Sync query parameters for shareability only on explicit user action (never on initial mount, which would mutate Googlebot's URL)
+    if (syncUrl && typeof window !== 'undefined') {
+      const newParams = new URLSearchParams(window.location.search);
+      newParams.set('ua', uaStr);
+      const newUrl = `${window.location.pathname}?${newParams.toString()}`;
+      window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+    }
   }, []);
 
   // Comparative Parser Handler
@@ -325,10 +327,10 @@ export function UserAgentParserTool() {
 
       if (urlUa) {
         setUaInput(urlUa);
-        executeParse(urlUa);
+        executeParse(urlUa, false);
       } else {
         setUaInput(currentUa);
-        executeParse(currentUa);
+        executeParse(currentUa, false);
       }
 
       // Default comparison inputs

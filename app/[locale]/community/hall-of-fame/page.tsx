@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: 'Community Hall of Fame | NexusCalculator',
     description: 'Discover the top contributors and highest value discussions in the Nexus Community.',
     robots: {
-      index: false,
+      index: true,
       follow: true,
     },
     alternates: getCanonicalAndAlternates('/community/hall-of-fame', locale),

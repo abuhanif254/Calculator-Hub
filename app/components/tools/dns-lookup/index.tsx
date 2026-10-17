@@ -49,7 +49,7 @@ export function DnsLookupTool() {
   const [copiedAction, setCopiedAction] = useState<'json' | 'txt' | 'raw' | null>(null);
 
   // Trigger search execution
-  const triggerLookup = useCallback(async (queryVal: string) => {
+  const triggerLookup = useCallback(async (queryVal: string, syncUrl = true) => {
     if (!queryVal.trim()) return;
     setLoading(true);
     setError(null);
@@ -67,11 +67,13 @@ export function DnsLookupTool() {
         setError(data.error || 'Failed to complete DNS lookup. Please verify host or try again.');
       } else {
         setResults(data);
-        // Automatically sync query param for shareability
-        const newParams = new URLSearchParams(window.location.search);
-        newParams.set('domain', queryVal.trim());
-        const newUrl = `${window.location.pathname}?${newParams.toString()}`;
-        window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+        // Automatically sync query param for shareability only on explicit user action
+        if (syncUrl && typeof window !== 'undefined') {
+          const newParams = new URLSearchParams(window.location.search);
+          newParams.set('domain', queryVal.trim());
+          const newUrl = `${window.location.pathname}?${newParams.toString()}`;
+          window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+        }
       }
     } catch (err: any) {
       setError(err.message || 'An error occurred during DNS lookup execution.');
@@ -87,7 +89,7 @@ export function DnsLookupTool() {
       const urlDomain = params.get('domain') || params.get('input');
       if (urlDomain) {
         setDomainInput(urlDomain);
-        triggerLookup(urlDomain);
+        triggerLookup(urlDomain, false);
       }
     }
   }, [triggerLookup]);
