@@ -264,7 +264,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "author": {
       "@type": "Organization",
       "name": "NexusCalculator Editorial Board",
-      "url": `${baseUrl}/${locale}/about-us`
+      "url": getCanonicalUrl('/about-us', locale)
     },
     "hasPart": tools.map((tool, index) => ({
       "@type": "WebPage",

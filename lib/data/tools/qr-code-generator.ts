@@ -58,7 +58,7 @@ In a bold move that accelerated global adoption, Denso Wave chose **not to exerc
 When designing QR codes for business or personal use, it is critical to understand the distinction between static and dynamic codes.
 
 ### Static QR Codes
-In a **static QR code**, the target data is encoded directly into the matrix. For example, if you encode \`https://nexuscalculator.net\`, the binary representation of that exact text is drawn directly onto the grid.
+In a **static QR code**, the target data is encoded directly into the matrix. For example, if you encode \`https://www.nexuscalculator.net\`, the binary representation of that exact text is drawn directly onto the grid.
 * **Pros**: Never expires; requires no external servers; completely safe and private.
 * **Cons**: The QR code cannot be updated once printed. If the URL changes, the QR code becomes a dead link. Furthermore, storing large amounts of text makes the grid extremely dense and complex, making it harder for older cameras to scan.
 

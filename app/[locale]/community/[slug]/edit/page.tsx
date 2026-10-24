@@ -81,7 +81,7 @@ export default function EditPostPage() {
         updatedAt: serverTimestamp(),
       });
 
-      router.push(`/${locale}/community/${slug}`);
+      router.push(`/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}/${slug}`);
     } catch (err: any) {
       console.error('Error updating post:', err);
       setError('Failed to update discussion. Please try again.');
@@ -102,7 +102,7 @@ export default function EditPostPage() {
               {error}
               <div className="mt-4">
                 <button
-                  onClick={() => router.push(`/${locale}/community`)}
+                  onClick={() => router.push(`/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}`)}
                   className="px-4 py-2 bg-white dark:bg-slate-800 rounded-lg border border-red-200 dark:border-red-800"
                 >
                   Return to Community

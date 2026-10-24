@@ -23,7 +23,7 @@ export default function SignupPage() {
     setLoading(true);
     try {
       await signUpWithEmail(email, password, name);
-      router.push(`/${locale}/community`);
+      router.push(`/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}`);
     } catch (err: any) {
       setError(err.message || 'Failed to create an account.');
     }
@@ -34,7 +34,7 @@ export default function SignupPage() {
     setError('');
     try {
       await signIn();
-      router.push(`/${locale}/community`);
+      router.push(`/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}`);
     } catch (err: any) {
       setError('Failed to sign up with Google.');
     }

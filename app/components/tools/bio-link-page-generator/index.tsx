@@ -87,7 +87,7 @@ export function BioLinkPageGeneratorTool() {
   useEffect(() => {
     const compileQR = async () => {
       try {
-        const url = await generateQrCodeUrl(`https://nexuscalculator.net/tools/bio-link-page-generator?preview=${profile.username}`);
+        const url = await generateQrCodeUrl(`https://www.nexuscalculator.net/en/tools/bio-link-page-generator?preview=${profile.username}`);
         setQrCodeUrl(url);
       } catch (e) {
         console.error(e);
@@ -233,7 +233,7 @@ export function BioLinkPageGeneratorTool() {
 
   // Copy shareable mock URL
   const copyShareLink = async () => {
-    const link = `https://nexuscalculator.net/links/${profile.username}`;
+    const link = `https://example.com/links/${profile.username}`;
     try {
       await navigator.clipboard.writeText(link);
       setCopiedKey("share");

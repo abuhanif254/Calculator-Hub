@@ -20,6 +20,7 @@ const intlMiddleware = createMiddleware(routing);
 // ── Constants ──────────────────────────────────────────────────────────────────
 
 // Garbage paths injected by PDF metadata scrapers, bot probes, and malformed crawls
+// Returned as HTTP 410 Gone so Googlebot purges them permanently without polluting 'Page with redirect'
 const GARBAGE_PATHS = new Set([
   '/Author', '/Producer', '/Kids', '/P', '/XObject', '/28', '/Contents',
   '/page', '/$', '/&', '/egneodunq', '/admin', '/admin/', '/wp-admin', '/wp-admin/',
@@ -140,7 +141,6 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
 };
 
 // Truly deprecated or renamed calculators → canonical English calculator slug or category id
-// Resolved dynamically per locale in getCanonicalPath so /de/*, /fr/*, /es/* redirect in 1 hop to their localized canonical URL.
 const DEPRECATED_CALC_TO_CANONICAL_SLUG: Record<string, { type: 'calc' | 'category'; target: string }> = {
   'refinance-calculator': { type: 'calc', target: 'mortgage-calculator' },
   'number-sequence-calculator': { type: 'category', target: 'math' },
@@ -180,25 +180,14 @@ const DEPRECATED_CALC_TO_CANONICAL_SLUG: Record<string, { type: 'calc' | 'catego
   'math-calculator-for-your-site': { type: 'calc', target: 'scientific-calculator' },
 };
 
-// Cross-locale community path aliases (e.g. /fr/community → /fr/communaute)
-const LOCALE_COMMUNITY_ALIAS: Record<string, string> = {
-  '/de/community': '/de/gemeinschaft',
-  '/fr/community': '/fr/communaute',
-  '/es/community': '/es/comunidad',
-};
-
-// Cross-locale tool path prefixes — when a non-EN locale uses /tools/ prefix
-// instead of its localized prefix (werkzeuge / outils / herramientas).
-// next-intl handles these internally but we intercept first for a clean 301.
+// Cross-locale tool path prefixes
 const LOCALE_TOOL_PREFIX: Record<string, string> = {
   de: 'werkzeuge',
   fr: 'outils',
   es: 'herramientas',
 };
 
-// Cross-locale calculator path prefixes — when a non-EN locale uses /calculators/ prefix
-// instead of its localized prefix (rechner / calculatrices / calculadoras).
-// Intercepted as fallback for any dynamic calculator not explicitly in CALC_REDIRECT_MAP.
+// Cross-locale calculator path prefixes
 const LOCALE_CALC_PREFIX: Record<string, string> = {
   de: 'rechner',
   fr: 'calculatrices',
@@ -212,8 +201,7 @@ const LOCALE_CALC_CATEGORY_PREFIX: Record<string, string> = {
   es: 'calculadoras/categoria',
 };
 
-// Cross-locale guides path prefixes — when a locale uses /guides/ instead of
-// its localized prefix (anleitungen / guias; fr uses /guides/ same as en).
+// Cross-locale guides path prefixes (fr uses /guides/ same as en)
 const LOCALE_GUIDES_PREFIX: Record<string, string> = {
   de: 'anleitungen',
   es: 'guias',
@@ -232,8 +220,7 @@ const LOCALE_COMPARE_PREFIX: Record<string, string> = {
   es: 'comparar',
 };
 
-// Localized paths for static pages — avoids next-intl doing an extra internal
-// redirect when a non-EN locale requests the English-slug path.
+// Localized paths for static pages
 const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   // terms-of-use
   '/es/terms-of-use': '/es/terminos-de-uso',
@@ -284,6 +271,54 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   '/de/guides': '/de/anleitungen',
 };
 
+/**
+ * Checks whether a path is a permanently dead garbage probe, leaked example placeholder,
+ * or deleted test artifact that should return HTTP 410 Gone (so Googlebot purges it
+ * immediately instead of moving it into 'Page with redirect').
+ */
+function isPermanentlyGonePath(pathname: string): boolean {
+  const clean = pathname.length > 1 && pathname.endsWith('/') ? pathname.replace(/\/+$/, '') : pathname;
+
+  if (
+    GARBAGE_PATHS.has(pathname) ||
+    GARBAGE_PATHS.has(clean) ||
+    /^\/\d+\/?$/.test(pathname) ||
+    pathname.endsWith('.xls$') ||
+    pathname.endsWith('.xls') ||
+    clean === '/wp-admin' ||
+    clean === '/admin' ||
+    clean.startsWith('/new-path/') ||
+    clean.startsWith('/old-path/') ||
+    clean === '/new-path' ||
+    clean === '/old-path'
+  ) {
+    return true;
+  }
+
+  // Deleted thin test community posts (e.g., to-use-a-*, hello-cca921ec)
+  if (
+    /^\/(?:en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/(?:to-use-a-|hello-cca921ec)(?:\/.*)?$/.test(clean)
+  ) {
+    return true;
+  }
+
+  // Leaked non-existent menu/discussion slugs under /tools/
+  const toolSlugMatch = clean.match(/^(?:\/(en|es|fr|de))?\/(tools|herramientas|outils|werkzeuge)\/([^/]+)$/);
+  if (toolSlugMatch) {
+    let rawSlug = toolSlugMatch[3];
+    try {
+      rawSlug = decodeURIComponent(rawSlug);
+    } catch {
+      // keep raw
+    }
+    if (TOOL_COMMUNITY_LEAK_SLUGS.has(rawSlug) || TOOL_HUB_LEAK_SLUGS.has(rawSlug)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 // Helper to resolve canonical pathname for any incoming request
 function getCanonicalPath(pathname: string): string | null {
   // 0. Explicit root redirect to /en
@@ -309,7 +344,7 @@ function getCanonicalPath(pathname: string): string | null {
   const legacyToolTarget = LEGACY_TOOL_REDIRECTS[pathname] || LEGACY_CALC_ALIAS_REDIRECTS[pathname];
   if (legacyToolTarget) return legacyToolTarget;
 
-  // 1b-2. Legacy tool slug resolution & leaked community/menu links under /tools/
+  // 1b-2. Legacy tool slug resolution & UK mortgage calculator under /tools/
   const toolSlugMatch = pathname.match(/^(?:\/(en|es|fr|de))?\/(tools|herramientas|outils|werkzeuge)\/([^/]+)$/);
   if (toolSlugMatch) {
     const [, loc = 'en', , rawEncodedSlug] = toolSlugMatch;
@@ -324,25 +359,6 @@ function getCanonicalPath(pathname: string): string | null {
       const toolPrefix = loc === 'en' ? 'tools' : LOCALE_TOOL_PREFIX[loc];
       const canonicalUkPath = `/${loc}/${toolPrefix}/mortgage-calculator-uk`;
       return pathname === canonicalUkPath ? null : canonicalUkPath;
-    }
-
-    if (TOOL_COMMUNITY_LEAK_SLUGS.has(rawSlug)) {
-      const commMap: Record<string, string> = {
-        en: '/en/community',
-        es: '/es/comunidad',
-        fr: '/fr/communaute',
-        de: '/de/gemeinschaft',
-      };
-      return commMap[loc] || '/en/community';
-    }
-
-    if (TOOL_HUB_LEAK_SLUGS.has(rawSlug)) {
-      if (rawSlug === 'most-used-today') {
-        const calcHub = loc === 'en' ? '/en/calculators' : `/${loc}/${LOCALE_CALC_PREFIX[loc]}`;
-        return calcHub;
-      }
-      const toolHub = loc === 'en' ? '/en/tools' : `/${loc}/${LOCALE_TOOL_PREFIX[loc]}`;
-      return toolHub;
     }
 
     const mappedToolSlug = LEGACY_TOOL_SLUG_MAP[rawSlug];
@@ -376,29 +392,6 @@ function getCanonicalPath(pathname: string): string | null {
     }
   }
 
-  // 1d. Leaked redirect-checker documentation example paths (/new-path/*, /old-path/*)
-  if (pathname.startsWith('/new-path/') || pathname.startsWith('/old-path/') || pathname === '/new-path' || pathname === '/old-path') {
-    return '/en/tools/redirect-checker';
-  }
-
-  // 2. Garbage / PDF-metadata-scraped paths → canonical homepage
-  if (
-    GARBAGE_PATHS.has(pathname) ||
-    /^\/\d+\/?$/.test(pathname) ||
-    pathname.endsWith('.xls$') ||
-    pathname.endsWith('.xls')
-  ) {
-    return '/en';
-  }
-
-  // 3. WordPress / admin probe paths → canonical homepage
-  if (
-    pathname === '/wp-admin/' || pathname === '/wp-admin' ||
-    pathname === '/admin/' || pathname === '/admin'
-  ) {
-    return '/en';
-  }
-
   // 4. Cross-locale community aliases (/de/community/* → /de/gemeinschaft/*, etc.)
   const communityMatch = pathname.match(/^\/(de|fr|es)\/community(\/.*)?$/);
   if (communityMatch) {
@@ -419,24 +412,25 @@ function getCanonicalPath(pathname: string): string | null {
     } else if (rest.startsWith('/category/')) {
       const catPrefix = loc === 'de' ? '/kategorie/' : loc === 'fr' ? '/categorie/' : '/categoria/';
       localizedRest = rest.replace(/^\/category\//, catPrefix);
+    } else if (rest === '/hall-of-fame') {
+      localizedRest = loc === 'de' ? '/ruhmeshalle' : loc === 'fr' ? '/temple-de-la-renommee' : '/salon-de-la-fama';
     }
     return `${targetMap[loc]}${localizedRest}`;
   }
 
-  // 5. Old community post format, thin test posts, & legacy duplicate leaderboard routes → canonical localized community index
-  if (
-    /^\/(?:en|es|fr|de)?\/?(?:community|comunidad|communaute|gemeinschaft)\/(?:to-use-a-|hello-cca921ec|leaderboard|tabla-de-posiciones|classement|tableau-de-classement|bestenliste)(?:\/.*)?$/.test(pathname) ||
-    pathname === '/community/to-use-a-bmi-calculator-93'
-  ) {
-    const localeMatch = pathname.match(/^\/(en|es|fr|de)\//);
-    const locale = localeMatch ? localeMatch[1] : 'en';
-    const commMap: Record<string, string> = {
-      en: '/en/community',
-      es: '/es/comunidad',
-      fr: '/fr/communaute',
-      de: '/de/gemeinschaft',
+  // 5. Legacy duplicate leaderboard routes → canonical localized Hall of Fame
+  const leaderboardMatch = pathname.match(
+    /^\/(?:(en|es|fr|de)\/)?(?:community|comunidad|communaute|gemeinschaft)\/(?:leaderboard|tabla-de-posiciones|classement|tableau-de-classement|bestenliste)(?:\/.*)?$/
+  );
+  if (leaderboardMatch) {
+    const loc = leaderboardMatch[1] || 'en';
+    const hofMap: Record<string, string> = {
+      en: '/en/community/hall-of-fame',
+      es: '/es/comunidad/salon-de-la-fama',
+      fr: '/fr/communaute/temple-de-la-renommee',
+      de: '/de/gemeinschaft/ruhmeshalle',
     };
-    return commMap[locale] || '/en/community';
+    return hofMap[loc] || '/en/community/hall-of-fame';
   }
 
   // 6a. Cross-locale /[locale]/calculators/category/[cat] → localized category path
@@ -526,56 +520,40 @@ function getCanonicalPath(pathname: string): string | null {
   return null;
 }
 
-// Resolves a 1-hop canonical hub target when a search engine / inspection crawler
-// requests a client-side Firebase-auth-guarded route (which otherwise renders an
-// unauthenticated session spinner and redirects on the client).
-function getCrawlerAuthRedirect(pathname: string): string | null {
-  // 1. Authenticated Data Privacy Platform sub-routes → public Data Privacy landing page
-  const dpMatch = pathname.match(/^\/(?:(en|es|fr|de)\/)?database-privacy\/.+$/);
-  if (dpMatch) {
-    const loc = dpMatch[1] || 'en';
-    return `/${loc}/database-privacy`;
-  }
-
-  // 2. Authenticated Community sub-routes (new post, messages, settings, admin, edit) → localized Community hub
-  const commAuthMatch = pathname.match(
-    /^\/(?:(en|es|fr|de)\/)?(?:(?:community|comunidad|communaute|gemeinschaft)\/(?:new|nuevo|nouveau|neu|messages|mensajes|nachrichten|settings|ajustes|configuracion|parametres|einstellungen|admin|[^/]+\/edit)|admin\/(?:community|comunidad|communaute|gemeinschaft))(?:\/.*)?$/
-  );
-  if (commAuthMatch) {
-    const loc = commAuthMatch[1] || 'en';
-    const commHubMap: Record<string, string> = {
-      en: '/en/community',
-      es: '/es/comunidad',
-      fr: '/fr/communaute',
-      de: '/de/gemeinschaft',
-    };
-    return commHubMap[loc] || '/en/community';
-  }
-
-  // 3. Standalone Login / Signup / User Dashboard routes → localized Homepage
-  const authMatch = pathname.match(
-    /^\/(?:(en|es|fr|de)\/)?(?:login|iniciar-sesion|connexion|anmelden|signup|registrarse|inscription|registrieren|dashboard|panel|tableau-de-bord)(?:\/.*)?$/
-  );
-  if (authMatch) {
-    const loc = authMatch[1] || 'en';
-    return `/${loc}`;
-  }
-
-  return null;
-}
-
 const SEARCH_CRAWLER_REGEX = /Googlebot|Google-InspectionTool|Storebot-Google|GoogleOther|Mediapartners-Google|AdsBot-Google|bingbot|AdIdxBot|DuckDuckBot|Applebot|Slurp|YandexBot|Baiduspider|facebookexternalhit|Twitterbot|LinkedInBot/i;
 
 // ── Main middleware ────────────────────────────────────────────────────────────
 
 export default function middleware(request: NextRequest) {
   const { pathname, hostname, search } = request.nextUrl;
+
+  // 0. Pass through Next.js dynamic image metadata endpoints & RSS feed without locale/redirect rewriting
+  if (
+    pathname.endsWith('/opengraph-image') ||
+    pathname.endsWith('/twitter-image') ||
+    pathname === '/feed.xml'
+  ) {
+    return NextResponse.next();
+  }
+
+  // 1. Return HTTP 410 Gone for permanently deleted garbage/bot-probe/leaked example URLs
+  // so Googlebot drops them from its crawl queue without adding them to 'Page with redirect'
+  if (isPermanentlyGonePath(pathname)) {
+    return new NextResponse('Gone', {
+      status: 410,
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'X-Robots-Tag': 'noindex, nofollow',
+        'Cache-Control': 'public, max-age=86400',
+      },
+    });
+  }
+
   const userAgent = request.headers.get('user-agent') || '';
   const isSearchCrawler = SEARCH_CRAWLER_REGEX.test(userAgent);
 
   const isNonWww = hostname === 'nexuscalculator.net';
-  const crawlerAuthTarget = isSearchCrawler ? getCrawlerAuthRedirect(pathname) : null;
-  const canonicalPath = crawlerAuthTarget ?? getCanonicalPath(pathname);
+  const canonicalPath = getCanonicalPath(pathname);
   const hasTracking = Boolean(search && /[?&](ref|utm_source|utm_medium|utm_campaign|utm_content|utm_term)=/.test(search));
   const isCommunityHub = /^\/(?:(en|es|fr|de)\/)?(?:community|comunidad|communaute|gemeinschaft)$/.test(pathname);
   const hasLegacyCommunityQuery = Boolean(isCommunityHub && search && /[?&]q=/.test(search));
@@ -624,9 +602,7 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Only skip internal Next/Vercel routes and real static asset file extensions at the end of the URL.
-    // This ensures dot-containing legacy slugs (e.g. /de/werkzeuge/sitemap.xml-generator, next.js-discussions, /*.xls$)
-    // are intercepted by middleware and 301-redirected in 1 hop.
-    '/((?!api|_next|_vercel|.*\\.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mjs|map|woff|woff2|ttf|eot|otf|txt|xml|json|webmanifest|pdf|wasm)$).*)',
+    // Skip internal Next/Vercel routes, dynamic opengraph/twitter image endpoints, feed.xml, and real static asset file extensions.
+    '/((?!api|_next|_vercel|feed\\.xml|.*\\/opengraph-image$|.*\\/twitter-image$|.*\\.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mjs|map|woff|woff2|ttf|eot|otf|txt|xml|json|webmanifest|pdf|wasm)$).*)',
   ],
 };

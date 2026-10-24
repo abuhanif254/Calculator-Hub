@@ -755,7 +755,7 @@ export function MimeTypeCheckerTool() {
                   type="text"
                   value={urlInput}
                   onChange={(e) => setUrlInput(e.target.value)}
-                  placeholder="Enter file URL (e.g. https://nexuscalculator.net/favicon.ico)..."
+                  placeholder="Enter file URL (e.g. https://www.nexuscalculator.net/favicon.ico)..."
                   className="flex-1 px-4 py-3 bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#518231] dark:focus:ring-[#6fa844] text-slate-800 dark:text-white placeholder-slate-400 dark:placeholder-slate-600 transition-all shadow-sm font-mono text-sm"
                 />
                 <button

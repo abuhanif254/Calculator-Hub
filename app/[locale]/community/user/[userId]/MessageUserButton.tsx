@@ -42,7 +42,7 @@ export function MessageUserButton({ targetUserId, targetUserName, targetUserPhot
 
       if (chatId) {
         // Chat exists, redirect
-        router.push(`/${locale}/community/messages/${chatId}`);
+        router.push(`/${locale}/${locale === 'es' ? 'comunidad/mensajes' : locale === 'fr' ? 'communaute/messages' : locale === 'de' ? 'gemeinschaft/nachrichten' : 'community/messages'}/${chatId}`);
       } else {
         // Create new chat
         const newChatData = {
@@ -68,7 +68,7 @@ export function MessageUserButton({ targetUserId, targetUserName, targetUserPhot
         };
 
         const docRef = await addDoc(chatsRef, newChatData);
-        router.push(`/${locale}/community/messages/${docRef.id}`);
+        router.push(`/${locale}/${locale === 'es' ? 'comunidad/mensajes' : locale === 'fr' ? 'communaute/messages' : locale === 'de' ? 'gemeinschaft/nachrichten' : 'community/messages'}/${docRef.id}`);
       }
     } catch (err) {
       console.error("Failed to start chat", err);

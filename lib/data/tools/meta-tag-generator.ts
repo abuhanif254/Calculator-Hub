@@ -160,9 +160,9 @@ If your website operates as a Progressive Web App (PWA), you can instruct iOS an
 If your website serves content in multiple languages or target regions, you must implement \`hreflang\` tags. These tags tell search engines that a page exists in alternative languages, ensuring that a Spanish user sees the Spanish version of your site, while a German user sees the German version.
 
 \`\`\`html
-<link rel="alternate" hreflang="es" href="https://nexuscalculator.net/es/tools/meta-tag-generator" />
-<link rel="alternate" hreflang="de" href="https://nexuscalculator.net/de/tools/meta-tag-generator" />
-<link rel="alternate" hreflang="x-default" href="https://nexuscalculator.net/tools/meta-tag-generator" />
+<link rel="alternate" hreflang="es" href="https://www.nexuscalculator.net/es/herramientas/meta-tag-generator" />
+<link rel="alternate" hreflang="de" href="https://www.nexuscalculator.net/de/werkzeuge/meta-tag-generator" />
+<link rel="alternate" hreflang="x-default" href="https://www.nexuscalculator.net/en/tools/meta-tag-generator" />
 \`\`\`
 
 ### The Importance of \`x-default\`
@@ -263,19 +263,19 @@ Optimizing your website's meta tags remains one of the highest leverage activiti
       title: "Basic SEO & Robots Directives",
       description: "Standard HTML tags for indexing, canonical mapping, and crawler directives.",
       input: "Title: 'Nexus Calculator - Dev Tools'\nDescription: 'A free online platform with calculators and developer utilities.'\nCanonical: 'https://www.nexuscalculator.net'\nRobots: 'index, follow'",
-      output: "<title>Nexus Calculator - Dev Tools</title>\n<meta name=\"description\" content=\"A free online platform with calculators and developer utilities.\" />\n<link rel=\"canonical\" href=\"https://nexuscalculator.net\" />\n<meta name=\"robots\" content=\"index, follow, max-image-preview:large\" />"
+      output: "<title>Nexus Calculator - Dev Tools</title>\n<meta name=\"description\" content=\"A free online platform with calculators and developer utilities.\" />\n<link rel=\"canonical\" href=\"https://www.nexuscalculator.net\" />\n<meta name=\"robots\" content=\"index, follow, max-image-preview:large\" />"
     },
     {
       title: "Open Graph & Twitter Cards Integration",
       description: "Social media meta configuration for Facebook timeline and X post simulation.",
-      input: "Title: 'JSON Formatter Tool'\nDescription: 'Instantly format, validate, and minify JSON data.'\nImage URL: 'https://nexuscalculator.net/og-json.png'\nCard Style: 'summary_large_image'",
-      output: "<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:title\" content=\"JSON Formatter Tool\" />\n<meta property=\"og:description\" content=\"Instantly format, validate, and minify JSON data.\" />\n<meta property=\"og:image\" content=\"https://nexuscalculator.net/og-json.png\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:title\" content=\"JSON Formatter Tool\" />\n<meta name=\"twitter:description\" content=\"Instantly format, validate, and minify JSON data.\" />\n<meta name=\"twitter:image\" content=\"https://nexuscalculator.net/og-json.png\" />"
+      input: "Title: 'JSON Formatter Tool'\nDescription: 'Instantly format, validate, and minify JSON data.'\nImage URL: 'https://example.com/og-json.png'\nCard Style: 'summary_large_image'",
+      output: "<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:title\" content=\"JSON Formatter Tool\" />\n<meta property=\"og:description\" content=\"Instantly format, validate, and minify JSON data.\" />\n<meta property=\"og:image\" content=\"https://example.com/og-json.png\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:title\" content=\"JSON Formatter Tool\" />\n<meta name=\"twitter:description\" content=\"Instantly format, validate, and minify JSON data.\" />\n<meta name=\"twitter:image\" content=\"https://example.com/og-json.png\" />"
     },
     {
       title: "JSON-LD Structured Data Schema",
       description: "Structured metadata block defining a WebSite schema with search capabilities.",
       input: "Site Name: 'Nexus Calculator'\nURL: 'https://www.nexuscalculator.net'\nQuery Parameter: 'search_term_string'",
-      output: "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebSite\",\n  \"name\": \"Nexus Calculator\",\n  \"url\": \"https://nexuscalculator.net\",\n  \"potentialAction\": {\n    \"@type\": \"SearchAction\",\n    \"target\": {\n      \"@type\": \"EntryPoint\",\n      \"urlTemplate\": \"https://nexuscalculator.net/en/search?q={search_term_string}\"\n    },\n    \"query-input\": \"required name=search_term_string\"\n  }\n}\n</script>"
+      output: "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebSite\",\n  \"name\": \"Nexus Calculator\",\n  \"url\": \"https://www.nexuscalculator.net\",\n  \"potentialAction\": {\n    \"@type\": \"SearchAction\",\n    \"target\": {\n      \"@type\": \"EntryPoint\",\n      \"urlTemplate\": \"https://www.nexuscalculator.net/en/search?q={search_term_string}\"\n    },\n    \"query-input\": \"required name=search_term_string\"\n  }\n}\n</script>"
     }
   ]
 };

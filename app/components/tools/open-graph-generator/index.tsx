@@ -189,7 +189,7 @@ const presets: Record<string, Partial<OgState>> = {
   devtool: {
     title: "Open Graph Generator & Social Previewer - Nexus Calculator",
     description: "Create, validate, and preview Open Graph metadata tags for Facebook, LinkedIn, Slack, and Discord.",
-    url: "https://nexuscalculator.net/tools/open-graph-generator",
+    url: "https://www.nexuscalculator.net/en/tools/open-graph-generator",
     type: "website",
     siteName: "Nexus Calculator",
     locale: "en_US",

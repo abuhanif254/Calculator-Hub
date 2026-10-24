@@ -23,7 +23,7 @@ export default function LoginPage() {
     setLoading(true);
     try {
       await signInWithEmail(email, password);
-      router.push(`/${locale}/community`);
+      router.push(`/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}`);
     } catch (err: any) {
       setError(err.message || 'Failed to sign in. Check your credentials.');
     }
@@ -34,7 +34,7 @@ export default function LoginPage() {
     setError('');
     try {
       await signIn();
-      router.push(`/${locale}/community`);
+      router.push(`/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}`);
     } catch (err: any) {
       setError('Failed to sign in with Google.');
     }

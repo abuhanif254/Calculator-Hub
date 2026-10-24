@@ -74,7 +74,7 @@ A valid standard XML sitemap uses the sitemaps.org schema namespace. Below is an
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nexuscalculator.net/</loc>
+    <loc>https://www.nexuscalculator.net/en</loc>
     <lastmod>2026-05-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -136,11 +136,11 @@ A single sitemap file is limited by search engine protocols to a maximum of **50
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://nexuscalculator.net/sitemap-calculators.xml</loc>
+    <loc>https://example.com/sitemap-calculators.xml</loc>
     <lastmod>2026-05-21T14:32:00Z</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://nexuscalculator.net/sitemap-tools.xml</loc>
+    <loc>https://example.com/sitemap-tools.xml</loc>
     <lastmod>2026-05-21T14:32:00Z</lastmod>
   </sitemap>
 </sitemapindex>
@@ -212,10 +212,10 @@ If your website serves multiple languages, you can map translations directly in 
 
 \`\`\`xml
 <url>
-  <loc>https://nexuscalculator.net/en/tools/sitemap-xml-generator</loc>
-  <xhtml:link rel="alternate" hreflang="es" href="https://nexuscalculator.net/es/herramientas/sitemap-xml-generator" />
-  <xhtml:link rel="alternate" hreflang="fr" href="https://nexuscalculator.net/fr/outils/sitemap-xml-generator" />
-  <xhtml:link rel="alternate" hreflang="en" href="https://nexuscalculator.net/en/tools/sitemap-xml-generator" />
+  <loc>https://www.nexuscalculator.net/en/tools/sitemap-xml-generator</loc>
+  <xhtml:link rel="alternate" hreflang="es" href="https://www.nexuscalculator.net/es/herramientas/sitemap-xml-generator" />
+  <xhtml:link rel="alternate" hreflang="fr" href="https://www.nexuscalculator.net/fr/outils/sitemap-xml-generator" />
+  <xhtml:link rel="alternate" hreflang="en" href="https://www.nexuscalculator.net/en/tools/sitemap-xml-generator" />
 </url>
 \`\`\`
 `,
@@ -288,20 +288,20 @@ If your website serves multiple languages, you can map translations directly in 
     {
       title: "Standard Sitemap URL Entry",
       description: "Basic entry listing the homepage with daily updates and maximum priority.",
-      input: "URL: https://nexuscalculator.net/\nLast Modified: 2026-05-21\nChange Frequency: daily\nPriority: 1.0",
-      output: "<url>\n  <loc>https://nexuscalculator.net/</loc>\n  <lastmod>2026-05-21</lastmod>\n  <changefreq>daily</changefreq>\n  <priority>1.0</priority>\n</url>"
+      input: "URL: https://www.nexuscalculator.net/\nLast Modified: 2026-05-21\nChange Frequency: daily\nPriority: 1.0",
+      output: "<url>\n  <loc>https://www.nexuscalculator.net/en</loc>\n  <lastmod>2026-05-21</lastmod>\n  <changefreq>daily</changefreq>\n  <priority>1.0</priority>\n</url>"
     },
     {
       title: "Image Sitemap Extension",
       description: "URL entry featuring an embedded image attachment mapping for Google Images.",
-      input: "URL: https://nexuscalculator.net/tools/sitemap-xml-generator\nImage URL: https://nexuscalculator.net/images/sitemap-preview.png\nImage Title: Sitemap Generator Preview",
-      output: "<url>\n  <loc>https://nexuscalculator.net/tools/sitemap-xml-generator</loc>\n  <image:image>\n    <image:loc>https://nexuscalculator.net/images/sitemap-preview.png</image:loc>\n    <image:title>Sitemap Generator Preview</image:title>\n  </image:image>\n</url>"
+      input: "URL: https://www.nexuscalculator.net/en/tools/sitemap-xml-generator\nImage URL: https://example.com/images/sitemap-preview.png\nImage Title: Sitemap Generator Preview",
+      output: "<url>\n  <loc>https://www.nexuscalculator.net/en/tools/sitemap-xml-generator</loc>\n  <image:image>\n    <image:loc>https://example.com/images/sitemap-preview.png</image:loc>\n    <image:title>Sitemap Generator Preview</image:title>\n  </image:image>\n</url>"
     },
     {
       title: "Sitemap Index File",
       description: "Index structure pointing search engines to localized category sitemap segments.",
-      input: "Sitemap 1: https://nexuscalculator.net/sitemap-calculators.xml\nSitemap 2: https://nexuscalculator.net/sitemap-tools.xml",
-      output: "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <sitemap>\n    <loc>https://nexuscalculator.net/sitemap-calculators.xml</loc>\n  </sitemap>\n  <sitemap>\n    <loc>https://nexuscalculator.net/sitemap-tools.xml</loc>\n  </sitemap>\n</sitemapindex>"
+      input: "Sitemap 1: https://example.com/sitemap-calculators.xml\nSitemap 2: https://example.com/sitemap-tools.xml",
+      output: "<sitemapindex xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <sitemap>\n    <loc>https://example.com/sitemap-calculators.xml</loc>\n  </sitemap>\n  <sitemap>\n    <loc>https://example.com/sitemap-tools.xml</loc>\n  </sitemap>\n</sitemapindex>"
     }
   ]
 };

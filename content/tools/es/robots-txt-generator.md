@@ -84,7 +84,7 @@ Permite el acceso a un subdirectorio o archivo dentro de una carpeta bloqueada.
 
 ### 4. Directiva Sitemap
 Apunta a los rastreadores a la ubicación del Sitemap XML.
-* Ejemplo: `Sitemap: https://nexuscalculator.net/sitemap.xml`
+* Ejemplo: `Sitemap: https://www.nexuscalculator.net/sitemap.xml`
 
 ---
 

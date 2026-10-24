@@ -76,7 +76,7 @@ export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: n
         'Content-Type': 'application/json',
         ...(isServer ? {
           'Origin': 'https://www.nexuscalculator.net',
-          'Referer': 'https://nexuscalculator.net/'
+          'Referer': 'https://www.nexuscalculator.net/en'
         } : {})
       },
       body: JSON.stringify({ structuredQuery }),
@@ -315,7 +315,7 @@ export async function fetchPostBySlugRest(slug: string): Promise<RestPost | null
         'Content-Type': 'application/json',
         ...(isServer ? {
           'Origin': 'https://www.nexuscalculator.net',
-          'Referer': 'https://nexuscalculator.net/'
+          'Referer': 'https://www.nexuscalculator.net/en'
         } : {})
       },
       body: JSON.stringify({
@@ -397,7 +397,7 @@ export async function fetchUserRest(userId: string): Promise<{ displayName: stri
       headers: {
         ...(isServer ? {
           'Origin': 'https://www.nexuscalculator.net',
-          'Referer': 'https://nexuscalculator.net/'
+          'Referer': 'https://www.nexuscalculator.net/en'
         } : {})
       },
       ...(isServer ? { next: { revalidate: 86400 } } : {})

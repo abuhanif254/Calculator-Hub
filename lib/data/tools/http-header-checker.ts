@@ -219,7 +219,7 @@ To audit and optimize your site's headers, follow this best-practice checklist:
     {
       title: "Secure Production Site Header",
       description: "Typical headers returned by a highly hardened web server.",
-      input: "URL: https://nexuscalculator.net, Method: HEAD",
+      input: "URL: https://www.nexuscalculator.net, Method: HEAD",
       output: "Content-Type: text/html; charset=utf-8\nStrict-Transport-Security: max-age=63072000; includeSubDomains; preload\nContent-Security-Policy: default-src 'self' ...\nX-Frame-Options: DENY\nX-Content-Type-Options: nosniff\nReferrer-Policy: strict-origin-when-cross-origin"
     },
     {

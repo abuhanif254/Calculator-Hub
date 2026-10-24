@@ -905,7 +905,7 @@ export function ApiMockDataGeneratorTool() {
           {/* Test URL block */}
           <div className="flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-3 shadow-sm font-mono text-sm overflow-x-auto">
             <span className="px-2 py-0.5 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded text-xs font-bold uppercase shrink-0">GET</span>
-            <span className="text-slate-400 shrink-0">https://nexuscalculator.net/api/v1/mock-endpoint</span>
+            <span className="text-slate-400 shrink-0">https://example.com/api/v1/mock-endpoint</span>
             <button
               onClick={handleRunSimulation}
               disabled={isSimulating}

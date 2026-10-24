@@ -165,11 +165,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Awesome SEO Tool',
     description: 'Manage and optimize your website metadata.',
-    url: 'https://nexuscalculator.net/tools/open-graph-generator',
+    url: 'https://www.nexuscalculator.net/en/tools/open-graph-generator',
     siteName: 'Nexus Calculator',
     images: [
       {
-        url: 'https://nexuscalculator.net/og-preview.png',
+        url: 'https://example.com/og-preview.png',
         width: 1200,
         height: 630,
         alt: 'SEO Preview Tool Image',
@@ -185,7 +185,7 @@ export const metadata: Metadata = {
 
 ## Common Open Graph Mistakes to Avoid
 
-1. **Relative Image URLs**: Writing \`og:image\` as \`/assets/preview.png\`. Social scrapers read your tags from outside your server, so they cannot resolve relative paths. Always use fully-qualified absolute URLs like \`https://nexuscalculator.net/assets/preview.png\`.
+1. **Relative Image URLs**: Writing \`og:image\` as \`/assets/preview.png\`. Social scrapers read your tags from outside your server, so they cannot resolve relative paths. Always use fully-qualified absolute URLs like \`https://example.com/assets/preview.png\`.
 2. **Missing Alt Descriptions**: Omitting \`og:image:alt\`. This hurts screen reader users and can cause your shared posts to be penalized by LinkedIn's business feed algorithms.
 3. **Huge Image File Sizes**: Uploading raw 4 MB camera images. They will fail to display on messaging platforms and slow down page performance.
 4. **Caching Inconsistencies**: Forgetting to update the canonical URL in \`og:url\` after copying templates across different landing pages.
@@ -262,20 +262,20 @@ Using our advanced, client-side Open Graph Generator, you can easily select your
     {
       title: "Basic WebSite Open Graph Meta Tags",
       description: "Standard properties for websites, portfolios, and main homepages.",
-      input: "Title: 'Nexus Calculator - Developer Tools'\nDescription: 'A free hub of dev tools.'\nImage: 'https://nexuscalculator.net/og.png'\nCanonical: 'https://www.nexuscalculator.net'",
-      output: "<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:title\" content=\"Nexus Calculator - Developer Tools\" />\n<meta property=\"og:description\" content=\"A free hub of dev tools.\" />\n<meta property=\"og:image\" content=\"https://nexuscalculator.net/og.png\" />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\" content=\"630\" />\n<meta property=\"og:image:alt\" content=\"Nexus Calculator Preview Image\" />\n<meta property=\"og:url\" content=\"https://nexuscalculator.net\" />\n<meta property=\"og:site_name\" content=\"Nexus Calculator\" />"
+      input: "Title: 'Nexus Calculator - Developer Tools'\nDescription: 'A free hub of dev tools.'\nImage: 'https://example.com/og.png'\nCanonical: 'https://www.nexuscalculator.net'",
+      output: "<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:title\" content=\"Nexus Calculator - Developer Tools\" />\n<meta property=\"og:description\" content=\"A free hub of dev tools.\" />\n<meta property=\"og:image\" content=\"https://example.com/og.png\" />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\" content=\"630\" />\n<meta property=\"og:image:alt\" content=\"Nexus Calculator Preview Image\" />\n<meta property=\"og:url\" content=\"https://www.nexuscalculator.net\" />\n<meta property=\"og:site_name\" content=\"Nexus Calculator\" />"
     },
     {
       title: "Article Open Graph Schema",
       description: "Additional article parameters defining author links, section categories, and publication dates.",
-      input: "Title: 'Guide to Web Metadata'\nDescription: 'Learn how to optimize meta tags.'\nImage: 'https://nexuscalculator.net/blog-og.png'\nType: 'article'\nAuthor: 'John Doe'\nSection: 'SEO'\nPublished Time: '2026-05-21'",
-      output: "<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Guide to Web Metadata\" />\n<meta property=\"og:description\" content=\"Learn how to optimize meta tags.\" />\n<meta property=\"og:image\" content=\"https://nexuscalculator.net/blog-og.png\" />\n<meta property=\"og:url\" content=\"https://nexuscalculator.net/blog/metadata\" />\n<meta property=\"article:published_time\" content=\"2026-05-21T00:00:00Z\" />\n<meta property=\"article:author\" content=\"https://nexuscalculator.net/authors/john-doe\" />\n<meta property=\"article:section\" content=\"SEO\" />\n<meta property=\"article:tag\" content=\"SEO, Metadata, HTML\" />"
+      input: "Title: 'Guide to Web Metadata'\nDescription: 'Learn how to optimize meta tags.'\nImage: 'https://example.com/blog-og.png'\nType: 'article'\nAuthor: 'John Doe'\nSection: 'SEO'\nPublished Time: '2026-05-21'",
+      output: "<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Guide to Web Metadata\" />\n<meta property=\"og:description\" content=\"Learn how to optimize meta tags.\" />\n<meta property=\"og:image\" content=\"https://example.com/blog-og.png\" />\n<meta property=\"og:url\" content=\"https://example.com/blog/metadata\" />\n<meta property=\"article:published_time\" content=\"2026-05-21T00:00:00Z\" />\n<meta property=\"article:author\" content=\"https://example.com/authors/john-doe\" />\n<meta property=\"article:section\" content=\"SEO\" />\n<meta property=\"article:tag\" content=\"SEO, Metadata, HTML\" />"
     },
     {
       title: "Product Open Graph Schema",
       description: "Product metadata layout detailing pricing, currency, availability, and item ID.",
-      input: "Title: 'Developer Pro Keycap Set'\nDescription: 'Ergonomic layout keycaps.'\nImage: 'https://nexuscalculator.net/product.png'\nType: 'product'\nPrice: '79.99'\nCurrency: 'USD'\nAvailability: 'instock'",
-      output: "<meta property=\"og:type\" content=\"product\" />\n<meta property=\"og:title\" content=\"Developer Pro Keycap Set\" />\n<meta property=\"og:description\" content=\"Ergonomic layout keycaps.\" />\n<meta property=\"og:image\" content=\"https://nexuscalculator.net/product.png\" />\n<meta property=\"product:price:amount\" content=\"79.99\" />\n<meta property=\"product:price:currency\" content=\"USD\" />\n<meta property=\"product:availability\" content=\"instock\" />\n<meta property=\"product:condition\" content=\"new\" />"
+      input: "Title: 'Developer Pro Keycap Set'\nDescription: 'Ergonomic layout keycaps.'\nImage: 'https://example.com/product.png'\nType: 'product'\nPrice: '79.99'\nCurrency: 'USD'\nAvailability: 'instock'",
+      output: "<meta property=\"og:type\" content=\"product\" />\n<meta property=\"og:title\" content=\"Developer Pro Keycap Set\" />\n<meta property=\"og:description\" content=\"Ergonomic layout keycaps.\" />\n<meta property=\"og:image\" content=\"https://example.com/product.png\" />\n<meta property=\"product:price:amount\" content=\"79.99\" />\n<meta property=\"product:price:currency\" content=\"USD\" />\n<meta property=\"product:availability\" content=\"instock\" />\n<meta property=\"product:condition\" content=\"new\" />"
     }
   ]
 };

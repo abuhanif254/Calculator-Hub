@@ -246,13 +246,13 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     "author": {
       "@type": "Organization",
       "name": "NexusCalculator Editorial Board",
-      "url": `${baseUrl}/${locale}/about-us`
+      "url": getCanonicalUrl('/about-us', locale)
     },
     "reviewedBy": {
       "@type": "Person",
       "name": "Md. Shamim Hossain",
       "jobTitle": "Lead Full-Stack & Quantitative Systems Engineer",
-      "url": `${baseUrl}/${locale}/about-us`
+      "url": getCanonicalUrl('/about-us', locale)
     },
     "publisher": {
       "@type": "Organization",

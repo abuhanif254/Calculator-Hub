@@ -101,7 +101,7 @@ Proporciona instrucciones a nivel de página para los motores de búsqueda.
 Si su sitio web tiene varios idiomas, debe usar etiquetas `hreflang`. Le dicen a Google qué versión mostrar a usuarios de diferentes países.
 
 ```html
-<link rel=\"alternate\" hreflang=\"es\" href=\"https://nexuscalculator.net/es/...\" />
+<link rel=\"alternate\" hreflang=\"es\" href=\"https://example.com/es/...\" />
 ```
 El `x-default` señala la ruta predeterminada (por ejemplo, para usuarios sin idioma detectado).
 

@@ -33,7 +33,8 @@ import { Search, ChevronRight, CalculatorIcon, BookOpen, Clock, ArrowRight, Scal
 
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { pickCalculatorMessages, toClientCalcDef } from '@/lib/utils/getCalculatorMessages';
+import { pickCalculatorMessages, toClientCalcDef, getMessageNamespaceCalcMeta } from '@/lib/utils/getCalculatorMessages';
+import { getCanonicalAndAlternates, optimizeSerpTitle, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
 import { enrichCalculatorSeoContent, getLocalizedReviewerByline, buildDynamicCalculatorFaqs } from '@/lib/utils/seoContentEnricher';
 
 import fs from "fs";
@@ -185,11 +186,13 @@ function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorB
   const localizedMd = mdResult && !mdResult.isFallback ? mdResult.parsed : null;
   const fallbackMd = mdResult?.parsed || null;
   const translation = calc.translations?.[locale];
+  const nsMeta = getMessageNamespaceCalcMeta(calc.slug, locale, calc.parentSlug);
 
   const title = (
     localizedMd?.data?.title ||
     translation?.title ||
     (translation?.meta?.title ? translation.meta.title.split(/\s*[|–—-]\s*/)[0].trim() : '') ||
+    nsMeta.title ||
     fallbackMd?.data?.title ||
     calc.title
   ).trim();
@@ -198,6 +201,7 @@ function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorB
     localizedMd?.data?.description ||
     translation?.description ||
     translation?.meta?.description ||
+    nsMeta.description ||
     fallbackMd?.data?.description ||
     calc.description
   ).trim();
@@ -206,6 +210,7 @@ function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorB
     localizedMd?.data?.metaTitle ||
     translation?.meta?.title ||
     translation?.title ||
+    nsMeta.title ||
     fallbackMd?.data?.metaTitle ||
     calc.meta.title ||
     title
@@ -217,6 +222,7 @@ function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorB
     localizedMd?.data?.metaDescription ||
     translation?.meta?.description ||
     translation?.description ||
+    nsMeta.description ||
     fallbackMd?.data?.metaDescription ||
     calc.meta.description ||
     description
@@ -287,7 +293,6 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const { metaTitle: rawMetaTitle, metaDescription, metaKeywords } = getLocalizedCalcInfo(calc, locale, slug);
 
-  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const metaTitle = optimizeSerpTitle(rawMetaTitle, locale, 'calculator');
   const alternates = getCanonicalAndAlternates('/calculators/[slug]', locale, calc.slug);
 
@@ -418,7 +423,6 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
   const baseUrl = (process.env.APP_URL || "https://www.nexuscalculator.net")
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
-  const { getCanonicalUrl, canonicalizeInternalHref } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, calc.slug);
   const categoryUrl = categoryDef
     ? getCanonicalUrl('/calculators/category/[category]', resolvedParams.locale, categoryDef.id)

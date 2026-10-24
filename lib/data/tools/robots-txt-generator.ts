@@ -103,7 +103,7 @@ Specifies the number of seconds a crawler should wait between successive request
 ### 5. Sitemap Directive
 Points crawlers to the XML Sitemap location. Unlike user agent rules, this directive is global and can be placed anywhere in the file.
 * Syntax: \`Sitemap: [Absolute URL]\`
-* Example: \`Sitemap: https://nexuscalculator.net/sitemap.xml\`
+* Example: \`Sitemap: https://www.nexuscalculator.net/sitemap.xml\`
 
 ### 6. Host Directive
 Historically used by Yandex to define the preferred domain alias. Today it is largely deprecated, as search engines rely on canonical tags and HTTPS redirections.
@@ -143,7 +143,7 @@ Disallow: /_next/
 Disallow: /api/
 Disallow: /admin/
 
-Sitemap: https://nexuscalculator.net/sitemap.xml
+Sitemap: https://www.nexuscalculator.net/sitemap.xml
 \`\`\`
 
 ### 2. WordPress Robots.txt Example

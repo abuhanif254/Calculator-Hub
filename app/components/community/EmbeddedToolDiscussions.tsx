@@ -42,6 +42,9 @@ export function EmbeddedToolDiscussions({
   initialDiscussions = [],
 }: EmbeddedToolDiscussionsProps) {
   const { appUser, signIn } = useAuth();
+  const commSegment = locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community';
+  const catSegment = locale === 'es' ? 'categoria' : locale === 'fr' ? 'categorie' : locale === 'de' ? 'kategorie' : 'category';
+  const newSegment = locale === 'es' ? 'nuevo' : locale === 'fr' ? 'nouveau' : locale === 'de' ? 'neu' : 'new';
   const [discussions, setDiscussions] = useState<ToolDiscussionItem[]>(initialDiscussions);
   const [activeFilter, setActiveFilter] = useState<'top' | 'latest' | 'unanswered'>('top');
   const [isComposerOpen, setIsComposerOpen] = useState(false);
@@ -304,7 +307,7 @@ export function EmbeddedToolDiscussions({
         '@type': 'DiscussionForumPosting',
         position: index + 1,
         headline: d.title,
-        url: `https://www.nexuscalculator.net/${locale}/community/${d.slug}`,
+        url: `https://www.nexuscalculator.net/${locale}/${commSegment}/${d.slug}`,
         datePublished: new Date(d.createdAt).toISOString(),
         author: {
           '@type': 'Person',
@@ -462,7 +465,7 @@ export function EmbeddedToolDiscussions({
           </div>
 
           <a
-            href={`/${locale}/community/category/${communityCategory}`}
+            href={`/${locale}/${commSegment}/${catSegment}/${communityCategory}`}
             className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center gap-1"
           >
             <span>All Discussions</span>
@@ -521,7 +524,7 @@ export function EmbeddedToolDiscussions({
                   </div>
 
                   <a
-                    href={`/${locale}/community/${post.slug}`}
+                    href={`/${locale}/${commSegment}/${post.slug}`}
                     className="block group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors"
                   >
                     <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">
@@ -550,7 +553,7 @@ export function EmbeddedToolDiscussions({
                     <span>•</span>
 
                     <a
-                      href={`/${locale}/community/${post.slug}#comments`}
+                      href={`/${locale}/${commSegment}/${post.slug}#comments`}
                       className="inline-flex items-center gap-1 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors ml-auto font-medium"
                     >
                       <MessageSquare className="w-3.5 h-3.5" />
@@ -664,7 +667,8 @@ export function EmbeddedToolDiscussions({
 
               <div className="flex items-center justify-between pt-2">
                 <a
-                  href={`/${locale}/community/new?tag=${calcSlug}&category=${communityCategory}&title=${encodeURIComponent(questionTitle || '')}`}
+                  href={`/${locale}/${commSegment}/${newSegment}?tag=${calcSlug}&category=${communityCategory}&title=${encodeURIComponent(questionTitle || '')}`}
+                  rel="nofollow"
                   className="text-xs font-medium text-slate-500 hover:text-[#518231] dark:hover:text-[#6fa844] inline-flex items-center gap-1 hover:underline"
                 >
                   <span>Advanced Markdown & Polls Editor</span>

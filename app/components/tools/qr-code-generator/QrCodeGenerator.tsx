@@ -177,7 +177,7 @@ export default function QrCodeGenerator() {
   // Batch Mode States
   const [batchMode, setBatchMode] = useState<boolean>(false);
   const [batchInput, setBatchInput] = useState<string>(
-    "https://nexuscalculator.net\nhttps://google.com\nhttps://github.com"
+    "https://www.nexuscalculator.net\nhttps://google.com\nhttps://github.com"
   );
   const [batchQrs, setBatchQrs] = useState<{ label: string; payload: string; dataUrl: string }[]>([]);
   const [isGeneratingBatch, setIsGeneratingBatch] = useState<boolean>(false);

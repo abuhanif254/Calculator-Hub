@@ -239,7 +239,7 @@ function NewPostForm() {
               type: 'new_post',
               title: 'New Post from ' + appUser.displayName,
               message: `${appUser.displayName} published a new discussion: ${title.trim()}`,
-              link: `/${locale}/community/${uniqueSlug}`,
+              link: `/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}/${uniqueSlug}`,
               createdAt: serverTimestamp(),
               read: false,
               senderId: appUser.uid,
@@ -257,7 +257,7 @@ function NewPostForm() {
         console.error('Failed to notify followers', notifErr);
       }
 
-      router.push(`/${locale}/community/${uniqueSlug}`);
+      router.push(`/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}/${uniqueSlug}`);
     } catch (err: any) {
       console.error('Error creating post:', err);
       setError('Failed to create post. Please try again.');

@@ -2,16 +2,39 @@ import React from "react";
 import { Metadata } from "next";
 import { AnimatedContent } from "./page.client";
 
+const META_BY_LOCALE: Record<string, { title: string; description: string }> = {
+  en: {
+    title: "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance",
+    description:
+      "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free enterprise platform with 30+ detectors. No data leaves your browser.",
+  },
+  es: {
+    title: "Plataforma de Privacidad de Bases de Datos — Escáner PII, Enmascaramiento y Cumplimiento GDPR",
+    description:
+      "Escanee bases de datos en busca de PII, aplique reglas de enmascaramiento de datos y cumpla con GDPR, HIPAA y PCI-DSS. Plataforma gratuita con más de 30 detectores locales.",
+  },
+  fr: {
+    title: "Plateforme de Confidentialité des Bases de Données — Scanner PII, Masquage & Conformité RGPD",
+    description:
+      "Analysez vos bases de données pour détecter les données personnelles (PII), appliquez le masquage et assurez la conformité RGPD, HIPAA et PCI-DSS localement.",
+  },
+  de: {
+    title: "Datenbank-Datenschutz-Plattform — PII-Scanner, Datenmaskierung & DSGVO-Compliance",
+    description:
+      "Scannen Sie Datenbanken auf personenbezogene Daten (PII), wenden Sie Maskierungsregeln an und erfüllen Sie DSGVO-, HIPAA- und PCI-DSS-Anforderungen lokal im Browser.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const baseUrl = process.env.APP_URL || "https://www.nexuscalculator.net";
-  const ogImage = `${baseUrl}/og-database-privacy.jpg`;
+  const baseUrl = "https://www.nexuscalculator.net";
+  const ogImage = `${baseUrl}/icons/icon-512x512.png`;
+  const localizedMeta = META_BY_LOCALE[locale] || META_BY_LOCALE.en;
 
-  // Build full hreflang map for all supported locales
   const supportedLocales = ["en", "es", "fr", "de"];
   const hreflangLanguages: Record<string, string> = {
     "x-default": `${baseUrl}/en/database-privacy`,
@@ -21,10 +44,8 @@ export async function generateMetadata({
   });
 
   return {
-    title:
-      "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance",
-    description:
-      "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free enterprise platform with 30+ detectors. No data leaves your browser.",
+    title: localizedMeta.title,
+    description: localizedMeta.description,
     keywords: [
       "PII scanning",
       "data masking",
@@ -42,10 +63,8 @@ export async function generateMetadata({
       languages: hreflangLanguages,
     },
     openGraph: {
-      title:
-        "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance | Nexus",
-      description:
-        "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free enterprise platform with 30+ detectors. No data leaves your browser.",
+      title: `${localizedMeta.title} | Nexus`,
+      description: localizedMeta.description,
       url: `${baseUrl}/${locale}/database-privacy`,
       type: "website",
       siteName: "Nexus Calculator",
@@ -53,18 +72,16 @@ export async function generateMetadata({
       images: [
         {
           url: ogImage,
-          width: 1200,
-          height: 630,
+          width: 512,
+          height: 512,
           alt: "Nexus Data Privacy Platform — Free PII Scanner & Data Masking",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title:
-        "Free Database Privacy Platform — PII Scanner, Data Masking & GDPR Compliance",
-      description:
-        "Scan databases for PII, apply masking rules, and achieve GDPR, HIPAA & PCI-DSS compliance. Free. No data leaves your browser.",
+      title: localizedMeta.title,
+      description: localizedMeta.description,
       images: [ogImage],
     },
     robots: {
@@ -75,7 +92,6 @@ export async function generateMetadata({
   };
 }
 
-// SoftwareApplication JSON-LD schema
 const softwareAppSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -104,10 +120,9 @@ const softwareAppSchema = {
     name: "Nexus Calculator Hub",
     url: "https://www.nexuscalculator.net/en",
   },
-  screenshot: "https://www.nexuscalculator.net/og-database-privacy.jpg",
+  screenshot: "https://www.nexuscalculator.net/icons/icon-512x512.png",
 };
 
-// FAQ JSON-LD schema — enables rich FAQ snippets in Google results
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -155,7 +170,6 @@ const faqSchema = {
   ],
 };
 
-// BreadcrumbList JSON-LD schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",

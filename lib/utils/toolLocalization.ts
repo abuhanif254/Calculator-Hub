@@ -3,24 +3,26 @@ import path from "path";
 import matter from "gray-matter";
 import { getCalculatorBySlug } from "@/lib/data/calculators";
 import { getToolConfig } from "@/lib/data/tools";
+import { getMessageNamespaceCalcMeta } from "@/lib/utils/getCalculatorMessages";
 
 const toolMetaCache = new Map<string, { title: string; description: string }>();
 const calcMetaCache = new Map<string, { title: string; description: string }>();
 
-function extractMarkdownTitleAndDesc(filePath: string): { title?: string; description?: string } {
+function extractMarkdownTitleAndDesc(filePath: string): { title?: string; metaTitle?: string; description?: string } {
   try {
     const raw = fs.readFileSync(filePath, "utf-8");
     const parsed = matter(raw);
     const data = parsed.data || {};
     let title: string | undefined = data.title;
+    const metaTitle: string | undefined = typeof data.metaTitle === "string" ? data.metaTitle.trim() : undefined;
     let description: string | undefined = data.shortDescription || data.description || data.metaDescription;
 
     if (!title) {
       const leadingH1 = parsed.content.match(/^\s*#\s+([^\r\n]+)/);
       if (leadingH1) {
         title = leadingH1[1].replace(/\*\*/g, "").split(/\s*[:|–—]\s*/)[0].trim();
-      } else if (typeof data.metaTitle === "string") {
-        title = data.metaTitle.split(/\s*[|–—-]\s*/)[0].trim();
+      } else if (metaTitle) {
+        title = metaTitle.split(/\s*[|–—-]\s*/)[0].trim();
       }
     }
 
@@ -40,10 +42,32 @@ function extractMarkdownTitleAndDesc(filePath: string): { title?: string; descri
       }
     }
 
-    return { title: title?.trim(), description: description?.trim() };
+    return { title: title?.trim(), metaTitle, description: description?.trim() };
   } catch {
     return {};
   }
+}
+
+export function localizeFallbackToolTitle(title: string, locale: string): string {
+  if (!title || locale === "en") return title;
+  if (locale === "de") {
+    return title
+      .replace(/\bFormatter & Validator\b/gi, "Formatierer & Validator")
+      .replace(/\bFormatter & Beautifier\b/gi, "Formatierer & Beautifier")
+      .replace(/\bBeautifier & Formatter\b/gi, "Formatierer & Beautifier")
+      .replace(/\bEncoder & Decoder\b/gi, "Encoder & Decoder (Deutsch)")
+      .replace(/\bDiff Checker & Text Compare\b/gi, "Diff-Checker & Textvergleich")
+      .replace(/\bLorem Ipsum & Dummy Text Generator\b/gi, "Lorem-Ipsum- & Blindtext-Generator")
+      .replace(/\bQR Code Generator & Designer\b/gi, "QR-Code-Generator & Designer")
+      .replace(/\bAPI Mock Data Generator\b/gi, "API-Mock-Daten-Generator")
+      .replace(/\bFake User Data Generator\b/gi, "Testdaten- & Benutzer-Generator")
+      .replace(/\bHTML \/ CSS \/ JavaScript Playground\b/gi, "HTML / CSS / JavaScript Code-Playground")
+      .replace(/\bInstagram & TikTok Hashtag Generator\b/gi, "Instagram- & TikTok-Hashtag-Generator")
+      .replace(/\bMeme Generator\b/gi, "Meme-Generator Online")
+      .replace(/\bSEO Slug Generator\b/gi, "SEO-Slug-Generator")
+      .replace(/\bUUID Generator\b/gi, "UUID- & GUID-Generator");
+  }
+  return title;
 }
 
 export function getLocalizedToolMeta(
@@ -66,11 +90,14 @@ export function getLocalizedToolMeta(
     const md = extractMarkdownTitleAndDesc(localizedPath);
     if (md.title) title = md.title;
     if (md.description) description = md.description;
+    if (locale !== "en" && config?.title && title === config.title) {
+      title = localizeFallbackToolTitle(title, locale);
+    }
   } else if (locale !== "en") {
     const enPath = path.join(process.cwd(), "content", "tools", "en", `${slug}.md`);
     if (fs.existsSync(enPath)) {
       const md = extractMarkdownTitleAndDesc(enPath);
-      if (!fallbackTitle && md.title) title = md.title;
+      if (!fallbackTitle && md.title) title = localizeFallbackToolTitle(md.title, locale);
       if (!fallbackDescription && md.description) description = md.description;
     }
   }
@@ -101,6 +128,7 @@ export function getLocalizedCalcMeta(
 
   const localizedSlug = calc.slugs?.[locale as keyof typeof calc.slugs];
   const translation = calc.translations?.[locale];
+  const nsMeta = getMessageNamespaceCalcMeta(calc.slug, locale, calc.parentSlug);
 
   let mdTitle: string | undefined;
   let mdDesc: string | undefined;
@@ -121,6 +149,7 @@ export function getLocalizedCalcMeta(
     mdTitle ||
     translation?.title ||
     (translation?.meta?.title ? translation.meta.title.split(/\s*[|–—-]\s*/)[0].trim() : undefined) ||
+    nsMeta.title ||
     fallbackTitle ||
     calc.title;
 
@@ -128,6 +157,7 @@ export function getLocalizedCalcMeta(
     mdDesc ||
     translation?.description ||
     translation?.meta?.description ||
+    nsMeta.description ||
     fallbackDescription ||
     calc.description;
 

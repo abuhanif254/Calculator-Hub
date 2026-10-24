@@ -1,6 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import type { CalculatorDef } from '@/lib/types';
 
-const SLUG_TO_NAMESPACE: Record<string, string[]> = {
+export const SLUG_TO_NAMESPACE: Record<string, string[]> = {
   'loan-calculator': ['LoanCalculator'],
   'auto-loan-calculator': ['AutoLoanCalculator'],
   'interest-calculator': ['InterestCalculator'],
@@ -90,6 +92,61 @@ const SLUG_TO_NAMESPACE: Record<string, string[]> = {
   'password-generator': ['PasswordGenerator'],
 };
 
+const localeMessagesCache = new Map<string, Record<string, any>>();
+
+function loadLocaleMessages(locale: string): Record<string, any> {
+  if (localeMessagesCache.has(locale)) {
+    return localeMessagesCache.get(locale)!;
+  }
+  try {
+    const filePath = path.join(process.cwd(), 'messages', `${locale}.json`);
+    if (fs.existsSync(filePath)) {
+      const parsed = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      localeMessagesCache.set(locale, parsed);
+      return parsed;
+    }
+  } catch {
+    // ignore
+  }
+  localeMessagesCache.set(locale, {});
+  return {};
+}
+
+/**
+ * Resolves localized title and description from messages/{locale}.json
+ * for calculators backed by bespoke i18n message namespaces.
+ */
+export function getMessageNamespaceCalcMeta(
+  slug: string,
+  locale: string,
+  parentSlug?: string
+): { title?: string; description?: string } {
+  if (!locale || locale === 'en') return {};
+  const effectiveSlug = parentSlug || slug;
+  const namespaces = SLUG_TO_NAMESPACE[effectiveSlug] || SLUG_TO_NAMESPACE[slug] || [];
+  if (namespaces.length === 0) return {};
+
+  const allMessages = loadLocaleMessages(locale);
+  for (const ns of namespaces) {
+    let section: any;
+    if (ns.includes('.')) {
+      const [top, sub] = ns.split('.');
+      section = allMessages[top]?.[sub];
+    } else {
+      section = allMessages[ns];
+    }
+    if (section && typeof section === 'object') {
+      const title = typeof section.title === 'string' ? section.title.trim() : undefined;
+      const rawDesc = section.description || section.desc || section.subtitle;
+      const description = typeof rawDesc === 'string' ? rawDesc.trim() : undefined;
+      if (title || description) {
+        return { title, description };
+      }
+    }
+  }
+  return {};
+}
+
 /**
  * Extracts only the i18n message namespaces required by a specific calculator's
  * client component instead of serializing the entire 85 KB locale dictionary.
@@ -121,8 +178,9 @@ export function pickCalculatorMessages(
  * before passing across the Server-to-Client component boundary.
  */
 export function toClientCalcDef(calc: CalculatorDef, locale?: string): CalculatorDef {
-  const localizedTitle = (locale && calc.translations?.[locale]?.title) || calc.title;
-  const localizedDesc = (locale && calc.translations?.[locale]?.description) || calc.description;
+  const nsMeta = locale ? getMessageNamespaceCalcMeta(calc.slug, locale, calc.parentSlug) : {};
+  const localizedTitle = (locale && calc.translations?.[locale]?.title) || nsMeta.title || calc.title;
+  const localizedDesc = (locale && calc.translations?.[locale]?.description) || nsMeta.description || calc.description;
 
   return {
     slug: calc.slug,

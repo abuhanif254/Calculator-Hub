@@ -311,20 +311,20 @@ Using our Twitter Card Generator, you can build, preview, and export production-
     {
       title: "Summary Card Meta Tags",
       description: "Standard Summary Card with a small square thumbnail, suitable for articles, blog posts, and general web pages.",
-      input: "Card Type: 'summary'\nTitle: 'Nexus Calculator - Free Developer Tools'\nDescription: 'A comprehensive hub of free online developer and productivity tools.'\nImage: 'https://nexuscalculator.net/twitter-thumb.jpg'\nSite: '@nexuscalculator'",
-      output: "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name=\"twitter:site\" content=\"@nexuscalculator\" />\n<meta name=\"twitter:title\" content=\"Nexus Calculator - Free Developer Tools\" />\n<meta name=\"twitter:description\" content=\"A comprehensive hub of free online developer and productivity tools.\" />\n<meta name=\"twitter:image\" content=\"https://nexuscalculator.net/twitter-thumb.jpg\" />\n<meta name=\"twitter:image:alt\" content=\"Nexus Calculator Preview\" />"
+      input: "Card Type: 'summary'\nTitle: 'Nexus Calculator - Free Developer Tools'\nDescription: 'A comprehensive hub of free online developer and productivity tools.'\nImage: 'https://example.com/twitter-thumb.jpg'\nSite: '@nexuscalculator'",
+      output: "<meta name=\"twitter:card\" content=\"summary\" />\n<meta name=\"twitter:site\" content=\"@nexuscalculator\" />\n<meta name=\"twitter:title\" content=\"Nexus Calculator - Free Developer Tools\" />\n<meta name=\"twitter:description\" content=\"A comprehensive hub of free online developer and productivity tools.\" />\n<meta name=\"twitter:image\" content=\"https://example.com/twitter-thumb.jpg\" />\n<meta name=\"twitter:image:alt\" content=\"Nexus Calculator Preview\" />"
     },
     {
       title: "Summary Large Image Card Meta Tags",
       description: "Large image card with a full-width banner image, ideal for news articles, landing pages, and visually-driven content.",
-      input: "Card Type: 'summary_large_image'\nTitle: 'The Complete Guide to Web Metadata'\nDescription: 'Learn how to optimize meta tags for SEO and social sharing.'\nImage: 'https://nexuscalculator.net/blog-hero.png'\nSite: '@nexuscalculator'\nCreator: '@johndoe'",
-      output: "<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@nexuscalculator\" />\n<meta name=\"twitter:creator\" content=\"@johndoe\" />\n<meta name=\"twitter:title\" content=\"The Complete Guide to Web Metadata\" />\n<meta name=\"twitter:description\" content=\"Learn how to optimize meta tags for SEO and social sharing.\" />\n<meta name=\"twitter:image\" content=\"https://nexuscalculator.net/blog-hero.png\" />\n<meta name=\"twitter:image:alt\" content=\"Blog hero image for the Complete Guide to Web Metadata\" />"
+      input: "Card Type: 'summary_large_image'\nTitle: 'The Complete Guide to Web Metadata'\nDescription: 'Learn how to optimize meta tags for SEO and social sharing.'\nImage: 'https://example.com/blog-hero.png'\nSite: '@nexuscalculator'\nCreator: '@johndoe'",
+      output: "<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@nexuscalculator\" />\n<meta name=\"twitter:creator\" content=\"@johndoe\" />\n<meta name=\"twitter:title\" content=\"The Complete Guide to Web Metadata\" />\n<meta name=\"twitter:description\" content=\"Learn how to optimize meta tags for SEO and social sharing.\" />\n<meta name=\"twitter:image\" content=\"https://example.com/blog-hero.png\" />\n<meta name=\"twitter:image:alt\" content=\"Blog hero image for the Complete Guide to Web Metadata\" />"
     },
     {
       title: "App Card Meta Tags",
       description: "App Card promoting a mobile application with both iOS and Android install links.",
       input: "Card Type: 'app'\nSite: '@nexuscalculator'\niPhone App ID: '123456789'\niPhone App Name: 'Nexus Tools'\nGoogle Play ID: 'net.nexuscalculator.tools'\nGoogle Play Name: 'Nexus Tools'",
-      output: "<meta name=\"twitter:card\" content=\"app\" />\n<meta name=\"twitter:site\" content=\"@nexuscalculator\" />\n<meta name=\"twitter:app:name:iphone\" content=\"Nexus Tools\" />\n<meta name=\"twitter:app:id:iphone\" content=\"123456789\" />\n<meta name=\"twitter:app:url:iphone\" content=\"nexustools://home\" />\n<meta name=\"twitter:app:name:googleplay\" content=\"Nexus Tools\" />\n<meta name=\"twitter:app:id:googleplay\" content=\"net.nexuscalculator.tools\" />\n<meta name=\"twitter:app:url:googleplay\" content=\"https://nexuscalculator.net/app\" />"
+      output: "<meta name=\"twitter:card\" content=\"app\" />\n<meta name=\"twitter:site\" content=\"@nexuscalculator\" />\n<meta name=\"twitter:app:name:iphone\" content=\"Nexus Tools\" />\n<meta name=\"twitter:app:id:iphone\" content=\"123456789\" />\n<meta name=\"twitter:app:url:iphone\" content=\"nexustools://home\" />\n<meta name=\"twitter:app:name:googleplay\" content=\"Nexus Tools\" />\n<meta name=\"twitter:app:id:googleplay\" content=\"net.nexuscalculator.tools\" />\n<meta name=\"twitter:app:url:googleplay\" content=\"https://example.com/app\" />"
     }
   ]
 };

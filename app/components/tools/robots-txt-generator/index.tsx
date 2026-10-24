@@ -1036,7 +1036,7 @@ export function RobotsTxtGeneratorTool() {
                       type="text"
                       value={sitemap}
                       onChange={(e) => updateSitemap(idx, e.target.value)}
-                      placeholder="e.g. https://nexuscalculator.net/sitemap.xml"
+                      placeholder="e.g. https://www.nexuscalculator.net/sitemap.xml"
                       className="flex-1 text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 focus:outline-none"
                     />
                     <button

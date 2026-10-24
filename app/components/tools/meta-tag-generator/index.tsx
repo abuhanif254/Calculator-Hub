@@ -1080,7 +1080,7 @@ export function MetaTagGeneratorTool() {
                     type="url"
                     value={fields.canonicalUrl}
                     onChange={(e) => handleFieldChange("canonicalUrl", e.target.value)}
-                    placeholder="https://nexuscalculator.net/tools/meta-tag-generator"
+                    placeholder="https://www.nexuscalculator.net/en/tools/meta-tag-generator"
                     className="w-full bg-slate-50 border border-slate-200 dark:bg-slate-950 dark:border-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#518231] dark:text-white transition-colors"
                   />
                   <p className="text-[10px] text-slate-400 mt-1">Directs crawlers to the authoritative version of this link.</p>

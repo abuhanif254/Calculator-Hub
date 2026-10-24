@@ -15,7 +15,8 @@ import { AdSenseContainer } from '../../../components/AdSenseContainer';
 import { getGuideForTool } from '@/lib/data/guides';
 import { getCollectionsForSlug } from '@/lib/data/collections';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
-import { getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
+import { getLocalizedCalcMeta, localizeFallbackToolTitle } from '@/lib/utils/toolLocalization';
+import { getCanonicalAndAlternates, optimizeSerpTitle, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
 import { getCalculatorBySlug } from '@/lib/data/calculators';
 import { enrichToolSeoContent, getLocalizedReviewerByline } from '@/lib/utils/seoContentEnricher';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers, BookOpen, Clock, Wrench } from 'lucide-react';
@@ -200,7 +201,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const config = getToolConfig(slug);
   if (!config) return {};
 
-  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const mdData = getMarkdownContent(slug, locale);
 
   const rawMetaTitle = mdData?.data?.metaTitle || mdData?.data?.title || config.title;
@@ -245,14 +245,14 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   }
 
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '');
-  const { getCanonicalUrl, canonicalizeInternalHref } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/tools/[slug]', locale, config.slug);
 
   const mdData = getMarkdownContent(resolvedSlug, locale);
   const hasLocalizedMd = fs.existsSync(path.join(process.cwd(), "content", "tools", locale, `${resolvedSlug}.md`));
   const localizedData = (locale === 'en' || hasLocalizedMd) ? mdData?.data : undefined;
 
-  const pageTitle = localizedData?.title || config.title;
+  const rawPageTitle = localizedData?.title || config.title;
+  const pageTitle = locale !== 'en' ? localizeFallbackToolTitle(rawPageTitle, locale) : rawPageTitle;
   const pageShortDesc = localizedData?.shortDescription || config.shortDescription;
   const rawLongDesc = (locale === 'en' || hasLocalizedMd) ? (mdData?.content || config.longDescription) : '';
 

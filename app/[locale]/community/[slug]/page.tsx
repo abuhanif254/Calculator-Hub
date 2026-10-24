@@ -112,7 +112,7 @@ export default async function PostPage({ params }: { params: Promise<{ locale: s
       "name": authorName
     },
     "text": post.content.replace(/<[^>]+>/g, ''),
-    "url": `${baseUrl}/${locale}/community/${post.slug}`
+    "url": `${baseUrl}/${locale}/${locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community'}/${post.slug}`
   };
 
   return (

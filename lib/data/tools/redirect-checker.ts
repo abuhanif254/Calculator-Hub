@@ -229,8 +229,8 @@ Cloudflare lets you manage redirects at the edge without hitting your server:
     {
       title: "Secure Domain Force",
       description: "Typical secure trace configuration forcing HTTPS and trailing slash removal.",
-      input: "http://nexuscalculator.net",
-      output: "Step 1: http://nexuscalculator.net -> 301 Moved Permanently\nStep 2: https://nexuscalculator.net/ -> 200 OK (Final Destination)"
+      input: "https://www.nexuscalculator.net",
+      output: "Step 1: https://www.nexuscalculator.net -> 301 Moved Permanently\nStep 2: https://www.nexuscalculator.net/en -> 200 OK (Final Destination)"
     },
     {
       title: "Subfolder and Path Remap",
