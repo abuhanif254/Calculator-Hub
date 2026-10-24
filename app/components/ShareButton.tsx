@@ -1,14 +1,20 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import { Share2 } from "lucide-react";
-import { ShareCalculatorModal } from "./ShareCalculatorModal";
+
+const ShareCalculatorModal = dynamic(
+  () => import("./ShareCalculatorModal").then((m) => m.ShareCalculatorModal),
+  { ssr: false }
+);
 
 interface ShareButtonProps {
   slug: string;
   title: string;
   locale?: string;
   targetId?: string;
+  canonicalUrl?: string;
 }
 
 const shareLabels: Record<string, { label: string; tooltip: string }> = {
@@ -23,6 +29,7 @@ export function ShareButton({
   title,
   locale = "en",
   targetId = "calculator-export-target",
+  canonicalUrl,
 }: ShareButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
   const text = shareLabels[locale] || shareLabels.en;
@@ -39,14 +46,17 @@ export function ShareButton({
         <span>{text.label}</span>
       </button>
 
-      <ShareCalculatorModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        slug={slug}
-        title={title}
-        locale={locale}
-        targetId={targetId}
-      />
+      {isOpen && (
+        <ShareCalculatorModal
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          slug={slug}
+          title={title}
+          locale={locale}
+          targetId={targetId}
+          canonicalUrl={canonicalUrl}
+        />
+      )}
     </>
   );
 }

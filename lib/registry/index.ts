@@ -2,25 +2,16 @@
 // UNIFIED TOOL REGISTRY
 // ═══════════════════════════════════════════════════════
 // Single source of truth for ALL platform tools —
-// both calculators and developer tools.
-//
-// Used by:
-//   - Search page (replaces hardcoded tool lists)
-//   - Sitemap generation
-//   - Navbar mega menu
-//   - Homepage featured/trending sections
-//   - API responses
-//   - Future recommendation engine
-//
-// This registry DERIVES from the existing data sources
-// rather than replacing them, to avoid a breaking refactor.
+// calculators, developer tools, comparisons, and collections.
 // ═══════════════════════════════════════════════════════
 
 import { calculators } from '@/lib/data/calculators';
 import { allToolsConfig } from '@/lib/data/tools';
+import { comparisons } from '@/lib/data/comparisons';
+import { collections } from '@/lib/data/collections';
 import { getCategoryForCalculator } from '@/lib/data/categories';
 
-export type ToolType = 'calculator' | 'developer-tool';
+export type ToolType = 'calculator' | 'developer-tool' | 'comparison' | 'collection';
 
 export interface UnifiedToolEntry {
   slug: string;
@@ -41,6 +32,9 @@ const registry: UnifiedToolEntry[] = [];
 // 1) Register all calculators
 calculators.forEach((calc) => {
   const catDef = getCategoryForCalculator(calc.category);
+  const trTitles = Object.values(calc.translations || {})
+    .map((t) => t.title)
+    .join(', ');
   registry.push({
     slug: calc.slug,
     type: 'calculator',
@@ -48,7 +42,7 @@ calculators.forEach((calc) => {
     description: calc.description,
     category: calc.category,
     categoryId: catDef?.id ?? 'other',
-    keywords: calc.meta.keywords,
+    keywords: [calc.meta.keywords, trTitles].filter(Boolean).join(', '),
     href: `/calculators/${calc.slug}`,
     status: 'published',
     lastUpdated: calc.meta.lastUpdated,
@@ -71,14 +65,50 @@ Object.values(allToolsConfig).forEach((tool) => {
   });
 });
 
+// 3) Register all side-by-side comparisons
+comparisons.forEach((comp) => {
+  const trTitles = Object.values(comp.translations || {})
+    .map((t) => t.title)
+    .join(', ');
+  registry.push({
+    slug: comp.slug,
+    type: 'comparison',
+    title: comp.title,
+    description: comp.seoDescription,
+    category: 'Comparisons',
+    categoryId: 'comparisons',
+    keywords: [comp.title, trTitles, comp.toolA, comp.toolB].filter(Boolean).join(', '),
+    href: `/compare/${comp.slug}`,
+    status: 'published',
+  });
+});
+
+// 4) Register all curated workflow collections
+collections.forEach((col) => {
+  const trTitles = Object.values(col.translations || {})
+    .map((t) => t.title)
+    .join(', ');
+  registry.push({
+    slug: col.slug,
+    type: 'collection',
+    title: col.title,
+    description: col.description,
+    category: 'Collections',
+    categoryId: 'collections',
+    keywords: [col.title, trTitles, 'toolkit', 'collection'].filter(Boolean).join(', '),
+    href: `/collections/${col.slug}`,
+    status: 'published',
+  });
+});
+
 // ═══════════════════════════════════════════════════════
 // Public API
 // ═══════════════════════════════════════════════════════
 
-/** All registered tools (calculators + dev tools) */
+/** All registered tools (calculators + dev tools + comparisons + collections) */
 export const allTools: readonly UnifiedToolEntry[] = Object.freeze(registry);
 
-/** Get a tool by slug (searches both calculators and dev tools) */
+/** Get a tool by slug */
 export function getToolBySlug(slug: string): UnifiedToolEntry | undefined {
   return registry.find((t) => t.slug === slug);
 }

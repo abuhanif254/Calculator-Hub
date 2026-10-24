@@ -1,14 +1,8 @@
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
-import { searchTools, allTools } from '@/lib/registry';
-import { Link } from '@/i18n/routing';
+import { searchTools } from '@/lib/registry';
+import { Link, resolveIntlHref } from '@/i18n/routing';
 import { Search } from 'lucide-react';
-
-// ═══════════════════════════════════════════════════════
-// SEARCH PAGE — now powered by the unified tool registry
-// instead of a hardcoded list. Adding a new calculator or
-// dev tool automatically makes it searchable here.
-// ═══════════════════════════════════════════════════════
 
 export async function generateMetadata({ params, searchParams }: { params: Promise<{ locale: string }>, searchParams: Promise<{ q?: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -18,7 +12,7 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
 
   return {
     title: hasQuery ? `Search results for "${q}" | Nexus Calculator` : 'Search Calculators & Developer Tools | Nexus Calculator',
-    description: 'Search 300+ free online financial, math, health, and science calculators, PDF utilities, image tools, and developer utilities on Nexus Calculator.',
+    description: 'Search 350+ free online financial, math, health, and science calculators, PDF utilities, image tools, comparisons, and developer utilities on Nexus Calculator.',
     robots: { index: !hasQuery, follow: true },
     ...(!hasQuery ? { alternates: getCanonicalAndAlternates('/search', locale) } : {}),
   };
@@ -30,8 +24,6 @@ export default async function SearchPage({ params, searchParams }: { params: Pro
   const { q = '' } = await searchParams;
 
   const query = q.trim().toLowerCase();
-  
-  // Use the unified registry for searching
   const results = query ? searchTools(query, 50) : [];
 
   return (
@@ -69,8 +61,8 @@ export default async function SearchPage({ params, searchParams }: { params: Pro
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {results.map((tool) => (
                   <Link
-                    key={tool.slug}
-                    href={tool.href as any}
+                    key={`${tool.type}-${tool.slug}`}
+                    href={resolveIntlHref(tool.href)}
                     className="block border border-slate-200 dark:border-slate-800 rounded-2xl p-5 hover:border-blue-200 dark:hover:border-blue-800 transition-colors hover:shadow-sm bg-white dark:bg-slate-900"
                   >
                     <div className="flex items-center gap-2 mb-2">
@@ -80,9 +72,13 @@ export default async function SearchPage({ params, searchParams }: { params: Pro
                       <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
                         tool.type === 'developer-tool'
                           ? 'bg-purple-50 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
+                          : tool.type === 'comparison'
+                          ? 'bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400'
+                          : tool.type === 'collection'
+                          ? 'bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400'
                           : 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
                       }`}>
-                        {tool.type === 'developer-tool' ? 'Tool' : 'Calc'}
+                        {tool.type === 'developer-tool' ? 'Tool' : tool.type === 'comparison' ? 'Compare' : tool.type === 'collection' ? 'Kit' : 'Calc'}
                       </span>
                     </div>
                     <p className="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">

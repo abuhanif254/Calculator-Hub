@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { Copy, Check, X, Share2, QrCode, ExternalLink, Mail } from "lucide-react";
-import QRCode from "qrcode";
 import { serializeCalculatorInputs } from "@/lib/hooks/useCalculatorUrlHydration";
 
 interface ShareCalculatorModalProps {
@@ -12,6 +11,7 @@ interface ShareCalculatorModalProps {
   title: string;
   locale?: string;
   targetId?: string;
+  canonicalUrl?: string;
 }
 
 const modalTranslations: Record<string, {
@@ -88,6 +88,7 @@ export function ShareCalculatorModal({
   title,
   locale = "en",
   targetId = "calculator-export-target",
+  canonicalUrl,
 }: ShareCalculatorModalProps) {
   const [shareUrl, setShareUrl] = useState("");
   const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
@@ -102,29 +103,38 @@ export function ShareCalculatorModal({
       const baseUrl = "https://www.nexuscalculator.net";
       const inputsParams = serializeCalculatorInputs(targetId);
       const queryStr = inputsParams.toString() ? `?${inputsParams.toString()}` : "";
-      const fullUrl = `${baseUrl}/${locale}/calculators/${slug}${queryStr}`;
+      const basePathUrl = canonicalUrl || `${baseUrl}${window.location.pathname}`;
+      const fullUrl = `${basePathUrl}${queryStr}`;
       
       setShareUrl(fullUrl);
 
-      // Silently sync current browser address bar to match the generated share URL
-      window.history.replaceState({ ...window.history.state }, "", fullUrl);
+      // Silently sync current browser address bar on same origin
+      try {
+        window.history.replaceState({ ...window.history.state }, "", `${window.location.pathname}${queryStr}`);
+      } catch {
+        // Ignore SecurityError if origin differs
+      }
 
-      // Generate QR Code
-      QRCode.toDataURL(fullUrl, {
-        width: 240,
-        margin: 1,
-        color: {
-          dark: "#0f172a",
-          light: "#ffffff",
-        },
-      })
+      // Generate QR Code lazily
+      import("qrcode")
+        .then((mod) => {
+          const QRCode = mod.default || mod;
+          return QRCode.toDataURL(fullUrl, {
+            width: 240,
+            margin: 1,
+            color: {
+              dark: "#0f172a",
+              light: "#ffffff",
+            },
+          });
+        })
         .then((qr) => setQrCodeUrl(qr))
         .catch((e) => console.debug("Failed to generate QR code:", e));
     } catch (err) {
       console.error("Error creating shareable URL:", err);
       setShareUrl(window.location.href);
     }
-  }, [isOpen, slug, locale, targetId]);
+  }, [isOpen, slug, locale, targetId, canonicalUrl]);
 
   if (!isOpen) return null;
 

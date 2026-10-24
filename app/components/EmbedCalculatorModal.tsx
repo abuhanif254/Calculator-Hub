@@ -9,6 +9,8 @@ interface EmbedCalculatorModalProps {
   slug: string;
   title: string;
   locale?: string;
+  canonicalUrl?: string;
+  isTool?: boolean;
 }
 
 export function EmbedCalculatorModal({
@@ -17,6 +19,8 @@ export function EmbedCalculatorModal({
   slug,
   title,
   locale = "en",
+  canonicalUrl,
+  isTool = false,
 }: EmbedCalculatorModalProps) {
   const [theme, setTheme] = useState<"auto" | "light" | "dark">("auto");
   const [hideHeader, setHideHeader] = useState(false);
@@ -33,13 +37,19 @@ export function EmbedCalculatorModal({
   if (hideHeader) embedParams.set("hideHeader", "true");
   const queryStr = embedParams.toString() ? `?${embedParams.toString()}` : "";
   
-  const embedUrl = `${baseUrl}/${locale}/embed/calculators/${slug}${queryStr}`;
-  const previewUrl = `/${locale}/embed/calculators/${slug}${queryStr}`;
-  const canonicalPageUrl = `${baseUrl}/${locale}/calculators/${slug}`;
+  const canonicalPageUrl =
+    canonicalUrl ||
+    `${baseUrl}/${locale}/${isTool ? "tools" : "calculators"}/${slug}`;
+  const embedUrl = isTool
+    ? `${canonicalPageUrl}${queryStr}`
+    : `${baseUrl}/${locale}/embed/calculators/${slug}${queryStr}`;
+  const previewUrl = isTool
+    ? `${canonicalPageUrl.replace(baseUrl, "")}${queryStr}`
+    : `/${locale}/embed/calculators/${slug}${queryStr}`;
 
-  // Generated iframe snippet with clean dofollow SEO attribution
+  // Generated iframe snippet with clean dofollow SEO attribution and keyword-rich anchor text
   const embedSnippet = `<iframe src="${embedUrl}" width="100%" height="${height}" frameborder="0" style="border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1);" title="${title}"></iframe>
-<p style="font-size:11px;color:#64748b;margin-top:6px;text-align:right;">Powered by <a href="${canonicalPageUrl}" target="_blank" rel="noopener" style="color:#518231;font-weight:600;text-decoration:underline;">Nexus Calculator</a></p>`;
+<p style="font-size:11px;color:#64748b;margin-top:6px;text-align:right;">Powered by <a href="${canonicalPageUrl}" target="_blank" rel="noopener" style="color:#518231;font-weight:600;text-decoration:underline;">${title} — NexusCalculator</a></p>`;
 
   const handleCopy = async () => {
     try {

@@ -1,9 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { History } from "lucide-react";
 import { getCalculationHistory } from "../../lib/utils/calculationHistory";
-import { CalculationHistoryDrawer } from "./CalculationHistoryDrawer";
+
+const CalculationHistoryDrawer = dynamic(
+  () => import("./CalculationHistoryDrawer").then((m) => m.CalculationHistoryDrawer),
+  { ssr: false }
+);
 
 interface HistoryButtonProps {
   slug: string;
@@ -62,13 +67,15 @@ export function HistoryButton({
         )}
       </button>
 
-      <CalculationHistoryDrawer
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        calcSlug={slug}
-        calcTitle={title}
-        containerId={containerId}
-      />
+      {isOpen && (
+        <CalculationHistoryDrawer
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          calcSlug={slug}
+          calcTitle={title}
+          containerId={containerId}
+        />
+      )}
     </>
   );
 }

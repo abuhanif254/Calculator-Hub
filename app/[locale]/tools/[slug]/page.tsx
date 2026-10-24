@@ -9,6 +9,8 @@ import { Link, routing, resolveIntlHref } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
 import { FavoriteButton } from '../../../components/FavoriteButton';
+import { ShareButton } from '../../../components/ShareButton';
+import { EmbedButton } from '../../../components/EmbedButton';
 import { AdSenseContainer } from '../../../components/AdSenseContainer';
 import { getGuideForTool } from '@/lib/data/guides';
 import { getCollectionsForSlug } from '@/lib/data/collections';
@@ -424,6 +426,19 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
               title={pageTitle}
               type="developer-tool"
               href={currentToolHref}
+            />
+            <ShareButton
+              slug={config.slug}
+              title={pageTitle}
+              locale={locale}
+              canonicalUrl={canonicalUrl}
+            />
+            <EmbedButton
+              slug={config.slug}
+              title={pageTitle}
+              locale={locale}
+              canonicalUrl={canonicalUrl}
+              isTool={true}
             />
             <span>•</span>
             <span>

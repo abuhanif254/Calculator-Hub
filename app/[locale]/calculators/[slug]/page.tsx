@@ -22,6 +22,8 @@ import { FavoriteButton } from "@/app/components/FavoriteButton";
 import { EmbedButton } from "@/app/components/EmbedButton";
 import { ShareButton } from "@/app/components/ShareButton";
 import { HistoryButton } from "@/app/components/HistoryButton";
+import { ScenarioPresetsBar } from "@/app/components/ScenarioPresetsBar";
+import { NextStepWorkflowCard, NextStepItem } from "@/app/components/NextStepWorkflowCard";
 import { EmbeddedToolDiscussions } from "@/app/components/community/EmbeddedToolDiscussions";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
@@ -863,11 +865,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                 slug={calc.slug}
                 title={pageTitle}
                 locale={resolvedParams.locale}
+                canonicalUrl={canonicalUrl}
               />
               <ShareButton
                 slug={calc.slug}
                 title={pageTitle}
                 locale={resolvedParams.locale}
+                canonicalUrl={canonicalUrl}
               />
               <HistoryButton
                 slug={calc.slug}
@@ -920,6 +924,14 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             locale={resolvedParams.locale}
           />
 
+          {/* 1-Click Real-World Scenario Presets Bar */}
+          <ScenarioPresetsBar
+            fields={clientCalcDef.fields}
+            category={calc.category}
+            locale={resolvedParams.locale}
+            targetId="calculator-export-target"
+          />
+
           <div id="calculator-export-target" className="print-target calculator-view">
             <NextIntlClientProvider
               locale={resolvedParams.locale}
@@ -940,6 +952,52 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             fileName={`${calc.slug}-results`} 
             title={pageTitle || calc.title} 
             calcSlug={calc.slug}
+          />
+
+          {/* Next-Step Workflow Chaining Engine */}
+          <NextStepWorkflowCard
+            currentTitle={pageTitle}
+            locale={resolvedParams.locale}
+            items={(() => {
+              const items: NextStepItem[] = [];
+              relatedTools.slice(0, 2).forEach((toolSlug, idx) => {
+                const targetCalc = getCalculatorBySlug(toolSlug);
+                if (!targetCalc) return;
+                const { title: targetTitle, description: targetDesc } = getLocalizedCalcInfo(
+                  targetCalc,
+                  resolvedParams.locale
+                );
+                items.push({
+                  slug: toolSlug,
+                  title: targetTitle,
+                  description: targetDesc,
+                  href: `/calculators/${toolSlug}`,
+                  badgeType: idx === 0 ? "step1" : "step2",
+                });
+              });
+              if (relatedComparisons.length > 0) {
+                const comp = relatedComparisons[0];
+                const compTr = comp.translations?.[resolvedParams.locale];
+                items.push({
+                  slug: comp.slug,
+                  title: compTr?.title || comp.title,
+                  description: compTr?.verdict || comp.verdict,
+                  href: `/compare/${comp.slug}`,
+                  badgeType: "compare",
+                });
+              } else if (relatedCollections.length > 0) {
+                const col = relatedCollections[0];
+                const colTr = col.translations?.[resolvedParams.locale];
+                items.push({
+                  slug: col.slug,
+                  title: colTr?.title || col.title,
+                  description: colTr?.description || col.description,
+                  href: `/collections/${col.slug}`,
+                  badgeType: "toolkit",
+                });
+              }
+              return items;
+            })()}
           />
 
           {/* Ad Placement below calculation results (Non-intrusive, high CTR) */}
