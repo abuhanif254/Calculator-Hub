@@ -2,10 +2,62 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 import { X, Cookie } from 'lucide-react';
+
+const COOKIE_COPY: Record<
+  string,
+  {
+    title: string;
+    bodyBefore: string;
+    privacyPolicy: string;
+    decline: string;
+    acceptAll: string;
+    close: string;
+  }
+> = {
+  en: {
+    title: 'We value your privacy',
+    bodyBefore:
+      'We use cookies to enhance your browsing experience, serve personalized ads or content via Google AdSense, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. Read more in our ',
+    privacyPolicy: 'Privacy Policy',
+    decline: 'Decline',
+    acceptAll: 'Accept All',
+    close: 'Close',
+  },
+  es: {
+    title: 'Valoramos su privacidad',
+    bodyBefore:
+      'Utilizamos cookies para mejorar su experiencia de navegación, mostrar anuncios o contenido personalizado a través de Google AdSense y analizar nuestro tráfico. Al hacer clic en «Aceptar todo», usted acepta el uso de cookies. Lea más en nuestra ',
+    privacyPolicy: 'Política de Privacidad',
+    decline: 'Rechazar',
+    acceptAll: 'Aceptar todo',
+    close: 'Cerrar',
+  },
+  fr: {
+    title: 'Nous respectons votre vie privée',
+    bodyBefore:
+      'Nous utilisons des cookies pour améliorer votre expérience de navigation, diffuser des publicités ou contenus personnalisés via Google AdSense et analyser notre trafic. En cliquant sur « Tout accepter », vous consentez à notre utilisation des cookies. En savoir plus dans notre ',
+    privacyPolicy: 'Politique de Confidentialité',
+    decline: 'Refuser',
+    acceptAll: 'Tout accepter',
+    close: 'Fermer',
+  },
+  de: {
+    title: 'Wir schätzen Ihre Privatsphäre',
+    bodyBefore:
+      'Wir verwenden Cookies, um Ihr Nutzererlebnis zu verbessern, personalisierte Anzeigen oder Inhalte über Google AdSense bereitzustellen und unseren Datenverkehr zu analysieren. Mit Klick auf „Alle akzeptieren“ stimmen Sie der Verwendung von Cookies zu. Weitere Details in unserer ',
+    privacyPolicy: 'Datenschutzerklärung',
+    decline: 'Ablehnen',
+    acceptAll: 'Alle akzeptieren',
+    close: 'Schließen',
+  },
+};
 
 export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
+  const locale = useLocale();
+  const t = COOKIE_COPY[locale] || COOKIE_COPY.en;
 
   useEffect(() => {
     // Check if user has already consented
@@ -40,10 +92,10 @@ export function CookieBanner() {
           </div>
           <div>
             <h3 className="text-slate-900 dark:text-white font-bold text-lg flex items-center gap-2 mb-1">
-              <span className="sm:hidden text-[#518231]"><Cookie size={18} /></span> We value your privacy
+              <span className="sm:hidden text-[#518231]"><Cookie size={18} /></span> {t.title}
             </h3>
             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed max-w-2xl">
-              We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. Read more in our <Link href="/privacy-policy" className="text-[#518231] hover:underline font-medium">Privacy Policy</Link>.
+              {t.bodyBefore}<Link href="/privacy-policy" className="text-[#518231] hover:underline font-medium">{t.privacyPolicy}</Link>.
             </p>
           </div>
         </div>
@@ -53,18 +105,18 @@ export function CookieBanner() {
             onClick={handleDecline}
             className="flex-1 md:flex-none px-5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors font-medium text-sm"
           >
-            Decline
+            {t.decline}
           </button>
           <button 
             onClick={handleAccept}
             className="flex-1 md:flex-none px-5 py-2.5 rounded-xl bg-[#518231] hover:bg-[#436a28] text-white transition-colors font-medium text-sm shadow-sm hover:shadow-md"
           >
-            Accept All
+            {t.acceptAll}
           </button>
           <button 
             onClick={() => setIsVisible(false)} 
             className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors hidden md:block"
-            aria-label="Close"
+            aria-label={t.close}
           >
             <X size={20} />
           </button>

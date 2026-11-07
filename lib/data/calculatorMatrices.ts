@@ -12,12 +12,19 @@ export interface MatrixRow {
   params: Record<string, string>;
 }
 
+export interface MatrixLocaleTranslation {
+  title: string;
+  description: string;
+  headers: string[];
+}
+
 export interface CalculatorMatrixDef {
   slugs: string[];
   title: string;
   description: string;
   headers: string[];
   rows: MatrixRow[];
+  translations?: Record<string, MatrixLocaleTranslation>;
 }
 
 export const calculatorMatrices: CalculatorMatrixDef[] = [
@@ -33,6 +40,23 @@ export const calculatorMatrices: CalculatorMatrixDef[] = [
     title: 'Monthly Mortgage Payment Comparison Table (6.5% Fixed Rate)',
     description: 'Quick reference table comparing monthly principal & interest payments and total interest costs for common mortgage balances at 6.5% APR.',
     headers: ['Loan Amount', '15-Year Monthly', '15-Year Total Interest', '30-Year Monthly', '30-Year Total Interest'],
+    translations: {
+      es: {
+        title: 'Tabla Comparativa de Pagos Hipotecarios Mensuales (Tasa Fija del 6.5%)',
+        description: 'Tabla de referencia rápida que compara las cuotas mensuales de capital e intereses y el costo total de intereses para saldos hipotecarios comunes al 6.5% TAE.',
+        headers: ['Monto del Préstamo', 'Mensual a 15 Años', 'Interés Total (15 Años)', 'Mensual a 30 Años', 'Interés Total (30 Años)'],
+      },
+      fr: {
+        title: 'Tableau Comparatif des Mensualités Hypothécaires (Taux Fixe de 6,5 %)',
+        description: 'Tableau de référence rapide comparant les mensualités capital + intérêts et le coût total des intérêts pour des montants de prêt courants à 6,5 % TAEG.',
+        headers: ['Montant du Prêt', 'Mensualité 15 Ans', 'Intérêts Totaux (15 Ans)', 'Mensualité 30 Ans', 'Intérêts Totaux (30 Ans)'],
+      },
+      de: {
+        title: 'Vergleichstabelle für monatliche Hypothekenraten (6,5 % Festzins)',
+        description: 'Schnellübersicht zum Vergleich der monatlichen Tilgungs- und Zinsraten sowie der Gesamtzinskosten für gängige Darlehensbeträge bei 6,5 % effektivem Jahreszins.',
+        headers: ['Darlehensbetrag', 'Monatlich (15 J.)', 'Gesamtzins (15 J.)', 'Monatlich (30 J.)', 'Gesamtzins (30 J.)'],
+      },
+    },
     rows: [
       {
         label: '$100,000',
@@ -78,6 +102,23 @@ export const calculatorMatrices: CalculatorMatrixDef[] = [
     title: 'Auto Loan Monthly Payment Schedule (6.0% APR)',
     description: 'Estimated monthly car payments for standard vehicle financing amounts across 36, 48, 60, and 72-month terms at 6.0% interest.',
     headers: ['Vehicle Loan Amount', '36 Months (3 Yr)', '48 Months (4 Yr)', '60 Months (5 Yr)', '72 Months (6 Yr)'],
+    translations: {
+      es: {
+        title: 'Tabla de Pagos Mensuales de Préstamo de Auto (6.0% TAE)',
+        description: 'Cuotas mensuales estimadas para montos estándar de financiamiento vehicular en plazos de 36, 48, 60 y 72 meses al 6.0% de interés.',
+        headers: ['Monto del Préstamo', '36 Meses (3 Años)', '48 Meses (4 Años)', '60 Meses (5 Años)', '72 Meses (6 Años)'],
+      },
+      fr: {
+        title: 'Barème des Mensualités de Crédit Auto (6,0 % TAEG)',
+        description: 'Mensualités estimées pour des montants standards de financement automobile sur 36, 48, 60 et 72 mois à un taux de 6,0 %.',
+        headers: ['Montant du Prêt Auto', '36 Mois (3 Ans)', '48 Mois (4 Ans)', '60 Mois (5 Ans)', '72 Mois (6 Ans)'],
+      },
+      de: {
+        title: 'Monatlicher Ratenplan für Autokredite (6,0 % Effektivzins)',
+        description: 'Geschätzte monatliche Kreditraten für gängige Fahrzeugfinanzierungen über Laufzeiten von 36, 48, 60 und 72 Monaten bei 6,0 % Zinsen.',
+        headers: ['Kreditbetrag', '36 Monate (3 J.)', '48 Monate (4 J.)', '60 Monate (5 J.)', '72 Monate (6 J.)'],
+      },
+    },
     rows: [
       {
         label: '$15,000',
@@ -119,6 +160,23 @@ export const calculatorMatrices: CalculatorMatrixDef[] = [
     title: 'Compound Interest Growth Table (8.0% Average Annual Return)',
     description: 'Projected investment value over 5, 10, 20, and 30 years with an 8.0% historical annualized market return compounded annually.',
     headers: ['Starting Deposit', 'After 5 Years', 'After 10 Years', 'After 20 Years', 'After 30 Years'],
+    translations: {
+      es: {
+        title: 'Tabla de Crecimiento de Interés Compuesto (8.0% de Rendimiento Anual)',
+        description: 'Valor proyectado de la inversión a 5, 10, 20 y 30 años con un rendimiento anual histórico del 8.0% capitalizado anualmente.',
+        headers: ['Depósito Inicial', 'Tras 5 Años', 'Tras 10 Años', 'Tras 20 Años', 'Tras 30 Años'],
+      },
+      fr: {
+        title: 'Tableau de Croissance des Intérêts Composés (Rendement Annuel de 8,0 %)',
+        description: 'Valeur projetée du capital sur 5, 10, 20 et 30 ans avec un rendement annuel moyen historique de 8,0 % capitalisé annuellement.',
+        headers: ['Dépôt Initial', 'Après 5 Ans', 'Après 10 Ans', 'Après 20 Ans', 'Après 30 Ans'],
+      },
+      de: {
+        title: 'Zinseszins-Wachstumstabelle (8,0 % durchschnittliche Jahresrendite)',
+        description: 'Prognostizierter Anlagewert nach 5, 10, 20 und 30 Jahren bei einer historischen Marktrendite von 8,0 % p.a. mit jährlicher Verzinsung.',
+        headers: ['Anfangskapital', 'Nach 5 Jahren', 'Nach 10 Jahren', 'Nach 20 Jahren', 'Nach 30 Jahren'],
+      },
+    },
     rows: [
       {
         label: '$5,000',
@@ -154,6 +212,23 @@ export const calculatorMatrices: CalculatorMatrixDef[] = [
     title: 'Adult BMI & Healthy Weight Matrix (WHO Standards)',
     description: 'Body Mass Index classification table across standard heights and weights according to World Health Organization criteria.',
     headers: ['Height', 'Underweight (<18.5)', 'Normal Weight (18.5–24.9)', 'Overweight (25–29.9)', 'Obese (≥30.0)'],
+    translations: {
+      es: {
+        title: 'Matriz de IMC y Peso Saludable en Adultos (Estándares OMS)',
+        description: 'Tabla de clasificación del Índice de Masa Corporal según estatura y peso de acuerdo con los criterios de la Organización Mundial de la Salud.',
+        headers: ['Estatura', 'Bajo Peso (<18.5)', 'Peso Normal (18.5–24.9)', 'Sobrepeso (25–29.9)', 'Obesidad (≥30.0)'],
+      },
+      fr: {
+        title: 'Matrice IMC Adulte et Poids Santé (Normes OMS)',
+        description: 'Tableau de classification de l’Indice de Masse Corporelle selon la taille et le poids d’après les critères de l’Organisation Mondiale de la Santé.',
+        headers: ['Taille', 'Insuffisance (<18,5)', 'Poids Normal (18,5–24,9)', 'Surpoids (25–29,9)', 'Obésité (≥30,0)'],
+      },
+      de: {
+        title: 'BMI- und Idealgewicht-Matrix für Erwachsene (WHO-Standards)',
+        description: 'Klassifizierungstabelle des Body-Mass-Index über gängige Körpergrößen und Gewichte nach den Kriterien der Weltgesundheitsorganisation (WHO).',
+        headers: ['Körpergröße', 'Untergewicht (<18,5)', 'Normalgewicht (18,5–24,9)', 'Übergewicht (25–29,9)', 'Adipositas (≥30,0)'],
+      },
+    },
     rows: [
       {
         label: '5\'4" (163 cm)',
@@ -184,6 +259,23 @@ export const calculatorMatrices: CalculatorMatrixDef[] = [
     title: 'Debt-to-Income (DTI) Benchmark Table',
     description: 'Benchmark ratio matrix evaluating mortgage qualification feasibility based on monthly income and recurring minimum debt payments.',
     headers: ['Gross Monthly Income', 'Excellent (<20%)', 'Manageable (20–35%)', 'Maximum Lending (36–43%)', 'High Risk (>43%)'],
+    translations: {
+      es: {
+        title: 'Tabla de Referencia de Relación Deuda-Ingresos (DTI)',
+        description: 'Matriz de referencia que evalúa la viabilidad de calificación hipotecaria según el ingreso mensual bruto y los pagos mínimos de deuda recurrentes.',
+        headers: ['Ingreso Mensual Bruto', 'Excelente (<20%)', 'Manejable (20–35%)', 'Límite Préstamo (36–43%)', 'Riesgo Alto (>43%)'],
+      },
+      fr: {
+        title: 'Tableau de Référence du Taux d’Endettement (DTI)',
+        description: 'Matrice d’évaluation de la capacité d’emprunt hypothécaire basée sur le revenu mensuel brut et les charges de remboursement récurrentes.',
+        headers: ['Revenu Mensuel Brut', 'Excellent (<20 %)', 'Maîtrisé (20–35 %)', 'Plafond Bancaire (36–43 %)', 'Risque Élevé (>43 %)'],
+      },
+      de: {
+        title: 'Referenztabelle zum Schulden-Einkommens-Verhältnis (DTI)',
+        description: 'Benchmark-Matrix zur Bewertung der Kreditwürdigkeit basierend auf dem monatlichen Bruttoeinkommen und laufenden Mindestkreditraten.',
+        headers: ['Monatl. Bruttoeinkommen', 'Ausgezeichnet (<20 %)', 'Tragbar (20–35 %)', 'Kreditlimit (36–43 %)', 'Hohes Risiko (>43 %)'],
+      },
+    },
     rows: [
       {
         label: '$4,000 / mo',

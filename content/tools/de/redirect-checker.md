@@ -1,4 +1,6 @@
 ---
+title: "Kostenloser URL Redirect Checker"
+shortDescription: "Überprüfen Sie URL-Weiterleitungen sofort. Unser Tool erkennt 301-, 302- und 307-Weiterleitungen und deckt versteckte Ketten und Schleifen für Ihr SEO auf."
 metaTitle: "Kostenloser URL Redirect Checker | 301 & 302 Weiterleitungen prüfen"
 metaDescription: "Überprüfen Sie URL-Weiterleitungen sofort. Unser Tool erkennt 301-, 302- und 307-Weiterleitungen und deckt versteckte Ketten und Schleifen für Ihr SEO auf."
 metaKeywords: "redirect checker, weiterleitung prüfen, 301 redirect test, url umleitung, weiterleitungskette, redirect schleife, seo tool"

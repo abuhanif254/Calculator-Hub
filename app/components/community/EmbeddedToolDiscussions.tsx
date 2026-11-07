@@ -15,7 +15,6 @@ import {
   Clock,
   ExternalLink,
   MessageCircleQuestion,
-  User as UserIcon,
 } from 'lucide-react';
 import { useAuth } from '@/app/components/AuthProvider';
 import { ToolDiscussionItem } from '@/app/actions/community';
@@ -34,6 +33,175 @@ interface EmbeddedToolDiscussionsProps {
   initialDiscussions?: ToolDiscussionItem[];
 }
 
+interface DiscussionUiCopy {
+  badge: string;
+  threadSingular: string;
+  threadPlural: string;
+  h2: string;
+  subtitle: string;
+  askBtn: string;
+  popularTopics: string;
+  askThisQuestion: string;
+  topQuestions: string;
+  latest: string;
+  unanswered: string;
+  allDiscussions: string;
+  answerSingular: string;
+  answerPlural: string;
+  awaitingAnswer: string;
+  replies: string;
+  emptyH3: (title: string) => string;
+  emptyP: string;
+  askNowBtn: string;
+  modalAskAbout: (title: string) => string;
+  modalTaggedAs: string;
+  signInPrompt: string;
+  signInBtn: string;
+  questionTitleLabel: string;
+  questionTitlePlaceholder: string;
+  scenarioDetailsLabel: string;
+  scenarioDetailsPlaceholder: string;
+  advancedEditor: string;
+  cancelBtn: string;
+  publishingBtn: string;
+  postQuestionBtn: string;
+}
+
+const DISCUSSION_UI_COPY: Record<string, DiscussionUiCopy> = {
+  en: {
+    badge: 'Community Q&A & Advice',
+    threadSingular: 'thread',
+    threadPlural: 'threads',
+    h2: 'Community Discussions & Real Scenarios',
+    subtitle: 'Ask specific questions, compare edge cases, and get advice from people calculating the same scenario.',
+    askBtn: 'Ask a Question',
+    popularTopics: 'Popular Discussion Topics for this Calculator',
+    askThisQuestion: 'Ask this question →',
+    topQuestions: 'Top Questions',
+    latest: 'Latest',
+    unanswered: 'Unanswered',
+    allDiscussions: 'All Discussions',
+    answerSingular: 'answer',
+    answerPlural: 'answers',
+    awaitingAnswer: 'Awaiting answer',
+    replies: 'replies',
+    emptyH3: (title) => `Be the First to Ask a Question About ${title}`,
+    emptyP: 'Do you have an edge case, custom scenario, or want feedback on your calculation numbers? Ask the Nexus community and get real user advice.',
+    askNowBtn: 'Ask a Question Now',
+    modalAskAbout: (title) => `Ask About ${title}`,
+    modalTaggedAs: 'Tagged as',
+    signInPrompt: 'Sign in with Google to post your question and receive reply notifications.',
+    signInBtn: 'Sign In',
+    questionTitleLabel: 'Question Title',
+    questionTitlePlaceholder: 'e.g. How does this calculation compare to 2026 market averages?',
+    scenarioDetailsLabel: 'Scenario Details & Context',
+    scenarioDetailsPlaceholder: 'Provide any inputs you used, numbers you are evaluating, or specific advice you are seeking...',
+    advancedEditor: 'Advanced Markdown & Polls Editor',
+    cancelBtn: 'Cancel',
+    publishingBtn: 'Publishing...',
+    postQuestionBtn: 'Post Question',
+  },
+  es: {
+    badge: 'Preguntas y Consejos de la Comunidad',
+    threadSingular: 'hilo',
+    threadPlural: 'hilos',
+    h2: 'Debates de la Comunidad y Escenarios Reales',
+    subtitle: 'Plantee preguntas específicas, compare casos límite y reciba orientación de usuarios que analizan el mismo escenario.',
+    askBtn: 'Hacer una Pregunta',
+    popularTopics: 'Temas de Debate Populares para esta Calculadora',
+    askThisQuestion: 'Hacer esta pregunta →',
+    topQuestions: 'Más Votadas',
+    latest: 'Recientes',
+    unanswered: 'Sin Respuesta',
+    allDiscussions: 'Todos los Debates',
+    answerSingular: 'respuesta',
+    answerPlural: 'respuestas',
+    awaitingAnswer: 'Esperando respuesta',
+    replies: 'respuestas',
+    emptyH3: (title) => `Sea el Primero en Preguntar sobre ${title}`,
+    emptyP: '¿Tiene un caso particular, un escenario personalizado o desea validar los números de su cálculo? Pregunte a la comunidad de Nexus y obtenga respuestas prácticas.',
+    askNowBtn: 'Hacer una Pregunta Ahora',
+    modalAskAbout: (title) => `Preguntar sobre ${title}`,
+    modalTaggedAs: 'Etiquetado como',
+    signInPrompt: 'Inicie sesión con Google para publicar su pregunta y recibir notificaciones de respuesta.',
+    signInBtn: 'Iniciar Sesión',
+    questionTitleLabel: 'Título de la Pregunta',
+    questionTitlePlaceholder: 'ej. ¿Cómo se compara este cálculo con los promedios del mercado en 2026?',
+    scenarioDetailsLabel: 'Detalles del Escenario y Contexto',
+    scenarioDetailsPlaceholder: 'Indique los valores introducidos, las cifras que está evaluando o la duda específica que desea resolver...',
+    advancedEditor: 'Editor Avanzado con Markdown y Encuestas',
+    cancelBtn: 'Cancelar',
+    publishingBtn: 'Publicando...',
+    postQuestionBtn: 'Publicar Pregunta',
+  },
+  fr: {
+    badge: 'Questions & Conseils de la Communauté',
+    threadSingular: 'discussion',
+    threadPlural: 'discussions',
+    h2: 'Discussions de la Communauté & Cas Concrets',
+    subtitle: 'Posez vos questions spécifiques, comparez les cas particuliers et échangez avec des utilisateurs qui simulent le même scénario.',
+    askBtn: 'Poser une Question',
+    popularTopics: 'Sujets de Discussion Populaires pour cette Calculatrice',
+    askThisQuestion: 'Poser cette question →',
+    topQuestions: 'Populaires',
+    latest: 'Récentes',
+    unanswered: 'Sans Réponse',
+    allDiscussions: 'Toutes les Discussions',
+    answerSingular: 'réponse',
+    answerPlural: 'réponses',
+    awaitingAnswer: 'En attente de réponse',
+    replies: 'réponses',
+    emptyH3: (title) => `Soyez le Premier à Poser une Question sur ${title}`,
+    emptyP: 'Vous avez un cas particulier, une simulation sur mesure ou souhaitez un avis sur vos résultats ? Interrogez la communauté Nexus.',
+    askNowBtn: 'Poser une Question Maintenant',
+    modalAskAbout: (title) => `Question sur ${title}`,
+    modalTaggedAs: 'Étiqueté sous',
+    signInPrompt: 'Connectez-vous avec Google pour publier votre question et recevoir les notifications de réponse.',
+    signInBtn: 'Se Connecter',
+    questionTitleLabel: 'Titre de la Question',
+    questionTitlePlaceholder: 'ex. Comment ce calcul se compare-t-il aux moyennes du marché 2026 ?',
+    scenarioDetailsLabel: 'Détails du Scénario & Contexte',
+    scenarioDetailsPlaceholder: 'Précisez les valeurs utilisées, les paramètres évalués ou le conseil recherché...',
+    advancedEditor: 'Éditeur Avancé Markdown & Sondages',
+    cancelBtn: 'Annuler',
+    publishingBtn: 'Publication...',
+    postQuestionBtn: 'Publier la Question',
+  },
+  de: {
+    badge: 'Community-Fragen & Praxistipps',
+    threadSingular: 'Beitrag',
+    threadPlural: 'Beiträge',
+    h2: 'Community-Diskussionen & Praxisszenarien',
+    subtitle: 'Stellen Sie gezielte Fragen, vergleichen Sie Sonderfälle und tauschen Sie sich mit Nutzern aus, die dasselbe Szenario berechnen.',
+    askBtn: 'Frage stellen',
+    popularTopics: 'Beliebte Diskussionsthemen für diesen Rechner',
+    askThisQuestion: 'Diese Frage stellen →',
+    topQuestions: 'Top-Fragen',
+    latest: 'Neueste',
+    unanswered: 'Unbeantwortet',
+    allDiscussions: 'Alle Diskussionen',
+    answerSingular: 'Antwort',
+    answerPlural: 'Antworten',
+    awaitingAnswer: 'Wartet auf Antwort',
+    replies: 'Antworten',
+    emptyH3: (title) => `Stellen Sie als Erster eine Frage zu ${title}`,
+    emptyP: 'Haben Sie einen Sonderfall, ein individuelles Rechenbeispiel oder wünschen Sie Feedback zu Ihren Ergebnissen? Fragen Sie die Nexus-Community.',
+    askNowBtn: 'Jetzt Frage stellen',
+    modalAskAbout: (title) => `Frage zu ${title}`,
+    modalTaggedAs: 'Markiert als',
+    signInPrompt: 'Melden Sie sich mit Google an, um Ihre Frage zu veröffentlichen und Antwortbenachrichtigungen zu erhalten.',
+    signInBtn: 'Anmelden',
+    questionTitleLabel: 'Fragetitel',
+    questionTitlePlaceholder: 'z. B. Wie schneidet diese Berechnung im Vergleich zu den Marktdurchschnitten 2026 ab?',
+    scenarioDetailsLabel: 'Szenario-Details & Kontext',
+    scenarioDetailsPlaceholder: 'Geben Sie Ihre verwendeten Eingabewerte, Rahmenbedingungen oder Ihre konkrete Frage an...',
+    advancedEditor: 'Erweiterter Markdown- & Umfrage-Editor',
+    cancelBtn: 'Abbrechen',
+    publishingBtn: 'Wird veröffentlicht...',
+    postQuestionBtn: 'Frage veröffentlichen',
+  },
+};
+
 export function EmbeddedToolDiscussions({
   calcSlug,
   calcTitle,
@@ -42,6 +210,7 @@ export function EmbeddedToolDiscussions({
   initialDiscussions = [],
 }: EmbeddedToolDiscussionsProps) {
   const { appUser, signIn } = useAuth();
+  const ui = DISCUSSION_UI_COPY[locale] || DISCUSSION_UI_COPY.en;
   const commSegment = locale === 'es' ? 'comunidad' : locale === 'fr' ? 'communaute' : locale === 'de' ? 'gemeinschaft' : 'community';
   const catSegment = locale === 'es' ? 'categoria' : locale === 'fr' ? 'categorie' : locale === 'de' ? 'kategorie' : 'category';
   const newSegment = locale === 'es' ? 'nuevo' : locale === 'fr' ? 'nouveau' : locale === 'de' ? 'neu' : 'new';
@@ -122,8 +291,8 @@ export function EmbeddedToolDiscussions({
   }, [calcSlug, calcCategory, initialDiscussions.length]);
 
   const prompts = useMemo(
-    () => getContextualQuestionPrompts(calcSlug, calcTitle, calcCategory),
-    [calcSlug, calcTitle, calcCategory]
+    () => getContextualQuestionPrompts(calcSlug, calcTitle, calcCategory, locale),
+    [calcSlug, calcTitle, calcCategory, locale]
   );
 
   const communityCategory = useMemo(
@@ -301,7 +470,7 @@ export function EmbeddedToolDiscussions({
     return {
       '@context': 'https://schema.org',
       '@type': 'ItemList',
-      name: `Community Discussions for ${calcTitle}`,
+      name: `${ui.h2} — ${calcTitle}`,
       numberOfItems: discussions.length,
       itemListElement: discussions.slice(0, 6).map((d, index) => ({
         '@type': 'DiscussionForumPosting',
@@ -327,14 +496,14 @@ export function EmbeddedToolDiscussions({
         ],
       })),
     };
-  }, [discussions, calcTitle, locale, likesMap]);
+  }, [discussions, calcTitle, locale, likesMap, commSegment, ui.h2]);
 
   return (
     <section
       ref={sectionRef}
       id="community-discussions"
       className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 transition-colors"
-      aria-label={`Community Q&A and Discussions for ${calcTitle}`}
+      aria-label={`${ui.badge} — ${calcTitle}`}
     >
       {/* Schema.org Structured Data */}
       {jsonLdData && (
@@ -350,17 +519,17 @@ export function EmbeddedToolDiscussions({
           <div className="flex items-center gap-2 mb-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#518231]/10 text-[#518231] dark:bg-[#518231]/20 dark:text-[#6fa844]">
               <MessageCircleQuestion className="w-3.5 h-3.5" />
-              Community Q&A & Advice
+              {ui.badge}
             </span>
             <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-              {discussions.length} {discussions.length === 1 ? 'thread' : 'threads'}
+              {discussions.length} {discussions.length === 1 ? ui.threadSingular : ui.threadPlural}
             </span>
           </div>
           <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-            Community Discussions & Real Scenarios
+            {ui.h2}
           </h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-            Ask specific questions, compare edge cases, and get advice from people calculating the same scenario.
+            {ui.subtitle}
           </p>
         </div>
 
@@ -371,7 +540,7 @@ export function EmbeddedToolDiscussions({
             className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#518231] hover:bg-[#436a28] text-white text-sm font-semibold rounded-xl shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
           >
             <HelpCircle className="w-4 h-4" />
-            <span>Ask a Question</span>
+            <span>{ui.askBtn}</span>
           </button>
         </div>
       </div>
@@ -398,7 +567,7 @@ export function EmbeddedToolDiscussions({
       <div className="mt-6 p-4 md:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800">
         <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3">
           <Sparkles className="w-4 h-4 text-[#518231] dark:text-[#6fa844]" />
-          <span>Popular Discussion Topics for this Calculator</span>
+          <span>{ui.popularTopics}</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
           {prompts.map((prompt, idx) => (
@@ -415,7 +584,7 @@ export function EmbeddedToolDiscussions({
                 <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0 mt-0.5" />
               </div>
               <span className="text-[11px] text-[#518231] dark:text-[#6fa844] font-medium mt-1 inline-block">
-                Ask this question →
+                {ui.askThisQuestion}
               </span>
             </button>
           ))}
@@ -436,7 +605,7 @@ export function EmbeddedToolDiscussions({
               }`}
             >
               <Flame className="w-3.5 h-3.5 text-amber-500" />
-              Top Questions
+              {ui.topQuestions}
             </button>
             <button
               type="button"
@@ -448,7 +617,7 @@ export function EmbeddedToolDiscussions({
               }`}
             >
               <Clock className="w-3.5 h-3.5 text-blue-500" />
-              Latest
+              {ui.latest}
             </button>
             <button
               type="button"
@@ -460,7 +629,7 @@ export function EmbeddedToolDiscussions({
               }`}
             >
               <HelpCircle className="w-3.5 h-3.5 text-emerald-500" />
-              Unanswered
+              {ui.unanswered}
             </button>
           </div>
 
@@ -468,7 +637,7 @@ export function EmbeddedToolDiscussions({
             href={`/${locale}/${commSegment}/${catSegment}/${communityCategory}`}
             className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center gap-1"
           >
-            <span>All Discussions</span>
+            <span>{ui.allDiscussions}</span>
             <ChevronRight className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -514,11 +683,11 @@ export function EmbeddedToolDiscussions({
 
                     {post.replyCount > 0 ? (
                       <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
-                        {post.replyCount} {post.replyCount === 1 ? 'answer' : 'answers'}
+                        {post.replyCount} {post.replyCount === 1 ? ui.answerSingular : ui.answerPlural}
                       </span>
                     ) : (
                       <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300">
-                        Awaiting answer
+                        {ui.awaitingAnswer}
                       </span>
                     )}
                   </div>
@@ -557,7 +726,7 @@ export function EmbeddedToolDiscussions({
                       className="inline-flex items-center gap-1 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors ml-auto font-medium"
                     >
                       <MessageSquare className="w-3.5 h-3.5" />
-                      <span>{post.replyCount} replies</span>
+                      <span>{post.replyCount} {ui.replies}</span>
                     </a>
                   </div>
                 </div>
@@ -572,11 +741,10 @@ export function EmbeddedToolDiscussions({
             <MessageSquare className="w-6 h-6" />
           </div>
           <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">
-            Be the First to Ask a Question About {calcTitle}
+            {ui.emptyH3(calcTitle)}
           </h3>
           <p className="text-xs text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-5">
-            Do you have an edge case, custom scenario, or want feedback on your calculation numbers?
-            Ask the Nexus community and get real user advice.
+            {ui.emptyP}
           </p>
           <button
             type="button"
@@ -584,7 +752,7 @@ export function EmbeddedToolDiscussions({
             className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-bold rounded-xl shadow-sm hover:shadow transition-all"
           >
             <HelpCircle className="w-4 h-4" />
-            <span>Ask a Question Now</span>
+            <span>{ui.askNowBtn}</span>
           </button>
         </div>
       )}
@@ -605,10 +773,10 @@ export function EmbeddedToolDiscussions({
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-slate-900 dark:text-white">
-                    Ask About {calcTitle}
+                    {ui.modalAskAbout(calcTitle)}
                   </h3>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Tagged as <span className="font-semibold text-[#518231]">#{calcSlug}</span> in Nexus Community
+                    {ui.modalTaggedAs} <span className="font-semibold text-[#518231]">#{calcSlug}</span>
                   </p>
                 </div>
               </div>
@@ -626,25 +794,25 @@ export function EmbeddedToolDiscussions({
             <form onSubmit={handleSubmitQuestion} className="p-6 space-y-4">
               {!appUser && (
                 <div className="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 text-xs text-amber-800 dark:text-amber-300 flex items-center justify-between gap-3">
-                  <span>Sign in with Google to post your question and receive reply notifications.</span>
+                  <span>{ui.signInPrompt}</span>
                   <button
                     type="button"
                     onClick={() => signIn()}
                     className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-bold shrink-0 shadow-sm"
                   >
-                    Sign In
+                    {ui.signInBtn}
                   </button>
                 </div>
               )}
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
-                  Question Title <span className="text-red-500">*</span>
+                  {ui.questionTitleLabel} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="e.g. How does this calculation compare to 2026 market averages?"
+                  placeholder={ui.questionTitlePlaceholder}
                   value={questionTitle}
                   onChange={(e) => setQuestionTitle(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-transparent transition-all placeholder:text-slate-400"
@@ -653,12 +821,12 @@ export function EmbeddedToolDiscussions({
 
               <div>
                 <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5">
-                  Scenario Details & Context <span className="text-red-500">*</span>
+                  {ui.scenarioDetailsLabel} <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   required
                   rows={4}
-                  placeholder="Provide any inputs you used, numbers you are evaluating, or specific advice you are seeking..."
+                  placeholder={ui.scenarioDetailsPlaceholder}
                   value={questionBody}
                   onChange={(e) => setQuestionBody(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#518231] focus:border-transparent transition-all placeholder:text-slate-400 resize-none leading-relaxed"
@@ -671,7 +839,7 @@ export function EmbeddedToolDiscussions({
                   rel="nofollow"
                   className="text-xs font-medium text-slate-500 hover:text-[#518231] dark:hover:text-[#6fa844] inline-flex items-center gap-1 hover:underline"
                 >
-                  <span>Advanced Markdown & Polls Editor</span>
+                  <span>{ui.advancedEditor}</span>
                   <ExternalLink className="w-3 h-3" />
                 </a>
 
@@ -681,7 +849,7 @@ export function EmbeddedToolDiscussions({
                     onClick={() => setIsComposerOpen(false)}
                     className="px-4 py-2 text-xs font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl transition-colors"
                   >
-                    Cancel
+                    {ui.cancelBtn}
                   </button>
                   <button
                     type="submit"
@@ -689,7 +857,7 @@ export function EmbeddedToolDiscussions({
                     className="inline-flex items-center gap-1.5 px-5 py-2 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-bold rounded-xl shadow-sm transition-all disabled:opacity-50"
                   >
                     <Send className="w-3.5 h-3.5" />
-                    <span>{isSubmitting ? 'Publishing...' : 'Post Question'}</span>
+                    <span>{isSubmitting ? ui.publishingBtn : ui.postQuestionBtn}</span>
                   </button>
                 </div>
               </div>

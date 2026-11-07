@@ -4,6 +4,7 @@ import { Link, resolveIntlHref } from '../../i18n/routing';
 import { Calculator } from 'lucide-react';
 import { sitemapCategories } from '../../lib/data/sitemapData';
 import { resolveHref } from '../../lib/utils/linkResolver';
+import { getLocalizedCalcMeta } from '../../lib/utils/toolLocalization';
 
 const FOOTER_TRANSLATIONS: Record<
   string,
@@ -57,6 +58,7 @@ const FOOTER_TRANSLATIONS: Record<
     categoryTitles: {
       'Financial Calculators': 'Financial Calculators',
       'Fitness & Health Calculators': 'Fitness & Health Calculators',
+      'Fitness and Health Calculators': 'Fitness & Health Calculators',
     },
   },
   es: {
@@ -85,6 +87,7 @@ const FOOTER_TRANSLATIONS: Record<
     categoryTitles: {
       'Financial Calculators': 'Calculadoras Financieras',
       'Fitness & Health Calculators': 'Calculadoras de Salud y Fitness',
+      'Fitness and Health Calculators': 'Calculadoras de Salud y Fitness',
     },
   },
   fr: {
@@ -113,6 +116,7 @@ const FOOTER_TRANSLATIONS: Record<
     categoryTitles: {
       'Financial Calculators': 'Calculatrices Financières',
       'Fitness & Health Calculators': 'Calculatrices Santé & Fitness',
+      'Fitness and Health Calculators': 'Calculatrices Santé & Fitness',
     },
   },
   de: {
@@ -141,6 +145,7 @@ const FOOTER_TRANSLATIONS: Record<
     categoryTitles: {
       'Financial Calculators': 'Finanzrechner',
       'Fitness & Health Calculators': 'Gesundheits- & Fitnessrechner',
+      'Fitness and Health Calculators': 'Gesundheits- & Fitnessrechner',
     },
   },
 };
@@ -235,13 +240,21 @@ export async function Footer() {
                  {t.categoryTitles[category.title] || category.title}
                </h3>
                <ul className="space-y-4">
-                 {category.links.slice(0, 7).map((link) => (
-                   <li key={link}>
-                     <Link href={resolveIntlHref(resolveHref(link))} className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300 text-sm">
-                       {link}
-                     </Link>
-                   </li>
-                 ))}
+                 {category.links.slice(0, 7).map((link) => {
+                   const resolved = resolveHref(link);
+                   const slug = resolved.split('/').filter(Boolean).pop() || '';
+                   const localizedLabel =
+                     locale !== 'en' && resolved.startsWith('/calculators/')
+                       ? getLocalizedCalcMeta(slug, locale, link).title
+                       : link;
+                   return (
+                     <li key={link}>
+                       <Link href={resolveIntlHref(resolved)} className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1.5 transition-all duration-300 text-sm">
+                         {localizedLabel}
+                       </Link>
+                     </li>
+                   );
+                 })}
                  <li>
                    <Link href="/sitemap" className="text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] font-semibold flex items-center gap-1 mt-2 py-2 text-sm transition-colors">
                      {t.seeAll} <span className="text-lg leading-none">&rarr;</span>
@@ -323,4 +336,3 @@ export async function Footer() {
     </footer>
   );
 }
-

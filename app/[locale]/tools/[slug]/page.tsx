@@ -251,10 +251,10 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
   const hasLocalizedMd = fs.existsSync(path.join(process.cwd(), "content", "tools", locale, `${resolvedSlug}.md`));
   const localizedData = (locale === 'en' || hasLocalizedMd) ? mdData?.data : undefined;
 
-  const rawPageTitle = localizedData?.title || config.title;
+  const rawPageTitle = localizedData?.title || localizedData?.metaTitle?.split(/\s*[|–—-]\s*/)[0]?.trim() || config.title;
   const pageTitle = locale !== 'en' ? localizeFallbackToolTitle(rawPageTitle, locale) : rawPageTitle;
-  const pageShortDesc = localizedData?.shortDescription || config.shortDescription;
-  const rawLongDesc = (locale === 'en' || hasLocalizedMd) ? (mdData?.content || config.longDescription) : '';
+  const pageShortDesc = localizedData?.shortDescription || localizedData?.metaDescription || config.shortDescription;
+  const rawLongDesc = locale === 'en' ? (mdData?.content?.trim() || config.longDescription) : (hasLocalizedMd ? (mdData?.content?.trim() || '') : '');
 
   const {
     enrichedMarkdown: pageLongDesc,
@@ -655,9 +655,10 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                   const isCalc = !isTool && Boolean(getCalculatorBySlug(tool.slug));
                   if (!isTool && !isCalc) return null;
                   const relatedMd = isTool ? getMarkdownContent(tool.slug, locale) : null;
+                  const rawToolName = relatedMd?.data?.title || relatedMd?.data?.metaTitle?.split(/\s*[|–—-]\s*/)[0]?.trim() || tool.name;
                   const localizedToolName = isCalc
                     ? getLocalizedCalcMeta(tool.slug, locale, tool.name).title
-                    : (relatedMd?.data?.title || tool.name);
+                    : (locale !== 'en' ? localizeFallbackToolTitle(rawToolName, locale) : rawToolName);
                   return (
                     <Link
                       key={idx}
@@ -737,8 +738,9 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {siblingTools.map((sibling) => {
                 const siblingMd = getMarkdownContent(sibling.slug, locale);
-                const siblingTitle = siblingMd?.data?.title || sibling.title;
-                const siblingDesc = siblingMd?.data?.shortDescription || sibling.shortDescription;
+                const rawSiblingTitle = siblingMd?.data?.title || siblingMd?.data?.metaTitle?.split(/\s*[|–—-]\s*/)[0]?.trim() || sibling.title;
+                const siblingTitle = locale !== 'en' ? localizeFallbackToolTitle(rawSiblingTitle, locale) : rawSiblingTitle;
+                const siblingDesc = siblingMd?.data?.shortDescription || siblingMd?.data?.metaDescription || sibling.shortDescription;
                 return (
                   <Link
                     key={sibling.slug}

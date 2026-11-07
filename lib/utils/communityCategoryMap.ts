@@ -44,7 +44,7 @@ export function mapCalculatorCategoryToCommunity(calcCategory?: string): Categor
 }
 
 /**
- * Contextual question starters tailored by category or calculator slug.
+ * Contextual question starters tailored by category, calculator slug, and locale.
  * These give users instant inspiration to ask questions, kickstarting UGC.
  */
 export interface ContextualPrompt {
@@ -55,12 +55,208 @@ export interface ContextualPrompt {
 export function getContextualQuestionPrompts(
   calcSlug: string,
   calcTitle: string,
-  calcCategory?: string
+  calcCategory?: string,
+  locale: string = 'en'
 ): ContextualPrompt[] {
   const slug = calcSlug.toLowerCase();
   const cat = (calcCategory || '').toLowerCase();
 
-  // 1. Specific high-traffic calculator starters
+  if (locale === 'es') {
+    if (slug.includes('mortgage') || slug.includes('hipotec')) {
+      return [
+        {
+          title: `¿Qué porcentaje de pago inicial es recomendable en el mercado inmobiliario actual?`,
+          placeholderBody: `Estoy utilizando ${calcTitle} para estimar mi cuota mensual. Dudo entre aportar un 10 % o un 20 % de entrada. ¿Cómo comparan el coste del seguro hipotecario frente a mantener liquidez?`,
+        },
+        {
+          title: `¿Conviene amortizar capital anticipadamente en cuota o en plazo con ${calcTitle}?`,
+          placeholderBody: `Viendo la tabla de amortización en ${calcTitle}, realizar pagos extra al principio reduce mucho los intereses totales. ¿Qué estrategia les ha funcionado mejor?`,
+        },
+        {
+          title: `Hipoteca a 15 años frente a 30 años: ¿cuál tiene más sentido financiero hoy?`,
+          placeholderBody: `Al comparar ambos plazos en ${calcTitle} se observa un gran ahorro en intereses a 15 años, pero una cuota mensual mayor. ¿Cómo toman esta decisión?`,
+        },
+      ];
+    }
+    if (cat.includes('financ') || cat.includes('invest') || cat.includes('money') || cat.includes('loan')) {
+      return [
+        {
+          title: `¿Qué comisiones, impuestos o gastos adicionales debo considerar junto a ${calcTitle}?`,
+          placeholderBody: `He introducido mis cifras base en ${calcTitle}. ¿Qué costes secundarios o ajustes fiscales suelen pasarse por alto en escenarios reales?`,
+        },
+        {
+          title: `¿Cómo influyen las tasas de interés actuales en la estrategia óptima para ${calcTitle}?`,
+          placeholderBody: `Ejecutando simulaciones con ${calcTitle} bajo las condiciones actuales del mercado, ¿cómo están ajustando otros usuarios sus objetivos?`,
+        },
+        {
+          title: `¿Alguien puede revisar mis parámetros y validar este escenario en ${calcTitle}?`,
+          placeholderBody: `Este es el escenario financiero que estoy evaluando con ${calcTitle}. ¿Existe algún caso límite o alternativa que deba tener en cuenta?`,
+        },
+      ];
+    }
+    if (cat.includes('health') || cat.includes('fitness')) {
+      return [
+        {
+          title: `¿Qué precisión tiene ${calcTitle} en personas con alta masa muscular o entrenamiento intenso?`,
+          placeholderBody: `Acabo de calcular mis resultados con ${calcTitle}. ¿Qué mediciones complementarias recomiendan para ajustar el objetivo?`,
+        },
+        {
+          title: `¿Con qué frecuencia conviene recalcular los valores en ${calcTitle}?`,
+          placeholderBody: `A medida que cambian el peso y la composición corporal, ¿cada cuántas semanas actualizan sus datos en ${calcTitle}?`,
+        },
+        {
+          title: `¿Qué hábitos ayudan a mantener la constancia con los objetivos de ${calcTitle}?`,
+          placeholderBody: `Ahora que tengo mis valores de referencia con ${calcTitle}, ¿qué estrategias de seguimiento les han dado mejores resultados?`,
+        },
+      ];
+    }
+    return [
+      {
+        title: `¿Cuál es la mejor forma de interpretar los resultados de ${calcTitle} para tomar decisiones?`,
+        placeholderBody: `Acabo de calcular mis datos en ${calcTitle}. ¿Qué rangos de referencia o umbrales prácticos suelen utilizar en este caso?`,
+      },
+      {
+        title: `¿Alguien ha probado un caso límite con la fórmula matemática de ${calcTitle}?`,
+        placeholderBody: `Al evaluar valores extremos en ${calcTitle}, ¿cómo se comporta la ecuación subyacente y qué precauciones prácticas recomiendan?`,
+      },
+      {
+        title: `¿Qué variables del mundo real conviene considerar junto al resultado de ${calcTitle}?`,
+        placeholderBody: `${calcTitle} ofrece una estimación matemática exacta. ¿Qué factores prácticos pueden generar pequeñas variaciones en la aplicación real?`,
+      },
+    ];
+  }
+
+  if (locale === 'fr') {
+    if (slug.includes('mortgage') || slug.includes('hypothe')) {
+      return [
+        {
+          title: `Quel pourcentage d’apport personnel est optimal sur le marché immobilier actuel ?`,
+          placeholderBody: `J’utilise ${calcTitle} pour simuler mes mensualités. J’hésite entre 10 % et 20 % d’apport. Comment arbitrez-vous entre le coût du crédit et la préservation de votre épargne ?`,
+        },
+        {
+          title: `Remboursement anticipé : vaut-il mieux réduire la durée ou la mensualité avec ${calcTitle} ?`,
+          placeholderBody: `En analysant l’échéancier sur ${calcTitle}, les versements anticipés réduisent fortement le coût total des intérêts. Quelle stratégie privilégiez-vous ?`,
+        },
+        {
+          title: `Prêt sur 15 ans vs 25 ans : quel choix est le plus pertinent financièrement ?`,
+          placeholderBody: `La comparaison des durées dans ${calcTitle} montre une économie d’intérêts majeure sur 15 ans mais une mensualité plus élevée. Comment décidez-vous ?`,
+        },
+      ];
+    }
+    if (cat.includes('financ') || cat.includes('invest') || cat.includes('money') || cat.includes('loan')) {
+      return [
+        {
+          title: `Quels frais annexes, taxes ou assurances faut-il intégrer au calcul de ${calcTitle} ?`,
+          placeholderBody: `J’ai renseigné mes données de base dans ${calcTitle}. Quels coûts secondaires ou paramètres fiscaux sont souvent oubliés en pratique ?`,
+        },
+        {
+          title: `Comment les taux d’intérêt actuels influencent-ils la stratégie optimale sur ${calcTitle} ?`,
+          placeholderBody: `En simulant plusieurs hypothèses avec ${calcTitle} dans le contexte économique actuel, comment ajustez-vous vos objectifs ?`,
+        },
+        {
+          title: `Quelqu’un peut-il vérifier mes hypothèses et valider ce scénario sur ${calcTitle} ?`,
+          placeholderBody: `Voici le scénario que j’évalue avec ${calcTitle}. Voyez-vous des cas particuliers ou des optimisations à prendre en compte ?`,
+        },
+      ];
+    }
+    if (cat.includes('health') || cat.includes('fitness')) {
+      return [
+        {
+          title: `Comment interpréter ${calcTitle} pour un profil sportif à forte masse musculaire ?`,
+          placeholderBody: `Je viens d’obtenir mes résultats sur ${calcTitle}. Quels indicateurs complémentaires utilisez-vous pour affiner le suivi ?`,
+        },
+        {
+          title: `À quelle fréquence faut-il recalculer ses paramètres dans ${calcTitle} ?`,
+          placeholderBody: `Au fil de l’évolution du poids et du métabolisme, à quel rythme mettez-vous à jour vos données dans ${calcTitle} ?`,
+        },
+        {
+          title: `Quelles méthodes de suivi associez-vous aux résultats de ${calcTitle} ?`,
+          placeholderBody: `Maintenant que j’ai mes valeurs de référence grâce à ${calcTitle}, quelles habitudes vous aident à rester régulier ?`,
+        },
+      ];
+    }
+    return [
+      {
+        title: `Quelle est la meilleure façon d’interpréter les résultats de ${calcTitle} ?`,
+        placeholderBody: `Je viens d’effectuer une simulation avec ${calcTitle}. Quels seuils ou repères pratiques utilisez-vous pour prendre une décision ?`,
+      },
+      {
+        title: `Quelqu’un a-t-il testé un cas limite avec la formule de ${calcTitle} ?`,
+        placeholderBody: `Lorsqu’on saisit des valeurs extrêmes dans ${calcTitle}, quelles sont les subtilités mathématiques à connaître ?`,
+      },
+      {
+        title: `Quels facteurs concrets faut-il prendre en compte en complément de ${calcTitle} ?`,
+        placeholderBody: `${calcTitle} fournit une estimation mathématique précise. Quels paramètres de terrain peuvent créer un léger écart en situation réelle ?`,
+      },
+    ];
+  }
+
+  if (locale === 'de') {
+    if (slug.includes('mortgage') || slug.includes('hypothek')) {
+      return [
+        {
+          title: `Wie viel Eigenkapital ist im aktuellen Immobilienmarkt sinnvoll?`,
+          placeholderBody: `Ich berechne meine Monatsrate mit dem ${calcTitle}. Lohnt es sich, 20 % Eigenkapital einzubringen oder lieber Liquidität als Rücklage zu behalten?`,
+        },
+        {
+          title: `Sondertilgung: Laufzeit verkürzen oder Monatsrate senken mit dem ${calcTitle}?`,
+          placeholderBody: `Laut Tilgungsplan im ${calcTitle} sparen jährliche Sondertilgungen enorm viele Zinsen. Welche Strategie hat sich bei euch bewährt?`,
+        },
+        {
+          title: `15 Jahre vs. 30 Jahre Zinsbindung: Was ist aktuell wirtschaftlicher?`,
+          placeholderBody: `Der Vergleich im ${calcTitle} zeigt deutliche Zinsersparnisse bei kürzerer Laufzeit, aber eine höhere monatliche Belastung. Wie entscheidet ihr?`,
+        },
+      ];
+    }
+    if (cat.includes('financ') || cat.includes('invest') || cat.includes('money') || cat.includes('loan')) {
+      return [
+        {
+          title: `Welche Nebenkosten, Steuern oder Gebühren sollte man beim ${calcTitle} zusätzlich beachten?`,
+          placeholderBody: `Ich habe meine Ausgangswerte in den ${calcTitle} eingegeben. Welche versteckten Kosten oder steuerlichen Details werden in der Praxis oft übersehen?`,
+        },
+        {
+          title: `Wie wirken sich die aktuellen Zinssätze auf die optimale Strategie beim ${calcTitle} aus?`,
+          placeholderBody: `Ich simuliere verschiedene Szenarien mit dem ${calcTitle}. Wie passt ihr eure Zielwerte an das aktuelle Marktumfeld an?`,
+        },
+        {
+          title: `Kann jemand meine Annahmen prüfen und dieses Szenario im ${calcTitle} einschätzen?`,
+          placeholderBody: `Hier ist mein Rechenbeispiel mit dem ${calcTitle}. Gibt es Sonderfälle oder Alternativen, die ich berücksichtigen sollte?`,
+        },
+      ];
+    }
+    if (cat.includes('health') || cat.includes('fitness')) {
+      return [
+        {
+          title: `Wie genau ist der ${calcTitle} bei Sportlern mit hohem Muskelanteil?`,
+          placeholderBody: `Ich habe meine Werte mit dem ${calcTitle} berechnet. Welche ergänzenden Messmethoden nutzt ihr zur Einordnung?`,
+        },
+        {
+          title: `Wie oft sollte man die Eingabewerte im ${calcTitle} neu berechnen?`,
+          placeholderBody: `In welchen Abständen aktualisiert ihr eure Werte im ${calcTitle}, um Stoffwechselanpassungen zu berücksichtigen?`,
+        },
+        {
+          title: `Welche Routinen helfen euch, die Zielwerte aus dem ${calcTitle} im Alltag umzusetzen?`,
+          placeholderBody: `Nachdem ich meine Basiswerte mit dem ${calcTitle} ermittelt habe: Welche Tracking-Methoden funktionieren für euch am besten?`,
+        },
+      ];
+    }
+    return [
+      {
+        title: `Wie interpretiert man die Ergebnisse des ${calcTitle} am besten für die Praxis?`,
+        placeholderBody: `Ich habe meine Daten im ${calcTitle} berechnet. Welche Richtwerte oder Schwellenwerte zieht ihr für Entscheidungen heran?`,
+      },
+      {
+        title: `Hat jemand Grenzwerte oder Sonderfälle mit der Formel des ${calcTitle} getestet?`,
+        placeholderBody: `Wie verhält sich die zugrunde liegende Formel im ${calcTitle} bei extremen Eingabewerten in der Praxis?`,
+      },
+      {
+        title: `Welche realen Einflussfaktoren sollten neben dem ${calcTitle} berücksichtigt werden?`,
+        placeholderBody: `Der ${calcTitle} liefert eine präzise mathematische Berechnung. Welche praktischen Faktoren können im Alltag zu leichten Abweichungen führen?`,
+      },
+    ];
+  }
+
+  // 1. Specific high-traffic calculator starters (English)
   if (slug.includes('mortgage')) {
     return [
       {
@@ -129,7 +325,7 @@ export function getContextualQuestionPrompts(
     ];
   }
 
-  // 2. Category-level defaults
+  // 2. Category-level defaults (English)
   if (cat.includes('financ') || cat.includes('invest') || cat.includes('money') || cat.includes('loan')) {
     return [
       {
@@ -164,7 +360,7 @@ export function getContextualQuestionPrompts(
     ];
   }
 
-  // 3. Universal fallback
+  // 3. Universal fallback (English)
   return [
     {
       title: `What is the best way to interpret these calculation results for decision making?`,

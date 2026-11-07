@@ -1,4 +1,6 @@
 ---
+title: "Favicon Generator & PWA Icon Maker"
+shortDescription: "Generate professional website favicons, Apple Touch icons, and Web Manifests locally in your browser. Create multi-size ICO and PNG assets instantly."
 metaTitle: "Favicon Generator & PWA Icon Maker | Free Online Tool"
 metaDescription: "Generate professional website favicons, Apple Touch icons, and Web Manifests locally in your browser. Create multi-size ICO and PNG assets instantly."
 metaKeywords: "favicon generator, create favicon, png to ico, svg to ico, website icon generator, browser icon creator, pwa manifest icon generator online"

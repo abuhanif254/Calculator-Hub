@@ -1,4 +1,6 @@
 ---
+title: "Comprobador de Redirecciones URL"
+shortDescription: "Rastrea las redirecciones de URL al instante. Nuestro comprobador de redirecciones detecta 301, 302 y 307, descubriendo cadenas y bucles ocultos para el SEO."
 metaTitle: "Comprobador de Redirecciones URL | Rastrear 301 y 302"
 metaDescription: "Rastrea las redirecciones de URL al instante. Nuestro comprobador de redirecciones detecta 301, 302 y 307, descubriendo cadenas y bucles ocultos para el SEO."
 metaKeywords: "comprobador redirecciones, rastrear redireccion url, comprobar 301, herramienta redireccion, cadenas de redireccion, seo"

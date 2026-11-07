@@ -1,4 +1,6 @@
 ---
+title: "QR Code Generator Studio"
+shortDescription: "Create highly customized, world-class QR codes. Support for URL, Text, vCard, WiFi, and more. Customize colors, gradients, rounded dots, and upload your logo. Export in high-resolution PNG, SVG, or PDF."
 metaTitle: "QR Code Generator Studio"
 metaDescription: "Create highly customized, world-class QR codes. Support for URL, Text, vCard, WiFi, and more. Customize colors, gradients, rounded dots, and upload your logo. Export in high-resolution PNG, SVG, or PDF."
 metaKeywords: "qr code generator, free qr code generator, create qr code, custom qr code, qr code maker, dynamic qr code, business qr code, vcard qr code, wifi qr code, qr code with logo, bulk qr code generator, high resolution qr code, svg qr code, qr code generator with logo free, create wifi qr code online, generate vcard qr code free"

@@ -16,15 +16,429 @@ export async function generateStaticParams() {
   return COMMUNITY_CATEGORIES.map(c => ({ slug: c.slug }));
 }
 
-const CATEGORY_ENRICHMENT: Record<
+interface CategoryEnrichment {
+  label: string;
+  subtitle: string;
+  overview: string[];
+  keyTopics: string[];
+  featuredTools: { title: string; href: string; desc: string }[];
+  faqs: { q: string; a: string }[];
+}
+
+const LOCALIZED_CATEGORY_LABELS: Record<string, Record<string, string>> = {
+  en: {
+    'image-tools': 'Image Tools',
+    'pdf-tools': 'PDF Tools',
+    finance: 'Finance',
+    'web-dev': 'Web Dev',
+    calculators: 'Calculators',
+    general: 'General',
+    'feature-request': 'Feature Request',
+    'bug-report': 'Bug Report',
+  },
+  es: {
+    'image-tools': 'Herramientas de Imagen',
+    'pdf-tools': 'Herramientas PDF',
+    finance: 'Finanzas',
+    'web-dev': 'Desarrollo Web',
+    calculators: 'Calculadoras',
+    general: 'General',
+    'feature-request': 'Solicitud de Funciones',
+    'bug-report': 'Reporte de Errores',
+  },
+  fr: {
+    'image-tools': 'Outils Image',
+    'pdf-tools': 'Outils PDF',
+    finance: 'Finance',
+    'web-dev': 'Développement Web',
+    calculators: 'Calculatrices',
+    general: 'Général',
+    'feature-request': 'Idées & Suggestions',
+    'bug-report': 'Signalement de Bugs',
+  },
+  de: {
+    'image-tools': 'Bild-Werkzeuge',
+    'pdf-tools': 'PDF-Werkzeuge',
+    finance: 'Finanzen',
+    'web-dev': 'Webentwicklung',
+    calculators: 'Rechner',
+    general: 'Allgemein',
+    'feature-request': 'Funktionswünsche',
+    'bug-report': 'Fehlermeldungen',
+  },
+};
+
+const UI_STRINGS: Record<
   string,
   {
-    subtitle: string;
-    overview: string[];
-    keyTopics: string[];
-    featuredTools: { title: string; href: string; desc: string }[];
-    faqs: { q: string; a: string }[];
+    metaTitle: (emoji: string, label: string) => string;
+    metaDesc: (subtitle: string, label: string) => string;
+    allChannels: string;
+    hubTitle: (label: string) => string;
+    discussionsCount: (n: number) => string;
+    newDiscussion: string;
+    emptyTitle: (label: string) => string;
+    emptyDesc: (label: string) => string;
+    startDiscussion: string;
+    aboutChannel: (label: string) => string;
+    coreTopics: string;
+    faqHeading: (label: string) => string;
+    featuredUtilities: (label: string) => string;
   }
+> = {
+  en: {
+    metaTitle: (emoji, label) => `${emoji} ${label} Discussions & Resource Hub — Community | NexusCalculator`,
+    metaDesc: (subtitle, label) => `${subtitle} Browse ${label} community discussions, technical guides, and curated browser tools on NexusCalculator.`,
+    allChannels: 'All Channels',
+    hubTitle: (label) => `${label} Community & Resource Hub`,
+    discussionsCount: (n) => `${n} discussion${n !== 1 ? 's' : ''}`,
+    newDiscussion: 'New Discussion',
+    emptyTitle: (label) => `Start the First ${label} Discussion`,
+    emptyDesc: (label) => `Have a technical question, workflow tip, or formula scenario related to ${label}? Share it with the NexusCalculator engineering and analyst community.`,
+    startDiscussion: 'Start a Discussion',
+    aboutChannel: (label) => `About the ${label} Channel`,
+    coreTopics: 'Core Discussion Topics & Engineering Themes',
+    faqHeading: (label) => `Frequently Asked Questions — ${label}`,
+    featuredUtilities: (label) => `Featured ${label} Utilities`,
+  },
+  es: {
+    metaTitle: (emoji, label) => `${emoji} Comunidad y Recursos de ${label} | NexusCalculator`,
+    metaDesc: (subtitle, label) => `${subtitle} Explore debates técnicos de ${label}, guías prácticas y herramientas locales en el navegador en NexusCalculator.`,
+    allChannels: 'Todos los Canales',
+    hubTitle: (label) => `Comunidad y Centro de Recursos de ${label}`,
+    discussionsCount: (n) => `${n} debate${n !== 1 ? 's' : ''}`,
+    newDiscussion: 'Nuevo Debate',
+    emptyTitle: (label) => `Inicie el Primer Debate sobre ${label}`,
+    emptyDesc: (label) => `¿Tiene alguna consulta técnica, flujo de trabajo o caso práctico relacionado con ${label}? Compártalo con la comunidad de ingeniería y análisis de NexusCalculator.`,
+    startDiscussion: 'Iniciar un Debate',
+    aboutChannel: (label) => `Sobre el Canal de ${label}`,
+    coreTopics: 'Temas Principales de Debate e Ingeniería',
+    faqHeading: (label) => `Preguntas Frecuentes — ${label}`,
+    featuredUtilities: (label) => `Herramientas Destacadas de ${label}`,
+  },
+  fr: {
+    metaTitle: (emoji, label) => `${emoji} Communauté & Ressources ${label} | NexusCalculator`,
+    metaDesc: (subtitle, label) => `${subtitle} Consultez les discussions techniques ${label}, les guides pratiques et les outils locaux sur NexusCalculator.`,
+    allChannels: 'Tous les Canaux',
+    hubTitle: (label) => `Communauté & Centre de Ressources ${label}`,
+    discussionsCount: (n) => `${n} discussion${n !== 1 ? 's' : ''}`,
+    newDiscussion: 'Nouvelle Discussion',
+    emptyTitle: (label) => `Lancez la Première Discussion ${label}`,
+    emptyDesc: (label) => `Vous avez une question technique, une astuce d’optimisation ou un cas concret lié à ${label} ? Partagez-le avec la communauté d’ingénieurs et d’analystes de NexusCalculator.`,
+    startDiscussion: 'Démarrer une Discussion',
+    aboutChannel: (label) => `À Propos du Canal ${label}`,
+    coreTopics: 'Thématiques Techniques & Sujets d’Ingénierie',
+    faqHeading: (label) => `Questions Fréquentes — ${label}`,
+    featuredUtilities: (label) => `Outils & Calculatrices ${label} Recommandés`,
+  },
+  de: {
+    metaTitle: (emoji, label) => `${emoji} ${label} Community & Ressourcen-Hub | NexusCalculator`,
+    metaDesc: (subtitle, label) => `${subtitle} Entdecken Sie Fachdiskussionen zu ${label}, technische Ratgeber und lokale Browser-Werkzeuge auf NexusCalculator.`,
+    allChannels: 'Alle Kanäle',
+    hubTitle: (label) => `${label} Community & Ressourcen-Hub`,
+    discussionsCount: (n) => `${n} Diskussion${n !== 1 ? 'en' : ''}`,
+    newDiscussion: 'Neue Diskussion',
+    emptyTitle: (label) => `Starten Sie die erste Diskussion zu ${label}`,
+    emptyDesc: (label) => `Haben Sie eine Fachfrage, einen Workflow-Tipp oder ein Berechnungsszenario rund um ${label}? Teilen Sie Ihr Anliegen mit der NexusCalculator-Community.`,
+    startDiscussion: 'Diskussion starten',
+    aboutChannel: (label) => `Über den Kanal ${label}`,
+    coreTopics: 'Zentrale Diskussionsthemen & Schwerpunkte',
+    faqHeading: (label) => `Häufig gestellte Fragen — ${label}`,
+    featuredUtilities: (label) => `Empfohlene Werkzeuge für ${label}`,
+  },
+};
+
+function getLocalizedEnrichment(slug: string, locale: string): CategoryEnrichment {
+  const label = LOCALIZED_CATEGORY_LABELS[locale]?.[slug] || LOCALIZED_CATEGORY_LABELS.en[slug] || slug;
+
+  if (locale === 'fr') {
+    const frMap: Record<string, Omit<CategoryEnrichment, 'label'>> = {
+      'image-tools': {
+        subtitle: 'Échangez sur la compression d’images côté client, la conversion WebP/AVIF, la confidentialité des métadonnées EXIF et le rendu HTML5 Canvas.',
+        overview: [
+          'Le canal Outils Image réunit les développeurs front-end, designers numériques, photographes et ingénieurs SEO qui optimisent leurs ressources visuelles pour les Core Web Vitals (LCP et CLS) et les flux de travail respectueux de la vie privée.',
+          'Tous les utilitaires d’image NexusCalculator traitent les graphiques matriciels et vectoriels à 100 % localement dans votre navigateur via l’API HTML5 Canvas, les codecs WebAssembly et OffscreenCanvas — vos photographies haute résolution et maquettes confidentielles ne quittent jamais votre appareil.',
+        ],
+        keyTopics: [
+          'Taux de compression avec ou sans perte entre les formats WebP, AVIF, PNG et JPEG',
+          'Suppression des métadonnées EXIF sensibles (coordonnées GPS, numéro de série de l’appareil) avant publication',
+          'Redimensionnement par lots, recadrage au ratio d’aspect exact et mise à l’échelle DPI pour l’impression et le web',
+          'Conversion d’images matricielles en Data URI Base64 et tracés vectoriels SVG',
+        ],
+        featuredTools: [
+          { title: 'Compresseur d’Images', href: '/tools/compress-image', desc: 'Réduisez le poids des fichiers JPEG, PNG et WebP jusqu’à 80 % localement dans votre navigateur.' },
+          { title: 'Redimensionner une Image', href: '/tools/resize-image', desc: 'Ajustez les dimensions en pixels avec verrouillage du ratio et interpolation haute qualité.' },
+          { title: 'Convertir en WebP', href: '/tools/convert-to-webp', desc: 'Transformez vos images PNG et JPG au format WebP de nouvelle génération.' },
+          { title: 'Lecteur de Métadonnées EXIF', href: '/tools/image-metadata-viewer', desc: 'Inspectez et auditez les données d’appareil photo, d’objectif et de géolocalisation.' },
+        ],
+        faqs: [
+          {
+            q: 'Mes images sont-elles envoyées sur un serveur lors de l’utilisation des outils NexusCalculator ?',
+            a: 'Non. Chaque outil d’image s’exécute intégralement dans votre navigateur grâce aux API natives Canvas et WebAssembly. Vos fichiers restent 100 % privés sur votre poste.',
+          },
+          {
+            q: 'Quel format d’image offre le meilleur compromis entre qualité visuelle et performance SEO ?',
+            a: 'Les formats WebP et AVIF réduisent la taille des fichiers de 25 % à 50 % par rapport aux formats JPEG et PNG équivalents tout en gérant la transparence.',
+          },
+        ],
+      },
+      'pdf-tools': {
+        subtitle: 'Partagez vos méthodes pour fusionner, diviser, compresser, chiffrer et convertir des documents PDF localement dans le navigateur.',
+        overview: [
+          'Le canal Outils PDF est dédié à l’ingénierie documentaire, à la manipulation sécurisée de fichiers PDF côté client, à la reconnaissance optique de caractères (OCR) et à l’archivage numérique.',
+          'Parce que les relevés bancaires, contrats juridiques et dossiers médicaux contiennent des données personnelles sensibles (PII), notre communauté privilégie le traitement PDF sans téléversement serveur propulsé par pdf-lib et PDF.js.',
+        ],
+        keyTopics: [
+          'Fusion, découpage et réorganisation de liasses PDF multi-pages sans transfert vers le cloud',
+          'Compression de fichiers PDF volumineux pour les pièces jointes d’e-mail et portails administratifs',
+          'Protection par mot de passe AES, filigranes et numérotation des pages confidentielles',
+          'Conversion bidirectionnelle entre PDF, Word, Excel, PowerPoint et images haute définition',
+        ],
+        featuredTools: [
+          { title: 'PDF vers Excel', href: '/tools/pdf-to-excel', desc: 'Extrayez les tableaux de vos documents PDF vers des feuilles de calcul structurées.' },
+          { title: 'OCR PDF', href: '/tools/pdf-ocr', desc: 'Reconnaissez et extrayez le texte des documents PDF numérisés localement.' },
+          { title: 'HTML vers PDF', href: '/tools/html-to-pdf', desc: 'Convertissez vos pages web et modèles HTML en documents PDF prêts à imprimer.' },
+          { title: 'Outils PDF Complets', href: '/pdf', desc: 'Accédez à la suite complète de fusion, découpage et compression PDF.' },
+        ],
+        faqs: [
+          {
+            q: 'Puis-je traiter des documents PDF juridiques ou financiers confidentiels en toute sécurité ?',
+            a: 'Oui. Toutes les opérations PDF s’exécutent directement dans la mémoire vive de votre navigateur sans transmettre vos documents vers un serveur externe.',
+          },
+          {
+            q: 'Comment réduire la taille d’un PDF scanné sans perdre la lisibilité du texte ?',
+            a: 'Sous-échantillonnez les images intégrées à 150–200 DPI et compressez les flux matriciels tout en conservant les polices vectorielles intactes.',
+          },
+        ],
+      },
+      finance: {
+        subtitle: 'Collaborez sur les tableaux d’amortissement hypothécaire, les projections d’intérêts composés, la fiscalité et la finance d’entreprise.',
+        overview: [
+          'Le canal Finance rassemble analystes financiers, acquéreurs immobiliers, comptables et épargnants autour de la modélisation quantitative et de la gestion patrimoniale.',
+          'Les membres comparent des scénarios concrets de prêts à taux fixe ou variable, des stratégies de remboursement de dettes (avalanche vs boule de neige) et des calculs de rentabilité locative.',
+        ],
+        keyTopics: [
+          'Tableaux d’amortissement immobilier, remboursements anticipés et seuil de rentabilité d’un rachat de crédit',
+          'Intérêts composés, TCAC (CAGR), TRI (IRR), VAN (NPV) et planification de l’épargne retraite corrigée de l’inflation',
+          'Comparaison TAEG (APR) vs rendement annuel effectif (APY) sur les crédits et placements',
+          'Calculs de salaire brut/net, TVA, marges commerciales et rentabilité d’investissement',
+        ],
+        featuredTools: [
+          { title: 'Calculatrice Hypothécaire', href: '/calculators/mortgage-calculator', desc: 'Simulez vos mensualités, taxes foncières, assurance et tableau d’amortissement complet.' },
+          { title: 'Calculatrice d’Intérêts Composés', href: '/calculators/compound-interest-calculator', desc: 'Projetez la croissance de votre capital avec versements réguliers.' },
+          { title: 'Calculatrice de Prêt', href: '/calculators/loan-calculator', desc: 'Calculez les échéances mensuelles, le coût total du crédit et la durée de remboursement.' },
+          { title: 'Calculatrice de TRI (IRR)', href: '/calculators/irr-calculator', desc: 'Évaluez le taux de rentabilité interne et la valeur actuelle nette de vos flux.' },
+        ],
+        faqs: [
+          {
+            q: 'Quelle est la différence entre le taux nominal et le TAEG (APR) ?',
+            a: 'Le taux nominal ne reflète que le coût de base du capital emprunté, tandis que le TAEG intègre les frais de dossier, l’assurance obligatoire et les frais annexes.',
+          },
+          {
+            q: 'Comment les remboursements anticipés réduisent-ils la durée d’un prêt immobilier ?',
+            a: 'Chaque versement supplémentaire réduit directement le capital restant dû, ce qui diminue les intérêts calculés sur toutes les échéances suivantes.',
+          },
+        ],
+      },
+      'web-dev': {
+        subtitle: 'Discutez de performance web, débogage d’API REST, cryptographie, expressions régulières, architecture réseau CIDR et outils développeur.',
+        overview: [
+          'Le canal Développement Web est un espace technique destiné aux ingénieurs full-stack, architectes DevOps et spécialistes en cybersécurité.',
+          'Les sujets couvrent le formatage JSON/YAML/SQL, l’inspection de jetons JWT, le hachage cryptographique (SHA-256, HMAC, bcrypt), le calcul de sous-réseaux IPv4/IPv6 et l’anonymisation de bases de données.',
+        ],
+        keyTopics: [
+          'Formatage, validation et comparaison de charges utiles JSON, XML, YAML, SQL et code JS/CSS minifié',
+          'Débogage de jetons d’authentification JWT, encodage Base64/URL et en-têtes de sécurité HTTP',
+          'Dimensionnement de sous-réseaux CIDR IPv4/IPv6, segmentation VLAN et propagation DNS',
+          'Détection de données personnelles (PII), masquage RGPD/HIPAA et génération d’identifiants UUID v4/v7',
+        ],
+        featuredTools: [
+          { title: 'Formateur & Validateur JSON', href: '/tools/json-formatter', desc: 'Embellissez, minifiez et validez vos charges utiles JSON avec détection précise des erreurs.' },
+          { title: 'Décodeur JWT', href: '/tools/jwt-decoder', desc: 'Inspectez localement les en-têtes, revendications (claims) et dates d’expiration JWT.' },
+          { title: 'Calculatrice de Sous-Réseau', href: '/calculators/subnet-calculator', desc: 'Calculez les plages CIDR, adresses de diffusion et hôtes utilisables.' },
+          { title: 'Générateur d’UUID', href: '/tools/uuid-generator', desc: 'Générez en masse des identifiants UUID cryptographiquement aléatoires.' },
+        ],
+        faqs: [
+          {
+            q: 'Est-il sûr de coller des jetons JWT ou des charges JSON de production dans les outils NexusCalculator ?',
+            a: 'Oui. Tous nos outils de formatage, de décodage et de hachage s’exécutent à 100 % côté client dans votre navigateur, sans aucune transmission réseau.',
+          },
+          {
+            q: 'Pourquoi privilégier UUID v7 plutôt qu’UUID v4 pour les clés primaires de base de données ?',
+            a: 'UUID v7 intègre un préfixe horodaté Unix en millisecondes, offrant un tri séquentiel naturel qui réduit fortement la fragmentation des index B-tree dans PostgreSQL et MySQL.',
+          },
+        ],
+      },
+    };
+    const fallbackFr: Omit<CategoryEnrichment, 'label'> = {
+      subtitle: `Discussions techniques, formules vérifiées et échanges communautaires autour de la thématique ${label}.`,
+      overview: [
+        `Bienvenue dans le canal ${label} de la communauté NexusCalculator. Cet espace réunit ingénieurs, analystes financiers, étudiants et développeurs pour partager des cas pratiques et vérifier des modèles mathématiques.`,
+        'Toutes les calculatrices et utilitaires associés à ce canal fonctionnent directement dans votre navigateur pour garantir rapidité, précision et confidentialité totale.',
+      ],
+      keyTopics: [
+        'Vérification étape par étape des formules mathématiques, financières et scientifiques',
+        'Bonnes pratiques de confidentialité locale dans le navigateur et flux de travail sans serveur',
+        'Comparaison de scénarios réels, conventions d’arrondi et unités de mesure internationales',
+        'Suggestions d’améliorations, nouveaux outils et retours d’expérience de la communauté',
+      ],
+      featuredTools: [
+        { title: 'Annuaire des Calculatrices', href: '/calculators', desc: 'Parcourez plus de 300 calculatrices financières, médicales et scientifiques.' },
+        { title: 'Outils Développeur & Web', href: '/tools', desc: 'Découvrez plus de 130 utilitaires exécutés localement dans votre navigateur.' },
+        { title: 'Guides Techniques', href: '/guides', desc: 'Consultez nos tutoriels détaillés et démonstrations de formules.' },
+        { title: 'Plateforme Confidentialité Base de Données', href: '/database-privacy', desc: 'Analysez et masquez les données personnelles (PII) conformément au RGPD.' },
+      ],
+      faqs: [
+        {
+          q: `Faut-il créer un compte pour utiliser les outils du canal ${label} ?`,
+          a: 'Aucun compte n’est requis pour utiliser nos calculatrices et outils. Un compte gratuit n’est utile que si vous souhaitez publier ou voter dans le forum.',
+        },
+        {
+          q: 'Comment les formules de NexusCalculator sont-elles validées ?',
+          a: 'Chaque modèle est vérifié par rapport aux constantes NIST, à la littérature académique de référence et aux normes de précision flottante IEEE 754.',
+        },
+      ],
+    };
+    return { label, ...(frMap[slug] || fallbackFr) };
+  }
+
+  if (locale === 'es') {
+    const esMap: Record<string, Omit<CategoryEnrichment, 'label'>> = {
+      'image-tools': {
+        subtitle: 'Debata sobre compresión de imágenes en el navegador, conversión WebP/AVIF, privacidad de metadatos EXIF y renderizado HTML5 Canvas.',
+        overview: [
+          'El canal de Herramientas de Imagen reúne a desarrolladores frontend, diseñadores digitales, fotógrafos y especialistas en SEO que optimizan recursos visuales para Core Web Vitals (LCP y CLS) y flujos de trabajo privados.',
+          'Todas las utilidades de imagen de NexusCalculator procesan gráficos rasterizados y vectoriales al 100 % localmente en su navegador mediante la API HTML5 Canvas y WebAssembly; sus fotografías y diseños nunca salen de su dispositivo.',
+        ],
+        keyTopics: [
+          'Ratios de compresión con y sin pérdida entre los formatos WebP, AVIF, PNG y JPEG',
+          'Eliminación de metadatos EXIF sensibles (GPS y datos de cámara) antes de publicar fotografías',
+          'Redimensionado por lotes, recorte de relación de aspecto y ajuste de DPI para impresión y diseño web',
+          'Conversión de gráficos a cadenas Data URI en Base64 y trazados vectoriales SVG',
+        ],
+        featuredTools: [
+          { title: 'Compresor de Imágenes', href: '/tools/compress-image', desc: 'Reduzca el tamaño de archivos JPEG, PNG y WebP hasta un 80 % localmente.' },
+          { title: 'Redimensionar Imagen', href: '/tools/resize-image', desc: 'Escale dimensiones en píxeles manteniendo la proporción exacta.' },
+          { title: 'Convertir a WebP', href: '/tools/convert-to-webp', desc: 'Transforme imágenes PNG y JPG al formato WebP de última generación.' },
+          { title: 'Visor de Metadatos EXIF', href: '/tools/image-metadata-viewer', desc: 'Inspeccione metadatos de cámara, lente y geolocalización ocultos en fotos.' },
+        ],
+        faqs: [
+          {
+            q: '¿Se suben mis imágenes a algún servidor al usar las herramientas de NexusCalculator?',
+            a: 'No. Cada herramienta de imagen se ejecuta íntegramente dentro de su navegador mediante APIs locales de Canvas y WebAssembly.',
+          },
+          {
+            q: '¿Qué formato de imagen ofrece el mejor equilibrio entre calidad y velocidad SEO?',
+            a: 'WebP y AVIF logran archivos entre un 25 % y un 50 % más ligeros que JPEG y PNG equivalentes manteniendo transparencia.',
+          },
+        ],
+      },
+    };
+    const fallbackEs: Omit<CategoryEnrichment, 'label'> = {
+      subtitle: `Debates técnicos, fórmulas verificadas y recursos prácticos sobre ${label} en la comunidad de NexusCalculator.`,
+      overview: [
+        `Bienvenido al canal de ${label} de NexusCalculator. Este espacio conecta a ingenieros, analistas financieros, estudiantes y desarrolladores para resolver escenarios reales y contrastar modelos matemáticos.`,
+        'Todas las calculadoras y herramientas vinculadas a este canal se ejecutan al 100 % del lado del cliente en su navegador para garantizar máxima velocidad y privacidad.',
+      ],
+      keyTopics: [
+        'Verificación paso a paso de ecuaciones matemáticas, financieras y científicas',
+        'Flujos de trabajo privados en el navegador sin subida de archivos a servidores externos',
+        'Comparativa de casos reales, criterios de redondeo y conversión de unidades internacionales',
+        'Propuestas de mejora, nuevas calculadoras y resolución colaborativa de dudas',
+      ],
+      featuredTools: [
+        { title: 'Directorio de Calculadoras', href: '/calculators', desc: 'Explore más de 300 calculadoras financieras, de salud, matemáticas y científicas.' },
+        { title: 'Herramientas para Desarrolladores', href: '/tools', desc: 'Utilidades de código, texto, PDF e imagen ejecutadas localmente en su navegador.' },
+        { title: 'Guías Técnicas', href: '/guides', desc: 'Tutoriales detallados y demostraciones de fórmulas paso a paso.' },
+        { title: 'Plataforma de Privacidad de Datos', href: '/database-privacy', desc: 'Detección de PII y enmascaramiento de bases de datos compatible con RGPD.' },
+      ],
+      faqs: [
+        {
+          q: `¿Necesito registrarme para usar las herramientas del canal ${label}?`,
+          a: 'No se requiere cuenta para utilizar ninguna calculadora ni herramienta. Solo necesita iniciar sesión si desea publicar en el foro.',
+        },
+        {
+          q: '¿Cómo se verifican las fórmulas en NexusCalculator?',
+          a: 'Cada calculadora se valida frente a constantes del NIST, bibliografía académica revisada por pares y estándares de precisión IEEE 754.',
+        },
+      ],
+    };
+    return { label, ...(esMap[slug] || fallbackEs) };
+  }
+
+  if (locale === 'de') {
+    const deMap: Record<string, Omit<CategoryEnrichment, 'label'>> = {
+      'image-tools': {
+        subtitle: 'Diskutieren Sie über lokale Bildkomprimierung im Browser, WebP/AVIF-Konvertierung, EXIF-Datenschutz und HTML5-Canvas-Pipelines.',
+        overview: [
+          'Der Kanal Bild-Werkzeuge vernetzt Frontend-Entwickler, Grafikdesigner, Fotografen und SEO-Ingenieure, die visuelle Assets für Core Web Vitals (LCP & CLS) und datenschutzfreundliche Workflows optimieren.',
+          'Sämtliche Bild-Werkzeuge auf NexusCalculator verarbeiten Raster- und Vektorgrafiken zu 100 % lokal in Ihrem Browser über die HTML5-Canvas-API und WebAssembly — Ihre hochauflösenden Fotos und Entwürfe verlassen niemals Ihr Gerät.',
+        ],
+        keyTopics: [
+          'Verlustbehaftete vs. verlustfreie Komprimierungsraten bei WebP, AVIF, PNG und JPEG',
+          'Entfernen sensibler GPS- und Kamera-EXIF-Metadaten vor der Online-Veröffentlichung',
+          'Stapel-Skalierung, Seitenverhältnis-Zuschnitt und DPI-Anpassung für Druck und Webdesign',
+          'Konvertierung von Rastergrafiken in Base64-Data-URIs und SVG-Vektorpfade',
+        ],
+        featuredTools: [
+          { title: 'Bildkomprimierung', href: '/tools/compress-image', desc: 'Reduzieren Sie JPEG-, PNG- und WebP-Dateigrößen lokal im Browser um bis zu 80 %.' },
+          { title: 'Bildgröße ändern', href: '/tools/resize-image', desc: 'Skalieren Sie Pixelabmessungen mit exakter Seitenverhältnis-Sperre.' },
+          { title: 'In WebP konvertieren', href: '/tools/convert-to-webp', desc: 'Wandeln Sie PNG- und JPG-Dateien in das moderne WebP-Format um.' },
+          { title: 'EXIF-Metadaten-Viewer', href: '/tools/image-metadata-viewer', desc: 'Prüfen Sie eingebettete Kamera-, Objektiv- und Standortdaten in Fotos.' },
+        ],
+        faqs: [
+          {
+            q: 'Werden meine Bilder bei der Nutzung der NexusCalculator-Tools auf einen Server hochgeladen?',
+            a: 'Nein. Jedes Bild-Werkzeug arbeitet vollständig lokal in Ihrem Webbrowser über native Canvas- und WebAssembly-Schnittstellen.',
+          },
+          {
+            q: 'Welches Bildformat bietet das beste Verhältnis aus Qualität und Dateigröße für SEO?',
+            a: 'WebP und AVIF ermöglichen 25 % bis 50 % kleinere Dateien als vergleichbare JPEG- und PNG-Grafiken bei voller Transparenzunterstützung.',
+          },
+        ],
+      },
+    };
+    const fallbackDe: Omit<CategoryEnrichment, 'label'> = {
+      subtitle: `Fachdiskussionen, geprüfte Berechnungsformeln und Praxis-Ressourcen rund um ${label} in der NexusCalculator-Community.`,
+      overview: [
+        `Willkommen im Kanal ${label} der NexusCalculator-Community. Hier tauschen sich Ingenieure, Finanzanalysten, Studierende und Entwickler über reale Berechnungsszenarien und mathematische Modelle aus.`,
+        'Alle mit diesem Kanal verknüpften Rechner und Werkzeuge laufen zu 100 % lokal in Ihrem Browser und garantieren höchste Geschwindigkeit sowie Datenschutz.',
+      ],
+      keyTopics: [
+        'Schrittweise Herleitung und Überprüfung mathematischer, finanzieller und wissenschaftlicher Formeln',
+        'Datenschutzfreundliche Client-Side-Workflows ohne Datei-Uploads auf externe Server',
+        'Vergleich realer Praxisszenarien, Rundungsregeln und internationaler Maßeinheiten',
+        'Funktionsvorschläge, neue Rechner-Modelle und gegenseitige Fachhilfe',
+      ],
+      featuredTools: [
+        { title: 'Rechner-Verzeichnis', href: '/calculators', desc: 'Über 300 interaktive Finanz-, Gesundheits-, Mathematik- und Wissenschaftsrechner.' },
+        { title: 'Entwickler- & Web-Tools', href: '/tools', desc: 'Über 130 lokale Browser-Werkzeuge für Code, Text, PDF und Bilder.' },
+        { title: 'Praxis-Ratgeber', href: '/guides', desc: 'Ausführliche Schritt-für-Schritt-Anleitungen und Formelherleitungen.' },
+        { title: 'Datenbank-Datenschutz-Plattform', href: '/database-privacy', desc: 'DSGVO-konformes PII-Scanning und Datenmaskierung lokal im Browser.' },
+      ],
+      faqs: [
+        {
+          q: `Benötige ich ein Benutzerkonto für die Werkzeuge im Kanal ${label}?`,
+          a: 'Für die Nutzung unserer Rechner und Werkzeuge ist kein Konto erforderlich. Eine kostenlose Anmeldung wird nur für eigene Forenbeiträge benötigt.',
+        },
+        {
+          q: 'Wie werden die Formeln auf NexusCalculator geprüft?',
+          a: 'Alle Berechnungsmodelle werden anhand von NIST-Konstanten, wissenschaftlicher Fachliteratur und IEEE-754-Gleitkommastandards validiert.',
+        },
+      ],
+    };
+    return { label, ...(deMap[slug] || fallbackDe) };
+  }
+
+  return {
+    label,
+    ...(CATEGORY_ENRICHMENT_EN[slug] || CATEGORY_ENRICHMENT_EN.general),
+  };
+}
+
+const CATEGORY_ENRICHMENT_EN: Record<
+  string,
+  Omit<CategoryEnrichment, 'label'>
 > = {
   'image-tools': {
     subtitle: 'Discuss client-side image compression, WebP/AVIF conversion, EXIF metadata privacy, and Canvas rendering pipelines.',
@@ -39,10 +453,10 @@ const CATEGORY_ENRICHMENT: Record<
       'Converting raster graphics to Base64 data URIs and SVG vector paths'
     ],
     featuredTools: [
-      { title: 'Image Compressor', href: '/tools/image-compressor', desc: 'Reduce JPEG, PNG, and WebP file sizes by up to 80% locally in your browser.' },
+      { title: 'Image Compressor', href: '/tools/compress-image', desc: 'Reduce JPEG, PNG, and WebP file sizes by up to 80% locally in your browser.' },
       { title: 'Resize Image', href: '/tools/resize-image', desc: 'Scale pixel dimensions with exact aspect-ratio locking and custom interpolation.' },
       { title: 'Convert to WebP', href: '/tools/convert-to-webp', desc: 'Transform legacy PNG and JPG assets into next-gen WebP format for faster page loads.' },
-      { title: 'EXIF Data Viewer', href: '/tools/exif-viewer', desc: 'Inspect and audit embedded camera, lens, and geolocation metadata in photos.' },
+      { title: 'EXIF Data Viewer', href: '/tools/image-metadata-viewer', desc: 'Inspect and audit embedded camera, lens, and geolocation metadata in photos.' },
     ],
     faqs: [
       {
@@ -68,10 +482,10 @@ const CATEGORY_ENRICHMENT: Record<
       'Converting between PDF, Word, Excel, PowerPoint, and high-resolution image formats'
     ],
     featuredTools: [
-      { title: 'Merge PDF', href: '/tools/merge-pdf', desc: 'Combine multiple PDF documents into a single ordered file in seconds.' },
-      { title: 'Compress PDF', href: '/tools/compress-pdf', desc: 'Optimize embedded streams and images to shrink PDF file size.' },
-      { title: 'PDF to Word', href: '/tools/pdf-to-word', desc: 'Extract structured paragraphs and tables from PDF into editable DOCX files.' },
-      { title: 'Protect PDF', href: '/tools/protect-pdf', desc: 'Encrypt PDF files with strong password protection directly in your browser.' },
+      { title: 'PDF to Excel', href: '/tools/pdf-to-excel', desc: 'Extract structured tables from PDF documents into editable spreadsheets.' },
+      { title: 'PDF OCR', href: '/tools/pdf-ocr', desc: 'Extract searchable text from scanned PDF documents locally in your browser.' },
+      { title: 'HTML to PDF', href: '/tools/html-to-pdf', desc: 'Render HTML templates and web pages into print-ready PDF documents.' },
+      { title: 'All PDF Tools', href: '/pdf', desc: 'Access our full browser-based PDF merging, splitting, and compression suite.' },
     ],
     faqs: [
       {
@@ -269,11 +683,12 @@ export async function generateMetadata({
   const meta = getCategoryMeta(slug);
   if (!meta) return { title: 'Not Found' };
   const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
-  const enrichment = CATEGORY_ENRICHMENT[slug] || CATEGORY_ENRICHMENT.general;
+  const enrichment = getLocalizedEnrichment(slug, locale);
+  const ui = UI_STRINGS[locale] || UI_STRINGS.en;
 
   return {
-    title: `${meta.emoji} ${meta.label} Discussions & Resource Hub — Community | NexusCalculator`,
-    description: `${enrichment.subtitle} Browse ${meta.label} community discussions, technical guides, and curated browser tools on NexusCalculator.`,
+    title: ui.metaTitle(meta.emoji, enrichment.label),
+    description: ui.metaDesc(enrichment.subtitle, enrichment.label),
     robots: {
       index: true,
       follow: true,
@@ -315,7 +730,8 @@ export default async function CategoryPage({
   if (!meta) notFound();
 
   const posts = await fetchCategoryPosts(slug);
-  const enrichment = CATEGORY_ENRICHMENT[slug] || CATEGORY_ENRICHMENT.general;
+  const enrichment = getLocalizedEnrichment(slug, locale);
+  const ui = UI_STRINGS[locale] || UI_STRINGS.en;
 
   return (
     <div className="bg-slate-50 dark:bg-[#0B1120] min-h-screen">
@@ -327,7 +743,7 @@ export default async function CategoryPage({
             href="/community"
             className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors mb-4"
           >
-            <ArrowLeft size={15} /> All Channels
+            <ArrowLeft size={15} /> {ui.allChannels}
           </Link>
 
           <div className="flex items-center justify-between gap-4 flex-wrap">
@@ -336,9 +752,9 @@ export default async function CategoryPage({
                 {meta.emoji}
               </div>
               <div>
-                <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">{meta.label} Community & Resource Hub</h1>
+                <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">{ui.hubTitle(enrichment.label)}</h1>
                 <p className="text-slate-500 dark:text-slate-400 text-sm mt-1 max-w-2xl">
-                  {enrichment.subtitle} ({posts.length} discussion{posts.length !== 1 ? 's' : ''})
+                  {enrichment.subtitle} ({ui.discussionsCount(posts.length)})
                 </p>
               </div>
             </div>
@@ -349,42 +765,45 @@ export default async function CategoryPage({
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#518231] hover:bg-[#436a28] text-white rounded-xl font-semibold text-sm transition-colors shadow-sm"
             >
               <MessageSquarePlus size={16} />
-              New Discussion
+              {ui.newDiscussion}
             </Link>
           </div>
         </div>
 
         {/* All channels quick-nav strip */}
         <div className="flex flex-wrap gap-2 mb-8">
-          {COMMUNITY_CATEGORIES.map(cat => (
-            <Link
-              key={cat.slug}
-              href={`/community/category/${cat.slug}` as any}
-              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-all ${
-                cat.slug === slug
-                  ? `${cat.color} ring-2 ring-offset-1 ring-current`
-                  : 'border-slate-200 dark:border-slate-700 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800'
-              }`}
-            >
-              {cat.emoji} {cat.label}
-            </Link>
-          ))}
+          {COMMUNITY_CATEGORIES.map(cat => {
+            const catLabel = LOCALIZED_CATEGORY_LABELS[locale]?.[cat.slug] || cat.label;
+            return (
+              <Link
+                key={cat.slug}
+                href={`/community/category/${cat.slug}` as any}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border transition-all ${
+                  cat.slug === slug
+                    ? `${cat.color} ring-2 ring-offset-1 ring-current`
+                    : 'border-slate-200 dark:border-slate-700 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800'
+                }`}
+              >
+                {cat.emoji} {catLabel}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Feed */}
         {posts.length === 0 ? (
           <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-12 text-center mb-10">
             <div className="text-5xl mb-4">{meta.emoji}</div>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Start the First {meta.label} Discussion</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{ui.emptyTitle(enrichment.label)}</h2>
             <p className="text-slate-500 dark:text-slate-400 mb-6 max-w-xl mx-auto">
-              Have a technical question, workflow tip, or formula scenario related to {meta.label}? Share it with the NexusCalculator engineering and analyst community.
+              {ui.emptyDesc(enrichment.label)}
             </p>
             <Link
               href="/community/new"
               rel="nofollow"
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#518231] hover:bg-[#436a28] text-white rounded-xl font-semibold transition-colors"
             >
-              <MessageSquarePlus size={18} /> Start a Discussion
+              <MessageSquarePlus size={18} /> {ui.startDiscussion}
             </Link>
           </div>
         ) : (
@@ -398,7 +817,7 @@ export default async function CategoryPage({
           <div className="lg:col-span-2 space-y-6">
             <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                About the {meta.label} Channel
+                {ui.aboutChannel(enrichment.label)}
               </h2>
               <div className="space-y-3 text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                 {enrichment.overview.map((para, idx) => (
@@ -406,7 +825,7 @@ export default async function CategoryPage({
                 ))}
               </div>
               <h3 className="text-base font-bold text-slate-900 dark:text-white mt-6 mb-3">
-                Core Discussion Topics & Engineering Themes
+                {ui.coreTopics}
               </h3>
               <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 {enrichment.keyTopics.map((topic, idx) => (
@@ -420,7 +839,7 @@ export default async function CategoryPage({
 
             <section className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
               <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-                Frequently Asked Questions — {meta.label}
+                {ui.faqHeading(enrichment.label)}
               </h2>
               <div className="space-y-4">
                 {enrichment.faqs.map((faq, idx) => (
@@ -440,7 +859,7 @@ export default async function CategoryPage({
           <aside className="space-y-6">
             <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6">
               <h2 className="text-base font-bold text-slate-900 dark:text-white mb-4">
-                Featured {meta.label} Utilities
+                {ui.featuredUtilities(enrichment.label)}
               </h2>
               <div className="space-y-3">
                 {enrichment.featuredTools.map((tool, idx) => (

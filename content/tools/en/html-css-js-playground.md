@@ -1,4 +1,6 @@
 ---
+title: "HTML / CSS / JavaScript Playground"
+shortDescription: "A powerful, browser-based online IDE to write, run, and share HTML, CSS, and JavaScript. Features real-time live preview, console debugging, and Monaco editor."
 metaTitle: "HTML / CSS / JavaScript Playground | Online Code Editor"
 metaDescription: "A powerful, browser-based online IDE to write, run, and share HTML, CSS, and JavaScript. Features real-time live preview, console debugging, and Monaco editor."
 metaKeywords: "HTML editor, CSS playground, JavaScript playground, online IDE, live code editor, free online html editor with live preview, html css javascript playground online, test javascript code online free"

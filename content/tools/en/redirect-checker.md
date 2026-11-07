@@ -1,4 +1,6 @@
 ---
+title: "Free URL Redirect Checker"
+shortDescription: "Trace URL redirects instantly. Our free Redirect Checker detects 301, 302, and 307 redirects, uncovering hidden redirect chains and loops to fix your SEO."
 metaTitle: "Free URL Redirect Checker | Trace 301 & 302 Redirect Chains"
 metaDescription: "Trace URL redirects instantly. Our free Redirect Checker detects 301, 302, and 307 redirects, uncovering hidden redirect chains and loops to fix your SEO."
 metaKeywords: "redirect checker, url redirect trace, 301 redirect checker, redirect chain tool, check url redirects, find redirect loops, seo redirect tool"

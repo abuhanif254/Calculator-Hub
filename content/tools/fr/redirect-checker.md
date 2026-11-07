@@ -1,4 +1,6 @@
 ---
+title: "Testeur de Redirection URL Gratuit"
+shortDescription: "Suivez les redirections URL instantanément. Notre testeur détecte les redirections 301, 302 et 307, révélant les chaînes et boucles cachées pour votre SEO."
 metaTitle: "Testeur de Redirection URL Gratuit | Tracer les chaînes 301 et 302"
 metaDescription: "Suivez les redirections URL instantanément. Notre testeur détecte les redirections 301, 302 et 307, révélant les chaînes et boucles cachées pour votre SEO."
 metaKeywords: "testeur redirection, traceur url, verifier redirection 301, outil seo redirection, chaine de redirection, boucle redirection"

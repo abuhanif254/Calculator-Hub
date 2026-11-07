@@ -1,4 +1,6 @@
 ---
+title: "Convert HTML to PDF"
+shortDescription: "Professional HTML to PDF converter with a live code editor. Paste your HTML, CSS, and Tailwind code to instantly generate print-ready PDF documents."
 metaTitle: "Convert HTML to PDF | Live Webpage to PDF Generator"
 metaDescription: "Professional HTML to PDF converter with a live code editor. Paste your HTML, CSS, and Tailwind code to instantly generate print-ready PDF documents."
 metaKeywords: "html to pdf, convert html to pdf, html pdf converter, webpage to pdf, html code to pdf, convert html code to pdf file online, html to pdf generator with css, save webpage to pdf high quality"

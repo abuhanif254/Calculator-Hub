@@ -1,4 +1,6 @@
 ---
+title: "Générateur de Sitemap XML Gratuit"
+shortDescription: "Générez instantanément un sitemap XML compatible Google. Notre générateur gratuit prend en charge hreflang, les images et les priorités personnalisées pour un SEO optimal."
 metaTitle: "Générateur de Sitemap XML Gratuit | Créez des Sitemaps pour le SEO"
 metaDescription: "Générez instantanément un sitemap XML compatible Google. Notre générateur gratuit prend en charge hreflang, les images et les priorités personnalisées pour un SEO optimal."
 metaKeywords: "generateur sitemap xml, creer sitemap, sitemap google, sitemap xml pour seo, hreflang sitemap"

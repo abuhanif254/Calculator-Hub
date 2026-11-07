@@ -1,4 +1,6 @@
 ---
+title: "Kostenloser Sitemap XML Generator"
+shortDescription: "Generieren Sie sofort eine Google-konforme XML-Sitemap für Ihre Website. Unser kostenloser Generator unterstützt Hreflang, Bilder und benutzerdefinierte Prioritäten für maximales SEO."
 metaTitle: "Kostenloser Sitemap XML Generator | Google SEO Sitemaps erstellen"
 metaDescription: "Generieren Sie sofort eine Google-konforme XML-Sitemap für Ihre Website. Unser kostenloser Generator unterstützt Hreflang, Bilder und benutzerdefinierte Prioritäten für maximales SEO."
 metaKeywords: "sitemap xml generator, sitemap erstellen, google sitemap generator, kostenlose sitemap, xml sitemap seo"

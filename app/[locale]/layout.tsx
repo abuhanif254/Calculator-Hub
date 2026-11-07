@@ -9,10 +9,9 @@ import { SettingsProvider } from '../../app/context/SettingsContext';
 // before first paint. If lazy-loaded, dark-mode users see a white flash (FOUC).
 import { ThemeProvider } from '../../app/components/ThemeProvider';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
 import { Inter } from 'next/font/google';
-import Script from 'next/script';
 // ClientShell: holds all `dynamic({ ssr:false })` imports.
 // next/dynamic with ssr:false is ONLY allowed inside Client Components —
 // this wrapper file carries the 'use client' boundary so this Server
@@ -54,23 +53,51 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
 
+  const metaByLocale: Record<string, { title: string; description: string; keywords: string }> = {
+    en: {
+      title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
+      description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
+      keywords: 'online calculators, financial calculators, health calculators, developer tools, free web tools, json formatter, html beautifier, code formatter, developer utilities',
+    },
+    es: {
+      title: 'Nexus | Plataforma de Calculadoras Online y Herramientas de Desarrollo',
+      description: 'Plataforma web con cientos de calculadoras financieras, médicas y científicas de alta precisión y herramientas gratuitas para desarrolladores.',
+      keywords: 'calculadoras online, calculadoras financieras, calculadoras de salud, herramientas de desarrollo, herramientas web gratis, formateador json',
+    },
+    fr: {
+      title: 'Nexus | Plateforme de Calculatrices en Ligne et Outils Développeur',
+      description: 'Plateforme web complète réunissant des centaines de calculatrices financières, médicales et scientifiques de haute précision et des outils développeur gratuits.',
+      keywords: 'calculatrices en ligne, calculatrices financieres, calculatrices sante, outils developpeur, outils web gratuits, formateur json',
+    },
+    de: {
+      title: 'Nexus | Plattform für Online-Rechner & Entwickler-Tools',
+      description: 'Die umfassende Web-Plattform mit hunderten präzisen Finanz-, Gesundheits- und Wissenschaftsrechnern sowie professionellen Entwickler-Werkzeugen.',
+      keywords: 'online rechner, finanzrechner, gesundheitsrechner, entwickler tools, kostenlose web tools, json formatierer',
+    },
+  };
+  const m = metaByLocale[locale] || metaByLocale.en;
+  const adClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-9824094207004107';
+
   return {
     metadataBase: new URL(baseUrl),
     applicationName: 'Nexus Calculator',
+    other: {
+      'google-adsense-account': adClientId,
+    },
     appleWebApp: {
       capable: true,
       statusBarStyle: 'default',
       title: 'Nexus Calculator',
     },
     title: {
-      default: 'Nexus | Ultimate Calculators & Developer Tools Platform',
+      default: m.title,
       template: '%s | Nexus'
     },
-    description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
-    keywords: 'online calculators, financial calculators, health calculators, developer tools, free web tools, json formatter, html beautifier, code formatter, developer utilities',
+    description: m.description,
+    keywords: m.keywords,
     openGraph: {
-      title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
+      title: m.title,
+      description: m.description,
       url: `${baseUrl}/${locale}`,
       siteName: 'Nexus',
       locale: locale,
@@ -80,14 +107,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
           url: `${baseUrl}/icons/icon-512x512.png`,
           width: 512,
           height: 512,
-          alt: 'Nexus Calculator — Calculators & Developer Tools Platform',
+          alt: m.title,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Nexus | Ultimate Calculators & Developer Tools Platform',
-      description: 'The ultimate web platform with hundreds of highly accurate online calculators and professional developer tools, formatters, and utilities.',
+      title: m.title,
+      description: m.description,
       images: [`${baseUrl}/icons/icon-512x512.png`],
     },
     robots: {
@@ -119,8 +146,16 @@ export default async function RootLayout({
   // Enable static rendering
   setRequestLocale(locale);
 
-  // Retrieve AdSense Client ID
-  const adClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
+  // Retrieve AdSense Client ID (defaults to publisher ID in public/ads.txt so SSR HTML always includes verification tags)
+  const adClientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-9824094207004107';
+  const skipLabel =
+    locale === 'es'
+      ? 'Saltar al contenido principal'
+      : locale === 'fr'
+      ? 'Aller au contenu principal'
+      : locale === 'de'
+      ? 'Zum Hauptinhalt springen'
+      : 'Skip to main content';
 
   return (
     <html lang={locale} dir={['ar', 'he', 'fa', 'ur'].includes(locale) ? 'rtl' : 'ltr'} suppressHydrationWarning className={inter.variable}>
@@ -141,18 +176,15 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Nexus" />
-        {/* AdSense: lazyOnload defers until ALL page resources have loaded.
-            Compared to afterInteractive this saves 200-400ms of TBT. */}
+        <meta name="google-adsense-account" content={adClientId} />
+        {/* Standard async AdSense script in SSR <head> so Mediapartners-Google / AdSense review crawler can verify every page immediately */}
         {adClientId && (
-          <Script
+          <script
             async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClientId}`}
             crossOrigin="anonymous"
-            strategy="lazyOnload"
           />
         )}
-
-
       </head>
       <body className="font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-[#090E17] dark:text-slate-100 relative overflow-x-hidden max-w-full">
         {/* Ambient Glassmorphism Background Layers
@@ -164,7 +196,7 @@ export default async function RootLayout({
         </div>
 
         {/* Skip to Content — WCAG 2.4.1 Level A */}
-        <a href="#global-content" className="skip-to-content">Skip to main content</a>
+        <a href="#global-content" className="skip-to-content">{skipLabel}</a>
         <NextIntlClientProvider locale={locale} messages={{}}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <AuthProvider>

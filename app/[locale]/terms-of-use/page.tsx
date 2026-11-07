@@ -1,405 +1,369 @@
+import React from 'react';
 import { Metadata } from 'next';
-import { Link as CustomLink } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
-import { Scale, ShieldAlert, FileText, GlobeLock, RefreshCcw, Mail, Code, FileCode, ImageIcon, Calculator, AlertOctagon, Copyright } from 'lucide-react';
+import { routing } from '@/i18n/routing';
+import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { FileText, CheckCircle, Copyright, Ban, Scale, Mail } from 'lucide-react';
 
 export const revalidate = false;
 export const dynamicParams = false;
 
-const copyByLocale: Record<
-  string,
-  {
-    title: string;
-    description: string;
-    home: string;
-    crumb: string;
-    h1: string;
-    subtitle: string;
-  }
-> = {
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+interface TermsLocaleCopy {
+  metaTitle: string;
+  metaDesc: string;
+  badge: string;
+  h1: string;
+  subtitle: string;
+  tocHeading: string;
+  s1: { toc: string; h2: string; p1: string; p2: string };
+  s2: { toc: string; h2: string; p1: string; p2: string };
+  s3: { toc: string; h2: string; p1: string; items: string[] };
+  s4: { toc: string; h2: string; p1: string; p2: string };
+  s5: { toc: string; h2: string; p1: string; label: string };
+}
+
+const TERMS_COPY: Record<string, TermsLocaleCopy> = {
   en: {
-    title: 'Terms of Use & Service Guidelines',
-    description: 'Review the comprehensive Terms of Use, legal disclaimers, and service guidelines for Nexus Calculator and developer utilities.',
-    home: 'Home',
-    crumb: 'Terms of Use',
-    h1: 'Terms of Use & Legal Guidelines',
-    subtitle:
-      'Please review these Terms carefully. By accessing or utilizing the Nexus platform—including our suite of developer utilities, PDF processors, image editors, and high-precision calculators—you agree to be bound by these terms and conditions.',
+    metaTitle: 'Terms of Use | NexusCalculator',
+    metaDesc: 'Read the Terms of Use and Conditions for accessing and using NexusCalculator online calculators and developer utilities.',
+    badge: 'Effective Date: October 24, 2026',
+    h1: 'Terms of Use',
+    subtitle: 'Please read these terms and conditions carefully before using our calculators and web tools.',
+    tocHeading: 'Table of Contents',
+    s1: {
+      toc: '1. Acceptance of Terms',
+      h2: '1. Acceptance of Terms',
+      p1: 'By accessing and using NexusCalculator (https://www.nexuscalculator.net), you accept and agree to be bound by the terms and provisions of this agreement. In addition, when using this website\'s particular services, you shall be subject to any posted guidelines or rules applicable to such services.',
+      p2: 'If you do not agree to abide by the above, please do not use this service. We reserve the right to modify these terms at any time, and your continued use of the site signifies your acceptance of any updated terms.',
+    },
+    s2: {
+      toc: '2. Intellectual Property',
+      h2: '2. Intellectual Property & License',
+      p1: 'Unless otherwise stated, NexusCalculator and/or its licensors own the intellectual property rights for all original source code, UI designs, custom algorithms, and written guides on NexusCalculator. All intellectual property rights are reserved.',
+      p2: 'You are granted a limited, non-exclusive, revocable license to access and use our calculators and tools for personal, educational, or internal business purposes. You may not republish, sell, rent, sub-license, or duplicate our proprietary code and design without explicit written permission.',
+    },
+    s3: {
+      toc: '3. Prohibited Uses',
+      h2: '3. Prohibited Activities',
+      p1: 'You agree not to use the Site in any way that causes, or may cause, damage to the Site or impairment of the availability or accessibility of NexusCalculator. Specifically, you are prohibited from:',
+      items: [
+        'Using automated systems (bots, spiders, or scrapers) to extract data or overload our server infrastructure.',
+        'Attempting to reverse-engineer, decompile, or hack any part of the website.',
+        'Framing or mirroring any part of the Site on another domain without our prior written consent.',
+        'Using the Site for any unlawful, fraudulent, or malicious purposes.',
+      ],
+    },
+    s4: {
+      toc: '4. "As-Is" Warranty',
+      h2: '4. Disclaimer of Warranties ("As-Is")',
+      p1: 'The calculators, code formatters, and content on NexusCalculator are provided "as is" and "as available." NexusCalculator makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property.',
+      p2: 'We do not warrant that the calculation results are 100% error-free, nor do we guarantee that the website will be uninterrupted or free of bugs.',
+    },
+    s5: {
+      toc: '5. Contact Us',
+      h2: '5. Governing Law & Contact',
+      p1: 'These terms and conditions are governed by and construed in accordance with international internet laws. If you have any questions regarding these Terms of Use, please contact us at:',
+      label: 'Legal & Support:',
+    },
   },
   es: {
-    title: 'Términos de Uso y Condiciones del Servicio',
-    description: 'Consulta los Términos de Uso, avisos legales y directrices del servicio para las calculadoras y herramientas de Nexus Calculator.',
-    home: 'Inicio',
-    crumb: 'Términos de Uso',
-    h1: 'Términos de Uso y Directrices Legales',
-    subtitle:
-      'Por favor, revisa estos Términos detenidamente. Al acceder o utilizar la plataforma Nexus —incluyendo nuestras calculadoras, herramientas para desarrolladores, utilidades PDF y editores de imagen— aceptas estas condiciones de servicio.',
+    metaTitle: 'Términos de Uso | NexusCalculator',
+    metaDesc: 'Lea los Términos y Condiciones de Uso aplicables al acceso y utilización de las calculadoras y herramientas de NexusCalculator.',
+    badge: 'Fecha de entrada en vigor: 24 de octubre de 2026',
+    h1: 'Términos de Uso',
+    subtitle: 'Por favor, lea detenidamente estos términos y condiciones antes de utilizar nuestras calculadoras y herramientas web.',
+    tocHeading: 'Tabla de Contenidos',
+    s1: {
+      toc: '1. Aceptación de Términos',
+      h2: '1. Aceptación de los Términos',
+      p1: 'Al acceder y utilizar NexusCalculator (https://www.nexuscalculator.net), usted acepta quedar vinculado por los términos y disposiciones del presente acuerdo, así como por las normas específicas aplicables a cada servicio o herramienta.',
+      p2: 'Si no está de acuerdo con estas condiciones, le rogamos que no utilice este servicio. Nos reservamos el derecho de actualizar estos términos en cualquier momento; el uso continuado del sitio implica la aceptación de las versiones actualizadas.',
+    },
+    s2: {
+      toc: '2. Propiedad Intelectual',
+      h2: '2. Propiedad Intelectual y Licencia de Uso',
+      p1: 'Salvo indicación en contrario, NexusCalculator y/o sus licenciantes ostentan los derechos de propiedad intelectual sobre el código fuente original, diseños de interfaz, algoritmos cuantitativos y guías técnicas de NexusCalculator. Todos los derechos están reservados.',
+      p2: 'Se le concede una licencia limitada, no exclusiva y revocable para acceder y utilizar nuestras calculadoras y utilidades con fines personales, académicos o empresariales internos. Queda prohibida la republicación, venta, alquiler, sublicencia o clonación de nuestro código y diseño sin autorización expresa por escrito.',
+    },
+    s3: {
+      toc: '3. Usos Prohibidos',
+      h2: '3. Actividades Prohibidas',
+      p1: 'Usted se compromete a no utilizar el Sitio de ninguna forma que cause o pueda causar daños a la infraestructura o afectar la disponibilidad de NexusCalculator. En particular, queda prohibido:',
+      items: [
+        'Utilizar sistemas automatizados masivos (bots o scrapers abusivos) para extraer datos o sobrecargar nuestros servidores.',
+        'Intentar realizar ingeniería inversa, descompilar o vulnerar la seguridad del sitio web.',
+        'Incrustar o replicar el Sitio en otro dominio mediante iframes no autorizados sin nuestro consentimiento previo por escrito.',
+        'Utilizar el Sitio con fines ilícitos, fraudulentos o maliciosos.',
+      ],
+    },
+    s4: {
+      toc: '4. Garantía «Tal Cual»',
+      h2: '4. Exclusión de Garantías («Tal Cual»)',
+      p1: 'Las calculadoras, herramientas de desarrollo y contenidos de NexusCalculator se proporcionan «tal cual» y «según disponibilidad». NexusCalculator no otorga garantías expresas ni implícitas, renunciando a cualquier garantía implícita de comerciabilidad, idoneidad para un propósito particular o ausencia de infracción.',
+      p2: 'No garantizamos que los resultados matemáticos estén libres de errores en el 100 % de los casos particulares ni que el servicio funcione sin interrupciones.',
+    },
+    s5: {
+      toc: '5. Contacto',
+      h2: '5. Legislación Aplicable y Contacto',
+      p1: 'Estos términos y condiciones se rigen e interpretan conforme a la normativa aplicable de servicios digitales. Si tiene alguna consulta sobre estos Términos de Uso, puede contactarnos en:',
+      label: 'Asuntos Legales y Soporte:',
+    },
   },
   fr: {
-    title: 'Conditions Générales d’Utilisation (CGU)',
-    description: 'Consultez les Conditions d’Utilisation, mentions légales et règles d’usage de la plateforme de calculatrices et d’outils Nexus Calculator.',
-    home: 'Accueil',
-    crumb: 'Conditions d’Utilisation',
-    h1: 'Conditions d’Utilisation et Directives Légales',
-    subtitle:
-      'Veuillez lire attentivement ces conditions. En accédant à la plateforme Nexus — y compris nos calculatrices, outils développeur, utilitaires PDF et éditeurs d’images — vous acceptez les présentes conditions générales d’utilisation.',
+    metaTitle: 'Conditions d’Utilisation | NexusCalculator',
+    metaDesc: 'Consultez les Conditions Générales d’Utilisation régissant l’accès et l’emploi des calculatrices et outils en ligne de NexusCalculator.',
+    badge: 'Date d’entrée en vigueur : 24 octobre 2026',
+    h1: 'Conditions d’Utilisation',
+    subtitle: 'Veuillez lire attentivement les présentes conditions générales avant d’utiliser nos calculatrices et outils web.',
+    tocHeading: 'Sommaire',
+    s1: {
+      toc: '1. Acceptation',
+      h2: '1. Acceptation des Conditions',
+      p1: 'En accédant à NexusCalculator (https://www.nexuscalculator.net) et en utilisant ses services, vous acceptez d’être lié par les présentes conditions générales d’utilisation ainsi que par les règles propres à chaque outil.',
+      p2: 'Si vous n’acceptez pas ces dispositions, veuillez ne pas utiliser ce service. Nous nous réservons le droit de modifier ces conditions à tout moment ; la poursuite de votre navigation vaut acceptation des conditions mises à jour.',
+    },
+    s2: {
+      toc: '2. Propriété Intellectuelle',
+      h2: '2. Propriété Intellectuelle et Licence',
+      p1: 'Sauf mention contraire, NexusCalculator et/ou ses concédants détiennent les droits de propriété intellectuelle sur l’ensemble du code source original, des interfaces, des algorithmes et des guides rédactionnels publiés sur NexusCalculator. Tous les droits sont réservés.',
+      p2: 'Une licence limitée, non exclusive et révocable vous est accordée pour consulter et utiliser nos calculatrices et outils à des fins personnelles, pédagogiques ou professionnelles internes. Toute republication, revente, location ou reproduction non autorisée de notre code ou de nos contenus est interdite.',
+    },
+    s3: {
+      toc: '3. Usages Interdits',
+      h2: '3. Activités Interdites',
+      p1: 'Vous vous engagez à ne pas utiliser le Site d’une manière susceptible d’endommager l’infrastructure ou de nuire à la disponibilité de NexusCalculator. Il est notamment interdit de :',
+      items: [
+        'Recourir à des systèmes automatisés abusifs (robots ou scrapers massifs) pour extraire des données ou saturer nos serveurs.',
+        'Tenter de décompiler, désassembler ou compromettre la sécurité du site web.',
+        'Intégrer ou dupliquer le Site sur un domaine tiers sans notre accord écrit préalable.',
+        'Utiliser le Site à des fins illégales, frauduleuses ou malveillantes.',
+      ],
+    },
+    s4: {
+      toc: '4. Garantie « En l’État »',
+      h2: '4. Exclusion de Garantie (« En l’État »)',
+      p1: 'Les calculatrices, outils de développement et contenus éditoriaux de NexusCalculator sont fournis « en l’état » et « selon disponibilité ». NexusCalculator n’accorde aucune garantie expresse ou implicite, y compris toute garantie implicite de qualité marchande ou d’adéquation à un usage particulier.',
+      p2: 'Nous ne garantissons pas que les résultats de calcul soient exempts d’erreur dans 100 % des cas particuliers ni que l’accès au site soit ininterrompu.',
+    },
+    s5: {
+      toc: '5. Nous Contacter',
+      h2: '5. Droit Applicable et Contact',
+      p1: 'Les présentes conditions sont régies par le droit applicable aux services numériques internationaux. Pour toute question relative à ces Conditions d’Utilisation, vous pouvez nous écrire à :',
+      label: 'Service Juridique & Support :',
+    },
   },
   de: {
-    title: 'Nutzungsbedingungen & Rechtliche Richtlinien',
-    description: 'Lesen Sie die Nutzungsbedingungen, rechtlichen Hinweise und Richtlinien für die Online-Rechner und Entwickler-Tools von Nexus Calculator.',
-    home: 'Startseite',
-    crumb: 'Nutzungsbedingungen',
-    h1: 'Nutzungsbedingungen & Rechtliche Hinweise',
-    subtitle:
-      'Bitte lesen Sie diese Nutzungsbedingungen sorgfältig durch. Mit dem Zugriff auf die Nexus-Plattform — einschließlich unserer Online-Rechner, Entwickler-Tools, PDF-Werkzeuge und Bildeditoren — erklären Sie sich mit diesen Bedingungen einverstanden.',
+    metaTitle: 'Nutzungsbedingungen | NexusCalculator',
+    metaDesc: 'Lesen Sie die offiziellen Nutzungsbedingungen für den Zugriff auf und die Verwendung der Online-Rechner und Entwickler-Tools von NexusCalculator.',
+    badge: 'Gültig ab: 24. Oktober 2026',
+    h1: 'Nutzungsbedingungen',
+    subtitle: 'Bitte lesen Sie diese Nutzungsbedingungen sorgfältig durch, bevor Sie unsere Online-Rechner und Web-Werkzeuge verwenden.',
+    tocHeading: 'Inhaltsverzeichnis',
+    s1: {
+      toc: '1. Geltungsbereich',
+      h2: '1. Anerkennung der Nutzungsbedingungen',
+      p1: 'Durch den Zugriff auf und die Nutzung von NexusCalculator (https://www.nexuscalculator.net) erklären Sie sich mit diesen Nutzungsbedingungen sowie allen ergänzenden Hinweisen für einzelne Dienste einverstanden.',
+      p2: 'Wenn Sie mit diesen Bedingungen nicht einverstanden sind, nutzen Sie diese Website bitte nicht. Wir behalten uns das Recht vor, diese Bedingungen jederzeit anzupassen; durch die fortgesetzte Nutzung der Website stimmen Sie den aktualisierten Bedingungen zu.',
+    },
+    s2: {
+      toc: '2. Urheberrecht & Lizenz',
+      h2: '2. Geistiges Eigentum und Nutzungslizenz',
+      p1: 'Sofern nicht anders angegeben, liegen sämtliche Schutz- und Urheberrechte an Quellcode, Benutzeroberflächen, Berechnungsalgorithmen und Fachratgebern bei NexusCalculator bzw. seinen Lizenzgebern. Alle Rechte sind vorbehalten.',
+      p2: 'Sie erhalten eine beschränkte, nicht-exklusive und widerrufliche Lizenz zur Nutzung unserer Rechner und Werkzeuge für private, schulische oder interne geschäftliche Zwecke. Eine Weiterveröffentlichung, Vermietung, Unterlizenzierung oder Vervielfältigung unseres Codes und Designs ohne vorherige schriftliche Genehmigung ist untersagt.',
+    },
+    s3: {
+      toc: '3. Unzulässige Nutzung',
+      h2: '3. Verbotene Aktivitäten',
+      p1: 'Sie verpflichten sich, die Website nicht in einer Weise zu nutzen, die die Infrastruktur beschädigt oder die Verfügbarkeit von NexusCalculator beeinträchtigt. Insbesondere ist es untersagt:',
+      items: [
+        'Automatisierte Systeme (aggressive Bots, Spider oder Scraper) einzusetzen, um Daten massenhaft abzugreifen oder unsere Server zu überlasten.',
+        'Teile der Website zu dekompilieren, zurückzuentwickeln (Reverse Engineering) oder Sicherheitsmechanismen zu umgehen.',
+        'Inhalte der Website ohne vorherige schriftliche Zustimmung auf fremden Domains einzubetten oder zu spiegeln.',
+        'Die Website für rechtswidrige, betrügerische oder schädliche Zwecke zu verwenden.',
+      ],
+    },
+    s4: {
+      toc: '4. Gewährleistungsausschluss',
+      h2: '4. Gewährleistungsausschluss („Wie Besehen“)',
+      p1: 'Die Rechner, Code-Werkzeuge und redaktionellen Inhalte auf NexusCalculator werden „wie besehen“ und „nach Verfügbarkeit“ bereitgestellt. NexusCalculator übernimmt keinerlei ausdrückliche oder stillschweigende Gewährleistung, insbesondere nicht für die handelsübliche Qualität oder die Eignung für einen bestimmten Zweck.',
+      p2: 'Wir übernehmen keine Garantie dafür, dass Berechnungsergebnisse in jedem Einzelfall zu 100 % fehlerfrei sind oder dass die Website jederzeit ohne Unterbrechung zur Verfügung steht.',
+    },
+    s5: {
+      toc: '5. Kontakt',
+      h2: '5. Anwendbares Recht und Kontakt',
+      p1: 'Für diese Nutzungsbedingungen gelten die einschlägigen Bestimmungen für digitale Online-Dienste. Bei Fragen zu diesen Nutzungsbedingungen kontaktieren Sie uns bitte unter:',
+      label: 'Recht & Support:',
+    },
   },
 };
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
   const { locale } = await params;
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
-  const c = copyByLocale[locale] || copyByLocale.en;
+  const t = TERMS_COPY[locale] || TERMS_COPY.en;
+  const alternates = getCanonicalAndAlternates('/terms-of-use', locale);
 
   return {
-    title: c.title,
-    description: c.description,
-    keywords: ['terms of use', 'legal disclaimer', 'terms of service', 'nexus tools policy', 'developer tools terms', 'pdf utility terms', 'image processing terms', 'international terms'],
-    alternates: getCanonicalAndAlternates('/terms-of-use', locale),
-    openGraph: {
-      type: 'website',
-      title: c.title,
-      description: c.description,
-      siteName: 'Nexus Calculator & Tools',
-    },
-    twitter: {
-      card: 'summary',
-      title: c.title,
-      description: c.description,
-    }
+    title: t.metaTitle,
+    description: t.metaDesc,
+    alternates,
   };
 }
 
-export default async function TermsOfUsePage({ params }: { params: Promise<{ locale: string }> }) {
-  const resolvedParams = await params;
-  const locale = resolvedParams.locale;
+export default async function TermsOfUsePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   setRequestLocale(locale);
-  const c = copyByLocale[locale] || copyByLocale.en;
-  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
-  const canonicalUrl = getCanonicalUrl('/terms-of-use', locale);
+  const t = TERMS_COPY[locale] || TERMS_COPY.en;
+
   return (
-    <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
-      {/* JSON-LD Structured Data for WebPage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": c.title,
-            "description": c.description,
-            "url": canonicalUrl,
-            "publisher": {
-              "@type": "Organization",
-              "name": "Nexus",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://www.nexuscalculator.net/icons/icon-512x512.png"
-              }
-            }
-          })
-        }}
-      />
-
-      {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
-        <ol className="flex items-center space-x-2">
-          <li>
-            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{c.home}</CustomLink>
-          </li>
-          <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
-          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">{c.crumb}</li>
-        </ol>
-      </nav>
-
-      <header className="mb-14 border-b border-slate-200 dark:border-slate-800 pb-10">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-slate-700 dark:text-slate-300">
-            <Scale size={32} />
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#518231]/10 text-[#518231] font-medium text-sm mb-4">
+            <FileText size={16} />
+            <span>{t.badge}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">{c.h1}</h1>
-        </div>
-        <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-          {c.subtitle}
-        </p>
-        <div className="mt-6 inline-flex flex-wrap items-center gap-2 bg-slate-50 dark:bg-slate-900 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800">
-          <RefreshCcw size={16} className="text-slate-500 dark:text-slate-400" />
-          <span className="text-sm font-medium text-slate-700 dark:text-slate-300">Effective Date: January 1, 2024</span>
-          <span className="text-slate-300 dark:text-slate-700 mx-1">|</span>
-          <span className="text-sm text-slate-500 dark:text-slate-400">Last Modified: January 15, 2026</span>
-        </div>
-      </header>
-
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        {/* Table of Contents - Sticky Sidebar */}
-        <div className="lg:col-span-4 hidden lg:block">
-          <div className="sticky top-24 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-2xl">
-            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
-              <FileText size={16} className="text-slate-500" />
-              Contents
-            </h3>
-            <ul className="space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
-              <li><a href="#acceptance" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">1. Acceptance of Terms</a></li>
-              <li><a href="#service-description" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">2. Comprehensive Service Description</a></li>
-              <li><a href="#disclaimer" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">3. Crucial Disclaimer (No Professional Advice)</a></li>
-              <li><a href="#license" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">4. Intellectual Property & Limited License</a></li>
-              <li><a href="#user-conduct" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">5. User Conduct and Responsibilities</a></li>
-              <li><a href="#tool-specific-terms" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">6. Tool-Specific Terms and Limitations</a></li>
-              <li><a href="#accuracy" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">7. Accuracy, Metrics, and Standards</a></li>
-              <li><a href="#third-party" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">8. Third-Party Services and Advertising</a></li>
-              <li><a href="#liability" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">9. Limitation of Liability and Warranties</a></li>
-              <li><a href="#indemnification" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">10. Indemnification</a></li>
-              <li><a href="#international" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">11. International Compliance</a></li>
-              <li><a href="#modifications" className="hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors block">12. Modifications & Termination</a></li>
-            </ul>
-          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+            {t.h1}
+          </h1>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            {t.subtitle}
+          </p>
         </div>
 
-        {/* Main Content */}
-        <article className="lg:col-span-8 prose prose-slate dark:prose-invert prose-lg max-w-none">
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
           
-          <section id="acceptance" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">1</span>
-              Acceptance of Terms
-            </h2>
-            <p>
-              By accessing the website at <strong>NexusCalculator.net</strong> (referred to herein as &quot;the Website&quot;, &quot;Platform&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;), you agree to abide by these Terms of Service, all applicable global laws and regulations, and agree that you are solely responsible for compliance with any applicable local laws in your jurisdiction.
-            </p>
-            <p>
-              If you do not agree with any of these terms, you are explicitly prohibited from using or accessing this site. The computational tools, software, graphics, and materials contained on this website are protected by applicable copyright, trademark, and intellectual property laws globally. Your continued use of the Platform signifies your irrevocable acceptance of these terms.
-            </p>
-          </section>
+          {/* Sticky Table of Contents (Left Sidebar) */}
+          <aside className="w-full lg:w-64 shrink-0 lg:sticky lg:top-28 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 className="font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider text-xs">
+              {t.tocHeading}
+            </h3>
+            <nav className="flex flex-col space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+              <a href="#acceptance" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <CheckCircle size={16} /> {t.s1.toc}
+              </a>
+              <a href="#intellectual-property" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <Copyright size={16} /> {t.s2.toc}
+              </a>
+              <a href="#prohibited-use" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <Ban size={16} /> {t.s3.toc}
+              </a>
+              <a href="#warranty-disclaimer" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <Scale size={16} /> {t.s4.toc}
+              </a>
+              <a href="#contact-us" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <Mail size={16} /> {t.s5.toc}
+              </a>
+            </nav>
+          </aside>
 
-          <section id="service-description" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">2</span>
-              Comprehensive Service Description
-            </h2>
-            <p>
-              Nexus operates as an all-encompassing digital utility ecosystem. While originally conceived as a mathematical calculation platform, our services have exponentially expanded to serve a global audience of software engineers, designers, financial analysts, and everyday users. Our free online utility platform consists of four primary domains:
-            </p>
-            <ul>
-              <li><strong>Developer Utilities:</strong> Including, but not limited to, JSON formatters, CSS minifiers, Base64 encoders/decoders, SQL formatters, cryptographic hash generators, and string manipulators.</li>
-              <li><strong>Professional PDF Tools:</strong> Utilities designed to compress PDFs, merge multiple PDF documents, split PDF files, extract pages, and convert PDF to Word or Image formats utilizing client-side WebAssembly algorithms.</li>
-              <li><strong>Image & Media Processing:</strong> Capabilities for converting image formats (JPG, PNG, WebP, SVG, ICO), compressing large visual assets, generating CSS shadows, and executing AI-powered background removal.</li>
-              <li><strong>High-Precision Calculators:</strong> Sophisticated algorithms for computing financial scenarios (mortgage, auto loan, amortization), health metrics (BMI, BMR, caloric needs), and complex scientific formulas.</li>
-            </ul>
-            <p>
-              We reserve the absolute right to modify, suspend, or discontinue any aspect of the Service at any time without prior notice or liability.
-            </p>
-          </section>
-
-          <section id="disclaimer" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">3</span>
-              Crucial Disclaimer (No Professional Advice)
-            </h2>
-            <div className="bg-[#518231]/5 border-l-4 border-[#518231] p-5 rounded-r-xl my-6 not-prose">
-              <div className="flex gap-3">
-                <ShieldAlert className="text-[#518231] shrink-0 mt-0.5" size={24} />
-                <div>
-                  <h3 className="font-bold text-slate-900 dark:text-white mb-1">Informational and Utility Purposes Only</h3>
-                  <p className="text-slate-800 dark:text-slate-300 text-sm leading-relaxed">
-                    All tools, calculators, code formatters, and associated outputs provided on the Nexus Platform are strictly for broad, educational, informational, and general utility purposes. They do <strong>not</strong> constitute, and should never be construed as, professional legal, financial, medical, or software engineering advice.
-                  </p>
-                </div>
-              </div>
-            </div>
+          {/* Main Content (Right Column) */}
+          <article className="flex-1 bg-white dark:bg-slate-900 p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-12 leading-relaxed">
             
-            <p>We make extensive engineering efforts to ensure the accuracy of our software architecture; however, you must acknowledge the following truths:</p>
-            
-            <ul>
-              <li><strong>Finance & Legal Limitations:</strong> Our loan, mortgage, and tax calculators provide estimations based on standard mathematical formulas. They do not account for hidden local fees, complex tax code nuances, fluctuating market conditions, or personal credit variances. Always consult a Certified Financial Planner (CFP) or Tax Attorney before making financial commitments.</li>
-              <li><strong>Health & Medical Limitations:</strong> Health calculators use established biometric baselines (e.g., Mifflin-St Jeor equation). These are population-based averages. They do not diagnose conditions, account for bone density, or factor in specific diseases. Never substitute these preliminary calculations for the diagnosis of a licensed Medical Doctor (MD).</li>
-              <li><strong>Software & Code Limitations:</strong> While our developer utilities (like JSON formatters or Base64 encoders) are built to global standards, you are solely responsible for testing any generated or formatted code before deploying it to production environments. We are not liable for software bugs, security vulnerabilities, or server downtime resulting from the use of our code utilities.</li>
-              <li><strong>No Fiduciary Duty:</strong> The Nexus Platform does not establish any client-fiduciary, patient-doctor, or professional relationship with its users.</li>
-            </ul>
-          </section>
-
-          <section id="license" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">4</span>
-              Intellectual Property & Limited License
-            </h2>
-            <p>
-              The Nexus Platform, including its underlying React/Next.js architecture, proprietary WebAssembly modules, original graphics, UI/UX designs, and algorithmic implementations, are the exclusive property of Nexus and its licensors. 
-            </p>
-            <p>
-              We grant you a personal, non-exclusive, non-transferable, and revocable license to use our web-based tools for non-commercial and commercial transitory viewing and computational operations, provided you interact with the tools directly through our web interface. Under this limited license constraint, you are explicitly prohibited from performing any of the following:
-            </p>
-            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 not-prose mb-6">
-              <ul className="space-y-3 relative z-10">
-                {[
-                  "Systematically scrape, mine, or extract calculation endpoints or tool logic via automated bots, spiders, or scripts.",
-                  "Reverse engineer, decompile, or obfuscate the proprietary client-side architectures, including our Wasm binaries for PDF/Image processing.",
-                  "Frame or \"mirror\" our proprietary tools on external domains without explicit written consent.",
-                  "Utilize our tools to establish commercial services that compete directly with Nexus Calculator.",
-                  "Attempt to bypass our rate-limiting or security protocols through proxy rotations or automated API abuse."
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-3 items-start">
-                    <span className="text-rose-500 dark:text-rose-400 font-bold shrink-0 mt-0.5">✖</span>
-                    <span className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <p>
-              Any violation of these terms automatically terminates your license to use the platform, and we reserve the right to ban your IP address and pursue legal action for intellectual property infringement.
-            </p>
-          </section>
-
-          <section id="user-conduct" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">5</span>
-              User Conduct and Responsibilities
-            </h2>
-            <p>
-              When using tools that require you to input data, upload files, or process media (such as PDF mergers or Image Converters), you agree to assume full responsibility for the content you process. You agree not to:
-            </p>
-            <ul>
-              <li>Process or upload files containing malware, trojans, ransomware, or malicious code designed to disrupt our infrastructure.</li>
-              <li>Process materials that infringe upon the copyright, trademark, or intellectual property rights of third parties.</li>
-              <li>Upload or manipulate illicit, defamatory, obscene, or legally prohibited documents or imagery.</li>
-            </ul>
-            <p>
-              Although we employ client-side ephemeral processing (meaning your files often do not reach our servers), you remain legally liable for the nature of the data you choose to manipulate using our software suite.
-            </p>
-          </section>
-
-          <section id="tool-specific-terms" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">6</span>
-              Tool-Specific Terms and Limitations
-            </h2>
-            <p>
-              Due to the diverse nature of our digital utility platform, specific categories of tools carry unique operational terms:
-            </p>
-
-            <h3 className="flex items-center gap-2 mt-8 text-xl font-bold text-slate-800 dark:text-slate-200"><Code className="text-blue-500" size={20}/> Developer Tools & Code Formatting</h3>
-            <p>
-              Tools such as the JSON formatter, CSS Minifier, and Base64 encoder operate strictly within your local browser. While we strive for zero-bug logic, edge cases in complex code structures may result in formatting errors or data truncation. You must verify formatted outputs before integrating them into live codebases. We bear no liability for application crashes or data corruption stemming from the use of our developer utilities.
-            </p>
-
-            <h3 className="flex items-center gap-2 mt-8 text-xl font-bold text-slate-800 dark:text-slate-200"><FileCode className="text-red-500" size={20}/> PDF Utilities & Document Integrity</h3>
-            <p>
-              When utilizing our PDF compression, merging, and conversion tools, you acknowledge that manipulating complex PDF architectures (including encrypted PDFs, specific font subsets, and complex vector graphics) may occasionally alter document formatting. Nexus is not responsible for any loss of document fidelity, metadata stripping, or formatting degradation that occurs during the conversion process.
-            </p>
-
-            <h3 className="flex items-center gap-2 mt-8 text-xl font-bold text-slate-800 dark:text-slate-200"><ImageIcon className="text-purple-500" size={20}/> Image Processing & Copyright</h3>
-            <p>
-              Our image converters, compressors, and AI background removers do not grant you ownership over resulting images if you did not possess the copyright to the original input. The output of our AI and algorithmic image tools is provided &quot;as is.&quot; We do not guarantee pixel-perfect accuracy, particularly in complex AI background removal scenarios.
-            </p>
-          </section>
-
-          <section id="accuracy" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">7</span>
-              Accuracy, Metrics, and Standards
-            </h2>
-            <p>
-              While we pride ourselves on utilizing high-performance algorithms, the materials appearing on the Nexus Platform may include technical, typographical, or scientific deviations. Nexus does not warrant that any of the materials on its website are perpetually accurate, complete, or reflective of the absolute latest scientific or technological literature.
-            </p>
-            <p>
-              We occasionally update algorithms to reflect changes in international consensus (e.g., global banking standards for amortization, updated web standards for CSS minification, new image codec support). However, we are under no explicit obligation to update the materials uniformly or instantaneously.
-            </p>
-          </section>
-
-          <section id="third-party" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">8</span>
-              Third-Party Services and Advertising
-            </h2>
-            <p>
-              To maintain our enterprise-tier infrastructure completely free of charge, Nexus utilizes managed ad networks (such as Google AdSense) and links to third-party web sites. We have not reviewed all of the sites linked to our platform and are not responsible for the contents of any such linked site. 
-            </p>
-            <p>
-              The inclusion of any link or advertisement does not imply endorsement by Nexus. Use of any such linked website is entirely at the user&apos;s own risk. Furthermore, your interactions with advertisers found on or through our service are solely between you and such advertiser. We shall not be responsible or liable for any loss or damage incurred as the result of any such dealings.
-            </p>
-          </section>
-
-          <section id="liability" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">9</span>
-              Limitation of Liability and Warranties (As-Is Basis)
-            </h2>
-            <div className="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 not-prose mb-6">
-              <h3 className="font-bold text-slate-900 dark:text-white mb-2 uppercase text-sm tracking-widest text-rose-500">Service Provision Warranty</h3>
-              <p className="text-slate-700 dark:text-slate-300 text-sm leading-relaxed uppercase">
-                The materials and tools on Nexus are provided on an &apos;as is&apos; and &apos;as available&apos; basis. Nexus makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+            {/* Section 1 */}
+            <section id="acceptance" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><CheckCircle size={20} /></span>
+                {t.s1.h2}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {t.s1.p1}
               </p>
-            </div>
-            <p>
-              In no event, under no legal theory (whether in tort, contract, strict liability, or otherwise) shall Nexus, its engineers, partners, or its suppliers be liable for any damages arising from the use or inability to use the materials on this platform.
-            </p>
-            <p>
-              This includes, without limitation, damages for loss of data, loss of anticipated profits, business interruption, hardware failure, compromised codebases, corrupted PDF documents, or adverse health events resulting from reliance on our outputs. Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you in their entirety.
-            </p>
-          </section>
+              <p className="text-slate-600 dark:text-slate-400">
+                {t.s1.p2}
+              </p>
+            </section>
 
-          <section id="indemnification" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">10</span>
-              Indemnification
-            </h2>
-            <p>
-              You agree to defend, indemnify, and hold harmless Nexus, its parent companies, affiliates, engineers, and service providers from and against any claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys&apos; fees) arising out of or relating to your violation of these Terms of Use or your use of the Platform, including, but not limited to, any use of the Platform&apos;s content, services, and products other than as expressly authorized in these Terms.
-            </p>
-          </section>
+            <hr className="border-slate-200 dark:border-slate-800" />
 
-          <section id="international" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">11</span>
-              International Compliance & Jurisdiction
-            </h2>
-            <div className="bg-slate-800 dark:bg-slate-900 border border-slate-700 dark:border-slate-800 text-white p-6 rounded-2xl not-prose mb-6">
-              <div className="flex items-start gap-4">
-                <GlobeLock className="text-[#6fa844] shrink-0" size={28} />
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Nexus operates infrastructure globally. However, if you are accessing these tools from regions with specific localized regulations regarding financial projections, health data (e.g., GDPR, HIPAA, UK DPA), or algorithmic transparency, it is your responsibility to ensure your usage complies with your local sovereign laws.
+            {/* Section 2 */}
+            <section id="intellectual-property" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><Copyright size={20} /></span>
+                {t.s2.h2}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {t.s2.p1}
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">
+                {t.s2.p2}
+              </p>
+            </section>
+
+            <hr className="border-slate-200 dark:border-slate-800" />
+
+            {/* Section 3 */}
+            <section id="prohibited-use" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><Ban size={20} /></span>
+                {t.s3.h2}
+              </h2>
+              <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-slate-800">
+                <p className="text-slate-600 dark:text-slate-400 mb-4">
+                  {t.s3.p1}
+                </p>
+                <ul className="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+                  {t.s3.items.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </section>
+
+            <hr className="border-slate-200 dark:border-slate-800" />
+
+            {/* Section 4 */}
+            <section id="warranty-disclaimer" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><Scale size={20} /></span>
+                {t.s4.h2}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {t.s4.p1}
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">
+                {t.s4.p2}
+              </p>
+            </section>
+
+            <hr className="border-slate-200 dark:border-slate-800" />
+
+            {/* Section 5 */}
+            <section id="contact-us" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><Mail size={20} /></span>
+                {t.s5.h2}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {t.s5.p1}
+              </p>
+              <div className="inline-block bg-slate-50 dark:bg-slate-950 px-6 py-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <p className="font-medium text-slate-900 dark:text-white">
+                  {t.s5.label}{' '}
+                  <a href="mailto:support@nexuscalculator.net" className="text-[#518231] hover:underline ml-1">
+                    support@nexuscalculator.net
+                  </a>
                 </p>
               </div>
-            </div>
-            <p>
-              Any claim relating to the Nexus Platform shall be governed by international law and standard arbitration procedures without regard to its conflict of law provisions. 
-            </p>
-          </section>
+            </section>
 
-          <section id="modifications" className="mb-12 scroll-mt-24">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="bg-[#518231]/10 text-[#518231] w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0">12</span>
-              Modifications & Termination
-            </h2>
-            <p>
-              Nexus reserves the absolute right to revise these terms of service, append new restrictions, or alter the computational logic of any tool without prior notice. By continuing to use this website subsequent to any changes, you implicitly agree to be bound by the then-current revised version of these Terms of Use.
-            </p>
-            <p>
-              We may terminate or suspend access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.
-            </p>
-          </section>
+          </article>
 
-          <section id="contact" className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-800">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">Questions About Our Legal Terms?</h2>
-            <p className="mb-6">
-              If you require clarification on any of the stipulations above or have a formal legal inquiry, our compliance and legal team is available.
-            </p>
-            <a href="mailto:support@nexuscalculator.net" className="inline-flex items-center gap-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-white font-semibold py-3 px-6 rounded-xl transition-colors no-underline">
-              <Mail className="w-5 h-5 text-[#518231]" />
-              support[at]nexuscalculator.net
-            </a>
-          </section>
-
-        </article>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }

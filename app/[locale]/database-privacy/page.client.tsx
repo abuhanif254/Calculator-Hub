@@ -150,35 +150,727 @@ export function StepCard({
   );
 }
 
-// ── FAQ Accordion ──────────────────────────────────────────────────────────
-const FAQ_ITEMS = [
-  {
-    q: "What types of databases does the platform support?",
-    a: "The platform supports PostgreSQL, MySQL, MariaDB, MongoDB, SQLite, Microsoft SQL Server, BigQuery, Snowflake, and Redshift. New database connectors are added regularly.",
-  },
-  {
-    q: "Is my data safe? Does any data leave my browser?",
-    a: "In browser-side scan mode, all data is processed entirely within your browser using WebAssembly — nothing is sent to Nexus servers. For database scan mode, only anonymised metadata (column names, data types, sample statistics) is processed — never raw row values.",
-  },
-  {
-    q: "What PII types can it detect?",
-    a: "30+ PII detectors including: names, email addresses, phone numbers, SSNs, credit card numbers (PAN), dates of birth, IP addresses, passport numbers, bank account numbers, IBAN, National IDs, medical record numbers, and more. Detectors use both regex patterns and contextual heuristics for high accuracy.",
-  },
-  {
-    q: "Which compliance frameworks are supported?",
-    a: "The platform provides built-in compliance dashboards and downloadable reports for GDPR, HIPAA, PCI-DSS, and SOC 2. Each framework has a dedicated checklist, compliance score, and remediation recommendations.",
-  },
-  {
-    q: "Is it really free? What is the catch?",
-    a: "Yes, completely free. No usage limits, no credit card required, no paywalled features. The platform is open-source and hosted at no cost. Enterprise features — unlimited databases, job scheduling, team management, API access, AES-256 secrets vault — are all included for free.",
-  },
-];
+interface DbPrivacyCopy {
+  heroBadge: string;
+  h1Part1: string;
+  h1Highlight: string;
+  h1Part2: string;
+  heroSubtitle: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+  trustBadges: string[];
+  scrollLabel: string;
+  stats: [string, string, string, string];
+  featuresTag: string;
+  featuresH2: string;
+  featuresSub: string;
+  featuresList: { title: string; desc: string }[];
+  howTag: string;
+  howH2: string;
+  steps: { title: string; desc: string }[];
+  startFree: string;
+  scannerSummary: string;
+  complianceTag: string;
+  complianceH2: string;
+  complianceSub: string;
+  readinessScore: string;
+  pricingTag: string;
+  pricingH2: string;
+  pricingSub: string;
+  perMonth: string;
+  everythingIncluded: string;
+  perks: string[];
+  launchPlatform: string;
+  noSignup: string;
+  lovedByDbas: string;
+  guidesH2: string;
+  guidesSub: string;
+  guideCards: { title: string; desc: string; badge: string }[];
+  compH2: string;
+  compSub: string;
+  compFeatureCol: string;
+  compRows: string[];
+  faqH2: string;
+  faqs: { q: string; a: string }[];
+  finalH2Part1: string;
+  finalH2Highlight: string;
+  finalSub: string;
+  finalCta: string;
+  finalNote: string;
+}
 
-function FAQ() {
+const DB_PRIVACY_COPY: Record<string, DbPrivacyCopy> = {
+  en: {
+    heroBadge: "Free & Open · No credit card required · Enterprise-grade",
+    h1Part1: "Enterprise",
+    h1Highlight: "Database",
+    h1Part2: "Anonymizer",
+    heroSubtitle:
+      "Scan, mask, and anonymize sensitive data across your entire database infrastructure. GDPR · HIPAA · PCI-DSS compliance — built in, not bolted on.",
+    ctaPrimary: "Launch Free Platform",
+    ctaSecondary: "See How It Works",
+    trustBadges: ["GDPR Ready", "HIPAA Compliant", "PCI-DSS", "SOC 2", "AES-256 Encrypted", "Zero Logs"],
+    scrollLabel: "Scroll",
+    stats: ["Rows Masked", "PII Types Detected", "Databases Supported", "Compliance Standards"],
+    featuresTag: "Platform Features",
+    featuresH2: "Enterprise Database Privacy & PII Protection Features",
+    featuresSub: "Production-grade data privacy tooling that normally costs thousands per month — completely free.",
+    featuresList: [
+      {
+        title: "PII Auto-Scanner",
+        desc: "Automatically detect emails, SSNs, credit cards, phone numbers, IP addresses and 30+ other PII types across all your database columns.",
+      },
+      {
+        title: "Smart Masking Engine",
+        desc: "Apply SHA-256 hashing, synthetic data generation, format-preserving encryption, partial redaction, or custom regex patterns per column.",
+      },
+      {
+        title: "Multi-DB Support",
+        desc: "Connect PostgreSQL, MySQL, MongoDB, MariaDB, SQLite, Oracle, and SQL Server. Manage dozens of connections from a single dashboard.",
+      },
+      {
+        title: "High-Performance Jobs",
+        desc: "Process millions of rows with parallel worker nodes. Schedule recurring masking jobs via cron, get real-time progress and ETA.",
+      },
+      {
+        title: "Compliance Reporting",
+        desc: "Generate GDPR Article 30, HIPAA Safe Harbor, and PCI-DSS compliance certificates with one click. Full audit trail included.",
+      },
+      {
+        title: "Projects & Environments",
+        desc: "Organise databases, masking profiles, and jobs into Production, Staging, and Development projects with separate access controls.",
+      },
+      {
+        title: "Secrets Manager",
+        desc: "Store database credentials with AES-256-GCM encryption. Secrets are never logged or exposed in plain text — ever.",
+      },
+      {
+        title: "Role-Based Access Control",
+        desc: "Invite teammates as Admin, Compliance Officer, DBA, Developer, or Read-Only. Full RBAC with granular per-resource permissions.",
+      },
+    ],
+    howTag: "How It Works",
+    howH2: "How PII Scanning & Data Masking Works — 3 Simple Steps",
+    steps: [
+      {
+        title: "Connect Your Database",
+        desc: "Add a database connection in seconds. PostgreSQL, MySQL, MongoDB, and more — credentials stay encrypted in our AES-256 vault.",
+      },
+      {
+        title: "Scan for Sensitive Data",
+        desc: "Run the PII auto-scanner. It detects 30+ data types across every table and column, with risk scores and masking recommendations.",
+      },
+      {
+        title: "Mask & Export",
+        desc: "Apply masking rules, run the job, and export your anonymized dataset as CSV, JSON, SQL, Parquet, or push it back to the DB.",
+      },
+    ],
+    startFree: "Start for Free",
+    scannerSummary: "6 PII columns found · 3 high-risk · Masking rules ready",
+    complianceTag: "Regulatory Compliance",
+    complianceH2: "Built for regulated industries",
+    complianceSub: "Track your compliance posture against major data protection frameworks and generate audit-ready certificates.",
+    readinessScore: "Readiness Score",
+    pricingTag: "Pricing",
+    pricingH2: "Free Database Privacy Platform — No Credit Card Required",
+    pricingSub: "Competitors charge $500–$5,000/month for the same capabilities. We believe data privacy tooling should be accessible to every team.",
+    perMonth: "/month",
+    everythingIncluded: "Everything included. No feature gates.",
+    perks: [
+      "Unlimited databases",
+      "Unlimited masking jobs",
+      "All 30+ PII detectors",
+      "GDPR/HIPAA/PCI-DSS reports",
+      "API access & webhooks",
+      "Team collaboration (RBAC)",
+      "AES-256 secrets vault",
+      "Job scheduling & history",
+    ],
+    launchPlatform: "Launch Platform",
+    noSignup: "No sign-up required",
+    lovedByDbas: "Loved by DBAs worldwide",
+    guidesH2: "Privacy & Compliance Guides",
+    guidesSub: "In-depth technical guides to help you understand PII scanning, data masking, and regulatory compliance requirements.",
+    guideCards: [
+      {
+        title: "What Is PII Scanning?",
+        desc: "Learn how automated PII detection works, what types of sensitive data databases contain, and how to protect against breaches.",
+        badge: "7 min read",
+      },
+      {
+        title: "GDPR Database Compliance",
+        desc: "A technical guide to GDPR Articles 25 and 32 — encryption, pseudonymisation, data minimisation, and audit logging.",
+        badge: "9 min read",
+      },
+      {
+        title: "Data Masking Techniques",
+        desc: "Compare hashing, tokenization, redaction, pseudonymisation, and format-preserving encryption with real-world use cases.",
+        badge: "8 min read",
+      },
+      {
+        title: "HIPAA Data De-Identification",
+        desc: "Safe Harbor vs Expert Determination — which 18 identifiers to remove and how to implement de-identification in SQL.",
+        badge: "8 min read",
+      },
+      {
+        title: "PCI DSS PAN Masking",
+        desc: "How to truncate, tokenize, and hash Primary Account Numbers to descope your systems from PCI DSS compliance.",
+        badge: "7 min read",
+      },
+      {
+        title: "View All Privacy Guides",
+        desc: "Browse our full library of data privacy, compliance, and database security guides — all written by engineers.",
+        badge: "5 guides",
+      },
+    ],
+    compH2: "Enterprise Privacy Tools — Without the Enterprise Price",
+    compSub: "Competitors charge $500–$5,000/month. We charge $0.",
+    compFeatureCol: "Feature",
+    compRows: [
+      "PII Auto-Detection (30+ types)",
+      "GDPR / HIPAA / PCI-DSS Reports",
+      "Browser-side processing",
+      "Job Scheduler",
+      "Team Management & RBAC",
+      "AES-256 Secrets Vault",
+      "Webhook Integrations",
+      "Open Source",
+      "No credit card required",
+    ],
+    faqH2: "Frequently Asked Questions",
+    faqs: [
+      {
+        q: "What types of databases does the platform support?",
+        a: "The platform supports PostgreSQL, MySQL, MariaDB, MongoDB, SQLite, Microsoft SQL Server, BigQuery, Snowflake, and Redshift. New database connectors are added regularly.",
+      },
+      {
+        q: "Is my data safe? Does any data leave my browser?",
+        a: "In browser-side scan mode, all data is processed entirely within your browser using WebAssembly — nothing is sent to Nexus servers. For database scan mode, only anonymised metadata (column names, data types, sample statistics) is processed — never raw row values.",
+      },
+      {
+        q: "What PII types can it detect?",
+        a: "30+ PII detectors including: names, email addresses, phone numbers, SSNs, credit card numbers (PAN), dates of birth, IP addresses, passport numbers, bank account numbers, IBAN, National IDs, medical record numbers, and more.",
+      },
+      {
+        q: "Which compliance frameworks are supported?",
+        a: "The platform provides built-in compliance dashboards and downloadable reports for GDPR, HIPAA, PCI-DSS, and SOC 2. Each framework has a dedicated checklist, compliance score, and remediation recommendations.",
+      },
+      {
+        q: "Is it really free? What is the catch?",
+        a: "Yes, completely free. No usage limits, no credit card required, no paywalled features. The platform is open-source and hosted at no cost.",
+      },
+    ],
+    finalH2Part1: "Your data privacy",
+    finalH2Highlight: "starts here.",
+    finalSub: "Stop exposing sensitive data in dev, staging, and analytics environments. Start masking in minutes.",
+    finalCta: "Open the Platform Free",
+    finalNote: "No account needed · Open source · GDPR compliant",
+  },
+  es: {
+    heroBadge: "Gratis y Abierto · Sin tarjeta de crédito · Nivel Empresarial",
+    h1Part1: "Anonimizador de",
+    h1Highlight: "Bases de Datos",
+    h1Part2: "Empresarial",
+    heroSubtitle:
+      "Escanee, enmascare y anonimice datos sensibles en toda su infraestructura de bases de datos. Cumplimiento RGPD · HIPAA · PCI-DSS integrado de forma nativa.",
+    ctaPrimary: "Abrir Plataforma Gratis",
+    ctaSecondary: "Ver Cómo Funciona",
+    trustBadges: ["Listo para RGPD", "Cumple HIPAA", "PCI-DSS", "SOC 2", "Cifrado AES-256", "Cero Registros"],
+    scrollLabel: "Desplazar",
+    stats: ["Filas Enmascaradas", "Tipos de PII Detectados", "Bases de Datos Soportadas", "Estándares de Cumplimiento"],
+    featuresTag: "Funciones de la Plataforma",
+    featuresH2: "Funciones Empresariales de Privacidad y Protección PII",
+    featuresSub: "Herramientas de privacidad de datos de grado de producción que suelen costar miles de dólares al mes, totalmente gratis.",
+    featuresList: [
+      {
+        title: "Auto-Escáner de PII",
+        desc: "Detecte automáticamente correos electrónicos, DNI/SSN, tarjetas de crédito, teléfonos, direcciones IP y más de 30 tipos de PII en todas sus columnas.",
+      },
+      {
+        title: "Motor de Enmascaramiento Inteligente",
+        desc: "Aplique hash SHA-256, generación de datos sintéticos, cifrado con preservación de formato (FPE), redacción parcial o expresiones regulares personalizadas.",
+      },
+      {
+        title: "Soporte Multi-Base de Datos",
+        desc: "Conecte PostgreSQL, MySQL, MongoDB, MariaDB, SQLite, Oracle y SQL Server. Gestione docenas de conexiones desde un único panel.",
+      },
+      {
+        title: "Trabajos de Alto Rendimiento",
+        desc: "Procese millones de filas con nodos paralelos. Programe tareas recurrentes de anonimización mediante cron con progreso en tiempo real.",
+      },
+      {
+        title: "Informes de Cumplimiento",
+        desc: "Genere certificados de auditoría para el Artículo 30 del RGPD, HIPAA Safe Harbor y PCI-DSS con un solo clic.",
+      },
+      {
+        title: "Proyectos y Entornos",
+        desc: "Organice bases de datos, perfiles de enmascaramiento y tareas en proyectos de Producción, Staging y Desarrollo con controles independientes.",
+      },
+      {
+        title: "Gestor de Secretos",
+        desc: "Almacene credenciales de bases de datos con cifrado AES-256-GCM. Las claves nunca se registran ni exponen en texto plano.",
+      },
+      {
+        title: "Control de Acceso Basado en Roles",
+        desc: "Invite a su equipo como Administrador, Oficial de Cumplimiento, DBA, Desarrollador o Solo Lectura con permisos granulares RBAC.",
+      },
+    ],
+    howTag: "Cómo Funciona",
+    howH2: "Cómo Funciona el Escaneo PII y Enmascaramiento — 3 Pasos Simples",
+    steps: [
+      {
+        title: "Conecte su Base de Datos",
+        desc: "Añada una conexión en segundos o cargue su volcado SQL/CSV en el navegador. Las credenciales permanecen cifradas en nuestra bóveda AES-256.",
+      },
+      {
+        title: "Escanee Datos Sensibles",
+        desc: "Ejecute el auto-escáner PII. Detecta más de 30 categorías de datos personales en cada tabla y columna con puntuaciones de riesgo.",
+      },
+      {
+        title: "Enmascare y Exporte",
+        desc: "Aplique reglas de anonimización y exporte su conjunto de datos seguro en formato CSV, JSON, SQL o Parquet.",
+      },
+    ],
+    startFree: "Comenzar Gratis",
+    scannerSummary: "6 columnas PII detectadas · 3 de alto riesgo · Reglas listas",
+    complianceTag: "Cumplimiento Normativo",
+    complianceH2: "Diseñado para industrias reguladas",
+    complianceSub: "Supervise su postura de cumplimiento frente a los principales marcos internacionales de protección de datos y genere informes de auditoría.",
+    readinessScore: "Índice de Preparación",
+    pricingTag: "Precios",
+    pricingH2: "Plataforma Gratuita de Privacidad de Datos — Sin Tarjeta de Crédito",
+    pricingSub: "Otros proveedores cobran entre $500 y $5,000 al mes por estas mismas capacidades. Creemos que la seguridad de datos debe ser accesible para todos los equipos.",
+    perMonth: "/mes",
+    everythingIncluded: "Todo incluido. Sin funciones bloqueadas.",
+    perks: [
+      "Bases de datos ilimitadas",
+      "Tareas de enmascaramiento ilimitadas",
+      "Más de 30 detectores PII incluidos",
+      "Informes RGPD / HIPAA / PCI-DSS",
+      "Acceso API y webhooks",
+      "Colaboración en equipo (RBAC)",
+      "Bóveda de secretos AES-256",
+      "Programador e historial de tareas",
+    ],
+    launchPlatform: "Abrir Plataforma",
+    noSignup: "Sin registro obligatorio",
+    lovedByDbas: "Recomendado por DBAs en todo el mundo",
+    guidesH2: "Guías de Privacidad y Cumplimiento",
+    guidesSub: "Guías técnicas detalladas para comprender la detección de PII, el enmascaramiento criptográfico y las normativas de protección de datos.",
+    guideCards: [
+      {
+        title: "¿Qué es el Escaneo PII?",
+        desc: "Aprenda cómo funciona la detección automatizada de datos personales, qué identificadores sensibles contienen las bases de datos y cómo prevenir filtraciones.",
+        badge: "7 min de lectura",
+      },
+      {
+        title: "Cumplimiento RGPD en Bases de Datos",
+        desc: "Guía técnica sobre los Artículos 25 y 32 del RGPD: cifrado, seudonimización, minimización de datos y registros de auditoría.",
+        badge: "9 min de lectura",
+      },
+      {
+        title: "Técnicas de Enmascaramiento de Datos",
+        desc: "Compare hashing, tokenización, redacción, seudonimización y cifrado con preservación de formato en casos reales.",
+        badge: "8 min de lectura",
+      },
+      {
+        title: "Desidentificación de Datos HIPAA",
+        desc: "Safe Harbor frente a Determinación de Expertos: cuáles son los 18 identificadores que deben eliminarse en entornos clínicos SQL.",
+        badge: "8 min de lectura",
+      },
+      {
+        title: "Enmascaramiento PAN en PCI DSS",
+        desc: "Cómo truncar, tokenizar y aplicar hash a números de tarjetas bancarias (PAN) para cumplir el Requisito 3 de PCI DSS.",
+        badge: "7 min de lectura",
+      },
+      {
+        title: "Ver Todas las Guías de Privacidad",
+        desc: "Explore nuestra biblioteca completa de guías de seguridad de bases de datos y cumplimiento normativo escritas por ingenieros.",
+        badge: "5 guías",
+      },
+    ],
+    compH2: "Herramientas de Privacidad Empresarial — Sin el Precio Empresarial",
+    compSub: "La competencia cobra entre $500 y $5,000/mes. Nosotros cobramos $0.",
+    compFeatureCol: "Característica",
+    compRows: [
+      "Detección Automática PII (+30 tipos)",
+      "Informes RGPD / HIPAA / PCI-DSS",
+      "Procesamiento local en el navegador",
+      "Programador de Tareas (Cron)",
+      "Gestión de Equipos y RBAC",
+      "Bóveda de Secretos AES-256",
+      "Integraciones por Webhook",
+      "Código Abierto (Open Source)",
+      "Sin tarjeta de crédito",
+    ],
+    faqH2: "Preguntas Frecuentes",
+    faqs: [
+      {
+        q: "¿Qué tipos de bases de datos soporta la plataforma?",
+        a: "La plataforma soporta PostgreSQL, MySQL, MariaDB, MongoDB, SQLite, Microsoft SQL Server, BigQuery, Snowflake y Redshift. Se añaden nuevos conectores regularmente.",
+      },
+      {
+        q: "¿Están seguros mis datos? ¿Sale algún dato de mi navegador?",
+        a: "En el modo de escaneo local en navegador, todos los datos se procesan íntegramente dentro de su navegador mediante WebAssembly; no se envía nada a servidores externos. En el modo de conexión remota, solo se analizan metadatos anonimizados.",
+      },
+      {
+        q: "¿Qué tipos de datos PII puede detectar?",
+        a: "Más de 30 detectores PII que incluyen nombres, correos electrónicos, teléfonos, DNI/SSN, números de tarjetas de crédito (PAN), fechas de nacimiento, direcciones IP, pasaportes, cuentas bancarias IBAN e historiales médicos.",
+      },
+      {
+        q: "¿Qué marcos de cumplimiento normativo están incluidos?",
+        a: "La plataforma proporciona paneles de control e informes descargables para RGPD (GDPR), HIPAA, PCI-DSS y SOC 2 con listas de verificación y recomendaciones técnicas.",
+      },
+      {
+        q: "¿Es realmente gratis? ¿Cuál es el truco?",
+        a: "Sí, es totalmente gratis. Sin límites de uso, sin tarjeta de crédito y sin funciones bloqueadas tras muros de pago.",
+      },
+    ],
+    finalH2Part1: "La privacidad de sus datos",
+    finalH2Highlight: "comienza aquí.",
+    finalSub: "Deje de exponer datos confidenciales en entornos de desarrollo, pruebas y analítica. Comience a enmascarar en minutos.",
+    finalCta: "Abrir la Plataforma Gratis",
+    finalNote: "Sin cuenta obligatoria · Código abierto · Compatible con RGPD",
+  },
+  fr: {
+    heroBadge: "Gratuit & Open Source · Sans carte bancaire · Niveau Entreprise",
+    h1Part1: "Anonymiseur de",
+    h1Highlight: "Bases de Données",
+    h1Part2: "Entreprise",
+    heroSubtitle:
+      "Analysez, masquez et anonymisez les données sensibles sur l’ensemble de votre infrastructure de bases de données. Conformité RGPD · HIPAA · PCI-DSS native.",
+    ctaPrimary: "Lancer la Plateforme Gratuite",
+    ctaSecondary: "Voir le Fonctionnement",
+    trustBadges: ["Prêt pour le RGPD", "Conforme HIPAA", "PCI-DSS", "SOC 2", "Chiffrement AES-256", "Zéro Journal"],
+    scrollLabel: "Défiler",
+    stats: ["Lignes Masquées", "Types de PII Détectés", "Bases Supportées", "Normes de Conformité"],
+    featuresTag: "Fonctionnalités de la Plateforme",
+    featuresH2: "Fonctionnalités Entreprise de Confidentialité & Protection PII",
+    featuresSub: "Des outils de gouvernance et d’anonymisation de niveau production qui coûtent habituellement des milliers d’euros par mois — entièrement gratuits.",
+    featuresList: [
+      {
+        title: "Auto-Scanner PII",
+        desc: "Détectez automatiquement les e-mails, numéros de sécurité sociale, cartes bancaires, téléphones, adresses IP et plus de 30 types de PII dans vos colonnes.",
+      },
+      {
+        title: "Moteur de Masquage Intelligent",
+        desc: "Appliquez le hachage SHA-256, la génération de données synthétiques, le chiffrement préservant le format (FPE), le caviardage partiel ou des expressions régulières.",
+      },
+      {
+        title: "Support Multi-Bases de Données",
+        desc: "Connectez PostgreSQL, MySQL, MongoDB, MariaDB, SQLite, Oracle et SQL Server. Gérez des dizaines de connexions depuis un tableau de bord unique.",
+      },
+      {
+        title: "Traitement Haute Performance",
+        desc: "Traitez des millions de lignes via des nœuds parallèles. Planifiez des tâches récurrentes de masquage par cron avec suivi en temps réel.",
+      },
+      {
+        title: "Rapports de Conformité",
+        desc: "Générez en un clic vos certificats de conformité RGPD Article 30, HIPAA Safe Harbor et PCI-DSS avec piste d’audit complète.",
+      },
+      {
+        title: "Projets & Environnements",
+        desc: "Organisez vos bases de données, profils de masquage et tâches dans des environnements Production, Staging et Développement distincts.",
+      },
+      {
+        title: "Gestionnaire de Secrets",
+        desc: "Stockez vos identifiants de connexion avec un chiffrement AES-256-GCM. Les secrets ne sont jamais journalisés ni exposés en clair.",
+      },
+      {
+        title: "Contrôle d’Accès Basé sur les Rôles",
+        desc: "Invitez vos collaborateurs en tant qu’Administrateur, DPO / Responsable Conformité, DBA, Développeur ou Lecture Seule (RBAC granulaire).",
+      },
+    ],
+    howTag: "Fonctionnement",
+    howH2: "Comment Fonctionnent l’Analyse PII & le Masquage — 3 Étapes Simples",
+    steps: [
+      {
+        title: "Connectez Votre Base de Données",
+        desc: "Ajoutez une connexion en quelques secondes ou chargez un export SQL/CSV dans le navigateur. Vos identifiants restent chiffrés en AES-256.",
+      },
+      {
+        title: "Analysez les Données Sensibles",
+        desc: "Lancez l’auto-scanner PII. Il identifie plus de 30 catégories de données personnelles sur chaque table et colonne avec score de risque.",
+      },
+      {
+        title: "Masquez & Exportez",
+        desc: "Appliquez vos règles d’anonymisation et exportez votre jeu de données sécurisé au format CSV, JSON, SQL ou Parquet.",
+      },
+    ],
+    startFree: "Démarrer Gratuitement",
+    scannerSummary: "6 colonnes PII détectées · 3 à haut risque · Règles prêtes",
+    complianceTag: "Conformité Réglementaire",
+    complianceH2: "Conçu pour les secteurs réglementés",
+    complianceSub: "Suivez votre niveau de conformité face aux grands référentiels internationaux de protection des données et générez des rapports prêts pour l’audit.",
+    readinessScore: "Score de Conformité",
+    pricingTag: "Tarification",
+    pricingH2: "Plateforme Gratuite de Confidentialité des Données — Sans Carte Bancaire",
+    pricingSub: "Les solutions concurrentes facturent de 500 € à 5 000 € par mois pour les mêmes fonctionnalités. Nous rendons la protection des données accessible à toutes les équipes.",
+    perMonth: "/mois",
+    everythingIncluded: "Tout est inclus. Aucune fonctionnalité bridée.",
+    perks: [
+      "Bases de données illimitées",
+      "Tâches de masquage illimitées",
+      "Plus de 30 détecteurs PII inclus",
+      "Rapports RGPD / HIPAA / PCI-DSS",
+      "Accès API & webhooks",
+      "Collaboration d’équipe (RBAC)",
+      "Coffre-fort de secrets AES-256",
+      "Planificateur & historique des tâches",
+    ],
+    launchPlatform: "Ouvrir la Plateforme",
+    noSignup: "Sans inscription obligatoire",
+    lovedByDbas: "Plébiscité par les DBA du monde entier",
+    guidesH2: "Guides de Confidentialité & Conformité RGPD",
+    guidesSub: "Guides techniques approfondis pour maîtriser la détection PII, le masquage de données et les exigences réglementaires.",
+    guideCards: [
+      {
+        title: "Qu’est-ce que le Scan PII ?",
+        desc: "Découvrez comment fonctionne la détection automatisée des données personnelles et comment protéger vos bases contre les fuites.",
+        badge: "7 min de lecture",
+      },
+      {
+        title: "Conformité RGPD des Bases de Données",
+        desc: "Guide technique des articles 25 et 32 du RGPD : chiffrement, pseudonymisation, minimisation des données et journaux d’audit.",
+        badge: "9 min de lecture",
+      },
+      {
+        title: "Techniques de Masquage des Données",
+        desc: "Comparez le hachage, la tokénisation, le caviardage, la pseudonymisation et le chiffrement préservant le format (FPE).",
+        badge: "8 min de lecture",
+      },
+      {
+        title: "Désidentification des Données HIPAA",
+        desc: "Safe Harbor vs Détermination d’Expert : quels sont les 18 identifiants à supprimer dans vos bases de données médicales SQL.",
+        badge: "8 min de lecture",
+      },
+      {
+        title: "Masquage PAN pour PCI DSS",
+        desc: "Comment tronquer, tokéniser et hacher les numéros de cartes bancaires (PAN) pour respecter l’exigence 3 de la norme PCI DSS.",
+        badge: "7 min de lecture",
+      },
+      {
+        title: "Voir Tous les Guides de Confidentialité",
+        desc: "Parcourez notre bibliothèque complète de guides sur la sécurité des bases de données et la conformité rédigés par des ingénieurs.",
+        badge: "5 guides",
+      },
+    ],
+    compH2: "Des Outils de Confidentialité Entreprise — Sans le Prix Entreprise",
+    compSub: "Les concurrents facturent 500 $ à 5 000 $/mois. Notre plateforme est à 0 $.",
+    compFeatureCol: "Fonctionnalité",
+    compRows: [
+      "Auto-Détection PII (+30 types)",
+      "Rapports RGPD / HIPAA / PCI-DSS",
+      "Traitement local dans le navigateur",
+      "Planificateur de Tâches (Cron)",
+      "Gestion d’Équipe & RBAC",
+      "Coffre-fort de Secrets AES-256",
+      "Intégrations Webhook",
+      "Open Source",
+      "Sans carte bancaire",
+    ],
+    faqH2: "Questions Fréquemment Posées",
+    faqs: [
+      {
+        q: "Quels types de bases de données la plateforme prend-elle en charge ?",
+        a: "La plateforme prend en charge PostgreSQL, MySQL, MariaDB, MongoDB, SQLite, Microsoft SQL Server, BigQuery, Snowflake et Redshift. De nouveaux connecteurs sont ajoutés régulièrement.",
+      },
+      {
+        q: "Mes données sont-elles en sécurité ? Des données quittent-elles mon navigateur ?",
+        a: "En mode d’analyse locale côté navigateur, toutes les données sont traitées intégralement dans votre navigateur via WebAssembly — rien n’est envoyé à nos serveurs. En mode connexion distante, seules des métadonnées anonymisées sont analysées.",
+      },
+      {
+        q: "Quels types de données personnelles (PII) peuvent être détectés ?",
+        a: "Plus de 30 détecteurs PII incluant : noms, adresses e-mail, numéros de téléphone, NIR/SSN, numéros de carte bancaire (PAN), dates de naissance, adresses IP, passeports, IBAN et dossiers médicaux.",
+      },
+      {
+        q: "Quels référentiels de conformité sont pris en charge ?",
+        a: "La plateforme fournit des tableaux de bord de conformité et des rapports téléchargeables pour le RGPD, HIPAA, PCI-DSS et SOC 2 avec listes de contrôle et recommandations.",
+      },
+      {
+        q: "Est-ce vraiment gratuit ? Quelle est la contrepartie ?",
+        a: "Oui, entièrement gratuit. Aucune limite d’utilisation, aucune carte bancaire requise et aucune fonctionnalité payante cachée.",
+      },
+    ],
+    finalH2Part1: "La confidentialité de vos données",
+    finalH2Highlight: "commence ici.",
+    finalSub: "Cessez d’exposer des données sensibles dans vos environnements de développement, de test et d’analytique. Anonymisez en quelques minutes.",
+    finalCta: "Ouvrir la Plateforme Gratuite",
+    finalNote: "Sans compte requis · Open source · Conforme au RGPD",
+  },
+  de: {
+    heroBadge: "Kostenlos & Open Source · Keine Kreditkarte erforderlich · Enterprise-Niveau",
+    h1Part1: "Enterprise",
+    h1Highlight: "Datenbank",
+    h1Part2: "Anonymisierer",
+    heroSubtitle:
+      "Scannen, maskieren und anonymisieren Sie sensible personenbezogene Daten in Ihrer gesamten Datenbank-Infrastruktur. DSGVO · HIPAA · PCI-DSS direkt integriert.",
+    ctaPrimary: "Kostenlose Plattform starten",
+    ctaSecondary: "So funktioniert es",
+    trustBadges: ["DSGVO-konform", "HIPAA-konform", "PCI-DSS", "SOC 2", "AES-256-verschlüsselt", "Zero Logs"],
+    scrollLabel: "Scrollen",
+    stats: ["Maskierte Zeilen", "Erkannte PII-Typen", "Unterstützte Datenbanken", "Compliance-Standards"],
+    featuresTag: "Plattform-Funktionen",
+    featuresH2: "Enterprise-Funktionen für Datenbank-Datenschutz & PII-Schutz",
+    featuresSub: "Produktionsreife Datenschutz-Werkzeuge, die normalerweise tausende Euro pro Monat kosten — komplett kostenlos.",
+    featuresList: [
+      {
+        title: "PII-Auto-Scanner",
+        desc: "Erkennen Sie automatisch E-Mail-Adressen, Sozialversicherungsnummern, Kreditkarten, Telefonnummern, IP-Adressen und über 30 weitere PII-Typen in allen Spalten.",
+      },
+      {
+        title: "Intelligente Maskierungs-Engine",
+        desc: "Wenden Sie SHA-256-Hashing, synthetische Datengenerierung, formatbewahrende Verschlüsselung (FPE), Teil-Schwärzung oder eigene Regex-Regeln pro Spalte an.",
+      },
+      {
+        title: "Multi-Datenbank-Unterstützung",
+        desc: "Verbinden Sie PostgreSQL, MySQL, MongoDB, MariaDB, SQLite, Oracle und SQL Server. Verwalten Sie dutzende Verbindungen über ein zentrales Dashboard.",
+      },
+      {
+        title: "Hochleistungs-Jobs",
+        desc: "Verarbeiten Sie Millionen Zeilen mit parallelen Worker-Nodes. Planen Sie wiederkehrende Maskierungs-Jobs per Cron mit Echtzeit-Fortschrittsanzeige.",
+      },
+      {
+        title: "Compliance-Berichte",
+        desc: "Erstellen Sie mit einem Klick DSGVO-Artikel-30-Verzeichnisse, HIPAA-Safe-Harbor- und PCI-DSS-Auditberichte inklusive vollständigem Audit-Trail.",
+      },
+      {
+        title: "Projekte & Umgebungen",
+        desc: "Organisieren Sie Datenbanken, Maskierungsprofile und Jobs getrennt nach Produktions-, Staging- und Entwicklungsumgebungen.",
+      },
+      {
+        title: "Secrets Manager",
+        desc: "Speichern Sie Datenbank-Zugangsdaten mit AES-256-GCM-Verschlüsselung. Zugangsdaten werden niemals im Klartext protokolliert.",
+      },
+      {
+        title: "Rollenbasierte Zugriffskontrolle",
+        desc: "Laden Sie Teammitglieder als Admin, Datenschutzbeauftragter, DBA, Entwickler oder mit Leseberechtigung ein (feingranulares RBAC).",
+      },
+    ],
+    howTag: "Funktionsweise",
+    howH2: "Wie PII-Scanning & Datenmaskierung funktioniert — 3 einfache Schritte",
+    steps: [
+      {
+        title: "Datenbank verbinden",
+        desc: "Fügen Sie in Sekunden eine Datenbankverbindung hinzu oder laden Sie Ihren SQL/CSV-Dump lokal im Browser. Zugangsdaten bleiben im AES-256-Tresor geschützt.",
+      },
+      {
+        title: "Auf sensible Daten scannen",
+        desc: "Starten Sie den PII-Auto-Scanner. Er erkennt über 30 Datenkategorien in jeder Tabelle und Spalte samt Risikobewertung.",
+      },
+      {
+        title: "Maskieren & Exportieren",
+        desc: "Wenden Sie Maskierungsregeln an und exportieren Sie Ihren anonymisierten Datensatz als CSV, JSON, SQL oder Parquet.",
+      },
+    ],
+    startFree: "Kostenlos starten",
+    scannerSummary: "6 PII-Spalten erkannt · 3 mit hohem Risiko · Maskierungsregeln bereit",
+    complianceTag: "Regulatorische Compliance",
+    complianceH2: "Entwickelt für regulierte Branchen",
+    complianceSub: "Überwachen Sie Ihren Compliance-Status gegenüber führenden Datenschutz-Frameworks und erstellen Sie prüfungssichere Zertifikate.",
+    readinessScore: "Compliance-Grad",
+    pricingTag: "Preise",
+    pricingH2: "Kostenlose Datenbank-Datenschutz-Plattform — Keine Kreditkarte erforderlich",
+    pricingSub: "Mitbewerber verlangen 500 € bis 5.000 € pro Monat für dieselben Funktionen. Wir machen professionellen Datenschutz für jedes Team frei zugänglich.",
+    perMonth: "/Monat",
+    everythingIncluded: "Alles enthalten. Keine gesperrten Funktionen.",
+    perks: [
+      "Unbegrenzte Datenbanken",
+      "Unbegrenzte Maskierungs-Jobs",
+      "Alle 30+ PII-Detektoren",
+      "DSGVO / HIPAA / PCI-DSS Berichte",
+      "API-Zugriff & Webhooks",
+      "Team-Zusammenarbeit (RBAC)",
+      "AES-256 Secrets-Tresor",
+      "Job-Planer & Versionsverlauf",
+    ],
+    launchPlatform: "Plattform starten",
+    noSignup: "Keine Registrierung erforderlich",
+    lovedByDbas: "Weltweit von DBAs geschätzt",
+    guidesH2: "Datenschutz- & Compliance-Ratgeber",
+    guidesSub: "Fundierte technische Leitfäden zu PII-Scanning, Datenmaskierung und gesetzlichen Datenschutzanforderungen.",
+    guideCards: [
+      {
+        title: "Was ist PII-Scanning?",
+        desc: "Erfahren Sie, wie automatische PII-Erkennung funktioniert, welche sensiblen Daten Datenbanken enthalten und wie Sie Datenlecks verhindern.",
+        badge: "7 Min. Lesezeit",
+      },
+      {
+        title: "DSGVO-Datenbankkonformität",
+        desc: "Ein technischer Leitfaden zu Artikel 25 und 32 DSGVO — Verschlüsselung, Pseudonymisierung, Datenminimierung und Audit-Logs.",
+        badge: "9 Min. Lesezeit",
+      },
+      {
+        title: "Datenmaskierungstechniken",
+        desc: "Vergleichen Sie Hashing, Tokenisierung, Schwärzung, Pseudonymisierung und formatbewahrende Verschlüsselung anhand realer Praxisbeispiele.",
+        badge: "8 Min. Lesezeit",
+      },
+      {
+        title: "HIPAA-Datenanonymisierung",
+        desc: "Safe Harbor vs. Expert Determination — welche 18 Identifikatoren entfernt werden müssen und wie die Umsetzung in SQL erfolgt.",
+        badge: "8 Min. Lesezeit",
+      },
+      {
+        title: "PCI DSS PAN-Maskierung",
+        desc: "Wie Sie Kreditkartennummern (PAN) kürzen, tokenisieren und hashen, um PCI-DSS-Anforderung 3 sicher zu erfüllen.",
+        badge: "7 Min. Lesezeit",
+      },
+      {
+        title: "Alle Datenschutz-Ratgeber ansehen",
+        desc: "Durchsuchen Sie unsere komplette Bibliothek an Fachartikeln zu Datenbanksicherheit und Compliance.",
+        badge: "5 Ratgeber",
+      },
+    ],
+    compH2: "Enterprise-Datenschutz-Tools — Ohne den Enterprise-Preis",
+    compSub: "Mitbewerber verlangen 500 $–5.000 $/Monat. Bei uns zahlen Sie 0 $.",
+    compFeatureCol: "Funktion",
+    compRows: [
+      "Automatische PII-Erkennung (30+ Typen)",
+      "DSGVO / HIPAA / PCI-DSS Berichte",
+      "Lokale Browser-Verarbeitung",
+      "Job-Scheduler (Cron)",
+      "Teamverwaltung & RBAC",
+      "AES-256 Secrets-Tresor",
+      "Webhook-Integrationen",
+      "Open Source",
+      "Keine Kreditkarte erforderlich",
+    ],
+    faqH2: "Häufig gestellte Fragen (FAQ)",
+    faqs: [
+      {
+        q: "Welche Datenbanksysteme unterstützt die Plattform?",
+        a: "Die Plattform unterstützt PostgreSQL, MySQL, MariaDB, MongoDB, SQLite, Microsoft SQL Server, BigQuery, Snowflake und Redshift. Neue Datenbank-Konnektoren werden laufend ergänzt.",
+      },
+      {
+        q: "Sind meine Daten sicher? Verlassen Daten meinen Browser?",
+        a: "Im lokalen Browser-Scan-Modus werden sämtliche Daten vollständig innerhalb Ihres Browsers mittels WebAssembly verarbeitet — es werden keinerlei Daten an unsere Server gesendet.",
+      },
+      {
+        q: "Welche PII-Datentypen werden erkannt?",
+        a: "Über 30 PII-Detektoren erkennen Namen, E-Mail-Adressen, Telefonnummern, Sozialversicherungsnummern, Kreditkartennummern (PAN), Geburtsdaten, IP-Adressen, Reisepassnummern, IBAN-Konten und Patientenakten.",
+      },
+      {
+        q: "Welche Compliance-Standards werden unterstützt?",
+        a: "Integrierte Compliance-Dashboards und herunterladbare Prüfberichte stehen für DSGVO, HIPAA, PCI-DSS und SOC 2 inklusive Checklisten bereit.",
+      },
+      {
+        q: "Ist die Plattform wirklich kostenlos? Wo ist der Haken?",
+        a: "Ja, komplett kostenlos. Keine Nutzungslimits, keine Kreditkarte und keine versteckten Bezahlschranken.",
+      },
+    ],
+    finalH2Part1: "Ihr Datenbank-Datenschutz",
+    finalH2Highlight: "beginnt hier.",
+    finalSub: "Schützen Sie sensible Daten in Entwicklungs-, Staging- und Analyseumgebungen. Starten Sie die Maskierung in wenigen Minuten.",
+    finalCta: "Plattform kostenlos öffnen",
+    finalNote: "Kein Konto nötig · Open Source · DSGVO-konform",
+  },
+};
+
+function FAQ({ items }: { items: { q: string; a: string }[] }) {
   const [openIdx, setOpenIdx] = React.useState<number | null>(null);
   return (
     <div className="space-y-3">
-      {FAQ_ITEMS.map((item, i) => (
+      {items.map((item, i) => (
         <motion.div
           key={i}
           initial={{ opacity: 0, y: 12 }}
@@ -213,74 +905,35 @@ function FAQ() {
   );
 }
 
-export function AnimatedContent() {
-
+export function AnimatedContent({ initialLocale }: { initialLocale?: string }) {
   const params = useParams();
-  const locale = (params?.locale as string) || "en";
+  const locale = initialLocale || (params?.locale as string) || "en";
+  const t = DB_PRIVACY_COPY[locale] || DB_PRIVACY_COPY.en;
   const dashboardHref = `/${locale}/database-privacy/dashboard`;
 
-  const features = [
-    {
-      icon: ScanSearch,
-      title: "PII Auto-Scanner",
-      desc: "Automatically detect emails, SSNs, credit cards, phone numbers, IP addresses and 30+ other PII types across all your database columns.",
-      color: "bg-violet-600",
-      delay: 0,
-    },
-    {
-      icon: Shield,
-      title: "Smart Masking Engine",
-      desc: "Apply SHA-256 hashing, synthetic data generation, format-preserving encryption, partial redaction, or custom regex patterns per column.",
-      color: "bg-blue-600",
-      delay: 0.05,
-    },
-    {
-      icon: Database,
-      title: "Multi-DB Support",
-      desc: "Connect PostgreSQL, MySQL, MongoDB, MariaDB, SQLite, Oracle, and SQL Server. Manage dozens of connections from a single dashboard.",
-      color: "bg-indigo-600",
-      delay: 0.1,
-    },
-    {
-      icon: Zap,
-      title: "High-Performance Jobs",
-      desc: "Process millions of rows with parallel worker nodes. Schedule recurring masking jobs via cron, get real-time progress and ETA.",
-      color: "bg-amber-600",
-      delay: 0.15,
-    },
-    {
-      icon: BarChart3,
-      title: "Compliance Reporting",
-      desc: "Generate GDPR Article 30, HIPAA Safe Harbor, and PCI-DSS compliance certificates with one click. Full audit trail included.",
-      color: "bg-emerald-600",
-      delay: 0.2,
-    },
-    {
-      icon: GitBranch,
-      title: "Projects & Environments",
-      desc: "Organise databases, masking profiles, and jobs into Production, Staging, and Development projects with separate access controls.",
-      color: "bg-rose-600",
-      delay: 0.25,
-    },
-    {
-      icon: Key,
-      title: "Secrets Manager",
-      desc: "Store database credentials with AES-256-GCM encryption. Secrets are never logged or exposed in plain text — ever.",
-      color: "bg-teal-600",
-      delay: 0.3,
-    },
-    {
-      icon: Users,
-      title: "Role-Based Access Control",
-      desc: "Invite teammates as Admin, Compliance Officer, DBA, Developer, or Read-Only. Full RBAC with granular per-resource permissions.",
-      color: "bg-pink-600",
-      delay: 0.35,
-    },
+  const featureIcons = [ScanSearch, Shield, Database, Zap, BarChart3, GitBranch, Key, Users];
+  const featureColors = [
+    "bg-violet-600",
+    "bg-blue-600",
+    "bg-indigo-600",
+    "bg-amber-600",
+    "bg-emerald-600",
+    "bg-rose-600",
+    "bg-teal-600",
+    "bg-pink-600",
   ];
+
+  const features = t.featuresList.map((f, idx) => ({
+    icon: featureIcons[idx] || Shield,
+    title: f.title,
+    desc: f.desc,
+    color: featureColors[idx] || "bg-violet-600",
+    delay: idx * 0.05,
+  }));
 
   const compliance = [
     {
-      name: "GDPR",
+      name: locale === "fr" ? "RGPD" : locale === "de" ? "DSGVO" : "GDPR",
       icon: Globe,
       score: 82,
       region: "EU",
@@ -318,10 +971,10 @@ export function AnimatedContent() {
   ];
 
   const stats = [
-    { label: "Rows Masked", value: 2400000, suffix: "+" },
-    { label: "PII Types Detected", value: 30, suffix: "+" },
-    { label: "Databases Supported", value: 9, suffix: "" },
-    { label: "Compliance Standards", value: 4, suffix: "" },
+    { label: t.stats[0], value: 2400000, suffix: "+" },
+    { label: t.stats[1], value: 30, suffix: "+" },
+    { label: t.stats[2], value: 9, suffix: "" },
+    { label: t.stats[3], value: 4, suffix: "" },
   ];
 
   return (
@@ -356,7 +1009,7 @@ export function AnimatedContent() {
             className="inline-flex items-center gap-2 bg-violet-100 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/30 rounded-full px-4 py-2 text-sm text-violet-700 dark:text-violet-300 mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-            Free & Open · No credit card required · Enterprise-grade
+            {t.heroBadge}
           </motion.div>
 
           {/* Headline */}
@@ -366,7 +1019,7 @@ export function AnimatedContent() {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-7xl font-black leading-[1.05] tracking-tight mb-6"
           >
-            <span className="text-slate-900 dark:text-white">Enterprise</span>{" "}
+            <span className="text-slate-900 dark:text-white">{t.h1Part1}</span>{" "}
             <span
               className="text-transparent bg-clip-text"
               style={{
@@ -374,10 +1027,10 @@ export function AnimatedContent() {
                   "linear-gradient(135deg, #8b5cf6, #6366f1, #3b82f6)",
               }}
             >
-              Database
+              {t.h1Highlight}
             </span>
             <br />
-            <span className="text-slate-900 dark:text-white">Anonymizer</span>
+            <span className="text-slate-900 dark:text-white">{t.h1Part2}</span>
           </motion.h1>
 
           {/* Sub-headline */}
@@ -387,9 +1040,7 @@ export function AnimatedContent() {
             transition={{ delay: 0.2 }}
             className="text-xl md:text-2xl text-slate-600 dark:text-white/60 max-w-3xl mx-auto mb-10 leading-relaxed"
           >
-            Scan, mask, and anonymize sensitive data across your entire database
-            infrastructure. GDPR · HIPAA · PCI-DSS compliance — built in, not
-            bolted on.
+            {t.heroSubtitle}
           </motion.p>
 
           {/* CTAs */}
@@ -404,14 +1055,14 @@ export function AnimatedContent() {
               rel="nofollow"
               className="group flex items-center gap-3 bg-violet-600 hover:bg-violet-500 text-white font-semibold text-lg px-8 py-4 rounded-2xl transition-all duration-200 shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:scale-[1.02]"
             >
-              Launch Free Platform
+              {t.ctaPrimary}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
               href="#features"
               className="flex items-center gap-2 text-slate-600 dark:text-white/60 hover:text-slate-900 dark:hover:text-white font-medium text-lg px-6 py-4 rounded-2xl border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-white/20 transition-all"
             >
-              <Play className="w-4 h-4" /> See How It Works
+              <Play className="w-4 h-4" /> {t.ctaSecondary}
             </a>
           </motion.div>
 
@@ -422,14 +1073,7 @@ export function AnimatedContent() {
             transition={{ delay: 0.5 }}
             className="flex flex-wrap items-center justify-center gap-3 mt-12"
           >
-            {[
-              "GDPR Ready",
-              "HIPAA Compliant",
-              "PCI-DSS",
-              "SOC 2",
-              "AES-256 Encrypted",
-              "Zero Logs",
-            ].map((badge) => (
+            {t.trustBadges.map((badge) => (
               <span
                 key={badge}
                 className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-white/50 bg-white/50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-full px-3 py-1.5"
@@ -447,7 +1091,7 @@ export function AnimatedContent() {
           transition={{ repeat: Infinity, duration: 1.5 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400 dark:text-white/20"
         >
-          <span className="text-xs">Scroll</span>
+          <span className="text-xs">{t.scrollLabel}</span>
           <div className="w-px h-8 bg-gradient-to-b from-slate-300 dark:from-white/20 to-transparent" />
         </motion.div>
       </section>
@@ -487,14 +1131,13 @@ export function AnimatedContent() {
             className="text-center mb-16"
           >
             <span className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-widest">
-              Platform Features
+              {t.featuresTag}
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
-              Enterprise Database Privacy & PII Protection Features
+              {t.featuresH2}
             </h2>
             <p className="text-lg text-slate-600 dark:text-white/50 max-w-2xl mx-auto">
-              Production-grade data privacy tooling that normally costs
-              thousands per month — completely free.
+              {t.featuresSub}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -515,31 +1158,22 @@ export function AnimatedContent() {
               viewport={{ once: true }}
             >
               <span className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-widest">
-                How It Works
+                {t.howTag}
               </span>
               <h2 className="text-4xl font-black text-slate-900 dark:text-white mt-3 mb-8">
-                How PII Scanning & Data Masking Works — 3 Simple Steps
+                {t.howH2}
               </h2>
             </motion.div>
             <div className="space-y-8">
-              <StepCard
-                num="1"
-                title="Connect Your Database"
-                desc="Add a database connection in seconds. PostgreSQL, MySQL, MongoDB, and more — credentials stay encrypted in our AES-256 vault."
-                delay={0}
-              />
-              <StepCard
-                num="2"
-                title="Scan for Sensitive Data"
-                desc="Run the PII auto-scanner. It detects 30+ data types across every table and column, with risk scores and masking recommendations."
-                delay={0.1}
-              />
-              <StepCard
-                num="3"
-                title="Mask & Export"
-                desc="Apply masking rules, run the job, and export your anonymized dataset as CSV, JSON, SQL, Parquet, or push it back to the DB."
-                delay={0.2}
-              />
+              {t.steps.map((s, idx) => (
+                <StepCard
+                  key={idx}
+                  num={String(idx + 1)}
+                  title={s.title}
+                  desc={s.desc}
+                  delay={idx * 0.1}
+                />
+              ))}
             </div>
             <motion.div
               initial={{ opacity: 0 }}
@@ -553,7 +1187,7 @@ export function AnimatedContent() {
                 rel="nofollow"
                 className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold px-6 py-3 rounded-xl transition-colors"
               >
-                Start for Free <ChevronRight className="w-4 h-4" />
+                {t.startFree} <ChevronRight className="w-4 h-4" />
               </Link>
             </motion.div>
           </div>
@@ -628,8 +1262,8 @@ export function AnimatedContent() {
               ))}
             </div>
             <div className="mt-4 flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400">
-              <CheckCircle2 className="w-3.5 h-3.5" />6 PII columns found · 3
-              high-risk · Masking rules ready
+              <CheckCircle2 className="w-3.5 h-3.5" />
+              {t.scannerSummary}
             </div>
           </motion.div>
         </div>
@@ -645,14 +1279,13 @@ export function AnimatedContent() {
             className="text-center mb-16"
           >
             <span className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-widest">
-              Regulatory Compliance
+              {t.complianceTag}
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
-              Built for regulated industries
+              {t.complianceH2}
             </h2>
             <p className="text-lg text-slate-600 dark:text-white/50 max-w-2xl mx-auto">
-              Track your compliance posture against major data protection
-              frameworks and generate audit-ready certificates.
+              {t.complianceSub}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -684,7 +1317,7 @@ export function AnimatedContent() {
                   />
                 </div>
                 <p className="text-xs text-slate-500 dark:text-white/50">
-                  Readiness Score
+                  {t.readinessScore}
                 </p>
               </motion.div>
             ))}
@@ -702,14 +1335,13 @@ export function AnimatedContent() {
             className="text-center mb-16"
           >
             <span className="text-xs font-semibold text-violet-600 dark:text-violet-400 uppercase tracking-widest">
-              Pricing
+              {t.pricingTag}
             </span>
             <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mt-3 mb-4">
-              Free Database Privacy Platform — No Credit Card Required
+              {t.pricingH2}
             </h2>
             <p className="text-lg text-slate-600 dark:text-white/50 max-w-2xl mx-auto">
-              Competitors charge $500–$5,000/month for the same capabilities. We
-              believe data privacy tooling should be accessible to every team.
+              {t.pricingSub}
             </p>
           </motion.div>
           <motion.div
@@ -723,23 +1355,14 @@ export function AnimatedContent() {
                 <div className="text-5xl font-black text-slate-900 dark:text-white mb-2">
                   $0{" "}
                   <span className="text-2xl text-slate-500 dark:text-white/40 font-normal">
-                    /month
+                    {t.perMonth}
                   </span>
                 </div>
                 <p className="text-slate-600 dark:text-white/60 mb-6 text-lg">
-                  Everything included. No feature gates.
+                  {t.everythingIncluded}
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {[
-                    "Unlimited databases",
-                    "Unlimited masking jobs",
-                    "All 30+ PII detectors",
-                    "GDPR/HIPAA/PCI-DSS reports",
-                    "API access & webhooks",
-                    "Team collaboration (RBAC)",
-                    "AES-256 secrets vault",
-                    "Job scheduling & history",
-                  ].map((f) => (
+                  {t.perks.map((f) => (
                     <div
                       key={f}
                       className="flex items-center gap-2 text-sm text-slate-700 dark:text-white/70"
@@ -756,9 +1379,9 @@ export function AnimatedContent() {
                   rel="nofollow"
                   className="inline-flex flex-col items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-bold text-lg px-10 py-5 rounded-2xl transition-all shadow-lg shadow-violet-500/25 hover:scale-[1.02]"
                 >
-                  Launch Platform
+                  {t.launchPlatform}
                   <span className="text-xs font-normal text-violet-200 opacity-80">
-                    No sign-up required
+                    {t.noSignup}
                   </span>
                 </Link>
                 <div className="flex items-center justify-center gap-1 mt-4 text-xs text-slate-500 dark:text-white/40">
@@ -768,7 +1391,7 @@ export function AnimatedContent() {
                       className="w-3 h-3 fill-amber-400 text-amber-400"
                     />
                   ))}
-                  <span className="ml-1">Loved by DBAs worldwide</span>
+                  <span className="ml-1">{t.lovedByDbas}</span>
                 </div>
               </div>
             </div>
@@ -786,10 +1409,10 @@ export function AnimatedContent() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Privacy & Compliance Guides
+              {t.guidesH2}
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              In-depth technical guides to help you understand PII scanning, data masking, and regulatory compliance requirements.
+              {t.guidesSub}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -829,52 +1452,22 @@ export function AnimatedContent() {
               };
               const guideUrl = (enSlug: string) =>
                 `/${locale}/${guidesPrefix}/${slugMap[enSlug]?.[locale] || enSlug}`;
-
-              return [
-                {
-                  title: "What Is PII Scanning?",
-                  desc: "Learn how automated PII detection works, what types of sensitive data databases contain, and how to protect against breaches.",
-                  href: guideUrl("what-is-pii-scanning"),
-                  badge: "7 min read",
-                  color: "violet",
-                },
-                {
-                  title: "GDPR Database Compliance",
-                  desc: "A technical guide to GDPR Articles 25 and 32 — encryption, pseudonymisation, data minimisation, and audit logging.",
-                  href: guideUrl("gdpr-database-compliance"),
-                  badge: "9 min read",
-                  color: "blue",
-                },
-                {
-                  title: "Data Masking Techniques",
-                  desc: "Compare hashing, tokenization, redaction, pseudonymisation, and format-preserving encryption with real-world use cases.",
-                  href: guideUrl("data-masking-techniques"),
-                  badge: "8 min read",
-                  color: "emerald",
-                },
-                {
-                  title: "HIPAA Data De-Identification",
-                  desc: "Safe Harbor vs Expert Determination — which 18 identifiers to remove and how to implement de-identification in SQL.",
-                  href: guideUrl("hipaa-data-de-identification"),
-                  badge: "8 min read",
-                  color: "rose",
-                },
-                {
-                  title: "PCI DSS PAN Masking",
-                  desc: "How to truncate, tokenize, and hash Primary Account Numbers to descope your systems from PCI DSS compliance.",
-                  href: guideUrl("pci-dss-pan-masking"),
-                  badge: "7 min read",
-                  color: "amber",
-                },
-                {
-                  title: "View All Privacy Guides",
-                  desc: "Browse our full library of data privacy, compliance, and database security guides — all written by engineers.",
-                  href: `/${locale}/${guidesPrefix}`,
-                  badge: "5 guides",
-                  color: "sky",
-                  isViewAll: true,
-                },
+              const hrefs = [
+                guideUrl("what-is-pii-scanning"),
+                guideUrl("gdpr-database-compliance"),
+                guideUrl("data-masking-techniques"),
+                guideUrl("hipaa-data-de-identification"),
+                guideUrl("pci-dss-pan-masking"),
+                `/${locale}/${guidesPrefix}`,
               ];
+              const colors = ["violet", "blue", "emerald", "rose", "amber", "sky"];
+
+              return t.guideCards.map((card, idx) => ({
+                ...card,
+                href: hrefs[idx] || `/${locale}/${guidesPrefix}`,
+                color: colors[idx] || "violet",
+                isViewAll: idx === 5,
+              }));
             })().map((guide, i) => (
               <motion.div
                 key={i}
@@ -930,10 +1523,10 @@ export function AnimatedContent() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Enterprise Privacy Tools — Without the Enterprise Price
+              {t.compH2}
             </h2>
             <p className="text-lg text-slate-600 dark:text-slate-400">
-              Competitors charge $500–$5,000/month. We charge $0.
+              {t.compSub}
             </p>
           </motion.div>
           <motion.div
@@ -945,36 +1538,36 @@ export function AnimatedContent() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-slate-50 dark:bg-slate-900/80 border-b border-slate-200 dark:border-white/10">
-                  <th className="text-left px-6 py-4 font-semibold text-slate-700 dark:text-slate-300">Feature</th>
+                  <th className="text-left px-6 py-4 font-semibold text-slate-700 dark:text-slate-300">{t.compFeatureCol}</th>
                   <th className="px-6 py-4 font-bold text-violet-600 dark:text-violet-400 text-center">
                     Nexus
-                    <div className="text-xs font-normal text-emerald-600 dark:text-emerald-400">$0 / month</div>
+                    <div className="text-xs font-normal text-emerald-600 dark:text-emerald-400">$0 {t.perMonth}</div>
                   </th>
                   <th className="px-6 py-4 font-medium text-slate-500 text-center">
                     Tonic.ai
-                    <div className="text-xs">$500+/mo</div>
+                    <div className="text-xs">$500+{t.perMonth}</div>
                   </th>
                   <th className="px-6 py-4 font-medium text-slate-500 text-center">
                     Delphix
-                    <div className="text-xs">$2,000+/mo</div>
+                    <div className="text-xs">$2,000+{t.perMonth}</div>
                   </th>
                   <th className="px-6 py-4 font-medium text-slate-500 text-center">
                     IBM Optim
-                    <div className="text-xs">$5,000+/mo</div>
+                    <div className="text-xs">$5,000+{t.perMonth}</div>
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-white/5">
                 {[
-                  ["PII Auto-Detection (30+ types)", true, true, true, true],
-                  ["GDPR / HIPAA / PCI-DSS Reports", true, true, true, true],
-                  ["Browser-side processing", true, false, false, false],
-                  ["Job Scheduler", true, true, true, true],
-                  ["Team Management & RBAC", true, true, true, true],
-                  ["AES-256 Secrets Vault", true, false, true, true],
-                  ["Webhook Integrations", true, true, false, true],
-                  ["Open Source", true, false, false, false],
-                  ["No credit card required", true, false, false, false],
+                  [t.compRows[0], true, true, true, true],
+                  [t.compRows[1], true, true, true, true],
+                  [t.compRows[2], true, false, false, false],
+                  [t.compRows[3], true, true, true, true],
+                  [t.compRows[4], true, true, true, true],
+                  [t.compRows[5], true, false, true, true],
+                  [t.compRows[6], true, true, false, true],
+                  [t.compRows[7], true, false, false, false],
+                  [t.compRows[8], true, false, false, false],
                 ].map(([feature, ...vals], ri) => (
                   <tr key={ri} className="hover:bg-slate-50 dark:hover:bg-white/[0.02] transition-colors">
                     <td className="px-6 py-3.5 text-slate-700 dark:text-slate-300 font-medium">{feature as string}</td>
@@ -1009,10 +1602,10 @@ export function AnimatedContent() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
-              Frequently Asked Questions
+              {t.faqH2}
             </h2>
           </motion.div>
-          <FAQ />
+          <FAQ items={t.faqs} />
         </div>
       </section>
 
@@ -1034,7 +1627,7 @@ export function AnimatedContent() {
           className="relative max-w-3xl mx-auto text-center"
         >
           <h2 className="text-5xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
-            Your data privacy
+            {t.finalH2Part1}
             <br />
             <span
               className="text-transparent bg-clip-text"
@@ -1042,23 +1635,22 @@ export function AnimatedContent() {
                 backgroundImage: "linear-gradient(135deg, #8b5cf6, #3b82f6)",
               }}
             >
-              starts here.
+              {t.finalH2Highlight}
             </span>
           </h2>
           <p className="text-xl text-slate-600 dark:text-white/50 mb-10">
-            Stop exposing sensitive data in dev, staging, and analytics
-            environments. Start masking in minutes.
+            {t.finalSub}
           </p>
           <Link
             href={dashboardHref}
             rel="nofollow"
             className="inline-flex items-center gap-3 bg-violet-600 hover:bg-violet-500 text-white font-bold text-xl px-10 py-5 rounded-2xl transition-all shadow-2xl shadow-violet-500/30 hover:scale-[1.02]"
           >
-            Open the Platform Free
+            {t.finalCta}
             <ArrowRight className="w-6 h-6" />
           </Link>
           <p className="text-sm text-slate-500 dark:text-white/30 mt-4">
-            No account needed · Open source · GDPR compliant
+            {t.finalNote}
           </p>
         </motion.div>
       </section>

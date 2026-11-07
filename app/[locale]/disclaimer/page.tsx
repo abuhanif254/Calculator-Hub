@@ -1,138 +1,384 @@
+import React from 'react';
 import { Metadata } from 'next';
-import { Link as CustomLink } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
-import { AlertTriangle, Scale, Stethoscope, LineChart, FileText } from 'lucide-react';
+import { routing } from '@/i18n/routing';
+import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { AlertTriangle, DollarSign, HeartPulse, Scale, Mail } from 'lucide-react';
 
 export const revalidate = false;
 export const dynamicParams = false;
 
-const metaByLocale: Record<string, { title: string; description: string; home: string; crumb: string; h1: string; subtitle: string }> = {
-  en: {
-    title: 'Medical & Financial Disclaimer — Educational Use Policy',
-    description: 'Read the Nexus Calculator Medical and Financial Disclaimer. All tools and calculators on this platform are for educational and informational purposes only.',
-    home: 'Home',
-    crumb: 'Disclaimer',
-    h1: 'Medical & Financial Disclaimer',
-    subtitle: 'The tools, calculators, and content provided on Nexus Calculator are strictly for educational and informational purposes. They do not constitute professional medical, financial, legal, or tax advice.',
-  },
-  es: {
-    title: 'Descargo de Responsabilidad Médico y Financiero',
-    description: 'Lea el descargo de responsabilidad médico y financiero de Nexus Calculator. Todas las herramientas y calculadoras son únicamente para fines informativos y educativos.',
-    home: 'Inicio',
-    crumb: 'Descargo de Responsabilidad',
-    h1: 'Descargo de Responsabilidad Médico y Financiero',
-    subtitle: 'Las herramientas, calculadoras y contenidos proporcionados en Nexus Calculator tienen fines estrictamente educativos e informativos y no constituyen asesoramiento médico, financiero, legal ni fiscal.',
-  },
-  fr: {
-    title: 'Clause de Non-Responsabilité Médicale et Financière',
-    description: 'Consultez la clause de non-responsabilité médicale et financière de Nexus Calculator. Tous les outils et calculatrices sont fournis à des fins éducatives uniquement.',
-    home: 'Accueil',
-    crumb: 'Clause de Non-Responsabilité',
-    h1: 'Clause de Non-Responsabilité Médicale et Financière',
-    subtitle: 'Les outils, calculatrices et contenus proposés sur Nexus Calculator sont fournis exclusivement à titre éducatif et informatif et ne constituent aucunement un avis médical, financier ou juridique.',
-  },
-  de: {
-    title: 'Medizinischer & Finanzieller Haftungsausschluss',
-    description: 'Lesen Sie den medizinischen und finanziellen Haftungsausschluss von Nexus Calculator. Alle Tools und Rechner dienen ausschließlich Informations- und Bildungszwecken.',
-    home: 'Startseite',
-    crumb: 'Haftungsausschluss',
-    h1: 'Medizinischer & Finanzieller Haftungsausschluss',
-    subtitle: 'Alle auf Nexus Calculator bereitgestellten Rechner, Werkzeuge und Inhalte dienen ausschließlich Informations- und Bildungszwecken und stellen keine medizinische, finanzielle oder rechtliche Beratung dar.',
-  },
-};
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
-
-  const meta = metaByLocale[locale] || metaByLocale.en;
-
-  return {
-    title: meta.title,
-    description: meta.description,
-    robots: {
-      index: true,
-      follow: true,
-    },
-    alternates: getCanonicalAndAlternates('/disclaimer', locale),
+interface DisclaimerLocaleCopy {
+  metaTitle: string;
+  metaDesc: string;
+  badge: string;
+  h1: string;
+  subtitle: string;
+  tocHeading: string;
+  sections: {
+    general: {
+      toc: string;
+      h2: string;
+      p1: string;
+      p2: string;
+    };
+    financial: {
+      toc: string;
+      h2: string;
+      p1: string;
+      p2: string;
+    };
+    health: {
+      toc: string;
+      h2: string;
+      p1: string;
+      p2: string;
+    };
+    liability: {
+      toc: string;
+      h2: string;
+      p1: string;
+      p2: string;
+    };
+    contact: {
+      toc: string;
+      h2: string;
+      p1: string;
+      label: string;
+    };
   };
 }
 
-export default async function DisclaimerPage({ params }: { params: Promise<{ locale: string }> }) {
-  const resolvedParams = await params;
-  const locale = resolvedParams.locale;
+const DISCLAIMER_COPY: Record<string, DisclaimerLocaleCopy> = {
+  en: {
+    metaTitle: 'Disclaimer | NexusCalculator',
+    metaDesc: 'Read the official disclaimer for NexusCalculator regarding financial, health, medical, and mathematical calculations.',
+    badge: 'Last Updated: October 24, 2026',
+    h1: 'Legal Disclaimer',
+    subtitle: 'Important information regarding the accuracy and intended use of our calculators and quantitative tools.',
+    tocHeading: 'Table of Contents',
+    sections: {
+      general: {
+        toc: '1. General Information',
+        h2: '1. General Information Only',
+        p1: 'The information, results, and tools provided by NexusCalculator ("we," "us," or "our") on https://www.nexuscalculator.net (the "Site") are for general informational and educational purposes only. All information and calculations on the Site are provided in good faith; however, we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information or calculation result on the Site.',
+        p2: 'Web calculators rely on mathematical approximations and standardized formulas. Real-world scenarios often involve complex variables that a web-based tool cannot fully account for.',
+      },
+      financial: {
+        toc: '2. Financial Disclaimer',
+        h2: '2. Financial & Investment Disclaimer',
+        p1: 'NexusCalculator is not a registered financial advisor, broker-dealer, tax professional, or certified public accountant. The financial calculators (including, but not limited to, mortgage, loan, compound interest, retirement, and tax calculators) are designed to provide illustrative estimates based solely on the inputs you provide.',
+        p2: 'Financial figures, interest rates, tax brackets, and inflation rates change constantly. The results generated by our tools do not constitute financial advice, legal advice, or tax advice, nor do they represent an offer or guarantee of credit from any lending institution. Always consult with a qualified financial professional or certified accountant before making any significant financial or investment decisions.',
+      },
+      health: {
+        toc: '3. Health & Medical',
+        h2: '3. Health, Fitness & Medical Disclaimer',
+        p1: 'The health and fitness calculators on this Site (including, but not limited to, BMI, BMR, calorie, macro, pregnancy, and body fat calculators) are not intended to be a substitute for professional medical advice, diagnosis, or treatment.',
+        p2: 'Human physiology is highly individualized. Standardized formulas (such as the Mifflin-St Jeor or Harris-Benedict equations) provide statistical averages that may not accurately reflect your unique metabolic rate, medical history, or physical condition. Never disregard professional medical advice or delay in seeking it because of something you have read or calculated on this Site. Always consult a physician or qualified healthcare provider before starting any new diet, exercise program, or health regimen.',
+      },
+      liability: {
+        toc: '4. No Liability',
+        h2: '4. Limitation of Liability & External Links',
+        p1: 'Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of the Site or reliance on any information or calculation result provided on the Site. Your use of the Site and your reliance on any information on the Site is solely at your own risk.',
+        p2: 'The Site may contain links to other websites or content belonging to or originating from third parties, or links to websites and features in banners or other advertising. Such external links are not investigated, monitored, or checked for accuracy, adequacy, validity, reliability, availability, or completeness by us.',
+      },
+      contact: {
+        toc: '5. Contact Us',
+        h2: '5. Contact Us',
+        p1: 'If you require any more information or have any questions about our site\'s disclaimer, please feel free to contact us by email:',
+        label: 'Email Support:',
+      },
+    },
+  },
+  es: {
+    metaTitle: 'Descargo de Responsabilidad | NexusCalculator',
+    metaDesc: 'Lea el descargo de responsabilidad oficial de NexusCalculator sobre los cálculos financieros, médicos, de salud y matemáticos.',
+    badge: 'Última actualización: 24 de octubre de 2026',
+    h1: 'Descargo de Responsabilidad Legal',
+    subtitle: 'Información importante sobre la exactitud, el alcance y el uso previsto de nuestras calculadoras y herramientas cuantitativas.',
+    tocHeading: 'Tabla de Contenidos',
+    sections: {
+      general: {
+        toc: '1. Información General',
+        h2: '1. Exclusivamente para Información General',
+        p1: 'La información, los resultados y las herramientas proporcionados por NexusCalculator («nosotros» o «nuestro») en https://www.nexuscalculator.net (el «Sitio») tienen fines exclusivamente informativos y educativos. Toda la información y los cálculos del Sitio se ofrecen de buena fe; sin embargo, no otorgamos declaración ni garantía alguna, expresa o implícita, sobre la exactitud, adecuación, validez, fiabilidad, disponibilidad o integridad de cualquier dato o resultado calculado en el Sitio.',
+        p2: 'Las calculadoras web emplean modelos matemáticos estandarizados y aproximaciones numéricas. Los casos reales suelen involucrar variables regulatorias, contractuales o clínicas particulares que una herramienta automatizada en línea no puede contemplar en su totalidad.',
+      },
+      financial: {
+        toc: '2. Aviso Financiero',
+        h2: '2. Descargo de Responsabilidad Financiera y de Inversión',
+        p1: 'NexusCalculator no es un asesor financiero registrado, corredor de bolsa, asesor fiscal ni contador público certificado. Nuestras calculadoras financieras (incluyendo, entre otras, las de hipotecas, préstamos, interés compuesto, jubilación, amortización e impuestos) están diseñadas únicamente para ofrecer estimaciones orientativas basadas en los parámetros introducidos por el usuario.',
+        p2: 'Las tasas de interés, los tramos impositivos, las comisiones bancarias y la inflación cambian continuamente según la jurisdicción. Los resultados generados por nuestras herramientas no constituyen asesoramiento financiero, jurídico ni tributario, ni representan una oferta vinculante de crédito por parte de ninguna entidad financiera. Consulte siempre a un asesor financiero colegiado o contador certificado antes de tomar decisiones económicas o de inversión.',
+      },
+      health: {
+        toc: '3. Salud y Medicina',
+        h2: '3. Descargo de Responsabilidad Médica, de Salud y Fitness',
+        p1: 'Las calculadoras de salud y condición física disponibles en este Sitio (incluyendo, entre otras, las calculadoras de IMC, TMB/BMR, calorías, macronutrientes, embarazo y porcentaje de grasa corporal) no pretenden sustituir el consejo, diagnóstico ni tratamiento médico profesional.',
+        p2: 'La fisiología humana varía considerablemente de una persona a otra. Las ecuaciones bioestadísticas estandarizadas (como las fórmulas de Mifflin-St Jeor o Harris-Benedict) arrojan promedios poblacionales que pueden no reflejar su metabolismo real, historial clínico o condición física particular. Nunca ignore el consejo médico profesional ni demore su consulta por algún dato leído o calculado en este Sitio. Consulte siempre a un médico o profesional sanitario cualificado antes de iniciar cualquier dieta, rutina de ejercicio o protocolo de salud.',
+      },
+      liability: {
+        toc: '4. Limitación de Responsabilidad',
+        h2: '4. Limitación de Responsabilidad y Enlaces Externos',
+        p1: 'Bajo ninguna circunstancia asumiremos responsabilidad alguna frente a usted por pérdidas o daños de cualquier naturaleza derivados del uso del Sitio o de la confianza depositada en cualquier información o cálculo proporcionado en él. El uso del Sitio y de sus resultados se realiza exclusivamente bajo su propio riesgo.',
+        p2: 'El Sitio puede contener enlaces a sitios web de terceros o anuncios servidos mediante redes publicitarias. Dichos enlaces externos no son auditados ni controlados por nosotros en cuanto a su exactitud, vigencia o integridad.',
+      },
+      contact: {
+        toc: '5. Contacto',
+        h2: '5. Contáctenos',
+        p1: 'Si necesita información adicional o tiene alguna consulta sobre el descargo de responsabilidad de nuestro sitio web, puede escribirnos por correo electrónico:',
+        label: 'Soporte por Correo:',
+      },
+    },
+  },
+  fr: {
+    metaTitle: 'Clause de Non-Responsabilité | NexusCalculator',
+    metaDesc: 'Consultez la clause de non-responsabilité officielle de NexusCalculator concernant les calculs financiers, médicaux, de santé et mathématiques.',
+    badge: 'Dernière mise à jour : 24 octobre 2026',
+    h1: 'Clause de Non-Responsabilité Légale',
+    subtitle: 'Informations essentielles concernant l’exactitude, la portée et l’usage prévu de nos calculatrices et outils quantitatifs.',
+    tocHeading: 'Sommaire',
+    sections: {
+      general: {
+        toc: '1. Informations Générales',
+        h2: '1. Informations à Titre Purement Indicatif',
+        p1: 'Les informations, résultats et outils mis à disposition par NexusCalculator (« nous » ou « notre ») sur https://www.nexuscalculator.net (le « Site ») sont fournis exclusivement à des fins d’information générale et de pédagogie. Bien que l’ensemble des formules et contenus soit vérifié de bonne foi, nous ne donnons aucune garantie, expresse ou implicite, quant à l’exactitude, la pertinence, la validité, la fiabilité ou l’exhaustivité des résultats générés sur le Site.',
+        p2: 'Les calculatrices en ligne reposent sur des modèles mathématiques normalisés. Les situations réelles comportent souvent des paramètres contractuels, fiscaux ou cliniques propres à chaque individu qu’un simulateur automatisé ne saurait intégrer intégralement.',
+      },
+      financial: {
+        toc: '2. Avertissement Financier',
+        h2: '2. Avertissement Financier et d’Investissement',
+        p1: 'NexusCalculator n’est ni un conseiller en investissements financiers agréé, ni un établissement de crédit, ni un expert-comptable ou avocat fiscaliste. Nos calculatrices financières (notamment les simulateurs de prêt immobilier, d’amortissement, d’intérêts composés, de retraite et de fiscalité) fournissent uniquement des estimations illustratives fondées sur les données que vous saisissez.',
+        p2: 'Les taux d’intérêt, barèmes fiscaux, frais bancaires et taux d’inflation évoluent constamment selon les juridictions. Les résultats produits par nos outils ne constituent en aucun cas un conseil financier, juridique ou fiscal personnalisé, ni une offre de prêt. Consultez systématiquement un professionnel qualifié ou un expert-comptable avant toute décision financière ou patrimoniale importante.',
+      },
+      health: {
+        toc: '3. Santé et Médecine',
+        h2: '3. Avertissement Médical, Santé et Condition Physique',
+        p1: 'Les calculatrices de santé et de forme physique présentes sur ce Site (telles que les calculateurs d’IMC, de métabolisme de base BMR, de besoins caloriques, de macronutriments, de grossesse et de masse grasse) ne remplacent en aucun cas un avis, un diagnostic ou un traitement médical professionnel.',
+        p2: 'La physiologie humaine est propre à chaque individu. Les formules biométriques standardisées (comme les équations de Mifflin-St Jeor ou de Harris-Benedict) produisent des moyennes statistiques susceptibles de différer de votre métabolisme réel ou de votre état de santé. Ne négligez jamais un avis médical professionnel et ne retardez jamais une consultation en raison d’un résultat obtenu sur ce Site. Demandez toujours l’avis d’un médecin ou d’un professionnel de santé qualifié avant d’entreprendre un régime ou un programme d’entraînement.',
+      },
+      liability: {
+        toc: '4. Limitation de Responsabilité',
+        h2: '4. Limitation de Responsabilité et Liens Externes',
+        p1: 'En aucun cas nous ne pourrons être tenus responsables envers vous de toute perte ou de tout dommage, direct ou indirect, résultant de l’utilisation du Site ou de la confiance accordée aux informations et résultats de calcul qui y figurent. L’utilisation du Site s’effectue sous votre entière responsabilité.',
+        p2: 'Le Site peut contenir des liens vers des sites tiers ou des espaces publicitaires. Ces ressources externes ne sont ni contrôlées ni garanties par notre équipe quant à leur exactitude ou leur exhaustivité.',
+      },
+      contact: {
+        toc: '5. Nous Contacter',
+        h2: '5. Nous Contacter',
+        p1: 'Pour toute question ou demande de précision concernant cette clause de non-responsabilité, vous pouvez nous contacter par courrier électronique :',
+        label: 'Assistance Email :',
+      },
+    },
+  },
+  de: {
+    metaTitle: 'Haftungsausschluss | NexusCalculator',
+    metaDesc: 'Lesen Sie den offiziellen Haftungsausschluss von NexusCalculator bezüglich Finanz-, Gesundheits-, Medizin- und Mathematikberechnungen.',
+    badge: 'Zuletzt aktualisiert: 24. Oktober 2026',
+    h1: 'Rechtlicher Haftungsausschluss',
+    subtitle: 'Wichtige Hinweise zur Genauigkeit, Methodik und zum vorgesehenen Verwendungszweck unserer Rechner und Analyse-Tools.',
+    tocHeading: 'Inhaltsverzeichnis',
+    sections: {
+      general: {
+        toc: '1. Allgemeine Hinweise',
+        h2: '1. Ausschließlich zu Allgemeinen Informationszwecken',
+        p1: 'Alle Informationen, Berechnungsergebnisse und Werkzeuge, die von NexusCalculator („wir“ oder „uns“) auf https://www.nexuscalculator.net (der „Website“) bereitgestellt werden, dienen ausschließlich allgemeinen Informations- und Bildungszwecken. Sämtliche Inhalte und Formeln werden nach bestem Wissen bereitgestellt; wir übernehmen jedoch keinerlei ausdrückliche oder stillschweigende Gewährleistung für die Richtigkeit, Angemessenheit, Gültigkeit, Zuverlässigkeit oder Vollständigkeit der auf der Website dargestellten Informationen und Ergebnisse.',
+        p2: 'Online-Rechner basieren auf standardisierten mathematischen Modellen und Näherungsverfahren. Reale Sachverhalte beinhalten häufig individuelle rechtliche, steuerliche oder medizinische Einflussfaktoren, die ein automatisiertes Web-Tool nicht vollständig abbilden kann.',
+      },
+      financial: {
+        toc: '2. Finanz-Hinweis',
+        h2: '2. Haftungsausschluss für Finanzen und Kapitalanlagen',
+        p1: 'NexusCalculator ist kein zugelassener Finanzberater, Kreditvermittler, Steuerberater oder Wirtschaftsprüfer. Unsere Finanzrechner (einschließlich Hypotheken-, Kredit-, Zinseszins-, Tilgungs-, Altersvorsorge- und Steuerrechner) erstellen lediglich unverbindliche Modellrechnungen auf Grundlage Ihrer Eingabewerte.',
+        p2: 'Zinssätze, Steuertarife, Bankgebühren und Inflationsraten unterliegen laufenden Änderungen. Die von unseren Werkzeugen berechneten Werte stellen weder eine Finanz-, Anlage-, Rechts- noch eine Steuerberatung dar und begründen kein Finanzierungsangebot. Ziehen Sie vor weitreichenden finanziellen Entscheidungen stets einen qualifizierten Finanz- oder Steuerberater hinzu.',
+      },
+      health: {
+        toc: '3. Gesundheit & Medizin',
+        h2: '3. Medizinischer und Gesundheitlicher Haftungsausschluss',
+        p1: 'Die auf dieser Website angebotenen Gesundheits- und Fitnessrechner (darunter BMI-, Grundumsatz-/BMR-, Kalorien-, Makronährstoff-, Schwangerschafts- und Körperfettrechner) sind kein Ersatz für eine professionelle ärztliche Beratung, Diagnose oder Behandlung.',
+        p2: 'Die menschliche Physiologie ist individuell verschieden. Standardisierte Gleichungen (wie die Mifflin-St-Jeor- oder Harris-Benedict-Formel) liefern statistische Durchschnittswerte, die von Ihrem tatsächlichen Stoffwechsel oder Gesundheitszustand abweichen können. Missachten Sie niemals ärztlichen Rat und zögern Sie keine medizinische Untersuchung aufgrund von Berechnungen auf dieser Website hinaus. Konsultieren Sie vor Beginn einer neuen Diät oder eines Trainingsprogramms stets einen Arzt oder qualifiziertes medizinisches Fachpersonal.',
+      },
+      liability: {
+        toc: '4. Haftungsbeschränkung',
+        h2: '4. Haftungsbeschränkung und Externe Links',
+        p1: 'Unter keinen Umständen haften wir Ihnen gegenüber für Verluste oder Schäden jeglicher Art, die aus der Nutzung der Website oder dem Vertrauen auf dort bereitgestellte Informationen und Berechnungsergebnisse entstehen. Die Nutzung der Website erfolgt ausschließlich auf eigenes Risiko.',
+        p2: 'Die Website kann Links zu externen Websites Dritter oder Werbeeinblendungen enthalten. Auf den Inhalt, die Richtigkeit und die Verfügbarkeit dieser externen Angebote haben wir keinen Einfluss.',
+      },
+      contact: {
+        toc: '5. Kontakt',
+        h2: '5. Kontaktieren Sie uns',
+        p1: 'Wenn Sie weitere Informationen benötigen oder Fragen zu unserem Haftungsausschluss haben, erreichen Sie uns jederzeit per E-Mail:',
+        label: 'E-Mail-Support:',
+      },
+    },
+  },
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = DISCLAIMER_COPY[locale] || DISCLAIMER_COPY.en;
+  const alternates = getCanonicalAndAlternates('/disclaimer', locale);
+
+  return {
+    title: t.metaTitle,
+    description: t.metaDesc,
+    alternates,
+  };
+}
+
+export default async function DisclaimerPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
   setRequestLocale(locale);
-  const meta = metaByLocale[locale] || metaByLocale.en;
+  const t = DISCLAIMER_COPY[locale] || DISCLAIMER_COPY.en;
+
   return (
-    <main className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 font-sans">
-      
-      {/* Breadcrumbs */}
-      <nav aria-label="Breadcrumb" className="text-sm text-slate-500 dark:text-slate-400 mb-8">
-        <ol className="flex items-center space-x-2">
-          <li>
-            <CustomLink href="/" className="hover:text-[#518231] dark:hover:text-[#6fa844] hover:underline transition-colors">{meta.home}</CustomLink>
-          </li>
-          <li><span className="mx-1 text-slate-400 dark:text-slate-600">/</span></li>
-          <li aria-current="page" className="text-slate-700 dark:text-slate-300 font-medium">{meta.crumb}</li>
-        </ol>
-      </nav>
-
-      <header className="mb-14 border-b border-slate-200 dark:border-slate-800 pb-10">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="bg-amber-100 dark:bg-amber-900/30 p-3 rounded-xl text-amber-700 dark:text-amber-400">
-            <AlertTriangle size={32} />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">{meta.h1}</h1>
-        </div>
-        <p className="text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl">
-          {meta.subtitle}
-        </p>
-      </header>
-
-      <article className="prose prose-slate dark:prose-invert prose-lg max-w-none">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
         
-        <div className="bg-amber-50 dark:bg-amber-900/10 border-l-4 border-amber-500 p-6 rounded-r-xl my-8 not-prose">
-          <h3 className="font-bold text-slate-900 dark:text-white text-xl mb-3 flex items-center gap-2">
-            <Scale className="text-amber-500" size={24} /> General Disclaimer
-          </h3>
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed m-0">
-            By using Nexus Calculator (nexuscalculator.net), you acknowledge and agree that all results generated by our calculators are estimates based on standard mathematical formulas and the input variables you provide. We make no warranties, express or implied, regarding the accuracy, completeness, or suitability of the calculations for your specific personal, business, or legal requirements.
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-medium text-sm mb-4">
+            <AlertTriangle size={16} />
+            <span>{t.badge}</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+            {t.h1}
+          </h1>
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            {t.subtitle}
           </p>
         </div>
 
-        <h2 className="flex items-center gap-3 text-2xl font-bold mt-12 mb-6">
-          <LineChart className="text-blue-500" size={28} /> Financial & Investment Tools
-        </h2>
-        <p>
-          Our financial tools—including but not limited to Mortgage Calculators, Loan Calculators, ROI Estimators, and Tax Calculators—are designed to give you a rough approximation of potential financial scenarios. 
-        </p>
-        <ul>
-          <li><strong>Not Financial Advice:</strong> We are not a registered investment advisor, broker-dealer, or tax professional.</li>
-          <li><strong>Market Volatility:</strong> Actual interest rates, loan terms, property taxes, insurance premiums, and investment returns will vary based on market conditions, your credit score, and decisions made by third-party financial institutions.</li>
-          <li><strong>Consult a Professional:</strong> Always consult with a certified financial planner (CFP), accountant (CPA), or legal counsel before making any significant financial decisions, signing loan documents, or investing capital.</li>
-        </ul>
+        <div className="flex flex-col lg:flex-row gap-12 items-start">
+          
+          {/* Sticky Table of Contents (Left Sidebar) */}
+          <aside className="w-full lg:w-64 shrink-0 lg:sticky lg:top-28 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
+            <h3 className="font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider text-xs">
+              {t.tocHeading}
+            </h3>
+            <nav className="flex flex-col space-y-3 text-sm font-medium text-slate-600 dark:text-slate-400">
+              <a href="#general-info" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <AlertTriangle size={16} /> {t.sections.general.toc}
+              </a>
+              <a href="#financial-disclaimer" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <DollarSign size={16} /> {t.sections.financial.toc}
+              </a>
+              <a href="#health-disclaimer" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <HeartPulse size={16} /> {t.sections.health.toc}
+              </a>
+              <a href="#no-liability" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <Scale size={16} /> {t.sections.liability.toc}
+              </a>
+              <a href="#contact-us" className="hover:text-[#518231] dark:hover:text-[#518231] transition-colors flex items-center gap-2">
+                <Mail size={16} /> {t.sections.contact.toc}
+              </a>
+            </nav>
+          </aside>
 
-        <h2 className="flex items-center gap-3 text-2xl font-bold mt-12 mb-6">
-          <Stethoscope className="text-rose-500" size={28} /> Health, Fitness & Medical Tools
-        </h2>
-        <p>
-          Our health and fitness tools—such as BMI Calculators, BMR Calculators, Calorie Counters, and Pregnancy Calculators—utilize generalized statistical formulas to provide broad fitness metrics.
-        </p>
-        <ul>
-          <li><strong>Not Medical Advice:</strong> The information generated by these tools is not a substitute for professional medical advice, diagnosis, or treatment.</li>
-          <li><strong>Individual Variability:</strong> Formulas like BMI do not account for muscle mass, bone density, age-specific factors, or underlying health conditions.</li>
-          <li><strong>Consult a Doctor:</strong> Never disregard professional medical advice or delay in seeking it because of something you have read or calculated on this website. Always consult with a licensed physician or healthcare provider before beginning a new diet, exercise program, or making health-related decisions.</li>
-        </ul>
+          {/* Main Content (Right Column) */}
+          <article className="flex-1 bg-white dark:bg-slate-900 p-8 sm:p-12 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm space-y-12 leading-relaxed">
+            
+            {/* Section 1 */}
+            <section id="general-info" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><AlertTriangle size={20} /></span>
+                {t.sections.general.h2}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {t.sections.general.p1}
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">
+                {t.sections.general.p2}
+              </p>
+            </section>
 
-        <h2 className="flex items-center gap-3 text-2xl font-bold mt-12 mb-6">
-          <FileText className="text-slate-500" size={28} /> Limitation of Liability
-        </h2>
-        <p>
-          Under no circumstances shall Nexus Calculator, its developers, affiliates, or partners be liable for any direct, indirect, incidental, consequential, or special damages arising out of or in any way connected with your use of the tools and information provided on this platform. You assume full responsibility and risk for your use of the site.
-        </p>
+            <hr className="border-slate-200 dark:border-slate-800" />
 
-      </article>
+            {/* Section 2: Financial */}
+            <section id="financial-disclaimer" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><DollarSign size={20} /></span>
+                {t.sections.financial.h2}
+              </h2>
+              <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 mb-4">
+                <p className="text-slate-600 dark:text-slate-400 mb-4">
+                  {t.sections.financial.p1}
+                </p>
+                <p className="text-slate-600 dark:text-slate-400">
+                  {t.sections.financial.p2}
+                </p>
+              </div>
+            </section>
 
-    </main>
+            <hr className="border-slate-200 dark:border-slate-800" />
+
+            {/* Section 3: Health */}
+            <section id="health-disclaimer" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><HeartPulse size={20} /></span>
+                {t.sections.health.h2}
+              </h2>
+              <div className="bg-slate-50 dark:bg-slate-950 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 mb-4">
+                <p className="text-slate-600 dark:text-slate-400 mb-4">
+                  {t.sections.health.p1}
+                </p>
+                <p className="text-slate-600 dark:text-slate-400">
+                  {t.sections.health.p2}
+                </p>
+              </div>
+            </section>
+
+            <hr className="border-slate-200 dark:border-slate-800" />
+
+            {/* Section 4 */}
+            <section id="no-liability" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><Scale size={20} /></span>
+                {t.sections.liability.h2}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {t.sections.liability.p1}
+              </p>
+              <p className="text-slate-600 dark:text-slate-400">
+                {t.sections.liability.p2}
+              </p>
+            </section>
+
+            <hr className="border-slate-200 dark:border-slate-800" />
+
+            {/* Section 5 */}
+            <section id="contact-us" className="scroll-mt-28">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-3">
+                <span className="bg-[#518231]/10 text-[#518231] p-2 rounded-lg"><Mail size={20} /></span>
+                {t.sections.contact.h2}
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                {t.sections.contact.p1}
+              </p>
+              <div className="inline-block bg-slate-50 dark:bg-slate-950 px-6 py-4 rounded-xl border border-slate-200 dark:border-slate-800">
+                <p className="font-medium text-slate-900 dark:text-white">
+                  {t.sections.contact.label}{' '}
+                  <a href="mailto:support@nexuscalculator.net" className="text-[#518231] hover:underline ml-1">
+                    support@nexuscalculator.net
+                  </a>
+                </p>
+              </div>
+            </section>
+
+          </article>
+
+        </div>
+      </div>
+    </div>
   );
 }

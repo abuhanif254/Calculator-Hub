@@ -12,39 +12,74 @@ interface StaticCalculationMatrixProps {
 
 const matrixTranslations: Record<string, {
   quickRef: string;
+  interactivePresets: string;
+  actionCol: string;
+  rowTitleTip: string;
   loadAction: string;
   loadedAction: string;
   clickTip: string;
 }> = {
   en: {
     quickRef: "Quick Reference Matrix",
+    interactivePresets: "Interactive Presets",
+    actionCol: "Action",
+    rowTitleTip: "Click to calculate with these values",
     loadAction: "Load",
     loadedAction: "Loaded!",
     clickTip: "Click any row to test these numbers in the interactive calculator above.",
   },
   es: {
     quickRef: "Matriz de Referencia Rápida",
+    interactivePresets: "Preajustes Interactivos",
+    actionCol: "Acción",
+    rowTitleTip: "Haga clic para calcular con estos valores",
     loadAction: "Cargar",
     loadedAction: "¡Cargado!",
     clickTip: "Haga clic en cualquier fila para probar estos números en la calculadora interactiva.",
   },
   fr: {
     quickRef: "Matrice de Référence Rapide",
+    interactivePresets: "Préréglages Interactifs",
+    actionCol: "Action",
+    rowTitleTip: "Cliquez pour calculer avec ces valeurs",
     loadAction: "Charger",
     loadedAction: "Chargé !",
     clickTip: "Cliquez sur une ligne pour charger ces valeurs dans la calculatrice ci-dessus.",
   },
   de: {
     quickRef: "Schnellübersicht-Tabelle",
+    interactivePresets: "Interaktive Vorlagen",
+    actionCol: "Aktion",
+    rowTitleTip: "Klicken Sie, um mit diesen Werten zu rechnen",
     loadAction: "Laden",
     loadedAction: "Geladen!",
     clickTip: "Klicken Sie auf eine Zeile, um diese Werte im interaktiven Rechner zu testen.",
   },
 };
 
+function localizeCellValue(val: string, locale: string): string {
+  if (locale === "en") return val;
+  if (locale === "es") {
+    return val
+      .replace(/\/ mo\b/g, "/ mes")
+      .replace(/^Under\s+/i, "Menos de ");
+  }
+  if (locale === "fr") {
+    return val
+      .replace(/\/ mo\b/g, "/ mois")
+      .replace(/^Under\s+/i, "Moins de ");
+  }
+  if (locale === "de") {
+    return val
+      .replace(/\/ mo\b/g, "/ Mon.")
+      .replace(/^Under\s+/i, "Unter ");
+  }
+  return val;
+}
+
 export function StaticCalculationMatrix({
   slug,
-  title,
+  title: _title,
   locale = "en",
 }: StaticCalculationMatrixProps) {
   const [activeRow, setActiveRow] = useState<number | null>(null);
@@ -53,6 +88,10 @@ export function StaticCalculationMatrix({
   if (!matrix) return null;
 
   const t = matrixTranslations[locale] || matrixTranslations.en;
+  const localizedMeta = matrix.translations?.[locale];
+  const displayTitle = localizedMeta?.title || matrix.title;
+  const displayDesc = localizedMeta?.description || matrix.description;
+  const displayHeaders = localizedMeta?.headers || matrix.headers;
 
   const handleLoadRow = (rowIndex: number, params: Record<string, string>) => {
     if (typeof window === "undefined") return;
@@ -140,7 +179,7 @@ export function StaticCalculationMatrix({
 
   return (
     <section
-      aria-label={matrix.title}
+      aria-label={displayTitle}
       className="mt-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm print:hidden"
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
@@ -153,18 +192,18 @@ export function StaticCalculationMatrix({
               {t.quickRef}
             </span>
             <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-              {matrix.title}
+              {displayTitle}
             </h3>
           </div>
         </div>
         <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 self-start sm:self-auto">
           <Sparkles className="w-3.5 h-3.5 text-[#518231] dark:text-[#6fa844]" />
-          <span>Interactive Presets</span>
+          <span>{t.interactivePresets}</span>
         </div>
       </div>
 
       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-        {matrix.description}
+        {displayDesc}
       </p>
 
       {/* Semantic HTML Table for Search Engine Web Crawlers */}
@@ -172,13 +211,13 @@ export function StaticCalculationMatrix({
         <table className="w-full text-left border-collapse text-xs sm:text-sm">
           <thead>
             <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/60 text-slate-900 dark:text-slate-200 font-bold">
-              {matrix.headers.map((header, idx) => (
+              {displayHeaders.map((header, idx) => (
                 <th key={idx} scope="col" className="p-3 sm:p-4 font-semibold whitespace-nowrap">
                   {header}
                 </th>
               ))}
               <th scope="col" className="p-3 sm:p-4 text-right whitespace-nowrap">
-                Action
+                {t.actionCol}
               </th>
             </tr>
           </thead>
@@ -190,20 +229,20 @@ export function StaticCalculationMatrix({
                   key={rIdx}
                   onClick={() => handleLoadRow(rIdx, row.params)}
                   className="hover:bg-emerald-50/40 dark:hover:bg-[#518231]/10 cursor-pointer transition-colors group"
-                  title="Click to calculate with these values"
+                  title={t.rowTitleTip}
                 >
                   <th
                     scope="row"
                     className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white whitespace-nowrap group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors"
                   >
-                    {row.label}
+                    {localizeCellValue(row.label, locale)}
                   </th>
                   {row.values.map((val, vIdx) => (
                     <td
                       key={vIdx}
                       className="p-3 sm:p-4 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap"
                     >
-                      {val}
+                      {localizeCellValue(val, locale)}
                     </td>
                   ))}
                   <td className="p-3 sm:p-4 text-right whitespace-nowrap">
