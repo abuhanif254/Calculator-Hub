@@ -5,7 +5,7 @@ import { fetchTopUsersRest, queryPostsRest } from '@/lib/firebase-rest';
 import { Link } from '@/i18n/routing';
 import { Trophy, Star, Crown, MessageSquare, ArrowRight, ChevronRight, User as UserIcon } from 'lucide-react';
 import { BADGES } from '@/lib/badges';
-import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, optimizeSerpTitle } from '@/lib/utils/seoUtils';
 
 export const revalidate = 86400; // ISR: revalidate every 24 hours
 
@@ -117,7 +117,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const copy = HALL_OF_FAME_I18N[locale] || HALL_OF_FAME_I18N.en;
   return {
-    title: copy.metaTitle,
+    title: optimizeSerpTitle(copy.metaTitle, locale, 'page'),
     description: copy.metaDescription,
     robots: {
       index: true,

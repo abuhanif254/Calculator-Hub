@@ -54,10 +54,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!data) return { title: "Post Not Found | Nexus Community" };
   
   const plainTextDescription = data.post.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...';
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
 
   return {
-    title: `${data.post.title} | Nexus Community`,
+    title: optimizeSerpTitle(data.post.title, locale, 'page'),
     description: plainTextDescription,
     robots: {
       index: true,

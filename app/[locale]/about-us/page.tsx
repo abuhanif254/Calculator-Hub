@@ -413,11 +413,11 @@ const copyByLocale: Record<string, AboutLocaleCopy> = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const c = copyByLocale[locale] || copyByLocale.en;
 
   return {
-    title: c.title,
+    title: optimizeSerpTitle(c.title, locale, 'page'),
     description: c.description,
     alternates: getCanonicalAndAlternates('/about-us', locale),
     openGraph: {

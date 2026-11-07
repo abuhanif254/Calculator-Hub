@@ -43,7 +43,7 @@ export const revalidate = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const { getCanonicalAndAlternates, getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/', locale);
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const meta = metadataByLocale[locale] || metadataByLocale.en;
 
   return {
-    title: meta.title,
+    title: optimizeSerpTitle(meta.title, locale, 'page'),
     description: meta.description,
     openGraph: {
       title: meta.title,

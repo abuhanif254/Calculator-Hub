@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { comparisons } from '@/lib/data/comparisons';
 import { Link } from '@/i18n/routing';
-import { getCanonicalAndAlternates, getCanonicalUrl } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from '@/lib/utils/seoUtils';
 import { Scale, ChevronRight, ArrowRight, ShieldCheck, BookOpen, Layers } from 'lucide-react';
 
 export const revalidate = false;
@@ -140,7 +140,7 @@ export async function generateMetadata({
   const ui = HUB_STRINGS[locale] || HUB_STRINGS.en;
 
   return {
-    title: ui.metaTitle,
+    title: optimizeSerpTitle(ui.metaTitle, locale, 'page'),
     description: ui.metaDescription,
     alternates: getCanonicalAndAlternates('/compare', locale),
     openGraph: {

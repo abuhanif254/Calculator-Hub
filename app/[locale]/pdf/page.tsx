@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link, resolveIntlHref } from "@/i18n/routing";
 import { pdfToolsMenu } from "@/lib/data/sitemapData";
 import { resolveHref } from "@/lib/utils/linkResolver";
-import { getCanonicalAndAlternates, getCanonicalUrl } from "@/lib/utils/seoUtils";
+import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from "@/lib/utils/seoUtils";
 import { getLocalizedToolMeta } from "@/lib/utils/toolLocalization";
 import {
   FileText,
@@ -164,7 +164,7 @@ export async function generateMetadata({
   const t = pdfCopy[locale] || pdfCopy.en;
 
   return {
-    title: t.title,
+    title: optimizeSerpTitle(t.title, locale, 'page'),
     description: t.description,
     keywords:
       "pdf tools, free online pdf tools, merge pdf, split pdf, compress pdf, convert pdf to word, pdf to excel, protect pdf, edit pdf online, client-side pdf editor",

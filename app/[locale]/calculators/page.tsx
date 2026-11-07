@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { categories, getLocalizedCategory } from "@/lib/data/categories";
 import { calculators } from "@/lib/data/calculators";
-import { getCanonicalAndAlternates, getCanonicalUrl } from "@/lib/utils/seoUtils";
+import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from "@/lib/utils/seoUtils";
 import { getLocalizedCalcMeta } from "@/lib/utils/toolLocalization";
 import { Link, resolveIntlHref } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
@@ -89,7 +89,7 @@ export async function generateMetadata({
   const c = copyByLocale[locale] || copyByLocale.en;
 
   return {
-    title: c.title,
+    title: optimizeSerpTitle(c.title, locale, 'page'),
     description: c.description,
     keywords: "online calculators, free calculator tools, financial calculators, math calculator, health calculator, chemistry calculator",
     openGraph: {

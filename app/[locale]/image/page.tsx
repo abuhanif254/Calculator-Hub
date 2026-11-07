@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import { Link, resolveIntlHref } from "@/i18n/routing";
 import { imageToolsMenu } from "@/lib/data/sitemapData";
 import { resolveHref } from "@/lib/utils/linkResolver";
-import { getCanonicalAndAlternates, getCanonicalUrl } from "@/lib/utils/seoUtils";
+import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from "@/lib/utils/seoUtils";
 import { getLocalizedToolMeta } from "@/lib/utils/toolLocalization";
 import {
   Image as ImageIcon,
@@ -164,7 +164,7 @@ export async function generateMetadata({
   const t = imageCopy[locale] || imageCopy.en;
 
   return {
-    title: t.title,
+    title: optimizeSerpTitle(t.title, locale, 'page'),
     description: t.description,
     keywords:
       "image tools, free online image editor, compress image, resize image, convert image to webp, png to jpg, heic to jpg, image upscaler, remove image background, client-side photo tools",

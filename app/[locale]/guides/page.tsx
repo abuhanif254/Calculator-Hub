@@ -21,7 +21,7 @@ import {
   type Guide,
   type GuideCategory,
 } from '@/lib/data/guides';
-import { getCanonicalAndAlternates, getCanonicalUrl } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from '@/lib/utils/seoUtils';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 
 // SSG configuration — fully static, no revalidation needed.
@@ -41,7 +41,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'GuidesIndex' });
   
   return {
-    title: t('metaTitle'),
+    title: optimizeSerpTitle(t('metaTitle'), locale, 'page'),
     description: t('metaDescription'),
     alternates: getCanonicalAndAlternates('/guides', locale),
     openGraph: {

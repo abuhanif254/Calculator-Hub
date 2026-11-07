@@ -60,12 +60,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       keywords: 'online calculators, financial calculators, health calculators, developer tools, free web tools, json formatter, html beautifier, code formatter, developer utilities',
     },
     es: {
-      title: 'Nexus | Plataforma de Calculadoras Online y Herramientas de Desarrollo',
+      title: 'Nexus | Calculadoras Online y Herramientas de Desarrollo',
       description: 'Plataforma web con cientos de calculadoras financieras, médicas y científicas de alta precisión y herramientas gratuitas para desarrolladores.',
       keywords: 'calculadoras online, calculadoras financieras, calculadoras de salud, herramientas de desarrollo, herramientas web gratis, formateador json',
     },
     fr: {
-      title: 'Nexus | Plateforme de Calculatrices en Ligne et Outils Développeur',
+      title: 'Nexus | Calculatrices en Ligne et Outils Développeur',
       description: 'Plateforme web complète réunissant des centaines de calculatrices financières, médicales et scientifiques de haute précision et des outils développeur gratuits.',
       keywords: 'calculatrices en ligne, calculatrices financieres, calculatrices sante, outils developpeur, outils web gratuits, formateur json',
     },

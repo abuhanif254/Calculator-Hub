@@ -147,6 +147,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const baseUrl = "https://www.nexuscalculator.net";
   const ogImage = `${baseUrl}/icons/icon-512x512.png`;
+  const { optimizeSerpTitle } = await import("@/lib/utils/seoUtils");
   const localizedMeta = META_BY_LOCALE[locale] || META_BY_LOCALE.en;
 
   const supportedLocales = ["en", "es", "fr", "de"];
@@ -158,7 +159,7 @@ export async function generateMetadata({
   });
 
   return {
-    title: localizedMeta.title,
+    title: optimizeSerpTitle(localizedMeta.title, locale, "page"),
     description: localizedMeta.description,
     keywords: [
       "PII scanning",

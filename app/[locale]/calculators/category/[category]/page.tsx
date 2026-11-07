@@ -33,9 +33,9 @@ export async function generateMetadata({
   const cat = getLocalizedCategory(category, locale);
   if (!cat) return { title: 'Category Not Found' };
 
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const alternates = getCanonicalAndAlternates('/calculators/category/[category]', locale, category);
-  const cleanTitle = cat.seoTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
+  const cleanTitle = optimizeSerpTitle(cat.seoTitle, locale, 'page');
 
   return {
     title: cleanTitle,

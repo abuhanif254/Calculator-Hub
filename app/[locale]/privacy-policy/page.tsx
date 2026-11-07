@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, optimizeSerpTitle } from '@/lib/utils/seoUtils';
 import { ShieldCheck, Cookie, Eye, Lock, Mail } from 'lucide-react';
 
 export const revalidate = false;
@@ -266,7 +266,7 @@ export async function generateMetadata({
   const alternates = getCanonicalAndAlternates('/privacy-policy', locale);
 
   return {
-    title: t.metaTitle,
+    title: optimizeSerpTitle(t.metaTitle, locale, 'page'),
     description: t.metaDesc,
     alternates,
   };

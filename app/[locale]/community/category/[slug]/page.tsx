@@ -682,12 +682,12 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const meta = getCategoryMeta(slug);
   if (!meta) return { title: 'Not Found' };
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const enrichment = getLocalizedEnrichment(slug, locale);
   const ui = UI_STRINGS[locale] || UI_STRINGS.en;
 
   return {
-    title: ui.metaTitle(meta.emoji, enrichment.label),
+    title: optimizeSerpTitle(ui.metaTitle(meta.emoji, enrichment.label), locale, 'page'),
     description: ui.metaDesc(enrichment.subtitle, enrichment.label),
     robots: {
       index: true,

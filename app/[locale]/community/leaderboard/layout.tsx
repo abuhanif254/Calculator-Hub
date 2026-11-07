@@ -6,9 +6,9 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   return {
-    title: 'Community Leaderboard | NexusCalculator',
+    title: optimizeSerpTitle('Community Leaderboard', locale, 'page'),
     description: 'Explore the top contributors and reputation rankings in the NexusCalculator developer community.',
     robots: { index: true, follow: true },
     alternates: getCanonicalAndAlternates('/community/leaderboard', locale),

@@ -27,7 +27,7 @@ import {
   getAdjacentGuides,
   type GuideCategory,
 } from '@/lib/data/guides';
-import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref, optimizeSerpTitle } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedToolMeta, getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
@@ -181,8 +181,9 @@ export async function generateMetadata(
         : getCanonicalUrl('/calculators/[slug]', locale, guide.relatedCalculator))
     : undefined;
 
+  const metaTitle = optimizeSerpTitle(guide.title, locale, 'guide');
   return {
-    title: guide.title,
+    title: metaTitle,
     description: guide.description,
     alternates: getCanonicalAndAlternates('/guides/[slug]', locale, baseGuide.slug),
     openGraph: {

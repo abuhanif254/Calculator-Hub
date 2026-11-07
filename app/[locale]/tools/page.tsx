@@ -2,7 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { allToolsConfig } from "@/lib/data/tools";
-import { getCanonicalAndAlternates, getCanonicalUrl } from "@/lib/utils/seoUtils";
+import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from "@/lib/utils/seoUtils";
 import { getLocalizedToolMeta } from "@/lib/utils/toolLocalization";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Terminal } from "lucide-react";
@@ -120,7 +120,7 @@ export async function generateMetadata({
   const t = hubCopy[locale] || hubCopy.en;
 
   return {
-    title: t.metaTitle,
+    title: optimizeSerpTitle(t.metaTitle, locale, 'page'),
     description: t.metaDesc,
     keywords: "developer tools, json formatter, pdf tools, code beautifier, image converter, online web tools, free developer utilities",
     openGraph: {

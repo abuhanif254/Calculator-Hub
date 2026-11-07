@@ -8,10 +8,10 @@ export async function generateMetadata({ params, searchParams }: { params: Promi
   const { locale } = await params;
   const { q } = await searchParams;
   const hasQuery = Boolean(q && q.trim().length > 0);
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
 
   return {
-    title: hasQuery ? `Search results for "${q}" | Nexus Calculator` : 'Search Calculators & Developer Tools | Nexus Calculator',
+    title: optimizeSerpTitle(hasQuery ? `Search results for "${q}"` : 'Search Calculators & Developer Tools', locale, 'page'),
     description: 'Search 350+ free online financial, math, health, and science calculators, PDF utilities, image tools, comparisons, and developer utilities on Nexus Calculator.',
     robots: { index: !hasQuery, follow: true },
     ...(!hasQuery ? { alternates: getCanonicalAndAlternates('/search', locale) } : {}),

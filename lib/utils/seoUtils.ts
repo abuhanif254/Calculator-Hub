@@ -264,46 +264,144 @@ export function canonicalizeInternalHref(href: string | undefined, currentLocale
   return localeMatch ? `${p}${search}${hash}` : `/${targetLocale}${p}${search}${hash}`;
 }
 
+const SERP_MAX_BASE_LEN = 58; // Layout appends " | Nexus" (+8 chars) -> max 66 chars (< 70 Bing limit)
+
+const DANGLING_SERP_WORDS = new Set([
+  'and', 'or', 'for', 'to', 'in', 'on', 'of', 'with', 'by', 'at', 'from', 'vs', 'vs.', 'the', 'a', 'an', '&', '+',
+  'y', 'e', 'o', 'u', 'de', 'del', 'la', 'el', 'los', 'las', 'en', 'con', 'para', 'por', 'un', 'una', 'su', 'tu', 'tus', 'libre',
+  'et', 'ou', 'de', 'du', 'des', 'le', 'la', 'les', 'en', 'dans', 'avec', 'pour', 'par', 'sur', 'un', 'une', 'vos', 'votre',
+  'und', 'oder', 'für', 'von', 'mit', 'in', 'im', 'an', 'am', 'auf', 'zu', 'zur', 'zum', 'der', 'die', 'das', 'den', 'dem', 'ein', 'eine', 'einer', 'einem', 'einen', 'ihre', 'ihren', 'berechnen'
+]);
+
+function cleanTrailingSerpDangling(str: string): string {
+  let s = str.replace(/[,:;–—\-|/+\s]+$/, '').trim();
+  if ((s.match(/\(/g) || []).length > (s.match(/\)/g) || []).length) {
+    s = s.replace(/\s*\([^)]*$/, '').trim();
+  }
+  const words = s.split(/\s+/);
+  while (words.length > 2) {
+    const last = words[words.length - 1].toLowerCase().replace(/[.,:;!?]/g, '');
+    if (DANGLING_SERP_WORDS.has(last)) {
+      words.pop();
+    } else {
+      break;
+    }
+  }
+  return words.join(' ').replace(/[,:;–—\-|/+\s]+$/, '').trim();
+}
+
+function truncateSerpAtWordBoundary(str: string, maxLen: number): string {
+  if (str.length <= maxLen) return str;
+  const sliced = str.slice(0, maxLen + 1);
+  const lastSpace = sliced.lastIndexOf(' ');
+  const candidate = lastSpace > 15 ? sliced.slice(0, lastSpace) : str.slice(0, maxLen);
+  return cleanTrailingSerpDangling(candidate);
+}
+
 /**
- * Enriches short bare titles (< 32 chars) with localized high-CTR modifiers
- * while strictly keeping the final title (including "| NexusCalculator" layout template)
- * within 60 characters to prevent SERP truncation.
+ * Normalizes and enforces strict SERP title length (< 70 chars including " | Nexus" layout template)
+ * while enriching short bare titles (< 36 chars) with localized high-CTR modifiers.
  */
 export function optimizeSerpTitle(
   rawTitle: string,
-  locale: string,
-  type: 'calculator' | 'tool' = 'calculator'
+  locale: string = 'en',
+  type: 'calculator' | 'tool' | 'guide' | 'page' = 'calculator'
 ): string {
-  const cleaned = rawTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
-  // Layout appends " | NexusCalculator" (18 chars), so keep base title <= 44 chars when adding modifiers
-  if (cleaned.length >= 32 || cleaned.includes('—') || cleaned.includes(' - ')) {
+  let cleaned = (rawTitle || '')
+    .replace(/^Nexus(?:Calculator|\s+Calculator)?\s*[|–—-]\s*/i, '')
+    .replace(/\s*[|–—-]\s*Nexus\s*Calculator\s*Guides.*$/i, '')
+    .replace(/\s*[|–—-]\s*Nexus\s*Community.*$/i, '')
+    .replace(/\s*[|–—-]\s*Community\s*\|\s*Nexus.*$/i, '')
+    .replace(/\s*[|–—-]\s*Nexus\s*Calculator.*$/i, '')
+    .replace(/\s*[|–—-]\s*Nexus.*$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (cleaned.length > SERP_MAX_BASE_LEN) {
+    const withoutParen = cleaned.replace(/\s*\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();
+    if (withoutParen.length <= SERP_MAX_BASE_LEN && withoutParen.length >= 25) {
+      cleaned = withoutParen;
+    }
+  }
+
+  if (cleaned.length > SERP_MAX_BASE_LEN) {
+    const sepMatch = cleaned.match(/^(.+?)\s*(\||–|—|\s-\s|:)\s*(.+)$/);
+    if (sepMatch) {
+      const primary = sepMatch[1].trim();
+      const rawSep = sepMatch[2].trim();
+      const sep = rawSep === ':' ? ': ' : ' — ';
+      const secondary = sepMatch[3].trim();
+
+      // 1. Try stripping trailing filler words from secondary
+      const strippedSec = secondary
+        .replace(/\s*(?:&\s*More|y\s*Más|et\s*Plus|&\s*Mehr)$/i, '')
+        .replace(/\s+(?:Cell\s+Solver|Solver|Calculator|Tool|Online|Free|Gratis|Gratuit|Kostenlos|berechnen|Ocultas)$/i, '')
+        .trim();
+      const cleanedStrippedSec = cleanTrailingSerpDangling(strippedSec);
+      if (`${primary}${sep}${cleanedStrippedSec}`.length <= SERP_MAX_BASE_LEN && cleanedStrippedSec.length >= 8) {
+        return `${primary}${sep}${cleanedStrippedSec}`;
+      }
+
+      // 2. Try splitting secondary by comma (preserving & / y / et / und phrases)
+      const commaParts = strippedSec.split(/\s*,\s*/);
+      if (commaParts.length > 1) {
+        let acc = commaParts[0];
+        for (let i = 1; i < commaParts.length; i++) {
+          const next = `${acc}, ${commaParts[i]}`;
+          if (`${primary}${sep}${next}`.length <= SERP_MAX_BASE_LEN) {
+            acc = next;
+          } else {
+            break;
+          }
+        }
+        const cleanedAcc = cleanTrailingSerpDangling(acc);
+        const candidate = `${primary}${sep}${cleanedAcc}`;
+        if (candidate.length <= SERP_MAX_BASE_LEN && cleanedAcc.length >= 6) {
+          return candidate;
+        }
+      }
+
+      // 3. Fall back to primary clause (which receives a clean localized modifier below if < 36 chars)
+      if (primary.length >= 12 && primary.length <= SERP_MAX_BASE_LEN) {
+        cleaned = primary;
+      } else {
+        cleaned = truncateSerpAtWordBoundary(cleaned, SERP_MAX_BASE_LEN);
+      }
+    } else {
+      cleaned = truncateSerpAtWordBoundary(cleaned, SERP_MAX_BASE_LEN);
+    }
+  }
+
+  if (type === 'page') {
     return cleaned;
   }
 
-  const modifiers: Record<string, { calculator: string; tool: string }> = {
-    en: { calculator: ' — Free Online Formula', tool: ' — Free Online Tool' },
-    es: { calculator: ' — Fórmula Gratis Online', tool: ' — Herramienta Gratis' },
-    fr: { calculator: ' — Formule Gratuite', tool: ' — Outil Gratuit en Ligne' },
-    de: { calculator: ' — Kostenlos Online', tool: ' — Kostenloses Tool' },
-  };
+  // Enrich short/medium base titles (< 36 chars) that don't already have a secondary clause
+  if (cleaned.length < 36 && !cleaned.includes('—') && !cleaned.includes(' - ') && !cleaned.includes('|') && !cleaned.includes(':')) {
+    const modifiers: Record<string, { calculator: string; tool: string; guide: string }> = {
+      en: { calculator: ' — Free Online Formula', tool: ' — Free Online Tool', guide: ' — Complete Guide' },
+      es: { calculator: ' — Gratis y Precisa', tool: ' — Herramienta Gratis', guide: ' — Guía Completa' },
+      fr: { calculator: ' — Gratuit en Ligne', tool: ' — Outil Gratuit', guide: ' — Guide Complet' },
+      de: { calculator: ' — Kostenlos Online', tool: ' — Kostenloses Tool', guide: ' — Kompletter Ratgeber' },
+    };
 
-  const mod = (modifiers[locale] || modifiers.en)[type];
-  if (cleaned.length + mod.length <= 44) {
-    return `${cleaned}${mod}`;
-  }
+    const locMods = modifiers[locale] || modifiers.en;
+    const mod = locMods[type as 'calculator' | 'tool' | 'guide'] || locMods.calculator;
+    if (cleaned.length + mod.length <= SERP_MAX_BASE_LEN) {
+      return `${cleaned}${mod}`;
+    }
 
-  const shortMod: Record<string, string> = {
-    en: ' (Free Online)',
-    es: ' (Gratis Online)',
-    fr: ' (Gratuit)',
-    de: ' (Kostenlos)',
-  };
-  const fallback = shortMod[locale] || shortMod.en;
-  if (cleaned.length + fallback.length <= 44) {
-    return `${cleaned}${fallback}`;
+    const shortMod: Record<string, string> = {
+      en: ' (Free Online)',
+      es: ' (Gratis Online)',
+      fr: ' (Gratuit)',
+      de: ' (Kostenlos)',
+    };
+    const fallback = shortMod[locale] || shortMod.en;
+    if (cleaned.length + fallback.length <= SERP_MAX_BASE_LEN) {
+      return `${cleaned}${fallback}`;
+    }
   }
 
   return cleaned;
 }
-
-

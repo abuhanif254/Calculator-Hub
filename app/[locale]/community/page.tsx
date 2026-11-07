@@ -37,11 +37,11 @@ const communityMetaByLocale: Record<string, { title: string; description: string
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
   const meta = communityMetaByLocale[locale] || communityMetaByLocale.en;
 
   return {
-    title: meta.title,
+    title: optimizeSerpTitle(meta.title, locale, 'page'),
     description: meta.description,
     alternates: getCanonicalAndAlternates('/community', locale),
   };

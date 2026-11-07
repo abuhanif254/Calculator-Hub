@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!collection) return {};
 
   const t = collection.translations?.[locale] || collection;
-  const cleanSeoTitle = t.seoTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
-  const { getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
+  const cleanSeoTitle = optimizeSerpTitle(t.seoTitle, locale, 'page');
   const alternates = getCanonicalAndAlternates('/collections/[slug]', locale, slug);
 
   return {
