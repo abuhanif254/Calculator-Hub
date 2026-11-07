@@ -8,26 +8,26 @@ import { comparisons } from '@/lib/data/comparisons';
 import { categories } from '@/lib/data/categories';
 import { getCanonicalUrl } from '@/lib/utils/seoUtils';
 
-export const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'd8a94c7e2f1b5063a4c8e91f72b3d405';
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'd8a94c7e2f1b5063a4c8e91f72b3d405';
 const HOST = 'www.nexuscalculator.net';
 const KEY_LOCATION = `https://${HOST}/${INDEXNOW_KEY}.txt`;
 
 const PRIORITY_BING_URLS = [
-  'https://www.nexuscalculator.net/es/calculadoras/acid-base-calculator',
+  'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-acido-base',
   'https://www.nexuscalculator.net/en/calculators/electrochemical-cell-calculator',
-  'https://www.nexuscalculator.net/fr/calculatrices/buffer-calculator',
-  'https://www.nexuscalculator.net/es/calculadoras/henderson-hasselbalch-equation-calculator',
+  'https://www.nexuscalculator.net/fr/calculatrices/calculateur-de-tampon',
+  'https://www.nexuscalculator.net/es/calculadoras/calculadora-henderson-hasselbalch',
   'https://www.nexuscalculator.net/en/guides/data-masking-techniques',
-  'https://www.nexuscalculator.net/es/herramientas/pdf-metadata-viewer',
-  'https://www.nexuscalculator.net/es/calculadoras/ calculadora-roth-ira'.replace(/\s+/g, ''),
-  'https://www.nexuscalculator.net/es/calculadoras/enthalpy-calculator',
+  'https://www.nexuscalculator.net/es/herramientas/visor-metadatos-pdf',
+  'https://www.nexuscalculator.net/es/calculadoras/calculadora-roth-ira',
+  'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-entalpia',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-cd',
-  'https://www.nexuscalculator.net/fr/outils/ai-prompt-helper',
-  'https://www.nexuscalculator.net/de/rechner/margin-calculator',
-  'https://www.nexuscalculator.net/es/calculadoras/kb-calculator',
+  'https://www.nexuscalculator.net/fr/outils/optimiseur-de-prompt-ia',
+  'https://www.nexuscalculator.net/de/rechner/margenrechner',
+  'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-kb',
   'https://www.nexuscalculator.net/en/calculators/enthalpy-calculator',
-  'https://www.nexuscalculator.net/fr/outils/pdf-metadata-viewer',
-  'https://www.nexuscalculator.net/fr/outils/pdf-metadata-editor',
+  'https://www.nexuscalculator.net/fr/outils/visionneuse-metadonnees-pdf',
+  'https://www.nexuscalculator.net/fr/outils/editeur-metadonnees-pdf',
   'https://www.nexuscalculator.net/en/guides/hipaa-data-de-identification',
   'https://www.nexuscalculator.net/de/anleitungen/wissenschaftliche-schreibweise-ratgeber',
 ];
