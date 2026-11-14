@@ -712,8 +712,8 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                 <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white">Data Privacy Platform</h2>
                 <p className="text-sm text-slate-500 dark:text-slate-400 mt-0.5">Enterprise-grade database anonymization · GDPR · HIPAA · PCI-DSS · Free forever</p>
               </div>
-              <Link href={'/database-privacy' as any} className="ml-auto shrink-0 inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
-                <ExternalLink size={14} /> Open Platform
+              <Link href={resolveIntlHref('/tools/database-anonymizer')} className="ml-auto shrink-0 inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors">
+                <ExternalLink size={14} /> Open Tool
               </Link>
             </div>
           </div>

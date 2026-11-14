@@ -1,8 +1,8 @@
 ---
-title: "Voltage Calculator | Electrical Voltage & Potential Difference (V = IR) Solver"
-description: "Free online Voltage Calculator. Instantly calculate Voltage from current (V = IR), power (V = P/I), or resistance (V = √(PR)). Features digital multimeter display, battery presets, and safety indicators."
-metaTitle: "Voltage Calculator | Electrical Voltage & Potential Difference (V = IR) Solver"
-metaDescription: "Free online Voltage Calculator. Instantly calculate Voltage from current (V = IR), power (V = P/I), or resistance (V = √(PR)). Features digital multimeter display, battery presets, and safety indicators."
+title: "Voltage Calculator"
+description: "Calculate electrical voltage from current (V = IR), power (V = P/I), or resistance (V = √(PR)) with a live digital multimeter display and circuit presets."
+metaTitle: "Voltage Calculator — Ohm's Law (V = IR), Power & Circuits"
+metaDescription: "Calculate electrical voltage from current (V = IR), power (V = P/I), or resistance (V = √(PR)) with a live digital multimeter display and circuit presets."
 metaKeywords: "voltage calculator, electrical voltage calculator, volt calculator, voltage formula calculator, circuit voltage solver, V = IR calculator"
 features:
   - "Interactive Cockpit featuring Simple and Advanced Mode toggle"

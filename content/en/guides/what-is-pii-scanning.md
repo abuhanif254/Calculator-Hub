@@ -4,7 +4,8 @@ description: "Learn how PII scanning works, what types of personally identifiabl
 category: "Privacy & Security"
 readingTime: 7
 lastUpdated: "2026-08-08"
-relatedCalculator: "database-privacy"
+relatedCalculator: "database-anonymizer"
+relatedType: "tool"
 ---
 
 ## What Is PII Scanning?
@@ -149,6 +150,6 @@ A: Review findings by risk level, apply masking rules to high-risk columns in no
 
 ## Getting Started with PII Scanning
 
-The [Nexus Data Privacy Platform](/en/database-privacy) provides a free, privacy-first PII scanner with over 30 built-in detectors covering all major PII types across GDPR, HIPAA, and PCI DSS frameworks. No data leaves your browser. Results are available in seconds.
+The [Database Anonymizer Tool](/en/tools/database-anonymizer) provides a free, privacy-first PII scanner and masking engine covering all major PII types across GDPR, HIPAA, and PCI DSS frameworks. No data leaves your browser. Results are available in seconds.
 
-Connect your database, run your first scan, and get a complete picture of your sensitive data landscape — for free.
+Load your dataset, run your first scan, and sanitize sensitive data directly in your browser — for free.

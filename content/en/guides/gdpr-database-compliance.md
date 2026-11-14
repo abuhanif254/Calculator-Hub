@@ -4,7 +4,8 @@ description: "A practical technical guide to GDPR Articles 25 and 32 — coverin
 category: "Privacy & Security"
 readingTime: 9
 lastUpdated: "2026-08-08"
-relatedCalculator: "database-privacy"
+relatedCalculator: "database-anonymizer"
+relatedType: "tool"
 ---
 
 ## Why GDPR Applies to Your Database
@@ -231,7 +232,7 @@ A: GDPR does not specify fixed retention periods. Data must be kept no longer th
 
 ## Next Steps
 
-The [Nexus Data Privacy Platform](/en/database-privacy) provides a free GDPR compliance dashboard that:
+The [Database Anonymizer Tool](/en/tools/database-anonymizer) provides a free GDPR-ready browser utility that:
 
 - Scans your database for personal data and maps it to GDPR categories
 - Tracks compliance checkpoints for Articles 25, 30, and 32

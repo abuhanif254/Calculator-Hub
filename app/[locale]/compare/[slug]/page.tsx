@@ -250,8 +250,8 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     },
     "reviewedBy": {
       "@type": "Person",
-      "name": "Md. Shamim Hossain",
-      "jobTitle": "Lead Full-Stack & Quantitative Systems Engineer",
+      "name": "MD Abu Hanif Mia",
+      "jobTitle": "Lead Full-Stack & Quantitative Systems Architect",
       "url": getCanonicalUrl('/about-us', locale)
     },
     "publisher": {

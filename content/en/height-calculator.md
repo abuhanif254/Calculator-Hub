@@ -1,7 +1,9 @@
 ---
-metaTitle: "Height Calculator | Convert cm to feet & inches visually"
-metaDescription: "Free online Height Calculator. Convert cm to feet and inches instantly, compare your height against global averages, and predict child growth percentiles."
-metaKeywords: "height calculator, feet to cm, height converter, height comparison, child height predictor"
+title: "Height Calculator & Converter"
+description: "Free online Height Calculator & Converter. Instantly convert cm to feet and inches, compare height percentiles, and predict child adult height."
+metaTitle: "Height Calculator — Convert cm to Feet & Inches + Growth"
+metaDescription: "Free online Height Calculator & Converter. Instantly convert cm to feet and inches, compare global height averages, and predict child growth percentiles."
+metaKeywords: "height calculator, feet to cm, cm to feet and inches, height converter, height comparison, child height predictor"
 faqs:
   - question: "How do I calculate my height in feet and inches from cm?"
     answer: "To convert centimeters to inches, divide your height in cm by 2.54. Since there are 12 inches in a foot, divide the total inches by 12 to find the feet, and the remainder is the inches. Our Height Calculator does this instantly."

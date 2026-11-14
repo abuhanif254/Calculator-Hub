@@ -10,8 +10,8 @@ export async function generateMetadata({
   return {
     title: optimizeSerpTitle('Community Leaderboard', locale, 'page'),
     description: 'Explore the top contributors and reputation rankings in the NexusCalculator developer community.',
-    robots: { index: true, follow: true },
-    alternates: getCanonicalAndAlternates('/community/leaderboard', locale),
+    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
+    alternates: getCanonicalAndAlternates('/community/hall-of-fame', locale),
   };
 }
 

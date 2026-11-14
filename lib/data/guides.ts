@@ -860,7 +860,7 @@ const financeGuides: Guide[] = [
       en: 'mortgage-payoff-calculator-guide',
       es: 'guia-calculadora-pago-hipoteca',
       fr: 'guide-calculatrice-remboursement-hypothecaire',
-      de: 'hypotheken-tilgungsrechner-ratgeber'
+      de: 'hypotheken-abloesungsrechner-ratgeber'
     },
     title: 'How to Pay Off Your Mortgage Years Early and Save Thousands',
     description:

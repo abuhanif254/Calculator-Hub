@@ -5,6 +5,7 @@ import { Calculator } from 'lucide-react';
 import { sitemapCategories } from '../../lib/data/sitemapData';
 import { resolveHref } from '../../lib/utils/linkResolver';
 import { getLocalizedCalcMeta } from '../../lib/utils/toolLocalization';
+import { CookieSettingsTrigger } from './CookieSettingsTrigger';
 
 const FOOTER_TRANSLATIONS: Record<
   string,
@@ -321,6 +322,7 @@ export async function Footer() {
             <Link href="/terms-of-use" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.termsOfUse}</Link>
             <Link href="/privacy-policy" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.privacyPolicy}</Link>
             <Link href="/disclaimer" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.disclaimer}</Link>
+            <CookieSettingsTrigger locale={locale} />
             <Link href="/sitemap" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.sitemap}</Link>
           </div>
           

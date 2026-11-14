@@ -26,7 +26,7 @@ export async function GET() {
     `- **Supported Languages (hreflang)**: English (\`${baseUrl}/en\`), Español (\`${baseUrl}/es\`), Français (\`${baseUrl}/fr\`), Deutsch (\`${baseUrl}/de\`)`,
     `- **XML Sitemap**: ${baseUrl}/sitemap.xml`,
     `- **RSS Feed**: ${baseUrl}/feed.xml`,
-    '- **Editorial & Verification Lead**: Md. Shamim Hossain (Systems Engineering & Privacy Board)',
+    '- **Founder & Lead Systems Architect**: MD Abu Hanif Mia',
     '- **Privacy Architecture**: 100% client-side browser execution (Web Crypto API, Canvas, WebAssembly) — zero server-side retention of user calculator or file inputs.',
     '',
     '## Core Hub Directories',

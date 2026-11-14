@@ -16,7 +16,7 @@ import { getGuideForTool } from '@/lib/data/guides';
 import { getCollectionsForSlug } from '@/lib/data/collections';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedCalcMeta, localizeFallbackToolTitle } from '@/lib/utils/toolLocalization';
-import { getCanonicalAndAlternates, optimizeSerpTitle, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, optimizeSerpTitle, optimizeSerpDescription, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
 import { getCalculatorBySlug } from '@/lib/data/calculators';
 import { enrichToolSeoContent, getLocalizedReviewerByline } from '@/lib/utils/seoContentEnricher';
 import { ChevronRight, ArrowRight, Lightbulb, Zap, HelpCircle, Code, Layers, BookOpen, Clock, Wrench } from 'lucide-react';
@@ -203,9 +203,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
   const mdData = getMarkdownContent(slug, locale);
 
-  const rawMetaTitle = mdData?.data?.metaTitle || mdData?.data?.title || config.title;
+  const rawTitleCandidate = mdData?.data?.metaTitle || mdData?.data?.title || config.title;
+  const rawMetaTitle = locale !== 'en' ? localizeFallbackToolTitle(rawTitleCandidate, locale) : rawTitleCandidate;
   const metaTitle = optimizeSerpTitle(rawMetaTitle, locale, 'tool');
-  const metaDescription = mdData?.data?.metaDescription || mdData?.data?.shortDescription || config.shortDescription;
+  const rawMetaDescription = mdData?.data?.metaDescription || mdData?.data?.shortDescription || config.shortDescription;
+  const metaDescription = optimizeSerpDescription(rawMetaDescription, config.shortDescription);
   const metaKeywords = mdData?.data?.metaKeywords || config.keywords.join(", ");
   const alternates = getCanonicalAndAlternates('/tools/[slug]', locale, slug);
 

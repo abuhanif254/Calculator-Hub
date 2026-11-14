@@ -15,11 +15,15 @@ export async function generateMetadata({ params }: EmbedPageProps): Promise<Meta
   const pen = await getPlaygroundPen(resolvedParams.id);
   
   if (!pen) {
-    return { title: 'Pen Not Found' };
+    return {
+      title: 'Pen Not Found',
+      robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+    };
   }
 
   return {
     title: `${pen.title || 'Nexus Playground Pen'} - Embed`,
+    robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
   };
 }
 

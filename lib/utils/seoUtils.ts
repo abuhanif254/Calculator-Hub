@@ -22,6 +22,33 @@ const LEGACY_INTERNAL_ALIASES: Record<string, string> = {
   '/tools/url-encoder-decoder': '/tools/url-encoder',
 };
 
+const LEGACY_TOOL_SLUG_ALIASES: Record<string, string> = {
+  'url-encoder-decoder': 'url-encoder',
+  'image-resizer': 'resize-image',
+  'image-compressor': 'compress-image',
+  'exif-viewer': 'image-metadata-viewer',
+  'exif-remover': 'image-metadata-remover',
+  'webp-converter': 'convert-to-webp',
+  'jpg-to-png': 'convert-to-png',
+  'png-to-webp': 'convert-to-webp',
+  'sitemap-generator': 'sitemap-xml-generator',
+  'sitemap.xml-generator': 'sitemap-xml-generator',
+  'robots.txt-generator': 'robots-txt-generator',
+  '.htaccess-generator': 'htaccess-generator',
+  'html-minifier': 'html-formatter',
+  'json-validator': 'json-formatter',
+  'add-page-numbers': 'add-page-numbers-pdf',
+  'txt-to-pdf': 'text-to-pdf',
+  'pdf-to-ppt': 'pdf-to-powerpoint',
+  'ppt-to-pdf': 'powerpoint-to-pdf',
+  'pdf-compressor': 'compress-pdf',
+  'pdf-merger': 'merge-pdf',
+  'pdf-splitter': 'split-pdf',
+  'css-minifier': 'css-beautifier',
+  'javascript-beautifier': 'js-beautifier',
+  'js-minifier': 'js-beautifier',
+};
+
 /**
  * Generates an SEO `alternates` object containing the absolute canonical URL
  * for the current locale, and hreflang definitions for all supported languages.
@@ -197,15 +224,9 @@ export function canonicalizeInternalHref(href: string | undefined, currentLocale
   if (LEGACY_INTERNAL_ALIASES[p]) {
     p = LEGACY_INTERNAL_ALIASES[p];
   }
-  if (CALC_REDIRECT_MAP[p]) {
-    return `${CALC_REDIRECT_MAP[p]}${search}${hash}`;
-  }
-  if (GUIDE_REDIRECT_MAP[p]) {
-    return `${GUIDE_REDIRECT_MAP[p]}${search}${hash}`;
-  }
 
   const localeMatch = p.match(/^\/(en|es|fr|de)(\/.*)?$/);
-  const targetLocale = localeMatch ? localeMatch[1] : currentLocale;
+  const targetLocale = currentLocale || (localeMatch ? localeMatch[1] : 'en');
   let barePath = localeMatch ? (localeMatch[2] || '/') : p;
 
   if (LEGACY_INTERNAL_ALIASES[barePath]) {
@@ -216,8 +237,13 @@ export function canonicalizeInternalHref(href: string | undefined, currentLocale
     return `/${targetLocale}${search}${hash}`;
   }
 
-  if (barePath.startsWith('/calculators/category/')) {
-    const cat = barePath.replace('/calculators/category/', '');
+  if (
+    barePath.startsWith('/calculators/category/') ||
+    barePath.startsWith('/calculadoras/categoria/') ||
+    barePath.startsWith('/calculatrices/categorie/') ||
+    barePath.startsWith('/rechner/kategorie/')
+  ) {
+    const cat = barePath.split('/').slice(3).join('/');
     return `${getCanonicalUrl('/calculators/category/[category]', targetLocale, cat).replace(baseUrl, '')}${search}${hash}`;
   }
 
@@ -228,6 +254,9 @@ export function canonicalizeInternalHref(href: string | undefined, currentLocale
     barePath.startsWith('/rechner/')
   ) {
     const slug = barePath.split('/').slice(2).join('/');
+    if (slug === 'mortgage-calculator-uk' || slug === 'calculadora-hipoteca-reino-unido' || slug === 'calculatrice-hypotheque-royaume-uni' || slug === 'hypothekenrechner-uk') {
+      return `${getCanonicalUrl('/tools/[slug]', targetLocale, 'mortgage-calculator-uk').replace(baseUrl, '')}${search}${hash}`;
+    }
     const calc = getCalculatorBySlug(slug);
     if (calc) {
       return `${getCanonicalUrl('/calculators/[slug]', targetLocale, calc.slug).replace(baseUrl, '')}${search}${hash}`;
@@ -241,7 +270,9 @@ export function canonicalizeInternalHref(href: string | undefined, currentLocale
     barePath.startsWith('/werkzeuge/')
   ) {
     let slug = barePath.split('/').slice(2).join('/');
-    if (slug === 'url-encoder-decoder') slug = 'url-encoder';
+    if (LEGACY_TOOL_SLUG_ALIASES[slug]) {
+      slug = LEGACY_TOOL_SLUG_ALIASES[slug];
+    }
     return `${getCanonicalUrl('/tools/[slug]', targetLocale, slug).replace(baseUrl, '')}${search}${hash}`;
   }
 
@@ -259,6 +290,13 @@ export function canonicalizeInternalHref(href: string | undefined, currentLocale
 
   if (barePath in routing.pathnames) {
     return `${getCanonicalUrl(barePath, targetLocale).replace(baseUrl, '')}${search}${hash}`;
+  }
+
+  if (CALC_REDIRECT_MAP[p]) {
+    return `${CALC_REDIRECT_MAP[p]}${search}${hash}`;
+  }
+  if (GUIDE_REDIRECT_MAP[p]) {
+    return `${GUIDE_REDIRECT_MAP[p]}${search}${hash}`;
   }
 
   return localeMatch ? `${p}${search}${hash}` : `/${targetLocale}${p}${search}${hash}`;
@@ -335,6 +373,7 @@ export function optimizeSerpTitle(
       // 1. Try stripping trailing filler words from secondary
       const strippedSec = secondary
         .replace(/\s*(?:&\s*More|y\s*Más|et\s*Plus|&\s*Mehr)$/i, '')
+        .replace(/\s+(?:Instantly|Accurately|Easily|Fast|Quickly|Instantáneamente|Rápidamente|Instantanément|Rapidement|Sofort|Schnell)$/i, '')
         .replace(/\s+(?:Cell\s+Solver|Solver|Calculator|Tool|Online|Free|Gratis|Gratuit|Kostenlos|berechnen|Ocultas)$/i, '')
         .trim();
       const cleanedStrippedSec = cleanTrailingSerpDangling(strippedSec);
@@ -346,18 +385,31 @@ export function optimizeSerpTitle(
       const commaParts = strippedSec.split(/\s*,\s*/);
       if (commaParts.length > 1) {
         let acc = commaParts[0];
+        let partsKept = 1;
         for (let i = 1; i < commaParts.length; i++) {
           const next = `${acc}, ${commaParts[i]}`;
           if (`${primary}${sep}${next}`.length <= SERP_MAX_BASE_LEN) {
             acc = next;
+            partsKept++;
           } else {
             break;
           }
         }
         const cleanedAcc = cleanTrailingSerpDangling(acc);
         const candidate = `${primary}${sep}${cleanedAcc}`;
-        if (candidate.length <= SERP_MAX_BASE_LEN && cleanedAcc.length >= 6) {
+        if (candidate.length <= SERP_MAX_BASE_LEN && (partsKept >= 2 || cleanedAcc.length >= 16)) {
           return candidate;
+        }
+      }
+
+      // 2.5. Try word-boundary truncation of primary + sep + secondary before discarding secondary
+      const secSource = cleanedStrippedSec.length >= 8 ? cleanedStrippedSec : secondary;
+      const truncatedWithSec = truncateSerpAtWordBoundary(`${primary}${sep}${secSource}`, SERP_MAX_BASE_LEN);
+      const prefixLen = `${primary}${sep}`.length;
+      if (truncatedWithSec.length > prefixLen + 10) {
+        const keptSec = truncatedWithSec.slice(prefixLen).trim();
+        if (keptSec.split(/\s+/).length >= 2) {
+          return truncatedWithSec;
         }
       }
 
@@ -378,12 +430,26 @@ export function optimizeSerpTitle(
 
   // Enrich short/medium base titles (< 36 chars) that don't already have a secondary clause
   if (cleaned.length < 36 && !cleaned.includes('—') && !cleaned.includes(' - ') && !cleaned.includes('|') && !cleaned.includes(':')) {
-    const modifiers: Record<string, { calculator: string; tool: string; guide: string }> = {
-      en: { calculator: ' — Free Online Formula', tool: ' — Free Online Tool', guide: ' — Complete Guide' },
-      es: { calculator: ' — Gratis y Precisa', tool: ' — Herramienta Gratis', guide: ' — Guía Completa' },
-      fr: { calculator: ' — Gratuit en Ligne', tool: ' — Outil Gratuit', guide: ' — Guide Complet' },
-      de: { calculator: ' — Kostenlos Online', tool: ' — Kostenloses Tool', guide: ' — Kompletter Ratgeber' },
-    };
+    const hasFree = /\b(free|gratis|gratuit|gratuite|kostenlos|kostenlose|kostenloser)\b/i.test(cleaned);
+    const hasCalcWord = /\b(calculator|calculadora|calculateur|calculatrice|rechner)\b/i.test(cleaned);
+
+    const modifiers: Record<string, { calculator: string; tool: string; guide: string }> = hasFree
+      ? {
+          en: { calculator: ' — Instant & Accurate', tool: ' — Instant Online Utility', guide: ' — Complete Guide' },
+          es: { calculator: ' — Cálculo Instantáneo', tool: ' — Utilidad Online', guide: ' — Guía Completa' },
+          fr: { calculator: ' — Calcul Instantané', tool: ' — Utilitaire en Ligne', guide: ' — Guide Complet' },
+          de: { calculator: ' — Sofort & Präzise', tool: ' — Online-Werkzeug', guide: ' — Kompletter Ratgeber' },
+        }
+      : {
+          en: {
+            calculator: hasCalcWord ? ' — Free & Instant Online' : ' — Free Online Calculator',
+            tool: ' — Free Online Tool',
+            guide: ' — Complete Guide',
+          },
+          es: { calculator: ' — Gratis y Precisa', tool: ' — Herramienta Gratis', guide: ' — Guía Completa' },
+          fr: { calculator: ' — Gratuit en Ligne', tool: ' — Outil Gratuit', guide: ' — Guide Complet' },
+          de: { calculator: ' — Kostenlos Online', tool: ' — Kostenloses Tool', guide: ' — Kompletter Ratgeber' },
+        };
 
     const locMods = modifiers[locale] || modifiers.en;
     const mod = locMods[type as 'calculator' | 'tool' | 'guide'] || locMods.calculator;
@@ -391,12 +457,19 @@ export function optimizeSerpTitle(
       return `${cleaned}${mod}`;
     }
 
-    const shortMod: Record<string, string> = {
-      en: ' (Free Online)',
-      es: ' (Gratis Online)',
-      fr: ' (Gratuit)',
-      de: ' (Kostenlos)',
-    };
+    const shortMod: Record<string, string> = hasFree
+      ? {
+          en: ' (Instant Online)',
+          es: ' (Online)',
+          fr: ' (En Ligne)',
+          de: ' (Online)',
+        }
+      : {
+          en: ' (Free Online)',
+          es: ' (Gratis Online)',
+          fr: ' (Gratuit)',
+          de: ' (Kostenlos)',
+        };
     const fallback = shortMod[locale] || shortMod.en;
     if (cleaned.length + fallback.length <= SERP_MAX_BASE_LEN) {
       return `${cleaned}${fallback}`;
@@ -404,4 +477,66 @@ export function optimizeSerpTitle(
   }
 
   return cleaned;
+}
+
+function sanitizeDescriptionString(input: string): string {
+  return (input || '')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\(\s*\$[^$]+\$\s*\)/g, '')
+    .replace(/\$\$[^$]+\$\$/g, '')
+    .replace(/\$([^$]+)\$/g, '$1')
+    .replace(/\\[a-zA-Z]+\{([^}]*)\}/g, '$1')
+    .replace(/\\[a-zA-Z]+/g, '')
+    .replace(/[{}]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function isConversationalEssayOpening(text: string): boolean {
+  return /^(welcome to|bienvenido a|bienvenue dans|bienvenue sur|willkommen bei|willkommen im|willkommen zum|willkommen zur)\b/i.test(
+    text.trim()
+  );
+}
+
+/**
+ * Cleans and bounds a meta description (or card short description) to <= 160 chars
+ * without mid-word cutoffs, raw LaTeX, or conversational "Welcome to..." essay openings.
+ */
+export function optimizeSerpDescription(rawDesc: string, fallbackDesc?: string): string {
+  let primary = sanitizeDescriptionString(rawDesc);
+  const fallback = fallbackDesc ? sanitizeDescriptionString(fallbackDesc) : '';
+
+  if ((!primary || isConversationalEssayOpening(primary)) && fallback && !isConversationalEssayOpening(fallback)) {
+    primary = fallback;
+  } else if (isConversationalEssayOpening(primary)) {
+    primary = primary
+      .replace(/^welcome to (?:the\s+|our\s+)?[^,.!]+[,:\s—–-]+/i, '')
+      .replace(/^bienvenido a (?:la\s+|el\s+|nuestra\s+|nuestro\s+)?[^,.!]+[,:\s—–-]+/i, '')
+      .replace(/^bienvenue (?:dans|sur) (?:le\s+|la\s+|notre\s+)?[^,.!]+[,:\s—–-]+/i, '')
+      .replace(/^willkommen (?:bei|im|zum|zur) (?:der\s+|dem\s+|unserem\s+|unserer\s+)?[^,.!]+[,:\s—–-]+/i, '')
+      .trim();
+    if (primary.length > 0) {
+      primary = primary.charAt(0).toUpperCase() + primary.slice(1);
+    }
+  }
+
+  if (!primary) return fallback;
+
+  const MAX_DESC_LEN = 160;
+  if (primary.length <= MAX_DESC_LEN) {
+    return primary;
+  }
+
+  // Prefer ending at a natural sentence boundary between 85 and 160 chars
+  const windowSlice = primary.slice(0, MAX_DESC_LEN);
+  const sentenceEndMatch = windowSlice.match(/^(.{85,159}[.!?])(?:\s|$)/);
+  if (sentenceEndMatch) {
+    return sentenceEndMatch[1].trim();
+  }
+
+  const truncated = truncateSerpAtWordBoundary(primary, MAX_DESC_LEN - 1);
+  return /[.!?]$/.test(truncated) ? truncated : `${truncated}.`;
 }

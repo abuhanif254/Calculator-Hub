@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { getCalculatorBySlug, calculators } from '@/lib/data/calculators';
+import { getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
 import { routing } from '@/i18n/routing';
 
 // On-demand generation when shared (cached 1yr at CDN edge via next.config.ts headers)
@@ -41,10 +42,11 @@ export default async function Image({
 }) {
   const { locale, slug } = await params;
   const calc = getCalculatorBySlug(slug);
+  const localizedMeta = calc ? getLocalizedCalcMeta(calc.slug, locale, calc.title, calc.description) : null;
 
-  const rawTitle = calc?.title || 'Online Calculator';
+  const rawTitle = localizedMeta?.title || calc?.title || 'Online Calculator';
   const rawCategory = (calc?.category || 'Utility').toUpperCase();
-  const rawDesc = calc?.description || 'Fast, free, and accurate calculation tool on Nexus Calculator Hub.';
+  const rawDesc = localizedMeta?.description || calc?.description || 'Fast, free, and accurate calculation tool on Nexus Calculator Hub.';
 
   const title = sanitizeForOg(rawTitle);
   const category = sanitizeForOg(rawCategory);

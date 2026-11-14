@@ -1,8 +1,8 @@
 ---
-title: "Electrical Power Calculator | Real (W), Apparent (VA) & Reactive (VAR) Solver"
-description: "Free online Electrical Power Calculator. Instantly calculate Real Power (W), Apparent Power (VA), Reactive Power (VAR), 3-phase AC power, and electricity billing costs. Features interactive Power Triangle."
-metaTitle: "Electrical Power Calculator | Real (W), Apparent (VA) & Reactive (VAR) Solver"
-metaDescription: "Free online Electrical Power Calculator. Instantly calculate Real Power (W), Apparent Power (VA), Reactive Power (VAR), 3-phase AC power, and electricity billing costs. Features interactive Power Triangle."
+title: "Electrical Power Calculator"
+description: "Calculate Real Power (W), Apparent Power (VA), Reactive Power (VAR), 3-phase AC power, and electricity billing costs with an interactive Power Triangle."
+metaTitle: "Electrical Power Calculator — Watts, VA, VAR & 3-Phase AC"
+metaDescription: "Calculate Real Power (W), Apparent Power (VA), Reactive Power (VAR), 3-phase AC power, and electricity billing costs with an interactive Power Triangle."
 metaKeywords: "electrical power calculator, watt calculator, electric power calculator, VA calculator, VAR calculator, 3-phase power calculator, electricity cost estimator"
 features:
   - "Interactive Cockpit featuring Simple and Advanced Mode toggle"

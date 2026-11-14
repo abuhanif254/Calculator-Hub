@@ -41,13 +41,11 @@ export const metadata: Metadata = {
     images: [`${baseUrl}/icons/icon-512x512.png`],
   },
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
+      index: false,
+      follow: false,
     },
   },
   alternates: {

@@ -27,7 +27,7 @@ import {
   getAdjacentGuides,
   type GuideCategory,
 } from '@/lib/data/guides';
-import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref, optimizeSerpTitle } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref, optimizeSerpTitle, optimizeSerpDescription } from '@/lib/utils/seoUtils';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedToolMeta, getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
@@ -53,13 +53,14 @@ export async function generateStaticParams({ params }: { params: { locale: strin
 
   locales.forEach((locale) => {
     allGuides.forEach((guide) => {
-      let slugToUse = guide.slug;
-      if (guide.slugs && guide.slugs[locale as keyof typeof guide.slugs]) {
-        slugToUse = guide.slugs[locale as keyof typeof guide.slugs];
+      if (!seen.has(guide.slug)) {
+        seen.add(guide.slug);
+        result.push({ slug: guide.slug });
       }
-      if (!seen.has(slugToUse)) {
-        seen.add(slugToUse);
-        result.push({ slug: slugToUse });
+      const localizedSlug = guide.slugs?.[locale as keyof typeof guide.slugs];
+      if (localizedSlug && !seen.has(localizedSlug)) {
+        seen.add(localizedSlug);
+        result.push({ slug: localizedSlug });
       }
     });
   });
@@ -165,35 +166,36 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { locale, slug } = await params;
   let baseGuide = getGuideBySlug(slug);
-  if (!baseGuide) return { title: 'Guide Not Found' };
+  if (!baseGuide) return { title: 'Guide Not Found', robots: { index: false, follow: false } };
   
   const guide = getLocalizedGuide(baseGuide, locale);
-
-  const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
-    .replace(/\/$/, '')
-    .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
-  const canonicalUrl = getCanonicalUrl('/guides/[slug]', locale, baseGuide.slug);
-  const guidesIndexUrl = getCanonicalUrl('/guides', locale);
-
-  const relatedUrl = guide.relatedCalculator
-    ? (guide.relatedType === 'tool'
-        ? getCanonicalUrl('/tools/[slug]', locale, guide.relatedCalculator)
-        : getCanonicalUrl('/calculators/[slug]', locale, guide.relatedCalculator))
-    : undefined;
-
+  const alternates = getCanonicalAndAlternates('/guides/[slug]', locale, baseGuide.slug);
   const metaTitle = optimizeSerpTitle(guide.title, locale, 'guide');
+  const metaDescription = optimizeSerpDescription(guide.description, baseGuide.description);
+
   return {
     title: metaTitle,
-    description: guide.description,
-    alternates: getCanonicalAndAlternates('/guides/[slug]', locale, baseGuide.slug),
+    description: metaDescription,
+    alternates,
     openGraph: {
       type: 'article',
-      title: `${guide.title} | Nexus Calculator Guides`,
-      description: guide.description,
+      title: metaTitle,
+      description: metaDescription,
+      url: alternates.canonical,
+      locale,
       siteName: 'Nexus Calculator',
       publishedTime: guide.lastUpdated,
       modifiedTime: guide.lastUpdated,
       section: guide.category,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metaTitle,
+      description: metaDescription,
+    },
+    robots: {
+      index: true,
+      follow: true,
     },
   };
 }
@@ -307,8 +309,8 @@ export default async function GuideArticlePage({
     },
     reviewedBy: {
       '@type': 'Person',
-      name: 'Md. Shamim Hossain',
-      jobTitle: 'Lead Full-Stack & Quantitative Systems Engineer',
+      name: 'MD Abu Hanif Mia',
+      jobTitle: 'Founder & Lead Full-Stack Quantitative Systems Engineer',
       url: getCanonicalUrl('/about-us', locale),
     },
     publisher: {

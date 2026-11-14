@@ -46,7 +46,7 @@ export function PlaygroundEmbedClient({ pen, penId }: EmbedProps) {
         </div>
         
         <a 
-          href={`/tools/html-css-js-playground/${penId}`} 
+          href="/en/tools/html-css-js-playground" 
           target="_blank" 
           rel="noreferrer"
           className="flex items-center gap-1.5 px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold rounded transition-colors"

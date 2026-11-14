@@ -4,18 +4,25 @@ import matter from "gray-matter";
 import { getCalculatorBySlug } from "@/lib/data/calculators";
 import { getToolConfig } from "@/lib/data/tools";
 import { getMessageNamespaceCalcMeta } from "@/lib/utils/getCalculatorMessages";
+import { optimizeSerpDescription } from "@/lib/utils/seoUtils";
 
 const toolMetaCache = new Map<string, { title: string; description: string }>();
 const calcMetaCache = new Map<string, { title: string; description: string }>();
 
-function extractMarkdownTitleAndDesc(filePath: string): { title?: string; metaTitle?: string; description?: string } {
+function extractMarkdownTitleAndDesc(filePath: string): {
+  title?: string;
+  metaTitle?: string;
+  description?: string;
+  firstParaFallback?: string;
+} {
   try {
     const raw = fs.readFileSync(filePath, "utf-8");
     const parsed = matter(raw);
     const data = parsed.data || {};
     let title: string | undefined = data.title;
     const metaTitle: string | undefined = typeof data.metaTitle === "string" ? data.metaTitle.trim() : undefined;
-    let description: string | undefined = data.shortDescription || data.description || data.metaDescription;
+    const description: string | undefined = data.shortDescription || data.description || data.metaDescription;
+    let firstParaFallback: string | undefined;
 
     if (!title) {
       const leadingH1 = parsed.content.match(/^\s*#\s+([^\r\n]+)/);
@@ -33,16 +40,16 @@ function extractMarkdownTitleAndDesc(filePath: string): { title?: string; metaTi
         .map((p) => p.trim())
         .find((p) => p.length > 30 && !p.startsWith("#") && !p.startsWith("*") && !p.startsWith("-") && !p.startsWith("|"));
       if (firstPara) {
-        description = firstPara
-          .replace(/\*\*([^*]+)\*\*/g, "$1")
-          .replace(/\*([^*]+)\*/g, "$1")
-          .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-          .slice(0, 220)
-          .trim();
+        firstParaFallback = optimizeSerpDescription(firstPara);
       }
     }
 
-    return { title: title?.trim(), metaTitle, description: description?.trim() };
+    return {
+      title: title?.trim(),
+      metaTitle,
+      description: description ? optimizeSerpDescription(description) : undefined,
+      firstParaFallback,
+    };
   } catch {
     return {};
   }
@@ -102,7 +109,7 @@ export function getLocalizedToolMeta(
     }
   }
 
-  const result = { title, description };
+  const result = { title, description: optimizeSerpDescription(description, config?.shortDescription) };
   toolMetaCache.set(cacheKey, result);
   return result;
 }
@@ -132,6 +139,7 @@ export function getLocalizedCalcMeta(
 
   let mdTitle: string | undefined;
   let mdDesc: string | undefined;
+  let mdFirstPara: string | undefined;
 
   const candidatePaths = [
     path.join(process.cwd(), "content", locale, `${calc.slug}.md`),
@@ -143,6 +151,7 @@ export function getLocalizedCalcMeta(
     const md = extractMarkdownTitleAndDesc(existingPath);
     mdTitle = md.title;
     mdDesc = md.description;
+    mdFirstPara = md.firstParaFallback;
   }
 
   const title =
@@ -153,13 +162,18 @@ export function getLocalizedCalcMeta(
     fallbackTitle ||
     calc.title;
 
-  const description =
-    mdDesc ||
+  const structuredFallbackDesc =
     translation?.description ||
     translation?.meta?.description ||
     nsMeta.description ||
     fallbackDescription ||
-    calc.description;
+    calc.description ||
+    calc.meta?.description ||
+    mdFirstPara ||
+    "";
+
+  const rawDescription = mdDesc || structuredFallbackDesc;
+  const description = optimizeSerpDescription(rawDescription, structuredFallbackDesc);
 
   const result = { title: title.trim(), description: description.trim() };
   calcMetaCache.set(cacheKey, result);

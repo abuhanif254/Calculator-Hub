@@ -363,17 +363,28 @@ export default function DatabasePrivacyLayout({
 
   // Auth pages (login/signup): render without sidebar
   if (isAuthPage) {
-    return <ToastProvider>{children}</ToastProvider>;
+    return (
+      <ToastProvider>
+        <meta name="robots" content="noindex, nofollow" />
+        {children}
+      </ToastProvider>
+    );
   }
 
   // Landing page: render without the app sidebar so public visitors see
   // a clean marketing page, not the authenticated dashboard shell.
   if (isLandingPage) {
-    return <ToastProvider>{children}</ToastProvider>;
+    return (
+      <ToastProvider>
+        <meta name="robots" content="noindex, nofollow" />
+        {children}
+      </ToastProvider>
+    );
   }
 
   return (
     <ToastProvider>
+      <meta name="robots" content="noindex, nofollow" />
       <PlatformAuthGuard>
         <div className="w-full">
           {/* Mobile Header */}

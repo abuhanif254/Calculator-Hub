@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
+import { isAdSenseBlockedPath } from './AdSenseScriptLoader';
 
 interface AdSenseContainerProps {
   className?: string;
@@ -30,21 +32,24 @@ export function AdSenseContainer({
   slot,
   responsive = true,
 }: AdSenseContainerProps) {
+  const pathname = usePathname();
   const adRef = useRef<HTMLModElement>(null);
   const clientId = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID;
   const isNumericSlot = Boolean(slot && /^\d+$/.test(slot));
+  const isBlocked = isAdSenseBlockedPath(pathname);
 
   useEffect(() => {
-    if (!clientId || !isNumericSlot) return;
+    if (!clientId || !isNumericSlot || isBlocked) return;
+    if (typeof document !== 'undefined' && document.querySelector('[data-nexus-404="true"]')) return;
     try {
       const adsbygoogle = (window as unknown as { adsbygoogle?: unknown[] }).adsbygoogle || [];
       adsbygoogle.push({});
     } catch {
       // Ignore AdSense push errors when ad blocker or review script is active
     }
-  }, [clientId, isNumericSlot]);
+  }, [clientId, isNumericSlot, isBlocked, pathname]);
 
-  if (!clientId || !isNumericSlot) {
+  if (!clientId || !isNumericSlot || isBlocked) {
     return null;
   }
 

@@ -21,7 +21,7 @@ export async function GET() {
       <pubDate>${pubDate}</pubDate>
       <category><![CDATA[${guide.category}]]></category>
       <description><![CDATA[${guide.description}]]></description>
-      <author>Md. Shamim Hossain (NexusCalculator Editorial Board)</author>
+      <author>MD Abu Hanif Mia (NexusCalculator Editorial Team)</author>
     </item>`;
   }
 
@@ -35,7 +35,7 @@ export async function GET() {
       <pubDate>${new Date('2026-10-01').toUTCString()}</pubDate>
       <category><![CDATA[Comparison]]></category>
       <description><![CDATA[${comp.seoDescription} Verdict: ${comp.verdict}]]></description>
-      <author>Md. Shamim Hossain (NexusCalculator Editorial Board)</author>
+      <author>MD Abu Hanif Mia (NexusCalculator Editorial Team)</author>
     </item>`;
   }
 
@@ -78,6 +78,7 @@ ${items}
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+      'X-Robots-Tag': 'noindex, follow',
     },
   });
 }

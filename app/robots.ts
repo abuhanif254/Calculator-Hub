@@ -12,6 +12,36 @@ export default function robots(): MetadataRoute.Robots {
     '/private/',                          // Admin / internal routes
     '/*/embed/*',                         // Iframe calculator embeds (not standalone pages)
     '/embed/*',
+    '/database-privacy',                  // Quarantine SaaS demo sub-app from indexing
+    '/database-privacy/*',
+    '/*/database-privacy',
+    '/*/database-privacy/*',
+    '/*/login',                           // Authentication & private user utility routes
+    '/*/signup',
+    '/*/dashboard',
+    '/*/panel',
+    '/*/tableau-de-bord',
+    '/*/admin/*',
+    '/*/search',                          // Internal search result pages
+    '/*/buscar',
+    '/*/rechercher',
+    '/*/suche',
+    '/*/community/new',                   // Non-editorial community forms, settings & empty profiles
+    '/*/community/settings',
+    '/*/community/messages*',
+    '/*/community/user/*',
+    '/*/comunidad/nuevo',
+    '/*/comunidad/ajustes',
+    '/*/comunidad/mensajes*',
+    '/*/comunidad/usuario/*',
+    '/*/communaute/nouveau',
+    '/*/communaute/parametres',
+    '/*/communaute/messages*',
+    '/*/communaute/utilisateur/*',
+    '/*/gemeinschaft/neu',
+    '/*/gemeinschaft/einstellungen',
+    '/*/gemeinschaft/nachrichten*',
+    '/*/gemeinschaft/benutzer/*',
   ];
 
   return {

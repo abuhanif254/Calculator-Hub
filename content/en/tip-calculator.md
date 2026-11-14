@@ -1,8 +1,8 @@
 ---
-title: "Tip Calculator | Calculate Gratuity & Split Restaurant Bills Instantly"
-description: "Free online Tip Calculator. Calculate gratuity, service charges, discounts, sales taxes, and split bills with up to 100 people. Supports US, UK, EU, and global tipping customs."
-metaTitle: "Tip Calculator – Calculate Tips & Split Bills Instantly"
-metaDescription: "Calculate tip percentages, split bills with up to 100 people, apply tax, discounts, service charges, and review worldwide tipping customs with our free online calculator."
+title: "Tip Calculator & Bill Splitter"
+description: "Calculate gratuity percentages, sales tax, discounts, and split restaurant bills among up to 100 people with global tipping guides."
+metaTitle: "Tip Calculator & Bill Splitter — Gratuity & Group Dining"
+metaDescription: "Calculate restaurant tip percentages, split bills with up to 100 people, apply pre- or post-tax gratuity, and check worldwide tipping customs instantly."
 metaKeywords: "tip calculator, bill splitter, split bill, restaurant tip, gratuity calculator, calculate tip, tip splitting, international tipping, dining calculator"
 features:
   - "Instant live calculations for tip amounts, totals, and split portions as you type"

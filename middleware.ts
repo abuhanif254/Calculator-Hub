@@ -23,15 +23,19 @@ const intlMiddleware = createMiddleware(routing);
 // Returned as HTTP 410 Gone so Googlebot purges them permanently without polluting 'Page with redirect'
 const GARBAGE_PATHS = new Set([
   '/Author', '/Producer', '/Kids', '/P', '/XObject', '/28', '/Contents',
-  '/page', '/$', '/&', '/egneodunq', '/admin', '/admin/', '/wp-admin', '/wp-admin/',
+  '/page', '/$', '/&', '/egneodunq', '/uimzf-etai', '/admin', '/admin/', '/wp-admin', '/wp-admin/',
   '/images/*', '/new-path/:slug', '/old-path/:slug', '/4', '/4/', '/Metadata',
-  '/*.xls$', '/*.xls', '/.xls$', '/.xls'
+  '/*.xls$', '/*.xls', '/.xls$', '/.xls',
+  '/ad-728.html', '/ad-300.html', '/ad-160.html'
 ]);
 
 // Legacy or misspelled tool slugs → canonical tool slug
 const LEGACY_TOOL_SLUG_MAP: Record<string, string> = {
   'url-encoder-decoder': 'url-encoder',
   'image-resizer': 'resize-image',
+  'image-compressor': 'compress-image',
+  'exif-viewer': 'image-metadata-viewer',
+  'exif-remover': 'image-metadata-remover',
   'webp-converter': 'convert-to-webp',
   'jpg-to-png': 'convert-to-png',
   'png-to-webp': 'convert-to-webp',
@@ -45,6 +49,9 @@ const LEGACY_TOOL_SLUG_MAP: Record<string, string> = {
   'txt-to-pdf': 'text-to-pdf',
   'pdf-to-ppt': 'pdf-to-powerpoint',
   'ppt-to-pdf': 'powerpoint-to-pdf',
+  'pdf-compressor': 'compress-pdf',
+  'pdf-merger': 'merge-pdf',
+  'pdf-splitter': 'split-pdf',
   'css-minifier': 'css-beautifier',
   'javascript-beautifier': 'js-beautifier',
   'js-minifier': 'js-beautifier',
@@ -527,12 +534,40 @@ const SEARCH_CRAWLER_REGEX = /Googlebot|Google-InspectionTool|Storebot-Google|Go
 export default function middleware(request: NextRequest) {
   const { pathname, hostname, search } = request.nextUrl;
 
-  // 0. Pass through Next.js dynamic image metadata endpoints & RSS feed without locale/redirect rewriting
-  if (
-    pathname.endsWith('/opengraph-image') ||
-    pathname.endsWith('/twitter-image') ||
-    pathname === '/feed.xml'
-  ) {
+  // 0. Handle RSS feed and Next.js dynamic image metadata endpoints (/opengraph-image & /twitter-image)
+  // Rewrite localized route prefixes (e.g. /es/guias/.../opengraph-image) to internal Next.js filesystem routes
+  // (/es/guides/.../opengraph-image) so both localized and filesystem OG image URLs resolve in 0 redirect hops.
+  if (pathname === '/feed.xml') {
+    return NextResponse.next();
+  }
+
+  if (pathname.endsWith('/opengraph-image') || pathname.endsWith('/twitter-image')) {
+    let rewrittenOgPath = pathname;
+    if (!/^\/(en|es|fr|de)\//.test(rewrittenOgPath)) {
+      rewrittenOgPath = `/en${rewrittenOgPath}`;
+    }
+    rewrittenOgPath = rewrittenOgPath
+      .replace(/^\/(en|es|fr|de)\/(?:calculadoras\/categoria|calculatrices\/categorie|rechner\/kategorie)\//, '/$1/calculators/category/')
+      .replace(/^\/(en|es|fr|de)\/(?:calculadoras|calculatrices|rechner)\//, '/$1/calculators/')
+      .replace(/^\/(en|es|fr|de)\/(?:herramientas|outils|werkzeuge)\//, '/$1/tools/')
+      .replace(/^\/(en|es|fr|de)\/(?:guias|anleitungen)\//, '/$1/guides/')
+      .replace(/^\/(en|es|fr|de)\/(?:comunidad|communaute|gemeinschaft)\//, '/$1/community/')
+      .replace(/^\/(en|es|fr|de)\/(?:comparaciones|comparaisons|vergleiche)\//, '/$1/comparisons/')
+      .replace(/^\/(en|es|fr|de)\/(?:colecciones|sammlungen)\//, '/$1/collections/');
+
+    const toolOgMatch = rewrittenOgPath.match(/^\/(en|es|fr|de)\/tools\/([^/]+)\/(opengraph-image|twitter-image)$/);
+    if (toolOgMatch) {
+      const mappedToolSlug = LEGACY_TOOL_SLUG_MAP[toolOgMatch[2].toLowerCase()];
+      if (mappedToolSlug) {
+        rewrittenOgPath = `/${toolOgMatch[1]}/tools/${mappedToolSlug}/${toolOgMatch[3]}`;
+      }
+    }
+
+    if (rewrittenOgPath !== pathname) {
+      const rewriteUrl = request.nextUrl.clone();
+      rewriteUrl.pathname = rewrittenOgPath;
+      return NextResponse.rewrite(rewriteUrl);
+    }
     return NextResponse.next();
   }
 
@@ -602,7 +637,8 @@ export default function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Skip internal Next/Vercel routes, dynamic opengraph/twitter image endpoints, feed.xml, and real static asset file extensions.
-    '/((?!api|_next|_vercel|feed\\.xml|.*\\/opengraph-image$|.*\\/twitter-image$|.*\\.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mjs|map|woff|woff2|ttf|eot|otf|txt|xml|json|webmanifest|pdf|wasm)$).*)',
+    // Skip internal Next/Vercel routes, feed.xml, and real static asset file extensions.
+    // Dynamic /opengraph-image and /twitter-image routes are handled at step 0 for localized path rewrites.
+    '/((?!api|_next|_vercel|feed\\.xml|.*\\.(?:ico|png|jpg|jpeg|gif|webp|svg|css|js|mjs|map|woff|woff2|ttf|eot|otf|txt|xml|json|webmanifest|pdf|wasm)$).*)',
   ],
 };

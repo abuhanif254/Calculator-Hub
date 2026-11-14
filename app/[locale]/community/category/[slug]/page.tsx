@@ -286,7 +286,7 @@ function getLocalizedEnrichment(slug: string, locale: string): CategoryEnrichmen
         { title: 'Annuaire des Calculatrices', href: '/calculators', desc: 'Parcourez plus de 300 calculatrices financières, médicales et scientifiques.' },
         { title: 'Outils Développeur & Web', href: '/tools', desc: 'Découvrez plus de 130 utilitaires exécutés localement dans votre navigateur.' },
         { title: 'Guides Techniques', href: '/guides', desc: 'Consultez nos tutoriels détaillés et démonstrations de formules.' },
-        { title: 'Plateforme Confidentialité Base de Données', href: '/database-privacy', desc: 'Analysez et masquez les données personnelles (PII) conformément au RGPD.' },
+        { title: 'Anonymiseur de Base de Données', href: '/tools/database-anonymizer', desc: 'Analysez et masquez les données personnelles (PII) conformément au RGPD.' },
       ],
       faqs: [
         {
@@ -350,7 +350,7 @@ function getLocalizedEnrichment(slug: string, locale: string): CategoryEnrichmen
         { title: 'Directorio de Calculadoras', href: '/calculators', desc: 'Explore más de 300 calculadoras financieras, de salud, matemáticas y científicas.' },
         { title: 'Herramientas para Desarrolladores', href: '/tools', desc: 'Utilidades de código, texto, PDF e imagen ejecutadas localmente en su navegador.' },
         { title: 'Guías Técnicas', href: '/guides', desc: 'Tutoriales detallados y demostraciones de fórmulas paso a paso.' },
-        { title: 'Plataforma de Privacidad de Datos', href: '/database-privacy', desc: 'Detección de PII y enmascaramiento de bases de datos compatible con RGPD.' },
+        { title: 'Anonimizador de Bases de Datos', href: '/tools/database-anonymizer', desc: 'Detección de PII y enmascaramiento de bases de datos compatible con RGPD.' },
       ],
       faqs: [
         {
@@ -414,7 +414,7 @@ function getLocalizedEnrichment(slug: string, locale: string): CategoryEnrichmen
         { title: 'Rechner-Verzeichnis', href: '/calculators', desc: 'Über 300 interaktive Finanz-, Gesundheits-, Mathematik- und Wissenschaftsrechner.' },
         { title: 'Entwickler- & Web-Tools', href: '/tools', desc: 'Über 130 lokale Browser-Werkzeuge für Code, Text, PDF und Bilder.' },
         { title: 'Praxis-Ratgeber', href: '/guides', desc: 'Ausführliche Schritt-für-Schritt-Anleitungen und Formelherleitungen.' },
-        { title: 'Datenbank-Datenschutz-Plattform', href: '/database-privacy', desc: 'DSGVO-konformes PII-Scanning und Datenmaskierung lokal im Browser.' },
+        { title: 'Datenbank-Anonymisierer', href: '/tools/database-anonymizer', desc: 'DSGVO-konformes PII-Scanning und Datenmaskierung lokal im Browser.' },
       ],
       faqs: [
         {
@@ -601,7 +601,7 @@ const CATEGORY_ENRICHMENT_EN: Record<
       { title: 'All Calculators Directory', href: '/calculators', desc: 'Browse 300+ interactive calculators across finance, health, math, and science.' },
       { title: 'Developer & Web Tools', href: '/tools', desc: 'Explore 100+ browser-based utilities for coding, text, PDF, and image processing.' },
       { title: 'In-Depth Guides', href: '/guides', desc: 'Read comprehensive step-by-step tutorials and formula derivations.' },
-      { title: 'Data Privacy Platform', href: '/database-privacy', desc: 'Discover enterprise-grade PII scanning and database anonymization.' },
+      { title: 'Database Dump Anonymizer', href: '/tools/database-anonymizer', desc: 'Discover enterprise-grade PII scanning and database anonymization.' },
     ],
     faqs: [
       {

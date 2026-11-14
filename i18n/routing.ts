@@ -140,7 +140,7 @@ export const routing = defineRouting({
       en: '/calculators/social-security-calculator',
       es: '/calculadoras/calculadora-de-seguro-social',
       fr: '/calculatrices/calculateur-de-securite-sociale',
-      de: '/rechner/rentenrechner'
+      de: '/rechner/sozialversicherungsrechner'
     },
     '/calculators/credit-cards-payoff': {
       en: '/calculators/credit-cards-payoff',
@@ -974,7 +974,7 @@ export const routing = defineRouting({
         en: '/calculators/annuity-calculator',
         es: '/calculadoras/calculadora-anualidad',
         fr: '/calculatrices/calculateur-rente',
-        de: '/rechner/rentenrechner'
+        de: '/rechner/annuitaetenrechner'
       },
       '/calculators/annuity-payout-calculator': {
         en: '/calculators/annuity-payout-calculator',

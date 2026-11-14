@@ -1075,7 +1075,7 @@ const baseCalculators: CalculatorDef[] = [
       en: "social-security-calculator",
       es: "calculadora-de-seguro-social",
       fr: "calculateur-de-securite-sociale",
-      de: "rentenrechner"
+      de: "sozialversicherungsrechner"
     },
     title: "Social Security Calculator",
     category: "Financial",
@@ -2039,7 +2039,7 @@ Enter the annual income for both Partner 1 and Partner 2. The calculator will es
     slugs: {
       en: "annuity-calculator",
       es: "calculadora-anualidad",
-      de: "rentenrechner",
+      de: "annuitaetenrechner",
       fr: "calculateur-rente"
     },
     title: "Annuity Calculator",

@@ -4,7 +4,8 @@ description: "Understand HIPAA de-identification requirements under 45 CFR §164
 category: "Privacy & Security"
 readingTime: 8
 lastUpdated: "2026-08-08"
-relatedCalculator: "database-privacy"
+relatedCalculator: "database-anonymizer"
+relatedType: "tool"
 ---
 
 ## What Is HIPAA De-Identification?
@@ -225,4 +226,4 @@ A: The HHS has not defined specific qualifications. In practice, this is typical
 
 ## De-Identify Your Healthcare Database for Free
 
-The [Nexus Data Privacy Platform](/en/database-privacy) includes a HIPAA-mode scanner that automatically detects all 18 Safe Harbor identifiers across your connected databases, generates a compliance report, and applies Safe Harbor transformations with one click. Your data never leaves your browser.
+The [Database Anonymizer Tool](/en/tools/database-anonymizer) includes a HIPAA-mode scanner that automatically detects all 18 Safe Harbor identifiers across your SQL dumps and CSV exports, and applies Safe Harbor transformations with one click. Your data never leaves your browser.

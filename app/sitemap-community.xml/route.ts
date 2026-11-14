@@ -16,6 +16,11 @@ export async function GET() {
 
   if (posts && posts.length > 0) {
     for (const post of posts) {
+      if (!post.slug || post.slug === 'hello-cca921ec' || post.slug.startsWith('to-use-a-')) continue;
+      const plainText = (post.content || '').replace(/<[^>]+>/g, ' ').trim();
+      const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+      if (wordCount < 100) continue;
+
       urls += `
   <url>
     <loc>${baseUrl}/en/community/${post.slug}</loc>

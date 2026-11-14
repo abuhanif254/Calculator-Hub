@@ -46,7 +46,8 @@ export function NotFoundView() {
     : popularItems;
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center min-h-[70vh] px-4 py-16 text-center">
+    <div data-nexus-404="true" className="flex-1 flex flex-col items-center justify-center min-h-[70vh] px-4 py-16 text-center">
+      <meta name="robots" content="noindex, nofollow" />
       <div className="bg-slate-100 dark:bg-slate-800 p-6 rounded-full mb-6 text-slate-500 dark:text-slate-400">
          <Compass size={64} strokeWidth={1.5} />
       </div>

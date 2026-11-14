@@ -1,5 +1,6 @@
 import { ImageResponse } from 'next/og';
 import { getToolConfig, allToolsConfig } from '@/lib/data/tools';
+import { getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
 import { routing } from '@/i18n/routing';
 
 // On-demand generation when shared (cached 1yr at CDN edge via next.config.ts headers)
@@ -41,10 +42,11 @@ export default async function Image({
 }) {
   const { locale, slug } = await params;
   const config = getToolConfig(slug);
+  const localizedMeta = getLocalizedToolMeta(slug, locale, config?.title, config?.shortDescription);
 
-  const rawTitle = config?.title || 'Developer Tool';
+  const rawTitle = localizedMeta?.title || config?.title || 'Developer Tool';
   const rawCategory = (config?.category || 'Developer Utility').toUpperCase();
-  const rawDesc = config?.shortDescription || 'Free, browser-based online developer utility with client-side processing.';
+  const rawDesc = localizedMeta?.description || config?.shortDescription || 'Free, browser-based online developer utility with client-side processing.';
 
   const title = sanitizeForOg(rawTitle);
   const category = sanitizeForOg(rawCategory);

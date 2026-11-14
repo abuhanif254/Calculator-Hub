@@ -1,8 +1,8 @@
 ---
 title: "BMI Calculator"
-description: "Calculate your Body Mass Index (BMI) instantly. Find your ideal weight and understand your health status with our free, accurate BMI Calculator."
-metaTitle: "BMI Calculator | Free & Accurate Body Mass Index Calculator"
-metaDescription: "Use our free online BMI Calculator to check your Body Mass Index instantly. Discover your healthy weight range, understand BMI charts, and evaluate your health risks. Accurate for both men and women using metric and imperial units."
+description: "Calculate your Body Mass Index (BMI) instantly. Find your ideal weight range and WHO category using metric (kg/cm) or imperial (lbs/ft) units."
+metaTitle: "BMI Calculator — Body Mass Index & Healthy Weight Range"
+metaDescription: "Calculate your Body Mass Index (BMI) instantly for men and women. Check WHO weight categories, ideal weight range, and metric or imperial BMI charts."
 metaKeywords: "bmi calculator, body mass index calculator, calculate bmi, bmi chart, bmi formula, ideal weight, normal bmi, overweight, obese, healthy weight range, how to calculate bmi, bmi for men and women"
 ---
 

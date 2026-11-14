@@ -16,7 +16,6 @@ const developerToolsMenu = [
       { name: "Word Counter & Character Counter", desc: "Count words, characters, and sentences in real time" },
       { name: "Case Converter", desc: "Convert text letter cases instantly" },
       { name: "JSON Formatter", desc: "Format and indent JSON data" },
-      { name: "JSON Validator", desc: "Validate your JSON strings" },
       { name: "HTML Formatter", desc: "Format HTML code" },
       { name: "CSS Beautifier", desc: "Beautify CSS styles" },
       { name: "JS Beautifier", desc: "Format JS code" },
@@ -32,7 +31,7 @@ const developerToolsMenu = [
     title: "Encoding & Security",
     icon: Shield,
     items: [
-      { name: "Data Privacy Platform", desc: "Enterprise Database Anonymizer", isNew: true, href: "/database-privacy", icon: Shield },
+      { name: "Database Dump Anonymizer", desc: "Mask PII in SQL & CSV dumps locally", isNew: true, href: "/tools/database-anonymizer", icon: Shield },
       { name: "Base64 Encode", desc: "Encode text to Base64" },
       { name: "Base64 Decode", desc: "Decode Base64 to text" },
       { name: "URL Encoder", desc: "Encode URL characters" },
@@ -93,9 +92,6 @@ const developerToolsMenu = [
       { name: "robots.txt Generator", desc: "Create robots.txt files" },
       { name: "sitemap.xml Generator", desc: "Generate XML sitemaps" },
       { name: ".htaccess Generator", desc: "Generate Apache .htaccess" },
-      { name: "CSS Minifier", desc: "Minify CSS code" },
-      { name: "JS Minifier", desc: "Minify JavaScript code" },
-      { name: "HTML Minifier", desc: "Minify HTML code" },
       { name: "Responsive Screen Tester", desc: "Test responsive designs" },
       { name: "HTTP Header Checker", desc: "Check HTTP response headers" },
       { name: "Redirect Checker", desc: "Check URL redirects" },
@@ -106,7 +102,6 @@ const developerToolsMenu = [
       { name: "MIME Type Checker", desc: "Check MIME types" },
       { name: "Favicon Generator", desc: "Generate website icons and PWA manifests", slug: "favicon-generator" },
       { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", slug: "svg-optimizer" },
-      { name: "Database Dump Anonymizer", desc: "Mask PII in SQL/CSV dumps", isNew: true, slug: "database-anonymizer" },
     ]
   },
   {

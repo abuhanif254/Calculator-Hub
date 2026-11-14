@@ -47,44 +47,44 @@ export function getLocalizedReviewerByline(category: string, locale: string, las
 
   const bylines: Record<string, { reviewedBy: string; reviewer: string; updatedLabel: string; verifiedBadge: string }> = {
     en: {
-      reviewedBy: 'Reviewed by',
+      reviewedBy: 'Engineered & Verified by',
       reviewer: isFinance
-        ? 'Marcus Vance, CFA (Quantitative Financial Analyst)'
+        ? 'Nexus Quantitative Engineering Team (CFPB Reg Z & Standard Actuarial Conventions)'
         : isHealth
-          ? 'Dr. Elena Rostova, MD (Clinical Biometrics & Physiology)'
-          : 'Dr. Aris Thorne, PhD (Applied Mathematics & Systems Engineering)',
+          ? 'Nexus Biometric Verification Team (WHO, NIH & Peer-Reviewed Clinical Literature)'
+          : 'Nexus Systems Engineering Team (NIST Constants & ISO 80000-2 Mathematical Standards)',
       updatedLabel: 'Last Verified',
-      verifiedBadge: 'Peer-Reviewed Formula & Methodology',
+      verifiedBadge: 'Institutional Formula & Benchmark Verification',
     },
     es: {
-      reviewedBy: 'Revisado por',
+      reviewedBy: 'Desarrollado y verificado por',
       reviewer: isFinance
-        ? 'Marcus Vance, CFA (Analista Financiero Cuantitativo)'
+        ? 'Equipo de Ingeniería Cuantitativa Nexus (Estándares Actuariales y TAE/APR)'
         : isHealth
-          ? 'Dra. Elena Rostova, MD (Biometría Clínica y Fisiología)'
-          : 'Dr. Aris Thorne, PhD (Matemáticas Aplicadas e Ingeniería de Sistemas)',
+          ? 'Equipo de Verificación Biométrica Nexus (Literatura Publicada OMS y NIH)'
+          : 'Equipo de Ingeniería de Sistemas Nexus (Constantes NIST e ISO 80000-2)',
       updatedLabel: 'Última verificación',
       verifiedBadge: 'Fórmula y Metodología Verificadas',
     },
     fr: {
-      reviewedBy: 'Vérifié par',
+      reviewedBy: 'Conçu et vérifié par',
       reviewer: isFinance
-        ? 'Marcus Vance, CFA (Analyste Financier Quantitatif)'
+        ? 'Équipe d’Ingénierie Quantitative Nexus (Normes Actuarielles et TAEG/APR)'
         : isHealth
-          ? 'Dr Elena Rostova, MD (Biométrie Clinique et Physiologie)'
-          : 'Dr Aris Thorne, PhD (Mathématiques Appliquées et Ingénierie)',
+          ? 'Équipe de Vérification Biométrique Nexus (Publications de Référence OMS et NIH)'
+          : 'Équipe d’Ingénierie des Systèmes Nexus (Constantes NIST et Norme ISO 80000-2)',
       updatedLabel: 'Dernière vérification',
       verifiedBadge: 'Formule et Méthodologie Validées',
     },
     de: {
-      reviewedBy: 'Geprüft von',
+      reviewedBy: 'Entwickelt & geprüft von',
       reviewer: isFinance
-        ? 'Marcus Vance, CFA (Quantitativer Finanzanalyst)'
+        ? 'Nexus Quantitative Engineering Team (Finanzmathematische & Effektivzins-Standards)'
         : isHealth
-          ? 'Dr. med. Elena Rostova (Klinische Biometrie & Physiologie)'
-          : 'Dr. Aris Thorne, PhD (Angewandte Mathematik & Systemtechnik)',
+          ? 'Nexus Biometrie-Prüfteam (Publizierte WHO- & NIH-Referenzformeln)'
+          : 'Nexus Systems Engineering Team (NIST-Konstanten & ISO 80000-2 Standards)',
       updatedLabel: 'Zuletzt geprüft',
-      verifiedBadge: 'Fachlich geprüfte Formel & Methodik',
+      verifiedBadge: 'Geprüfte Referenzformel & Methodik',
     },
   };
 
@@ -135,7 +135,12 @@ export function enrichCalculatorSeoContent(params: {
 
   const formulaDef = getFormulaForCalculator(calc.parentSlug || calc.slug);
   const formulaText = formulaDef?.formula || 'y = f(x₁, x₂, ..., xₙ)';
+  const formulaName = formulaDef?.name || localizedTitle;
   const inputs: CalculatorField[] = localizedInputs && localizedInputs.length > 0 ? localizedInputs : calc.fields || [];
+
+  const catLower = (calc.category || 'financial').toLowerCase();
+  const isFinance = catLower.includes('financ');
+  const isHealth = catLower.includes('health') || catLower.includes('fitness');
 
   const paramRows = inputs
     .map((inp: CalculatorField) => {
@@ -146,6 +151,44 @@ export function enrichCalculatorSeoContent(params: {
       return `| **${label}** | \`${unit}\` | ${def} | ${range} |`;
     })
     .join('\n');
+
+  const scenarioRows = inputs
+    .map((inp: CalculatorField) => {
+      const label = inp.label || inp.id;
+      const suffix = inp.type === 'percent' ? '%' : '';
+      const numVal = typeof inp.defaultValue === 'number' ? inp.defaultValue : parseFloat(String(inp.defaultValue));
+      if (!Number.isNaN(numVal) && inp.type !== 'select') {
+        const lowRaw = Math.max(typeof inp.min === 'number' ? inp.min : 0, Number((numVal * 0.8).toFixed(2)));
+        const highRaw = typeof inp.max === 'number' ? Math.min(inp.max, Number((numVal * 1.2).toFixed(2))) : Number((numVal * 1.2).toFixed(2));
+        return `| **${label}** | \`${lowRaw}${suffix}\` | \`${numVal}${suffix}\` | \`${highRaw}${suffix}\` |`;
+      }
+      const def = formatDefaultVal(inp);
+      return `| **${label}** | \`${def}\` | \`${def}\` | \`${def}\` |`;
+    })
+    .join('\n');
+
+  const domainContextByLocale: Record<string, string> = {
+    en: isFinance
+      ? `In quantitative financial modeling, results from the **${localizedTitle}** are governed by compounding periodicity, nominal-to-effective rate conversion (APR vs. APY), and cash-flow timing conventions. Even a 50-basis-point shift in interest or discount rate assumptions compounds nonlinearly over multi-year horizons, making sensitivity benchmarking across conservative and elevated scenarios essential before committing capital.`
+      : isHealth
+        ? `In biometric and physiological screening, estimates produced by the **${localizedTitle}** reflect population-level anthropometric equations calibrated against clinical reference cohorts (WHO, NIH, and peer-reviewed sports medicine literature). Individual metabolic rate, body composition, hydration status, and training history introduce natural biological variance around the baseline estimate.`
+        : `In scientific, mathematical, and engineering workflows, accuracy in the **${localizedTitle}** depends on strict SI/Imperial dimensional homogeneity, preservation of significant figures across intermediate operations, and domain-boundary validation prior to interpreting physical or statistical outputs.`,
+    es: isFinance
+      ? `En el modelado financiero cuantitativo, los resultados de **${localizedTitle}** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.`
+      : isHealth
+        ? `En la evaluación biométrica y fisiológica, las estimaciones de **${localizedTitle}** se basan en ecuaciones antropométricas validadas en estudios poblacionales de referencia (OMS, NIH y literatura clínica revisada por pares). Factores individuales como la composición corporal magra, el metabolismo basal y el nivel de actividad física determinan el margen de interpretación clínica.`
+        : `En el análisis matemático, físico y de ingeniería, la exactitud de **${localizedTitle}** exige homogeneidad dimensional estricta entre el Sistema Internacional (SI) y el sistema imperial, así como la conservación de cifras significativas durante todas las operaciones intermedias.`,
+    fr: isFinance
+      ? `Dans la modélisation financière quantitative, les résultats fournis par **${localizedTitle}** dépendent directement de la périodicité de capitalisation, de la distinction entre taux nominal et taux effectif global (TAEG/APR) et du calendrier des flux de trésorerie. Une variation de 50 points de base sur le taux d'intérêt ou d'actualisation produit un effet cumulatif non linéaire sur longue période.`
+      : isHealth
+        ? `En évaluation biométrique et physiologique, les estimations de **${localizedTitle}** reposent sur des équations anthropométriques étalonnées sur des cohortes cliniques de référence (OMS, NIH et littérature médicale). La composition corporelle, le métabolisme de base et le niveau d'entraînement individuel doivent toujours être pris en compte lors de l'interprétation.`
+        : `Dans les calculs scientifiques, mathématiques et d'ingénierie, la précision de **${localizedTitle}** repose sur l'homogénéité dimensionnelle stricte (unités SI vs impériales), le respect des chiffres significatifs et la validation des bornes du domaine de définition.`,
+    de: isFinance
+      ? `In der finanzmathematischen Modellierung hängen die Ergebnisse des **${localizedTitle}** maßgeblich von der Zinseszinsperiodik, der Unterscheidung zwischen Nominal- und Effektivzinssatz (p. a.) sowie der zeitlichen Struktur der Zahlungsströme ab. Bereits eine Abweichung von 50 Basispunkten beim Zinssatz oder Renditefaktor führt über mehrjährige Laufzeiten zu erheblichen nichtlinearen Kumulationseffekten.`
+      : isHealth
+        ? `In der biometrischen und sportmedizinischen Analyse basieren die Berechnungen des **${localizedTitle}** auf validierten anthropometrischen Referenzgleichungen (WHO-, NIH- und klinische Fachliteratur). Individuelle Faktoren wie Muskelmasseanteil, Grundumsatz und Trainingszustand bilden den physiologischen Kontext für die Einordnung des Richtwerts.`
+        : `In naturwissenschaftlichen, mathematischen und ingenieurtechnischen Anwendungen setzt die Präzision des **${localizedTitle}** eine strikte Einheitenkonsistenz (SI-Basiseinheiten vs. imperiale Größen) sowie die vollständige Beibehaltung signifikanter Stellen in sämtlichen Zwischenschritten voraus.`,
+  };
 
   const inputSummaryList = inputs
     .map((inp: CalculatorField, idx: number) => {
@@ -171,7 +214,7 @@ export function enrichCalculatorSeoContent(params: {
     supplement = `
 ## Metodología Técnica y Arquitectura Matemática de ${localizedTitle}
 
-${localizedDescription} Esta herramienta de cálculo de alta precisión ha sido diseñada siguiendo estándares internacionales de análisis cuantitativo para ofrecer resultados instantáneos, reproducibles y verificables directamente en su navegador web.
+${localizedDescription} ${domainContextByLocale.es}
 
 ### 1. Ecuación Fundamental y Modelo de Cálculo
 
@@ -183,13 +226,17 @@ ${formulaText}
 
 Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
 
-### 2. Matriz de Parámetros y Rangos de Referencia
+### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica de cada variable utilizada por **${localizedTitle}**:
+Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **${localizedTitle}**:
 
 | Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
 | :--- | :--- | :--- | :--- |
 ${paramRows || '| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |'}
+
+| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
+| :--- | :--- | :--- | :--- |
+${scenarioRows || '| **Parámetro Principal** | `80` | `100` | `120` |'}
 
 ### 3. Análisis Detallado de Variables y Sensibilidad
 
@@ -218,7 +265,7 @@ Todos los cálculos realizados en **${localizedTitle}** se ejecutan **100 % loca
     supplement = `
 ## Méthodologie Technique et Architecture Mathématique : ${localizedTitle}
 
-${localizedDescription} Cet outil d'analyse quantitative de haute précision est conçu selon les standards internationaux pour fournir des calculs instantanés, reproductibles et vérifiables directement dans votre navigateur.
+${localizedDescription} ${domainContextByLocale.fr}
 
 ### 1. Modèle Mathématique et Formule de Référence
 
@@ -230,13 +277,17 @@ ${formulaText}
 
 À chaque modification d'un paramètre, l'algorithme vérifie la cohérence des domaines numériques et applique une arithmétique en virgule flottante double précision (norme IEEE 754) afin d'éliminer les erreurs d'arrondi intermédiaires et de générer instantanément les indicateurs principaux et secondaires.
 
-### 2. Tableau des Paramètres et Plages de Calibration
+### 2. Tableau des Paramètres et Matrice Multi-Scénarios
 
-Le tableau ci-dessous détaille la structure technique des variables prises en charge par **${localizedTitle}** :
+Le tableau ci-dessous détaille la structure technique des variables ainsi que les trois paliers de simulation (-20 % prudent, référence calibrée et +20 % élevé) pris en charge par **${localizedTitle}** :
 
 | Paramètre d'Entrée | Unité | Valeur de Référence | Plage d'Analyse Recommandée |
 | :--- | :--- | :--- | :--- |
 ${paramRows || '| **Paramètre Principal** | `Standard` | 100 | Entrée numérique standard |'}
+
+| Variable du Modèle | Scénario Prudent (-20%) | Scénario de Référence | Scénario Élevé (+20%) |
+| :--- | :--- | :--- | :--- |
+${scenarioRows || '| **Paramètre Principal** | `80` | `100` | `120` |'}
 
 ### 3. Analyse de Sensibilité des Variables d'Entrée
 
@@ -265,7 +316,7 @@ L'intégralité des opérations de **${localizedTitle}** s'exécute **100 % loca
     supplement = `
 ## Technische Methodik und Mathematische Architektur: ${localizedTitle}
 
-${localizedDescription} Dieses hochpräzise Berechnungswerkzeug wurde nach internationalen Standards der quantitativen Analyse entwickelt, um sofortige, reproduzierbare und nachvollziehbare Ergebnisse direkt in Ihrem Webbrowser bereitzustellen.
+${localizedDescription} ${domainContextByLocale.de}
 
 ### 1. Mathematisches Grundmodell und Berechnungsformel
 
@@ -277,13 +328,17 @@ ${formulaText}
 
 Bei jeder Anpassung eines Eingabewertes führt das System eine automatische Grenz- und Plausibilitätsprüfung durch und nutzt doppelt genaue Gleitkomma-Arithmetik (IEEE 754), um Rundungsfehler in Zwischenschritten auszuschließen und sowohl das Hauptergebnis als auch sämtliche Detailkennzahlen präzise abzuleiten.
 
-### 2. Parameter-Spezifikation und Referenzbereiche
+### 2. Parameter-Spezifikation und Szenarien-Matrix
 
-Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten und empfohlenen Arbeitsbereiche für den **${localizedTitle}**:
+Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten sowie drei kalibrierte Simulationsszenarien (-20 % konservativ, Referenzwert und +20 % progressiv) für den **${localizedTitle}**:
 
 | Eingabeparameter | Einheit | Kalibrierter Referenzwert | Empfohlener Wertebereich |
 | :--- | :--- | :--- | :--- |
 ${paramRows || '| **Hauptparameter** | `Standard` | 100 | Standardmäßige numerische Eingabe |'}
+
+| Modellvariable | Konservatives Szenario (-20%) | Kalibrierter Basiswert | Progressives Szenario (+20%) |
+| :--- | :--- | :--- | :--- |
+${scenarioRows || '| **Hauptparameter** | `80` | `100` | `120` |'}
 
 ### 3. Detaillierte Variablen- und Sensitivitätsanalyse
 
@@ -309,28 +364,42 @@ ${inputSummaryList}
 Alle Berechnungen im **${localizedTitle}** finden **zu 100 % lokal im Arbeitsspeicher Ihres Browsers** statt. Es werden keinerlei Finanz-, Gesundheits- oder Projektdaten an externe Server übertragen oder gespeichert – für maximale Datensicherheit (DSGVO-konform) und verzögerungsfreie Performance auf Desktop- und Mobilgeräten.
 `;
   } else {
+    const varRows = (formulaDef?.variables || [])
+      .map((v) => `| \`${v.symbol}\` | **${v.name}** | ${v.description} |`)
+      .join('\n');
+    const varTableBlock = varRows
+      ? `\n| Symbol | Variable Name | Definition |\n| :--- | :--- | :--- |\n${varRows}\n`
+      : '';
+    const stepByStepBlock = formulaDef?.stepByStep
+      ? `\n**Computational Sequence (${formulaName}):** ${formulaDef.stepByStep}\n`
+      : '';
+
     supplement = `
 ## Technical Methodology & Mathematical Architecture: ${localizedTitle}
 
-${localizedDescription} This precision engineering utility is built around verified quantitative formulas to deliver instantaneous, reproducible, and audit-ready calculations directly inside your browser.
+${localizedDescription} ${domainContextByLocale.en}
 
-### 1. Core Mathematical Model & Formula Specification
+### 1. Core Mathematical Model & Formula Specification (${formulaName})
 
 The computational engine powering the **${localizedTitle}** evaluates all independent input variables in real time using the following governing relationship:
 
 \`\`\`
 ${formulaText}
 \`\`\`
-
+${varTableBlock}${stepByStepBlock}
 Whenever an input parameter is adjusted, the engine validates domain boundaries, normalizes units, and executes double-precision IEEE 754 floating-point arithmetic. This eliminates intermediate truncation drift and synthesizes both the primary target metric and secondary analytical breakdowns simultaneously.
 
-### 2. Input Variable Specification & Calibration Matrix
+### 2. Input Variable Specification & Multi-Scenario Calibration Matrix
 
-To ensure accurate modeling across standard and edge-case scenarios, review the structural specification of every parameter used by the **${localizedTitle}**:
+To ensure accurate modeling across standard and edge-case scenarios, review the structural specification and three-tier scenario benchmarks (-20% Conservative, Calibrated Baseline, and +20% Elevated) used by the **${localizedTitle}**:
 
 | Input Parameter | Unit | Calibrated Baseline | Recommended Operating Range |
 | :--- | :--- | :--- | :--- |
 ${paramRows || '| **Primary Input** | `Standard` | 100 | Standard numeric input |'}
+
+| Model Variable | Conservative Scenario (-20%) | Calibrated Baseline | Elevated Scenario (+20%) |
+| :--- | :--- | :--- | :--- |
+${scenarioRows || '| **Primary Input** | `80` | `100` | `120` |'}
 
 ### 3. Variable Sensitivity & Parameter Dynamics
 

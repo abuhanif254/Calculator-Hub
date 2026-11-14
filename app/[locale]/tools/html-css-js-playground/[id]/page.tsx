@@ -15,12 +15,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pen = await getPlaygroundPen(resolvedParams.id);
   
   if (!pen) {
-    return { title: 'Pen Not Found' };
+    return {
+      title: 'Pen Not Found',
+      robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+    };
   }
 
   return {
     title: `${pen.title || 'Nexus Playground Pen'}`,
     description: 'A custom HTML, CSS, and JS playground created on Nexus.',
+    robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
     openGraph: {
       title: `${pen.title || 'Nexus Playground Pen'}`,
       description: 'Check out this code snippet on Nexus!',

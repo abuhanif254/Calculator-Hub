@@ -150,14 +150,6 @@ export async function generateMetadata({
   const { optimizeSerpTitle } = await import("@/lib/utils/seoUtils");
   const localizedMeta = META_BY_LOCALE[locale] || META_BY_LOCALE.en;
 
-  const supportedLocales = ["en", "es", "fr", "de"];
-  const hreflangLanguages: Record<string, string> = {
-    "x-default": `${baseUrl}/en/database-privacy`,
-  };
-  supportedLocales.forEach((l) => {
-    hreflangLanguages[l] = `${baseUrl}/${l}/database-privacy`;
-  });
-
   return {
     title: optimizeSerpTitle(localizedMeta.title, locale, "page"),
     description: localizedMeta.description,
@@ -173,10 +165,6 @@ export async function generateMetadata({
       "data pseudonymization",
       "sensitive data discovery",
     ],
-    alternates: {
-      canonical: `${baseUrl}/${locale}/database-privacy`,
-      languages: hreflangLanguages,
-    },
     openGraph: {
       title: `${localizedMeta.title} | Nexus`,
       description: localizedMeta.description,
@@ -200,9 +188,9 @@ export async function generateMetadata({
       images: [ogImage],
     },
     robots: {
-      index: true,
-      follow: true,
-      googleBot: { index: true, follow: true },
+      index: false,
+      follow: false,
+      googleBot: { index: false, follow: false },
     },
   };
 }

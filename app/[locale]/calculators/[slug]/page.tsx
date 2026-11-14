@@ -34,7 +34,7 @@ import { Search, ChevronRight, CalculatorIcon, BookOpen, Clock, ArrowRight, Scal
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { pickCalculatorMessages, toClientCalcDef, getMessageNamespaceCalcMeta } from '@/lib/utils/getCalculatorMessages';
-import { getCanonicalAndAlternates, optimizeSerpTitle, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
+import { getCanonicalAndAlternates, optimizeSerpTitle, optimizeSerpDescription, getCanonicalUrl, canonicalizeInternalHref } from '@/lib/utils/seoUtils';
 import { enrichCalculatorSeoContent, getLocalizedReviewerByline, buildDynamicCalculatorFaqs } from '@/lib/utils/seoContentEnricher';
 
 import fs from "fs";
@@ -145,9 +145,11 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
       parsed.data.title = parsed.data.metaTitle.split(/\s*[|–—-]\s*/)[0].trim();
     }
 
-    // Backfill description from metaDescription or first paragraph of markdown if missing
+    // Backfill description from explicit frontmatter only; store first paragraph separately as a last-resort fallback
     if (!parsed.data.description) {
-      if (typeof parsed.data.metaDescription === 'string' && parsed.data.metaDescription.trim()) {
+      if (typeof parsed.data.shortDescription === 'string' && parsed.data.shortDescription.trim()) {
+        parsed.data.description = parsed.data.shortDescription.trim();
+      } else if (typeof parsed.data.metaDescription === 'string' && parsed.data.metaDescription.trim()) {
         parsed.data.description = parsed.data.metaDescription.trim();
       } else {
         const firstParagraph = parsed.content
@@ -155,12 +157,7 @@ function getMarkdownContent(baseSlug: string, locale: string, localizedSlug?: st
           .map((p) => p.trim())
           .find((p) => p.length > 30 && !p.startsWith('#') && !p.startsWith('*') && !p.startsWith('-') && !p.startsWith('|'));
         if (firstParagraph) {
-          parsed.data.description = firstParagraph
-            .replace(/\*\*([^*]+)\*\*/g, '$1')
-            .replace(/\*([^*]+)\*/g, '$1')
-            .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-            .slice(0, 220)
-            .trim();
+          parsed.data._firstParaFallback = optimizeSerpDescription(firstParagraph);
         }
       }
     }
@@ -197,14 +194,24 @@ function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorB
     calc.title
   ).trim();
 
-  const description = (
-    localizedMd?.data?.description ||
+  const structuredFallbackDesc = (
     translation?.description ||
     translation?.meta?.description ||
     nsMeta.description ||
     fallbackMd?.data?.description ||
-    calc.description
+    calc.description ||
+    calc.meta.description ||
+    localizedMd?.data?._firstParaFallback ||
+    fallbackMd?.data?._firstParaFallback ||
+    ''
   ).trim();
+
+  const rawDescription = (
+    localizedMd?.data?.description ||
+    structuredFallbackDesc
+  ).trim();
+
+  const description = optimizeSerpDescription(rawDescription, structuredFallbackDesc);
 
   const rawMetaTitle = (
     localizedMd?.data?.metaTitle ||
@@ -218,15 +225,22 @@ function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorB
 
   const metaTitle = rawMetaTitle.replace(/\s*\|\s*Nexus.*$/i, '').trim();
 
-  const metaDescription = (
-    localizedMd?.data?.metaDescription ||
+  const structuredFallbackMetaDesc = (
     translation?.meta?.description ||
     translation?.description ||
     nsMeta.description ||
     fallbackMd?.data?.metaDescription ||
     calc.meta.description ||
+    calc.description ||
     description
   ).trim();
+
+  const rawMetaDescription = (
+    localizedMd?.data?.metaDescription ||
+    structuredFallbackMetaDesc
+  ).trim();
+
+  const metaDescription = optimizeSerpDescription(rawMetaDescription, structuredFallbackMetaDesc);
 
   const metaKeywords = (
     localizedMd?.data?.metaKeywords ||
@@ -254,7 +268,6 @@ export async function generateStaticParams({ params }: { params: { locale: strin
 
   locales.forEach((locale) => {
     calculators.forEach((calc) => {
-      const isExplicitlyMapped = `/calculators/${calc.slug}` in routing.pathnames;
       const localizedSlug = calc.slugs?.[locale as keyof typeof calc.slugs];
 
       // Always add the English (canonical) slug so the base route works
@@ -263,10 +276,8 @@ export async function generateStaticParams({ params }: { params: { locale: strin
         result.push({ slug: calc.slug });
       }
 
-      // For explicitly-mapped calculators that have a localized slug, next-intl
-      // rewrites the URL (e.g. /de/rechner/potenzielle-energie-rechner → [slug]),
-      // passing the LOCALIZED slug as the param.
-      if (isExplicitlyMapped && localizedSlug && localizedSlug !== calc.slug) {
+      // Always include the localized slug if present so next-intl rewrites never miss a static param
+      if (localizedSlug && localizedSlug !== calc.slug) {
         if (!seen.has(localizedSlug)) {
           seen.add(localizedSlug);
           result.push({ slug: localizedSlug });
@@ -288,6 +299,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!calc) {
     return {
       title: "Calculator Not Found",
+      robots: { index: false, follow: false },
     };
   }
 
@@ -730,7 +742,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
     "potentialAction": [
       {
         "@type": "SolveMathAction",
-        "target": `${canonicalUrl}?q={math_expression_string}`,
+        "target": canonicalUrl,
         "mathExpression-input": "required name=math_expression_string",
         "eduQuestionType": eduQuestionType
       }
@@ -895,7 +907,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               <div className="w-10 h-10 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700">
                 <img
                   src="https://ik.imagekit.io/ubwpdqyav/my_photo-removebg-preview.png?updatedAt=1776774813574"
-                  alt="Md. Shamim Hossain"
+                  alt="MD Abu Hanif Mia"
                   width={40}
                   height={40}
                   loading="lazy"
@@ -904,7 +916,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
               </div>
               <div>
                 <p className="text-sm font-semibold text-slate-900 dark:text-white">
-                  {reviewerByline.reviewedBy} <Link href="/about-us" className="text-[#518231] hover:underline">Md. Shamim Hossain</Link> • <span className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewer}</span>
+                  {reviewerByline.reviewedBy} <Link href="/about-us" className="text-[#518231] hover:underline">MD Abu Hanif Mia</Link> • <span className="text-slate-700 dark:text-slate-300">{reviewerByline.reviewer}</span>
                 </p>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   {reviewerByline.verifiedBadge} • {reviewerByline.updatedLabel}: {reviewerByline.lastUpdated}

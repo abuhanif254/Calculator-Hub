@@ -106,11 +106,37 @@ const nextConfig: NextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=86400' },
         ],
       },
-      // ── OpenGraph images: generate on-demand when shared, cache 1yr at CDN edge ──
+      // ── OpenGraph images: generate on-demand when shared, cache 1yr at CDN edge, prevent standalone indexing ──
       {
         source: '/:path*/opengraph-image',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=31536000' },
+          { key: 'X-Robots-Tag', value: 'noindex, noarchive' },
+        ],
+      },
+      {
+        source: '/:path*/twitter-image',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=31536000' },
+          { key: 'X-Robots-Tag', value: 'noindex, noarchive' },
+        ],
+      },
+      {
+        source: '/feed.xml',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex, follow' },
+        ],
+      },
+      {
+        source: '/:locale/database-privacy',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
+        ],
+      },
+      {
+        source: '/:locale/database-privacy/:path*',
+        headers: [
+          { key: 'X-Robots-Tag', value: 'noindex, nofollow' },
         ],
       },
       // ── API routes: no cache by default, CORS allowed ────────────────────

@@ -17,6 +17,7 @@ import { Inter } from 'next/font/google';
 // this wrapper file carries the 'use client' boundary so this Server
 // Component doesn't violate that rule.
 import { ClientShell } from '../../app/components/ClientShell';
+import { AdSenseScriptLoader } from '../../app/components/AdSenseScriptLoader';
 
 // Inter — the industry-standard professional typeface for tool/SaaS platforms
 // Weights: 400 (body), 500 (medium), 600 (semibold), 700 (bold).
@@ -121,16 +122,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       index: true,
       follow: true,
     },
-    alternates: {
-      canonical: `${baseUrl}/${locale}`,
-      languages: {
-        'en': `${baseUrl}/en`,
-        ...Object.fromEntries(
-          routing.locales.map((l) => [l, `${baseUrl}/${l}`])
-        ),
-        'x-default': `${baseUrl}/en`
-      },
-    },
   };
 }
 
@@ -177,14 +168,48 @@ export default async function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Nexus" />
         <meta name="google-adsense-account" content={adClientId} />
-        {/* Standard async AdSense script in SSR <head> so Mediapartners-Google / AdSense review crawler can verify every page immediately */}
-        {adClientId && (
-          <script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adClientId}`}
-            crossOrigin="anonymous"
-          />
-        )}
+        {/* Google Consent Mode v2 Default Initialization (EEA / UK / CH GDPR Compliance) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              (function() {
+                var saved = null;
+                try { saved = localStorage.getItem('nexus_cookie_consent'); } catch (e) {}
+                var adGranted = saved === 'accepted';
+                var analyticsGranted = saved === 'accepted';
+                var explicitChoice = saved === 'accepted' || saved === 'declined';
+                if (saved && saved.charAt(0) === '{') {
+                  try {
+                    var parsed = JSON.parse(saved);
+                    adGranted = !!parsed.advertising;
+                    analyticsGranted = !!parsed.analytics;
+                    explicitChoice = true;
+                  } catch (e) {}
+                }
+                gtag('consent', 'default', {
+                  'ad_storage': adGranted ? 'granted' : 'denied',
+                  'ad_user_data': adGranted ? 'granted' : 'denied',
+                  'ad_personalization': adGranted ? 'granted' : 'denied',
+                  'analytics_storage': analyticsGranted ? 'granted' : 'denied',
+                  'region': ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH'],
+                  'wait_for_update': 500
+                });
+                gtag('consent', 'default', {
+                  'ad_storage': explicitChoice ? (adGranted ? 'granted' : 'denied') : 'granted',
+                  'ad_user_data': explicitChoice ? (adGranted ? 'granted' : 'denied') : 'granted',
+                  'ad_personalization': explicitChoice ? (adGranted ? 'granted' : 'denied') : 'granted',
+                  'analytics_storage': explicitChoice ? (analyticsGranted ? 'granted' : 'denied') : 'granted'
+                });
+                if (explicitChoice && !adGranted) {
+                  window.adsbygoogle = window.adsbygoogle || [];
+                  window.adsbygoogle.requestNonPersonalizedAds = 1;
+                }
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="font-sans bg-slate-50 text-slate-900 min-h-screen flex flex-col dark:bg-[#090E17] dark:text-slate-100 relative overflow-x-hidden max-w-full">
         {/* Ambient Glassmorphism Background Layers
@@ -215,6 +240,7 @@ export default async function RootLayout({
                     CommandPalette, InstallPrompt, BackToTop, CookieBanner all load
                     AFTER the critical UI is interactive, saving TBT and FCP. */}
                 <ClientShell />
+                {adClientId && <AdSenseScriptLoader adClientId={adClientId} />}
               </SettingsProvider>
             </AuthProvider>
           </ThemeProvider>

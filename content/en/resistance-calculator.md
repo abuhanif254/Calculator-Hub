@@ -1,8 +1,8 @@
 ---
-title: "Resistance Calculator | Electrical Resistance & Resistor (R = V/I) Solver"
-description: "Free online Resistance Calculator. Instantly calculate electrical resistance from voltage (R = V/I), power (R = P/I²), or wire resistivity. Features live 4-band resistor color code display and network builder."
-metaTitle: "Resistance Calculator | Electrical Resistance & Resistor (R = V/I) Solver"
-metaDescription: "Free online Resistance Calculator. Instantly calculate electrical resistance from voltage (R = V/I), power (R = P/I²), or wire resistivity. Features live 4-band resistor color code display and network builder."
+title: "Resistance Calculator"
+description: "Calculate electrical resistance from voltage (R = V/I), power (R = P/I²), wire resistivity, series/parallel circuits, and 4-band resistor color codes."
+metaTitle: "Resistance Calculator — Ohm's Law (R = V/I) & Color Code"
+metaDescription: "Calculate electrical resistance from voltage (R = V/I), power (R = P/I²), wire resistivity, series/parallel circuits, and 4-band resistor color codes."
 metaKeywords: "resistance calculator, electrical resistance calculator, ohm calculator, resistor calculator, resistance formula calculator, R = V/I calculator, wire resistance calculator"
 features:
   - "Interactive Cockpit featuring Simple and Advanced Mode toggle"

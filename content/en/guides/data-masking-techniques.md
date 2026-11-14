@@ -4,7 +4,8 @@ description: "Compare the most effective data masking techniques — including h
 category: "Privacy & Security"
 readingTime: 8
 lastUpdated: "2026-08-08"
-relatedCalculator: "database-privacy"
+relatedCalculator: "database-anonymizer"
+relatedType: "tool"
 ---
 
 ## What Is Data Masking?
@@ -246,4 +247,4 @@ A: FPE is a cryptographic technique that encrypts data while preserving its form
 
 ## Apply Masking Directly from Your Browser
 
-The [Nexus Data Privacy Platform](/en/database-privacy) includes a built-in masking rule engine with 30+ pre-built masking strategies. Connect your database, scan for PII, and apply the right masking technique to each column — without writing any SQL. All processing happens in your browser; no data leaves your device.
+The [Database Anonymizer Tool](/en/tools/database-anonymizer) includes a built-in masking rule engine with 30+ pre-built masking strategies. Paste or upload your database dump, scan for PII, and apply the right masking technique to each column — without writing any SQL. All processing happens in your browser; no data leaves your device.

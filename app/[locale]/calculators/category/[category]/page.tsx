@@ -9,6 +9,7 @@ import { comparisons } from '@/lib/data/comparisons';
 import { collections } from '@/lib/data/collections';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
+import { canonicalizeInternalHref } from '@/lib/utils/seoUtils';
 import { Link, resolveIntlHref } from '@/i18n/routing';
 import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap, Wrench, Scale, Layers } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -629,7 +630,19 @@ export default async function CategoryPage({
         {/* SEO Pillar Content */}
         <section className="mb-16">
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-a:text-[#518231] prose-a:no-underline hover:prose-a:underline">
-            <ReactMarkdown>{cat.pillarContent}</ReactMarkdown>
+            <ReactMarkdown
+              components={{
+                a({ node, href, children, ...props }: any) {
+                  return (
+                    <a href={canonicalizeInternalHref(href, locale)} {...props}>
+                      {children}
+                    </a>
+                  );
+                },
+              }}
+            >
+              {cat.pillarContent}
+            </ReactMarkdown>
           </div>
         </section>
 

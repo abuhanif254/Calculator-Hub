@@ -2,7 +2,12 @@ import appletConfig from "../firebase-applet-config.json";
 
 const PROJECT_ID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || appletConfig.projectId;
 const API_KEY = process.env.NEXT_PUBLIC_FIREBASE_API_KEY || appletConfig.apiKey;
-const BASE_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents`;
+const DATABASE_ID =
+  process.env.NEXT_PUBLIC_FIREBASE_DATABASE_ID ||
+  (PROJECT_ID === appletConfig.projectId && appletConfig.firestoreDatabaseId
+    ? appletConfig.firestoreDatabaseId
+    : '(default)');
+const BASE_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/${DATABASE_ID}/documents`;
 
 export interface RestPost {
   id: string;

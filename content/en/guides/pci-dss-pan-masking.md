@@ -4,7 +4,8 @@ description: "A technical guide to PCI DSS Requirement 3 — how to mask, trunca
 category: "Privacy & Security"
 readingTime: 7
 lastUpdated: "2026-08-08"
-relatedCalculator: "database-privacy"
+relatedCalculator: "database-anonymizer"
+relatedType: "tool"
 ---
 
 ## What Is a PAN and Why Does It Need Protection?
@@ -243,4 +244,4 @@ A: Unlikely — failing the Luhn check suggests it's not a valid card number. Ho
 
 ## Find and Mask PANs in Your Databases — Free
 
-The [Nexus Data Privacy Platform](/en/database-privacy) includes PCI DSS scanning mode with Luhn algorithm validation. Connect your development or production database to discover all locations where unprotected PANs are stored, then apply one-click truncation or masking rules. All processing runs in your browser — no card data leaves your device.
+The [Database Anonymizer Tool](/en/tools/database-anonymizer) includes PCI DSS scanning mode with Luhn algorithm validation. Inspect your SQL or CSV dataset to discover all locations where unprotected PANs are stored, then apply one-click truncation or masking rules. All processing runs in your browser — no card data leaves your device.

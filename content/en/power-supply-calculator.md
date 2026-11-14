@@ -1,8 +1,8 @@
 ---
-title: "Power Supply Calculator | PSU Wattage & Multi-Load Solver"
-description: "Free online Power Supply Calculator. Instantly calculate required PSU wattage, current ratings, safety margin headroom, multi-device load breakdown, AC power factor (VA vs W), efficiency heat loss, and PC/Server PSU sizing."
-metaTitle: "Power Supply Calculator | PSU Wattage & Multi-Load Solver"
-metaDescription: "Free online Power Supply Calculator. Instantly calculate required PSU wattage, current ratings, safety margin headroom, multi-device load breakdown, AC power factor (VA vs W), efficiency heat loss, and PC/Server PSU sizing."
+title: "Power Supply (PSU) Calculator"
+description: "Calculate required PSU wattage, current ratings, 25% safety headroom, multi-device DC/AC load breakdown, efficiency heat loss, and UPS runtime."
+metaTitle: "Power Supply Calculator — PSU Wattage & Load Sizing"
+metaDescription: "Calculate required PSU wattage, current ratings, safety margin headroom, multi-device DC/AC load breakdown, 80 Plus efficiency, and PC/server sizing."
 metaKeywords: "power supply calculator, psu calculator, psu wattage calculator, power supply sizing calculator, dc power supply calculator, power adapter calculator, ups sizing calculator"
 features:
   - "Interactive Cockpit featuring Simple and Advanced Mode toggle"

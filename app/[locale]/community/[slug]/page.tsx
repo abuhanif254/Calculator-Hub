@@ -51,19 +51,35 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale, slug } = await params;
   const data = await getPost(slug);
   
-  if (!data) return { title: "Post Not Found | Nexus Community" };
+  if (!data) {
+    return {
+      title: "Post Not Found | Nexus Community",
+      robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+    };
+  }
   
-  const plainTextDescription = data.post.content.replace(/<[^>]+>/g, '').substring(0, 160) + '...';
+  const plainText = (data.post.content || '').replace(/<[^>]+>/g, ' ').trim();
+  const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+  const isIndexableQuality =
+    wordCount >= 100 &&
+    slug !== 'hello-cca921ec' &&
+    !slug.startsWith('to-use-a-');
+
+  const plainTextDescription = plainText.substring(0, 160) + (plainText.length > 160 ? '...' : '');
   const { getCanonicalAndAlternates, optimizeSerpTitle } = await import('@/lib/utils/seoUtils');
 
   return {
     title: optimizeSerpTitle(data.post.title, locale, 'page'),
     description: plainTextDescription,
     robots: {
-      index: true,
-      follow: true,
+      index: isIndexableQuality,
+      follow: isIndexableQuality,
+      googleBot: {
+        index: isIndexableQuality,
+        follow: isIndexableQuality,
+      },
     },
-    alternates: getCanonicalAndAlternates('/community/[slug]', locale, slug),
+    ...(isIndexableQuality ? { alternates: getCanonicalAndAlternates('/community/[slug]', locale, slug) } : {}),
     openGraph: {
       title: data.post.title,
       description: plainTextDescription,

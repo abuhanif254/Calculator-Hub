@@ -146,22 +146,14 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     { icon: Activity, bg: "bg-emerald-500/10", color: "text-emerald-500" },
   ];
 
-  // WebSite schema — enables Google Sitelinks Search Box
+  // WebSite schema — establishes core site identity without crawlers hitting noindex /search?q= URLs
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Nexus Calculator",
     "alternateName": ["Nexus Calculators", "Nexus Tools", "Nexus Calculator Hub"],
     "url": `${baseUrl}/${resolvedParams.locale}`,
-    "description": "The ultimate ecosystem for calculators and developer tools.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": `${baseUrl}/${resolvedParams.locale}/search?q={search_term_string}`
-      },
-      "query-input": "required name=search_term_string"
-    }
+    "description": "The ultimate ecosystem for calculators and developer tools."
   };
 
   // Organization schema — establishes brand entity

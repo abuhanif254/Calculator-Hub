@@ -1,8 +1,8 @@
 ---
-title: "Electricity Cost Calculator | Energy Bill & Multi-Appliance Solver"
-description: "Free online Electricity Cost Calculator. Instantly calculate monthly electricity bill, appliance kWh energy cost, tiered & time-of-use tariffs, EV charging, solar offset savings, and 10-year cost projections."
-metaTitle: "Electricity Cost Calculator | Energy Bill & Multi-Appliance Solver"
-metaDescription: "Free online Electricity Cost Calculator. Instantly calculate monthly electricity bill, appliance kWh energy cost, tiered & time-of-use tariffs, EV charging, solar offset savings, and 10-year cost projections."
+title: "Electricity Cost Calculator"
+description: "Calculate monthly electric bills, appliance kWh energy costs, tiered & time-of-use tariffs, EV charging costs, and solar savings instantly."
+metaTitle: "Electricity Cost Calculator — kWh & Monthly Energy Bill"
+metaDescription: "Calculate monthly electric bills, appliance kWh energy costs, tiered & time-of-use tariffs, EV charging costs, and solar offset savings instantly."
 metaKeywords: "electricity cost calculator, electricity bill calculator, electric bill calculator, energy cost calculator, power consumption cost calculator, kWh cost calculator, EV charging cost calculator"
 features:
   - "Interactive Cockpit featuring Simple and Advanced Mode toggle"

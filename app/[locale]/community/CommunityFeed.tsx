@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { MessageCircle, Clock, Search, ChevronRight, User as UserIcon } from 'lucide-react';
-import { Link } from '../../../i18n/routing';
+import { Link, useRouter } from '../../../i18n/routing';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/app/components/AuthProvider';
 import { CategoryPill } from '@/lib/categories';
@@ -30,6 +30,7 @@ export interface Post {
 
 export default function CommunityFeed({ initialPosts, initialSearchQuery = '' }: { initialPosts: Post[], initialSearchQuery?: string }) {
   const t = useTranslations('Community');
+  const router = useRouter();
   const { appUser } = useAuth();
   const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [searchQuery, setSearchQuery] = useState(initialSearchQuery);
@@ -277,16 +278,21 @@ export default function CommunityFeed({ initialPosts, initialSearchQuery = '' }:
             </p>
             <Link
               href="/community/new"
+              rel="nofollow"
               className="inline-flex items-center gap-2 bg-slate-900 dark:bg-white hover:bg-slate-800 dark:hover:bg-slate-100 text-white dark:text-slate-900 px-5 py-2.5 rounded-lg font-medium transition-colors"
             >
               {t('createFirstPost')}
             </Link>
           </div>
         ) : (
-          posts.map((post) => (
+          posts.map((post) => {
+            const plainWords = (post.content || '').replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
+            const isIndexablePost = plainWords >= 100 && post.slug !== 'hello-cca921ec' && !post.slug.startsWith('to-use-a-');
+            return (
             <Link
               key={post.id}
               href={`/community/${post.slug}` as any}
+              rel={isIndexablePost ? undefined : "nofollow"}
               className="block group"
             >
               <article className={`bg-white dark:bg-slate-900 p-5 sm:p-6 rounded-2xl border transition-all duration-200 shadow-sm hover:shadow-md ${post.isPinned ? 'border-amber-400 dark:border-amber-500/50 hover:border-amber-500 bg-amber-50/10 dark:bg-amber-900/10' : 'border-slate-200 dark:border-slate-800 hover:border-[#518231] dark:hover:border-[#518231]'}`}>
@@ -311,8 +317,9 @@ export default function CommunityFeed({ initialPosts, initialSearchQuery = '' }:
                       </div>
                       <span 
                         onClick={(e) => { 
-                          e.preventDefault(); 
-                          window.location.href = `/community/user/${post.authorId}`; 
+                          e.preventDefault();
+                          e.stopPropagation();
+                          router.push(`/community/user/${post.authorId}` as any);
                         }} 
                         className="font-semibold text-slate-700 dark:text-slate-300 hover:text-[#518231] hover:underline cursor-pointer relative z-10"
                       >
@@ -338,13 +345,25 @@ export default function CommunityFeed({ initialPosts, initialSearchQuery = '' }:
 
                     <div className="flex items-center gap-2 mb-2">
                       {post.category && (
-                        <Link
-                          href={`/community/category/${post.category}` as any}
-                          onClick={e => e.stopPropagation()}
-                          className="relative z-10"
+                        <span
+                          role="link"
+                          tabIndex={0}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            router.push(`/community/category/${post.category}` as any);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              router.push(`/community/category/${post.category}` as any);
+                            }
+                          }}
+                          className="relative z-10 cursor-pointer"
                         >
                           <CategoryPill slug={post.category} />
-                        </Link>
+                        </span>
                       )}
                       {post.isPinned && (
                         <span className="bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 text-[10px] font-extrabold px-2 py-0.5 rounded flex items-center gap-1 uppercase tracking-wider">
@@ -409,7 +428,8 @@ export default function CommunityFeed({ initialPosts, initialSearchQuery = '' }:
                 </div>
               </article>
             </Link>
-          ))
+            );
+          })
         )}
       </div>
 

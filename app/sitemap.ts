@@ -190,26 +190,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       return buildEntries('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod);
     });
 
-  // ─── DATA PRIVACY PLATFORM — PUBLIC LANDING ONLY ─────────────────
-  // Authenticated sub-routes (/dashboard, /scanner, /jobs, etc.) are intentionally
-  // excluded — they require login and return 401/302 to crawlers, wasting crawl budget.
-  const dpLastMod = new Date('2026-09-07');
-  const dataPrivacyEntries: MetadataRoute.Sitemap = routing.locales.map((locale) => ({
-    url: `${baseUrl}/${locale}/database-privacy`,
-    lastModified: dpLastMod,
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-    alternates: {
-      languages: Object.fromEntries([
-        ...routing.locales.map((l) => [l, `${baseUrl}/${l}/database-privacy`]),
-        ['x-default', `${baseUrl}/en/database-privacy`],
-      ]),
-    },
-    images: [`${baseUrl}/og-database-privacy.jpg`],
-  }));
-
-
-  // ─── COMMUNITY POSTS (Filtered for Indexability & Redirect Hygiene) ──────────────────
+  // ─── COMMUNITY POSTS (Filtered for Indexability, Word Count >= 100 & Redirect Hygiene) ──────────────────
   let communityEntries: MetadataRoute.Sitemap = [];
   try {
     const { fetchPostsRest } = await import('../lib/firebase-rest');
@@ -218,8 +199,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       if (!post.slug) return false;
       // Exclude redirected test/auto-generated slugs that 308 redirect in next.config.ts / page.tsx
       if (post.slug === 'hello-cca921ec' || post.slug.startsWith('to-use-a-')) return false;
-      const bodyLen = (post.content || '').trim().length;
-      return bodyLen >= 150;
+      const plainText = (post.content || '').replace(/<[^>]+>/g, ' ').trim();
+      const wordCount = plainText.split(/\s+/).filter(Boolean).length;
+      return wordCount >= 100;
     });
     communityEntries = indexablePosts.flatMap(post =>
       buildEntries(
@@ -234,6 +216,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch community posts for sitemap", err);
   }
 
-  return [...coreEntries, ...calcEntries, ...toolEntries, ...dataPrivacyEntries, ...communityEntries];
+  return [...coreEntries, ...calcEntries, ...toolEntries, ...communityEntries];
 }
 
