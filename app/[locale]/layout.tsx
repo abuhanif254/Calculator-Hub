@@ -82,9 +82,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     metadataBase: new URL(baseUrl),
     applicationName: 'Nexus Calculator',
-    other: {
-      'google-adsense-account': adClientId,
-    },
     appleWebApp: {
       capable: true,
       statusBarStyle: 'default',
