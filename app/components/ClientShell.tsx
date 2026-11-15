@@ -11,6 +11,7 @@
  * after the critical UI is interactive, improving TBT and FCP scores.
  */
 
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
 const CommandPalette = dynamic(
@@ -31,6 +32,24 @@ const CookieBanner = dynamic(
 );
 
 export function ClientShell() {
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('serviceWorker' in navigator)) return;
+    navigator.serviceWorker
+      .getRegistrations()
+      .then((registrations) => {
+        for (const reg of registrations) {
+          if (reg.pushManager) {
+            reg.pushManager
+              .getSubscription()
+              .then((sub) => (sub ? sub.unsubscribe() : false))
+              .catch(() => {});
+          }
+          reg.unregister().catch(() => {});
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   return (
     <>
       <CommandPalette />
