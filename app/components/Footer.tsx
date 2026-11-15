@@ -30,6 +30,7 @@ const FOOTER_TRANSLATIONS: Record<
     disclaimerLabel: string;
     disclaimerBody: string;
     rightsReserved: string;
+    developedBy: string;
     categoryTitles: Record<string, string>;
   }
 > = {
@@ -56,6 +57,7 @@ const FOOTER_TRANSLATIONS: Record<
     disclaimerBody:
       'All calculators, quantitative models, utilities, and editorial guides on NexusCalculator are provided strictly for informational and educational purposes. They do not constitute personalized financial, investment, tax, medical, or legal advice. Always consult a qualified, licensed professional before making financial, clinical, or engineering decisions. Calculator and browser-utility inputs are processed locally in your browser; see our Privacy Policy for details on optional account and platform services.',
     rightsReserved: 'All Rights Reserved.',
+    developedBy: 'Developed by:',
     categoryTitles: {
       'Financial Calculators': 'Financial Calculators',
       'Fitness & Health Calculators': 'Fitness & Health Calculators',
@@ -85,6 +87,7 @@ const FOOTER_TRANSLATIONS: Record<
     disclaimerBody:
       'Todas las calculadoras, modelos cuantitativos, herramientas y guías editoriales de NexusCalculator se ofrecen exclusivamente con fines informativos y educativos. No constituyen asesoramiento financiero, fiscal, médico ni jurídico personalizado. Consulte siempre a un profesional colegiado antes de tomar decisiones económicas o de salud. Los cálculos se ejecutan localmente en su navegador; consulte nuestra Política de Privacidad para más detalles.',
     rightsReserved: 'Todos los derechos reservados.',
+    developedBy: 'Desarrollado por:',
     categoryTitles: {
       'Financial Calculators': 'Calculadoras Financieras',
       'Fitness & Health Calculators': 'Calculadoras de Salud y Fitness',
@@ -114,6 +117,7 @@ const FOOTER_TRANSLATIONS: Record<
     disclaimerBody:
       'L’ensemble des calculatrices, modèles quantitatifs, outils et guides publiés sur NexusCalculator est fourni à titre strictement informatif et pédagogique. Ils ne constituent en aucun cas un conseil financier, fiscal, médical ou juridique personnalisé. Consultez toujours un professionnel qualifié avant toute décision importante. Vos calculs s’exécutent localement dans votre navigateur ; consultez notre Politique de Confidentialité pour plus d’informations.',
     rightsReserved: 'Tous droits réservés.',
+    developedBy: 'Développé par :',
     categoryTitles: {
       'Financial Calculators': 'Calculatrices Financières',
       'Fitness & Health Calculators': 'Calculatrices Santé & Fitness',
@@ -143,6 +147,7 @@ const FOOTER_TRANSLATIONS: Record<
     disclaimerBody:
       'Sämtliche Rechner, quantitativen Modelle, Werkzeuge und Leitfäden auf NexusCalculator dienen ausschließlich allgemeinen Informations- und Bildungszwecken. Sie stellen keine individuelle Finanz-, Steuer-, Anlage-, Medizin- oder Rechtsberatung dar. Konsultieren Sie vor weitreichenden Entscheidungen stets qualifiziertes Fachpersonal. Alle Berechnungen laufen lokal in Ihrem Browser; Details finden Sie in unserer Datenschutzerklärung.',
     rightsReserved: 'Alle Rechte vorbehalten.',
+    developedBy: 'Entwickelt von:',
     categoryTitles: {
       'Financial Calculators': 'Finanzrechner',
       'Fitness & Health Calculators': 'Gesundheits- & Fitnessrechner',
@@ -330,8 +335,20 @@ export async function Footer() {
             <strong>{t.disclaimerLabel}</strong> {t.disclaimerBody}
           </div>
 
-          <div className="text-sm text-slate-500 text-center">
-            &copy; {currentYear} Nexus Calculator. {t.rightsReserved} · Bangladesh
+          <div className="text-sm text-slate-500 text-center flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            <span>&copy; {currentYear} Nexus Calculator. {t.rightsReserved} · Bangladesh</span>
+            <span className="hidden sm:inline text-slate-400 dark:text-slate-600">·</span>
+            <span>
+              {t.developedBy}{' '}
+              <a
+                href="https://abuhanifmia.com"
+                target="_blank"
+                rel="noopener noreferrer me author"
+                className="font-semibold text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors"
+              >
+                Abu Hanif
+              </a>
+            </span>
           </div>
         </div>
       </div>
