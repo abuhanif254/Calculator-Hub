@@ -455,8 +455,9 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
         '@type': 'Person',
         name: 'MD Abu Hanif Mia',
         jobTitle: c.developerRole,
-        url: 'https://abu-hanif-mia.vercel.app',
+        url: 'https://abuhanifmia.com',
         sameAs: [
+          'https://abuhanifmia.com',
           'https://www.linkedin.com/in/md-abu-hanif-mia',
           'https://github.com/abuhanif254',
         ],
@@ -655,7 +656,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ locale
                   </div>
                   <div>
                     <span className="block text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">{c.portfolioLabel}</span>
-                    <a href="https://abu-hanif-mia.vercel.app" target="_blank" rel="noopener noreferrer" className="text-lg text-[#518231] dark:text-[#6fa844] hover:underline font-medium">{c.portfolioCta}</a>
+                    <a href="https://abuhanifmia.com" target="_blank" rel="noopener noreferrer me author" className="text-lg text-[#518231] dark:text-[#6fa844] hover:underline font-medium">{c.portfolioCta}</a>
                   </div>
                 </li>
               </ul>
