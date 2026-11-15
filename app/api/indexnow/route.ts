@@ -115,6 +115,7 @@ async function submitToIndexNow(urls: string[]) {
   const endpoints = [
     'https://api.indexnow.org/indexnow',
     'https://www.bing.com/indexnow',
+    'https://yandex.com/indexnow',
   ];
 
   const results = await Promise.all(
@@ -124,6 +125,8 @@ async function submitToIndexNow(urls: string[]) {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json; charset=utf-8',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+            'Accept': 'application/json, text/plain, */*',
           },
           body: JSON.stringify(payload),
         });
