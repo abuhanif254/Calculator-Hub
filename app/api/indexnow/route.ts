@@ -6,6 +6,7 @@ import { allGuides } from '@/lib/data/guides';
 import { collections } from '@/lib/data/collections';
 import { comparisons } from '@/lib/data/comparisons';
 import { categories } from '@/lib/data/categories';
+import { COMMUNITY_CATEGORIES } from '@/lib/categories';
 import { getCanonicalUrl } from '@/lib/utils/seoUtils';
 
 const INDEXNOW_KEY = process.env.INDEXNOW_KEY || 'd8a94c7e2f1b5063a4c8e91f72b3d405';
@@ -13,23 +14,39 @@ const HOST = 'www.nexuscalculator.net';
 const KEY_LOCATION = `https://${HOST}/${INDEXNOW_KEY}.txt`;
 
 const PRIORITY_BING_URLS = [
+  'https://www.nexuscalculator.net/en',
+  'https://www.nexuscalculator.net/es',
+  'https://www.nexuscalculator.net/fr',
+  'https://www.nexuscalculator.net/de',
+  'https://www.nexuscalculator.net/en/calculators/conversion-calculator',
+  'https://www.nexuscalculator.net/en/calculators/mortgage-calculator-uk',
+  'https://www.nexuscalculator.net/en/calculators/height-calculator',
+  'https://www.nexuscalculator.net/en/calculators/bmi-calculator',
+  'https://www.nexuscalculator.net/en/calculators/electricity-cost-calculator',
+  'https://www.nexuscalculator.net/en/calculators/power-supply-calculator',
+  'https://www.nexuscalculator.net/en/calculators/tip-calculator',
+  'https://www.nexuscalculator.net/en/calculators/voltage-calculator',
+  'https://www.nexuscalculator.net/en/calculators/electrical-power-calculator',
+  'https://www.nexuscalculator.net/en/calculators/resistance-calculator',
+  'https://www.nexuscalculator.net/de/rechner/hypothekenrechner',
+  'https://www.nexuscalculator.net/de/ratgeber/hypotheken-abloesungsrechner-ratgeber',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-acido-base',
   'https://www.nexuscalculator.net/en/calculators/electrochemical-cell-calculator',
   'https://www.nexuscalculator.net/fr/calculatrices/calculateur-de-tampon',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-henderson-hasselbalch',
   'https://www.nexuscalculator.net/en/guides/data-masking-techniques',
-  'https://www.nexuscalculator.net/es/herramientas/visor-metadatos-pdf',
+  'https://www.nexuscalculator.net/es/herramientas/pdf-metadata-viewer',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-roth-ira',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-entalpia',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-cd',
-  'https://www.nexuscalculator.net/fr/outils/optimiseur-de-prompt-ia',
+  'https://www.nexuscalculator.net/fr/outils/ai-prompt-optimizer',
   'https://www.nexuscalculator.net/de/rechner/margenrechner',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-kb',
   'https://www.nexuscalculator.net/en/calculators/enthalpy-calculator',
-  'https://www.nexuscalculator.net/fr/outils/visionneuse-metadonnees-pdf',
-  'https://www.nexuscalculator.net/fr/outils/editeur-metadonnees-pdf',
+  'https://www.nexuscalculator.net/fr/outils/pdf-metadata-viewer',
+  'https://www.nexuscalculator.net/fr/outils/pdf-metadata-editor',
   'https://www.nexuscalculator.net/en/guides/hipaa-data-de-identification',
-  'https://www.nexuscalculator.net/de/anleitungen/wissenschaftliche-schreibweise-ratgeber',
+  'https://www.nexuscalculator.net/de/ratgeber/wissenschaftliche-schreibweise-ratgeber',
 ];
 
 function collectAllCanonicalUrls(): string[] {
@@ -45,7 +62,6 @@ function collectAllCanonicalUrls(): string[] {
     '/compare',
     '/image',
     '/pdf',
-    '/database-privacy',
     '/community',
     '/community/hall-of-fame',
     '/about-us',
@@ -60,8 +76,13 @@ function collectAllCanonicalUrls(): string[] {
     for (const route of coreRoutes) {
       urlSet.add(getCanonicalUrl(route, locale));
     }
+    for (const cat of COMMUNITY_CATEGORIES) {
+      urlSet.add(getCanonicalUrl('/community/category/[slug]', locale, cat.slug));
+    }
     for (const cat of categories) {
-      urlSet.add(getCanonicalUrl('/calculators/category/[category]', locale, cat.id));
+      if (calculators.some((calc) => cat.dbCategory.includes(calc.category))) {
+        urlSet.add(getCanonicalUrl('/calculators/category/[category]', locale, cat.id));
+      }
     }
     for (const calc of calculators) {
       urlSet.add(getCanonicalUrl('/calculators/[slug]', locale, calc.slug));

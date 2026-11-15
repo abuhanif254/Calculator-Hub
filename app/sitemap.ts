@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next';
+import fs from 'fs';
+import path from 'path';
 import { calculators } from '../lib/data/calculators';
 import { categories } from '../lib/data/categories';
 import { collections } from '../lib/data/collections';
@@ -12,6 +14,35 @@ import { COMMUNITY_CATEGORIES } from '../lib/categories';
 // No revalidation needed — only changes on new deployments.
 // revalidate=false serves from CDN edge permanently, saving Vercel ISR quota.
 export const revalidate = false;
+
+// Architectural & SSR SEO Overhaul Baseline (Phases 1–6)
+// Ensures Googlebot sees that all canonical/hreflang/enriched pages are newer than October 2026 crawls.
+const OVERHAUL_BASELINE_MS = new Date('2026-11-14T16:00:00.000Z').getTime();
+
+function resolveLatestContentMtime(relativePaths: string[], explicitDate?: string | Date): Date {
+  let maxMs = OVERHAUL_BASELINE_MS;
+  if (explicitDate) {
+    const parsed = new Date(explicitDate).getTime();
+    if (!Number.isNaN(parsed) && parsed > maxMs) {
+      maxMs = parsed;
+    }
+  }
+  const cwd = process.cwd();
+  for (const rel of relativePaths) {
+    try {
+      const fullPath = path.join(cwd, rel);
+      if (fs.existsSync(fullPath)) {
+        const stat = fs.statSync(fullPath);
+        if (stat.mtimeMs > maxMs) {
+          maxMs = stat.mtimeMs;
+        }
+      }
+    } catch {
+      // Ignore fs stat errors
+    }
+  }
+  return new Date(maxMs);
+}
 
 // ─────────────────────────────────────────────────────────
 // SINGLE SITEMAP ARCHITECTURE
@@ -120,35 +151,46 @@ function buildEntries(
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baselineMod = new Date(OVERHAUL_BASELINE_MS);
+
   // ─── STATIC & CORE PAGES ──────────────
   const coreEntries: MetadataRoute.Sitemap = [
-    ...buildEntries('/', 'daily', 1.0, undefined, undefined, [`${baseUrl}/icons/icon-512x512.png`]),
-    ...buildEntries('/sitemap', 'weekly', 0.8),
-    ...buildEntries('/community', 'daily', 0.7),
-    ...buildEntries('/community/hall-of-fame', 'weekly', 0.65),
-    ...COMMUNITY_CATEGORIES.flatMap((cat) => buildEntries('/community/category/[slug]', 'weekly', 0.7, cat.slug)),
+    ...buildEntries('/', 'daily', 1.0, undefined, baselineMod, [`${baseUrl}/icons/icon-512x512.png`]),
+    ...buildEntries('/sitemap', 'weekly', 0.8, undefined, baselineMod),
+    ...buildEntries('/community', 'daily', 0.7, undefined, baselineMod),
+    ...buildEntries('/community/hall-of-fame', 'weekly', 0.65, undefined, baselineMod),
+    ...COMMUNITY_CATEGORIES.flatMap((cat) => buildEntries('/community/category/[slug]', 'weekly', 0.7, cat.slug, baselineMod)),
     // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
     // REMOVED: /login, /signup — auth pages always redirect, waste crawl budget
-    ...buildEntries('/about-us', 'monthly', 0.5),
-    ...buildEntries('/contact-us', 'monthly', 0.5),
-    ...buildEntries('/disclaimer', 'yearly', 0.4),
-    ...buildEntries('/privacy-policy', 'yearly', 0.3),
-    ...buildEntries('/terms-of-use', 'yearly', 0.3),
-    ...buildEntries('/guides', 'weekly', 0.85),
-    ...buildEntries('/calculators', 'weekly', 0.95),
-    ...buildEntries('/tools', 'weekly', 0.9),
-    ...buildEntries('/collections', 'weekly', 0.85),
-    ...buildEntries('/compare', 'weekly', 0.85),
-    ...buildEntries('/pdf', 'weekly', 0.9),
-    ...buildEntries('/image', 'weekly', 0.9),
-    ...allGuides.flatMap((guide) => buildEntries('/guides/[slug]', 'monthly', 0.8, guide.slug, new Date(guide.lastUpdated))),
-    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).flatMap((cat) => buildEntries('/calculators/category/[category]', 'weekly', 0.9, cat.id)),
-    ...collections.flatMap((collection) => buildEntries('/collections/[slug]', 'weekly', 0.8, collection.slug)),
-    ...comparisons.flatMap((comparison) => buildEntries('/compare/[slug]', 'monthly', 0.8, comparison.slug)),
+    ...buildEntries('/about-us', 'monthly', 0.5, undefined, resolveLatestContentMtime(['app/[locale]/about-us/page.tsx'])),
+    ...buildEntries('/contact-us', 'monthly', 0.5, undefined, baselineMod),
+    ...buildEntries('/disclaimer', 'yearly', 0.4, undefined, baselineMod),
+    ...buildEntries('/privacy-policy', 'yearly', 0.3, undefined, baselineMod),
+    ...buildEntries('/terms-of-use', 'yearly', 0.3, undefined, baselineMod),
+    ...buildEntries('/guides', 'weekly', 0.85, undefined, baselineMod),
+    ...buildEntries('/calculators', 'weekly', 0.95, undefined, baselineMod),
+    ...buildEntries('/tools', 'weekly', 0.9, undefined, baselineMod),
+    ...buildEntries('/collections', 'weekly', 0.85, undefined, baselineMod),
+    ...buildEntries('/compare', 'weekly', 0.85, undefined, baselineMod),
+    ...buildEntries('/pdf', 'weekly', 0.9, undefined, baselineMod),
+    ...buildEntries('/image', 'weekly', 0.9, undefined, baselineMod),
+    ...allGuides.flatMap((guide) => {
+      const guidePaths = ['en', 'es', 'fr', 'de'].flatMap((loc) => {
+        const lSlug = guide.slugs?.[loc as keyof typeof guide.slugs];
+        return lSlug && lSlug !== guide.slug
+          ? [`content/${loc}/guides/${guide.slug}.md`, `content/${loc}/guides/${lSlug}.md`]
+          : [`content/${loc}/guides/${guide.slug}.md`];
+      });
+      const guideMod = resolveLatestContentMtime(guidePaths, guide.lastUpdated);
+      return buildEntries('/guides/[slug]', 'monthly', 0.8, guide.slug, guideMod);
+    }),
+    ...categories.filter((cat) => calculators.some((calc) => cat.dbCategory.includes(calc.category))).flatMap((cat) => buildEntries('/calculators/category/[category]', 'weekly', 0.9, cat.id, baselineMod)),
+    ...collections.flatMap((collection) => buildEntries('/collections/[slug]', 'weekly', 0.8, collection.slug, baselineMod)),
+    ...comparisons.flatMap((comparison) => buildEntries('/compare/[slug]', 'monthly', 0.8, comparison.slug, baselineMod)),
   ];
 
   // ─── CALCULATOR PAGES ─────────────
-  const allCalcSlugs: { slug: string; priority: number; lastUpdated?: string }[] = [];
+  const allCalcSlugs: { slug: string; priority: number; lastUpdated?: string; slugs?: Record<string, string | undefined> }[] = [];
   const processedSlugs = new Set<string>();
 
   calculators.forEach((calc) => {
@@ -157,6 +199,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         slug: calc.slug,
         priority: 0.9,
         lastUpdated: calc.meta.lastUpdated,
+        slugs: calc.slugs as Record<string, string | undefined> | undefined,
       });
       processedSlugs.add(calc.slug);
     }
@@ -164,8 +207,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   allCalcSlugs.sort((a, b) => a.slug.localeCompare(b.slug));
 
-  const calcEntries = allCalcSlugs.flatMap(({ slug, priority, lastUpdated }) => {
-    const lastMod = lastUpdated ? new Date(lastUpdated) : new Date('2026-09-07');
+  const calcEntries = allCalcSlugs.flatMap(({ slug, priority, lastUpdated, slugs }) => {
+    const mdCandidates = ['en', 'es', 'fr', 'de'].flatMap((loc) => {
+      const lSlug = slugs?.[loc];
+      return lSlug && lSlug !== slug
+        ? [`content/${loc}/${slug}.md`, `content/${loc}/${lSlug}.md`]
+        : [`content/${loc}/${slug}.md`];
+    });
+    const lastMod = resolveLatestContentMtime(mdCandidates, lastUpdated);
     const routeKey = `/calculators/${slug}`;
     const existsInRouting = (routing.pathnames as any)[routeKey];
 
@@ -177,7 +226,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // ─── DEVELOPER TOOLS ──────────────────
   const processedTools = new Set<string>();
-  const toolsLastMod = new Date('2026-09-07');
 
   const toolEntries = developerToolSlugs
     .filter((slug) => {
@@ -187,7 +235,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
     .sort()
     .flatMap((slug) => {
-      return buildEntries('/tools/[slug]', 'weekly', 0.8, slug, toolsLastMod);
+      const toolMdCandidates = ['en', 'es', 'fr', 'de'].map((loc) => `content/tools/${loc}/${slug}.md`);
+      const toolLastMod = resolveLatestContentMtime(toolMdCandidates);
+      return buildEntries('/tools/[slug]', 'weekly', 0.8, slug, toolLastMod);
     });
 
   // ─── COMMUNITY POSTS (Filtered for Indexability, Word Count >= 100 & Redirect Hygiene) ──────────────────

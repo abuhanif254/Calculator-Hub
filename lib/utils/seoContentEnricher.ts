@@ -90,7 +90,7 @@ export function getLocalizedReviewerByline(category: string, locale: string, las
 
   return {
     ...(bylines[locale] || bylines.en),
-    lastUpdated: lastUpdated || '2026-10-01',
+    lastUpdated: lastUpdated && lastUpdated > '2026-11-14' ? lastUpdated : '2026-11-14',
   };
 }
 
@@ -142,30 +142,42 @@ export function enrichCalculatorSeoContent(params: {
   const isFinance = catLower.includes('financ');
   const isHealth = catLower.includes('health') || catLower.includes('fitness');
 
-  const paramRows = inputs
-    .map((inp: CalculatorField) => {
-      const label = inp.label || inp.id;
-      const unit = getFieldUnit(inp);
-      const def = formatDefaultVal(inp);
-      const range = formatRangeVal(inp, locale);
-      return `| **${label}** | \`${unit}\` | ${def} | ${range} |`;
-    })
-    .join('\n');
+  const paramRows = inputs.length > 0
+    ? inputs
+        .map((inp: CalculatorField) => {
+          const label = inp.label || inp.id;
+          const unit = getFieldUnit(inp);
+          const def = formatDefaultVal(inp);
+          const range = formatRangeVal(inp, locale);
+          return `| **${label}** | \`${unit}\` | ${def} | ${range} |`;
+        })
+        .join('\n')
+    : formulaDef?.variables && formulaDef.variables.length > 0
+      ? formulaDef.variables
+          .map((v) => `| **${v.name} (\`${v.symbol}\`)** | \`SI / Standard\` | Calibrated | ${v.description} |`)
+          .join('\n')
+      : '';
 
-  const scenarioRows = inputs
-    .map((inp: CalculatorField) => {
-      const label = inp.label || inp.id;
-      const suffix = inp.type === 'percent' ? '%' : '';
-      const numVal = typeof inp.defaultValue === 'number' ? inp.defaultValue : parseFloat(String(inp.defaultValue));
-      if (!Number.isNaN(numVal) && inp.type !== 'select') {
-        const lowRaw = Math.max(typeof inp.min === 'number' ? inp.min : 0, Number((numVal * 0.8).toFixed(2)));
-        const highRaw = typeof inp.max === 'number' ? Math.min(inp.max, Number((numVal * 1.2).toFixed(2))) : Number((numVal * 1.2).toFixed(2));
-        return `| **${label}** | \`${lowRaw}${suffix}\` | \`${numVal}${suffix}\` | \`${highRaw}${suffix}\` |`;
-      }
-      const def = formatDefaultVal(inp);
-      return `| **${label}** | \`${def}\` | \`${def}\` | \`${def}\` |`;
-    })
-    .join('\n');
+  const scenarioRows = inputs.length > 0
+    ? inputs
+        .map((inp: CalculatorField) => {
+          const label = inp.label || inp.id;
+          const suffix = inp.type === 'percent' ? '%' : '';
+          const numVal = typeof inp.defaultValue === 'number' ? inp.defaultValue : parseFloat(String(inp.defaultValue));
+          if (!Number.isNaN(numVal) && inp.type !== 'select') {
+            const lowRaw = Math.max(typeof inp.min === 'number' ? inp.min : 0, Number((numVal * 0.8).toFixed(2)));
+            const highRaw = typeof inp.max === 'number' ? Math.min(inp.max, Number((numVal * 1.2).toFixed(2))) : Number((numVal * 1.2).toFixed(2));
+            return `| **${label}** | \`${lowRaw}${suffix}\` | \`${numVal}${suffix}\` | \`${highRaw}${suffix}\` |`;
+          }
+          const def = formatDefaultVal(inp);
+          return `| **${label}** | \`${def}\` | \`${def}\` | \`${def}\` |`;
+        })
+        .join('\n')
+    : formulaDef?.variables && formulaDef.variables.length > 0
+      ? formulaDef.variables
+          .map((v) => `| **${v.name} (\`${v.symbol}\`)** | \`-20% (${v.symbol}₀ × 0.8)\` | \`Baseline (${v.symbol}₀)\` | \`+20% (${v.symbol}₀ × 1.2)\` |`)
+          .join('\n')
+      : '';
 
   const domainContextByLocale: Record<string, string> = {
     en: isFinance
@@ -190,23 +202,62 @@ export function enrichCalculatorSeoContent(params: {
         : `In naturwissenschaftlichen, mathematischen und ingenieurtechnischen Anwendungen setzt die Präzision des **${localizedTitle}** eine strikte Einheitenkonsistenz (SI-Basiseinheiten vs. imperiale Größen) sowie die vollständige Beibehaltung signifikanter Stellen in sämtlichen Zwischenschritten voraus.`,
   };
 
-  const inputSummaryList = inputs
-    .map((inp: CalculatorField, idx: number) => {
-      const label = inp.label || inp.id;
-      const def = formatDefaultVal(inp);
-      const help = inp.helpText ? ` — ${inp.helpText}` : '';
-      if (locale === 'es') {
-        return `${idx + 1}. **${label}** (Valor de referencia: \`${def}\`)${help}: Variable determinante dentro del modelo matemático de ${localizedTitle}. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.`;
-      }
-      if (locale === 'fr') {
-        return `${idx + 1}. **${label}** (Valeur de référence : \`${def}\`)${help} : Variable déterminante dans le modèle mathématique de ${localizedTitle}. La modification de ce paramètre influence directement le résultat principal et les indicateurs dérivés.`;
-      }
-      if (locale === 'de') {
-        return `${idx + 1}. **${label}** (Referenzwert: \`${def}\`)${help}: Zentrale Eingangsgröße im mathematischen Modell des ${localizedTitle}. Eine Änderung dieses Parameters wirkt sich unmittelbar auf das Gesamtergebnis sowie die abgeleiteten Kennzahlen aus.`;
-      }
-      return `${idx + 1}. **${label}** (Baseline Reference: \`${def}\`)${help}: Core independent variable in the ${localizedTitle} mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.`;
-    })
-    .join('\n');
+  const inputSummaryList = inputs.length > 0
+    ? inputs
+        .map((inp: CalculatorField, idx: number) => {
+          const label = inp.label || inp.id;
+          const def = formatDefaultVal(inp);
+          const help = inp.helpText ? ` — ${inp.helpText}` : '';
+          if (locale === 'es') {
+            return `${idx + 1}. **${label}** (Valor de referencia: \`${def}\`)${help}: Variable determinante dentro del modelo matemático de ${localizedTitle}. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.`;
+          }
+          if (locale === 'fr') {
+            return `${idx + 1}. **${label}** (Valeur de référence : \`${def}\`)${help} : Variable déterminante dans le modèle mathématique de ${localizedTitle}. La modification de ce paramètre influence directement le résultat principal et les indicateurs dérivés.`;
+          }
+          if (locale === 'de') {
+            return `${idx + 1}. **${label}** (Referenzwert: \`${def}\`)${help}: Zentrale Eingangsgröße im mathematischen Modell des ${localizedTitle}. Eine Änderung dieses Parameters wirkt sich unmittelbar auf das Gesamtergebnis sowie die abgeleiteten Kennzahlen aus.`;
+          }
+          return `${idx + 1}. **${label}** (Baseline Reference: \`${def}\`)${help}: Core independent variable in the ${localizedTitle} mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.`;
+        })
+        .join('\n')
+    : formulaDef?.variables && formulaDef.variables.length > 0
+      ? formulaDef.variables
+          .map((v, idx) => {
+            if (locale === 'es') {
+              return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description}: Parámetro estructural en la ecuación de ${localizedTitle}. Su variación altera de forma directa la sensibilidad marginal del resultado principal.`;
+            }
+            if (locale === 'fr') {
+              return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description} : Paramètre structurel dans l'équation de ${localizedTitle}. Sa variation modifie directement la sensibilité marginale du résultat principal.`;
+            }
+            if (locale === 'de') {
+              return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description}: Strukturparameter in der Gleichung des ${localizedTitle}. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.`;
+            }
+            return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description}: Structural parameter in the ${localizedTitle} equation. Varying this factor directly shifts the marginal sensitivity of the primary output.`;
+          })
+          .join('\n')
+      : locale === 'es'
+        ? [
+            `1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en ${localizedTitle} y establece el punto de partida para todas las métricas derivadas.`,
+            `2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.`,
+            `3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.`,
+          ].join('\n')
+        : locale === 'fr'
+          ? [
+              `1. **Grandeur de Base Principale** : Détermine l'échelle absolue du calcul dans ${localizedTitle} et fixe le point de départ de tous les indicateurs dérivés.`,
+              `2. **Facteur de Taux, Ratio ou Coefficient** : Régule l'intensité de la transformation mathématique entre la valeur initiale et le résultat final.`,
+              `3. **Horizon Temporel ou Condition aux Limites** : Définit le nombre de périodes, d'itérations ou les bornes dimensionnelles sur lesquels s'applique la formule.`,
+            ].join('\n')
+          : locale === 'de'
+            ? [
+                `1. **Primäre Basisgröße**: Bestimmt die absolute Skalierung der Berechnung im ${localizedTitle} und bildet den Ausgangspunkt für alle abgeleiteten Kennzahlen.`,
+                `2. **Raten-, Verhältnis- oder Koeffizientenfaktor**: Steuert die mathematische Verstärkung und Sensitivität zwischen Eingabewert und Endergebnis.`,
+                `3. **Zeitraum oder Rahmenbedingung**: Definiert die Periodenanzahl, Iterationsschritte oder Systemgrenzen, über die das Modell ausgewertet wird.`,
+              ].join('\n')
+            : [
+                `1. **Primary Baseline Magnitude**: Establishes the absolute scale of the ${localizedTitle} computation and anchors all secondary breakdown metrics.`,
+                `2. **Rate, Ratio, or Scaling Coefficient**: Governs the non-linear or proportional sensitivity between the initial input and the final target output.`,
+                `3. **Time Horizon or Boundary Constraint**: Defines the compounding periods, frequency, or dimensional bounds over which the governing equation is evaluated.`,
+              ].join('\n');
 
   let supplement = '';
 

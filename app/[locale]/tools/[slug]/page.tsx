@@ -277,7 +277,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     localizedFaqs: localizedData?.faqs,
     localizedHowToSteps: localizedData?.howToSteps,
   });
-  const reviewerByline = getLocalizedReviewerByline(config.category || 'Engineering', locale, '2026-10-01');
+  const reviewerByline = getLocalizedReviewerByline(config.category || 'Engineering', locale, '2026-11-14');
   const ioLabels: Record<string, { input: string; output: string }> = {
     en: { input: 'Input', output: 'Output' },
     es: { input: 'Entrada', output: 'Salida' },
