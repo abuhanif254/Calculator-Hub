@@ -1,68 +1,80 @@
 ---
 title: "Calculadora de Peso Saludable"
-metaTitle: "Calculadora de Peso Saludable — Gratis y Precisa"
-description: "Calcule su rango de peso corporal saludable según la altura, edad, género y tamaño de complexión."
-metaDescription: "Calcule su rango de peso corporal saludable según la altura, edad, género y tamaño de complexión."
+metaTitle: "Calculadora de Peso Saludable: IMC, Complexión y Edad"
+description: "Determine su rango de peso corporal saludable combinando los límites clínicos del IMC con las fórmulas de Devine, Robinson, Miller y Hamwi ajustadas por complexión ósea."
+metaDescription: "Calcule su rango de peso saludable según su estatura, sexo, edad y complexión ósea utilizando las fórmulas clínicas de Devine, Robinson, Miller y el IMC."
+metaKeywords: "calculadora de peso saludable, peso ideal segun altura y edad, formula de devine robinson hamwi, peso segun complexion osea, rango de peso saludable IMC, porcentaje de grasa corporal"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Peso Saludable?"
-    answer: "Calculadora de Peso Saludable evalúa sus parámetros mediante la ecuación verificada (y = f(x₁, x₂, ..., xₙ)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Peso Saludable para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Peso Saludable antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Peso Saludable?"
-    answer: "Dentro del modelo cuantitativo (y = f(x₁, x₂, ..., xₙ)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Sustituyen las estimaciones de Calculadora de Peso Saludable a un diagnóstico médico o clínico profesional?"
-    answer: "No. Calculadora de Peso Saludable aplica ecuaciones biométricas y fisiológicas estandarizadas con fines informativos y educativos. Cualquier pauta nutricional, deportiva o médica debe ser validada por un profesional sanitario colegiado."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Peso Saludable?"
-    answer: "No. Todos los cálculos de Calculadora de Peso Saludable se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Por qué es más preciso hablar de un rango de peso saludable que de un único peso ideal?"
+    answer: "Dos personas del mismo sexo y estatura pueden diferir en más de 10 kilogramos manteniendo una salud metabólica excelente debido a variaciones en su densidad y anchura ósea, masa muscular esquelética y distribución hídrica. Por ello, la medicina clínica trabaja con un intervalo saludable y no con una cifra rígida."
+  - question: "¿Cómo puedo saber si mi complexión ósea es pequeña, mediana o grande?"
+    answer: "El método antropométrico más sencillo consiste en medir el perímetro de su muñeca con una cinta métrica justo por encima del hueso prominente (apófisis estiloides). En una persona de estatura media (165-175 cm), una muñeca inferior a 15,5 cm en mujeres o 16,5 cm en hombres indica complexión pequeña, mientras que superar los 16,5 cm en mujeres o 19 cm en hombres señala complexión grande."
+  - question: "¿Qué ocurre si entreno fuerza y mi peso supera el límite superior del IMC saludable?"
+    answer: "El Índice de Masa Corporal no distingue entre tejido adiposo y tejido muscular magro. Deportistas y personas con hipertrofia muscular suelen presentar un IMC superior a 25 kg/m² sin padecer sobrepeso real. En estos casos, el indicador determinante es el porcentaje de grasa corporal y mantener un índice cintura-estatura inferior a 0,50."
+  - question: "¿Cambia el rango de peso saludable a partir de los 65 años de edad?"
+    answer: "Sí. Los estudios geriátricos demuestran que en adultos mayores de 65 años un IMC ligeramente superior al estándar juvenil (entre 22 y 27 kg/m²) se asocia con mayor longevidad, mejor reserva proteica frente a enfermedades agudas y menor riesgo de sarcopenia o fracturas osteoporóticas."
+  - question: "¿En qué se diferencian las fórmulas de Devine, Robinson y Miller?"
+    answer: "La ecuación de Devine (1974) nació para dosificar fármacos según el peso magro estimado, pero tiende a asignar pesos demasiado bajos a mujeres de baja estatura. Las fórmulas de Robinson y Miller (1983) actualizaron esas regresiones sobre tablas poblacionales de longevidad, ofreciendo estimaciones más equilibradas y realistas."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Peso Saludable
+Buscar un único número «perfecto» en la báscula suele conducir a objetivos nutricionales poco realistas cuando no se contempla la estructura anatómica individual. En endocrinología y nutrición clínica, el peso óptimo se define como una **franja ponderal funcional** donde el riesgo cardiovascular, metabólico y articular se reduce al mínimo. Esta calculadora integra el intervalo oficial de la Organización Mundial de la Salud (OMS) con las ecuaciones antropométricas de Devine, Robinson, Miller y Hamwi, permitiendo ajustar el objetivo según su estatura, sexo biológico y complexión esquelética.
 
-Calcule su rango de peso corporal saludable según la altura, edad, género y tamaño de complexión. En la evaluación biométrica y fisiológica, las estimaciones de **Calculadora de Peso Saludable** se basan en ecuaciones antropométricas validadas en estudios poblacionales de referencia (OMS, NIH y literatura clínica revisada por pares). Factores individuales como la composición corporal magra, el metabolismo basal y el nivel de actividad física determinan el margen de interpretación clínica.
+## Más allá del IMC: Cómo la complexión ósea y la composición corporal definen su peso óptimo
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+El Índice de Masa Corporal (IMC) establece que un adulto se encuentra en normopeso cuando la relación entre su masa y el cuadrado de su estatura se sitúa entre **$18,5\text{ kg/m}^2$ y $24,9\text{ kg/m}^2$**. Para una persona de $1,75\text{ m}$, esa ventana abarca desde los $56,7\text{ kg}$ hasta los $76,3\text{ kg}$: una amplitud de casi 20 kilogramos.
 
-El motor computacional de **Calculadora de Peso Saludable** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+Para acotar en qué zona de ese intervalo debe ubicarse cada individuo, la medicina clínica recurre a tres variables complementarias:
+* **La complexión ósea:** El grosor del esqueleto (medido a través del perímetro de la muñeca o la anchura del codo) justifica variaciones naturales del **$\pm 10\,\%$** sobre el peso central de referencia.
+* **El porcentaje de grasa corporal y masa magra:** Un peso en el extremo superior del rango (IMC de 24,5) es metabólicamente óptimo si responde a una musculatura tonificada, pero puede ocultar exceso de grasa visceral en personas sedentarias.
+* **El Índice Cintura-Estatura (ICA):** Dividir el perímetro abdominal entre la altura en centímetros permite auditar la grasa visceral. Mantener la cintura por debajo de la mitad de la estatura ($\text{ICA} < 0,50$) confirma que el peso corporal no compromete la salud cardiometabólica.
 
-```
-y = f(x₁, x₂, ..., xₙ)
-```
+## Fórmulas clínicas del rango de peso saludable y ecuaciones de referencia
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+Nuestra herramienta evalúa de forma simultánea el rango poblacional de la OMS y las ecuaciones clásicas de Peso Corporal Ideal (*Ideal Body Weight*), formuladas para estaturas superiores a 5 pies ($152,4\text{ cm}$):
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+### 1. Fronteras ponderales según la OMS
+$$P_{\text{Mínimo}} = 18,5 \times h^2 \qquad \text{y} \qquad P_{\text{Máximo}} = 24,9 \times h^2$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Peso Saludable**:
+### 2. Ecuaciones antropométricas de Devine, Robinson y Miller
+Definimos el diferencial de estatura en centímetros sobre la base de $152,4\text{ cm}$ como $\Delta H = H_{\text{cm}} - 152,4$:
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |
+* **Fórmula de Devine (1974):**
+  $$\text{Hombres: } P_{\text{Devine}} = 50,0 + 0,906 \times \Delta H \qquad \text{Mujeres: } P_{\text{Devine}} = 45,5 + 0,906 \times \Delta H$$
+* **Fórmula de Robinson (1983):**
+  $$\text{Hombres: } P_{\text{Robinson}} = 52,0 + 0,748 \times \Delta H \qquad \text{Mujeres: } P_{\text{Robinson}} = 49,0 + 0,669 \times \Delta H$$
+* **Fórmula de Miller (1983):**
+  $$\text{Hombres: } P_{\text{Miller}} = 56,2 + 0,555 \times \Delta H \qquad \text{Mujeres: } P_{\text{Miller}} = 53,1 + 0,535 \times \Delta H$$
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `80` | `100` | `120` |
+### 3. Factor de corrección por complexión esquelética (Regla de Hamwi)
+$$P_{\text{Ajustado}} = P_{\text{Referencia}} \times F_{\text{Complexión}}$$
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+Donde:
+* $h$ es la estatura en metros y $H_{\text{cm}}$ la estatura en centímetros.
+* $F_{\text{Complexión}}$ vale **$0,90$** para complexión pequeña ($-10\,\%$), **$1,00$** para mediana y **$1,10$** para grande ($+10\,\%$).
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+## Ejemplo práctico calculado paso a paso
 
-1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en Calculadora de Peso Saludable y establece el punto de partida para todas las métricas derivadas.
-2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.
-3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.
+Analicemos el caso de una **mujer adulta de $1,68\text{ m}$ ($168\text{ cm}$)** cuyo perímetro de muñeca mide **$16,8\text{ cm}$**, clasificándola en **complexión ósea grande**.
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+1. **Intervalo saludable OMS:** Con $1,68^2 = 2,8224\text{ m}^2$, el límite inferior es $18,5 \times 2,8224 = \mathbf{52,2\text{ kg}}$ y el límite superior es $24,9 \times 2,8224 = \mathbf{70,3\text{ kg}}$.
+2. **Fórmulas clínicas ($\Delta H = 168 - 152,4 = 15,6\text{ cm}$):**
+   * **Devine (base mediana):** $45,5 + (0,906 \times 15,6) = \mathbf{59,6\text{ kg}}$.
+   * **Robinson (base mediana):** $49,0 + (0,669 \times 15,6) = \mathbf{59,4\text{ kg}}$.
+   * **Miller (base mediana):** $53,1 + (0,535 \times 15,6) = \mathbf{61,5\text{ kg}}$.
+3. **Ajuste por estructura ósea grande ($+10\,\%$):** Tomando el promedio clínico base de Devine y Robinson ($59,5\text{ kg}$) y multiplicando por $1,10$, obtenemos $P_{\text{Ajustado}} = \mathbf{65,5\text{ kg}}$.
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+**Interpretación:** Su estructura ósea grande sitúa su punto de equilibrio fisiológico en torno a los **$65,5\text{ kg}$** (IMC de $23,2\text{ kg/m}^2$), plenamente centrado dentro del margen saludable de la OMS ($52,2\text{ kg}$ a $70,3\text{ kg}$).
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+## Tabla de referencia: Complexión ósea y porcentaje de grasa corporal
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+| Complexión Esquelética | Muñeca Mujeres (160–170 cm) | Muñeca Hombres (170–185 cm) | Ajuste Ponderal | IMC Recomendado | Grasa Saludable (H / M) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Pequeña (Ectomórfica)** | < 15,2 cm | < 16,5 cm | **-10 %** ($\times 0,90$) | 18,5 – 21,5 kg/m² | 10 % – 16 % / 18 % – 24 % |
+| **Mediana (Mesomórfica)** | 15,2 – 16,2 cm | 16,5 – 19,0 cm | **Base** ($\times 1,00$) | 20,5 – 23,5 kg/m² | 12 % – 19 % / 20 % – 27 % |
+| **Grande (Endo-Mesomórfica)** | > 16,2 cm | > 19,0 cm | **+10 %** ($\times 1,10$) | 22,0 – 24,9 kg/m² | 14 % – 21 % / 22 % – 29 % |
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
+## Recomendaciones clínicas y errores frecuentes al interpretar la báscula
 
-Todos los cálculos realizados en **Calculadora de Peso Saludable** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **No fuerce una complexión que no es la suya:** Si posee estructura ósea ancha e intenta bajar hasta el límite inferior del IMC ($18,5\text{ kg/m}^2$), perderá masa muscular esquelética y reducirá su metabolismo basal.
+* **Priorice el perímetro de cintura frente al peso aislado:** Si al entrenar fuerza su peso en báscula no cambia pero su cintura se reduce 4 cm, está logrando una recomposición corporal saludable.
+* **Evalúe la media semanal en ayunas:** Las oscilaciones diarias de $0,8\text{ kg}$ a $2,0\text{ kg}$ obedecen a glucógeno e hidratación, nunca a cambios de grasa real.

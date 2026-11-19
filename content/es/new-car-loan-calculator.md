@@ -1,75 +1,92 @@
 ---
 title: "Calculadora de Préstamos de Autos Nuevos"
-metaTitle: "Calculadora de Préstamos de Autos Nuevos"
-description: "Calcula las cuotas mensuales de préstamos para autos nuevos con tasas del concesionario y valor de intercambio."
-metaDescription: "Estima los pagos mensuales e intereses totales para la compra de un vehículo nuevo con opciones de 48, 60 y 72 meses."
+metaTitle: "Calculadora de Préstamos de Autos Nuevos: Cuota y Tasa"
+description: "Calcula la cuota mensual de tu préstamo para auto nuevo, compara tasas promocionales del fabricante frente a bonos de descuento en efectivo y evalúa plazos."
+metaDescription: "Simula el préstamo para tu auto nuevo en 36, 48, 60 o 72 meses. Compara financiamiento al 0 % APR frente a descuentos al contado y calcula intereses."
+metaKeywords: "calculadora prestamos autos nuevos, financiar coche nuevo, cuota mensual auto nuevo, 0 apr vs bono descuento, intereses prestamo vehiculo nuevo"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Préstamos de Autos Nuevos?"
-    answer: "Calculadora de Préstamos de Autos Nuevos evalúa sus parámetros mediante la ecuación verificada (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Préstamos de Autos Nuevos para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Préstamos de Autos Nuevos antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Préstamos de Autos Nuevos?"
-    answer: "Dentro del modelo cuantitativo (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Préstamos de Autos Nuevos impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Préstamos de Autos Nuevos calcula el modelo matemático puro (Calcula las cuotas mensuales de préstamos para autos nuevos con tasas del concesionario y valor de intercambio.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Préstamos de Autos Nuevos?"
-    answer: "No. Todos los cálculos de Calculadora de Préstamos de Autos Nuevos se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Qué conviene más al comprar un auto nuevo: la tasa promocional del fabricante o el bono de descuento en efectivo?"
+    answer: "Cuando un concesionario ofrece elegir entre una tasa subvencionada (por ejemplo, 0 % o 1,9 % APR) y un bono de descuento al contado (Cash Rebate de 2.500 $ a 4.000 $), la respuesta depende del plazo y de si amortizarás antes de tiempo. Si mantienes el crédito hasta el final, la tasa cercana al 0 % suele ahorrar más en coches de gama media-alta; pero si planeas cancelar el préstamo en los primeros 2 o 3 años, el descuento directo sobre el precio reduce tu deuda base de inmediato."
+  - question: "¿Cuál es el riesgo de financiar un automóvil nuevo a 72 u 84 meses?"
+    answer: "Un vehículo nuevo pierde alrededor del 20 % de su valor nada más salir del concesionario y cerca del 35 % al cumplir dos años. Si financias a 72 u 84 meses con un pago inicial bajo, la deuda disminuirá mucho más despacio que el valor del coche, manteniéndote con patrimonio negativo durante los primeros 3 o 4 años del contrato."
+  - question: "¿Cuándo es recomendable contratar el seguro GAP al financiar un coche nuevo?"
+    answer: "El seguro GAP (Guaranteed Asset Protection) es altamente recomendable si aportas menos del 20 % de entrada o eliges un plazo de 60 meses o más. En caso de robo total o siniestro grave durante los primeros años, tu aseguradora habitual solo indemnizará el valor venal depreciado del vehículo, mientras que el seguro GAP cubrirá la diferencia hasta saldar la deuda total con el banco."
+  - question: "¿Qué diferencia existe entre el TIN promocional y la TAE en la financiera de un concesionario?"
+    answer: "Muchos anuncios de concesionarios destacan un TIN (Tipo de Interés Nominal) muy reducido, pero exigen contratar una comisión de apertura del 2 % al 3 % o seguros de vida y protección de pagos vinculados. La TAE (o APR) integra todos esos costes obligatorios y revela el verdadero coste anual del préstamo."
+  - question: "¿Cómo reduce los impuestos la entrega de mi coche actual como parte de pago?"
+    answer: "En la gran mayoría de los estados de EE. UU. y normativas fiscales comparables, al entregar tu vehículo usado (trade-in) en la misma factura de compra del coche nuevo, el impuesto sobre las ventas solo se aplica sobre la diferencia neta de precio entre ambos vehículos, lo que puede ahorrarte entre 800 $ y 2.000 $ en impuestos al cierre."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Préstamos de Autos Nuevos
+## Cómo Funciona la Financiación de Vehículos Nuevos y las Tasas de Marca
 
-Calcula las cuotas mensuales de préstamos para autos nuevos con tasas del concesionario y valor de intercambio. En el modelado financiero cuantitativo, los resultados de **Calculadora de Préstamos de Autos Nuevos** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+La compra de un automóvil nuevo presenta una dinámica financiera única gracias a la intervención de las **financieras cautivas de los fabricantes** (los brazos bancarios de las propias marcas automotrices). A diferencia de un préstamo personal o de la financiación de ocasión, los fabricantes utilizan tipos de interés subvencionados —que oscilan desde el **0,0 % y el 1,9 % hasta el 3,9 % anual**— o bonificaciones directas sobre el precio de factura para incentivar la rotación de inventario.
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+Sin embargo, estas ofertas promocionales suelen ser mutuamente excluyentes: si aceptas la tasa de interés reducida de la marca, con frecuencia debes renunciar al bono de descuento al contado (*Customer Cash Rebate*) o asumir comisiones de apertura y seguros vinculados. Utilizar un modelo matemático preciso te permite contrastar ambas opciones al céntimo y elegir la estructura de plazo (48, 60 o 72 meses) que proteja tu liquidez sin disparar el coste total del vehículo.
 
-El motor computacional de **Calculadora de Préstamos de Autos Nuevos** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+---
 
-```
-M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
-```
+## Ecuación Matemática del Préstamo para Auto Nuevo y Comparación de Ofertas
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+El cálculo de la cuota mensual ($M$) para un vehículo nuevo parte de la determinación exacta del capital principal financiado ($P$) tras deducir los descuentos comerciales del fabricante ($B_{\text{descuento}}$), el valor neto del vehículo entregado a cambio ($V_{\text{intercambio}}$) y el pago inicial en efectivo ($E_{\text{inicial}}$):
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+$$P = (V_{\text{MSRP}} - B_{\text{descuento}} - V_{\text{intercambio}}) + I_{\text{impuestos}} + G_{\text{apertura}} - E_{\text{inicial}}$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Préstamos de Autos Nuevos**:
+Sobre ese capital neto $P$, la cuota mensual constante durante $n$ meses a una tasa mensual efectiva $r = \text{TIN} / 12$ viene dada por:
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `SI / Standard` | Calibrated | Total periodic principal and interest payment |
-| **Principal Loan Amount (`P`)** | `SI / Standard` | Calibrated | Initial borrowed loan balance |
-| **Periodic Interest Rate (`i`)** | `SI / Standard` | Calibrated | Annual interest rate divided by payment frequency (e.g. APR / 12) |
-| **Total Number of Payments (`n`)** | `SI / Standard` | Calibrated | Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) |
+$$M = P \cdot \frac{r(1 + r)^n}{(1 + r)^n - 1} \qquad \text{(Nota: si }\text{TIN} = 0\text{ \%, entonces } M = \frac{P}{n}\text{)}$$
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `-20% (M₀ × 0.8)` | `Baseline (M₀)` | `+20% (M₀ × 1.2)` |
-| **Principal Loan Amount (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Periodic Interest Rate (`i`)** | `-20% (i₀ × 0.8)` | `Baseline (i₀)` | `+20% (i₀ × 1.2)` |
-| **Total Number of Payments (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
+Donde las variables representan:
+* **$V_{\text{MSRP}}$**: Precio de venta negociado del vehículo nuevo en el concesionario.
+* **$B_{\text{descuento}}$**: Rebaja o bono promocional en efectivo otorgado por el fabricante o distribuidor.
+* **$V_{\text{intercambio}}$**: Valor de tasación de tu automóvil actual entregado como parte de pago.
+* **$I_{\text{impuestos}}$ y $G_{\text{apertura}}$**: Impuestos de compraventa/matriculación y eventuales gastos de formalización o registro.
+* **$E_{\text{inicial}}$**: Enganche o entrada aportada en efectivo por el comprador.
+* **$r$ y $n$**: Tipo de interés mensual ($r = \text{TIN anual} / 12$) y duración total del contrato en meses ($n$).
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+---
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+## Ejemplo Práctico: Tasa Promocional del 1,90 % vs. Bono de 3.000 $ con Banco al 6,25 %
 
-1. **Monthly Payment (`M`)** — Total periodic principal and interest payment: Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Nuevos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-2. **Principal Loan Amount (`P`)** — Initial borrowed loan balance: Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Nuevos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-3. **Periodic Interest Rate (`i`)** — Annual interest rate divided by payment frequency (e.g. APR / 12): Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Nuevos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-4. **Total Number of Payments (`n`)** — Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360): Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Nuevos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
+Imaginemos la compra de un vehículo nuevo cuyo precio final con impuestos incluidos es de **38.000 $ (o €)**, donde el comprador aporta **6.000 $** entre efectivo y entrega de su coche anterior, dejando un saldo base de **32.000 $** a financiar a **60 meses (5 años)**. El concesionario plantea dos alternativas:
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+### Opción A: Tasa subvencionada por el fabricante al 1,90 % anual (sin bono)
+* **Capital financiado ($P_A$)**: $38.000 - 6.000 = 32.000,00\text{ \$}$
+* **Tasa mensual ($r_A$)**: $0,019 / 12 \approx 0,00158333$
+* **Factor a 60 meses**: $(1 + 0,00158333)^{60} \approx 1,099576$
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+$$M_A = 32.000 \cdot \frac{0,00158333 \times 1,099576}{1,099576 - 1} = 32.000 \cdot 0,01748403 = \mathbf{559,49\text{ \$/mes}}$$
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+* **Total pagado en 60 meses**: $33.569,33\text{ \$}$ (**$1.569,33\text{ \$}$ en intereses totales**).
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+### Opción B: Bono de descuento de 3.000 $ financiando con tu banco al 6,25 % anual
+* **Capital financiado reducido ($P_B$)**: $32.000 - 3.000 = 29.000,00\text{ \$}$
+* **Tasa mensual ($r_B$)**: $0,0625 / 12 \approx 0,00520833$
+* **Factor a 60 meses**: $(1 + 0,00520833)^{60} \approx 1,365729$
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
+$$M_B = 29.000 \cdot \frac{0,00520833 \times 1,365729}{1,365729 - 1} = 29.000 \cdot 0,01944926 = \mathbf{564,03\text{ \$/mes}}$$
 
-Todos los cálculos realizados en **Calculadora de Préstamos de Autos Nuevos** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **Total pagado en 60 meses**: $33.841,72\text{ \$}$ (**$4.841,72\text{ \$}$ en intereses totales**).
+
+**Conclusión**: Si mantienes el préstamo durante los 5 años completos, la **Opción A (tasa del 1,90 %)** ahorra **272,39 $** y ofrece menor cuota mensual. En cambio, si vendes el coche o liquidas la deuda al mes 24, la **Opción B (bono de 3.000 $)** resulta ganadora porque el capital inicial arrancó 3.000 $ por debajo.
+
+---
+
+## Impacto del Plazo de Amortización (36 a 84 Meses) sobre un Auto Nuevo de 32.000 $
+
+Observa cómo varía el coste financiero de un préstamo estándar de **32.000 $** para un vehículo nuevo con una tasa constante del **5,90 % anual** según la duración elegida:
+
+| Plazo del Contrato | Número de Cuotas ($n$) | Cuota Mensual ($M$) | Intereses Totales Pagados | Coste Total del Préstamo | Saldo Pendiente al Año 2 (Mes 24) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **3 Años (Corto)** | 36 meses | **972,05 $** | **2.993,90 $** | 34.993,90 $ | 11.298,45 $ (35,3 % restante) |
+| **4 Años (Recomendado)** | 48 meses | **750,11 $** | **4.005,47 $** | 36.005,47 $ | 16.952,18 $ (53,0 % restante) |
+| **5 Años (Estándar)** | 60 meses | **617,16 $** | **5.029,54 $** | 37.029,54 $ | 20.335,60 $ (63,5 % restante) |
+| **6 Años (Extendido)** | 72 meses | **528,77 $** | **6.071,24 $** | 38.071,24 $ | 22.583,90 $ (70,6 % restante) |
+| **7 Años (Máximo riesgo)** | 84 meses | **465,92 $** | **7.136,96 $** | 39.136,96 $ | 24.183,75 $ (75,6 % restante) |
+
+---
+
+## Claves Prácticas para Negociar la Financiación de tu Vehículo Nuevo
+
+1. **Separar la negociación del precio de fábrica de la financiación**: Cierra primero por escrito el precio final de compra del automóvil nuevo y solo después solicita que el departamento financiero mejore la tasa de preaprobación de tu banco.
+2. **Vigilar las financiaciones multiopción con cuota final balón (*Balloon Payment*)**: Estas fórmulas reducen la cuota mensual durante 36 o 48 meses dejando un pago final del 35 % al 45 % del valor del coche; recuerda que pagas intereses sobre ese capital retenido durante todo el contrato.
+3. **Evitar transferir deuda pendiente de tu vehículo anterior (*Roll-over Negative Equity*)**: Sumar el saldo insoluto de tu auto viejo al préstamo del coche nuevo hará que empieces debiendo más del 100 % del valor del vehículo desde el primer día.

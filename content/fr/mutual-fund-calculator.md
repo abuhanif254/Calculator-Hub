@@ -1,68 +1,82 @@
 ---
 title: "Calculateur de Fonds Communs de Placement"
-metaTitle: "Calculateur de Fonds Communs de Placement"
-description: "Calculez les rendements des investissements SIP et Lumpsum au fil du temps."
-metaDescription: "Calculez les rendements des investissements SIP et Lumpsum au fil du temps."
+metaTitle: "Calculateur de Fonds Communs de Placement (OPCVM / FCP)"
+description: "Simulez le rendement de vos investissements en fonds communs (OPCVM, SICAV, FCP, ETF) en versement unique ou programmé après déduction des frais."
+metaDescription: "Calculez la valeur future de vos placements en OPCVM, FCP ou ETF : comparez versement unique et versements programmés (DCA) et mesurez l'impact des frais."
+metaKeywords: "calculateur fonds communs de placement, simulateur OPCVM, rendement SICAV FCP, versements programmes DCA, impact frais de gestion fonds, calcul plus-value fonds"
 faqs:
-  - question: "Quelle formule mathématique exacte utilise Calculateur de Fonds Communs de Placement ?"
-    answer: "Calculateur de Fonds Communs de Placement applique l'équation de référence (y = f(x₁, x₂, ..., xₙ)). Le moteur traite les variables (paramètres saisis) en virgule flottante double précision (norme IEEE 754) afin d'éliminer toute erreur d'arrondi intermédiaire."
-  - question: "Quelles sont les valeurs de référence pré-remplies dans Calculateur de Fonds Communs de Placement ?"
-    answer: "Le simulateur initialise un scénario de référence calibré (valeurs standards du secteur) permettant d'observer immédiatement l'équilibre du modèle avant de saisir vos propres paramètres."
-  - question: "Quel est l'impact d'une variation de le paramètre principal sur le résultat de Calculateur de Fonds Communs de Placement ?"
-    answer: "Dans la relation (y = f(x₁, x₂, ..., xₙ)), le paramètre principal interagit directement avec les variables secondaires. En faisant varier le paramètre principal isolément, vous mesurez l'élasticité mathématique exacte du résultat principal et des indicateurs secondaires."
-  - question: "Les résultats de Calculateur de Fonds Communs de Placement incluent-ils la fiscalité et les frais annexes ?"
-    answer: "Calculateur de Fonds Communs de Placement modélise rigoureusement l'équation financière (Calculez les rendements des investissements SIP et Lumpsum au fil du temps.) selon vos entrées. Pour un engagement contractuel ou fiscal, complétez cette simulation avec les frais spécifiques de votre établissement ou conseiller."
-  - question: "Mes données saisies dans Calculateur de Fonds Communs de Placement sont-elles confidentielles ?"
-    answer: "Oui. L'intégralité des calculs de Calculateur de Fonds Communs de Placement s'exécute 100 % localement dans votre navigateur web (conformité RGPD), sans aucun envoi vers un serveur externe."
+  - question: "Quelle est la différence entre un FCP, une SICAV et un ETF ?"
+    answer: "Un Fonds Commun de Placement (FCP) et une Société d'Investissement à Capital Variable (SICAV) sont les deux formes juridiques d'OPCVM en Europe : l'investisseur en SICAV est actionnaire tandis que le porteur de FCP est copropriétaire d'actifs. Un ETF (fonds indiciel coté) est un OPCVM coté en continu en Bourse qui réplique passivement un indice (comme le CAC 40, le MSCI World ou le S&P 500) avec des frais de gestion cinq à dix fois inférieurs à ceux d'un fonds actif."
+  - question: "Comment les frais courants d'un fonds commun sont-ils prélevés sur mon épargne ?"
+    answer: "Les frais de gestion annuels (ou ratio des frais de gestion — RFG au Canada) ne font pas l'objet d'un prélèvement visible sur votre compte espèces : ils sont déduits quotidiennement, au prorata temporis (1/365e par jour), directement de la valeur liquidative (VL) de la part du fonds. La performance affichée par la valeur liquidative est donc toujours nette des frais internes du fonds."
+  - question: "Faut-il privilégier un versement unique (Lump Sum) ou des versements programmés (DCA) ?"
+    answer: "Statistiquement, sur des marchés haussiers à long terme, investir une somme disponible en une seule fois (versement unique) surperforme l'étalement dans deux tiers des cas car le capital travaille immédiatement à 100 %. En revanche, les versements programmés mensuels (Dollar-Cost Averaging) lissent le prix de revient unitaire de vos parts, éliminent le risque d'investir au plus haut la veille d'un krach et s'adaptent parfaitement à l'épargne salariale mensuelle."
+  - question: "Pourquoi choisir des parts de capitalisation (Part C) plutôt que de distribution (Part D) ?"
+    answer: "Un fonds à part de capitalisation (C) réinvestit automatiquement et intégralement les dividendes ou coupons perçus à l'intérieur même du portefeuille, sans passer par votre compte espèces. Sur un compte-titres ordinaire, cela évite de déclencher une imposition annuelle (comme la flat tax de 30 % en France) sur les revenus distribués et maximise l'effet boule de neige des intérêts composés."
+  - question: "Les frais de gestion de mon assurance-vie s'ajoutent-ils à ceux de l'OPCVM ?"
+    answer: "Oui. Lorsque vous logez un OPCVM ou un ETF en unités de compte au sein d'un contrat d'assurance-vie ou d'un PER, vous supportez deux couches de frais annuels : les frais internes du fonds (prélevés sur la valeur liquidative, par exemple 1,60 %) ET les frais de gestion de l'enveloppe d'assurance (prélevés par diminution du nombre de parts détenues, souvent entre 0,50 % et 0,90 % par an)."
 ---
 
-## Méthodologie Technique et Architecture Mathématique : Calculateur de Fonds Communs de Placement
+## Évaluer la performance nette d'un portefeuille de fonds (OPCVM, SICAV, FCP et ETF)
 
-Calculez les rendements des investissements SIP et Lumpsum au fil du temps. Dans la modélisation financière quantitative, les résultats fournis par **Calculateur de Fonds Communs de Placement** dépendent directement de la périodicité de capitalisation, de la distinction entre taux nominal et taux effectif global (TAEG/APR) et du calendrier des flux de trésorerie. Une variation de 50 points de base sur le taux d'intérêt ou d'actualisation produit un effet cumulatif non linéaire sur longue période.
+L'investissement collectif à travers des **Organismes de Placement Collectif en Valeurs Mobilières (OPCVM)** — qu'il s'agisse de Fonds Communs de Placement (FCP), de SICAV en Europe, de fonds communs de placement au Canada ou de fonds indiciels cotés (ETF) — permet d'accéder à un portefeuille diversifié d'actions ou d'obligations avec une mise de départ accessible.
 
-### 1. Modèle Mathématique et Formule de Référence
+Toutefois, la projection réaliste d'un patrimoine investi en fonds ne peut se limiter au rendement brut des marchés financiers. Deux paramètres structurels déterminent la valeur finale réellement perçue par l'épargnant : la **cadence d'alimentation** (versement initial unique combiné ou non à des versements programmés mensuels) et la **structure des frais** (droits d'entrée sur versement et frais de gestion annuels récurrents consignés dans le Document d'Informations Clés — DIC).
 
-Le moteur de calcul de **Calculateur de Fonds Communs de Placement** traite vos variables d'entrée en temps réel selon la relation fondamentale suivante :
+## Équations de capitalisation : versement unique, versements programmés et impact des frais
 
-```
-y = f(x₁, x₂, ..., xₙ)
-```
+Pour modéliser la valeur liquidative totale acquise au terme de $N$ années ($n = 12N$ mois), il convient d'abord d'isoler le rendement annuel net de frais courants :
 
-À chaque modification d'un paramètre, l'algorithme vérifie la cohérence des domaines numériques et applique une arithmétique en virgule flottante double précision (norme IEEE 754) afin d'éliminer les erreurs d'arrondi intermédiaires et de générer instantanément les indicateurs principaux et secondaires.
+$$r_{\text{net}} = r_{\text{brut}} - f_g$$
 
-### 2. Tableau des Paramètres et Matrice Multi-Scénarios
+où $r_{\text{brut}}$ désigne la performance annuelle brute des actifs du fonds et $f_g$ le taux annuel total des frais de gestion (frais internes du fonds majorés, le cas échéant, des frais de tenue d'enveloppe). En présence de frais d'entrée sur versement $f_e$, seule la fraction $(1 - f_e)$ de chaque apport achète effectivement des parts.
 
-Le tableau ci-dessous détaille la structure technique des variables ainsi que les trois paliers de simulation (-20 % prudent, référence calibrée et +20 % élevé) pris en charge par **Calculateur de Fonds Communs de Placement** :
+### 1. Valeur acquise par le versement initial unique ($VF_{\text{unique}}$)
+Pour un capital initial $C_0$ investi dès le premier jour avec capitalisation mensuelle au taux périodique $i_m = \frac{r_{\text{net}}}{12}$ :
 
-| Paramètre d'Entrée | Unité | Valeur de Référence | Plage d'Analyse Recommandée |
-| :--- | :--- | :--- | :--- |
-| **Paramètre Principal** | `Standard` | 100 | Entrée numérique standard |
+$$VF_{\text{unique}} = C_0 \times (1 - f_e) \times (1 + i_m)^n$$
 
-| Variable du Modèle | Scénario Prudent (-20%) | Scénario de Référence | Scénario Élevé (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Paramètre Principal** | `80` | `100` | `120` |
+### 2. Valeur acquise par les versements programmés mensuels ($VF_{\text{prog}}$)
+Pour un versement mensuel constant $V_m$ exécuté en début de mois pendant $n$ mois :
 
-### 3. Analyse de Sensibilité des Variables d'Entrée
+$$VF_{\text{prog}} = V_m \times (1 - f_e) \times \frac{(1 + i_m)^n - 1}{i_m} \times (1 + i_m)$$
 
-Une maîtrise précise de chaque variable vous permet de simuler des scénarios réalistes et de mesurer l'élasticité du résultat :
+Le patrimoine final total correspond à la somme des deux poches : $VF_{\text{totale}} = VF_{\text{unique}} + VF_{\text{prog}}$.
 
-1. **Grandeur de Base Principale** : Détermine l'échelle absolue du calcul dans Calculateur de Fonds Communs de Placement et fixe le point de départ de tous les indicateurs dérivés.
-2. **Facteur de Taux, Ratio ou Coefficient** : Régule l'intensité de la transformation mathématique entre la valeur initiale et le résultat final.
-3. **Horizon Temporel ou Condition aux Limites** : Définit le nombre de périodes, d'itérations ou les bornes dimensionnelles sur lesquels s'applique la formule.
+## Étude de cas chiffrée : fonds actif chargé en frais contre fonds indiciel (ETF) sur 20 ans
 
-### 4. Protocole d'Utilisation et de Validation en 4 Étapes
+Imaginons un investisseur qui place un capital initial de **$20\,000\text{ €}$** ($C_0$) et programme un achat mensuel automatique de **$300\text{ €}$ par mois** ($V_m$) pendant **20 ans** ($n = 240\text{ mois}$). Le total des sommes versées de sa poche s'élève à $20\,000 + (300 \times 240) = \mathbf{92\,000\text{ €}}$. Le marché actions mondial sous-jacent délivre un rendement brut annuel de **$8{,}00\,\%$** ($r_{\text{brut}}$). Comparons deux supports investis sur ce même marché :
 
-1. **Établissement du Scénario de Référence** : Observez d'abord les résultats générés avec les valeurs par défaut afin de comprendre l'équilibre standard du modèle.
-2. **Harmonisation des Unités de Mesure** : Vérifiez que l'ensemble de vos données respecte la même base temporelle ou physique (ex. taux annuels vs mensuels, système métrique vs impérial).
-3. **Test de Sensibilité Univariée** : Faites varier un seul paramètre à la fois pour isoler son impact mathématique exact sur le résultat final.
-4. **Comparaison Multi-Scénarios** : Confrontez une hypothèse prudente, une hypothèse médiane et une hypothèse haute afin d'encadrer votre prise de décision avec une marge de sécurité optimale.
+### Option A : Fonds indiciel (ETF) sans frais d'entrée ($f_e = 0\,\%$) et à $0{,}20\,\%$ de frais annuels
+* Rendement annuel net : $r_{\text{net}} = 8{,}00\,\% - 0{,}20\,\% = 7{,}80\,\%$, soit un taux mensuel $i_m = \frac{0{,}078}{12} = 0{,}0065$ ($0{,}65\,\%$).
+* Croissance du capital initial de $20\,000\text{ €}$ :
+  $$VF_{\text{unique}} = 20\,000 \times (1{,}0065)^{240} = 20\,000 \times 4{,}734886 = 94\,697{,}72\text{ €}$$
+* Croissance des 240 mensualités de $300\text{ €}$ :
+  $$VF_{\text{prog}} = 300 \times \frac{4{,}734886 - 1}{0{,}0065} \times 1{,}0065 = 300 \times 578{,}3327 = 173\,499{,}80\text{ €}$$
+* **Capital final acquis (Option A) :** $94\,697{,}72 + 173\,499{,}80 = \mathbf{268\,197{,}52\text{ €}}$ (soit $176\,197{,}52\text{ €}$ de gains nets).
 
-### 5. Pièges Fréquents lors des Calculs Manuels
+### Option B : OPCVM bancaire classique avec $2{,}00\,\%$ de frais d'entrée et $2{,}00\,\%$ de frais de gestion annuels
+* Rendement annuel net : $r_{\text{net}} = 8{,}00\,\% - 2{,}00\,\% = 6{,}00\,\%$, soit $i_m = \frac{0{,}06}{12} = 0{,}005$ ($0{,}50\,\%$).
+* Après $2\,\%$ de droits d'entrée, le capital initial investi n'est plus que de $19\,600\text{ €}$ et chaque mensualité nette tombe à $294\text{ €}$.
+* Croissance du capital initial : $19\,600 \times (1{,}005)^{240} = 19\,600 \times 3{,}310204 = 64\,880{,}01\text{ €}$.
+* Croissance des mensualités : $294 \times \frac{3{,}310204 - 1}{0{,}005} \times 1{,}005 = 294 \times 464{,}3511 = 136\,519{,}22\text{ €}$.
+* **Capital final acquis (Option B) :** $64\,880{,}01 + 136\,519{,}22 = \mathbf{201\,399{,}23\text{ €}}$.
 
-- **Arrondis Intermédiaires Prématurés** : Tronquer les décimales au cours des étapes intermédiaires fausse sensiblement le résultat final dans les formules composées, trigonométriques ou scientifiques.
-- **Confusion d'Échelles ou de Périodicité** : Mélanger des grandeurs non converties constitue la première source d'erreur dans les feuilles de calcul manuelles.
-- **Négligence des Indicateurs Secondaires** : Au-delà du résultat principal, l'analyse des répartitions détaillées et des courbes d'évolution est essentielle pour interpréter correctement le phénomène étudié.
+**Conclusion mathématique :** Une différence apparemment mineure de $1{,}80\,\%$ sur les frais de gestion annuels et de $2\,\%$ à l'entrée ampute le patrimoine final de **$66\,798{,}29\text{ €}$**, soit plus des deux tiers de la totalité des sommes versées par l'épargnant.
 
-### 6. Confidentialité Absolue et Exécution Côté Client
+## Tableau comparatif : évolution d'un versement programmé de 400 € par mois
 
-L'intégralité des opérations de **Calculateur de Fonds Communs de Placement** s'exécute **100 % localement dans votre navigateur web**. Aucune donnée saisie n'est envoyée vers un serveur distant ni enregistrée dans une base de données, garantissant une sécurité maximale (conformité RGPD) et une réactivité immédiate sur ordinateur comme sur mobile.
+Ce tableau indique le capital accumulé (en euros, sans frais d'entrée) pour un investissement programmé de **$400\text{ €}$ par mois** selon la durée de détention et la classe d'actifs du fonds :
+
+| Horizon de placement | Cumul des versements | Fonds Obligataire (3,60 % net/an) | Fonds Équilibré (6,00 % net/an) | Fonds Actions (8,40 % net/an) |
+| :--- | :--- | :--- | :--- | :--- |
+| **10 ans (120 mois)** | 48 000 € | 57 863 € | 65 879 € | 75 343 € |
+| **15 ans (180 mois)** | 72 000 € | 95 525 € | 116 909 € | 144 586 € |
+| **20 ans (240 mois)** | 96 000 € | 140 614 € | 185 740 € | 248 655 € |
+| **25 ans (300 mois)** | 120 000 € | 194 597 € | 278 584 € | 405 153 € |
+
+## Points de vigilance pour sélectionner et loger vos fonds
+
+* **Traquer les commissions de surperformance :** Outre les frais de gestion fixes, certains OPCVM actifs prélèvent une commission de surperformance (souvent $15\,\%$ à $20\,\%$ de la performance excédant leur indice de référence). Vérifiez dans le DIC que le fonds applique une clause de *High-Water Mark*, interdisant de facturer une surperformance tant que les pertes des années précédentes n'ont pas été intégralement effacées.
+* **Optimiser l'enveloppe fiscale de détention :** En France, loger des fonds actions éligibles ou des ETF au sein d'un Plan d'Épargne en Actions (PEA) permet d'être exonéré d'impôt sur le revenu sur les plus-values après 5 ans (seuls les prélèvements sociaux de $17{,}2\,\%$ restent dus), contre une *flat tax* (PFU) de $30\,\%$ sur un compte-titres ordinaire. Au Canada, priorisez systématiquement le CELI et le REER avant tout compte non enregistré.
+* **Éviter la fausse diversification :** Détenir cinq fonds communs commercialisés par la même banque qui investissent tous dans les grandes capitalisations européennes ou américaines ne réduit pas votre risque : comparez l'exposition géographique réelle et les dix premières lignes de chaque fonds avant de souscrire.

@@ -1,75 +1,76 @@
 ---
 title: "Calculadora de Préstamos para Motos"
-metaTitle: "Calculadora de Préstamos para Motos — Gratis y Precisa"
-description: "Calcula los pagos mensuales y costos de financiamiento para motos deportivas, de turismo o crucero."
-metaDescription: "Calcula las mensualidades y el costo total de financiamiento para comprar una motocicleta nueva o usada."
+metaTitle: "Calculadora de Préstamos para Motos — Cuota, TIN y TAE"
+description: "Calcula la cuota mensual, los intereses totales y el cuadro de amortización para financiar motocicletas nuevas o de ocasión según el plazo y la entrada."
+metaDescription: "Simula la cuota mensual y el coste real de financiar tu moto nueva o usada. Compara plazos, entrada inicial, TIN, TAE y opciones con cuota final balón."
+metaKeywords: "calculadora préstamo moto, financiar motocicleta, calcular cuota moto, simulador financiación moto, préstamo moto TIN TAE, cuadro amortización moto"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Préstamos para Motos?"
-    answer: "Calculadora de Préstamos para Motos evalúa sus parámetros mediante la ecuación verificada (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Préstamos para Motos para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Préstamos para Motos antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Préstamos para Motos?"
-    answer: "Dentro del modelo cuantitativo (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Préstamos para Motos impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Préstamos para Motos calcula el modelo matemático puro (Calcula los pagos mensuales y costos de financiamiento para motos deportivas, de turismo o crucero.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Préstamos para Motos?"
-    answer: "No. Todos los cálculos de Calculadora de Préstamos para Motos se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Por qué los préstamos para motos suelen tener un interés más alto que los de coches?"
+    answer: "Las entidades financieras clasifican las motocicletas —especialmente las de media y alta cilindrada— como vehículos recreativos o de mayor siniestralidad. Su depreciación inicial y el riesgo de pérdida total hacen que la banca aplique un diferencial de entre 1 y 3 puntos porcentuales sobre los préstamos de automóvil estándar."
+  - question: "¿Qué conviene más: financiar en el concesionario con cuota final (Select/Multiopción) o pedir un préstamo bancario?"
+    answer: "La financiación con cuota balón o Valor Futuro Garantizado (VFG) reduce la cuota mensual durante los primeros 3 años, pero devenga intereses sobre el capital aplazado durante todo el contrato. Si planeas conservar la moto más de 4 años, un préstamo lineal bancario sin reserva de dominio ni seguros vinculados suele resultar entre un 15 % y un 25 % más económico en intereses totales."
+  - question: "¿Puedo incluir el equipamiento (casco, chaqueta, maletas) y el seguro dentro del préstamo de la moto?"
+    answer: "Los concesionarios permiten sumar accesorios originales y equipamiento al capital financiado, pero hacerlo encarece artículos de rápido desgaste al tipo TAE del crédito durante 4 o 5 años. Lo más eficiente es abonar el casco, las protecciones y la primera anualidad del seguro al contado dentro de tu presupuesto inicial."
+  - question: "¿Qué es la reserva de dominio en la financiación de una motocicleta y cómo me afecta?"
+    answer: "Es una cláusula inscrita en el Registro de Bienes Muebles mediante la cual la financiera conserva la titularidad dispositiva del vehículo hasta que pagas la última cuota. Mientras esté activa, no podrás transferir ni vender la moto a un particular sin liquidar antes el capital pendiente y solicitar la carta de cancelación."
+  - question: "¿Qué comisión máxima me pueden cobrar por amortizar anticipadamente el préstamo de mi moto?"
+    answer: "Bajo la normativa europea y española de créditos al consumo, la comisión por reembolso o amortización anticipada no puede superar el 1 % del capital reembolsado si falta más de un año para el vencimiento del contrato, o el 0,5 % si resta menos de doce meses. En Latinoamérica conviene revisar si el contrato penaliza prepagos o exige aviso previo."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Préstamos para Motos
+Financiar la compra de una motocicleta exige analizar variables que van más allá de la cuota mensual anunciada en el concesionario. A diferencia de un turismo familiar, el crédito para las dos ruedas distingue entre un scooter urbano de 125 cc de uso diario y una moto deportiva o *trail* de más de 900 cc, aplicando primas de riesgo, comisiones de apertura, seguros vinculados y estructuras de valor residual que pueden duplicar el coste financiero si no se examina el cuadro de amortización completo.
 
-Calcula los pagos mensuales y costos de financiamiento para motos deportivas, de turismo o crucero. En el modelado financiero cuantitativo, los resultados de **Calculadora de Préstamos para Motos** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+Esta herramienta calcula con exactitud el pago mensual, el desembolso total de intereses y la evolución del capital pendiente para contrastar préstamos lineales frente a ofertas promocionales de marca.
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+## Cómo se calcula la cuota mensual al financiar una motocicleta
 
-El motor computacional de **Calculadora de Préstamos para Motos** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+La mayoría de los créditos para motocicletas en España y Latinoamérica utilizan el **sistema de amortización francés** de cuotas constantes. Cada pago mensual combina una parte destinada a cubrir los intereses generados por el saldo vivo de la deuda y otra destinada a amortizar el capital principal.
 
-```
-M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
-```
+La fórmula matemática que determina la mensualidad es:
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+$$C = P \cdot \frac{r(1 + r)^n}{(1 + r)^n - 1}$$
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+Donde cada variable representa:
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Préstamos para Motos**:
+* **$C$**: Cuota mensual constante a pagar.
+* **$P$**: Capital principal financiado. Se obtiene restando la entrada inicial y la tasación de tu moto usada al precio al contado, y sumando las comisiones o seguros que decidas financiar dentro del préstamo.
+* **$r$**: Tipo de interés periódico mensual, resultado de dividir el **TIN (Tipo de Interés Nominal)** anual en tanto por uno entre 12 meses ($r = \text{TIN} / 12$).
+* **$n$**: Número total de cuotas mensuales del contrato (habitualmente 24, 36, 48 o 60 meses).
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `SI / Standard` | Calibrated | Total periodic principal and interest payment |
-| **Principal Loan Amount (`P`)** | `SI / Standard` | Calibrated | Initial borrowed loan balance |
-| **Periodic Interest Rate (`i`)** | `SI / Standard` | Calibrated | Annual interest rate divided by payment frequency (e.g. APR / 12) |
-| **Total Number of Payments (`n`)** | `SI / Standard` | Calibrated | Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) |
+Para evaluar el coste real no basta con mirar el TIN. Debes fijarte siempre en la **TAE (Tasa Anual Equivalente)** o el **CAT (Costo Anual Total)** en países como México. Las financieras de marca suelen publicitar un TIN atractivo (por ejemplo, 5,95 %), pero al incorporar una comisión de apertura del 2 % al 3 %, gastos de inscripción de reserva de dominio y un seguro de vida obligatorio, la TAE real supera con facilidad el 9,5 % o el 11 %.
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `-20% (M₀ × 0.8)` | `Baseline (M₀)` | `+20% (M₀ × 1.2)` |
-| **Principal Loan Amount (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Periodic Interest Rate (`i`)** | `-20% (i₀ × 0.8)` | `Baseline (i₀)` | `+20% (i₀ × 1.2)` |
-| **Total Number of Payments (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
+## Ejemplo práctico: Financiación de una moto Trail de 11.500 € con entrada
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+Supongamos que deseas comprar una motocicleta *trail* cuyo precio matriculada al contado es de **11.500 €** (o `USD 11,500`). Aportas una entrada inicial de **2.500 €**, por lo que necesitas cubrir **9.000 €**. La financiera del concesionario aplica una comisión de apertura del 2 % (**180 €**) que se suma al préstamo, dejando un capital financiado total ($P$) de **9.180 €** a un plazo de **48 meses** ($n = 48$) con un **TIN anual del 7,50 %**.
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+1. **Interés mensual ($r$)**: Dividimos el TIN anual entre 12 meses: $0,075 / 12 = 0,00625$ (0,625 % mensual).
+2. **Factor de capitalización**: Calculamos $(1 + 0,00625)^{48} = (1,00625)^{48} = 1,348599$.
+3. **Cálculo de la cuota**:
+   $$C = 9.180 \cdot \frac{0,00625 \times 1,348599}{1,348599 - 1} = 9.180 \cdot \frac{0,0084287}{0,348599} = 9.180 \times 0,0241789 = 221,96\text{ €}$$
+4. **Desglose del primer mes**: En la primera cuota de **221,96 €**, los intereses suman $9.180 \times 0,00625 = 57,38\text{ €}$, mientras que **164,58 €** reducen deuda real.
+5. **Coste total de la operación**: En 48 cuotas abonarás $221,96 \times 48 = 10.654,08\text{ €}$. Sumando la entrada de 2.500 €, la motocicleta habrá costado **13.154,08 €**, lo que representa **1.654,08 €** entre intereses devengados (1.474,08 €) y comisión de apertura financiada (180 €).
 
-1. **Monthly Payment (`M`)** — Total periodic principal and interest payment: Parámetro estructural en la ecuación de Calculadora de Préstamos para Motos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-2. **Principal Loan Amount (`P`)** — Initial borrowed loan balance: Parámetro estructural en la ecuación de Calculadora de Préstamos para Motos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-3. **Periodic Interest Rate (`i`)** — Annual interest rate divided by payment frequency (e.g. APR / 12): Parámetro estructural en la ecuación de Calculadora de Préstamos para Motos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-4. **Total Number of Payments (`n`)** — Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360): Parámetro estructural en la ecuación de Calculadora de Préstamos para Motos. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
+## Comparativa de modalidades de crédito según plazo y estructura
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+La siguiente tabla compara las opciones habituales del mercado para una moto nueva de 10.000 € con un 20 % de entrada (8.000 € de principal base):
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+| Modalidad de Financiación | Plazo Típico | TIN Orientativo | Cuota Mensual Aprox. | Cuota Final (Balón / VFG) | Coste Total de Intereses y Comisiones | Perfil Recomendado |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Préstamo lineal de concesionario** | 48 meses | 7,50 % | 193 € | 0 € | ~1.480 € | Quienes buscan tramitación rápida y conservar la moto a largo plazo |
+| **Multiopción / Select (Cuota Balón)** | 36 meses | 6,90 % | 132 € | 4.500 € (45 % PVP) | ~1.490 € (sin refinanciar VFG) | Motoristas que cambian de modelo cada 3 años (< 10.000 km/año) |
+| **Préstamo personal bancario** | 48 meses | 6,25 % | 189 € | 0 € | ~1.060 € | Compradores con nómina que desean propiedad plena sin reserva de dominio |
+| **Crédito para moto usada (> 5 años)** | 36 meses | 10,50 % | 260 € | 0 € | ~1.360 € | Compra de ocasión en tienda profesional con garantía mecánica |
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+## La trampa de la financiación con cuota balón (Multiopción) y la reserva de dominio
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+Los programas de financiación flexible con valor futuro garantizado (conocidos como *Select*, *Multiopción* o *Easy Ride*) permiten estrenar motos con cuotas bajas, pero esconden tres aspectos clave:
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
+* **Intereses continuos sobre la cuota final**: Si financias 8.000 € y dejas una cuota balón final de 4.500 € para el mes 36, durante los tres años pagas intereses todos los meses sobre esos 4.500 € aplazados. Si al vencer el plazo decides quedarte la moto y **refinanciar la cuota final** por otros 24 o 36 meses, pagarás intereses dos veces por el mismo bloque de capital.
+* **Límites de kilometraje y estado**: El Valor Futuro Garantizado exige devolver la moto sin daños estéticos, con revisiones en taller oficial y sin superar el kilometraje anual contratado (10.000 a 15.000 km/año).
+* **Cancelación de la reserva de dominio**: Las financieras de marca inscriben una reserva de dominio en el Registro de Bienes Muebles. Al terminar de pagar el préstamo, debes solicitar la carta de cancelación y levantar la carga en el Registro (entre 20 € y 50 €) para que la moto sea transferible en Tráfico (DGT).
 
-Todos los cálculos realizados en **Calculadora de Préstamos para Motos** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+## Recomendaciones financieras antes de firmar en el concesionario
+
+1. **Aplica la regla 20/4/10**: Aporta al menos un **20 % de entrada**, no financies a más de **4 años** (48 meses) y verifica que la cuota mensual más el seguro prorrateado no supere el **10 % de tu salario neto mensual**.
+2. **No financies el equipamiento**: Cascos, chaquetas con airbag y neumáticos se desgastan en 3 a 5 años. Incorporar 1.200 € de equipamiento al préstamo a un 9 % TAE encarece innecesariamente elementos consumibles.
+3. **Exige la oferta sin seguros vinculados**: Pide el cuadro de amortización con y sin seguro de protección de pagos para comprobar cuánto sube la TAE real.
+4. **Cubre el riesgo de siniestro total o robo**: Si tu entrada es menor al 20 %, durante los primeros 18 meses la deuda pendiente puede superar el valor venal de indemnización. Contrata un seguro con reposición a valor de nuevo durante los dos primeros años.

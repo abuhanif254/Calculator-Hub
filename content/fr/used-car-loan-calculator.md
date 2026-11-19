@@ -1,75 +1,88 @@
 ---
 title: "Calculatrice de Prêt Auto d'Occasion"
-metaTitle: "Calculatrice de Prêt Auto d'Occasion"
-description: "Calculez vos mensualités, le total des intérêts et le tableau d'amortissement pour l'achat d'un véhicule d'occasion."
-metaDescription: "Estimez les mensualités de votre crédit automobile pour un véhicule d'occasion. Personnalisez l'apport, la durée et le taux."
+metaTitle: "Calculatrice de Prêt Auto d'Occasion : Crédit et TAEG"
+description: "Calculez vos mensualités, le coût total des intérêts et l'amortissement d'un crédit automobile pour l'achat d'un véhicule d'occasion."
+metaDescription: "Simulez vos mensualités de crédit auto pour un véhicule d'occasion. Calculez le TAEG, l'apport, la reprise et le coût total sur 36, 48 ou 60 mois."
+metaKeywords: "calculatrice prêt auto occasion, simulation crédit voiture occasion, calcul mensualité crédit auto, TAEG prêt auto occasion, financement véhicule occasion"
 faqs:
-  - question: "Quelle formule mathématique exacte utilise Calculatrice de Prêt Auto d'Occasion ?"
-    answer: "Calculatrice de Prêt Auto d'Occasion applique l'équation de référence (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]). Le moteur traite les variables (paramètres saisis) en virgule flottante double précision (norme IEEE 754) afin d'éliminer toute erreur d'arrondi intermédiaire."
-  - question: "Quelles sont les valeurs de référence pré-remplies dans Calculatrice de Prêt Auto d'Occasion ?"
-    answer: "Le simulateur initialise un scénario de référence calibré (valeurs standards du secteur) permettant d'observer immédiatement l'équilibre du modèle avant de saisir vos propres paramètres."
-  - question: "Quel est l'impact d'une variation de le paramètre principal sur le résultat de Calculatrice de Prêt Auto d'Occasion ?"
-    answer: "Dans la relation (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]), le paramètre principal interagit directement avec les variables secondaires. En faisant varier le paramètre principal isolément, vous mesurez l'élasticité mathématique exacte du résultat principal et des indicateurs secondaires."
-  - question: "Les résultats de Calculatrice de Prêt Auto d'Occasion incluent-ils la fiscalité et les frais annexes ?"
-    answer: "Calculatrice de Prêt Auto d'Occasion modélise rigoureusement l'équation financière (Calculez vos mensualités, le total des intérêts et le tableau d'amortissement pour l'achat d'un véhicule d'occasion.) selon vos entrées. Pour un engagement contractuel ou fiscal, complétez cette simulation avec les frais spécifiques de votre établissement ou conseiller."
-  - question: "Mes données saisies dans Calculatrice de Prêt Auto d'Occasion sont-elles confidentielles ?"
-    answer: "Oui. L'intégralité des calculs de Calculatrice de Prêt Auto d'Occasion s'exécute 100 % localement dans votre navigateur web (conformité RGPD), sans aucun envoi vers un serveur externe."
+  - question: "Pourquoi les taux de crédit pour une voiture d'occasion sont-ils plus élevés que pour une voiture neuve ?"
+    answer: "Deux facteurs expliquent cet écart de 1,50 % à 3,00 % : d'une part, les constructeurs automobiles ne subventionnent pas les taux sur le marché de l'occasion comme ils le font via leurs captives financières pour écouler des modèles neufs ; d'autre part, la valeur de revente du véhicule servant de garantie en cas de défaut est plus difficile à prévoir."
+  - question: "Existe-t-il une limite d'âge ou de kilométrage du véhicule pour obtenir un prêt auto affecté ?"
+    answer: "Oui. La majorité des banques et établissements spécialisés exigent que le véhicule d'occasion ait moins de 7 à 8 ans au moment de la souscription (et qu'il ne dépasse pas 10 à 12 ans à la dernière échéance du prêt), avec un kilométrage généralement inférieur à 150 000 kilomètres. Au-delà, il faut recourir à un prêt personnel non affecté."
+  - question: "Quelle est la durée idéale pour financer l'achat d'une voiture d'occasion ?"
+    answer: "Les experts financiers recommandent de limiter la durée entre 36 et 48 mois (3 à 4 ans), et de ne jamais dépasser 60 mois. Sur un véhicule ayant déjà 3 ou 4 ans d'usure, un crédit de 72 mois entraîne un risque élevé de devoir payer simultanément des mensualités de prêt et des réparations mécaniques coûteuses hors garantie."
+  - question: "Vaut-il mieux souscrire un crédit affecté ou un prêt personnel pour une occasion achetée à un particulier ?"
+    answer: "Le crédit auto affecté offre une protection juridique supérieure : si la vente n'aboutit pas ou si le véhicule n'est pas livré, le contrat de crédit est automatiquement annulé. Il exige toutefois un bon de commande ou une facture, ce qui est simple chez un professionnel mais nécessite une attestation de vente formelle entre particuliers."
+  - question: "Peut-on rembourser un prêt auto d'occasion par anticipation sans frais en cas de revente du véhicule ?"
+    answer: "Dans l'Union européenne (directive sur le crédit à la consommation, article L312-34 du Code de la consommation en France), le remboursement anticipé est totalement gratuit si le montant remboursé est inférieur à 10 000 € sur 12 mois. Au-delà, l'indemnité est plafonnée à 1 % du capital (ou 0,5 % s'il reste moins d'un an). Au Canada et aux États-Unis, la plupart des prêts auto standards sont ouverts sans pénalité."
 ---
 
-## Méthodologie Technique et Architecture Mathématique : Calculatrice de Prêt Auto d'Occasion
+## Financer un Véhicule d'Occasion : Maîtriser l'Équilibre entre Décote et Coût du Crédit
 
-Calculez vos mensualités, le total des intérêts et le tableau d'amortissement pour l'achat d'un véhicule d'occasion. Dans la modélisation financière quantitative, les résultats fournis par **Calculatrice de Prêt Auto d'Occasion** dépendent directement de la périodicité de capitalisation, de la distinction entre taux nominal et taux effectif global (TAEG/APR) et du calendrier des flux de trésorerie. Une variation de 50 points de base sur le taux d'intérêt ou d'actualisation produit un effet cumulatif non linéaire sur longue période.
+L'acquisition d'un véhicule d'occasion récent (de 2 à 4 ans) permet d'éviter la décote brutale des vingt-quatre premiers mois qui ampute une voiture neuve de **30 % à 40 %** de sa valeur catalogue. Cependant, cet avantage économique à l'achat peut être rapidement érodé si le financement est mal calibré. Sur le marché de la seconde main, les organismes de crédit et les banques appliquent des barèmes tarifaires segmentés selon l'ancienneté de la carte grise, le montant emprunté et la motorisation (les véhicules électriques ou hybrides d'occasion bénéficiant souvent de prêts « mobilité verte » à taux bonifié).
 
-### 1. Modèle Mathématique et Formule de Référence
+Contrairement à une location avec option d'achat (LOA) souvent coûteuse sur l'occasion, le **crédit automobile amortissable à taux fixe** vous confère la pleine propriété du véhicule dès le premier jour tout en figeant contractuellement votre échéance mensuelle jusqu'au terme du contrat.
 
-Le moteur de calcul de **Calculatrice de Prêt Auto d'Occasion** traite vos variables d'entrée en temps réel selon la relation fondamentale suivante :
+---
 
-```
-M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
-```
+## Formule Mathématique de la Mensualité et du Capital Net Financé
 
-À chaque modification d'un paramètre, l'algorithme vérifie la cohérence des domaines numériques et applique une arithmétique en virgule flottante double précision (norme IEEE 754) afin d'éliminer les erreurs d'arrondi intermédiaires et de générer instantanément les indicateurs principaux et secondaires.
+Pour déterminer votre mensualité exacte, il convient d'abord d'isoler le **capital net à emprunter ($C$)** à partir du prix de vente affiché, en intégrant les taxes d'immatriculation (certificat d'immatriculation ou taxes de vente provinciales/locales), l'apport personnel et la reprise éventuelle de votre ancien véhicule :
 
-### 2. Tableau des Paramètres et Matrice Multi-Scénarios
+$$C = \text{Prix du véhicule} + \text{Frais et taxes d'immatriculation} - \text{Apport personnel} - \text{Valeur nette de reprise}$$
 
-Le tableau ci-dessous détaille la structure technique des variables ainsi que les trois paliers de simulation (-20 % prudent, référence calibrée et +20 % élevé) pris en charge par **Calculatrice de Prêt Auto d'Occasion** :
+> **Attention au report de dette négative** : Si votre ancien véhicule repris par le concessionnaire fait encore l'objet d'un crédit dont le solde restant dû dépasse sa valeur de rachat, la différence vient s'ajouter au capital $C$.
 
-| Paramètre d'Entrée | Unité | Valeur de Référence | Plage d'Analyse Recommandée |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `SI / Standard` | Calibrated | Total periodic principal and interest payment |
-| **Principal Loan Amount (`P`)** | `SI / Standard` | Calibrated | Initial borrowed loan balance |
-| **Periodic Interest Rate (`i`)** | `SI / Standard` | Calibrated | Annual interest rate divided by payment frequency (e.g. APR / 12) |
-| **Total Number of Payments (`n`)** | `SI / Standard` | Calibrated | Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) |
+Une fois le capital $C$ arrêté, la mensualité constante ($M$) sur $n$ mois est calculée à partir du taux périodique mensuel $r$ :
 
-| Variable du Modèle | Scénario Prudent (-20%) | Scénario de Référence | Scénario Élevé (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `-20% (M₀ × 0.8)` | `Baseline (M₀)` | `+20% (M₀ × 1.2)` |
-| **Principal Loan Amount (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Periodic Interest Rate (`i`)** | `-20% (i₀ × 0.8)` | `Baseline (i₀)` | `+20% (i₀ × 1.2)` |
-| **Total Number of Payments (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
+$$M = C \times \frac{r(1 + r)^n}{(1 + r)^n - 1}$$
 
-### 3. Analyse de Sensibilité des Variables d'Entrée
+Où :
+* **$r$ (Taux mensuel)** : en Amérique du Nord et dans la majorité des simulateurs internationaux, $r$ s'obtient par la méthode proportionnelle $r = \frac{\text{Taux annuel}}{12}$. En Europe, lorsque l'établissement affiche directement le **TAEG** (Taux Annuel Effectif Global), vérifiez le taux débiteur nominal fixe servant de base à l'échéancier hors assurance facultative.
+* **$n$ (Nombre de mensualités)** : durée totale du prêt exprimée en mois (généralement $24$, $36$, $48$ ou $60\text{ mois}$).
+* **Coût total des intérêts ($I_{total}$)** : s'obtient par la différence $I_{total} = (M \times n) - C$.
 
-Une maîtrise précise de chaque variable vous permet de simuler des scénarios réalistes et de mesurer l'élasticité du résultat :
+---
 
-1. **Monthly Payment (`M`)** — Total periodic principal and interest payment : Paramètre structurel dans l'équation de Calculatrice de Prêt Auto d'Occasion. Sa variation modifie directement la sensibilité marginale du résultat principal.
-2. **Principal Loan Amount (`P`)** — Initial borrowed loan balance : Paramètre structurel dans l'équation de Calculatrice de Prêt Auto d'Occasion. Sa variation modifie directement la sensibilité marginale du résultat principal.
-3. **Periodic Interest Rate (`i`)** — Annual interest rate divided by payment frequency (e.g. APR / 12) : Paramètre structurel dans l'équation de Calculatrice de Prêt Auto d'Occasion. Sa variation modifie directement la sensibilité marginale du résultat principal.
-4. **Total Number of Payments (`n`)** — Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) : Paramètre structurel dans l'équation de Calculatrice de Prêt Auto d'Occasion. Sa variation modifie directement la sensibilité marginale du résultat principal.
+## Exemple Chiffré Détaillé : Achat d'une Occasion de 19 500 € sur 48 Mois
 
-### 4. Protocole d'Utilisation et de Validation en 4 Étapes
+Simulons l'achat d'une berline compacte d'occasion de 3 ans affichée à **19 500 €** (ou `$`) chez un professionnel. L'acheteur fait reprendre son ancien véhicule pour **2 500 €** et verse un apport personnel de **2 000 €**. Il finance le solde sur **48 mois (4 ans)** à un taux annuel fixe de **6,90 %**.
 
-1. **Établissement du Scénario de Référence** : Observez d'abord les résultats générés avec les valeurs par défaut afin de comprendre l'équilibre standard du modèle.
-2. **Harmonisation des Unités de Mesure** : Vérifiez que l'ensemble de vos données respecte la même base temporelle ou physique (ex. taux annuels vs mensuels, système métrique vs impérial).
-3. **Test de Sensibilité Univariée** : Faites varier un seul paramètre à la fois pour isoler son impact mathématique exact sur le résultat final.
-4. **Comparaison Multi-Scénarios** : Confrontez une hypothèse prudente, une hypothèse médiane et une hypothèse haute afin d'encadrer votre prise de décision avec une marge de sécurité optimale.
+1. **Calcul du capital net emprunté ($C$)** :
+   $$C = 19\,500 - 2\,500 - 2\,000 = \mathbf{15\,000\text{ €}}$$
+2. **Conversion du taux annuel en taux mensuel ($r$)** :
+   $$r = \frac{0,069}{12} = 0,00575\text{ (soit } 0,575\,\%\text{ par mois)}$$
+3. **Calcul du coefficient de capitalisation sur 48 mois** :
+   $$(1 + 0,00575)^{48} \approx 1,316807$$
+4. **Calcul de la mensualité de crédit ($M$)** :
+   $$M = 15\,000 \times \frac{0,00575 \times 1,316807}{1,316807 - 1} = 15\,000 \times 0,02389988 = \mathbf{358,50\text{ € / mois}}$$
+5. **Coût total du financement et prix de revient global** :
+   * Total des 48 mensualités : $358,498 \times 48 = \mathbf{17\,207,91\text{ €}}$.
+   * Coût total des intérêts bancaires : $17\,207,91 - 15\,000 = \mathbf{2\,207,91\text{ €}}$.
+   * dès la première échéance, $86,25\text{ €}$ couvrent les intérêts ($15\,000 \times 0,00575$) et **$272,25\text{ €}$** remboursent immédiatement le capital.
 
-### 5. Pièges Fréquents lors des Calculs Manuels
+---
 
-- **Arrondis Intermédiaires Prématurés** : Tronquer les décimales au cours des étapes intermédiaires fausse sensiblement le résultat final dans les formules composées, trigonométriques ou scientifiques.
-- **Confusion d'Échelles ou de Périodicité** : Mélanger des grandeurs non converties constitue la première source d'erreur dans les feuilles de calcul manuelles.
-- **Négligence des Indicateurs Secondaires** : Au-delà du résultat principal, l'analyse des répartitions détaillées et des courbes d'évolution est essentielle pour interpréter correctement le phénomène étudié.
+## Comparatif des Durées (24 à 72 Mois) et Suivi de la Valeur Résiduelle
 
-### 6. Confidentialité Absolue et Exécution Côté Client
+Allonger la durée d'un crédit auto d'occasion fait baisser la mensualité mais augmente fortement le coût total des intérêts et ralentit le désendettement face à l'usure mécanique du véhicule. Voici la comparaison complète pour un emprunt de **15 000 €** (pour une voiture achetée 19 500 € dont la cote sur le marché de l'occasion sera d'environ **12 800 €** après 2 ans de détention) :
 
-L'intégralité des opérations de **Calculatrice de Prêt Auto d'Occasion** s'exécute **100 % localement dans votre navigateur web**. Aucune donnée saisie n'est envoyée vers un serveur distant ni enregistrée dans une base de données, garantissant une sécurité maximale (conformité RGPD) et une réactivité immédiate sur ordinateur comme sur mobile.
+| Durée du Prêt Auto | Taux Moyen Observé | Mensualité ($M$) | Coût Total des Intérêts | Capital Restant Dû Après 24 Mois | Situation Patrimoniale à 24 Mois (Cote : 12 800 €) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **24 mois (2 ans)** | **6,40 %** | **667,56 €** | **1 021,44 €** | **0 €** (Prêt soldé) | **+ 12 800 €** de capital net disponible |
+| **36 mois (3 ans)** | **6,60 %** | **460,41 €** | **1 574,76 €** | **5 327 €** | **+ 7 473 €** de valeur nette positive |
+| **48 mois (4 ans)** | **6,90 %** | **358,50 €** | **2 207,91 €** | **8 028 €** | **+ 4 772 €** de valeur nette positive |
+| **60 mois (5 ans)** | **7,40 %** | **299,86 €** | **2 991,60 €** | **9 730 €** | **+ 3 070 €** de marge de sécurité réduite |
+| **72 mois (6 ans)** | **8,20 %** | **264,50 €** | **4 044,00 €** | **10 924 €** | **+ 1 876 €** (Risque élevé en cas de panne) |
+
+Passer de 48 à 72 mois ne réduit la mensualité que de **94 €**, mais **fait presque doubler la facture d'intérêts** (+1 836 €) tout en vous laissant avec près de 11 000 € de dette résiduelle sur une voiture qui aura alors 5 à 6 ans d'âge.
+
+---
+
+## Règles d'Or et Pièges à Éviter sur le Financement d'Occasion
+
+Pour sécuriser votre budget automobile, appliquez ces quatre principes de vérification avant de signer votre offre de prêt :
+
+* **Respectez la règle patrimoniale « 20 / 4 / 10 »** : Mobilisez au moins **20 % d'apport initial** (ou de reprise), limitez la durée de remboursement à **4 ans (48 mois) maximum**, et vérifiez que le coût mensuel global du véhicule (mensualité de crédit + assurance auto + carburant/entretien courant) ne dépasse pas **10 % à 12 % du revenu net mensuel** de votre foyer.
+* **Mettez en concurrence le crédit vendeur et votre banque** : Les concessionnaires perçoivent des commissions d'intermédiation sur les crédits vendus sur place. Demandez systématiquement une simulation à votre banque principale ou à une coopérative de crédit (*credit union*) avant de vous rendre en concession : l'écart de TAEG atteint fréquemment **1,50 à 2,50 points**.
+* **Refusez les assurances facultatives redondantes** : Les contrats de financement en concession incluent souvent par défaut des garanties perte financière (*GAP insurance*), des extensions de garantie mécanique financées à crédit ou des assurances emprunteur majorées. Si vous versez 20 % d'apport sur un véhicule d'occasion qui a déjà subi sa plus forte décote, la garantie perte financière est mathématiquement superflue.

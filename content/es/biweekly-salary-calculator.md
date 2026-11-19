@@ -1,68 +1,88 @@
 ---
-title: "Calculadora de Sueldo Quincenal"
-metaTitle: "Calculadora de Sueldo Quincenal — Gratis y Precisa"
-description: "Calcula tus ingresos netos y desglose de pago para nóminas con frecuencia de pago quincenal (26 períodos al año)."
-metaDescription: "Calcula cuánto recibirás en cada cheque quincenal con base en tu salario anual o tarifa horaria."
+title: "Calculadora de Sueldo Quincenal (26 Pagos al Año)"
+metaTitle: "Calculadora de Sueldo Quincenal — 26 y 24 Pagos al Año"
+description: "Calcula el importe exacto de tu cheque de nómina quincenal (26 períodos al año o 24 quincenas fijas) a partir de tu salario anual o tarifa por hora."
+metaDescription: "Calcula tu sueldo quincenal bruto y neto en nóminas de 26 pagos al año (biweekly) o 24 quincenas. Descubre cómo aprovechar los 2 meses de 3 cheques."
+metaKeywords: "calculadora de sueldo quincenal, pago cada dos semanas, 26 pagos al año, diferencia biweekly y quincenal, calcular cheque quincenal, salario quincenal"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Sueldo Quincenal?"
-    answer: "Calculadora de Sueldo Quincenal evalúa sus parámetros mediante la ecuación verificada (y = f(x₁, x₂, ..., xₙ)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Sueldo Quincenal para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Sueldo Quincenal antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Sueldo Quincenal?"
-    answer: "Dentro del modelo cuantitativo (y = f(x₁, x₂, ..., xₙ)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Sueldo Quincenal impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Sueldo Quincenal calcula el modelo matemático puro (Calcula tus ingresos netos y desglose de pago para nóminas con frecuencia de pago quincenal (26 períodos al año).) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Sueldo Quincenal?"
-    answer: "No. Todos los cálculos de Calculadora de Sueldo Quincenal se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Cuál es la diferencia exacta entre cobrar cada dos semanas (biweekly) y cobrar por quincena (semi-monthly)?"
+    answer: "En el esquema cada dos semanas o catorcenal (biweekly), cobras cada 14 días exactos (por ejemplo, un viernes sí y otro no), lo que suma 26 pagos al año (52 semanas / 2). En el esquema quincenal de calendario (semi-monthly), cobras dos fechas fijas al mes (generalmente el día 15 y el día 30 o último del mes), lo que suma 24 pagos al año. Para un mismo salario anual, cada cheque de 24 pagos es un 8,33 % mayor que cada cheque de 26 pagos, pero al final del año ambos suman exactamente lo mismo."
+  - question: "¿Por qué hay dos meses al año en los que recibo 3 cheques de nómina?"
+    answer: "Como el año tiene 52 semanas (26 pagos cada 14 días) y solo 12 meses, si contaras únicamente 2 pagos por mes sumarías 24 pagos (48 semanas). Las 4 semanas restantes generan exactamente dos meses en el calendario con 3 fechas de cobro (por ejemplo, cuando el primer pago cae el viernes 1 o 2 del mes, volverás a cobrar los viernes 15/16 y 29/30)."
+  - question: "¿Cuántas horas de trabajo comprende una nómina de 26 pagos frente a una de 24 pagos?"
+    answer: "En una jornada completa de 40 horas semanales (2.080 horas al año), una nómina cada dos semanas (biweekly) siempre liquida exactamente 80 horas ordinarias (2 semanas × 40 horas). En cambio, una quincena fija de 24 pagos al año promedia 86,67 horas por pago (2.080 horas / 24)."
+  - question: "¿Qué ocurre en los años en que el calendario produce 27 fechas de pago (27-paycheck year)?"
+    answer: "Dado que un año común tiene 365 días (52 semanas más 1 día) y un bisiesto 366 días, aproximadamente cada 11 años el día de pago semanal coincide 27 veces en el mismo año natural. La mayoría de los departamentos de recursos humanos siguen dividiendo tu salario anual entre 26, aunque algunas corporaciones dividen el salario anual de ese año específico entre 27 para no exceder el presupuesto."
+  - question: "¿Cómo se descuentan el seguro médico y los beneficios en los meses de 3 cheques?"
+    answer: "Muchas empresas dividen la prima anual del seguro médico o dental entre 24 deducciones (2 por mes). Cuando llega un mes con 3 cheques, el tercer cheque suele quedar exento de descuentos de seguro médico, haciendo que ese pago neto sea incluso más alto que tus cheques habituales."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Sueldo Quincenal
+En español se utiliza con frecuencia el término **sueldo quincenal** para describir dos sistemas de nómina matemáticamente distintos: el pago **cada dos semanas o catorcenal** (*biweekly*, estándar en Estados Unidos, Canadá y empresas multinacionales, con **26 pagos al año**) y el pago **quincenal de calendario** (*semi-monthly*, habitual en México, Colombia y gran parte de Latinoamérica, con **24 pagos al año** los días 15 y 30). Confundir ambos divisores genera desviaciones del **8,33 %** al calcular el importe de cada cheque y planificar los gastos domésticos.
 
-Calcula tus ingresos netos y desglose de pago para nóminas con frecuencia de pago quincenal (26 períodos al año). En el modelado financiero cuantitativo, los resultados de **Calculadora de Sueldo Quincenal** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+## Pago Cada Dos Semanas (26 Nóminas) vs. Quincena Fija (24 Nóminas)
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+La diferencia fundamental radica en cómo se fragmenta el año laboral de 52 semanas (365 días naturales):
 
-El motor computacional de **Calculadora de Sueldo Quincenal** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+- **Esquema *Biweekly* (Cada 14 días — 26 períodos anuales)**: El ciclo sigue un día fijo de la semana (por ejemplo, viernes alternos). Cada nómina liquida exactamente **14 días naturales (80 horas laborables** en una jornada ordinaria de 40 horas semanales). Durante 10 meses del año cobras 2 cheques mensuales, y durante **2 meses del año recibes 3 cheques completos**.
+- **Esquema *Semi-Monthly* (Días 15 y último — 24 períodos anuales)**: El ciclo sigue fechas fijas del calendario. Recibes siempre 2 pagos al mes, pero la duración de cada quincena varía entre 13 y 16 días naturales según el mes tenga 28, 30 o 31 días (promediando **86,67 horas laborables** por quincena).
 
-```
-y = f(x₁, x₂, ..., xₙ)
-```
+## Fórmulas Matemáticas para el Cálculo del Cheque Quincenal
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+### 1. A partir de un Salario Bruto Anual ($S_{\text{anual}}$)
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+$$\text{Cheque Bruto (26 pagos)} = \frac{S_{\text{anual}}}{26} \qquad \text{y} \qquad \text{Cheque Bruto (24 pagos)} = \frac{S_{\text{anual}}}{24}$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Sueldo Quincenal**:
+### 2. A partir de una Tarifa por Hora ($T_h$) y Horas Extra
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |
+Para un trabajador remunerado por hora que cumple $H_s$ horas ordinarias semanales y $H_{\text{extra}}$ horas extraordinarias por semana pagadas a un múltiplo de recargo $k$ (usualmente $k = 1,5$):
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `80` | `100` | `120` |
+$$\text{Cheque Bruto (26 pagos)} = 2 \times \left[ \left(T_h \times H_s\right) + \left(T_h \times k \times H_{\text{extra}}\right) \right]$$
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+En una jornada estándar de 40 horas semanales sin horas extra, basta con multiplicar tu tarifa por hora por **80 horas**: $\text{Cheque Bruto (26 pagos)} = T_h \times 80$.
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+### 3. Ecuación del Sueldo Quincenal Neto (Líquido en Mano)
 
-1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en Calculadora de Sueldo Quincenal y establece el punto de partida para todas las métricas derivadas.
-2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.
-3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.
+$$\text{Cheque Neto} = \text{Cheque Bruto} - D_{\text{pre}} - R_{\text{fiscal}} - C_{\text{social}} - D_{\text{post}}$$
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+Donde:
+- $D_{\text{pre}}$: Deducciones antes de impuestos por período de pago (aporte a plan de retiro 401(k) tradicional, cuenta médica HSA/FSA, prima de seguro médico).
+- $R_{\text{fiscal}}$: Retención del impuesto sobre la renta federal y estatal (calculada sobre la base imponible $\text{Cheque Bruto} - D_{\text{pre}}$).
+- $C_{\text{social}}$: Cotizaciones a la Seguridad Social / FICA (en Estados Unidos, 6,2 % de Social Security más 1,45 % de Medicare = 7,65 % sobre el salario sujeto).
+- $D_{\text{post}}$: Deducciones después de impuestos (aportes a Roth 401(k), cuotas sindicales o seguros voluntarios).
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+## Ejemplo Práctico Paso a Paso: Salario Anual de $58,500 USD (o 58.500 €)
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+Supongamos que **Lucía** firma un contrato con un salario bruto anual de **`$58,500 USD`** (equivalente a **`$28.125/hora`** por 2.080 horas anuales). Desglosemos su recibo de nómina bajo el sistema de **26 pagos anuales**:
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+1. **Cheque Quincenal Bruto (26 pagos)**:
+   $$\text{Cheque Bruto} = \frac{\$58.500}{26} = \mathbf{\$2.250,00}$$
+   *(En un esquema de 24 quincenas fijas los días 15 y 30, cada pago bruto sería de $\$58.500 / 24 = \mathbf{\$2.437,50}$, es decir, $\$187,50$ adicionales por recibo).*
+2. **Deducciones Antes de Impuestos ($D_{\text{pre}}$)**:
+   - Aporte del 6 % al plan 401(k): $\$2.250 \times 0,06 = \$135,00$.
+   - Prima de seguro médico corporativo: $\$85,00$ por cheque.
+   - Base sujeta a impuesto sobre la renta: $\$2.250 - \$135 - \$85 = \$2.030,00$.
+3. **Impuestos y Seguridad Social por Cheque**:
+   - Seguridad Social y Medicare (FICA 7,65 % sobre `$2,250 - $85 = $2,165`): $\$2.165 \times 0,0765 = \$165,62$.
+   - Retención estimada de impuesto sobre la renta (12 % efectivo sobre `$2,030`): $\$2.030 \times 0,12 = \$243,60$.
+4. **Cheque Quincenal Neto en Cuenta Bancaria**:
+   $$\text{Cheque Neto} = \$2.250,00 - \$135,00 - \$85,00 - \$165,62 - \$243,60 = \mathbf{\$1.620,78}$$
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
+Durante 10 meses del año, Lucía ingresa dos cheques netos ($\mathbf{\$3.241,56\text{ / mes}}$), pero en los **2 meses con tres viernes de cobro**, percibe tres cheques netos ($\mathbf{\$4.862,34}$), generando una inyección extra de liquidez de **`$1,620.78` netos** en cada uno de esos dos meses.
 
-Todos los cálculos realizados en **Calculadora de Sueldo Quincenal** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+## Tabla Comparativa: 26 Pagos (Biweekly) vs. 24 Quincenas vs. 12 Meses
+
+Equivalencia salarial bruta según frecuencia de nómina para una jornada completa de 40 horas semanales (2.080 horas/año):
+
+|Salario Anual|Tarifa Hora|Biweekly (26 Pagos · 80 h)|Quincena (24 Pagos · 86,67 h)|Mes de 2 Cheques Biweekly|Mes de 3 Cheques Biweekly|Mensual Exacto (12 Pagas)|
+|:---|:---|:---|:---|:---|:---|:---|
+|**26.000 €/$**|12,50 €/$|**1.000,00 €/$**|1.083,33 €/$|2.000,00 €/$|3.000,00 €/$|2.166,67 €/$|
+|**39.000 €/$**|18,75 €/$|**1.500,00 €/$**|1.625,00 €/$|3.000,00 €/$|4.500,00 €/$|3.250,00 €/$|
+|**52.000 €/$**|25,00 €/$|**2.000,00 €/$**|2.166,67 €/$|4.000,00 €/$|6.000,00 €/$|4.333,33 €/$|
+|**65.000 €/$**|31,25 €/$|**2.500,00 €/$**|2.708,33 €/$|5.000,00 €/$|7.500,00 €/$|5.416,67 €/$|
+|**78.000 €/$**|37,50 €/$|**3.000,00 €/$**|3.250,00 €/$|6.000,00 €/$|9.000,00 €/$|6.500,00 €/$|
+|**104.000 €/$**|50,00 €/$|**4.000,00 €/$**|4.333,33 €/$|8.000,00 €/$|12.000,00 €/$|8.666,67 €/$|
+
+## Estrategias para Presupuestar una Nómina de 26 Pagos
+
+- **Basa tu presupuesto mensual fijo en 2 cheques, nunca en $S_{\text{anual}} / 12$**: Si ganas `$52,000` al año, tu media mensual estadística es `$4,333.33`, pero en 10 de los 12 meses solo ingresas **`$4,000` brutos** (dos cheques de `$2,000`). Si ajustas tu alquiler, hipoteca y suministros al límite de 2 cheques, los **dos terceros cheques del año (`$4,000` brutos en total)** actuarán como pagas extra íntegras para invertir o amortizar deudas.
+- **Sincroniza tu hipoteca a pagos cada dos semanas (*Biweekly Mortgage*)**: Pagar media cuota hipotecaria cada 14 días suma 26 medios pagos al año, equivalentes a **13 mensualidades completas en lugar de 12**, recortando entre 4 y 6 años una hipoteca de 30 años sin esfuerzo adicional.

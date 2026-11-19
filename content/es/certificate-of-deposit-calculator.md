@@ -1,78 +1,79 @@
 ---
 title: "Calculadora de Depósitos a Plazo Fijo (CD)"
-metaTitle: "Calculadora de Depósitos a Plazo Fijo (CD)"
-description: "Calcula el retorno garantizado al vencimiento de un certificado de depósito a plazo fijo."
-metaDescription: "Calcula el rendimiento exacto y los intereses generados por tus certificados de depósito a plazo fijo garantizado."
+metaTitle: "Calculadora de Depósitos a Plazo Fijo (CD) — Interés y TAE"
+description: "Calcula el rendimiento garantizado al vencimiento, los intereses brutos y la ganancia neta de impuestos de tus depósitos a plazo fijo y certificados (CD)."
+metaDescription: "Simula cuánto ganarás con un depósito a plazo fijo o Certificado de Depósito (CD) a 3, 6, 12 o 36 meses. Calcula intereses brutos, retención fiscal y TAE."
+metaKeywords: "calculadora depósito a plazo fijo, calculadora certificado de depósito CD, calcular intereses plazo fijo, simulador depósito bancario TAE, calculadora CDT"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Depósitos a Plazo Fijo (CD)?"
-    answer: "Calculadora de Depósitos a Plazo Fijo (CD) evalúa sus parámetros mediante la ecuación verificada (A = P (1 + r/n)^(nt)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Depósitos a Plazo Fijo (CD) para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Depósitos a Plazo Fijo (CD) antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Depósitos a Plazo Fijo (CD)?"
-    answer: "Dentro del modelo cuantitativo (A = P (1 + r/n)^(nt)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Depósitos a Plazo Fijo (CD) impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Depósitos a Plazo Fijo (CD) calcula el modelo matemático puro (Calcula el retorno garantizado al vencimiento de un certificado de depósito a plazo fijo.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Depósitos a Plazo Fijo (CD)?"
-    answer: "No. Todos los cálculos de Calculadora de Depósitos a Plazo Fijo (CD) se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Por qué conviene contratar un depósito a plazo fijo (CD) cuando los bancos centrales empiezan a bajar los tipos de interés?"
+    answer: "Porque el depósito a plazo fijo blinda por contrato la tasa de interés pactada durante toda su vigencia (12, 24 o 36 meses). Mientras que las cuentas remuneradas a la vista recortan su remuneración inmediatamente tras una bajada de tipos del BCE o la Reserva Federal, el depósito te garantiza el tipo alto hasta el día de vencimiento."
+  - question: "¿Puedo perder parte de mi capital inicial si cancelo un depósito a plazo fijo antes de tiempo?"
+    answer: "En España y la Unión Europea, el Banco de España establece que la penalización o comisión por cancelación anticipada nunca puede superar el importe de los intereses brutos generados hasta esa fecha, por lo que tu capital inicial está 100 % garantizado. En EE. UU. y Latinoamérica, algunos CD aplican una penalización equivalente a entre 90 y 180 días de intereses."
+  - question: "¿Por qué en un depósito a 2 o 3 años con pago de intereses al vencimiento la TAE es inferior al TIN?"
+    answer: "La normativa de cálculo de la TAE asume que los intereses generados cada 12 meses se reinvierten. Si un depósito a 24 o 36 meses no abona los intereses anualmente, sino que los retiene sin capitalizar hasta el final del segundo o tercer año, la TAE matemática resulta ligeramente inferior al TIN nominal."
+  - question: "¿Qué es una escalera de depósitos (CD Ladder) y para qué sirve?"
+    answer: "Consiste en dividir tu ahorro en varios depósitos con vencimientos escalonados (por ejemplo, a 3, 6, 9 y 12 meses) en lugar de bloquear todo el capital en un único plazo largo. Así dispones de una ventana de liquidez libre de penalización cada trimestre sin renunciar a los tipos de interés de los plazos de un año."
+  - question: "¿Cuánto retiene Hacienda sobre los intereses de un depósito bancario en España?"
+    answer: "Los intereses tributan en la base del ahorro del IRPF por tramos progresivos: el 19 % para los primeros 6.000 € de rendimientos anuales, el 21 % entre 6.000 € y 50.000 €, el 23 % entre 50.000 € y 200.000 €, el 27 % entre 200.000 € y 300.000 €, y el 28 % a partir de 300.000 €. Los bancos españoles aplican por defecto la retención inicial del 19 % al liquidar."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Depósitos a Plazo Fijo (CD)
+Los **depósitos a plazo fijo** —denominados **Certificados de Depósito (CD)** en Estados Unidos, **CDT** en Colombia o **Pagarés Bancarios y CEDES** en México— son contratos financieros en los que entregas un capital a una entidad de crédito durante un plazo determinado (desde 1 mes hasta 5 años) a cambio de un tipo de interés fijo e inamovible. A diferencia de las cuentas de ahorro a la vista, cuya remuneración puede variar de un mes a otro, el depósito a plazo fijo garantiza exactamente cuántos euros o dólares recibirás en la fecha de vencimiento.
 
-Calcula el retorno garantizado al vencimiento de un certificado de depósito a plazo fijo. En el modelado financiero cuantitativo, los resultados de **Calculadora de Depósitos a Plazo Fijo (CD)** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+Esta calculadora determina el valor final al vencimiento, los intereses brutos devengados y la ganancia neta en tu bolsillo tras descontar impuestos, tanto para depósitos con liquidación única al vencimiento como para certificados con capitalización periódica.
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+## Fórmulas de rendimiento: Liquidación a vencimiento frente a capitalización compuesta
 
-El motor computacional de **Calculadora de Depósitos a Plazo Fijo (CD)** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+En la práctica bancaria coexisten dos métodos de cálculo según el contrato abone los intereses de una sola vez al finalizar el plazo o los capitalice periódicamente dentro del propio depósito:
 
-```
-A = P (1 + r/n)^(nt)
-```
+### 1. Liquidación simple al vencimiento (estándar en plazos de 1 a 12 meses)
+Las entidades calculan el interés bruto ($I_{\text{bruto}}$) aplicando la convención de días reales sobre año civil ($\text{ACT}/365$):
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+$$I_{\text{bruto}} = P \cdot \text{TIN} \cdot \frac{d}{365} \qquad \text{e} \qquad I_{\text{neto}} = I_{\text{bruto}} \cdot (1 - \tau)$$
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+### 2. Capitalización compuesta periódica (habitual en CDs plurianuales)
+Cuando los intereses devengados cada mes o trimestre ($m$ veces al año) se suman al principal durante $t$ años para generar nuevos intereses, el valor final al vencimiento ($VF$) es:
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Depósitos a Plazo Fijo (CD)**:
+$$VF = P \left(1 + \frac{\text{TIN}}{m}\right)^{m \cdot t} \qquad \text{donde} \qquad I_{\text{bruto}} = VF - P$$
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `SI / Standard` | Calibrated | Total accumulated balance including principal and compounded interest |
-| **Principal Deposit (`P`)** | `SI / Standard` | Calibrated | Initial sum of money invested |
-| **Annual Interest Rate (`r`)** | `SI / Standard` | Calibrated | Nominal interest rate expressed in decimal form (e.g. 7% = 0.07) |
-| **Compounding Frequency (`n`)** | `SI / Standard` | Calibrated | Number of times interest is applied per year (12 for monthly, 365 for daily) |
-| **Time in Years (`t`)** | `SI / Standard` | Calibrated | Total duration of the investment |
+Las variables empleadas son:
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `-20% (A₀ × 0.8)` | `Baseline (A₀)` | `+20% (A₀ × 1.2)` |
-| **Principal Deposit (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Annual Interest Rate (`r`)** | `-20% (r₀ × 0.8)` | `Baseline (r₀)` | `+20% (r₀ × 1.2)` |
-| **Compounding Frequency (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
-| **Time in Years (`t`)** | `-20% (t₀ × 0.8)` | `Baseline (t₀)` | `+20% (t₀ × 1.2)` |
+* **$P$**: Capital principal inmovilizado en el depósito.
+* **$\text{TIN}$**: Tipo de Interés Nominal anual expresado en tanto por uno (por ejemplo, $0,035$ para el 3,50 %).
+* **$d$**: Número exacto de días que dura la imposición (por ejemplo, 90, 182 o 365 días).
+* **$m$**: Frecuencia de capitalización anual ($m = 12$ mensual, $m = 4$ trimestral, $m = 1$ anual).
+* **$t$**: Duración del certificado expresada en años.
+* **$\tau$**: Tipo de retención fiscal sobre rendimientos del capital mobiliario (por ejemplo, $0,19$ en el primer tramo de IRPF en España).
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+## Ejemplo numérico: Depósito de 40.000 € a 6, 12 y 24 meses (Bruto vs. Neto)
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+Supongamos que dispones de **40.000 €** (`USD 40,000`) que no vas a necesitar a corto plazo y evalúas un depósito al **3,50 % TIN** bajo tres plazos distintos, aplicando una retención fiscal del **19 %** ($\tau = 0,19$):
 
-1. **Future Value (`A`)** — Total accumulated balance including principal and compounded interest: Parámetro estructural en la ecuación de Calculadora de Depósitos a Plazo Fijo (CD). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-2. **Principal Deposit (`P`)** — Initial sum of money invested: Parámetro estructural en la ecuación de Calculadora de Depósitos a Plazo Fijo (CD). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-3. **Annual Interest Rate (`r`)** — Nominal interest rate expressed in decimal form (e.g. 7% = 0.07): Parámetro estructural en la ecuación de Calculadora de Depósitos a Plazo Fijo (CD). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-4. **Compounding Frequency (`n`)** — Number of times interest is applied per year (12 for monthly, 365 for daily): Parámetro estructural en la ecuación de Calculadora de Depósitos a Plazo Fijo (CD). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-5. **Time in Years (`t`)** — Total duration of the investment: Parámetro estructural en la ecuación de Calculadora de Depósitos a Plazo Fijo (CD). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
+1. **Depósito a 6 meses (182 días) con pago al vencimiento**:
+   * **Interés bruto**: $40.000 \times 0,035 \times (182 / 365) = 1.400 \times 0,498630 = \mathbf{698,08\text{ €}}$.
+   * **Retención fiscal (19 %)**: $698,08 \times 0,19 = 132,64\text{ €}$.
+   * **Interés neto y capital final**: Recibes **565,44 € limpios** (total al vencimiento: **40.565,44 €**).
+2. **Depósito a 12 meses (365 días) con pago al vencimiento**:
+   * **Interés bruto**: $40.000 \times 0,035 \times (365 / 365) = \mathbf{1.400,00\text{ €}}$.
+   * **Retención fiscal (19 %)**: $1.400,00 \times 0,19 = 266,00\text{ €}$.
+   * **Interés neto y capital final**: Recibes **1.134,00 € limpios** (total al vencimiento: **41.134,00 €**).
+3. **Certificado (CD) a 24 meses (2 años) con capitalización trimestral ($m = 4$)**:
+   * **Tasa trimestral**: $0,035 / 4 = 0,00875$ durante $4 \times 2 = 8\text{ trimestres}$.
+   * **Valor final bruto ($VF$)**: $40.000 \times (1,00875)^8 = 40.000 \times 1,072189 = \mathbf{42.887,56\text{ €}}$.
+   * **Interés bruto y ventaja compuesta**: Obtienes **2.887,56 € brutos** (**2.338,92 € netos** tras restar 548,64 € de impuestos), lo que supone **87,56 € adicionales** frente a un depósito sin capitalización trimestral.
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+## Cómo estructurar una Escalera de Depósitos (CD Ladder) de 40.000 €
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+El principal inconveniente de un plazo fijo a 12 o 24 meses es la falta de liquidez si surge una emergencia o si el banco prohíbe la cancelación anticipada. La estrategia de la **escalera de depósitos** divide el capital en cuatro tramos iguales para combinar alta rentabilidad con ventanas trimestrales de liquidez:
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+| Tramo del Capital | Importe Asignado | Plazo Inicial Contratado | TIN / TAE Orientativa | Interés Bruto en el Primer Ciclo | Qué Hacer al Vencer el Tramo |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Tramo 1 (Liquidez rápida)** | 10.000 € | 3 meses (90 días) | 3,10 % | 76,44 € | Si no necesitas el dinero, renueva a **12 meses** al tipo alto |
+| **Tramo 2 (Liquidez media)** | 10.000 € | 6 meses (182 días) | 3,30 % | 164,55 € | Al vencer al 6.º mes, renueva a **12 meses** |
+| **Tramo 3 (Puente anual)** | 10.000 € | 9 meses (273 días) | 3,40 % | 254,30 € | Al vencer al 9.º mes, renueva a **12 meses** |
+| **Tramo 4 (Núcleo anual)** | 10.000 € | 12 meses (365 días) | 3,60 % | 360,00 € | Al cumplir el año, toda tu cartera rinde al tipo de **12 meses** con un vencimiento libre cada 90 días |
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+## Criterios clave antes de inmovilizar tus ahorros
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
-
-Todos los cálculos realizados en **Calculadora de Depósitos a Plazo Fijo (CD)** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **Diferencia entre depósitos cancelables y no cancelables**: Muchos depósitos de banca extranjera contratados a través de plataformas europeas (como bancos de Italia, Lituania o Francia en Raisin) ofrecen las mayores TAE del mercado, pero **no admiten cancelación anticipada bajo ningún concepto** hasta el día exacto de vencimiento. Nunca destines tu fondo de emergencia primario a un depósito no cancelable.
+* **Desactiva la renovación automática tácita**: Casi todos los bancos incluyen por defecto una cláusula de prórroga automática al vencimiento. Si no la desactivas al menos 5 días antes de que expire el plazo, el depósito se renovará por otro año entero, a menudo a un tipo de interés estándar muy inferior al promocional que contrataste inicialmente.
+* **Respeta el límite de 100.000 € por entidad bancaria**: El Fondo de Garantía de Depósitos (FGD en Europa, o los USD 250,000 de la FDIC en EE. UU.) cubre la suma del principal más los intereses devengados. Si vas a invertir 100.000 €, deposita como máximo **95.000 € por banco** para que los intereses acumulados al vencimiento también queden dentro del paraguas de cobertura estatal.

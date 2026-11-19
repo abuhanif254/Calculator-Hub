@@ -1,68 +1,80 @@
 ---
 title: "Calculadora de Pago de Deudas"
-metaTitle: "Calculadora de Pago de Deudas — Gratis y Precisa"
-description: "Determine cuánto tiempo tardará en pagar su deuda y cuánto interés pagará."
-metaDescription: "Determine cuánto tiempo tardará en pagar su deuda y cuánto interés pagará."
+metaTitle: "Calculadora de Pago de Deudas: Plazos y Amortización"
+description: "Calcule cuántos meses tardará en liquidar sus préstamos y tarjetas de crédito, el coste total en intereses y el ahorro real al realizar amortizaciones anticipadas."
+metaDescription: "Calcule el plazo para liquidar sus deudas, compare los métodos avalancha y bola de nieve, y descubra cuánto interés ahorra con pagos extraordinarios."
+metaKeywords: "calculadora de pago de deudas, liquidar tarjetas de credito, metodo avalancha vs bola de nieve, cuadro de amortizacion deuda, amortizacion anticipada prestamo, salir de deudas"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Pago de Deudas?"
-    answer: "Calculadora de Pago de Deudas evalúa sus parámetros mediante la ecuación verificada (y = f(x₁, x₂, ..., xₙ)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Pago de Deudas para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Pago de Deudas antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Pago de Deudas?"
-    answer: "Dentro del modelo cuantitativo (y = f(x₁, x₂, ..., xₙ)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Pago de Deudas impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Pago de Deudas calcula el modelo matemático puro (Determine cuánto tiempo tardará en pagar su deuda y cuánto interés pagará.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Pago de Deudas?"
-    answer: "No. Todos los cálculos de Calculadora de Pago de Deudas se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Qué diferencia hay entre el método avalancha y el método bola de nieve para pagar deudas?"
+    answer: "En el método avalancha usted paga el mínimo en todas sus deudas y destina cualquier dinero extra a la deuda con mayor tipo de interés (TIN/TAE), logrando el máximo ahorro matemático posible. En el método bola de nieve usted ataca primero la deuda con el saldo o capital pendiente más pequeño para eliminarla rápido y ganar impulso psicológico."
+  - question: "¿Por qué el saldo de mi tarjeta de crédito apenas baja aunque pague puntualmente cada mes?"
+    answer: "Las tarjetas de crédito de pago aplazado o 'revolving' suelen aplicar intereses elevados (entre el 18 % y el 26 % TAE) con cuotas mínimas muy bajas. Si su cuota mensual es de 120 € y el interés generado ese mes por el capital pendiente es de 105 €, solo está reduciendo la deuda real en 15 €, alargando la amortización durante años."
+  - question: "¿Cómo afecta una aportación extraordinaria mensual al cuadro de amortización?"
+    answer: "Todo euro o dólar adicional que supera la cuota ordinaria se descuenta al 100 % del capital pendiente de forma inmediata. Al reducirse el saldo vivo hoy, el próximo mes se calculan intereses sobre una base menor, generando un efecto compuesto inverso que acorta drásticamente el número de meses restantes."
+  - question: "¿Conviene más amortizar deuda anticipadamente o invertir mis ahorros?"
+    answer: "Compare la TAE de su deuda con la rentabilidad neta después de impuestos que obtendría invirtiendo con bajo riesgo. Liquidar una deuda al 16 % TAE equivale a obtener una rentabilidad garantizada y libre de impuestos del 16 %, algo que ningún depósito ni bono gubernamental puede igualar."
+  - question: "¿Debo tener en cuenta las comisiones por amortización anticipada?"
+    answer: "En tarjetas de crédito y líneas de descubierto no suele existir penalización por cancelar saldo antes de tiempo. En préstamos personales al consumo, la normativa europea y española limita la comisión por reembolso anticipado al 0,5 % (si queda menos de un año) o al 1 % del capital reembolsado (si queda más de un año), un coste muy inferior al interés que se ahorra."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Pago de Deudas
+Salir del endeudamiento de consumo exige transformar una carga financiera difusa en un calendario de liquidación con fecha exacta de vencimiento. Cuando se combinan tarjetas de crédito *revolving*, préstamos personales y financiación de vehículos, el interés compuesto juega en contra del deudor cada mes. Esta calculadora analiza su capital pendiente, el tipo de interés nominal (TIN) y su capacidad de pago mensual para proyectar el cuadro de amortización completo y cuantificar cuántos meses e intereses ahorrará al incrementar su cuota.
 
-Determine cuánto tiempo tardará en pagar su deuda y cuánto interés pagará. En el modelado financiero cuantitativo, los resultados de **Calculadora de Pago de Deudas** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+## Cómo funciona la amortización de una deuda y la trampa del pago mínimo
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+La mayoría de los préstamos personales y tarjetas de crédito operan bajo el sistema de amortización gradual sobre saldo vivo. Cada vez que usted abona una cuota mensual ($M$), la entidad divide su dinero en dos bloques jerarquizados:
 
-El motor computacional de **Calculadora de Pago de Deudas** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+1. **Pago de intereses devengados ($I_t$):** Se obtiene multiplicando el capital pendiente del mes anterior ($P_{t-1}$) por el tipo de interés mensual ($r$). Este importe remunera al banco y no reduce su deuda.
+2. **Amortización de capital ($A_t$):** Es únicamente el remanente ($M - I_t$) tras cubrir los intereses del periodo.
 
-```
-y = f(x₁, x₂, ..., xₙ)
-```
+La **trampa del pago mínimo** ocurre cuando el titular fija una cuota mensual muy próxima al interés devengado. Si debe 6.000 € en una tarjeta al 22 % TIN (1,833 % mensual), el primer mes se generan 110 € solo en intereses. Si abona una cuota de 125 € al mes, apenas amortiza 15 € de capital, tardando más de 11 años en saldar la cuenta y pagando más del doble de lo prestado.
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+## Ecuaciones para calcular el plazo de liquidación y el interés total
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+Para determinar el número exacto de meses ($n$) necesarios para extinguir una deuda de capital inicial $P$, sujeta a un tipo de interés mensual $r = \frac{\text{TIN}}{12}$ y con un pago mensual constante $M$, despejamos el exponente temporal de la fórmula de renta financiera:
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Pago de Deudas**:
+$$n = \frac{-\ln\left(1 - \frac{P \times r}{M}\right)}{\ln(1 + r)}$$
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
+Conocido el número de pagos mensuales $n$, el coste total en intereses ($I_{\text{Total}}$) abonados durante la vida del crédito es:
+
+$$I_{\text{Total}} = (n \times M) - P$$
+
+Definición de variables y condición de viabilidad:
+* $P$: Capital pendiente o saldo vivo actual de la deuda.
+* $r$: Tasa de interés mensual en tanto por uno (para un 18 % TIN anual, $r = 0,18 / 12 = 0,015$).
+* $M$: Cuota mensual total destinada al pago (cuota mínima más cualquier aportación extra).
+* $\ln$: Logaritmo neperiano (base $e$).
+* **Condición crítica ($M > P \times r$):** Si la cuota mensual $M$ es igual o inferior al interés del primer mes ($P \times r$), el argumento del logaritmo es cero o negativo, indicando una **deuda perpetua** que jamás se amortiza.
+
+## Simulación numérica real: El impacto de 100 € adicionales al mes
+
+Veamos cómo un incremento moderado en la cuota transforma una deuda real. Supongamos un saldo pendiente de **$P = 8.000\text{ €}$** en una línea de crédito con un **TIN del 18,00 % anual** ($r = 0,015$ mensual).
+
+### Escenario A: Pago de una cuota estándar de 200 € al mes
+* En el mes 1, los intereses absorben $8.000 \times 0,015 = 120\text{ €}$, dejando solo $80\text{ €}$ para reducir capital ($\frac{P \times r}{M} = \frac{120}{200} = 0,60$).
+* Aplicamos la fórmula logarítmica para hallar los meses ($n$):
+  $$n = \frac{-\ln(1 - 0,60)}{\ln(1,015)} = \frac{-\ln(0,40)}{\ln(1,015)} = \frac{0,916291}{0,014889} = 61,54\text{ meses}$$
+* Tardará **62 meses (5 años y 2 meses)**. El desembolso total será de $61,54 \times 200\text{ €} = 12.308\text{ €}$, perdiendo **4.308 € en intereses**.
+
+### Escenario B: Añadiendo 100 € extra al mes (Cuota total $M = 300\text{ €}$)
+* En el mes 1, los intereses siguen siendo 120 €, pero la reducción de capital sube a $180\text{ €}$ ($\frac{120}{300} = 0,40$).
+* Calculamos el nuevo plazo:
+  $$n = \frac{-\ln(1 - 0,40)}{\ln(1,015)} = \frac{-\ln(0,60)}{\ln(1,015)} = \frac{0,510826}{0,014889} = 34,31\text{ meses}$$
+* El préstamo queda liquidado en **35 meses (2 años y 11 meses)**. El desembolso baja a $34,31 \times 300\text{ €} = 10.293\text{ €}$ (**2.293 € en intereses**).
+
+**Balance:** Aportar 100 € adicionales al mes elimina **27 meses de deuda** y genera un **ahorro neto de 2.015 € en intereses**.
+
+## Comparativa: Método Avalancha vs. Método Bola de Nieve
+
+| Criterio | Método Avalancha (Financiero) | Método Bola de Nieve (Conductual) | Consolidación de Deudas |
 | :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |
+| **Orden de pago** | De mayor a menor tipo de interés (TAE). | De menor a mayor saldo pendiente. | Unifica deudas en un solo préstamo. |
+| **Ahorro en intereses** | **Máximo posible** (óptimo matemático). | **Moderado a alto**. | **Variable** (según plazo y nueva TAE). |
+| **Primer logro** | Lento si la deuda más cara es grande. | **Muy rápido** (elimina recibos pronto). | Inmediato en cuota mensual. |
+| **Riesgo principal** | Desmotivación inicial al no cerrar cuentas. | Mantener deudas caras durante más meses. | Volver a usar las tarjetas liberadas. |
+| **Perfil ideal** | Deudores analíticos orientados al ahorro. | Quienes buscan motivación rápida. | Hogares con falta de liquidez mensual. |
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `80` | `100` | `120` |
+## Guía práctica para acelerar su libertad financiera
 
-### 3. Análisis Detallado de Variables y Sensibilidad
-
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
-
-1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en Calculadora de Pago de Deudas y establece el punto de partida para todas las métricas derivadas.
-2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.
-3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.
-
-### 4. Protocolo Paso a Paso para una Verificación Precisa
-
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
-
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
-
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
-
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
-
-Todos los cálculos realizados en **Calculadora de Pago de Deudas** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **Constituya primero un fondo de emergencia básico:** Antes de destinar toda su liquidez a amortizar deuda, reserve entre 1.000 € y 1.500 € en una cuenta disponible. Si surge un imprevisto sin ahorros, volverá a usar la tarjeta de crédito.
+* **Elija «reducir plazo» frente a «reducir cuota»:** Al realizar amortizaciones parciales en su banco, acorte siempre el vencimiento manteniendo la cuota mensual para recortar exponencialmente los intereses futuros.
+* **Cancele las tarjetas revolving conforme las liquide:** Recorte el límite o cierre el contrato en cuanto el saldo llegue a cero para evitar recaer en el crédito rotativo.

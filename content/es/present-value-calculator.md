@@ -1,75 +1,90 @@
 ---
 title: "Calculadora de Valor Presente"
-metaTitle: "Calculadora de Valor Presente — Gratis y Precisa"
-description: "Calcule el valor presente de una suma futura o flujos de efectivo."
-metaDescription: "Calcule el valor presente de una suma futura o flujos de efectivo."
+metaTitle: "Calculadora de Valor Presente (VP) y Descuento de Flujos"
+description: "Calcule el valor actual de un capital futuro o de una serie de rentas periódicas aplicando la tasa de descuento, inflación y frecuencia de capitalización."
+metaDescription: "Calcule el Valor Presente (VP) de un capital futuro, anualidad o flujo de caja. Descuente cobros futuros según su tasa de rentabilidad o coste de capital."
+metaKeywords: "calculadora de valor presente, valor actual neto flujos de caja, descuento de flujos financieros, formula valor presente capital futuro, valor actual de una anualidad, tasa de descuento wacc"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Valor Presente?"
-    answer: "Calculadora de Valor Presente evalúa sus parámetros mediante la ecuación verificada (PV = FV / (1 + r)^n). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Valor Presente para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Valor Presente antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Valor Presente?"
-    answer: "Dentro del modelo cuantitativo (PV = FV / (1 + r)^n), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Valor Presente impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Valor Presente calcula el modelo matemático puro (Calcule el valor presente de una suma futura o flujos de efectivo.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Valor Presente?"
-    answer: "No. Todos los cálculos de Calculadora de Valor Presente se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Por qué una cantidad de dinero en el futuro siempre vale menos que la misma cantidad hoy?"
+    answer: "Por el principio del valor temporal del dinero, gobernado por tres factores: el coste de oportunidad (el dinero disponible hoy puede invertirse en bonos o activos productivos para generar intereses), la inflación (que erosiona el poder de compra de la moneda con el paso de los años) y el riesgo de crédito o incertidumbre sobre el cumplimiento efectivo del cobro futuro."
+  - question: "¿Qué tasa de descuento debo introducir para calcular el valor presente de un flujo de efectivo?"
+    answer: "Depende del perfil de la operación. Para finanzas personales o liquidaciones seguras, utilice la rentabilidad de los bonos del Estado al mismo plazo (Bono a 10 años o Treasury) más la inflación esperada. En evaluación de proyectos empresariales, emplee el Coste Medio Ponderado de Capital (WACC) de la compañía o la tasa mínima de rentabilidad exigida (hurdle rate) ajustada al riesgo del sector."
+  - question: "¿Cuál es la diferencia entre el Valor Presente (VP) y el Valor Actual Neto (VAN / NPV)?"
+    answer: "El Valor Presente (VP) calcula cuánto valen hoy los flujos de entrada futuros descontados a una tasa determinada. El Valor Actual Neto (VAN) da un paso adicional restando al Valor Presente de esos cobros futuros el desembolso o inversión inicial realizada en el momento cero (VAN = VP de flujos futuros − Inversión Inicial)."
+  - question: "¿Cómo cambia el cálculo entre una anualidad ordinaria (vencida) y una anualidad anticipada?"
+    answer: "En una anualidad ordinaria o vencida (como los cupones de un bono o sueldos), cada flujo se recibe al final de cada periodo. En una anualidad anticipada (como los contratos de alquiler de locales comerciales o primas de seguro), cada pago se cobra al principio del periodo. Al adelantarse cada cobro un periodo completo, el valor presente de una anualidad anticipada es exactamente igual al de una ordinaria multiplicado por (1 + r)."
+  - question: "¿Se debe sumar la inflación a la tasa de descuento al actualizar flujos de caja?"
+    answer: "Solo si los flujos futuros están expresados en términos nominales (moneda corriente de cada año futuro). Si los cobros futuros son fijos en euros o dólares nominales, debe aplicar una tasa de descuento nominal que ya incorpore la inflación. En cambio, si los flujos futuros están indexados al IPC (moneda constante), debe descontarlos con una tasa de interés real mediante la ecuación de Fisher para no penalizar dos veces el poder adquisitivo."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Valor Presente
+El **Valor Presente (VP)** —denominado **Valor Actual (VA)** en la literatura financiera de España y Latinoamérica— responde a una de las preguntas centrales de la economía corporativa y patrimonial: *¿cuánto vale en moneda de hoy un cobro o una corriente de ingresos que no se recibirá hasta dentro de varios años?*
 
-Calcule el valor presente de una suma futura o flujos de efectivo. En el modelado financiero cuantitativo, los resultados de **Calculadora de Valor Presente** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+Mediante la **actualización o descuento financiero** (el inverso exacto de la capitalización compuesta), esta calculadora traduce promesas de pago futuras, rentas periódicas, pagarés, indemnizaciones o flujos operativos de un proyecto a su equivalente líquido en el momento cero ($t = 0$), permitiendo comparar alternativas con calendarios dispares bajo una misma unidad de medida.
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+## Formulación Matemática del Valor Actual: Suma Única, Rentas y Perpetuidades
 
-El motor computacional de **Calculadora de Valor Presente** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+El modelo descuenta los importes futuros aplicando una **tasa de descuento ($r$)** que representa el coste de oportunidad del capital por periodo a lo largo de $n$ periodos.
 
-```
-PV = FV / (1 + r)^n
-```
+### 1. Valor Presente de un Capital Futuro Único ($VF$)
+Cuando se espera recibir un único importe global ($VF$) al final del periodo $n$, su valor actual se obtiene dividiendo dicho monto por el factor de capitalización compuesto:
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+$$VP = \frac{VF}{(1 + r)^n} = VF \times (1 + r)^{-n}$$
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+El término $(1 + r)^{-n}$ es el **Factor de Descuento ($FD$)**. Si el descuento se capitaliza $m$ veces por año (por ejemplo, $m = 12$ para frecuencia mensual con tasa nominal anual $r$), la ecuación subperiodal es:
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Valor Presente**:
+$$VP = \frac{VF}{\left(1 + \frac{r}{m}\right)^{n \times m}}$$
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Present Value (`PV`)** | `SI / Standard` | Calibrated | Current lump-sum value of a future cash flow |
-| **Future Value (`FV`)** | `SI / Standard` | Calibrated | Expected amount to be received in the future |
-| **Discount Rate (`r`)** | `SI / Standard` | Calibrated | Rate of return per discounting period |
-| **Number of Periods (`n`)** | `SI / Standard` | Calibrated | Total periods between present date and future receipt |
+### 2. Valor Presente de una Anualidad o Serie de Pagos Iguales ($PMT$)
+Si el activo genera una serie de cobros periódicos constantes de importe $PMT$ durante $n$ periodos, la fórmula varía según el momento de pago dentro de cada intervalo:
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Present Value (`PV`)** | `-20% (PV₀ × 0.8)` | `Baseline (PV₀)` | `+20% (PV₀ × 1.2)` |
-| **Future Value (`FV`)** | `-20% (FV₀ × 0.8)` | `Baseline (FV₀)` | `+20% (FV₀ × 1.2)` |
-| **Discount Rate (`r`)** | `-20% (r₀ × 0.8)` | `Baseline (r₀)` | `+20% (r₀ × 1.2)` |
-| **Number of Periods (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
+* **Anualidad Ordinaria o Vencida (cobros al final de cada periodo):**
+  $$VP_{\text{ordinaria}} = PMT \times \left[\frac{1 - (1 + r)^{-n}}{r}\right]$$
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+* **Anualidad Anticipada (cobros al inicio de cada periodo, como alquileres):**
+  $$VP_{\text{anticipada}} = PMT \times \left[\frac{1 - (1 + r)^{-n}}{r}\right] \times (1 + r)$$
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+### 3. Valor Presente de una Perpetuidad (Modelo de Gordon-Shapiro)
+Para valorar activos con horizonte indefinido —como concesiones perpetuas o acciones con dividendos constantes— donde el flujo del primer periodo ($FC_1$) crece a una tasa constante $g$ menor que la tasa de descuento ($r > g$):
 
-1. **Present Value (`PV`)** — Current lump-sum value of a future cash flow: Parámetro estructural en la ecuación de Calculadora de Valor Presente. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-2. **Future Value (`FV`)** — Expected amount to be received in the future: Parámetro estructural en la ecuación de Calculadora de Valor Presente. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-3. **Discount Rate (`r`)** — Rate of return per discounting period: Parámetro estructural en la ecuación de Calculadora de Valor Presente. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-4. **Number of Periods (`n`)** — Total periods between present date and future receipt: Parámetro estructural en la ecuación de Calculadora de Valor Presente. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
+$$VP_{\text{perpetuidad}} = \frac{FC_1}{r - g}$$
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+## Resolución Práctica: ¿Cobrar 85.000 € al Contado, una Renta Anual o un Pago Futuro?
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+Un empresario vende la cartera comercial de una delegación y el comprador le ofrece tres modalidades de pago, en un entorno donde el vendedor puede obtener una rentabilidad alternativa del **$7{,}00\%$ anual ($r = 0{,}07$)** en inversiones de riesgo equivalente:
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+1. **Opción A (Pago único diferido):** Cobrar **$115.000\text{ €}$** en un solo pago dentro de **$5\text{ años}$**.
+2. **Opción B (Renta periódica vencida):** Cobrar **$21.000\text{ €}$** al cierre de cada año durante **$5\text{ años}$** (suma nominal sin descontar de $105.000\text{ €}$).
+3. **Opción C (Pago inmediato al contado):** Cobrar **$85.000\text{ €}$** hoy mismo ($t = 0$).
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+Quien compare cifras sin descontar elegiría erróneamente la Opción A ($115.000\text{ €}$). Veamos qué dictamina la actualización financiera a Valor Presente:
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
+* **Valoración de la Opción A (115.000 € en el año 5):**
+  Con $(1 + 0{,}07)^5 = 1{,}4025517$ (Factor de Descuento $= 0{,}712986$):
+  $$VP_A = \frac{115.000}{1{,}4025517} = 81.993{,}41\text{ €}$$
 
-Todos los cálculos realizados en **Calculadora de Valor Presente** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **Valoración de la Opción B (Anualidad ordinaria de 21.000 €/año durante 5 años):**
+  Calculamos el factor de actualización para $r = 0{,}07$ y $n = 5$:
+  $$\frac{1 - (1{,}07)^{-5}}{0{,}07} = \frac{1 - 0{,}7129862}{0{,}07} = 4{,}1001974$$
+  Multiplicando por la renta anual de $21.000\text{ €}$:
+  $$VP_B = 21.000 \times 4{,}1001974 = 86.104{,}15\text{ €}$$
+
+* **Decisión óptima:** En moneda homogénea de hoy, la **Opción B ($86.104{,}15\text{ €}$)** es la más rentable porque recupera liquidez desde el primer año, superando al cobro al contado de la **Opción C ($85.000{,}00\text{ €}$)** y dejando en último lugar a la **Opción A ($81.993{,}41\text{ €}$)**.
+
+## Sensibilidad del Valor Presente de 100.000 € según Tasa y Horizonte
+
+La siguiente matriz muestra cómo decae el valor actual de **$100.000\text{ €}$** (o $\$100.000\text{ USD}$) según el plazo de espera y la tasa de descuento exigida:
+
+| Horizonte Temporal ($n$) | Tasa 3 % (Inflación) | Tasa 6 % (Renta fija) | Tasa 8 % (WACC medio) | Tasa 10 % (Renta variable) | Tasa 12 % (Capital riesgo) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Dentro de 1 año** | 97.087,38 € | 94.339,62 € | 92.592,59 € | 90.909,09 € | 89.285,71 € |
+| **Dentro de 5 años** | 86.260,88 € | 74.725,82 € | 68.058,32 € | 62.092,13 € | 56.742,69 € |
+| **Dentro de 10 años** | 74.409,39 € | 55.839,48 € | 46.319,35 € | 38.554,33 € | 32.197,32 € |
+| **Dentro de 20 años** | 55.367,58 € | 31.180,47 € | 21.454,82 € | 14.864,36 € | 10.366,68 € |
+| **Dentro de 30 años** | 41.198,68 € | 17.411,01 € | 9.937,73 € | 5.730,86 € | 3.337,79 € |
+
+## Cómo Elegir la Tasa de Descuento Correcta y Evitar Sesgos
+
+1. **Coherencia entre flujos nominales y tasas reales (Ecuación de Fisher):** Nunca descuente flujos expresados en moneda constante de hoy utilizando una tasa nominal que incluya inflación ($\pi$). Para hallar la tasa de descuento real limpia de inflación ($r_{\text{real}}$) a partir de la nominal ($r_n$), aplique la fórmula de Fisher:
+   $$r_{\text{real}} = \frac{1 + r_n}{1 + \pi} - 1$$
+2. **Simetría temporal en rentas mensuales:** Si valora alquileres o pensiones mensuales, divida la tasa anual entre $12$ para mantener la coherencia dimensional con el número total de meses.
+3. **Prima por riesgo de contraparte:** Un pagaré privado con riesgo de impago no debe descontarse a la tasa de un bono del Estado; sume siempre un diferencial de crédito (*credit spread*) acorde a la solvencia del deudor.

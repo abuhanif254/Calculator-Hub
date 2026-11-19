@@ -1,68 +1,93 @@
 ---
 title: "Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)"
-metaTitle: "Calculadora FIRE — Gratis y Precisa"
-description: "Calcula tu número FIRE objetivo y los años necesarios para jubilarte joven aplicando la regla del 4%."
-metaDescription: "Descubre cuándo alcanzarás la libertad financiera total calculando tus gastos anuales y tasa de ahorro."
+metaTitle: "Calculadora FIRE de Independencia Financiera y Retiro"
+description: "Calcula tu número FIRE objetivo aplicando la regla del 4 % y proyecta exactamente cuántos años necesitas ahorrar e invertir para alcanzar la libertad financiera."
+metaDescription: "Calcula tu número FIRE exacto con la regla del 4 %, compara modalidades Lean, Fat, Coast y Barista FIRE y descubre en cuántos años podrás jubilarte antes."
+metaKeywords: "calculadora FIRE, independencia financiera, jubilación anticipada, regla del 4 por ciento, número FIRE, tasa de ahorro, Coast FIRE, Lean FIRE"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)?"
-    answer: "Calculadora FIRE (Independencia Financiera y Jubilación Anticipada) evalúa sus parámetros mediante la ecuación verificada (y = f(x₁, x₂, ..., xₙ)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora FIRE (Independencia Financiera y Jubilación Anticipada) para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora FIRE (Independencia Financiera y Jubilación Anticipada) antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)?"
-    answer: "Dentro del modelo cuantitativo (y = f(x₁, x₂, ..., xₙ)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora FIRE (Independencia Financiera y Jubilación Anticipada) impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora FIRE (Independencia Financiera y Jubilación Anticipada) calcula el modelo matemático puro (Calcula tu número FIRE objetivo y los años necesarios para jubilarte joven aplicando la regla del 4%.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)?"
-    answer: "No. Todos los cálculos de Calculadora FIRE (Independencia Financiera y Jubilación Anticipada) se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Es segura la regla del 4 % si planeo jubilarme a los 35 o 40 años?"
+    answer: "El Estudio Trinity original validó la tasa de retiro del 4 % para un horizonte de 30 años. Si tu jubilación anticipada va a durar entre 40 y 55 años, la mayoría de planificadores financieros recomiendan reducir la Tasa de Retiro Seguro (TRS) al 3,25 % o 3,5 % (acumulando entre 28,5 y 30,7 veces tus gastos anuales) para evitar el agotamiento del capital."
+  - question: "¿Debo calcular mi número FIRE con mis gastos brutos o descontando impuestos futuros?"
+    answer: "Tu objetivo de gasto anual debe incluir la factura fiscal derivada de vender participaciones o cobrar dividendos. En España, las ganancias patrimoniales en la base del ahorro tributan entre el 19 % y el 28 % en el IRPF; por tanto, si necesitas 24.000 € netos para vivir y el 50 % de tu reembolso es plusvalía sujeta al 19 %, deberás retirar aproximadamente 26.500 € brutos al año."
+  - question: "¿Por qué la tasa de ahorro importa mucho más que mi sueldo total para alcanzar FIRE?"
+    answer: "La tasa de ahorro actúa en ambos lados de la ecuación simultáneamente: cuanto mayor porcentaje de tu ingreso neto ahorras, menor es tu coste de vida anual (lo que reduce el patrimonio total que necesitas acumular) y mayor es el capital libre que inviertes cada mes para acelerar el interés compuesto."
+  - question: "¿Qué es exactamente el riesgo de secuencia de retornos y cómo puede arruinar mi retiro?"
+    answer: "Es el peligro de sufrir una caída severa de la bolsa (del 30 % al 50 %) durante los primeros tres a cinco años tras dejar de trabajar. Al retirar dinero para vivir mientras los activos están deprimidos, vendes un número desproporcionado de participaciones y el portafolio pierde capacidad de recuperación cuando el mercado rebota."
+  - question: "¿Cómo integro la futura pensión pública o el fondo de retiro obligatorio en mi cálculo?"
+    answer: "Si cuentas con años cotizados en la Seguridad Social, una Afore o una AFP, puedes restar la pensión pública estimada (aplicando un factor de prudencia del 60 % al 70 %) a partir de los 65 o 67 años, o bien usar tu cartera FIRE como puente financiero completo y tratar la pensión estatal únicamente como margen de seguridad para la vejez."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)
+El movimiento **FIRE** (*Financial Independence, Retire Early* o Independencia Financiera y Jubilación Anticipada) transforma el retiro de una edad biológica fija a una meta patrimonial verificable. En lugar de esperar hasta los 65 o 67 años, alcanzas la libertad financiera cuando los rendimientos reales de tu cartera de inversión cubren indefinidamente tu coste de vida anual.
 
-Calcula tu número FIRE objetivo y los años necesarios para jubilarte joven aplicando la regla del 4%. En el modelado financiero cuantitativo, los resultados de **Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+## Qué es el Número FIRE y el Fundamento de la Regla del 4 %
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+El pilar cuantitativo del movimiento proviene del *Estudio Trinity* (Universidad Trinity, 1998), que analizó ciclos históricos de acciones y bonos. Esta investigación demostró que una cartera diversificada (entre un 75 % en renta variable global y un 25 % en bonos) soporta retiros anuales equivalentes al **4 % de su valor inicial**, ajustados cada año según la inflación (IPC), con una probabilidad histórica superior al 95 % de no agotarse durante 30 años.
 
-El motor computacional de **Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+De esta **Tasa de Retiro Seguro (TRS)** nace la regla de las 25 veces ($1 / 0,04 = 25$). Para horizontes de retiro más largos (45 o 50 años), reducir la tasa al **3,5 %** eleva el multiplicador a $28,57$ veces tu gasto anual, mientras que una tasa conservadora del **3,25 %** requiere acumular $30,77$ veces tus gastos.
 
-```
-y = f(x₁, x₂, ..., xₙ)
-```
+## Fórmulas Matemáticas para la Libertad Financiera
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+Para evitar que la inflación distorsione tu poder adquisitivo futuro, todos los cálculos se expresan en **términos reales** (moneda constante de hoy).
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+### 1. Ecuación del Patrimonio Objetivo (Número FIRE)
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)**:
+$$C_{\text{FIRE}} = \frac{G_{\text{anual}}}{\text{TRS}}$$
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |
+Donde:
+- $C_{\text{FIRE}}$: Patrimonio neto invertible necesario para retirarte (excluyendo la vivienda habitual si no produce rentas).
+- $G_{\text{anual}}$: Gasto anual previsto durante la jubilación (incluyendo impuestos sobre reembolsos).
+- $\text{TRS}$: Tasa de Retiro Seguro en tanto por uno ($0,04$ para el 4 % clásico; $0,035$ para el 3,5 % prudente).
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `80` | `100` | `120` |
+### 2. Rentabilidad Real Neta de Inflación (Ecuación de Fisher)
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+$$r = \frac{1 + r_{\text{nominal}}}{1 + \pi} - 1$$
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+Si tu cartera indexada rinde un $8,5\%$ nominal anual ($r_{\text{nominal}} = 0,085$) y la inflación media es del $2,5\%$ ($\pi = 0,025$), tu rentabilidad real anualizada es $r = (1,085 / 1,025) - 1 = 0,0585$ (**5,85 % real**).
 
-1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en Calculadora FIRE (Independencia Financiera y Jubilación Anticipada) y establece el punto de partida para todas las métricas derivadas.
-2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.
-3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.
+### 3. Fórmula Logarítmica de los Años hasta el Retiro ($N$)
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+Dado tu patrimonio invertido actual ($P_0$), tu ahorro anual constante ($A$), tu rentabilidad real ($r$) y tu meta ($C_{\text{FIRE}}$), los años necesarios se obtienen mediante:
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+$$N = \frac{\ln\left(\frac{C_{\text{FIRE}} \cdot r + A}{P_0 \cdot r + A}\right)}{\ln(1 + r)}$$
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+## Caso Práctico Paso a Paso: Retiro Antes de los 49 Años
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+Analicemos a **Elena (31 años)**, con ingresos netos anuales de **36.000 €** (o `$36,000 USD`), gastos anuales de **21.600 €** (1.800 €/mes) y una cartera indexada actual de **40.000 €** ($P_0 = 40.000$).
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
+1. **Tasa de ahorro y aporte anual ($A$)**: Elena ahorra $36.000 - 21.600 = 14.400\text{ €}$ anuales, logrando una **tasa de ahorro del 40 %**.
+2. **Cálculo del Número FIRE ($C_{\text{FIRE}}$)**: Con la regla del 4 % ($\text{TRS} = 0,04$), necesita $21.600 / 0,04 = \mathbf{540.000\text{ €}}$ (con una TRS conservadora del 3,5 %, necesitaría $21.600 / 0,035 = 617.143\text{ €}$).
+3. **Cálculo de los años hasta el retiro ($N$)**: Con una rentabilidad real neta de inflación del **6 % anual** ($r = 0,06$):
+   - Numerador interno: $(540.000 \times 0,06) + 14.400 = 46.800$.
+   - Denominador interno: $(40.000 \times 0,06) + 14.400 = 16.800$.
+   - Cociente: $46.800 / 16.800 = 2,785714$.
+   - Aplicación de logaritmos naturales:
+     $$N = \frac{\ln(2,785714)}{\ln(1,06)} = \frac{1,024504}{0,058269} \approx 17,58\text{ años}$$
 
-Todos los cálculos realizados en **Calculadora FIRE (Independencia Financiera y Jubilación Anticipada)** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+Elena alcanzará los **540.000 €** en poder adquisitivo actual a los **48 años y 7 meses**. Si incrementara su tasa de ahorro al 50 % (18.000 € de gasto y 18.000 € de ahorro, meta de 450.000 €), su horizonte se reduciría a **13,3 años** (jubilación a los 44 años).
+
+## Comparativa de Modalidades FIRE y Tasa de Ahorro
+
+Dependiendo del presupuesto objetivo y de si deseas mantener ingresos parciales, existen cinco variantes estratégicas de independencia financiera:
+
+|Modalidad FIRE|Gasto Mensual|Gasto Anual|Capital (TRS 4 %)|Capital (TRS 3,5 %)|Perfil y Estrategia|
+|:---|:---|:---|:---|:---|:---|
+|**Lean FIRE**|1.200 €/$|14.400 €/$|360.000 €/$|411.429 €/$|Vida minimalista, vivienda pagada o arbitraje geográfico.|
+|**FIRE Estándar**|2.200 €/$|26.400 €/$|660.000 €/$|754.286 €/$|Cobertura total de clase media sin trabajar.|
+|**Fat FIRE**|5.000 €/$|60.000 €/$|1.500.000 €/$|1.714.286 €/$|Holgura para viajes, salud privada e imprevistos.|
+|**Barista FIRE**|2.200 €/$ (50 % cartera)|13.200 €/$ de cartera|330.000 €/$|377.143 €/$|La cartera cubre la mitad del gasto; el resto, empleo flexible.|
+|**Coast FIRE**|Variable al retiro|Variable|120.000 €/$ a los 30 años|140.000 €/$ a los 30 años|El capital inicial crece solo hasta los 65 años; trabajas solo para tu gasto mensual.|
+
+Observa además cómo la **tasa de ahorro** determina los años exactos para retirarte partiendo desde **patrimonio cero ($P_0 = 0$)** bajo la regla del 4 %:
+
+|Tasa de Ahorro Neto|% de Ingresos Gastados|Años hasta FIRE (al 5 % real)|Años hasta FIRE (al 7 % real)|
+|:---|:---|:---|:---|
+|**15 %**|85 %|42,8 años|35,3 años|
+|**30 %**|70 %|28,0 años|23,9 años|
+|**50 %**|50 %|16,6 años|14,6 años|
+|**65 %**|35 %|10,6 años|9,5 años|
+
+## Errores Comunes y Estrategias de Protección Patrimonial
+
+- **Descuidar el colchón de liquidez contra el riesgo de secuencia**: Retirarse con el 100 % en renta variable expone tu plan a una caída bursátil temprana. Mantener de 18 a 24 meses de gastos básicos en fondos monetarios o letras del Tesoro evita vender acciones en pérdidas durante un mercado bajista.
+- **Incluir la vivienda habitual en el Número FIRE**: Tu casa reduce tu gasto mensual al evitar el alquiler, pero no genera liquidez para pagar facturas salvo que la alquiles o vendas.
+- **Usar retiros rígidos en lugar de reglas flexibles**: Aplicar barandillas dinámicas (*guardrails*), reduciendo un 10 % los gastos discrecionales en años bajistas, eleva la tasa de éxito de la cartera cerca del 100 % incluso en retiros de 50 años.

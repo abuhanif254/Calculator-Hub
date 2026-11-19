@@ -1,72 +1,84 @@
 ---
 title: "Calculatrice d'Augmentation en Pourcentage"
-metaTitle: "Calculatrice d'Augmentation en Pourcentage"
-description: "Calculez le taux de hausse ou d'augmentation en pourcentage entre deux valeurs avec détail du calcul."
-metaDescription: "Déterminez instantanément le pourcentage d'augmentation entre une valeur initiale et finale."
+metaTitle: "Calculatrice d'Augmentation en Pourcentage (Formule)"
+description: "Calculez instantanément le taux de hausse en pourcentage entre une valeur initiale et une valeur finale, ou appliquez une majoration à un montant."
+metaDescription: "Déterminez le pourcentage d'augmentation entre deux valeurs avec la formule du coefficient multiplicateur, des exemples en euros et les erreurs à éviter."
+metaKeywords: "calculatrice augmentation pourcentage, calcul hausse pourcentage, formule pourcentage augmentation, coefficient multiplicateur hausse, évolution en pourcentage"
 faqs:
-  - question: "Quelle formule mathématique exacte utilise Calculatrice d'Augmentation en Pourcentage ?"
-    answer: "Calculatrice d'Augmentation en Pourcentage applique l'équation de référence (Percentage = (Part / Whole) × 100). Le moteur traite les variables (paramètres saisis) en virgule flottante double précision (norme IEEE 754) afin d'éliminer toute erreur d'arrondi intermédiaire."
-  - question: "Quelles sont les valeurs de référence pré-remplies dans Calculatrice d'Augmentation en Pourcentage ?"
-    answer: "Le simulateur initialise un scénario de référence calibré (valeurs standards du secteur) permettant d'observer immédiatement l'équilibre du modèle avant de saisir vos propres paramètres."
-  - question: "Quel est l'impact d'une variation de le paramètre principal sur le résultat de Calculatrice d'Augmentation en Pourcentage ?"
-    answer: "Dans la relation (Percentage = (Part / Whole) × 100), le paramètre principal interagit directement avec les variables secondaires. En faisant varier le paramètre principal isolément, vous mesurez l'élasticité mathématique exacte du résultat principal et des indicateurs secondaires."
-  - question: "Comment éviter les erreurs d'unités dans Calculatrice d'Augmentation en Pourcentage ?"
-    answer: "Assurez-vous que l'ensemble des variables saisies () respecte la même unité de mesure et la même périodicité avant d'interpréter ou d'exporter vos résultats."
-  - question: "Mes données saisies dans Calculatrice d'Augmentation en Pourcentage sont-elles confidentielles ?"
-    answer: "Oui. L'intégralité des calculs de Calculatrice d'Augmentation en Pourcentage s'exécute 100 % localement dans votre navigateur web (conformité RGPD), sans aucun envoi vers un serveur externe."
+  - question: "Que signifie concrètement une augmentation de 100 % ou de 200 % ?"
+    answer: "Une hausse de 100 % signifie que la valeur initiale s'ajoute intégralement à elle-même : le montant est donc multiplié par 2 (doublé). De la même façon, une augmentation de 200 % correspond à un coefficient multiplicateur de 3 (le montant initial est triplé), et une hausse de 50 % multiplie le montant de départ par 1,5."
+  - question: "Comment cumuler deux augmentations successives en pourcentage ?"
+    answer: "On n'additionne jamais les pourcentages entre eux car la seconde hausse s'applique sur une base déjà majorée. Il faut multiplier leurs coefficients multiplicateurs : une hausse de 10 % (x 1,10) suivie d'une hausse de 20 % (x 1,20) donne 1,10 x 1,20 = 1,32, soit une augmentation globale de 32 % et non de 30 %."
+  - question: "Quelle est la différence entre une hausse en pourcentage et en points de pourcentage ?"
+    answer: "Lorsque le taux nominal d'un crédit immobilier passe de 3,0 % à 3,6 %, l'écart absolu est de +0,6 point de pourcentage (ou 60 points de base). En revanche, l'augmentation relative du taux lui-même est de ((3,6 - 3,0) / 3,0) x 100 = +20 %."
+  - question: "Comment retrouver le prix initial avant une augmentation connue (comme la TVA à 20 %) ?"
+    answer: "Ne soustrayez jamais 20 % du montant final TTC. Vous devez diviser la valeur finale par le coefficient multiplicateur (1 + taux). Pour un prix TTC de 180 € incluant une hausse ou TVA de 20 %, le montant hors taxe initial est de 180 / 1,20 = 150 €."
+  - question: "Peut-on calculer un pourcentage d'augmentation à partir d'une valeur initiale égale à zéro ?"
+    answer: "Non, sur le plan mathématique le taux d'évolution est indéfini lorsque la valeur de départ vaut 0, car la formule exige de diviser l'écart par la valeur initiale (division par zéro impossible). Dans un tableau financier, on indique alors « N/A » ou l'écart absolu en euros."
 ---
 
-## Méthodologie Technique et Architecture Mathématique : Calculatrice d'Augmentation en Pourcentage
+Qu'il s'agisse de vérifier la revalorisation d'un salaire brut, de mesurer la progression annuelle du chiffre d'affaires d'une entreprise, d'indexer un loyer sur l'indice de référence ou d'analyser l'inflation d'un panier de consommation, le calcul d'une hausse relative est omniprésent dans la gestion financière quotidienne. Mesurer une **augmentation en pourcentage** consiste à rapporter l'écart absolu entre deux grandeurs à leur point de départ, ce qui permet de comparer sur une base homogène (pour $100$ unités initiales) des progressions portant sur des montants d'échelles très différentes.
 
-Calculez le taux de hausse ou d'augmentation en pourcentage entre deux valeurs avec détail du calcul. Dans les calculs scientifiques, mathématiques et d'ingénierie, la précision de **Calculatrice d'Augmentation en Pourcentage** repose sur l'homogénéité dimensionnelle stricte (unités SI vs impériales), le respect des chiffres significatifs et la validation des bornes du domaine de définition.
+## Les deux formules fondamentales de la hausse en pourcentage
 
-### 1. Modèle Mathématique et Formule de Référence
+Selon la donnée que vous cherchez à obtenir, l'analyse d'une augmentation s'appuie sur deux équations complémentaires : la mesure du taux d'évolution entre deux nombres connus, et l'application d'un coefficient multiplicateur à une valeur de départ.
 
-Le moteur de calcul de **Calculatrice d'Augmentation en Pourcentage** traite vos variables d'entrée en temps réel selon la relation fondamentale suivante :
+### 1. Calculer le taux d'augmentation entre une valeur initiale et une valeur finale
 
-```
-Percentage = (Part / Whole) × 100
-```
+Lorsque vous connaissez la valeur de départ ($V_{\text{initiale}}$) et la valeur d'arrivée supérieure ($V_{\text{finale}}$), le pourcentage d'augmentation s'obtient en divisant le gain net par la valeur initiale, puis en multipliant le quotient par $100$ :
 
-À chaque modification d'un paramètre, l'algorithme vérifie la cohérence des domaines numériques et applique une arithmétique en virgule flottante double précision (norme IEEE 754) afin d'éliminer les erreurs d'arrondi intermédiaires et de générer instantanément les indicateurs principaux et secondaires.
+$$\text{Taux d'augmentation (\%)} = \left( \frac{V_{\text{finale}} - V_{\text{initiale}}}{|V_{\text{initiale}}|} \right) \times 100$$
 
-### 2. Tableau des Paramètres et Matrice Multi-Scénarios
+- **$V_{\text{initiale}}$** : montant d'origine ou période de référence (dénominateur obligatoire).
+- **$V_{\text{finale}}$** : nouveau montant après la hausse.
+- **$V_{\text{finale}} - V_{\text{initiale}}$** : augmentation absolue (en euros, en dollars, en unités physiques).
 
-Le tableau ci-dessous détaille la structure technique des variables ainsi que les trois paliers de simulation (-20 % prudent, référence calibrée et +20 % élevé) pris en charge par **Calculatrice d'Augmentation en Pourcentage** :
+### 2. Appliquer un pourcentage de hausse avec le coefficient multiplicateur
 
-| Paramètre d'Entrée | Unité | Valeur de Référence | Plage d'Analyse Recommandée |
-| :--- | :--- | :--- | :--- |
-| **Percentage (`P`)** | `SI / Standard` | Calibrated | Fraction expressed per 100 units |
-| **Portion Value (`Part`)** | `SI / Standard` | Calibrated | Subset value being measured |
-| **Base Value (`Whole`)** | `SI / Standard` | Calibrated | Total reference quantity |
+Pour calculer directement le nouveau montant après une majoration de $t\,\%$, la méthode la plus rapide et la moins sujette aux erreurs de saisie consiste à utiliser le **coefficient multiplicateur** $C_m = 1 + \frac{t}{100}$ :
 
-| Variable du Modèle | Scénario Prudent (-20%) | Scénario de Référence | Scénario Élevé (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Percentage (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Portion Value (`Part`)** | `-20% (Part₀ × 0.8)` | `Baseline (Part₀)` | `+20% (Part₀ × 1.2)` |
-| **Base Value (`Whole`)** | `-20% (Whole₀ × 0.8)` | `Baseline (Whole₀)` | `+20% (Whole₀ × 1.2)` |
+$$V_{\text{finale}} = V_{\text{initiale}} \times \left( 1 + \frac{t}{100} \right)$$
 
-### 3. Analyse de Sensibilité des Variables d'Entrée
+Ainsi, majorer un tarif de $15\,\%$ revient à le multiplier par $1,15$ ; le majorer de $5,5\,\%$ revient à le multiplier par $1,055$.
 
-Une maîtrise précise de chaque variable vous permet de simuler des scénarios réalistes et de mesurer l'élasticité du résultat :
+## Exemples chiffrés pas à pas en finance et gestion salariale
 
-1. **Percentage (`P`)** — Fraction expressed per 100 units : Paramètre structurel dans l'équation de Calculatrice d'Augmentation en Pourcentage. Sa variation modifie directement la sensibilité marginale du résultat principal.
-2. **Portion Value (`Part`)** — Subset value being measured : Paramètre structurel dans l'équation de Calculatrice d'Augmentation en Pourcentage. Sa variation modifie directement la sensibilité marginale du résultat principal.
-3. **Base Value (`Whole`)** — Total reference quantity : Paramètre structurel dans l'équation de Calculatrice d'Augmentation en Pourcentage. Sa variation modifie directement la sensibilité marginale du résultat principal.
+### Cas n° 1 : Revalorisation d'un salaire annuel brut
+Un ingénieur perçoit un salaire annuel brut initial de **$42\,500\text{ €}$**. À l'issue de son entretien annuel, sa rémunération est portée à **$45\,220\text{ €}$**. Quel est le pourcentage exact de son augmentation ?
 
-### 4. Protocole d'Utilisation et de Validation en 4 Étapes
+1. **Calcul du gain brut en euros** :
+   $$45\,220 - 42\,500 = 2\,720\text{ €}$$
+2. **Rapport du gain à la rémunération initiale** :
+   $$\frac{2\,720}{42\,500} = 0,064$$
+3. **Conversion en pourcentage** :
+   $$0,064 \times 100 = +6,4\,\%$$
 
-1. **Établissement du Scénario de Référence** : Observez d'abord les résultats générés avec les valeurs par défaut afin de comprendre l'équilibre standard du modèle.
-2. **Harmonisation des Unités de Mesure** : Vérifiez que l'ensemble de vos données respecte la même base temporelle ou physique (ex. taux annuels vs mensuels, système métrique vs impérial).
-3. **Test de Sensibilité Univariée** : Faites varier un seul paramètre à la fois pour isoler son impact mathématique exact sur le résultat final.
-4. **Comparaison Multi-Scénarios** : Confrontez une hypothèse prudente, une hypothèse médiane et une hypothèse haute afin d'encadrer votre prise de décision avec une marge de sécurité optimale.
+Son salaire brut a donc progressé de **$6,4\,\%$**. On vérifie aisément l'opération par le coefficient multiplicateur : $42\,500 \times 1,064 = 45\,220\text{ €}$.
 
-### 5. Pièges Fréquents lors des Calculs Manuels
+### Cas n° 2 : Hausses cumulées d'un abonnement ou d'un coût fournisseur
+Un contrat de maintenance informatique facturé **$1\,200\text{ \$}$** subit une première hausse tarifaire de **$8\,\%$** la première année, puis une seconde hausse de **$12\,\%$** l'année suivante.
+- Fin d'année 1 : $1\,200 \times 1,08 = 1\,296,00\text{ \$}$
+- Fin d'année 2 : $1\,296 \times 1,12 = 1\,451,52\text{ \$}$
+- Coefficient multiplicateur global : $1,08 \times 1,12 = 1,2096$, soit une hausse totale de **$+20,96\,\%$** (soit $11,52\text{ \$}$ de plus que la somme naïve $8\,\% + 12\,\% = 20\,\%$).
 
-- **Arrondis Intermédiaires Prématurés** : Tronquer les décimales au cours des étapes intermédiaires fausse sensiblement le résultat final dans les formules composées, trigonométriques ou scientifiques.
-- **Confusion d'Échelles ou de Périodicité** : Mélanger des grandeurs non converties constitue la première source d'erreur dans les feuilles de calcul manuelles.
-- **Négligence des Indicateurs Secondaires** : Au-delà du résultat principal, l'analyse des répartitions détaillées et des courbes d'évolution est essentielle pour interpréter correctement le phénomène étudié.
+## Tableau de référence : coefficients multiplicateurs et équivalences de hausse
 
-### 6. Confidentialité Absolue et Exécution Côté Client
+Ce barème synthétise les taux d'augmentation les plus courants en comptabilité, fiscalité (TVA) et analyse d'investissement, ainsi que le diviseur exact permettant d'extraire la valeur initiale.
 
-L'intégralité des opérations de **Calculatrice d'Augmentation en Pourcentage** s'exécute **100 % localement dans votre navigateur web**. Aucune donnée saisie n'est envoyée vers un serveur distant ni enregistrée dans une base de données, garantissant une sécurité maximale (conformité RGPD) et une réactivité immédiate sur ordinateur comme sur mobile.
+| Taux d'augmentation ($+t\,\%$) | Coefficient multiplicateur ($C_m$) | Interprétation concrète du volume | Montant final pour une base de $250\text{ €}$ | Formule inverse pour retrouver la valeur initiale |
+| :--- | :--- | :--- | :--- | :--- |
+| **$+5,5\,\%$** (TVA réduite FR) | $\times 1,055$ | Majoration de $5,50\text{ €}$ pour $100\text{ €}$ | $263,75\text{ €}$ | $V_{\text{finale}} \div 1,055$ |
+| **$+10,0\,\%$** | $\times 1,10$ | Ajout d'un dixième de la valeur initiale | $275,00\text{ €}$ | $V_{\text{finale}} \div 1,10$ |
+| **$+20,0\,\%$** (TVA normale FR) | $\times 1,20$ | Ajout d'un cinquième de la valeur initiale | $300,00\text{ €}$ | $V_{\text{finale}} \div 1,20$ |
+| **$+25,0\,\%$** | $\times 1,25$ | Ajout d'un quart de la valeur initiale | $312,50\text{ €}$ | $V_{\text{finale}} \div 1,25$ |
+| **$+50,0\,\%$** | $\times 1,50$ | Ajout de la moitié de la valeur initiale | $375,00\text{ €}$ | $V_{\text{finale}} \div 1,50$ |
+| **$+100,0\,\%$** | $\times 2,00$ | **Doublement** exact du montant initial | $500,00\text{ €}$ | $V_{\text{finale}} \div 2,00$ |
+| **$+200,0\,\%$** | $\times 3,00$ | **Triplement** exact du montant initial | $750,00\text{ €}$ | $V_{\text{finale}} \div 3,00$ |
+| **$+300,0\,\%$** | $\times 4,00$ | **Quadruplement** du montant initial | $1\,000,00\text{ €}$ | $V_{\text{finale}} \div 4,00$ |
+
+## Erreurs fréquentes et pièges d'interprétation à éviter
+
+1. **Diviser l'écart par la valeur finale au lieu de la valeur initiale** : Si un produit passe de $80\text{ €}$ à $100\text{ €}$, l'augmentation est de $20\text{ €}$. Beaucoup divisent par erreur $20$ par $100$ (ce qui donne $20\,\%$). Or la base de départ est $80\text{ €}$ : la véritable hausse est de $\frac{20}{80} \times 100 = +25\,\%$.
+2. **Confondre taux de marge et taux de marque en commerce** : Lorsqu'un commerçant achète un article $60\text{ €}$ HT et le revend $90\text{ €}$ HT, son prix de vente affiche une augmentation de $+50\,\%$ par rapport à son coût d'achat (taux de marge sur coût). En revanche, la marge de $30\text{ €}$ ne représente que $33,33\,\%$ du prix de vente final (taux de marque).
+3. **Oublier l'asymétrie entre une hausse et une baisse** : Une action boursière qui grimpe de $+25\,\%$ (passant de $100\text{ €}$ à $125\text{ €}$) n'a besoin que d'une baisse ultérieure de $-20\,\%$ ($\frac{-25}{125}$) pour retomber à son cours initial de $100\text{ €}$. Plus le pourcentage de hausse est élevé, plus le pourcentage de baisse nécessaire pour annuler ce gain est proportionnellement faible.
+4. **Comparer une hausse nominale sans déflater l'inflation** : Si votre épargne ou votre salaire augmente de $+4,0\,\%$ sur un an alors que l'indice des prix à la consommation progresse de $+2,5\,\%$, votre gain réel de pouvoir d'achat n'est pas de $1,5\,\%$ exactement, mais se calcule via le rapport des coefficients : $\frac{1,04}{1,025} - 1 \approx +1,463\,\%$.

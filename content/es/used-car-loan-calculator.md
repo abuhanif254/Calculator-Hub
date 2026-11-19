@@ -1,75 +1,96 @@
 ---
 title: "Calculadora de Préstamos de Autos Usados"
-metaTitle: "Calculadora de Préstamos de Autos Usados"
-description: "Calcula pagos mensuales, intereses totales y calendario de amortización para préstamos de vehículos usados."
-metaDescription: "Calcula la cuota mensual para financiar un auto usado. Ajusta tasa de interés, plazo, enganche y compara el costo total."
+metaTitle: "Calculadora de Préstamos de Autos Usados: Cuota y TAE"
+description: "Calcula la cuota mensual, los intereses acumulados y el coste real de financiar un coche usado o seminuevo según plazo, entrada y valor de entrega."
+metaDescription: "Simula tu préstamo para auto usado en 36, 48, 60 o 72 meses. Calcula cuota mensual, enganche, intereses totales y evita quedar con patrimonio negativo."
+metaKeywords: "calculadora prestamos autos usados, financiar coche segunda mano, calcular cuota auto seminuevo, intereses prestamo automotriz, tabla amortizacion coche"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Préstamos de Autos Usados?"
-    answer: "Calculadora de Préstamos de Autos Usados evalúa sus parámetros mediante la ecuación verificada (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Préstamos de Autos Usados para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Préstamos de Autos Usados antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Préstamos de Autos Usados?"
-    answer: "Dentro del modelo cuantitativo (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Préstamos de Autos Usados impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Préstamos de Autos Usados calcula el modelo matemático puro (Calcula pagos mensuales, intereses totales y calendario de amortización para préstamos de vehículos usados.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Préstamos de Autos Usados?"
-    answer: "No. Todos los cálculos de Calculadora de Préstamos de Autos Usados se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Por qué los préstamos para autos usados tienen una tasa de interés más alta que los de autos nuevos?"
+    answer: "Existen dos razones principales: en primer lugar, los vehículos usados no cuentan con las subvenciones financieras directas de los fabricantes (que absorben parte de los intereses para promover ventas de modelos nuevos); en segundo lugar, ante un eventual impago, el valor de reventa o recuperación de un coche con varios años de antigüedad es más incierto para el banco."
+  - question: "¿Qué antigüedad y kilometraje máximos aceptan los bancos para financiar un coche de segunda mano?"
+    answer: "La mayoría de las entidades bancarias y cooperativas de crédito exigen que el vehículo no supere entre 7 y 10 años de antigüedad en el momento de la compra, no exceda las 100.000 millas (unos 160.000 kilómetros) y que la suma de la edad actual del coche más el plazo del préstamo no rebase los 10 o 12 años al finalizar el contrato."
+  - question: "¿En qué consiste la regla 20/4/10 al financiar un vehículo seminuevo?"
+    answer: "Es la pauta de salud financiera recomendada por los analistas de consumo: aportar al menos un 20 % de pago inicial (enganche), financiar el vehículo a un plazo máximo de 4 años (48 meses) y asegurarse de que la suma de la cuota mensual, el seguro y el combustible no supere el 10 % de tus ingresos brutos mensuales."
+  - question: "¿Qué significa tener patrimonio negativo (estar 'upside-down') en el préstamo de un auto usado?"
+    answer: "Ocurre cuando el saldo pendiente de tu préstamo automotriz es superior al valor real de mercado del vehículo. Es muy frecuente cuando se financia un coche usado sin entrada a plazos largos (60 o 72 meses) con tasas superiores al 9 %, ya que el coche se deprecia más rápido de lo que baja la deuda en los primeros dos años."
+  - question: "¿Conviene más financiar en el concesionario de ocasión o llevar un préstamo preaprobado?"
+    answer: "Acudir con una preaprobación de tu banco o cooperativa de crédito (Credit Union) te fija un techo máximo de tasa de interés y te da poder de negociación como comprador al contado. Los concesionarios de autos usados suelen añadir un margen de intermediación de entre 1,5 y 2,5 puntos porcentuales sobre la tasa base si no presentas una oferta competidora."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Préstamos de Autos Usados
+## Particularidades Financieras al Comprar un Vehículo Usado o Seminuevo
 
-Calcula pagos mensuales, intereses totales y calendario de amortización para préstamos de vehículos usados. En el modelado financiero cuantitativo, los resultados de **Calculadora de Préstamos de Autos Usados** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+Adquirir un vehículo seminuevo de entre dos y cuatro años de antigüedad permite esquivar el tramo más agresivo de la curva de depreciación automotriz, durante el cual un automóvil recién salido de fábrica pierde entre el 30 % y el 40 % de su valor original. Sin embargo, lo que el comprador ahorra en el precio de etiqueta puede diluirse en la financiación si no evalúa con rigor la relación entre la **tasa de interés anual (TIN / TAE)**, el **plazo en meses** y el **capital neto financiado**.
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+En el mercado de ocasión, las entidades crediticias aplican tasas de interés entre 1,5 y 3,0 puntos porcentuales más elevadas que en los coches nuevos, además de imponer límites sobre la relación préstamo-valor (*Loan-to-Value*, LTV) según las tablas oficiales de tasación (Kelley Blue Book, NADA o Ganvam/Eurotax). Calcular tu cuota mensual exacta antes de acudir al concesionario es la mejor defensa frente a recargos y plazos excesivamente largos.
 
-El motor computacional de **Calculadora de Préstamos de Autos Usados** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+---
 
-```
-M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
-```
+## Fórmula del Préstamo Automotriz con Entrega de Vehículo e Impuestos
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+Para conocer la cuota mensual real ($M$) de un préstamo para auto usado, primero debemos determinar con exactitud el **capital principal a financiar ($P$)** tras descontar el pago inicial, restar el valor de intercambio de tu coche actual (*trade-in*) y sumar los impuestos y gastos de transferencia:
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+$$P = (V_{\text{vehículo}} - V_{\text{intercambio}}) \cdot (1 + t_{\text{impuesto}}) + G_{\text{registro}} - E_{\text{enganche}}$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Préstamos de Autos Usados**:
+Una vez obtenido el principal neto $P$, el pago periódico mensual se calcula mediante la ecuación de interés compuesto de amortización constante:
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `SI / Standard` | Calibrated | Total periodic principal and interest payment |
-| **Principal Loan Amount (`P`)** | `SI / Standard` | Calibrated | Initial borrowed loan balance |
-| **Periodic Interest Rate (`i`)** | `SI / Standard` | Calibrated | Annual interest rate divided by payment frequency (e.g. APR / 12) |
-| **Total Number of Payments (`n`)** | `SI / Standard` | Calibrated | Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) |
+$$M = P \cdot \frac{r(1 + r)^n}{(1 + r)^n - 1}$$
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `-20% (M₀ × 0.8)` | `Baseline (M₀)` | `+20% (M₀ × 1.2)` |
-| **Principal Loan Amount (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Periodic Interest Rate (`i`)** | `-20% (i₀ × 0.8)` | `Baseline (i₀)` | `+20% (i₀ × 1.2)` |
-| **Total Number of Payments (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
+Donde cada variable representa:
+* **$V_{\text{vehículo}}$**: Precio de venta negociado del automóvil usado.
+* **$V_{\text{intercambio}}$**: Valor neto reconocido por la entrega de tu vehículo anterior (en la mayoría de las jurisdicciones, el impuesto de venta solo se aplica sobre la diferencia neta).
+* **$t_{\text{impuesto}}$ y $G_{\text{registro}}$**: Tipo impositivo aplicable a la compraventa o transmisión patrimonial, más las tasas oficiales de matriculación y gestoría.
+* **$E_{\text{enganche}}$**: Pago inicial aportado en efectivo para reducir el importe del préstamo.
+* **$r$**: Tasa de interés mensual efectiva ($r = \text{TIN anual} / 12$).
+* **$n$**: Plazo total del préstamo expresado en meses (habitualmente 36, 48, 60 o 72 meses).
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+---
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+## Ejemplo Práctico Resuelto: Compra de un Seminuevo de 22.000 $ / € a 48 Meses
 
-1. **Monthly Payment (`M`)** — Total periodic principal and interest payment: Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Usados. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-2. **Principal Loan Amount (`P`)** — Initial borrowed loan balance: Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Usados. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-3. **Periodic Interest Rate (`i`)** — Annual interest rate divided by payment frequency (e.g. APR / 12): Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Usados. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-4. **Total Number of Payments (`n`)** — Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360): Parámetro estructural en la ecuación de Calculadora de Préstamos de Autos Usados. Su variación altera de forma directa la sensibilidad marginal del resultado principal.
+Supongamos que deseas adquirir un SUV seminuevo certificado (*Certified Pre-Owned*, CPO) con tres años de uso bajo las siguientes condiciones:
+* **Precio negociado del auto usado**: 22.000 $ (o €)
+* **Valor de entrega de tu coche actual**: 3.000 $
+* **Impuesto sobre la venta (7 % sobre la diferencia de 19.000 $)**: 1.330 $
+* **Tasas de registro, título y documentación**: 370 $
+* **Pago inicial en efectivo (enganche)**: 2.700 $
+* **Plazo seleccionado**: 48 meses (4 años)
+* **Tasa de interés anual (TIN)**: 8,50 % ($r = 0,085 / 12 \approx 0,00708333$)
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+### 1. Determinación del capital principal financiado ($P$)
+Sumamos los costes de adquisición y restamos tanto el vehículo entregado como la entrada en efectivo:
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+$$P = (22.000 - 3.000) + 1.330 + 370 - 2.700 = 18.000,00\text{ \$}$$
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+### 2. Cálculo de la cuota mensual y de los intereses totales
+Calculamos el factor de capitalización para los 48 meses del préstamo:
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+$$(1 + 0,00708333)^{48} \approx 1,403265$$
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
+Sustituimos los valores en la fórmula de la cuota mensual:
 
-Todos los cálculos realizados en **Calculadora de Préstamos de Autos Usados** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+$$M = 18.000 \cdot \frac{0,00708333 \times 1,403265}{1,403265 - 1} = 18.000 \cdot 0,02464830 = 443,67\text{ \$/mes}$$
+
+Al cabo de los 48 meses habrás abonado un total de **$21.296,13\text{ \$}$**, compuestos por los $18.000,00\text{ \$}$ de capital del vehículo y **$3.296,13\text{ \$}$ de intereses acumulados**.
+
+---
+
+## Comparativa de Plazos para un Préstamo de Auto Usado de 18.000 $ (36 a 72 Meses)
+
+En la financiación de vehículos usados, alargar el plazo no solo incrementa los meses que devengan intereses, sino que los bancos aplican una tasa nominal más alta cuando el contrato supera los 48 meses. Observa el impacto real sobre nuestro préstamo base de **18.000 $**:
+
+| Plazo del Préstamo | Tasa Habitual (TIN) | Cuota Mensual ($M$) | Total de Intereses Pagados | Desembolso Total del Crédito | Riesgo de Patrimonio Negativo |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **36 Meses (3 años)** | 7,90 % | **563,23 $** | **2.276,22 $** | 20.276,22 $ | **Nulo** (amortización rápida) |
+| **48 Meses (4 años)** | 8,50 % | **443,67 $** | **3.296,13 $** | 21.296,13 $ | **Bajo** (equilibrio óptimo) |
+| **60 Meses (5 años)** | 9,25 % | **375,84 $** | **4.550,32 $** | 22.550,32 $ | **Moderado** (primeros 24 meses) |
+| **72 Meses (6 años)** | 10,25 % | **335,74 $** | **6.173,13 $** | 24.173,13 $ | **Alto** (deuda supera valor del auto) |
+
+Elegir **72 meses** en lugar de **48 meses** rebaja la cuota mensual en solo 107,93 $, pero **casi duplica los intereses totales** (de 3.296,13 $ a 6.173,13 $) y te mantiene pagando cuotas cuando el vehículo usado ya tendrá entre 9 y 10 años de uso.
+
+---
+
+## Errores Costosos al Financiar un Auto de Segunda Mano y Cómo Evitarlos
+
+1. **Negociar según la cuota mensual y no sobre el precio total del vehículo**: Estirar el préstamo de 48 a 72 meses permite al vendedor ocultar un sobreprecio de 2.500 $ en el coche bajo una cuota aparentemente baja. Cierra primero el precio final al contado del vehículo (*out-the-door price*), luego el valor de tu coche entregado y por último la financiación.
+2. **Financiar garantías extendidas y accesorios dentro del préstamo**: Incluir una garantía mecánica de 2.200 $ dentro de un crédito al 9,50 % a 60 meses encarece ese servicio hasta casi 2.800 $. Compara coberturas adicionales o el seguro GAP directamente con tu aseguradora o cooperativa de crédito.
+3. **Confirmar que el contrato aplique interés simple sin penalización por pago anticipado**: Verifica que los intereses se calculen sobre el saldo vivo real y sin comisiones por amortización anticipada, para que cualquier pago extra reduzca al 100 % el capital pendiente.

@@ -1,75 +1,77 @@
 ---
 title: "Calculateur de Prêt Hypothécaire VA"
-metaTitle: "Calculateur de Prêt Hypothécaire VA — Gratuit en Ligne"
-description: "Calculez les mensualités de votre prêt VA, les frais de financement VA et consultez le tableau d'amortissement complet."
-metaDescription: "Calculez les mensualités de votre prêt VA, les frais de financement VA et consultez le tableau d'amortissement complet."
+metaTitle: "Calculateur de Prêt Hypothécaire VA : Mensualité & Frais"
+description: "Estimez votre mensualité de prêt hypothécaire VA sans mise de fonds, calculez les frais de financement (VA Funding Fee) et visualisez l'amortissement complet."
+metaDescription: "Simulez votre prêt hypothécaire VA aux États-Unis : mensualités, frais de garantie VA selon votre apport, taxes foncières et économie d'assurance PMI."
+metaKeywords: "calculateur prêt hypothécaire VA, prêt immobilier VA, frais de financement VA, VA funding fee, hypothèque vétérans américains, amortissement prêt VA, exonération PMI"
 faqs:
-  - question: "Quelle formule mathématique exacte utilise Calculateur de Prêt Hypothécaire VA ?"
-    answer: "Calculateur de Prêt Hypothécaire VA applique l'équation de référence (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]). Le moteur traite les variables (paramètres saisis) en virgule flottante double précision (norme IEEE 754) afin d'éliminer toute erreur d'arrondi intermédiaire."
-  - question: "Quelles sont les valeurs de référence pré-remplies dans Calculateur de Prêt Hypothécaire VA ?"
-    answer: "Le simulateur initialise un scénario de référence calibré (valeurs standards du secteur) permettant d'observer immédiatement l'équilibre du modèle avant de saisir vos propres paramètres."
-  - question: "Quel est l'impact d'une variation de le paramètre principal sur le résultat de Calculateur de Prêt Hypothécaire VA ?"
-    answer: "Dans la relation (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]), le paramètre principal interagit directement avec les variables secondaires. En faisant varier le paramètre principal isolément, vous mesurez l'élasticité mathématique exacte du résultat principal et des indicateurs secondaires."
-  - question: "Les résultats de Calculateur de Prêt Hypothécaire VA incluent-ils la fiscalité et les frais annexes ?"
-    answer: "Calculateur de Prêt Hypothécaire VA modélise rigoureusement l'équation financière (Calculez les mensualités de votre prêt VA, les frais de financement VA et consultez le tableau d'amortissement complet.) selon vos entrées. Pour un engagement contractuel ou fiscal, complétez cette simulation avec les frais spécifiques de votre établissement ou conseiller."
-  - question: "Mes données saisies dans Calculateur de Prêt Hypothécaire VA sont-elles confidentielles ?"
-    answer: "Oui. L'intégralité des calculs de Calculateur de Prêt Hypothécaire VA s'exécute 100 % localement dans votre navigateur web (conformité RGPD), sans aucun envoi vers un serveur externe."
+  - question: "Qui est admissible à un prêt hypothécaire VA et comment obtenir le certificat COE ?"
+    answer: "Le programme s'adresse aux militaires américains en service actif, aux anciens combattants (vétérans), aux membres de la Garde nationale ou de la Réserve ayant accompli la durée minimale de service requise, ainsi qu'à certains conjoints survivants. L'admissibilité est attestée par le Certificat d'Éligibilité (Certificate of Eligibility ou COE), délivrable en ligne sur le portail officiel du Département des Anciens Combattants ou directement par le prêteur agréé."
+  - question: "Pourquoi le prêt VA permet-il d'éviter l'assurance hypothécaire privée (PMI) même sans apport ?"
+    answer: "Dans un prêt conventionnel américain, tout apport inférieur à 20 % oblige l'emprunteur à payer une prime mensuelle d'assurance hypothécaire privée (PMI) représentant entre 0,5 % et 1,5 % du prêt par an. Sur un prêt VA, l'État fédéral garantit directement une portion du crédit auprès de la banque prêteuse, ce qui supprime définitivement toute prime mensuelle d'assurance hypothécaire."
+  - question: "Quels emprunteurs sont exonérés des frais de financement VA (Funding Fee) ?"
+    answer: "Sont totalement dispensés des frais de financement les vétérans percevant une pension d'invalidité pour une blessure ou maladie liée au service (ou qui en percevraient une s'ils ne touchaient pas leur solde de retraite), les militaires en service actif décorés de la Purple Heart, ainsi que les conjoints survivants éligibles d'un militaire décédé en service ou des suites d'une invalidité liée au service."
+  - question: "Existe-t-il un plafond d'emprunt pour acheter sans apport avec un prêt VA ?"
+    answer: "Depuis l'entrée en vigueur du Blue Water Navy Vietnam Veterans Act de 2020, les emprunteurs disposant de leur droit complet (Full Entitlement, c'est-à-dire sans autre prêt VA actif en cours) ne sont plus soumis aux plafonds géographiques de comté de la FHFA pour emprunter sans apport. Le montant maximal dépend uniquement de leur capacité de remboursement validée par la banque."
+  - question: "Peut-on financer un immeuble locatif ou une résidence secondaire avec un prêt VA ?"
+    answer: "Non pour un investissement purement locatif ou une maison de vacances. Le prêt VA impose une obligation stricte d'occupation à titre de résidence principale (généralement dans les 60 jours suivant la signature). En revanche, il est tout à fait autorisé d'acquérir un petit immeuble résidentiel de 2 à 4 logements (duplex, triplex ou quadruplex) à condition d'occuper personnellement l'une des unités comme résidence principale."
 ---
 
-## Méthodologie Technique et Architecture Mathématique : Calculateur de Prêt Hypothécaire VA
+Destiné aux militaires en service actif, aux anciens combattants des forces armées américaines et aux conjoints survivants éligibles (y compris les binationaux résidant ou s'installant aux États-Unis), le **prêt hypothécaire VA** (*VA Mortgage Loan*) constitue l'un des dispositifs d'accession à la propriété les plus avantageux du marché nord-américain. Garanti par le Département des Anciens Combattants (*U.S. Department of Veterans Affairs*), il repose sur trois piliers financiers majeurs : la possibilité d'emprunter **100 % du prix d'achat sans apport personnel**, l'**absence totale d'assurance hypothécaire mensuelle** (PMI ou MIP) et des taux d'intérêt moyens généralement inférieurs de 25 à 40 points de base à ceux des crédits conventionnels.
 
-Calculez les mensualités de votre prêt VA, les frais de financement VA et consultez le tableau d'amortissement complet. Dans la modélisation financière quantitative, les résultats fournis par **Calculateur de Prêt Hypothécaire VA** dépendent directement de la périodicité de capitalisation, de la distinction entre taux nominal et taux effectif global (TAEG/APR) et du calendrier des flux de trésorerie. Une variation de 50 points de base sur le taux d'intérêt ou d'actualisation produit un effet cumulatif non linéaire sur longue période.
+## Fonctionnement et barème officiel des frais de financement VA
 
-### 1. Modèle Mathématique et Formule de Référence
+Bien que le prêt VA supprime toute prime d'assurance mensuelle, il comporte une cotisation unique appelée **frais de financement VA** (*VA Funding Fee*), reversée à l'administration fédérale pour assurer l'équilibre budgétaire du programme. L'emprunteur peut régler cette somme au comptant lors de la signature (*closing*) ou l'intégrer directement au capital emprunté.
 
-Le moteur de calcul de **Calculateur de Prêt Hypothécaire VA** traite vos variables d'entrée en temps réel selon la relation fondamentale suivante :
+Le taux dépend de deux critères cumulatifs : le pourcentage de votre mise de fonds initiale (*down payment*) et le rang d'utilisation de votre droit (première acquisition ou achat ultérieur).
 
-```
-M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
-```
+| Catégorie d'Opération et Apport Personnel | Première Utilisation | Utilisations Suivantes |
+| :--- | :--- | :--- |
+| **Achat — Apport inférieur à 5 %** (inclut 0 % d'apport) | **$2,15\text{ \%}$** du prêt de base | **$3,30\text{ \%}$** du prêt de base |
+| **Achat — Apport de 5 % à moins de 10 %** | **$1,50\text{ \%}$** du prêt de base | **$1,50\text{ \%}$** du prêt de base |
+| **Achat — Apport de 10 % ou plus** | **$1,25\text{ \%}$** du prêt de base | **$1,25\text{ \%}$** du prêt de base |
+| **Refinancement avec retrait de trésorerie (*Cash-Out*)** | **$2,15\text{ \%}$** du capital | **$3,30\text{ \%}$** du capital |
+| **Refinancement simplifié de baisse de taux (*IRRRL*)** | **$0,50\text{ \%}$** du capital | **$0,50\text{ \%}$** du capital |
+| **Invalidité liée au service ($\ge 10\text{ \%}$) ou *Purple Heart*** | **$0,00\text{ \%}$ (Exonéré)** | **$0,00\text{ \%}$ (Exonéré)** |
 
-À chaque modification d'un paramètre, l'algorithme vérifie la cohérence des domaines numériques et applique une arithmétique en virgule flottante double précision (norme IEEE 754) afin d'éliminer les erreurs d'arrondi intermédiaires et de générer instantanément les indicateurs principaux et secondaires.
+## Équation mathématique de la mensualité hypothécaire VA (PITI)
 
-### 2. Tableau des Paramètres et Matrice Multi-Scénarios
+Lorsque les frais de financement sont capitalisés dans l'emprunt, le calcul de l'échéance mensuelle procède en trois étapes.
 
-Le tableau ci-dessous détaille la structure technique des variables ainsi que les trois paliers de simulation (-20 % prudent, référence calibrée et +20 % élevé) pris en charge par **Calculateur de Prêt Hypothécaire VA** :
+### 1. Détermination du capital total financé ($L_{\text{total}}$)
+On soustrait l'apport personnel ($A$) du prix d'achat ($V$) pour obtenir le prêt de base ($P_{\text{base}}$), auquel on ajoute les frais de financement selon le taux applicable ($\tau_{\text{VA}}$) :
 
-| Paramètre d'Entrée | Unité | Valeur de Référence | Plage d'Analyse Recommandée |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `SI / Standard` | Calibrated | Total periodic principal and interest payment |
-| **Principal Loan Amount (`P`)** | `SI / Standard` | Calibrated | Initial borrowed loan balance |
-| **Periodic Interest Rate (`i`)** | `SI / Standard` | Calibrated | Annual interest rate divided by payment frequency (e.g. APR / 12) |
-| **Total Number of Payments (`n`)** | `SI / Standard` | Calibrated | Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) |
+$$P_{\text{base}} = V - A \quad \text{et} \quad L_{\text{total}} = P_{\text{base}} \times (1 + \tau_{\text{VA}})$$
 
-| Variable du Modèle | Scénario Prudent (-20%) | Scénario de Référence | Scénario Élevé (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Monthly Payment (`M`)** | `-20% (M₀ × 0.8)` | `Baseline (M₀)` | `+20% (M₀ × 1.2)` |
-| **Principal Loan Amount (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Periodic Interest Rate (`i`)** | `-20% (i₀ × 0.8)` | `Baseline (i₀)` | `+20% (i₀ × 1.2)` |
-| **Total Number of Payments (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
+### 2. Calcul de la mensualité de capital et d'intérêts ($M_{\text{CI}}$)
+Pour un prêt amortissable à taux fixe sur $n$ mois ($n = 360$ pour $30\text{ ans}$ ou $n = 180$ pour $15\text{ ans}$) avec un taux mensuel $i = \frac{r_{\text{annuel}}}{12}$, la mensualité constante s'établit selon la formule actuarielle :
 
-### 3. Analyse de Sensibilité des Variables d'Entrée
+$$M_{\text{CI}} = L_{\text{total}} \times \frac{i(1 + i)^n}{(1 + i)^n - 1}$$
 
-Une maîtrise précise de chaque variable vous permet de simuler des scénarios réalistes et de mesurer l'élasticité du résultat :
+### 3. Agrégation de la charge mensuelle globale (PITI)
+Aux États-Unis, le prêteur prélève chaque mois sur un compte séquestre (*escrow*) le douzième des impôts fonciers locaux et de l'assurance habitation, auxquels s'ajoutent les éventuelles charges de copropriété (HOA) :
 
-1. **Monthly Payment (`M`)** — Total periodic principal and interest payment : Paramètre structurel dans l'équation de Calculateur de Prêt Hypothécaire VA. Sa variation modifie directement la sensibilité marginale du résultat principal.
-2. **Principal Loan Amount (`P`)** — Initial borrowed loan balance : Paramètre structurel dans l'équation de Calculateur de Prêt Hypothécaire VA. Sa variation modifie directement la sensibilité marginale du résultat principal.
-3. **Periodic Interest Rate (`i`)** — Annual interest rate divided by payment frequency (e.g. APR / 12) : Paramètre structurel dans l'équation de Calculateur de Prêt Hypothécaire VA. Sa variation modifie directement la sensibilité marginale du résultat principal.
-4. **Total Number of Payments (`n`)** — Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) : Paramètre structurel dans l'équation de Calculateur de Prêt Hypothécaire VA. Sa variation modifie directement la sensibilité marginale du résultat principal.
+$$M_{\text{globale}} = M_{\text{CI}} + \frac{T_{\text{foncière}}}{12} + \frac{A_{\text{habitation}}}{12} + C_{\text{HOA}}$$
 
-### 4. Protocole d'Utilisation et de Validation en 4 Étapes
+## Étude de cas chiffrée : achat d'une résidence de 400 000 $ sur 30 ans
 
-1. **Établissement du Scénario de Référence** : Observez d'abord les résultats générés avec les valeurs par défaut afin de comprendre l'équilibre standard du modèle.
-2. **Harmonisation des Unités de Mesure** : Vérifiez que l'ensemble de vos données respecte la même base temporelle ou physique (ex. taux annuels vs mensuels, système métrique vs impérial).
-3. **Test de Sensibilité Univariée** : Faites varier un seul paramètre à la fois pour isoler son impact mathématique exact sur le résultat final.
-4. **Comparaison Multi-Scénarios** : Confrontez une hypothèse prudente, une hypothèse médiane et une hypothèse haute afin d'encadrer votre prise de décision avec une marge de sécurité optimale.
+Analysons le dossier d'un emprunteur qui achète sa résidence principale au prix de **400 000 $** sans apport (**0 $**), lors d'une **première utilisation** de son certificat COE. Le prêt est souscrit sur **30 ans** ($360\text{ mois}$) au taux fixe de **6,00 %** par an, avec capitalisation des frais VA :
 
-### 5. Pièges Fréquents lors des Calculs Manuels
+1. **Prêt de base et frais VA** :
+   - Prêt de base ($P_{\text{base}}$) : $400\,000\text{ \$}$.
+   - Frais de financement VA ($\tau_{\text{VA}} = 2,15\text{ \%}$) : $400\,000 \times 0,0215 = 8\,600\text{ \$}$.
+   - Capital total financé ($L_{\text{total}}$) : $400\,000 + 8\,600 = \mathbf{408\,600\text{ \$}}$.
+2. **Mensualité de capital et d'intérêts ($M_{\text{CI}}$)** :
+   - Taux mensuel ($i$) : $0,06 / 12 = 0,005$, d'où $(1,005)^{360} \approx 6,022575$.
+   - $M_{\text{CI}} = 408\,600 \times \frac{0,005 \times 6,022575}{5,022575} = \mathbf{2\,449,76\text{ \$/mois}}$.
+3. **Ajout des taxes et assurances** :
+   - Avec une taxe foncière annuelle de $4\,800\text{ \$}$ ($400\text{ \$/mois}$) et une assurance habitation de $1\,500\text{ \$/an}$ ($125\text{ \$/mois}$), l'échéance totale atteint :
+   - $M_{\text{globale}} = 2\,449,76 + 400,00 + 125,00 = \mathbf{2\,974,76\text{ \$/mois}}$.
+4. **Impact d'une exonération pour invalidité liée au service** :
+   - Si le vétéran est exonéré des frais VA ($0\text{ \$}$), le capital emprunté reste à $400\,000\text{ \$}$ et la mensualité de crédit descend à **$2\,398,20\text{ \$}$**, soit une économie de **$51,56\text{ \$/mois}$** et **$18\,561,60\text{ \$}$** sur 30 ans.
 
-- **Arrondis Intermédiaires Prématurés** : Tronquer les décimales au cours des étapes intermédiaires fausse sensiblement le résultat final dans les formules composées, trigonométriques ou scientifiques.
-- **Confusion d'Échelles ou de Périodicité** : Mélanger des grandeurs non converties constitue la première source d'erreur dans les feuilles de calcul manuelles.
-- **Négligence des Indicateurs Secondaires** : Au-delà du résultat principal, l'analyse des répartitions détaillées et des courbes d'évolution est essentielle pour interpréter correctement le phénomène étudié.
+## Arbitrage stratégique et points de vigilance pour l'emprunteur
 
-### 6. Confidentialité Absolue et Exécution Côté Client
-
-L'intégralité des opérations de **Calculateur de Prêt Hypothécaire VA** s'exécute **100 % localement dans votre navigateur web**. Aucune donnée saisie n'est envoyée vers un serveur distant ni enregistrée dans une base de données, garantissant une sécurité maximale (conformité RGPD) et une réactivité immédiate sur ordinateur comme sur mobile.
+- **L'effet de seuil d'un apport de 5 % lors d'un second achat** : Sans apport lors d'une deuxième utilisation du prêt VA, les frais de financement grimpent à $3,30\text{ \%}$ ($13\,200\text{ \$}$ sur un bien de $400\,000\text{ \$}$). En versant $5\text{ \%}$ d'apport ($20\,000\text{ \$}$), le taux de frais chute à $1,50\text{ \%}$ sur un prêt ramené à $380\,000\text{ \$}$ (soit $5\,700\text{ \$}$), générant une économie immédiate de **$7\,500\text{ \$}$** sur la commission fédérale.
+- **L'exigence de revenu résiduel (*VA Residual Income*)** : Au-delà du taux d'endettement brut (DTI de référence autour de $41\text{ \%}$), le règlement VA exige qu'il reste au foyer un solde net minimal en dollars chaque mois après paiement de toutes les dettes, impôts et charges de logement, selon un barème indexé sur la région et la taille de la famille.
+- **Plafonnement des frais et transférabilité du prêt (*Assumable Loan*)** : Les frais d'origination bancaire sont plafonnés à $1\text{ \%}$ du prêt, et le vendeur peut accorder jusqu'à $4\text{ \%}$ de concessions pour solder des frais ou dettes de l'acheteur. De plus, un prêt VA est transférable : en cas de revente future dans un marché où les taux ont monté, un acheteur solvable peut reprendre votre crédit à votre taux initial.

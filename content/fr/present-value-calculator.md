@@ -1,75 +1,78 @@
 ---
 title: "Calculateur de Valeur Actuelle"
-metaTitle: "Calculateur de Valeur Actuelle — Gratuit en Ligne"
-description: "Calculez la valeur actuelle d'une somme future ou de flux de trésorerie."
-metaDescription: "Calculez la valeur actuelle d'une somme future ou de flux de trésorerie."
+metaTitle: "Calculateur de Valeur Actuelle : Flux Futurs et Annuités"
+description: "Calculez la valeur actuelle (VA) d'un capital futur ou d'une suite d'annuités selon votre taux d'actualisation et la fréquence de capitalisation."
+metaDescription: "Calculez la valeur actuelle (VA) d'une somme future ou d'une série de flux de trésorerie selon le taux d'actualisation, l'inflation et le coût du capital."
+metaKeywords: "calculateur valeur actuelle, actualisation flux de trésorerie, valeur actuelle nette VAN, taux d'actualisation, valeur temporelle de l'argent, facteur d'actualisation, valeur actuelle annuité"
 faqs:
-  - question: "Quelle formule mathématique exacte utilise Calculateur de Valeur Actuelle ?"
-    answer: "Calculateur de Valeur Actuelle applique l'équation de référence (PV = FV / (1 + r)^n). Le moteur traite les variables (paramètres saisis) en virgule flottante double précision (norme IEEE 754) afin d'éliminer toute erreur d'arrondi intermédiaire."
-  - question: "Quelles sont les valeurs de référence pré-remplies dans Calculateur de Valeur Actuelle ?"
-    answer: "Le simulateur initialise un scénario de référence calibré (valeurs standards du secteur) permettant d'observer immédiatement l'équilibre du modèle avant de saisir vos propres paramètres."
-  - question: "Quel est l'impact d'une variation de le paramètre principal sur le résultat de Calculateur de Valeur Actuelle ?"
-    answer: "Dans la relation (PV = FV / (1 + r)^n), le paramètre principal interagit directement avec les variables secondaires. En faisant varier le paramètre principal isolément, vous mesurez l'élasticité mathématique exacte du résultat principal et des indicateurs secondaires."
-  - question: "Les résultats de Calculateur de Valeur Actuelle incluent-ils la fiscalité et les frais annexes ?"
-    answer: "Calculateur de Valeur Actuelle modélise rigoureusement l'équation financière (Calculez la valeur actuelle d'une somme future ou de flux de trésorerie.) selon vos entrées. Pour un engagement contractuel ou fiscal, complétez cette simulation avec les frais spécifiques de votre établissement ou conseiller."
-  - question: "Mes données saisies dans Calculateur de Valeur Actuelle sont-elles confidentielles ?"
-    answer: "Oui. L'intégralité des calculs de Calculateur de Valeur Actuelle s'exécute 100 % localement dans votre navigateur web (conformité RGPD), sans aucun envoi vers un serveur externe."
+  - question: "Quelle est la différence entre la Valeur Actuelle (VA) et la Valeur Actuelle Nette (VAN) ?"
+    answer: "La Valeur Actuelle (VA) représente la somme des flux de trésorerie futurs actualisés à la date d'aujourd'hui. La Valeur Actuelle Nette (VAN) va une étape plus loin en soustrayant le coût de l'investissement initial décaissé à la date zéro (VAN = VA - Investissement initial) afin de mesurer la création nette de valeur d'un projet."
+  - question: "Comment choisir le bon taux d'actualisation pour ses calculs ?"
+    answer: "Le taux d'actualisation reflète votre coût d'opportunité et le niveau de risque du flux futur. Pour un particulier, on retient le rendement d'un placement alternatif de risque équivalent (ex. 3 % à 4 % pour un actif obligataire sûr, 7 % à 8 % pour un portefeuille actions). En finance d'entreprise, on utilise le Coût Moyen Pondéré du Capital (CMPC ou WACC)."
+  - question: "Quelle différence y a-t-il entre une annuité à terme échu et une annuité d'avance ?"
+    answer: "Une annuité à terme échu (ordinaire) est versée à la fin de chaque période (comme les coupons d'obligations ou les échéances d'un prêt). Une annuité d'avance (à terme à échoir) est réglée dès le premier jour de chaque période (comme un loyer d'habitation ou une redevance de crédit-bail) : chaque flux étant encaissé une période plus tôt, sa valeur actuelle est multipliée par (1 + r)."
+  - question: "Comment intégrer l'inflation dans un calcul de valeur actuelle ?"
+    answer: "Règle d'or de cohérence financière : vous devez actualiser des flux nominaux (qui incluent l'inflation future) avec un taux d'actualisation nominal, ou actualiser des flux exprimés en euros constants (hors inflation) avec un taux d'actualisation réel calculé selon la relation de Fisher : (1 + r_réel) = (1 + r_nominal) / (1 + inflation)."
+  - question: "Comment calcule-t-on la valeur actuelle d'une rente perpétuelle ?"
+    answer: "Lorsqu'un actif verse un flux constant F à l'infini sans date d'échéance, sa valeur actuelle converge vers le quotient simple VA = F / r. Si ce flux croît chaque année à un taux constant g strictement inférieur au taux d'actualisation r, on applique la formule de Gordon-Shapiro : VA = F₁ / (r - g)."
 ---
 
-## Méthodologie Technique et Architecture Mathématique : Calculateur de Valeur Actuelle
+En finance d'entreprise comme en gestion de patrimoine, **un euro encaissé aujourd'hui vaut plus qu'un euro promis demain**. Ce principe fondamental de la **valeur temporelle de l'argent** (*Time Value of Money*) repose sur trois réalités économiques : le capital disponible immédiatement peut être placé pour produire des intérêts composés (coût d'opportunité), l'inflation érode le pouvoir d'achat futur de la monnaie, et tout encaissement différé comporte un risque de contrepartie.
 
-Calculez la valeur actuelle d'une somme future ou de flux de trésorerie. Dans la modélisation financière quantitative, les résultats fournis par **Calculateur de Valeur Actuelle** dépendent directement de la périodicité de capitalisation, de la distinction entre taux nominal et taux effectif global (TAEG/APR) et du calendrier des flux de trésorerie. Une variation de 50 points de base sur le taux d'intérêt ou d'actualisation produit un effet cumulatif non linéaire sur longue période.
+Ce calculateur de valeur actuelle réalise l'**actualisation** — opération mathématique inverse de la capitalisation — afin de convertir un capital unique futur ou une série de versements périodiques (annuités, loyers, coupons, dividendes, flux d'exploitation) en leur équivalent monétaire exact d'aujourd'hui.
 
-### 1. Modèle Mathématique et Formule de Référence
+## Les Trois Équations Fondamentales de l'Actualisation
 
-Le moteur de calcul de **Calculateur de Valeur Actuelle** traite vos variables d'entrée en temps réel selon la relation fondamentale suivante :
+### 1. Valeur Actuelle d'un capital unique futur ($VA_{\text{unique}}$)
+Pour déterminer combien vaut aujourd'hui une somme unique $VF$ (Valeur Future) qui sera perçue dans $n$ années avec un taux d'actualisation annuel $r$ :
 
-```
-PV = FV / (1 + r)^n
-```
+$$VA = \frac{VF}{(1 + r)^n} = VF \times (1 + r)^{-n}$$
 
-À chaque modification d'un paramètre, l'algorithme vérifie la cohérence des domaines numériques et applique une arithmétique en virgule flottante double précision (norme IEEE 754) afin d'éliminer les erreurs d'arrondi intermédiaires et de générer instantanément les indicateurs principaux et secondaires.
+Le terme $(1 + r)^{-n}$ est appelé **facteur d'actualisation** (ou coefficient d'escompte actuariel). Lorsque l'actualisation s'effectue selon une fréquence infra-annuelle ($m$ périodes par an, soit $m = 12$ pour une actualisation mensuelle), la formule devient :
 
-### 2. Tableau des Paramètres et Matrice Multi-Scénarios
+$$VA = \frac{VF}{\left(1 + \frac{r}{m}\right)^{n \times m}}$$
 
-Le tableau ci-dessous détaille la structure technique des variables ainsi que les trois paliers de simulation (-20 % prudent, référence calibrée et +20 % élevé) pris en charge par **Calculateur de Valeur Actuelle** :
+### 2. Valeur Actuelle d'une suite d'annuités constantes ($VA_{\text{annuité}}$)
+Lorsqu'un contrat ou un actif génère un flux périodique constant $F$ à la fin de chaque période pendant $n$ périodes (annuités à **terme échu**), la somme géométrique des flux actualisés s'écrit :
 
-| Paramètre d'Entrée | Unité | Valeur de Référence | Plage d'Analyse Recommandée |
-| :--- | :--- | :--- | :--- |
-| **Present Value (`PV`)** | `SI / Standard` | Calibrated | Current lump-sum value of a future cash flow |
-| **Future Value (`FV`)** | `SI / Standard` | Calibrated | Expected amount to be received in the future |
-| **Discount Rate (`r`)** | `SI / Standard` | Calibrated | Rate of return per discounting period |
-| **Number of Periods (`n`)** | `SI / Standard` | Calibrated | Total periods between present date and future receipt |
+$$VA_{\text{échu}} = F \times \frac{1 - (1 + r)^{-n}}{r}$$
 
-| Variable du Modèle | Scénario Prudent (-20%) | Scénario de Référence | Scénario Élevé (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Present Value (`PV`)** | `-20% (PV₀ × 0.8)` | `Baseline (PV₀)` | `+20% (PV₀ × 1.2)` |
-| **Future Value (`FV`)** | `-20% (FV₀ × 0.8)` | `Baseline (FV₀)` | `+20% (FV₀ × 1.2)` |
-| **Discount Rate (`r`)** | `-20% (r₀ × 0.8)` | `Baseline (r₀)` | `+20% (r₀ × 1.2)` |
-| **Number of Periods (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
+Si les versements interviennent au **début de chaque période** (annuités d'avance, typiques des loyers immobiliers ou des cotisations d'épargne), chaque flux subit une période d'escompte en moins :
 
-### 3. Analyse de Sensibilité des Variables d'Entrée
+$$VA_{\text{début}} = F \times \frac{1 - (1 + r)^{-n}}{r} \times (1 + r)$$
 
-Une maîtrise précise de chaque variable vous permet de simuler des scénarios réalistes et de mesurer l'élasticité du résultat :
+### 3. Passage à la Valeur Actuelle Nette ($VAN$) et Rente Perpétuelle
+- **Valeur Actuelle Nette ($VAN$)** d'un projet nécessitant une mise de fonds initiale $I_0$ : $VAN = VA_{\text{flux futurs}} - I_0$.
+- **Rente perpétuelle croissante (Modèle de Gordon-Shapiro)** pour un flux initial $F_1$ croissant au taux annuel $g$ à l'infini ($g < r$) :
+  $$VA_{\text{perp}} = \frac{F_1}{r - g}$$
 
-1. **Present Value (`PV`)** — Current lump-sum value of a future cash flow : Paramètre structurel dans l'équation de Calculateur de Valeur Actuelle. Sa variation modifie directement la sensibilité marginale du résultat principal.
-2. **Future Value (`FV`)** — Expected amount to be received in the future : Paramètre structurel dans l'équation de Calculateur de Valeur Actuelle. Sa variation modifie directement la sensibilité marginale du résultat principal.
-3. **Discount Rate (`r`)** — Rate of return per discounting period : Paramètre structurel dans l'équation de Calculateur de Valeur Actuelle. Sa variation modifie directement la sensibilité marginale du résultat principal.
-4. **Number of Periods (`n`)** — Total periods between present date and future receipt : Paramètre structurel dans l'équation de Calculateur de Valeur Actuelle. Sa variation modifie directement la sensibilité marginale du résultat principal.
+## Exemples Chiffrés Pas à Pas : Arbitrage de Capital et Rente sur 10 Ans
 
-### 4. Protocole d'Utilisation et de Validation en 4 Étapes
+### Cas pratique n° 1 : Faut-il accepter 72 000 € comptant ou 100 000 € dans 6 ans ?
+Lors de la cession d'un actif professionnel, un acheteur vous propose deux options : **$72\,000\text{ €}$ payés immédiatement**, ou un paiement différé garanti de **$100\,000\text{ €}$ dans exactement $6\text{ ans}$**. Votre taux de rendement alternatif (obligations d'entreprises de notation A) est de **$5,50\text{ \%}$ par an** ($r = 0,055$).
+1. **Calcul du facteur d'actualisation sur 6 ans** : $(1,055)^{-6} = 1 / 1,378843 = 0,725246$.
+2. **Calcul de la Valeur Actuelle ($VA$) du paiement différé** :
+   $$VA = 100\,000 \times 0,725246 = \mathbf{72\,524,58\text{ €}}$$
+3. **Décision financière** : actualisée à $5,50\text{ \%}$, la promesse de $100\,000\text{ €}$ dans 6 ans équivaut à **$72\,524,58\text{ €}$ aujourd'hui** (l'escompte temporel est de $27\,475,42\text{ €}$). Elle surpasse l'offre comptant de $+524,58\text{ €}$. En revanche, si votre coût du capital grimpe à **$6,00\text{ \%}$**, la valeur actuelle chute à $100\,000 \times (1,06)^{-6} = \mathbf{70\,496,05\text{ €}}$ : le paiement comptant de $72\,000\text{ €}$ devient alors préférable de $+1\,503,95\text{ €}$.
 
-1. **Établissement du Scénario de Référence** : Observez d'abord les résultats générés avec les valeurs par défaut afin de comprendre l'équilibre standard du modèle.
-2. **Harmonisation des Unités de Mesure** : Vérifiez que l'ensemble de vos données respecte la même base temporelle ou physique (ex. taux annuels vs mensuels, système métrique vs impérial).
-3. **Test de Sensibilité Univariée** : Faites varier un seul paramètre à la fois pour isoler son impact mathématique exact sur le résultat final.
-4. **Comparaison Multi-Scénarios** : Confrontez une hypothèse prudente, une hypothèse médiane et une hypothèse haute afin d'encadrer votre prise de décision avec une marge de sécurité optimale.
+### Cas pratique n° 2 : Évaluation d'un bail commercial versant 12 000 € par an pendant 10 ans
+Un bail génère un loyer net annuel de **$12\,000\text{ €}$** payable à terme échu pendant **$10\text{ ans}$** ($n = 10$). Avec un taux d'actualisation exigé de **$7,00\text{ \%}$** ($r = 0,07$) :
+$$VA_{\text{échu}} = 12\,000 \times \frac{1 - (1,07)^{-10}}{0,07} = 12\,000 \times 7,023582 = \mathbf{84\,282,98\text{ €}}$$
+Si ces mêmes loyers de $12\,000\text{ €}$ étaient payables **d'avance en début d'année**, la valeur actuelle monterait à $84\,282,98 \times 1,07 = \mathbf{90\,182,79\text{ €}}$.
 
-### 5. Pièges Fréquents lors des Calculs Manuels
+## Table de Référence : Valeur Actuelle de 100 000 € Selon l'Horizon et le Taux
 
-- **Arrondis Intermédiaires Prématurés** : Tronquer les décimales au cours des étapes intermédiaires fausse sensiblement le résultat final dans les formules composées, trigonométriques ou scientifiques.
-- **Confusion d'Échelles ou de Périodicité** : Mélanger des grandeurs non converties constitue la première source d'erreur dans les feuilles de calcul manuelles.
-- **Négligence des Indicateurs Secondaires** : Au-delà du résultat principal, l'analyse des répartitions détaillées et des courbes d'évolution est essentielle pour interpréter correctement le phénomène étudié.
+| Horizon ($n$) | Taux 2,50 % (Inflation) | Taux 4,00 % (OAT) | Taux 5,50 % (Oblig.) | Taux 7,00 % (CMPC) | Taux 9,00 % (Actions) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Dans 3 ans** | 92 859,94 € | 88 899,64 € | 85 161,37 € | 81 629,79 € | 77 218,35 € |
+| **Dans 5 ans** | 88 385,43 € | 82 192,71 € | 76 513,44 € | 71 298,62 € | 64 993,14 € |
+| **Dans 10 ans** | 78 119,84 € | 67 556,42 € | 58 543,06 € | 50 834,93 € | 42 241,08 € |
+| **Dans 15 ans** | 69 046,56 € | 55 526,45 € | 44 793,30 € | 36 244,60 € | 27 453,80 € |
+| **Dans 20 ans** | 61 027,09 € | 45 638,69 € | 34 272,90 € | 25 841,90 € | 17 843,09 € |
+| **Dans 30 ans** | 47 674,27 € | 30 831,87 € | 19 985,25 € | 13 136,71 € | 7 537,11 € |
 
-### 6. Confidentialité Absolue et Exécution Côté Client
+## Bonnes Pratiques d'Analyse et Pièges d'Évaluation
 
-L'intégralité des opérations de **Calculateur de Valeur Actuelle** s'exécute **100 % localement dans votre navigateur web**. Aucune donnée saisie n'est envoyée vers un serveur distant ni enregistrée dans une base de données, garantissant une sécurité maximale (conformité RGPD) et une réactivité immédiate sur ordinateur comme sur mobile.
+- **Respectez la symétrie entre inflation et taux d'actualisation** : n'actualisez jamais des flux constants (hors inflation) avec un taux nominal élevé incluant une forte anticipation d'inflation. Pour convertir un taux nominal $r_{nom}$ en taux réel $r_{r\acute{e}el}$ sous une inflation $i$, appliquez l'équation de Fisher : $r_{r\acute{e}el} = (1 + r_{nom}) / (1 + i) - 1$.
+- **Calibrez la prime de risque selon la nature du flux** : un flux garanti par l'État (OAT 10 ans en France, Obligation du Gouvernement du Canada) s'actualise au taux sans risque ($2,8\text{ \%}$ à $3,5\text{ \%}$), tandis qu'un flux commercial incertain exige une prime de risque de $300$ à $600$ points de base.
+- **Intégrez la fiscalité sur les flux futurs** : lorsque les revenus futurs subissent le Prélèvement Forfaitaire Unique (PFU de $30\text{ \%}$) ou l'impôt sur les sociétés (IS à $25\text{ \%}$), actualisez les **flux nets d'impôt** avec un **taux d'actualisation net de fiscalité**.

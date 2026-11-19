@@ -1,68 +1,78 @@
 ---
 title: "Calculadora de Propinas"
-metaTitle: "Calculadora de Propinas — Gratis y Precisa"
-description: "Calcule propinas estándar, cargos por servicio, descuentos, impuestos y divida cuentas de restaurante al instante."
-metaDescription: "Calcule porcentajes de propina, divida la cuenta entre amigos, aplique impuestos o descuentos y consulte las costumbres internacionales de propinas con nuestra."
+metaTitle: "Calculadora de Propinas: Dividir Cuenta e Impuestos"
+description: "Calcule el porcentaje exacto de propina antes o después de impuestos, aplique descuentos y divida la cuenta de restaurante entre varios comensales al instante."
+metaDescription: "Calcule propinas en restaurantes, separe el subtotal sin impuestos, aplique descuentos y divida la cuenta entre amigos con las costumbres de cada país."
+metaKeywords: "calculadora de propinas, dividir cuenta restaurante, calcular propina antes o despues de impuestos, porcentaje de propina por pais, propina en espana mexico estados unidos"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Propinas?"
-    answer: "Calculadora de Propinas evalúa sus parámetros mediante la ecuación verificada (y = f(x₁, x₂, ..., xₙ)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Propinas para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Propinas antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Propinas?"
-    answer: "Dentro del modelo cuantitativo (y = f(x₁, x₂, ..., xₙ)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Propinas impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Propinas calcula el modelo matemático puro (Calcule propinas estándar, cargos por servicio, descuentos, impuestos y divida cuentas de restaurante al instante.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Propinas?"
-    answer: "No. Todos los cálculos de Calculadora de Propinas se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿La propina debe calcularse sobre el subtotal antes de impuestos o sobre el total final con IVA?"
+    answer: "Según las normas internacionales de etiqueta y consumo, la propina debe calcularse siempre sobre el subtotal antes de impuestos (base imponible). La propina es una gratificación por la comida y el servicio prestado por el personal, por lo que no tiene sentido aplicar un porcentaje adicional sobre el dinero recaudado para Hacienda."
+  - question: "¿Cómo se calcula la propina si utilizo un cupón de descuento o una promoción 2x1?"
+    answer: "Cuando se aplica un código promocional, descuento de fidelidad o tarjeta regalo, la buena práctica en hostelería consiste en calcular el porcentaje de propina sobre el importe original de los platos antes de restar el descuento, ya que el trabajo de cocina y atención en mesa ha sido idéntico."
+  - question: "¿Qué diferencia hay entre el cargo por servicio incluido y la propina voluntaria?"
+    answer: "El cargo por servicio ('service charge', 'auto-gratuity' o 'cubierto') es un suplemento fijo, habitualmente entre el 10 % y el 18 %, que muchos restaurantes añaden automáticamente a la factura en mesas de 6 o más personas. Si el ticket ya incluye un cargo por servicio, no es necesario dejar una segunda propina salvo que desee premiar una atención excepcional."
+  - question: "¿Cuál es el porcentaje de propina habitual en España frente a México o Estados Unidos?"
+    answer: "En España la propina es totalmente discrecional y suele oscilar entre el 5 % y el 10 % en restaurantes de mesa cuando el trato ha sido excelente. En México y gran parte de Latinoamérica el estándar habitual se sitúa entre el 10 % y el 15 %, mientras que en Estados Unidos y Canadá forma parte esencial del salario del camarero y oscila entre el 18 % y el 22 %."
+  - question: "¿Cómo dividir la cuenta de forma justa cuando algunos comensales consumieron mucho más?"
+    answer: "Si la diferencia de consumo es grande (por ejemplo, bebidas alcohólicas o entrantes exclusivos), lo más equitativo es calcular el porcentaje global de propina e impuestos de la mesa y aplicarlo proporcionalmente al subtotal de cada persona, utilizando el redondeo al alza para cubrir los céntimos impares."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Propinas
+Calcular la gratificación adecuada al finalizar una comida o cena parece sencillo hasta que intervienen impuestos indirectos, promociones en factura, recargos automáticos para grupos y la necesidad de repartir el pago entre varios amigos. Una diferencia aparentemente menor —como aplicar el porcentaje sobre el total con impuestos en lugar del subtotal neto— altera el desembolso final. Esta calculadora desglosa al céntimo la propina justa, el impuesto aplicable y la cuota exacta por comensal.
 
-Calcule propinas estándar, cargos por servicio, descuentos, impuestos y divida cuentas de restaurante al instante. En el modelado financiero cuantitativo, los resultados de **Calculadora de Propinas** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+## ¿Se calcula la propina sobre el subtotal sin impuestos o sobre el total con IVA?
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+Uno de los errores más habituales al pagar con datáfono o terminal de punto de venta (TPV) ocurre cuando la pantalla sugiere botones rápidos de propina (15 %, 18 %, 20 %, 25 %) calculados automáticamente sobre el **total bruto con impuestos incluidos**:
 
-El motor computacional de **Calculadora de Propinas** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+* **Por qué debe usar el subtotal antes de impuestos:** En jurisdicciones como Estados Unidos, Canadá o México, o en facturas desglosadas en España y Latinoamérica, el impuesto al consumo (IVA, *Sales Tax* o ITBMS, entre el 7 % y el 21 %) es un tributo estatal. Si consume 100 $ y el impuesto local es del 10 %, su factura sube a 110 $. Al pulsar «20 %» sobre el total final, pagará 22 $ de propina en lugar de 20 $, lo que equivale en realidad a dejar un **22 % sobre su consumo neto**.
+* **El efecto de los descuentos y tarjetas regalo:** En sentido inverso, si disfruta de un descuento promocional de 30 € en una cena cuyo valor de carta era de 120 €, calcular la propina solo sobre los 90 € restantes penaliza al equipo de sala, que sirvió una mesa de 120 €. Nuestra herramienta le permite elegir la base exacta sobre la que desea gratificar.
 
-```
-y = f(x₁, x₂, ..., xₙ)
-```
+## Fórmulas matemáticas para el cálculo de propina y división por comensal
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+Para obtener un desglose financiero exacto, separamos en primer lugar la base neta del consumo respecto a la carga impositiva:
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+### 1. Extracción del subtotal neto (si el precio de carta ya incluye el IVA)
+$$S_{\text{Neto}} = \frac{T_{\text{Facturado}}}{1 + t_{\text{Impuesto}}}$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Propinas**:
+### 2. Cálculo del importe de la propina ($P$)
+Cuando la propina se evalúa sobre el valor del servicio sin impuestos (sumando opcionalmente posibles descuentos $D_{\text{Promocional}}$ para no perjudicar al personal):
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |
+$$P = \left( S_{\text{Neto}} + D_{\text{Promocional}} \right) \times p_{\text{Propina}}$$
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `80` | `100` | `120` |
+### 3. Factura total ($T_{\text{Final}}$) y cuota por persona ($C_{\text{Individual}}$)
+$$T_{\text{Final}} = \left( S_{\text{Neto}} \times (1 + t_{\text{Impuesto}}) \right) + P \qquad \text{y} \qquad C_{\text{Individual}} = \frac{T_{\text{Final}}}{N_{\text{Comensales}}}$$
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+Variables del modelo:
+* $S_{\text{Neto}}$: Subtotal de comida y bebida antes de impuestos (tras aplicar el descuento en factura).
+* $t_{\text{Impuesto}}$: Tipo impositivo en tanto por uno (ej. $0,10$ para un 10 % de IVA en hostelería, o $0,085$ para un 8,5 % de *Sales Tax*).
+* $D_{\text{Promocional}}$: Importe descontado mediante cupones o promociones.
+* $p_{\text{Propina}}$: Porcentaje de propina elegido en tanto por uno (ej. $0,18$ para el 18 %).
+* $N_{\text{Comensales}}$: Número total de personas entre las que se divide la cuenta.
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+## Ejemplo práctico paso a paso: Cena de grupo con impuestos y descuento
 
-1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en Calculadora de Propinas y establece el punto de partida para todas las métricas derivadas.
-2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.
-3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.
+Supongamos que **$N = 4\text{ comensales}$** acuden a cenar. El importe original de la carta suma **$160,00\text{ \$}$**, pero canjean un cupón de **$D_{\text{Promocional}} = 20,00\text{ \$}$**, reduciendo el subtotal facturado a **$S_{\text{Neto}} = 140,00\text{ \$}$**. El impuesto local es del **$8,5\,\%$** ($t_{\text{Impuesto}} = 0,085$) y acuerdan dejar una **propina del $18\,\%$** ($p_{\text{Propina}} = 0,18$).
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+1. **Impuesto sobre el subtotal facturado:** $\text{Impuesto} = 140,00 \times 0,085 = \mathbf{11,90\text{ \$}}$ (Total antes de propina = $\mathbf{151,90\text{ \$}}$).
+2. **Cálculo de la propina (dos criterios):**
+   * *Opción A (Sobre subtotal facturado sin impuestos):* $P_A = 140,00 \times 0,18 = \mathbf{25,20\text{ \$}}$.
+   * *Opción B (Sobre consumo original antes del cupón, sin impuestos):* $P_B = 160,00 \times 0,18 = \mathbf{28,80\text{ \$}}$.
+3. **Total de la mesa y división entre los 4 amigos (Opción A):**
+   $$T_{\text{Final}} = 140,00 + 11,90 + 25,20 = \mathbf{177,10\text{ \$}} \implies C_{\text{Individual}} = \frac{177,10}{4} = \mathbf{44,28\text{ \$ por persona}}$$
+   *(Con la Opción B, el total sería de $180,70\text{ \$}$, equivalente a **$45,18\text{ \$}$ por comensal**).*
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+## Guía internacional de propinas por país y servicio
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+| País o Región | Restaurantes de Mesa | Cafeterías y Bares | Reparto / Taxis | Costumbre y Regulación Local |
+| :--- | :--- | :--- | :--- | :--- |
+| **España** | **5 % – 10 %** (voluntario) | Redondeo (0,20 €–1 €) | 1 € – 2 € | Salario regulado por convenio; premia la excelencia. |
+| **México** | **10 % – 15 %** (habitual) | 10 % en mesa | 10 % o 20–50 MXN | PROFECO prohíbe exigirla, pero el 10 %–15 % es norma social. |
+| **EE. UU. y Canadá** | **18 % – 22 %** (estándar) | 1 $ – 2 $ por bebida | 15 % – 20 % | Parte esencial del sueldo del camarero. |
+| **Colombia / Chile / Argentina** | **10 %** (sugerido) | Redondeo o 10 % | Redondeo en app | La ley permite sugerir el 10 % preguntando al cliente. |
+| **Francia / Italia / Reino Unido** | **5 % – 12,5 %** (ver ticket) | Redondeo | Redondeo | Francia incluye servicio; Italia aplica *coperto*; Londres 12,5 %. |
+| **Japón** | **0 %** (sin propina) | 0 % | 0 % | No se deja propina; el servicio ya está integrado. |
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
+## Consejos prácticos para evitar cobros duplicados al pagar
 
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
-
-Todos los cálculos realizados en **Calculadora de Propinas** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **Revise si el ticket ya incluye recargo por grupo:** En cenas de 6 o más personas, compruebe si figura una línea de *Service Charge*, *Gratuity* o *Servicio*. Si ya le cargaron un 15 % o 18 %, añadir otro 18 % en el datáfono duplicará la propina hasta el 36 %.
+* **Atención a las pantallas táctiles en mostrador:** Muchos terminales en locales de comida para llevar (*take-away*) sugieren por defecto 20 %, 25 % y 30 %. En pedidos sin servicio de mesa puede elegir «Sin propina».
+* **Efectivo frente a tarjeta:** Entregar la propina en efectivo asegura que el personal reciba el 100 % del importe de inmediato sin comisiones bancarias.

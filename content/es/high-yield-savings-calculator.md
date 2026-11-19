@@ -1,78 +1,73 @@
 ---
 title: "Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)"
-metaTitle: "Calculadora de Cuenta de Ahorros de Alto Rendimiento"
-description: "Calcula los intereses acumulados con tasas APY de alto rendimiento en comparación con cuentas bancarias tradicionales."
-metaDescription: "Calcula cuánto dinero ganarás en una cuenta de ahorros con intereses de alto rendimiento y aportes mensuales continuos."
+metaTitle: "Calculadora de Cuenta de Ahorros de Alto Rendimiento (TAE)"
+description: "Calcula los intereses compuestos generados por tu fondo de emergencia o liquidez en una cuenta remunerada de alto rendimiento con aportaciones mensuales."
+metaDescription: "Simula cuánto ganarás en una cuenta de ahorros de alto rendimiento (HYSA). Compara TIN vs. TAE, capitalización mensual, impuestos y saldo final neto."
+metaKeywords: "calculadora cuenta de ahorros alto rendimiento, calculadora cuenta remunerada TAE, simulador intereses cuenta ahorro, calcular HYSA, interés compuesto ahorro"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)?"
-    answer: "Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA) evalúa sus parámetros mediante la ecuación verificada (A = P (1 + r/n)^(nt)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA) para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA) antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)?"
-    answer: "Dentro del modelo cuantitativo (A = P (1 + r/n)^(nt)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA) impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA) calcula el modelo matemático puro (Calcula los intereses acumulados con tasas APY de alto rendimiento en comparación con cuentas bancarias tradicionales.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)?"
-    answer: "No. Todos los cálculos de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA) se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Qué diferencia matemática existe entre el TIN (APR) y la TAE (APY) en una cuenta remunerada?"
+    answer: "El TIN (Tipo de Interés Nominal) es el porcentaje anual pactado sin contar la reinversión de los intereses. La TAE (Tasa Anual Equivalente, o APY en EE. UU.) incluye el efecto de la frecuencia de liquidación (mensual o diaria) y las posibles comisiones. Si una cuenta paga intereses cada mes y estos se quedan en la cuenta, la TAE siempre será superior al TIN."
+  - question: "¿Por qué algunos bancos ofrecen un 5 % TAE pero limitan el saldo máximo remunerado a 10.000 €?"
+    answer: "Es una estrategia de captación comercial para atraer nóminas y recibos limitando el coste financiero para el banco. Si depositas 30.000 € en una cuenta que solo remunera hasta 10.000 € al 5 % TAE y paga 0 % sobre el exceso, tu rentabilidad efectiva real sobre el total de tus ahorros cae a solo el 1,67 % TAE."
+  - question: "¿Qué seguridad tiene mi dinero en una cuenta de ahorros de alto rendimiento de un banco online?"
+    answer: "Si la entidad cuenta con ficha bancaria oficial, tu capital más los intereses devengados están protegidos hasta 100.000 € por titular y entidad por el Fondo de Garantía de Depósitos (FGD) en la Unión Europea, hasta USD 250,000 por la FDIC en Estados Unidos, o hasta 400.000 UDIs por el IPAB en México."
+  - question: "¿El banco puede bajar el tipo de interés de mi cuenta remunerada en cualquier momento?"
+    answer: "Sí. A diferencia de un depósito a plazo fijo (CD), donde la tasa queda blindada por contrato hasta el vencimiento, las cuentas de ahorro a la vista tienen tipos variables. En Europa, la entidad debe notificarte cualquier rebaja del interés con al menos 1 o 2 meses de antelación."
+  - question: "¿Cómo afecta la retención de impuestos mensual al interés compuesto de mi cuenta de ahorro?"
+    answer: "En países como España, el banco practica automáticamente una retención a cuenta del IRPF (19 % para los primeros 6.000 € de rendimientos anuales) en cada liquidación mensual. Esto significa que el importe que se suma a tu saldo para generar nuevos intereses el mes siguiente es el interés neto, no el bruto."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)
+Mantener el **fondo de emergencia** o la liquidez de corto plazo en una cuenta corriente tradicional al 0 % supone sufrir una pérdida constante y silenciosa de poder adquisitivo frente a la inflación. Las **cuentas de ahorro de alto rendimiento** (conocidas internacionalmente como *High-Yield Savings Accounts* o **HYSA**, y en España como **cuentas remuneradas a la vista**) permiten obtener una rentabilidad competitiva con devengo diario y liquidación mensual de intereses, sin renunciar a la disponibilidad inmediata del dinero las 24 horas del día y sin riesgo de fluctuación de mercado.
 
-Calcula los intereses acumulados con tasas APY de alto rendimiento en comparación con cuentas bancarias tradicionales. En el modelado financiero cuantitativo, los resultados de **Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+Esta calculadora proyecta el crecimiento exacto de tus ahorros combinando tu saldo inicial con aportaciones mensuales periódicas, permitiéndote contrastar el rendimiento frente a la banca tradicional.
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+## Conversión entre TIN y TAE y ecuación de capitalización con aportes periódicos
 
-El motor computacional de **Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+En las cuentas de ahorro, los intereses se calculan diariamente sobre el saldo medio y suelen abonarse en cuenta con frecuencia mensual ($m = 12$) o diaria ($m = 365$). La relación matemática entre el **TIN (Tipo de Interés Nominal)** y la **TAE (Tasa Anual Equivalente o APY)** cuando no existen comisiones de mantenimiento es:
 
-```
-A = P (1 + r/n)^(nt)
-```
+$$\text{TAE} = \left(1 + \frac{\text{TIN}}{m}\right)^m - 1$$
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+Cuando realizas un depósito inicial ($C_0$) y añades una transferencia de ahorro mensual constante ($A$) durante $n$ meses a una tasa periódica mensual $i_m = \text{TIN} / 12$, el saldo acumulado total ($S_n$) al término del periodo se obtiene mediante:
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+$$S_n = C_0 (1 + i_m)^n + A \cdot \frac{(1 + i_m)^n - 1}{i_m}$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)**:
+Donde las variables representan:
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `SI / Standard` | Calibrated | Total accumulated balance including principal and compounded interest |
-| **Principal Deposit (`P`)** | `SI / Standard` | Calibrated | Initial sum of money invested |
-| **Annual Interest Rate (`r`)** | `SI / Standard` | Calibrated | Nominal interest rate expressed in decimal form (e.g. 7% = 0.07) |
-| **Compounding Frequency (`n`)** | `SI / Standard` | Calibrated | Number of times interest is applied per year (12 for monthly, 365 for daily) |
-| **Time in Years (`t`)** | `SI / Standard` | Calibrated | Total duration of the investment |
+* **$S_n$**: Saldo final acumulado (capital aportado más intereses compuestos devengados).
+* **$C_0$**: Saldo inicial depositado al abrir la cuenta remunerada.
+* **$A$**: Aportación periódica mensual ingresada en la cuenta.
+* **$i_m$**: Tipo de interés mensual efectivo ($i_m = \text{TIN} / 12$). Si deseas calcular el crecimiento neto exacto tras retenciones fiscales automáticas en cada liquidación, multiplica $i_m$ por $(1 - \tau)$, donde $\tau$ es el porcentaje de retención fiscal.
+* **$n$**: Número total de meses que mantienes el plan de ahorro.
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `-20% (A₀ × 0.8)` | `Baseline (A₀)` | `+20% (A₀ × 1.2)` |
-| **Principal Deposit (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Annual Interest Rate (`r`)** | `-20% (r₀ × 0.8)` | `Baseline (r₀)` | `+20% (r₀ × 1.2)` |
-| **Compounding Frequency (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
-| **Time in Years (`t`)** | `-20% (t₀ × 0.8)` | `Baseline (t₀)` | `+20% (t₀ × 1.2)` |
+## Ejemplo paso a paso: Fondo de emergencia de 15.000 € más 250 €/mes al 3,60 % TIN
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+Supongamos que trasladas tu fondo de reserva de **15.000 €** (`USD 15,000`) a una cuenta de ahorro de alto rendimiento que ofrece un **3,60 % TIN** con liquidación mensual de intereses ($m = 12$), y programas un ingreso automático de **250 € al mes** durante **3 años** ($n = 36\text{ meses}$).
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
+1. **Verificación de la TAE efectiva**: Con un interés mensual $i_m = 0,036 / 12 = 0,003$ (0,30 % al mes), la TAE resultante es:
+   $$\text{TAE} = (1 + 0,003)^{12} - 1 = 1,0365999 - 1 = 3,66\%\text{ TAE}$$
+2. **Factor de capitalización a 36 meses**: Calculamos $(1 + 0,003)^{36} = (1,003)^{36} = 1,113868$.
+3. **Crecimiento del saldo inicial ($C_0$)**:
+   $$15.000 \times 1,113868 = 16.708,02\text{ €}$$
+4. **Crecimiento de las 36 aportaciones mensuales ($A$)**:
+   $$250 \cdot \frac{1,113868 - 1}{0,003} = 250 \cdot \frac{0,113868}{0,003} = 250 \times 37,9560 = 9.489,00\text{ €}$$
+5. **Saldo final y ganancia neta frente a un banco tradicional**:
+   * **Saldo acumulado total ($S_{36}$)**: $16.708,02 + 9.489,00 = \mathbf{26.197,02\text{ €}}$.
+   * **Capital total depositado**: $15.000 + (250 \times 36) = \mathbf{24.000,00\text{ €}}$.
+   * **Intereses brutos ganados**: **2.197,02 €** (unos **1.779,59 € netos** tras descontar el 19 % de retención fiscal en España). En una cuenta tradicional al 0,15 % TAE apenas habrías obtenido **98,40 €**, por lo que cambiar a una cuenta de alto rendimiento te reporta más de **2.098 € adicionales** sin bloquear tu liquidez ni un solo día.
 
-1. **Future Value (`A`)** — Total accumulated balance including principal and compounded interest: Parámetro estructural en la ecuación de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-2. **Principal Deposit (`P`)** — Initial sum of money invested: Parámetro estructural en la ecuación de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-3. **Annual Interest Rate (`r`)** — Nominal interest rate expressed in decimal form (e.g. 7% = 0.07): Parámetro estructural en la ecuación de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-4. **Compounding Frequency (`n`)** — Number of times interest is applied per year (12 for monthly, 365 for daily): Parámetro estructural en la ecuación de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
-5. **Time in Years (`t`)** — Total duration of the investment: Parámetro estructural en la ecuación de Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA). Su variación altera de forma directa la sensibilidad marginal del resultado principal.
+## Comparativa de alternativas para rentabilizar la liquidez sin riesgo
 
-### 4. Protocolo Paso a Paso para una Verificación Precisa
+Para elegir dónde aparcar tu liquidez, conviene comparar las cuatro opciones de bajo riesgo disponibles hoy en el mercado:
 
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
+| Instrumento de Liquidez | Rentabilidad Típica | Saldo Máximo Remunerado | Disponibilidad del Dinero | Protección y Fiscalidad |
+| :--- | :--- | :--- | :--- | :--- |
+| **Cuenta Corriente Tradicional** | 0,00 % – 0,20 % TAE | Sin límite | Inmediata (tarjetas y Bizum) | FGD 100.000 €; pérdida real frente a la inflación |
+| **Cuenta Remunerada Sin Vinculación (HYSA)** | 2,50 % – 3,75 % TAE | 50.000 € – 100.000 € (o sin tope) | Inmediata por transferencia | FGD 100.000 € / FDIC; retención fiscal mensual sobre intereses |
+| **Cuenta Nómina Promocional** | 4,00 % – 5,00 % TAE | **10.000 € – 15.000 €** (tope estricto) | Inmediata | Exige domiciliar nómina/recibos; ideal solo para tramos pequeños |
+| **Fondo Monetario (Money Market Fund)** | Tipo oficial BCE/Fed (-0,10 % TER) | Ilimitado | 24 – 48 horas hábiles | Diversificación en deuda pública AAA; **no tributa hasta que reembolsas** |
 
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
+## Claves para evitar trampas comerciales en cuentas remuneradas
 
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
-
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
-
-Todos los cálculos realizados en **Calculadora de Cuenta de Ahorros de Alto Rendimiento (HYSA)** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **Cuidado con el tope de saldo remunerado**: Un 3,25 % TAE sobre hasta 100.000 € genera **1.625 € brutos al año** para un ahorro de 50.000 €, mientras que una oferta publicitaria del "5,00 % TAE hasta un máximo de 10.000 €" solo te pagará **500 € al año** (dejando los otros 40.000 € al 0 %).
+* **Revisa la duración del tipo promocional**: Muchas entidades ofrecen una tasa de bienvenida durante los primeros 3 o 6 meses que luego cae drásticamente al tipo base estándar (por ejemplo, del 3,50 % al 1,00 % TAE).
+* **Obligación del Modelo 720 en España para bancos extranjeros**: Si contratas cuentas remuneradas en bancos europeos fuera de España a través de plataformas como Raisin o brókers internacionales y la suma de tus saldos en el extranjero supera los **50.000 €** a final de año, recuerda que debes presentar la declaración informativa (Modelo 720) e incluir manualmente los intereses brutos en tu declaración de la Renta, ya que la banca extranjera no practica la retención automática del 19 % ante la Agencia Tributaria española.

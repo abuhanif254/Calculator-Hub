@@ -1,84 +1,93 @@
 ---
 title: "Calculadora de Préstamos Jumbo"
-metaTitle: "Calculadora de Préstamos Jumbo — Gratis y Precisa"
-description: "Calcula pagos para préstamos hipotecarios que exceden los límites conformes estándar para propiedades de alto valor."
-metaDescription: "Simula hipotecas no conformes y préstamos jumbo de alto valor con requisitos de enganche y tasas competitivas."
+metaTitle: "Calculadora de Préstamos Jumbo: Cuota e Hipoteca Alta"
+description: "Calcula la cuota mensual, los intereses acumulados y los requisitos de liquidez para hipotecas Jumbo que superan los límites de préstamos conformes."
+metaDescription: "Simula tu hipoteca Jumbo para viviendas de alto valor. Calcula pago mensual, enganche del 20 %, intereses, impuestos y requisitos de reservas líquidas."
+metaKeywords: "calculadora prestamos jumbo, hipoteca jumbo en espanol, limites fhfa hipoteca, prestamo hipotecario no conforme, calcular cuota hipoteca lujo"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Préstamos Jumbo?"
-    answer: "Calculadora de Préstamos Jumbo evalúa sus parámetros mediante la ecuación verificada (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]). El motor procesa variables como Home Price, Down Payment, Loan Term (Years), Interest Rate (%) en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Préstamos Jumbo para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (Home Price: 950000, Down Payment: 190000, Loan Term (Years): 30) para que pueda observar el comportamiento base de Calculadora de Préstamos Jumbo antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en Home Price al resultado final de Calculadora de Préstamos Jumbo?"
-    answer: "Dentro del modelo cuantitativo (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]), Home Price actúa como variable independiente clave junto con Down Payment. Modificar Home Price manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Préstamos Jumbo impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Préstamos Jumbo calcula el modelo matemático puro (Calcula pagos para préstamos hipotecarios que exceden los límites conformes estándar para propiedades de alto valor.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Préstamos Jumbo?"
-    answer: "No. Todos los cálculos de Calculadora de Préstamos Jumbo se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Cuándo se considera que una hipoteca entra en la categoría Jumbo?"
+    answer: "Un préstamo hipotecario se clasifica como Jumbo (o no conforme) cuando el capital financiado —es decir, el precio de compra menos el pago inicial— supera el límite máximo fijado anualmente por la Agencia Federal de Financiamiento de la Vivienda (FHFA) para ese condado. Al exceder dicho umbral, la hipoteca no puede ser adquirida ni garantizada por Fannie Mae ni Freddie Mac."
+  - question: "¿Qué reservas de liquidez adicionales exigen los bancos para aprobar un préstamo Jumbo?"
+    answer: "Además del pago inicial del 20 % y los gastos de escrituración, las entidades financieras suelen exigir que el comprador demuestre reservas líquidas posteriores al cierre equivalentes a entre 6 y 12 meses de la cuota hipotecaria completa (PITI). Parte de estas reservas puede acreditarse mediante carteras de inversión, fondos indexados o cuentas de jubilación."
+  - question: "¿Cómo funciona la estrategia de hipoteca combinada (80-10-10) para evitar un préstamo Jumbo?"
+    answer: "Si el precio de la vivienda supera por poco el límite conforme, el comprador puede aportar un 10 % de entrada, contratar una primera hipoteca conforme por el 80 % (hasta el tope legal de la FHFA) y financiar el 10 % restante con una segunda línea de crédito o préstamo complementario (HELOC). Así se aprovechan las condiciones y la tramitación más ágil de una hipoteca estándar."
+  - question: "¿Por qué algunos préstamos Jumbo requieren dos tasaciones independientes?"
+    answer: "Dado que el banco mantiene el riesgo del crédito en su propio balance o lo coloca en mercados privados sin garantía estatal, en préstamos que superan cierto umbral (habitualmente a partir de 1,5 o 2 millones de dólares) el comité de riesgos exige dos informes de tasación independientes para confirmar que el valor de mercado del inmueble de lujo no está sobreestimado."
+  - question: "¿Son siempre más altas las tasas de interés en una hipoteca Jumbo que en una convencional?"
+    answer: "No necesariamente. Aunque históricamente tenían una prima de riesgo de entre 0,25 % y 0,50 %, en determinados ciclos económicos los bancos privados compiten por captar clientes de alto patrimonio ofreciendo tipos de interés Jumbo iguales o incluso ligeramente inferiores a los préstamos conformes, ya que estos prestatarios presentan menor probabilidad estadística de impago."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Préstamos Jumbo
+## Qué es una Hipoteca Jumbo y Cómo Funciona la Financiación No Conforme
 
-Calcula pagos para préstamos hipotecarios que exceden los límites conformes estándar para propiedades de alto valor. En el modelado financiero cuantitativo, los resultados de **Calculadora de Préstamos Jumbo** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+En la financiación inmobiliaria residencial, un **préstamo Jumbo** (o hipoteca no conforme) es aquel cuyo capital principal supera los límites de préstamo estandarizados por la Agencia Federal de Financiamiento de la Vivienda (*Federal Housing Finance Agency*, FHFA). Al situarse por encima de ese techo regulatorio, el crédito no cumple los requisitos para ser adquirido ni respaldado por las agencias patrocinadas por el gobierno (**Fannie Mae** y **Freddie Mac**).
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+En consecuencia, la entidad bancaria que concede una hipoteca Jumbo asume el riesgo directamente en su propio balance patrimonial o lo transfiere a inversores institucionales privados. Esto conlleva un análisis de solvencia más estricto: exigencias de pago inicial del 20 % al 30 %, verificación exhaustiva de declaraciones fiscales de los últimos dos años, puntuaciones crediticias elevadas y un colchón obligatorio de reservas líquidas tras la firma.
 
-El motor computacional de **Calculadora de Préstamos Jumbo** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+---
 
-```
-M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
-```
+## Ecuación de Cálculo Mensual y Exigencia de Reservas Patrimoniales
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+La estructura matemática de una hipoteca Jumbo de tasa fija responde al modelo de amortización constante sobre el saldo pendiente, integrando tanto la cuota bancaria como los costes fijos del inmueble y el requisito de liquidez post-cierre ($R_{\text{liquidez}}$):
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+$$M_{\text{total}} = (V_{\text{vivienda}} - E_{\text{inicial}}) \cdot \frac{r(1 + r)^n}{(1 + r)^n - 1} + \frac{T_{\text{anual}}}{12} + \frac{S_{\text{anual}}}{12} + C_{\text{HOA}}$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Préstamos Jumbo**:
+$$R_{\text{liquidez}} = k_{\text{meses}} \cdot M_{\text{total}}$$
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
+Definición de las variables operativas:
+* **$V_{\text{vivienda}}$ y $E_{\text{inicial}}$**: El **precio de la vivienda** y el **pago inicial (enganche)** aportado, cuya diferencia determina el capital principal financiado ($P = V_{\text{vivienda}} - E_{\text{inicial}}$).
+* **$r$**: Tipo de interés mensual efectivo, calculado al dividir la **tasa de interés anual** en tanto por uno entre 12 meses.
+* **$n$**: Número total de pagos mensuales (**plazo del préstamo en años** $\times 12$).
+* **$T_{\text{anual}}$, $S_{\text{anual}}$ y $C_{\text{HOA}}$**: El **impuesto anual sobre la propiedad**, el **seguro anual del hogar** y las **cuotas mensuales de comunidad (HOA)**.
+* **$k_{\text{meses}}$**: Número de meses de cobertura exigidos como reserva patrimonial líquida tras el cierre (entre 6 y 12 meses de cuota completa).
+
+---
+
+## Simulación Paso a Paso: Propiedad de 950.000 $ con 20 % de Entrada al 6,875 %
+
+Examinemos el comportamiento financiero de una operación Jumbo representativa utilizando los parámetros calibrados para una residencia de alto valor:
+* **Precio de la vivienda**: 950.000 $
+* **Pago inicial (20 %)**: 190.000 $ $\implies$ **Capital principal financiado ($P$)**: 760.000 $
+* **Plazo del préstamo**: 30 años ($n = 360$ meses)
+* **Tasa de interés anual**: 6,875 % ($r = 0,06875 / 12 \approx 0,00572917$)
+* **Impuesto anual sobre la propiedad**: 4.800 $ (400,00 $ mensuales)
+* **Seguro anual del hogar**: 1.200 $ (100,00 $ mensuales)
+* **Cuotas mensuales de HOA**: 0 $
+
+### Paso 1: Cálculo de la cuota mensual de capital e intereses
+Obtenemos primero el factor de capitalización compuesto durante las 360 mensualidades:
+
+$$(1 + 0,00572917)^{360} \approx 7,819116$$
+
+Aplicamos la fórmula de amortización al principal de 760.000 $:
+
+$$M_{\text{capital+intereses}} = 760.000 \cdot \frac{0,00572917 \times 7,819116}{7,819116 - 1} = 760.000 \cdot 0,00656929 = 4.992,66\text{ \$/mes}$$
+
+En el primer recibo mensual, **$4.354,17\text{ \$}$** corresponden a intereses bancarios y **$638,49\text{ \$}$** a reducción de capital.
+
+### Paso 2: Cuota total PITI, intereses a 30 años y reservas exigidas
+Al sumar los $400,00\text{ \$}$ mensuales de impuestos a la propiedad y los $100,00\text{ \$}$ del seguro de vivienda, el pago mensual total asciende a **$5.492,66\text{ \$}$ al mes**.
+* **Coste acumulado en 30 años**: El prestatario desembolsará $1.797.357,20\text{ \$}$ entre principal e intereses, lo que supone **$1.037.357,20\text{ \$}$ en intereses totales**.
+* **Liquidez total para la aprobación**: Además de los $190.000\text{ \$}$ de entrada y gastos de cierre, una entidad que exija 9 meses de reservas PITI requerirá acreditar otros **$49.433,94\text{ \$}$** ($5.492,66 \times 9$) en activos líquidos.
+
+---
+
+## Comparativa de Requisitos: Hipoteca Conforme vs. Jumbo Estándar vs. Super-Jumbo
+
+Compara cómo escalan las exigencias técnicas de suscripción bancaria según el tramo del importe financiado:
+
+| Criterio de Suscripción Bancaria | Hipoteca Conforme Estándar | Hipoteca Jumbo (Tramo Medio) | Hipoteca Super-Jumbo (> 1,5 M$) |
 | :--- | :--- | :--- | :--- |
-| **Home Price** | `$ / € / £` | 950000 | ≥ 0 |
-| **Down Payment** | `$ / € / £` | 190000 | ≥ 0 |
-| **Loan Term (Years)** | `number` | 30 | 1 – 50 |
-| **Interest Rate (%)** | `%` | 6.875% | 0% – 30% |
-| **Annual Property Tax** | `$ / € / £` | 4800 | Entrada numérica estándar |
-| **Annual Home Insurance** | `$ / € / £` | 1200 | Entrada numérica estándar |
-| **Monthly HOA Fees** | `$ / € / £` | 0 | Entrada numérica estándar |
+| **Respaldo Institucional** | Fannie Mae / Freddie Mac | Banca privada / Balance propio | Banca patrimonial (*Private Banking*) |
+| **Puntuación Crediticia Mínima** | 620 – 660 puntos | **700 – 720 puntos** | **740+ puntos** |
+| **Pago Inicial Habitual (Enganche)** | 3 % al 20 % | **20 % (mínimo 10 %–15 % selecto)** | **25 % al 35 %** |
+| **Ratio Deuda-Ingresos Máxima (DTI)** | Hasta el 45 % – 50 % | **Máximo 38 % – 43 %** | **Máximo 35 % – 38 %** |
+| **Reservas Líquidas Post-Cierre** | 0 a 2 meses de cuota PITI | **6 a 12 meses de cuota PITI** | **12 a 24 meses de cuota PITI** |
+| **Requisito de Tasación Inmobiliaria** | 1 tasación estándar | **1 tasación presencial completa** | **2 tasaciones independientes** |
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Home Price** | `760000` | `950000` | `1140000` |
-| **Down Payment** | `152000` | `190000` | `228000` |
-| **Loan Term (Years)** | `24` | `30` | `36` |
-| **Interest Rate (%)** | `5.5%` | `6.875%` | `8.25%` |
-| **Annual Property Tax** | `3840` | `4800` | `5760` |
-| **Annual Home Insurance** | `960` | `1200` | `1440` |
-| **Monthly HOA Fees** | `0` | `0` | `0` |
+---
 
-### 3. Análisis Detallado de Variables y Sensibilidad
+## Recomendaciones Estratégicas para Compradores de Viviendas de Alto Valor
 
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
-
-1. **Home Price** (Valor de referencia: `950000`): Variable determinante dentro del modelo matemático de Calculadora de Préstamos Jumbo. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.
-2. **Down Payment** (Valor de referencia: `190000`): Variable determinante dentro del modelo matemático de Calculadora de Préstamos Jumbo. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.
-3. **Loan Term (Years)** (Valor de referencia: `30`): Variable determinante dentro del modelo matemático de Calculadora de Préstamos Jumbo. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.
-4. **Interest Rate (%)** (Valor de referencia: `6.875%`): Variable determinante dentro del modelo matemático de Calculadora de Préstamos Jumbo. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.
-5. **Annual Property Tax** (Valor de referencia: `4800`): Variable determinante dentro del modelo matemático de Calculadora de Préstamos Jumbo. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.
-6. **Annual Home Insurance** (Valor de referencia: `1200`): Variable determinante dentro del modelo matemático de Calculadora de Préstamos Jumbo. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.
-7. **Monthly HOA Fees** (Valor de referencia: `0`): Variable determinante dentro del modelo matemático de Calculadora de Préstamos Jumbo. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.
-
-### 4. Protocolo Paso a Paso para una Verificación Precisa
-
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
-
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
-
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
-
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
-
-Todos los cálculos realizados en **Calculadora de Préstamos Jumbo** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+1. **Ajustar el pago inicial para no cruzar el umbral Jumbo por margen mínimo**: Lo que define una hipoteca Jumbo es el **importe prestado**, no el precio de la vivienda. Aportar una entrada ligeramente mayor para quedar dentro del límite conforme evita la exigencia de reservas líquidas de 12 meses.
+2. **Evaluar hipotecas de tasa ajustable (ARM 7/1 o 10/1) en banca privada**: Si prevés amortizar capital con bonos o vender el inmueble antes de 8 años, un tramo fijo inicial de 7 o 10 años suele ofrecer un descuento de entre 0,50 % y 0,85 %, ahorrando entre 3.500 $ y 5.800 $ anuales sobre un principal de 760.000 $.
+3. **Actualizar el impuesto predial y el seguro al valor real de escritura**: En viviendas cercanas al millón de dólares, el impuesto anual sobre la propiedad suele situarse entre el 1,0 % y el 2,2 % del precio de compra; ajusta ese parámetro en el simulador para obtener una proyección precisa.

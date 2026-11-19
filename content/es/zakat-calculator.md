@@ -1,68 +1,82 @@
 ---
 title: "Calculadora de Zakat"
-metaTitle: "Calculadora de Zakat — Gratis y Precisa"
-description: "Calcule su Zakat anual en línea sobre efectivo, oro, plata, inversiones, criptomonedas e inventario comercial utilizando los umbrales de Nisab."
-metaDescription: "Calculadora gratuita de Zakat islámico en línea. Calcule el Zakat sobre sus activos (efectivo, oro, plata, acciones, criptomonedas) y reste pasivos según."
+metaTitle: "Calculadora de Zakat: Nisab en Oro, Plata y Ahorros"
+description: "Calcule su contribución anual obligatoria de Zakat (2,5 %) sobre efectivo, oro, plata, inversiones y mercancías comerciales aplicando el umbral de Nisab vigente."
+metaDescription: "Calcule su Zakat anual del 2,5 % sobre ahorros, oro, plata, acciones y negocios. Compare el umbral de Nisab en oro (85 g) o plata (595 g) y reste deudas."
+metaKeywords: "calculadora de zakat, calcular zakat oro y plata, umbral de nisab actual, zakat sobre ahorros e inversiones, 2.5 por ciento zakat, calculo zakat en espanol"
 faqs:
-  - question: "¿Qué fórmula matemática utiliza exactamente Calculadora de Zakat?"
-    answer: "Calculadora de Zakat evalúa sus parámetros mediante la ecuación verificada (y = f(x₁, x₂, ..., xₙ)). El motor procesa variables como los valores de entrada en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio."
-  - question: "¿Qué valores de referencia incluye Calculadora de Zakat para simular un escenario base?"
-    answer: "La herramienta carga automáticamente un escenario calibrado (valores estándar del sector) para que pueda observar el comportamiento base de Calculadora de Zakat antes de introducir sus propios datos y comparar variantes."
-  - question: "¿Cómo afecta el cambio en el parámetro principal al resultado final de Calculadora de Zakat?"
-    answer: "Dentro del modelo cuantitativo (y = f(x₁, x₂, ..., xₙ)), el parámetro principal actúa como variable independiente clave junto con las variables secundarias. Modificar el parámetro principal manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado."
-  - question: "¿Tiene en cuenta Calculadora de Zakat impuestos, inflación o comisiones bancarias adicionales?"
-    answer: "Calculadora de Zakat calcula el modelo matemático puro (Calcule su Zakat anual en línea sobre efectivo, oro, plata, inversiones, criptomonedas e inventario comercial utilizando los umbrales de Nisab.) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal."
-  - question: "¿Se guardan mis datos en algún servidor al utilizar Calculadora de Zakat?"
-    answer: "No. Todos los cálculos de Calculadora de Zakat se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos."
+  - question: "¿Debo calcular el umbral de Nisab con el estándar del oro (85 g) o el de la plata (595 g)?"
+    answer: "Ambos estándares tienen respaldo en la jurisprudencia islámica clásica. El Nisab de la plata (595 gramos) establece un umbral monetario mucho más bajo, por lo que numerosas escuelas jurídicas lo recomiendan al resultar más inclusivo y beneficiar en mayor medida a las personas necesitadas. El Nisab del oro (85 gramos de 24 quilates) suele emplearse como referencia de estabilidad del poder adquisitivo para patrimonios en divisas."
+  - question: "¿Pagan Zakat la vivienda habitual donde resido o mi vehículo de uso diario?"
+    answer: "No. Los bienes destinados a cubrir las necesidades básicas de vida del propietario y su familia —incluyendo la vivienda principal, el automóvil de transporte personal, los muebles del hogar, la ropa y las herramientas de su oficio— están totalmente exentos de Zakat, independientemente de su valor económico."
+  - question: "¿Cómo tributan en el Zakat los pisos comprados para alquilar?"
+    answer: "Si usted posee un inmueble destinado al alquiler sin intención de revenderlo a corto plazo, el valor de mercado del edificio o piso está exento de Zakat; únicamente deberá pagar el 2,5 % sobre las rentas netas de alquiler que haya ahorrado y conserve en su cuenta al cumplirse su fecha anual de Hawl. Si compró el inmueble para especular o revenderlo, sí tributa por su valor total de mercado como mercancía comercial."
+  - question: "¿Cómo se calcula el Zakat sobre acciones, fondos indexados y criptomonedas?"
+    answer: "Si mantiene acciones, ETF o criptoactivos para compraventa activa ('trading' a corto plazo), debe aplicar el 2,5 % sobre el 100 % de su valor de mercado en la fecha de cálculo. Si mantiene acciones de empresas reales a largo plazo por sus dividendos, la doctrina financiera islámica permite aplicar el 2,5 % únicamente sobre la proporción de activos líquidos de dichas compañías (estimada habitualmente entre el 25 % y el 30 % del valor de la cartera)."
+  - question: "¿Puedo restar el total de mi hipoteca de mis ahorros antes de calcular el Zakat?"
+    answer: "No debe restar el capital pendiente total de una hipoteca a 20 o 30 años, ya que eso anularía artificialmente la obligación del Zakat y el préstamo está respaldado por un inmueble exento. El criterio contable aceptado consiste en deducir únicamente las deudas ya vencidas, facturas inmediatas o, como máximo, las cuotas de capital exigible en el corto plazo que no puedan cubrirse con sus ingresos salariales ordinarios."
 ---
 
-## Metodología Técnica y Arquitectura Matemática de Calculadora de Zakat
+El **Zakat al-Mal** (Zakat sobre el patrimonio) constituye el tercer pilar del Islam y opera como un sistema contable anual de purificación y redistribución de la riqueza productiva. A diferencia de un impuesto sobre la renta salarial o de una donación voluntaria (*Sadaqah*), el Zakat grava con una tasa fija del **2,5 % (una cuadragésima parte)** el patrimonio líquido y comercial neto que supera el umbral mínimo de exención (**Nisab**) y permanece en posesión del titular durante un ciclo anual completo (**Hawl**). Esta calculadora valora sus activos, ajusta la pureza de sus metales preciosos y deduce sus pasivos exigibles con rigor técnico.
 
-Calcule su Zakat anual en línea sobre efectivo, oro, plata, inversiones, criptomonedas e inventario comercial utilizando los umbrales de Nisab. En el modelado financiero cuantitativo, los resultados de **Calculadora de Zakat** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.
+## Los dos requisitos de obligatoriedad: El umbral del Nisab y el ciclo lunar (Hawl)
 
-### 1. Ecuación Fundamental y Modelo de Cálculo
+Para que un patrimonio quede sujeto al pago obligatorio del Zakat deben cumplirse simultáneamente dos condiciones objetivas:
 
-El motor computacional de **Calculadora de Zakat** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
+1. **Superar el umbral del Nisab:** Es el límite mínimo de riqueza libre de deudas inmediatas por debajo del cual una persona está exenta de pagar Zakat. La tradición profética fijó dos patrones metálicos equivalentes en su época:
+   * **Patrón Oro:** **85 gramos** de oro puro de 24 quilates (20 *Mithqals*).
+   * **Patrón Plata:** **595 gramos** de plata pura de ley 999 (200 *Dirhams*).
+   Debido a la divergencia histórica en la cotización de ambos metales, hoy el Nisab de la plata equivale a una cifra monetaria diez veces menor que el del oro. Si posee únicamente efectivo o inversiones, muchos académicos recomiendan el **Nisab de la plata** por generosidad social hacia los necesitados, mientras que otros consejos financieros autorizan el **Nisab del oro** por reflejar mejor el coste de vida actual.
+2. **Completar el Hawl (Año Lunar):** Su riqueza neta debe mantenerse por encima del Nisab durante **12 meses lunares completos (354 días)**. Basta con fijar una fecha fija anual en el calendario lunar (por ejemplo, en Ramadán): si en esa fecha su patrimonio neto computable supera el Nisab tras haberlo alcanzado un año antes, liquida el 2,5 % sobre el saldo total existente ese día.
 
-```
-y = f(x₁, x₂, ..., xₙ)
-```
+## Fórmula contable del Patrimonio Neto Sujeto a Zakat (2,5 %)
 
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
+La base imponible del Zakat ($B_{\text{Zakat}}$) se obtiene sumando todas las categorías de riqueza líquida o comercial y restando las obligaciones exigibles a corto plazo:
 
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
+$$B_{\text{Zakat}} = \left( A_{\text{Efectivo}} + A_{\text{Metales}} + A_{\text{Inversiones}} + A_{\text{Comercial}} + C_{\text{Cobrar}} \right) - P_{\text{Exigible}}$$
 
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **Calculadora de Zakat**:
+Determinada la base neta, la cuota anual a distribuir se calcula mediante:
 
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
+$$\text{Zakat a Pagar} = \begin{cases} 0,025 \times B_{\text{Zakat}} & \text{si } B_{\text{Zakat}} \ge \text{Nisab} \\ 0 & \text{si } B_{\text{Zakat}} < \text{Nisab} \end{cases}$$
+
+*(Nota de calendario: Si calcula su Zakat siguiendo el **año solar gregoriano** de 365,25 días en lugar del lunar de 354,36 días, el tipo se ajusta proporcionalmente al **$2,577\,\%$**).*
+
+Definición de las partidas patrimoniales:
+* $A_{\text{Efectivo}}$: Saldo en cuentas bancarias, ahorro, depósitos, efectivo físico y divisas.
+* $A_{\text{Metales}}$: Valor del oro y plata ajustado por quilataje ($\text{Peso} \times \frac{\text{Quilates}}{24} \times \text{Precio Gramo 24k}$).
+* $A_{\text{Inversiones}}$: Valor computable de acciones, fondos, criptoactivos y participaciones.
+* $A_{\text{Comercial}}$: Valor de venta actual del inventario y mercancías destinadas al comercio.
+* $C_{\text{Cobrar}}$: Préstamos concedidos a terceros solventes o facturas de cobro seguro.
+* $P_{\text{Exigible}}$: Deudas vencidas, impuestos devengados, salarios debidos y recibos inmediatos.
+
+## Caso práctico paso a paso: Liquidación anual de Zakat familiar
+
+Supongamos que llega la fecha anual de cierre de *Hawl* de un hogar. Ese día, el oro de 24k cotiza a **$80,00\text{ €/g}$** ($\text{Nisab Oro} = 85 \times 80 = \mathbf{6.800,00\text{ €}}$) y la plata pura cotiza a **$0,95\text{ €/g}$** ($\text{Nisab Plata} = 595 \times 0,95 = \mathbf{565,25\text{ €}}$).
+
+1. **Valoración de los activos computables:**
+   * **Efectivo y bancos ($A_{\text{Efectivo}}$):** Disponen de **$14.500,00\text{ €}$** en cuentas.
+   * **Oro ajustado por quilates ($A_{\text{Metales}}$):** Poseen piezas de oro de **18 quilates** con un peso de $60\text{ gramos}$. Su pureza real es $\frac{18}{24} = 75\,\%$ ($45\text{ gramos}$ de oro fino de 24k), valorado en $45\text{ g} \times 80,00\text{ €/g} = \mathbf{3.600,00\text{ €}}$.
+   * **Inversiones ($A_{\text{Inversiones}}$):** Cartera líquida de acciones y criptoactivos valorada en **$6.400,00\text{ €}$**.
+   * **Derechos de cobro ($C_{\text{Cobrar}}$):** Préstamo familiar cobrable de **$1.500,00\text{ €}$**.
+   * *Suma de Activos Brutos:* $14.500 + 3.600 + 6.400 + 1.500 = \mathbf{26.000,00\text{ €}}$.
+2. **Resta de pasivos exigibles ($P_{\text{Exigible}}$):** Facturas e impuestos devengados pendientes por **$2.200,00\text{ €}$**.
+3. **Cálculo de la base neta y cuota (2,5 %):**
+   $$B_{\text{Zakat}} = 26.000,00 - 2.200,00 = \mathbf{23.800,00\text{ €}} \implies \text{Zakat} = 23.800,00 \times 0,025 = \mathbf{595,00\text{ €}}$$
+
+## Tabla de tratamiento patrimonial por categoría de activo
+
+| Categoría Patrimonial | Estado frente al Zakat | Regla de Valoración Contable | Tasa |
 | :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |
+| **Efectivo, cuentas y divisas** | **Sujeto al 100 %** | Saldo líquido total en la fecha de cierre del *Hawl*. | **2,5 %** |
+| **Oro y plata de inversión** | **Sujeto al 100 %** | Peso en gramos puros (ajustado por ley) al precio *spot*. | **2,5 %** |
+| **Vivienda habitual y vehículo** | **Exento (0 %)** | Necesidades básicas personales (*Hajah Asliyyah*). | **0 %** |
+| **Inmuebles en alquiler** | **Solo renta ahorrada** | El edificio está exento; tributa el alquiler neto ahorrado. | **2,5 %** |
+| **Acciones de trading y cripto** | **Sujeto al 100 %** | Valor de liquidación a precio de mercado en el *Hawl*. | **2,5 %** |
+| **Inventario y stock comercial** | **Sujeto al 100 %** | Valor de venta actual (excluyendo maquinaria y local). | **2,5 %** |
+| **Hipoteca a largo plazo** | **No deducible en bloque** | Solo se deduce el recibo vencido o exigible a corto plazo. | Limitada |
 
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Parámetro Principal** | `80` | `100` | `120` |
+## Criterios clave para evitar errores en su declaración
 
-### 3. Análisis Detallado de Variables y Sensibilidad
-
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
-
-1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en Calculadora de Zakat y establece el punto de partida para todas las métricas derivadas.
-2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.
-3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.
-
-### 4. Protocolo Paso a Paso para una Verificación Precisa
-
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
-
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
-
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
-
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
-
-Todos los cálculos realizados en **Calculadora de Zakat** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
+* **Convierta los quilates antes de valorar el oro:** El precio bursátil corresponde a 24 quilates. Si pesa joyas de 18k (75 % pureza) o 14k (58,5 % pureza) sin factor corrector, sobrevalorará su metal entre un 25 % y un 41 %.
+* **Valore el stock comercial a precio de venta actual:** Los autónomos deben inventariar sus mercancías terminadas al precio de mercado en el *Hawl*, excluyendo mobiliario y maquinaria fija.
+* **Préstamos de dudoso cobro:** No incluya deudas en litigio en su base anual; si logra recuperarlas años después, abone entonces el Zakat de un solo ejercicio sobre el importe cobrado.
