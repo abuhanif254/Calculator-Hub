@@ -1,78 +1,84 @@
 ---
 title: "S&P 500 Rendite-Rechner"
-metaTitle: "S&P 500 Rendite-Rechner — Kostenlos Online"
-description: "Prognostizieren Sie Ihr Vermögenswachstum basierend auf der historischen Durchschnittsrendite von ca. 10% p.a. des S&P 500."
-metaDescription: "Berechnen Sie den langfristigen Vermögensaufbau mit einem S&P 500 ETF-Sparplan und Zinseszinseffekt."
+metaTitle: "S&P 500 Rendite-Rechner: ETF-Sparplan & Zinseszins 2026"
+description: "Simulieren Sie langfristigen Vermögensaufbau mit S&P-500-ETFs – inklusive Zinseszinseffekt, Inflationsbereinigung und DACH-Steuerhinweisen."
+metaDescription: "Berechnen Sie langfristige Renditen für S&P-500-ETFs mit Einmalanlage und Sparplan. Inklusive Zinseszins, Inflation und Steuertipps für Anleger."
+metaKeywords: "sp 500 rendite rechner, s&p 500 etf sparplan rechner, s&p 500 historische rendite, zinseszins rechner etf, us aktien vermögensaufbau, s&p 500 rechner"
 faqs:
-  - question: "Welche exakte mathematische Formel verwendet der S&P 500 Rendite-Rechner?"
-    answer: "Der S&P 500 Rendite-Rechner berechnet Ergebnisse nach der verifizierten Gleichung (A = P (1 + r/n)^(nt)). Dabei werden Eingangsgrößen wie Ihre Eingabewerte mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik verarbeitet, um Rundungsfehler in Zwischenschritten auszuschließen."
-  - question: "Welche Referenzwerte nutzt der S&P 500 Rendite-Rechner im voreingestellten Basisszenario?"
-    answer: "Beim Start lädt der S&P 500 Rendite-Rechner kalibrierte Referenzwerte (branchenübliche Standardwerte), damit Sie die Modelllogik sofort nachvollziehen und anschließend mit Ihren individuellen Daten vergleichen können."
-  - question: "Wie wirkt sich eine Änderung von den Hauptparameter auf das Ergebnis im S&P 500 Rendite-Rechner aus?"
-    answer: "Innerhalb der Formel (A = P (1 + r/n)^(nt)) skaliert den Hauptparameter im Zusammenspiel mit die Sekundärvariablen direkt die Zielkennzahl. Wenn Sie nur den Hauptparameter variieren, erkennen Sie unmittelbar die Grenzsensitivität dieser Variable."
-  - question: "Berücksichtigt der S&P 500 Rendite-Rechner individuelle Steuern oder Bankgebühren?"
-    answer: "Der S&P 500 Rendite-Rechner bildet das finanzmathematische Kernmodell (Prognostizieren Sie Ihr Vermögenswachstum basierend auf der historischen Durchschnittsrendite von ca. 10% p.a. des S&P 500.) präzise ab. Für verbindliche Kredit-, Steuer- oder Anlageentscheidungen sollten Sie zusätzlich individuelle Vertragsgebühren und steuerliche Rahmenbedingungen prüfen."
-  - question: "Werden meine Eingaben im S&P 500 Rendite-Rechner auf externen Servern gespeichert?"
-    answer: "Nein. Alle Berechnungen im S&P 500 Rendite-Rechner erfolgen zu 100 % lokal im Arbeitsspeicher Ihres Browsers (DSGVO-konform). Es werden keinerlei Daten übertragen oder extern gespeichert."
+  - question: "Sind 10 % Jahresrendite beim S&P 500 auch für europäische Anleger realistisch?"
+    answer: "Die oft zitierten rund 10 % p. a. beziehen sich auf die historische nominale Gesamtrendite in US-Dollar inklusive reinvestierter Dividenden vor Inflation und Steuern. Für eine seriöse Finanzplanung im Euro- oder Frankenraum sollten Sie nach Abzug von ETF-Kosten und Inflation eher mit 6 % bis 8 % nominal oder rund 5 % bis 6,5 % real kalkulieren."
+  - question: "Sollte ich einen thesaurierenden oder ausschüttenden S&P-500-ETF wählen?"
+    answer: "Für den langfristigen Vermögensaufbau bietet ein thesaurierender ETF meist Vorteile, weil Dividenden automatisch, gebührenfrei und ohne Zeitverzug wiederangelegt werden. Steuerlich sind beide Varianten in Deutschland durch die Vorabpauschale und die 30-prozentige Teilfreistellung weitgehend angeglichen; ein Ausschütter kann jedoch helfen, den jährlichen Sparer-Pauschbetrag gezielt auszunutzen."
+  - question: "Warum bevorzugen Anleger aus DACH S&P-500-ETFs mit Fondsdomizil Irland?"
+    answer: "Aufgrund des Doppelbesteuerungsabkommens zwischen Irland und den USA zahlen physisch replizierende irische UCITS-ETFs nur 15 % US-Quellensteuer auf Dividenden statt 30 % wie bei Fondsdomizil Luxemburg. Synthetische Swap-ETFs auf den S&P 500 profitieren sogar von einer vollständigen Quellensteuerbefreiung auf Indexdividenden."
+  - question: "Lohnt sich ein währungsgesicherter (EUR-Hedged) S&P-500-ETF?"
+    answer: "Auf lange Sicht von 15 oder mehr Jahren schmälert eine permanente Währungsabsicherung häufig die Rendite. Die Absicherungskosten entsprechen im Kern der Zinsdifferenz zwischen US-Dollar und Euro zuzüglich höherer laufender Fondskosten. Über kurze Zeiträume glättet Hedging zwar Wechselkursschwankungen, für langfristige Aktienanleger ist die ungesicherte Variante jedoch meist effizienter."
+  - question: "Wie stark kann ein S&P-500-Portfolio in Börsenkrisen zwischenzeitlich fallen?"
+    answer: "Trotz starker Langfristrendite kam es historisch wiederholt zu Rückschlägen von 30 % bis über 50 %, etwa nach dem Platzen der Dotcom-Blase (2000–2002) oder während der Finanzkrise 2008. Wer einen Anlagehorizont von mindestens 15 Jahren einhält und Sparpläne gerade in Krisenphasen fortführt, hat historisch jedoch in jedem gleitenden 20-Jahres-Zeitraum positive Renditen erzielt."
 ---
 
-## Technische Methodik und Mathematische Architektur: S&P 500 Rendite-Rechner
+## Historische Rendite des S&P 500 richtig einordnen
 
-Prognostizieren Sie Ihr Vermögenswachstum basierend auf der historischen Durchschnittsrendite von ca. 10% p.a. des S&P 500. In der finanzmathematischen Modellierung hängen die Ergebnisse des **S&P 500 Rendite-Rechner** maßgeblich von der Zinseszinsperiodik, der Unterscheidung zwischen Nominal- und Effektivzinssatz (p. a.) sowie der zeitlichen Struktur der Zahlungsströme ab. Bereits eine Abweichung von 50 Basispunkten beim Zinssatz oder Renditefaktor führt über mehrjährige Laufzeiten zu erheblichen nichtlinearen Kumulationseffekten.
+Der **S&P 500** bündelt die 500 größten börsennotierten US-Unternehmen und repräsentiert rund 80 % der gesamten US-Marktkapitalisierung. Seit seiner Einführung in der heutigen Form im Jahr 1957 erwirtschaftete der Index inklusive wiederangelegter Dividenden eine durchschnittliche **nominale Gesamtrendite von knapp 10 % pro Jahr** in US-Dollar. Nach Abzug der historischen US-Inflation verblieb eine **reale Kaufkraftrendite von rund 6,5 % bis 7,0 % p. a.**
 
-### 1. Mathematisches Grundmodell und Berechnungsformel
+Diese Langfristzahlen verleiten allerdings leicht zu linearem Wunschdenken. An der Börse gibt es keine gleichmäßigen Jahreszinsen wie auf einem Sparkonto: Auf Jahre mit +25 % folgen Korrekturen von −20 % oder längere Seitwärtsphasen. Der S&P 500 Rendite-Rechner übersetzt die geglättete Durchschnittsrendite (CAGR) in konkrete Endvermögens-Szenarien und macht sichtbar, welchen Unterschied Zeit, Sparrate und Renditeannahme über Jahrzehnte bewirken.
 
-Die Berechnungs-Engine des **S&P 500 Rendite-Rechner** verarbeitet alle Eingabeparameter in Echtzeit auf Basis der folgenden mathematischen Grundgleichung:
+## Die Sparplan- und Zinseszinsformel für Index-Investments
+
+Kombinieren Sie ein Startkapital (`K₀`) mit einem regelmäßigen monatlichen ETF-Sparplan (`S`), wirken zwei Zinseszins-Komponenten parallel. Bei monatlicher Verzinsung (`i = r / 12`) über `n = 12 · t` Monate ergibt sich das nominale Endkapital (`K_n`) nachschüssig aus:
 
 ```
-A = P (1 + r/n)^(nt)
+K_n = K₀ · (1 + i)^n + S · [ ((1 + i)^n − 1) / i ]
 ```
 
-Bei jeder Anpassung eines Eingabewertes führt das System eine automatische Grenz- und Plausibilitätsprüfung durch und nutzt doppelt genaue Gleitkomma-Arithmetik (IEEE 754), um Rundungsfehler in Zwischenschritten auszuschließen und sowohl das Hauptergebnis als auch sämtliche Detailkennzahlen präzise abzuleiten.
+Die Variablen im Überblick:
 
-### 2. Parameter-Spezifikation und Szenarien-Matrix
+- **`K₀`**: Einmalige Anfangsinvestition zu Beginn des Anlagezeitraums.
+- **`S`**: Monatliche Sparplanrate, die über `n` Monate hinweg investiert wird.
+- **`r`**: Erwartete jährliche Durchschnittsrendite (nach laufenden ETF-Kosten/TER, vor Steuern).
+- **`t`**: Anlagedauer in Jahren (`n = 12 · t`).
 
-Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten sowie drei kalibrierte Simulationsszenarien (-20 % konservativ, Referenzwert und +20 % progressiv) für den **S&P 500 Rendite-Rechner**:
+Um zu prüfen, welche **reale Kaufkraft (`K_real`)** Ihr künftiges Vermögen in heutigem Geld besitzt, diskontieren Sie das Endkapital mit der erwarteten jährlichen Inflationsrate (`π`):
 
-| Eingabeparameter | Einheit | Kalibrierter Referenzwert | Empfohlener Wertebereich |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `SI / Standard` | Calibrated | Total accumulated balance including principal and compounded interest |
-| **Principal Deposit (`P`)** | `SI / Standard` | Calibrated | Initial sum of money invested |
-| **Annual Interest Rate (`r`)** | `SI / Standard` | Calibrated | Nominal interest rate expressed in decimal form (e.g. 7% = 0.07) |
-| **Compounding Frequency (`n`)** | `SI / Standard` | Calibrated | Number of times interest is applied per year (12 for monthly, 365 for daily) |
-| **Time in Years (`t`)** | `SI / Standard` | Calibrated | Total duration of the investment |
+```
+K_real = K_n / (1 + π)^t
+```
 
-| Modellvariable | Konservatives Szenario (-20%) | Kalibrierter Basiswert | Progressives Szenario (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `-20% (A₀ × 0.8)` | `Baseline (A₀)` | `+20% (A₀ × 1.2)` |
-| **Principal Deposit (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Annual Interest Rate (`r`)** | `-20% (r₀ × 0.8)` | `Baseline (r₀)` | `+20% (r₀ × 1.2)` |
-| **Compounding Frequency (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
-| **Time in Years (`t`)** | `-20% (t₀ × 0.8)` | `Baseline (t₀)` | `+20% (t₀ × 1.2)` |
+## Rechenbeispiel: 10.000 € Startkapital plus 300 € Sparplan über 20 Jahre
 
-### 3. Detaillierte Variablen- und Sensitivitätsanalyse
+Eine Anlegerin investiert **10.000 € Startkapital** in einen kostengünstigen S&P-500-ETF (TER 0,07 % p. a.) und richtet einen monatlichen Sparplan über **300 €** ein. Statt mit optimistischen 10 % kalkuliert sie vorsichtiger mit **8,0 % nominaler Rendite p. a.** und einer durchschnittlichen Inflation von **2,2 % p. a.** über **20 Jahre (`n = 240 Monate`)**.
 
-Das Verständnis der Wechselwirkungen zwischen den einzelnen Variablen ermöglicht eine fundierte Szenarioplanung:
+1. **Eigene Einzahlungen**: `10.000 € + (240 × 300 €) = 82.000 €`.
+2. **Monatlicher Renditefaktor**: `i = 0,08 / 12 = 0,00666667`, daraus folgt `(1 + i)^240 = 4,926803`.
+3. **Wachstum der Einmalanlage**: `10.000 € · 4,926803 = 49.268,03 €`.
+4. **Wachstum des Sparplans**: `300 € · (4,926803 − 1) / 0,00666667 = 176.706,12 €`.
+5. **Nominales Endkapital**: `49.268,03 € + 176.706,12 € = 225.974,15 €`. Der reine **Wertzuwachs von 143.974,15 €** macht über 63 % des Endvermögens aus.
+6. **Kaufkraft in heutigen Euro**: Bei 2,2 % Inflation sinkt der reale Gegenwert auf `225.974,15 € / (1,022)^20 = 146.231,47 €` – immer noch ein substanzieller realer Vermögenszuwachs von fast 78 % gegenüber der nominalen Einzahlungssumme.
 
-1. **Future Value (`A`)** — Total accumulated balance including principal and compounded interest: Strukturparameter in der Gleichung des S&P 500 Rendite-Rechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-2. **Principal Deposit (`P`)** — Initial sum of money invested: Strukturparameter in der Gleichung des S&P 500 Rendite-Rechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-3. **Annual Interest Rate (`r`)** — Nominal interest rate expressed in decimal form (e.g. 7% = 0.07): Strukturparameter in der Gleichung des S&P 500 Rendite-Rechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-4. **Compounding Frequency (`n`)** — Number of times interest is applied per year (12 for monthly, 365 for daily): Strukturparameter in der Gleichung des S&P 500 Rendite-Rechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-5. **Time in Years (`t`)** — Total duration of the investment: Strukturparameter in der Gleichung des S&P 500 Rendite-Rechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
+## Szenarienvergleich: Nominale und reale Entwicklung über 10 bis 30 Jahre
 
-### 4. Schritt-für-Schritt-Protokoll zur Ergebnisvalidierung
+Wie stark Zeit und Renditeannahme das Ergebnis für exakt dasselbe Budget (10.000 € Start + 300 €/Monat) prägen, zeigt diese Gegenüberstellung (gerundet auf volle Euro, vor Steuern):
 
-1. **Analyse des Basisszenarios**: Starten Sie mit den voreingestellten Referenzwerten, um die Grundmechanik und Größenordnung des Modells nachzuvollziehen.
-2. **Konsistenzprüfung der Einheiten**: Stellen Sie sicher, dass sämtliche Eingabewerte in zueinander passenden Zeit- oder Maßeinheiten (z. B. Jahres- vs. Monatswerte, metrische vs. imperiale Einheiten) vorliegen.
-3. **Isolierte Sensitivitätsprüfung**: Verändern Sie jeweils nur einen Parameter, während alle anderen Größen konstant bleiben, um den exakten Grenzbeitrag dieser Variable zu bestimmen.
-4. **Mehrwertige Szenarien-Simulation**: Vergleichen Sie ein konservatives, ein realistisches und ein progressives Szenario, um Risiken und Bandbreiten zuverlässig abzuschätzen.
+| Horizont | Einzahlung | 6 % p.a. | 8 % p.a. | 10 % p.a. | Kaufkraft bei 8 % (2 % Infl.) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **10 Jahre** | 46.000 € | 67.358 € | 77.080 € | 88.524 € | 63.233 € |
+| **20 Jahre** | 82.000 € | 171.714 € | 225.974 € | 301.091 € | 152.074 € |
+| **30 Jahre** | 118.000 € | 361.580 € | 556.465 € | 876.520 € | 307.208 € |
 
-### 5. Typische Fehlerquellen bei manuellen Berechnungen
+Der Zinseszinseffekt entfaltet seine volle Wucht erst im dritten Jahrzehnt: Zwischen Jahr 20 und Jahr 30 zahlt die Anlegerin nur noch 36.000 € zusätzlich ein, doch im 8-%-Szenario wächst das Depot in diesem letzten Jahrzehnt um über **330.000 €**. Genau dieser exponentielle Knick erklärt, warum ein früher Sparbeginn mit moderaten Beträgen langfristig meist deutlich mehr Vermögen aufbaut als hohe Nachzahlungen wenige Jahre vor dem Ruhestand.
 
-- **Vorzeitiges Runden von Zwischenergebnissen**: In manuellen Rechnungen oder einfachen Tabellenkalkulationen führen gerundete Zwischenwerte insbesondere bei exponentiellen, finanzmathematischen oder naturwissenschaftlichen Formeln zu erheblichen Abweichungen.
-- **Maßeinheiten- und Periodenbrüche**: Das Vermischen unterschiedlicher Bezugszeiträume oder Größenordnungen ohne korrekten Umrechnungsfaktor verfälscht das Endergebnis.
-- **Fokussierung auf nur eine Kennzahl**: Nutzen Sie neben dem primären Ergebniswert stets auch die aufgeschlüsselten Teilmetriken und Vergleichstabellen für eine ganzheitliche Bewertung.
+## Worauf Anleger im DACH-Raum bei S&P-500-ETFs achten müssen
 
-### 6. Datenschutz und 100 % lokale Browser-Ausführung
+### Steuerliche Behandlung in Deutschland, Österreich und der Schweiz
 
-Alle Berechnungen im **S&P 500 Rendite-Rechner** finden **zu 100 % lokal im Arbeitsspeicher Ihres Browsers** statt. Es werden keinerlei Finanz-, Gesundheits- oder Projektdaten an externe Server übertragen oder gespeichert – für maximale Datensicherheit (DSGVO-konform) und verzögerungsfreie Performance auf Desktop- und Mobilgeräten.
+Die Nettorendite hängt maßgeblich vom Wohnsitzstaat ab:
+
+- **Deutschland**: Aktien-ETFs mit mindestens 51 % Aktienquote erhalten gemäß Investmentsteuergesetz eine **30-%-Teilfreistellung**. Auf die verbleibenden 70 % der Erträge fallen 25 % Abgeltungsteuer plus 5,5 % Solidaritätszuschlag an – effektiv also rund **18,46 %** (ohne Kirchensteuer), wobei der jährliche **Sparer-Pauschbetrag** (1.000 € für Ledige, 2.000 € für Verheiratete) vorab greift. Bei thesaurierenden Fonds erhebt die Bank zu Jahresbeginn die sogenannte **Vorabpauschale**, die beim späteren Verkauf angerechnet wird.
+- **Österreich**: Kursgewinne und Ausschüttungen unterliegen **27,5 % Kapitalertragsteuer (KESt)**. Wählen Sie unbedingt einen bei der OeKB registrierten **Meldefonds**, um pauschale Strafbesteuerungen bei Nichtmeldefonds zu vermeiden.
+- **Schweiz**: Private Kapitalgewinne (Kurssteigerungen) sind für Privatanleger **steuerfrei**, während Dividenden – auch bei thesaurierenden ETFs – regulär als Einkommen versteuert werden und das Depot der kantonalen Vermögenssteuer unterliegt.
+
+### Währungsrisiko, Quellensteuer und Entnahmephase steuern
+
+Obwohl Ihr ETF an Xetra oder SIX in Euro bzw. Franken gehandelt wird, tragen Sie wirtschaftlich das **US-Dollar-Wechselkursrisiko**. Wertet der Dollar langfristig gegenüber dem Euro ab, schmälert das Ihre Euro-Rendite; wertet er auf, erhalten Sie zusätzlichen Rückenwind. Achten Sie bei der Produktauswahl auf ein **irisch domiziliertes UCITS-Produkt** (nur 15 % US-Quellensteuer auf Dividenden bei physischer Replikation; 0 % bei Swap-ETFs) und vergleichen Sie neben der laufenden Gesamtkostenquote (TER) unbedingt die historische **Tracking Difference**: Viele große synthetische S&P-500-ETFs schneiden durch die eingesparte Quellensteuer nach Kosten sogar leicht besser ab als der offizielle Netto-Referenzindex. Behalten Sie zugleich die hohe Konzentration im Blick, denn die zehn größten US-Technologie- und Wachstumskonzerne machen regelmäßig über 30 % des gesamten Indexgewichts aus.
+
+Unterschätzen Sie schließlich nicht das **Rendite-Reihenfolge-Risiko (Sequence-of-Returns-Risiko)** gegen Ende Ihres Sparziels. Während ein Börseneinbruch in den ersten Sparjahren sogar günstigere Kaufkurse über den Sparplan ermöglicht, kann ein Kurssturz von 30 % kurz vor Rentenbeginn das Depot empfindlich treffen. Bauen Sie daher fünf Jahre vor geplanten größeren Entnahmen schrittweise einen risikoarmen Puffer aus Tagesgeld oder gestaffeltem Festgeld für zwei bis drei Jahresausgaben auf, statt im Krisentief Aktienanteile verkaufen zu müssen.

@@ -1,68 +1,83 @@
 ---
 title: "RMD-Rechner"
-metaTitle: "RMD-Rechner — Kostenlos Online"
-description: "Berechnen Sie Ihre erforderliche Mindestausschüttung (RMD) von Rentenkonten."
-metaDescription: "Berechnen Sie Ihre erforderliche Mindestausschüttung (RMD) von Rentenkonten."
+metaTitle: "RMD-Rechner 2026: Pflichtentnahmen (401k & IRA) berechnen"
+description: "Berechnen Sie Ihre jährliche Required Minimum Distribution (RMD) aus US-Rentenkonten wie Traditional IRA und 401(k) nach aktueller IRS-Tabelle und SECURE 2.0."
+metaDescription: "Berechnen Sie Ihre Required Minimum Distribution (RMD) nach IRS-Tabelle & SECURE 2.0 – inklusive Strafsteuer, QCD-Limit und DBA-Hinweisen für DACH."
+metaKeywords: "rmd rechner, required minimum distribution berechnen, 401k pflichtentnahme, traditional ira rmd tabelle, secure 2.0 alter 73 75, irs uniform lifetime table, rmd steuern deutschland"
 faqs:
-  - question: "Welche exakte mathematische Formel verwendet der RMD-Rechner?"
-    answer: "Der RMD-Rechner berechnet Ergebnisse nach der verifizierten Gleichung (y = f(x₁, x₂, ..., xₙ)). Dabei werden Eingangsgrößen wie Ihre Eingabewerte mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik verarbeitet, um Rundungsfehler in Zwischenschritten auszuschließen."
-  - question: "Welche Referenzwerte nutzt der RMD-Rechner im voreingestellten Basisszenario?"
-    answer: "Beim Start lädt der RMD-Rechner kalibrierte Referenzwerte (branchenübliche Standardwerte), damit Sie die Modelllogik sofort nachvollziehen und anschließend mit Ihren individuellen Daten vergleichen können."
-  - question: "Wie wirkt sich eine Änderung von den Hauptparameter auf das Ergebnis im RMD-Rechner aus?"
-    answer: "Innerhalb der Formel (y = f(x₁, x₂, ..., xₙ)) skaliert den Hauptparameter im Zusammenspiel mit die Sekundärvariablen direkt die Zielkennzahl. Wenn Sie nur den Hauptparameter variieren, erkennen Sie unmittelbar die Grenzsensitivität dieser Variable."
-  - question: "Berücksichtigt der RMD-Rechner individuelle Steuern oder Bankgebühren?"
-    answer: "Der RMD-Rechner bildet das finanzmathematische Kernmodell (Berechnen Sie Ihre erforderliche Mindestausschüttung (RMD) von Rentenkonten.) präzise ab. Für verbindliche Kredit-, Steuer- oder Anlageentscheidungen sollten Sie zusätzlich individuelle Vertragsgebühren und steuerliche Rahmenbedingungen prüfen."
-  - question: "Werden meine Eingaben im RMD-Rechner auf externen Servern gespeichert?"
-    answer: "Nein. Alle Berechnungen im RMD-Rechner erfolgen zu 100 % lokal im Arbeitsspeicher Ihres Browsers (DSGVO-konform). Es werden keinerlei Daten übertragen oder extern gespeichert."
+  - question: "Ab welchem Alter müssen Pflichtentnahmen (RMDs) nach SECURE 2.0 beginnen?"
+    answer: "Das gesetzliche Startalter richtet sich nach Ihrem Geburtsjahr. Wer zwischen 1951 und 1959 geboren wurde, muss ab dem 73. Lebensjahr jährliche RMDs entnehmen. Für alle Jahrgänge ab 1960 verschiebt der SECURE 2.0 Act den Beginn der Pflichtentnahmen auf das 75. Lebensjahr."
+  - question: "Welcher Kontostand ist für die Berechnung der jährlichen RMD maßgeblich?"
+    answer: "Maßgeblich ist ausschließlich der exakte Marktwert Ihres Rentenkontos am 31. Dezember des Vorjahres (Fair Market Value). Zwischenzeitliche Kursgewinne oder Kurseinbrüche im laufenden Kalenderjahr verändern die für dieses Jahr geschuldete Mindestentnahme nicht mehr."
+  - question: "Darf ich die RMD meines 401(k) einfach aus meiner Traditional IRA auszahlen?"
+    answer: "Nein, das ist eine kostspielige Fehlerquelle. Zwar erlaubt der IRS bei mehreren Traditional IRAs eine Zusammenfassung (Aggregation), sodass die Gesamtsumme aus einer einzigen IRA entnommen werden darf. Ein 401(k)-Plan muss jedoch zwingend separat berechnet und direkt aus dem jeweiligen 401(k)-Konto bedient werden – sonst droht eine Strafsteuer."
+  - question: "Wie hoch ist die IRS-Strafsteuer, wenn eine RMD ganz oder teilweise versäumt wird?"
+    answer: "Wird der Mindestbetrag nicht fristgerecht bis zum 31. Dezember (bzw. 1. April im ersten RMD-Jahr) entnommen, verhängt der IRS eine Strafsteuer (Excise Tax) von 25 % auf die nicht entnommene Differenz. Korrigieren Sie das Versäumnis rasch innerhalb des Korrekturfensters und reichen Formular 5329 ein, sinkt die Strafe auf 10 % – bei begründetem Versehen kann zudem ein Erlass beantragt werden."
+  - question: "Müssen in Deutschland, Österreich oder der Schweiz lebende Kontoinhaber US-RMDs beachten?"
+    answer: "Ja. Solange Sie einen US-steuerbegünstigten 401(k) oder eine Traditional IRA besitzen, gelten die US-amerikanischen RMD-Pflichten unabhängig von Ihrem Wohnsitz. Wer als Rückkehrer oder Expat im DACH-Raum lebt, muss zusätzlich das Doppelbesteuerungsabkommen (DBA) mit den USA prüfen: Für Nicht-US-Bürger verhindert ein aktuelles Formular W-8BEN oft die pauschale 30-%-US-Quellensteuer, während die Besteuerung im Wohnsitzstaat erfolgt."
 ---
 
-## Technische Methodik und Mathematische Architektur: RMD-Rechner
+## Pflichtentnahmen aus US-Rentenkonten: Das Prinzip hinter der RMD
 
-Berechnen Sie Ihre erforderliche Mindestausschüttung (RMD) von Rentenkonten. In der finanzmathematischen Modellierung hängen die Ergebnisse des **RMD-Rechner** maßgeblich von der Zinseszinsperiodik, der Unterscheidung zwischen Nominal- und Effektivzinssatz (p. a.) sowie der zeitlichen Struktur der Zahlungsströme ab. Bereits eine Abweichung von 50 Basispunkten beim Zinssatz oder Renditefaktor führt über mehrjährige Laufzeiten zu erheblichen nichtlinearen Kumulationseffekten.
+Wer einige Jahre in den Vereinigten Staaten gearbeitet hat, als Expat nach Deutschland, Österreich oder in die Schweiz zurückgekehrt ist oder als US-Staatsbürger im DACH-Raum lebt, besitzt häufig steuerbegünstigte US-Altersvorsorgekonten wie einen **Traditional 401(k)**, eine **Traditional IRA**, einen **403(b)**-Plan oder eine **SEP IRA**. Einzahlungen und jahrzehntelange Wertzuwächse bleiben in diesen Konten steueraufgeschoben (*tax-deferred*).
 
-### 1. Mathematisches Grundmodell und Berechnungsformel
+Genau diesen Steueraufschub beendet die US-Steuerbehörde (IRS) im fortgeschrittenen Rentenalter durch die **Required Minimum Distribution (RMD)** – eine gesetzlich vorgeschriebene jährliche Mindestentnahme. Der Fiskus zwingt Kontoinhaber, ab einem festen Lebensalter jedes Jahr einen steigenden Prozentsatz des Guthabens auszuzahlen und regulär zu versteuern, selbst wenn das Geld aktuell gar nicht für den Lebensunterhalt benötigt wird. Der **RMD-Rechner** bestimmt anhand Ihres Alters und Ihres Vorjahresendbestands den exakten Mindestbetrag.
 
-Die Berechnungs-Engine des **RMD-Rechner** verarbeitet alle Eingabeparameter in Echtzeit auf Basis der folgenden mathematischen Grundgleichung:
+## Die IRS-Divisionsformel und das gestaffelte Startalter nach SECURE 2.0
+
+Die rechnerische Grundlage jeder Pflichtentnahme ist eine einfache, aber streng definierte Division:
 
 ```
-y = f(x₁, x₂, ..., xₙ)
+RMD_t = K_(31.12., t−1) / f_Alter
 ```
 
-Bei jeder Anpassung eines Eingabewertes führt das System eine automatische Grenz- und Plausibilitätsprüfung durch und nutzt doppelt genaue Gleitkomma-Arithmetik (IEEE 754), um Rundungsfehler in Zwischenschritten auszuschließen und sowohl das Hauptergebnis als auch sämtliche Detailkennzahlen präzise abzuleiten.
+Die beiden Größen sind eindeutig festgelegt:
 
-### 2. Parameter-Spezifikation und Szenarien-Matrix
+- **`K_(31.12., t−1)`**: Der exakte Kontostand (Marktwert) zum **31. Dezember des Vorjahres**. Für Ihre RMD im Jahr 2026 zählt also zwingend der Auszug zum 31.12.2025.
+- **`f_Alter`**: Der statistische **Verteilungsfaktor (Distribution Period)** für das Alter, das Sie am **31. Dezember des laufenden Jahres** erreichen. Standardmäßig gilt die **IRS Uniform Lifetime Table (Tabelle III aus IRS Publication 590-B)**. Einzige wichtige Ausnahme: Ist Ihr Ehepartner alleiniger Hauptbegünstigter (*sole primary beneficiary*) **und mehr als 10 Jahre jünger** als Sie, greift die günstigere **Joint Life and Last Survivor Expectancy Table (Tabelle II)** mit höheren Faktoren und damit kleineren jährlichen Pflichtentnahmen.
 
-Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten sowie drei kalibrierte Simulationsszenarien (-20 % konservativ, Referenzwert und +20 % progressiv) für den **RMD-Rechner**:
+Durch den **SECURE 2.0 Act** hängt das Startalter vom Geburtsjahrgang ab:
 
-| Eingabeparameter | Einheit | Kalibrierter Referenzwert | Empfohlener Wertebereich |
-| :--- | :--- | :--- | :--- |
-| **Hauptparameter** | `Standard` | 100 | Standardmäßige numerische Eingabe |
+- **Jahrgang 1950 oder älter**: RMDs laufen bereits.
+- **Jahrgang 1951 bis 1959**: Erste RMD im Jahr des **73. Geburtstags**.
+- **Jahrgang 1960 oder jünger**: Erste RMD erst ab dem **75. Geburtstag**.
 
-| Modellvariable | Konservatives Szenario (-20%) | Kalibrierter Basiswert | Progressives Szenario (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Hauptparameter** | `80` | `100` | `120` |
+**Wichtige Befreiung**: **Roth IRAs** und – dank SECURE 2.0 seit 2024 – auch **Roth 401(k)**-Konten sind zu Lebzeiten des ursprünglichen Kontoinhabers vollständig von RMDs befreit, da die Beiträge bereits versteuert wurden.
 
-### 3. Detaillierte Variablen- und Sensitivitätsanalyse
+## Referenztabelle: IRS Uniform Lifetime Table im Altersverlauf
 
-Das Verständnis der Wechselwirkungen zwischen den einzelnen Variablen ermöglicht eine fundierte Szenarioplanung:
+Mit jedem zusätzlichen Lebensjahr sinkt der IRS-Verteilungsfaktor (`f`), wodurch der verpflichtende Entnahmeanteil stetig ansteigt. Die Tabelle zeigt die amtlichen Faktoren aus **IRS Publication 590-B (Tabelle III)** anhand eines Musterkontos von **500.000 USD**:
 
-1. **Primäre Basisgröße**: Bestimmt die absolute Skalierung der Berechnung im RMD-Rechner und bildet den Ausgangspunkt für alle abgeleiteten Kennzahlen.
-2. **Raten-, Verhältnis- oder Koeffizientenfaktor**: Steuert die mathematische Verstärkung und Sensitivität zwischen Eingabewert und Endergebnis.
-3. **Zeitraum oder Rahmenbedingung**: Definiert die Periodenanzahl, Iterationsschritte oder Systemgrenzen, über die das Modell ausgewertet wird.
+| Alter am 31.12. | IRS-Verteilungsfaktor (`f`) | Entnahmequote (`1 / f`) | Jährliche RMD (bei 500.000 USD) |
+| :---: | :---: | :---: | :---: |
+| **73 Jahre** | 26,5 | 3,77 % | **18.867,92 USD** |
+| **74 Jahre** | 25,5 | 3,92 % | **19.607,84 USD** |
+| **75 Jahre** | 24,6 | 4,07 % | **20.325,20 USD** |
+| **78 Jahre** | 22,0 | 4,55 % | **22.727,27 USD** |
+| **80 Jahre** | 20,2 | 4,95 % | **24.752,48 USD** |
+| **85 Jahre** | 16,0 | 6,25 % | **31.250,00 USD** |
+| **90 Jahre** | 12,2 | 8,20 % | **40.983,61 USD** |
+| **95 Jahre** | 8,9 | 11,24 % | **56.179,78 USD** |
 
-### 4. Schritt-für-Schritt-Protokoll zur Ergebnisvalidierung
+Selbst im hohen Alter von 95 Jahren verlangt die Formel keine Vollauflösung, weil der Divisor stets größer als 1 bleibt – allerdings steigt die jährliche steuerpflichtige Quote auf mehr als das Dreifache des Startwerts mit 73.
 
-1. **Analyse des Basisszenarios**: Starten Sie mit den voreingestellten Referenzwerten, um die Grundmechanik und Größenordnung des Modells nachzuvollziehen.
-2. **Konsistenzprüfung der Einheiten**: Stellen Sie sicher, dass sämtliche Eingabewerte in zueinander passenden Zeit- oder Maßeinheiten (z. B. Jahres- vs. Monatswerte, metrische vs. imperiale Einheiten) vorliegen.
-3. **Isolierte Sensitivitätsprüfung**: Verändern Sie jeweils nur einen Parameter, während alle anderen Größen konstant bleiben, um den exakten Grenzbeitrag dieser Variable zu bestimmen.
-4. **Mehrwertige Szenarien-Simulation**: Vergleichen Sie ein konservatives, ein realistisches und ein progressives Szenario, um Risiken und Bandbreiten zuverlässig abzuschätzen.
+## Praxisbeispiel: 401(k) und Traditional IRA mit 73 Jahren korrekt auszahlen
 
-### 5. Typische Fehlerquellen bei manuellen Berechnungen
+Ein 1953 geborener Rückkehrer mit Wohnsitz in München besitzt aus seiner früheren Berufstätigkeit in den USA einen **Traditional 401(k)** mit **420.000 USD** sowie eine **Traditional IRA** mit **180.000 USD** zum Stichtag **31.12.2025** (Gesamtbestand **600.000 USD**). Im Jahr 2026 vollendet er sein **73. Lebensjahr** (`f = 26,5`):
 
-- **Vorzeitiges Runden von Zwischenergebnissen**: In manuellen Rechnungen oder einfachen Tabellenkalkulationen führen gerundete Zwischenwerte insbesondere bei exponentiellen, finanzmathematischen oder naturwissenschaftlichen Formeln zu erheblichen Abweichungen.
-- **Maßeinheiten- und Periodenbrüche**: Das Vermischen unterschiedlicher Bezugszeiträume oder Größenordnungen ohne korrekten Umrechnungsfaktor verfälscht das Endergebnis.
-- **Fokussierung auf nur eine Kennzahl**: Nutzen Sie neben dem primären Ergebniswert stets auch die aufgeschlüsselten Teilmetriken und Vergleichstabellen für eine ganzheitliche Bewertung.
+1. **RMD für den Traditional 401(k)**: `420.000 USD / 26,5 = 15.849,06 USD`.
+2. **RMD für die Traditional IRA**: `180.000 USD / 26,5 = 6.792,45 USD`.
+3. **Gesamte Mindestentnahme 2026**: `22.641,51 USD` (entspricht `3,77 %` des Vorjahresendwerts).
 
-### 6. Datenschutz und 100 % lokale Browser-Ausführung
+**Achtung Aggregationsverbot**: Er darf die Gesamtsumme von `22.641,51 USD` **nicht** bequem allein aus der IRA abbuchen. Beide Beträge müssen getrennt aus dem jeweiligen Konto fließen.
 
-Alle Berechnungen im **RMD-Rechner** finden **zu 100 % lokal im Arbeitsspeicher Ihres Browsers** statt. Es werden keinerlei Finanz-, Gesundheits- oder Projektdaten an externe Server übertragen oder gespeichert – für maximale Datensicherheit (DSGVO-konform) und verzögerungsfreie Performance auf Desktop- und Mobilgeräten.
+**Vorsicht vor der April-Falle im ersten RMD-Jahr**: Der IRS gestattet für die allererste RMD einen Aufschub bis zum **1. April des Folgejahres** (hier 1. April 2027). Nutzt der Anleger diesen Aufschub und wächst sein Depot bis zum 31.12.2026 um 5 % auf **630.000 USD**, wird im Jahr 2027 zusätzlich die reguläre zweite RMD für Alter 74 (`630.000 USD / 25,5 = 24.705,88 USD`) fällig. Damit treffen **47.347,39 USD** in einem einzigen Steuerjahr aufeinander – ein unnötiger Progressionssprung.
+
+## Fehler vermeiden und Steuern senken: Strafsteuer, QCD und DBA DACH–USA
+
+Wer RMD-Regeln aktiv plant, spart oft fünfstellige Beträge an unnötigen Steuern und Strafen:
+
+- **Strafsteuer von 25 % bzw. 10 % vermeiden**: Richten Sie beim US-Depotverwalter eine automatische RMD-Auszahlung im ersten Halbjahr ein, statt im Dezember unter Zeitdruck Wertpapiere zu verkaufen. Vergessen Sie eine Teilsumme, belegen Sie die schnelle Nachholung mit **IRS Form 5329**, um die Sanktion auf 10 % zu drücken oder Erlass zu beantragen.
+- **Qualified Charitable Distribution (QCD)**: US-Steuerpflichtige ab **70½ Jahren** dürfen 2026 bis zu **111.000 USD** pro Person (Ehepaare mit eigenen IRAs bis zu 222.000 USD) direkt aus einer Traditional IRA an qualifizierte gemeinnützige US-Organisationen (*501(c)(3)*) überweisen. Die Spende erfüllt die RMD vollständig, ohne das steuerpflichtige Einkommen zu erhöhen.
+- **Still-Working-Ausnahme beim 401(k)**: Wer über 73 hinaus aktiv arbeitet und weniger als 5 % am Arbeitgeber hält, kann RMDs aus dem *aktuellen* Arbeitgeber-401(k) häufig bis zum tatsächlichen Ausscheiden aufschieben (gilt nicht für IRAs oder Alt-401(k)s früherer Arbeitgeber).
+- **Doppelbesteuerungsabkommen (DBA) für DACH-Ansässige**: Bei Wohnsitz in Deutschland, Österreich oder der Schweiz regelt regelmäßig Artikel 18 des jeweiligen DBA mit den USA das Besteuerungsrecht für private Rentenkonten. Reichen Nicht-US-Bürger ein aktuelles **Formular W-8BEN** ein, lässt sich häufig der pauschale 30-prozentige US-Quellensteuerabzug reduzieren, während die RMD zum Tageskurs in Euro oder Franken in der heimischen Steuererklärung anzugeben ist. Für US-Staatsbürger im DACH-Raum greift dagegen die *Saving Clause* mit doppelter Deklarationspflicht und Steueranrechnung – hier ist vorab spezialisierte grenzüberschreitende Steuerberatung unerlässlich.

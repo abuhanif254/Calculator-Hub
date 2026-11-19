@@ -1,78 +1,87 @@
 ---
 title: "Festgeld-Zinsrechner"
-metaTitle: "Festgeld-Zinsrechner — Kostenlos Online"
-description: "Berechnen Sie den garantierten Endbetrag und Zinsertrag Ihrer Festgeldanlage über die gewählte Laufzeit."
-metaDescription: "Ermitteln Sie Ihren garantierten Zinsgewinn für Festgeldanlagen mit festen Laufzeiten und Zinsgutschriften."
+metaTitle: "Festgeld-Zinsrechner: Endbetrag, Zinseszins & Zinstreppe"
+description: "Ermitteln Sie den garantierten Endbetrag und Zinsertrag Ihrer Festgeldanlage – wahlweise mit jährlicher Ausschüttung oder Zinsansammlung."
+metaDescription: "Berechnen Sie Endkapital und garantierten Zinsertrag für Festgeld und Termingeld. Vergleichen Sie Zinsansammlung, Ausschüttung und Festgeldleiter."
+metaKeywords: "festgeld zinsrechner, festgeld rechner, termingeld berechnen, festgeld zinseszins, festgeldleiter berechnen, zinstreppe festgeld, einlagensicherung"
 faqs:
-  - question: "Welche exakte mathematische Formel verwendet der Festgeld-Zinsrechner?"
-    answer: "Der Festgeld-Zinsrechner berechnet Ergebnisse nach der verifizierten Gleichung (A = P (1 + r/n)^(nt)). Dabei werden Eingangsgrößen wie Ihre Eingabewerte mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik verarbeitet, um Rundungsfehler in Zwischenschritten auszuschließen."
-  - question: "Welche Referenzwerte nutzt der Festgeld-Zinsrechner im voreingestellten Basisszenario?"
-    answer: "Beim Start lädt der Festgeld-Zinsrechner kalibrierte Referenzwerte (branchenübliche Standardwerte), damit Sie die Modelllogik sofort nachvollziehen und anschließend mit Ihren individuellen Daten vergleichen können."
-  - question: "Wie wirkt sich eine Änderung von den Hauptparameter auf das Ergebnis im Festgeld-Zinsrechner aus?"
-    answer: "Innerhalb der Formel (A = P (1 + r/n)^(nt)) skaliert den Hauptparameter im Zusammenspiel mit die Sekundärvariablen direkt die Zielkennzahl. Wenn Sie nur den Hauptparameter variieren, erkennen Sie unmittelbar die Grenzsensitivität dieser Variable."
-  - question: "Berücksichtigt der Festgeld-Zinsrechner individuelle Steuern oder Bankgebühren?"
-    answer: "Der Festgeld-Zinsrechner bildet das finanzmathematische Kernmodell (Berechnen Sie den garantierten Endbetrag und Zinsertrag Ihrer Festgeldanlage über die gewählte Laufzeit.) präzise ab. Für verbindliche Kredit-, Steuer- oder Anlageentscheidungen sollten Sie zusätzlich individuelle Vertragsgebühren und steuerliche Rahmenbedingungen prüfen."
-  - question: "Werden meine Eingaben im Festgeld-Zinsrechner auf externen Servern gespeichert?"
-    answer: "Nein. Alle Berechnungen im Festgeld-Zinsrechner erfolgen zu 100 % lokal im Arbeitsspeicher Ihres Browsers (DSGVO-konform). Es werden keinerlei Daten übertragen oder extern gespeichert."
+  - question: "Was unterscheidet jährliche Zinsausschüttung von Zinsansammlung beim Festgeld?"
+    answer: "Bei jährlicher Ausschüttung überweist die Bank die verdienten Zinsen jedes Jahr auf Ihr Referenzkonto – Sie erhalten reine lineare Zinsen ohne Zinseszinseffekt. Bei Zinsansammlung (Thesaurierung) verbleiben die Zinsen auf dem Festgeldkonto und werden in den Folgejahren mitverzinst, was den Brutto-Endbetrag spürbar erhöht."
+  - question: "Kann ich mein Festgeld im Notfall vorzeitig kündigen?"
+    answer: "Anders als bei US-amerikanischen Certificates of Deposit (CDs), die oft gegen eine Zinsstrafe vorzeitig auflösbar sind, ist europäisches Festgeld grundsätzlich bis zum vereinbarten Fälligkeitstag fest gebunden. Eine vorzeitige Auflösung gestatten Banken nur in engen gesetzlichen Härtefällen (etwa drohende Privatinsolvenz) oder aus Kulanz gegen hohen Zinsverzicht."
+  - question: "Warum kann eine Zinsauszahlung erst am Laufzeitende in Deutschland steuerlich nachteilig sein?"
+    answer: "Fließen mehrjährige Festgeldzinsen steuerlich erst bei Endfälligkeit in einem Betrag zu, können Sie Ihren jährlichen Sparer-Pauschbetrag von 1.000 € (2.000 € für Ehepaare) nur ein einziges Mal im Auszahlungsjahr anrechnen. Bei jährlicher Zinsgutschrift schöpfen Sie den Freibetrag hingegen jedes Jahr erneut aus."
+  - question: "Wie funktioniert eine Festgeldleiter (Zinstreppe) in der Praxis?"
+    answer: "Sie teilen Ihren Anlagebetrag in mehrere gleich große Tranchen mit gestaffelten Laufzeiten – etwa ein bis fünf Jahre. Jedes Jahr wird eine Tranche fällig und verschafft Ihnen frische Liquidität; benötigen Sie das Geld nicht, legen Sie es wieder am langen Ende für fünf Jahre zu höheren Langfristzinsen an."
+  - question: "Sind aufgelaufene Festgeldzinsen oberhalb von 100.000 € durch die Einlagensicherung geschützt?"
+    answer: "Nein. Die gesetzliche EU-Einlagensicherung deckt maximal 100.000 € pro Kunde und Bank insgesamt ab – inklusive bereits aufgelaufener Zinsen. Wer genau 100.000 € über fünf Jahre mit Zinsansammlung anlegt, trägt für die Zinserträge darüber hinaus das Ausfallrisiko der Bank. Ein Puffer von 85.000 € bis 90.000 € je Institut schützt auch die Zinsen vollständig."
 ---
 
-## Technische Methodik und Mathematische Architektur: Festgeld-Zinsrechner
+## Planbare Rendite durch Zinsbindung: Wie Festgeld funktioniert
 
-Berechnen Sie den garantierten Endbetrag und Zinsertrag Ihrer Festgeldanlage über die gewählte Laufzeit. In der finanzmathematischen Modellierung hängen die Ergebnisse des **Festgeld-Zinsrechner** maßgeblich von der Zinseszinsperiodik, der Unterscheidung zwischen Nominal- und Effektivzinssatz (p. a.) sowie der zeitlichen Struktur der Zahlungsströme ab. Bereits eine Abweichung von 50 Basispunkten beim Zinssatz oder Renditefaktor führt über mehrjährige Laufzeiten zu erheblichen nichtlinearen Kumulationseffekten.
+Festgeld – im Bankwesen auch **Termingeld** und international **Certificate of Deposit (CD)** genannt – tauscht kurzfristige Flexibilität gegen maximale Zinssicherheit. Sie überlassen einer Bank einen festen Betrag über eine klar definierte Laufzeit von meist **3 Monaten bis 10 Jahren** und erhalten dafür einen **vertraglich garantierten Festzins**. Selbst wenn die Europäische Zentralbank oder die Schweizerische Nationalbank die Leitzinsen kurz nach Ihrem Abschluss drastisch senken, bleibt Ihr Ertrag bis zum letzten Tag unverändert.
 
-### 1. Mathematisches Grundmodell und Berechnungsformel
+Der Haken ist ebenso eindeutig: Während der Laufzeit haben Sie keinen Zugriff auf das angelegte Geld. Umso wichtiger ist es, vorab nicht nur den nominalen Zinssatz, sondern auch die konkrete Zinsgutschrift-Methode und steuerliche Effekte exakt durchzurechnen.
 
-Die Berechnungs-Engine des **Festgeld-Zinsrechner** verarbeitet alle Eingabeparameter in Echtzeit auf Basis der folgenden mathematischen Grundgleichung:
+## Zwei Berechnungsmodelle: Lineare Ausschüttung gegen Zinsansammlung
+
+Bei mehrjährigen Festgeldern wenden Banken zwei unterschiedliche Gutschriftverfahren an, die mathematisch zu deutlich abweichenden Endbeträgen führen:
+
+**1. Jährliche Zinsausschüttung auf das Referenzkonto (einfacher, linearer Zins)**
 
 ```
-A = P (1 + r/n)^(nt)
+K_n = K₀ · (1 + r · t)
 ```
 
-Bei jeder Anpassung eines Eingabewertes führt das System eine automatische Grenz- und Plausibilitätsprüfung durch und nutzt doppelt genaue Gleitkomma-Arithmetik (IEEE 754), um Rundungsfehler in Zwischenschritten auszuschließen und sowohl das Hauptergebnis als auch sämtliche Detailkennzahlen präzise abzuleiten.
+Die Zinsen fließen jedes Jahr ab und erhöhen das verzinste Kapital nicht. Bei unterjährigen Laufzeiten (etwa 6 Monate) rechnen Banken zeitanteilig nach der jeweiligen Zinsmethode – meist taggenau (`act/365`) oder nach der deutschen kaufmännischen Methode (`30/360`).
 
-### 2. Parameter-Spezifikation und Szenarien-Matrix
+**2. Jährliche oder unterjährige Zinsansammlung auf dem Festgeldkonto (Zinseszins)**
 
-Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten sowie drei kalibrierte Simulationsszenarien (-20 % konservativ, Referenzwert und +20 % progressiv) für den **Festgeld-Zinsrechner**:
+```
+K_n = K₀ · (1 + r / m)^(m · t)
+```
 
-| Eingabeparameter | Einheit | Kalibrierter Referenzwert | Empfohlener Wertebereich |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `SI / Standard` | Calibrated | Total accumulated balance including principal and compounded interest |
-| **Principal Deposit (`P`)** | `SI / Standard` | Calibrated | Initial sum of money invested |
-| **Annual Interest Rate (`r`)** | `SI / Standard` | Calibrated | Nominal interest rate expressed in decimal form (e.g. 7% = 0.07) |
-| **Compounding Frequency (`n`)** | `SI / Standard` | Calibrated | Number of times interest is applied per year (12 for monthly, 365 for daily) |
-| **Time in Years (`t`)** | `SI / Standard` | Calibrated | Total duration of the investment |
+Hierbei bezeichnen **`K₀`** den Anlagebetrag, **`r`** den garantierten Jahreszins, **`t`** die Laufzeit in Jahren und **`m`** die Zahl der Gutschriften pro Jahr (in Europa meist `m = 1`, bei internationalen CDs häufig `m = 4` oder `m = 12`).
 
-| Modellvariable | Konservatives Szenario (-20%) | Kalibrierter Basiswert | Progressives Szenario (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Future Value (`A`)** | `-20% (A₀ × 0.8)` | `Baseline (A₀)` | `+20% (A₀ × 1.2)` |
-| **Principal Deposit (`P`)** | `-20% (P₀ × 0.8)` | `Baseline (P₀)` | `+20% (P₀ × 1.2)` |
-| **Annual Interest Rate (`r`)** | `-20% (r₀ × 0.8)` | `Baseline (r₀)` | `+20% (r₀ × 1.2)` |
-| **Compounding Frequency (`n`)** | `-20% (n₀ × 0.8)` | `Baseline (n₀)` | `+20% (n₀ × 1.2)` |
-| **Time in Years (`t`)** | `-20% (t₀ × 0.8)` | `Baseline (t₀)` | `+20% (t₀ × 1.2)` |
+## Durchgerechnetes Beispiel: 40.000 € Festgeld über 5 Jahre bei 3,60 % p. a.
 
-### 3. Detaillierte Variablen- und Sensitivitätsanalyse
+Ein Sparer legt **40.000 €** für genau **5 Jahre** zu **3,60 % p. a.** an und vergleicht zwei Angebote mit unterschiedlichem Auszahlungsmodus:
 
-Das Verständnis der Wechselwirkungen zwischen den einzelnen Variablen ermöglicht eine fundierte Szenarioplanung:
+- **Angebot A – jährliche Zinsausschüttung**: Pro Jahr werden exakt `40.000 € · 0,036 = 1.440,00 €` überwiesen. Nach fünf Jahren summieren sich die Bruttozinsen auf **7.200,00 €** (`K_n = 47.200,00 €`).
+- **Angebot B – Zinsansammlung mit Auszahlung erst bei Endfälligkeit (`m = 1`)**: Durch den Zinseszinseffekt wächst das Kapital auf `40.000 € · (1,036)^5 = 47.737,40 €`. Die Bruttozinsen betragen **7.737,40 €** – ein Brutto-Vorteil von **+537,40 €**.
 
-1. **Future Value (`A`)** — Total accumulated balance including principal and compounded interest: Strukturparameter in der Gleichung des Festgeld-Zinsrechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-2. **Principal Deposit (`P`)** — Initial sum of money invested: Strukturparameter in der Gleichung des Festgeld-Zinsrechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-3. **Annual Interest Rate (`r`)** — Nominal interest rate expressed in decimal form (e.g. 7% = 0.07): Strukturparameter in der Gleichung des Festgeld-Zinsrechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-4. **Compounding Frequency (`n`)** — Number of times interest is applied per year (12 for monthly, 365 for daily): Strukturparameter in der Gleichung des Festgeld-Zinsrechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
-5. **Time in Years (`t`)** — Total duration of the investment: Strukturparameter in der Gleichung des Festgeld-Zinsrechner. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.
+**Der überraschende Steuer-Effekt in Deutschland (Einzelperson ohne sonstige Kapitalerträge):**
 
-### 4. Schritt-für-Schritt-Protokoll zur Ergebnisvalidierung
+- Bei **Angebot A** greift der Sparer-Pauschbetrag von 1.000 € in jedem der fünf Jahre. Pro Jahr sind nur **440,00 €** steuerpflichtig (`440 € · 26,375 % = 116,05 €` Steuer/Jahr, insgesamt **580,25 €**). Netto bleiben **6.619,75 €** Zinsgewinn.
+- Bei **Angebot B (endfälliger steuerlicher Zufluss)** gilt der 1.000-€-Freibetrag nur einmalig im 5. Jahr. Auf die restlichen **6.737,40 €** fallen sofort **1.776,99 €** Abgeltungsteuer samt Soli an – der Nettogewinn fällt auf **5.960,41 €**.
 
-1. **Analyse des Basisszenarios**: Starten Sie mit den voreingestellten Referenzwerten, um die Grundmechanik und Größenordnung des Modells nachzuvollziehen.
-2. **Konsistenzprüfung der Einheiten**: Stellen Sie sicher, dass sämtliche Eingabewerte in zueinander passenden Zeit- oder Maßeinheiten (z. B. Jahres- vs. Monatswerte, metrische vs. imperiale Einheiten) vorliegen.
-3. **Isolierte Sensitivitätsprüfung**: Verändern Sie jeweils nur einen Parameter, während alle anderen Größen konstant bleiben, um den exakten Grenzbeitrag dieser Variable zu bestimmen.
-4. **Mehrwertige Szenarien-Simulation**: Vergleichen Sie ein konservatives, ein realistisches und ein progressives Szenario, um Risiken und Bandbreiten zuverlässig abzuschätzen.
+Obwohl Angebot B brutto über 537 € mehr Zinsen erwirtschaftet, liegt Angebot A **netto um 659,34 € vorn**. Nur wenn die Bank die angesammelten Zinsen bereits jährlich steuerwirksam gutschreibt oder Ihr Sparer-Pauschbetrag ohnehin durch andere Anlagen ausgeschöpft ist, schlägt die Zinsansammlung das Ausschüttungsmodell auch nach Steuern.
 
-### 5. Typische Fehlerquellen bei manuellen Berechnungen
+## Die Festgeldleiter (Zinstreppe): Liquidität und Top-Zinsen kombinieren
 
-- **Vorzeitiges Runden von Zwischenergebnissen**: In manuellen Rechnungen oder einfachen Tabellenkalkulationen führen gerundete Zwischenwerte insbesondere bei exponentiellen, finanzmathematischen oder naturwissenschaftlichen Formeln zu erheblichen Abweichungen.
-- **Maßeinheiten- und Periodenbrüche**: Das Vermischen unterschiedlicher Bezugszeiträume oder Größenordnungen ohne korrekten Umrechnungsfaktor verfälscht das Endergebnis.
-- **Fokussierung auf nur eine Kennzahl**: Nutzen Sie neben dem primären Ergebniswert stets auch die aufgeschlüsselten Teilmetriken und Vergleichstabellen für eine ganzheitliche Bewertung.
+Wer nicht sein gesamtes Vermögen starr für fünf Jahre binden möchte, nutzt die bewährte **Festgeldleiter**. Angenommen, Sie verteilen **50.000 €** in fünf Tranchen zu je **10.000 €** über Laufzeiten von ein bis fünf Jahren (mit jährlicher Zinsansammlung, Werte gerundet auf volle Euro):
 
-### 6. Datenschutz und 100 % lokale Browser-Ausführung
+| Tranche | Anlage | Laufzeit | Festzins p.a. | Zinsertrag | Auszahlung |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **Stufe 1** | 10.000 € | 1 Jahr | 3,10 % | 310 € | 10.310 € |
+| **Stufe 2** | 10.000 € | 2 Jahre | 3,25 % | 661 € | 10.661 € |
+| **Stufe 3** | 10.000 € | 3 Jahre | 3,40 % | 1.055 € | 11.055 € |
+| **Stufe 4** | 10.000 € | 4 Jahre | 3,50 % | 1.475 € | 11.475 € |
+| **Stufe 5** | 10.000 € | 5 Jahre | 3,60 % | 1.934 € | 11.934 € |
+| **Gesamt** | **50.000 €** | **1–5 Jahre** | **Ø 3,37 %** | **5.435 €** | **55.435 €** |
 
-Alle Berechnungen im **Festgeld-Zinsrechner** finden **zu 100 % lokal im Arbeitsspeicher Ihres Browsers** statt. Es werden keinerlei Finanz-, Gesundheits- oder Projektdaten an externe Server übertragen oder gespeichert – für maximale Datensicherheit (DSGVO-konform) und verzögerungsfreie Performance auf Desktop- und Mobilgeräten.
+Der strategische Clou: Jedes Jahr stehen Ihnen über 10.000 € frei zur Verfügung – entweder für geplante Ausgaben oder zur Wiederanlage am 5-Jahres-Ende, wodurch Sie nach einer Aufbauphase dauerhaft den hohen 5-Jahres-Zins kassieren und gleichzeitig jährliche Liquidität behalten.
+
+## Wichtige Vertragsklauseln und Fallstricke vor dem Abschluss
+
+### Zinskurve richtig deuten und Wiederanlagerisiko steuern
+
+Die optimale Laufzeit hängt stark von der aktuellen Zinsstruktur ab. In Phasen einer **inversen Zinskurve** zahlen Banken für zwölf Monate teilweise ähnlich hohe oder sogar höhere Zinsen als für fünf Jahre. Dennoch kann eine längere Bindung sinnvoll sein, wenn Zinssenkungen der Zentralbanken absehbar sind: Wer kurzfristig anlegt, trägt das **Wiederanlagerisiko**, dass der Anschlusszins im nächsten Jahr deutlich tiefer liegt. Rechnen Sie im Zinsrechner stets durch, ab welchem künftigen Einjahreszins eine lange Bindung vorteilhafter gewesen wäre.
+
+### Prolongationsfalle bei Laufzeitende ausschalten
+
+Viele Banken – besonders über europäische Zinsplattformen – sehen in ihren AGB eine **automatische Verlängerung (Prolongation)** vor. Verpassen Sie die Kündigungsfrist (oft 2 bis 14 Werktage vor Fälligkeit), bindet die Bank Ihr Guthaben erneut über die gleiche Laufzeit – häufig zu deutlich schlechteren Standardkonditionen. Deaktivieren Sie die automatische Wiederanlage direkt nach Kontoeröffnung oder tragen Sie den Stichtag sofort im Kalender ein.
+
+### Quellensteuer, DACH-Steuerregeln und Einlagensicherungsgrenze beachten
+
+Bei Festgeldern in EU-Staaten wie Italien, Frankreich, Spanien oder Portugal erheben ausländische Finanzbehörden teilweise **Quellensteuer** (15 % bis 30 %), die sich nur durch rechtzeitige Einreichung einer steuerlichen **Ansässigkeitsbescheinigung** auf 0 % reduzieren lässt. Während österreichische Sparer auf inländisches Festgeld automatisch 25 % KESt zahlen (und Zinsen aus dem Ausland selbst in der Einkommensteuererklärung angeben), nutzen Schweizer Privatanleger als klassisches Pendant zum deutschen Festgeld häufig festverzinsliche **Kassenobligationen** ihrer Hausbank mit fester Laufzeit. Planen Sie unabhängig vom Wohnsitz Ihren Anlagebetrag pro Institut stets mit Puffer: Da die gesetzliche Einlagensicherung von **100.000 €** (bzw. 100.000 CHF in der Schweiz) Kapital **und** Zinsen gemeinsam deckelt, sollten Sie bei mehrjährigen Anlagen maximal rund 85.000 € bis 90.000 € bei derselben Bank bündeln und größere Summen auf Institute in erstklassig bewerteten Ländern verteilen.

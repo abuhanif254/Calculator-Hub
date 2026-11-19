@@ -1,201 +1,97 @@
 ---
 title: "Binary Calculator"
-metaTitle: "Binary Calculator | Base-2 Arithmetic & Bitwise Logic Solver"
-metaDescription: "Free online Binary Calculator. Perform binary addition, subtraction, multiplication, division, bitwise logical operations (AND, OR, XOR, NOT), and character conversions with step-by-step math."
-metaKeywords: "binary calculator, binary converter, bitwise operations, two's complement, signed binary numbers, binary math solver, hex to binary, base 2 calculator"
+metaTitle: "Binary Calculator — Base-2 Arithmetic & Bitwise Logic"
+description: "Compute base-2 addition, subtraction, multiplication, division, bitwise logic gates, bit shifts, and two's complement signed integers across 8-, 16-, 32-, and 64-bit widths."
+metaDescription: "Solve base-2 addition, subtraction, multiplication, division, bitwise AND/OR/XOR, shifts, and two's complement with instant decimal and hex results."
+metaKeywords: "binary calculator, base-2 arithmetic, bitwise operations calculator, two's complement calculator, binary to hex converter, bit shift calculator, signed unsigned binary"
 faqs:
-  - question: "What is the binary number system?"
-    answer: "The binary number system (base-2) is a mathematical representation that uses only two digits: 0 and 1. It is the fundamental language of computers because it corresponds directly to the on/off states of electrical circuits (transistors) in CPU registers."
-  - question: "How does binary addition work?"
-    answer: "Binary addition follows similar rules to decimal addition, but with base 2: 0+0=0, 0+1=1, 1+0=1, and 1+1=0 (with 1 carried to the next column). When there is a carry-in and 1+1+1, the result is 1 with a carry-out of 1."
-  - question: "What are signed and unsigned integers in binary?"
-    answer: "Unsigned integers represent only positive numbers and use all bits to express value. Signed integers represent both positive and negative values. Modern computer hardware almost universally uses Two's Complement representation to store negative binary numbers, where the most significant bit (MSB) acts as a sign bit."
-  - question: "What is Two's Complement and how is it calculated?"
-    answer: "Two's Complement is a mathematical scheme to store negative integers in binary. To find the two's complement representation of a negative number: 1) write the positive number in binary, 2) invert all the bits (one's complement), and 3) add 1 to the least significant bit (LSB)."
-  - question: "What are bitwise logical operations?"
-    answer: "Bitwise operations perform logical actions on individual bits of binary numbers. Standard operations include AND (returns 1 if both bits are 1), OR (returns 1 if at least one bit is 1), XOR (returns 1 if bits are different), and NOT (inverts all bits)."
-  - question: "How does binary shift work (left vs right shift)?"
-    answer: "A left shift (<<) moves bits to the left, filling empty spaces with 0, which mathematically multiplies the integer by 2 for each shifted position. A right shift (>>) moves bits to the right. In unsigned numbers, it fills empty spaces with 0 (logical shift). In signed numbers, it can preserve the sign bit (arithmetic shift). This divides the integer by 2."
-  - question: "How do you convert binary to decimal?"
-    answer: "To convert a binary number to decimal, sum the products of each digit and its positional base-2 value (weights). Starting from the right (LSB) at weight 2^0, then 2^1, 2^2, and so on. For example, 1010 equals (1*8) + (0*4) + (1*2) + (0*1) = 10."
-  - question: "How do you convert a fraction or decimal decimal point to binary?"
-    answer: "For the fractional part of a decimal number, multiply the fraction by 2. The integer part of the result (0 or 1) becomes the next binary digit after the decimal point. Repeat the process with the remaining fraction until it reaches 0 or begins repeating."
-  - question: "Why do computers use Hexadecimal and Octal alongside Binary?"
-    answer: "Hexadecimal (base-16) and Octal (base-8) are used because they are clean shorthand forms of binary. One hex digit represents exactly 4 bits (a nibble), and one octal digit represents 3 bits. This makes reading and writing long bit strings much easier for human developers."
-  - question: "How is floating-point binary represented (IEEE 754)?"
-    answer: "Under the IEEE 754 standard, floating-point numbers are divided into three components: a Sign bit (determining positive or negative), Exponent bits (representing scale), and Fraction/Mantissa bits (representing precision). For example, single-precision floats use 32 bits (1 sign, 8 exponent, 23 mantissa)."
+  - question: "How do you convert a negative decimal integer into 8-bit two's complement binary?"
+    answer: "Start with the positive magnitude in 8 bits, invert every bit (0 becomes 1 and 1 becomes 0) to form the one's complement, and then add 1 to the least significant bit. For -19, begin with 00010011, invert to 11101100, and add 1 to obtain 11101101."
+  - question: "Why do systems programmers prefer hexadecimal over decimal as shorthand for binary?"
+    answer: "Because 16 equals 2 to the 4th power, every group of four binary bits (a nibble) maps directly onto a single hexadecimal character (0-9 and A-F). That clean 4-to-1 alignment lets engineers read bytes, memory addresses, and bitmasks instantly without performing base-10 division."
+  - question: "What is the difference between a logical right shift and an arithmetic right shift?"
+    answer: "A logical right shift moves all bits rightward and pads the vacated leftmost positions with 0s, which divides unsigned integers by powers of two. An arithmetic right shift copies the existing sign bit into the leftmost positions so negative two's complement values keep their negative sign during division."
+  - question: "Why does 0.1 + 0.2 produce tiny rounding discrepancies in binary floating-point math?"
+    answer: "In base-2, only fractions whose reduced denominator is a pure power of two (such as 1/2, 1/4, or 3/8) terminate cleanly. Because 1/10 includes a prime factor of 5, 0.1 repeats infinitely in binary (0.0001100110011...) and must be truncated to fit fixed memory bits, which is why financial systems store currency as integer cents."
+  - question: "How can you tell whether 8-bit binary addition caused signed or unsigned overflow?"
+    answer: "Unsigned overflow occurs whenever a carry spills out of the leftmost (8th) bit, exceeding 255. Signed two's complement overflow happens when adding two numbers of the same sign flips the sign bit of the sum—for instance, adding +100 (01100100) and +50 (00110010) produces 10010110, wrapping around to -106."
 ---
 
-## Introduction to the Binary Number System
+## How Base-2 Arithmetic Powers Hardware, Firmware, and Networking
 
-At the heart of every modern computing device sits a simple, elegant system of zeros and ones: the **binary number system** (or base-2). While humans have historically preferred decimal notation (base-10)—likely due to having ten fingers—computers are built on physical electrical pathways that can either be "on" or "off."
+Every microprocessor register, IPv4 routing table, RGB pixel channel, ASCII text stream, and cryptographic cipher operates on **base-2 (binary)** states—sequences of `0` and `1` bits switched by billions of transistors. While decimal notation groups quantities by powers of `10`, binary assigns each column a power of `2`. Understanding both raw base-2 arithmetic and fixed-width register behavior (`8`, `16`, `32`, and `64` bits) lets developers, computer science students, and network engineers debug bitmasks, inspect hexadecimal memory dumps, verify CIDR subnet boundaries, and catch integer wraparound bugs before they reach production.
 
-In this guide, we will break down binary arithmetic, look at bitwise logical gates, explore computer architecture and data representation, and see how to convert between base systems (decimal, binary, hexadecimal, and octal). Whether you are an undergraduate computer science student, a developer writing low-level firmware, a networking engineer configuring subnets, or a cybersecurity researcher analyzing buffer overflows, a deep understanding of binary numbers is essential.
+## Positional Weights, Two's Complement, and Base Conversions
 
----
+For an unsigned `n`-bit binary integer written from Most Significant Bit (`b_(n-1)`) down to Least Significant Bit (`b_0`), the decimal value equals the sum of active powers of two:
 
-## The Mathematics of Base-2
-
-A positional number system represents numbers by placing digits in sequential columns. Each column corresponds to a multiplier base raised to an exponent.
-
-In the **decimal system (base-10)**, the columns from right to left represent units ($10^0 = 1$), tens ($10^1 = 10$), hundreds ($10^2 = 100$), and so forth.
-
-In the **binary system (base-2)**, the columns represent powers of two:
-*   **$2^0$** = 1 (Least Significant Bit - LSB)
-*   **$2^1$** = 2
-*   **$2^2$** = 4
-*   **$2^3$** = 8
-*   **$2^4$** = 16
-*   **$2^5$** = 32
-*   **$2^6$** = 64
-*   **$2^7$** = 128 (Most Significant Bit - MSB in a single byte)
-
-To represent the decimal value `13` in binary, we decompose it into powers of two:
-$$13 = 8 + 4 + 1 = (1 \times 2^3) + (1 \times 2^2) + (0 \times 2^1) + (1 \times 2^0)$$
-Written sequentially, this gives us `1101` in binary.
-
----
-
-## Binary Arithmetic Operations
-
-Performing arithmetic in binary follows the exact same logic as decimal math, but your carry and borrow thresholds are triggered at 2 instead of 10.
-
-### 1. Binary Addition
-The four fundamental rules of binary addition are:
-*   $0 + 0 = 0$
-*   $0 + 1 = 1$
-*   $1 + 0 = 1$
-*   $1 + 1 = 10$ (write `0`, carry `1`)
-*   $1 + 1 + 1$ (with carry-in) $= 11$ (write `1`, carry `1`)
-
-**Example:** Adding $1101_2$ (13) and $0110_2$ (6):
 ```
-  Carry: 1100
-         1101  (13)
-       + 0110  (6)
-       ------
-        10011  (19)
+Unsigned Value = b_(n-1)×2^(n-1) + ... + b_2×2^2 + b_1×2^1 + b_0×2^0
 ```
 
-### 2. Binary Subtraction
-Binary subtraction relies on "borrowing" from the next column. When borrowing, you borrow a value of $2$ ($10_2$):
-*   $0 - 0 = 0$
-*   $1 - 0 = 1$
-*   $1 - 1 = 0$
-*   $0 - 1 = 1$ (borrow $1$ from the next active column, turning the $0$ into $2$)
+Modern CPUs avoid building separate hardware subtractors by encoding negative integers in **two's complement**. In an `n`-bit signed register, the leftmost bit carries a *negative* positional weight (`−2^(n-1)`), while every remaining bit keeps its standard positive weight:
 
-In modern CPUs, subtraction is actually performed using **addition**. The minuend is added to the two's complement representation of the subtrahend. This eliminates the need for separate subtraction circuits in hardware.
-
-### 3. Binary Multiplication
-Binary multiplication is simpler than decimal multiplication because you only multiply by 0 or 1.
-*   $0 \times 0 = 0$
-*   $0 \times 1 = 0$
-*   $1 \times 0 = 0$
-*   $1 \times 1 = 1$
-
-You perform standard partial products and shift them, then add the columns.
-**Example:** $101_2 \times 011_2$ (5 $\times$ 3):
 ```
-         101
-       × 011
-       -----
-         101   (101 × 1)
-        1010   (101 × 1, shifted left)
-      + 00000  (101 × 0, shifted left twice)
-      -------
-        1111   (15 in decimal)
+Signed Two's Complement Value = −b_(n-1)×2^(n-1) + b_(n-2)×2^(n-2) + ... + b_1×2^1 + b_0×2^0
 ```
 
-### 4. Binary Division
-Binary division uses long division rules. You check if the divisor fits into the current portion of the dividend. If yes, write `1` in the quotient, subtract, pull down the next digit, and repeat. If no, write `0`, pull down the next digit, and repeat.
+That single sign-weight rule guarantees two crucial properties: zero has only one representation (`00000000₂`), and adding any integer to its negation rolls cleanly back to zero. To negate any value in two's complement, invert all bits (`NOT`) and add `1`.
 
----
+For fractional binary values such as `10.101₂`, columns to the right of the radix point carry negative powers of two (`2^-1 = 0.5`, `2^-2 = 0.25`, `2^-3 = 0.125`), so `10.101₂ = 2 + 0.5 + 0.125 = 2.625₁₀`. Converting binary to **hexadecimal** (base-16) requires grouping bits into 4-bit nibbles (`1101 0111₂ = 0xD7`), while **octal** (base-8) groups bits in threes (`111 101 101₂ = 0755`, standard Unix file permissions). Likewise, **ASCII text** encodes each character as an 8-bit byte—for example, uppercase `B` maps to decimal `66`, or `01000010₂` (`0x42`).
 
-## Data Representation: Signed vs. Unsigned
+## Bit-Width Capacity: Unsigned vs. Signed Integer Reference Table
 
-How a CPU interprets a sequence of bits depends on the data type definition.
+Choosing the wrong bit width or signedness is a leading cause of silent wraparound defects. Reference these exact hardware limits across standard register sizes:
 
-### Unsigned Integers
-In unsigned mode, every bit is used to store positive numerical magnitude. In an 8-bit byte, the values range from $00000000_2$ (0) to $11111111_2$ ($128+64+32+16+8+4+2+1 = 255$). The formula for the maximum range is $2^n - 1$, where $n$ is the word size in bits.
+| Register Width | Hex Digits | Unsigned Range (`0` to `2^n − 1`) | Signed Two's Complement (`−2^(n-1)` to `2^(n-1) − 1`) | Typical Engineering Use |
+| :--- | :--- | :--- | :--- | :--- |
+| `4-bit` (Nibble) | `1` | `0` to `15` | `−8` to `+7` | Single hex character, BCD digits |
+| `8-bit` (Byte) | `2` | `0` to `255` | `−128` to `+127` | ASCII text, RGB channels, IPv4 octets |
+| `16-bit` (Word) | `4` | `0` to `65,535` | `−32,768` to `+32,767` | TCP/UDP port numbers, 16-bit PCM audio |
+| `32-bit` (Dword) | `8` | `0` to `4,294,967,295` | `−2,147,483,648` to `+2,147,483,647` | IPv4 addresses, legacy 32-bit Unix timestamps |
+| `64-bit` (Qword) | `16` | `0` to `18,446,744,073,709,551,615` | `−9,223,372,036,854,775,808` to `+9,223,372,036,854,775,807` | Modern CPU registers, 64-bit memory pointers |
 
-### Signed Integers (Two's Complement)
-To represent negative numbers, computer science uses **Two's Complement**. In this scheme, the most significant bit (MSB) acts as the sign bit. If MSB is `0`, the number is positive. If MSB is `1`, the number is negative.
+## Worked Examples: Two's Complement Subtraction and IPv4 Masking
 
-To find the Two's Complement representation of $-5$ in an 8-bit space:
-1.  Represent $+5$ in binary: `00000101`
-2.  Invert all bits (One's Complement): `11111010`
-3.  Add 1 to the LSB: `11111011`
+### Example 1: Evaluating `45 − 19` Inside an 8-Bit ALU
 
-Thus, `11111011` represents $-5$. When we add $+5$ (`00000101`) and $-5$ (`11111011`), the arithmetic naturally overflows back to `00000000` (ignoring the final carry-out bit), proving the mathematical consistency of this system.
+Instead of borrowing column by column, an 8-bit processor computes `45 + (−19)`:
 
----
+1. **Encode `+45`**: `32 + 8 + 4 + 1 = 00101101₂` (`0x2D`)
+2. **Encode `+19`**: `16 + 2 + 1 = 00010011₂` (`0x13`)
+3. **Convert `+19` to `−19` (two's complement)**: Invert every bit to `11101100₂`, then add `1` to get `11101101₂` (`0xED`, verifying `−128 + 64 + 32 + 8 + 4 + 1 = −19`).
+4. **Add column by column from right to left**:
 
-## Bitwise Logical Operations
+```
+  Carry:  111011010
+           00101101  (+45)
+        +  11101101  (-19)
+        -----------
+          100011010  (drop 9th carry bit -> 00011010 = +26)
+```
 
-Bitwise operations perform boolean logic on a bit-by-bit basis between two binary inputs. These operations are executed in a single CPU clock cycle, making them fast and highly efficient.
+Discarding the 9th carry-out bit leaves `00011010₂` = `16 + 8 + 2 = 26₁₀` (`0x1A`), matching `45 − 19 = 26` exactly.
 
-| Gate | Name | Rule | Truth Table Example |
-| :--- | :--- | :--- | :--- |
-| **AND** | Conjunction | Output is 1 only if both inputs are 1. | `1 AND 1 = 1`, `1 AND 0 = 0` |
-| **OR** | Disjunction | Output is 1 if at least one input is 1. | `1 OR 0 = 1`, `0 OR 0 = 0` |
-| **XOR** | Exclusive OR | Output is 1 if inputs are different. | `1 XOR 0 = 1`, `1 XOR 1 = 0` |
-| **NOT** | Inverter | Inverts the input bit. | `NOT 1 = 0`, `NOT 0 = 1` |
-| **NAND** | Not AND | Output is 0 only if both inputs are 1. | `1 NAND 1 = 0`, `1 NAND 0 = 1` |
-| **NOR** | Not OR | Output is 1 only if both inputs are 0. | `1 NOR 0 = 0`, `0 NOR 0 = 1` |
-| **XNOR** | Equivalence | Output is 1 if inputs are identical. | `1 XNOR 1 = 1`, `1 XNOR 0 = 0` |
+### Example 2: Isolating an IPv4 Network ID With Bitwise `AND`
 
-### Bitwise Shifting
-*   **Left Shift (`<<`):** Moves all bits left by a specified number of positions, discarding the leftmost bits and padding the right with zeros. This acts as a rapid multiplication by powers of 2.
-*   **Right Shift (`>>`):** Moves all bits right.
-    *   *Logical Right Shift:* Pads the left side with zeros (used for unsigned numbers).
-    *   *Arithmetic Right Shift:* Pads the left side with copies of the sign bit to preserve negative values (used for signed integers).
+Bitwise gates and shifts evaluate every bit position in parallel inside a single CPU clock cycle:
 
----
+- **`AND`**: Outputs `1` only when both bits are `1` (used to mask or clear specific bits).
+- **`OR`**: Outputs `1` if either bit is `1` (used to turn on hardware configuration flags).
+- **`XOR`**: Outputs `1` only when bits differ (used to toggle flags, compute parity checksums, and mix keystreams in ciphers such as ChaCha20).
+- **`NOT` & Bit Shifts (`<<`, `>>`)**: `NOT` flips every bit (`0 ↔ 1`); shifting left by `k` multiplies by `2^k` (`00000101₂ << 2 = 00010100₂`, or `5 × 4 = 20`), while shifting right divides by `2^k`.
 
-## Number System Conversions
+Suppose a router inspects host `192.168.10.214` under a `/26` subnet mask (`255.255.255.192`). Focusing on the fourth octet:
 
-Programmers often convert between binary, octal, decimal, and hexadecimal.
+1. **Host octet `214`**: `128 + 64 + 16 + 4 + 2 = 11010110₂`
+2. **Mask octet `192`**: `128 + 64 = 11000000₂`
+3. **Bitwise `AND`**: `11010110 AND 11000000 = 11000000₂ = 192₁₀`
 
-### Binary to Hexadecimal
-Hexadecimal (base-16) uses numbers `0-9` and letters `A-F` to represent values $10$ to $15$. Since $16 = 2^4$, exactly 4 binary bits (a nibble) correspond to 1 hexadecimal character:
-*   `0000` = 0
-*   `1001` = 9
-*   `1010` = A
-*   `1111` = F
+The operation strips the lower six host bits (`010110₂ = 22`) and identifies the network address as `192.168.10.192/26`.
 
-To convert `11010111` to hex, split it into two nibbles:
-- `1101` = 13 (Hex `D`)
-- `0111` = 7 (Hex `7`)
-So `11010111` in binary is `D7` in hexadecimal.
+## Practical Pitfalls in Low-Level Binary Math
 
-### Binary to Octal
-Octal (base-8) uses digits `0-7`. Since $8 = 2^3$, exactly 3 binary bits correspond to 1 octal character. Split the binary number into groups of 3 starting from the right.
-
----
-
-## Floating Point Binary Numbers (IEEE 754)
-
-Not all numbers are integers; real-world math requires decimals/fractions. In binary, fractional representation uses a decimal point (radix point) where columns to the right represent negative powers of two:
-$$2^{-1} = 0.5$$
-$$2^{-2} = 0.25$$
-$$2^{-3} = 0.125$$
-
-To represent very large or very small numbers, computers use the **IEEE 754 Floating-Point Standard**. In single-precision format (32-bit float):
-1.  **Sign Bit (1 bit):** `0` for positive, `1` for negative.
-2.  **Exponent (8 bits):** Biased by 127 to allow positive and negative exponents.
-3.  **Mantissa / Fraction (23 bits):** Represents the precision bits of the normalized number.
-
-This structured allocation allows computers to handle massive scientific ranges while maintaining uniform memory layouts.
-
----
-
-## Practical Applications
-
-### 1. Software Development
-In systems programming (like C, C++, Rust), developers use bitwise operations for packing data, writing device drivers, parsing network headers, and implementing memory-mapped I/O.
-
-### 2. Networking
-IP addresses are processed by hardware as 32-bit binary strings. The Subnet Mask is used in a bitwise AND operation with the IP Address to isolate the Network Address from the Host Address.
-
-### 3. Cybersecurity & Cryptography
-Ciphers (like AES or ChaCha20) make heavy use of XOR operations because XORing a message with a key encrypts it, and XORing it again with the same key decrypts it. Security practitioners also inspect raw binary payloads (shellcode) to debug security exploits.
+- **Signed overflow wraparound**: Incrementing the maximum 8-bit signed integer `+127` (`01111111₂`) by `1` flips the register to `10000000₂`, which evaluates to `−128` rather than `+128`. On 32-bit systems, that exact same sign-bit rollover causes the Year 2038 timestamp failure once Unix seconds exceed `2,147,483,647`.
+- **Confusing arithmetic and logical right shifts**: Shifting `−8` (`11111000₂`) right by 1 position preserves the sign bit under an arithmetic shift (`11111100₂ = −4`), whereas a logical shift pads a leading zero and turns the value into `+124` (`01111100₂`).
+- **Sign-extension bugs when widening variables**: Promoting the 8-bit byte `11111111₂` to 16 bits yields `0x00FF` (`+255`) when zero-extended as unsigned, but `0xFFFF` (`−1`) when sign-extended as signed. Always verify signedness before casting between register widths.
+- **Storing decimal money in binary fractions**: Because `0.10₁₀` repeats forever in base-2, fixed-size binary floating-point registers introduce tiny drift across repeated additions. Ledger and checkout systems avoid this by counting exact integer cents in base-2.

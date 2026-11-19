@@ -1,68 +1,91 @@
 ---
 title: "Heiratsstrafe-Rechner"
-metaTitle: "Heiratsstrafe-Rechner — Kostenlos Online"
-description: "Schätzen Sie, ob die gemeinsame Veranlagung zu einem Bonus oder einer Strafe führt."
-metaDescription: "Schätzen Sie, ob die gemeinsame Veranlagung zu einem Bonus oder einer Strafe führt."
+metaTitle: "Heiratsstrafe-Rechner 2026: Splittingbonus oder Strafe?"
+description: "Vergleichen Sie Einzel- und Zusammenveranlagung und ermitteln Sie, ob eine Ehe steuerlich zum Splittingvorteil oder zur Heiratsstrafe führt."
+metaDescription: "Berechnen Sie Heiratsbonus oder Heiratsstrafe 2026: Ehegattensplitting in Deutschland, Reform in der Schweiz & US-Steuerklassen direkt im Vergleich."
+metaKeywords: "heiratsstrafe rechner, ehegattensplitting rechner 2026, heiratsbonus berechnen, zusammenveranlagung einzelveranlagung vergleich, heiratsstrafe schweiz, steuervorteil ehe"
 faqs:
-  - question: "Welche exakte mathematische Formel verwendet der Heiratsstrafe-Rechner?"
-    answer: "Der Heiratsstrafe-Rechner berechnet Ergebnisse nach der verifizierten Gleichung (y = f(x₁, x₂, ..., xₙ)). Dabei werden Eingangsgrößen wie Ihre Eingabewerte mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik verarbeitet, um Rundungsfehler in Zwischenschritten auszuschließen."
-  - question: "Welche Referenzwerte nutzt der Heiratsstrafe-Rechner im voreingestellten Basisszenario?"
-    answer: "Beim Start lädt der Heiratsstrafe-Rechner kalibrierte Referenzwerte (branchenübliche Standardwerte), damit Sie die Modelllogik sofort nachvollziehen und anschließend mit Ihren individuellen Daten vergleichen können."
-  - question: "Wie wirkt sich eine Änderung von den Hauptparameter auf das Ergebnis im Heiratsstrafe-Rechner aus?"
-    answer: "Innerhalb der Formel (y = f(x₁, x₂, ..., xₙ)) skaliert den Hauptparameter im Zusammenspiel mit die Sekundärvariablen direkt die Zielkennzahl. Wenn Sie nur den Hauptparameter variieren, erkennen Sie unmittelbar die Grenzsensitivität dieser Variable."
-  - question: "Berücksichtigt der Heiratsstrafe-Rechner individuelle Steuern oder Bankgebühren?"
-    answer: "Der Heiratsstrafe-Rechner bildet das finanzmathematische Kernmodell (Schätzen Sie, ob die gemeinsame Veranlagung zu einem Bonus oder einer Strafe führt.) präzise ab. Für verbindliche Kredit-, Steuer- oder Anlageentscheidungen sollten Sie zusätzlich individuelle Vertragsgebühren und steuerliche Rahmenbedingungen prüfen."
-  - question: "Werden meine Eingaben im Heiratsstrafe-Rechner auf externen Servern gespeichert?"
-    answer: "Nein. Alle Berechnungen im Heiratsstrafe-Rechner erfolgen zu 100 % lokal im Arbeitsspeicher Ihres Browsers (DSGVO-konform). Es werden keinerlei Daten übertragen oder extern gespeichert."
+  - question: "Gibt es in Deutschland überhaupt eine echte steuerliche Heiratsstrafe?"
+    answer: "Im regulären deutschen Einkommensteuertarif nach § 32a EStG führt die Zusammenveranlagung dank des Vollsplittings rechnerisch nie zu einer höheren Einkommensteuer als zwei getrennte Veranlagungen. Eine faktische Mehrbelastung entsteht in Deutschland nur in Sonderfällen – etwa durch den Progressionsvorbehalt bei Elterngeld oder Kurzarbeitergeld, das besondere Kirchgeld in glaubensverschiedenen Ehen oder die Anrechnung von Partnereinkommen bei Sozialleistungen."
+  - question: "Wann fällt der steuerliche Heiratsbonus beim Ehegattensplitting am größten aus?"
+    answer: "Je stärker die beiden zu versteuernden Einkommen auseinanderliegen, desto höher ist die Ersparnis durch das Ehegattensplitting. Den maximalen Vorteil erzielen Alleinverdiener-Ehen im Bereich des Spitzensteuersatzes, während Doppelverdiener mit exakt identischem Einkommen exakt 0 € Splittingvorteil erhalten."
+  - question: "Gilt die Heiratsstrafe in der Schweiz nach der Abstimmung vom März 2026 weiterhin?"
+    answer: "Das Schweizer Stimmvolk hat am 8. März 2026 der Einführung der Individualbesteuerung zugestimmt, wodurch die steuerliche Heiratsstrafe bei der direkten Bundessteuer schrittweise abgeschafft wird. Bis zur vollständigen Umsetzung – voraussichtlich bis Anfang der 2030er-Jahre – greifen jedoch Übergangsregeln, und die separate AHV-Plafonierung für Ehepaare auf 150 % der Maximalrente besteht unabhängig vom Steuerrecht weiter."
+  - question: "Warum führen die Steuerklassen III und V in Deutschland oft zu Steuernachzahlungen?"
+    answer: "Die Kombination III/V verteilt lediglich den monatlichen Lohnsteuerabzug ungleich zugunsten des Hauptverdieners und senkt nicht die endgültige Jahressteuerschuld. Verdient der Partner in Steuerklasse V mehr als rund 40 % des Gesamteinkommens, wird unterjährig oft zu wenig Lohnsteuer abgeführt, was mit dem Steuerbescheid zu einer Nachzahlung führt. Mit Steuerklasse IV/IV mit Faktor lässt sich dieser Effekt präzise vermeiden."
+  - question: "Wann trifft eine echte Tarif-Heiratsstrafe US-steuerpflichtige Paare?"
+    answer: "Im US-Bundessteuerrecht (Married Filing Jointly) sind die unteren und mittleren Steuerstufen exakt doppelt so breit wie für Singles. In der höchsten Tarifstufe von 37 % greift der Spitzensteuersatz 2026 jedoch für Verheiratete bereits ab 768.700 USD statt ab dem Doppelten der Single-Grenze von 640.600 USD. Zudem startet die 0,9-prozentige Additional Medicare Tax bei Paaren schon ab 250.000 USD statt ab zweimal 200.000 USD."
 ---
 
-## Technische Methodik und Mathematische Architektur: Heiratsstrafe-Rechner
+## Ehegattensplitting, Individualbesteuerung und die wahre Heiratsstrafe
 
-Schätzen Sie, ob die gemeinsame Veranlagung zu einem Bonus oder einer Strafe führt. In der finanzmathematischen Modellierung hängen die Ergebnisse des **Heiratsstrafe-Rechner** maßgeblich von der Zinseszinsperiodik, der Unterscheidung zwischen Nominal- und Effektivzinssatz (p. a.) sowie der zeitlichen Struktur der Zahlungsströme ab. Bereits eine Abweichung von 50 Basispunkten beim Zinssatz oder Renditefaktor führt über mehrjährige Laufzeiten zu erheblichen nichtlinearen Kumulationseffekten.
+Eine Heirat verändert die Einkommensteuer je nach Wohnsitzstaat grundlegend. Im deutschsprachigen Raum treffen dabei drei völlig unterschiedliche Modelle aufeinander:
 
-### 1. Mathematisches Grundmodell und Berechnungsformel
+- **Deutschland** nutzt bei der Zusammenveranlagung das **Ehegattensplitting (§ 32a Abs. 5 EStG)**. Unterschiedliche Einkommen erzeugen einen spürbaren **Heiratsbonus**; bei identischen Einkommen bleibt die reine Einkommensteuer neutral.
+- **Österreich** wendet die reine **Individualbesteuerung** an. Beide Partner versteuern ihr Einkommen getrennt – weder Heiratsstrafe noch klassischer Splittingbonus entstehen, ergänzt lediglich durch gezielte Absetzbeträge wie den Alleinverdienerabsetzbetrag.
+- **Die Schweiz** kannte jahrzehntelang eine ausgeprägte **Heiratsstrafe** für Doppelverdiener bei der direkten Bundessteuer. Obwohl das Stimmvolk am 8. März 2026 der Individualbesteuerung zustimmte, bleibt das Thema während der mehrjährigen Übergangsphase – und dauerhaft bei der **AHV-Plafonierung (150 % statt 200 %)** – zentral.
 
-Die Berechnungs-Engine des **Heiratsstrafe-Rechner** verarbeitet alle Eingabeparameter in Echtzeit auf Basis der folgenden mathematischen Grundgleichung:
+Der **Heiratsstrafe-Rechner** stellt die Summe zweier Einzelveranlagungen direkt der gemeinsamen Veranlagung gegenüber und zeigt sofort, ob eine Ersparnis oder eine steuerliche Mehrbelastung entsteht.
+
+## Mathematischer Vergleich: Einzel- gegen Zusammenveranlagung
+
+Das Kernmodell vergleicht die gemeinsame Steuerlast mit der Summe zweier getrennter Bescheide:
 
 ```
-y = f(x₁, x₂, ..., xₙ)
+ΔT = T_gemeinsam(E₁ + E₂) − [ T_einzel(E₁) + T_einzel(E₂) ]
 ```
 
-Bei jeder Anpassung eines Eingabewertes führt das System eine automatische Grenz- und Plausibilitätsprüfung durch und nutzt doppelt genaue Gleitkomma-Arithmetik (IEEE 754), um Rundungsfehler in Zwischenschritten auszuschließen und sowohl das Hauptergebnis als auch sämtliche Detailkennzahlen präzise abzuleiten.
+Hier stehen **`E₁`** und **`E₂`** für das jeweilige **zu versteuernde Einkommen (zvE)** nach Werbungskosten und Sonderausgaben. Ein negatives Ergebnis (**`ΔT < 0`**) bedeutet einen **Heiratsbonus**, ein positives Ergebnis (**`ΔT > 0`**) eine **Heiratsstrafe**.
 
-### 2. Parameter-Spezifikation und Szenarien-Matrix
+Für das deutsche **Splittingverfahren** gilt speziell:
 
-Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten sowie drei kalibrierte Simulationsszenarien (-20 % konservativ, Referenzwert und +20 % progressiv) für den **Heiratsstrafe-Rechner**:
+```
+T_Splitting(E₁, E₂) = 2 · T_Grundtarif( (E₁ + E₂) / 2 )
+```
 
-| Eingabeparameter | Einheit | Kalibrierter Referenzwert | Empfohlener Wertebereich |
-| :--- | :--- | :--- | :--- |
-| **Hauptparameter** | `Standard` | 100 | Standardmäßige numerische Eingabe |
+Durch den streng progressiven Verlauf des Grundtarifs liegt die Splittingsteuer mathematisch nie über der Summe der Einzelsteuern. Eine echte Tarif-Heiratsstrafe entsteht erst in Steuersystemen wie dem US-Bundessteuerrecht oder dem bisherigen Schweizer Bundessteuertarif, in denen gemeinsame Tarifstufen **schmaler als das Doppelte** des Einzeltarifs geschnitten sind.
 
-| Modellvariable | Konservatives Szenario (-20%) | Kalibrierter Basiswert | Progressives Szenario (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Hauptparameter** | `80` | `100` | `120` |
+## Rechenbeispiel nach deutschem Einkommensteuertarif 2026 (§ 32a EStG)
 
-### 3. Detaillierte Variablen- und Sensitivitätsanalyse
+2026 liegt der deutsche Grundfreibetrag bei **12.348 €** je Person (24.696 € zusammenveranlagt), der 42-%-Spitzensteuersatz beginnt bei **69.879 €** zvE. Vergleichen wir zwei Ehepaare mit je **100.000 €** gemeinsamem zvE (reine Einkommensteuer ohne SolZ und Kirchensteuer):
 
-Das Verständnis der Wechselwirkungen zwischen den einzelnen Variablen ermöglicht eine fundierte Szenarioplanung:
+**Fall 1: Ungleiche Einkommen (80.000 € und 20.000 €)**
 
-1. **Primäre Basisgröße**: Bestimmt die absolute Skalierung der Berechnung im Heiratsstrafe-Rechner und bildet den Ausgangspunkt für alle abgeleiteten Kennzahlen.
-2. **Raten-, Verhältnis- oder Koeffizientenfaktor**: Steuert die mathematische Verstärkung und Sensitivität zwischen Eingabewert und Endergebnis.
-3. **Zeitraum oder Rahmenbedingung**: Definiert die Periodenanzahl, Iterationsschritte oder Systemgrenzen, über die das Modell ausgewertet wird.
+1. **Partner 1 einzeln (`80.000 €`)**: `0,42 · 80.000 € − 11.135,63 € = 22.464 €`.
+2. **Partner 2 einzeln (`20.000 €`)**: Mit `z = (20.000 − 17.799) / 10.000 = 0,2201` folgt `(173,10 · 0,2201 + 2.397) · 0,2201 + 1.034,87 = 1.570 €`.
+3. **Summe Einzelveranlagung**: `22.464 € + 1.570 € = 24.034 €`.
+4. **Zusammenveranlagung**: Halbiertes zvE `50.000 €` ergibt `10.548 €` Grundtarifsteuer; verdoppelt `21.096 €`.
+5. **Splittingvorteil (`ΔT`)**: `21.096 € − 24.034 € = −2.938 €` jährliche Ersparnis.
 
-### 4. Schritt-für-Schritt-Protokoll zur Ergebnisvalidierung
+**Fall 2: Identische Einkommen (je 50.000 €)**
 
-1. **Analyse des Basisszenarios**: Starten Sie mit den voreingestellten Referenzwerten, um die Grundmechanik und Größenordnung des Modells nachzuvollziehen.
-2. **Konsistenzprüfung der Einheiten**: Stellen Sie sicher, dass sämtliche Eingabewerte in zueinander passenden Zeit- oder Maßeinheiten (z. B. Jahres- vs. Monatswerte, metrische vs. imperiale Einheiten) vorliegen.
-3. **Isolierte Sensitivitätsprüfung**: Verändern Sie jeweils nur einen Parameter, während alle anderen Größen konstant bleiben, um den exakten Grenzbeitrag dieser Variable zu bestimmen.
-4. **Mehrwertige Szenarien-Simulation**: Vergleichen Sie ein konservatives, ein realistisches und ein progressives Szenario, um Risiken und Bandbreiten zuverlässig abzuschätzen.
+Beide zahlen einzeln `10.548 €` (Summe `21.096 €`). Auch im Splitting fallen `21.096 €` an – der Steuereffekt beträgt exakt **0 €**.
 
-### 5. Typische Fehlerquellen bei manuellen Berechnungen
+Zum Kontrast bei **US-Steuerpflichtigen (Tarif 2026)**: Verdienen beide Partner je **450.000 USD** steuerpflichtiges Einkommen (`900.000 USD` gemeinsam), zahlen zwei Singles zusammen **252.538,50 USD**, während bei gemeinsamer Veranlagung **255.164,50 USD** fällig werden – eine direkte Tarif-Heiratsstrafe von **+2.626,00 USD**, weil die 37-%-Stufe für Ehepaare schon ab 768.700 USD greift statt ab zweimal 640.600 USD (zuzüglich 0,9 % Additional Medicare Tax ab 250.000 USD statt zweimal 200.000 USD).
 
-- **Vorzeitiges Runden von Zwischenergebnissen**: In manuellen Rechnungen oder einfachen Tabellenkalkulationen führen gerundete Zwischenwerte insbesondere bei exponentiellen, finanzmathematischen oder naturwissenschaftlichen Formeln zu erheblichen Abweichungen.
-- **Maßeinheiten- und Periodenbrüche**: Das Vermischen unterschiedlicher Bezugszeiträume oder Größenordnungen ohne korrekten Umrechnungsfaktor verfälscht das Endergebnis.
-- **Fokussierung auf nur eine Kennzahl**: Nutzen Sie neben dem primären Ergebniswert stets auch die aufgeschlüsselten Teilmetriken und Vergleichstabellen für eine ganzheitliche Bewertung.
+## Splittingvorteil 2026 nach Einkommensaufteilung
 
-### 6. Datenschutz und 100 % lokale Browser-Ausführung
+Die Tabelle zeigt die deutsche Einkommensteuer 2026 (§ 32a EStG, ohne SolZ/KiSt) für typische Verteilungen:
 
-Alle Berechnungen im **Heiratsstrafe-Rechner** finden **zu 100 % lokal im Arbeitsspeicher Ihres Browsers** statt. Es werden keinerlei Finanz-, Gesundheits- oder Projektdaten an externe Server übertragen oder gespeichert – für maximale Datensicherheit (DSGVO-konform) und verzögerungsfreie Performance auf Desktop- und Mobilgeräten.
+| Haushalts-zvE | Aufteilung (P1 / P2) | Einzelveranlagung | Splittingsteuer | Differenz (`ΔT`) |
+| :---: | :---: | :---: | :---: | :---: |
+| **100.000 €** | 100 % / 0 % | 30.864 € | 21.096 € | **−9.768 €** |
+| **100.000 €** | 80 % / 20 % | 24.034 € | 21.096 € | **−2.938 €** |
+| **100.000 €** | 65 % / 35 % | 21.875 € | 21.096 € | **−779 €** |
+| **100.000 €** | 50 % / 50 % | 21.096 € | 21.096 € | **0 €** |
+| **160.000 €** | 100 % / 0 % | 56.064 € | 44.928 € | **−11.136 €** |
+| **160.000 €** | 80 % / 20 % | 47.411 € | 44.928 € | **−2.483 €** |
+| **160.000 €** | 50 % / 50 % | 44.928 € | 44.928 € | **0 €** |
+
+Sobald beide Partner individuell über der 42-%-Schwelle von 69.879 € liegen, schrumpft der Splittingvorteil auf null, weil kein ungenutzter niedriger Tarifbereich mehr übertragen werden kann. Wichtig bei der Eingabe im Rechner: Setzen Sie nicht das reine Bruttogehalt an, sondern das **zu versteuernde Einkommen** nach Abzug von Vorsorgeaufwendungen (Renten-, Kranken- und Pflegeversicherung), Werbungskostenpauschale (1.230 €) sowie eventuellen Kinderfreibeträgen. Ein zusätzlicher Pluspunkt der Zusammenveranlagung in Deutschland liegt in der **Ehegatten-Verlustverrechnung** sowie bei der verdoppelten **Solidaritätszuschlag-Freigrenze** – erzielt ein Partner einen steuerlichen Verlust, mindert dieser direkt die Steuerlast des anderen.
+
+## Versteckte Praxisfallen nach der Eheschließung
+
+### Progressionsvorbehalt und Einzelveranlagung von Ehegatten (§ 26a EStG)
+Steuerfreie Lohnersatzleistungen wie **Elterngeld, Arbeitslosengeld I oder Kurzarbeitergeld** erhöhen über den Progressionsvorbehalt (§ 32b EStG) den Steuersatz auf das gesamte gemeinsame Einkommen. Prüfen Sie in solchen Jahren stets beide Optionen in der Steuererklärung: Häufig spart die **Einzelveranlagung von Ehegatten** mehrere hundert Euro gegenüber dem Splitting.
+
+### Lohnsteuerklassen III/V als Elterngeld- und Nachzahlungsfalle
+Die Wahl von **III/V** senkt die Jahressteuerschuld nicht, sondern verlagert nur den monatlichen Lohnsteuerabzug. Verdient der Partner in Steuerklasse V mehr als rund 40 %, drohen spürbare Nachzahlungen – und da Elterngeld sowie ALG I am Nettolohn hängen, führt Steuerklasse V bei fehlendem rechtzeitigem Wechsel (mindestens sieben Monate vor Mutterschutz) zu empfindlichen Leistungseinbußen. **IV/IV mit Faktor** bildet die reale Jahressteuer deutlich genauer ab.
+
+### Besonderes Kirchgeld, Sparer-Pauschbetrag und Schweizer AHV
+Gehört in Deutschland nur ein Partner einer Kirche an und verdient weniger als der konfessionslose Ehegatte, erheben viele Bundesländer das **besondere Kirchgeld** nach dem gemeinsamen Einkommen. Umgekehrt hilft die Ehe beim **Sparer-Pauschbetrag (2.000 €)**, wenn Kapitalerträge ungleich verteilt sind. In der **Schweiz** sollten Paare unabhängig von der Steuerreform stets die **AHV-Plafonierung** einrechnen: Zwei Konkubinatspartner erhalten bis zu 200 % der Einzel-Maximalrente, Ehepaare maximal 150 %.

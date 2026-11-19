@@ -1,93 +1,70 @@
 ---
 title: "Jumbo Mortgage Calculator"
-metaTitle: "Jumbo Mortgage Calculator — Free & Instant Online"
-description: "Calculate monthly payments and borrowing requirements for non-conforming jumbo mortgages exceeding FHFA conventional loan limits."
-metaDescription: "Calculate monthly payments and borrowing requirements for non-conforming jumbo mortgages exceeding FHFA conventional loan limits."
+metaTitle: "Jumbo Mortgage Calculator — 2026 Loan Limits & PITI Math"
+description: "Calculate monthly payments, cash reserve needs, and total interest for non-conforming jumbo mortgages above 2026 FHFA conforming loan limits."
+metaDescription: "Estimate non-conforming jumbo mortgage payments, cash reserves, and 2026 FHFA limits ($832,750 baseline). Compare underwriting rules and IRS tax caps."
+metaKeywords: "jumbo mortgage calculator, jumbo loan calculator 2026, non conforming mortgage, fhfa loan limits 2026, jumbo mortgage reserves, 750000 mortgage interest deduction"
 faqs:
-  - question: "What exact mathematical formula does the Jumbo Mortgage Calculator use?"
-    answer: "The Jumbo Mortgage Calculator evaluates your inputs using the verified governing equation (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]). It processes variables including Home Price, Down Payment, Loan Term (Years), Interest Rate (%) using IEEE 754 double-precision floating-point arithmetic to eliminate intermediate rounding drift."
-  - question: "What baseline reference values are pre-loaded in the Jumbo Mortgage Calculator?"
-    answer: "By default, the Jumbo Mortgage Calculator initializes with a calibrated baseline scenario (Home Price: 950000, Down Payment: 190000, Loan Term (Years): 30) so you can inspect the model's standard behavior before entering your own figures."
-  - question: "How does changing Home Price impact the output of the Jumbo Mortgage Calculator?"
-    answer: "In the governing model (M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]), Home Price interacts directly with Down Payment. Adjusting Home Price while holding other inputs constant lets you isolate its exact marginal sensitivity on the headline result."
-  - question: "Does the Jumbo Mortgage Calculator account for taxes, inflation, or lender-specific fees?"
-    answer: "The Jumbo Mortgage Calculator models the core quantitative relationship (Calculate monthly payments and borrowing requirements for non-conforming jumbo mortgages exceeding FHFA conventional loan limits.) based on your inputs. For binding financial, tax, or lending decisions, pair these projections with your institution's exact fee schedule and a certified financial advisor."
-  - question: "Is my data kept private when using the Jumbo Mortgage Calculator?"
-    answer: "Yes. Every calculation in the Jumbo Mortgage Calculator executes 100% locally inside your browser's JavaScript sandbox. Zero financial, biometric, or operational inputs are ever transmitted to external servers."
+  - question: "What loan amount counts as a jumbo mortgage in 2026?"
+    answer: "In 2026, a single-family mortgage becomes a non-conforming jumbo loan when the borrowed amount exceeds the FHFA baseline limit of $832,750 in standard-cost counties, or $1,249,125 in designated high-cost metros such as San Francisco, New York City, and Los Angeles. Higher caps also apply to 2-to-4-unit residences ($1,066,250 to $1,601,750 baseline)."
+  - question: "Are jumbo mortgage interest rates always higher than conventional conforming rates?"
+    answer: "Not necessarily. While retail jumbo quotes often run 0.125% to 0.375% above conforming loans, major private banks frequently price portfolio jumbo mortgages equal to or below conforming rates for well-qualified clients—especially when borrowers qualify for relationship pricing discounts by holding $250,000 to $1,000,000+ in investable deposits or brokerage assets."
+  - question: "How much in cash reserves do jumbo mortgage lenders require?"
+    answer: "Most jumbo lenders verify 6 to 12 months of full monthly PITI plus HOA payments in liquid post-closing reserves after your down payment and closing costs are paid, and loans above $1.5 million can require 18 to 24 months. Lenders typically count 100% of checking, savings, and taxable brokerage accounts, but apply a 30% to 40% haircut to retirement funds like 401(k)s and IRAs."
+  - question: "How does the IRS $750,000 cap affect my jumbo mortgage interest deduction in 2026?"
+    answer: "Federal tax rules permanently cap the Schedule A mortgage interest deduction to interest paid on the first $750,000 of qualified acquisition debt ($375,000 married filing separately). On a $920,000 jumbo loan, only 81.52% ($750,000 / $920,000) of your mortgage interest qualifies as deductible—though the expanded 2026 $40,400 SALT cap makes itemizing more valuable for high-property-tax homeowners below the $505,000 MAGI phase-out."
+  - question: "Can I use an 80-10-10 piggyback loan to avoid jumbo underwriting?"
+    answer: "Yes, when your financing need sits modestly above the 2026 $832,750 conforming threshold. For example, on a $1,040,000 purchase with 10% down, pairing an $832,750 conforming first mortgage with a $103,250 home equity line (HELOC) avoids jumbo reserve rules and PMI, though the second lien typically carries a higher variable interest rate."
 ---
 
-## Technical Methodology & Mathematical Architecture: Jumbo Mortgage Calculator
+## 2026 Jumbo Loan Thresholds: Where Conforming Ends
 
-Calculate monthly payments and borrowing requirements for non-conforming jumbo mortgages exceeding FHFA conventional loan limits. In quantitative financial modeling, results from the **Jumbo Mortgage Calculator** are governed by compounding periodicity, nominal-to-effective rate conversion (APR vs. APY), and cash-flow timing conventions. Even a 50-basis-point shift in interest or discount rate assumptions compounds nonlinearly over multi-year horizons, making sensitivity benchmarking across conservative and elevated scenarios essential before committing capital.
+A **jumbo mortgage** is any residential loan whose borrowed balance exceeds the annual conforming limit published by the Federal Housing Finance Agency (FHFA). Because Fannie Mae and Freddie Mac cannot purchase or guarantee non-conforming loans, banks hold jumbo debt on their own balance sheets or package it into private securities—introducing tighter credit floors, manual income scrutiny, and steep post-closing liquidity requirements.
 
-### 1. Core Mathematical Model & Formula Specification (Standard Amortization Payment Formula)
+For **2026**, the FHFA raised the 1-unit conforming cap to **$832,750** across standard counties and **$1,249,125** in designated high-cost metros (including San Francisco, New York City, Los Angeles, and Washington, D.C.) as well as statutory exception areas like Alaska and Hawaii, with baseline multi-unit ceilings at **$1,066,250** (2-unit), **$1,288,800** (3-unit), and **$1,601,750** (4-unit). Note an important 2026 boundary nuance: this calculator's pre-loaded **$950,000 home with 20% down ($760,000 loan)** crossed jumbo limits in earlier years but qualifies as **conforming** in 2026—whereas putting 10% down (`$855,000` loan) or borrowing above `$832,750` in a baseline county triggers full jumbo underwriting.
 
-The computational engine powering the **Jumbo Mortgage Calculator** evaluates all independent input variables in real time using the following governing relationship:
+### 2026 Conforming vs. High-Balance vs. Jumbo Underwriting Matrix
+
+| Underwriting Factor | Standard Conforming | High-Cost Conforming | Non-Conforming Jumbo |
+| :--- | :--- | :--- | :--- |
+| **2026 1-Unit Loan Ceiling** | Up to $832,750 | $832,751 – $1,249,125 | Above county limit |
+| **Typical Min. FICO Score** | 620 | 620 – 680 | 700 – 740+ |
+| **Typical Min. Down Payment** | 3% – 5% | 5% | 10% – 20% (20%+ over $1.5M) |
+| **Back-End DTI Cap** | Up to 45% – 50% (AUS) | Up to 45% | Typically 43% strict |
+| **Post-Closing Cash Reserves** | 0 – 2 months PITI | 2 – 6 months PITI | 6 – 12+ months PITI |
+| **Appraisal Requirement** | 1 appraisal (or waiver) | 1 full appraisal | 1–2 full appraisals (often 2 over $1.5M) |
+
+## Jumbo PITI Formula and Post-Closing Reserve Math
+
+Fixed-rate jumbo mortgages use the standard amortization equation, but larger loan balances amplify every quarter-point of interest and turn taxes, insurance, and cash reserves into major closing hurdles:
 
 ```
-M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
+M = P × [ r(1 + r)^n ] / [ (1 + r)^n - 1 ]
+Total Monthly PITI = M + (Annual Property Tax / 12) + (Annual Home Insurance / 12) + Monthly HOA
+Required Liquid Reserves = Total Monthly PITI × Reserve Months (typically 6 to 12)
 ```
 
-| Symbol | Variable Name | Definition |
-| :--- | :--- | :--- |
-| `M` | **Monthly Payment** | Total periodic principal and interest payment |
-| `P` | **Principal Loan Amount** | Initial borrowed loan balance |
-| `i` | **Periodic Interest Rate** | Annual interest rate divided by payment frequency (e.g. APR / 12) |
-| `n` | **Total Number of Payments** | Loan term in years multiplied by periods per year (e.g. 30 × 12 = 360) |
+- **P (Borrowed Principal):** Purchase price minus down payment (commonly 10%–20%+ on jumbo tiers).
+- **r (Monthly Interest Rate):** Nominal annual APR divided by 12 (`6.875% / 12 = 0.00572917`).
+- **n (Total Payments):** Loan term in years times 12 (`360` for 30-year fixed; `180` for 15-year fixed).
 
-**Computational Sequence (Standard Amortization Payment Formula):** 1. Divide annual interest rate by 12 to get periodic rate i. 2. Multiply loan term in years by 12 to get n payments. 3. Compute (1 + i)^n. 4. Multiply by P and i, then divide by [(1 + i)^n - 1].
+### Worked Comparison: Pre-Loaded $760,000 vs. True 2026 Jumbo ($920,000)
 
-Whenever an input parameter is adjusted, the engine validates domain boundaries, normalizes units, and executes double-precision IEEE 754 floating-point arithmetic. This eliminates intermediate truncation drift and synthesizes both the primary target metric and secondary analytical breakdowns simultaneously.
+First, verify the calculator's pre-loaded defaults—**$950,000 price, $190,000 down (20%, $760,000 loan), 30-year term, 6.875% APR, $4,800/yr property tax ($400/mo), and $1,200/yr insurance ($100/mo)**:
 
-### 2. Input Variable Specification & Multi-Scenario Calibration Matrix
+1. **Monthly rate & factor:** `r = 0.06875 / 12 = 0.00572917`, and `(1 + r)^360 = 7.819450`.
+2. **Monthly P&I:** `M = 760,000 × (0.00572917 × 7.819450) / (7.819450 - 1) = $4,992.66`.
+3. **PITI & lifetime interest:** Adding placeholder escrows yields **$5,492.66/month** (`$4,354.17` interest vs. `$638.49` principal in Month 1; **$1,037,357.23** total 30-year interest). Always replace default `$4,800` tax and `$1,200` insurance figures with local quotes—million-dollar homes in 1.1%–1.5% tax jurisdictions routinely carry **$11,000 to $15,000+** in annual taxes and **$3,000–$5,000+** in insurance.
 
-To ensure accurate modeling across standard and edge-case scenarios, review the structural specification and three-tier scenario benchmarks (-20% Conservative, Calibrated Baseline, and +20% Elevated) used by the **Jumbo Mortgage Calculator**:
+Now model a **true 2026 jumbo purchase**: a **$1,150,000 home with 20% down ($230,000)**—a **$920,000 loan** at **6.875%** over 30 years, paired with realistic **1.2% property taxes ($13,800/yr or $1,150/mo)** and **$3,600/yr insurance ($300/mo)**:
 
-| Input Parameter | Unit | Calibrated Baseline | Recommended Operating Range |
-| :--- | :--- | :--- | :--- |
-| **Home Price** | `$ / € / £` | 950000 | ≥ 0 |
-| **Down Payment** | `$ / € / £` | 190000 | ≥ 0 |
-| **Loan Term (Years)** | `number` | 30 | 1 – 50 |
-| **Interest Rate (%)** | `%` | 6.875% | 0% – 30% |
-| **Annual Property Tax** | `$ / € / £` | 4800 | Standard numeric input |
-| **Annual Home Insurance** | `$ / € / £` | 1200 | Standard numeric input |
-| **Monthly HOA Fees** | `$ / € / £` | 0 | Standard numeric input |
+- **Monthly P&I:** **$6,043.75** (`$1,255,748.23` total 30-year interest).
+- **Realistic Monthly PITI:** `$6,043.75 + $1,150.00 + $300.00 =` **$7,493.75**.
+- **Post-Closing Reserve Hurdle:** Six months of PITI demands **$44,962** in verified liquid assets; a 12-month jumbo requirement demands **$89,925** remaining *after* funding your `$230,000` down payment and closing costs.
 
-| Model Variable | Conservative Scenario (-20%) | Calibrated Baseline | Elevated Scenario (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Home Price** | `760000` | `950000` | `1140000` |
-| **Down Payment** | `152000` | `190000` | `228000` |
-| **Loan Term (Years)** | `24` | `30` | `36` |
-| **Interest Rate (%)** | `5.5%` | `6.875%` | `8.25%` |
-| **Annual Property Tax** | `3840` | `4800` | `5760` |
-| **Annual Home Insurance** | `960` | `1200` | `1440` |
-| **Monthly HOA Fees** | `0` | `0` | `0` |
+## Tax Caps, Relationship Pricing, and Underwriting Pitfalls
 
-### 3. Variable Sensitivity & Parameter Dynamics
-
-Understanding how each independent variable scales the output allows you to model real-world constraints and stress-test your assumptions:
-
-1. **Home Price** (Baseline Reference: `950000`): Core independent variable in the Jumbo Mortgage Calculator mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.
-2. **Down Payment** (Baseline Reference: `190000`): Core independent variable in the Jumbo Mortgage Calculator mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.
-3. **Loan Term (Years)** (Baseline Reference: `30`): Core independent variable in the Jumbo Mortgage Calculator mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.
-4. **Interest Rate (%)** (Baseline Reference: `6.875%`): Core independent variable in the Jumbo Mortgage Calculator mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.
-5. **Annual Property Tax** (Baseline Reference: `4800`): Core independent variable in the Jumbo Mortgage Calculator mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.
-6. **Annual Home Insurance** (Baseline Reference: `1200`): Core independent variable in the Jumbo Mortgage Calculator mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.
-7. **Monthly HOA Fees** (Baseline Reference: `0`): Core independent variable in the Jumbo Mortgage Calculator mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.
-
-### 4. Step-by-Step Verification & Scenario Modeling Protocol
-
-1. **Establish the Baseline Benchmark**: Begin by reviewing the pre-calibrated default scenario to observe how the formula behaves under standard reference conditions before entering custom figures.
-2. **Verify Dimensional & Unit Consistency**: Confirm that all inputs share consistent time horizons or physical units (for example, matching annual rates with annual compounding periods, or SI metric units with metric constants).
-3. **Conduct Univariate Sensitivity Testing**: Adjust one variable at a time while holding all other parameters constant to isolate the exact marginal impact of that specific factor on the final output.
-4. **Compare Multi-Point Scenarios**: Evaluate conservative, baseline, and aggressive boundary conditions using the comparison matrix to establish a reliable confidence interval for your decision.
-
-### 5. Common Calculation Pitfalls to Avoid
-
-- **Premature Intermediate Rounding**: Truncating decimal places during intermediate steps in manual or spreadsheet calculations compounds rounding drift—especially across exponential, logarithmic, financial, or scientific formulas.
-- **Unit & Periodicity Mismatches**: Mixing monthly flows with annual rates or incompatible physical units without explicit conversion factors is the most frequent source of calculation error.
-- **Ignoring Secondary Breakdown Metrics**: Focusing solely on the headline number without inspecting the underlying component distribution or sensitivity table can mask critical structural trade-offs.
-
-### 6. Client-Side Privacy & Computational Integrity
-
-Every calculation performed in the **Jumbo Mortgage Calculator** executes **100% locally inside your browser's JavaScript sandbox**. Zero financial, scientific, biometric, or operational inputs are ever transmitted to remote servers or logged in external databases, guaranteeing complete data privacy and zero-latency responsiveness across desktop and mobile devices.
+- **Account for the Permanent $750,000 IRS Interest Cap:** Schedule A limits mortgage interest deductions to the first **$750,000** of acquisition debt (`$375,000` married filing separately). On our `$920,000` loan, Year 1 interest totals **$62,952.09**, of which **81.52% ($51,319.64)** is deductible while **$11,632.45** receives no federal tax benefit. However, the expanded **2026 $40,400 SALT cap** (phasing down above `$505,000` MAGI to a `$10,000` floor) restores meaningful Schedule A property-tax savings for many jumbo buyers.
+- **Negotiate Private-Bank Relationship Discounts:** Moving `$250,000–$1,000,000+` into a bank's wealth platform often unlocks **0.125% to 0.50%** rate cuts. Trimming just **0.25%** (6.875% to 6.625%) on `$920,000` saves **$152.88/month** and **$55,038.33** over 30 years.
+- **Compare 7/6 or 10/6 Jumbo ARMs Against 30-Year Fixed:** Because portfolio lenders often price **7/6 and 10/6 SOFR-indexed ARMs** 0.375%–0.75% below 30-year fixed jumbo notes, buyers planning to move, upgrade, or refinance within seven to ten years can capture substantial early-year cash-flow savings—provided they verify lifetime rate caps (typically 5% above the start rate) and qualify comfortably at the fully indexed adjustment payment.
+- **Anticipate Reserve Haircuts & Piggyback Trade-Offs:** Jumbo underwriters typically discount vested 401(k)/IRA balances by 30%–40% for reserve tests, exclude unvested RSUs, and require full two-year tax transcripts. If your loan exceeds `$832,750` by under `$100,000`, compare a jumbo quote against an **80-10-10 piggyback** (conforming first mortgage plus HELOC), carefully weighing variable second-lien rate risk.

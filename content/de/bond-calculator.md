@@ -1,68 +1,71 @@
 ---
 title: "Anleihenrechner"
-metaTitle: "Anleihenrechner — Kostenlos Online"
-description: "Berechnen Sie Anleihepreis, aktuelle Rendite und Rendite bis zur Fälligkeit."
-metaDescription: "Berechnen Sie Anleihepreis, aktuelle Rendite und Rendite bis zur Fälligkeit."
+metaTitle: "Anleihenrechner: Kurs, laufende Rendite & YTM berechnen"
+description: "Ermitteln Sie fairen Anleihekurs, laufende Verzinsung und Rendite bis zur Fälligkeit (YTM) für Staatsanleihen, Unternehmensanleihen und internationale Bonds."
+metaDescription: "Berechnen Sie fairen Anleihekurs, laufende Verzinsung und Rendite bis zur Fälligkeit (YTM) für Bundesanleihen, Corporate Bonds und US-Treasuries."
+metaKeywords: "anleihenrechner, anleihekurs berechnen, rendite bis zur fälligkeit, ytm rechner, laufende rendite anleihe, bundesanleihe rendite, kupon und kurs, stückzinsen"
 faqs:
-  - question: "Welche exakte mathematische Formel verwendet der Anleihenrechner?"
-    answer: "Der Anleihenrechner berechnet Ergebnisse nach der verifizierten Gleichung (y = f(x₁, x₂, ..., xₙ)). Dabei werden Eingangsgrößen wie Ihre Eingabewerte mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik verarbeitet, um Rundungsfehler in Zwischenschritten auszuschließen."
-  - question: "Welche Referenzwerte nutzt der Anleihenrechner im voreingestellten Basisszenario?"
-    answer: "Beim Start lädt der Anleihenrechner kalibrierte Referenzwerte (branchenübliche Standardwerte), damit Sie die Modelllogik sofort nachvollziehen und anschließend mit Ihren individuellen Daten vergleichen können."
-  - question: "Wie wirkt sich eine Änderung von den Hauptparameter auf das Ergebnis im Anleihenrechner aus?"
-    answer: "Innerhalb der Formel (y = f(x₁, x₂, ..., xₙ)) skaliert den Hauptparameter im Zusammenspiel mit die Sekundärvariablen direkt die Zielkennzahl. Wenn Sie nur den Hauptparameter variieren, erkennen Sie unmittelbar die Grenzsensitivität dieser Variable."
-  - question: "Berücksichtigt der Anleihenrechner individuelle Steuern oder Bankgebühren?"
-    answer: "Der Anleihenrechner bildet das finanzmathematische Kernmodell (Berechnen Sie Anleihepreis, aktuelle Rendite und Rendite bis zur Fälligkeit.) präzise ab. Für verbindliche Kredit-, Steuer- oder Anlageentscheidungen sollten Sie zusätzlich individuelle Vertragsgebühren und steuerliche Rahmenbedingungen prüfen."
-  - question: "Werden meine Eingaben im Anleihenrechner auf externen Servern gespeichert?"
-    answer: "Nein. Alle Berechnungen im Anleihenrechner erfolgen zu 100 % lokal im Arbeitsspeicher Ihres Browsers (DSGVO-konform). Es werden keinerlei Daten übertragen oder extern gespeichert."
+  - question: "Warum fallen Anleihekurse, wenn die Marktzinsen steigen?"
+    answer: "Eine bestehende Anleihe zahlt einen fest vereinbarten Kupon. Bieten neu ausgegebene Anleihen gleicher Bonität plötzlich höhere Zinsen, wirkt der niedrigere Altkupon unattraktiv. Damit Anleger das ältere Wertpapier überhaupt kaufen, muss dessen Börsenkurs so weit unter den Nennwert fallen, bis der spätere Rückzahlungsgewinn den Zinsnachteil exakt ausgleicht."
+  - question: "Worin liegt der Unterschied zwischen laufender Rendite und Rendite bis zur Fälligkeit (YTM)?"
+    answer: "Die laufende Rendite (Current Yield) teilt lediglich den jährlichen Zinskupon durch den aktuellen Kaufkurs und blendet den Rückzahlungsgewinn oder -verlust bei Fälligkeit komplett aus. Die Rendite bis zur Fälligkeit (Yield to Maturity) berücksichtigt zusätzlich die Restlaufzeit, den Abzinsungseffekt und die Differenz zwischen Kaufkurs und Nennwert."
+  - question: "Was sind Stückzinsen, und warum weicht der Kaufbetrag vom Börsenkurs ab?"
+    answer: "Anleihen werden an Börsen im DACH-Raum fast immer als reiner Kurswert ohne aufgelaufene Zinsen (Clean Price) notiert. Kaufen Sie eine Anleihe zwischen zwei Zinsterminen, erstatten Sie dem Verkäufer die seit dem letzten Kupontermin anteilig angefallenen Stückzinsen (Dirty Price). Am nächsten Zinstermin erhalten Sie dafür den vollen Jahreskupon gutgeschrieben."
+  - question: "Zahlen europäische und US-amerikanische Anleihen ihre Kupons unterschiedlich oft aus?"
+    answer: "Ja. Deutsche Bundesanleihen, österreichische Staatsanleihen, Schweizer Obligationen und die meisten Euro-Unternehmensanleihen schütten ihre Zinsen standardmäßig einmal jährlich aus. US-Staatsanleihen (Treasuries) und US-Dollar-Unternehmensanleihen zahlen dagegen fast durchgängig halbjährlich, weshalb die Kuponfrequenz im Rechner korrekt gewählt werden muss."
+  - question: "Welche Besonderheit gilt bei kündbaren Anleihen (Callable Bonds)?"
+    answer: "Bei kündbaren Anleihen besitzt der Emittent das Recht, das Papier vor dem regulären Fälligkeitstermin zu einem festgelegten Kurs zurückzukaufen – meist genau dann, wenn die Marktzinsen gefallen sind. Prüfen Sie bei solchen Titeln neben der regulären YTM unbedingt die Rendite bis zum frühesten Kündigungstermin (Yield to Call), um keine böse Überraschung zu erleben."
 ---
 
-## Technische Methodik und Mathematische Architektur: Anleihenrechner
+Wer eine **Anleihe** (*Obligation* oder *Bond*) an der Börse erwirbt, sollte sich nie allein vom aufgedruckten **Kupon** leiten lassen. Im Sekundärhandel notieren Staats- und Unternehmensanleihen selten exakt bei 100 % ihres Nennwerts. Verändert sich das allgemeine Zinsniveau nach der Emission, passt sich der Börsenkurs laufend an – und genau das Zusammenspiel aus Kaufpreis, Kuponzahlungen und garantierter Rückzahlung zum Nennwert bestimmt Ihre reale Gesamtrendite. Mit dem **Anleihenrechner** bestimmen Sie in beide Richtungen sowohl den **fairen Barwert (Kurs)** bei vorgegebener Zielrendite als auch die exakte **Endfälligkeitsrendite (Yield to Maturity, YTM)** aus einem beobachteten Marktpreis.
 
-Berechnen Sie Anleihepreis, aktuelle Rendite und Rendite bis zur Fälligkeit. In der finanzmathematischen Modellierung hängen die Ergebnisse des **Anleihenrechner** maßgeblich von der Zinseszinsperiodik, der Unterscheidung zwischen Nominal- und Effektivzinssatz (p. a.) sowie der zeitlichen Struktur der Zahlungsströme ab. Bereits eine Abweichung von 50 Basispunkten beim Zinssatz oder Renditefaktor führt über mehrjährige Laufzeiten zu erheblichen nichtlinearen Kumulationseffekten.
+## Die drei Renditekennzahlen jeder Anleihe sauber trennen
 
-### 1. Mathematisches Grundmodell und Berechnungsformel
+In Kursblättern und Broker-Depots stehen regelmäßig drei Prozentwerte nebeneinander, die völlig unterschiedliche Sachverhalte abbilden:
 
-Die Berechnungs-Engine des **Anleihenrechner** verarbeitet alle Eingabeparameter in Echtzeit auf Basis der folgenden mathematischen Grundgleichung:
+- **Kuponzins (Nominalzins):** Der vertraglich fixierte Jahreszins bezogen auf den Nennwert (z. B. 3,50 % auf 1.000 € = 35 € pro Jahr). Er bleibt bei festverzinslichen Papieren unveränderlich.
+- **Laufende Rendite (*Current Yield*):** Das Verhältnis aus jährlichem Kupon und aktuellem Kaufpreis (`Jahreskupon / Kurs`). Sie misst den laufenden Zinsertrag, blendet jedoch Kursgewinne oder -verluste bis zur Endfälligkeit vollständig aus.
+- **Rendite bis zur Fälligkeit (*Yield to Maturity / YTM*):** Die vollständige Effektivrendite p. a. unter der Annahme, dass alle Kupons pünktlich fließen, zum selben Zinssatz wiederangelegt werden und das Papier bis zur Rückzahlung im Depot bleibt.
 
+Daraus ergibt sich eine verlässliche Kontrollregel: Notiert eine Anleihe **unter pari** (unter 100 %), gilt stets `Kupon < laufende Rendite < YTM`. Notiert sie **über pari** (über 100 %), kehrt sich die Reihenfolge exakt um (`Kupon > laufende Rendite > YTM`).
+
+## Barwertformel für den Anleihekurs und Ermittlung der YTM
+
+Der theoretisch faire Preis einer Anleihe (ohne Stückzinsen) entspricht dem Barwert aller zukünftigen Kupons zuzüglich der abgezinsten Nennwertrückzahlung:
+
+```text
+Fairer Anleihekurs:  P = C × [1 − (1 + r)^(−n)] / r + N / (1 + r)^n
+Laufende Rendite:    Current Yield = (N × k) / P × 100 %
 ```
-y = f(x₁, x₂, ..., xₙ)
-```
 
-Bei jeder Anpassung eines Eingabewertes führt das System eine automatische Grenz- und Plausibilitätsprüfung durch und nutzt doppelt genaue Gleitkomma-Arithmetik (IEEE 754), um Rundungsfehler in Zwischenschritten auszuschließen und sowohl das Hauptergebnis als auch sämtliche Detailkennzahlen präzise abzuleiten.
+Dabei stehen **N** für den Nennwert (meist **1.000 €**), **k** für den jährlichen Kuponzins, **m** für die jährliche Zahlungsfrequenz (`1` = jährlich bei Euro- und DACH-Anleihen, `2` = halbjährlich bei US-Anleihen, `4` = vierteljährlich), **C** für den periodischen Kupon (`N × k / m`), **r** für die Marktrendite je Periode (`YTM / m`) und **n** für die verbleibenden Zahlungstermine (`Restlaufzeit × m`). Soll umgekehrt aus einem Börsenkurs `P` die **YTM** berechnet werden, existiert ab drei Perioden keine geschlossene algebraische Lösung – der Rechner ermittelt sie daher iterativ über das Bisektionsverfahren.
 
-### 2. Parameter-Spezifikation und Szenarien-Matrix
+## Durchgerechnetes Praxisbeispiel: Euro-Anleihe unter pari
 
-Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten sowie drei kalibrierte Simulationsszenarien (-20 % konservativ, Referenzwert und +20 % progressiv) für den **Anleihenrechner**:
+Betrachten wir eine Euro-Unternehmensanleihe mit **1.000 € Nennwert**, **3,50 % jährlichem Kupon** (`C = 35 €`, `m = 1`) und **5 Jahren Restlaufzeit** (`n = 5`). Vergleichbare Neuemissionen rentieren derzeit bei **4,50 % p. a.** (`r = 0,045`).
 
-| Eingabeparameter | Einheit | Kalibrierter Referenzwert | Empfohlener Wertebereich |
-| :--- | :--- | :--- | :--- |
-| **Hauptparameter** | `Standard` | 100 | Standardmäßige numerische Eingabe |
+1. **Zahlungsströme einzeln abzinsen:** Die vier ersten Jahreskupons ergeben abgezinst **33,49 €** (Jahr 1), **32,05 €** (Jahr 2), **30,67 €** (Jahr 3) und **29,35 €** (Jahr 4). Die Schlusszahlung von **1.035 €** in Jahr 5 besitzt heute den Barwert `1.035 € / 1,045^5 = 830,54 €`.
+2. **Fairen Anleihekurs summieren:** Alle fünf Barwerte addieren sich exakt auf **956,10 €** (Börsennotiz **95,61 %**).
+3. **Laufende Rendite prüfen:** `35 € / 956,10 € = 3,66 %`. Die fehlenden 0,84 Prozentpunkte bis zur **4,50 % YTM** stammen aus dem garantierten Rückzahlungsgewinn von **43,90 €** über fünf Jahre.
 
-| Modellvariable | Konservatives Szenario (-20%) | Kalibrierter Basiswert | Progressives Szenario (+20%) |
-| :--- | :--- | :--- | :--- |
-| **Hauptparameter** | `80` | `100` | `120` |
+**Vergleich zu US-Bonds:** Bei einer US-Anleihe über **1.000 $** mit **5,00 % Kupon**, **10 Jahren Laufzeit** und **halbjährlicher Auszahlung** (`m = 2`, `C = 25 $`, `n = 20`) liefert eine Marktrendite von **6,00 %** (`r = 3,00 %` pro Halbjahr) einen fairen Kurs von **925,61 $** und eine laufende Rendite von **5,40 %**.
 
-### 3. Detaillierte Variablen- und Sensitivitätsanalyse
+## Zinsänderungsrisiko in Zahlen: Wie Laufzeit und Konvexität wirken
 
-Das Verständnis der Wechselwirkungen zwischen den einzelnen Variablen ermöglicht eine fundierte Szenarioplanung:
+Je länger die Restlaufzeit ausfällt, desto stärker reagiert der Kurs auf Zinsbewegungen (*Duration-Effekt*). Die Tabelle vergleicht zwei Anleihen mit identischem **3,50-%-Jahreskupon** (1.000 € Nennwert) über **3 Jahre** und **10 Jahre Restlaufzeit**:
 
-1. **Primäre Basisgröße**: Bestimmt die absolute Skalierung der Berechnung im Anleihenrechner und bildet den Ausgangspunkt für alle abgeleiteten Kennzahlen.
-2. **Raten-, Verhältnis- oder Koeffizientenfaktor**: Steuert die mathematische Verstärkung und Sensitivität zwischen Eingabewert und Endergebnis.
-3. **Zeitraum oder Rahmenbedingung**: Definiert die Periodenanzahl, Iterationsschritte oder Systemgrenzen, über die das Modell ausgewertet wird.
+| Marktrendite (YTM) | Kurs (3 J.) | Abweichung (3 J.) | Kurs (10 J.) | Abweichung (10 J.) | Laufende Rendite (10 J.) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **2,00 %** | 1.043,26 € | +4,33 % | 1.134,74 € | +13,47 % | 3,08 % |
+| **2,50 %** | 1.028,56 € | +2,86 % | 1.087,52 € | +8,75 % | 3,22 % |
+| **3,50 % (pari)** | 1.000,00 € | 0,00 % | 1.000,00 € | 0,00 % | 3,50 % |
+| **4,50 %** | 972,51 € | −2,75 % | 920,87 € | −7,91 % | 3,80 % |
+| **5,00 %** | 959,15 € | −4,08 % | 884,17 € | −11,58 % | 3,96 % |
 
-### 4. Schritt-für-Schritt-Protokoll zur Ergebnisvalidierung
+Steigt der Marktzins um 1,50 Prozentpunkte von 3,50 % auf 5,00 %, verliert der Kurzläufer lediglich **4,08 %**, während die Zehnjahres-Anleihe um **11,58 %** nachgibt. Gleichzeitig tritt die positive **Konvexität** deutlich hervor: Ein gleich großer Zinsrückgang um 1,50 Prozentpunkte auf 2,00 % beschert beim Langläufer einen Kursgewinn von **+13,47 %** – fast zwei Prozentpunkte mehr Gewinn als der symmetrische Zinsanstieg an Verlust auslöst.
 
-1. **Analyse des Basisszenarios**: Starten Sie mit den voreingestellten Referenzwerten, um die Grundmechanik und Größenordnung des Modells nachzuvollziehen.
-2. **Konsistenzprüfung der Einheiten**: Stellen Sie sicher, dass sämtliche Eingabewerte in zueinander passenden Zeit- oder Maßeinheiten (z. B. Jahres- vs. Monatswerte, metrische vs. imperiale Einheiten) vorliegen.
-3. **Isolierte Sensitivitätsprüfung**: Verändern Sie jeweils nur einen Parameter, während alle anderen Größen konstant bleiben, um den exakten Grenzbeitrag dieser Variable zu bestimmen.
-4. **Mehrwertige Szenarien-Simulation**: Vergleichen Sie ein konservatives, ein realistisches und ein progressives Szenario, um Risiken und Bandbreiten zuverlässig abzuschätzen.
+## Stückzinsen, Steuern und Ausfallrisiko im DACH-Depot
 
-### 5. Typische Fehlerquellen bei manuellen Berechnungen
-
-- **Vorzeitiges Runden von Zwischenergebnissen**: In manuellen Rechnungen oder einfachen Tabellenkalkulationen führen gerundete Zwischenwerte insbesondere bei exponentiellen, finanzmathematischen oder naturwissenschaftlichen Formeln zu erheblichen Abweichungen.
-- **Maßeinheiten- und Periodenbrüche**: Das Vermischen unterschiedlicher Bezugszeiträume oder Größenordnungen ohne korrekten Umrechnungsfaktor verfälscht das Endergebnis.
-- **Fokussierung auf nur eine Kennzahl**: Nutzen Sie neben dem primären Ergebniswert stets auch die aufgeschlüsselten Teilmetriken und Vergleichstabellen für eine ganzheitliche Bewertung.
-
-### 6. Datenschutz und 100 % lokale Browser-Ausführung
-
-Alle Berechnungen im **Anleihenrechner** finden **zu 100 % lokal im Arbeitsspeicher Ihres Browsers** statt. Es werden keinerlei Finanz-, Gesundheits- oder Projektdaten an externe Server übertragen oder gespeichert – für maximale Datensicherheit (DSGVO-konform) und verzögerungsfreie Performance auf Desktop- und Mobilgeräten.
+- **Clean Price vs. Dirty Price einplanen:** Beim Kauf berechnet Ihr Broker zusätzlich zum Börsenkurs die seit dem letzten Zinstermin aufgelaufenen **Stückzinsen**. Sie erhalten diese zwar mit dem nächsten vollen Kupon zurück, müssen den höheren Gesamtbetrag am Kauftag jedoch auf dem Verrechnungskonto bereithalten.
+- **Steuerliche Unterschiede zwischen DE, AT und CH:** In Deutschland unterliegen Kupons wie auch Kursgewinne bis zur Fälligkeit oberhalb des Sparer-Pauschbetrags (1.000 € / 2.000 €) der **Abgeltungsteuer von 26,375 %** (inkl. Soli, ggf. zzgl. Kirchensteuer); in Österreich fallen einheitlich **27,5 % KESt** an. Für Privatanleger in der **Schweiz** entsteht dagegen ein markanter Vorteil: Zinskupons werden voll als Einkommen besteuert, während Kursgewinne bei regulär verzinsten Obligationen (außerhalb überwiegend einmalverzinslicher Papiere) steuerfrei bleiben – niedrig verzinste Anleihen unter pari liefern dort nach Steuern oft die höhere Nettorendite.
+- **Bonität und Stückelung prüfen:** Eine auffällig hohe YTM ist kein Geschenk, sondern spiegelt erhöhtes Ausfallrisiko im Hochzinssegment (unterhalb von BBB−) wider. Achten Sie bei Privatanleger-Stückelungen (1.000 € statt 100.000 € Mindeststückelung) zudem auf enge Geld-Brief-Spannen an liquiden Handelsplätzen wie Frankfurt, Stuttgart oder SIX.
