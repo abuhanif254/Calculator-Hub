@@ -1,6 +1,6 @@
 import { Metadata, ResolvingMetadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
-import { Link, routing } from '@/i18n/routing';
+import { Link, routing, resolveIntlHref } from '@/i18n/routing';
 import { setRequestLocale } from 'next-intl/server';
 import fs from 'fs';
 import path from 'path';
@@ -44,23 +44,31 @@ export const revalidate = false;
 export const dynamicParams = false;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Static params — pre-render all guide slugs at build time
+// Static params — pre-render ONLY each locale's canonical guide slug at build time
+// (prevents generating cross-locale static redirect pages for wrong-language slugs)
 // ─────────────────────────────────────────────────────────────────────────────
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
-  const locales = params?.locale ? [params.locale] : routing.locales;
+  const locale = params?.locale;
   const result: { slug: string }[] = [];
   const seen = new Set<string>();
 
-  locales.forEach((locale) => {
+  if (locale) {
     allGuides.forEach((guide) => {
-      if (!seen.has(guide.slug)) {
-        seen.add(guide.slug);
-        result.push({ slug: guide.slug });
+      const canonicalSlug = guide.slugs?.[locale as keyof typeof guide.slugs] || guide.slug;
+      if (!seen.has(canonicalSlug)) {
+        seen.add(canonicalSlug);
+        result.push({ slug: canonicalSlug });
       }
-      const localizedSlug = guide.slugs?.[locale as keyof typeof guide.slugs];
-      if (localizedSlug && !seen.has(localizedSlug)) {
-        seen.add(localizedSlug);
-        result.push({ slug: localizedSlug });
+    });
+    return result;
+  }
+
+  routing.locales.forEach((loc) => {
+    allGuides.forEach((guide) => {
+      const canonicalSlug = guide.slugs?.[loc as keyof typeof guide.slugs] || guide.slug;
+      if (!seen.has(canonicalSlug)) {
+        seen.add(canonicalSlug);
+        result.push({ slug: canonicalSlug });
       }
     });
   });
@@ -535,11 +543,11 @@ export default async function GuideArticlePage({
               <p className="text-sm text-slate-700 dark:text-slate-300">
                 {ui.usePrefix}
                 <Link
-                  href={
-                    guide.relatedType === 'tool'
-                      ? ({ pathname: '/tools/[slug]', params: { slug: guide.relatedCalculator } } as any)
-                      : ({ pathname: '/calculators/[slug]', params: { slug: guide.relatedCalculator } } as any)
-                  }
+                  href={resolveIntlHref(
+                    guide.relatedType === 'tool' || guide.relatedCalculator === 'mortgage-calculator-uk'
+                      ? `/tools/${guide.relatedCalculator}`
+                      : `/calculators/${guide.relatedCalculator}`
+                  )}
                   className="font-semibold text-[#518231] dark:text-[#6fa844] hover:underline"
                 >
                   {relatedItemTitle}
@@ -548,11 +556,11 @@ export default async function GuideArticlePage({
               </p>
             </div>
             <Link
-              href={
-                guide.relatedType === 'tool'
-                  ? ({ pathname: '/tools/[slug]', params: { slug: guide.relatedCalculator } } as any)
-                  : ({ pathname: '/calculators/[slug]', params: { slug: guide.relatedCalculator } } as any)
-              }
+              href={resolveIntlHref(
+                guide.relatedType === 'tool' || guide.relatedCalculator === 'mortgage-calculator-uk'
+                  ? `/tools/${guide.relatedCalculator}`
+                  : `/calculators/${guide.relatedCalculator}`
+              )}
               className="shrink-0 inline-flex items-center gap-1.5 text-xs font-semibold text-[#518231] dark:text-[#6fa844] bg-[#518231]/10 dark:bg-[#518231]/20 hover:bg-[#518231]/20 dark:hover:bg-[#518231]/30 px-3 py-2 rounded-lg transition-colors"
             >
               {ui.open}

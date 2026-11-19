@@ -278,12 +278,34 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   '/de/guides': '/de/anleitungen',
 };
 
+// Precompute the set of canonical English calculator & guide slugs directly from the redirect
+// maps already imported into middleware (0 KB extra Edge bundle overhead). Used to distinguish
+// legitimate English-slug fallbacks (301) from nonsense cross-locale hybrids like
+// /fr/guides/molare-masse-rechner-ratgeber or /en/guides/guia-calculadora-bonos (410 Gone).
+const EN_CANONICAL_SLUGS: Set<string> = (() => {
+  const set = new Set<string>();
+  for (const target of Object.values(CALC_REDIRECT_MAP)) {
+    if (target.startsWith('/en/calculators/')) {
+      const s = target.slice('/en/calculators/'.length);
+      if (s) set.add(s);
+    }
+  }
+  for (const target of Object.values(GUIDE_REDIRECT_MAP)) {
+    if (target.startsWith('/en/guides/')) {
+      const s = target.slice('/en/guides/'.length);
+      if (s) set.add(s);
+    }
+  }
+  return set;
+})();
+
 /**
  * Checks whether a path is a permanently dead garbage probe, leaked example placeholder,
- * or deleted test artifact that should return HTTP 410 Gone (so Googlebot purges it
- * immediately instead of moving it into 'Page with redirect').
+ * nonsense cross-locale hybrid slug permutation, or deleted test artifact that should
+ * return HTTP 410 Gone (so Googlebot purges it permanently instead of keeping it inside
+ * 'Page with redirect').
  */
-function isPermanentlyGonePath(pathname: string): boolean {
+function isPermanentlyGonePath(pathname: string, search: string = ''): boolean {
   const clean = pathname.length > 1 && pathname.endsWith('/') ? pathname.replace(/\/+$/, '') : pathname;
 
   if (
@@ -299,6 +321,16 @@ function isPermanentlyGonePath(pathname: string): boolean {
     clean === '/new-path' ||
     clean === '/old-path'
   ) {
+    return true;
+  }
+
+  // Template placeholder query leaks (e.g. ?q=%7Bmath_expression_string%7D)
+  if (search && /[?&]q=(?:%7B|\{)/i.test(search)) {
+    return true;
+  }
+
+  // Deprecated wrong-locale community search query leaks (e.g. /de/community?q=seo, /es/community?q=react)
+  if (/^\/(de|es|fr)\/community$/.test(clean) && search && /[?&]q=/.test(search)) {
     return true;
   }
 
@@ -320,6 +352,27 @@ function isPermanentlyGonePath(pathname: string): boolean {
     }
     if (TOOL_COMMUNITY_LEAK_SLUGS.has(rawSlug) || TOOL_HUB_LEAK_SLUGS.has(rawSlug)) {
       return true;
+    }
+  }
+
+  // Nonsense cross-locale hybrid URLs (e.g., German slug on /fr/guides/, Spanish slug on /en/guides/,
+  // French slug on /es/calculadoras/, or German slug on bare /calculators/ or /guides/).
+  // Returning 410 Gone tells Googlebot to purge these build artifacts permanently instead of
+  // keeping them forever in GSC 'Page with redirect'. Legitimate English-slug redirects stay 301.
+  const mapTarget = CALC_REDIRECT_MAP[clean] || GUIDE_REDIRECT_MAP[clean];
+  if (mapTarget) {
+    const hasLocalePrefix = /^\/(en|es|fr|de)\//.test(clean);
+    if (!hasLocalePrefix) {
+      // Bare /calculators/<foreign-slug> or /guides/<foreign-slug> targeting a non-English locale
+      if (!mapTarget.startsWith('/en/')) {
+        return true;
+      }
+    } else {
+      const inSlug = clean.split('/').pop() || '';
+      const targetSlug = mapTarget.split('/').pop() || '';
+      if (inSlug !== targetSlug && !EN_CANONICAL_SLUGS.has(inSlug)) {
+        return true;
+      }
     }
   }
 
@@ -571,9 +624,9 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 1. Return HTTP 410 Gone for permanently deleted garbage/bot-probe/leaked example URLs
+  // 1. Return HTTP 410 Gone for permanently deleted garbage/bot-probe/cross-locale hybrid/leaked example URLs
   // so Googlebot drops them from its crawl queue without adding them to 'Page with redirect'
-  if (isPermanentlyGonePath(pathname)) {
+  if (isPermanentlyGonePath(pathname, search)) {
     return new NextResponse('Gone', {
       status: 410,
       headers: {

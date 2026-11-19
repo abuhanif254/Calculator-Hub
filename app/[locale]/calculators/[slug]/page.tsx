@@ -261,29 +261,29 @@ function getLocalizedCalcInfo(calc: NonNullable<ReturnType<typeof getCalculatorB
 }
 
 // Dynamic routing parameter generation
+// All calculators in routing.pathnames are rewritten by next-intl to their canonical English calc.slug;
+// only add a localizedSlug if a calculator is not explicitly mapped in routing.pathnames for that locale.
 export async function generateStaticParams({ params }: { params: { locale: string } }) {
-  const locales = params?.locale ? [params.locale] : routing.locales;
+  const locale = params?.locale;
   const result: { slug: string }[] = [];
   const seen = new Set<string>();
 
-  locales.forEach((locale) => {
-    calculators.forEach((calc) => {
+  calculators.forEach((calc) => {
+    if (!seen.has(calc.slug)) {
+      seen.add(calc.slug);
+      result.push({ slug: calc.slug });
+    }
+
+    const staticKey = `/calculators/${calc.slug}`;
+    const isStaticallyMapped = staticKey in routing.pathnames;
+
+    if (!isStaticallyMapped && locale) {
       const localizedSlug = calc.slugs?.[locale as keyof typeof calc.slugs];
-
-      // Always add the English (canonical) slug so the base route works
-      if (!seen.has(calc.slug)) {
-        seen.add(calc.slug);
-        result.push({ slug: calc.slug });
+      if (localizedSlug && !seen.has(localizedSlug)) {
+        seen.add(localizedSlug);
+        result.push({ slug: localizedSlug });
       }
-
-      // Always include the localized slug if present so next-intl rewrites never miss a static param
-      if (localizedSlug && localizedSlug !== calc.slug) {
-        if (!seen.has(localizedSlug)) {
-          seen.add(localizedSlug);
-          result.push({ slug: localizedSlug });
-        }
-      }
-    });
+    }
   });
 
   return result;

@@ -1,16 +1,24 @@
 import React from "react";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { calculators, getCalculatorBySlug } from "@/lib/data/calculators";
+import { getCalculatorBySlug } from "@/lib/data/calculators";
 import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import { EmbedFrameWrapper } from "@/app/components/EmbedFrameWrapper";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
-import { routing } from "@/i18n/routing";
 import { pickCalculatorMessages, toClientCalcDef } from "@/lib/utils/getCalculatorMessages";
+import { getCanonicalUrl } from "@/lib/utils/seoUtils";
 
 // Render statically on first request and cache permanently at CDN edge (saves 716 build-time renders)
 export const dynamic = 'force-static';
 export const revalidate = false;
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default async function EmbedCalculatorPage({ 
   params,
@@ -30,7 +38,7 @@ export default async function EmbedCalculatorPage({
   const clientCalc = toClientCalcDef(calc, resolvedParams.locale);
 
   const calcTitle = calc.translations?.[resolvedParams.locale]?.title || calc.title;
-  const canonicalUrl = `https://www.nexuscalculator.net/${resolvedParams.locale}/calculators/${calc.slug}`;
+  const canonicalUrl = getCanonicalUrl('/calculators/[slug]', resolvedParams.locale, calc.slug);
 
   return (
     <EmbedFrameWrapper

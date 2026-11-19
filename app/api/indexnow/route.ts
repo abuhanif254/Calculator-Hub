@@ -29,7 +29,7 @@ const PRIORITY_BING_URLS = [
   'https://www.nexuscalculator.net/en/calculators/electrical-power-calculator',
   'https://www.nexuscalculator.net/en/calculators/resistance-calculator',
   'https://www.nexuscalculator.net/de/rechner/hypothekenrechner',
-  'https://www.nexuscalculator.net/de/ratgeber/hypotheken-abloesungsrechner-ratgeber',
+  'https://www.nexuscalculator.net/de/anleitungen/hypotheken-abloesungsrechner-ratgeber',
   'https://www.nexuscalculator.net/es/calculadoras/calculadora-de-acido-base',
   'https://www.nexuscalculator.net/en/calculators/electrochemical-cell-calculator',
   'https://www.nexuscalculator.net/fr/calculatrices/calculateur-de-tampon',
@@ -46,7 +46,7 @@ const PRIORITY_BING_URLS = [
   'https://www.nexuscalculator.net/fr/outils/pdf-metadata-viewer',
   'https://www.nexuscalculator.net/fr/outils/pdf-metadata-editor',
   'https://www.nexuscalculator.net/en/guides/hipaa-data-de-identification',
-  'https://www.nexuscalculator.net/de/ratgeber/wissenschaftliche-schreibweise-ratgeber',
+  'https://www.nexuscalculator.net/de/anleitungen/wissenschaftliche-schreibweise-ratgeber',
 ];
 
 function collectAllCanonicalUrls(): string[] {

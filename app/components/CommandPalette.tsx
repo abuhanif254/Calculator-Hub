@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { useRouter } from "@/i18n/routing";
+import { useRouter, resolveIntlHref } from "@/i18n/routing";
 import { Search, Code, CalculatorIcon, Scale, Layers } from "lucide-react";
 import { useLocale } from "next-intl";
 
@@ -145,18 +145,15 @@ export function CommandPalette() {
 
   const navigateToTool = (tool: SearchIndexTool) => {
     setIsOpen(false);
-    const pathname =
+    const rawHref =
       tool.type === "developer-tool"
-        ? "/tools/[slug]"
+        ? `/tools/${tool.slug}`
         : tool.type === "comparison"
-        ? "/compare/[slug]"
+        ? `/compare/${tool.slug}`
         : tool.type === "collection"
-        ? "/collections/[slug]"
-        : "/calculators/[slug]";
-    router.push({
-      pathname,
-      params: { slug: tool.slug },
-    } as any);
+        ? `/collections/${tool.slug}`
+        : `/calculators/${tool.slug}`;
+    router.push(resolveIntlHref(rawHref) as any);
   };
 
   if (!isOpen) return null;

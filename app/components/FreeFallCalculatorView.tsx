@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo, useEffect, useRef } from "react";
-import Link from "next/link";
 import { 
   Play, Pause, RotateCcw, Info, Printer, Copy, Share2, 
   CheckCircle2, ChevronRight, Gauge, Zap, Car, Plane, 
