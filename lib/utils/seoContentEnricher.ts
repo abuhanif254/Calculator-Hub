@@ -2,15 +2,6 @@ import type { CalculatorDef, CalculatorField } from '@/lib/types';
 import { getFormulaForCalculator } from '@/lib/data/calculatorFormulas';
 import type { ToolConfig } from '@/lib/data/tools/types';
 
-function countWords(text?: string | null): number {
-  if (!text) return 0;
-  return text
-    .replace(/[#*`|>-]/g, ' ')
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean).length;
-}
-
 function getFieldUnit(input: CalculatorField): string {
   if (input.type === 'percent') return '%';
   if (input.type === 'currency') return '$ / € / £';
@@ -32,10 +23,10 @@ function formatRangeVal(input: CalculatorField, locale: string): string {
   if (minHas) return `≥ ${input.min}${suffix}`;
   if (maxHas) return `≤ ${input.max}${suffix}`;
   const labels: Record<string, string> = {
-    en: 'Standard numeric input',
-    es: 'Entrada numérica estándar',
-    fr: 'Entrée numérique standard',
-    de: 'Standardmäßige numerische Eingabe',
+    en: 'Any numeric value',
+    es: 'Cualquier valor numérico',
+    fr: 'Toute valeur numérique',
+    de: 'Beliebiger Zahlenwert',
   };
   return labels[locale] || labels.en;
 }
@@ -90,14 +81,15 @@ export function getLocalizedReviewerByline(category: string, locale: string, las
 
   return {
     ...(bylines[locale] || bylines.en),
-    lastUpdated: lastUpdated && lastUpdated > '2026-11-14' ? lastUpdated : '2026-11-14',
+    lastUpdated: lastUpdated && lastUpdated > '2026-11-19' ? lastUpdated : '2026-11-19',
   };
 }
 
 /**
- * Generates deep, localized technical reference markdown for calculators when:
- * 1) Non-English locale lacks a native markdown file (prevents English fallback bleed), or
- * 2) Existing markdown is thin (< 650 words) or missing (e.g., programmatic presets).
+ * Returns the calculator's authentic localized markdown content WITHOUT injecting
+ * repetitive site-wide boilerplate prose (which triggers Google's site-wide scaled-content
+ * & deduplication classifiers). Only if localized markdown is completely absent does it
+ * synthesize a strictly page-unique mathematical formula + real input parameter table.
  */
 export function enrichCalculatorSeoContent(params: {
   calc: CalculatorDef;
@@ -120,7 +112,7 @@ export function enrichCalculatorSeoContent(params: {
     fallbackEnContent,
   } = params;
 
-  // Never use untranslated English fallback prose on es/fr/de pages
+  // Never bleed untranslated English prose onto es/fr/de pages
   const baseContent =
     locale === 'en'
       ? (localizedMdContent || fallbackEnContent || '').trim()
@@ -128,361 +120,68 @@ export function enrichCalculatorSeoContent(params: {
         ? (localizedMdContent || '').trim()
         : '';
 
-  const currentWords = countWords(baseContent);
-  if (currentWords >= 680) {
+  if (baseContent.length > 0) {
     return baseContent;
   }
 
+  // Fallback ONLY when a page has zero markdown on disk: render strictly page-unique formula + real fields
   const formulaDef = getFormulaForCalculator(calc.parentSlug || calc.slug);
-  const formulaText = formulaDef?.formula || 'y = f(x₁, x₂, ..., xₙ)';
-  const formulaName = formulaDef?.name || localizedTitle;
   const inputs: CalculatorField[] = localizedInputs && localizedInputs.length > 0 ? localizedInputs : calc.fields || [];
+  const sections: string[] = [];
 
-  const catLower = (calc.category || 'financial').toLowerCase();
-  const isFinance = catLower.includes('financ');
-  const isHealth = catLower.includes('health') || catLower.includes('fitness');
-
-  const paramRows = inputs.length > 0
-    ? inputs
-        .map((inp: CalculatorField) => {
-          const label = inp.label || inp.id;
-          const unit = getFieldUnit(inp);
-          const def = formatDefaultVal(inp);
-          const range = formatRangeVal(inp, locale);
-          return `| **${label}** | \`${unit}\` | ${def} | ${range} |`;
-        })
-        .join('\n')
-    : formulaDef?.variables && formulaDef.variables.length > 0
-      ? formulaDef.variables
-          .map((v) => `| **${v.name} (\`${v.symbol}\`)** | \`SI / Standard\` | Calibrated | ${v.description} |`)
-          .join('\n')
-      : '';
-
-  const scenarioRows = inputs.length > 0
-    ? inputs
-        .map((inp: CalculatorField) => {
-          const label = inp.label || inp.id;
-          const suffix = inp.type === 'percent' ? '%' : '';
-          const numVal = typeof inp.defaultValue === 'number' ? inp.defaultValue : parseFloat(String(inp.defaultValue));
-          if (!Number.isNaN(numVal) && inp.type !== 'select') {
-            const lowRaw = Math.max(typeof inp.min === 'number' ? inp.min : 0, Number((numVal * 0.8).toFixed(2)));
-            const highRaw = typeof inp.max === 'number' ? Math.min(inp.max, Number((numVal * 1.2).toFixed(2))) : Number((numVal * 1.2).toFixed(2));
-            return `| **${label}** | \`${lowRaw}${suffix}\` | \`${numVal}${suffix}\` | \`${highRaw}${suffix}\` |`;
-          }
-          const def = formatDefaultVal(inp);
-          return `| **${label}** | \`${def}\` | \`${def}\` | \`${def}\` |`;
-        })
-        .join('\n')
-    : formulaDef?.variables && formulaDef.variables.length > 0
-      ? formulaDef.variables
-          .map((v) => `| **${v.name} (\`${v.symbol}\`)** | \`-20% (${v.symbol}₀ × 0.8)\` | \`Baseline (${v.symbol}₀)\` | \`+20% (${v.symbol}₀ × 1.2)\` |`)
-          .join('\n')
-      : '';
-
-  const domainContextByLocale: Record<string, string> = {
-    en: isFinance
-      ? `In quantitative financial modeling, results from the **${localizedTitle}** are governed by compounding periodicity, nominal-to-effective rate conversion (APR vs. APY), and cash-flow timing conventions. Even a 50-basis-point shift in interest or discount rate assumptions compounds nonlinearly over multi-year horizons, making sensitivity benchmarking across conservative and elevated scenarios essential before committing capital.`
-      : isHealth
-        ? `In biometric and physiological screening, estimates produced by the **${localizedTitle}** reflect population-level anthropometric equations calibrated against clinical reference cohorts (WHO, NIH, and peer-reviewed sports medicine literature). Individual metabolic rate, body composition, hydration status, and training history introduce natural biological variance around the baseline estimate.`
-        : `In scientific, mathematical, and engineering workflows, accuracy in the **${localizedTitle}** depends on strict SI/Imperial dimensional homogeneity, preservation of significant figures across intermediate operations, and domain-boundary validation prior to interpreting physical or statistical outputs.`,
-    es: isFinance
-      ? `En el modelado financiero cuantitativo, los resultados de **${localizedTitle}** están determinados por la frecuencia de capitalización, la conversión entre tasas nominales y efectivas (TIN vs. TAE/APR) y la estructura temporal de los flujos de caja. Una variación de apenas 50 puntos básicos en la tasa de interés o de descuento genera diferencias acumulativas no lineales a medio y largo plazo.`
-      : isHealth
-        ? `En la evaluación biométrica y fisiológica, las estimaciones de **${localizedTitle}** se basan en ecuaciones antropométricas validadas en estudios poblacionales de referencia (OMS, NIH y literatura clínica revisada por pares). Factores individuales como la composición corporal magra, el metabolismo basal y el nivel de actividad física determinan el margen de interpretación clínica.`
-        : `En el análisis matemático, físico y de ingeniería, la exactitud de **${localizedTitle}** exige homogeneidad dimensional estricta entre el Sistema Internacional (SI) y el sistema imperial, así como la conservación de cifras significativas durante todas las operaciones intermedias.`,
-    fr: isFinance
-      ? `Dans la modélisation financière quantitative, les résultats fournis par **${localizedTitle}** dépendent directement de la périodicité de capitalisation, de la distinction entre taux nominal et taux effectif global (TAEG/APR) et du calendrier des flux de trésorerie. Une variation de 50 points de base sur le taux d'intérêt ou d'actualisation produit un effet cumulatif non linéaire sur longue période.`
-      : isHealth
-        ? `En évaluation biométrique et physiologique, les estimations de **${localizedTitle}** reposent sur des équations anthropométriques étalonnées sur des cohortes cliniques de référence (OMS, NIH et littérature médicale). La composition corporelle, le métabolisme de base et le niveau d'entraînement individuel doivent toujours être pris en compte lors de l'interprétation.`
-        : `Dans les calculs scientifiques, mathématiques et d'ingénierie, la précision de **${localizedTitle}** repose sur l'homogénéité dimensionnelle stricte (unités SI vs impériales), le respect des chiffres significatifs et la validation des bornes du domaine de définition.`,
-    de: isFinance
-      ? `In der finanzmathematischen Modellierung hängen die Ergebnisse des **${localizedTitle}** maßgeblich von der Zinseszinsperiodik, der Unterscheidung zwischen Nominal- und Effektivzinssatz (p. a.) sowie der zeitlichen Struktur der Zahlungsströme ab. Bereits eine Abweichung von 50 Basispunkten beim Zinssatz oder Renditefaktor führt über mehrjährige Laufzeiten zu erheblichen nichtlinearen Kumulationseffekten.`
-      : isHealth
-        ? `In der biometrischen und sportmedizinischen Analyse basieren die Berechnungen des **${localizedTitle}** auf validierten anthropometrischen Referenzgleichungen (WHO-, NIH- und klinische Fachliteratur). Individuelle Faktoren wie Muskelmasseanteil, Grundumsatz und Trainingszustand bilden den physiologischen Kontext für die Einordnung des Richtwerts.`
-        : `In naturwissenschaftlichen, mathematischen und ingenieurtechnischen Anwendungen setzt die Präzision des **${localizedTitle}** eine strikte Einheitenkonsistenz (SI-Basiseinheiten vs. imperiale Größen) sowie die vollständige Beibehaltung signifikanter Stellen in sämtlichen Zwischenschritten voraus.`,
-  };
-
-  const inputSummaryList = inputs.length > 0
-    ? inputs
-        .map((inp: CalculatorField, idx: number) => {
-          const label = inp.label || inp.id;
-          const def = formatDefaultVal(inp);
-          const help = inp.helpText ? ` — ${inp.helpText}` : '';
-          if (locale === 'es') {
-            return `${idx + 1}. **${label}** (Valor de referencia: \`${def}\`)${help}: Variable determinante dentro del modelo matemático de ${localizedTitle}. Ajustar este parámetro modifica directamente el equilibrio del resultado principal y los indicadores secundarios.`;
-          }
-          if (locale === 'fr') {
-            return `${idx + 1}. **${label}** (Valeur de référence : \`${def}\`)${help} : Variable déterminante dans le modèle mathématique de ${localizedTitle}. La modification de ce paramètre influence directement le résultat principal et les indicateurs dérivés.`;
-          }
-          if (locale === 'de') {
-            return `${idx + 1}. **${label}** (Referenzwert: \`${def}\`)${help}: Zentrale Eingangsgröße im mathematischen Modell des ${localizedTitle}. Eine Änderung dieses Parameters wirkt sich unmittelbar auf das Gesamtergebnis sowie die abgeleiteten Kennzahlen aus.`;
-          }
-          return `${idx + 1}. **${label}** (Baseline Reference: \`${def}\`)${help}: Core independent variable in the ${localizedTitle} mathematical model. Adjusting this input directly scales both the primary output metric and secondary analytical breakdowns.`;
-        })
-        .join('\n')
-    : formulaDef?.variables && formulaDef.variables.length > 0
-      ? formulaDef.variables
-          .map((v, idx) => {
-            if (locale === 'es') {
-              return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description}: Parámetro estructural en la ecuación de ${localizedTitle}. Su variación altera de forma directa la sensibilidad marginal del resultado principal.`;
-            }
-            if (locale === 'fr') {
-              return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description} : Paramètre structurel dans l'équation de ${localizedTitle}. Sa variation modifie directement la sensibilité marginale du résultat principal.`;
-            }
-            if (locale === 'de') {
-              return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description}: Strukturparameter in der Gleichung des ${localizedTitle}. Eine Anpassung beeinflusst unmittelbar die marginale Sensitivität des Hauptergebnisses.`;
-            }
-            return `${idx + 1}. **${v.name} (\`${v.symbol}\`)** — ${v.description}: Structural parameter in the ${localizedTitle} equation. Varying this factor directly shifts the marginal sensitivity of the primary output.`;
-          })
-          .join('\n')
-      : locale === 'es'
-        ? [
-            `1. **Magnitud Base Principal**: Determina la escala absoluta del cálculo en ${localizedTitle} y establece el punto de partida para todas las métricas derivadas.`,
-            `2. **Factor de Tasa, Proporción o Coeficiente**: Regula la pendiente e intensidad de transformación matemática entre el valor inicial y el resultado final.`,
-            `3. **Horizonte Temporal o Condición de Contorno**: Define el número de periodos, iteraciones o límites dimensionales sobre los que actúa la fórmula.`,
-          ].join('\n')
-        : locale === 'fr'
-          ? [
-              `1. **Grandeur de Base Principale** : Détermine l'échelle absolue du calcul dans ${localizedTitle} et fixe le point de départ de tous les indicateurs dérivés.`,
-              `2. **Facteur de Taux, Ratio ou Coefficient** : Régule l'intensité de la transformation mathématique entre la valeur initiale et le résultat final.`,
-              `3. **Horizon Temporel ou Condition aux Limites** : Définit le nombre de périodes, d'itérations ou les bornes dimensionnelles sur lesquels s'applique la formule.`,
-            ].join('\n')
-          : locale === 'de'
-            ? [
-                `1. **Primäre Basisgröße**: Bestimmt die absolute Skalierung der Berechnung im ${localizedTitle} und bildet den Ausgangspunkt für alle abgeleiteten Kennzahlen.`,
-                `2. **Raten-, Verhältnis- oder Koeffizientenfaktor**: Steuert die mathematische Verstärkung und Sensitivität zwischen Eingabewert und Endergebnis.`,
-                `3. **Zeitraum oder Rahmenbedingung**: Definiert die Periodenanzahl, Iterationsschritte oder Systemgrenzen, über die das Modell ausgewertet wird.`,
-              ].join('\n')
-            : [
-                `1. **Primary Baseline Magnitude**: Establishes the absolute scale of the ${localizedTitle} computation and anchors all secondary breakdown metrics.`,
-                `2. **Rate, Ratio, or Scaling Coefficient**: Governs the non-linear or proportional sensitivity between the initial input and the final target output.`,
-                `3. **Time Horizon or Boundary Constraint**: Defines the compounding periods, frequency, or dimensional bounds over which the governing equation is evaluated.`,
-              ].join('\n');
-
-  let supplement = '';
-
-  if (locale === 'es') {
-    supplement = `
-## Metodología Técnica y Arquitectura Matemática de ${localizedTitle}
-
-${localizedDescription} ${domainContextByLocale.es}
-
-### 1. Ecuación Fundamental y Modelo de Cálculo
-
-El motor computacional de **${localizedTitle}** evalúa las variables de entrada en tiempo real aplicando la siguiente formulación estándar del sector:
-
-\`\`\`
-${formulaText}
-\`\`\`
-
-Cada vez que modifica un parámetro numérico o selector, el motor ejecuta una validación de límites (dominio matemático, conversión de unidades y prevención de errores de redondeo en coma flotante IEEE 754 de doble precisión) antes de sintetizar el resultado primario, las métricas secundarias y las tablas de desglose.
-
-### 2. Matriz de Parámetros y Simulaciones Multi-Escenario
-
-Para garantizar estimaciones rigurosas, revise la especificación técnica y la comparativa de escenarios (-20 % conservador, base calibrada y +20 % intensivo) utilizada por **${localizedTitle}**:
-
-| Parámetro de Entrada | Unidad | Valor Base de Referencia | Rango Operativo Recomendado |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Parámetro Principal** | `Estándar` | 100 | Entrada numérica estándar |'}
-
-| Variable del Modelo | Escenario Conservador (-20%) | Escenario Base Calibrado | Escenario Intensivo (+20%) |
-| :--- | :--- | :--- | :--- |
-${scenarioRows || '| **Parámetro Principal** | `80` | `100` | `120` |'}
-
-### 3. Análisis Detallado de Variables y Sensibilidad
-
-Comprender cómo interactúa cada entrada dentro del sistema le permite optimizar escenarios reales y comparar alternativas con rigor técnico:
-
-${inputSummaryList}
-
-### 4. Protocolo Paso a Paso para una Verificación Precisa
-
-1. **Definición del Escenario Base**: Comience utilizando los valores predeterminados calibrados del simulador para observar el comportamiento estándar del modelo antes de introducir sus propios datos.
-2. **Normalización de Unidades y Periodicidad**: Asegúrese de que todas las magnitudes introducidas mantengan coherencia dimensional (por ejemplo, tasas anuales frente a periodos mensuales, o unidades métricas frente a imperiales).
-3. **Análisis de Sensibilidad Marginal**: Modifique una sola variable a la vez (manteniendo constantes las demás) para cuantificar el impacto marginal exacto de ese factor sobre el resultado final.
-4. **Contraste de Escenarios Extremos (Stress Testing)**: Evalúe un escenario conservador, un escenario esperado y un escenario intensivo utilizando la matriz comparativa para medir el margen de seguridad de su decisión.
-
-### 5. Errores Comunes que Debe Evitar en el Cálculo Manual
-
-- **Redondeo Prematuro en Pasos Intermedios**: Al realizar cálculos manuales o en hojas de cálculo básicas, truncar decimales antes del paso final introduce desviaciones acumulativas significativas, especialmente en fórmulas exponenciales, financieras o científicas.
-- **Inconsistencia entre Unidades de Entrada**: Combinar diferentes escalas temporales o físicas sin aplicar el factor de conversión correspondiente distorsiona las proporciones del modelo.
-- **Omitir Variables Secundarias de Ajuste**: Muchos usuarios se enfocan únicamente en la cifra principal sin analizar los indicadores derivados y los gráficos de distribución que revelan el comportamiento completo del sistema.
-
-### 6. Privacidad, Ejecución Local y Estándares de Calidad
-
-Todos los cálculos realizados en **${localizedTitle}** se ejecutan **100 % localmente en la memoria de su navegador**. Ningún dato financiero, científico, médico o técnico se transmite a servidores externos ni se almacena en bases de datos remotas, garantizando confidencialidad absoluta y rendimiento instantáneo tanto en ordenadores de escritorio como en dispositivos móviles.
-`;
-  } else if (locale === 'fr') {
-    supplement = `
-## Méthodologie Technique et Architecture Mathématique : ${localizedTitle}
-
-${localizedDescription} ${domainContextByLocale.fr}
-
-### 1. Modèle Mathématique et Formule de Référence
-
-Le moteur de calcul de **${localizedTitle}** traite vos variables d'entrée en temps réel selon la relation fondamentale suivante :
-
-\`\`\`
-${formulaText}
-\`\`\`
-
-À chaque modification d'un paramètre, l'algorithme vérifie la cohérence des domaines numériques et applique une arithmétique en virgule flottante double précision (norme IEEE 754) afin d'éliminer les erreurs d'arrondi intermédiaires et de générer instantanément les indicateurs principaux et secondaires.
-
-### 2. Tableau des Paramètres et Matrice Multi-Scénarios
-
-Le tableau ci-dessous détaille la structure technique des variables ainsi que les trois paliers de simulation (-20 % prudent, référence calibrée et +20 % élevé) pris en charge par **${localizedTitle}** :
-
-| Paramètre d'Entrée | Unité | Valeur de Référence | Plage d'Analyse Recommandée |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Paramètre Principal** | `Standard` | 100 | Entrée numérique standard |'}
-
-| Variable du Modèle | Scénario Prudent (-20%) | Scénario de Référence | Scénario Élevé (+20%) |
-| :--- | :--- | :--- | :--- |
-${scenarioRows || '| **Paramètre Principal** | `80` | `100` | `120` |'}
-
-### 3. Analyse de Sensibilité des Variables d'Entrée
-
-Une maîtrise précise de chaque variable vous permet de simuler des scénarios réalistes et de mesurer l'élasticité du résultat :
-
-${inputSummaryList}
-
-### 4. Protocole d'Utilisation et de Validation en 4 Étapes
-
-1. **Établissement du Scénario de Référence** : Observez d'abord les résultats générés avec les valeurs par défaut afin de comprendre l'équilibre standard du modèle.
-2. **Harmonisation des Unités de Mesure** : Vérifiez que l'ensemble de vos données respecte la même base temporelle ou physique (ex. taux annuels vs mensuels, système métrique vs impérial).
-3. **Test de Sensibilité Univariée** : Faites varier un seul paramètre à la fois pour isoler son impact mathématique exact sur le résultat final.
-4. **Comparaison Multi-Scénarios** : Confrontez une hypothèse prudente, une hypothèse médiane et une hypothèse haute afin d'encadrer votre prise de décision avec une marge de sécurité optimale.
-
-### 5. Pièges Fréquents lors des Calculs Manuels
-
-- **Arrondis Intermédiaires Prématurés** : Tronquer les décimales au cours des étapes intermédiaires fausse sensiblement le résultat final dans les formules composées, trigonométriques ou scientifiques.
-- **Confusion d'Échelles ou de Périodicité** : Mélanger des grandeurs non converties constitue la première source d'erreur dans les feuilles de calcul manuelles.
-- **Négligence des Indicateurs Secondaires** : Au-delà du résultat principal, l'analyse des répartitions détaillées et des courbes d'évolution est essentielle pour interpréter correctement le phénomène étudié.
-
-### 6. Confidentialité Absolue et Exécution Côté Client
-
-L'intégralité des opérations de **${localizedTitle}** s'exécute **100 % localement dans votre navigateur web**. Aucune donnée saisie n'est envoyée vers un serveur distant ni enregistrée dans une base de données, garantissant une sécurité maximale (conformité RGPD) et une réactivité immédiate sur ordinateur comme sur mobile.
-`;
-  } else if (locale === 'de') {
-    supplement = `
-## Technische Methodik und Mathematische Architektur: ${localizedTitle}
-
-${localizedDescription} ${domainContextByLocale.de}
-
-### 1. Mathematisches Grundmodell und Berechnungsformel
-
-Die Berechnungs-Engine des **${localizedTitle}** verarbeitet alle Eingabeparameter in Echtzeit auf Basis der folgenden mathematischen Grundgleichung:
-
-\`\`\`
-${formulaText}
-\`\`\`
-
-Bei jeder Anpassung eines Eingabewertes führt das System eine automatische Grenz- und Plausibilitätsprüfung durch und nutzt doppelt genaue Gleitkomma-Arithmetik (IEEE 754), um Rundungsfehler in Zwischenschritten auszuschließen und sowohl das Hauptergebnis als auch sämtliche Detailkennzahlen präzise abzuleiten.
-
-### 2. Parameter-Spezifikation und Szenarien-Matrix
-
-Die folgende Übersicht dokumentiert alle Eingangsgrößen, Einheiten sowie drei kalibrierte Simulationsszenarien (-20 % konservativ, Referenzwert und +20 % progressiv) für den **${localizedTitle}**:
-
-| Eingabeparameter | Einheit | Kalibrierter Referenzwert | Empfohlener Wertebereich |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Hauptparameter** | `Standard` | 100 | Standardmäßige numerische Eingabe |'}
-
-| Modellvariable | Konservatives Szenario (-20%) | Kalibrierter Basiswert | Progressives Szenario (+20%) |
-| :--- | :--- | :--- | :--- |
-${scenarioRows || '| **Hauptparameter** | `80` | `100` | `120` |'}
-
-### 3. Detaillierte Variablen- und Sensitivitätsanalyse
-
-Das Verständnis der Wechselwirkungen zwischen den einzelnen Variablen ermöglicht eine fundierte Szenarioplanung:
-
-${inputSummaryList}
-
-### 4. Schritt-für-Schritt-Protokoll zur Ergebnisvalidierung
-
-1. **Analyse des Basisszenarios**: Starten Sie mit den voreingestellten Referenzwerten, um die Grundmechanik und Größenordnung des Modells nachzuvollziehen.
-2. **Konsistenzprüfung der Einheiten**: Stellen Sie sicher, dass sämtliche Eingabewerte in zueinander passenden Zeit- oder Maßeinheiten (z. B. Jahres- vs. Monatswerte, metrische vs. imperiale Einheiten) vorliegen.
-3. **Isolierte Sensitivitätsprüfung**: Verändern Sie jeweils nur einen Parameter, während alle anderen Größen konstant bleiben, um den exakten Grenzbeitrag dieser Variable zu bestimmen.
-4. **Mehrwertige Szenarien-Simulation**: Vergleichen Sie ein konservatives, ein realistisches und ein progressives Szenario, um Risiken und Bandbreiten zuverlässig abzuschätzen.
-
-### 5. Typische Fehlerquellen bei manuellen Berechnungen
-
-- **Vorzeitiges Runden von Zwischenergebnissen**: In manuellen Rechnungen oder einfachen Tabellenkalkulationen führen gerundete Zwischenwerte insbesondere bei exponentiellen, finanzmathematischen oder naturwissenschaftlichen Formeln zu erheblichen Abweichungen.
-- **Maßeinheiten- und Periodenbrüche**: Das Vermischen unterschiedlicher Bezugszeiträume oder Größenordnungen ohne korrekten Umrechnungsfaktor verfälscht das Endergebnis.
-- **Fokussierung auf nur eine Kennzahl**: Nutzen Sie neben dem primären Ergebniswert stets auch die aufgeschlüsselten Teilmetriken und Vergleichstabellen für eine ganzheitliche Bewertung.
-
-### 6. Datenschutz und 100 % lokale Browser-Ausführung
-
-Alle Berechnungen im **${localizedTitle}** finden **zu 100 % lokal im Arbeitsspeicher Ihres Browsers** statt. Es werden keinerlei Finanz-, Gesundheits- oder Projektdaten an externe Server übertragen oder gespeichert – für maximale Datensicherheit (DSGVO-konform) und verzögerungsfreie Performance auf Desktop- und Mobilgeräten.
-`;
-  } else {
-    const varRows = (formulaDef?.variables || [])
-      .map((v) => `| \`${v.symbol}\` | **${v.name}** | ${v.description} |`)
-      .join('\n');
-    const varTableBlock = varRows
-      ? `\n| Symbol | Variable Name | Definition |\n| :--- | :--- | :--- |\n${varRows}\n`
-      : '';
-    const stepByStepBlock = formulaDef?.stepByStep
-      ? `\n**Computational Sequence (${formulaName}):** ${formulaDef.stepByStep}\n`
-      : '';
-
-    supplement = `
-## Technical Methodology & Mathematical Architecture: ${localizedTitle}
-
-${localizedDescription} ${domainContextByLocale.en}
-
-### 1. Core Mathematical Model & Formula Specification (${formulaName})
-
-The computational engine powering the **${localizedTitle}** evaluates all independent input variables in real time using the following governing relationship:
-
-\`\`\`
-${formulaText}
-\`\`\`
-${varTableBlock}${stepByStepBlock}
-Whenever an input parameter is adjusted, the engine validates domain boundaries, normalizes units, and executes double-precision IEEE 754 floating-point arithmetic. This eliminates intermediate truncation drift and synthesizes both the primary target metric and secondary analytical breakdowns simultaneously.
-
-### 2. Input Variable Specification & Multi-Scenario Calibration Matrix
-
-To ensure accurate modeling across standard and edge-case scenarios, review the structural specification and three-tier scenario benchmarks (-20% Conservative, Calibrated Baseline, and +20% Elevated) used by the **${localizedTitle}**:
-
-| Input Parameter | Unit | Calibrated Baseline | Recommended Operating Range |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Primary Input** | `Standard` | 100 | Standard numeric input |'}
-
-| Model Variable | Conservative Scenario (-20%) | Calibrated Baseline | Elevated Scenario (+20%) |
-| :--- | :--- | :--- | :--- |
-${scenarioRows || '| **Primary Input** | `80` | `100` | `120` |'}
-
-### 3. Variable Sensitivity & Parameter Dynamics
-
-Understanding how each independent variable scales the output allows you to model real-world constraints and stress-test your assumptions:
-
-${inputSummaryList}
-
-### 4. Step-by-Step Verification & Scenario Modeling Protocol
-
-1. **Establish the Baseline Benchmark**: Begin by reviewing the pre-calibrated default scenario to observe how the formula behaves under standard reference conditions before entering custom figures.
-2. **Verify Dimensional & Unit Consistency**: Confirm that all inputs share consistent time horizons or physical units (for example, matching annual rates with annual compounding periods, or SI metric units with metric constants).
-3. **Conduct Univariate Sensitivity Testing**: Adjust one variable at a time while holding all other parameters constant to isolate the exact marginal impact of that specific factor on the final output.
-4. **Compare Multi-Point Scenarios**: Evaluate conservative, baseline, and aggressive boundary conditions using the comparison matrix to establish a reliable confidence interval for your decision.
-
-### 5. Common Calculation Pitfalls to Avoid
-
-- **Premature Intermediate Rounding**: Truncating decimal places during intermediate steps in manual or spreadsheet calculations compounds rounding drift—especially across exponential, logarithmic, financial, or scientific formulas.
-- **Unit & Periodicity Mismatches**: Mixing monthly flows with annual rates or incompatible physical units without explicit conversion factors is the most frequent source of calculation error.
-- **Ignoring Secondary Breakdown Metrics**: Focusing solely on the headline number without inspecting the underlying component distribution or sensitivity table can mask critical structural trade-offs.
-
-### 6. Client-Side Privacy & Computational Integrity
-
-Every calculation performed in the **${localizedTitle}** executes **100% locally inside your browser's JavaScript sandbox**. Zero financial, scientific, biometric, or operational inputs are ever transmitted to remote servers or logged in external databases, guaranteeing complete data privacy and zero-latency responsiveness across desktop and mobile devices.
-`;
+  if (localizedDescription) {
+    sections.push(`## ${localizedTitle}\n\n${localizedDescription}`);
   }
 
-  return baseContent ? `${baseContent}\n\n---\n${supplement.trim()}` : supplement.trim();
+  if (formulaDef?.formula) {
+    const formulaHeading =
+      locale === 'es'
+        ? `### Fórmula Matemática (${formulaDef.name || localizedTitle})`
+        : locale === 'fr'
+          ? `### Formule Mathématique (${formulaDef.name || localizedTitle})`
+          : locale === 'de'
+            ? `### Mathematische Formel (${formulaDef.name || localizedTitle})`
+            : `### Mathematical Formula (${formulaDef.name || localizedTitle})`;
+
+    const varRows = (formulaDef.variables || [])
+      .map((v) => `| \`${v.symbol}\` | **${v.name}** | ${v.description} |`)
+      .join('\n');
+
+    const varTable =
+      locale === 'en' && varRows
+        ? `\n\n| Symbol | Variable | Definition |\n| :--- | :--- | :--- |\n${varRows}`
+        : '';
+
+    sections.push(`${formulaHeading}\n\n\`\`\`\n${formulaDef.formula}\n\`\`\`${varTable}`);
+  }
+
+  if (inputs.length > 0) {
+    const paramRows = inputs
+      .map((inp) => {
+        const label = inp.label || inp.id;
+        return `| **${label}** | \`${getFieldUnit(inp)}\` | ${formatDefaultVal(inp)} | ${formatRangeVal(inp, locale)} |`;
+      })
+      .join('\n');
+
+    const header =
+      locale === 'es'
+        ? `### Parámetros de Entrada\n\n| Parámetro | Unidad | Valor Inicial | Rango |\n| :--- | :--- | :--- | :--- |`
+        : locale === 'fr'
+          ? `### Paramètres d'Entrée\n\n| Paramètre | Unité | Valeur Initiale | Plage |\n| :--- | :--- | :--- | :--- |`
+          : locale === 'de'
+            ? `### Eingabeparameter\n\n| Parameter | Einheit | Startwert | Bereich |\n| :--- | :--- | :--- | :--- |`
+            : `### Input Parameters\n\n| Parameter | Unit | Default Value | Operating Range |\n| :--- | :--- | :--- | :--- |`;
+
+    sections.push(`${header}\n${paramRows}`);
+  }
+
+  return sections.join('\n\n');
 }
 
 /**
- * Enriches standalone Guide pages (/guides/[slug]) when markdown content is under 700 words,
- * and generates localized FAQs for FAQPage JSON-LD + visible FAQ accordion.
+ * Returns the guide's authentic markdown prose cleanly WITHOUT appending
+ * repetitive site-wide boilerplate sections across hundreds of guide URLs.
+ * Only returns bespoke FAQs (if present) or a unique verified formula Q&A.
  */
 export function enrichGuideSeoContent(params: {
   locale: string;
@@ -500,270 +199,58 @@ export function enrichGuideSeoContent(params: {
 } {
   const {
     locale,
-    guideTitle,
-    guideDescription,
     rawContent,
     calc,
     localizedCalcTitle,
-    localizedCalcDesc,
-    localizedInputs,
     localizedCalcFaqs,
   } = params;
 
-  const baseWords = countWords(rawContent);
-  const formulaDef = calc
-    ? getFormulaForCalculator(calc.parentSlug || calc.slug)
-    : undefined;
-  const formulaText = formulaDef?.formula || 'y = f(x₁, x₂, ..., xₙ)';
-  const inputs: CalculatorField[] =
-    localizedInputs && localizedInputs.length > 0 ? localizedInputs : calc?.fields || [];
+  const cleanContent = (rawContent || '').trim();
 
-  const paramRows = inputs
-    .map((inp: CalculatorField) => {
-      const label = inp.label || inp.id;
-      const unit = getFieldUnit(inp);
-      const def = formatDefaultVal(inp);
-      const range = formatRangeVal(inp, locale);
-      return `| **${label}** | \`${unit}\` | ${def} | ${range} |`;
-    })
-    .join('\n');
-
-  let supplement = '';
-
-  if (baseWords < 700) {
-    if (locale === 'es') {
-      supplement = `
-## Marco Técnico y Guía de Referencia Práctica: ${localizedCalcTitle}
-
-${guideDescription || localizedCalcDesc} En esta sección técnica ampliada analizamos la arquitectura matemática, la calibración de variables y el protocolo de verificación profesional para obtener resultados exactos con **${localizedCalcTitle}**.
-
-### 1. Formulación Matemática y Lógica del Sistema
-
-El modelo cuantitativo subyacente de **${localizedCalcTitle}** se fundamenta en la siguiente relación matemática verificada:
-
-\`\`\`
-${formulaText}
-\`\`\`
-
-Al aplicar esta ecuación en escenarios reales, el motor numérico procesa simultáneamente todas las variables independientes en coma flotante de doble precisión (IEEE 754), evitando los errores de truncamiento habituales en el cálculo manual.
-
-### 2. Especificación de Variables y Valores de Calibración
-
-Cada parámetro de entrada cumple una función específica dentro del cálculo. Utilice la siguiente tabla como referencia técnica antes de introducir sus datos en **${localizedCalcTitle}**:
-
-| Variable de Entrada | Unidad | Valor Estándar de Referencia | Rango de Operación |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Variable Principal** | `Estándar` | 100 | Entrada numérica estándar |'}
-
-### 3. Metodología de Análisis de Sensibilidad y Escenarios
-
-Para aprovechar al máximo esta guía y la herramienta interactiva **${localizedCalcTitle}**, los especialistas recomiendan aplicar un flujo de validación en tres fases:
-
-1. **Verificación de Coherencia Dimensional**: Compruebe que todas las tasas, plazos o magnitudes físicas estén expresados en la misma escala antes de ejecutar la simulación.
-2. **Aislamiento de Variables Críticas**: Modifique un único parámetro por iteración para identificar qué factor ejerce mayor apalancamiento matemático sobre el resultado final.
-3. **Evaluación de Escenarios Límite**: Compare siempre un caso conservador, un caso base y un caso optimista para tomar decisiones respaldadas por datos cuantitativos sólidos.
-
-### 4. Recomendaciones Profesionales para Evitar Sesgos de Cálculo
-
-- **No redondee resultados parciales**: Si replica la fórmula manualmente para comprobar un ejercicio o informe técnico, conserve todos los decimales hasta el último paso.
-- **Valide los supuestos de entrada**: La precisión matemática del modelo depende directamente de la calidad y realismo de los datos iniciales introducidos.
-- **Contraste los indicadores secundarios**: Revise tanto la métrica principal como los desgloses complementarios generados por **${localizedCalcTitle}** para obtener una visión integral.
-`;
-    } else if (locale === 'fr') {
-      supplement = `
-## Cadre Technique et Guide de Référence Pratique : ${localizedCalcTitle}
-
-${guideDescription || localizedCalcDesc} Cette section méthodologique approfondit l'architecture mathématique, la calibration des paramètres d'entrée et le protocole de vérification permettant d'exploiter pleinement **${localizedCalcTitle}**.
-
-### 1. Formulation Mathématique et Logique de Calcul
-
-Le modèle quantitatif utilisé par **${localizedCalcTitle}** repose sur l'équation de référence suivante :
-
-\`\`\`
-${formulaText}
-\`\`\`
-
-Lors de l'exécution du calcul, le moteur numérique évalue chaque variable en virgule flottante double précision (norme IEEE 754), éliminant ainsi les biais d'arrondi intermédiaires fréquents dans les calculs manuels.
-
-### 2. Spécification des Variables et Valeurs de Référence
-
-Chaque paramètre joue un rôle précis dans l'équilibre de la formule. Consultez cette matrice technique pour calibrer vos simulations dans **${localizedCalcTitle}** :
-
-| Variable d'Entrée | Unité | Valeur de Référence | Plage d'Utilisation |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Variable Principale** | `Standard` | 100 | Entrée numérique standard |'}
-
-### 3. Protocole d'Analyse de Sensibilité et de Validation
-
-Pour tirer le meilleur parti de ce guide et du simulateur **${localizedCalcTitle}**, appliquez cette démarche structurée en trois étapes :
-
-1. **Contrôle de Cohérence des Unités** : Assurez-vous que toutes vos valeurs d'entrée partagent la même base temporelle ou dimensionnelle avant de lancer le calcul.
-2. **Isolement des Facteurs Clés** : Faites varier une seule donnée à la fois afin de mesurer précisément l'élasticité du résultat face à chaque paramètre.
-3. **Modélisation Multi-Scénarios** : Comparez systématiquement une hypothèse prudente, une hypothèse centrale et une hypothèse haute pour sécuriser votre analyse.
-
-### 4. Bonnes Pratiques pour Éviter les Erreurs d'Interprétation
-
-- **Conservez la précision décimale complète** lors des étapes intermédiaires si vous vérifiez la formule à la main ou sur tableur.
-- **Vérifiez le réalisme des hypothèses initiales** en vous appuyant sur les valeurs de référence indiquées dans le tableau ci-dessus.
-- **Analysez les indicateurs secondaires** fournis par **${localizedCalcTitle}** afin de replacer le résultat principal dans son contexte global.
-`;
-    } else if (locale === 'de') {
-      supplement = `
-## Technischer Referenzrahmen & Praxisleitfaden: ${localizedCalcTitle}
-
-${guideDescription || localizedCalcDesc} In diesem erweiterten Fachabschnitt erläutern wir die mathematische Modellarchitektur, die Kalibrierung der Eingabeparameter sowie das Prüfprotokoll für präzise Analysen mit dem **${localizedCalcTitle}**.
-
-### 1. Mathematische Grundgleichung und Systemlogik
-
-Das quantitative Berechnungsmodell des **${localizedCalcTitle}** basiert auf der folgenden verifizierten Formelstruktur:
-
-\`\`\`
-${formulaText}
-\`\`\`
-
-Bei der Ausführung verarbeitet die Engine sämtliche Eingangsvariablen mit doppelt genauer Gleitkomma-Arithmetik (IEEE 754), wodurch typische Rundungsverluste manueller Zwischenrechnungen vollständig vermieden werden.
-
-### 2. Variablenspezifikation und Kalibrierungswerte
-
-Jeder Eingabeparameter beeinflusst das Gesamtergebnis nach definierten mathematischen Regeln. Nutzen Sie die folgende Tabelle als Referenz für Ihre Eingaben im **${localizedCalcTitle}**:
-
-| Eingabevariable | Einheit | Kalibrierter Referenzwert | Empfohlener Bereich |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Hauptvariable** | `Standard` | 100 | Standardmäßige numerische Eingabe |'}
-
-### 3. Methodik zur Sensitivitäts- und Szenarioanalyse
-
-Für belastbare Ergebnisse empfehlen Fachanwender ein dreistufiges Vorgehen bei der Nutzung dieses Leitfadens und des **${localizedCalcTitle}**:
-
-1. **Prüfung der Einheitenkonsistenz**: Stellen Sie sicher, dass alle Zeiträume, Zinssätze oder physikalischen Größen in kompatiblen Einheiten eingegeben werden.
-2. **Isolierte Parameteranalyse**: Variieren Sie jeweils nur eine Eingangsgröße, um deren exakten Einfluss auf das Endergebnis quantitativ zu bestimmen.
-3. **Bandbreiten-Simulation**: Vergleichen Sie ein konservatives, ein mittleres und ein optimistisches Szenario, um fundierte Entscheidungen auf Datenbasis zu treffen.
-
-### 4. Wichtige Hinweise zur Vermeidung von Rechenfehlern
-
-- **Vermeiden Sie vorzeitiges Runden**: Wenn Sie die Formel manuell nachrechnen, runden Sie erst das finale Endergebnis.
-- **Plausibilitätskontrolle der Eingangsdaten**: Nutzen Sie die Referenzwerte der obigen Matrix als Orientierungspunkt für realistische Annahmen.
-- **Ganzheitliche Auswertung**: Beziehen Sie neben dem Hauptergebnis auch die detaillierten Teilkennzahlen des **${localizedCalcTitle}** in Ihre Bewertung ein.
-`;
-    } else {
-      supplement = `
-## Technical Reference Framework & Applied Methodology: ${localizedCalcTitle}
-
-${guideDescription || localizedCalcDesc} This extended technical reference details the governing mathematical model, input parameter calibration, and professional verification protocol for working with the **${localizedCalcTitle}**.
-
-### 1. Governing Mathematical Formula & Computational Logic
-
-The quantitative engine behind the **${localizedCalcTitle}** evaluates input parameters according to the following core relationship:
-
-\`\`\`
-${formulaText}
-\`\`\`
-
-During execution, all variables are processed using double-precision IEEE 754 floating-point arithmetic, eliminating intermediate rounding drift that frequently distorts manual or basic spreadsheet calculations.
-
-### 2. Input Parameter Specification & Baseline Calibration Table
-
-Each independent variable plays a distinct mathematical role in the formula. Use the specification matrix below to calibrate your inputs inside the **${localizedCalcTitle}**:
-
-| Input Variable | Unit | Calibrated Baseline | Recommended Operating Range |
-| :--- | :--- | :--- | :--- |
-${paramRows || '| **Primary Variable** | `Standard` | 100 | Standard numeric input |'}
-
-### 3. Sensitivity Analysis & Multi-Scenario Verification Protocol
-
-To extract maximum analytical value from this guide and the interactive **${localizedCalcTitle}**, follow this three-stage engineering workflow:
-
-1. **Dimensional & Unit Alignment**: Confirm that all rates, time horizons, and physical quantities share compatible units prior to interpreting the output.
-2. **Univariate Sensitivity Isolation**: Modify a single parameter per iteration while keeping all other variables fixed to measure its exact marginal leverage on the result.
-3. **Boundary Stress Testing**: Compare conservative, baseline, and aggressive input assumptions to establish a clear confidence interval around your target metric.
-
-### 4. Professional Best Practices & Pitfalls to Avoid
-
-- **Avoid Premature Intermediate Rounding**: When cross-checking formulas manually, retain full decimal precision throughout all intermediate steps and round only the final output.
-- **Validate Baseline Assumptions**: Benchmark your custom inputs against the calibrated reference values in the table above to catch unit-entry mistakes early.
-- **Inspect Secondary Breakdowns**: Always review both the headline figure and the supporting breakdown metrics generated by the **${localizedCalcTitle}** for complete context.
-`;
-    }
+  if (localizedCalcFaqs && localizedCalcFaqs.length > 0) {
+    return {
+      enrichedContent: cleanContent,
+      faqs: localizedCalcFaqs,
+    };
   }
 
-  const defaultFaqsByLocale: Record<string, { question: string; answer: string }[]> = {
-    en: [
-      {
-        question: `What formula does the ${localizedCalcTitle} use?`,
-        answer: `The ${localizedCalcTitle} applies the standard verified mathematical model (${formulaText}) using double-precision floating-point arithmetic so that intermediate rounding errors are completely eliminated.`,
+  // Only emit a single page-specific formula FAQ when a verified equation exists for the paired calculator
+  const formulaDef = calc ? getFormulaForCalculator(calc.parentSlug || calc.slug) : undefined;
+  if (formulaDef?.formula) {
+    const formulaFaqByLocale: Record<string, { question: string; answer: string }> = {
+      en: {
+        question: `What mathematical formula does the ${localizedCalcTitle} use?`,
+        answer: `The ${localizedCalcTitle} uses ${formulaDef.name ? `the ${formulaDef.name} ` : ''}equation: ${formulaDef.formula}.`,
       },
-      {
-        question: `How can I verify my results in the ${localizedCalcTitle}?`,
-        answer: `Start with the pre-calibrated baseline values shown in the parameter table, verify that all input units match, and adjust one variable at a time to observe its exact sensitivity impact.`,
+      es: {
+        question: `¿Qué fórmula matemática utiliza ${localizedCalcTitle}?`,
+        answer: `${localizedCalcTitle} aplica la ecuación verificada: ${formulaDef.formula}.`,
       },
-      {
-        question: `Are the inputs I enter into the ${localizedCalcTitle} kept private?`,
-        answer: `Yes. All calculations run 100% locally inside your browser sandbox. No personal, financial, or scientific data is ever transmitted to external servers.`,
+      fr: {
+        question: `Quelle formule mathématique est utilisée par ${localizedCalcTitle} ?`,
+        answer: `${localizedCalcTitle} applique l'équation de référence : ${formulaDef.formula}.`,
       },
-    ],
-    es: [
-      {
-        question: `¿Qué fórmula utiliza ${localizedCalcTitle}?`,
-        answer: `${localizedCalcTitle} aplica el modelo matemático verificado (${formulaText}) utilizando aritmética de doble precisión IEEE 754 para evitar cualquier error por redondeo intermedio.`,
+      de: {
+        question: `Welche mathematische Formel verwendet der ${localizedCalcTitle}?`,
+        answer: `Der ${localizedCalcTitle} berechnet Ergebnisse auf Basis der Formel: ${formulaDef.formula}.`,
       },
-      {
-        question: `¿Cómo puedo validar mis resultados en ${localizedCalcTitle}?`,
-        answer: `Comience con los valores de referencia de la tabla técnica, asegúrese de que todas las unidades sean coherentes y modifique una variable a la vez para comprobar su impacto exacto.`,
-      },
-      {
-        question: `¿Son privados los datos que introduzco en ${localizedCalcTitle}?`,
-        answer: `Sí. Todos los cálculos se ejecutan 100 % localmente en su navegador web sin enviar ni almacenar información en servidores externos.`,
-      },
-    ],
-    fr: [
-      {
-        question: `Quelle formule est utilisée par ${localizedCalcTitle} ?`,
-        answer: `${localizedCalcTitle} applique le modèle mathématique de référence (${formulaText}) en virgule flottante double précision (IEEE 754) afin de garantir des résultats sans erreur d'arrondi intermédiaire.`,
-      },
-      {
-        question: `Comment vérifier la précision de mes résultats avec ${localizedCalcTitle} ?`,
-        answer: `Commencez avec les valeurs de référence du tableau technique, vérifiez l'homogénéité des unités et modifiez un seul paramètre à la fois pour observer son impact exact.`,
-      },
-      {
-        question: `Mes données saisies dans ${localizedCalcTitle} sont-elles confidentielles ?`,
-        answer: `Oui. L'intégralité des calculs s'effectue 100 % localement dans votre navigateur, sans aucun transfert ni stockage sur des serveurs distants.`,
-      },
-    ],
-    de: [
-      {
-        question: `Welche Formel verwendet der ${localizedCalcTitle}?`,
-        answer: `Der ${localizedCalcTitle} nutzt das geprüfte mathematische Referenzmodell (${formulaText}) mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik, sodass Rundungsfehler in Zwischenschritten ausgeschlossen sind.`,
-      },
-      {
-        question: `Wie kann ich meine Ergebnisse im ${localizedCalcTitle} überprüfen?`,
-        answer: `Starten Sie mit den kalibrierten Referenzwerten aus der Parametertabelle, achten Sie auf konsistente Maßeinheiten und passen Sie jeweils nur eine Variable an, um deren Einfluss zu prüfen.`,
-      },
-      {
-        question: `Bleiben meine Eingaben im ${localizedCalcTitle} privat?`,
-        answer: `Ja. Sämtliche Berechnungen werden zu 100 % lokal in Ihrem Browser ausgeführt. Es werden keine Daten an externe Server gesendet oder gespeichert.`,
-      },
-    ],
-  };
-
-  const combinedFaqs =
-    localizedCalcFaqs && localizedCalcFaqs.length > 0
-      ? localizedCalcFaqs
-      : defaultFaqsByLocale[locale] || defaultFaqsByLocale.en;
-
-  const enrichedContent = supplement
-    ? `${rawContent.trim()}\n\n---\n${supplement.trim()}`
-    : rawContent.trim();
+    };
+    return {
+      enrichedContent: cleanContent,
+      faqs: [formulaFaqByLocale[locale] || formulaFaqByLocale.en],
+    };
+  }
 
   return {
-    enrichedContent,
-    faqs: combinedFaqs,
+    enrichedContent: cleanContent,
+    faqs: [],
   };
 }
 
 /**
- * Generates 5 calculator-specific, formula-and-input-driven localized FAQs
- * when markdown frontmatter omits `faqs` or has fewer than 4 items.
- * Eliminates repetitive 3-question boilerplate across 245+ calculator URLs.
+ * Preserves bespoke calculator FAQs cleanly. Only synthesizes strictly formula-specific
+ * and real-field-specific FAQs when frontmatter has zero FAQs (never pads with repetitive
+ * site-wide boilerplate questions across hundreds of pages).
  */
 export function buildDynamicCalculatorFaqs(params: {
   calc: CalculatorDef;
@@ -774,173 +261,77 @@ export function buildDynamicCalculatorFaqs(params: {
   existingFaqs?: { question: string; answer: string }[];
 }): { question: string; answer: string }[] {
   const { calc, locale, localizedTitle, localizedDescription, localizedInputs, existingFaqs } = params;
-  if (existingFaqs && existingFaqs.length >= 4) {
+
+  // Keep authentic frontmatter FAQs untouched without injecting generic site-wide filler
+  if (existingFaqs && existingFaqs.length > 0) {
     return existingFaqs;
   }
 
   const formulaDef = getFormulaForCalculator(calc.parentSlug || calc.slug);
-  const formulaText = formulaDef?.formula || 'y = f(x₁, x₂, ..., xₙ)';
   const inputs: CalculatorField[] =
     localizedInputs && localizedInputs.length > 0 ? localizedInputs : calc.fields || [];
+  const generated: { question: string; answer: string }[] = [];
 
-  const paramNames = inputs.slice(0, 4).map((inp) => inp.label || inp.id);
-  const baselineSummary = inputs
-    .slice(0, 3)
-    .map((inp) => `${inp.label || inp.id}: ${formatDefaultVal(inp)}`)
-    .join(', ');
-  const primaryParam = paramNames[0] || (locale === 'es' ? 'el parámetro principal' : locale === 'fr' ? 'le paramètre principal' : locale === 'de' ? 'den Hauptparameter' : 'the primary input parameter');
-  const secondaryParam = paramNames[1] || (locale === 'es' ? 'las variables secundarias' : locale === 'fr' ? 'les variables secondaires' : locale === 'de' ? 'die Sekundärvariablen' : 'the secondary parameters');
-
-  const catLower = (calc.category || 'financial').toLowerCase();
-  const isFinance = catLower.includes('financ');
-  const isHealth = catLower.includes('health') || catLower.includes('fitness');
-
-  let generated: { question: string; answer: string }[] = [];
-
-  if (locale === 'es') {
-    generated = [
-      {
-        question: `¿Qué fórmula matemática utiliza exactamente ${localizedTitle}?`,
-        answer: `${localizedTitle} evalúa sus parámetros mediante la ecuación verificada (${formulaText}). El motor procesa variables como ${paramNames.join(', ') || 'los valores de entrada'} en coma flotante de doble precisión (IEEE 754) para evitar desviaciones por redondeo intermedio.`,
-      },
-      {
-        question: `¿Qué valores de referencia incluye ${localizedTitle} para simular un escenario base?`,
-        answer: `La herramienta carga automáticamente un escenario calibrado (${baselineSummary || 'valores estándar del sector'}) para que pueda observar el comportamiento base de ${localizedTitle} antes de introducir sus propios datos y comparar variantes.`,
-      },
-      {
-        question: `¿Cómo afecta el cambio en ${primaryParam} al resultado final de ${localizedTitle}?`,
-        answer: `Dentro del modelo cuantitativo (${formulaText}), ${primaryParam} actúa como variable independiente clave junto con ${secondaryParam}. Modificar ${primaryParam} manteniendo constantes los demás campos le permite medir la sensibilidad marginal exacta del resultado.`,
-      },
-      {
-        question: isFinance
-          ? `¿Tiene en cuenta ${localizedTitle} impuestos, inflación o comisiones bancarias adicionales?`
-          : isHealth
-            ? `¿Sustituyen las estimaciones de ${localizedTitle} a un diagnóstico médico o clínico profesional?`
-            : `¿Cómo garantizo la coherencia de unidades al introducir datos en ${localizedTitle}?`,
-        answer: isFinance
-          ? `${localizedTitle} calcula el modelo matemático puro (${localizedDescription}) a partir de los parámetros introducidos. Para decisiones patrimoniales o fiscales vinculantes, contraste el desglose con las condiciones contractuales de su entidad financiera o asesor fiscal.`
-          : isHealth
-            ? `No. ${localizedTitle} aplica ecuaciones biométricas y fisiológicas estandarizadas con fines informativos y educativos. Cualquier pauta nutricional, deportiva o médica debe ser validada por un profesional sanitario colegiado.`
-            : `Verifique siempre que todas las magnitudes introducidas (${paramNames.join(', ')}) compartan la misma escala dimensional o temporal antes de interpretar las métricas secundarias o exportar el informe.`,
-      },
-      {
-        question: `¿Se guardan mis datos en algún servidor al utilizar ${localizedTitle}?`,
-        answer: `No. Todos los cálculos de ${localizedTitle} se ejecutan 100 % localmente en la memoria de su navegador. Ningún dato financiero, personal o técnico se envía a servidores externos.`,
-      },
-    ];
-  } else if (locale === 'fr') {
-    generated = [
-      {
-        question: `Quelle formule mathématique exacte utilise ${localizedTitle} ?`,
-        answer: `${localizedTitle} applique l'équation de référence (${formulaText}). Le moteur traite les variables (${paramNames.join(', ') || 'paramètres saisis'}) en virgule flottante double précision (norme IEEE 754) afin d'éliminer toute erreur d'arrondi intermédiaire.`,
-      },
-      {
-        question: `Quelles sont les valeurs de référence pré-remplies dans ${localizedTitle} ?`,
-        answer: `Le simulateur initialise un scénario de référence calibré (${baselineSummary || 'valeurs standards du secteur'}) permettant d'observer immédiatement l'équilibre du modèle avant de saisir vos propres paramètres.`,
-      },
-      {
-        question: `Quel est l'impact d'une variation de ${primaryParam} sur le résultat de ${localizedTitle} ?`,
-        answer: `Dans la relation (${formulaText}), ${primaryParam} interagit directement avec ${secondaryParam}. En faisant varier ${primaryParam} isolément, vous mesurez l'élasticité mathématique exacte du résultat principal et des indicateurs secondaires.`,
-      },
-      {
-        question: isFinance
-          ? `Les résultats de ${localizedTitle} incluent-ils la fiscalité et les frais annexes ?`
-          : isHealth
-            ? `Les résultats fournis par ${localizedTitle} remplacent-ils un avis médical ?`
-            : `Comment éviter les erreurs d'unités dans ${localizedTitle} ?`,
-        answer: isFinance
-          ? `${localizedTitle} modélise rigoureusement l'équation financière (${localizedDescription}) selon vos entrées. Pour un engagement contractuel ou fiscal, complétez cette simulation avec les frais spécifiques de votre établissement ou conseiller.`
-          : isHealth
-            ? `Non. ${localizedTitle} repose sur des formules biométriques publiées à titre purement informatif et pédagogique. Consultez systématiquement un médecin ou professionnel de santé pour un suivi personnalisé.`
-            : `Assurez-vous que l'ensemble des variables saisies (${paramNames.join(', ')}) respecte la même unité de mesure et la même périodicité avant d'interpréter ou d'exporter vos résultats.`,
-      },
-      {
-        question: `Mes données saisies dans ${localizedTitle} sont-elles confidentielles ?`,
-        answer: `Oui. L'intégralité des calculs de ${localizedTitle} s'exécute 100 % localement dans votre navigateur web (conformité RGPD), sans aucun envoi vers un serveur externe.`,
-      },
-    ];
-  } else if (locale === 'de') {
-    generated = [
-      {
-        question: `Welche exakte mathematische Formel verwendet der ${localizedTitle}?`,
-        answer: `Der ${localizedTitle} berechnet Ergebnisse nach der verifizierten Gleichung (${formulaText}). Dabei werden Eingangsgrößen wie ${paramNames.join(', ') || 'Ihre Eingabewerte'} mit doppelt genauer IEEE-754-Gleitkomma-Arithmetik verarbeitet, um Rundungsfehler in Zwischenschritten auszuschließen.`,
-      },
-      {
-        question: `Welche Referenzwerte nutzt der ${localizedTitle} im voreingestellten Basisszenario?`,
-        answer: `Beim Start lädt der ${localizedTitle} kalibrierte Referenzwerte (${baselineSummary || 'branchenübliche Standardwerte'}), damit Sie die Modelllogik sofort nachvollziehen und anschließend mit Ihren individuellen Daten vergleichen können.`,
-      },
-      {
-        question: `Wie wirkt sich eine Änderung von ${primaryParam} auf das Ergebnis im ${localizedTitle} aus?`,
-        answer: `Innerhalb der Formel (${formulaText}) skaliert ${primaryParam} im Zusammenspiel mit ${secondaryParam} direkt die Zielkennzahl. Wenn Sie nur ${primaryParam} variieren, erkennen Sie unmittelbar die Grenzsensitivität dieser Variable.`,
-      },
-      {
-        question: isFinance
-          ? `Berücksichtigt der ${localizedTitle} individuelle Steuern oder Bankgebühren?`
-          : isHealth
-            ? `Ersetzen die Richtwerte des ${localizedTitle} eine ärztliche Diagnose?`
-            : `Worauf muss ich bei den Maßeinheiten im ${localizedTitle} achten?`,
-        answer: isFinance
-          ? `Der ${localizedTitle} bildet das finanzmathematische Kernmodell (${localizedDescription}) präzise ab. Für verbindliche Kredit-, Steuer- oder Anlageentscheidungen sollten Sie zusätzlich individuelle Vertragsgebühren und steuerliche Rahmenbedingungen prüfen.`
-          : isHealth
-            ? `Nein. Der ${localizedTitle} nutzt standardisierte biometrische Berechnungsformeln zur Orientierung. Medizinische, therapeutische oder ernährungsbezogene Entscheidungen sollten immer mit qualifiziertem Fachpersonal abgestimmt werden.`
-            : `Achten Sie darauf, dass alle Parameter (${paramNames.join(', ')}) in konsistenten Zeit- oder Maßeinheiten eingegeben werden, bevor Sie Szenarien vergleichen oder als PDF/CSV exportieren.`,
-      },
-      {
-        question: `Werden meine Eingaben im ${localizedTitle} auf externen Servern gespeichert?`,
-        answer: `Nein. Alle Berechnungen im ${localizedTitle} erfolgen zu 100 % lokal im Arbeitsspeicher Ihres Browsers (DSGVO-konform). Es werden keinerlei Daten übertragen oder extern gespeichert.`,
-      },
-    ];
-  } else {
-    generated = [
-      {
-        question: `What exact mathematical formula does the ${localizedTitle} use?`,
-        answer: `The ${localizedTitle} evaluates your inputs using the verified governing equation (${formulaText}). It processes variables including ${paramNames.join(', ') || 'your custom parameters'} using IEEE 754 double-precision floating-point arithmetic to eliminate intermediate rounding drift.`,
-      },
-      {
-        question: `What baseline reference values are pre-loaded in the ${localizedTitle}?`,
-        answer: `By default, the ${localizedTitle} initializes with a calibrated baseline scenario (${baselineSummary || 'industry-standard reference parameters'}) so you can inspect the model's standard behavior before entering your own figures.`,
-      },
-      {
-        question: `How does changing ${primaryParam} impact the output of the ${localizedTitle}?`,
-        answer: `In the governing model (${formulaText}), ${primaryParam} interacts directly with ${secondaryParam}. Adjusting ${primaryParam} while holding other inputs constant lets you isolate its exact marginal sensitivity on the headline result.`,
-      },
-      {
-        question: isFinance
-          ? `Does the ${localizedTitle} account for taxes, inflation, or lender-specific fees?`
-          : isHealth
-            ? `Do the estimates from the ${localizedTitle} replace professional medical advice?`
-            : `How do I ensure unit and dimensional consistency in the ${localizedTitle}?`,
-        answer: isFinance
-          ? `The ${localizedTitle} models the core quantitative relationship (${localizedDescription}) based on your inputs. For binding financial, tax, or lending decisions, pair these projections with your institution's exact fee schedule and a certified financial advisor.`
-          : isHealth
-            ? `No. The ${localizedTitle} applies peer-reviewed biometric and physiological equations strictly for educational and informational benchmarking. Always consult a licensed physician or healthcare provider for clinical diagnosis or treatment plans.`
-            : `Verify that all input parameters (${paramNames.join(', ')}) share matching time horizons and measurement units before comparing multi-point scenarios or exporting your report.`,
-      },
-      {
-        question: `Is my data kept private when using the ${localizedTitle}?`,
-        answer: `Yes. Every calculation in the ${localizedTitle} executes 100% locally inside your browser's JavaScript sandbox. Zero financial, biometric, or operational inputs are ever transmitted to external servers.`,
-      },
-    ];
+  if (formulaDef?.formula) {
+    if (locale === 'es') {
+      generated.push({
+        question: `¿Qué fórmula utiliza ${localizedTitle}?`,
+        answer: `${localizedTitle} calcula el resultado mediante la ecuación: ${formulaDef.formula}.`,
+      });
+    } else if (locale === 'fr') {
+      generated.push({
+        question: `Quelle formule mathématique utilise ${localizedTitle} ?`,
+        answer: `${localizedTitle} applique l'équation suivante : ${formulaDef.formula}.`,
+      });
+    } else if (locale === 'de') {
+      generated.push({
+        question: `Welche Formel verwendet der ${localizedTitle}?`,
+        answer: `Der ${localizedTitle} berechnet Ergebnisse nach der Gleichung: ${formulaDef.formula}.`,
+      });
+    } else {
+      generated.push({
+        question: `What formula does the ${localizedTitle} use?`,
+        answer: `The ${localizedTitle} evaluates ${formulaDef.name ? `the ${formulaDef.name}: ` : ''}${formulaDef.formula}.${formulaDef.stepByStep ? ` ${formulaDef.stepByStep}` : ''}`,
+      });
+    }
   }
 
-  if (existingFaqs && existingFaqs.length > 0) {
-    const merged = [...existingFaqs];
-    for (const item of generated) {
-      if (merged.length >= 5) break;
-      if (!merged.some((e) => e.question.toLowerCase() === item.question.toLowerCase())) {
-        merged.push(item);
-      }
+  if (inputs.length > 0) {
+    const paramList = inputs
+      .slice(0, 5)
+      .map((inp) => `${inp.label || inp.id} (${formatDefaultVal(inp)})`)
+      .join(', ');
+
+    if (locale === 'es') {
+      generated.push({
+        question: `¿Qué datos de entrada requiere ${localizedTitle}?`,
+        answer: `Para ejecutar el cálculo en ${localizedTitle}, introduzca los siguientes parámetros: ${paramList}.`,
+      });
+    } else if (locale === 'fr') {
+      generated.push({
+        question: `Quelles données d'entrée sont nécessaires dans ${localizedTitle} ?`,
+        answer: `Pour lancer une simulation dans ${localizedTitle}, renseignez les paramètres suivants : ${paramList}.`,
+      });
+    } else if (locale === 'de') {
+      generated.push({
+        question: `Welche Eingabewerte benötigt der ${localizedTitle}?`,
+        answer: `Für eine Berechnung im ${localizedTitle} geben Sie folgende Parameter ein: ${paramList}.`,
+      });
+    } else {
+      generated.push({
+        question: `What inputs are required for the ${localizedTitle}?`,
+        answer: `To compute results in the ${localizedTitle}, enter values for: ${paramList}. ${localizedDescription}`,
+      });
     }
-    return merged;
   }
 
   return generated;
 }
 
 /**
- * Enriches Tool pages (/tools/[slug]) when markdown content is thin (< 750 words)
- * or missing localized prose, and returns 100% localized examples, FAQs, HowToSteps,
- * features, and useCases so raw English strings never bleed onto es/fr/de pages.
+ * Returns authentic localized tool markdown, features, useCases, howToSteps, FAQs, and
+ * real examples WITHOUT injecting repetitive 450-word site-wide boilerplate or fake
+ * placeholder examples across hundreds of tool pages.
  */
 export function enrichToolSeoContent(params: {
   config: ToolConfig;
@@ -964,8 +355,6 @@ export function enrichToolSeoContent(params: {
   const {
     config,
     locale,
-    localizedTitle,
-    localizedShortDesc,
     rawMarkdown,
     hasLocalizedMd,
     localizedFeatures,
@@ -974,394 +363,39 @@ export function enrichToolSeoContent(params: {
     localizedHowToSteps,
   } = params;
 
-  // Resolve localized features, useCases, howToSteps, and faqs WITHOUT English bleed on non-en locales
-  let resolvedFeatures: string[] =
+  const resolvedFeatures: string[] =
     localizedFeatures && localizedFeatures.length > 0
       ? localizedFeatures
       : locale === 'en'
         ? config.features || []
         : [];
 
-  let resolvedUseCases: string[] =
+  const resolvedUseCases: string[] =
     localizedUseCases && localizedUseCases.length > 0
       ? localizedUseCases
       : locale === 'en'
         ? config.useCases || []
         : [];
 
-  let resolvedHowToSteps: string[] =
+  const resolvedHowToSteps: string[] =
     localizedHowToSteps && localizedHowToSteps.length > 0
       ? localizedHowToSteps
       : locale === 'en'
         ? config.howToSteps || []
         : [];
 
-  let resolvedFaqs: { question: string; answer: string }[] =
+  const resolvedFaqs: { question: string; answer: string }[] =
     localizedFaqs && localizedFaqs.length > 0
       ? localizedFaqs
       : locale === 'en'
         ? config.faq || []
         : [];
 
-  if (resolvedFeatures.length === 0) {
-    if (locale === 'es') {
-      resolvedFeatures = [
-        `Procesamiento 100 % local en el navegador para ${localizedTitle} sin subir archivos a servidores externos`,
-        `Ejecución instantánea de baja latencia mediante WebAssembly y APIs nativas HTML5`,
-        `Validación automática de formato, codificación UTF-8 e integridad estructural`,
-        `Exportación directa con un clic al portapapeles o descarga limpia sin marcas de agua`,
-      ];
-    } else if (locale === 'fr') {
-      resolvedFeatures = [
-        `Traitement 100 % local dans le navigateur pour ${localizedTitle} sans aucun envoi sur serveur distant`,
-        `Exécution instantanée à très faible latence via WebAssembly et les API HTML5 natives`,
-        `Validation automatique du format, de l'encodage UTF-8 et de l'intégrité structurelle`,
-        `Exportation directe en un clic vers le presse-papiers ou téléchargement sans filigrane`,
-      ];
-    } else if (locale === 'de') {
-      resolvedFeatures = [
-        `100 % lokale Browser-Verarbeitung für ${localizedTitle} ohne Datei-Upload auf externe Server`,
-        `Sofortige Echtzeit-Ausführung dank WebAssembly und nativen HTML5-APIs`,
-        `Automatische Format-, UTF-8-Kodierungs- und Strukturvalidierung`,
-        `Direkter Ein-Klick-Export in die Zwischenablage oder Download ohne Wasserzeichen`,
-      ];
-    } else {
-      resolvedFeatures = [
-        `100% client-side browser execution for ${localizedTitle} with zero server uploads`,
-        `Instantaneous low-latency processing powered by WebAssembly and HTML5 APIs`,
-        `Automated format, UTF-8 encoding, and structural schema validation`,
-        `One-click clean export to clipboard or direct file download with zero watermarks`,
-      ];
-    }
-  }
+  // Serve only authentic localized markdown — zero site-wide boilerplate essays appended
+  const enrichedMarkdown = locale === 'en' || hasLocalizedMd ? (rawMarkdown || '').trim() : '';
 
-  if (resolvedUseCases.length === 0) {
-    if (locale === 'es') {
-      resolvedUseCases = [
-        `Flujos de trabajo de desarrollo, auditoría técnica y depuración rápida con ${localizedTitle}`,
-        `Tratamiento seguro de documentos y datos confidenciales bajo normativas GDPR y acuerdos NDA`,
-        `Automatización de tareas repetitivas de conversión, formato y validación sin instalar software`,
-        `Verificación multiplataforma inmediata desde ordenadores de escritorio, portátiles o dispositivos móviles`,
-      ];
-    } else if (locale === 'fr') {
-      resolvedUseCases = [
-        `Flux de travail de développement, d'audit technique et de vérification rapide avec ${localizedTitle}`,
-        `Traitement sécurisé de fichiers et données confidentiels conformément au RGPD et aux accords NDA`,
-        `Automatisation des tâches de conversion, de formatage et de validation sans installation logicielle`,
-        `Utilisation multiplateforme immédiate sur ordinateur de bureau, portable ou appareil mobile`,
-      ];
-    } else if (locale === 'de') {
-      resolvedUseCases = [
-        `Professionelle Entwicklungs-, Prüf- und Analyse-Workflows mit ${localizedTitle}`,
-        `DSGVO-konforme Verarbeitung vertraulicher Dokumente und sensibler Geschäftsdaten im Browser`,
-        `Schnelle Konvertierung, Formatierung und Validierung ohne lokale Software-Installation`,
-        `Plattformübergreifender Einsatz auf Desktop-PCs, Notebooks, Tablets und Smartphones`,
-      ];
-    } else {
-      resolvedUseCases = [
-        `Production engineering, technical auditing, and rapid debugging workflows with ${localizedTitle}`,
-        `GDPR and NDA-compliant processing of sensitive files and confidential datasets locally`,
-        `Streamlining repetitive conversion, formatting, and validation tasks without desktop software`,
-        `Cross-platform execution across Windows, macOS, Linux, iOS, and Android browsers`,
-      ];
-    }
-  }
-
-  if (resolvedHowToSteps.length === 0) {
-    if (locale === 'es') {
-      resolvedHowToSteps = [
-        `Abra ${localizedTitle} e introduzca sus datos, texto o seleccione el archivo desde su dispositivo.`,
-        `Ajuste las opciones de configuración y parámetros técnicos según los requisitos de su proyecto.`,
-        `Ejecute el procesamiento instantáneo en el navegador y revise la vista previa del resultado verificado.`,
-        `Copie la salida al portapapeles o descargue el archivo final generado con un solo clic.`,
-      ];
-    } else if (locale === 'fr') {
-      resolvedHowToSteps = [
-        `Ouvrez ${localizedTitle} et saisissez vos données ou sélectionnez votre fichier source depuis votre appareil.`,
-        `Configurez les options et paramètres techniques selon les besoins de votre flux de travail.`,
-        `Lancez le traitement instantané dans le navigateur et vérifiez l'aperçu du résultat.`,
-        `Copiez le résultat dans le presse-papiers ou téléchargez le fichier final en un clic.`,
-      ];
-    } else if (locale === 'de') {
-      resolvedHowToSteps = [
-        `Öffnen Sie ${localizedTitle} und geben Sie Ihre Daten ein oder wählen Sie die Quelldatei von Ihrem Gerät aus.`,
-        `Passen Sie die gewünschten Optionen und technischen Parameter an Ihren Anwendungsfall an.`,
-        `Starten Sie die sofortige Verarbeitung im Browser und prüfen Sie die Ergebnisvorschau.`,
-        `Kopieren Sie das Ergebnis in die Zwischenablage oder laden Sie die fertige Datei mit einem Klick herunter.`,
-      ];
-    } else {
-      resolvedHowToSteps = [
-        `Open ${localizedTitle} and paste your input data or select your source file from your device.`,
-        `Configure the processing parameters and format options to match your workflow requirements.`,
-        `Run the instant in-browser engine and inspect the real-time verified output preview.`,
-        `Copy the result to your clipboard or download the processed output file with a single click.`,
-      ];
-    }
-  }
-
-  if (resolvedFaqs.length === 0) {
-    if (locale === 'es') {
-      resolvedFaqs = [
-        {
-          question: `¿Cómo funciona ${localizedTitle} directamente en el navegador?`,
-          answer: `${localizedTitle} utiliza APIs nativas de HTML5 y procesamiento local en memoria (Client-Side) para ejecutar todas las operaciones en su propio dispositivo, logrando resultados instantáneos sin necesidad de subir archivos a ningún servidor externo.`,
-        },
-        {
-          question: `¿Es seguro utilizar ${localizedTitle} con archivos o datos confidenciales?`,
-          answer: `Sí, es 100 % seguro. Al procesarse íntegramente dentro de la memoria aislada (sandbox) de su navegador web, ningún archivo, documento ni cadena de texto abandona su equipo, cumpliendo estrictamente con el RGPD/GDPR y políticas corporativas de privacidad.`,
-        },
-        {
-          question: `¿Necesito instalar algún programa o extensión para usar ${localizedTitle}?`,
-          answer: `No. ${localizedTitle} funciona directamente desde cualquier navegador moderno en Windows, macOS, Linux, iOS y Android sin descargas, registros ni licencias adicionales.`,
-        },
-        {
-          question: `¿Existe algún límite o marca de agua en los resultados de ${localizedTitle}?`,
-          answer: `No. Todos los resultados generados por ${localizedTitle} están libres de marcas de agua y listos para uso profesional, técnico o comercial inmediato.`,
-        },
-      ];
-    } else if (locale === 'fr') {
-      resolvedFaqs = [
-        {
-          question: `Comment fonctionne ${localizedTitle} directement dans le navigateur ?`,
-          answer: `${localizedTitle} exploite les API HTML5 modernes et le calcul côté client pour exécuter l'ensemble du traitement dans la mémoire vive de votre appareil, garantissant un résultat immédiat sans téléversement sur un serveur distant.`,
-        },
-        {
-          question: `Est-il sûr d'utiliser ${localizedTitle} avec des fichiers ou données sensibles ?`,
-          answer: `Oui, totalement. Toutes les opérations s'effectuent 100 % localement dans le bac à sable (sandbox) de votre navigateur. Aucune donnée ne quitte votre appareil, assurant une conformité totale au RGPD.`,
-        },
-        {
-          question: `Dois-je installer un logiciel ou créer un compte pour utiliser ${localizedTitle} ?`,
-          answer: `Non. ${localizedTitle} est accessible gratuitement et instantanément depuis n'importe quel navigateur web sur Windows, macOS, Linux, iOS ou Android, sans inscription ni installation.`,
-        },
-        {
-          question: `Les fichiers ou résultats générés par ${localizedTitle} comportent-ils un filigrane ?`,
-          answer: `Aucun filigrane n'est ajouté. Les résultats produits par ${localizedTitle} sont propres, intègres et directement exploitables en environnement professionnel.`,
-        },
-      ];
-    } else if (locale === 'de') {
-      resolvedFaqs = [
-        {
-          question: `Wie funktioniert ${localizedTitle} direkt im Webbrowser?`,
-          answer: `${localizedTitle} nutzt moderne HTML5-APIs und clientseitige Verarbeitung, um sämtliche Berechnungen und Transformationen direkt im Arbeitsspeicher Ihres Endgeräts durchzuführen – völlig ohne Server-Upload.`,
-        },
-        {
-          question: `Ist ${localizedTitle} sicher für vertrauliche Dokumente und sensible Daten?`,
-          answer: `Ja, zu 100 %. Da Ihre Dateien und Eingaben den lokalen Browser-Speicher niemals verlassen und nicht über das Internet übertragen werden, ist die Nutzung vollständig DSGVO-konform.`,
-        },
-        {
-          question: `Muss ich für ${localizedTitle} eine Software installieren oder mich registrieren?`,
-          answer: `Nein. ${localizedTitle} läuft ohne Installation oder Registrierung direkt in jedem aktuellen Browser unter Windows, macOS, Linux, iOS und Android.`,
-        },
-        {
-          question: `Werden die Ergebnisse von ${localizedTitle} mit einem Wasserzeichen versehen?`,
-          answer: `Nein. Alle mit ${localizedTitle} erzeugten Ausgaben und Dateien sind frei von Wasserzeichen und sofort für den professionellen Einsatz nutzbar.`,
-        },
-      ];
-    } else {
-      resolvedFaqs = [
-        {
-          question: `How does ${localizedTitle} process data directly in my browser?`,
-          answer: `${localizedTitle} leverages modern HTML5 File APIs, Web Workers, and client-side execution to perform all processing inside your device's local RAM—delivering instant results without uploading files to external servers.`,
-        },
-        {
-          question: `Is ${localizedTitle} safe to use with confidential files and sensitive data?`,
-          answer: `Yes, 100%. Because every operation runs locally inside your browser's isolated security sandbox, zero bytes of your data ever leave your computer, making it fully compliant with GDPR, HIPAA, and corporate NDA requirements.`,
-        },
-        {
-          question: `Do I need to install software or create an account to use ${localizedTitle}?`,
-          answer: `No installation or registration is required. ${localizedTitle} runs immediately in any modern desktop or mobile browser across Windows, macOS, Linux, iOS, and Android.`,
-        },
-        {
-          question: `Are there any watermarks or restrictions on the output from ${localizedTitle}?`,
-          answer: `Never. All outputs exported from ${localizedTitle} are completely clean, watermark-free, and ready for immediate production use.`,
-        },
-      ];
-    }
-  }
-
-  const baseMarkdown = locale === 'en' || hasLocalizedMd ? (rawMarkdown || '').trim() : '';
-  const wordCount = countWords(baseMarkdown);
-
-  let supplement = '';
-  if (wordCount < 750) {
-    if (locale === 'es') {
-      supplement = `
-## Arquitectura Técnica, Seguridad Local y Especificaciones de ${localizedTitle}
-
-${localizedShortDesc} Nuestra utilidad **${localizedTitle}** ha sido desarrollada bajo una arquitectura de ejecución 100 % en el lado del cliente (*Client-Side WebAssembly & HTML5*) para ofrecer resultados de nivel profesional sin comprometer la privacidad de sus archivos ni depender de colas en servidores externos.
-
-### 1. Cómo Funciona el Motor de Procesamiento en el Navegador
-
-A diferencia de las herramientas tradicionales que requieren subir sus documentos o cadenas de datos a servidores remotos, **${localizedTitle}** ejecuta todo el flujo de transformación dentro de la memoria local (*sandbox*) de su navegador:
-
-1. **Lectura Local en Memoria (ArrayBuffer / Blob API)**: Los datos o archivos seleccionados se leen directamente desde su dispositivo mediante las APIs nativas del navegador sin tráfico de red.
-2. **Validación Estructural y Normalización**: El analizador verifica la integridad sintáctica, la codificación de caracteres (UTF-8) o los encabezados binarios del formato antes de aplicar cualquier operación.
-3. **Compilación de Alta Velocidad**: Los algoritmos optimizados procesan la tarea utilizando los núcleos de su propio procesador, logrando tiempos de respuesta de milisegundos.
-4. **Exportación Directa y Limpia**: El resultado final se genera instantáneamente para su descarga o copia al portapapeles sin marcas de agua ni rastreadores.
-
-### 2. Comparativa de Rendimiento y Privacidad
-
-| Característica | ${localizedTitle} (Nexus) | Herramientas Cloud Tradicionales | Software de Escritorio Pesado |
-| :--- | :--- | :--- | :--- |
-| **Privacidad de Datos** | **100 % Local en el navegador** (Cero subidas) | Los archivos se suben a servidores de terceros | Local en el equipo |
-| **Instalación Requerida** | **Ninguna** (Funciona al instante en la web) | Ninguna | Requiere descarga, licencia e instalación |
-| **Velocidad de Procesamiento** | **Instantánea** (Sin colas de subida/bajada) | Lenta en archivos grandes o conexiones móviles | Alta tras abrir el programa |
-| **Compatibilidad Multiplataforma** | Windows, macOS, Linux, iOS y Android | Dependiente del servidor | Limitado al sistema operativo instalado |
-
-### 3. Buenas Prácticas para Obtener Resultados Óptimos
-
-- **Verifique el Formato de Entrada**: Asegúrese de que el archivo o texto de origen no esté dañado antes de procesarlo para aprovechar al máximo la precisión del motor.
-- **Procesamiento por Lotes y Flujo Continuo**: Puede encadenar **${localizedTitle}** con el resto de utilidades de nuestra suite para completar flujos de trabajo documentales o de desarrollo en segundos.
-- **Cumplimiento Normativo (GDPR / HIPAA / NDA)**: Al no existir transferencia de datos a la nube, esta herramienta es segura para tratar documentación confidencial, código propietario y archivos corporativos.
-`;
-    } else if (locale === 'fr') {
-      supplement = `
-## Architecture Technique, Sécurité Locale et Spécifications : ${localizedTitle}
-
-${localizedShortDesc} Notre outil **${localizedTitle}** repose sur une architecture d'exécution 100 % côté client (*Client-Side WebAssembly & HTML5*) afin d'offrir des performances professionnelles tout en garantissant la confidentialité absolue de vos fichiers et données.
-
-### 1. Fonctionnement du Moteur de Traitement dans le Navigateur
-
-Contrairement aux services en ligne classiques qui téléversent vos fichiers sur des serveurs distants, **${localizedTitle}** exécute l'intégralité du traitement dans la mémoire locale sécurisée (*sandbox*) de votre navigateur :
-
-1. **Lecture Locale Directe (API File / ArrayBuffer)** : Vos fichiers ou textes sont chargés instantanément en mémoire vive locale sans transiter par Internet.
-2. **Validation Structurelle et Normalisation** : Le moteur vérifie la conformité syntaxique, l'encodage UTF-8 ou la structure binaire du document avant d'appliquer la transformation.
-3. **Exécution Haute Performance** : Les algorithmes optimisés exploitent directement le processeur de votre appareil pour un rendu en quelques millisecondes.
-4. **Exportation Immédiate sans Filigrane** : Le fichier ou résultat final est généré proprement et prêt à être téléchargé ou copié en un clic.
-
-### 2. Comparatif Technique et Garanties de Confidentialité
-
-| Critère Technique | ${localizedTitle} (Nexus) | Outils Cloud Classiques | Logiciels de Bureau Lourds |
-| :--- | :--- | :--- | :--- |
-| **Confidentialité des Données** | **100 % Local dans le navigateur** (Zéro envoi) | Téléversement sur des serveurs tiers | Local sur le poste |
-| **Installation Requise** | **Aucune** (Accès web immédiat) | Aucune | Téléchargement et licence requis |
-| **Vitesse d'Exécution** | **Instantanée** (Aucune file d'attente réseau) | Dépendante de la bande passante | Rapide après lancement |
-| **Compatibilité Système** | Windows, macOS, Linux, iOS et Android | Variable | Restreinte au système d'exploitation |
-
-### 3. Conseils d'Utilisation et Conformité RGPD
-
-- **Intégrité des Données Sources** : Vérifiez que vos fichiers ou chaînes d'entrée respectent les standards du format pour garantir une conversion ou analyse optimale.
-- **Conformité RGPD et Secret Professionnel** : Puisqu'aucune donnée ne quitte votre appareil, **${localizedTitle}** répond aux exigences strictes des environnements juridiques, financiers et techniques soumis à des accords de confidentialité (NDA).
-`;
-    } else if (locale === 'de') {
-      supplement = `
-## Technische Architektur, Lokale Datensicherheit & Spezifikationen: ${localizedTitle}
-
-${localizedShortDesc} Unser Werkzeug **${localizedTitle}** basiert auf einer modernen 100 % clientseitigen Browser-Architektur (*WebAssembly & HTML5*), um professionelle Ergebnisse in Echtzeit zu liefern – völlig ohne Datei-Uploads auf externe Server.
-
-### 1. Funktionsweise der lokalen Browser-Engine
-
-Im Gegensatz zu herkömmlichen Online-Diensten, bei denen Ihre Dateien in eine fremde Cloud hochgeladen werden müssen, verarbeitet **${localizedTitle}** sämtliche Daten direkt im geschützten Arbeitsspeicher (*Sandbox*) Ihres Webbrowsers:
-
-1. **Direktes Einlesen im Arbeitsspeicher (ArrayBuffer / File API)**: Ihre Dateien oder Texteingaben werden lokal geladen, ohne dass Daten über das Internet übertragen werden.
-2. **Strukturprüfung und Normalisierung**: Vor der Verarbeitung prüft die Engine automatisch Zeichenkodierungen (UTF-8), Header-Strukturen und Formatgrenzen auf Konsistenz.
-3. **Verzögerungsfreie Berechnung**: Durch die direkte Nutzung Ihrer lokalen Hardware-Ressourcen erfolgt die Verarbeitung in wenigen Millisekunden ohne Server-Warteschlangen.
-4. **Sauberer Export ohne Wasserzeichen**: Das fertige Ergebnis steht sofort zum Download oder zum Kopieren in die Zwischenablage bereit.
-
-### 2. Architektur- und Datenschutzvergleich
-
-| Merkmal | ${localizedTitle} (Nexus) | Klassische Cloud-Tools | Lokale Desktop-Software |
-| :--- | :--- | :--- | :--- |
-| **Datenschutz & Sicherheit** | **100 % lokal im Browser** (Kein Upload) | Datei-Upload auf Drittanbieter-Server | Lokal auf dem Gerät |
-| **Installation & Setup** | **Keine Installation** (Sofort im Browser nutzbar) | Keine | Installation & Updates erforderlich |
-| **Verarbeitungsgeschwindigkeit** | **Echtzeit** (Keine Upload-/Download-Wartezeit) | Abhängig von der Internetleitung | Hoch nach Programmstart |
-| **Plattformunabhängigkeit** | Windows, macOS, Linux, iOS & Android | Browserabhängig | Auf ein Betriebssystem begrenzt |
-
-### 3. Praxistipps & DSGVO-Konformität
-
-- **Verarbeitung vertraulicher Dokumente**: Da zu keinem Zeitpunkt Daten Ihr Endgerät verlassen, eignet sich **${localizedTitle}** uneingeschränkt für sensible Verträge, Quellcode, Finanzdokumente und DSGVO-relevante Unterlagen.
-- **Nahtlose Workflow-Integration**: Kombinieren Sie dieses Tool direkt mit unseren weiteren PDF-, Bild- und Entwickler-Werkzeugen für durchgängige digitale Arbeitsprozesse.
-`;
-    } else {
-      supplement = `
-## Technical Architecture, Client-Side Security & Specifications: ${localizedTitle}
-
-${localizedShortDesc} Our **${localizedTitle}** utility is engineered on a 100% client-side execution pipeline (*WebAssembly, Web Workers, and HTML5 APIs*) to deliver studio-grade accuracy with zero server upload latency and complete data privacy.
-
-### 1. How the In-Browser Processing Engine Works
-
-Unlike legacy cloud utilities that force you to upload confidential files or proprietary code to remote servers, **${localizedTitle}** executes every transformation inside your browser's isolated memory sandbox:
-
-1. **Zero-Upload Local Ingestion (ArrayBuffer & File API)**: Selected files and text streams are read directly into local RAM without crossing the network.
-2. **Schema & Binary Header Validation**: The parser verifies structural integrity, UTF-8 character encoding, and format specifications before executing the transformation.
-3. **Hardware-Accelerated Compilation**: Optimized client-side algorithms process your data in milliseconds using your device's local CPU/GPU threads.
-4. **Clean, Watermark-Free Output**: The compiled output is generated immediately for one-click download or clipboard export with zero watermarks or hidden tracking metadata.
-
-### 2. Architectural Benchmark Comparison
-
-| Capability | ${localizedTitle} (Nexus) | Traditional Cloud Converters | Heavy Desktop Suites |
-| :--- | :--- | :--- | :--- |
-| **Data Privacy Architecture** | **100% Client-Side in Browser** (Zero uploads) | Uploads files to third-party cloud storage | Local to workstation |
-| **Software Installation** | **Zero installation** (Instant browser access) | None | Requires heavy installer & license |
-| **Processing Latency** | **Instantaneous** (No upload/download queues) | Bottlenecked by bandwidth & server queues | Fast after application launch |
-| **Cross-Platform Support** | Windows, macOS, Linux, iOS, and Android | Browser-based | Locked to specific OS |
-
-### 3. Enterprise Compliance & Workflow Best Practices
-
-- **GDPR, HIPAA & NDA Safe**: Because not a single byte of your input leaves your workstation, **${localizedTitle}** is safe for sensitive legal contracts, financial statements, medical records, and proprietary source code.
-- **Verify Input Integrity**: Ensure source files are non-corrupted prior to processing, and chain related Nexus utilities together to complete end-to-end document and developer workflows in seconds.
-`;
-    }
-  }
-
-  const enrichedMarkdown = supplement
-    ? `${baseMarkdown}\n\n---\n${supplement.trim()}`
-    : baseMarkdown;
-
-  // Build localized examples using resolvedFeatures / resolvedUseCases (guaranteed 100% localized)
-  let localizedExamples = config.examples || [];
-  if (locale !== 'en') {
-    const f0 = resolvedFeatures[0] || localizedShortDesc;
-    const u0 = resolvedUseCases[0] || localizedShortDesc;
-    const u1 = resolvedUseCases[1] || f0;
-
-    if (locale === 'es') {
-      localizedExamples = [
-        {
-          title: `Flujo de Trabajo Profesional con ${localizedTitle}`,
-          description: u0,
-          input: `Archivo o entrada estándar cargada localmente en ${localizedTitle}`,
-          output: `Resultado optimizado y verificado al instante (${f0})`,
-        },
-        {
-          title: `Procesamiento Rápido y Privado en el Navegador`,
-          description: u1,
-          input: `Datos confidenciales procesados 100 % en memoria local (sin subida al servidor)`,
-          output: `Exportación limpia, exacta y lista para producción en milisegundos`,
-        },
-      ];
-    } else if (locale === 'fr') {
-      localizedExamples = [
-        {
-          title: `Flux de Travail Professionnel avec ${localizedTitle}`,
-          description: u0,
-          input: `Fichier ou donnée source chargé localement dans ${localizedTitle}`,
-          output: `Résultat optimisé et vérifié instantanément (${f0})`,
-        },
-        {
-          title: `Traitement Local Rapide et Confidentiel`,
-          description: u1,
-          input: `Données sensibles traitées 100 % dans le navigateur (zéro envoi serveur)`,
-          output: `Exportation propre, conforme et prête pour la production en quelques millisecondes`,
-        },
-      ];
-    } else if (locale === 'de') {
-      localizedExamples = [
-        {
-          title: `Professioneller Workflow mit ${localizedTitle}`,
-          description: u0,
-          input: `Quelldatei oder Datensatz lokal in ${localizedTitle} geladen`,
-          output: `Sofort optimiertes und geprüftes Ergebnis (${f0})`,
-        },
-        {
-          title: `Schnelle & DSGVO-konforme Browser-Verarbeitung`,
-          description: u1,
-          input: `Vertrauliche Daten zu 100 % lokal im Arbeitsspeicher verarbeitet (kein Server-Upload)`,
-          output: `Sauberer, produktionsreifer Export in wenigen Millisekunden`,
-        },
-      ];
-    }
-  }
+  // Only show genuine technical input/output examples in English (avoid identical fake placeholder cards on es/fr/de)
+  const localizedExamples = locale === 'en' ? config.examples || [] : [];
 
   return {
     enrichedMarkdown,
@@ -1372,4 +406,3 @@ Unlike legacy cloud utilities that force you to upload confidential files or pro
     resolvedUseCases,
   };
 }
-

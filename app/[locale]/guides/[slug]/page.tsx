@@ -28,6 +28,7 @@ import {
   type GuideCategory,
 } from '@/lib/data/guides';
 import { getCanonicalAndAlternates, getCanonicalUrl, canonicalizeInternalHref, optimizeSerpTitle, optimizeSerpDescription } from '@/lib/utils/seoUtils';
+import { LocaleSiblingLinks } from '@/app/components/LocaleSiblingLinks';
 import { GuidesTableOfContents, type TocHeading } from '@/app/components/GuidesTableOfContents';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedToolMeta, getLocalizedCalcMeta } from '@/lib/utils/toolLocalization';
@@ -448,10 +449,12 @@ export default async function GuideArticlePage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      {guideFaqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -689,6 +692,13 @@ export default async function GuideArticlePage({
             <div />
           )}
         </nav>
+        {/* Crawlable SSR Cross-Locale Sibling Links — passes PageRank directly across en / es / fr / de */}
+        <div className="mt-8 pt-6 border-t border-slate-100 dark:border-white/5">
+          <LocaleSiblingLinks
+            languages={getCanonicalAndAlternates('/guides/[slug]', locale, baseGuide.slug).languages}
+            currentLocale={locale}
+          />
+        </div>
       </article>
 
       {/* ══════════════════════════════════════════════════════════════

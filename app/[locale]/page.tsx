@@ -146,6 +146,87 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     { icon: Activity, bg: "bg-emerald-500/10", color: "text-emerald-500" },
   ];
 
+  const heroPreviewByLocale: Record<
+    string,
+    {
+      schemaDesc: string;
+      jsonTitle: string;
+      validJson: string;
+      sampleUser: string;
+      mortgageTitle: string;
+      mortgageAmount: string;
+      mortgageMeta: string;
+      mortgagePaid: string;
+      bmiTitle: string;
+      bmiStatus: string;
+      bmiRange: string;
+      speedLabel: string;
+      toolsBadge: string;
+    }
+  > = {
+    en: {
+      schemaDesc: "The ultimate ecosystem for calculators and developer tools.",
+      jsonTitle: "JSON Formatter",
+      validJson: "✓ Valid JSON",
+      sampleUser: "Alex Morgan",
+      mortgageTitle: "Mortgage",
+      mortgageAmount: "$1,842",
+      mortgageMeta: "per month · 30yr fixed",
+      mortgagePaid: "68% principal paid",
+      bmiTitle: "BMI Score",
+      bmiStatus: "Normal ✓",
+      bmiRange: "Healthy range",
+      speedLabel: "2ms execution",
+      toolsBadge: "302+ Tools",
+    },
+    es: {
+      schemaDesc: "El ecosistema definitivo de calculadoras y herramientas para desarrolladores.",
+      jsonTitle: "Formateador JSON",
+      validJson: "✓ JSON válido",
+      sampleUser: "Carlos Ruiz",
+      mortgageTitle: "Hipoteca",
+      mortgageAmount: "1.485 €",
+      mortgageMeta: "al mes · 30 años fijo",
+      mortgagePaid: "68 % capital amortizado",
+      bmiTitle: "Índice IMC",
+      bmiStatus: "Normal ✓",
+      bmiRange: "Rango saludable",
+      speedLabel: "Ejecución en 2 ms",
+      toolsBadge: "302+ Herramientas",
+    },
+    fr: {
+      schemaDesc: "L'écosystème ultime de calculatrices et d'outils pour développeurs.",
+      jsonTitle: "Formateur JSON",
+      validJson: "✓ JSON valide",
+      sampleUser: "Camille Laurent",
+      mortgageTitle: "Prêt immobilier",
+      mortgageAmount: "1 520 €",
+      mortgageMeta: "par mois · fixe 25 ans",
+      mortgagePaid: "68 % capital remboursé",
+      bmiTitle: "Indice IMC",
+      bmiStatus: "Normal ✓",
+      bmiRange: "Plage saine",
+      speedLabel: "Exécution en 2 ms",
+      toolsBadge: "302+ Outils",
+    },
+    de: {
+      schemaDesc: "Das umfassende Ökosystem für präzise Rechner und Entwickler-Tools.",
+      jsonTitle: "JSON-Formatierer",
+      validJson: "✓ Gültiges JSON",
+      sampleUser: "Lukas Weber",
+      mortgageTitle: "Baufinanzierung",
+      mortgageAmount: "1.490 €",
+      mortgageMeta: "pro Monat · 20 J. fest",
+      mortgagePaid: "68 % Tilgung erreicht",
+      bmiTitle: "BMI-Wert",
+      bmiStatus: "Normalgewicht ✓",
+      bmiRange: "Gesunder Bereich",
+      speedLabel: "2 ms Laufzeit",
+      toolsBadge: "302+ Tools",
+    },
+  };
+  const heroPreview = heroPreviewByLocale[loc] || heroPreviewByLocale.en;
+
   // WebSite schema — establishes core site identity without crawlers hitting noindex /search?q= URLs
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -153,7 +234,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     "name": "Nexus Calculator",
     "alternateName": ["Nexus Calculators", "Nexus Tools", "Nexus Calculator Hub"],
     "url": `${baseUrl}/${resolvedParams.locale}`,
-    "description": "The ultimate ecosystem for calculators and developer tools."
+    "inLanguage": resolvedParams.locale,
+    "description": heroPreview.schemaDesc
   };
 
   // Organization schema — establishes brand entity
@@ -229,9 +311,9 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     <div className="flex items-center justify-between mb-3">
                       <div className="flex items-center gap-2">
                         <Code className="text-purple-400" size={13} />
-                        <span className="text-xs font-semibold text-slate-300">JSON Formatter</span>
+                        <span className="text-xs font-semibold text-slate-300">{heroPreview.jsonTitle}</span>
                       </div>
-                      <span className="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-mono">✓ Valid JSON</span>
+                      <span className="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-mono">{heroPreview.validJson}</span>
                     </div>
                     <div className="space-y-0.5 text-[11px] font-mono leading-relaxed">
                       <div><span className="text-slate-500">{"{"}</span></div>
@@ -239,7 +321,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         <span className="text-slate-600 select-none">{"  "}</span>
                         <span className="text-blue-400">{`"user"`}</span>
                         <span className="text-slate-500">{": "}</span>
-                        <span className="text-amber-300">{`"John Doe"`}</span>
+                        <span className="text-amber-300">{`"${heroPreview.sampleUser}"`}</span>
                         <span className="text-slate-500">,</span>
                       </div>
                       <div>
@@ -266,24 +348,24 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                     <div className="rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 p-3 animate-fade-in-up-2">
                       <div className="flex items-center gap-1.5 mb-2">
                         <LineChart size={11} className="text-blue-500" />
-                        <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">Mortgage</span>
+                        <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">{heroPreview.mortgageTitle}</span>
                       </div>
-                      <div className="text-xl font-extrabold text-slate-900 dark:text-white leading-none">$1,842</div>
-                      <div className="text-[10px] text-slate-500 mb-2">per month · 30yr fixed</div>
+                      <div className="text-xl font-extrabold text-slate-900 dark:text-white leading-none">{heroPreview.mortgageAmount}</div>
+                      <div className="text-[10px] text-slate-500 mb-2">{heroPreview.mortgageMeta}</div>
                       <div className="h-1.5 bg-blue-100 dark:bg-blue-800 rounded-full overflow-hidden">
                         <div className="h-full w-[68%] bg-gradient-to-r from-blue-400 to-blue-600 rounded-full" />
                       </div>
-                      <div className="text-[9px] text-slate-400 mt-1">68% principal paid</div>
+                      <div className="text-[9px] text-slate-400 mt-1">{heroPreview.mortgagePaid}</div>
                     </div>
 
                     {/* BMI score card */}
                     <div className="rounded-xl bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800/50 p-3 animate-fade-in-up-3">
                       <div className="flex items-center gap-1.5 mb-2">
                         <Activity size={11} className="text-emerald-500" />
-                        <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">BMI Score</span>
+                        <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">{heroPreview.bmiTitle}</span>
                       </div>
                       <div className="text-xl font-extrabold text-slate-900 dark:text-white leading-none">22.4</div>
-                      <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mb-2">Normal ✓</div>
+                      <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mb-2">{heroPreview.bmiStatus}</div>
                       {/* BMI range gauge */}
                       <div className="flex gap-0.5 rounded-full overflow-hidden">
                         <div className="h-1.5 flex-1 bg-blue-400" />
@@ -291,7 +373,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                         <div className="h-1.5 flex-1 bg-amber-400" />
                         <div className="h-1.5 flex-1 bg-red-400" />
                       </div>
-                      <div className="text-[9px] text-slate-400 mt-1">Healthy range</div>
+                      <div className="text-[9px] text-slate-400 mt-1">{heroPreview.bmiRange}</div>
                     </div>
 
                   </div>
@@ -305,8 +387,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
                   <Zap size={16} />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-slate-800 dark:text-white">JSON Formatter</div>
-                  <div className="text-[10px] text-slate-500">2ms execution</div>
+                  <div className="text-xs font-bold text-slate-800 dark:text-white">{heroPreview.jsonTitle}</div>
+                  <div className="text-[10px] text-slate-500">{heroPreview.speedLabel}</div>
                 </div>
               </div>
 
@@ -314,7 +396,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
               {/* top-2 sm:-top-4: stays inside viewport on small screens */}
               <div className="absolute top-2 right-2 sm:-top-4 sm:-right-4 bg-[#518231] text-white px-3 py-2 rounded-xl shadow-lg shadow-green-900/25 flex items-center gap-1.5 z-10 animate-fade-in-down">
                 <Zap size={13} className="fill-white" />
-                <span className="text-xs font-bold">302+ Tools</span>
+                <span className="text-xs font-bold">{heroPreview.toolsBadge}</span>
               </div>
 
             </div>

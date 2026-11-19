@@ -1,7 +1,7 @@
 import React from 'react';
 import { getLocale } from 'next-intl/server';
 import { Link, resolveIntlHref } from '../../i18n/routing';
-import { Calculator } from 'lucide-react';
+import { Calculator, Globe } from 'lucide-react';
 import { sitemapCategories } from '../../lib/data/sitemapData';
 import { resolveHref } from '../../lib/utils/linkResolver';
 import { getLocalizedCalcMeta } from '../../lib/utils/toolLocalization';
@@ -31,6 +31,7 @@ const FOOTER_TRANSLATIONS: Record<
     disclaimerBody: string;
     rightsReserved: string;
     developedBy: string;
+    languagesLabel: string;
     categoryTitles: Record<string, string>;
   }
 > = {
@@ -58,6 +59,7 @@ const FOOTER_TRANSLATIONS: Record<
       'All calculators, quantitative models, utilities, and editorial guides on NexusCalculator are provided strictly for informational and educational purposes. They do not constitute personalized financial, investment, tax, medical, or legal advice. Always consult a qualified, licensed professional before making financial, clinical, or engineering decisions. Calculator and browser-utility inputs are processed locally in your browser; see our Privacy Policy for details on optional account and platform services.',
     rightsReserved: 'All Rights Reserved.',
     developedBy: 'Developed by:',
+    languagesLabel: 'Languages:',
     categoryTitles: {
       'Financial Calculators': 'Financial Calculators',
       'Fitness & Health Calculators': 'Fitness & Health Calculators',
@@ -88,6 +90,7 @@ const FOOTER_TRANSLATIONS: Record<
       'Todas las calculadoras, modelos cuantitativos, herramientas y guías editoriales de NexusCalculator se ofrecen exclusivamente con fines informativos y educativos. No constituyen asesoramiento financiero, fiscal, médico ni jurídico personalizado. Consulte siempre a un profesional colegiado antes de tomar decisiones económicas o de salud. Los cálculos se ejecutan localmente en su navegador; consulte nuestra Política de Privacidad para más detalles.',
     rightsReserved: 'Todos los derechos reservados.',
     developedBy: 'Desarrollado por:',
+    languagesLabel: 'Idiomas:',
     categoryTitles: {
       'Financial Calculators': 'Calculadoras Financieras',
       'Fitness & Health Calculators': 'Calculadoras de Salud y Fitness',
@@ -118,6 +121,7 @@ const FOOTER_TRANSLATIONS: Record<
       'L’ensemble des calculatrices, modèles quantitatifs, outils et guides publiés sur NexusCalculator est fourni à titre strictement informatif et pédagogique. Ils ne constituent en aucun cas un conseil financier, fiscal, médical ou juridique personnalisé. Consultez toujours un professionnel qualifié avant toute décision importante. Vos calculs s’exécutent localement dans votre navigateur ; consultez notre Politique de Confidentialité pour plus d’informations.',
     rightsReserved: 'Tous droits réservés.',
     developedBy: 'Développé par :',
+    languagesLabel: 'Langues :',
     categoryTitles: {
       'Financial Calculators': 'Calculatrices Financières',
       'Fitness & Health Calculators': 'Calculatrices Santé & Fitness',
@@ -148,6 +152,7 @@ const FOOTER_TRANSLATIONS: Record<
       'Sämtliche Rechner, quantitativen Modelle, Werkzeuge und Leitfäden auf NexusCalculator dienen ausschließlich allgemeinen Informations- und Bildungszwecken. Sie stellen keine individuelle Finanz-, Steuer-, Anlage-, Medizin- oder Rechtsberatung dar. Konsultieren Sie vor weitreichenden Entscheidungen stets qualifiziertes Fachpersonal. Alle Berechnungen laufen lokal in Ihrem Browser; Details finden Sie in unserer Datenschutzerklärung.',
     rightsReserved: 'Alle Rechte vorbehalten.',
     developedBy: 'Entwickelt von:',
+    languagesLabel: 'Sprachen:',
     categoryTitles: {
       'Financial Calculators': 'Finanzrechner',
       'Fitness & Health Calculators': 'Gesundheits- & Fitnessrechner',
@@ -155,6 +160,13 @@ const FOOTER_TRANSLATIONS: Record<
     },
   },
 };
+
+const FOOTER_LANGUAGES = [
+  { code: 'en', label: 'English', href: '/en' },
+  { code: 'es', label: 'Español', href: '/es' },
+  { code: 'fr', label: 'Français', href: '/fr' },
+  { code: 'de', label: 'Deutsch', href: '/de' },
+] as const;
 
 export async function Footer() {
   const currentYear = new Date().getFullYear();
@@ -321,6 +333,32 @@ export async function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col items-center gap-6">
+          {/* Crawlable SSR Language Switcher — passes internal PageRank across en / es / fr / de silos */}
+          <nav aria-label={t.languagesLabel} className="flex flex-wrap items-center justify-center gap-2 text-xs">
+            <span className="inline-flex items-center gap-1.5 font-semibold text-slate-500 dark:text-slate-400 mr-1">
+              <Globe size={14} className="text-[#518231]" aria-hidden="true" />
+              <span>{t.languagesLabel}</span>
+            </span>
+            {FOOTER_LANGUAGES.map((lang) => {
+              const isCurrent = lang.code === locale;
+              return (
+                <a
+                  key={lang.code}
+                  href={lang.href}
+                  hrefLang={lang.code}
+                  aria-current={isCurrent ? 'page' : undefined}
+                  className={
+                    isCurrent
+                      ? 'px-3 py-1 rounded-full bg-[#518231]/15 text-[#518231] dark:text-[#7ac14d] border border-[#518231]/30 font-bold'
+                      : 'px-3 py-1 rounded-full bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-[#518231]/40 hover:text-[#518231] dark:hover:text-[#7ac14d] font-medium transition-colors'
+                  }
+                >
+                  {lang.label}
+                </a>
+              );
+            })}
+          </nav>
+
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium">
             <Link href="/about-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.aboutUs}</Link>
             <Link href="/contact-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.contactUs}</Link>

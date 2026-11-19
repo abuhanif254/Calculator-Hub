@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { useLocale } from "next-intl";
 import { Link, resolveIntlHref } from "../../i18n/routing";
 import { Menu, X, Calculator, Search, ChevronDown, FileText, Shield, Zap, Palette, Wrench, Users, TrendingUp, Code, DollarSign, Heart, Hash, Grid3X3, File, Image as ImageIcon, Database, CloudSnow, FlaskConical, BarChart } from "lucide-react";
 import { sitemapCategories, pdfToolsMenu, imageToolsMenu } from "../../lib/data/sitemapData";
@@ -144,7 +145,204 @@ const calcCategoryIcons: Record<string, React.ComponentType<{ size?: number; cla
   "statistics": BarChart,
 };
 
+const NAVBAR_COPY: Record<
+  string,
+  {
+    mainNavLabel: string;
+    devTools: string;
+    pdfTools: string;
+    imageTools: string;
+    calculators: string;
+    guides: string;
+    community: string;
+    searchPlaceholder: string;
+    searchLabel: string;
+    openMenuLabel: string;
+    quickActions: string;
+    newBadge: string;
+    devFooterDesc: string;
+    devBrowseAll: string;
+    pdfFooterDesc: string;
+    pdfBrowseAll: string;
+    imageFooterDesc: string;
+    imageBrowseAll: string;
+    calcFooterDesc: string;
+    calcBrowseAll: string;
+    viewAllPrefix: string;
+    categoryTitles: Record<string, string>;
+  }
+> = {
+  en: {
+    mainNavLabel: "Main navigation",
+    devTools: "Developer Tools",
+    pdfTools: "PDF Tools",
+    imageTools: "Image Tools",
+    calculators: "Calculators",
+    guides: "Guides",
+    community: "Community",
+    searchPlaceholder: "Search...",
+    searchLabel: "Search",
+    openMenuLabel: "Open main menu",
+    quickActions: "Quick Actions",
+    newBadge: "NEW",
+    devFooterDesc: "85+ client-side developer utilities running 100% locally in your browser",
+    devBrowseAll: "Browse Complete Developer Tools Directory →",
+    pdfFooterDesc: "36+ client-side PDF utilities running 100% locally in your browser",
+    pdfBrowseAll: "Browse Complete PDF Tools Directory →",
+    imageFooterDesc: "30+ client-side image editing & conversion tools running in your browser",
+    imageBrowseAll: "Browse Complete Image Tools Directory →",
+    calcFooterDesc: "Over 300 verified online calculators with instant step-by-step formulas",
+    calcBrowseAll: "Browse Complete Calculators Directory →",
+    viewAllPrefix: "View all",
+    categoryTitles: {},
+  },
+  es: {
+    mainNavLabel: "Navegación principal",
+    devTools: "Herramientas Dev",
+    pdfTools: "Herramientas PDF",
+    imageTools: "Herramientas Imagen",
+    calculators: "Calculadoras",
+    guides: "Guías",
+    community: "Comunidad",
+    searchPlaceholder: "Buscar...",
+    searchLabel: "Buscar",
+    openMenuLabel: "Abrir menú principal",
+    quickActions: "Acciones rápidas",
+    newBadge: "NUEVO",
+    devFooterDesc: "Más de 85 utilidades para desarrolladores 100 % locales en tu navegador",
+    devBrowseAll: "Ver directorio completo de herramientas de desarrollo →",
+    pdfFooterDesc: "Más de 36 herramientas PDF ejecutadas 100 % localmente en tu navegador",
+    pdfBrowseAll: "Ver directorio completo de herramientas PDF →",
+    imageFooterDesc: "Más de 30 herramientas de edición y conversión de imágenes en tu navegador",
+    imageBrowseAll: "Ver directorio completo de herramientas de imagen →",
+    calcFooterDesc: "Más de 300 calculadoras en línea verificadas con fórmulas paso a paso",
+    calcBrowseAll: "Ver directorio completo de calculadoras →",
+    viewAllPrefix: "Ver todo",
+    categoryTitles: {
+      "Text & Formatting": "Texto y Formato",
+      "Encoding & Security": "Codificación y Seguridad",
+      "Generators": "Generadores",
+      "Color Tools": "Herramientas de Color",
+      "Web Dev Utilities": "Utilidades Web",
+      "Developer Community": "Comunidad Técnica",
+      "Trending Tools": "Tendencias",
+      "PDF Manipulation": "Edición de PDF",
+      "Convert from PDF": "Convertir desde PDF",
+      "Convert to PDF": "Convertir a PDF",
+      "PDF Security": "Seguridad PDF",
+      "Image Editing": "Edición de Imágenes",
+      "Image Conversion": "Conversión de Imágenes",
+      "Advanced Tools": "Herramientas Avanzadas",
+      "Financial Calculators": "Finanzas",
+      "Fitness and Health Calculators": "Salud y Fitness",
+      "Math Calculators": "Matemáticas",
+      "Other Calculators": "Otras",
+      "Weather Calculators": "Clima",
+      "Physics Calculators": "Física",
+      "Chemistry Calculators": "Química",
+      "Statistics & Probability": "Estadística y Probabilidad",
+    },
+  },
+  fr: {
+    mainNavLabel: "Navigation principale",
+    devTools: "Outils Dev",
+    pdfTools: "Outils PDF",
+    imageTools: "Outils Image",
+    calculators: "Calculatrices",
+    guides: "Guides",
+    community: "Communauté",
+    searchPlaceholder: "Rechercher...",
+    searchLabel: "Rechercher",
+    openMenuLabel: "Ouvrir le menu principal",
+    quickActions: "Actions rapides",
+    newBadge: "NOUVEAU",
+    devFooterDesc: "Plus de 85 utilitaires développeur exécutés 100 % localement dans votre navigateur",
+    devBrowseAll: "Parcourir tout l’annuaire des outils développeur →",
+    pdfFooterDesc: "Plus de 36 outils PDF exécutés 100 % localement dans votre navigateur",
+    pdfBrowseAll: "Parcourir tout l’annuaire des outils PDF →",
+    imageFooterDesc: "Plus de 30 outils d’édition et de conversion d’images dans votre navigateur",
+    imageBrowseAll: "Parcourir tout l’annuaire des outils image →",
+    calcFooterDesc: "Plus de 300 calculatrices vérifiées avec formules détaillées étape par étape",
+    calcBrowseAll: "Parcourir tout l’annuaire des calculatrices →",
+    viewAllPrefix: "Voir tout",
+    categoryTitles: {
+      "Text & Formatting": "Texte & Formatage",
+      "Encoding & Security": "Encodage & Sécurité",
+      "Generators": "Générateurs",
+      "Color Tools": "Outils Couleur",
+      "Web Dev Utilities": "Utilitaires Web",
+      "Developer Community": "Communauté Dev",
+      "Trending Tools": "Outils Populaires",
+      "PDF Manipulation": "Édition PDF",
+      "Convert from PDF": "Convertir depuis PDF",
+      "Convert to PDF": "Convertir en PDF",
+      "PDF Security": "Sécurité PDF",
+      "Image Editing": "Édition d’Image",
+      "Image Conversion": "Conversion d’Image",
+      "Advanced Tools": "Outils Avancés",
+      "Financial Calculators": "Finances",
+      "Fitness and Health Calculators": "Santé & Fitness",
+      "Math Calculators": "Mathématiques",
+      "Other Calculators": "Autres",
+      "Weather Calculators": "Météo",
+      "Physics Calculators": "Physique",
+      "Chemistry Calculators": "Chimie",
+      "Statistics & Probability": "Statistiques & Probabilités",
+    },
+  },
+  de: {
+    mainNavLabel: "Hauptnavigation",
+    devTools: "Entwickler-Tools",
+    pdfTools: "PDF-Tools",
+    imageTools: "Bild-Tools",
+    calculators: "Rechner",
+    guides: "Ratgeber",
+    community: "Community",
+    searchPlaceholder: "Suchen...",
+    searchLabel: "Suchen",
+    openMenuLabel: "Hauptmenü öffnen",
+    quickActions: "Schnellaktionen",
+    newBadge: "NEU",
+    devFooterDesc: "Über 85 Entwickler-Tools – 100 % lokal direkt in Ihrem Browser",
+    devBrowseAll: "Komplettes Entwickler-Tools-Verzeichnis ansehen →",
+    pdfFooterDesc: "Über 36 PDF-Werkzeuge – 100 % lokal direkt in Ihrem Browser",
+    pdfBrowseAll: "Komplettes PDF-Tools-Verzeichnis ansehen →",
+    imageFooterDesc: "Über 30 Bildbearbeitungs- und Konvertierungstools direkt im Browser",
+    imageBrowseAll: "Komplettes Bild-Tools-Verzeichnis ansehen →",
+    calcFooterDesc: "Über 300 geprüfte Online-Rechner mit verständlichen Schritt-für-Schritt-Formeln",
+    calcBrowseAll: "Komplettes Rechner-Verzeichnis ansehen →",
+    viewAllPrefix: "Alle ansehen:",
+    categoryTitles: {
+      "Text & Formatting": "Text & Formatierung",
+      "Encoding & Security": "Kodierung & Sicherheit",
+      "Generators": "Generatoren",
+      "Color Tools": "Farb-Werkzeuge",
+      "Web Dev Utilities": "Web-Entwicklung",
+      "Developer Community": "Entwickler-Community",
+      "Trending Tools": "Beliebte Tools",
+      "PDF Manipulation": "PDF bearbeiten",
+      "Convert from PDF": "Aus PDF konvertieren",
+      "Convert to PDF": "In PDF konvertieren",
+      "PDF Security": "PDF-Sicherheit",
+      "Image Editing": "Bildbearbeitung",
+      "Image Conversion": "Bildkonvertierung",
+      "Advanced Tools": "Erweiterte Tools",
+      "Financial Calculators": "Finanzen",
+      "Fitness and Health Calculators": "Gesundheit & Fitness",
+      "Math Calculators": "Mathematik",
+      "Other Calculators": "Sonstiges",
+      "Weather Calculators": "Wetter",
+      "Physics Calculators": "Physik",
+      "Chemistry Calculators": "Chemie",
+      "Statistics & Probability": "Statistik & Wahrscheinlichkeit",
+    },
+  },
+};
+
 export function Navbar() {
+  const locale = useLocale();
+  const ui = NAVBAR_COPY[locale] || NAVBAR_COPY.en;
+  const tCat = (title: string) => ui.categoryTitles[title] || title.replace(" Calculators", "");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileCalcOpen, setMobileCalcOpen] = useState(false);
   const [mobileDevOpen, setMobileDevOpen] = useState(false);
@@ -177,7 +375,7 @@ export function Navbar() {
 
   return (
     <header className="bg-white border-b border-slate-200 dark:bg-slate-900 dark:border-slate-800 relative z-40">
-      <nav ref={navRef} className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
+      <nav ref={navRef} className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8" aria-label={ui.mainNavLabel}>
         <div className="flex justify-between h-16">
           {/* Left: Logo */}
           <div className="flex-shrink-0 flex items-center">
@@ -201,7 +399,7 @@ export function Navbar() {
                 className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'devTools' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
               >
                 <Code size={16} className="text-[#518231]" />
-                Developer Tools
+                {ui.devTools}
                 <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'devTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
@@ -213,31 +411,31 @@ export function Navbar() {
                     <div className="grid grid-cols-5 gap-x-5 gap-y-0">
 
                       {/* Col 1: Text & Formatting */}
-                      <DevMenuColumn category={developerToolsMenu[0]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={developerToolsMenu[0]} titleOverride={tCat(developerToolsMenu[0].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
                       {/* Col 2: Encoding & Security */}
-                      <DevMenuColumn category={developerToolsMenu[1]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={developerToolsMenu[1]} titleOverride={tCat(developerToolsMenu[1].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
                       {/* Col 3: Web Dev Utilities — tall column, scrollable */}
-                      <DevMenuColumn category={developerToolsMenu[4]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={developerToolsMenu[4]} titleOverride={tCat(developerToolsMenu[4].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
                       {/* Col 4: Generators + Color Tools stacked */}
                       <div className="flex flex-col gap-5">
-                        <DevMenuColumn category={developerToolsMenu[2]} handleLinkClick={handleLinkClick} compact />
-                        <DevMenuColumn category={developerToolsMenu[3]} handleLinkClick={handleLinkClick} compact />
+                        <DevMenuColumn category={developerToolsMenu[2]} titleOverride={tCat(developerToolsMenu[2].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} compact />
+                        <DevMenuColumn category={developerToolsMenu[3]} titleOverride={tCat(developerToolsMenu[3].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} compact />
                       </div>
                       {/* Col 5: Community + Trending stacked */}
                       <div className="flex flex-col gap-5">
-                        <DevMenuColumn category={developerToolsMenu[5]} handleLinkClick={handleLinkClick} compact />
-                        <DevMenuColumn category={developerToolsMenu[6]} handleLinkClick={handleLinkClick} compact />
+                        <DevMenuColumn category={developerToolsMenu[5]} titleOverride={tCat(developerToolsMenu[5].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} compact />
+                        <DevMenuColumn category={developerToolsMenu[6]} titleOverride={tCat(developerToolsMenu[6].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} compact />
                       </div>
 
                     </div>
                     <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                      <span className="text-xs text-slate-500 dark:text-slate-400">85+ client-side developer utilities running 100% locally in your browser</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400">{ui.devFooterDesc}</span>
                       <Link
                         href="/tools"
                         onClick={handleLinkClick}
                         className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
                       >
-                        Browse Complete Developer Tools Directory →
+                        {ui.devBrowseAll}
                       </Link>
                     </div>
                   </div>
@@ -253,7 +451,7 @@ export function Navbar() {
                 className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'pdfTools' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
               >
                 <File size={16} className="text-[#518231]" />
-                PDF Tools
+                {ui.pdfTools}
                 <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'pdfTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
@@ -262,19 +460,19 @@ export function Navbar() {
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-4 gap-x-5 gap-y-0">
-                      <DevMenuColumn category={pdfToolsMenu[0]} handleLinkClick={handleLinkClick} />
-                      <DevMenuColumn category={pdfToolsMenu[1]} handleLinkClick={handleLinkClick} />
-                      <DevMenuColumn category={pdfToolsMenu[2]} handleLinkClick={handleLinkClick} />
-                      <DevMenuColumn category={pdfToolsMenu[3]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={pdfToolsMenu[0]} titleOverride={tCat(pdfToolsMenu[0].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={pdfToolsMenu[1]} titleOverride={tCat(pdfToolsMenu[1].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={pdfToolsMenu[2]} titleOverride={tCat(pdfToolsMenu[2].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={pdfToolsMenu[3]} titleOverride={tCat(pdfToolsMenu[3].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
                     </div>
                     <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                      <span className="text-xs text-slate-500 dark:text-slate-400">36+ client-side PDF utilities running 100% locally in your browser</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400">{ui.pdfFooterDesc}</span>
                       <Link
                         href="/pdf"
                         onClick={handleLinkClick}
                         className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
                       >
-                        Browse Complete PDF Tools Directory →
+                        {ui.pdfBrowseAll}
                       </Link>
                     </div>
                   </div>
@@ -290,7 +488,7 @@ export function Navbar() {
                 className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'imageTools' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
               >
                 <ImageIcon size={16} className="text-[#518231]" />
-                Image Tools
+                {ui.imageTools}
                 <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'imageTools' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
@@ -299,18 +497,18 @@ export function Navbar() {
                 <div className="bg-white border-t border-b border-slate-200 shadow-2xl dark:bg-slate-900 dark:border-slate-800">
                   <div className="max-w-[800px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
                     <div className="grid grid-cols-3 gap-x-5 gap-y-0">
-                      <DevMenuColumn category={imageToolsMenu[0]} handleLinkClick={handleLinkClick} />
-                      <DevMenuColumn category={imageToolsMenu[1]} handleLinkClick={handleLinkClick} />
-                      <DevMenuColumn category={imageToolsMenu[2]} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={imageToolsMenu[0]} titleOverride={tCat(imageToolsMenu[0].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={imageToolsMenu[1]} titleOverride={tCat(imageToolsMenu[1].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
+                      <DevMenuColumn category={imageToolsMenu[2]} titleOverride={tCat(imageToolsMenu[2].title)} newBadge={ui.newBadge} handleLinkClick={handleLinkClick} />
                     </div>
                     <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                      <span className="text-xs text-slate-500 dark:text-slate-400">30+ client-side image editing & conversion tools running in your browser</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400">{ui.imageFooterDesc}</span>
                       <Link
                         href="/image"
                         onClick={handleLinkClick}
                         className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
                       >
-                        Browse Complete Image Tools Directory →
+                        {ui.imageBrowseAll}
                       </Link>
                     </div>
                   </div>
@@ -326,7 +524,7 @@ export function Navbar() {
                 className={`flex items-center gap-1 text-sm font-semibold transition-colors ${activeMegaMenu === 'calculators' ? 'text-[#518231]' : 'text-slate-800 hover:text-[#518231] dark:text-slate-200 dark:hover:text-[#518231]'}`}
               >
                 <Calculator size={16} className="text-[#518231]" />
-                Calculators
+                {ui.calculators}
                 <ChevronDown size={14} className={`text-slate-400 transition-transform ${activeMegaMenu === 'calculators' ? 'text-[#518231] rotate-180' : 'hover:text-[#518231]'}`} />
               </button>
 
@@ -338,6 +536,7 @@ export function Navbar() {
                     <div className="flex overflow-x-auto gap-x-5 pb-4 custom-scrollbar snap-x">
                       {navCategories.map((category) => {
                         const IconComp = calcCategoryIcons[category.id] || Calculator;
+                        const catLabel = tCat(category.title);
                         return (
                           <div key={category.id} className="min-w-[180px] shrink-0 snap-start">
                             {/* Category header */}
@@ -346,7 +545,7 @@ export function Navbar() {
                                 <IconComp size={14} className="text-[#518231]" />
                               </div>
                               <h3 className="text-xs font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wide">
-                                {category.title.replace(" Calculators", "")}
+                                {catLabel}
                               </h3>
                             </div>
                             {/* Links */}
@@ -368,7 +567,7 @@ export function Navbar() {
                                   onClick={handleLinkClick}
                                   className="block px-2 py-1.5 text-sm font-semibold text-[#518231] hover:bg-green-50 dark:hover:bg-slate-800 rounded-lg transition-colors mt-1"
                                 >
-                                  View all {category.title.replace(" Calculators", "")} →
+                                  {ui.viewAllPrefix} {catLabel} →
                                 </Link>
                               </li>
                             </ul>
@@ -377,13 +576,13 @@ export function Navbar() {
                       })}
                     </div>
                     <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                      <span className="text-xs text-slate-500 dark:text-slate-400">Over 300 verified online calculators with instant step-by-step formulas</span>
+                      <span className="text-xs text-slate-500 dark:text-slate-400">{ui.calcFooterDesc}</span>
                       <Link
                         href="/calculators"
                         onClick={handleLinkClick}
                         className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:hover:text-[#6fa844] flex items-center gap-1 transition-colors"
                       >
-                        Browse Complete Calculators Directory →
+                        {ui.calcBrowseAll}
                       </Link>
                     </div>
                   </div>
@@ -394,15 +593,15 @@ export function Navbar() {
 
             <div className="ms-4 ps-4 border-s border-slate-200 dark:border-slate-700 flex items-center space-x-3">
               <Link href="/guides" className="text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
-                Guides
+                {ui.guides}
               </Link>
               <Link href="/community" className="text-sm font-semibold text-slate-800 hover:text-[#518231] transition-colors dark:text-slate-200 dark:hover:text-[#518231]">
-                Community
+                {ui.community}
               </Link>
               
               <button onClick={() => window.dispatchEvent(new Event('open-command-palette'))} className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-500 rounded-full transition-colors dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-400">
                 <Search size={14} />
-                <span className="text-sm font-medium">Search...</span>
+                <span className="text-sm font-medium">{ui.searchPlaceholder}</span>
                 <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-bold text-slate-400 bg-white border border-slate-200 rounded dark:bg-slate-900 dark:border-slate-700">Ctrl K</kbd>
               </button>
 
@@ -415,7 +614,7 @@ export function Navbar() {
           {/* Right: Mobile menu button */}
           <div className="flex items-center lg:hidden">
             <button onClick={() => window.dispatchEvent(new Event('open-command-palette'))} className="p-2 me-2 text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300 inline-flex items-center justify-center min-h-[48px] min-w-[48px]">
-               <span className="sr-only">Search</span>
+               <span className="sr-only">{ui.searchLabel}</span>
                <Search size={20} />
             </button>
             <button
@@ -423,7 +622,7 @@ export function Navbar() {
               className="inline-flex items-center justify-center p-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#518231] dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800 min-h-[48px] min-w-[48px]"
               aria-expanded={isMobileMenuOpen}
             >
-              <span className="sr-only">Open main menu</span>
+              <span className="sr-only">{ui.openMenuLabel}</span>
               {isMobileMenuOpen ? (
                 <X className="block h-6 w-6" aria-hidden="true" />
               ) : (
@@ -451,7 +650,7 @@ export function Navbar() {
             >
               <span className="flex items-center gap-2">
                 <Code size={16} className="text-[#518231]" />
-                Developer Tools
+                {ui.devTools}
               </span>
               <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobileDevOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -464,7 +663,7 @@ export function Navbar() {
                       className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                     >
                       <category.icon size={16} className="text-[#518231] shrink-0" />
-                      <span className="flex-1 text-left">{category.title}</span>
+                      <span className="flex-1 text-left">{tCat(category.title)}</span>
                       <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileDevCategory === category.title ? 'rotate-180' : ''}`} />
                     </button>
                     {mobileDevCategory === category.title && (
@@ -472,14 +671,14 @@ export function Navbar() {
                         {category.items.map((item: any) => (
                           <Link
                             key={item.name}
-                            href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
+                            href={'href' in item && item.href ? resolveIntlHref(item.href) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
                             className="block py-2 group/moblink"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
                             <div className={`text-sm font-medium transition-colors flex items-center ${item.isNew ? 'text-violet-600 dark:text-violet-400' : 'text-slate-600 dark:text-slate-300 group-hover/moblink:text-[#518231]'}`}>
                               {item.icon && <item.icon size={14} className="mr-1.5 shrink-0" />}
                               {item.name}
-                              {item.isNew && <span className="text-[9px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-2 shrink-0">NEW</span>}
+                              {item.isNew && <span className="text-[9px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-2 shrink-0">{ui.newBadge}</span>}
                             </div>
                             <div className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{item.desc}</div>
                           </Link>
@@ -493,7 +692,7 @@ export function Navbar() {
                   className="block px-3 py-2.5 text-sm font-bold text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Browse All Developer Tools Directory →
+                  {ui.devBrowseAll}
                 </Link>
               </div>
             )}
@@ -507,7 +706,7 @@ export function Navbar() {
             >
               <span className="flex items-center gap-2">
                 <File size={16} className="text-[#518231]" />
-                PDF Tools
+                {ui.pdfTools}
               </span>
               <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobilePdfOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -520,7 +719,7 @@ export function Navbar() {
                       className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                     >
                       <category.icon size={16} className="text-[#518231] shrink-0" />
-                      <span className="flex-1 text-left">{category.title}</span>
+                      <span className="flex-1 text-left">{tCat(category.title)}</span>
                       <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobilePdfCategory === category.title ? 'rotate-180' : ''}`} />
                     </button>
                     {mobilePdfCategory === category.title && (
@@ -528,7 +727,7 @@ export function Navbar() {
                         {category.items.map((item: any) => (
                           <Link
                             key={item.name}
-                            href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
+                            href={'href' in item && item.href ? resolveIntlHref(item.href) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
                             className="block py-2 group/moblink"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
@@ -545,7 +744,7 @@ export function Navbar() {
                   className="block px-3 py-2.5 text-sm font-bold text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Browse All PDF Tools Directory →
+                  {ui.pdfBrowseAll}
                 </Link>
               </div>
             )}
@@ -559,7 +758,7 @@ export function Navbar() {
             >
               <span className="flex items-center gap-2">
                 <ImageIcon size={16} className="text-[#518231]" />
-                Image Tools
+                {ui.imageTools}
               </span>
               <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobileImageOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -572,7 +771,7 @@ export function Navbar() {
                       className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                     >
                       <category.icon size={16} className="text-[#518231] shrink-0" />
-                      <span className="flex-1 text-left">{category.title}</span>
+                      <span className="flex-1 text-left">{tCat(category.title)}</span>
                       <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileImageCategory === category.title ? 'rotate-180' : ''}`} />
                     </button>
                     {mobileImageCategory === category.title && (
@@ -580,7 +779,7 @@ export function Navbar() {
                         {category.items.map((item: any) => (
                           <Link
                             key={item.name}
-                            href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
+                            href={'href' in item && item.href ? resolveIntlHref(item.href) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
                             className="block py-2 group/moblink"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
@@ -597,7 +796,7 @@ export function Navbar() {
                   className="block px-3 py-2.5 text-sm font-bold text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Browse All Image Tools Directory →
+                  {ui.imageBrowseAll}
                 </Link>
               </div>
             )}
@@ -611,7 +810,7 @@ export function Navbar() {
             >
               <span className="flex items-center gap-2">
                 <Calculator size={16} className="text-[#518231]" />
-                Calculators
+                {ui.calculators}
               </span>
               <ChevronDown size={16} className={`text-slate-400 transition-transform ${mobileCalcOpen ? 'rotate-180' : ''}`} />
             </button>
@@ -619,6 +818,7 @@ export function Navbar() {
               <div className="mt-1 space-y-1 pl-1">
                 {navCategories.map((category) => {
                   const IconComp = calcCategoryIcons[category.id] || Calculator;
+                  const catLabel = tCat(category.title);
                   return (
                     <div key={category.id}>
                       <button
@@ -626,7 +826,7 @@ export function Navbar() {
                         className="w-full flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                       >
                         <IconComp size={16} className="text-[#518231] shrink-0" />
-                        <span className="flex-1 text-left">{category.title}</span>
+                        <span className="flex-1 text-left">{catLabel}</span>
                         <ChevronDown size={14} className={`text-slate-400 transition-transform ${mobileCalcCategory === category.id ? 'rotate-180' : ''}`} />
                       </button>
                       {mobileCalcCategory === category.id && (
@@ -646,7 +846,7 @@ export function Navbar() {
                             className="block py-2 text-sm font-semibold text-[#518231]"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
-                            View All {category.title} →
+                            {ui.viewAllPrefix} {catLabel} →
                           </Link>
                         </div>
                       )}
@@ -658,17 +858,34 @@ export function Navbar() {
                   className="block px-3 py-2.5 text-sm font-bold text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
-                  Browse All Calculators Directory →
+                  {ui.calcBrowseAll}
                 </Link>
               </div>
             )}
+          </div>
+
+          <div className="py-1 border-t border-slate-100 dark:border-slate-800 pt-2 flex flex-col gap-1">
+            <Link
+              href="/guides"
+              className="block px-3 py-2.5 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {ui.guides}
+            </Link>
+            <Link
+              href="/community"
+              className="block px-3 py-2.5 text-sm font-bold text-slate-800 dark:text-slate-200 hover:text-[#518231] hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {ui.community}
+            </Link>
           </div>
 
         </div>
 
         {/* Mobile Menu Footer — Auth + Notifications */}
         <div className="border-t border-slate-100 dark:border-slate-800 px-4 py-4 flex items-center justify-between gap-3 pb-[calc(1rem+env(safe-area-inset-bottom,0px))]">
-          <span className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Quick Actions</span>
+          <span className="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">{ui.quickActions}</span>
           <div className="flex items-center gap-2">
             <NotificationsPanel />
             <AuthButton />
@@ -697,10 +914,14 @@ interface DevMenuCat {
 
 function DevMenuColumn({
   category,
+  titleOverride,
+  newBadge = "NEW",
   handleLinkClick,
   compact = false
 }: {
   category: DevMenuCat;
+  titleOverride?: string;
+  newBadge?: string;
   handleLinkClick: () => void;
   compact?: boolean;
 }) {
@@ -711,14 +932,14 @@ function DevMenuColumn({
           <category.icon size={13} className="text-[#518231]" />
         </div>
         <h3 className="text-[11px] font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wide leading-tight">
-          {category.title}
+          {titleOverride || category.title}
         </h3>
       </div>
       <ul className={`space-y-0 ${compact ? 'max-h-[200px]' : 'max-h-[360px]'} overflow-y-auto custom-scrollbar`}>
         {category.items.map((item: any) => (
           <li key={item.name}>
             <Link
-              href={'href' in item && item.href ? (item.href as any) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
+              href={'href' in item && item.href ? resolveIntlHref(item.href) : resolveIntlHref('slug' in item && item.slug ? `/tools/${item.slug}` : resolveHref(item.name))}
               onClick={handleLinkClick}
               className={`flex items-center px-2 py-1.5 text-[13px] rounded-md transition-all leading-tight ${
                 item.isNew 
@@ -728,7 +949,7 @@ function DevMenuColumn({
             >
               {item.icon && <item.icon size={14} className="mr-1.5 shrink-0" />}
               <span className="truncate">{item.name}</span>
-              {item.isNew && <span className="text-[9px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-auto shrink-0">NEW</span>}
+              {item.isNew && <span className="text-[9px] font-bold text-white bg-violet-600 rounded-full px-1.5 py-0.5 leading-none ml-auto shrink-0">{newBadge}</span>}
             </Link>
           </li>
         ))}

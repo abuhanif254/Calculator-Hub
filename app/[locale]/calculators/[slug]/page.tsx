@@ -26,6 +26,7 @@ import { ScenarioPresetsBar } from "@/app/components/ScenarioPresetsBar";
 import { NextStepWorkflowCard, NextStepItem } from "@/app/components/NextStepWorkflowCard";
 import { EmbeddedToolDiscussions } from "@/app/components/community/EmbeddedToolDiscussions";
 import { AdSenseContainer } from "@/app/components/AdSenseContainer";
+import { LocaleSiblingLinks } from "@/app/components/LocaleSiblingLinks";
 import { ProbabilitySeoContent } from "@/app/components/probability/ProbabilitySeoContent";
 import Mermaid from "@/app/components/Mermaid";
 import { Link, routing, resolveIntlHref } from "@/i18n/routing";
@@ -821,7 +822,9 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
       {mathSolverSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(mathSolverSchema) }} />
       )}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {faqs.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      )}
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
@@ -1391,6 +1394,13 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
             );
           })}
         </div>
+      </div>
+      {/* Crawlable SSR Cross-Locale Sibling Links — passes PageRank directly across en / es / fr / de */}
+      <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800">
+        <LocaleSiblingLinks
+          languages={getCanonicalAndAlternates('/calculators/[slug]', resolvedParams.locale, calc.slug).languages}
+          currentLocale={resolvedParams.locale}
+        />
       </div>
     </main>
   );

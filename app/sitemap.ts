@@ -15,9 +15,9 @@ import { COMMUNITY_CATEGORIES } from '../lib/categories';
 // revalidate=false serves from CDN edge permanently, saving Vercel ISR quota.
 export const revalidate = false;
 
-// Architectural & SSR SEO Overhaul Baseline (Phases 1–6)
-// Ensures Googlebot sees that all canonical/hreflang/enriched pages are newer than October 2026 crawls.
-const OVERHAUL_BASELINE_MS = new Date('2026-11-14T16:00:00.000Z').getTime();
+// Architectural & SSR SEO Overhaul Baseline (Zero-Boilerplate + Full 4-Locale Language Purity & Cross-Locale Links)
+// Ensures Googlebot sees that all canonical/hreflang/content-upgraded pages are newer than previous crawls.
+const OVERHAUL_BASELINE_MS = new Date('2026-11-19T12:00:00.000Z').getTime();
 
 function resolveLatestContentMtime(relativePaths: string[], explicitDate?: string | Date): Date {
   let maxMs = OVERHAUL_BASELINE_MS;
@@ -158,15 +158,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...buildEntries('/', 'daily', 1.0, undefined, baselineMod, [`${baseUrl}/icons/icon-512x512.png`]),
     ...buildEntries('/sitemap', 'weekly', 0.8, undefined, baselineMod),
     ...buildEntries('/community', 'daily', 0.7, undefined, baselineMod),
-    ...buildEntries('/community/hall-of-fame', 'weekly', 0.65, undefined, baselineMod),
     ...COMMUNITY_CATEGORIES.flatMap((cat) => buildEntries('/community/category/[slug]', 'weekly', 0.7, cat.slug, baselineMod)),
-    // REMOVED: /community/new — requires login, redirects unauthenticated crawlers → GSC "Page with redirect"
-    // REMOVED: /login, /signup — auth pages always redirect, waste crawl budget
+    // REMOVED from sitemap.xml (still index,follow in Footer for AdSense compliance):
+    // /disclaimer, /privacy-policy, /terms-of-use, /community/hall-of-fame
+    // Keeping sitemap.xml focused exclusively on core calculators, tools, guides, hubs, comparisons & collections.
     ...buildEntries('/about-us', 'monthly', 0.5, undefined, resolveLatestContentMtime(['app/[locale]/about-us/page.tsx'])),
     ...buildEntries('/contact-us', 'monthly', 0.5, undefined, baselineMod),
-    ...buildEntries('/disclaimer', 'yearly', 0.4, undefined, baselineMod),
-    ...buildEntries('/privacy-policy', 'yearly', 0.3, undefined, baselineMod),
-    ...buildEntries('/terms-of-use', 'yearly', 0.3, undefined, baselineMod),
     ...buildEntries('/guides', 'weekly', 0.85, undefined, baselineMod),
     ...buildEntries('/calculators', 'weekly', 0.95, undefined, baselineMod),
     ...buildEntries('/tools', 'weekly', 0.9, undefined, baselineMod),

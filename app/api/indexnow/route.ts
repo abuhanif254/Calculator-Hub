@@ -63,12 +63,8 @@ function collectAllCanonicalUrls(): string[] {
     '/image',
     '/pdf',
     '/community',
-    '/community/hall-of-fame',
     '/about-us',
     '/contact-us',
-    '/privacy-policy',
-    '/terms-of-use',
-    '/disclaimer',
     '/sitemap',
   ];
 

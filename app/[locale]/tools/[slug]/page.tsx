@@ -12,6 +12,7 @@ import { FavoriteButton } from '../../../components/FavoriteButton';
 import { ShareButton } from '../../../components/ShareButton';
 import { EmbedButton } from '../../../components/EmbedButton';
 import { AdSenseContainer } from '../../../components/AdSenseContainer';
+import { LocaleSiblingLinks } from '../../../components/LocaleSiblingLinks';
 import { getGuideForTool } from '@/lib/data/guides';
 import { getCollectionsForSlug } from '@/lib/data/collections';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
@@ -277,7 +278,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     localizedFaqs: localizedData?.faqs,
     localizedHowToSteps: localizedData?.howToSteps,
   });
-  const reviewerByline = getLocalizedReviewerByline(config.category || 'Engineering', locale, '2026-11-14');
+  const reviewerByline = getLocalizedReviewerByline(config.category || 'Engineering', locale, '2026-11-19');
   const ioLabels: Record<string, { input: string; output: string }> = {
     en: { input: 'Input', output: 'Output' },
     es: { input: 'Entrada', output: 'Salida' },
@@ -398,9 +399,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       {/* Schemas */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      {pageFaqs.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      {pageHowToSteps.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      )}
 
       {/* Breadcrumb */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -548,21 +553,23 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             </div>
 
             {/* How To Use */}
-            <section className="space-y-6">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Lightbulb className="text-[#518231]" /> {t.howToUse(pageTitle)}
-              </h2>
-              <div className="grid gap-4">
-                {pageHowToSteps.map((step: string, idx: number) => (
-                  <div key={idx} className="flex gap-4 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                    <div className="w-8 h-8 shrink-0 rounded-full bg-[#518231]/10 text-[#518231] flex items-center justify-center font-bold">
-                      {idx + 1}
+            {pageHowToSteps.length > 0 && (
+              <section className="space-y-6">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <Lightbulb className="text-[#518231]" /> {t.howToUse(pageTitle)}
+                </h2>
+                <div className="grid gap-4">
+                  {pageHowToSteps.map((step: string, idx: number) => (
+                    <div key={idx} className="flex gap-4 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                      <div className="w-8 h-8 shrink-0 rounded-full bg-[#518231]/10 text-[#518231] flex items-center justify-center font-bold">
+                        {idx + 1}
+                      </div>
+                      <p className="text-slate-700 dark:text-slate-300 mt-1">{step}</p>
                     </div>
-                    <p className="text-slate-700 dark:text-slate-300 mt-1">{step}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Real Examples */}
             {pageExamples.length > 0 && (
@@ -594,57 +601,62 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             )}
 
             {/* FAQ Section */}
-            <section className="space-y-6">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <HelpCircle className="text-[#518231]" /> {t.faq}
-              </h2>
-              <div className="space-y-4">
-                {pageFaqs.map((faq: any, idx: number) => (
-                  <details key={idx} className="group bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
-                    <summary className="flex items-center justify-between p-6 cursor-pointer font-semibold text-slate-900 dark:text-white list-none [&::-webkit-details-marker]:hidden">
-                      {faq.question}
-                      <ChevronRight className="transform group-open:rotate-90 transition-transform text-slate-400" />
-                    </summary>
-                    <div className="px-6 pb-6 text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-4">
-                      {faq.answer}
-                    </div>
-                  </details>
-                ))}
-              </div>
-            </section>
+            {pageFaqs.length > 0 && (
+              <section className="space-y-6">
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <HelpCircle className="text-[#518231]" /> {t.faq}
+                </h2>
+                <div className="space-y-4">
+                  {pageFaqs.map((faq: any, idx: number) => (
+                    <details key={idx} className="group bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                      <summary className="flex items-center justify-between p-6 cursor-pointer font-semibold text-slate-900 dark:text-white list-none [&::-webkit-details-marker]:hidden">
+                        {faq.question}
+                        <ChevronRight className="transform group-open:rotate-90 transition-transform text-slate-400" />
+                      </summary>
+                      <div className="px-6 pb-6 text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-4">
+                        {faq.answer}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
 
           <div className="space-y-8">
             {/* Features */}
-
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <Zap className="text-amber-500" /> {t.keyFeatures}
-              </h3>
-              <ul className="space-y-3">
-                {pageFeatures.map((feature: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#518231] shrink-0 mt-2"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {pageFeatures.length > 0 && (
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                  <Zap className="text-amber-500" /> {t.keyFeatures}
+                </h3>
+                <ul className="space-y-3">
+                  {pageFeatures.map((feature: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#518231] shrink-0 mt-2"></div>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Use Cases */}
-            <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
-                <Layers className="text-blue-500" /> {t.commonUseCases}
-              </h3>
-              <ul className="space-y-3">
-                {pageUseCases.map((useCase: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-2"></div>
-                    {useCase}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {pageUseCases.length > 0 && (
+              <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-slate-200 dark:border-slate-800">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                  <Layers className="text-blue-500" /> {t.commonUseCases}
+                </h3>
+                <ul className="space-y-3">
+                  {pageUseCases.map((useCase: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-2"></div>
+                      {useCase}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             {/* Related Tools */}
             <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
@@ -764,6 +776,13 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             </div>
           </section>
         )}
+        {/* Crawlable SSR Cross-Locale Sibling Links — passes PageRank directly across en / es / fr / de */}
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks
+            languages={getCanonicalAndAlternates('/tools/[slug]', locale, config.slug).languages}
+            currentLocale={locale}
+          />
+        </div>
       </main>
     </div>
   );
