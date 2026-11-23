@@ -1,106 +1,99 @@
 ---
-metaTitle: "Générateur de Hash en Ligne | MD5, SHA-1, SHA-256, SHA-3"
-metaDescription: "Générateur de hash cryptographique avancé. Calculez des hachages MD5, SHA-1, SHA-256, SHA-512 et SHA-3 en temps réel. Vérifiez l'intégrité de vos fichiers."
-metaKeywords: "générateur de hash, hash md5 en ligne, générateur sha256, générateur sha1, sha512, générateur sha3, calculer hash, intégrité fichier, checksum"
+metaTitle: "Générateur de Hash en Ligne | MD5, SHA-256, SHA-512, SHA-3"
+metaDescription: "Calculez des empreintes MD5, SHA-1, SHA-256, SHA-512 et SHA-3 localement dans votre navigateur. Vérifiez l'intégrité de vos textes et fichiers."
+metaKeywords: "générateur de hash, hash md5 en ligne, générateur sha256, générateur sha1, sha512, générateur sha3, calculer hash, intégrité fichier, checksum, empreinte cryptographique"
 title: "Générateur de Hash"
-shortDescription: "Générateur de hachage cryptographique avancé. Calculez les hachages MD5, SHA-1, SHA-256 et SHA-3 en temps réel. Vérifiez l'intégrité de vos fichiers localement."
+shortDescription: "Calculez instantanément des empreintes cryptographiques MD5, SHA-1, SHA-256, SHA-512 et SHA-3 pour du texte ou des fichiers volumineux, 100 % côté client."
 faqs:
-  - question: "Qu'est-ce qu'un générateur de hash ?"
-    answer: "Un générateur de hash est un outil qui prend une entrée (comme du texte ou un fichier) et la traite via un algorithme mathématique pour produire une chaîne de caractères de longueur fixe, appelée hash ou checksum."
-  - question: "Qu'est-ce que SHA-256 ?"
-    answer: "SHA-256 est une fonction de hachage cryptographique hautement sécurisée qui génère une signature de 256 bits (64 caractères). C'est la norme industrielle actuelle."
-  - question: "MD5 est-il sécurisé ?"
-    answer: "Non. Le MD5 est considéré comme cryptographiquement brisé et faible. Il est très sensible aux attaques par collision et ne doit jamais être utilisé à des fins de sécurité."
-  - question: "Quelle est la différence entre le hachage et le chiffrement ?"
-    answer: "Le chiffrement est un processus bidirectionnel conçu pour masquer les données et permettre de les déchiffrer plus tard. Le hachage est un processus unidirectionnel conçu pour vérifier l'intégrité des données ; il est irréversible."
-  - question: "Les hachages peuvent-ils être inversés ou déchiffrés ?"
-    answer: "Non, les fonctions de hachage sont strictement à sens unique. Les pirates utilisent des dictionnaires ou des tables arc-en-ciel pour deviner les mots de passe, mais ne déchiffrent pas l'algorithme lui-même."
+  - question: "Pourquoi SHA-256 est-il recommandé à la place de MD5 et SHA-1 ?"
+    answer: "MD5 (128 bits) et SHA-1 (160 bits) sont vulnérables à des attaques par collision pratiques et peu coûteuses (comme FastColl ou SHAttered). SHA-256 produit un condensat de 256 bits avec une résistance théorique de 2^128 opérations face aux collisions, ce qui en fait la référence actuelle pour vérifier l'intégrité des fichiers et signer des certificats."
+  - question: "En quoi l'architecture de SHA-3 diffère-t-elle de celle de SHA-2 ?"
+    answer: "La famille SHA-2 repose sur la construction itérative de Merkle-Damgård, sensible aux attaques par extension de longueur lorsqu'elle est utilisée naïvement avec une clé secrète. SHA-3 (normalisé par le NIST dans FIPS 202) s'appuie sur la construction éponge de Keccak avec une permutation interne de 1600 bits, immunisée nativement contre cette classe d'attaque."
+  - question: "Un hachage SHA-256 suffit-il pour stocker des mots de passe en base de données ?"
+    answer: "Non. Les fonctions de hachage cryptographiques générales comme SHA-256 ou SHA-3 sont conçues pour s'exécuter le plus vite possible, ce qui facilite les attaques par force brute sur GPU. Pour les mots de passe, utilisez une fonction de dérivation de clé lente et gourmande en mémoire telle qu'Argon2id, scrypt ou bcrypt avec un sel unique par utilisateur."
+  - question: "Pourquoi deux fichiers apparemment identiques produisent-ils des hachages différents ?"
+    answer: "En raison de l'effet d'avalanche, la moindre différence d'un seul bit modifie environ la moitié des bits de l'empreinte. Les causes les plus fréquentes sur les fichiers texte sont les fins de ligne Windows (CRLF) versus Unix (LF), la présence d'un marqueur d'ordre d'octets UTF-8 (BOM) ou une espace finale invisible."
+  - question: "Mes fichiers confidentiels sont-ils envoyés sur un serveur lors du calcul ?"
+    answer: "Non. Toutes les opérations de hachage s'effectuent localement dans votre navigateur grâce à l'API Web Cryptography (SubtleCrypto) et à un découpage par blocs en mémoire. Aucun octet de vos textes ou de vos archives binaires ne transite sur le réseau."
 features:
-  - "Génération instantanée de hachage multi-algorithmes (MD5, SHA-1, SHA-2, SHA-3)"
-  - "Hachage sécurisé des fichiers côté client directement dans votre navigateur"
-  - "Prise en charge de fichiers massifs sans plantage de la mémoire"
-  - "Comparaison de hachages côte à côte pour vérifier l'intégrité"
-  - "Indicateurs de sécurité mettant en évidence les algorithmes obsolètes"
-  - "Prise en charge complète des emojis, UTF-8 et Unicode"
-  - "Exécution 100% privée : vos données ne touchent jamais nos serveurs"
+  - "Calcul simultané multi-algorithmes : MD5, SHA-1, SHA-224, SHA-256, SHA-384, SHA-512 et SHA-3 (Keccak)"
+  - "Lecture en flux par blocs des fichiers volumineux sans saturer la mémoire vive du navigateur"
+  - "Comparateur intégré insensible à la casse pour valider immédiatement un checksum officiel"
+  - "Indicateurs de robustesse cryptographique signalant les algorithmes dépréciés ou cassés"
+  - "Encodage UTF-8 strict compatible avec les caractères accentués, symboles techniques et emojis"
+  - "Traitement 100 % côté client sans aucune transmission réseau ni journalisation serveur"
 useCases:
-  - "Vérification de l'intégrité des logiciels téléchargés via des sommes de contrôle SHA-256"
-  - "Génération de hachages MD5 ou SHA-1 pour l'intégration de systèmes hérités"
-  - "Test des webhooks API nécessitant une vérification de signature HMAC"
-  - "Comparaison de deux fichiers pour voir s'ils sont absolument identiques"
-  - "Création d'identifiants uniques et déterministes basés sur des charges utiles"
+  - "Contrôler l'intégrité d'une image ISO Linux ou d'un exécutable téléchargé via son fichier SHA256SUMS"
+  - "Générer des empreintes déterministes pour le cache-busting d'actifs statiques dans un pipeline CI/CD"
+  - "Dédupliquer des documents binaires ou détecter des altérations silencieuses dans un stockage objet"
+  - "Produire des sommes de contrôle MD5 héritées exigées par les en-têtes Content-MD5 d'anciennes API"
+  - "Auditer la conformité de livrables logiciels en consignant leurs condensats SHA-256 et SHA-512"
+  - "Vérifier qu'un transfert SFTP, une sauvegarde ou une migration de base n'a subi aucune corruption"
 howToSteps:
-  - "Sélectionnez votre méthode d'entrée : 'Saisie de texte' ou 'Téléchargement de fichier'."
-  - "Pour le texte, tapez simplement dans l'éditeur. Les hachages seront calculés instantanément."
-  - "Pour un fichier, glissez-déposez-le dans la zone de téléchargement."
-  - "Faites défiler vers le bas pour voir les hachages générés par plusieurs algorithmes."
-  - "Faites attention aux badges de sécurité (par exemple, 'Fort', 'Faible')."
-  - "Pour vérifier un hachage, collez le hachage attendu dans le champ 'Comparer / Vérifier'."
+  - "Choisissez le mode d'entrée souhaité : saisie de texte libre ou sélection d'un fichier local."
+  - "Saisissez ou collez votre chaîne UTF-8 dans l'éditeur, ou glissez-déposez un fichier dans la zone dédiée."
+  - "Observez le calcul instantané des empreintes hexadécimales pour chaque algorithme pris en charge."
+  - "Vérifiez les badges de statut cryptographique pour sélectionner un algorithme adapté à votre niveau de sécurité."
+  - "Collez une empreinte attendue dans le champ de comparaison afin de confirmer une correspondance exacte bit à bit."
+  - "Copiez le condensat final en minuscules ou en majuscules pour l'intégrer à vos scripts ou manifests."
 ---
 
-## Qu'est-ce que le Hachage (Hashing) ?
+Une fonction de hachage cryptographique transforme une séquence d'octets de longueur arbitraire — qu'il s'agisse d'une simple chaîne de caractères, d'un document PDF ou d'une image disque de plusieurs gigaoctets — en une empreinte binaire de taille fixe appelée condensat, hachage (*hash*) ou somme de contrôle (*checksum*). Cet outil exécute les algorithmes MD5, SHA-1, la famille SHA-2 et SHA-3 directement dans votre navigateur, afin de valider l'intégrité de vos données sans jamais les téléverser sur un serveur distant.
 
-**Le hachage** est un concept fondamental en informatique. C'est le processus consistant à faire passer des données de n'importe quelle taille (texte, mot de passe ou fichier volumineux) à travers un algorithme mathématique, qui produit une chaîne de caractères pseudo-aléatoire de taille fixe.
+## Propriétés mathématiques et architectures internes
 
-Quelle que soit la taille de l'entrée, le hash résultant aura toujours la même longueur pour un algorithme donné. Par exemple, que vous hachiez la lettre "A" ou un livre de 500 pages avec SHA-256, la sortie sera toujours une chaîne hexadécimale de 64 caractères.
+Pour être qualifiée de cryptographiquement sûre, une fonction de hachage `H` doit satisfaire trois garanties fondamentales : la **résistance à la pré-image** (impossibilité pratique de retrouver un message `m` à partir de `H(m)`), la **résistance à la seconde pré-image** (impossibilité de fabriquer un message `m2 ≠ m1` ayant la même empreinte qu'un message donné) et la **résistance aux collisions** (impossibilité de trouver une paire quelconque `(m1, m2)` vérifiant `H(m1) = H(m2)`). S'y ajoute l'**effet d'avalanche** : l'inversion d'un unique bit dans l'entrée doit basculer statistiquement 50 % des bits de sortie, rendant toute corrélation impossible.
 
----
+Sur le plan structurel, deux grandes familles coexistent dans les bibliothèques modernes :
 
-## Comment fonctionnent les fonctions de hachage
+### La construction de Merkle-Damgård (MD5, SHA-1, SHA-2)
 
-Une fonction de hachage robuste doit posséder plusieurs propriétés critiques :
+Les algorithmes **MD5** (RFC 1321), **SHA-1** et **SHA-2** (norme NIST FIPS 180-4) découpent l'entrée en blocs fixes de 512 bits (ou 1 024 bits pour SHA-384 et SHA-512), appliquent un remplissage (*padding*) incluant un bit `1`, des zéros et la longueur totale du message encodée sur 64 ou 128 bits, puis enchaînent une fonction de compression itérative à partir d'un vecteur d'initialisation constant.
 
-1. **Déterministe** : La même entrée produira toujours la même sortie.
-2. **Calcul rapide** : La génération d'un hachage doit être efficace en termes de calcul.
-3. **Résistance à la pré-image (Sens unique)** : Il doit être mathématiquement impossible de reconstituer les données d'entrée originales à partir de leur hachage.
-4. **Effet d'avalanche** : La modification d'un seul bit dans les données d'entrée doit modifier considérablement le hachage résultant.
-5. **Résistance aux collisions** : Il doit être impossible de trouver deux entrées différentes produisant le même hachage.
+Bien que **SHA-256** et **SHA-512** demeurent extrêmement robustes contre les collisions, la structure de Merkle-Damgård expose un angle mort spécifique : l'**attaque par extension de longueur** (*length extension attack*). Si un développeur authentifie un message en calculant naïvement `SHA256(secret || message)`, un attaquant connaissant le condensat et la longueur du secret peut calculer un hachage valide pour `secret || message || padding || données_injectées` sans connaître le secret. C'est précisément pour neutraliser cette faille que l'authentification par clé secrète doit passer par HMAC (RFC 2104), testable via notre [générateur HMAC](/fr/outils/hmac-generator).
 
----
+### La construction éponge de Keccak (SHA-3)
 
-## Les Algorithmes de hachage courants
+Normalisée par le NIST en 2015 dans **FIPS 202**, la famille **SHA-3** (issue de l'algorithme Keccak) adopte une architecture radicalement différente appelée **construction éponge** (*sponge construction*). Elle maintient un état interne de 1 600 bits divisé en deux zones : le débit (*bitrate* `r`) qui absorbe les blocs d'entrée par opération XOR, et la capacité (`c`) qui n'est jamais exposée directement et fixe la marge de sécurité cryptographique. Entre chaque bloc, la permutation `Keccak-f[1600]` applique 24 rondes mêlant opérations booléennes et rotations binaires. Parce que l'état complet n'est jamais restitué intégralement en sortie, SHA-3 est naturellement immunisé contre les attaques par extension de longueur.
 
-### MD5 (Message Digest Algorithm 5)
-Développé en 1991, le MD5 produit une valeur de 128 bits.
-* **Sécurité** : **Faible / Brisée**. Très vulnérable aux attaques par collision.
-* **Cas d'utilisation** : Sommes de contrôle (checksums) basiques.
+## Comparatif technique des algorithmes de hachage
 
-### SHA-1 (Secure Hash Algorithm 1)
-Conçu par la NSA en 1995, il produit un hachage de 160 bits.
-* **Sécurité** : **Obsolète**. Les attaques par collision sont désormais possibles.
-* **Cas d'utilisation** : Utilisé historiquement dans Git.
+Le tableau ci-dessous synthétise les caractéristiques internes, l'état de la sécurité cryptanalytique et les usages appropriés de chaque algorithme :
 
-### Famille SHA-2 (SHA-224, SHA-256, SHA-384, SHA-512)
-Introduite en 2001, c'est la norme industrielle actuelle.
-* **Sécurité** : **Forte / Recommandée**.
-* **Cas d'utilisation** : Certificats SSL/TLS, mots de passe, Blockchain (Bitcoin).
+| Algorithme | Sortie (bits / hex) | Taille de bloc | Architecture interne | Statut de sécurité | Usage recommandé |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **MD5** | 128 bits (32 car.) | 512 bits | Merkle-Damgård | Cassé (collisions en quelques secondes) | Sommes non critiques, compatibilité héritée |
+| **SHA-1** | 160 bits (40 car.) | 512 bits | Merkle-Damgård | Obsolète (attaque SHAttered / préfixe choisi) | Systèmes hérités uniquement, migration vers SHA-256 |
+| **SHA-256** | 256 bits (64 car.) | 512 bits | Merkle-Damgård (ARX) | Fort (norme industrielle) | Intégrité de fichiers, TLS, signatures, blockchain |
+| **SHA-512** | 512 bits (128 car.) | 1 024 bits | Merkle-Damgård (64 bits) | Très fort (rapide sur CPU 64 bits) | Archives volumineuses, audits haute sécurité |
+| **SHA-3-256** | 256 bits (64 car.) | 1 088 bits (`r`) | Éponge Keccak (`c = 512`) | Très fort (immunité extension de longueur) | Diversification cryptographique, protocoles récents |
+| **SHA-3-512** | 512 bits (128 car.) | 576 bits (`r`) | Éponge Keccak (`c = 1024`) | Maximal | Signatures longue durée, exigences NIST post-SHA-2 |
 
-### Famille SHA-3
-Le dernier membre, publié par le NIST en 2015.
-* **Sécurité** : **Très Forte**. Architecture interne différente (Keccak).
+Si vous travaillez spécifiquement sur un seul format de condensat, vous pouvez également consulter nos outils dédiés [générateur SHA-256](/fr/outils/sha256-generator) et [générateur MD5](/fr/outils/md5-generator).
 
----
+## Vérification en ligne de commande et dépannage courant
 
-## Hachage vs Chiffrement
+Dans un flux d'intégration continue ou lors de la réception d'un livrable binaire, il est courant de croiser l'empreinte calculée dans le navigateur avec les utilitaires système natifs :
 
-* **Le chiffrement (encryption)** est une fonction bidirectionnelle conçue pour la confidentialité des données (réversible avec une clé).
-* **Le hachage (hashing)** est une fonction unidirectionnelle conçue pour l'intégrité des données (irréversible).
+```bash
+# Linux / macOS : vérifier une archive par rapport au manifeste officiel
+sha256sum -c SHA256SUMS
 
----
+# Calculer SHA-256 d'une chaîne SANS retour à la ligne implicite
+printf '%s' 'bonjour-monde' | sha256sum
 
-## Pourquoi utiliser le Hachage ?
+# Windows PowerShell : obtenir le condensat SHA-256 d'un installateur
+Get-FileHash -Path ".\setup.exe" -Algorithm SHA256
+```
 
-### 1. Stockage des mots de passe
-Les sites sécurisés ne stockent jamais votre mot de passe en clair. Ils stockent son hachage. Lors de la connexion, le système hache le mot de passe saisi et le compare au hachage stocké.
+### Scénario de dépannage : pourquoi `echo` ne donne pas le même hash ?
 
-### 2. Vérification de l'intégrité des fichiers (Checksums)
-Lors du téléchargement de fichiers volumineux, les développeurs fournissent un hachage SHA-256. Vous pouvez utiliser notre outil pour vérifier que votre fichier local correspond au hachage officiel.
+Un piège extrêmement fréquent chez les développeurs consiste à exécuter `echo "secret" | sha256sum` dans un terminal Linux puis à coller `secret` dans un générateur en ligne, obtenant deux condensats totalement différents. La commande `echo` ajoute par défaut un octet de saut de ligne LF (`0x0A`) en fin de chaîne. En utilisant `printf '%s' "secret"` (ou `echo -n`), l'entrée transmise correspond exactement aux 6 octets ASCII attendus.
 
-### 3. Signatures numériques et Blockchain
-Dans la blockchain, les hachages sont utilisés pour lier les blocs en toute sécurité ; la modification d'un bloc précédent modifie son hachage, invalidant ainsi la chaîne.
+De la même manière, un fichier texte édité sous Windows (`CRLF`, octets `0x0D 0x0A`) et transféré en mode binaire vers un serveur Linux produira un condensat distinct de sa version convertie en `LF` (`0x0A`). Vérifiez également la présence éventuelle d'un **BOM UTF-8** (`EF BB BF`) ajouté en tête de fichier par certains éditeurs.
 
----
+## Hachage, chiffrement et protection des mots de passe
 
-## Sécurité totale côté client
+Le hachage assure l'**intégrité**, jamais la **confidentialité** : contrairement au chiffrement symétrique (AES-GCM) ou asymétrique (RSA), il n'existe pas de clé de déchiffrement permettant d'inverser un condensat. En revanche, une entrée courte ou prévisible reste vulnérable aux attaques par dictionnaire et par tables précalculées.
 
-Notre générateur traite tout à 100% localement dans votre navigateur à l'aide des API JavaScript Web Cryptography. **Zéro transmission de données** : Vos fichiers ne quittent jamais votre appareil et ne sont jamais téléchargés sur nos serveurs.
+Pour sécuriser des identifiants utilisateurs, n'utilisez jamais un simple `SHA-256` nu : préférez un algorithme de dérivation de clé résistant au matériel spécialisé (**Argon2id**, **scrypt** ou **bcrypt**) combiné à un sel aléatoire généré cryptographiquement, et vérifiez la robustesse de vos secrets initiaux avec notre [générateur de mots de passe](/fr/outils/password-generator).

@@ -1,87 +1,101 @@
 ---
-metaTitle: "Visionneuse et Éditeur CSV en Ligne | Outil Gratuit"
-metaDescription: "Visualisez, éditez, analysez, validez et convertissez des fichiers CSV en ligne. Interface type tableur avec filtres, tri et conversion JSON."
-metaKeywords: "visionneuse csv, éditeur csv en ligne, analyseur csv, lecteur csv, ouvrir fichier csv, convertir csv en json, exporter csv, validateur csv, tableur csv"
+metaTitle: "Visionneuse et Éditeur CSV en Ligne | Analyse & JSON"
+metaDescription: "Ouvrez, éditez, validez et analysez vos fichiers CSV RFC 4180 dans le navigateur. Détection UTF-8/BOM, filtres, tri et conversion CSV vers JSON."
+metaKeywords: "visionneuse csv, éditeur csv en ligne, validateur csv rfc 4180, convertir csv en json, ouvrir fichier csv, délimiteur point-virgule, encodage utf-8 bom, analyseur csv gratuit"
 title: "Visionneuse et Analyseur CSV"
-shortDescription: "Visualisez, éditez, analysez, validez et convertissez des fichiers CSV en ligne. Interface professionnelle de style tableur avec filtrage et recherche."
+shortDescription: "Ouvrez, éditez, validez et convertissez vos fichiers CSV en ligne dans une grille interactive 100 % côté client, avec gestion RFC 4180 et export JSON."
 faqs:
-  - question: "Qu'est-ce qu'une visionneuse CSV ?"
-    answer: "Une visionneuse CSV est un outil qui analyse les fichiers CSV (Comma-Separated Values) et les affiche sous forme de tableaux structurés. Contrairement aux éditeurs de texte, une visionneuse affiche les données dans une grille de style tableur."
-  - question: "Cette visionneuse CSV est-elle gratuite ?"
-    answer: "Oui, cette visionneuse CSV est entièrement gratuite, sans limites d'utilisation, sans inscription et sans restriction sur la taille des fichiers."
-  - question: "Puis-je éditer des fichiers CSV ?"
-    answer: "Oui. Cliquez sur n'importe quelle cellule du tableau pour modifier sa valeur en ligne. L'éditeur prend en charge les fonctions d'annulation/rétablissement (Ctrl+Z)."
-  - question: "Puis-je convertir CSV en JSON ?"
-    answer: "Oui. Passez à l'onglet 'CSV → JSON' pour convertir instantanément vos données CSV en un tableau JSON formaté."
-  - question: "Mon CSV est-il traité localement ?"
-    answer: "Oui, absolument. Toute l'analyse, l'édition, la validation et la conversion s'effectuent entièrement dans votre navigateur. Vos données ne sont jamais téléchargées sur un serveur."
+  - question: "Pourquoi Excel affiche-t-il parfois toutes les colonnes CSV dans une seule cellule ?"
+    answer: "En France et dans la majorité des pays européens, Excel utilise par défaut le point-virgule (;) comme séparateur de liste car la virgule est réservée aux décimales. Si le fichier provient d'un outil anglophone utilisant la virgule, Excel ne découpe pas les colonnes. Notre visionneuse détecte automatiquement le délimiteur réel."
+  - question: "Comment corriger les accents cassés (Ã©, Ã¨, â‚¬) lors de l'ouverture d'un CSV ?"
+    answer: "Ces caractères corrompus (mojibake) apparaissent lorsqu'un fichier encodé en UTF-8 sans BOM est ouvert en Windows-1252, ou inversement. Réexporter le tableau en UTF-8 propre (avec marque BOM si la destination est Microsoft Excel sous Windows) résout définitivement le problème."
+  - question: "L'outil préserve-t-il les zéros initiaux des codes postaux, numéros SIRET ou codes EAN ?"
+    answer: "Oui. Contrairement aux tableurs qui convertissent silencieusement '06000' en nombre '6000' ou basculent les identifiants à 14 chiffres en notation scientifique, notre analyseur conserve les chaînes textuelles brutes sans altération destructrice."
+  - question: "Mes exports clients ou financiers CSV quittent-ils mon navigateur ?"
+    answer: "Jamais. L'analyse syntaxique, l'édition de cellules, les statistiques de colonnes et la conversion vers JSON ou TSV s'exécutent intégralement en JavaScript local. Aucune donnée n'est envoyée sur un serveur distant."
+  - question: "Comment fonctionne la validation structurelle d'un fichier CSV ?"
+    answer: "Le parseur inspecte chaque enregistrement selon la norme RFC 4180 afin de repérer les guillemets non fermés, les lignes comportant un nombre de colonnes différent de l'en-tête, les doublons exacts et les cellules manquantes."
 features:
-  - "Analyse CSV instantanée avec rendu de tableau de type tableur"
-  - "Édition de cellules en ligne avec prise en charge complète d'annulation/rétablissement"
-  - "Téléchargement de fichiers par glisser-déposer ou par collage"
-  - "Tri multi-colonnes et filtrage avancé"
-  - "Recherche globale avec prise en compte de la casse"
-  - "Panneau d'analyse des données : nombre de lignes/colonnes, doublons"
-  - "Validation CSV avec détection des lignes mal formées"
-  - "Conversion bidirectionnelle CSV ↔ JSON avec sortie formatée"
-  - "Exportation vers les formats CSV, JSON, TSV et TXT"
-  - "Traitement 100% côté client pour une confidentialité totale des données"
+  - "Parseur par machine à états conforme RFC 4180 gérant guillemets échappés et sauts de ligne internes"
+  - "Détection automatique du délimiteur (virgule, point-virgule européen, tabulation TSV, pipe)"
+  - "Grille interactive de type tableur avec édition en ligne, tri multi-colonnes, filtres et annulation (Ctrl+Z)"
+  - "Panneau d'audit qualité : comptage des lignes/colonnes, valeurs nulles, doublons et détection de lignes mal formées"
+  - "Conversion bidirectionnelle CSV vers JSON formaté avec correspondance automatique des en-têtes"
+  - "Traitement 100 % côté client préservant les zéros initiaux et compatible avec l'export CSV, TSV, JSON et TXT"
 useCases:
-  - "Inspection des exportations CSV à partir de bases de données avant importation"
-  - "Validation des fichiers CSV pour les erreurs structurelles"
-  - "Conversion de jeux de données CSV en JSON pour les applications web"
-  - "Nettoyage et édition de données CSV sans installer de tableur"
-  - "Visualisation de gros fichiers CSV qui plantent ou sont lents dans Excel"
+  - "Inspection et nettoyage d'exports PostgreSQL, MySQL ou BigQuery avant réimportation en base de données"
+  - "Vérification rapide de catalogues e-commerce (Shopify, PrestaShop, WooCommerce) comportant prix et descriptions HTML"
+  - "Débogage de fichiers comptables ou bancaires aux délimiteurs européens (;) avant intégration ERP"
+  - "Transformation de jeux de données tabulaires en tableaux JSON prêts pour une API REST ou un script front-end"
+  - "Audit de listes CRM (contacts, codes postaux, numéros de téléphone) sans corruption des zéros en tête par Excel"
+  - "Validation de fichiers CSV volumineux ou légèrement malformés qui bloquent l'assistant d'import d'un SaaS"
 howToSteps:
-  - "Téléchargez un fichier CSV (glisser-déposer, bouton Téléverser, ou collez les données)."
-  - "L'outil analyse et affiche instantanément votre CSV sous forme de tableau."
-  - "Cliquez sur n'importe quelle cellule pour modifier sa valeur en ligne."
-  - "Cliquez sur les en-têtes de colonnes pour trier par ordre croissant ou décroissant."
-  - "Utilisez la barre de recherche pour trouver des valeurs spécifiques."
-  - "Passez à l'onglet Analyse pour voir les statistiques (lignes, colonnes, doublons)."
-  - "Passez à l'onglet CSV → JSON pour convertir vos données."
-  - "Exportez vos données aux formats CSV, JSON, TSV ou TXT."
+  - "Glissez-déposez votre fichier CSV dans la fenêtre ou collez directement son contenu brut."
+  - "Vérifiez la détection automatique du séparateur (virgule, point-virgule ou tabulation) et de la ligne d'en-tête."
+  - "Parcourez la grille, triez les colonnes ou filtrez par mot-clé pour isoler rapidement vos enregistrements."
+  - "Cliquez dans une cellule pour corriger une valeur en ligne, avec historique complet d'annulation."
+  - "Ouvrez l'onglet Analyse pour repérer les lignes décalées, les valeurs vides et les doublons."
+  - "Exportez le jeu de données nettoyé au format CSV normalisé, TSV ou JSON structuré."
 ---
 
-## Qu'est-ce que CSV ?
+Le format **CSV (Comma-Separated Values)** demeure l'épine dorsale des échanges tabulaires entre bases de données, progiciels ERP, plateformes e-commerce et pipelines analytiques. Pourtant, derrière son apparente simplicité de texte brut se cachent de nombreux pièges : séparateurs régionaux incompatibles, guillemets mal échappés, sauts de ligne à l'intérieur des cellules et conflits d'encodage. Notre **Visionneuse et Analyseur CSV** analyse, édite, valide et convertit vos fichiers directement dans votre navigateur sans jamais altérer vos données sensibles.
 
-**CSV** (Comma-Separated Values) est l'un des formats d'échange de données les plus anciens et les plus universellement pris en charge. Un fichier CSV stocke des données tabulaires (lignes et colonnes) sous forme de texte brut, chaque ligne représentant un enregistrement et chaque champ étant séparé par un délimiteur, le plus souvent une virgule. Presque toutes les applications gérant des données structurées peuvent lire et écrire du CSV.
+## Internes du format RFC 4180 et parseur par machine à états
 
-La simplicité du CSV est à la fois sa plus grande force et sa principale limite. Les fichiers CSV varient énormément dans leur utilisation des délimiteurs, des règles de guillemets, des fins de ligne et de l'encodage. C'est pourquoi un analyseur CSV robuste est essentiel.
+Contrairement à une idée répandue, découper un fichier CSV par un simple `ligne.split(',')` échoue dès qu'un jeu de données réel entre en jeu. La spécification **RFC 4180** (`text/csv`) définit des règles précises que seul un **automate fini** (machine à états parcourant le flux caractère par caractère) traite de manière fiable :
 
----
+- **Encapsulation par guillemets doubles** : tout champ contenant le délimiteur, un retour à la ligne (`\r\n` ou `\n`) ou un guillemet doit être entouré de guillemets doubles (`"..."`).
+- **Échappement des guillemets internes** : un guillemet littéral à l'intérieur d'un champ cité se note en le doublant (`""`), et non avec un antislash (`\"`) comme en JSON ou en C.
+- **Enregistrements multilignes et fins de ligne** : un saut de ligne situé dans un champ cité fait partie intégrante de la valeur de la cellule et ne marque pas la fin de l'enregistrement. Bien que RFC 4180 recommande `CRLF` (`\r\n`), les outils Linux et macOS génèrent couramment `LF` (`\n`) ; l'automate normalise les deux conventions sans rompre l'alignement.
+- **Variantes régionales européennes** : en environnement francophone, la virgule servant de séparateur décimal (`1 490,50`), le **point-virgule (`;`)** remplace fréquemment la virgule comme délimiteur de colonnes.
 
-## Qu'est-ce qu'une Visionneuse CSV ?
+### Comparaison des formats d'échange tabulaire
 
-Une **visionneuse CSV** est un outil spécialisé conçu pour rendre les données CSV sous forme de tableau lisible. Contrairement à l'ouverture d'un fichier CSV dans un éditeur de texte, une visionneuse analyse les données et les présente dans une grille de type tableur.
+| Format | Délimiteur / Structure | Typage natif | Sauts de ligne en cellule | Compatibilité Excel / SQL | Risque principal |
+| :--- | :--- | :---: | :---: | :--- | :--- |
+| **CSV (RFC 4180)** | Virgule `,` + guillemets `"` | Non (texte) | Oui (si cité) | Universelle (SQL, Python, BI) | Conflit décimal en locale FR |
+| **CSV Européen** | Point-virgule `;` + guillemets `"` | Non (texte) | Oui (si cité) | Excellente sur Excel FR/EU | Parseurs US attendus sur `,` |
+| **TSV** | Tabulation `\t` | Non (texte) | Limité | Très bonne (bio-info, CLI) | Tabulations parasites en texte |
+| **JSON** | Arbre clé-valeur typé | Oui | Oui (`\n`) | API web, NoSQL, PostgreSQL | Plus verbeux (répétition des clés) |
+| **XLSX** | Archive ZIP / XML binaire | Oui | Oui | Natif tableurs bureautiques | Lourd, lent, formules masquées |
 
-Les visionneuses CSV modernes incluent des fonctionnalités interactives telles que l'édition en ligne, le filtrage des colonnes, la recherche globale, l'analyse statistique et l'exportation.
+## Encodage UTF-8, BOM et conversion structurée vers JSON
 
----
+La corruption des caractères accentués (*mojibake*, par exemple `Éléphant` affiché en `Ã‰lÃ©phant` ou le symbole euro `€` encodé `0x80` en CP1252 contre `0xE2 0x82 0xAC` en UTF-8) provient presque toujours d'une divergence entre **UTF-8** et **Windows-1252 (CP1252)** ou **ISO-8859-1**. Sous Windows, Microsoft Excel interprète un fichier CSV en encodage système local à moins qu'il ne débute par un **BOM UTF-8** (*Byte Order Mark*, séquence d'octets `0xEF 0xBB 0xBF`). À l'inverse, certains scripts Unix ou commandes `COPY` PostgreSQL rejettent ce BOM invisible qui reste collé au nom de la première colonne (`\uFEFFsku`).
 
-## Différences entre CSV et Excel
+### Inférence de types et préservation des identifiants
 
-CSV et Excel (.xlsx) ont des objectifs différents :
+Un fichier CSV ne portant aucune métadonnée de type, la transformation vers JSON ou vers une base relationnelle exige de la prudence. Convertir agressivement chaque valeur numérique détruit les zéros initiaux des codes postaux (`06000`), altère les numéros de téléphone internationaux (`+33...`) ou tronque la précision des numéros de carte et identifiants SIRET à 14 chiffres. Notre outil conserve les identifiants sous forme de chaînes fiables tout en respectant les champs multilignes et les guillemets doublés :
 
-- **Format** : Le CSV est du texte brut ; Excel est binaire.
-- **Formules et formatage** : Le CSV ne prend en charge ni les formules, ni le formatage, ni plusieurs feuilles. Excel si.
-- **Compatibilité** : Le CSV est universel ; Excel nécessite un logiciel compatible.
+```csv
+sku;designation;prix_eur;code_postal
+"REF-001";"Écran 27"" IPS, calibré";349,90;"06000"
+"REF-002";"Pack clavier
++ souris sans fil";89,50;"01200"
+```
 
----
+```json
+[
+  {
+    "sku": "REF-001",
+    "designation": "Écran 27\" IPS, calibré",
+    "prix_eur": "349,90",
+    "code_postal": "06000"
+  },
+  {
+    "sku": "REF-002",
+    "designation": "Pack clavier\n+ souris sans fil",
+    "prix_eur": "89,50",
+    "code_postal": "01200"
+  }
+]
+```
 
-## Problèmes d'encodage CSV
+## Sécurité et scénarios de dépannage courants
 
-L'encodage des caractères est la source la plus courante de corruption des données CSV :
+Lors de la préparation ou de l'audit de fichiers CSV en environnement professionnel, surveillez quatre anomalies critiques :
 
-- **UTF-8** : L'encodage universel qui prend en charge tous les caractères Unicode. Privilégiez toujours UTF-8.
-- **Windows-1252** : L'encodage par défaut sur les systèmes Windows.
-- **BOM (Byte Order Mark)** : Un caractère invisible au début du fichier qui peut provoquer des erreurs.
-
-Lorsque vous rencontrez des caractères déformés dans un fichier CSV, la cause est presque toujours une incompatibilité d'encodage.
-
----
-
-## CSV pour les Développeurs et Analystes
-
-- **Bases de données** : CSV est le format d'importation/exportation universel (MySQL, PostgreSQL, BigQuery).
-- **Transformation JSON** : La conversion de CSV en JSON est essentielle pour le développement Web. Notre convertisseur produit un JSON valide et bien formaté avec une inférence de type appropriée.
+1. **Injection de formules CSV (*CSV Injection*)** : si une cellule issue d'un formulaire web commence par `=`, `+`, `-`, `@` ou une tabulation (par exemple `=HYPERLINK(...)`), son ouverture dans Excel ou LibreOffice peut déclencher une formule malveillante ou une exfiltration DDE. Inspectez les préfixes suspects dans la grille avant toute diffusion interne.
+2. **Décalage silencieux de colonnes** : un seul guillemet non fermé à la ligne 412 absorbe toutes les lignes suivantes dans une unique cellule géante. L'onglet d'analyse signale immédiatement les écarts d'arité par rapport à la ligne d'en-tête.
+3. **Performances locales sans limite serveur** : grâce au décodage local (`FileReader` et `TextDecoder`) et au filtrage en mémoire, vous pouvez inspecter des exports contenant des dizaines de milliers d'enregistrements sans subir la lenteur ni les conversions automatiques de dates d'un tableur lourd.
+4. **Chaînes de conversion et de comparaison** : une fois vos données exportées en JSON, indentez-les dans notre [Formateur JSON](/fr/outils/json-formatter), comparez deux révisions d'un export via le [Comparateur de Différences](/fr/outils/diff-checker), préparez des requêtes avec le [Formateur SQL](/fr/outils/sql-formatter), ou publiez un extrait web avec le [Générateur de Tableaux HTML](/fr/outils/html-table-generator). Pour d'autres formats structurés, le [Formateur YAML](/fr/outils/yaml-formatter) et le [Formateur XML](/fr/outils/xml-formatter) complètent cet environnement local.

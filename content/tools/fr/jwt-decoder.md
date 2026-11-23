@@ -1,95 +1,111 @@
 ---
-metaTitle: "Décodeur JWT en Ligne | Analyseur JSON Web Token"
-metaDescription: "Analyseur et décodeur de JSON Web Token (JWT) avancé. Analysez l'en-tête, les charges utiles, vérifiez les dates d'expiration et les algorithmes instantanément."
-metaKeywords: "décodeur jwt, décoder jwt, analyseur json web token, jwt parser, inspecteur jwt, vérifier jwt en ligne, jwt payload"
+metaTitle: "Décodeur JWT en Ligne | Inspecteur JSON Web Token RFC 7519"
+metaDescription: "Décodez et auditez vos JSON Web Tokens (JWT) côté client : inspectez Header, Payload, claims exp/iat/nbf et algorithmes HS256, RS256 ou ES256."
+metaKeywords: "décodeur jwt, décoder jwt, analyseur json web token, jwt parser, inspecteur jwt, rfc 7519, jwt payload, hs256 rs256 es256, claims exp iat nbf"
 title: "Décodeur JWT"
-shortDescription: "Décodeur avancé de JSON Web Token (JWT). Analysez l'en-tête, les claims, les dates d'expiration et les algorithmes instantanément."
+shortDescription: "Inspectez localement l'en-tête JOSE, le payload JSON, les horodatages d'expiration (exp, iat, nbf) et l'algorithme cryptographique de vos JSON Web Tokens (RFC 7519)."
 faqs:
-  - question: "Qu'est-ce qu'un JWT ?"
-    answer: "Un JSON Web Token (JWT) est une norme (RFC 7519) définissant un moyen compact et autonome de transmettre de manière sécurisée des informations entre les parties sous la forme d'un objet JSON. Il est souvent utilisé pour l'authentification."
-  - question: "Est-il sûr de décoder un JWT en ligne ?"
-    answer: "Oui, notre outil s'exécute entièrement localement dans votre navigateur. Aucune donnée n'est envoyée à nos serveurs, ce qui le rend 100% sûr pour inspecter les tokens sensibles."
-  - question: "Pourquoi tout le monde peut-il lire le payload JWT ?"
-    answer: "Les JWT ne sont encodés qu'en Base64Url, et non chiffrés. Ils sont conçus pour garantir l'intégrité des données (via la signature), et non la confidentialité. Les données sensibles ne doivent pas être stockées dans un JWT."
-  - question: "Que se passe-t-il si un token est expiré ?"
-    answer: "Lorsqu'un serveur vérifie un JWT, il vérifie le claim 'exp' (expiration). Si l'heure actuelle a dépassé l'heure d'expiration, le serveur rejettera le jeton avec une erreur 401."
-  - question: "Qu'est-ce que l'algorithme 'none' ?"
-    answer: "L'algorithme 'none' signifie que le jeton n'est pas signé. C'est extrêmement dangereux car cela permet à quiconque de modifier le payload. Les systèmes sécurisés doivent rejeter les jetons utilisant 'none'."
+  - question: "Peut-on coller un jeton JWT de production dans ce décodeur sans risque de fuite ?"
+    answer: "Oui. Le décodage Base64url, l'analyse JSON et la conversion des dates Unix s'exécutent intégralement dans la mémoire locale de votre navigateur en JavaScript. Le jeton n'est jamais envoyé vers un serveur distant ni enregistré dans un journal réseau ; par précaution, évitez néanmoins de partager des captures d'écran contenant des jetons actifs."
+  - question: "Pourquoi n'importe qui peut-il lire le contenu d'un JWT sans posséder la clé secrète ?"
+    answer: "Un JWT signé standard (JWS, RFC 7515) assure l'intégrité et l'authenticité des données, jamais leur confidentialité. L'en-tête et le payload sont simplement encodés en Base64url et donc lisibles par tout intermédiaire. Pour masquer le contenu lui-même, il faut recourir à un jeton chiffré JWE (RFC 7516) composé de cinq segments."
+  - question: "Quelle différence existe-t-il entre HS256 et RS256 ou ES256 ?"
+    answer: "HS256 est un algorithme symétrique (HMAC-SHA256) : le même secret partagé sert à signer et à vérifier le jeton, ce qui complique le déploiement dans une architecture microservices. RS256 (RSA) et ES256 (ECDSA sur courbe P-256) sont asymétriques : seul le serveur d'identité détient la clé privée, tandis que chaque API vérifie la signature avec la clé publique publiée via JWKS."
+  - question: "En quoi consiste la faille de l'algorithme alg: none et la confusion d'algorithme ?"
+    answer: "L'attaque alg: none consiste à modifier l'en-tête en indiquant aucune signature et à vider le troisième segment ; un backend mal configuré peut accepter un payload falsifié. La confusion d'algorithme pousse un serveur attendant RS256 à vérifier un jeton HS256 en utilisant la clé publique PEM comme secret HMAC. La parade consiste à imposer côté serveur une liste blanche stricte d'algorithmes attendus."
+  - question: "Pourquoi mon API renvoie-t-elle 401 Unauthorized alors que le claim exp semble encore valide ?"
+    answer: "Plusieurs causes techniques expliquent ce rejet : un décalage d'horloge (clock skew) sur le claim nbf (Not Before) rendant le jeton temporairement invalide, une discordance sur les claims aud (Audience) ou iss (Émetteur), une rotation de clé où l'identifiant kid n'est plus présent dans le cache JWKS, ou un secret mal encodé."
 features:
-  - "Analyse instantanée en temps réel de l'en-tête et du Payload JWT"
-  - "Décodage Base64Url automatique et coloration syntaxique JSON"
-  - "Analyse détaillée de la chronologie pour les claims exp, iat et nbf"
-  - "Indicateurs d'état visuels pour l'expiration et la validité du token"
-  - "Détection des algorithmes (HS256, RS256, ES256, etc.)"
-  - "Analyse de sécurité pour l'algorithme 'none' et les expirations manquantes"
-  - "Exécution 100% côté client : vos jetons ne quittent jamais le navigateur"
+  - "Séparation et décodage Base64url instantanés des segments Header, Payload et Signature (RFC 7519)"
+  - "Coloration syntaxique JSON structurée avec repérage immédiat des claims enregistrés et personnalisés"
+  - "Conversion automatique des horodatages NumericDate (exp, iat, nbf) en heure locale et UTC avec statut actif/expiré"
+  - "Détection des algorithmes JWA (HS256, RS256, PS256, ES256, EdDSA) et identification de la clé kid"
+  - "Alertes de sécurité automatiques en cas d'algorithme 'none', de jeton expiré ou d'absence de claim exp"
+  - "Exécution 100 % côté client respectant la confidentialité de vos jetons OAuth 2.0 et OpenID Connect"
 useCases:
-  - "Débogage des flux d'authentification dans les applications React, Angular, Vue"
-  - "Inspection des autorisations accordées par OAuth 2.0 ou OpenID Connect"
-  - "Vérification des dates d'expiration des tokens émis par le backend"
-  - "Investigation des erreurs 'Invalid Signature' lors de l'intégration API"
-  - "Inspection des claims privés personnalisés injectés par le serveur"
+  - "Déboguer un flux d'authentification OAuth 2.0 ou OpenID Connect (Auth0, Keycloak, Cognito, Entra ID)"
+  - "Vérifier les rôles (RBAC), portées (scope) et identifiants locataire (tenant_id) injectés dans un Access Token"
+  - "Diagnostiquer une erreur 401 liée à une expiration prématurée (exp) ou un décalage horaire sur nbf"
+  - "Contrôler l'identifiant de clé kid dans l'en-tête JOSE lors d'une rotation de certificats JWKS"
+  - "Auditer la présence d'informations sensibles exposées par erreur dans un payload non chiffré"
+  - "Valider les claims iss et aud lors de l'interconnexion d'une passerelle API et de microservices internes"
 howToSteps:
-  - "Localisez votre chaîne JWT. Elle doit ressembler à trois blocs de texte séparés par des points."
-  - "Collez le jeton entier dans la zone de saisie."
-  - "L'outil analysera et décodera instantanément le token."
-  - "Passez en revue la section 'Header' pour voir le type de jeton et l'algorithme."
-  - "Inspectez la section 'Payload' pour afficher les données utilisateur intégrées."
-  - "Vérifiez le panneau 'Expiration' pour voir les dates lisibles par l'homme."
+  - "Récupérez votre chaîne JWT (trois segments séparés par deux points) depuis un en-tête Authorization Bearer ou un cookie."
+  - "Supprimez éventuellement le préfixe 'Bearer ' puis collez le jeton complet dans la zone de saisie."
+  - "Consultez le bloc Header décodé pour vérifier le type (typ), l'algorithme (alg) et l'identifiant de clé (kid)."
+  - "Inspectez le bloc Payload afin de contrôler les claims standards (sub, iss, aud) et vos attributs métier."
+  - "Vérifiez le panneau de validité temporelle traduisant iat, nbf et exp en dates lisibles et durée restante."
+  - "Repérez les éventuels avertissements de sécurité (algorithme faible, absence d'expiration) avant déploiement."
 ---
 
-## Qu'est-ce qu'un JWT ?
+Le **JSON Web Token (JWT)**, normalisé par la spécification **RFC 7519**, est un format compact et autonome destiné à transmettre des revendications (*claims*) vérifiables entre deux parties sous la forme d'objets JSON. Omniprésent dans les architectures sans état (*stateless*), les API REST, **OAuth 2.0** et **OpenID Connect (OIDC)**, un JWT s'inscrit dans l'écosystème **JOSE** qui regroupe la signature (**JWS**, RFC 7515), le chiffrement (**JWE**, RFC 7516), la représentation des clés (**JWK**, RFC 7517) et le registre des algorithmes (**JWA**, RFC 7518).
 
-**Le JSON Web Token (JWT)** est un standard ouvert (RFC 7519) qui définit un moyen compact et autonome de transmettre de manière sécurisée des informations entre les parties sous la forme d'un objet JSON. Ces informations peuvent être vérifiées et approuvées car elles sont signées numériquement (HMAC, RSA ou ECDSA).
+## Structure compacte d'un jeton JWS en trois segments
 
-Les JWT sont très utilisés dans les applications web modernes, en particulier dans les architectures sans état (stateless), pour **l'authentification** et **l'échange d'informations**.
+Dans sa forme signée la plus répandue (JWS Compact Serialization), un JWT concatène trois chaînes encodées en **Base64url** (RFC 4648 section 5, sans bourrage `=`) séparées par des points :
 
----
+```text
+Base64Url(Header) . Base64Url(Payload) . Base64Url(Signature)
+```
 
-## Structure du JWT
+Voici un exemple concret des deux premiers blocs une fois décodés (opération que vous pouvez également détailler octet par octet via notre [décodeur Base64](/fr/outils/base64-decode)) :
 
-Un JSON Web Token se compose de trois parties séparées par des points (`.`) :
+```json
+// 1. En-tête JOSE (Header)
+{
+  "alg": "ES256",
+  "typ": "at+jwt",
+  "kid": "key-2026-11-eu"
+}
 
-1. **Header (En-tête)** : Contient des métadonnées sur le type de jeton et les algorithmes cryptographiques.
-2. **Payload (Claims)** : Contient les déclarations sur une entité (généralement l'utilisateur) et des données supplémentaires.
-3. **Signature** : Utilisée pour vérifier l'intégrité du jeton.
+// 2. Charge utile (Payload / Claims)
+{
+  "iss": "https://auth.exemple.fr",
+  "sub": "usr_849201",
+  "aud": "https://api.exemple.fr/v2",
+  "iat": 1795420800,
+  "nbf": 1795420800,
+  "exp": 1795421700,
+  "jti": "9c2e8f14-7b6a-4d1e-a054-1f2c3d4e5f60",
+  "scope": "orders:read profile"
+}
+```
 
-Lorsqu'elles sont combinées, ces trois parties ressemblent à ceci : `xxxxx.yyyyy.zzzzz`
+La **signature** cryptographique est calculée sur la concaténation ASCII exacte `Base64Url(Header) + "." + Base64Url(Payload)`. Toute altération d'un seul caractère dans le payload ou dans l'en-tête (par exemple modifier `scope` ou prolonger `exp`) invalide immédiatement la signature lors du contrôle côté serveur.
 
-### 1. L'En-tête
+### Taxonomie des revendications (*claims*) et horodatages `NumericDate`
 
-L'en-tête se compose généralement de deux parties : le type du jeton, qui est JWT, et l'algorithme de signature utilisé, tel que HMAC SHA256. Ce JSON est ensuite encodé en **Base64Url** pour former la première partie du JWT.
+La RFC 7519 classe les clés du payload en trois catégories : les **claims enregistrés** standardisés (`iss` émetteur, `sub` sujet, `aud` audience cible, `exp` expiration, `nbf` non valide avant, `iat` émis à, `jti` identifiant unique anti-rejeu), les **claims publics** définis pour éviter les collisions de noms, et les **claims privés** propres à votre application (`tenant_id`, `roles`). Les valeurs temporelles `exp`, `nbf` et `iat` utilisent le format **`NumericDate`** : un entier représentant le nombre de secondes écoulées depuis l'époque Unix (`1970-01-01T00:00:00Z`), et non des millisecondes. Pour explorer un payload imbriqué particulièrement volumineux, vous pouvez aussi l'exporter vers notre [formateur JSON](/fr/outils/json-formatter).
 
-### 2. Le Payload
+## JWS signé versus JWE chiffré : choisir le bon profil JOSE
 
-La deuxième partie du jeton est le payload, qui contient les claims. Il existe trois types de claims :
+Une confusion fréquente consiste à supposer qu'un JWT protège la confidentialité de ses champs. Un **JWS** (3 segments) signe les données pour empêcher toute falsification, mais laisse son contenu entièrement lisible après simple décodage Base64url. Si un jeton doit transporter des données personnelles réglementées ou des attributs métier confidentiels sur un réseau non maîtrisé, il convient d'utiliser un **JWE** (*JSON Web Encryption*, RFC 7516) composé de **cinq segments** (`ProtectedHeader.EncryptedKey.IV.Ciphertext.AuthTag`) reposant sur un chiffrement authentifié tel que `A256GCM`.
 
-**Claims enregistrés** : Ce sont des réclamations prédéfinies non obligatoires mais recommandées :
-- `iss` (Émetteur) : Qui a émis le jeton.
-- `exp` (Date d'expiration) : À quel moment le jeton expire.
-- `sub` (Sujet) : À qui le jeton fait référence.
-- `iat` (Émis à) : Moment où le jeton a été créé.
+## Comparatif des algorithmes de signature JWA (RFC 7518)
 
-Le payload est encodé en **Base64Url** pour former la deuxième partie.
+Le choix de l'algorithme déclaré dans le champ `alg` détermine la gestion des clés, la taille du jeton et les performances de vérification :
 
-*Veuillez noter que ces informations sont lisibles par n'importe qui. Ne placez pas d'informations secrètes dans le payload.*
+| Algorithme | Famille cryptographique | Type de clé | Taille de signature | Forces et cas d'usage recommandés |
+| :--- | :--- | :--- | :--- | :--- |
+| **`HS256` / `HS512`** | HMAC + SHA-2 | Symétrique (secret partagé) | 32 ou 64 octets | Très rapide ; réservé aux services partageant un secret de 256 bits minimum |
+| **`RS256`** | RSA PKCS#1 v1.5 + SHA-256 | Asymétrique (RSA ≥ 2048 bits) | 256 octets | Standard historique OIDC/JWKS ; compatible avec tous les SDK |
+| **`PS256`** | RSA-PSS + SHA-256 | Asymétrique (RSA ≥ 2048 bits) | 256 octets | Rembourrage probabiliste plus robuste que PKCS#1 v1.5 |
+| **`ES256`** | ECDSA courbe P-256 + SHA-256 | Asymétrique (elliptique) | 64 octets | Jetons compacts et vérification rapide ; idéal pour API mobiles et modernes |
+| **`EdDSA`** | Ed25519 (RFC 8037) | Asymétrique (courbe Edwards) | 64 octets | Immunité contre les failles de nonce aléatoire, haute sécurité moderne |
+| **`none`** | Aucune signature | Aucune | 0 octet | **Dangereux** : à rejeter impérativement dans toute bibliothèque de vérification |
 
-### 3. La Signature
+Pour expérimenter la génération de signatures HMAC-SHA256 ou le calcul d'empreintes, consultez notre [générateur HMAC](/fr/outils/hmac-generator) et notre [générateur de Hash](/fr/outils/hash-generator).
 
-Pour créer la partie signature, vous prenez l'en-tête encodé, le payload encodé, un secret, et vous signez le tout avec l'algorithme spécifié.
+## Vulnérabilités classiques et dépannage en production
 
----
+### 1. Confusion d'algorithme, champ `kid` et confusion ID Token / Access Token
 
-## Bonnes Pratiques de Sécurité JWT
+Ne laissez jamais la bibliothèque serveur faire confiance aveuglément au champ `alg` reçu dans l'en-tête du jeton. Sans liste blanche explicite côté vérificateur (par exemple `algorithms: ['ES256']`), un attaquant peut forcer `alg: "none"` ou basculer un serveur configuré en `RS256` vers `HS256` en signant son jeton falsifié avec la clé publique PEM accessible sur le serveur. De même, le champ `kid` (*Key ID*) doit être recherché dans un dictionnaire JWKS mis en cache et **jamais** concaténé dans un chemin de fichier ou une requête SQL. Enfin, vérifiez systématiquement les claims `iss`, `aud` ainsi que `typ: "at+jwt"` (RFC 9068) afin d'empêcher qu'un ID Token OIDC destiné au client front-end ne soit accepté comme Access Token par une API métier.
 
-- **Vérifiez toujours la signature** : Assurez-vous que votre application valide la signature côté serveur.
-- **Ne stockez pas de données sensibles** : Le payload n'est encodé qu'en Base64Url, pas chiffré.
-- **Durée de vie courte** : Utilisez le claim `exp` pour limiter la durée de vie d'un jeton.
-- **Utilisez des Refresh Tokens** : Pour les sessions longues, utilisez des jetons d'accès (JWT) de courte durée associés à des Refresh Tokens de longue durée.
-- **Algorithmes forts** : N'autorisez pas l'algorithme `none`.
+### 2. Décalage d'horloge (`clock skew`) et rotation de clés JWKS
 
----
+Dans les clusters distribués Kubernetes ou multi-régions, un écart de quelques secondes entre l'horloge NTP du fournisseur d'identité et celle de votre API suffit à déclencher un rejet `401 Unauthorized` sur le claim `nbf` (jeton « pas encore valide »). Configurez une tolérance de dérive modérée (`clockTolerance` de 30 à 60 secondes) et assurez-vous que votre validateur recharge l'endpoint `/.well-known/jwks.json` (avec limitation de débit) lorsqu'un nouvel identifiant `kid` apparaît après une rotation planifiée.
 
-## Expiration et Horodatage JWT
+### 3. Stockage navigateur, durée de vie et révocation (`jti`)
 
-JWT utilise le temps Unix epoch (secondes écoulées depuis le 1er janvier 1970) pour ses claims de temps. Notre décodeur JWT analyse automatiquement ces valeurs numériques en dates locales lisibles et indique clairement si un jeton est actif ou expiré.
+Un JWT étant autonome, il reste techniquement valide jusqu'à son horodatage `exp` même après une déconnexion ou un changement de mot de passe. Privilégiez donc des jetons d'accès courts (5 à 15 minutes) couplés à un **Refresh Token** rotatif stocké dans un cookie `HttpOnly`, `Secure` et `SameSite=Strict` — vérifiable dans notre [analyseur d'en-têtes HTTP](/fr/outils/http-header-checker) — et, pour les opérations critiques, maintenez une liste de révocation temporaire en cache Redis indexée sur l'identifiant unique `jti` jusqu'à expiration naturelle du jeton.

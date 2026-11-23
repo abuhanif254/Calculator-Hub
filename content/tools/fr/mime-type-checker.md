@@ -1,90 +1,107 @@
 ---
-metaTitle: "Vérificateur de Types MIME | Analyseur Content-Type et Magic Bytes"
-metaDescription: "Détectez, inspectez et validez les types MIME (Content-Type) de vos fichiers, extensions et URL. Vérifiez les en-têtes HTTP et les Magic Bytes pour la sécurité Web."
-metaKeywords: "vérificateur type mime, content type lookup, type mime fichier, mime sniffing, entete http, magic bytes, nosniff, validateur upload fichier, extension de fichier"
+metaTitle: "Vérificateur de Types MIME | Content-Type et Magic Bytes"
+metaDescription: "Inspectez et validez les types MIME, en-têtes HTTP Content-Type et signatures Magic Bytes pour prévenir le MIME sniffing et sécuriser vos uploads."
+metaKeywords: "vérificateur type mime, content-type http, magic bytes, mime sniffing, x-content-type-options nosniff, sécurité upload fichier, rfc 9110, type de média iana, validation fichier binaire"
 title: "Vérificateur de Types MIME (MIME Type Checker)"
-shortDescription: "Détectez et validez les types MIME (Content-Type) pour les fichiers, extensions et URL en temps réel. Analysez les en-têtes HTTP et auditez la sécurité des Uploads."
+shortDescription: "Détectez et validez les types MIME (Content-Type) pour vos fichiers, extensions et URL en temps réel. Analysez les en-têtes HTTP et inspectez les Magic Bytes pour sécuriser vos uploads."
 faqs:
-  - question: "Qu'est-ce qu'un Type MIME ?"
-    answer: "Un type MIME (Multipurpose Internet Mail Extensions), ou type de média, est une étiquette standardisée pour identifier le format d'un fichier transmis sur Internet. Cela permet aux navigateurs web (Chrome, Firefox) de l'afficher et de l'exécuter correctement."
-  - question: "Que signifie l'en-tête Content-Type ?"
-    answer: "Content-Type est un champ d'en-tête HTTP qui précise le type MIME et l'encodage des caractères (charset) de la ressource transmise. Il guide le navigateur web dans la logique de rendu visuel."
-  - question: "Pourquoi les types MIME sont-ils importants ?"
-    answer: "Ils indiquent aux navigateurs comment traiter les données. Des types MIME incorrects (un fichier CSS défini comme 'text/plain') peuvent empêcher l'affichage des styles ou bloquer l'exécution de scripts vitaux (JavaScript)."
   - question: "Quelle est la différence entre une extension de fichier et un type MIME ?"
-    answer: "L'extension (ex: '.pdf') est un suffixe local utilisé par votre système d'exploitation Windows ou Mac. Le type MIME (ex: 'application/pdf') est un label de réseau mondial standardisé, envoyé dans l'en-tête de la requête HTTP du serveur Web."
-  - question: "Qu'est-ce que le MIME Sniffing ?"
-    answer: "Le MIME Sniffing est un comportement du navigateur où il inspecte le contenu réel des octets d'un fichier pour deviner son format, remplaçant parfois le type MIME déclaré par le serveur. C'est dangereux en termes de sécurité XSS."
-  - question: "Qu'est-ce que X-Content-Type-Options ?"
-    answer: "C'est un en-tête de sécurité HTTP vital. En le paramétrant sur 'nosniff', on interdit aux navigateurs d'effectuer du MIME Sniffing. Le navigateur sera obligé de respecter scrupuleusement le type MIME défini par le serveur."
+    answer: "L'extension (.pdf, .png) est une convention locale utilisée par le système d'exploitation pour associer un fichier à une application. Le type MIME (application/pdf, image/png) est un identifiant normalisé par l'IANA et transmis dans l'en-tête HTTP Content-Type afin d'indiquer au navigateur comment interpréter la ressource."
+  - question: "Comment les Magic Bytes permettent-ils de détecter un fichier falsifié ?"
+    answer: "Les Magic Bytes sont des signatures hexadécimales fixes placées dans les premiers octets d'un fichier binaire (par exemple 89 50 4E 47 pour un PNG). Même si un attaquant renomme un exécutable en image.png, la lecture de sa signature brute révèle immédiatement la discordance avec l'extension déclarée."
+  - question: "Pourquoi l'en-tête X-Content-Type-Options: nosniff est-il indispensable ?"
+    answer: "Sans cette directive, certains navigateurs tentent de deviner le format réel d'une ressource par MIME sniffing. Un fichier texte ou une image polyglotte contenant du HTML ou du JavaScript peut alors être exécuté comme un script actif, ouvrant une brèche XSS stockée sur votre domaine."
+  - question: "Quel type MIME officiel faut-il utiliser pour les fichiers JavaScript modernes ?"
+    answer: "Depuis la RFC 9239, le type MIME standard recommandé par l'IANA est text/javascript, y compris pour les modules ES (.mjs). Les anciennes valeurs comme application/javascript ou application/x-javascript sont désormais obsolètes, bien qu'encore tolérées par la plupart des navigateurs."
+  - question: "Pourquoi un fichier SVG peut-il représenter un risque même avec son vrai type MIME ?"
+    answer: "Le format image/svg+xml repose sur XML et autorise l'embarquement direct de balises script ou de gestionnaires d'événements. Si un utilisateur téléverse un SVG non assaini servi sur votre domaine principal, son ouverture directe dans le navigateur peut exécuter du code malveillant."
 features:
-  - "Recherche instantanée de l'extension de fichier et des définitions MIME."
-  - "Inspecteur d'URL sécurisé côté serveur pour vérifier le Content-Type, le Charset, etc."
-  - "Validateur d'Uploads de fichiers côté client qui inspecte les signatures brutes (Magic Bytes)."
-  - "Détecteur d'usurpation d'extension de fichier (Spoofing de format)."
-  - "Explorateur de base de données MIME contenant plus de 60 formats courants."
-  - "Audits de sécurité complets signalant l'absence de 'X-Content-Type-Options' et les types dangereux."
+  - "Inspection locale des Magic Bytes (signatures hexadécimales) directement dans le navigateur sans transfert serveur."
+  - "Détection automatique du spoofing d'extension entre le nom de fichier déclaré et sa structure binaire réelle."
+  - "Analyse des en-têtes HTTP distants : Content-Type, paramètre charset et présence de X-Content-Type-Options."
+  - "Référentiel complet des types MIME enregistrés par l'IANA avec correspondances d'extensions et catégories."
+  - "Identification des formats à risque pour les formulaires d'upload (SVG, HTML, exécutables PE/ELF, archives)."
+  - "Recommandations de configuration prêtes à l'emploi pour Nginx, Apache et les CDN afin de bloquer le MIME sniffing."
 useCases:
-  - "Développeurs Web déboguant des problèmes de chargement CSS/JS (erreurs de disparité MIME)."
-  - "Ingénieurs Sécurité auditant les formulaires d'upload de fichiers pour prévenir les injections de code."
-  - "Administrateurs Système (DevOps) configurant les mappages statiques sur serveurs Nginx ou Apache."
-  - "Experts SEO diagnostiquant des erreurs de rendu de Googlebot liées à de mauvais Content-Types."
+  - "Auditer un formulaire d'upload utilisateur pour détecter les tentatives de contournement par double extension ou polyglotte."
+  - "Déboguer un module JavaScript (.mjs) ou une feuille CSS bloqués par le navigateur suite à une erreur de type MIME strict."
+  - "Vérifier que les serveurs Nginx, Apache ou Cloudflare renvoient bien X-Content-Type-Options: nosniff sur les assets statiques."
+  - "Contrôler l'encodage charset=utf-8 des réponses API JSON, XML et HTML afin d'éliminer les corruptions de caractères accentués."
+  - "Diagnostiquer des erreurs de rendu Googlebot causées par des ressources CSS ou polices WOFF2 servies en text/plain."
+  - "Identifier le format binaire réel d'un fichier reçu sans extension ou corrompu lors d'un transfert HTTP ou SFTP."
 howToSteps:
-  - "Entrez une extension (ex: '.png') dans la barre de recherche pour consulter sa définition MIME."
-  - "Collez une URL distante dans l'Inspecteur d'URL pour récupérer ses en-têtes HTTP."
-  - "Faites glisser n'importe quel fichier dans la zone d'Upload pour lire ses 'Magic Bytes' sans transfert serveur."
-  - "Vérifiez l'indicateur de validation pour repérer d'éventuelles fausses extensions (Fichiers malveillants)."
-  - "Explorez la base de référence pour lister les catégories MIME."
+  - "Saisissez une extension (par exemple .webp ou .woff2) ou un type MIME dans la barre de recherche pour consulter sa fiche IANA."
+  - "Glissez-déposez un fichier local dans l'analyseur binaire pour extraire instantanément ses Magic Bytes côté client."
+  - "Comparez l'extension déclarée avec la signature hexadécimale détectée afin de repérer toute usurpation de format."
+  - "Renseignez une URL HTTP/HTTPS dans l'inspecteur distant pour lire l'en-tête Content-Type et le jeu de caractères renvoyés."
+  - "Vérifiez le statut de sécurité de l'en-tête X-Content-Type-Options et appliquez les correctifs serveur recommandés."
 ---
 
-## Qu'est-ce qu'un Type MIME ?
+Sur le Web, un navigateur ne s'appuie pas sur l'extension d'un fichier pour décider s'il doit afficher une image, compiler un module JavaScript ou déclencher un téléchargement : il suit l'en-tête HTTP `Content-Type`, défini par le standard des types MIME (*Multipurpose Internet Mail Extensions*). Normalisés par les **RFC 6838** et **RFC 9110** et maintenus dans le registre officiel de l'IANA, les types de médias gouvernent à la fois l'interopérabilité applicative, la sécurité contre les injections de code et la capacité des robots d'indexation à rendre une page. Un **vérificateur de types MIME** permet de confronter trois vérités trop souvent divergentes : l'extension nominale, l'en-tête déclaré par le serveur et la signature binaire réelle du fichier.
 
-Un **Type MIME** (Multipurpose Internet Mail Extensions), également appelé Content-Type, est un identifiant standardisé en deux parties. Il définit le format d'un fichier échangé sur Internet.
+## Anatomie d'un type MIME et syntaxe HTTP
 
-Il se compose d'un type principal et d'un sous-type, séparés par une barre oblique (`/`). Par exemple, pour `text/html`, `text` est la catégorie et `html` la structure. D'autres exemples classiques sont `image/png` ou `application/json`.
+Selon la RFC 6838, un type MIME obéit à la structure `type/sous-type`, complétée par des paramètres optionnels séparés par un point-virgule. Le type principal définit la famille de données (`text`, `image`, `audio`, `video`, `font`, `application`, `multipart` ou `message`), tandis que le sous-type identifie le format exact.
 
-Lorsqu'un serveur Web transmet un fichier à un navigateur, il inclut un en-tête HTTP nommé `Content-Type`. **Le navigateur se fie uniquement à cet en-tête** (et non à l'extension du fichier) pour savoir s'il doit afficher une image, lancer un téléchargement, ou exécuter un code.
+Les arbres d'enregistrement précisent l'origine de la spécification : l'arbre standard ne comporte aucun préfixe (`application/pdf`), l'arbre fournisseur utilise `vnd.` (`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` pour `.xlsx`), l'arbre personnel emploie `prs.` et les formats expérimentaux héritent historiquement du préfixe `x-`. Les suffixes structurés tels que `+xml`, `+json` ou `+zip` (par exemple `application/ld+json` ou `image/svg+xml`) informent les parseurs génériques de la syntaxe sous-jacente.
 
----
+Dans une réponse HTTP, l'en-tête `Content-Type` transporte souvent des paramètres critiques :
 
-## Fonctionnement de l'en-tête Content-Type
-
-Un en-tête Content-Type classique ressemble à ceci :
 ```http
-Content-Type: text/html; charset=UTF-8
-```
-Cet en-tête dit au navigateur : \"Voici un document HTML, et les caractères sont encodés en UTF-8\". Sans cet en-tête, le navigateur est forcé de deviner le type, ce qui provoque des bugs visuels, des erreurs d'accents ou le blocage de certaines fonctionnalités.
-
----
-
-## Extensions de Fichiers vs. Types MIME
-
-1. **Extensions de fichiers** (ex : `.jpg`, `.pdf`) : Ce sont de simples conventions de nommage sur votre PC. Elles permettent à votre OS de l'ouvrir avec le bon logiciel.
-2. **Types MIME** (ex : `image/jpeg`) : Ce sont les étiquettes officielles de communication réseau (HTTP).
-
-Les extensions sont très fragiles et falsifiables. Un utilisateur malveillant peut renommer un virus exécutable `script.exe` en image `avatar.png`. Mais la véritable structure binaire du fichier restera celle d'un logiciel malveillant.
-
-Si un serveur autorise l'upload d'avatars en vérifiant uniquement l'extension `.png`, il est vulnérable. Une vraie vérification de sécurité doit croiser l'extension ET le type MIME profond (en lisant les **Magic Bytes** du fichier).
-
----
-
-## Qu'est-ce que le MIME Sniffing ?
-
-Le **MIME Sniffing** (reniflage MIME) est une ancienne technique où le navigateur web inspecte le fichier bit par bit pour deviner son format, au cas où le serveur serait mal configuré et enverrait un mauvais Content-Type.
-
-Cette méthode introduit une **faille de sécurité critique**. Si un pirate télécharge un fichier HTML contenant du JavaScript malveillant caché sous une fausse image (ex: `malicious.jpg`), le navigateur effectuant le Sniffing exécutera silencieusement le code caché, provoquant une attaque XSS (Cross-Site Scripting).
-
-### Le Bouclier de Sécurité : X-Content-Type-Options
-
-Pour interdire formellement aux navigateurs d'effectuer du MIME Sniffing, tous les sites Web modernes ajoutent cet en-tête de réponse de sécurité :
-```http
+Content-Type: text/html; charset=utf-8
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 X-Content-Type-Options: nosniff
 ```
-Cet en-tête bloque l'exécution non autorisée de codes provenant de téléchargements d'utilisateurs.
 
----
+L'omission de `charset=utf-8` sur un flux `text/html` ou `text/csv` provoque des erreurs de décodage des caractères diacritiques français (`é`, `è`, `ç`), tandis qu'un type erroné sur un module ES (`<script type="module">`) entraîne un refus immédiat d'exécution, car la spécification HTML impose un contrôle MIME strict sans solution de repli.
 
-## Conséquences d'un mauvais type MIME sur le SEO (Google)
+## Signatures binaires (Magic Bytes) et validation d'uploads
 
-* **Code non-exécuté** : Si votre serveur envoie votre fichier JavaScript `.js` avec le type `text/plain`, les navigateurs bloqueront son exécution (s'ils respectent la directive nosniff).
-* **Pénalités SEO (Googlebot)** : Les robots d'exploration comme Googlebot inspectent scrupuleusement les types MIME. Si votre feuille de style CSS est bloquée à cause d'un mauvais Content-Type, Googlebot ne pourra pas afficher le design de votre page. Résultat ? Google déclarera votre page \"non-optimisée pour les mobiles\", ce qui détruira votre classement dans les résultats de recherche.
+Se fier au nom de fichier ou à la propriété `file.type` envoyée par un navigateur constitue une faille classique de sécurité : un client HTTP peut forger librement l'extension comme l'en-tête `Content-Type` d'une requête `POST`. Pour établir la nature réelle d'un fichier, il faut inspecter ses **Magic Bytes**, une séquence d'octets immuable placée en tête de fichier (offset `0`) ou à un décalage précis.
+
+| Extension | Type MIME officiel (IANA) | Signature Magic Bytes (Hex) | Offset | Risque sécurité et point de vigilance |
+| :--- | :--- | :--- | :--- | :--- |
+| `.png` | `image/png` | `89 50 4E 47 0D 0A 1A 0A` | `0` | Fiable ; vérifier les chunks textes pour les fichiers polyglottes |
+| `.jpg` | `image/jpeg` | `FF D8 FF` | `0` | Ré-encoder côté serveur pour purger les métadonnées EXIF/commentaires |
+| `.webp` | `image/webp` | `52 49 46 46` + `57 45 42 50` | `0` et `8` | Conteneur RIFF ; contrôler les octets 8 à 11 (`WEBP`) |
+| `.pdf` | `application/pdf` | `25 50 44 46 2D` (`%PDF-`) | `0` | Peut contenir du JavaScript embarqué ; servir avec `Content-Disposition` |
+| `.zip` / `.docx` | `application/zip` | `50 4B 03 04` (`PK..`) | `0` | Même en-tête pour ZIP, DOCX, XLSX et JAR ; inspecter l'archive interne |
+| `.svg` | `image/svg+xml` | Texte XML (`<svg` ou `<?xml`) | Variable | Risque XSS élevé ; assainir le DOM XML ou isoler le domaine |
+| `.woff2` | `font/woff2` | `77 4F 46 32` (`wOF2`) | `0` | Requis pour le chargement CORS strict des polices Web |
+| `.exe` / `.dll` | `application/vnd.microsoft.portable-executable` | `4D 5A` (`MZ`) | `0` | Exécutable Windows ; à rejeter systématiquement sur un upload public |
+
+Même les Magic Bytes ne suffisent pas seuls face aux **fichiers polyglottes** (comme un GIF valide dont le bloc de commentaire contient du code HTML ou JavaScript). Une défense en profondeur combine l'inspection binaire côté serveur (via `libmagic`), le ré-encodage des images uploadées, le renommage aléatoire par UUID et l'hébergement des contenus utilisateurs sur un sous-domaine sandbox distinct sans cookies de session.
+
+## Prévenir le MIME Sniffing et durcir la configuration serveur
+
+Le **MIME Sniffing** (spécifié par le *WHATWG MIME Sniffing Standard*) désigne le mécanisme par lequel un navigateur inspecte les premiers octets d'une ressource afin de deviner son format lorsque l'en-tête serveur est absent ou générique (`application/octet-stream`, `text/plain`). Si un attaquant dépose un fichier `avatar.txt` contenant `<script>...</script>`, un navigateur autorisé à pratiquer le sniffing peut le reclasser en `text/html` et exécuter le script dans le contexte d'origine du site.
+
+L'ajout systématique de l'en-tête `X-Content-Type-Options: nosniff` interdit cette réinterprétation. Configurez Nginx et Apache pour déclarer explicitement les formats modernes :
+
+```nginx
+# Nginx (/etc/nginx/conf.d/mime-security.conf)
+include       /etc/nginx/mime.types;
+types {
+    text/javascript  mjs;
+    image/avif       avif;
+    font/woff2       woff2;
+}
+default_type  application/octet-stream;
+add_header X-Content-Type-Options "nosniff" always;
+```
+
+Sous Apache, déclarez vos directives dans `.htaccess` (ou générez-les via notre [Générateur .htaccess](/fr/outils/htaccess-generator)) :
+
+```apache
+AddType text/javascript .js .mjs
+AddType image/webp .webp
+Header always set X-Content-Type-Options "nosniff"
+```
+
+## Scénarios de dépannage et diagnostic HTTP
+
+En production, vérifiez d'abord les en-têtes bruts avec `curl -sI` ou notre [Vérificateur d'En-têtes HTTP](/fr/outils/http-header-checker). Trois anomalies concentrent l'essentiel des pannes :
+
+1. **CSS ou script bloqué en mode strict** : un en-tête `text/plain` couplé à `nosniff` empêche les navigateurs et Googlebot de charger le style ou le code, pénalisant l'ergonomie mobile et le SEO.
+2. **HTML renvoyé à la place d'un bundle JS** : une réécriture SPA défaillante sert `index.html` (`text/html`) sur un chunk absent, produisant l'erreur *Expected a JavaScript module script*.
+3. **Téléchargement forcé d'images ou de PDF** : un bucket S3 ou R2 attribue `application/octet-stream` par défaut lors d'un envoi programmatique. Définissez explicitement `ContentType` à chaque `PutObject` et réservez `Content-Disposition: attachment` aux pièces jointes non fiables.
