@@ -1,103 +1,92 @@
 ---
 title: "Kohlenhydrat-Rechner"
+metaTitle: "Kohlenhydrat-Rechner | Tagesbedarf & Netto-Kohlenhydrate"
 description: "Berechnen Sie Ihre optimale tägliche Kohlenhydratzufuhr, Netto-Kohlenhydrate, Kohlenhydrat-Cycling-Pläne und die Verteilung auf Mahlzeiten basierend auf Ihren Körperdaten und Fitnesszielen."
-metaTitle: "Kohlenhydrat-Rechner | Kohlenhydratbedarf & Netto-Kohlenhydrate"
-metaDescription: "Kostenloser Online-Kohlenhydrat-Rechner. Berechnen Sie Ihren täglichen Bedarf, Netto-Kohlenhydrate und Kohlenhydrat-Cycling. Ideal für Fitness, Keto und Diabetiker."
-metaKeywords: "kohlenhydrat rechner, netto kohlenhydrate, kohlenhydrat cycling, diabetes ernährung, ketogene diät, low carb, fitness ernährung, sportnahrung"
+metaDescription: "Kostenloser Kohlenhydrat-Rechner: Berechnen Sie Ihren täglichen Bedarf in Gramm, Netto-Kohlenhydrate und Makroverteilung für Sport, Diät und Keto."
+metaKeywords: "kohlenhydrat rechner, netto kohlenhydrate, kohlenhydratbedarf berechnen, diabetes ernährung, ketogene diät, low carb, fitness ernährung, sportnahrung"
 faqs:
-  - question: "Was sind Kohlenhydrate?"
-    answer: "Kohlenhydrate sind organische Verbindungen aus Kohlenstoff, Wasserstoff und Sauerstoff, die dem Körper als primäre und effizienteste Energiequelle dienen. Sie werden in Glukose zerlegt, um Zellen, Muskeln und das Gehirn zu versorgen."
-  - question: "Was sind Netto-Kohlenhydrate?"
-    answer: "Netto-Kohlenhydrate sind die aktiven Kohlenhydrate, die vom Körper vollständig verdaut und aufgenommen werden und den Blutzuckerspiegel beeinflussen. Sie werden berechnet, indem Ballaststoffe und Zuckeralkohole von den Gesamtkohlenhydraten abgezogen werden."
-  - question: "Wie viele Kohlenhydrate sollte ich täglich essen?"
-    answer: "Ihr täglicher Bedarf hängt von Ihrem TDEE, Ihrem Aktivitätsniveau und Ihren Zielen ab. Aktive Personen benötigen in der Regel 3 bis 7 Gramm Kohlenhydrate pro Kilogramm Körpergewicht, was etwa 40 % bis 60 % der Gesamtkalorien entspricht."
-  - question: "Was ist der Unterschied zwischen einfachen und komplexen Kohlenhydraten?"
-    answer: "Einfache Kohlenhydrate (Zucker) bestehen aus kurzen Molekülketten, die schnell verdaut werden und zu schnellen Blutzuckerspitzen führen. Komplexere Kohlenhydrate (Stärke) sind längerkettig, werden langsam verdaut und liefern konstante Energie."
-  - question: "Sind Kohlenhydrate schlecht für die Gewichtsabnahme?"
-    answer: "Kohlenhydrate sind für die Gewichtsabnahme nicht von Natur aus schlecht. Gewichtsverlust wird durch ein Kaloriendefizit bestimmt. Die Reduzierung von Kohlenhydraten kann jedoch helfen, den Appetit zu kontrollieren und den Insulinspiegel zu stabilisieren."
-  - question: "Was ist eine Keto-Diät?"
-    answer: "Eine ketogene Diät ist eine extrem kohlenhydratarme, fettreiche Ernährungsform, bei der die Kohlenhydrate auf unter 5 % der täglichen Kalorien (meist weniger als 20g bis 50g Netto-Kohlenhydrate) begrenzt werden, um den Zustand der Ketose zu erreichen."
-  - question: "Welche Lebensmittel enthalten gesunde Kohlenhydrate?"
-    answer: "Gesunde Kohlenhydratquellen sind nährstoff- und ballaststoffreiche Vollwertkost wie Haferflocken, brauner Reis, Süßkartoffeln, Quinoa, Hülsenfrüchte, Beeren und Gemüse."
-  - question: "Was ist Kohlenhydrat-Cycling?"
-    answer: "Kohlenhydrat-Cycling (Carb Cycling) ist ein Protokoll, bei dem Sie zwischen Tagen mit hoher Zufuhr (an schweren Trainingstagen) und Tagen mit niedriger Zufuhr (an Ruhetagen) wechseln, um die Fettverbrennung zu optimieren."
-  - question: "Wie beeinflussen Kohlenhydrate das Training?"
-    answer: "Kohlenhydrate werden in den Muskeln und der Leber als Glykogen gespeichert. Bei intensiven Aktivitäten ist Glykogen die Hauptenergiequelle. Eine ausreichende Zufuhr verzögert die Muskelermüdung."
-  - question: "Ist dieser Rechner für Mobilgeräte optimiert?"
-    answer: "Ja, unser Kohlenhydrat-Rechner ist vollständig responsive und funktioniert optimal auf Smartphones, Tablets und Desktop-Computern."
+  - question: "Darf ich bei Lebensmitteln im DACH-Raum die Ballaststoffe von den Kohlenhydraten abziehen?"
+    answer: "Nein! Auf europäischen und Schweizer Nährwerttabellen (gemäß EU-Lebensmittelinformationsverordnung LMIV) sind Ballaststoffe bereits vorab herausgerechnet und werden als separate Zeile ausgewiesen. Die Angabe 'Kohlenhydrate' auf deutschen, österreichischen und Schweizer Verpackungen zeigt also bereits die Netto-Kohlenhydrate (ohne Ballaststoffe). Ein erneuter Abzug gilt ausschließlich für US-amerikanische Nährwertetiketten."
+  - question: "Wie werden Zuckeralkohole (Mehrwertige Alkohole) bei den Netto-Kohlenhydraten berücksichtigt?"
+    answer: "Zuckeralkohole (Polyole) sind auf EU-Etiketten in den ausgewiesenen Kohlenhydraten enthalten, wirken sich jedoch unterschiedlich auf den Blutzucker aus. Erythrit wird im Dünndarm fast vollständig unverändert ausgeschieden (0 kcal/g) und kann zu 100 % abgezogen werden. Xylit, Sorbit und vor allem Maltit (ca. 2,4 kcal/g) werden hingegen teilweise verstoffwechselt; bei strenger Ketose oder Diabetes sollten Sie diese nur zu etwa 50 % bis 60 % von den Gesamtkohlenhydraten abziehen."
+  - question: "Wie rechne ich Gramm Kohlenhydrate in Broteinheiten (BE) oder Kohlenhydrateinheiten (KE) um?"
+    answer: "In der klinischen Diabetologie im deutschsprachigen Raum werden verwertbare Netto-Kohlenhydrate zur Insulindosierung in standardisierte Einheiten umgerechnet. Eine Kohlenhydrateinheit (1 KE bzw. KHE, Standard in der Schweiz und in modernen deutschen Schulungen) entspricht exakt 10 g verwertbaren Kohlenhydraten. Eine klassische Broteinheit (1 BE, häufig noch in Deutschland und Österreich genutzt) ist als 12 g verwertbare Kohlenhydrate definiert."
+  - question: "Sollte ich meinen Kohlenhydratbedarf nach Kalorienprozenten oder pro Kilogramm Körpergewicht berechnen?"
+    answer: "Für Personen mit moderater Alltagsbewegung eignet sich die prozentuale Aufteilung des Gesamtenergiebedarfs (z. B. über 50 % laut D-A-CH-Referenzwerten für eine ausgewogene Mischkost oder 15 % bis 25 % bei Low-Carb). Für Leistungs- und Ausdauersportler ist hingegen die Berechnung in Gramm pro Kilogramm Körpergewicht (3 bis 10 g/kg je nach Trainingsvolumen) präziser, da die Kapazität der Muskelglykogenspeicher direkt mit der aktiven Muskelmasse skaliert."
+  - question: "Was ist der Unterschied zwischen Glykämischem Index (GI) und Glykämischer Last (GL)?"
+    answer: "Der Glykämische Index (0 bis 100) misst lediglich, wie schnell 50 g verwertbare Kohlenhydrate eines Lebensmittels den Blutzucker im Vergleich zu reiner Glukose (GI = 100) ansteigen lassen, ignoriert aber die Kohlenhydratdichte. Die Glykämische Last multipliziert den GI mit der tatsächlich verzehrten Kohlenhydratmenge einer Portion (geteilt durch 100) und ist daher der entscheidende Praxiswert für die reale Insulinantwort."
 ---
 
-# Wissenschaftlicher Leitfaden zu Kohlenhydraten und täglichem Bedarf
+Kohlenhydrate sind der effizienteste Energielieferant des menschlichen Stoffwechsels. Nach der enzymatischen Aufspaltung in Glukose versorgen sie das zentrale Nervensystem (das allein rund $120\text{ bis }140\text{ g}$ Glukose pro Tag benötigt) und werden in der Skelettmuskulatur sowie in der Leber als **Glykogen** gespeichert. Ob Sie Ihre Ausdauerleistung maximieren, durch ein gezieltes Kaloriendefizit Körperfett abbauen oder im Rahmen einer ketogenen Ernährung den Zustand der nutritiven Ketose erreichen möchten: Unser **Kohlenhydrat-Rechner** ermittelt aus Ihren Körperdaten, Ihrem Aktivitätsniveau und Ihrer Zielsetzung Ihren täglichen Kohlenhydratbedarf in Gramm ($\text{g/Tag}$), Ihren relativen Bedarf pro Kilogramm Körpergewicht ($\text{g/kg}$) sowie die Verteilung auf einzelne Mahlzeiten.
 
-Kohlenhydrate gehören zu den am intensivsten diskutierten Themen der modernen Ernährungswissenschaft. Die Empfehlungen reichen von extrem kohlenhydratarmen ketogenen Diäten bis hin zu kohlenhydratreichen Protokollen im Ausdauersport. Um Ihre Gesundheits- und Fitnessziele zu erreichen, ist es wichtig zu verstehen, wie Kohlenhydrate im Körper wirken, wie sie Ihren Stoffwechsel beeinflussen und wie Sie Ihren spezifischen täglichen Bedarf berechnen.
+## Formeln zur Berechnung des täglichen Kohlenhydratbedarfs
 
-Dieser Leitfaden bietet Ihnen einen fundierten Überblick über Kohlenhydrate, ihre biologischen Funktionen und praktische Methoden zur Optimierung Ihrer Zufuhr.
+Die wissenschaftliche Bedarfsberechnung erfolgt in zwei Stufen: Zunächst wird der tägliche Gesamtenergieumsatz aus Grundumsatz ($\text{GU}$) und Leistungsumsatz bestimmt; anschließend wird der gewünschte Kohlenhydratanteil über das physiologische Brennwertäquivalent in Gramm umgerechnet.
 
----
+### 1. Ermittlung des Ziel-Energieumsatzes ($E_{\text{Ziel}}$)
+Zur Bestimmung des Ruhe-Grundumsatzes ($\text{GU}$ in $\text{kcal/Tag}$) nutzt der Rechner die klinisch validierte **Mifflin-St.-Jeor-Gleichung**:
 
-## 1. Was sind Kohlenhydrate?
+$$\text{GU}_{\text{Männer}} = (10 \cdot m) + (6,25 \cdot h) - (5 \cdot a) + 5$$
 
-Kohlenhydrate sind organische Verbindungen, die sich aus Kohlenstoff, Wasserstoff und Sauerstoff zusammensetzen ($C_n(H_2O)_n$). Biologisch betrachtet sind sie die bevorzugte und effizienteste Energiequelle des menschlichen Körpers. Wenn Sie Kohlenhydrate essen, zerlegt Ihr Verdauungssystem diese in Glukose, die in die Blutbahn gelangt. Diese Glukose wird entweder sofort zur Energiegewinnung genutzt oder in Form von Glykogen in der Leber und den Muskeln für später gespeichert.
+$$\text{GU}_{\text{Frauen}} = (10 \cdot m) + (6,25 \cdot h) - (5 \cdot a) - 161$$
 
-In der Ernährung liefern Kohlenhydrate $4\text{ kcal}$ Energie pro Gramm, genau wie Proteine, während Fette mit $9\text{ kcal}$ pro Gramm deutlich energiedichter sind.
+Durch Multiplikation mit dem körperlichen Aktivitätsfaktor ($\text{PAL}$, typischerweise zwischen $1,20$ bei sitzender Tätigkeit und $2,20$ bei täglichem Leistungssport) und Verrechnung einer Kalorienanpassung $\Delta E_{\text{Ziel}}$ (z. B. $-500\text{ kcal}$ für Fettabbau oder $+300\text{ kcal}$ für Muskelaufbau) ergibt sich der tägliche Ziel-Energiebedarf:
 
----
+$$E_{\text{Ziel}} = (\text{GU} \cdot \text{PAL}) \pm \Delta E_{\text{Ziel}}$$
 
-## 2. Einfache vs. komplexe Kohlenhydrate
+### 2. Umrechnung in die tägliche Kohlenhydratmenge ($M_{\text{KH}}$)
+Gemäß der europäischen Lebensmittelinformationsverordnung (LMIV) besitzt 1 Gramm verwertbare Kohlenhydrate einen physiologischen Brennwert von **$4,0\text{ kcal/g}$** bzw. **$17,0\text{ kJ/g}$** (physikalisch exakt $4,1\text{ kcal/g}$). Bei einer gewählten Kohlenhydratquote $q_{\text{KH}}$ (als Dezimalwert des Gesamtenergiebedarfs, z. B. $0,50$ für $50\text{ \%}$) berechnet sich die tägliche Zufuhr in Gramm nach:
 
-Kohlenhydrate werden anhand ihrer chemischen Struktur und der Geschwindigkeit ihrer Verdauung in zwei Hauptgruppen unterteilt:
+$$M_{\text{KH}} = \frac{E_{\text{Ziel}} \cdot q_{\text{KH}}}{4,0\text{ kcal/g}}$$
 
-### Einfache Kohlenhydrate (Einfach- und Zweifachzucker)
-Diese bestehen aus nur einem oder zwei Zuckermolekülen. Wegen ihrer kurzen Molekülketten werden sie sehr schnell verdaut und in die Blutbahn aufgenommen.
-*   **Beispiele:** Haushaltszucker, Honig, Ahornsirup, Fruchtsäfte, Limonaden und Süßigkeiten.
-*   **Auswirkung:** Sie führen zu einem raschen Anstieg des Blutzucker- und Insulinspiegels, gefolgt von einem schnellen Energieabfall ("Zuckertief").
+### 3. Netto-Kohlenhydrate und Glykämische Last ($\text{GL}$)
+Für die Berechnung der blutzuckerwirksamen **Netto-Kohlenhydrate** ($\text{KH}_{\text{netto}}$) muss zwischen europäischen (DACH/EU) und US-amerikanischen Nährwertdeklarationen unterschieden werden:
 
-### Komplexe Kohlenhydrate (Mehrfachzucker)
-Diese bestehen aus langen, verzweigten Ketten von Zuckermolekülen. Ihre Struktur erfordert mehr Zeit für die Aufspaltung durch den Körper.
-*   **Beispiele:** Haferflocken, Süßkartoffeln, brauner Reis, Quinoa, Hülsenfrüchte und Vollkornprodukte.
-*   **Auswirkung:** Sie sorgen für eine langsame, kontinuierliche Freisetzung von Glukose, was zu stabileren Energielevels führt und starke Insulinspitzen verhindert.
+$$\text{KH}_{\text{netto (DACH/EU)}} = \text{KH}_{\text{lt. Etikett}} - (k_{\text{Polyol}} \cdot \text{Mehrwertige Alkohole})$$
 
----
+$$\text{KH}_{\text{netto (US-Etikett)}} = \text{KH}_{\text{gesamt}} - \text{Ballaststoffe} - (k_{\text{Polyol}} \cdot \text{Zuckeralkohole})$$
 
-## 3. Die Wissenschaft der Netto-Kohlenhydrate
+Die **Glykämische Last ($\text{GL}$)** einer Portion mit dem Glykämischen Index $\text{GI}$ lautet:
 
-Beim Tracken von Makronährstoffen, insbesondere bei einer Low-Carb- oder Keto-Ernährung, spielen **Netto-Kohlenhydrate** eine zentrale Rolle. Sie beschreiben den Anteil der Kohlenhydrate, den der Körper tatsächlich verdaut und als Glukose aufnimmt.
+$$\text{GL} = \frac{\text{GI} \cdot \text{KH}_{\text{netto pro Portion (in g)}}}{100}$$
 
-$$\text{Netto-Kohlenhydrate} = \text{Gesamtkohlenhydrate} - \text{Ballaststoffe} - \text{Zuckeralkohole}$$
+### Definition der Berechnungsvariablen
+* **$m$ (Körpermasse):** Aktuelles Körpergewicht in Kilogramm ($\text{kg}$).
+* **$h$ (Körpergröße):** Körperhöhe in Zentimetern ($\text{cm}$).
+* **$a$ (Lebensalter):** Alter in Jahren.
+* **$\text{PAL}$ (Aktivitätsfaktor):** Multiplikator für Arbeits- und Trainingsbelastung (dimensionslos).
+* **$q_{\text{KH}}$ (Makronährstoffquote):** Angestrebter Kalorienanteil der Kohlenhydrate an der Tagesenergie ($0,05\text{ bis }0,65$).
+* **$k_{\text{Polyol}}$ (Anrechnungsfaktor für Zuckeralkohole):** $1,0$ für Erythrit (vollständig abziehbar), ca. $0,5$ für Xylit und Maltit.
 
-### Ballaststoffe und Verdauung
-Ballaststoffe sind pflanzliche Kohlenhydrate, die von den menschlichen Verdauungsenzymen nicht abgebaut werden können. Sie passieren den Darm weitgehend unverdaut, fördern die Darmgesundheit, verlangsamen die Blutzuckeraufnahme und erhöhen die Sättigung. Sie werden daher von der Gesamtsumme abgezogen.
+## Schritt-für-Schritt-Rechenbeispiel aus der Praxis
 
-### Zuckeralkohole (Zuckeraustauschstoffe)
-Zuckeralkohole (wie Erythrit, Xylit oder Sorbit) werden als kalorienarme Süßungsmittel genutzt. Da sie vom Körper kaum aufgenommen werden, haben sie nahezu keinen Einfluss auf den Blutzuckerspiegel und werden ebenfalls abgezogen.
+Ein **35-jähriger Sportler** mit einem Körpergewicht von **$m = 78,0\text{ kg}$** und einer Körpergröße von **$h = 180\text{ cm}$** absolviert viermal wöchentlich ein intensives Lauf- und Krafttraining ($\text{PAL} = 1,65$). Er möchte sein Gewicht halten ($\Delta E_{\text{Ziel}} = 0\text{ kcal}$) und strebt eine ausgewogene Sporternährung mit **$50,0\text{ \%}$ Kohlenhydratanteil** ($q_{\text{KH}} = 0,50$) an.
 
----
+1. **Berechnung des Grundumsatzes ($\text{GU}$):**
+   $$\text{GU} = (10 \cdot 78,0) + (6,25 \cdot 180) - (5 \cdot 35) + 5 = 780 + 1.125 - 175 + 5 = 1.735,0\text{ kcal/Tag}$$
+2. **Berechnung des täglichen Gesamtenergieumsatzes ($E_{\text{Ziel}}$):**
+   $$E_{\text{Ziel}} = 1.735,0\text{ kcal} \cdot 1,65 = 2.862,75\text{ kcal/Tag} \quad (\approx 11.978\text{ kJ/Tag})$$
+3. **Berechnung des täglichen Kohlenhydratbedarfs in Gramm ($M_{\text{KH}}$):**
+   $$E_{\text{KH}} = 2.862,75\text{ kcal} \cdot 0,50 = 1.431,38\text{ kcal aus Kohlenhydraten}$$
+   $$M_{\text{KH}} = \frac{1.431,38\text{ kcal}}{4,0\text{ kcal/g}} \approx 357,8\text{ g Kohlenhydrate pro Tag}$$
+4. **Einordnung pro Kilogramm Körpergewicht und in Diabetes-Einheiten:**
+   Bezogen auf die Körpermasse entspricht dieser Wert $\frac{357,8\text{ g}}{78,0\text{ kg}} = \mathbf{4,59\text{ g/kg Körpergewicht}}$, was exakt im sportmedizinischen Zielkorridor für regelmäßiges Training liegt. In klinischen Einheiten entspricht die Tagesration **$35,8\text{ Kohlenhydrateinheiten (KE)}$** bzw. **$29,8\text{ Broteinheiten (BE)}$**.
 
-## 4. Glykämischer Index und glykämische Last
+## Richtwerttabelle: Kohlenhydratbedarf nach Ernährungsform und Trainingsziel
 
-Der **Glykämische Index (GI)** klassifiziert Lebensmittel (von 0 bis 100) danach, wie schnell sie den Blutzuckerspiegel nach dem Verzehr im Vergleich zu reiner Glukose anheben.
-*   **Niedriger GI (55 oder weniger):** Haferflocken, Linsen, grünes Gemüse und Beeren.
-*   **Mittlerer GI (56 bis 69):** Vollkornbrot, brauner Reis und Mais.
-*   **Hoher GI (70 oder mehr):** Weißbrot, Kartoffelpüree und zuckerhaltige Getränke.
+Die folgende Referenzmatrix vergleicht die empfohlenen Zufuhrmengen der Fachgesellschaften (DGE, ÖGE, SGE sowie Sporternährungsleitlinien) für eine Beispielperson mit **$75,0\text{ kg}$ Körpergewicht**:
 
-### Glykämische Last (GL)
-Da der GI die Portionsgröße nicht berücksichtigt, nutzt man die **Glykämische Last (GL)** für eine praxisnahe Einschätzung:
+| Ernährungsform / Aktivitätsprofil | Energieanteil ($q_{\text{KH}}$) | Zufuhr pro kg Körpergewicht | Tagesmenge (bei 75,0 kg) | Primäres physiologisches Ziel |
+| :--- | :--- | :--- | :--- | :--- |
+| **Strikte Ketogene Diät (Keto)** | $5\text{ \% bis }8\text{ \%}$ | $0,3\text{ bis }0,6\text{ g/kg}$ | $20\text{ bis }45\text{ g/Tag}$ | Maximale Ketonkörperbildung (Ketose) |
+| **Moderates Low-Carb (Fettabbau)** | $15\text{ \% bis }25\text{ \%}$ | $1,0\text{ bis }1,8\text{ g/kg}$ | $75\text{ bis }135\text{ g/Tag}$ | Blutzuckerstabilisierung, hohe Fettoxidation |
+| **Ausgewogene Mischkost (D-A-CH-Referenz)** | $45\text{ \% bis }55\text{ \%}$ | $3,0\text{ bis }4,0\text{ g/kg}$ | $225\text{ bis }300\text{ g/Tag}$ | Alltagsleistung, Ballaststoffzufuhr ($\ge 30\text{ g}$) |
+| **Kraftsport & Muskelaufbau** | $45\text{ \% bis }55\text{ \%}$ | $4,0\text{ bis }5,5\text{ g/kg}$ | $300\text{ bis }415\text{ g/Tag}$ | Volle Muskelglykogenspeicher, Regeneration |
+| **Intensiver Ausdauersport (1–2 Std./Tag)** | $55\text{ \% bis }60\text{ \%}$ | $6,0\text{ bis }8,0\text{ g/kg}$ | $450\text{ bis }600\text{ g/Tag}$ | Rasche Glykogenresynthese zwischen Einheiten |
+| **Wettkampf- & Ultradauersport (3+ Std./Tag)** | $60\text{ \% bis }70\text{ \%}$ | $8,0\text{ bis }12,0\text{ g/kg}$ | $600\text{ bis }900\text{ g/Tag}$ | Maximale Glykogensuperkompensation |
 
-$$\text{GL} = \frac{\text{GI} \times \text{Kohlenhydrate in Gramm pro Portion}}{100}$$
+## Häufige Berechnungsfehler und Praxistipps
 
-Eine GL unter 10 gilt als niedrig, 11 bis 19 als moderat und über 20 als hoch.
-
----
-
-## 5. Sportliche Leistung und Carb-Timing
-
-Kohlenhydrate sind der wichtigste Kraftstoff für intensives Training.
-
-### Bedarf im Sport
-*   **Moderates Training (1 Std./Tag):** $3\text{ bis }5\text{g Kohlenhydrate pro kg Körpergewicht}$.
-*   **Intensives Training (2-3 Std./Tag):** $5\text{ bis }8\text{g Kohlenhydrate pro kg Körpergewicht}$.
-*   **Ausdauersport (4+ Std./Tag):** $8\text{ bis }12\text{g Kohlenhydrate pro kg Körpergewicht}$.
-
-### Carb-Timing-Strategien
-*   **Vor dem Training (1,5–2 Std.):** Komplexe Kohlenhydrate mit niedrigem bis mittlerem GI füllen die Glykogenspeicher optimal auf.
-*   **Nach dem Training (innerhalb 45 Min.):** Schnelle Kohlenhydrate zusammen mit Protein fördern den Insulinausstoß, was die Regeneration und die Glykogensynthese beschleunigt.
+1. **Kein doppelter Ballaststoff-Abzug bei europäischen Lebensmitteln:** Wer US-amerikanische Keto-Ratgeber oder Apps mit US-Datenbanken nutzt, zieht oft gewohnheitsmäßig die Ballaststoffe von den Kohlenhydraten ab. Tun Sie dies niemals bei Produkten aus Deutschland, Österreich oder der Schweiz! Wenn Vollkornbrot laut deutschem Etikett $42,0\text{ g}$ Kohlenhydrate und $8,5\text{ g}$ Ballaststoffe pro $100\text{ g}$ enthält, betragen die verwertbaren Netto-Kohlenhydrate exakt **$42,0\text{ g}$** (und nicht $33,5\text{ g}$).
+2. **Trockengewicht nicht mit Kochgewicht verwechseln:** Getreide, Reis, Teigwaren und Hülsenfrüchte nehmen beim Kochen das Zweifache ihres Eigengewichts an Wasser auf. Während $100\text{ g}$ ungekochter Basmatireis rund $78,0\text{ g}$ Kohlenhydrate liefern, enthalten $100\text{ g}$ gekochter Reis nur noch etwa $26,0\text{ bis }28,0\text{ g}$ Kohlenhydrate. Wiegen Sie Lebensmittel für präzises Tracking immer im Rohzustand ab.
+3. **Zyklische Kohlenhydratzufuhr nach Trainingsbelastung:** Planen Sie an intensiven Trainingstagen eine höhere Zufuhr ($4,0\text{ bis }6,0\text{ g/kg}$), wobei rund $60\text{ \%}$ der Tagesmenge in die Mahlzeiten direkt vor und nach dem Training fließen. An trainingsfreien Ruhetagen senken Sie die Zufuhr auf $1,5\text{ bis }2,5\text{ g/kg}$ aus ballaststoffreichem Gemüse, Beeren und Hülsenfrüchten, um die Insulinsensitivität zu fördern.
