@@ -1,68 +1,89 @@
 ---
-metaTitle: "Calculadora de TMB Gratis | Calcula tu Tasa Metabólica Basal"
+title: "Calculadora de TMB (Tasa Metabólica Basal)"
+metaTitle: "Calculadora de TMB | Calcula tu Tasa Metabólica Basal Real"
+description: "Calcula tu Tasa Metabólica Basal (TMB) y tu Gasto Energético Total Diario (GETD) mediante las ecuaciones clínicas de Mifflin-St Jeor, Harris-Benedict y Katch-McArdle."
 metaDescription: "Calcula instantáneamente tu Tasa Metabólica Basal (TMB). Descubre exactamente cuántas calorías quema tu cuerpo en reposo para perder peso o ganar músculo."
-metaKeywords: "calculadora tmb, tasa metabolica basal, calorias quemadas en reposo, calorias diarias, formula mifflin st jeor, calculadora perdida peso"
+metaKeywords: "calculadora tmb, tasa metabolica basal, calorias quemadas en reposo, gasto energetico total diario, formula mifflin st jeor, calculadora deficit calorico"
 faqs:
-  - question: "¿Qué es la TMB (Tasa Metabólica Basal)?"
-    answer: "La Tasa Metabólica Basal (TMB) es el número total de calorías que tu cuerpo necesita para realizar funciones básicas que mantienen la vida mientras está en completo reposo. Estas funciones incluyen la respiración, la circulación sanguínea y el mantenimiento de la temperatura corporal."
-  - question: "¿Cómo calculo mi TMB?"
-    answer: "Puedes calcular tu TMB usando nuestra Calculadora de TMB gratuita en línea, que utiliza tu edad, sexo, altura y peso. La fórmula más precisa utilizada por nuestra calculadora es la ecuación de Mifflin-St Jeor."
-  - question: "¿Cuál es la diferencia entre la TMB y el GETD?"
-    answer: "La TMB es el número de calorías que quemas en reposo absoluto. El GETD (Gasto Energético Total Diario) es tu TMB multiplicada por tu nivel de actividad diaria (como hacer ejercicio y caminar). El GETD representa el total de calorías que quemas en un día."
-  - question: "¿Cómo puedo usar mi TMB para perder peso?"
-    answer: "Para perder peso, necesitas comer menos calorías que tu GETD (que se basa en tu TMB). Un objetivo de pérdida de peso saludable generalmente implica comer de 300 a 500 calorías por debajo de tu GETD para crear un déficit calórico."
-  - question: "¿Por qué la ecuación de Mifflin-St Jeor se considera la más precisa?"
-    answer: "La ecuación de Mifflin-St Jeor, introducida en 1990, es ampliamente considerada por los profesionales de la salud como la fórmula de TMB más precisa porque se desarrolló utilizando datos demográficos y composiciones corporales modernas, lo que la hace más precisa que la antigua ecuación de Harris-Benedict."
+  - question: "¿Qué diferencia existe entre la Tasa Metabólica Basal (TMB) y la Tasa Metabólica en Reposo (TMR)?"
+    answer: "La TMB mide el gasto energético mínimo en condiciones estrictas de laboratorio tras 12 horas de ayuno y reposo absoluto al despertar. La TMR se mide en condiciones menos restrictivas a lo largo del día e incluye un ligero gasto digestivo residual, por lo que suele ser aproximadamente un 10% superior a la TMB."
+  - question: "¿Cuándo conviene elegir la fórmula de Katch-McArdle en lugar de Mifflin-St Jeor?"
+    answer: "La ecuación de Mifflin-St Jeor es la más precisa para la población general porque solo requiere peso, estatura, edad y sexo. Sin embargo, si eres deportista, levantas pesas o conoces con exactitud tu porcentaje de grasa corporal, la fórmula de Katch-McArdle resulta más exacta porque calcula el metabolismo directamente a partir de tu masa corporal magra."
+  - question: "¿Es peligroso consumir menos calorías que mi Tasa Metabólica Basal para adelgazar rápido?"
+    answer: "Sí. Alimentarte de forma sostenida por debajo de tu TMB obliga al organismo a degradar tejido muscular esquelético para obtener energía, reduce la producción de hormonas tiroideas (triyodotironina o T3), provoca fatiga crónica y desencadena una adaptación metabólica severa que facilita el efecto rebote."
+  - question: "¿Cómo se relaciona la TMB con el Gasto Energético Total Diario (GETD)?"
+    answer: "La TMB representa únicamente las calorías consumidas en reposo vital (entre el 60% y el 75% de tu gasto diario). El GETD suma a tu TMB las calorías quemadas mediante el movimiento cotidiano, el ejercicio físico programado y el efecto térmico de los alimentos, constituyendo tus verdaderas calorías de mantenimiento."
+  - question: "¿Cada cuánto tiempo debo recalcular mi TMB durante una etapa de pérdida de peso?"
+    answer: "Se recomienda recalcular tu TMB y tu GETD cada vez que tu peso corporal varíe entre 4 y 5 kilogramos. Al disminuir tu masa corporal total, tu cuerpo requiere menos energía para mantener y desplazar su estructura, por lo que tu déficit calórico inicial debe ajustarse progresivamente."
 ---
 
-## ¿Qué es la Tasa Metabólica Basal (TMB)?
+Comprender cuánta energía consume tu organismo para sostener sus funciones vitales es la base científica de cualquier estrategia nutricional de pérdida de grasa, mantenimiento o hipertrofia muscular. Nuestra **Calculadora de TMB** determina con rigor clínico tu **Tasa Metabólica Basal** y proyecta tu **Gasto Energético Total Diario (GETD)** aplicando las ecuaciones predictivas de mayor validación en nutrición humana y fisiología del ejercicio.
 
-Comprender tu **Tasa Metabólica Basal (TMB)** es el primer paso fundamental en cualquier viaje de acondicionamiento físico, pérdida de peso o desarrollo muscular.
+## Fisiología de la Tasa Metabólica Basal y Componentes del Gasto Calórico
 
-La TMB representa el número mínimo absoluto de calorías (energía) que tu cuerpo requiere para mantenerse vivo y funcionar mientras está en completo reposo. Incluso si te quedaras en la cama todo el día sin mover un solo músculo, tu cuerpo seguiría quemando calorías para mantener tu corazón latiendo, tus pulmones respirando y tu temperatura central regulada.
+La **Tasa Metabólica Basal (TMB)** cuantifica la energía mínima —expresada en kilocalorías por día ($\text{kcal/día}$)— que el cuerpo humano necesita en estado de reposo físico y mental absoluto, tras un ayuno de al menos 12 horas y a temperatura ambiente termoneutra. Aunque permanezcas inmóvil durante 24 horas, el organismo mantiene un trabajo bioquímico continuo: el hígado, el cerebro, el corazón y los riñones concentran cerca del $60\%$ del consumo energético basal, mientras que la masa muscular esquelética aporta entre el $20\%$ y el $25\%$ restante.
 
-Para el adulto promedio, la TMB representa aproximadamente del **60% al 75%** de su gasto total diario de calorías. El resto de las calorías quemadas provienen de la actividad física y la digestión de los alimentos.
+En un adulto promedio, el gasto energético total diario se divide en tres componentes termodinámicos:
 
-Nuestra **Calculadora de TMB Gratuita** proporciona una estimación instantánea y científicamente precisa de tu metabolismo en reposo utilizando las fórmulas más confiables disponibles en la nutrición moderna.
+1. **Tasa Metabólica Basal (TMB):** Representa entre el **$60\%$ y el $75\%$** del gasto calórico diario total.
+2. **Termogénesis por Actividad Física:** Abarca tanto el ejercicio estructurado como los movimientos cotidianos espontáneos (caminar, mantener la postura, subir escaleras), suponiendo del **$15\%$ al $30\%$** del gasto total.
+3. **Efecto Térmico de los Alimentos (ETA):** Es el costo energético derivado de digerir, absorber y metabolizar los macronutrientes, equivalente a cerca del **$10\%$** de la ingesta calórica diaria.
 
-### Cómo funciona nuestra Calculadora de TMB
+## Ecuaciones Predictivas Clínicas: Mifflin-St Jeor, Harris-Benedict y Katch-McArdle
 
-Nuestra calculadora utiliza dos de las fórmulas científicas más aceptadas: la **Ecuación de Mifflin-St Jeor** y la **Ecuación Revisada de Harris-Benedict**.
+En la práctica nutricional se emplean tres ecuaciones de regresión validadas frente a la calorimetría indirecta. En todas las fórmulas, $P$ representa el peso corporal total en kilogramos ($\text{kg}$), $A$ la estatura en centímetros ($\text{cm}$), $E$ la edad en años cumplidos y $M_{\text{magra}}$ la masa corporal libre de grasa en kilogramos ($\text{kg}$).
 
-#### La ecuación de Mifflin-St Jeor
-Introducida en 1990, esta ecuación está respaldada por la Asociación Dietética Americana como la fórmula más precisa para las poblaciones modernas.
+### 1. Ecuación de Mifflin-St Jeor (1990)
+Respaldada por la Academia de Nutrición y Dietética como el estándar clínico de mayor precisión para adultos contemporáneos (con la menor desviación estándar poblacional):
 
-* **Para Hombres:** `TMB = (10 × peso en kg) + (6.25 × altura en cm) - (5 × edad en años) + 5`
-* **Para Mujeres:** `TMB = (10 × peso en kg) + (6.25 × altura en cm) - (5 × edad en años) - 161`
+$$\text{TMB}_{\text{hombres}} = (10 \times P) + (6.25 \times A) - (5 \times E) + 5$$
 
-Nuestra Calculadora de TMB utiliza automáticamente la ecuación de Mifflin-St Jeor de forma predeterminada para lograr la máxima precisión.
+$$\text{TMB}_{\text{mujeres}} = (10 \times P) + (6.25 \times A) - (5 \times E) - 161$$
 
-### Cómo usar tu TMB para perder peso o ganar músculo
+### 2. Ecuación Revisada de Harris-Benedict (Roza y Shizgal, 1984)
+Actualización de la ecuación clásica de 1919 que corrige la sobreestimación histórica en individuos sedentarios:
 
-Conocer tu TMB es inútil a menos que sepas cómo aplicarlo. El siguiente paso es calcular tu **Gasto Energético Total Diario (GETD)**.
+$$\text{TMB}_{\text{hombres}} = (13.397 \times P) + (4.799 \times A) - (5.677 \times E) + 88.362$$
 
-Para encontrar tu GETD, multiplicas tu TMB por un multiplicador de actividad:
+$$\text{TMB}_{\text{mujeres}} = (9.247 \times P) + (3.098 \times A) - (4.330 \times E) + 447.593$$
 
-* **Sedentario** (poco o ningún ejercicio): `TMB × 1.2`
-* **Ligeramente activo** (ejercicio ligero de 1 a 3 días/semana): `TMB × 1.375`
-* **Moderadamente activo** (ejercicio moderado de 3 a 5 días/semana): `TMB × 1.55`
-* **Muy activo** (ejercicio intenso de 6 a 7 días a la semana): `TMB × 1.725`
-* **Extra activo** (ejercicio muy intenso y trabajo físico): `TMB × 1.9`
+### 3. Ecuación de Katch-McArdle (Basada en Masa Magra)
+Calcula el gasto basal directamente a partir del tejido metabólicamente activo, siendo ideal para deportistas que conocen su porcentaje de grasa corporal:
 
-#### Para perder peso (Déficit Calórico)
-Si quieres perder grasa, debes consumir menos calorías que tu GETD. Un déficit seguro y sostenible es de **300 a 500 calorías por debajo de tu GETD**. Esto generalmente resulta en una pérdida de peso saludable de 0.5 a 1 libra por semana.
+$$\text{TMB} = 370 + (21.6 \times M_{\text{magra}}), \quad \text{donde } M_{\text{magra}} = P \times \left(1 - \frac{\%\text{Grasa Corporal}}{100}\right)$$
 
-#### Para ganar músculo (Superávit Calórico)
-Si quieres desarrollar músculo (volumen), necesitas comer en un superávit calórico. Intenta consumir de **250 a 500 calorías por encima de tu GETD**. Combinado con un programa de entrenamiento de resistencia, esta energía extra se utilizará para sintetizar nuevo tejido muscular.
+## Tabla de Multiplicadores de Actividad para Calcular el GETD
 
-### Factores que influyen en tu TMB
+Para transformar tu TMB en tus calorías reales de mantenimiento (**GETD**), se multiplica el valor basal por el factor correspondiente a tu actividad semanal ($\text{GETD} = \text{TMB} \times F_{\text{act}}$):
 
-1. **Masa Muscular:** El tejido muscular es altamente activo metabólicamente en comparación con el tejido adiposo. Cuanto más músculo tengas, más calorías quemarás en reposo.
-2. **Edad:** A medida que envejeces, tu TMB disminuye naturalmente debido a la pérdida de masa muscular y los cambios hormonales.
-3. **Sexo:** Los hombres generalmente tienen una TMB entre un 5% y un 10% más alta que las mujeres de la misma altura y peso debido a niveles más altos de testosterona.
-4. **Genética:** Tu modelo genético dicta tu metabolismo inicial.
-5. **Hormonas:** La glándula tiroides regula el metabolismo. Condiciones como el hipotiroidismo pueden ralentizar tu TMB.
+| Nivel de Actividad Física | Factor ($F_{\text{act}}$) | Perfil Cotidiano y Volumen de Entrenamiento | Ajuste Recomendado según Objetivo |
+| :--- | :--- | :--- | :--- |
+| **Sedentario** | $1.20$ | Trabajo de oficina sentado, menos de $4,000$ pasos diarios, sin ejercicio. | Déficit: $-300\text{ a }-400\text{ kcal/día}$ |
+| **Ligeramente activo** | $1.375$ | Caminatas ($5,000\text{–}7,500$ pasos) o ejercicio suave de $1\text{ a }3\text{ días}$/semana. | Déficit: $-400\text{ a }-500\text{ kcal/día}$ |
+| **Moderadamente activo** | $1.55$ | Entrenamiento de fuerza o aeróbico de $3\text{ a }5\text{ días}$/semana y vida activa. | Déficit: $-500\text{ kcal}$ / Volumen: $+250\text{ kcal}$ |
+| **Muy activo** | $1.725$ | Entrenamiento intenso de $6\text{ a }7\text{ días}$/semana o empleo físico exigente. | Volumen muscular: $+300\text{ a }+400\text{ kcal/día}$ |
+| **Extremadamente activo** | $1.90$ | Atletas con doble sesión diaria o trabajo manual pesado continuo. | Reposición: $+400\text{ a }+600\text{ kcal/día}$ |
 
-### ¿Puedes aumentar tu TMB?
+## Ejemplo Práctico Paso a Paso: Cálculo de TMB y Plan Calórico
 
-¡Sí! La forma más efectiva de aumentar tu TMB es **desarrollar masa muscular magra** a través del entrenamiento de resistencia (levantamiento de pesas). Debido a que el músculo requiere más energía para mantenerse que la grasa, agregar músculo a tu estructura aumentará permanentemente la cantidad de calorías que quemas en reposo.
+Analicemos a un hombre de $34\text{ años}$, con peso $P = 82\text{ kg}$, estatura $A = 178\text{ cm}$ y $16\%$ de grasa corporal, que entrena fuerza $4\text{ días}$ por semana ($F_{\text{act}} = 1.55$).
+
+1. **Cálculo de la TMB con Mifflin-St Jeor:**
+   * Peso: $10 \times 82 = 820$ | Estatura: $6.25 \times 178 = 1,112.5$ | Edad: $5 \times 34 = 170$
+   $$\text{TMB} = 820 + 1,112.5 - 170 + 5 = 1,767.5\text{ kcal/día}$$
+
+2. **Contraste mediante Katch-McArdle:**
+   Con $M_{\text{magra}} = 82 \times (1 - 0.16) = 68.88\text{ kg}$:
+   $$\text{TMB}_{\text{KM}} = 370 + (21.6 \times 68.88) = 370 + 1,487.81 = 1,857.8\text{ kcal/día}$$
+   La diferencia de $+90.3\text{ kcal/día}$ refleja su mayor desarrollo muscular respecto al promedio estadístico general.
+
+3. **Estimación del Gasto Energético Total Diario (GETD) y Metas:**
+   Tomando la referencia de Mifflin-St Jeor ($1,767.5\text{ kcal/día}$):
+   $$\text{GETD} = 1,767.5 \times 1.55 = 2,739.6 \approx 2,740\text{ kcal/día (Mantenimiento)}$$
+   * **Meta de pérdida de grasa:** Con un déficit de $500\text{ kcal/día}$ ($\sim 0.45\text{ kg}$ de grasa por semana), su ingesta será de $2,740 - 500 = 2,240\text{ kcal/día}$, manteniéndose $472.5\text{ kcal}$ por encima de su umbral basal.
+   * **Meta de ganancia muscular:** Un superávit del $10\%$ ($+274\text{ kcal/día}$) sitúa su objetivo en $3,014\text{ kcal/día}$.
+
+## Recomendaciones Prácticas y Errores Frecuentes
+
+* **No sobreestimar el multiplicador de actividad:** Entrenar una hora tres veces por semana representa menos del $2\%$ del tiempo semanal. Si trabajas sentado y caminas menos de $5,000$ pasos al día, selecciona el factor **ligeramente activo ($1.375$)** para evitar sobreestimar tus calorías de mantenimiento.
+* **Preservar el tejido muscular en déficit:** Cada kilogramo de músculo consume unas $13\text{ kcal/día}$ en reposo frente a $4.5\text{ kcal/día}$ del tejido graso. Mantén una ingesta proteica de $1.6\text{ a }2.2\text{ g/kg}$ de peso y entrenamiento de fuerza para proteger tu metabolismo basal.

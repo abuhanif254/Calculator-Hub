@@ -1,64 +1,82 @@
 ---
-metaTitle: "Calculadora de Préstamos Personales | Estima Pagos Mensuales"
+title: "Calculadora de Préstamos Personales"
+metaTitle: "Calculadora de Préstamos Personales | Cuotas e Intereses"
+description: "Simule su préstamo personal al instante: calcule la cuota mensual fija, el costo total por intereses, el impacto de las comisiones y el cuadro de amortización."
 metaDescription: "Calculadora de Préstamos Personales gratuita en línea. Estima instantáneamente tus pagos mensuales, el interés total y el calendario de amortización."
-metaKeywords: "calculadora prestamos personales, calcular pago prestamo, intereses prestamo, calculadora de amortizacion"
+metaKeywords: "calculadora de préstamos personales, calcular cuota préstamo personal, intereses préstamo personal, cuadro de amortización, TAE préstamo personal, simulador de préstamos"
 faqs:
-  - question: "¿Cómo se calcula el pago de un préstamo personal?"
-    answer: "Los pagos de préstamos personales se calculan mediante la fórmula de amortización, que toma el monto del capital, la tasa de interés anual y la duración en meses para determinar un pago mensual fijo."
-  - question: "¿Qué es una buena tasa de interés para un préstamo personal?"
-    answer: "Una 'buena' tasa de interés depende en gran medida de tu puntaje crediticio. Un crédito excelente (720+) podría obtener tasas entre el 6% y el 10%, mientras que un crédito regular o malo podría ver tasas del 18% al 36%."
-  - question: "¿Solicitar un préstamo personal afecta mi puntaje crediticio?"
-    answer: "La mayoría de los prestamistas ofrecen un proceso de 'precalificación' que no daña tu crédito. Sin embargo, una vez que solicitas oficialmente, se realiza una investigación exhaustiva que puede reducir temporalmente tu puntaje en unos pocos puntos."
-  - question: "¿Es mejor tomar un plazo de préstamo más corto o más largo?"
-    answer: "Un plazo de préstamo más corto significa pagos mensuales más altos, pero pagarás significativamente menos intereses totales. Un plazo más largo reduce tu pago mensual, pero pagarás mucho más en intereses a lo largo de la vida del préstamo."
-  - question: "¿Puedo pagar mi préstamo personal anticipadamente?"
-    answer: "Sí, la mayoría de los préstamos personales modernos te permiten pagar el saldo por adelantado sin multas por pago anticipado. Hacerlo te ahorrará dinero en intereses."
+  - question: "¿Cómo se calcula exactamente la cuota mensual de un préstamo personal?"
+    answer: "La cuota se obtiene aplicando la fórmula de amortización francesa, que combina el capital solicitado, la tasa de interés nominal mensual (tasa anual dividida entre 12) y el número total de meses para generar un pago fijo que cubre intereses y reduce la deuda."
+  - question: "¿Qué se considera una buena tasa de interés para un préstamo personal?"
+    answer: "Depende del perfil de solvencia del solicitante y del entorno económico. Un historial crediticio excelente suele acceder a tasas nominales entre el 6 % y el 9,5 % anual, un perfil estándar se sitúa entre el 10 % y el 15 %, y los perfiles con endeudamiento elevado pueden superar el 18 % o 24 %."
+  - question: "¿Cómo afecta la comisión de apertura al dinero que realmente recibo?"
+    answer: "Muchas entidades deducen la comisión de apertura o estudio (habitualmente entre el 1 % y el 3 %) directamente del capital aprobado. Si solicita 10.000 € con un 2 % de comisión deducida, recibirá 9.800 € en su cuenta, pero pagará intereses y cuotas sobre los 10.000 € completos."
+  - question: "¿Cuándo vale la pena pedir un préstamo personal para consolidar deudas?"
+    answer: "La consolidación resulta financieramente rentable cuando la Tasa Anual Equivalente (TAE o CAT) del nuevo préstamo personal es significativamente inferior al interés rotativo de sus tarjetas de crédito (que suele oscilar entre el 20 % y el 35 % anual) y usted se compromete a no generar nueva deuda en las tarjetas liberadas."
+  - question: "¿Existe penalización por cancelar un préstamo personal antes de tiempo?"
+    answer: "En la mayoría de las legislaciones de crédito al consumo, la comisión por amortización anticipada está limitada por ley (por ejemplo, en España y la Unión Europea no puede superar el 1 % del capital reembolsado si falta más de un año para el vencimiento, o el 0,5 % si falta menos de un año)."
 ---
 
-## La Guía Definitiva de Préstamos Personales
+Ya sea para reunificar saldos de tarjetas de crédito con intereses elevados, financiar una reforma en la vivienda, cubrir gastos médicos imprevistos o sufragar estudios superiores, un préstamo personal ofrece liquidez inmediata con un calendario de devolución cerrado y predecible. Sin embargo, evaluar una oferta bancaria fijándose únicamente en la cuota mensual puede ocultar miles de euros o dólares en intereses acumulados y comisiones iniciales.
 
-Ya sea que busques consolidar deudas de tarjetas de crédito con altas tasas de interés, financiar una renovación en el hogar o cubrir gastos médicos inesperados, un préstamo personal puede ser una herramienta financiera poderosa. Sin embargo, pedir dinero prestado siempre tiene un costo.
+Nuestra **Calculadora de Préstamos Personales** le permite simular con precisión matemática su cuota periódica, el desembolso total acumulado y el peso real de los intereses a lo largo de todo el cuadro de amortización, facilitándole comparar propuestas de distintas entidades con total transparencia.
 
-Nuestra **Calculadora de Préstamos Personales** está diseñada para brindarte total transparencia antes de firmar cualquier papeleo. Al calcular instantáneamente tu pago mensual y el interés total, puedes determinar exactamente cómo un préstamo afectará tu presupuesto mensual.
+## Mecánica Financiera de un Préstamo Personal sin Garantía
 
-### ¿Cómo funcionan los préstamos personales?
+A diferencia de una hipoteca o un préstamo prendario, la mayoría de los préstamos personales son **créditos al consumo sin garantía real**: el prestatario responde con su solvencia personal e ingresos presentes y futuros, sin hipotecar un inmueble ni pignorar un vehículo. Asimismo, frente a las tarjetas de crédito de pago aplazado o rotativo —donde el saldo dispuesto se renueva y los intereses se capitalizan a tasas muy altas—, el préstamo personal entrega una suma única al inicio y se extingue mediante cuotas constantes en una fecha de vencimiento fija.
 
-Un préstamo personal es un préstamo a plazos. Esto significa que pides prestada una suma global fija de dinero por adelantado y aceptas devolverla durante un período de tiempo fijo (el "plazo"), con una tasa de interés fija.
+Para fijar el tipo de interés ofrecido a cada solicitante, las entidades financieras evalúan tres indicadores clave:
+* **Ratio de endeudamiento o capacidad de pago:** La suma de sus cuotas mensuales de deuda (incluyendo el nuevo préstamo y la vivienda) no debe superar entre el **$30\text{ \%}$ y el $35\text{ \%}$ de sus ingresos netos mensuales** demostrables.
+* **Historial y calificación crediticia:** Se comprueba la ausencia de impagos en ficheros de solvencia patrimonial (como CIRBE, ASNEF o Buró de Crédito) y la puntualidad en créditos previos.
+* **Estabilidad laboral y recurrencia de ingresos:** La antigüedad contractual y la regularidad de los ingresos permiten acceder a las bandas de interés más competitivas.
 
-A diferencia de las tarjetas de crédito (que son crédito rotativo), los préstamos personales te brindan un pago mensual predecible y fijo. Una vez que termina el plazo y se realiza el pago final, la cuenta se cierra.
+## Fórmula de Amortización y Cálculo del Desembolso Neto Real
 
-La mayoría de los préstamos personales no están garantizados, lo que significa que no requieren garantía (como una casa o un automóvil). Debido a que el prestamista asume un mayor riesgo con un préstamo no garantizado, las tasas de interés son generalmente más altas que los préstamos para automóviles, pero significativamente más bajas que las de las tarjetas de crédito.
+La cuota mensual fija ($M$) de un préstamo personal amortizable mediante el sistema francés se determina con la ecuación de rentas constantes:
 
-### Cómo calcular tu pago mensual
+$$M = P \times \frac{r(1 + r)^n}{(1 + r)^n - 1}$$
 
-La fórmula matemática utilizada se llama Fórmula de Amortización:
+Donde las variables representan:
+* **$M$**: Pago o cuota mensual fija (capital más intereses).
+* **$P$**: Importe principal bruto del préstamo contratado.
+* **$r$**: Tasa de interés nominal mensual en tanto por uno ($\text{TIN}$ anual dividido entre $12$: $r = \frac{\text{TIN}}{12 \times 100}$).
+* **$n$**: Plazo total de amortización expresado en meses ($n = \text{años} \times 12$).
 
-**M = P × [r(1+r)^n] / [(1+r)^n - 1]**
+### Efecto de la Comisión de Apertura sobre el Efectivo Recibido y la TAE
+Cuando una entidad aplica una comisión de apertura ($c_{\text{ap}}$, en tanto por uno) y la deduce del principal en el desembolso, la liquidez neta abonada en cuenta disminuye:
 
-*   **M** = Pago mensual total
-*   **P** = Monto principal del préstamo
-*   **r** = Tasa de interés mensual (tasa anual dividida por 12)
-*   **n** = Número de meses
+$$\text{Efectivo Neto Recibido} = P \times (1 - c_{\text{ap}}) \qquad \text{y} \qquad \text{Capital a Solicitar} = \frac{\text{Liquidez Necesaria}}{1 - c_{\text{ap}}}$$
 
-Nuestra calculadora maneja todas estas matemáticas complejas al instante, generando un cronograma de amortización mes a mes completo.
+Este descuento inicial, junto con eventuales gastos de estudio o seguros vinculados, explica por qué la **Tasa Anual Equivalente (TAE)** —o el **Costo Anual Total (CAT)** en Latinoamérica— supera siempre al $\text{TIN}$ cuando existen gastos iniciales. La TAE iguala matemáticamente el efectivo neto real recibido hoy con el valor actual de todas las cuotas mensuales futuras.
 
-### 4 Factores Cruciales a Considerar Antes de Pedir Prestado
+## Ejemplo Práctico Paso a Paso: Préstamo de $12.000\text{ €}$ a $36\text{ Meses}$
 
-#### 1. APR vs Tasa de Interés
-Al comparar ofertas, siempre mira la **APR (Tasa de Porcentaje Anual)**, no solo la tasa de interés. La APR incluye tanto la tasa de interés como las tarifas iniciales.
+Supongamos que solicita **$12.000\text{ €}$** a **$3\text{ años}$** ($n = 36\text{ meses}$) con un tipo de interés nominal anual ($\text{TIN}$) del **$8,40\text{ \%}$** y una comisión de apertura del **$1,50\text{ \%}$** ($180,00\text{ €}$).
 
-#### 2. Tarifas de Originación
-Muchos prestamistas cobran una tarifa para procesar el préstamo. Esto suele ser entre el 1% y el 8% del monto total. Por lo general, se deduce de los ingresos del préstamo antes de que recibas el dinero.
+1. **Determinación de la tasa mensual efectiva ($r$):**
+   $$r = \frac{0,084}{12} = 0,007 \quad (0,70\text{ \% mensual})$$
+2. **Cálculo del factor de capitalización a 36 meses:**
+   $$(1 + r)^n = (1,007)^{36} \approx 1,285467$$
+3. **Aplicación de la fórmula de la cuota mensual ($M$):**
+   $$M = 12.000 \times \frac{0,007 \times 1,285467}{1,285467 - 1} = 12.000 \times 0,0315212 = 378,25\text{ €}$$
+4. **Cálculo de los intereses y de la TAE real:**
+   * **Suma total de las 36 cuotas:** $378,254 \times 36 = 13.617,15\text{ €}$, lo que supone **$1.617,15\text{ €}$ en intereses nominales**.
+   * **Costo financiero total (intereses más comisión de $180,00\text{ €}$):** $1.797,15\text{ €}$. Al percibir un neto efectivo de $11.820,00\text{ €}$ y devolver $378,25\text{ €}$ durante 36 meses, la **TAE real asciende al $9,82\text{ \%}$**.
 
-#### 3. Sanciones por Pago Anticipado
-Algunos prestamistas te penalizan por pagar el préstamo antes de tiempo. Afortunadamente, las multas por pago anticipado se están volviendo raras, pero siempre debes leer el contrato de préstamo.
+## Tabla Comparativa según Perfil Crediticio y Plazo ($12.000\text{ €}$)
 
-#### 4. El Impacto en tu Puntaje Crediticio
-Obtener un préstamo agregará una nueva cuenta a tu informe crediticio, creando una consulta exhaustiva. Sin embargo, si usas el préstamo para pagar tarjetas de crédito maximizadas (consolidación de deudas), tu índice de utilización de crédito caerá en picado, lo que a menudo resulta en un aumento masivo a tu puntaje crediticio.
+Observe cómo varían la cuota, los intereses y el ingreso neto mensual recomendado (destinando como máximo el $25\text{ \%}$ del sueldo neto al préstamo):
 
-### ¿Deberías tomar un préstamo a 3 o 5 años?
+| Perfil Crediticio | Tasa (TIN) | Plazo ($n$) | Cuota Mensual | Interés Total | Total Pagado | Ingreso Recomendado |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Excelente (Corto)** | 6,50 % | 36 meses | 367,79 € | 1.240,39 € | 13.240,39 € | $\ge 1.475\text{ €/mes}$ |
+| **Bueno (Estándar)** | 8,40 % | 36 meses | 378,25 € | 1.617,15 € | 13.617,15 € | $\ge 1.515\text{ €/mes}$ |
+| **Bueno (Largo)** | 8,40 % | 60 meses | 245,62 € | 2.737,28 € | 14.737,28 € | $\ge 985\text{ €/mes}$ |
+| **Intermedio** | 14,50 % | 48 meses | 330,93 € | 3.884,81 € | 15.884,81 € | $\ge 1.325\text{ €/mes}$ |
+| **Riesgo Alto** | 21,00 % | 48 meses | 373,41 € | 5.923,49 € | 17.923,49 € | $\ge 1.495\text{ €/mes}$ |
 
-La duración del plazo que elijas dicta cuánto interés pagarás en última instancia al banco.
+## Claves Prácticas para Evaluar Ofertas y Evitar Costos Ocultos
 
-*   **Plazos más cortos (ej. 36 meses):** Estos vienen con pagos mensuales más altos, pero pagarás drásticamente menos interés total durante la vida del préstamo.
-*   **Plazos más largos (ej. 60 meses):** Estos extienden la deuda a lo largo de un período más largo, resultando en un pago mensual más bajo y asequible. Sin embargo, pagarás significativamente más interés total al banco.
+* **Compare siempre mediante la TAE (o CAT) al mismo plazo:** Una oferta con un $\text{TIN}$ del $7,50\text{ \%}$ que obligue a financiar un seguro de pagos de $550\text{ €}$ y comisión de apertura del $2,50\text{ \%}$ resultará más costosa que un préstamo sin vinculaciones al $8,90\text{ \%}$.
+* **Ahorro al consolidar tarjetas de crédito:** Liquidar una deuda rotativa de $12.000\text{ €}$ al $24\text{ \%}$ anual pagando $380\text{ €}$ al mes requeriría $47\text{ meses}$ y más de $5.800\text{ €}$ en intereses. Sustituirla por el préstamo del ejemplo ($8,40\text{ \%}$ a 36 meses) mantiene casi la misma cuota ($378,25\text{ €}$) y **ahorra más de $4.000\text{ €}$ en intereses**.
+* **Solicite precalificaciones sin huella negativa:** Antes de autorizar una consulta formal en registros de crédito, pida una simulación preliminar no vinculante para comparar ofertas sin afectar su calificación crediticia.
