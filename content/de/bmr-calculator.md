@@ -1,49 +1,91 @@
 ---
-metaTitle: "Kostenloser BMR-Rechner | Grundumsatz berechnen"
-metaDescription: "Berechnen Sie sofort Ihren Grundumsatz (BMR). Finden Sie genau heraus, wie viele Kalorien Ihr Körper im Ruhezustand verbrennt, um abzunehmen oder Muskeln aufzubauen."
-metaKeywords: "bmr rechner, grundumsatz, kalorienverbrauch im ruhezustand, täglicher kalorienbedarf, mifflin st jeor, abnehmen rechner"
+title: "Grundumsatzrechner (BMR)"
+metaTitle: "Grundumsatzrechner (BMR) | Kalorienbedarf exakt berechnen"
+description: "Ermitteln Sie Ihren täglichen, stündlichen und wöchentlichen Grundumsatz (BMR) nach der klinisch validierten Mifflin-St-Jeor-Formel in Kilokalorien und Kilojoule."
+metaDescription: "Berechnen Sie Ihren Grundumsatz (BMR) nach der Mifflin-St-Jeor-Formel in kcal und kJ. Finden Sie heraus, wie viel Energie Ihr Körper in Ruhe verbraucht."
+metaKeywords: "grundumsatzrechner, bmr rechner, grundumsatz berechnen, kalorienverbrauch im ruhezustand, mifflin st jeor formel, täglicher kalorienbedarf, pal faktor, gesamtumsatz"
 faqs:
-  - question: "Was ist BMR (Grundumsatz)?"
-    answer: "Der Grundumsatz (BMR) ist die Gesamtzahl der Kalorien, die Ihr Körper benötigt, um im völligen Ruhezustand grundlegende, lebenserhaltende Funktionen wie Atmung, Blutkreislauf und die Aufrechterhaltung der Körpertemperatur auszuführen."
-  - question: "Wie berechne ich meinen BMR?"
-    answer: "Sie können Ihren BMR mit unserem kostenlosen Online-BMR-Rechner berechnen, der Ihr Alter, Geschlecht, Ihre Größe und Ihr Gewicht verwendet. Die genaueste Formel, die unser Rechner verwendet, ist die Mifflin-St Jeor-Gleichung."
-  - question: "Was ist der Unterschied zwischen BMR und TDEE (Gesamtumsatz)?"
-    answer: "Der BMR ist die Anzahl der Kalorien, die Sie in absoluter Ruhe verbrennen. Der TDEE (Total Daily Energy Expenditure) ist Ihr BMR multipliziert mit Ihrem täglichen Aktivitätsniveau (wie Sport und Gehen). Der TDEE stellt die Gesamtkalorien dar, die Sie an einem Tag verbrennen."
-  - question: "Wie kann ich meinen BMR nutzen, um Gewicht zu verlieren?"
-    answer: "Um Gewicht zu verlieren, müssen Sie weniger Kalorien essen als Ihr TDEE (der auf Ihrem BMR basiert). Ein gesundes Ziel zur Gewichtsabnahme besteht normalerweise darin, 300 bis 500 Kalorien unter Ihrem TDEE zu essen, um ein Kaloriendefizit zu schaffen."
-  - question: "Warum gilt die Mifflin-St Jeor-Gleichung als die genaueste?"
-    answer: "Die 1990 eingeführte Mifflin-St Jeor-Gleichung wird von Gesundheitsexperten weithin als die genaueste BMR-Formel angesehen, da sie anhand moderner demografischer Daten und Körperzusammensetzungen entwickelt wurde."
+  - question: "Was unterscheidet den Grundumsatz vom gesamten täglichen Energiebedarf?"
+    answer: "Der Grundumsatz bezeichnet jene Mindestenergiemenge, die Ihr Körper im vollständigen Ruhezustand zur Aufrechterhaltung lebenswichtiger Organfunktionen wie Herzschlag, Atmung, Hirnstoffwechsel und Körpertemperatur benötigt. Der Gesamtumsatz ergibt sich erst, wenn Sie diesen Ruhewert mit Ihrem persönlichen Aktivitätsfaktor (PAL-Wert) multiplizieren, der berufliche Bewegung, Alltagsaktivität, Sport und die Verdauungswärme berücksichtigt."
+  - question: "Warum verwendet der Rechner die Mifflin-St-Jeor-Gleichung statt der älteren Harris-Benedict-Formel?"
+    answer: "Die 1990 entwickelte Mifflin-St-Jeor-Gleichung basiert auf modernen Vergleichsdaten zu Körperzusammensetzung und Stoffwechsel. Klinische Validierungsstudien zeigen, dass sie den tatsächlichen Ruheenergieverbrauch im Durchschnitt rund 5 % genauer vorhersagt als die ursprüngliche Harris-Benedict-Formel aus dem Jahr 1919 – insbesondere bei leichtem bis ausgeprägtem Übergewicht."
+  - question: "Wie rechne ich den Grundumsatz von Kilokalorien (kcal) in Kilojoule (kJ) um?"
+    answer: "Im internationalen Einheitensystem (SI) wird Energie in Joule angegeben. Multiplizieren Sie Ihren berechneten Grundumsatz in Kilokalorien mit dem exakten Umrechnungsfaktor 4,184, um den Wert in Kilojoule zu erhalten. Ein Grundumsatz von 1.500 kcal entspricht somit rund 6.276 kJ pro Tag."
+  - question: "Darf man beim Abnehmen dauerhaft weniger Energie aufnehmen als den eigenen Grundumsatz?"
+    answer: "Eine anhaltende Kalorienzufuhr unterhalb des Grundumsatzes ist ohne ärztliche Überwachung nicht empfehlenswert. Der Körper reagiert auf ein extremes Defizit häufig mit Muskelabbau, hormonellen Anpassungen, Erschöpfung und einer Unterversorgung mit lebenswichtigen Mikronährstoffen. Für eine nachhaltige Fettreduktion orientiert man sich stattdessen an einem moderaten Defizit von 300 bis 500 kcal unterhalb des Gesamtumsatzes."
+  - question: "Warum sinkt der Grundumsatz mit zunehmendem Lebensalter und wie lässt sich dem entgegenwirken?"
+    answer: "Ab dem dritten Lebensjahrzehnt verliert der Mensch ohne gezieltes Training durchschnittlich 3 bis 8 % seiner Skelettmuskulatur pro Jahrzehnt. Da Muskelgewebe selbst in völliger Ruhe deutlich mehr Energie verbraucht als Fettgewebe, sinkt der Grundumsatz entsprechend ab. Regelmäßiges Krafttraining und eine bedarfsgerechte Eiweißzufuhr erhalten die fettfreie Körpermasse und stabilisieren den Ruhestoffwechsel."
 ---
 
-## Was ist der Grundumsatz (BMR)?
+## Was ist der Grundumsatz (BMR) und wofür benötigt der Körper diese Energie?
 
-Das Verständnis Ihres **Grundumsatzes (Basal Metabolic Rate, BMR)** ist der fundamentale erste Schritt bei jeder Fitness-, Gewichtsverlust- oder Muskelaufbau-Reise.
+Der **Grundumsatz (BMR)** beschreibt die minimale Energiemenge, die ein menschlicher Organismus innerhalb von 24 Stunden bei völliger Ruhe im Liegen, im nüchternen Zustand und bei angenehmer Umgebungstemperatur von etwa 20 bis 28 °C verbraucht. Selbst ohne jede bewusste Bewegung halten Herz, Lunge, Gehirn, Leber, Nieren und ständige Zellerneuerungsprozesse den Organismus rund um die Uhr am Leben.
 
-Der BMR stellt die absolute Mindestanzahl an Kalorien (Energie) dar, die Ihr Körper benötigt, um am Leben zu bleiben und im völligen Ruhezustand zu funktionieren. Selbst wenn Sie den ganzen Tag im Bett bleiben würden, ohne einen einzigen Muskel zu bewegen, würde Ihr Körper immer noch Kalorien verbrennen, um das Herz schlagen zu lassen, die Lungen atmen zu lassen und die Körpertemperatur zu regulieren.
+Leber und Gehirn beanspruchen jeweils rund ein Fünftel des gesamten Grundumsatzes, gefolgt von der Skelettmuskulatur (etwa 18 bis 22 %) sowie Herz und Nieren (jeweils 7 bis 10 %). Dabei ist Muskelgewebe mit rund 13 kcal pro Kilogramm und Tag fast dreimal so energieintensiv wie Fettgewebe mit etwa 4,5 kcal pro Kilogramm. Bei durchschnittlich aktiven Erwachsenen macht der Grundumsatz **60 bis 75 % des gesamten täglichen Energieumsatzes** aus; rund 10 % entfallen zudem auf die nahrungsinduzierte Thermogenese bei der Verdauung.
 
-Für den durchschnittlichen Erwachsenen macht der BMR etwa **60% bis 75%** seines täglichen Gesamtkalorienverbrauchs aus.
+Unser **Grundumsatzrechner** bestimmt Ihren Ruheenergiebedarf aus metrischen SI-Einheiten (Kilogramm, Zentimeter) oder US-Einheiten und liefert den Tages-, Wochen- und Stundenverbrauch in Kilokalorien (kcal). Über den Faktor $1\text{ kcal} = 4{,}184\text{ kJ}$ lässt sich jedes Ergebnis direkt in die gesetzliche SI-Einheit Kilojoule umrechnen.
 
-Unser **kostenloser BMR-Rechner** bietet eine sofortige, wissenschaftlich genaue Schätzung Ihres Ruhe-Stoffwechsels anhand der zuverlässigsten Formeln, die in der modernen Ernährungswissenschaft verfügbar sind (Mifflin-St Jeor und Harris-Benedict).
+## Mathematische Grundlagen: Die Mifflin-St-Jeor-Gleichung
 
-### Wie Sie Ihren BMR zum Abnehmen nutzen
+Der Rechner verwendet die klinisch validierte **Mifflin-St-Jeor-Formel** (1990), die den täglichen Grundumsatz in kcal/Tag aus Gewicht, Größe, Alter und Geschlecht berechnet:
 
-Den BMR zu kennen, ist nutzlos, wenn Sie nicht wissen, wie Sie ihn anwenden. Der nächste Schritt ist die Berechnung Ihres **gesamten täglichen Energieverbrauchs (TDEE)**, indem Sie Ihren BMR mit einem Aktivitätsmultiplikator (von 1,2 für sitzende Tätigkeiten bis 1,9 für extrem aktiv) multiplizieren.
+$$\text{BMR}_{\text{Mann}} = 10 \cdot m + 6{,}25 \cdot h - 5 \cdot a + 5$$
 
-#### Zum Abnehmen (Kaloriendefizit)
-Wenn Sie Fett verlieren möchten, müssen Sie weniger Kalorien zu sich nehmen als Ihr TDEE. Ein sicheres und nachhaltiges Defizit liegt bei **300 bis 500 Kalorien unter Ihrem TDEE**. 
+$$\text{BMR}_{\text{Frau}} = 10 \cdot m + 6{,}25 \cdot h - 5 \cdot a - 161$$
 
-*Warnung:* Essen Sie niemals über längere Zeiträume unterhalb Ihres BMR, ohne ärztliche Aufsicht. Ihr BMR ist die absolute Mindestenergie, die erforderlich ist, um die optimale Funktion Ihrer Organe aufrechtzuerhalten.
+* **$m$ (Körpermasse in kg):** Aktuelles Gewicht (US-Pfund werden mit $0{,}453592\text{ kg}$ umgerechnet).
+* **$h$ (Körpergröße in cm):** Vollständige Körperhöhe (Fuß und Zoll über $30{,}48\text{ cm}$ bzw. $2{,}54\text{ cm}$).
+* **$a$ (Alter in Jahren):** Vollendete Lebensjahre (Anwendungsbereich ab 15 Jahren).
+* **Geschlechtskonstante ($+5$ bzw. $-161$):** Berücksichtigt den im Mittel höheren Anteil fettfreier Muskelmasse bei Männern.
 
-#### Für den Muskelaufbau (Kalorienüberschuss)
-Wenn Sie Muskeln aufbauen möchten, müssen Sie einen Kalorienüberschuss zu sich nehmen. Streben Sie **250 bis 500 Kalorien über Ihrem TDEE** an, kombiniert mit Krafttraining.
+Ergänzend ermittelt der Rechner den **wöchentlichen Ruhebedarf** ($7 \cdot \text{BMR}$) sowie den **stündlichen Grundverbrauch** ($\text{BMR} / 24$).
 
-### Faktoren, die Ihren BMR beeinflussen
+### Vergleich mit Harris-Benedict und Katch-McArdle
 
-1. **Muskelmasse:** Muskelgewebe ist stoffwechselaktiver als Fett. Je mehr Muskeln Sie haben, desto mehr Kalorien verbrennen Sie in Ruhe.
-2. **Alter:** Mit zunehmendem Alter sinkt Ihr BMR natürlich aufgrund des Verlusts von Muskelmasse.
-3. **Geschlecht:** Männer haben in der Regel einen um 5% bis 10% höheren BMR als Frauen gleicher Größe und gleichen Gewichts.
-4. **Genetik und Hormone:** Ihre Genetik und Ihre Schilddrüse regulieren Ihren Stoffwechsel.
+Die **revidierte Harris-Benedict-Formel** nach Roza und Shizgal (1984) liefert bei Normalgewicht ähnliche Werte, neigt bei starkem Übergewicht jedoch eher zur Überschätzung. Für sehr muskulöse Athleten mit bekanntem Körperfettanteil bietet sich zusätzlich die **Katch-McArdle-Formel** ($\text{BMR} = 370 + 21{,}6 \cdot m_{\text{fettfrei}}$) an, die allein auf der fettfreien Körpermasse in Kilogramm beruht.
 
-### Können Sie Ihren BMR erhöhen?
+### Vom Grundumsatz zum Gesamtumsatz über den PAL-Faktor
 
-Ja! Der effektivste Weg, Ihren BMR zu erhöhen, ist der **Aufbau fettfreier Muskelmasse** durch Krafttraining. Da Muskeln zur Erhaltung mehr Energie benötigen als Fett, wird eine Zunahme an Muskeln die Anzahl der Kalorien, die Sie im Ruhezustand verbrennen, dauerhaft erhöhen.
+Für Abnahme, Gewichtserhalt oder gezielten Muskelaufbau ist der tägliche **Gesamtumsatz** maßgeblich. Gemäß den **D-A-CH-Referenzwerten** von DGE, ÖGE und SGE wird der Grundumsatz dazu mit dem persönlichen **PAL-Faktor** (Aktivitätsfaktor) multipliziert:
+
+$$\text{Gesamtumsatz} = \text{BMR} \times \text{PAL}$$
+
+Für eine nachhaltige Fettreduktion empfehlen Ernährungsmediziner meist ein tägliches Defizit von 300 bis 500 kcal unter dem Gesamtumsatz; für fettarmen Muskelaufbau eignet sich in Verbindung mit Krafttraining ein moderater Überschuss von 250 bis 400 kcal.
+
+## Referenztabelle: PAL-Aktivitätsfaktoren und täglicher Gesamtumsatz
+
+Die Übersicht zeigt die D-A-CH-Aktivitätsstufen mit konkretem Gesamtumsatz für einen weiblichen Referenz-Grundumsatz von 1.500 kcal und einen männlichen von 1.800 kcal:
+
+| PAL-Faktor | Berufs- und Alltagsprofil | Gesamtumsatz (1.500 kcal BMR) | Gesamtumsatz (1.800 kcal BMR) |
+| :--- | :--- | :--- | :--- |
+| **1,2** | Ausschließlich sitzend oder liegend (z. B. Bettlägerigkeit) | 1.800 kcal (7.531 kJ) | 2.160 kcal (9.037 kJ) |
+| **1,4** | Reine Bürotätigkeit mit kaum Freizeitbewegung | 2.100 kcal (8.786 kJ) | 2.520 kcal (10.544 kJ) |
+| **1,6** | Überwiegend sitzend, zeitweise gehend/stehend (Studium, Labor) | 2.400 kcal (10.042 kJ) | 2.880 kcal (12.050 kJ) |
+| **1,8** | Überwiegend gehend und stehend (Einzelhandel, Pflege, Handwerk) | 2.700 kcal (11.297 kJ) | 3.240 kcal (13.556 kJ) |
+| **2,0** | Körperlich anstrengende Arbeit oder intensives Training (Bau) | 3.000 kcal (12.552 kJ) | 3.600 kcal (15.062 kJ) |
+| **2,2** | Schwerstarbeit oder täglicher Hochleistungssport | 3.300 kcal (13.807 kJ) | 3.960 kcal (16.569 kJ) |
+
+Wer neben einer sitzenden Bürotätigkeit vier- bis fünfmal wöchentlich für 30 bis 60 Minuten intensiv Sport treibt, hebt seinen mittleren PAL-Wert um rund 0,3 an.
+
+## Schritt-für-Schritt-Rechenbeispiel
+
+Betrachten wir eine 34-jährige Frau (168 cm, 64 kg) mit Bürotätigkeit und dreimal wöchentlichem Ausdauersport (PAL-Faktor 1,55):
+
+1. **Gewichtsanteil:** $10 \times 64 = 640$
+2. **Größenanteil:** $6{,}25 \times 168 = 1.050$
+3. **Altersabzug:** $5 \times 34 = 170$
+4. **Tages-Grundumsatz mit weiblicher Konstante ($-161$):**
+   $$\text{BMR} = 640 + 1.050 - 170 - 161 = 1.359\text{ kcal/Tag}$$
+   In SI-Einheiten entspricht dies $1.359 \times 4{,}184 = 5.686\text{ kJ/Tag}$.
+5. **Wochen- und Stundenverbrauch in Ruhe:**
+   $1.359 \times 7 = 9.513\text{ kcal/Woche}$ und $1.359 / 24 = 56{,}63\text{ kcal/Stunde}$ (gerundet 57 kcal/Stunde).
+6. **Gesamtumsatz und Abnehmziel ableiten:**
+   $$\text{Gesamtumsatz} = 1.359 \times 1{,}55 = 2.106{,}45 \approx 2.106\text{ kcal/Tag}$$
+   Bei einem moderaten Defizit von 400 kcal liegt das tägliche Ernährungsziel bei rund **1.706 kcal** – sicher oberhalb des Grundumsatzes von 1.359 kcal.
+
+## Typische Fehlerquellen und Grenzen von Grundumsatzformeln
+
+* **Grundumsatz mit dem Abnehmbudget verwechseln:** Wer dauerhaft unterhalb des BMR isst, riskiert Leistungsabfall, starken Hunger und Verlust an Muskelmasse. Maßgeblich für Kaloriendefizit oder Muskelaufbau ist stets der **Gesamtumsatz**.
+* **Sporteinheiten doppelt anrechnen:** Bildet Ihr gewählter PAL-Faktor das wöchentliche Training bereits ab, dürfen Sie die von einer Sportuhr angezeigten Trainingskalorien nicht zusätzlich auf den Gesamtumsatz addieren.
+* **Verzerrungen bei extremer Körperzusammensetzung:** Da die Formel nicht zwischen Fett- und Muskelmasse trennt, überschätzt sie den Ruhebedarf bei ausgeprägtem Übergewicht leicht und unterschätzt ihn bei sehr muskulösen Sportlern um bis zu 10 bis 15 %.
+* **Ausbleibende Anpassung und medizinische Einflüsse:** Bereits 10 kg Gewichtsverlust senken den rechnerischen Grundumsatz um mindestens 100 kcal pro Tag – berechnen Sie Ihren Bedarf daher regelmäßig neu. Schilddrüsenfunktionsstörungen, Schwangerschaft, Stillzeit, Fieber oder Medikamente verschieben den tatsächlichen Verbrauch zusätzlich über jede Schätzformel hinaus.
