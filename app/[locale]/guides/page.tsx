@@ -23,6 +23,7 @@ import {
 } from '@/lib/data/guides';
 import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from '@/lib/utils/seoUtils';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
+import { LocaleSiblingLinks } from '@/app/components/LocaleSiblingLinks';
 
 // SSG configuration — fully static, no revalidation needed.
 // Guide listing data is static TypeScript and only changes on deploy.
@@ -341,6 +342,9 @@ export default async function GuidesIndexPage({
           </section>
         );
       })}
+      <div className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800">
+        <LocaleSiblingLinks languages={getCanonicalAndAlternates('/guides', locale).languages} currentLocale={locale} />
+      </div>
     </div>
   );
 }

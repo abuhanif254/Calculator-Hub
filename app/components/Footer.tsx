@@ -22,6 +22,7 @@ const FOOTER_TRANSLATIONS: Record<
     community: string;
     guides: string;
     aboutUs: string;
+    editorialPolicy: string;
     contactUs: string;
     termsOfUse: string;
     privacyPolicy: string;
@@ -49,6 +50,7 @@ const FOOTER_TRANSLATIONS: Record<
     community: 'Community Forum',
     guides: 'Technical Guides',
     aboutUs: 'About Us',
+    editorialPolicy: 'Editorial Policy',
     contactUs: 'Contact Us',
     termsOfUse: 'Terms of Use',
     privacyPolicy: 'Privacy Policy',
@@ -80,6 +82,7 @@ const FOOTER_TRANSLATIONS: Record<
     community: 'Comunidad Técnica',
     guides: 'Guías Educativas',
     aboutUs: 'Sobre Nosotros',
+    editorialPolicy: 'Política Editorial',
     contactUs: 'Contáctenos',
     termsOfUse: 'Términos de Uso',
     privacyPolicy: 'Política de Privacidad',
@@ -111,6 +114,7 @@ const FOOTER_TRANSLATIONS: Record<
     community: 'Communauté',
     guides: 'Guides Techniques',
     aboutUs: 'À Propos',
+    editorialPolicy: 'Politique Éditoriale',
     contactUs: 'Nous Contacter',
     termsOfUse: 'Conditions d’Utilisation',
     privacyPolicy: 'Politique de Confidentialité',
@@ -142,6 +146,7 @@ const FOOTER_TRANSLATIONS: Record<
     community: 'Fach-Community',
     guides: 'Praxis-Ratgeber',
     aboutUs: 'Über Uns',
+    editorialPolicy: 'Redaktionsrichtlinien',
     contactUs: 'Kontakt',
     termsOfUse: 'Nutzungsbedingungen',
     privacyPolicy: 'Datenschutzerklärung',
@@ -361,6 +366,7 @@ export async function Footer() {
 
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium">
             <Link href="/about-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.aboutUs}</Link>
+            <Link href="/editorial-policy" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.editorialPolicy}</Link>
             <Link href="/contact-us" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.contactUs}</Link>
             <Link href="/terms-of-use" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.termsOfUse}</Link>
             <Link href="/privacy-policy" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white transition-colors p-2">{t.privacyPolicy}</Link>

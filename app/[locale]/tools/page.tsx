@@ -6,6 +6,7 @@ import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from "@
 import { getLocalizedToolMeta } from "@/lib/utils/toolLocalization";
 import { Link } from "@/i18n/routing";
 import { ArrowRight, Terminal } from "lucide-react";
+import { LocaleSiblingLinks } from "@/app/components/LocaleSiblingLinks";
 
 export const revalidate = false;
 
@@ -301,6 +302,9 @@ export default async function AllToolsPage({
               </div>
             );
           })}
+        </div>
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks languages={getCanonicalAndAlternates('/tools', locale).languages} currentLocale={locale} />
         </div>
       </section>
     </main>

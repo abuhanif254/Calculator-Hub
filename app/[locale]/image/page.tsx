@@ -6,6 +6,7 @@ import { imageToolsMenu } from "@/lib/data/sitemapData";
 import { resolveHref } from "@/lib/utils/linkResolver";
 import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from "@/lib/utils/seoUtils";
 import { getLocalizedToolMeta } from "@/lib/utils/toolLocalization";
+import { LocaleSiblingLinks } from "@/app/components/LocaleSiblingLinks";
 import {
   Image as ImageIcon,
   Palette,
@@ -508,6 +509,9 @@ export default async function ImageToolsPage({
               </div>
             ))}
           </div>
+        </div>
+        <div className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks languages={getCanonicalAndAlternates('/image', locale).languages} currentLocale={locale} />
         </div>
       </section>
     </main>

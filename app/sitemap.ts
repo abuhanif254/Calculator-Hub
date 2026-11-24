@@ -163,6 +163,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // /disclaimer, /privacy-policy, /terms-of-use, /community/hall-of-fame
     // Keeping sitemap.xml focused exclusively on core calculators, tools, guides, hubs, comparisons & collections.
     ...buildEntries('/about-us', 'monthly', 0.5, undefined, resolveLatestContentMtime(['app/[locale]/about-us/page.tsx'])),
+    ...buildEntries('/editorial-policy', 'monthly', 0.5, undefined, resolveLatestContentMtime(['app/[locale]/editorial-policy/page.tsx'])),
     ...buildEntries('/contact-us', 'monthly', 0.5, undefined, baselineMod),
     ...buildEntries('/guides', 'weekly', 0.85, undefined, baselineMod),
     ...buildEntries('/calculators', 'weekly', 0.95, undefined, baselineMod),

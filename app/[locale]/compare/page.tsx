@@ -5,6 +5,7 @@ import { comparisons } from '@/lib/data/comparisons';
 import { Link } from '@/i18n/routing';
 import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from '@/lib/utils/seoUtils';
 import { Scale, ChevronRight, ArrowRight, ShieldCheck, BookOpen, Layers } from 'lucide-react';
+import { LocaleSiblingLinks } from '@/app/components/LocaleSiblingLinks';
 
 export const revalidate = false;
 export const dynamicParams = false;
@@ -340,6 +341,9 @@ export default async function CompareIndexPage({
             </div>
           </div>
         </section>
+        <div className="mt-10 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks languages={getCanonicalAndAlternates('/compare', locale).languages} currentLocale={locale} />
+        </div>
       </div>
     </div>
   );

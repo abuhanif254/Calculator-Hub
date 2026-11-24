@@ -6,6 +6,7 @@ import { Link, resolveIntlHref } from '../../../../i18n/routing';
 import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
 import { ChevronRight, Layers, ArrowRight, Code2, Calculator } from 'lucide-react';
 import { Metadata } from 'next';
+import { LocaleSiblingLinks } from '@/app/components/LocaleSiblingLinks';
 
 export const revalidate = false;
 export const dynamicParams = false;
@@ -221,7 +222,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
-  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalUrl, getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/collections/[slug]', locale, collection.slug);
   const collectionsHubUrl = getCanonicalUrl('/collections', locale);
 
@@ -249,8 +250,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     .filter(Boolean) as Array<(typeof allTools)[number] & { localizedTitle: string; localizedDescription: string; canonicalToolUrl: string }>;
 
   const otherCollections = collections.filter((c) => c.slug !== collection.slug);
-  const toolNamesList = tools.map((item) => item.localizedTitle).join(', ');
-  const faqItems = ui.faqs(t.title, toolNamesList);
+  const alternates = getCanonicalAndAlternates('/collections/[slug]', locale, collection.slug);
 
   // Schema Generation
   const collectionSchema = {
@@ -260,30 +260,17 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
     "description": t.description,
     "url": canonicalUrl,
     "inLanguage": locale,
-    "dateModified": "2026-04-17",
+    "dateModified": "2026-11-24",
     "author": {
       "@type": "Organization",
       "name": "NexusCalculator Editorial Board",
-      "url": getCanonicalUrl('/about-us', locale)
+      "url": getCanonicalUrl('/editorial-policy', locale)
     },
     "hasPart": tools.map((tool, index) => ({
       "@type": "WebPage",
       "position": index + 1,
       "url": tool.canonicalToolUrl,
       "name": tool.localizedTitle
-    }))
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map((item) => ({
-      "@type": "Question",
-      "name": item.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.a
-      }
     }))
   };
 
@@ -300,7 +287,6 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
       {/* Breadcrumb */}
@@ -370,71 +356,6 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
           </div>
         </section>
 
-        {/* Sequential Workflow Blueprint & Methodology */}
-        <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 md:p-10 space-y-8 shadow-sm">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-              {ui.workflowHeading}
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
-              {ui.workflowIntro(t.title, tools.length)}
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">
-              {ui.stepExecutionTitle}
-            </h3>
-            <div className="grid grid-cols-1 gap-4">
-              {tools.map((tool, index) => (
-                <div
-                  key={`workflow-${tool.slug}`}
-                  className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60"
-                >
-                  <p className="text-sm md:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                    {ui.stepExecutionDesc(index + 1, tool.localizedTitle, tool.localizedDescription)}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-              {ui.bestPracticesTitle}
-            </h3>
-            <ul className="space-y-3 text-slate-600 dark:text-slate-400 text-sm md:text-base list-disc pl-5">
-              {ui.bestPracticesBullets.map((bullet, idx) => (
-                <li key={idx} className="leading-relaxed">
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-
-        {/* Frequently Asked Questions */}
-        <section className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 md:p-10 shadow-sm">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-            {ui.faqTitle}
-          </h2>
-          <div className="space-y-4">
-            {faqItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800"
-              >
-                <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  {item.q}
-                </h3>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {item.a}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
         {/* Cross-Linking to Other Collections */}
         {otherCollections.length > 0 && (
           <section className="pt-8 border-t border-slate-200 dark:border-slate-800">
@@ -468,6 +389,10 @@ export default async function CollectionPage({ params }: { params: Promise<{ loc
             </div>
           </section>
         )}
+
+        <div className="pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks languages={alternates.languages} currentLocale={locale} />
+        </div>
       </main>
     </div>
   );

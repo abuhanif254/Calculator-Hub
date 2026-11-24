@@ -63,8 +63,8 @@ const copyByLocale: Record<string, AboutLocaleCopy> = {
     standOutHeading: 'Core Architectural Pillars',
     pillars: [
       {
-        title: 'IEEE 754 Double-Precision Accuracy',
-        desc: 'Every calculation engine eliminates premature intermediate rounding drift and validates domain boundaries in real time before rendering headline metrics and sensitivity tables.',
+        title: 'Verified Double-Precision Accuracy',
+        desc: 'Every calculation engine enforces strict numeric validation and full floating-point precision from input to final output before rendering headline metrics and reference tables.',
       },
       {
         title: '330+ Modular Calculators & Utilities',
@@ -154,8 +154,8 @@ const copyByLocale: Record<string, AboutLocaleCopy> = {
     standOutHeading: 'Pilares Arquitectónicos Fundamentales',
     pillars: [
       {
-        title: 'Precisión IEEE 754 de Doble Coma Flotante',
-        desc: 'Nuestro motor numérico elimina los errores por redondeo intermedio prematuro y valida los dominios matemáticos en tiempo real antes de presentar el resultado principal y las tablas de sensibilidad.',
+        title: 'Precisión Numérica Verificada',
+        desc: 'Nuestro motor numérico valida los dominios matemáticos en tiempo real y conserva la máxima precisión decimal antes de presentar el resultado principal y las tablas de referencia.',
       },
       {
         title: 'Más de 330 Calculadoras y Utilidades Modulares',
@@ -245,8 +245,8 @@ const copyByLocale: Record<string, AboutLocaleCopy> = {
     standOutHeading: 'Nos Piliers Architecturaux',
     pillars: [
       {
-        title: 'Précision Double Virgule Flottante IEEE 754',
-        desc: 'Nos algorithmes éliminent les erreurs d’arrondi intermédiaire et valident les domaines mathématiques en temps réel avant de générer les résultats principaux et les tableaux de sensibilité.',
+        title: 'Précision Numérique Vérifiée',
+        desc: 'Nos algorithmes valident les domaines mathématiques en temps réel et maintiennent la pleine précision numérique avant de générer les résultats principaux et les tableaux de référence.',
       },
       {
         title: 'Plus de 330 Calculatrices et Outils Modulaires',
@@ -336,8 +336,8 @@ const copyByLocale: Record<string, AboutLocaleCopy> = {
     standOutHeading: 'Unsere Technischen Grundpfeiler',
     pillars: [
       {
-        title: 'Doppelt genaue IEEE-754-Arithmetik',
-        desc: 'Unsere Berechnungs-Engines verhindern vorzeitige Rundungsfehler in Zwischenschritten und prüfen Wertebereiche in Echtzeit, bevor Hauptergebnisse und Sensitivitätstabellen ausgegeben werden.',
+        title: 'Geprüfte Numerische Präzision',
+        desc: 'Unsere Berechnungs-Engines prüfen Wertebereiche in Echtzeit und rechnen mit voller Fließkomma-Genauigkeit bis zur finalen Ausgabe aller Kennzahlen und Referenztabellen.',
       },
       {
         title: 'Über 330 Modulare Rechner & Werkzeuge',

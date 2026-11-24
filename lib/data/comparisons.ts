@@ -39,7 +39,7 @@ export const comparisons: ComparisonDef[] = [
     differences: [
       { label: 'Tax Advantage', a: 'Tax-free withdrawals in retirement', b: 'Tax-deductible contributions now' },
       { label: 'Employer Match', a: 'Rarely applicable', b: 'Commonly offered' },
-      { label: 'Contribution Limits (2024)', a: '$7,000 ($8,000 if 50+)', b: '$23,000 ($30,500 if 50+)' },
+      { label: 'Contribution Limits (2026)', a: '$7,500 ($8,600 if 50+)', b: '$24,500 ($32,500 if 50+)' },
       { label: 'Required Minimum Distributions (RMDs)', a: 'None', b: 'Required at age 73' }
     ],
     translations: {
@@ -51,7 +51,7 @@ export const comparisons: ComparisonDef[] = [
         differences: [
           { label: 'Ventaja Fiscal', a: 'Retiros libres de impuestos en la jubilación', b: 'Aportaciones deducibles de impuestos hoy' },
           { label: 'Aporte del Empleador', a: 'Rara vez disponible', b: 'Comúnmente ofrecido' },
-          { label: 'Límites de Contribución', a: '$7,000 ($8,000 para mayores de 50)', b: '$23,000 ($30,500 para mayores de 50)' },
+          { label: 'Límites de Contribución (2026)', a: '$7,500 ($8,600 para mayores de 50)', b: '$24,500 ($32,500 para mayores de 50)' },
           { label: 'Distribuciones Mínimas Requeridas (RMD)', a: 'Ninguna', b: 'Obligatorias a partir de los 73 años' }
         ]
       },
@@ -63,7 +63,7 @@ export const comparisons: ComparisonDef[] = [
         differences: [
           { label: 'Avantage Fiscal', a: 'Retraits non imposables à la retraite', b: 'Cotisations déductibles des impôts aujourd\'hui' },
           { label: 'Abondement Employeur', a: 'Rarement proposé', b: 'Fréquemment offert' },
-          { label: 'Plafond de Versement', a: '7 000 $ (8 000 $ si 50+ ans)', b: '23 000 $ (30 500 $ si 50+ ans)' },
+          { label: 'Plafond de Versement (2026)', a: '7 500 $ (8 600 $ si 50+ ans)', b: '24 500 $ (32 500 $ si 50+ ans)' },
           { label: 'Retraits Minimaux Obligatoires (RMD)', a: 'Aucun', b: 'Exigés à partir de 73 ans' }
         ]
       },
@@ -75,7 +75,7 @@ export const comparisons: ComparisonDef[] = [
         differences: [
           { label: 'Steuervorteil', a: 'Steuerfreie Auszahlungen im Ruhestand', b: 'Steuerlich absetzbare Einzahlungen heute' },
           { label: 'Arbeitgeberzuschuss', a: 'Sehr selten', b: 'Weit verbreitet' },
-          { label: 'Beitragsobergrenzen', a: '7.000 $ (8.000 $ ab 50 Jahren)', b: '23.000 $ (30.500 $ ab 50 Jahren)' },
+          { label: 'Beitragsobergrenzen (2026)', a: '7.500 $ (8.600 $ ab 50 Jahren)', b: '24.500 $ (32.500 $ ab 50 Jahren)' },
           { label: 'Mindestauszahlungen (RMD)', a: 'Keine', b: 'Pflicht ab Alter 73' }
         ]
       }

@@ -6,6 +6,7 @@ import { Link, resolveIntlHref } from '../../../../i18n/routing';
 import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
 import { ChevronRight, ArrowRight, Check, Scale } from 'lucide-react';
 import { Metadata } from 'next';
+import { LocaleSiblingLinks } from '@/app/components/LocaleSiblingLinks';
 
 export const revalidate = false;
 export const dynamicParams = false;
@@ -226,14 +227,12 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
     .replace('://nexuscalculator.net', '://www.nexuscalculator.net');
-  const { getCanonicalUrl } = await import('@/lib/utils/seoUtils');
+  const { getCanonicalUrl, getCanonicalAndAlternates } = await import('@/lib/utils/seoUtils');
   const canonicalUrl = getCanonicalUrl('/compare/[slug]', locale, comparison.slug);
+  const alternates = getCanonicalAndAlternates('/compare/[slug]', locale, comparison.slug);
   const compareHubUrl = getCanonicalUrl('/compare', locale);
 
   const otherComparisons = comparisons.filter((c) => c.slug !== comparison.slug);
-  const faqItems = ui.faqs(toolA.localizedTitle, toolB.localizedTitle, t.verdict);
-  const firstDiffA = t.differences[0]?.a || toolA.localizedDescription;
-  const firstDiffB = t.differences[0]?.b || toolB.localizedDescription;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -242,36 +241,23 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     "description": t.seoDescription,
     "url": canonicalUrl,
     "inLanguage": locale,
-    "dateModified": "2026-04-17",
+    "dateModified": "2026-11-24",
     "author": {
       "@type": "Organization",
       "name": "NexusCalculator Editorial Board",
-      "url": getCanonicalUrl('/about-us', locale)
+      "url": getCanonicalUrl('/editorial-policy', locale)
     },
     "reviewedBy": {
       "@type": "Person",
       "name": "MD Abu Hanif Mia",
       "jobTitle": "Lead Full-Stack & Quantitative Systems Architect",
-      "url": getCanonicalUrl('/about-us', locale)
+      "url": "https://abuhanifmia.com"
     },
     "publisher": {
       "@type": "Organization",
       "name": "NexusCalculator",
       "url": baseUrl
     }
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map((item) => ({
-      "@type": "Question",
-      "name": item.q,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": item.a
-      }
-    }))
   };
 
   const breadcrumbSchema = {
@@ -288,7 +274,6 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-20">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <nav className="flex items-center space-x-2 text-sm text-slate-500 dark:text-slate-400">
@@ -365,67 +350,50 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
           </div>
         </section>
 
-        {/* Analytical Decision Methodology */}
-        <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 md:p-10 space-y-8 shadow-sm">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
-              {ui.methodologyTitle(toolA.localizedTitle, toolB.localizedTitle)}
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-base md:text-lg">
-              {ui.methodologyIntro(toolA.localizedTitle, toolB.localizedTitle, toolA.localizedDescription, toolB.localizedDescription)}
-            </p>
+        {/* Direct Tool Launch Cards (Page-Specific Differentiators Only — Zero Template Boilerplate) */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between gap-5">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                {toolA.localizedTitle}
+              </h2>
+              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                {toolA.localizedDescription}
+              </p>
+              <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                {t.differences.map((d, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Check size={15} className="text-[#518231] mt-0.5 shrink-0" />
+                    <span><strong>{d.label}:</strong> {d.a}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Link href={resolveIntlHref(toolA.href)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
+              {ui.openCalc}: {toolA.localizedTitle} <ArrowRight size={14} />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60 flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                  {ui.whenToUseA(toolA.localizedTitle)}
-                </h3>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                  {ui.useAExplanation(toolA.localizedTitle, toolA.localizedDescription, firstDiffA)}
-                </p>
-              </div>
-              <Link href={resolveIntlHref(toolA.href)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
-                {ui.openCalc}: {toolA.localizedTitle} <ArrowRight size={14} />
-              </Link>
+          <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between gap-5">
+            <div>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                {toolB.localizedTitle}
+              </h2>
+              <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                {toolB.localizedDescription}
+              </p>
+              <ul className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
+                {t.differences.map((d, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Check size={15} className="text-[#518231] mt-0.5 shrink-0" />
+                    <span><strong>{d.label}:</strong> {d.b}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60 flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
-                  {ui.whenToUseB(toolB.localizedTitle)}
-                </h3>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
-                  {ui.useBExplanation(toolB.localizedTitle, toolB.localizedDescription, firstDiffB)}
-                </p>
-              </div>
-              <Link href={resolveIntlHref(toolB.href)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
-                {ui.openCalc}: {toolB.localizedTitle} <ArrowRight size={14} />
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Frequently Asked Questions */}
-        <section className="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-8 md:p-10 shadow-sm">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-6">
-            {ui.faqTitle}
-          </h2>
-          <div className="space-y-4">
-            {faqItems.map((item, idx) => (
-              <div
-                key={idx}
-                className="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/70 dark:border-slate-800"
-              >
-                <h3 className="text-base md:text-lg font-bold text-slate-900 dark:text-white mb-2">
-                  {item.q}
-                </h3>
-                <p className="text-sm md:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-                  {item.a}
-                </p>
-              </div>
-            ))}
+            <Link href={resolveIntlHref(toolB.href)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
+              {ui.openCalc}: {toolB.localizedTitle} <ArrowRight size={14} />
+            </Link>
           </div>
         </section>
 
@@ -461,6 +429,10 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
             </div>
           </section>
         )}
+
+        <div className="pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks languages={alternates.languages} currentLocale={locale} />
+        </div>
       </main>
     </div>
   );

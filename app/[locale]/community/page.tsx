@@ -115,7 +115,7 @@ const COMMUNITY_EDITORIAL_COPY: Record<
     pillars: [
       {
         title: '1. Quantitative Formula Verification & Peer Review',
-        body: 'Discuss amortization conventions (CFPB Regulation Z, Canadian semi-annual compounding, UK LTV tiers), clinical biometric equations (Mifflin-St Jeor, WHO BMI percentiles), and IEEE 754 floating-point precision across complex multi-step calculations.',
+        body: 'Discuss amortization conventions (CFPB Regulation Z, Canadian semi-annual compounding, UK LTV tiers), clinical biometric equations (Mifflin-St Jeor, WHO BMI percentiles), and numerical precision across complex multi-step calculations.',
       },
       {
         title: '2. Client-Side Developer, PDF & Image Workflows',

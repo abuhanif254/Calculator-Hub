@@ -47,6 +47,11 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
+        // Explicitly allow Google AdSense verification & contextual ad crawlers across all public routes
+        userAgent: ['Mediapartners-Google', 'Google-Display-Ads-Bot', 'AdsBot-Google'],
+        allow: ['/'],
+      },
+      {
         userAgent: '*',
         allow: [
           '/',

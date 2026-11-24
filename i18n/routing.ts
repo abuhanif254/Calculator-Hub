@@ -20,6 +20,12 @@ export const routing = defineRouting({
       fr: '/a-propos',
       de: '/uber-uns'
     },
+    '/editorial-policy': {
+      en: '/editorial-policy',
+      es: '/politica-editorial',
+      fr: '/politique-editoriale',
+      de: '/redaktionsrichtlinien'
+    },
     '/contact-us': {
       en: '/contact-us',
       es: '/contactenos',

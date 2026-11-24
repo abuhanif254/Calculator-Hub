@@ -7,6 +7,7 @@ import { getCanonicalAndAlternates, getCanonicalUrl, optimizeSerpTitle } from "@
 import { getLocalizedCalcMeta } from "@/lib/utils/toolLocalization";
 import { Link, resolveIntlHref } from "@/i18n/routing";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { LocaleSiblingLinks } from "@/app/components/LocaleSiblingLinks";
 
 export const revalidate = false;
 export const dynamicParams = false;
@@ -274,6 +275,9 @@ export default async function AllCalculatorsPage({
               </div>
             );
           })}
+        </div>
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks languages={getCanonicalAndAlternates('/calculators', locale).languages} currentLocale={locale} />
         </div>
       </section>
     </main>

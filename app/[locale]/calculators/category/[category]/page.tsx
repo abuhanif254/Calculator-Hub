@@ -9,7 +9,8 @@ import { comparisons } from '@/lib/data/comparisons';
 import { collections } from '@/lib/data/collections';
 import { getLocalizedGuide } from '@/lib/utils/guideLocalization';
 import { getLocalizedCalcMeta, getLocalizedToolMeta } from '@/lib/utils/toolLocalization';
-import { canonicalizeInternalHref } from '@/lib/utils/seoUtils';
+import { canonicalizeInternalHref, getCanonicalAndAlternates } from '@/lib/utils/seoUtils';
+import { LocaleSiblingLinks } from '@/app/components/LocaleSiblingLinks';
 import { Link, resolveIntlHref } from '@/i18n/routing';
 import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap, Wrench, Scale, Layers } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
@@ -819,6 +820,10 @@ export default async function CategoryPage({
               })}
           </div>
         </section>
+
+        <div className="mt-12 pt-6 border-t border-slate-200 dark:border-slate-800">
+          <LocaleSiblingLinks languages={getCanonicalAndAlternates('/calculators/category/[category]', locale, cat.id).languages} currentLocale={locale} />
+        </div>
       </main>
     </>
   );
