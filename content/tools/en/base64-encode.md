@@ -1,89 +1,105 @@
 ---
-metaTitle: "Base64 Encoder Online | Text, Binary & Data URI to Base64 (RFC 4648)"
-metaDescription: "Encode UTF-8 text, JSON payloads, images, and binary files into standard or URL-safe Base64 strings. Features live Data URI generation and byte-expansion metrics."
-metaKeywords: "base64 encode, base64 encoder, encode text to base64, image to base64 data uri, url safe base64 encoder, rfc 4648 base64, utf-8 base64 encoding"
+metaTitle: "Base64 Encode & Decode | RFC 4648, Base64url & Data URI"
+metaDescription: "Encode and decode UTF-8 text, JSON, images, and binary files in RFC 4648 standard or URL-safe Base64url with live Data URIs and byte metrics."
+metaKeywords: "base64 encode, base64 encoder, base64 decode, base64url encoder, rfc 4648 base64, utf-8 base64, image to base64 data uri, online base64 tool, jwt base64url"
 title: "Base64 Encoder — Text, File & Data URI Encoding Tool"
-shortDescription: "Encode UTF-8 strings, JSON payloads, images, and binary files into RFC 4648 standard or URL-safe Base64 format with instant Data URI generation and 100% client-side execution."
+shortDescription: "Encode and decode UTF-8 text, JSON payloads, images, and binary files using RFC 4648 standard or URL-safe Base64url with instant Data URI output and live byte-expansion metrics, 100% client-side."
 faqs:
-  - question: "What is Base64 encoding used for?"
-    answer: "Base64 encoding converts raw binary streams, images, cryptographic keys, and multi-byte UTF-8 text into a 64-character ASCII alphabet so they can travel across 7-bit text protocols (HTTP headers, JSON bodies, XML nodes, and SMTP MIME attachments) without control-character corruption."
-  - question: "Why does Base64 encoding increase payload size by 33%?"
-    answer: "Base64 maps every 3 bytes of input (24 bits) into 4 ASCII characters (6 bits per character). Because 4 bytes of ASCII output represent 3 bytes of binary input, the encoded size increases by a 4:3 ratio (33.3%), plus up to 2 '=' padding characters when input length is not a multiple of 3."
-  - question: "How do I generate an HTML or CSS Data URI with Base64?"
-    answer: "Upload any PNG, JPEG, WebP, or SVG file into the encoder. The tool automatically prepends the RFC 2397 header (e.g., data:image/png;base64,) to the encoded payload so you can embed it directly into an HTML <img> tag or CSS background-image rule."
-  - question: "What is the difference between Standard Base64 and URL-Safe Base64 (Base64url)?"
-    answer: "Standard Base64 (RFC 4648 §4) uses '+' for index 62 and '/' for index 63, which conflict with URL query space encoding and path separators. URL-Safe Base64 (RFC 4648 §5) substitutes '-' for '+' and '_' for '/', making the output safe for URLs, filenames, and JWT headers/payloads."
-  - question: "How does this encoder avoid JavaScript btoa() Unicode errors?"
-    answer: "Browser-native window.btoa() only accepts Latin1 (ISO-8859-1) code points and throws an InvalidCharacterError on UTF-8 emojis or non-ASCII scripts. Our encoder serializes strings into a UTF-8 Uint8Array via TextEncoder before applying the 6-bit Base64 transformation."
+  - question: "Why does Base64 encoding expand payload size by roughly 33.3%?"
+    answer: "Base64 converts every 3 input bytes (24 bits) into 4 US-ASCII output characters (6 bits per character). Representing 3 raw octets with 4 ASCII bytes creates a fixed 4:3 expansion ratio of 33.33%, plus 1 or 2 '=' padding characters whenever the input byte length is not divisible by 3."
+  - question: "What changes when you switch from Standard Base64 (RFC 4648 Section 4) to URL-Safe Base64url (Section 5)?"
+    answer: "Standard Base64 assigns '+' to sextet 62 and '/' to sextet 63, which collide with URL query space encoding and path delimiters. URL-Safe Base64url replaces '+' with '-', substitutes '/' with '_', and strips trailing '=' padding characters so tokens pass safely through URLs, filenames, and JWT segments."
+  - question: "Why does native JavaScript btoa() fail on emojis and non-ASCII text, and how does this tool prevent that?"
+    answer: "Browser window.btoa() only accepts Latin-1 code points (U+0000 to U+00FF) and throws a DOMException InvalidCharacterError on multi-byte Unicode scripts or emojis. This encoder first serializes text into raw UTF-8 bytes with TextEncoder before running the 6-bit conversion, and validates decoded bytes with fatal UTF-8 TextDecoder."
+  - question: "Is Base64 encoding a form of encryption or a safe way to hide API keys and passwords?"
+    answer: "No. Base64 is a completely reversible public encoding format with zero cryptographic keys or secrecy. Anyone can decode a Base64 string in milliseconds; never treat Base64-encoded Kubernetes Secrets or HTTP Basic Auth headers as encrypted unless protected by TLS in transit and real encryption at rest."
+  - question: "When should you inline an image as an RFC 2397 Data URI instead of serving an external file?"
+    answer: "Data URIs (data:image/png;base64,...) work well for tiny UI icons, single-pixel spacers, or critical SVGs under roughly 4 KB where avoiding an extra HTTP request matters. Larger photos and fonts should stay external so browsers can cache them independently across pages without inflating CSS or HTML payloads by 33%."
 features:
-  - "Real-time RFC 4648 §4 (Standard) and §5 (URL-Safe Base64url) encoding"
-  - "Full multi-byte UTF-8, Unicode, and Emoji byte-stream serialization via TextEncoder"
-  - "Drag-and-drop binary and text file encoder (TXT, JSON, XML, SVG, PNG, JPG, WebP)"
-  - "Automatic RFC 2397 Data URI generator with MIME-type detection and image preview"
-  - "Live byte-size expansion analyzer comparing raw input bytes vs encoded ASCII length"
-  - "100% client-side in-browser execution — zero network transmission or server logging"
+  - "Bidirectional RFC 4648 Section 4 (Standard) and Section 5 (URL-Safe Base64url without '=' padding) encoding and decoding with one-click mode swap"
+  - "Strict UTF-8 byte serialization via TextEncoder and fatal UTF-8 decoding via TextDecoder, preventing btoa() errors on CJK characters, accents, and emojis"
+  - "Drag-and-drop image and binary file encoding that automatically emits RFC 2397 Data URIs with MIME type detection and instant image previews"
+  - "Smart clipboard paste detection that recognizes valid Base64 payloads and switches directly into Decode mode"
+  - "Live input and output statistics tracking character count, line count, and exact UTF-8 byte delta to quantify 4:3 encoding overhead"
+  - "Monaco editor with automatic dark/light theme support, local draft persistence, file download, and 100% offline client-side execution"
 useCases:
-  - "Generating inline CSS and HTML Data URIs for small icons and critical UI assets"
-  - "Encoding binary documents and cryptographic signatures for JSON REST and GraphQL APIs"
-  - "Constructing HTTP Basic Authentication headers (Authorization: Basic base64(user:pass))"
-  - "Producing URL-safe Base64url tokens for OAuth state parameters and JWT segments"
-  - "Encoding multi-line configuration files and TLS certificates for Kubernetes Secrets"
+  - "Building HTTP Basic Authentication headers (Authorization: Basic base64(username:password)) from UTF-8 credentials without shell newline bugs"
+  - "Generating unpadded Base64url segments for JSON Web Token (JWT) headers, OAuth 2.0 PKCE code challenges, and URL-safe state parameters"
+  - "Inlining small PNG, WebP, or SVG icons as RFC 2397 Data URIs inside CSS stylesheets, standalone HTML emails, or component bundles"
+  - "Encoding PEM TLS certificates, service-account JSON credentials, and configuration blobs for Kubernetes Secret YAML manifests"
+  - "Embedding binary signatures, PDF buffers, or encrypted ciphertexts safely inside JSON REST APIs and GraphQL string fields"
+  - "Performing round-trip verification on webhook payloads and log tokens by toggling between Encode and Decode modes in one click"
 howToSteps:
-  - "Ensure the 'Encode' mode is active in the workspace toolbar."
-  - "Type or paste your UTF-8 text, JSON payload, or upload a binary/image file into the input panel."
-  - "Toggle 'URL-Safe' if the encoded string will be embedded inside a URL path, query string, or JWT."
-  - "Inspect the input-to-output byte size delta and copy or download the generated Base64 string or Data URI."
+  - "Select Encode or Decode in the top toolbar, or click Paste to let the tool detect an existing Base64 string and switch modes automatically."
+  - "Enter UTF-8 text, JSON, or credentials into the left Monaco editor, or drag and drop an image or binary file onto the upload zone."
+  - "Enable the URL-Safe switch whenever the encoded string will be embedded inside a URL query parameter, route segment, filename, or JWT."
+  - "Check the live character and UTF-8 byte counters to verify exact expansion overhead, and preview generated Data URIs for uploaded images."
+  - "Click Copy or Download to export the encoded string, or press Swap to feed the output back into the input pane for round-trip verification."
 ---
 
-## Technical Reference: RFC 4648 Base64 Encoding Architecture
+**Base64** is a binary-to-text encoding scheme standardized in **RFC 4648** that maps arbitrary 8-bit binary octets onto a safe 64-character subset of US-ASCII. Whenever raw bytes—images, cryptographic digests, TLS certificates, or multi-byte UTF-8 strings—must pass through text-only transport layers such as JSON strings, XML elements, HTTP headers, YAML manifests, or SMTP MIME messages, Base64 guarantees that non-printable control bytes (`0x00–0x1F`) and high-bit octets (`0x80–0xFF`) survive without truncation or character-set corruption. Running this encoder directly in your browser ensures credentials, private keys, and internal payloads never leave local memory.
 
-**Base64 encoding** is a binary-to-text serialization algorithm standardized in **RFC 4648**. Its primary engineering purpose is to transform arbitrary 8-bit octets (binary files, UTF-8 byte arrays, cryptographic hashes, or serialized structures) into a restricted 64-character subset of US-ASCII that survives transport through text-only parsers, SMTP gateways, HTTP headers, and JSON string properties without byte stripping or control-character misinterpretation.
+## Bitwise Mechanics: The 24-Bit Quantum and Modulo-3 Padding
 
----
+Computers store raw data in 8-bit octets (256 possible byte values), whereas Base64 encodes 6 bits per printable symbol (64 possible values: `A–Z` for `0–25`, `a–z` for `26–51`, `0–9` for `52–61`, plus two dialect-dependent symbols for `62` and `63`). Because the least common multiple of 8 and 6 is **24**, the encoder reads the input stream in contiguous **3-byte (24-bit) quanta** and splits each quantum into **four 6-bit sextets**.
 
-## Bitwise Mechanics: The 24-Bit Quantum Transformation
+Encoding the 3-byte ASCII string `"Man"` demonstrates exact alignment with zero padding:
 
-Modern computing architectures store data in 8-bit bytes (octets, $2^8 = 256$ possible values), whereas Base64 represents data in **6-bit sextets** ($2^6 = 64$ possible values). The encoder processes the input byte stream in contiguous **24-bit groups (3 bytes)** and partitions each group into **four 6-bit indices**:
+| Pipeline Stage | Byte / Sextet Breakdown | Resulting Values |
+| :--- | :--- | :--- |
+| **1. Input Characters** | `M`, `a`, `n` | Decimal `77`, `97`, `110` (`0x4D 0x61 0x6E`) |
+| **2. 8-Bit Octet Stream** | `01001101` `01100001` `01101110` | 24 contiguous bits |
+| **3. Regroup Into 6-Bit Sextets** | `010011` `010110` `000101` `101110` | 4 six-bit groups |
+| **4. Sextet Decimal Indices** | `19`, `22`, `5`, `46` | Lookup range `0–63` |
+| **5. RFC 4648 Alphabet Output** | `T`, `W`, `F`, `u` | Encoded string: `TWFu` |
 
-$$\text{3 Octets } (3 \times 8 = 24\text{ bits}) \longrightarrow \text{4 Sextets } (4 \times 6 = 24\text{ bits})$$
+When the input byte length `n` is not divisible by 3, the final 24-bit quantum is incomplete. The encoder appends zero bits on the right to finish the final active 6-bit group, then appends `=` pad characters in Standard Base64 so the total output length remains a multiple of 4:
 
-### Step-by-Step Bitwise Walkthrough (Encoding `"Man"`)
+- **`n mod 3 == 0`**: Complete 24-bit block produces 4 Base64 characters and **no** `=` padding.
+- **`n mod 3 == 1`**: 1 trailing byte (8 bits) receives 4 trailing zero bits to form 2 sextets (2 characters), followed by **`==`**.
+- **`n mod 3 == 2`**: 2 trailing bytes (16 bits) receive 2 trailing zero bits to form 3 sextets (3 characters), followed by **`=`**.
 
-| Stage | Byte / Sextet Breakdown | Values |
-|:---|:---|:---|
-| **1. ASCII Characters** | `M` · `a` · `n` | Decimal `77` · `97` · `110` |
-| **2. 8-Bit Binary Stream** | `01001101` `01100001` `01101110` | 24 contiguous bits |
-| **3. Regroup into 6-Bit Sextets** | `010011` · `010110` · `000101` · `101110` | 4 groups of 6 bits |
-| **4. 6-Bit Decimal Indices** | `19` · `22` · `5` · `46` | Range `0–63` |
-| **5. RFC 4648 Alphabet Lookup** | `T` · `W` · `F` · `u` | Encoded output: `"TWFu"` |
+Under RFC 4648 Section 3.5 (Canonical Encoding), those trailing pad bits must always remain zero so two distinct Base64 strings can never silently decode to identical bytes—an important security check in signed tokens and deduplicated hashes. For any input of `n` bytes, standard padded output length is `4 * ceil(n / 3)` bytes, whereas unpadded Base64url length is `ceil(4 * n / 3)` bytes—converging to a **33.33% size overhead** before gzip or Brotli transport compression.
 
----
+## RFC 4648 Variants and Protocol Specifications
 
-## Padding Rules (`=`) and Modulo-3 Alignment
+Although developers frequently refer to "Base64" as a single format, four active RFC profiles differ in alphabet characters, padding rules, and line wrapping:
 
-When the input byte length $L$ is not an exact multiple of 3 ($L \bmod 3 \neq 0$), the final 24-bit quantum is incomplete. The encoder zero-pads the remaining bits on the right to reach the nearest 6-bit boundary and appends `=` pad characters so the output length is always a multiple of 4:
+| Variant | Standard | Index 62 | Index 63 | Padding (`=`) | Line Wrapping | Primary Protocol Uses |
+| :--- | :--- | :---: | :---: | :---: | :--- | :--- |
+| **Standard Base64** | RFC 4648 §4 | `+` | `/` | Required | None | Data URIs, HTTP Basic Auth, Kubernetes Secrets, JSON binary fields |
+| **URL-Safe Base64url** | RFC 4648 §5 | `-` | `_` | Optional / Omitted | None | JWT segments, OAuth 2.0 PKCE `code_challenge`, URL query tokens |
+| **MIME Base64** | RFC 2045 | `+` | `/` | Required | CRLF every 76 chars | SMTP email attachments and `Content-Transfer-Encoding: base64` |
+| **PEM Base64** | RFC 7468 | `+` | `/` | Required | LF every 64 chars | X.509 TLS certificates, PKCS#8 keys, SSH key blocks |
 
-1. **$L \bmod 3 = 0$ (3 bytes in final block)**: Produces 4 Base64 characters and **zero** `=` padding characters.
-2. **$L \bmod 3 = 1$ (1 byte = 8 bits in final block)**: Padded with 4 zero bits to form 12 bits (2 sextets = 2 Base64 characters), followed by **two** pad characters (`==`).
-3. **$L \bmod 3 = 2$ (2 bytes = 16 bits in final block)**: Padded with 2 zero bits to form 18 bits (3 sextets = 3 Base64 characters), followed by **one** pad character (`=`).
+When decoding, this tool automatically normalizes `-` back to `+`, `_` back to `/`, strips embedded whitespace/line breaks from MIME or PEM blocks, and restores omitted `=` padding before converting octets back into UTF-8 text.
 
-Overall encoded byte size $S_{\text{out}}$ for an input of $n$ bytes is governed by:
+## Avoiding UTF-8 `btoa()` Errors and Shell Newline Traps
 
-$$S_{\text{out}} = 4 \times \left\lceil \frac{n}{3} \right\rceil$$
+Two classic implementation bugs cause hours of authentication and signature debugging in production codebases:
 
----
+1. **JavaScript `window.btoa()` Unicode Failure**: Native `btoa()` maps each UTF-16 code unit directly to a single byte and throws `InvalidCharacterError` on any character above `U+00FF` (such as `"café ☕"` or CJK text). Always serialize strings to UTF-8 bytes with `TextEncoder` first:
 
-## Standard Base64 (RFC 4648 §4) vs. Base64url (RFC 4648 §5)
+```javascript
+function toBase64Url(input) {
+  const bytes = new TextEncoder().encode(input);
+  let binary = "";
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+```
 
-| Specification | Index 62 | Index 63 | Padding (`=`) | Primary Protocol Applications |
-|:---|:---:|:---:|:---:|:---|
-| **Standard Base64 (RFC 4648 §4)** | `+` | `/` | Mandatory | Data URIs (`data:image/png;base64,...`), HTTP Basic Auth, Kubernetes Secrets, PEM certificates |
-| **URL-Safe Base64url (RFC 4648 §5)** | `-` | `_` | Optional / Stripped | JSON Web Tokens (JWT), OAuth 2.0 PKCE `code_challenge`, URL query tokens, filesystem-safe IDs |
-| **MIME Base64 (RFC 2045)** | `+` | `/` | Mandatory (CRLF at 76 chars) | SMTP email attachments and S/MIME payloads |
+2. **Trailing Newlines in CLI and Kubernetes Workflows**: Running `echo "admin:secret" | base64` appends a hidden `\n` (`0x0A`) byte before encoding, silently invalidating HTTP Basic Auth headers and Kubernetes `Secret` `data:` fields in GitOps manifests. Always use `printf` without a trailing newline—and pass `-w 0` on GNU coreutils to suppress 76-character line wraps, emitting the exact token `YWRtaW46c2VjcmV0`:
 
----
+```bash
+printf '%s' 'admin:secret' | base64 -w 0
+```
 
-## Multi-Byte UTF-8 Encoding & Data URI Best Practices
+## Data URI Thresholds and Security Boundaries
 
-- **UTF-8 Serialization before Encoding**: Never pass multi-byte Unicode strings directly into legacy `window.btoa()`. Always encode the string into UTF-8 bytes via `new TextEncoder().encode(str)` first so characters outside `U+0000..U+00FF` (such as accented characters, CJK ideographs, and emojis) are preserved without throwing `DOMException: InvalidCharacterError`.
-- **Data URI Size Thresholds**: Embedding assets via `data:<mediatype>;base64,<data>` eliminates HTTP round-trips for icons under **4 KB – 8 KB**, but inflates payload size by ~33.3% before gzip/Brotli compression. Keep large photographs and fonts as external cacheable assets.
+Dropping an image onto the upload panel generates an **RFC 2397 Data URI** (`data:image/png;base64,...`) ready for `<img src="...">` tags or CSS `url(...)` rules. Inlining eliminates a network round-trip for critical icons under **4 KB**, but larger assets pay a triple penalty: 33% raw payload inflation, lost independent HTTP caching across routes, and slower CSSOM parsing when embedded inside render-blocking stylesheets. Always benchmark bundled stylesheet weights before inlining vector sprites or raster thumbnails across multi-page web applications. For specialized image conversion and reverse extraction, use our [Image to Base64](/en/tools/image-to-base64) and [Base64 to Image](/en/tools/base64-to-image) utilities.
+
+Finally, remember that **Base64 is encoding, never encryption**. Any encoded payload can be inspected instantaneously with our [Base64 Decoder](/en/tools/base64-decode). To inspect signed Base64url claims, open our [JWT Decoder](/en/tools/jwt-decoder); to escape special URI characters without 33% bloat, switch to our [URL Encoder](/en/tools/url-encoder); and when you need genuine cryptographic integrity or one-way digests, pair your workflow with our [HMAC Generator](/en/tools/hmac-generator) or [Hash Generator](/en/tools/hash-generator).

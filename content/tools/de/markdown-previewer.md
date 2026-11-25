@@ -1,80 +1,102 @@
 ---
-metaTitle: "Markdown Editor & Live-Vorschau Online | Kostenloses Tool"
-metaDescription: "Schreiben und in der Vorschau anzeigen von Markdown in Echtzeit mit einem professionellen Split-Screen-Editor. Exportieren Sie in HTML/PDF/MD. Unterstützt GitHub Flavored Markdown."
-metaKeywords: "markdown editor, markdown vorschau, markdown preview, markdown zu html, github flavored markdown, gfm editor, markdown code editor, markdown exportieren, markdown konverter"
+metaTitle: "Markdown Editor & Live-Vorschau Online | GFM, HTML & PDF"
+metaDescription: "Schreiben und prüfen Sie GitHub Flavored Markdown live im Split-Screen-Monaco-Editor. Exportieren Sie sauberes HTML, DIN-A4-PDF oder .md lokal."
+metaKeywords: "markdown editor, markdown vorschau, markdown live vorschau, github flavored markdown, gfm editor, markdown zu html, markdown zu pdf, online markdown editor, commonmark vorschau, markdown konverter"
 title: "Markdown Editor & Live-Vorschau"
-shortDescription: "Schreiben und in der Vorschau anzeigen von Markdown in Echtzeit mit einem Split-Screen-Editor. Unterstützt GitHub Flavored Markdown und den Export nach HTML/PDF."
+shortDescription: "Schreiben und prüfen Sie GitHub Flavored Markdown in Echtzeit in einem professionellen Split-Screen-Monaco-Editor. Mit Syntaxhervorhebung, interaktivem Inhaltsverzeichnis, Live-Statistiken sowie HTML-, PDF- und .md-Export – 100 % lokal im Browser."
 faqs:
-  - question: "Was ist Markdown?"
-    answer: "Markdown ist eine einfache Auszeichnungssprache, mit der Sie Text mit einer einfachen, lesbaren Syntax formatieren können, die in HTML konvertiert werden kann. Es ist der Standard für die Dokumentation auf GitHub, GitLab, Stack Overflow und vielen anderen Plattformen."
-  - question: "Wie funktioniert die Markdown-Vorschau?"
-    answer: "Die Vorschau parst Ihren rohen Markdown-Text in Echtzeit mit einem clientseitigen Parser und rendert ihn als formatiertes HTML. Änderungen werden beim Tippen sofort angezeigt. Der Editor verwendet Monaco Editor (die gleiche Engine wie VS Code) für die Syntaxhervorhebung."
-  - question: "Ist dieses Markdown-Tool kostenlos?"
-    answer: "Ja, dieser Markdown Editor ist völlig kostenlos ohne Registrierung, ohne Konto und ohne Nutzungsbeschränkungen zu verwenden. Er läuft vollständig in Ihrem Browser ohne serverseitige Verarbeitung."
-  - question: "Kann ich Markdown in HTML exportieren?"
-    answer: "Ja. Sie können Ihr Dokument in drei Formaten exportieren: als rohe .md-Markdown-Datei, als eigenständige HTML-Datei mit eingebetteten Stilen oder als PDF-Dokument."
-  - question: "Wird mein Markdown lokal verarbeitet?"
-    answer: "Ja, die gesamte Analyse, das Rendern und die Speicherung erfolgen vollständig in Ihrem Browser mit clientseitigem JavaScript. Ihre Inhalte werden niemals an einen Server gesendet, was vollständige Privatsphäre gewährleistet."
+  - question: "Welcher Markdown-Standard wird in der Live-Vorschau unterstützt?"
+    answer: "Der Vorschau-Renderer parst CommonMark mit der Erweiterung GitHub Flavored Markdown (GFM) über remark-gfm. Dadurch funktionieren Pipe-Tabellen, Aufgabenlisten mit Checkboxen, Durchstreichungen und direkte URL-Autolinks ebenso wie die Syntaxhervorhebung für eingezäunte Codeblöcke über Highlight.js."
+  - question: "Akzeptiert der Editor rohes Inline-HTML in Markdown-Dokumenten?"
+    answer: "Ja. Die Rendering-Pipeline bindet rehype-raw ein, sodass Inline-HTML wie <details>, <kbd>, Status-Badges oder ausgerichtete <img>-Elemente nativ gerendert werden. Da rohes HTML direkt im Vorschau-DOM verarbeitet wird, sollten Sie keine fremden, nicht vertrauenswürdigen Skripte einfügen."
+  - question: "Wie funktioniert die automatische Entwurfsspeicherung beim Schließen des Tabs?"
+    answer: "Jede Eingabe wird mit einer Verzögerung von 800 Millisekunden entprellt und lokal im localStorage Ihres Browsers gesichert. Beim erneuten Laden der Seite wird Ihr letzter Stand automatisch wiederhergestellt, ohne dass Daten an einen Server übertragen werden."
+  - question: "Worin unterscheidet sich das Kopieren von HTML vom HTML-Datei-Download?"
+    answer: "Beim Kopieren von HTML landet das reine Body-Fragment aus dem Vorschau-Container in Ihrer Zwischenablage – ideal für CMS-Felder oder Newsletter-Vorlagen. Der HTML-Download verpackt dieses Fragment hingegen in ein vollständiges UTF-8-HTML5-Dokument inklusive sauberer Typografie- und Tabellenstile."
+  - question: "Wie werden mehrseitige PDF-Dokumente aus langen Markdown-Dateien erzeugt?"
+    answer: "Der PDF-Export läuft vollständig lokal im Browser: Die gerenderte Vorschau wird per html2canvas in zweifacher Auflösung gerastert und anschließend mit jsPDF automatisch in sauber umbrochene DIN-A4-Hochformatseiten aufgeteilt."
 features:
-  - "Echtzeit-Markdown-Vorschau im Split-Screen mit sofortigem Rendering"
-  - "Monaco Editor mit Syntax-Hervorhebung, Zeilennummern und Klammerabgleich"
-  - "Volle Unterstützung für GitHub Flavored Markdown (GFM), einschließlich Tabellen und Aufgabenlisten"
-  - "Syntax-hervorgehobene Codeblöcke für JavaScript, TypeScript, Python, HTML, CSS, JSON, Bash usw."
-  - "Intelligente Symbolleiste, die Markdown-Syntax mit Auswahlumbruch einfügt"
-  - "Export in Markdown (.md), saubere HTML- und PDF-Formate mit einem Klick"
-  - "Live-Dokumentstatistiken: Wortzahl, Zeichenzahl, Zeilenzahl, Lesezeit"
-  - "Automatisch generiertes anklickbares Inhaltsverzeichnis"
-  - "100 % clientseitige Verarbeitung — Ihre Inhalte verlassen niemals Ihren Browser"
+  - "Monaco-Editor-Engine mit auswahlbewusster Symbolleiste, Zeilennummern, farbiger Klammerzuordnung, Zeilenumbruch und Schriftgröße von 10 bis 24 px"
+  - "Vollständiges GitHub Flavored Markdown (GFM) inklusive Pipe-Tabellen, Aufgabenlisten, Durchstreichung, Autolinks und Inline-HTML-Durchreichung"
+  - "Automatische Syntaxhervorhebung für eingezäunte Codeblöcke mit direkter Ein-Klick-Kopierfunktion pro Block"
+  - "Einblendbares, interaktives Inhaltsverzeichnis aus H1- bis H6-Überschriften mit sanfter Sprungnavigation"
+  - "Echtzeit-Statistikleiste für Wörter, Zeichen, Zeilen, Überschriften und geschätzte Lesezeit bei 200 Wörtern pro Minute"
+  - "Lokaler Drag-and-Drop-Import für .md-, .markdown- und .txt-Dateien sowie Export als .md, eigenständiges .html oder paginiertes DIN-A4-PDF"
 useCases:
-  - "Schreiben von README-Dateien für GitHub-, GitLab- und Bitbucket-Repositories"
-  - "Entwerfen von Blog-Posts und Artikeln für statische Site-Generatoren"
-  - "Vorschau von Markdown vor dem Festschreiben (Commit) in der Versionskontrolle"
-  - "Erstellen formatierter Notizen, Besprechungsprotokolle und Projektdokumentationen"
-  - "Konvertieren von Markdown in sauberes, semantisches HTML für die Webpublikation"
-  - "Generieren von PDF-Dokumenten aus Markdown-Inhalten zum Teilen oder Drucken"
+  - "Verfassen und Prüfen von README.md-Dateien, Changelogs und Pull-Request-Vorlagen vor dem Git-Commit"
+  - "Ausarbeiten technischer Spezifikationen, Architecture Decision Records (ADRs) und API-Leitfäden mit hervorgehobenen Codebeispielen"
+  - "Umwandeln von Markdown-Entwürfen in semantisches HTML für Static-Site-Generatoren, Headless-CMS oder Entwickler-Newsletter"
+  - "Exportieren strukturierter Besprechungsprotokolle, Release-Notes und Projektdokumentationen als teilbare DIN-A4-PDF-Handouts"
+  - "Kontrollieren der Überschriftenhierarchie und Abschnittsfolge langer Handbücher über das interaktive Inhaltsverzeichnis"
+  - "Öffnen und Prüfen externer .md-Dateien im Browser ohne Installation eines Desktop-Editors oder IDE-Plugins"
 howToSteps:
-  - "Geben Sie Markdown im linken Editorbereich ein oder fügen Sie es ein."
-  - "Sehen Sie die gerenderte Vorschau sofort im rechten Bereich (Überschriften, Fettdruck, Kursivdruck, Code, Tabellen werden in Echtzeit gerendert)."
-  - "Verwenden Sie die Schaltflächen der Symbolleiste, um die Markdown-Syntax schnell einzufügen."
-  - "Wechseln Sie mithilfe des Umschaltfelds für den Ansichtsmodus zwischen der geteilten Ansicht, nur Editor oder nur Vorschau."
-  - "Überprüfen Sie die Live-Dokumentenstatistiken: Wortanzahl, Zeichenanzahl, Zeilenanzahl und geschätzte Lesezeit."
-  - "Exportieren Sie Ihr Dokument über das Export-Dropdown-Menü als .md-Datei, HTML-Datei oder PDF."
+  - "Tippen Sie Markdown direkt in den linken Monaco-Editor, fügen Sie vorhandenen Quelltext ein oder ziehen Sie eine lokale .md-, .markdown- oder .txt-Datei per Drag-and-Drop auf die Arbeitsfläche."
+  - "Formatieren Sie markierte Textpassagen über die Symbolleiste punktgenau an der Cursor-Position – etwa für Fettschrift, Kursivtext, Inline-Code, Links, Zitate, Aufgabenlisten oder GFM-Tabellen."
+  - "Wechseln Sie je nach Arbeitsphase zwischen geteilter Ansicht, reinem Editor oder reiner Vorschau und passen Sie Zeilenumbruch sowie Schriftgröße flexibel an."
+  - "Öffnen Sie das automatisch generierte Inhaltsverzeichnis, um die H1- bis H6-Gliederung zu prüfen und direkt zu einzelnen Abschnitten zu springen."
+  - "Überwachen Sie Wortanzahl, Zeichenzahl, Zeilenzahl, Überschriften und geschätzte Lesezeit in der Live-Statistikleiste oberhalb des Editors."
+  - "Kopieren Sie rohes Markdown oder gerendertes HTML mit einem Klick oder laden Sie über das Exportmenü eine .md-, eine gestylte .html- oder eine DIN-A4-.pdf-Datei herunter."
 ---
 
-Markdown ist eine einfache Auszeichnungssprache, mit der Sie Text mit einer einfachen, lesbaren Syntax formatieren können. Unser **Markdown Editor & Live-Vorschau** bietet eine professionelle Schreibumgebung mit Echtzeitvorschau und ist damit das ideale Werkzeug für Entwickler, Autoren und Content-Ersteller, die beim Verfassen von Dokumenten sofortiges visuelles Feedback benötigen.
+Klartext-Auszeichnungssprachen haben sich als Standard für Software-Dokumentation durchgesetzt, weil sie im Terminal lesbar bleiben, saubere Git-Diffs erzeugen und unabhängig von proprietären Dateiformaten langfristig archivierbar sind. Sobald Dokumente jedoch tief verschachtelte Listen, komplexe Pipe-Tabellen und mehrsprachige Codeblöcke enthalten, führen reine Texteditoren ohne Sichtkontrolle schnell zu unbemerkten Formatierungsfehlern, die erst nach dem Push im Repository auffallen. Unser **Markdown Editor & Live-Vorschau** kombiniert den professionellen Monaco-Code-Editor mit einem verzögerungsfreien Renderer für GitHub Flavored Markdown (GFM) direkt im Browser. So prüfen Sie Typografie, Code-Hervorhebung und Gliederung unmittelbar beim Schreiben und exportieren fertige HTML- oder PDF-Dokumente, ohne vertrauliche Entwürfe an externe Server zu übertragen.
 
-## Was ist Markdown?
+## Aufbau der Markdown-zu-HTML-Rendering-Pipeline
 
-Markdown wurde 2004 von John Gruber entwickelt, um formatierten Text zu schreiben, der in seiner Rohform lesbar bleibt. Heute ist es der universelle Standard für Dokumentationen auf GitHub, GitLab, Bitbucket, Stack Overflow, Reddit, Discord und zahllosen anderen Plattformen. Es verwendet intuitive Zeichen wie `#`, `*`, `-` und `>`, um Überschriften, fetten Text, Listen, Blockzitate und mehr zu erstellen.
+Statt fehleranfälliger Ersetzungen per regulärem Ausdruck übersetzt das Vorschaufenster Ihr Dokument über eine deterministische Abstract-Syntax-Tree-Pipeline (AST) nach dem Vorbild des `unified`-Ökosystems:
 
-Im Gegensatz zu Rich-Text-Editoren wie Microsoft Word oder Google Docs trennt Markdown Inhalt von der Präsentation. Sie schreiben im Nur-Text-Format mit einfachen Formatierungsmarkierungen, und ein Markdown-Parser konvertiert es in sauberes, semantisches HTML. Dieser Ansatz bietet Portabilität, Versionskontrollfreundlichkeit und langfristige Haltbarkeit.
+1. **Lexikalische Analyse und Parsing (`mdast`):** Der Rohtext wird gemäß der CommonMark-Spezifikation in Token zerlegt. Die Erweiterung `remark-gfm` ergänzt die Grammatikregeln für Tabellen, Durchstreichungen, Aufgabenlisten und automatische URL-Erkennung.
+2. **Transformation in den HTML-Baum (`hast`):** Der Markdown-Syntaxbaum wird in eine semantische HTML-Struktur überführt. Durch `rehype-raw` werden eingebettete Inline-HTML-Tags wie `<kbd>`, `<details>` oder `<figure>` gezielt erneut geparst und als echte DOM-Knoten statt als maskierter Text dargestellt.
+3. **Syntaxhervorhebung (`rehype-highlight`):** Eingezäunte Codeblöcke mit Sprachkennung (etwa `typescript`, `python`, `bash` oder `sql`) werden über Highlight.js in semantische `<span>`-Klassen überführt, bevor die Vorschau im Browser gerendert wird.
 
-## Was ist eine Markdown-Vorschau?
+Auf der Eingabeseite arbeitet die Monaco-Engine – derselbe Textpuffer, der auch Visual Studio Code antreibt. Jeder Klick auf eine Schaltfläche der Formatierungsleiste nutzt die `executeEdits`-API gegen die aktive Textauswahl. Markierter Text wird sauber umschlossen, statt Syntax blind am Dokumentende anzuhängen. Alle Änderungen werden mit 800 Millisekunden Entprellzeit im lokalen `localStorage` Ihres Browsers zwischengespeichert, sodass Entwürfe einen Seitenreload sicher überstehen und streng auf Ihrem Endgerät bleiben.
 
-Eine Markdown-Vorschau (Previewer) ist ein spezielles Tool, das Ihren rohen Markdown-Text in Echtzeit in vollständig formatiertes HTML rendert. Während Sie die Markdown-Syntax im Editorfenster eingeben, zeigt Ihnen das Vorschaufenster sofort, wie das endgültige Dokument aussehen wird – komplett mit Überschriften, Tabellen, Codeblöcken, Aufgabenlisten, Bildern und Hyperlinks.
+## CommonMark und GitHub Flavored Markdown im Direktvergleich
 
-Unser Previewer geht über das grundlegende Rendern hinaus und bietet einen **professionellen Monaco Code Editor** mit Syntax-Hervorhebung, Zeilennummern, automatischer Einrückung und Klammerabgleich – dieselbe Editor-Engine, die auch Visual Studio Code antreibt.
+Viele Darstellungsunterschiede zwischen Plattformen entstehen, weil nicht jeder Parser dieselben Erweiterungen beherrscht. Die folgende Übersicht zeigt, wie sich der CommonMark-Kern von der hier unterstützten GFM-Obermenge unterscheidet:
 
-## Vorteile von Markdown
+| Syntax-Element | CommonMark 0.31 | GFM-Erweiterung | Erzeugtes HTML-Element | Zentrale Parsing-Regel |
+| :--- | :--- | :--- | :--- | :--- |
+| ATX-Überschriften (`## Titel`) | Unterstützt | Unterstützt | `<h1>`–`<h6>` mit Anker-`id` | Erfordert ein Leerzeichen nach `#`; `##Titel` bleibt Fließtext |
+| Codeblöcke (` ```sprache `) | Unterstützt | Unterstützt | `<pre><code class="hljs">` | Info-String nach den öffnenden Backticks steuert Highlight.js |
+| Pipe-Tabellen (`\| A \| B \|`) | Nicht enthalten | Unterstützt | `<table>`, `<thead>`, `<tbody>` | Trennzeile benötigt mindestens drei Bindestriche pro Spalte |
+| Aufgabenlisten (`- [x] Erledigt`) | Nicht enthalten | Unterstützt | `<li><input type="checkbox">` | Kleines `x` oder Leerzeichen in Klammern nach dem Listenmarker |
+| Durchgestrichen (`~~alt~~`) | Nicht enthalten | Unterstützt | `<del>` | Einfache oder doppelte Tilden ohne Leerzeichen direkt am Rand |
+| Direkte Autolinks | Benötigt `<...>` | Unterstützt | `<a target="_blank">` | Erkennt `https://`- und `www.`-Adressen ohne spitze Klammern |
+| Rohes Inline-HTML | Unterstützt | Unterstützt | Nativer DOM-Knoten | Block-HTML braucht Leerzeilen davor und danach für weiteres Markdown |
 
-Markdown bietet erhebliche Vorteile gegenüber herkömmlichen Textverarbeitungsprogrammen:
+## Saubere Syntax in der Praxis: Verschachtelung und Escape-Zeichen
 
-- **Plattformunabhängigkeit**: Markdown-Dateien (.md) sind reiner Text. Sie lassen sich auf jedem Betriebssystem und jedem Gerät öffnen.
-- **Versionskontrollfreundlich**: Es funktioniert perfekt mit Git. Sie können jede Änderung verfolgen und Beiträge nahtlos zusammenführen.
-- **Sauberes semantisches HTML**: Markdown erzeugt gut strukturierte HTML-Ausgaben, ideal für Web-Publishing und SEO.
-- **Fokus auf den Inhalt**: Ohne komplexe Symbolleisten können Sie sich auf das Schreiben konzentrieren.
-- **Winzige Dateigrößen**: Markdown-Dokumente sind sehr klein, schnell zu laden und wirtschaftlich zu speichern.
+Kleine Einrückungsregeln entscheiden darüber, ob verschachtelte Strukturen auf GitHub, in Static-Site-Generatoren und in internen Wikis identisch gerendert werden. Soll ein eingezäunter Codeblock innerhalb einer nummerierten Liste stehen, muss der Zaun exakt an der ersten Textspalte des Listenpunkts ausgerichtet sein. Zudem müssen literale Pipe-Zeichen innerhalb einer GFM-Tabellenzelle mit einem Backslash (`\|`) maskiert werden:
 
-## GitHub Flavored Markdown (GFM)
+````markdown
+1. Build- und Linting-Prüfung vor dem Release ausführen:
 
-Dieser Editor unterstützt **GitHub Flavored Markdown (GFM)** vollständig, das Standard-Markdown um leistungsstarke Funktionen erweitert, auf die sich Entwickler täglich verlassen:
+   ```bash
+   npm run build && npm run lint
+   ```
 
-- **Aufgabenlisten**: Erstellen Sie interaktive Checklisten mit der Syntax `- [x]` und `- [ ]`.
-- **Tabellen**: Erstellen Sie strukturierte Datentabellen mit Pipe-Zeichen (`|`) und Bindestrichen (`-`).
-- **Durchgestrichen**: Markieren Sie Text mit `~~doppelten Tilden~~` als gelöscht oder veraltet.
-- **Automatisch verlinkte URLs**: Fügen Sie eine URL ein, und sie wird automatisch zu einem anklickbaren Hyperlink.
-- **Eingezäunte Codeblöcke**: Umschließen Sie den Code mit drei Backticks und einer optionalen Sprachkennung für eine schöne Syntaxhervorhebung.
+| Option | Verhalten | Beispiel |
+| :--- | :---: | :--- |
+| `--strict` | Bricht bei Warnungen ab | `lint --strict` |
+| `A \| B` | Maskierte Pipe in der Zelle | `echo "ok"` |
+````
 
-## 100 % clientseitig und sicher
+Bei breiten mehrspaltigen Datenmatrizen wird das manuelle Ausrichten von Pipe-Symbolen schnell mühsam. Komplexe Tabellenstrukturen oder kopierte Tabellenkalkulationsdaten lassen sich komfortabel im [HTML-Tabellen-Generator](/de/werkzeuge/html-table-generator) visuell zusammenstellen und anschließend nahtlos weiterverarbeiten.
 
-Datenschutz ist bei der Arbeit mit sensibler Dokumentation von größter Bedeutung. Unsere Markdown-Vorschau verarbeitet alles direkt in Ihrem Webbrowser mithilfe von JavaScript. Ihr Text wird niemals an einen externen Server übertragen, dort verarbeitet oder gespeichert. Die Auto-Save-Funktion verwendet den localStorage Ihres Browsers, sodass Ihre Entwürfe auf Ihrem Gerät verbleiben. Sie erhalten eine sofortige, private Markdown-Bearbeitung ohne Datenexposition.
+### Exportpfade für Web, Git und Druckverteilung
+
+Das Exportmenü stellt drei rein clientseitige Ausgabeformate für unterschiedliche Veröffentlichungsziele bereit:
+
+- **Quelltext als `.md`:** Exportiert den unveränderten UTF-8-Puffer direkt aus Monaco über eine lokale `Blob`-URL mit dem MIME-Typ `text/markdown`.
+- **Eigenständige `.html`-Datei:** Übernimmt das kompilierte Vorschau-DOM in ein vollständiges HTML5-Grundgerüst inklusive Systemschrift-Typografie, responsiven Bildgrenzen, strukturierten Tabellenrahmen und hervorgehobenen Blockzitaten. Möchten Sie Einrückungen, Tag-Verschachtelungen oder Leerzeichen vor der Einbindung in eine Website nachbearbeiten, können Sie den Export direkt im [HTML Formatter](/de/werkzeuge/html-formatter) prüfen.
+- **Paginiertes DIN-A4-`.pdf`:** Lädt bei Bedarf `html2canvas` in zweifacher Pixeldichte und teilt die gerenderte Seite über `jsPDF` verlustarm auf Hochformat-A4-Bögen auf. Tabellenrahmen und hervorgehobene Codeblöcke behalten so ihr exaktes Layout unabhängig von abweichenden Browser-Druckdialogen.
+
+Für umfangreiche Handbücher blendet das Inhaltsverzeichnis alle `H1`- bis `H6`-Ebenen ein und ermöglicht direkte Sprünge zu jedem Kapitel. Gleichzeitig berechnet die Statistikleiste bei jedem Tastenanschlag Wörter, Zeichen, Zeilen, Überschriften und die voraussichtliche Lesezeit auf Basis von 200 Wörtern pro Minute. Vor einem Pull Request lohnt sich ein abschließender Abgleich der überarbeiteten `.md`-Datei mit der Vorgängerversion im [Diff Checker](/de/werkzeuge/diff-checker), um jede geänderte Zeile gezielt zu überprüfen.
+
+## Typische Fallstricke und sichere HTML-Bereinigung
+
+Drei wiederkehrende Eigenheiten sorgen selbst bei erfahrenen technischen Redakteuren regelmäßig für Überraschungen:
+
+- **Harte gegen weiche Zeilenumbrüche:** Ein einzelner Zeilenumbruch innerhalb eines Absatzes wird nach CommonMark als Leerzeichen zusammengeführt. Erzwingen Sie ein explizites `<br>` sauber über einen Backslash (`\`) oder zwei Leerzeichen am Zeilenende.
+- **Unterstriche in Bezeichnern:** GFM deaktiviert Kursivformatierung innerhalb von Wörtern, sodass `kunden_konto_id` unverändert bleibt, während ältere Parser `_konto_` kursiv setzen. Das Einschließen von Variablennamen in Backticks sichert eine portierbare Darstellung auf jeder Plattform.
+- **Sicherheitsgrenzen bei Inline-HTML:** Da `rehype-raw` rohes HTML gezielt ausgibt, eignet sich der Editor hervorragend für eigene und vertrauenswürdige Repository-Dokumentationen auf dem lokalen Rechner. Falls Sie kopiertes HTML jedoch in einer Mehrbenutzer-Webanwendung mit fremden Eingaben ausliefern, muss das Markup zwingend durch einen strengen Allowlist-Sanitizer wie DOMPurify bereinigt werden, um `<script>`-Tags und `on*`-Event-Attribute zuverlässig zu entfernen.

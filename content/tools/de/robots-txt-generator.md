@@ -1,97 +1,111 @@
 ---
-metaTitle: "Robots.txt Generator & Crawl Budget Optimierer (SEO Tool)"
-metaDescription: "Erstellen, optimieren und validieren Sie die robots.txt-Datei Ihrer Website. Generieren Sie User-Agent-Regeln und verwalten Sie Ihr SEO-Crawl-Budget."
-metaKeywords: "robots.txt generator, robots txt erstellen, seo crawler regeln, crawl budget optimierung, nextjs robots txt, disallow regeln, user agent, sitemap link"
+metaTitle: "Robots.txt Generator & Crawl-Budget-Optimierer (RFC 9309)"
+metaDescription: "Erstellen und validieren Sie RFC-9309-konforme robots.txt-Dateien mit Next.js- und WordPress-Vorlagen, Staging-Schutz und Crawl-Budget-Analyse."
+metaKeywords: "robots.txt generator, robots txt erstellen, rfc 9309, crawl budget optimierung, googlebot regeln, disallow allow syntax, nextjs robots.txt, wordpress robots.txt, staging sperren, sitemap direktive"
 title: "Robots.txt Generator"
-shortDescription: "Erstellen und prüfen Sie die robots.txt-Datei Ihrer Website. Steuern Sie Suchmaschinen (Googlebot), blockieren Sie Pfade und optimieren Sie Ihr Crawl-Budget."
+shortDescription: "Erstellen, prüfen und optimieren Sie RFC-9309-konforme robots.txt-Dateien mit mehreren User-Agent-Blöcken, Staging-Sicherheitsschalter, Framework-Vorlagen und Live-Crawl-Budget-Diagnose direkt im Browser."
 faqs:
-  - question: "Wo muss die robots.txt Datei abgelegt werden?"
-    answer: "Die robots.txt-Datei muss zwingend im absoluten Stammverzeichnis (Root) Ihrer Domain abgelegt werden (z.B. https://ihredomain.de/robots.txt). Wenn sie in einem Unterordner liegt, wird sie von den Bots ignoriert."
-  - question: "Garantiert die robots.txt, dass eine Seite nicht indexiert wird?"
-    answer: "Nein. Robots.txt steuert nur den Crawling-Zugriff. Wenn Suchmaschinen Links von anderen Websites finden, die auf Ihre Seite zeigen, können sie diese dennoch in den Index aufnehmen. Um dies zu verhindern, verwenden Sie ein 'noindex' Meta-Tag."
-  - question: "Schützt die robots.txt meine Website vor bösen Bots?"
-    answer: "Nein. Das Protokoll ist freiwillig. Gute Bots (Google, Bing) halten sich daran, aber bösartige Scraper, Hacker und Spam-Bots ignorieren die Datei. Sichern Sie sensible Daten mit Passwörtern."
-  - question: "Warum ignoriert der Googlebot die Anweisung 'Crawl-delay'?"
-    answer: "Google nutzt dynamische Algorithmen, um die Serverlast zu berechnen. Um die Crawl-Geschwindigkeit für Google anzupassen, müssen Sie die Google Search Console verwenden. Bing und Yandex beachten das Crawl-delay jedoch."
-  - question: "Was ist der Unterschied zwischen Sternchen (*) und Dollar ($)?"
-    answer: "Ein Sternchen (*) ist ein Platzhalter für beliebige Zeichen. Ein Dollarzeichen ($) markiert das genaue Ende einer URL (z.B. blockiert '/*.xls$' nur Excel-Dateien)."
+  - question: "Entfernt ein Disallow-Eintrag in der robots.txt eine Seite zuverlässig aus dem Google-Index?"
+    answer: "Nein. Die robots.txt unterbindet ausschließlich den Abruf (Crawling) der URL, verhindert aber nicht deren Indexierung, falls externe Websites auf die Seite verlinken – Google zeigt dann häufig ein leeres Ergebnis ohne Beschreibung an. Um eine URL sauber zu deindexieren, lassen Sie sie crawlbar und liefern ein Meta-Tag noindex oder den HTTP-Header X-Robots-Tag: noindex aus."
+  - question: "Wie lösen Suchmaschinen-Crawler widersprüchliche Allow- und Disallow-Regeln nach RFC 9309 auf?"
+    answer: "Gemäß RFC 9309 werten konforme Parser nicht die Reihenfolge von oben nach unten aus, sondern wählen die spezifischste Regel anhand der dekodierten Zeichenlänge des Pfadmusters. Treffen ein Allow- und ein Disallow-Eintrag mit exakt derselben Pfadlänge auf eine URL zu, gewinnt stets die weniger restriktive Allow-Direktive."
+  - question: "Was passiert, wenn ich unterhalb von User-agent: * einen eigenen Block für Googlebot anlege?"
+    answer: "Suchmaschinen-Crawler beachten immer nur die spezifischste zutreffende User-Agent-Gruppe und erben keine Regeln aus dem allgemeinen Platzhalterblock User-agent: *. Sobald Sie einen dedizierten Googlebot-Abschnitt definieren, müssen Sie alle globalen Disallow- und Allow-Direktiven, die weiterhin für Google gelten sollen, in diesem Block wiederholen."
+  - question: "Warum meldet der Validator eine Warnung, wenn ich Crawl-delay für Googlebot eintrage?"
+    answer: "Sowohl Googlebot als auch Baiduspider ignorieren die nicht im Kernstandard enthaltene Direktive Crawl-delay vollständig. Während Bingbot und Yandex eine Sekundenangabe respektieren, reguliert Google die Abrufrate dynamisch anhand Ihrer Server-Antwortzeiten und der 5xx-Fehlerrate."
+  - question: "Schützt das Auflisten von Admin-Pfaden oder internen APIs in der robots.txt meine Website?"
+    answer: "Nein. Das Robots Exclusion Protocol ist rein freiwillig, und /robots.txt ist öffentlich ohne Anmeldung abrufbar – automatisierte Scanner lesen die Datei sogar gezielt aus, um versteckte Admin-Panels oder Backups zu entdecken. Sensible Routen gehören immer hinter eine echte Authentifizierung oder serverseitige Zugriffskontrolle."
 features:
-  - "Flexible Erstellung von Regelblöcken (User-Agent, Allow, Disallow)."
-  - "Visueller Editor mit Syntaxhervorhebung."
-  - "Dynamischer Regelprüfer warnt vor Syntaxfehlern und blockiertem CSS."
-  - "Vorlagen für WordPress, Next.js, E-Commerce und Blogs."
-  - "Unterstützung mehrerer Umgebungen (Produktion vs. Staging)."
-  - "Kompatibilitätsprüfung für Googlebot, Bingbot und Yandex."
-  - "Tipps zur Crawl-Budget-Optimierung."
-  - "Ein-Klick-Download und Export."
+  - "Umgebungs-Umschalter zwischen Produktionsregeln und ausfallsicherer Komplettsperre (Disallow: /) für Staging- und Entwicklungsumgebungen"
+  - "Multi-User-Agent-Editor mit 13 vordefinierten Crawler-Tokens (Googlebot, Bingbot, AdsBot-Google, Yandex, Baiduspider, AhrefsBot, SemrushBot und Platzhalter *) samt Reihenfolge-Steuerung"
+  - "Neun praxiserprobte Framework- und Branchenvorlagen für Next.js 15, WordPress, E-Commerce, SaaS, Blog, Nachrichtenportal, Forum, Portfolio und Entwickler-Tools"
+  - "Live-Sicherheits- und Crawl-Budget-Score (0–100 Punkte) zur Erkennung von versehentlichem Disallow: /, gesperrten CSS-/JS-/_next/static-Assets, doppelten Bot-Gruppen und relativen Sitemap-Pfaden"
+  - "Vier-Suchmaschinen-Kompatibilitätsanalyse für Google, Bing, Yandex und Baidu zu Platzhaltern (*, $), Allow-Überschreibungen und Crawl-delay"
+  - "Syntax-hervorgehobene Echtzeit-Vorschau mit Ein-Klick-Export als robots.txt sowie lokalem JSON-Vorlagen-Import und -Export vollständig im Browser"
 useCases:
-  - "Erstellung einer SEO-konformen robots.txt für neue Websites."
-  - "Blockieren von aggressiven Scraper-Bots (AhrefsBot), um Serverlast zu senken."
-  - "Deklaration der XML-Sitemap-Pfade für Suchmaschinen."
-  - "Verhindern, dass Testumgebungen (Staging) bei Google erscheinen."
-  - "Optimierung von Crawl-Budgets auf großen E-Commerce-Sites durch Blockieren von Filtern."
+  - "Vermeidung von Crawl-Budget-Verschwendung in Online-Shops mit kombinierbaren Facettenfiltern (?sort=, ?filter=, ?utm_) sowie Warenkorb- und Checkout-Strecken"
+  - "Gezielte Freigabe von Next.js-Rendering-Bundles unter /_next/static/ bei gleichzeitiger Sperrung interner /_next/- und /api/-Endpunkte"
+  - "Zuverlässige Abschottung von Staging-, QA- und Preview-Deployments gegen versehentliche Suchmaschinen-Indexierung per Umgebungs-Schalter"
+  - "Drosselung oder Blockierung ressourcenintensiver kommerzieller SEO-Audit-Crawler (AhrefsBot, SemrushBot, MJ12bot, DotBot) zur Entlastung der Origin-CPU"
+  - "Deklaration mehrerer absoluter XML-Sitemap-Index-URLs im Stammverzeichnis großer mehrsprachiger oder mehrteiliger Web-Architekturen"
+  - "Prüfung gewachsener WordPress-robots.txt-Dateien, um /wp-admin/admin-ajax.php erreichbar zu halten und interne Such-URLs (?s=) sauber auszuschließen"
 howToSteps:
-  - "Wählen Sie eine Vorlage (z.B. E-Commerce, WordPress) oder beginnen Sie leer."
-  - "Setzen Sie die Umgebung (Production erlaubt Indexierung; Staging blockiert sie)."
-  - "Fügen Sie User-Agent Regeln hinzu (z. B. '*' für alle Suchmaschinen)."
-  - "Nutzen Sie 'Allow' oder 'Disallow', um Zugriffsrechte für Ordner zu definieren."
-  - "Geben Sie die URL Ihrer XML-Sitemap im Einstellungsfeld ein."
-  - "Prüfen Sie das Validierungs-Panel auf SEO-Warnungen."
-  - "Klicken Sie auf 'robots.txt herunterladen' und laden Sie die Datei ins Root-Verzeichnis hoch."
+  - "Wählen Sie zunächst die Zielumgebung (Production, Staging oder Development), damit Vorproduktions-Systeme standardmäßig durch eine vollständige Crawl-Sperre geschützt bleiben."
+  - "Laden Sie eine der neun Plattform-Vorlagen (z. B. Next.js, WordPress oder E-Commerce) oder erstellen Sie eigene User-Agent-Regelblöcke von Grund auf."
+  - "Weisen Sie jedem Block einen oder mehrere Crawler-Tokens zu und ergänzen Sie Allow-, Disallow- oder Crawl-delay-Direktiven mit sauberem führendem Schrägstrich ohne Leerzeichen."
+  - "Hinterlegen Sie unter den globalen Direktiven eine oder mehrere absolute HTTPS-URLs Ihrer XML-Sitemap, damit Bots Ihr kanonisches URL-Inventar sofort auffinden."
+  - "Kontrollieren Sie Sicherheits-Score, Crawl-Budget-Score, Validierungshinweise und die Suchmaschinen-Matrix, um Konflikte wie blockiertes CSS/JS oder doppelte Bot-Gruppen zu beheben."
+  - "Laden Sie die einsatzbereite Datei robots.txt für das Stammverzeichnis Ihrer Domain herunter oder exportieren Sie die JSON-Konfiguration für Ihre Versionsverwaltung."
 ---
 
-## Was ist die Robots.txt?
+Bevor ein standardkonformer Suchmaschinen-Crawler auch nur eine einzige HTML-Seite, ein Stylesheet oder ein Bild von Ihrer Domain abruft, fordert er zunächst `/robots.txt` über exakt dasselbe Protokoll, denselben Hostnamen und denselben Port an. Seit September 2022 als offizieller IETF-Internetstandard in **RFC 9309** (*Robots Exclusion Protocol*) verankert, bildet diese einfache UTF-8-Textdatei den zentralen Hebel, um Origin-Server vor unnötiger Bot-Last zu schützen und das verfügbare Crawl-Budget gezielt auf relevante Zielseiten zu lenken. Da schon ein einziger falsch gesetzter Schrägstrich eine produktive Website über Nacht aus dem Suchindex werfen kann, prüft dieser Robots.txt Generator Syntax, Rendering-Freigaben und Crawl-Sicherheit vollständig lokal im Browser – ohne unveröffentlichte Verzeichnisstrukturen an fremde Server zu senden.
 
-Eine **robots.txt** ist eine einfache Textdatei im Stammverzeichnis (Root) Ihrer Website. Sie fungiert als Pförtner, der mit Web-Robotern (den Crawlern von Suchmaschinen wie Googlebot) kommuniziert, um ihnen mitzuteilen, welche Teile Ihrer Website sie indexieren dürfen und welche sie ignorieren sollen.
+## RFC 9309: Parsing-Semantik, Spezifität und HTTP-Statuscodes
 
-Wenn eine Suchmaschine eine Website besucht, sucht sie immer zuerst nach `https://ihredomain.de/robots.txt`. Wenn keine Datei vorhanden ist, geht der Bot davon aus, dass er die gesamte Website scannen darf.
+Rund um die Auswertung von `robots.txt`-Regeln halten sich zahlreiche veraltete Mythen, die im Betrieb zu schwer auffindbaren Crawling-Fehlern führen. Nach **RFC 9309** verarbeiten moderne Parser wie Googlebot und Bingbot Direktiven nach deterministischen Regeln:
 
----
+- **Longest-Match-Spezifität statt Zeilenreihenfolge**: Innerhalb einer User-Agent-Gruppe entscheidet *nicht* die Reihenfolge der Zeilen, welche Regel greift. Ausschlaggebend ist stets die Regel mit dem längsten übereinstimmenden Pfadmuster nach Prozent-Dekodierung. Passen ein `Allow`- und ein `Disallow`-Muster mit identischer Zeichenlänge, setzt sich immer das weniger restriktive `Allow` durch.
+- **Groß-/Kleinschreibung, Platzhalter und Prozentkodierung**: Direktiven-Schlüssel (`User-agent`, `Disallow`, `Allow`) sind nicht case-sensitive, URL-Pfade jedoch strikt **case-sensitive** (`/Admin/` trifft `/admin/` nicht). Das Sternchen (`*`) steht für beliebig viele Zeichen, während das Dollarzeichen (`$`) exakt am URL-Ende verankert (z. B. `Disallow: /*.pdf$`). Nicht-ASCII-Zeichen wie Umlaute müssen UTF-8-prozentkodiert werden – für korrekte Kodierungen wie `%C3%BC` hilft der [URL-Encoder](/de/werkzeuge/url-encoder). Google begrenzt die Dateigröße zudem hart auf **500 KiB** und verwirft alles darüber.
+- **Strikte Origin-Isolation**: Jede Kombination aus Protokoll (`http://` vs. `https://`), Subdomain (`shop.beispiel.de` vs. `www.beispiel.de`) und Port benötigt ihre eigene `/robots.txt`. Eine Regel auf der Hauptdomain gilt niemals automatisch für eine Staging-Subdomain.
+- **Reaktion auf HTTP-Statuscodes**: `2xx`-Antworten werden als aktives Regelwerk interpretiert, `4xx`-Antworten (inklusive `404` und `410`) bedeuten „keine Einschränkungen – vollständiges Crawling erlaubt“. Anhaltende **`5xx`-Serverfehler** lösen dagegen einen vorsorglichen Crawl-Stopp aus, um den überlasteten Server zu schonen; dauern sie länger als etwa 24 bis 48 Stunden an, verwerfen Crawler zwischengespeicherte Regeln oder pausieren das Crawling vollständig.
 
-## Warum ist die Robots.txt wichtig für SEO?
+## Kompatibilitätsmatrix der Suchmaschinen-Crawler
 
-Eine korrekt konfigurierte robots.txt ist das Herzstück der technischen Suchmaschinenoptimierung (SEO):
+Nicht alle Bots unterstützen Erweiterungen jenseits des RFC-9309-Kerns identisch. Die folgende Tabelle zeigt das reale Verhalten der wichtigsten Suchmaschinen und SEO-Audit-Crawler:
 
-1. **Verhindert Crawl Bloat**: Große Websites mit dynamischen URLs (Filtern, Sortierungen) generieren Millionen von Seiten. Ohne robots.txt verschwenden Crawler Ressourcen für Duplikate.
-2. **Schützt Serverressourcen**: Aggressive Crawler können Ihren Server verlangsamen. Die Datei limitiert den Traffic der Bots.
-3. **Sperrt private Verzeichnisse**: Admin-Dashboards (wie `/wp-admin/`) oder interne APIs gehören nicht in die Suchergebnisse.
-4. **Verlinkt die Sitemap**: Die Angabe der Sitemap-URL zeigt den Bots sofort, wo alle wichtigen Seiten liegen.
+| Direktive / Muster | Googlebot | Bingbot | Yandex | Baiduspider | Kommerzielle Audit-Bots (`AhrefsBot`, `SemrushBot`) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **`Allow`-Überschreibung** | Vollständiges RFC-9309-Longest-Match | Vollständiges RFC-9309-Longest-Match | Unterstützt | Unterstützt | Unterstützt |
+| **Wildcard (`*`)** | Voll unterstützt | Voll unterstützt | Voll unterstützt | Teilweise inkonsistent | Unterstützt |
+| **Endanker (`$`)** | Voll unterstützt | Voll unterstützt | Voll unterstützt | Nicht unterstützt | Unterstützt |
+| **`Crawl-delay`** | **Ignoriert** (dynamische Drosselung) | Respektiert (in Sekunden) | Respektiert (in Sekunden) | **Ignoriert** | Respektiert (oder Block via `Disallow: /`) |
+| **`Sitemap` (absolute URL)** | Voll unterstützt (mehrere möglich) | Voll unterstützt | Voll unterstützt | Unterstützt | Zur URL-Erkennung genutzt |
+| **`Host`** | Ignoriert | Ignoriert | Veraltet (Legacy) | Ignoriert | Ignoriert |
 
----
+## Crawl-Budget-Engineering für Frameworks und Facetten-URLs
 
-## Crawl-Budget verstehen
+Suchmaschinen weisen jedem Host ein endliches **Crawl-Budget** zu, das durch zwei Größen bestimmt wird: das *Crawl Capacity Limit* (wie schnell Ihr Server antwortet, ohne Latenzen oder `5xx`-Fehler hochzutreiben) und den *Crawl Demand* (wie populär und änderungsintensiv Ihre URLs sind). Bei kleinen Unternehmensseiten fällt das Crawl-Budget selten ins Gewicht – bei E-Commerce-Katalogen, SaaS-Plattformen und JavaScript-Frameworks können kombinatorische Filterparameter jedoch über 70 % aller Bot-Anfragen auf wertlose Duplikate lenken:
 
-Jede Website erhält von Suchmaschinen ein **Crawl-Budget**. Dies ist das Limit für die Anzahl der Seiten, die ein Bot in einem bestimmten Zeitraum scannen wird.
+```text
+# Next.js + E-Commerce Crawl-Budget-Vorlage
+User-agent: *
+Allow: /_next/static/
+Disallow: /_next/
+Disallow: /api/
+Disallow: /warenkorb/
+Disallow: /checkout/
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?utm_
 
-Wenn Ihr Budget für URLs mit Tracking-Parametern (`?utm_source=`) verschwendet wird, hat Google keine Zeit mehr, Ihre neuen Blogbeiträge zu indexieren. 
-Die Nutzung von **Disallow**-Regeln zur Sperrung dieser unwichtigen URLs ist der effektivste Weg, das Crawl-Budget zu optimieren.
+# Bandbreitenintensive SEO-Scraper ausbremsen
+User-agent: AhrefsBot
+Disallow: /
 
----
+User-agent: SemrushBot
+Disallow: /
 
-## Robots.txt Syntax (Die Regeln)
+Sitemap: https://beispiel-shop.de/sitemap-index.xml
+```
 
-### 1. User-agent Direktive
-Gibt an, für welchen Bot die Regeln gelten.
-* `User-agent: *` (Gilt für alle Bots)
-* `User-agent: Googlebot` (Gilt nur für Google)
+Zwei klassische Produktionsfehler lassen sich an diesem Muster unmittelbar erkennen:
 
-### 2. Disallow (Verbieten)
-Sagt dem Bot, dass ein Pfad nicht betreten werden darf.
-* Ganze Website blockieren: `Disallow: /`
-* Einen Ordner blockieren: `Disallow: /admin/`
+1. **Rendering-Ressourcen niemals sperren**: Googlebot rendert Seiten mit einer aktuellen Headless-Chromium-Engine (*Web Rendering Service*). Sperren Sie `/_next/static/`, `/assets/css/` oder `/wp-includes/js/`, sieht der Crawler weder Layout noch Inhalte korrekt – das schadet Mobile-Usability und Rankings unmittelbar. Kombinieren Sie `Disallow: /_next/` deshalb immer mit dem längeren, höher priorisierten `Allow: /_next/static/`.
+2. **Isolation einzelner User-Agent-Gruppen**: Legen Sie einen eigenen Abschnitt `User-agent: Googlebot` für eine Sonderregel an, **ignoriert** Googlebot den gesamten `User-agent: *`-Block. Wiederholen Sie in dedizierten Bot-Blöcken stets alle globalen Sperrregeln und verknüpfen Sie Ihre kanonische URL-Liste über absolute `Sitemap:`-Zeilen aus dem [Sitemap.xml Generator](/de/werkzeuge/sitemap-xml-generator).
 
-### 3. Allow (Erlauben)
-Überschreibt ein Disallow (nützlich, um eine spezifische Datei in einem gesperrten Ordner freizugeben).
+### Deployment-Prüfung und Staging-Absicherung per CLI
 
-### 4. Sitemap Direktive
-Verweist auf die absolute URL der XML-Sitemap.
+Prüfen Sie nach jeder Veröffentlichung direkt per Terminal, dass `/robots.txt` mit `HTTP/2 200` sowie `Content-Type: text/plain; charset=utf-8` ausgeliefert wird und keine HTML-Fehlerseite oder UTF-8-BOM einschleust:
 
----
+```bash
+curl -i https://beispiel-shop.de/robots.txt
+```
 
-## Häufige SEO-Fehler vermeiden
+Antwort-Header kontrollieren Sie bei Bedarf ergänzend im [HTTP-Header-Checker](/de/werkzeuge/http-header-checker); unbekannte Crawler-Kennungen aus Server-Logs entschlüsselt der [User-Agent-Parser](/de/werkzeuge/user-agent-parser). Für Staging- und Preview-Umgebungen erzeugt der Umgebungs-Schalter im Generator automatisch ein sauberes `User-agent: *` mit `Disallow: /`, das sich ideal in CI/CD-Pipelines einbinden lässt.
 
-1. **CSS und JavaScript blockieren**: Wenn Sie Verzeichnisse mit CSS-Dateien sperren (`Disallow: /css/`), kann Google das Layout nicht sehen. Dies führt zu schlechten Rankings im Mobile-Index.
-2. **Die ganze Website sperren**: Ein einzelner Schrägstrich in `Disallow: /` unter `User-agent: *` führt dazu, dass Google Ihre komplette Webseite aus dem Index löscht.
-3. **Seiten deindexieren**: Die robots.txt entfernt keine bereits indexierten Seiten! Dafür müssen Sie ein `noindex`-Meta-Tag auf der entsprechenden Unterseite einbauen.
+## Abgrenzung: Crawl-Steuerung, Deindexierung und Zugriffsschutz
 
-Nutzen Sie unseren **Robots.txt Generator**, um gültige Dateien für WordPress oder Next.js zu erstellen und fatale Syntax-Fehler zu vermeiden.
+Zwei strukturelle Missverständnisse führen im Webbetrieb regelmäßig zu SEO- oder Sicherheitsvorfällen:
+
+- **Crawling ist nicht gleich Indexierung**: Sperren Sie `/alte-aktion/` per `robots.txt`, darf Googlebot die HTML-Seite nicht mehr herunterladen – und liest folglich auch kein darin platziertes `<meta name="robots" content="noindex">`. Existieren externe Backlinks, bleibt die URL oft mit dem Hinweis „Es sind keine Informationen für diese Seite verfügbar“ im Index. Lassen Sie zu entfernende Seiten stattdessen crawlbar und konfigurieren Sie saubere `noindex`-Tags mit dem [Meta-Tag-Generator](/de/werkzeuge/meta-tag-generator).
+- **Crawler-Etikette ersetzt keine Zugriffskontrolle**: Bösartige Scraper, Credential-Stuffer und Schwachstellen-Scanner ignorieren `Disallow`-Anweisungen gezielt und nutzen `/robots.txt` häufig sogar als Wegweiser zu verborgenen `/admin/`- oder `/backup/`-Pfaden. Echte Zugriffssperren, HTTP-Authentifizierung, IP-Regeln und `403 Forbidden`-Filter gehören immer auf die Webserver- oder Reverse-Proxy-Ebene – etwa mit dem [.htaccess-Generator](/de/werkzeuge/htaccess-generator).
