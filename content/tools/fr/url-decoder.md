@@ -1,81 +1,111 @@
 ---
-metaTitle: "Décodeur d'URL en Ligne | Outil decodeURIComponent"
-metaDescription: "Utilitaire avancé de décodage d'URL. Analysez les chaînes encodées, inspectez les paramètres, gérez Unicode/UTF-8 et détectez les URL à double encodage."
-metaKeywords: "décodeur url, décoder url en ligne, décoder chaîne url, percent decoding, decodeURIComponent, decodeURI, url utf8"
+metaTitle: "Décodeur d'URL en Ligne — UTF-8, Requêtes & Double Encodage"
+metaDescription: "Décodez vos URL encodées en pourcentage (RFC 3986), inspectez les paramètres de requête, restaurez l'UTF-8 et détectez les doubles encodages en local."
+metaKeywords: "décodeur url, décoder url en ligne, percent decoding, rfc 3986, decodeURIComponent, decodeURI, paramètres de requête, double encodage, url utf-8"
 title: "Décodeur d'URL"
-shortDescription: "Utilitaire avancé de décodage d'URL. Analysez les chaînes encodées, inspectez les paramètres, gérez Unicode/UTF-8 et détectez les URL à double encodage."
+shortDescription: "Décodez instantanément les chaînes encodées en pourcentage (RFC 3986), inspectez vos paramètres de requête en tableau, restaurez l'UTF-8 et détectez les doubles encodages en local."
 faqs:
-  - question: "Qu'est-ce que le décodage d'URL ?"
-    answer: "Le décodage d'URL est le processus de traduction d'une chaîne encodée en pourcentage (où les caractères dangereux sont remplacés par un '%' et un code hexadécimal) en un format lisible par l'homme."
-  - question: "Comment décoder une URL ?"
-    answer: "Collez simplement votre chaîne encodée dans notre outil. Il détectera automatiquement les séquences de pourcentages et les traduira instantanément en leurs caractères d'origine."
-  - question: "Qu'est-ce qu'une erreur de décodage d'URL invalide ?"
-    answer: "Une erreur de séquence URI mal formée se produit lorsque le texte contient un signe '%' qui n'est pas suivi de deux caractères hexadécimaux valides, ou lorsqu'une séquence UTF-8 est tronquée."
-  - question: "Qu'est-ce que le double encodage ?"
-    answer: "Le double encodage se produit lorsqu'une chaîne est accidentellement encodée deux fois. Par exemple, un espace devient '%20', et s'il est de nouveau encodé, le '%' devient '%25', ce qui donne '%2520'. Il faut la décoder deux fois."
-  - question: "Quelle est la différence entre decodeURI et decodeURIComponent ?"
-    answer: "decodeURI est utilisé pour les URL complètes et ignore certains caractères structurels. decodeURIComponent est strict et tente de décoder chaque séquence de pourcentage qu'il trouve."
+  - question: "Quelle est la différence entre decodeURI(), decodeURIComponent() et URLSearchParams ?"
+    answer: "decodeURI() décode une URL complète tout en préservant les délimiteurs structurels réservés (:, /, ?, #, &, =, +, ;, ,). decodeURIComponent() décode chaque triplet hexadécimal %XX sans exception, idéal pour une valeur de paramètre isolée. URLSearchParams convertit en plus les signes + en espaces selon application/x-www-form-urlencoded."
+  - question: "Pourquoi une erreur URIError: malformed URI sequence survient-elle lors du décodage ?"
+    answer: "Cette exception se déclenche lorsqu'un signe % n'est pas suivi de deux chiffres hexadécimaux valides (par exemple 50% de remise) ou quand les octets décodés forment une séquence UTF-8 tronquée ou invalide, cas fréquent sur d'anciens serveurs encodés en ISO-8859-1 ou Windows-1252."
+  - question: "Comment détecter et corriger une URL doublement encodée (%2520 ou %252F) ?"
+    answer: "Un double encodage se reconnaît au motif %25 suivi de deux chiffres hexadécimaux : le symbole % d'une séquence déjà encodée (%20) a été ré-encodé en %25, formant %2520. Relancez une seconde passe de décodage pour confirmer le défaut, puis supprimez l'appel d'encodage redondant dans votre routeur, proxy ou SDK."
+  - question: "Pourquoi un signe plus (+) devient-il tantôt un espace, tantôt un caractère littéral ?"
+    answer: "Selon la RFC 3986, un espace dans le chemin d'une URL s'encode en %20 et le caractère + y reste littéral. Dans une chaîne de requête issue d'un formulaire (application/x-www-form-urlencoded, norme WHATWG), les espaces sont encodés en +, tandis qu'un vrai signe plus doit être encodé en %2B."
+  - question: "Les URL sensibles (callbacks OAuth, webhooks, jetons) sont-elles transmises à un serveur ?"
+    answer: "Non. L'ensemble du décodage, de la reconstitution UTF-8 et de l'inspection des paramètres de requête s'exécute localement dans votre navigateur. Aucune chaîne saisie n'est envoyée ni journalisée sur un serveur distant."
 features:
-  - "Décodage d'URL instantané en temps réel"
-  - "Inspecteur de paramètres de requête (Query Parameter) intelligent pour éditer les paires clé-valeur"
-  - "Prise en charge du décodage de séquence d'emojis Unicode et UTF-8"
-  - "Gestion élégante des erreurs de 'Séquence URI mal formée'"
-  - "Basculement entre les algorithmes decodeURI et decodeURIComponent"
-  - "Exécution 100% côté client pour une confidentialité totale"
+  - "Décodage en temps réel conforme RFC 3986 avec bascule instantanée entre decodeURIComponent et decodeURI"
+  - "Inspecteur interactif des paramètres de requête affichant chaque paire clé-valeur décodée sous forme de tableau"
+  - "Reconstitution fidèle des séquences multi-octets UTF-8 couvrant accents, alphabets internationaux et emojis sur 4 octets"
+  - "Détection des motifs de double encodage (%2520, %252F) et gestion explicite des erreurs de séquence URI mal formée"
+  - "Interprétation maîtrisée du caractère + issu des requêtes application/x-www-form-urlencoded sans altérer les chemins"
+  - "Traitement 100 % côté client avec compteur de longueur comparatif, copie rapide et export en fichier texte"
 useCases:
-  - "Décodage de liens d'affiliation, de marketing ou de suivi offusqués"
-  - "Inspection de charges utiles JSON fortement encodées envoyées via des requêtes API GET"
-  - "Débogage des réponses de serveur à double encodage ('%2520')"
-  - "Restauration des URL internationalisées à leur format lisible"
+  - "Inspection des paramètres redirect_uri, state, scope et error_description dans les callbacks OAuth 2.0 et OpenID Connect"
+  - "Décodage de filtres JSON, de requêtes GraphQL ou de curseurs de pagination sérialisés dans des requêtes HTTP GET"
+  - "Audit et nettoyage de liens marketing, balises UTM et redirections d'affiliation imbriquées sur plusieurs domaines"
+  - "Diagnostic des bogues de double encodage entre un frontend, un reverse proxy Nginx/CDN et un backend applicatif"
+  - "Restauration d'URL internationalisées (IRI), de slugs accentués et de noms de fichiers contenant des caractères non latins"
+  - "Analyse de journaux d'accès serveur (access.log) pour repérer des tentatives d'obfuscation, de traversée de répertoire ou de XSS"
 howToSteps:
-  - "Collez votre URL encodée en pourcentage dans le panneau de saisie supérieur."
-  - "L'outil analysera instantanément la chaîne et affichera le texte lisible."
-  - "Si votre URL contient une chaîne de requête, faites défiler jusqu'à 'l'Inspecteur de Requêtes' pour afficher les paramètres décodés dans un tableau."
-  - "Si vous rencontrez une erreur d'URI, vérifiez si votre chaîne contient des signes '%' erronés."
-  - "Utilisez la barre d'outils pour copier la sortie ou la télécharger sous forme de fichier texte."
+  - "Collez votre URL complète, chaîne de requête ou valeur encodée en pourcentage dans la zone d'entrée."
+  - "Choisissez le mode adapté : decodeURIComponent pour décoder tous les triplets %XX, ou decodeURI pour conserver la structure d'une URL complète."
+  - "Consultez immédiatement le texte restitué ainsi que l'écart de longueur entre l'entrée encodée et la sortie décodée."
+  - "Ouvrez l'Inspecteur de paramètres de requête pour examiner ou ajuster chaque paire clé-valeur située après le point d'interrogation."
+  - "Si des séquences %25xx subsistent dans la sortie, lancez une seconde passe afin d'isoler un double encodage."
+  - "Copiez le texte décodé ou téléchargez-le en fichier texte pour vos tests API ou vos rapports d'audit."
 ---
 
-## Qu'est-ce que le Décodage d'URL ?
+Une URL qui transite sur HTTP n'autorise directement qu'un sous-ensemble restreint d'US-ASCII défini par la **RFC 3986** et le **WHATWG URL Standard**. Dès qu'une requête transporte des accents, du JSON sérialisé ou un lien de retour OAuth, les clients HTTP traduisent chaque octet réservé ou non ASCII en triplet `%XX`. Le **décodage d'URL** (percent-decoding) réalise l'opération inverse pour restituer la chaîne lisible, inspecter chaque paramètre de requête ou déboguer une redirection défaillante. Pour préparer des chaînes sûres avant un appel API, associez cet outil à notre [encodeur d'URL](/fr/outils/url-encoder).
 
-**Le décodage d'URL** est le processus de conversion d'un identificateur de ressource uniforme (URI) encodé en pourcentage vers son format d'origine lisible par l'homme. Lorsque des données sont envoyées sur Internet via des URL, certains caractères (comme les espaces, les emojis et les symboles structurels) ne peuvent pas être transmis en toute sécurité. Ils sont "encodés" en un signe de pourcentage (`%`) suivi d'un nombre hexadécimal à deux chiffres.
+## Mécanique du décodage en pourcentage et séquences UTF-8
 
-Le décodage d'URL recherche ces séquences de pourcentages et les traduit en leurs caractères littéraux. Par exemple, la séquence `%20` est reconvertie en espace standard, et `%3F` en point d'interrogation (`?`).
+Le décodeur parcourt la chaîne séquentiellement et repère chaque délimiteur `%` suivi de deux chiffres hexadécimaux (`0-9`, `A-F`, insensibles à la casse). Chaque triplet `%XX` est converti en un octet brut (`0x00` à `0xFF`), puis la suite d'octets est interprétée en **UTF-8**. Notez que le percent-encoding s'applique uniquement au chemin, à la chaîne de requête et au fragment : le nom de domaine d'une adresse internationalisée (IDN) utilise quant à lui l'encodage **Punycode** (`xn--...`) défini par IDNA2008.
 
----
+Pour l'ASCII de base (`0x00–0x7F`), la traduction est directe : `%20` devient un espace, `%2F` une barre oblique `/` et `%40` une arobase `@`. Les caractères Unicode modernes exigent deux à quatre octets contigus :
 
-## Comment fonctionne le décodage d'URL
+- **2 octets** : `é` (`U+00E9`) s'encode `%C3%A9`, donc `caf%C3%A9` redevient `café`.
+- **3 octets** : le symbole `€` (`U+20AC`) correspond à `%E2%82%AC`.
+- **4 octets** : l'emoji 🚀 (`U+1F680`) se compose des quatre octets `%F0%9F%9A%80`.
 
-Lorsque notre décodeur reçoit une chaîne, il analyse le texte de manière séquentielle. Chaque fois qu'il rencontre un symbole `%`, il examine les deux caractères suivants. En supposant qu'ils forment une paire hexadécimale valide, il traduit cet octet.
+Cette règle explique un piège récurrent sur les applications francophones héritées : un serveur en **ISO-8859-1** ou **Windows-1252** représente `é` par l'unique octet `%E9`. Soumis à un décodeur UTF-8 strict comme `decodeURIComponent()`, cet octet isolé ne respecte aucune séquence UTF-8 valide et lève `URIError: malformed URI sequence`.
 
-Si le texte original contenait des caractères Unicode (comme un Emoji), le processus de décodage est plus complexe. Les URL modernes utilisent l'encodage UTF-8, ce qui signifie qu'un seul caractère Unicode peut être représenté par trois ou quatre octets encodés en pourcentage. Par exemple, l'emoji "Fusée" 🚀 est encodé sous la forme `%F0%9F%9A%80`.
+## Comparatif des API de décodage : RFC 3986 contre formulaires Web
 
----
+Les fonctions standard de décodage appliquent des règles différentes sur les caractères réservés (`; , / ? : @ & = + $ #`) et le signe `+`. Choisir la mauvaise API provoque des altérations silencieuses sur des jetons Base64 ou des e-mails avec suffixe (`prenom+tag@domaine.fr`).
 
-## Décodage des paramètres de requête
+| Méthode / Norme | Portée prévue | Réservés préservés | `+` vers espace | Sur `%` invalide | Usage recommandé |
+| :--- | :--- | :---: | :---: | :--- | :--- |
+| **`decodeURI()`** | URL complète (RFC 3986) | Oui (`: / ? # & = + ; , @ $`) | Non | Lève `URIError` | Afficher une URL complète sans casser sa syntaxe |
+| **`decodeURIComponent()`** | Valeur ou segment isolé | Non (décode tout) | Non | Lève `URIError` | Décoder une valeur de paramètre ou une `redirect_uri` |
+| **`URLSearchParams`** | Chaîne de requête (WHATWG) | N/A (paires clé-valeur) | **Oui** | Remplace par `U+FFFD` | Analyser les paramètres situés après `?` |
+| **`urllib.parse.unquote`** | Chemin RFC 3986 (Python) | Non | Non | Laisse / `U+FFFD` | Décoder des segments de chemin côté serveur |
+| **`urllib.parse.unquote_plus`** | `x-www-form-urlencoded` | Non | **Oui** | Remplace par `U+FFFD` | Lire des champs soumis par formulaire HTML |
 
-Le cas d'utilisation le plus courant du décodage d'URL est l'analyse des paramètres de requête. Ce sont les portions d'une URL qui viennent après le point d'interrogation (`?`), généralement utilisées pour transmettre des données au serveur sous forme de paires clé-valeur.
+La frontière entre **chemin** et **chaîne de requête** est stricte : dans `/docs/C++%20guide.pdf`, les signes `+` restent littéraux et seul `%20` code un espace. Dans `?q=cafe+creme&tag=c%2B%2B`, `URLSearchParams` convertit `+` en espace et `%2B` en `+` littéral.
 
-Par exemple : `?name=John%20Doe&email=john%40example.com`
+## Diagnostiquer le double encodage et les erreurs d'URI
 
-Notre décodeur d'URL dispose d'un **Inspecteur de Paramètres de Requête** avancé. Il analyse automatiquement les paramètres, décode les clés et les valeurs et les présente dans un format de tableau propre et lisible.
+Le **double encodage** survient lorsqu'une chaîne déjà encodée passe dans un second encodeur : `%20` voit son `%` ré-encodé en `%25`, devenant `%2520`, et `%2F` devient `%252F`. Ce défaut apparaît fréquemment entre un routeur frontend, une directive `proxy_pass` Nginx comportant un suffixe de chemin (qui réécrit et renormalise l'URI avant transmission) et un serveur OAuth. Rappelez-vous aussi que le fragment situé après `#` reste côté client et n'est jamais envoyé dans la requête HTTP serveur.
 
----
+```javascript
+// Décodage défensif d'un paramètre avec détection de double encodage
+export function decoderParametreSur(brut, convertirPlus = true) {
+  const normalise = convertirPlus ? brut.replace(/\+/g, '%20') : brut;
+  try {
+    const passe1 = decodeURIComponent(normalise);
+    return { valeur: passe1, doubleEncodage: /%(?:[0-9A-Fa-f]{2})/.test(passe1) };
+  } catch (erreur) {
+    const nettoye = normalise.replace(/%(?![0-9A-Fa-f]{2})/g, '%25');
+    return { valeur: decodeURIComponent(nettoye), doubleEncodage: false, avertissement: erreur.message };
+  }
+}
+```
 
-## Problèmes de double encodage
+```bash
+# Décoder rapidement une ligne d'access.log en CLI avec Python
+python3 -c "import sys, urllib.parse; print(urllib.parse.unquote_plus(sys.argv[1]))" \
+  "https://api.exemple.fr/search?filter=%7B%22ville%22%3A%22Montr%C3%A9al%22%7D"
+```
 
-L'un des bugs les plus frustrants du développement Web est le **double encodage**. Cela se produit lorsqu'une application encode accidentellement une chaîne qui a déjà été encodée.
+### Chaîner le décodage avec JSON, Base64 et JWT
 
-Par exemple, un espace devient `%20`. Si l'application l'encode à nouveau, le caractère `%` lui-même est encodé en `%25`, ce qui donne `%2520`. Lorsqu'un système backend tente de décoder cela une fois, il redevient `%20` (au lieu d'un espace) et brise la logique. Notre décodeur vous aide à identifier les chaînes doublement encodées.
+Dans les API REST et les flux d'authentification, le percent-encoding n'est souvent que la couche externe :
 
----
+1. Extrayez un filtre JSON encodé (`%7B%22sort%22%3A%22desc%22%7D`), puis indentez-le dans notre [formateur JSON](/fr/outils/json-formatter).
+2. Si un paramètre `state` ou `SAMLRequest` contient du Base64 où `+`, `/` et `=` ont été encodés en `%2B`, `%2F` et `%3D`, décodez l'URL puis inspectez la charge dans notre [décodeur Base64](/fr/outils/base64-decode) ou notre [décodeur JWT](/fr/outils/jwt-decoder).
+3. Pour suivre des redirections marketing multi-sauts, combinez l'analyse avec notre [vérificateur de redirections](/fr/outils/redirect-checker).
 
-## Erreurs courantes de décodage d'URL
+## Sécurité : limites de l'encodage et risques au décodage
 
-1. **Séquence URI mal formée** : Il s'agit d'une erreur JavaScript critique (`URIError: malformed URI sequence`). Elle se produit lorsque la chaîne contient un signe `%` qui n'est pas suivi de deux caractères hexadécimaux valides.
-2. **Signes Plus littéraux** : Dans la chaîne de requête d'une URL, les espaces sont historiquement encodés sous forme de signes plus (`+`). Cependant, dans le chemin d'une URL, les espaces sont encodés en `%20`, et un `+` est traité comme un signe plus littéral.
+Le percent-encoding n'est **pas un chiffrement** : quiconque intercepte l'URL la décode instantanément. Ne placez jamais de clés API, mots de passe ou jetons de session dans une chaîne de requête, car ils persistent dans l'historique du navigateur, les journaux proxy et les en-têtes `Referer`.
 
----
+Un décodage imprudent expose par ailleurs à trois vulnérabilités classiques :
 
-## Considérations de sécurité
+- **Contournement de WAF et traversée de répertoire** : si un filtre contrôle le chemin avant un second décodage applicatif, `%252e%252e%252fetc%252fpasswd` franchit l'inspection puis devient `../etc/passwd`. Décodez une seule fois et normalisez le chemin avant toute vérification d'accès.
+- **Redirection ouverte** : validez toujours le domaine d'une `redirect_uri` *après* décodage strict contre une liste blanche explicite.
+- **XSS côté DOM** : n'injectez jamais un paramètre décodé dans `innerHTML` ou `href` sans échappement HTML et contrôle strict du protocole (`https:` uniquement).
 
-Il est absolument crucial de comprendre que **l'encodage d'URL n'est pas un chiffrement**. Quiconque intercepte une URL peut instantanément la décoder. Ne transmettez jamais d'informations sensibles (mots de passe, clés d'API) dans les paramètres de requête de l'URL. De plus, ne jamais refléter les entrées utilisateur décodées directement en HTML sans les assainir pour éviter les failles XSS.
+Tous les calculs de cet utilitaire s'exécutent localement dans votre navigateur : vos URL de production, journaux et callbacks restent strictement privés.

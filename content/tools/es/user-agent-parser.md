@@ -1,89 +1,114 @@
 ---
-metaTitle: "Analizador de User Agent | Detector de Navegador, OS y Dispositivo"
-metaDescription: "Analice cadenas de User Agent (UA). Identifique versiones de navegador (Chrome, Safari), sistemas operativos (OS), dispositivos (Móvil) y bots de motores de búsqueda."
-metaKeywords: "analizador user agent, ua parser, detector navegador, decode user agent, dispositivo movil, bot crawler, os detector, user agent string, que es mi user agent"
+metaTitle: "Analizador de User Agent Online | Navegador, OS y Bots"
+metaDescription: "Decodifica cadenas User-Agent (UA) al instante. Identifica navegador, motor Blink/WebKit/Gecko, OS, arquitectura, bots SEO/IA y Client Hints."
+metaKeywords: "analizador user agent, ua parser, decodificar user agent, detector de navegador, user-agent client hints, sec-ch-ua, motor blink webkit gecko, detectar bots googlebot gptbot"
 title: "Analizador de User Agent (UA Parser)"
-shortDescription: "Decodifique cualquier cadena de User Agent. Identifique navegadores, sistemas operativos, motores de renderizado (Blink, WebKit), dispositivos y rastreadores web en tiempo real."
+shortDescription: "Decodifica y analiza cualquier cadena User-Agent (UA) en tiempo real. Identifica navegador, versión, motor de renderizado, sistema operativo, tipo de dispositivo, bots SEO/IA y patrones de reducción de entropía."
 faqs:
-  - question: "¿Qué es un User Agent?"
-    answer: "Un 'User Agent' (UA) es una cadena de texto enviada por su navegador dentro de los encabezados HTTP de cada solicitud. Identifica su tipo de navegador, versión, sistema operativo y motor de renderizado, ayudando a los servidores a entregar contenido optimizado."
-  - question: "¿Qué contiene una cadena de User Agent estándar?"
-    answer: "Una cadena estándar contiene la plataforma base (ej. Mozilla/5.0), detalles del sistema operativo (ej. Windows NT 10.0), motor del navegador (ej. AppleWebKit/537.36) y la versión activa (ej. Chrome/120.0.0.0)."
-  - question: "¿Se pueden falsificar (Spoof) los User Agents?"
-    answer: "Sí. La mayoría de los navegadores modernos permiten modificar su User Agent desde las herramientas para desarrolladores. También puede hacerlo usando clientes de línea de comandos como curl o wget."
-  - question: "¿Qué es un motor de renderizado?"
-    answer: "Un motor de renderizado (como Blink, WebKit o Gecko) es el software central de un navegador que analiza HTML, CSS y JS para calcular las coordenadas y pintar el diseño visual de una página."
-  - question: "¿Cuál es la diferencia entre Blink y WebKit?"
-    answer: "WebKit es el motor de Apple que impulsa a Safari. Blink es una bifurcación (fork) de WebKit desarrollada por Google que impulsa a Chrome, Edge y Opera, estando optimizada para arquitecturas de múltiples procesos."
-  - question: "¿Qué es el Googlebot?"
-    answer: "Googlebot es el rastreador o 'araña' (crawler) web de Google. Utiliza una cadena de User Agent específica que contiene la palabra 'Googlebot' para que los administradores de servidores puedan identificar su actividad en los registros."
+  - question: "¿Por qué casi todos los navegadores modernos incluyen Mozilla/5.0 y Safari/537.36 en su User-Agent?"
+    answer: "Se debe a décadas de retrocompatibilidad heredadas de los primeros servidores web. Durante los años noventa, muchos sitios solo entregaban funciones avanzadas a Netscape (Mozilla) o posteriormente a motores compatibles con Gecko y Safari. Para evitar recibir versiones degradadas, Chrome, Edge y otros clientes conservaron esos tokens históricos dentro de su cabecera."
+  - question: "¿Qué es la reducción de User-Agent (User-Agent Reduction) y cómo afecta al análisis?"
+    answer: "Es una iniciativa de privacidad impulsada por Chromium para frenar el fingerprinting pasivo. Congela varios segmentos de la cadena: las versiones menores pasan a .0.0.0, Windows 11 sigue reportando Windows NT 10.0, macOS se congela en 10_15_7 y en Android el modelo de teléfono se reemplaza por la letra K. Para obtener el detalle real, el servidor debe negociar cabeceras Sec-CH-UA Client Hints."
+  - question: "¿Cómo se identifica en el User-Agent si un navegador en iOS usa Chrome, Firefox o Safari?"
+    answer: "En iOS, navegadores alternativos insertan tokens específicos dentro de una base WebKit: Chrome añade CriOS/, Firefox incluye FxiOS/ y Edge emplea EdgiOS/. Safari nativo, en cambio, combina el token Version/ junto a Mobile/ y Safari/ sin esos prefijos de terceros."
+  - question: "¿Basta con revisar la cadena User-Agent para confirmar que una petición proviene de Googlebot o GPTBot?"
+    answer: "No. El encabezado User-Agent es texto controlado por el cliente y cualquiera puede falsificarlo con curl o un scraper. Para validar un rastreador legítimo en producción debes comprobar su dirección IP contra los rangos JSON publicados oficialmente o realizar una búsqueda DNS inversa seguida de una resolución DNS directa."
+  - question: "¿Cuándo conviene usar el User-Agent en el servidor frente a la detección de capacidades en el cliente?"
+    answer: "Nunca uses detección de User-Agent para decidir compatibilidad CSS o JavaScript: para eso existen @supports, consultas de medios y comprobaciones de API en ejecución. Reserva el análisis del UA y Client Hints para analítica, control de bots, selección de instaladores por sistema operativo y telemetría de incidencias."
 features:
-  - "Detecte y decodifique instantáneamente la cadena de User Agent de su navegador."
-  - "Identifique el nombre del navegador, versión, sistema operativo y arquitectura."
-  - "Determine la categoría del dispositivo (Escritorio, Móvil, Tablet, Smart TV, Consola o Bot)."
-  - "Diferencie bots de motores de búsqueda (Googlebot/Bingbot) de scrapers de IA (GPTBot)."
-  - "Evalúe alertas de seguridad para navegadores obsoletos y motores descontinuados."
-  - "Compare dos cadenas de User Agent lado a lado con resaltado visual."
+  - "Detección automática de la cadena User-Agent de tu navegador activo con desglose inmediato de tokens"
+  - "Extracción precisa de familia de navegador, versión, motor de renderizado (Blink, WebKit, Gecko) y arquitectura CPU"
+  - "Clasificación de dispositivo en escritorio, móvil, tablet, Smart TV, consola y entornos headless"
+  - "Identificación diferenciada de rastreadores SEO (Googlebot, Bingbot), bots de IA (GPTBot, ClaudeBot) y clientes CLI"
+  - "Detección de cadenas congeladas por User-Agent Reduction con guía equivalente en cabeceras Sec-CH-UA"
+  - "Modo comparativo lado a lado para contrastar dos encabezados y depurar reglas de WAF, CDN o proxies"
 useCases:
-  - "Desarrolladores web probando consultas de medios (Media Queries) para diseño responsivo."
-  - "Consultores SEO auditando archivos de registro para ver el comportamiento del rastreo de Googlebot."
-  - "Equipos de ciberseguridad analizando registros del servidor en busca de bots sospechosos."
-  - "Soporte TI inspeccionando la versión del cliente para resolver errores de compatibilidad."
+  - "Auditoría de archivos de registro (access logs) para separar tráfico de Googlebot Smartphone, Bingbot y rastreadores de IA"
+  - "Ajuste de reglas WAF y anti-scraping para localizar firmas de navegadores obsoletos, clientes automatizados o cadenas malformadas"
+  - "Depuración frontend de fallos específicos de motor al comparar WebKit en iOS (CriOS/FxiOS), Blink y Gecko"
+  - "Migración de sistemas de telemetría y analítica desde parsers regex tradicionales hacia User-Agent Client Hints"
+  - "Entrega inteligente de binarios e instaladores (.dmg, .msi, .AppImage) según sistema operativo y arquitectura de CPU"
+  - "Verificación de cachés en CDN y reglas de pre-renderizado dinámico sin fragmentar la caché con Vary: User-Agent"
 howToSteps:
-  - "Inspeccione la cadena detectada automáticamente de su navegador."
-  - "También puede pegar cualquier encabezado personalizado en el cuadro de texto."
-  - "Haga clic en 'Analizar User Agent' para ver el desglose."
-  - "Revise las tarjetas que muestran OS, Versión, Dispositivo y Motor de renderizado."
-  - "Utilice la pestaña 'Comparar User Agents' para analizar diferencias entre dos cadenas."
+  - "Revisa la cadena User-Agent de tu propio navegador, detectada automáticamente al abrir la herramienta."
+  - "Pega cualquier encabezado personalizado desde los logs de Nginx, Cloudflare, DevTools o un cliente HTTP para inspeccionarlo."
+  - "Ejecuta el análisis para separar los tokens de producto, el navegador real, el motor de renderizado y el sistema operativo."
+  - "Verifica la categoría de dispositivo y la clasificación de bots para distinguir usuarios reales de rastreadores automatizados."
+  - "Comprueba si existen segmentos congelados (.0.0.0 o Android 10; K) que requieran negociar cabeceras Sec-CH-UA en el servidor."
+  - "Activa la pestaña de comparación cuando necesites contrastar dos cadenas lado a lado antes de actualizar filtros de red."
 ---
 
-## ¿Qué es un User Agent?
+La cabecera HTTP `User-Agent`, definida en RFC 9110 §10.1.5, permite que cualquier cliente —desde un navegador móvil hasta un rastreador web o una utilidad CLI— declare su identidad técnica al solicitar un recurso. Aunque a simple vista parece una cadena contradictoria llena de nombres heredados, responde a una gramática estructurada que revela navegador, motor de renderizado, plataforma y tipo de agente. Este analizador decodifica cada segmento en tiempo real en tu navegador, separa tráfico humano de bots SEO o de IA y señala cadenas congeladas por privacidad.
 
-Un **User Agent (Agente de Usuario)** es una cadena de texto que un navegador web o aplicación cliente transmite a un servidor web dentro del encabezado HTTP. Actúa como una autodeclaración digital, detallando la versión del software, sistema operativo y el dispositivo del cliente.
+## Anatomía formal de una cadena User-Agent (RFC 9110)
 
-Cada vez que visita una página, su navegador envía esta cadena. El servidor la lee para determinar cómo dar formato y entregar el contenido. Esto asegura, por ejemplo, que a un smartphone se le sirva una versión móvil, mientras que a una PC se le envíe el diseño completo.
+La gramática ABNF de RFC 9110 describe la cabecera como una secuencia de pares `producto/versión` intercalados con comentarios opcionales entre paréntesis (`product *( RWS ( product / comment ) )`). Observa una cadena real emitida por Microsoft Edge en Windows:
 
----
+```http
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36 Edg/131.0.0.0
+```
 
-## El legado de la compatibilidad en los navegadores
+Un analizador fiable evalúa cinco capas en orden estricto de precedencia:
 
-Si examina un User Agent moderno, notará que comienza con la palabra `Mozilla/5.0`, incluso si usa Google Chrome o Apple Safari. Esto es producto de las primeras \"guerras de navegadores\" en los años 90.
+1. **Prefijo heredado (`Mozilla/5.0`):** token de retrocompatibilidad presente en casi todos los navegadores gráficos; carece de valor discriminatorio aislado.
+2. **Comentario de plataforma (`Windows NT 10.0; Win64; x64`):** indica núcleo del sistema operativo y arquitectura. Tanto Windows 10 como Windows 11 declaran `Windows NT 10.0`.
+3. **Firma de motor (`AppleWebKit/537.36 (KHTML, like Gecko)`):** refleja el linaje histórico con WebKit. Cuando coexiste con `Chrome/` en escritorio o Android, el motor real es **Blink**.
+4. **Tokens base (`Chrome/131.0.0.0 Safari/537.36`):** los navegadores basados en Chromium conservan ambos identificadores para evitar bloqueos en sitios antiguos.
+5. **Identificador específico y WebViews (`Edg/131.0.0.0`):** determina el producto final. El parser debe comprobar `Edg/`, `OPR/`, `SamsungBrowser/`, `CriOS/`, `FxiOS/` y marcadores de navegadores integrados (`wv` en Android WebView, `FBAN` o `Instagram`) antes de clasificar el cliente como Chrome o Safari, ya que muchos WebViews restringen ventanas emergentes OAuth y almacenamiento de cookies.
 
-En aquel entonces, *Netscape Navigator* (cuyo nombre en clave era *Mozilla*) soportaba funciones avanzadas como 'frames'. Los servidores solo enviaban páginas avanzadas si detectaban a Netscape. Para evitar recibir páginas simples, los navegadores rivales comenzaron a agregar `Mozilla/` al inicio de sus cadenas para declarar que eran \"compatibles con Mozilla\". 
+## Referencia de navegadores, motores y rastreadores
 
-Hoy en día, un User Agent moderno (como Chrome) incluye nombres de casi todos sus predecesores por motivos de retrocompatibilidad:
-* **Ejemplo Chrome PC:** `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36`
+| Cliente / Agente | Patrón característico en User-Agent | Motor / Entorno | Matiz técnico de análisis |
+| :--- | :--- | :--- | :--- |
+| **Chrome (Escritorio)** | `Chrome/131.0.0.0 Safari/537.36` | Blink + V8 | Sin tokens derivados (`Edg/`, `OPR/`); versión menor congelada |
+| **Edge (Chromium)** | `Chrome/131.0.0.0 ... Edg/131.0.0.0` | Blink + V8 | Usa `Edg/` en escritorio, `EdgA/` en Android y `EdgiOS/` en iOS |
+| **Firefox** | `Gecko/20100101 Firefox/133.0` | Gecko + SpiderMonkey | Mantiene fecha fija `20100101` en escritorio; omite `AppleWebKit` |
+| **Safari (iOS)** | `iPhone ... Version/18.1 Mobile/15E148 Safari/604.1` | WebKit | Combina `Version/` y `Mobile/` sin prefijos de terceros |
+| **Chrome en iOS** | `iPhone ... CriOS/131.0 ... Mobile/15E148 Safari/604.1` | WebKit (iOS) | Sustituye `Chrome/` por `CriOS/` para reflejar el motor WebKit |
+| **Googlebot Móvil** | `Android 6.0.1; Nexus 5X ... Googlebot/2.1` | Chromium headless | Emula smartphone al indexar; exige verificación DNS o IP |
+| **GPTBot / ClaudeBot** | `Mozilla/5.0 ... GPTBot/1.2` | Rastreador HTTP IA | Atiende directivas específicas por agente en `robots.txt` |
+| **cURL / Clientes API** | `curl/8.7.1` o `python-requests/2.32.3` | CLI / SDK HTTP | Cadena mínima sin comentario de plataforma ni motor gráfico |
 
----
+## Reducción de User-Agent y Client Hints (`Sec-CH-UA`)
 
-## Motores de Renderizado Explicados
+Como una cadena detallada facilita el *browser fingerprinting* pasivo, los navegadores basados en Chromium aplican **User-Agent Reduction**: congelan la compilación menor en `.0.0.0`, fijan macOS en `Intel Mac OS X 10_15_7` incluso en Apple Silicon, mantienen `Windows NT 10.0` en Windows 11 y reemplazan el modelo exacto de Android por `Android 10; K`.
 
-Un **motor de renderizado** es el componente central de un navegador responsable de pintar el HTML y el CSS en la pantalla:
+### Negociación de cabeceras de baja y alta entropía
 
-1. **Blink:** Desarrollado por Google. Impulsa a Chrome, Microsoft Edge, Opera y Vivaldi.
-2. **WebKit:** Creado por Apple para Safari. En iOS (iPhone), Apple obliga a todos los navegadores (incluso Chrome) a utilizar el motor WebKit por debajo.
-3. **Gecko:** Desarrollado por Mozilla, impulsa Firefox.
+El estándar **User-Agent Client Hints** opera exclusivamente en contextos seguros HTTPS dentro de navegadores Chromium (Safari y Firefox mantienen cadenas reducidas sin implementar `Sec-CH-UA`, por lo que tu backend debe conservar respaldo sobre `User-Agent`). Envía por defecto cabeceras de baja entropía (`Sec-CH-UA`, `Sec-CH-UA-Mobile`, `Sec-CH-UA-Platform`) y negocia atributos granulares mediante `Accept-CH`:
 
----
+```http
+Accept-CH: Sec-CH-UA-Platform-Version, Sec-CH-UA-Arch, Sec-CH-UA-Model
+Critical-CH: Sec-CH-UA-Platform-Version
+Vary: Sec-CH-UA-Platform-Version, Sec-CH-UA-Arch
+```
 
-## User Agents Móviles vs. Escritorio
+En la petición siguiente, un equipo Windows 11 ARM64 responderá con `Sec-CH-UA-Platform-Version: "15.0.0"`, `Sec-CH-UA-Arch: "arm"` y una marca sintética *GREASE* (`"Not_A Brand"`) diseñada para evitar parsers rígidos. Para verificar si tu servidor anuncia correctamente estas directivas, audítalo en el [Comprobador de Cabeceras HTTP](/es/herramientas/http-header-checker). En el cliente, la lectura estructurada evita expresiones regulares:
 
-* **Agentes de Escritorio:** Señalan al servidor que la pantalla es lo suficientemente grande para diseños de varias columnas. Incluyen referencias como `Windows` o `Macintosh`.
-* **Agentes Móviles:** Contienen siempre una etiqueta `Mobile` junto a identificadores como `Android` o `iPhone`. Esto indica al servidor que debe enviar botones grandes optimizados para uso táctil.
+```javascript
+if (navigator.userAgentData) {
+  const hints = await navigator.userAgentData.getHighEntropyValues([
+    'architecture', 'platformVersion', 'model', 'fullVersionList'
+  ]);
+  console.log(hints.platform, hints.platformVersion, hints.architecture);
+}
+```
 
----
+## Verificación de bots, pruebas CLI y arquitectura
 
-## Detección de Bots y Rastreadores de IA
+### Comprobación real de rastreadores mediante DNS
 
-No todas las solicitudes en la web provienen de humanos. Scripts y arañas web (Crawlers) visitan su sitio a diario:
+La cabecera `User-Agent` nunca sirve como prueba de identidad ni control de acceso porque cualquier script puede suplantarla fácilmente. Al depurar respuestas o validar un supuesto rastreador en logs, combina pruebas controladas con verificación DNS inversa y directa:
 
-1. **Rastreadores SEO:** Agentes autorizados que indexan contenido, como **Googlebot** o **Bingbot**. Suelen respetar el archivo `robots.txt`.
-2. **Scrapers de Inteligencia Artificial:** Herramientas que recopilan enormes cantidades de datos públicos para entrenar modelos de lenguaje (LLM). Ejemplos: **GPTBot** (de OpenAI) o **ClaudeBot** (de Anthropic).
+```bash
+curl -sI -A "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" https://ejemplo.com/
+dig -x 66.249.66.1 +short && dig +short crawl-66-249-66-1.googlebot.com
+```
 
----
+Para gobernar buscadores y rastreadores de modelos de lenguaje con precisión, acompaña esta verificación con reglas claras creadas en el [Generador de robots.txt](/es/herramientas/robots-txt-generator).
 
-## User Agent Spoofing y Privacidad
+### Rendimiento en CDN y buenas prácticas de parsing
 
-El **Spoofing (Suplantación)** de User Agent es la práctica de modificar esta cadena para engañar al servidor. Se utiliza mucho en web scraping (para eludir cortafuegos anti-bots) o por desarrolladores para simular dispositivos móviles en PC.
-
-**Riesgo de Privacidad (Fingerprinting):** Debido a que la cadena UA contiene combinaciones únicas de sistema operativo y versiones, los rastreadores pueden usarla (junto a la resolución de su pantalla) para identificar su dispositivo sin usar cookies. Por ello, la industria está transicionando hacia **User-Agent Client Hints**, que envían una cadena genérica por defecto para proteger la privacidad del usuario.
+- **Evita `Vary: User-Agent` en cachés CDN:** existen cientos de miles de cadenas únicas y fragmentar la caché por el UA completo desploma la tasa de aciertos. Normaliza el tipo de dispositivo en el borde o usa `Vary: Sec-CH-UA-Mobile`.
+- **Usa detección de capacidades en el frontend:** recurre a consultas CSS `@supports`, `matchMedia` y pruebas en el [Probador de Pantalla Responsiva](/es/herramientas/responsive-screen-tester) en vez de bifurcar código según el nombre del navegador.
+- **Previene ataques ReDoS en parsers propios:** evita expresiones regulares con retroceso exponencial sobre cadenas `User-Agent` no confiables y trunca longitudes anómalas antes de analizarlas.

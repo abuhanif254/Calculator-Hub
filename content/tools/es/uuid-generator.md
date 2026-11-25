@@ -1,84 +1,109 @@
 ---
-metaTitle: "Generador de UUID Online | Crear UUID v4, v7 y GUIDs"
-metaDescription: "Genere UUIDs (v1, v4, v6, v7) y GUIDs aleatorios, únicos y criptográficamente seguros. Cree UUID individuales o masivos para bases de datos y API."
-metaKeywords: "generador uuid, generador guid, uuid v4, uuid v7, generar uuids, uuids masivos, identificador único, uuid de base de datos"
+metaTitle: "Generador de UUID Online | v1, v4, v6 y v7 (RFC 9562)"
+metaDescription: "Genera UUIDs y GUIDs seguros (v1, v4, v6, v7 según RFC 9562) individuales o masivos en tu navegador. Optimiza índices SQL y claves de APIs."
+metaKeywords: "generador uuid, generador guid, uuid v4, uuid v7, rfc 9562, uuid v6, uuid masivo, claves primarias postgresql, identificador único universal, crypto randomuuid"
 title: "Generador de UUID"
-shortDescription: "Genere UUIDs y GUIDs únicos y seguros (v1, v4, v6, v7) de forma masiva o individual."
+shortDescription: "Genera identificadores únicos UUID y GUID conformes con RFC 9562 (v1, v4, v6 y v7) de forma individual o masiva en tu navegador, con validación de versión y exportación a JSON, CSV y TXT."
 faqs:
-  - question: "¿Qué significa UUID?"
-    answer: "UUID significa Identificador Único Universal (Universally Unique Identifier). Es una etiqueta de 128 bits que se utiliza para identificar información de forma exclusiva en sistemas informáticos. En el ecosistema de Microsoft, a menudo se denominan GUID (Identificadores Únicos Globales)."
-  - question: "¿Son los UUID completamente únicos? ¿Pueden chocar (colisión)?"
-    answer: "Aunque es matemáticamente posible, una colisión (generar exactamente el mismo UUID dos veces) es prácticamente imposible para UUID v4. Hay tantas combinaciones que podrías generar mil millones por segundo durante 85 años y la probabilidad sería mínima."
-  - question: "¿Cuál es la diferencia entre UUID v4 y v7?"
-    answer: "El UUID v4 es completamente aleatorio. El UUID v7 combina una marca de tiempo con datos aleatorios. Debido a esto, los v7 se ordenan naturalmente por tiempo, haciéndolos mucho más eficientes para indexar bases de datos."
-  - question: "¿Es segura esta herramienta?"
-    answer: "Sí. Todos los UUID se generan directamente dentro de su navegador utilizando API de criptografía web modernas. No almacenamos, rastreamos ni transmitimos los UUID que genere."
-  - question: "¿Debería usar UUID o ID incrementales (Auto-Increment)?"
-    answer: "Los ID autoincrementales son simples, pero exponen el tamaño de sus datos y pueden adivinarse (vulnerabilidad IDOR). Los UUID ocultan su escala, no se pueden adivinar y se pueden generar en sistemas distribuidos sin bloqueos."
+  - question: "¿Qué diferencia técnica existe entre un UUID y un GUID?"
+    answer: "En representación textual canónica de 36 caracteres (8-4-4-4-12) son idénticos: ambos identifican valores de 128 bits. La diferencia aparece en la serialización binaria heredada de Microsoft (.NET Guid.ToByteArray), que almacena los tres primeros campos en orden little-endian mientras RFC 9562 exige big-endian en orden de red."
+  - question: "¿Por qué UUID v7 mejora drásticamente el rendimiento frente a UUID v4 en bases de datos SQL?"
+    answer: "UUID v4 inserta claves completamente aleatorias en índices B-Tree (como PostgreSQL o el índice agrupado de MySQL InnoDB), causando divisiones constantes de páginas, amplificación de escritura y baja localidad en caché. UUID v7 antepone una marca temporal Unix de 48 bits que mantiene las inserciones secuenciales al final del árbol."
+  - question: "¿Cuál es la probabilidad real de sufrir una colisión al generar UUID v4 o UUID v7?"
+    answer: "UUID v4 posee 122 bits de entropía aleatoria; según la paradoja del cumpleaños, harían falta aproximadamente 2,71 trillones (2,71 x 10^18) de identificadores para alcanzar un 50 % de probabilidad de colisión. UUID v7 mantiene 74 bits aleatorios o monotónicos dentro de cada milisegundo, eliminando colisiones prácticas incluso en clústeres de altísima concurrencia."
+  - question: "¿Cuándo conviene elegir UUID v6 en lugar de UUID v7?"
+    answer: "RFC 9562 recomienda UUID v7 para todos los sistemas nuevos porque usa tiempo Unix estándar en milisegundos y no expone direcciones MAC. UUID v6 solo está pensado para migrar arquitecturas heredadas basadas en UUID v1 que necesitan mantener la época gregoriana y el campo de nodo logrando ordenación cronológica."
+  - question: "¿Son seguros los UUID v7 para tokens de sesión o enlaces de restablecimiento de contraseña?"
+    answer: "No. Aunque UUID v7 incorpora aleatoriedad criptográfica en sus bits inferiores, sus primeros 48 bits revelan la fecha exacta de creación con precisión de milisegundos. Para secretos bearer, sesiones o enlaces de recuperación utiliza siempre UUID v4 generado con CSPRNG o tokens opacos de alta entropía."
 features:
-  - "Soporte para múltiples versiones de UUID: v1, v4, v6 y v7"
-  - "Generación instantánea individual o masiva (hasta 10.000 a la vez)"
-  - "Exportar UUIDs generados a JSON, CSV o TXT"
-  - "Opciones de formato personalizado: mayúsculas, minúsculas, sin guiones, con llaves/comillas"
-  - "Fragmentos (snippets) para desarrolladores para generar UUID en múltiples lenguajes"
-  - "Validación de UUID en tiempo real y detección de versiones"
-  - "Generación 100% del lado del cliente (segura y privada)"
+  - "Generación conforme con RFC 9562 para versiones UUID v1, v4, v6 y la moderna v7 ordenable por tiempo"
+  - "Entropía criptográficamente segura ejecutada en local mediante la Web Crypto API del navegador"
+  - "Creación individual o en lotes masivos de hasta 10.000 identificadores con exportación a JSON, CSV y TXT"
+  - "Opciones flexibles de formato: mayúsculas, minúsculas, 32 caracteres sin guiones, llaves {} y prefijo URN"
+  - "Validador integrado que extrae el nibble de versión, los bits de variante RFC 9562 y marcas temporales"
+  - "Privacidad absoluta en el lado del cliente: ningún identificador generado se envía ni registra en servidores"
 useCases:
-  - "Generación de claves primarias (Primary Keys) aleatorias para bases de datos (PostgreSQL, MySQL, MongoDB)"
-  - "Creación de ID de correlación únicos para rastrear registros de microservicios"
-  - "Simulación de datos para endpoints de API (mock data)"
-  - "Creación de identificadores únicos para la creación de datos sin conexión en el lado del cliente"
-  - "Validación de UUID externos para garantizar que cumplan con las especificaciones"
+  - "Definición de claves primarias UUID v7 ordenables para tablas de alta escritura en PostgreSQL, MySQL y MariaDB"
+  - "Asignación de identificadores públicos UUID v4 en APIs REST y GraphQL para impedir enumeración IDOR"
+  - "Generación de IDs de correlación (X-Request-ID) para trazabilidad distribuida entre microservicios y colas"
+  - "Creación local de claves en aplicaciones móviles offline-first y workers edge que sincronizan sin bloqueos centrales"
+  - "Generación masiva de fixtures y semillas de prueba para bancos de carga y entornos de integración continua"
+  - "Validación y auditoría de identificadores heredados (v1/v6) durante migraciones de esquemas y APIs"
 howToSteps:
-  - "Seleccione la versión de UUID que desea generar (v4 es la predeterminada)."
-  - "Elija cuántos UUID necesita haciendo clic en las opciones masivas."
-  - "Alterne cualquier opción de formato (ej. mayúsculas o sin guiones)."
-  - "Haga clic en 'Generar'."
-  - "Utilice los botones de copia para copiar un solo UUID o la lista completa (Raw, JSON, CSV)."
-  - "Si generó un lote grande, expórtelos con el botón 'Descargar'."
+  - "Elige la versión de UUID adecuada para tu arquitectura: v7 para claves SQL ordenables, v4 para máxima opacidad o v6/v1 para legado."
+  - "Indica la cantidad deseada, desde un único identificador hasta lotes masivos de 10.000 registros."
+  - "Ajusta las reglas de formato: minúsculas canónicas, mayúsculas, cadena compacta sin guiones o formato URN."
+  - "Genera los identificadores localmente aprovechando el generador criptográfico integrado en tu navegador."
+  - "Pega cualquier UUID externo en el validador si necesitas verificar su versión, variante RFC 9562 o fecha incrustada."
+  - "Copia el resultado al portapapeles o descárgalo en JSON, CSV o texto plano para importarlo en tus scripts."
 ---
 
-## ¿Qué es un UUID?
+Un **Identificador Único Universal (UUID)**, estandarizado en **RFC 9562** (que reemplazó a RFC 4122 en mayo de 2024), es un número binario de **128 bits** diseñado para identificar recursos de forma única en sistemas distribuidos sin coordinarse con una secuencia central. En el ecosistema Microsoft se denomina habitualmente **GUID**, compartiendo la representación textual canónica de 36 caracteres (`8-4-4-4-12`). Este generador crea lotes individuales o masivos de UUID `v1`, `v4`, `v6` y `v7` en tu navegador mediante la Web Crypto API, sin registrar ni transmitir ningún identificador.
 
-Un **Identificador Único Universal (UUID)** es un número de 128 bits que se utiliza para identificar información de forma exclusiva en sistemas informáticos. También conocidos como **GUID** (Identificadores Únicos Globales) en el ecosistema de Microsoft, los UUID se utilizan para garantizar una singularidad absoluta en sistemas distribuidos sin necesitar un servidor central para asignarlos.
+## Anatomía binaria de 128 bits y campos de control (RFC 9562)
 
-Nuestro **Generador de UUID** le permite generar identificadores criptográficamente seguros al instante. Admite **v1**, **v4**, **v6** y **v7**.
+En su formato canónico (`xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx`), un UUID codifica 16 bytes en orden de red (*big-endian*). Seis bits fijos describen su estructura interna:
 
----
+- **Nibble de versión (`M`, bits 48–51):** ocupa los cuatro bits altos del octeto 6 e indica el algoritmo (`1`, `4`, `6`, `7`, o `8` para formatos personalizados definidos por la aplicación).
+- **Bits de variante (`N`, bits 64–65):** ocupan los dos bits superiores del octeto 8 y valen `10` en binario para la variante RFC 9562, limitando el carácter `N` a `8`, `9`, `a` o `b`.
 
-## ¿Por qué usar UUID en lugar de ID autoincrementables?
+RFC 9562 formaliza además dos valores centinela útiles en modelado de datos: el **Nil UUID** (`00000000-0000-0000-0000-000000000000`) como referencia vacía tipada y el **Max UUID** (`ffffffff-ffff-ffff-ffff-ffffffffffff`) como cota superior en rangos indexados.
 
-### 1. Seguridad (Evita Insecure Direct Object Reference)
-Los ID secuenciales exponen el tamaño de sus datos. Si un usuario se registra y recibe el ID 1050, sabe que tiene 1,049 usuarios. Un atacante puede iterar los ID en su API (`/api/users/1051`) para extraer datos. Los UUID son aleatorios e imposibles de adivinar.
+Al persistir claves en disco, evita columnas `CHAR(36)` porque duplican el almacenamiento y penalizan las comparaciones por intercalación UTF-8; guarda siempre los **16 bytes nativos** (`UUID` en PostgreSQL o `BINARY(16)` en MySQL). Si intercambias bytes binarios entre servicios .NET y PostgreSQL o Go, recuerda que `Guid.ToByteArray()` clásico serializa los tres primeros grupos en *little-endian*, mientras `ToByteArray(bigEndian: true)` respeta el orden estándar RFC 9562.
 
-### 2. Sistemas Distribuidos y Microservicios
-En un entorno de microservicios, generar ID secuenciales requiere un "bloqueo" centralizado en la base de datos para evitar colisiones, causando cuellos de botella. Los UUID solucionan esto: cualquier nodo puede generar un UUID localmente y escribirlo con casi 0% de posibilidades de colisión.
+## Comparativa técnica de versiones UUID (RFC 9562)
 
-### 3. Sincronización de Datos Offline
-Si tiene una app móvil que funciona sin conexión, usar UUID permite que el cliente móvil genere los ID localmente y los sincronice con el servidor más tarde, sin conflictos.
+| Versión | Base temporal / entrada | Bits aleatorios o nodo | Ordenable B-Tree | Privacidad | Uso recomendado |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **UUID v1** | Tiempo gregoriano (60 bits, 100 ns) | 14 bits secuencia + 48 bits MAC | No (bits bajos primero) | Baja (expone fecha y MAC) | Solo compatibilidad heredada |
+| **UUID v4** | Ninguna | 122 bits CSPRNG | No (dispersión total) | Máxima (opaco) | IDs públicos en APIs y tokens |
+| **UUID v5** | Namespace + nombre (SHA-1) | Determinista (0 aleatorios) | No | Media (según entrada) | Claves idempotentes reproducibles |
+| **UUID v6** | Tiempo gregoriano reordenado | 14 bits secuencia + 48 bits nodo | Sí (monotónico) | Baja-media (expone fecha) | Migración desde pipelines v1 |
+| **UUID v7** | Epoch Unix en milisegundos (48 bits) | 12 bits `rand_a` + 62 bits `rand_b` | Sí (anexado secuencial) | Media (expone milisegundo) | **Estándar moderno** en claves SQL |
 
----
+## Rendimiento en índices B-Tree y seguridad criptográfica
 
-## Diferentes Versiones de UUID
+### Por qué UUID v7 supera a UUID v4 en tablas SQL
 
-### UUID Versión 1 (Basado en MAC y Tiempo)
-Utiliza una combinación de la marca de tiempo actual y la dirección MAC de la computadora.
-* **Desventajas**: Expone la dirección MAC (riesgo de privacidad). Casi no se usa en la actualidad.
+Los enteros autoincrementales (`BIGSERIAL`, `AUTO_INCREMENT`) anexan registros de forma contigua en el árbol B-Tree, pero exponen el volumen de negocio, facilitan ataques de enumeración (**IDOR**) y bloquean arquitecturas *offline-first* o fragmentadas. Sin embargo, usar **UUID v4** como clave primaria inserta valores en páginas hoja aleatorias, desencadenando divisiones de página (*page splits*) al 50 %, amplificación de escritura en registros WAL/redo y baja tasa de aciertos en el *buffer pool* (efecto crítico en el índice agrupado de MySQL InnoDB).
 
-### UUID Versión 4 (Completamente Aleatorio)
-Es la versión más común. Tiene 122 bits generados aleatoriamente.
-* **Ventajas**: Aleatoriedad inigualable y privacidad total.
-* **Desventajas**: Fragmenta los índices de bases de datos (especialmente B-Tree), ralentizando la inserción masiva.
+**UUID v7** corrige este problema anteponiendo un sello temporal Unix de 48 bits en milisegundos (`unix_ts_ms`), seguido de 4 bits de versión (`0111`), 12 bits `rand_a`, 2 bits de variante (`10`) y 62 bits `rand_b` aleatorios. Para preservar la ordenación estricta cuando un nodo genera múltiples identificadores dentro del mismo milisegundo, RFC 9562 §6.2 permite emplear `rand_a` como contador monotónico incremental por milisegundo. De este modo, las escrituras convergen en el extremo derecho del índice con una localidad comparable a `BIGINT` sin sacrificar generación distribuida.
 
-### UUID Versión 7 (El Estándar Moderno - Ordenable)
-Resuelve el problema de rendimiento en bases de datos. Utiliza una marca de tiempo de la época Unix (milisegundos) para los primeros 48 bits, y el resto es aleatorio.
-* **Por qué v7 es el futuro**: Ofrece la seguridad de v4, pero al estar prefijado con el tiempo, se ordenan cronológicamente. En bases de datos (PostgreSQL, MySQL), se anexan al final del índice, lo que mejora drásticamente el rendimiento.
+### Colisiones, entropía CSPRNG y validación de entradas
 
----
+Un UUID v4 dispone de 122 bits de entropía (5,3 × 10³⁶ estados posibles): según la paradoja del cumpleaños se necesitarían alrededor de 2,71 × 10¹⁸ identificadores para alcanzar un 50 % de probabilidad de colisión. Esta garantía únicamente se mantiene con generadores criptográficamente seguros (**CSPRNG** como `crypto.randomUUID()` o `crypto.getRandomValues()`), jamás con `Math.random()`. Asimismo, como UUID v7 revela el milisegundo de creación, reserva UUID v4 o claves del [Generador de Cadenas Aleatorias](/es/herramientas/random-string-generator) para enlaces de recuperación y secretos bearer.
 
-## Generación Masiva para Desarrolladores
+En tus endpoints REST y GraphQL, valida siempre la forma canónica antes de ejecutar consultas SQL —exigiendo el patrón `8-4-4-4-12` con nibble de versión `[1-8]` y variante `[89ab]`— para rechazar cadenas malformadas con HTTP 400 sin provocar excepciones en el motor de base de datos.
 
-A menudo, los desarrolladores necesitan miles de ID para completar bases de datos de desarrollo o ejecutar pruebas de carga. Nuestra herramienta incluye un modo de generación masiva que crea hasta 10.000 UUID a la vez.
+## Implementación práctica en SQL, JavaScript y terminal
 
-## 100% Seguro (Lado del Cliente)
-Nuestro generador se ejecuta localmente usando `crypto.randomUUID()` del navegador. No guardamos registros ni usamos nuestros servidores. Sus UUID son seguros.
+En **PostgreSQL** declara siempre el tipo nativo `UUID` (PostgreSQL 18 ofrece `uuidv7()` nativo y versiones anteriores disponen de `gen_random_uuid()` para v4):
+
+```sql
+CREATE TABLE pedidos (
+  id         UUID PRIMARY KEY DEFAULT uuidv7(),
+  cliente_id UUID NOT NULL,
+  creado_en  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
+
+En **MySQL 8+**, almacena `BINARY(16)` con `UUID_TO_BIN(uuid)` sin activar el intercambio de bits reservado a v1. En **Node.js**, navegadores o **CLI**:
+
+```javascript
+const idPublico = crypto.randomUUID(); // UUID v4 criptográfico nativo
+
+function generarUuidV7() {
+  const b = crypto.getRandomValues(new Uint8Array(16));
+  const ms = BigInt(Date.now());
+  for (let i = 0; i < 6; i++) b[i] = Number((ms >> BigInt(40 - 8 * i)) & 0xffn);
+  b[6] = (b[6] & 0x0f) | 0x70; b[8] = (b[8] & 0x3f) | 0x80;
+  const h = Array.from(b, (x) => x.toString(16).padStart(2, '0')).join('');
+  return `${h.slice(0,8)}-${h.slice(8,12)}-${h.slice(12,16)}-${h.slice(16,20)}-${h.slice(20)}`;
+}
+```
+
+```bash
+python3 -c "import uuid; print(uuid.uuid4())"
+```
+
+Para construir semillas completas de prueba junto a tus lotes masivos de hasta 10.000 identificadores, combina esta herramienta con el [Generador de Datos Mock para API](/es/herramientas/api-mock-data-generator), enmascara registros sensibles en el [Anonimizador de Bases de Datos](/es/herramientas/database-anonymizer) o calcula resúmenes deterministas en el [Generador de Hash](/es/herramientas/hash-generator).

@@ -1,90 +1,113 @@
 ---
-metaTitle: "Comprobador de Tipos MIME | Analizador de Content-Type"
-metaDescription: "Detecte, inspeccione y valide tipos MIME (Content-Type) de archivos, extensiones y URL. Verifique encabezados HTTP, audite archivos y detecte vulnerabilidades MIME Sniffing."
-metaKeywords: "mime type checker, content type checker, tipo mime, extension de archivo, mime sniffing, encabezados http, magic bytes, verificar formato, upload validator"
+metaTitle: "Comprobador de Tipos MIME | Content-Type y Magic Bytes"
+metaDescription: "Inspecciona tipos MIME (Content-Type), extensiones, cabeceras HTTP y magic bytes en tiempo real. Detecta spoofing y bloquea MIME sniffing."
+metaKeywords: "comprobador tipos mime, analizador content-type, magic bytes, mime sniffing, x-content-type-options nosniff, validar subida archivos, media type rfc 9110, tipos mime http"
 title: "Comprobador de Tipos MIME"
-shortDescription: "Detecte y valide tipos MIME (Content-Type) para archivos, extensiones y URLs en tiempo real. Audite configuraciones de seguridad HTTP y bytes mágicos."
+shortDescription: "Detecta, inspecciona y valida tipos MIME (Content-Type) mediante extensiones, encabezados HTTP y firmas binarias (magic bytes). Audita políticas nosniff y previene la suplantación de archivos."
 faqs:
-  - question: "¿Qué es un Tipo MIME?"
-    answer: "Un tipo MIME (Extensiones Multipropósito de Correo de Internet), o tipo de medio, es una etiqueta estandarizada utilizada para identificar el formato de un archivo transmitido por Internet, permitiendo a los navegadores renderizarlo correctamente."
-  - question: "¿Qué significa Content-Type?"
-    answer: "Content-Type es un campo de encabezado HTTP que especifica el tipo MIME y la codificación de caracteres (charset) del recurso transmitido, guiando la lógica de renderizado del cliente."
-  - question: "¿Qué es MIME sniffing?"
-    answer: "MIME sniffing es el comportamiento de un navegador donde inspecciona el contenido de bytes reales de un recurso para adivinar su formato de archivo, anulando el tipo MIME declarado en el encabezado Content-Type."
-  - question: "¿Qué pasa si los tipos MIME son incorrectos?"
-    answer: "Los sitios web pueden romperse. Los navegadores con seguridad estricta se negarán a ejecutar archivos JavaScript servidos como text/plain, las transmisiones multimedia fallarán al cargar y los estilos CSS no se renderizarán."
-  - question: "¿Cuál es la diferencia entre extensión y tipo MIME?"
-    answer: "Una extensión es un sufijo de archivo local utilizado por los sistemas operativos (por ejemplo, '.pdf'), mientras que un tipo MIME es una etiqueta de medios de red estandarizada enviada dentro de los encabezados HTTP (por ejemplo, 'application/pdf')."
-  - question: "¿Qué es X-Content-Type-Options?"
-    answer: "Es un encabezado de seguridad HTTP. Establecerlo en 'nosniff' evita que los navegadores realicen MIME sniffing, obligándolos a seguir estrictamente el tipo MIME definido en el encabezado Content-Type."
+  - question: "¿Por qué text/javascript reemplazó a application/javascript como tipo MIME oficial?"
+    answer: "RFC 9239 actualizó el registro IANA en 2022 y declaró obsoletos application/javascript y application/ecmascript para alinear el estándar de red con la especificación HTML. Hoy text/javascript es el único media type recomendado para scripts clásicos y módulos ES (.mjs)."
+  - question: "¿Qué diferencia existe entre validar la extensión, el encabezado Content-Type y los magic bytes?"
+    answer: "La extensión es solo un sufijo local fácil de renombrar y el encabezado Content-Type en una subida proviene del cliente y puede manipularse. Los magic bytes son secuencias hexadecimales fijas dentro del propio binario (como 89 50 4E 47 en PNG) que confirman la estructura real del archivo."
+  - question: "¿Cómo evita X-Content-Type-Options: nosniff los ataques XSS en navegadores modernos?"
+    answer: "Sin la directiva nosniff, algunos navegadores aplican heurísticas de MIME sniffing y pueden interpretar como HTML o JavaScript ejecutable un archivo subido como text/plain o imagen. Con nosniff, el navegador acata estrictamente el Content-Type declarado y bloquea scripts u hojas de estilo con tipos incompatibles."
+  - question: "¿Por qué los archivos .docx, .xlsx, .epub y .jar comparten los mismos magic bytes que un ZIP?"
+    answer: "Todos ellos son formatos contenedores basados en el estándar ZIP, por lo que sus primeros cuatro bytes siempre son 50 4B 03 04 (PK). Para distinguir con exactitud su tipo MIME real hay que inspeccionar entradas internas del archivo, como [Content_Types].xml en Office o el archivo mimetype en EPUB."
+  - question: "¿Cuándo debe incluirse el parámetro charset=UTF-8 en la cabecera Content-Type?"
+    answer: "Es fundamental en tipos textuales como text/html, text/css o text/csv para evitar mojibake e inyecciones por cambio de codificación. En cambio, no debe añadirse a recursos binarios (image/png, application/pdf), y en application/json RFC 8259 ya define UTF-8 por defecto sin parámetro charset obligatorio."
 features:
-  - "Búsqueda instantánea de tipos MIME por extensión de archivo."
-  - "Inspector de URL del lado del servidor para verificar encabezados Content-Type y de seguridad."
-  - "Validador de carga de archivos (File Upload) del lado del cliente que inspecciona Bytes Mágicos (Magic Bytes)."
-  - "Detector de falsificación de extensiones (Spoofing)."
-  - "Explorador de base de datos MIME que abarca más de 60 tipos de archivos comunes."
-  - "Auditorías de seguridad completas que señalan tipos MIME peligrosos."
+  - "Búsqueda bidireccional instantánea entre extensiones de archivo y tipos MIME oficiales registrados en IANA"
+  - "Inspección local de firmas binarias (magic bytes) en memoria del navegador para detectar archivos renombrados"
+  - "Auditoría de cabeceras Content-Type en URLs remotas verificando charset, sintaxis y X-Content-Type-Options"
+  - "Alertas de seguridad sobre formatos con ejecución activa de código como image/svg+xml o text/html"
+  - "Identificación de contenedores compuestos (ZIP, RIFF, ISO BMFF) frente a formatos de carga directa"
+  - "Catálogo técnico actualizado con tipos modernos como WebAssembly (.wasm), AVIF, WebP, WOFF2 y módulos ES"
 useCases:
-  - "Desarrolladores web solucionando problemas de carga de CSS/JS causados por errores de desajuste MIME."
-  - "Ingenieros de seguridad auditando formularios de subida de archivos para riesgos de suplantación de extensiones."
-  - "Administradores de sistemas configurando mapeos de activos estáticos en Nginx, Apache o IIS."
-  - "Especialistas SEO diagnosticando errores de renderizado causados por encabezados Content-Type no válidos."
+  - "Resolución de bloqueos estrictos de navegador al cargar módulos ES (.mjs), hojas CSS o binarios WebAssembly (.wasm)"
+  - "Endurecimiento de endpoints de subida de archivos frente a suplantación de extensiones y archivos políglotas"
+  - "Configuración precisa de mapeos types y cabeceras nosniff en Nginx, Apache, Cloudflare R2 y Amazon S3"
+  - "Auditoría de APIs REST para validar cabeceras application/json, application/problem+json y multipart/form-data"
+  - "Aislamiento seguro de adjuntos subidos por usuarios mediante Content-Disposition: attachment y sandboxing"
+  - "Diagnóstico de fallos de renderizado en buscadores cuando CSS o fuentes tipográficas se sirven como text/plain"
 howToSteps:
-  - "Ingrese una extensión (ej. '.png') en el cuadro de búsqueda para ver las definiciones oficiales MIME."
-  - "Pegue una URL remota en el Inspector de URL para recuperar encabezados y ver auditorías."
-  - "Arrastre y suelte cualquier archivo en el Panel de Carga para analizar sus Bytes Mágicos."
-  - "Verifique el indicador de validación para buscar extensiones falsificadas."
-  - "Examine la base de datos de referencia para explorar categorías de tipos de archivos."
+  - "Introduce una extensión (como .wasm, .webp o .mjs) o un tipo MIME completo en el buscador para ver su definición IANA."
+  - "Arrastra un archivo al panel de inspección local para leer sus magic bytes iniciales sin subirlo a servidores externos."
+  - "Compara la extensión declarada con la firma binaria real para detectar manipulaciones o archivos corruptos."
+  - "Introduce una URL en el inspector HTTP si deseas auditar la cabecera Content-Type y la política X-Content-Type-Options."
+  - "Revisa las alertas de seguridad para identificar tipos activos peligrosos (como SVG sin aislamiento) o desajustes de charset."
+  - "Aplica los bloques de configuración recomendados en tu servidor web o proxy y repite la comprobación."
 ---
 
-## ¿Qué es un Tipo MIME?
+Un **tipo MIME** (*Media Type*), estandarizado en RFC 6838 y transportado en HTTP mediante la cabecera `Content-Type` (RFC 9110 §8.3), indica al cliente cómo interpretar los bytes de un recurso sin depender de la extensión local del archivo. Cuando un servidor declara un tipo incorrecto, los navegadores modernos rechazan módulos JavaScript, impiden la compilación en flujo de WebAssembly o degradan el renderizado CSS; y cuando una API confía ciegamente en el nombre del archivo subido, abre la puerta a ataques de ejecución de código. Este comprobador valida extensiones frente al registro IANA, audita cabeceras HTTP e inspecciona *magic bytes* localmente en tu navegador.
 
-Un **Tipo MIME** (Multipurpose Internet Mail Extensions), también conocido como **Media Type** o **Content-Type**, es un identificador estandarizado de dos partes que define el formato de un archivo transmitido a través de Internet.
+## Anatomía formal de `Content-Type` y registro IANA
 
-Los tipos MIME constan de un **tipo** primario y un **subtipo**, separados por una barra inclinada (`/`). Por ejemplo, en el tipo MIME `text/html`, `text` es el tipo y `html` es el subtipo. 
+La sintaxis normativa de un *Media Type* combina un tipo discreto o compuesto, un subtipo y parámetros opcionales separados por punto y coma:
 
-Cada vez que un servidor web envía un archivo a un navegador, transmite un encabezado HTTP llamado `Content-Type`. El navegador se basa en este encabezado, **y no en la extensión del archivo**, para saber cómo manejar el contenido que está recibiendo.
-
----
-
-## Encabezados Content-Type Explicados
-
-Cuando el servidor devuelve un recurso, incluye un encabezado `Content-Type` que indica su tipo de medio:
 ```http
-Content-Type: text/html; charset=UTF-8
+Content-Type: text/html; charset=utf-8
+Content-Type: application/problem+json
+Content-Type: multipart/form-data; boundary=----FormBoundary7MA4YWxkTrZu0gW
 ```
-Aquí especifica el tipo MIME como `text/html` e incluye un parámetro opcional, `charset=UTF-8`, informando al navegador que la codificación de caracteres es UTF-8. Sin esto, los navegadores tendrían que adivinar la estructura de los datos, provocando que los scripts se rompan o los caracteres se muestren mal.
 
----
+El registro IANA clasifica los subtipos en árboles semánticos claros: el árbol estándar (sin prefijo, como `application/pdf`), el árbol de fabricante (`vnd.`, por ejemplo `application/vnd.openxmlformats-officedocument.wordprocessingml.document`), el árbol personal (`prs.`) y el prefijo histórico `x-`, desaconsejado por RFC 6648 para registros nuevos. Además, RFC 6838 define **sufijos de sintaxis estructurada** como `+json`, `+xml` o `+zip` (`image/svg+xml`, `application/ld+json`), que permiten inferir el formato base aunque el cliente desconozca el subtipo completo.
 
-## Extensiones de Archivos vs. Tipos MIME
+Durante la negociación de contenido (RFC 9110 §12.5.1), el cliente anuncia sus formatos preferidos en `Accept` (por ejemplo, `image/avif,image/webp,*/*`) y el servidor responde con el `Content-Type` seleccionado junto a `Vary: Accept`. Cuando el formato es desconocido, el valor de respaldo estándar es `application/octet-stream`, que fuerza descarga binaria pero invalida recursos ejecutables: **RFC 9239** consagró `text/javascript` como tipo canónico para `.js` y `.mjs` (dejando obsoleto `application/javascript`), y `WebAssembly.instantiateStreaming()` exige estrictamente `application/wasm`.
 
-1. **Extensiones de Archivos** (ej. `.jpg`, `.pdf`): Son convenciones de nomenclatura en el sistema de archivos local de su ordenador.
-2. **Tipos MIME** (ej. `image/jpeg`, `application/pdf`): Son etiquetas de red transmitidas dentro de los paquetes HTTP.
+## Firmas binarias (*Magic Bytes*) y formatos contenedores
 
-Las extensiones de archivo son frágiles. Un usuario puede cambiar el nombre de un virus malicioso (`script.exe`) a un archivo de imagen inofensivo (`avatar.png`). Sin embargo, su estructura subyacente sigue siendo un binario ejecutable. Un servidor web que confía ciegamente en las extensiones al manejar archivos de subida es muy vulnerable. 
+Ni la extensión ni la propiedad `File.type` enviada por el cliente demuestran la naturaleza real de un archivo: renombrar un script HTML como `factura.png` basta para burlar comprobaciones superficiales. La validación fiable lee los primeros bytes del flujo binario —los ***magic bytes***— y, en contenedores compuestos, verifica marcas en desplazamientos adicionales.
 
-Una validación de seguridad verifica tanto la extensión declarada como el tipo MIME real mediante los \"Magic Bytes\" (Firma del archivo).
+Por ejemplo, un archivo WebP inicia con `RIFF` en el byte 0 y declara `WEBP` en el byte 8; de manera similar, MP4, AVIF y HEIC utilizan cajas ISO BMFF con la firma `ftyp` a partir del byte 4 seguida de su perfil (`avif`, `heic`, `isom`). Por su parte, `.docx`, `.xlsx`, `.epub` y `.jar` comparten la firma ZIP `50 4B 03 04`, por lo que identificar su tipo real exige inspeccionar descriptores internos del archivo.
 
----
+## Tabla técnica de tipos MIME, magic bytes y requisitos HTTP
 
-## ¿Qué es el MIME Sniffing?
+| Formato / Extensión | Tipo MIME IANA | Magic Bytes (Hex / ASCII) | Requisito técnico o riesgo crítico |
+| :--- | :--- | :--- | :--- |
+| **PNG (`.png`)** | `image/png` | `89 50 4E 47 0D 0A 1A 0A` (`\x89PNG`) | Binario puro; omitir `charset`; validar cabecera `IHDR` |
+| **JPEG (`.jpg`)** | `image/jpeg` | `FF D8 FF` (`E0`/`E1`/`DB`) | Puede alojar metadatos EXIF o bloques de comentario manipulados |
+| **WebP (`.webp`)** | `image/webp` | `52 49 46 46` (`RIFF`) + `WEBP` en offset 8 | Comprobar tanto offset 0 como firma en desplazamiento 8 |
+| **PDF (`.pdf`)** | `application/pdf` | `25 50 44 46 2D` (`%PDF-`) | Admite acciones JavaScript internas; aislar subidas de usuarios |
+| **WebAssembly (`.wasm`)** | `application/wasm` | `00 61 73 6D 01 00 00 00` (`\0asm`) | `instantiateStreaming()` falla si llega como `octet-stream` |
+| **WOFF2 (`.woff2`)** | `font/woff2` | `77 4F 46 32` (`wOF2`) | Declarar `font/*` moderno y cabeceras CORS en orígenes cruzados |
+| **ZIP / OOXML (`.zip`, `.docx`)** | `application/zip` / `vnd.openxmlformats...` | `50 4B 03 04` (`PK\x03\x04`) | Contenedor compartido; validar entradas internas del archivo |
+| **JavaScript (`.js`, `.mjs`)** | `text/javascript` | Texto UTF-8 (sin firma fija) | RFC 9239; módulos ES se bloquean si llegan como `text/plain` |
+| **SVG (`.svg`)** | `image/svg+xml` | Texto XML (`<svg` o `<?xml`) | **Alto riesgo XSS**: ejecuta `<script>` si se abre directamente |
 
-**MIME Sniffing** es una técnica mediante la cual el navegador web inspecciona la estructura de bytes de un archivo entrante para adivinar su formato real, ignorando el encabezado `Content-Type` enviado por el servidor.
+## Seguridad HTTP: MIME Sniffing y cargas de archivos
 
-Aunque esto mejoró la usabilidad en servidores mal configurados, introdujo vulnerabilidades graves. Un atacante podría cargar código oculto simulando ser una imagen inofensiva, y el navegador que hace sniffing podría ejecutar los scripts integrados, provocando ataques XSS (Cross-Site Scripting).
+### Defensa frente a MIME Sniffing y archivos políglotas
 
-### El Escudo: X-Content-Type-Options: nosniff
+Bajo el estándar WHATWG MIME Sniffing, un navegador que recibe un recurso sin protección puede ignorar un `Content-Type` ambiguo e inferir HTML ejecutable a partir de los bytes iniciales. Un archivo políglota —cabecera de imagen válida más carga `<script>`— convierte esa tolerancia en XSS almacenado. Añadir siempre `X-Content-Type-Options: nosniff` obliga al navegador a respetar literalmente el tipo declarado y bloquea scripts u hojas CSS mal tipados.
 
-Para proteger a los usuarios de ataques MIME sniffing, los servidores modernos usan el siguiente encabezado de respuesta:
-```http
-X-Content-Type-Options: nosniff
+### Aislamiento de formatos activos como SVG y PDF
+
+Al recibir archivos de terceros, aplica defensa en profundidad:
+
+- **Aísla `image/svg+xml`, `application/pdf` y HTML:** sírvelos desde un subdominio sin cookies de sesión, fuerza `Content-Disposition: attachment` o aplica `Content-Security-Policy: default-src 'none'; sandbox`. Para limpiar gráficos vectoriales propios, utiliza el [Optimizador de SVG](/es/herramientas/svg-optimizer).
+- **Re-codifica imágenes rasterizadas:** volver a decodificar y guardar JPEG/PNG/WebP en servidor elimina cargas políglotas ocultas y depura bloques EXIF que puedes inspeccionar antes en el [Visor de Metadatos de Imagen](/es/herramientas/image-metadata-viewer).
+
+## Configuración en Nginx y verificación desde terminal
+
+```nginx
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    types {
+        text/javascript  js mjs;
+        application/wasm wasm;
+        image/avif       avif;
+        font/woff2       woff2;
+    }
+    add_header X-Content-Type-Options "nosniff" always;
+}
 ```
-Esto le dice al navegador que confíe estrictamente en el Content-Type declarado por el servidor y bloquea la carga si detecta algo inusual.
 
----
+En servidores Apache, genera reglas equivalentes de `AddType` y `Header always set` con el [Generador de .htaccess](/es/herramientas/htaccess-generator). Desde la línea de comandos puedes verificar tanto el servidor remoto como los bytes locales:
 
-## Errores comunes de MIME y su Impacto en el SEO
+```bash
+curl -sI https://ejemplo.com/app.mjs | grep -iE '^(content-type|x-content-type-options):'
+xxd -l 16 subida.png && file --mime-type -b subida.png
+```
 
-* **Cargar JavaScript incorrectamente**: Servir archivos JS con tipos MIME como `text/plain` en lugar de `text/javascript` provocará errores de bloqueo en los navegadores que respeten la directiva `nosniff`.
-* **Bloqueos a los Bots de SEO**: Los rastreadores de motores de búsqueda (como Googlebot) inspeccionan los tipos MIME. Si el CSS del sitio se sirve con un tipo MIME no válido, el bot no podrá renderizar la página correctamente, empeorando su puntaje de compatibilidad móvil en Google y perdiendo clasificación orgánica.
+Para auditar a la vez `Content-Type`, HSTS, CSP y políticas CORS de cualquier URL pública, complementa la inspección con el [Comprobador de Cabeceras HTTP](/es/herramientas/http-header-checker).

@@ -1,98 +1,113 @@
 ---
-metaTitle: "Generador y Verificador HMAC Online | SHA256, SHA512, MD5"
-metaDescription: "Genere y verifique códigos de autenticación de mensajes basados en hash (HMAC) criptográficamente seguros. Admite SHA256, SHA512, SHA1 y MD5 para API y webhooks."
-metaKeywords: "generador hmac, hmac sha256, código de autenticación de mensajes, firma api, verificador de webhook, hmac sha512, firma hmac md5, herramienta hmac online"
+metaTitle: "Generador y Verificador HMAC | SHA-256, SHA-512 y MD5"
+metaDescription: "Genere y verifique firmas HMAC según RFC 2104 con SHA-256, SHA-512, SHA-1 y MD5 en su navegador mediante Web Crypto API para webhooks y APIs."
+metaKeywords: "generador hmac, verificador hmac, hmac sha256 online, hmac sha512, firma de webhooks, autenticación api, rfc 2104, hmac sha1, hmac md5, código de autenticación de mensajes, jwt hs256"
 title: "Generador HMAC"
-shortDescription: "Genere y verifique códigos HMAC criptográficamente seguros en el lado del cliente para claves API, firmas de webhooks y validación de datos."
+shortDescription: "Genere y valide códigos de autenticación de mensajes basados en hash (HMAC-SHA256, HMAC-SHA512, HMAC-SHA1 y HMAC-MD5) conforme a RFC 2104 localmente para texto y archivos mediante Web Crypto API."
 faqs:
-  - question: "¿Qué es un HMAC?"
-    answer: "HMAC significa Código de Autenticación de Mensajes basado en Hash. Es una firma criptográfica que combina una clave secreta y una función hash (como SHA-256) para verificar tanto la integridad como la autenticidad de los datos."
-  - question: "¿Se envían mis claves secretas a su servidor?"
-    answer: "No, en absoluto. Todos los cálculos se realizan completamente dentro del entorno de prueba local de su navegador utilizando JavaScript (Web Crypto API). Sus mensajes y claves nunca salen de su dispositivo."
-  - question: "¿Por qué usar HMAC en lugar de un hash normal como SHA-256?"
-    answer: "Los hashes estándar son vulnerables a 'ataques de extensión de longitud', donde un atacante puede agregar datos y generar un hash válido. El diseño anidado de HMAC lo hace inmune a estos ataques."
-  - question: "¿Qué algoritmo HMAC debo elegir?"
-    answer: "Para la mayoría de las aplicaciones modernas, HMAC-SHA256 es la recomendación estándar. Ofrece un excelente equilibrio entre velocidad y seguridad. Use HMAC-SHA512 para máxima seguridad."
-  - question: "¿HMAC es lo mismo que encriptación?"
-    answer: "No. La encriptación es una función bidireccional que oculta datos. HMAC es una función unidireccional que se usa para verificar que los datos no se han alterado y provienen de un remitente confiable."
+  - question: "¿Por qué HMAC es mucho más seguro que aplicar SHA-256 a una clave concatenada con el mensaje?"
+    answer: "En funciones hash basadas en la construcción Merkle-Damgård (MD5, SHA-1, SHA-256 y SHA-512), el patrón simple SHA-256(clave + mensaje) es vulnerable a ataques de extensión de longitud: un atacante que conozca el resumen y el tamaño del mensaje puede anexar bytes arbitrarios y falsificar una firma válida sin conocer la clave. El diseño anidado de doble pasada de RFC 2104 con rellenos ipad y opad elimina por completo esta vulnerabilidad."
+  - question: "¿Se envían mis claves secretas, cargas útiles de webhooks o archivos a algún servidor?"
+    answer: "No. Todas las operaciones se ejecutan estrictamente en la memoria local de su navegador. HMAC-SHA256, HMAC-SHA512 y HMAC-SHA1 utilizan la interfaz nativa window.crypto.subtle.sign(), mientras que HMAC-MD5 y los archivos superiores a 20 MB se procesan por flujo local en bloques de 2 MB sin realizar ninguna petición de red."
+  - question: "¿Qué longitud mínima debe tener una clave secreta HMAC para ofrecer seguridad criptográfica real?"
+    answer: "La guía NIST SP 800-107 recomienda emplear claves generadas aleatoriamente con una longitud al menos igual a la salida del algoritmo hash subyacente: un mínimo de 32 bytes (256 bits) para HMAC-SHA256 y 64 bytes (512 bits) para HMAC-SHA512. Las claves que exceden el tamaño de bloque interno (64 o 128 bytes) se resumen previamente según RFC 2104 y no añaden entropía adicional."
+  - question: "¿Por qué falla la verificación HMAC de un webhook en Express, Next.js o Fastify si la clave y el algoritmo coinciden?"
+    answer: "La causa más frecuente es calcular la firma sobre un objeto reserializado con JSON.stringify(req.body) en lugar de utilizar los bytes exactos sin procesar de la petición HTTP recibida. Un solo espacio modificado, una barra invertida escapada o un cambio en el orden de las claves JSON invalida inmediatamente el código HMAC."
+  - question: "¿Por qué es obligatorio utilizar comparación en tiempo constante al validar firmas HMAC en el servidor?"
+    answer: "Los operadores estándar de igualdad de cadenas (=== o ==) se detienen en el primer byte diferente, lo que genera diferencias temporales medibles en microsegundos aprovechables mediante ataques de canal lateral para deducir una firma válida byte a byte. En producción siempre debe usar crypto.timingSafeEqual() en Node.js o hmac.compare_digest() en Python."
 features:
-  - "Generación de HMAC en el lado del cliente mediante Web Crypto API"
-  - "Soporte para múltiples algoritmos: HMAC-SHA256, HMAC-SHA512, HMAC-SHA1 y HMAC-MD5"
-  - "Modos de entrada duales: mensaje de texto o firma de archivo local"
-  - "Generación de HMAC en tiempo real con actualizaciones instantáneas"
-  - "Motor de verificación de suma de comprobación integrado"
-  - "Contador automático de caracteres e indicadores de tamaño"
-  - "Generador de claves secretas seguras y aleatorias (CSPRNG)"
-  - "Historial de sesión almacenado localmente en el navegador"
+  - "Cálculo y verificación conforme a RFC 2104 y FIPS 198-1 para HMAC-SHA256, HMAC-SHA512, HMAC-SHA1 y HMAC-MD5."
+  - "Ejecución nativa en el navegador con Web Crypto API (SubtleCrypto) y lectura local en bloques de 2 MB para archivos mayores de 20 MB."
+  - "Generador criptográfico CSPRNG integrado mediante window.crypto.getRandomValues() para crear claves simétricas de 256 bits."
+  - "Módulo instantáneo de verificación para contrastar firmas recibidas en cabeceras HTTP de webhooks y tokens API."
+  - "Enmascaramiento opcional de la clave secreta, salida hexadecimal en mayúsculas o minúsculas, copia automática e historial local."
+  - "Fragmentos de código integrados para validar webhooks, firmas AWS SigV4, tokens JWT HS256 y middleware en servidor."
 useCases:
-  - "Generación de firmas HMAC auténticas para pruebas de API"
-  - "Simulación y verificación de firmas de webhooks (Stripe, GitHub)"
-  - "Cálculo de sumas de comprobación de archivos locales con claves compartidas"
-  - "Generación de firmas para JWT seguros (tokens HS256 / HS512)"
+  - "Depurar y verificar firmas criptográficas de webhooks entrantes de Stripe, GitHub, Shopify, Slack o Twilio antes de desplegar."
+  - "Generar y auditar cabeceras de autorización firmadas para APIs REST y protocolos como AWS Signature Version 4."
+  - "Validar manualmente firmas simétricas de JSON Web Tokens (JWT) con algoritmos HS256 y HS512 durante incidencias de sesión."
+  - "Crear etiquetas autenticadas resistentes a manipulación para archivos binarios locales y colas de mensajes entre microservicios."
+  - "Producir claves secretas simétricas de alta entropía en el navegador sin exponer secretos internos a herramientas externas."
+  - "Comprobar la interoperabilidad con integraciones heredadas que aún requieren HMAC-SHA1 (OAuth 1.0a o TOTP RFC 6238) o HMAC-MD5."
 howToSteps:
-  - "Elija su modo de entrada: 'Entrada de texto' o 'Firma de archivo'."
-  - "Seleccione el algoritmo hash criptográfico (ej., SHA-256)."
-  - "Ingrese su mensaje o arrastre un archivo local."
-  - "Ingrese su clave secreta simétrica, o haga clic en 'Generar Clave'."
-  - "La firma HMAC se genera instantáneamente. Haga clic en copiar."
-  - "Opcional: Pegue una firma esperada en 'Comparar' para verificar."
+  - "Seleccione el algoritmo objetivo (HMAC-SHA256, HMAC-SHA512, HMAC-SHA1 o HMAC-MD5) en la barra de algoritmos."
+  - "Introduzca su clave secreta compartida o pulse el botón CSPRNG para generar automáticamente una clave aleatoria de 32 bytes."
+  - "Pegue el contenido exacto del mensaje en el modo de texto o cambie al modo de archivo para firmar un recurso binario local."
+  - "Revise la etiqueta hexadecimal calculada en tiempo real y ajuste si desea formato en mayúsculas o copia automática."
+  - "Pegue la firma esperada procedente de su cabecera HTTP o proveedor en el campo de verificación para confirmar su validez."
 ---
 
-## ¿Qué es HMAC? 
+Un resumen sin clave, como el obtenido con el [Generador SHA-256](/es/herramientas/sha256-generator) o el [Generador de Hash](/es/herramientas/hash-generator), detecta alteraciones accidentales, pero no impide que un atacante modifique un mensaje y recalcule un nuevo hash válido. El estándar **HMAC (Hash-based Message Authentication Code)**, definido en **RFC 2104** y **FIPS 198-1**, garantiza simultáneamente **integridad** y **autenticidad** vinculando la función hash a una clave simétrica compartida. Sin ese secreto resulta inviable falsificar la firma de un webhook HTTP, una petición API o un token de sesión, motivo por el cual HMAC protege Stripe, GitHub, Shopify, AWS Signature Version 4 y los JWT simétricos (`HS256`/`HS512`).
 
-Un **HMAC** (Hash-based Message Authentication Code) es un tipo específico de código de autenticación de mensajes que involucra una función hash criptográfica y una clave criptográfica secreta. Se utiliza para verificar simultáneamente la **integridad de los datos** y la **autenticidad** de un mensaje.
+## Construcción anidada de RFC 2104 y defensa contra extensión de longitud
 
-A diferencia de los hashes estándar (como SHA-256 o MD5), un HMAC utiliza una clave simétrica precompartida. Esta clave garantiza que solo las personas que poseen la clave secreta puedan generar o verificar la firma, protegiendo los canales de comunicación contra suplantación y manipulación.
+Un error clásico consiste en firmar mediante concatenación simple como `SHA-256(clave || mensaje)`. Sobre funciones Merkle-Damgård (MD5, SHA-1, SHA-256 y SHA-512), este esquema sufre **ataques de extensión de longitud**: como el resumen expone el estado interno de compresión, un adversario que conozca la firma y el tamaño del mensaje puede anexar bytes arbitrarios (como `&rol=admin`) y obtener un hash legítimo sin poseer la clave.
 
----
+RFC 2104 elimina esa vulnerabilidad mediante dos pasadas anidadas con constantes de relleno XOR fijas: `ipad` (el byte `0x36` repetido `B` veces) y `opad` (el byte `0x5c` repetido `B` veces), donde `B` es el tamaño de bloque interno del algoritmo en bytes:
 
-## Cómo Funciona HMAC: La Fórmula Criptográfica
+```text
+HMAC(K, m) = H( (K' XOR opad) || H( (K' XOR ipad) || m ) )
+```
 
-Simplemente codificar un mensaje concatenado con una clave ($Hash(Clave + Mensaje)$) es vulnerable a un ataque severo conocido como **ataque de extensión de longitud**. 
+Antes de operar, la clave `K` se normaliza a longitud exacta `B` para derivar `K'`:
 
-HMAC evita esto al aplicar un hash a la clave y al mensaje en una estructura anidada de dos pasadas:
-$$\\text{HMAC}(K, m) = H((K^+ \\oplus \\text{opad}) \\parallel H((K^+ \\oplus \\text{ipad}) \\parallel m))$$
+- Si `len(K) > B`, se comprime con `K' = H(K)` y se rellena a la derecha con ceros (`0x00`) hasta completar `B` bytes.
+- Si `len(K) < B`, se rellena directamente a la derecha con bytes `0x00` hasta `B`.
+- Si `len(K) == B`, se usa `K' = K` sin cambios.
 
-Esta función matemática rompe la vulnerabilidad, haciendo que HMAC sea altamente seguro contra manipulaciones.
+Al envolver el resumen interno dentro de una segunda pasada con clave derivada distinta, el estado interno del mensaje nunca queda expuesto. Además, la seguridad formal de HMAC descansa en la **seudoaleatoriedad (PRF)** de la función de compresión más que en la resistencia estricta a colisiones; por eso `HMAC-SHA1` e incluso `HMAC-MD5` resisten mejor que sus equivalentes sin clave, aunque todo sistema nuevo debe adoptar únicamente `HMAC-SHA256` o `HMAC-SHA512`.
 
----
+## Especificaciones técnicas y entropía por algoritmo
 
-## HMAC frente al Hashing Estándar
+La selección depende de la interoperabilidad exigida por el servicio externo y la arquitectura de servidor. Al trabajar con palabras de 64 bits y bloques de 128 bytes, `HMAC-SHA512` ofrece un rendimiento excelente en servidores modernos de 64 bits.
 
-| Característica | Hash Estándar (ej., SHA-256) | HMAC (ej., HMAC-SHA256) |
-| :--- | :--- | :--- |
-| **Entradas** | Solo mensaje ($m$) | Mensaje ($m$) + Clave secreta ($K$) |
-| **Propósito** | Verificar integridad de datos | Verificar integridad Y autenticidad |
-| **Vulnerabilidades**| Vulnerable a ataques de extensión | Inmune a ataques de extensión |
-| **Casos de uso** | Sumas de comprobación, contraseñas | Firmas API, webhooks, JWT |
+| Algoritmo | Firma | Hex | Bloque (`B`) | Clave mínima (NIST SP 800-107) | Estado | Usos habituales en producción |
+| :--- | :---: | :---: | :---: | :---: | :--- | :--- |
+| **HMAC-SHA256** | 256 bits | 64 | 64 bytes | 32 bytes (256 bits) | Recomendado | GitHub `X-Hub-Signature-256`, Stripe, Shopify, AWS SigV4, JWT `HS256` |
+| **HMAC-SHA512** | 512 bits | 128 | 128 bytes | 64 bytes (512 bits) | Alta garantía | JWT `HS512`, APIs financieras y exchanges, RPC internos críticos |
+| **HMAC-SHA1** | 160 bits | 40 | 64 bytes | 20 bytes (160 bits) | Compatibilidad | OAuth 1.0a, RFC 6238 TOTP / RFC 4226 HOTP, webhooks antiguos |
+| **HMAC-MD5** | 128 bits | 32 | 64 bytes | 16 bytes (128 bits) | Obsoleto | Autenticación legada CRAM-MD5 y servicios SOAP retirados |
 
----
+Para secretos nuevos de webhooks o APIs, cree al menos 32 bytes aleatorios con un CSPRNG desde el generador integrado o el [Generador de Cadenas Aleatorias](/es/herramientas/random-string-generator).
 
-## Algoritmos Soportados
+## Verificación segura en producción y consola
 
-1. **HMAC-SHA256**: Altamente seguro. El estándar de la industria para firmas de API (Stripe, GitHub) y JWT.
-2. **HMAC-SHA512**: Extremadamente seguro. Utilizado para la máxima protección de datos.
-3. **HMAC-SHA1**: Legado. Seguro gracias a HMAC, pero reservado para sistemas antiguos.
-4. **HMAC-MD5**: Obsoleto/Débil. Úselo solo para compatibilidad con sistemas heredados.
+Esta herramienta firma texto y archivos de hasta 20 MB localmente con `window.crypto.subtle.sign` (y en bloques locales de 2 MB para archivos mayores o `HMAC-MD5`). En producción, todo servidor debe cumplir dos reglas estrictas: **firmar el buffer binario sin procesar** y **comparar las firmas en tiempo constante** frente a ataques de temporización.
 
----
+```javascript
+// Node.js (Express / Next.js): verificación en tiempo constante
+import crypto from 'node:crypto';
 
-## Aplicaciones en el Desarrollo Web
+export function verificarWebhook(rawBodyBuffer, claveSecreta, cabeceraHex) {
+  const esperada = crypto.createHmac('sha256', claveSecreta).update(rawBodyBuffer).digest();
+  const recibida = Buffer.from(cabeceraHex.replace(/^sha256=/i, '').trim(), 'hex');
 
-### 1. Verificación de Firmas de Webhooks
-Cuando un servicio (como Stripe) envía un webhook a su servidor, debe verificar que provenga de ese proveedor.
-* El proveedor codifica la solicitud JSON con una clave secreta que compartió con usted y envía la firma en un encabezado (`Stripe-Signature`).
-* Su servidor calcula el HMAC de la solicitud utilizando la misma clave y lo compara.
+  if (esperada.length !== recibida.length) return false;
+  return crypto.timingSafeEqual(esperada, recibida);
+}
+```
 
-### 2. Firma de Solicitudes de API (Ej. AWS)
-Servicios como AWS utilizan HMAC para no enviar claves API por la red, previniendo intercepciones.
+```python
+# Python: validación segura con hmac.compare_digest
+import hashlib, hmac
 
-### 3. Firmas de JSON Web Token (JWT)
-Los JWT que usan el algoritmo HS256 firman el token con:
-$\\text{Firma} = \\text{HMAC-SHA256}(\\text{Base64Url}(\\text{Header}) + \".\" + \\text{Base64Url}(\\text{Payload}), \\text{Clave Secreta})$
+def verificar_firma(raw_body: bytes, secreto: str, cabecera_hex: str) -> bool:
+    esperada = hmac.new(secreto.encode("utf-8"), raw_body, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(esperada, cabecera_hex.removeprefix("sha256=").strip().lower())
+```
 
----
+Desde consola Linux o macOS, OpenSSL permite validar rápidamente un payload idéntico durante incidencias:
 
-## Seguridad Completa del Lado del Cliente
+```bash
+printf '%s' '{"evento":"pago.ok","id":"ord_9481"}' \
+  | openssl dgst -sha256 -hmac "mi_clave_secreta_32_bytes"
+```
 
-Esta herramienta procesa todos los cálculos al 100% en el lado del cliente utilizando su navegador web. Ni sus claves secretas ni sus mensajes se envían nunca a nuestros servidores.
+## Diagnóstico de fallos frecuentes en integraciones
+
+Si una firma no coincide pese a usar el mismo secreto y algoritmo, audite estos cuatro errores habituales:
+
+1. **Reserialización del cuerpo JSON:** middlewares como `express.json()` descartan espacios y modifican escapes (`\/` frente a `/`). Firmar `JSON.stringify(req.body)` cambia los bytes originales y rompe la verificación; conserve siempre el `Buffer` crudo previo al análisis.
+2. **Prefijos, codificación Base64 y protección anti-repetición:** GitHub antepone `sha256=` en hexadecimal; Stripe empaqueta marca temporal y firma en `t=...,v1=<hex>` firmando `${timestamp}.${rawBody}` contra ataques *replay*; y Shopify envía el resumen en **Base64** (contrastable con el [Codificador Base64](/es/herramientas/base64-encode)). Para auditar tokens `HS256`/`HS512`, inspeccione cabecera y claims con el [Decodificador JWT](/es/herramientas/jwt-decoder).
+3. **Clave UTF-8 frente a bytes hexadecimales decodificados:** confirme si una clave de 64 caracteres hexadecimales se introduce literalmente como 64 bytes ASCII o decodificada en 32 bytes binarios.
+4. **Canonización estricta de peticiones:** esquemas como AWS Signature Version 4 exigen ordenar alfabéticamente parámetros de consulta, pasar cabeceras a minúsculas y separar líneas con `\n` exacto antes de derivar las claves HMAC encadenadas.

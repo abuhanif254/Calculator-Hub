@@ -1,89 +1,106 @@
 ---
-metaTitle: "Comprobador de Cabeceras HTTP | Analizador de Seguridad y CORS"
-metaDescription: "Inspeccione y analice las cabeceras de respuesta HTTP, verifique políticas CORS, pruebe redirecciones, compruebe SSL/HSTS y audite la seguridad en tiempo real."
-metaKeywords: "comprobador cabeceras http, analizador de cabeceras, inspector http, cabeceras de seguridad, checker de redirecciones, cors checker, hsts checker"
+metaTitle: "Comprobador de Cabeceras HTTP | Seguridad, CORS y Caché"
+metaDescription: "Inspeccione cabeceras HTTP en vivo, rastree hasta 5 redirecciones y audite CSP, HSTS, cookies, CORS, caché y compresión Brotli o Gzip al instante."
+metaKeywords: "comprobador cabeceras http, analizador cabeceras http, auditoria seguridad http, comprobar hsts csp, verificador cors, cadenas de redireccion, comprobar cookies httponly, inspeccionar respuestas http"
 title: "Comprobador de Cabeceras HTTP"
-shortDescription: "Inspeccione las cabeceras HTTP de su servidor. Audite las políticas de seguridad (CSP, HSTS), pruebe cadenas de redirección y analice respuestas de red."
+shortDescription: "Inspeccione cabeceras de respuesta HTTP en tiempo real, trace saltos de redirección manualmente y audite políticas de seguridad (CSP, HSTS, cookies), directivas CORS, compresión Brotli/Gzip y señales SEO técnicas."
 faqs:
-  - question: "¿Por qué no puedo comprobar las cabeceras directamente desde mi navegador usando JavaScript?"
-    answer: "Los navegadores aplican un mecanismo de seguridad llamado CORS (Intercambio de recursos de origen cruzado). Si intenta realizar una solicitud 'fetch' a un dominio de terceros desde su navegador, este bloquea el acceso a las cabeceras a menos que el servidor de destino las permita. Por ello, nuestra herramienta realiza la solicitud en nuestro backend."
-  - question: "¿Cuál es la diferencia entre las solicitudes GET y HEAD?"
-    answer: "Una solicitud GET solicita al servidor que devuelva tanto las cabeceras como el cuerpo de la respuesta (ej. el HTML completo). Una solicitud HEAD pide al servidor solo las cabeceras, sin descargar el contenido. Las solicitudes HEAD son más rápidas y ahorran ancho de banda."
-  - question: "¿Qué significa una advertencia 'Falta Strict-Transport-Security (HSTS)'?"
-    answer: "HSTS le dice al navegador que el sitio web solo debe ser accesible mediante HTTPS. Si falta, un usuario podría acceder a su sitio a través de una conexión HTTP insegura, quedando vulnerable al secuestro de sesión."
-  - question: "¿Cómo oculto la versión de mi servidor Nginx o Apache en las cabeceras?"
-    answer: "En Nginx, agregue 'server_tokens off;' a su configuración. En Apache, establezca 'ServerTokens ProductOnly' y 'ServerSignature Off'. En PHP, establezca 'expose_php = Off' en php.ini."
+  - question: "¿Por qué JavaScript en el navegador no puede leer todas las cabeceras HTTP de un sitio remoto?"
+    answer: "El estándar Fetch aplica la Política del Mismo Origen y solo expone cabeceras seguras para CORS (como Content-Type o Cache-Control), salvo que el servidor liste cabeceras extra en Access-Control-Expose-Headers. Realizar la consulta desde una ruta de servidor protegida contra SSRF permite capturar cada cabecera en crudo, cada Set-Cookie y todos los saltos 3xx."
+  - question: "¿Cuál es la diferencia técnica entre las redirecciones HTTP 301/302 y 307/308?"
+    answer: "Según la sección 15.4 de RFC 9110, los navegadores pueden convertir históricamente una petición POST en GET al seguir redirecciones 301 o 302. Los códigos 307 (redirección temporal) y 308 (redirección permanente) prohíben estrictamente alterar el método HTTP y el cuerpo, resultando imprescindibles en APIs y formularios."
+  - question: "¿Por qué falla Access-Control-Allow-Origin: * cuando el frontend envía cookies o credenciales?"
+    answer: "La especificación Fetch prohíbe combinar el comodín '*' con Access-Control-Allow-Credentials: true para impedir que cualquier dominio arbitrario ejecute peticiones autenticadas en nombre del usuario. Los servidores que aceptan credenciales deben devolver dinámicamente el origen autorizado y añadir Vary: Origin."
+  - question: "¿Qué problema provoca omitir Vary: Accept-Encoding al activar compresión Brotli o Gzip?"
+    answer: "Las redes CDN y los proxies inversos indexan la caché combinando la URL con las cabeceras listadas en Vary. Sin Vary: Accept-Encoding, una caché intermedia que guarde una respuesta comprimida con Brotli podría entregar bytes binarios ilegibles a un cliente antiguo o rastreador que solo solicitó texto sin comprimir."
+  - question: "¿En qué se diferencian exactamente Cache-Control: no-cache y Cache-Control: no-store?"
+    answer: "Pese a su nombre, no-cache autoriza al navegador y a los proxies a guardar una copia local siempre que la revaliden con el origen mediante ETag o Last-Modified antes de reutilizarla. En cambio, no-store prohíbe almacenar cualquier copia en memoria o disco y debe reservarse para respuestas bancarias, de autenticación o datos personales."
 features:
-  - "Comprueba respuestas de forma segura sobre conexiones HTTP y HTTPS."
-  - "Analiza el cumplimiento de seguridad: CSP, HSTS, X-Frame-Options y Referrer-Policy."
-  - "Rastrea las cadenas de redireccionamiento (301, 302) para detectar bucles."
-  - "Audita las cookies de seguridad (Secure, HttpOnly, SameSite, Expiry)."
-  - "Mide la latencia de respuesta y valida políticas de caché (Gzip/Brotli)."
-  - "Comparación paralela de cabeceras entre dos URL diferentes."
+  - "Trazado manual de cadenas de redirección (hasta 5 saltos) con medición de latencia por salto y detección automática de bucles circulares."
+  - "Puntuación ponderada de seguridad que audita CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy y exposición del servidor."
+  - "Análisis granular de múltiples cabeceras Set-Cookie verificando indicadores Secure, HttpOnly, SameSite, Expires y Max-Age sin errores por comas en fechas."
+  - "Verificación de SEO técnico en capa HTTP: X-Robots-Tag, enlaces Link rel='canonical', actualización automática a HTTPS y presencia de Vary: Accept-Encoding."
+  - "Diagnóstico de caché y compresión inspeccionando directivas Cache-Control, validadores ETag/Last-Modified y codificación Brotli o Gzip."
+  - "Selección de método GET o HEAD y personalización de User-Agent protegidas mediante resolución DNS y filtrado anti-SSRF de redes privadas en cada salto."
 useCases:
-  - "Ingenieros de seguridad auditando sitios web en busca de cabeceras faltantes."
-  - "Especialistas SEO inspeccionando cadenas de redirecciones (Redirections)."
-  - "Desarrolladores backend comprobando el cumplimiento de las cabeceras CORS en APIs."
-  - "Ingenieros DevOps ocultando las firmas del servidor (Nginx/Apache)."
+  - "Validar políticas Content-Security-Policy y Strict-Transport-Security en producción antes de solicitar el alta en la lista global HSTS Preload."
+  - "Depurar llamadas fallidas entre orígenes en APIs REST y GraphQL inspeccionando Access-Control-Allow-Origin, Methods, Headers y Expose-Headers."
+  - "Auditar el acierto de caché en CDN, activos estáticos con immutable y revalidaciones condicionales 304 Not Modified tras editar proxies inversos."
+  - "Comprobar que antiguas direcciones HTTP y variantes con o sin www redirigen limpiamente hacia el destino canónico HTTPS sin bucles."
+  - "Confirmar que las cookies de sesión emitidas en Set-Cookie imponen HttpOnly, Secure y SameSite adecuado en entornos productivos."
+  - "Verificar directivas X-Robots-Tag y cabeceras canónicas Link en archivos no HTML como documentos PDF, imágenes o feeds JSON para SEO técnico."
 howToSteps:
-  - "Introduzca la URL de destino (ej. https://ejemplo.com) en el campo de entrada."
-  - "Elija el Método de Solicitud (GET para completo, HEAD solo para cabeceras)."
-  - "Seleccione una plantilla User-Agent (Chrome de Escritorio, Safari Móvil, Googlebot)."
-  - "Haga clic en 'Comprobar Cabeceras'."
-  - "Revise las Calificaciones (Seguridad, SEO, Caché)."
-  - "Use la pestaña 'Comparar URL' para realizar una comparación lado a lado."
+  - "Pegue cualquier URL pública HTTP o HTTPS en el campo de destino; si omite el protocolo, la herramienta aplicará HTTPS por defecto."
+  - "Elija el método de sondeo (GET para obtener la respuesta completa o HEAD para recibir únicamente cabeceras) y ajuste el User-Agent si desea emular un bot o navegador concreto."
+  - "Inicie la inspección para recorrer cada salto de redirección manualmente registrando códigos de estado, tiempos de respuesta y cabeceras sin alterar."
+  - "Revise las tarjetas de puntuación de Seguridad, SEO y Rendimiento para identificar cabeceras ausentes, comodines peligrosos en CSP o cargas sin compresión."
+  - "Despliegue las pestañas de Cookies, CORS y Cabeceras Raw para validar los atributos individuales de Set-Cookie y los permisos de origen cruzado."
+  - "Repita la prueba inmediatamente después de actualizar Nginx, Apache, Cloudflare o el middleware de su aplicación para confirmar la aplicación real."
 ---
 
-## ¿Qué son las Cabeceras HTTP?
+Cada intercambio HTTP inicia con una línea de estado y un bloque de cabeceras regido por **RFC 9110 (HTTP Semantics)**. Estas directivas controlan el aislamiento de seguridad del navegador, la protección frente a degradaciones TLS, el acceso entre orígenes, la caché perimetral y el rastreo de buscadores —imponiéndose con frecuencia sobre las etiquetas `<meta>` del HTML—. Como `fetch()` en cliente oculta `Set-Cookie` y filtra campos restringidos por CORS, auditar un endpoint real exige una sonda en servidor que capture cada salto de redirección y cada línea en bruto.
 
-Cuando navega por la web, su navegador se comunica con los servidores utilizando **HTTP (Hypertext Transfer Protocol)**. Esta comunicación consta de peticiones (enviadas por el navegador) y respuestas (devueltas por el servidor). 
+## Endurecimiento de cabeceras de seguridad y referencia base
 
-Aunque la carga útil principal es HTML, CSS o imágenes, existe una envoltura de metadatos invisible que acompaña a cada mensaje: las **Cabeceras HTTP** (HTTP Headers).
+Los navegadores modernos incluyen defensas críticas que solo se activan cuando el origen las declara explícitamente. Revisarlas detecta debilidades como `'unsafe-inline'` en CSP o banners `Server` y `X-Powered-By` que exponen versiones exactas a escáneres automáticos:
 
-Las cabeceras son pares de \"nombre-valor\" (ej. `Content-Type: text/html`) que permiten al cliente y al servidor negociar la seguridad, las reglas de almacenamiento en caché, los formatos y los estados de las sesiones.
+| Cabecera | Estándar | Base recomendada en producción | Amenaza mitigada |
+| :--- | :--- | :--- | :--- |
+| `Content-Security-Policy` | W3C CSP 3 | `default-src 'self'; script-src 'self' 'nonce-{rand}'; object-src 'none'; frame-ancestors 'none'` | XSS, inyección de scripts en línea y exfiltración. |
+| `Strict-Transport-Security` | RFC 6797 | `max-age=31536000; includeSubDomains; preload` | *SSL-stripping* y degradación de HTTPS a HTTP. |
+| `X-Frame-Options` | RFC 7034 | `DENY` o `SAMEORIGIN` (junto a `frame-ancestors`) | *Clickjacking* mediante iframes externos. |
+| `X-Content-Type-Options` | Fetch | `nosniff` | Inferencia MIME que ejecuta imágenes o texto como JS. |
+| `Referrer-Policy` | W3C | `strict-origin-when-cross-origin` | Fuga de rutas privadas o tokens en `Referer`. |
+| `Permissions-Policy` | W3C | `camera=(), microphone=(), geolocation=()` | Acceso no autorizado a sensores desde iframes. |
+| `Set-Cookie` | RFC 6265bis | `Secure; HttpOnly; SameSite=Lax; Path=/` | Robo de sesión vía XSS, tráfico sin cifrar y CSRF. |
 
----
+Antes de activar una política CSP estricta en sitios heredados, conviene desplegar primero `Content-Security-Policy-Report-Only` para recoger infracciones reales sin bloquear scripts legítimos en producción. En aplicaciones que requieren aislamiento de proceso o `SharedArrayBuffer`, combine además `Cross-Origin-Opener-Policy: same-origin` con `Cross-Origin-Resource-Policy: same-origin`.
 
-## Cabeceras de Seguridad Explicadas
+Al analizar múltiples `Set-Cookie`, dividir por comas falla con fechas como `Expires=Thu, 19 Nov 2026 ...`; un cliente conforme lee cada cookie por separado vía `headers.getSetCookie()`. Elija `SameSite=Lax` para sesiones generales, reserve `SameSite=Strict` para paneles administrativos y limite `SameSite=None; Secure` a flujos entre dominios como pasarelas de pago o proveedores OAuth. Para ocultar firmas del servidor, aplique `server_tokens off;` en Nginx, `ServerTokens Prod` en Apache o `app.disable('x-powered-by')` en Express.
 
-Las cabeceras de seguridad son directivas que indican al navegador que active mecanismos de defensa integrados:
+## Redirecciones, semántica de métodos y defensa anti-SSRF
 
-### Content-Security-Policy (CSP)
-El CSP es la defensa definitiva contra el *Cross-Site Scripting* (XSS). Restringe los orígenes desde los que el navegador tiene permiso para cargar scripts, imágenes y marcos (iframes).
+Seguir redirecciones de forma silenciosa borra las cabeceras intermedias, ocultando saltos `302` innecesarios, ausencias de paso a HTTPS o cookies descartadas en ruta. El trazado manual expone el código, `Location` y latencia de cada salto.
 
-### Strict-Transport-Security (HSTS)
-Garantiza que un sitio web solo se pueda cargar a través de una conexión cifrada HTTPS. Protege contra ataques MITM (hombre en el medio).
+La sección 15.4 de RFC 9110 diferencia dos pares clave:
 
-### X-Frame-Options (XFO)
-Evita que su sitio web sea incrustado dentro de un `<iframe>` en otros dominios. Esto bloquea los ataques de \"clickjacking\".
+- **`301` frente a `308` (permanentes):** ambos consolidan señales canónicas SEO, pero `301` permite reescribir `POST` a `GET`, mientras que `308` preserva estrictamente el método y el cuerpo.
+- **`302` frente a `307` (temporales):** `307` prohíbe alterar el método original en APIs y formularios.
+- **Bucles y protección anti-SSRF por salto:** una sonda segura resuelve el DNS y bloquea redes privadas RFC 1918, *loopback* (`127.0.0.0/8`, `::1`) y metadatos *link-local* (`169.254.169.254`) en **cada salto**, neutralizando redirecciones hacia infraestructura interna.
 
-### X-Content-Type-Options
-Impide que los navegadores intenten adivinar el tipo MIME de un archivo. Al establecer `nosniff`, bloquea ataques en los que un usuario carga un script disfrazado de imagen.
+Para auditorías masivas de rutas utilice también el [Comprobador de Redirecciones](/es/herramientas/redirect-checker) y valide la resolución previa del dominio en [Consulta DNS](/es/herramientas/dns-lookup).
 
----
+## Caché RFC 9111, compresión, CORS y SEO en capa HTTP
 
-## Impacto SEO de las Cabeceras
+### Frescura, revalidación y clave Vary
 
-Los rastreadores como Googlebot evalúan las cabeceras de respuesta:
+Las aplicaciones de alto tráfico combinan tres piezas de RFC 9111:
 
-* **Cabeceras Canónicas**: Puede servir etiquetas canónicas como cabeceras (ej. `Link: <https://ejemplo.com/doc.pdf>; rel=\"canonical\"`). Muy útil para indexar archivos PDF.
-* **X-Robots-Tag**: Indica a los buscadores si pueden indexar un archivo (`noindex, nofollow`).
-* **Estados de Redirección (301 vs 302)**: Google transfiere el valor SEO de los enlaces (PageRank) solo a través de redirecciones permanentes 301, mientras que un 302 retiene la autoridad en la URL original.
+1. **Frescura:** activos versionados por *hash* (`app.9f3a2c.js`) deben emitir `Cache-Control: public, max-age=31536000, immutable`. Documentos HTML y APIs dinámicas requieren `no-cache` (guardar y revalidar) o `private, no-store` en datos sensibles.
+2. **Validadores condicionales:** un `ETag` fuerte (`"a84f91c2"`) o débil (`W/"..."`) junto a `Last-Modified` permite responder `304 Not Modified` ante `If-None-Match`.
+3. **Compresión, transporte y `Vary`:** Brotli (`Content-Encoding: br`) ahorra entre 15 % y 20 % frente a `gzip`, pero requiere `Vary: Accept-Encoding` para que la CDN separe variantes comprimidas y sin comprimir; compruebe también cabeceras como `Alt-Svc` si anuncia negociación HTTP/3 sobre QUIC.
 
----
+### Depuración de CORS y control de indexación
 
-## Cabeceras CORS
+Cuando una petición entre orígenes incluye `Authorization` o `Content-Type: application/json`, el navegador envía un *preflight* `OPTIONS`. La inspección detecta enseguida fallos críticos: `Access-Control-Allow-Origin: *` rompe llamadas con `credentials: 'include'`, omitir `Access-Control-Expose-Headers` oculta cabeceras de cuota al frontend y no fijar `Access-Control-Max-Age` repite consultas `OPTIONS` en cada mutación. Si evalúa políticas de incrustación `X-Frame-Options` o `frame-ancestors`, verifique también cómo responden sus vistas embebidas en el [Probador de Pantallas Responsivas](/es/herramientas/responsive-screen-tester).
 
-CORS (Cross-Origin Resource Sharing) es un mecanismo del navegador que bloquea los scripts de un dominio para que no puedan obtener recursos en otro. El servidor debe autorizarlos con:
+En archivos no HTML (PDF, descargas o feeds JSON), las cabeceras `X-Robots-Tag: noindex, nofollow` y `Link: <https://ejemplo.com/guia>; rel="canonical"` controlan la indexación directamente en red. Auditarlas impide fugas de `noindex` desde preproducción y permite verificar la exactitud del tipo de contenido con el [Comprobador de Tipos MIME](/es/herramientas/mime-type-checker).
 
-* **`Access-Control-Allow-Origin`**: Especifica los dominios permitidos (ej. `https://micliente.com`).
-* **`Access-Control-Allow-Methods`**: Métodos permitidos (ej. `GET, POST`).
+## Reproducción de auditorías en terminal y CI/CD
 
----
+Para replicar la inspección salto a salto en pruebas automáticas, ejecute `curl` con `-D -` y `--compressed`:
 
-## Directivas de Caché y Compresión
+```bash
+# Inspeccionar cadena de redirecciones, códigos y compresión Brotli/Gzip
+curl -sSL -D - -o /dev/null --compressed \
+  -A "Mozilla/5.0 (compatible; AuditoriaHTTP/1.0)" \
+  https://ejemplo.com
 
-* **`Cache-Control: max-age=31536000`**: Indica al navegador que guarde el archivo durante un año sin comprobar actualizaciones (Ideal para imágenes).
-* **`Content-Encoding`**: Identifica el algoritmo utilizado para comprimir la carga útil, comúnmente **Brotli (`br`)** o **Gzip (`gzip`)**. Brotli proporciona una compresión hasta un 20% mejor.
+# Probar una solicitud preflight OPTIONS de CORS
+curl -i -X OPTIONS https://api.ejemplo.com/v1/recursos \
+  -H "Origin: https://app.ejemplo.com" \
+  -H "Access-Control-Request-Method: POST" \
+  -H "Access-Control-Request-Headers: Authorization, Content-Type"
+```
 
-Utilice nuestra **herramienta de comprobación** para analizar el cumplimiento de la seguridad de sus servidores web, rastrear redireccionamientos e identificar debilidades en su configuración en tiempo real.
+Si gestiona servidores Apache, genere directivas canónicas HTTPS y cabeceras `Header always set` en el [Generador de .htaccess](/es/herramientas/htaccess-generator) y compruebe aquí mismo que cada política responda en producción.

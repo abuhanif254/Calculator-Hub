@@ -1,95 +1,101 @@
 ---
-metaTitle: "Buscador de IP y Localizador Geográfico | Analizador de Red"
-metaDescription: "Descubra detalles de cualquier dirección IP (IPv4/IPv6). Ubicación geográfica, proveedor (ISP), número de sistema autónomo (ASN), proxy y estado de VPN."
-metaKeywords: "buscar ip, cual es mi ip, mi ip, localizar ip, rastrear ip, proxy detector, vpn checker, ipv4 ipv6, asn lookup, geolocalizacion ip"
+metaTitle: "Buscador de IP y Geolocalización | ASN, ISP, rDNS y VPN"
+metaDescription: "Analiza cualquier IPv4 o IPv6: geolocalización, proveedor ISP, ASN, bloque CIDR, DNS inverso PTR y detección de VPN, proxy o nodos de salida Tor."
+metaKeywords: "buscador de ip, geolocalizacion ip, cual es mi ip, rastrear ip, consultar asn, dns inverso ptr, detector de vpn, detectar proxy, ipv4 ipv6, bloque cidr"
 title: "Buscador de IP y Localizador"
-shortDescription: "Inspeccione cualquier IP (IPv4 o IPv6). Descubra la ubicación geográfica, proveedor (ISP), registro ASN y métricas de seguridad contra VPN y proxies."
+shortDescription: "Inspecciona cualquier dirección IPv4 o IPv6 para conocer su geolocalización, proveedor ISP, número de sistema autónomo (ASN), DNS inverso PTR y señales de VPN, proxy o Tor."
 faqs:
-  - question: "¿Qué es una herramienta de búsqueda de IP?"
-    answer: "Es una utilidad que consulta bases de datos de registro para encontrar metadatos asociados a una IP, como ubicación geográfica, proveedor de servicios de internet (ISP) y estado de configuración de seguridad."
-  - question: "¿Qué es mi dirección IP?"
-    answer: "Su IP es una etiqueta numérica única asignada a su dispositivo o enrutador por su ISP. Al hacer clic en 'Detectar mi IP' en esta herramienta, se leerán dinámicamente los encabezados de su solicitud para mostrarle su dirección pública actual."
-  - question: "¿Puede la búsqueda de IP detectar mi ubicación exacta?"
-    answer: "No, la búsqueda de IP no puede encontrar la dirección de su casa o sus coordenadas GPS exactas. Solo identifica la ciudad o región de la puerta de enlace donde su ISP enruta su tráfico (con una precisión típica de unos pocos kilómetros)."
-  - question: "¿Puede una IP revelar mi identidad personal?"
-    answer: "No, una IP en sí no contiene su nombre, correo ni identidad personal. Solo su ISP puede vincular una IP a una cuenta específica, lo que normalmente requiere una orden judicial."
-  - question: "¿Qué es una IP de VPN o Proxy?"
-    answer: "Una IP de VPN o Proxy actúa como intermediario para encriptar o desviar su tráfico. Esto oculta su IP real de los sitios web que visita, siendo comunes para evitar bloqueos geográficos."
-  - question: "¿Pueden las direcciones IP afectar al SEO?"
-    answer: "Sí, si la IP del servidor web está en una lista negra por correo no deseado (SPAM) o si su proveedor de alojamiento sufre un tiempo de inactividad frecuente que afecte al Core Web Vitals (TTFB)."
+  - question: "¿Por qué la geolocalización de IP muestra otra ciudad cercana en lugar de mi dirección exacta?"
+    answer: "La geolocalización IP asocia prefijos de enrutamiento con asignaciones de registros regionales (RIR), puntos de intercambio del ISP y mediciones de latencia, nunca con coordenadas GPS del hogar. La precisión por país supera el 99%, pero a nivel de ciudad suele apuntar a la pasarela regional (BNG) del operador, situada a decenas de kilómetros del abonado."
+  - question: "¿Qué ocurre si consulto una IP privada RFC 1918 como 192.168.1.1 o 10.0.0.5?"
+    answer: "Las direcciones privadas, loopback, de enlace local y CGNAT no son enrutables en el Internet público, por lo que carecen de geolocalización o titularidad ASN pública. El backend detecta estas subredes reservadas de inmediato, evita llamadas externas para prevenir SSRF y devuelve la clasificación RFC correspondiente."
+  - question: "¿Por qué direcciones Anycast como 8.8.8.8 o 1.1.1.1 muestran ubicaciones inesperadas?"
+    answer: "En Anycast, el mismo prefijo IP se anuncia mediante BGP desde cientos de puntos de presencia repartidos por todo el mundo para dirigir a cada usuario al nodo más cercano. Al no existir una única ubicación física para ese prefijo, las bases de geolocalización suelen asignarlo a la sede corporativa del operador o a una coordenada central."
+  - question: "¿Cómo verifica el DNS inverso confirmado hacia adelante (FCrDNS) la autenticidad de un servidor?"
+    answer: "FCrDNS realiza primero una consulta inversa PTR sobre la IP para obtener un nombre de host y luego ejecuta una consulta directa A o AAAA sobre ese nombre para comprobar que resuelve exactamente a la misma IP original. Los servidores de correo y WAF usan este doble chequeo para validar emisores SMTP y rastreadores reales."
+  - question: "¿Que una IP muestre indicador de Hosting o VPN significa automáticamente que es maliciosa?"
+    answer: "No. El indicador de hosting simplemente señala que el prefijo pertenece a un ASN de nube o centro de datos (como AWS, GCP o DigitalOcean) en lugar de un ISP residencial, y el de VPN apunta a túneles compartidos de privacidad. Los equipos de seguridad emplean estas señales para exigir verificación adicional, no para bloqueos ciegos."
 features:
-  - "Detecta instantáneamente direcciones IP públicas (IPv4 e IPv6)."
-  - "Mapeo de geolocalización completo: país, región, ciudad, código postal y coordenadas."
-  - "Identifica el proveedor (ISP), Número de Sistema Autónomo (ASN) y empresa."
-  - "Inteligencia contra amenazas: detecta túneles VPN, proxies y nodos de salida de Tor."
-  - "Mecanismo SSRF seguro: bloquea las búsquedas en rangos de red locales (RFC 1918)."
-  - "Mapa interactivo de OpenStreetMap sin dependencias pesadas."
+  - "Validación dual-stack de direcciones IPv4 e IPv6 en forma canónica y detección automática de tu IP pública actual"
+  - "Geolocalización con respaldo multiproveedor: país, región, ciudad, código postal, coordenadas, mapa y zona horaria IANA"
+  - "Atribución completa de enrutamiento con Número de Sistema Autónomo (ASN), operador ISP, organización y bloque CIDR"
+  - "Resolución simultánea de DNS inverso (rDNS) en zonas in-addr.arpa e ip6.arpa para extraer el hostname PTR"
+  - "Perfilado de seguridad que detecta nodos de salida Tor, proxies abiertos, endpoints VPN y rangos de centros de datos"
+  - "Clasificación local de rangos reservados (RFC 1918, RFC 6598, RFC 4193, loopback) con defensa anti-SSRF y exportación JSON/TXT"
 useCases:
-  - "Equipos de ciberseguridad verificando registros de red para bloquear bots maliciosos."
-  - "Ingenieros de red analizando el enrutamiento (ASN) y registros PTR (DNS Inverso)."
-  - "Plataformas de anuncios detectando clics fraudulentos de centros de datos."
-  - "Usuarios comunes descubriendo sus propiedades de conexión y fugas en su proxy."
+  - "Investigación de ataques de fuerza bruta, scraping de APIs y picos anómalos en logs de Nginx, Cloudflare o balanceadores"
+  - "Comprobación de registros PTR y FCrDNS en IPs dedicadas de servidores SMTP salientes antes de ponerlos en producción"
+  - "Auditoría de túneles VPN, reglas de split-tunneling y posibles fugas IPv6 durante diagnósticos de conectividad remota"
+  - "Validación antifraude en pagos online contrastando el país de facturación con la geolocalización y señales de proxy o Tor"
+  - "Identificación del proveedor cloud, ASN y prefijo CIDR detrás de webhooks entrantes para configurar listas de control de acceso"
+  - "Triaje rápido de alertas de cortafuegos diferenciando usuarios residenciales, pools CGNAT móviles y servidores automatizados"
 howToSteps:
-  - "Escriba cualquier dirección IPv4 o IPv6 en el cuadro de búsqueda."
-  - "O déjelo en blanco y haga clic en 'Detectar mi IP'."
-  - "Presione el botón 'Consultar IP' para ejecutar el análisis seguro en nuestro servidor."
-  - "Revise el panel para ver las coordenadas, el anfitrión de la red y la calificación de reputación."
-  - "Analice el panel de Seguridad y Amenazas para comprobar el estado de VPN/Proxy."
+  - "Abre la herramienta para inspeccionar automáticamente tu dirección IP pública o introduce cualquier IPv4 o IPv6 objetivo."
+  - "Ejecuta la consulta para lanzar en paralelo la geolocalización, la atribución ASN, el cribado de anonimizadores y el PTR inverso."
+  - "Revisa el panel de ubicación y el mapa interactivo para comprobar país, región, ciudad aproximada, coordenadas y zona horaria IANA."
+  - "Examina la tarjeta de red y enrutamiento para verificar el ASN, el operador ISP, la organización titular y el bloque CIDR anunciado."
+  - "Consulta el módulo de inteligencia de amenazas y DNS inverso para revisar alertas de VPN, proxy, Tor, hosting y el nombre PTR."
+  - "Copia el resumen estructurado o descarga el informe completo en formato JSON o TXT para auditorías e informes de incidentes."
 ---
 
-## ¿Qué es una Búsqueda de IP?
+Cada paquete que viaja por Internet lleva una dirección IP de origen y destino, pero los octetos decimales o grupos hexadecimales por sí solos ofrecen poco contexto ante una incidencia. Convertir una dirección en inteligencia operativa requiere correlacionar tres capas independientes: tablas de enrutamiento BGP y registros de Sistemas Autónomos, bases comerciales de geolocalización y zonas inversas DNS. Este analizador consulta estas fuentes en paralelo detrás de endpoints protegidos contra SSRF, gestiona respaldo automático multiproveedor y genera mapas interactivos, metadatos de red e informes exportables directamente en tu navegador.
 
-Una herramienta de búsqueda de IP está diseñada para consultar registros de bases de datos y recuperar metadatos asociados a una **Dirección IP (Protocolo de Internet)** específica. Cada dispositivo conectado a Internet requiere una dirección IP para comunicarse. 
+## Agotamiento IPv4, forma canónica IPv6 y bloques reservados
 
-Ya sea que esté depurando registros del servidor, analizando patrones de tráfico, detectando abuso de API o comprobando sus propias propiedades de conectividad pública, nuestra herramienta proporciona visibilidad en tiempo real.
+Internet opera simultáneamente sobre **IPv4** de 32 bits (`4.294.967.296` direcciones) e **IPv6** de 128 bits (`3,4 × 10^38` direcciones). Como una IPv6 admite múltiples escrituras equivalentes, RFC 5952 establece su **forma canónica estricta**: hexadecimales en minúscula, sin ceros a la izquierda en cada hexteto de 16 bits y un único `::` para comprimir la secuencia más larga de dos o más hextetos nulos (`2001:4860:4860::8888`). Además, los servidores *dual-stack* registran conexiones IPv4 bajo el prefijo mapeado `::ffff:0:0/96` (`::ffff:203.0.113.45`), que debe desempaquetarse antes de consultar tablas IPv4.
 
----
+No toda IP válida es públicamente enrutable. IANA reserva bloques especiales excluidos del BGP global:
 
-## IPv4 frente a IPv6
+| Bloque CIDR | Familia | Estándar / RFC | Ámbito y comportamiento operativo |
+| :--- | :--- | :--- | :--- |
+| `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16` | IPv4 | RFC 1918 | Redes privadas corporativas y domésticas traducidas por NAT. |
+| `100.64.0.0/10` | IPv4 | RFC 6598 | Espacio compartido CGNAT entre núcleo ISP y clientes. |
+| `127.0.0.0/8` / `::1/128` | IPv4 / IPv6 | RFC 1122 / 4291 | Interfaz *loopback*; el tráfico no abandona la pila local. |
+| `169.254.0.0/16` / `fe80::/10` | IPv4 / IPv6 | RFC 3927 / 4291 | Enlace local autoconfigurado en un segmento; no enrutable. |
+| `fc00::/7` (`fd00::/8`) | IPv6 | RFC 4193 | Direcciones Locales Únicas (ULA) para redes internas privadas. |
+| `192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24` | IPv4 | RFC 5737 | Rangos reservados para documentación y pruebas (`TEST-NET`). |
+| `2001:db8::/32` | IPv6 | RFC 3849 | Prefijo de documentación reservado para ejemplos técnicos. |
 
-El enrutamiento de Internet se basa en dos protocolos:
+Si consultas una dirección de estas subredes reservadas, el backend la clasifica localmente y omite llamadas externas, previniendo ataques SSRF contra redes internas. Al depurar aplicaciones detrás de proxies inversos o CDN, asegúrate también de extraer la IP cliente fiable desde la cabecera controlada por tu infraestructura (como `CF-Connecting-IP` o el salto confiable de `X-Forwarded-For`), ya que el primer valor de `X-Forwarded-For` puede ser falsificado por el cliente.
 
-### IPv4
-* **Formato:** Dirección numérica de 32 bits en formato decimal, como `8.8.8.8` o `192.168.1.1`.
-* **Capacidad:** Admite 4.300 millones de direcciones. Debido a su escasez, las redes utilizan sistemas como NAT.
+## Sistemas Autónomos (ASN), prefijos BGP y registros RIR
 
-### IPv6
-* **Formato:** Dirección hexadecimal de 128 bits separada por dos puntos, como `2001:4860:4860::8888`.
-* **Capacidad:** Admite 340 sextillones de direcciones únicas. IPv6 integra protocolos de seguridad directamente en la pila.
+Internet conecta cerca de 75.000 **Sistemas Autónomos (AS)**: redes bajo gestión propia que intercambian rutas mediante **BGP**. Cada red recibe un **ASN** —de 16 bits originalmente y ampliado a 32 bits en RFC 6793— asignado por uno de los cinco Registros Regionales de Internet (RIR):
 
----
+- **ARIN** (Norteamérica y parte del Caribe)
+- **RIPE NCC** (Europa, Oriente Medio y Asia Central)
+- **APNIC** (Asia-Pacífico)
+- **LACNIC** (América Latina y el Caribe)
+- **AFRINIC** (África)
 
-## Cómo funciona la Geolocalización IP
+Los routers reenvían paquetes aplicando coincidencia por prefijo más largo (*longest-prefix match*) sobre bloques CIDR anunciados (habitualmente `/24` en IPv4 y `/48` en IPv6). En seguridad, el ASN suele ser más revelador que la ciudad: encontrar `AS16509` (Amazon AWS) o `AS14061` (DigitalOcean) en registros de inicio de sesión señala tráfico automatizado o proxificado, mientras que un ASN de operador regional apunta a abonados residenciales o móviles.
 
-La **Geolocalización** asigna una IP a su ubicación física. *No rastrea la casa de un usuario ni su GPS exacto*. Simplemente cruza datos con bases comerciales, información del ISP y pruebas de latencia.
+## Por qué deriva la geolocalización: CGNAT, Anycast y alquiler IPv4
 
-**Precisión:**
-* **Nivel de País:** Exactitud > 99%.
-* **Nivel de Ciudad:** Precisión del 50% al 80%. A menudo, la ciudad devuelta es la ubicación de la centralita (intercambiador) de enrutamiento del ISP, no el hogar del usuario.
+Asumir precisión exacta de calle al diseñar reglas de geofencing o control antifraude produce falsos positivos frecuentes debido a tres factores físicos de red:
 
----
+1. **Agregación ISP y CGNAT móvil:** las operadoras celulares agrupan decenas de miles de terminales tras pasarelas NAT regionales (`100.64.0.0/10`), situadas a menudo a más de 100 kilómetros del usuario real.
+2. **Prefijos Anycast:** resolutores como `8.8.8.8` o `1.1.1.1` y redes CDN anuncian exactamente el mismo prefijo desde cientos de puntos de presencia simultáneos; sin sede física única, las bases comerciales asignan la ubicación corporativa del titular.
+3. **Mercado de arrendamiento IPv4:** ante la escasez de direcciones libres, los operadores arriendan bloques `/24` entre continentes. Mientras los ficheros *geofeed* CSV (RFC 8805) no se propagan por todos los proveedores, el país listado puede quedar desactualizado durante semanas.
 
-## Sistemas Autónomos y ASN
+## DNS inverso (FCrDNS), validación CLI y señales de anonimización
 
-Un **Sistema Autónomo (AS)** es una gran red administrada por una sola entidad (un proveedor de Internet, un banco, o gigantes como Google). 
+El DNS inverso traduce una IP a nombre de host invirtiendo los octetos IPv4 bajo `.in-addr.arpa` o expandiendo los 32 nibbles hexadecimales invertidos de IPv6 bajo `.ip6.arpa`. Desde la terminal puedes comprobar el registro `PTR`, el **DNS inverso confirmado hacia adelante (FCrDNS)** y el registro de red RIR:
 
-Se les asigna un número identificador único llamado **ASN** (por ejemplo, `AS15169` de Google). Cuando realiza una búsqueda de IP, identificar el ASN le indica quién controla la infraestructura (Ej: AWS, Azure, Telefónica).
+```bash
+# Consulta inversa IPv4 (8.8.8.8.in-addr.arpa PTR)
+dig -x 8.8.8.8 +short
+# -> dns.google.
 
----
+# Consulta inversa IPv6 (32 nibbles invertidos en ip6.arpa)
+dig -x 2606:4700:4700::1111 +short
+# -> one.one.one.one.
 
-## DNS Inverso (Registros PTR)
+# Confirmación directa (FCrDNS) y consulta rápida de prefijo ASN
+dig +short A dns.google
+whois -h whois.cymru.com " -v 8.8.8.8"
+```
 
-Mientras que el DNS estándar mapea un dominio a una IP, el **DNS inverso (rDNS)** mapea una IP de regreso a un nombre de host.
-* **Seguridad del correo:** Los filtros de SPAM hacen un rDNS a la IP de origen. Si no coincide con el dominio del encabezado del correo, el mensaje es rechazado.
+Para auditar los registros directos, prioridades `MX` y políticas `SPF`/`DMARC` del dominio revelado en el `PTR`, continúa el diagnóstico en la [Búsqueda de Registros DNS](/es/herramientas/dns-lookup).
 
----
-
-## Inteligencia de Seguridad: VPN, Proxies y Tor
-
-Para la prevención del fraude, conocer quién usa anonimizadores es fundamental:
-
-1. **VPN (Red Privada Virtual):** Los usuarios cifran su tráfico y comparten una misma IP con otros clientes, ocultando su origen.
-2. **Proxy:** Actúan como intermediarios para saltar bloqueos geográficos.
-3. **Tor:** Encripta tráfico saltando entre cientos de nodos. Su IP de salida (Nodo Tor) es pública y muy monitoreada.
-
-Si una IP está marcada como Proxy o nodo de Tor, su sistema puede activar comprobaciones de seguridad secundarias (como CAPTCHAs).
+En análisis de amenazas, el perfilado distingue cuatro clases técnicas de red: **nodos de salida Tor** (salidas públicas enumeradas en el consenso oficial), **proxies abiertos** (relés HTTP/SOCKS explotados en relleno de credenciales), **endpoints VPN comerciales** (túneles cifrados compartidos) y **rangos de hosting o nube** (servidores que ejecutan bots, monitores y webhooks). En lugar de bloquear ciegamente rangos compartidos, conviene cruzar estas señales de transporte con la huella del cliente en el [Analizador de User-Agent](/es/herramientas/user-agent-parser) y las cabeceras de respuesta en el [Comprobador de Cabeceras HTTP](/es/herramientas/http-header-checker) para aplicar controles proporcionales al riesgo real.

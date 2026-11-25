@@ -1,106 +1,106 @@
 ---
-metaTitle: "Generador de Hash Online | MD5, SHA-1, SHA-256, SHA-3"
-metaDescription: "Generador de hash criptográfico avanzado. Calcule hashes MD5, SHA-1, SHA-256, SHA-512 y SHA-3 en tiempo real. Verifique la integridad de los archivos en su navegador."
-metaKeywords: "generador de hash, hash md5 online, generador sha256, generador sha1, generador sha512, generador sha3, calcular hash, integridad de archivo, comprobar checksum"
+metaTitle: "Generador de Hash Online | MD5, SHA-1, SHA-256 y SHA-3"
+metaDescription: "Calcula hashes criptográficos MD5, SHA-1, SHA-256, SHA-512 y SHA-3 de texto o archivos locales al instante. Verifica checksums en tu navegador."
+metaKeywords: "generador de hash, calcular sha256 online, hash md5, generador sha512, hash sha3, verificar checksum archivo, integridad de archivos, web crypto api hash"
 title: "Generador de Hash"
-shortDescription: "Generador de hash criptográfico avanzado. Calcule hashes MD5, SHA-1, SHA-256 y SHA-3 en tiempo real. Verifique la integridad de archivos localmente."
+shortDescription: "Generador criptográfico de hashes MD5, SHA-1, SHA-256, SHA-512 y SHA-3 para texto y archivos locales. Verifica sumas de comprobación al instante sin subir datos a ningún servidor."
 faqs:
-  - question: "¿Qué es un generador de hash?"
-    answer: "Un generador de hash es una herramienta que toma una entrada (como texto o un archivo) y la procesa a través de un algoritmo matemático para producir una cadena de caracteres de longitud fija, conocida como hash o suma de comprobación (checksum)."
-  - question: "¿Qué es SHA-256?"
-    answer: "SHA-256 es una función hash criptográfica altamente segura que genera una firma de 256 bits (64 caracteres). Actualmente es el estándar de la industria para contraseñas y certificados SSL."
-  - question: "¿Es seguro MD5?"
-    answer: "No. MD5 se considera criptográficamente roto y débil. Es muy susceptible a ataques de colisión y nunca debe usarse con fines de seguridad."
-  - question: "¿Cuál es la diferencia entre hash y encriptación?"
-    answer: "La encriptación es un proceso bidireccional diseñado para ocultar datos y permitir que se descifren más tarde con una clave. El hashing es un proceso unidireccional diseñado para verificar la integridad de los datos; no se puede revertir."
-  - question: "¿Se pueden revertir o descifrar los hashes?"
-    answer: "No, las funciones hash criptográficas son estrictamente unidireccionales por diseño. Aunque los piratas informáticos usan diccionarios para adivinar contraseñas, no están descifrando el algoritmo."
+  - question: "¿Cuál es la diferencia técnica entre la familia SHA-2 (SHA-256/SHA-512) y SHA-3 (Keccak)?"
+    answer: "SHA-2 utiliza la construcción iterativa Merkle-Damgård con funciones de compresión basadas en bloques fijos, mientras que SHA-3 (FIPS 202) emplea la construcción de esponja Keccak sobre un estado de 1600 bits. SHA-3 ofrece diversidad criptográfica frente a SHA-2 y es inmune por diseño a los ataques de extensión de longitud."
+  - question: "¿Por qué MD5 y SHA-1 se consideran inseguros para firmas digitales e integridad adversaria?"
+    answer: "Tanto MD5 como SHA-1 han sufrido ataques prácticos de colisión con prefijo elegido, lo que permite fabricar dos archivos distintos con exactamente el mismo resumen hash. Solo deben utilizarse para compatibilidad heredada o detección de corrupción accidental, nunca para seguridad ni certificados."
+  - question: "¿Puedo calcular el checksum de archivos grandes de forma segura sin subirlos a Internet?"
+    answer: "Sí. El cálculo se ejecuta íntegramente en tu dispositivo mediante Web Crypto API y procesamiento local en JavaScript. Ningún byte del archivo abandona tu equipo, lo que permite auditar imágenes ISO, respaldos o documentos confidenciales con privacidad total."
+  - question: "¿Por qué no es suficiente aplicar SHA-256 directamente para almacenar contraseñas de usuarios?"
+    answer: "Las funciones hash criptográficas como SHA-256 están optimizadas para ejecutarse a altísima velocidad, lo que permite a un atacante probar miles de millones de combinaciones por segundo en GPU. Para contraseñas debes usar funciones de derivación lentas y costosas en memoria como Argon2id, scrypt o bcrypt con una sal única por cuenta."
+  - question: "¿Cuándo conviene utilizar HMAC en lugar de un hash criptográfico simple?"
+    answer: "Un hash estándar solo verifica integridad frente a corrupción o frente a un checksum publicado en un canal de confianza. Cuando necesitas autenticar además el origen de un mensaje, webhook o petición API mediante una clave compartida, debes emplear HMAC (como HMAC-SHA256) para impedir suplantaciones y ataques de extensión de longitud."
 features:
-  - "Generación instantánea de hash en múltiples algoritmos (MD5, SHA-1, SHA-2, SHA-3)"
-  - "Hashing seguro de archivos del lado del cliente directamente en tu navegador"
-  - "Soporte para tamaños de archivo masivos sin bloqueos de memoria"
-  - "Comparación de hash lado a lado para verificar la integridad"
-  - "Indicadores de seguridad que resaltan algoritmos obsoletos (ej. MD5)"
-  - "Soporte completo de Unicode, UTF-8 y emojis para hashing de texto"
-  - "Ejecución 100% privada: tus datos nunca tocan nuestros servidores"
+  - "Cálculo simultáneo en tiempo real de resúmenes MD5, SHA-1, SHA-256, SHA-512 y SHA-3 en una sola pasada"
+  - "Verificación local de archivos mediante arrastrar y soltar sin límites de subida ni transferencia a la nube"
+  - "Comparador integrado de sumas de verificación (checksums) para detectar coincidencias o alteraciones al instante"
+  - "Codificación UTF-8 precisa para entradas textuales con tildes, caracteres internacionales y emojis"
+  - "Indicadores visuales de estado criptográfico que distinguen algoritmos recomendados de algoritmos obsoletos"
+  - "Ejecución 100% del lado del cliente con Web Crypto API para privacidad absoluta en auditorías y desarrollo"
 useCases:
-  - "Verificación de la integridad de software descargado mediante sumas de comprobación SHA-256"
-  - "Generación rápida de hashes MD5 o SHA-1 para integración de sistemas heredados"
-  - "Prueba de webhooks de API que requieren verificación de firma HMAC o SHA"
-  - "Comparación de dos archivos para ver si su contenido es absolutamente idéntico"
-  - "Creación de identificadores únicos y deterministas basados en cargas útiles de cadenas"
+  - "Validación de sumas SHA-256 y SHA-512 en imágenes ISO, instaladores de software y binarios descargados"
+  - "Generación de huellas digitales deterministas para cachés de recursos estáticos y deduplicación de contenido"
+  - "Comprobación rápida de identidad byte a byte entre dos copias de un mismo archivo local o respaldo"
+  - "Cálculo de hashes MD5 o SHA-1 para depurar sistemas heredados, cabeceras Content-MD5 o repositorios antiguos"
+  - "Verificación de vectores de prueba criptográficos durante el desarrollo de APIs, integraciones y contratos de datos"
+  - "Auditoría de integridad de documentos legales, artefactos CI/CD y registros de compilación reproducibles"
 howToSteps:
-  - "Selecciona el método de entrada deseado: 'Entrada de Texto' o 'Subir Archivo'."
-  - "Si usas texto, simplemente escribe o pega tu cadena en el editor. Los hashes se calcularán al instante."
-  - "Si usas un archivo, arrástralo y suéltalo en la zona de subida."
-  - "Desplázate hacia abajo para ver los hashes generados en múltiples algoritmos simultáneamente."
-  - "Presta atención a las insignias de seguridad (ej., 'Fuerte', 'Débil') junto a cada algoritmo."
-  - "Para verificar un hash, pega el hash esperado en el campo 'Comparar / Verificar'."
+  - "Elige el modo de entrada entre texto plano (UTF-8) o selección de archivo local."
+  - "Escribe o pega la cadena en el editor, o arrastra tu archivo directamente al área de carga."
+  - "Observa el cálculo inmediato de los resúmenes en MD5, SHA-1, SHA-256, SHA-512 y SHA-3 simultáneamente."
+  - "Revisa la etiqueta de seguridad junto a cada algoritmo para confirmar si es apto para uso criptográfico moderno."
+  - "Pega el checksum oficial del proveedor en el campo de comparación para validar la coincidencia exacta."
+  - "Copia el digest hexadecimal en minúsculas o mayúsculas para documentarlo en tu pipeline o verificación."
 ---
 
-## ¿Qué es el Hashing?
+Una función hash criptográfica condensa cualquier flujo arbitrario de bytes —desde una cadena vacía hasta una imagen ISO de varios gigabytes— en una huella determinista de longitud fija llamada *digest* o *checksum*. Esta primitiva sustenta la verificación de descargas, las firmas digitales, el almacenamiento direccionado por contenido y la detección de corrupción en archivos. Nuestro generador calcula MD5, SHA-1, SHA-256, SHA-512 y SHA-3 de forma simultánea directamente en tu navegador, sin transferir datos a servidores externos. Si buscas un flujo dedicado únicamente al algoritmo más extendido, puedes abrir también nuestro [Generador SHA-256](/es/herramientas/sha256-generator).
 
-**Hashing** es un concepto fundamental en informática y criptografía. Es el proceso de pasar datos de cualquier tamaño (como una cadena de texto, una contraseña o un archivo grande) a través de un algoritmo matemático, conocido como **función hash**, que produce una cadena de caracteres pseudoaleatoria, determinista y de tamaño fijo.
+## Propiedades formales de una función hash criptográfica
 
-No importa cuán grande o pequeña sea la entrada, el hash resultante siempre tendrá la misma longitud para un algoritmo específico. Por ejemplo, ya sea que proceses la letra "A" o un libro de 500 páginas usando SHA-256, la salida siempre será una cadena hexadecimal de 64 caracteres.
+A diferencia de sumas rápidas como CRC32 pensadas solo para errores aleatorios de transmisión, una función hash criptográfica debe cumplir garantías matemáticas estrictas:
 
----
+- **Determinismo:** la misma secuencia exacta de bytes produce siempre idéntico digest; cualquier cambio en los saltos de línea (`LF` frente a `CRLF`), un espacio final o la codificación (`UTF-8` frente a `UTF-16`) altera totalmente la salida.
+- **Resistencia a la preimagen:** dado un resumen $h$, resulta computacionalmente inviable hallar $m$ tal que $H(m) = h$.
+- **Resistencia a la segunda preimagen:** dado $m_1$, es inviable encontrar $m_2 \neq m_1$ con idéntico hash.
+- **Resistencia a colisiones:** inviable hallar cualquier par distinto $(m_1, m_2)$ con $H(m_1) = H(m_2)$; por la paradoja del cumpleaños, un digest de $n$ bits ofrece un límite teórico de $2^{n/2}$ operaciones (128 bits efectivos en SHA-256).
+- **Efecto avalancha:** invertir un único bit en la entrada cambia cerca del 50 % de los bits de salida de forma impredecible.
 
-## Cómo Funcionan las Funciones Hash Criptográficas
+## Construcciones internas: Merkle-Damgård frente a la esponja Keccak
 
-Una función hash robusta debe poseer varias propiedades críticas:
+### Construcción Merkle-Damgård (MD5, SHA-1 y familia SHA-2)
+MD5 (RFC 1321), SHA-1 y SHA-2 (FIPS 180-4) dividen el mensaje en bloques fijos (512 bits en MD5, SHA-1 y SHA-256; 1024 bits en SHA-512), añaden un relleno que codifica la longitud total del mensaje y procesan cada bloque mediante una función de compresión Davies-Meyer. En SHA-256, las constantes iniciales proceden de las partes fraccionarias de las raíces cuadradas de los primeros 8 números primos y las 64 rondas emplean constantes derivadas de las raíces cúbicas de los primeros 64 primos; en procesadores modernos, extensiones como Intel SHA-NI y ARMv8 Crypto aceleran estas rondas en hardware.
 
-1. **Determinista**: La misma entrada siempre producirá el mismo hash de salida.
-2. **Cálculo Rápido**: Debe ser computacionalmente eficiente generar un hash.
-3. **Resistencia a la Preimagen (Unidireccional)**: Debe ser matemáticamente inviable aplicar ingeniería inversa a los datos de entrada originales a partir de su hash.
-4. **Efecto Avalancha**: Cambiar incluso un solo bit en los datos de entrada debería cambiar drásticamente el hash resultante.
-5. **Resistencia a Colisiones**: Debe ser computacionalmente inviable encontrar dos entradas diferentes que produzcan el mismo hash.
+Como el estado interno final coincide con la salida pública, estos algoritmos sufren **ataques de extensión de longitud**: conociendo $H(\text{clave} \parallel m)$ y el tamaño de la clave, un atacante calcula $H(\text{clave} \parallel m \parallel \text{relleno} \parallel m')$ sin conocer el secreto. Por ello, para autenticar mensajes o webhooks debes emplear la construcción anidada de nuestro [Generador HMAC](/es/herramientas/hmac-generator) o variantes truncadas como SHA-512/256.
 
----
+### Construcción de esponja Keccak (SHA-3)
+Definida en FIPS 202, la familia SHA-3 opera sobre un estado interno de 1600 bits dividido en tasa (*rate*, $r$) y capacidad (*capacity*, $c$). El mensaje se absorbe mediante XOR sobre los $r$ bits intercalando la permutación Keccak-$f[1600]$ y luego se extrae (*squeeze*) el digest. Al mantener ocultos los $c$ bits de capacidad (512 bits en SHA3-256), SHA-3 elimina por diseño los ataques de extensión de longitud, ofrece diversidad estructural frente a SHA-2 e incluye funciones de salida extensible (XOF) como SHAKE128 y SHAKE256.
 
-## Algoritmos Hash Comunes Explicados
+## Comparativa técnica de algoritmos hash
 
-### MD5 (Message Digest Algorithm 5)
-Desarrollado en 1991, MD5 produce un valor hash de 128 bits.
-* **Seguridad**: **Débil / Roto**. MD5 es altamente vulnerable a ataques de colisión.
-* **Caso de Uso**: Sumas de comprobación básicas.
+| Algoritmo | Estándar | Salida (bits / hex) | Construcción | Bloque / tasa | Estado y uso actual |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **MD5** | RFC 1321 | 128 bits (32 hex) | Merkle-Damgård | 512 bits | **Roto**: colisiones triviales; solo checksums no adversarios |
+| **SHA-1** | FIPS 180-4 | 160 bits (40 hex) | Merkle-Damgård | 512 bits | **Obsoleto**: colisiones prácticas (*SHAttered*, 2017); prohibido en TLS |
+| **SHA-256** | FIPS 180-4 | 256 bits (64 hex) | Merkle-Damgård | 512 bits | **Recomendado**: estándar en TLS, paquetes y verificación |
+| **SHA-512** | FIPS 180-4 | 512 bits (128 hex) | Merkle-Damgård | 1024 bits | **Recomendado**: alto rendimiento en CPUs de 64 bits |
+| **SHA3-256** | FIPS 202 | 256 bits (64 hex) | Esponja Keccak | 1088 bits ($c=512$) | **Muy seguro**: inmune a extensión de longitud |
 
-### SHA-1 (Secure Hash Algorithm 1)
-Diseñado por la NSA en 1995, produce un hash de 160 bits.
-* **Seguridad**: **Obsoleto**. Los ataques de colisión son prácticos hoy en día.
-* **Caso de Uso**: Control de versiones de Git antiguo.
+Si necesitas exclusivamente compatibilidad con sistemas heredados no críticos que todavía comparan sumas MD5, dispones además del [Generador MD5](/es/herramientas/md5-generator).
 
-### Familia SHA-2 (SHA-224, SHA-256, SHA-384, SHA-512)
-Introducido en 2001, es el estándar de la industria.
-* **Seguridad**: **Fuerte / Recomendado**.
-* **Caso de Uso**: Certificados SSL/TLS, criptomonedas (Bitcoin), contraseñas.
+## Verificación de archivos por CLI y Web Crypto API
 
-### Familia SHA-3
-El miembro más reciente, lanzado en 2015.
-* **Seguridad**: **Muy Fuerte**. Utiliza una estructura interna completamente diferente (Keccak).
+En flujos DevOps y auditorías de software, contrasta siempre las descargas contra el manifiesto `SHA256SUMS` oficial teniendo en cuenta que un archivo de texto con saltos `CRLF` en Windows producirá un hash distinto al mismo texto con `LF` en Linux:
 
----
+```bash
+# Linux (GNU coreutils) y macOS
+sha256sum instalador-v2.4.tar.gz
+shasum -a 256 instalador-v2.4.tar.gz
+```
 
-## Hashing vs Encriptación
+```powershell
+# Windows PowerShell
+Get-FileHash -Path .\instalador-v2.4.zip -Algorithm SHA256
+```
 
-* **La encriptación** es una función bidireccional diseñada para la confidencialidad de los datos. Los datos se cifran con una clave y se pueden descifrar.
-* **El hashing** es una función unidireccional diseñada para la integridad de los datos. Los datos no se pueden \"deshacer\".
+En el navegador, la API nativa Web Crypto calcula resúmenes acelerados por hardware sin librerías externas:
 
----
+```javascript
+async function computeSha256Hex(text) {
+  const bytes = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return Array.from(new Uint8Array(digest), (b) =>
+    b.toString(16).padStart(2, '0')
+  ).join('');
+}
+```
 
-## Por qué los Desarrolladores Usan Hashes
+Para archivos de varios gigabytes, en lugar de cargar el búfer completo con `file.arrayBuffer()`, las implementaciones por bloques leen segmentos con `file.slice()` y actualizan un estado incremental, manteniendo estable el consumo de RAM.
 
-### 1. Almacenamiento de Contraseñas
-Las bases de datos no almacenan contraseñas en texto plano. Almacenan hashes. Cuando inicias sesión, el sistema aplica un hash a la contraseña ingresada y la compara.
+## Límites críticos: hashing frente a cifrado y contraseñas
 
-### 2. Verificación de Integridad de Archivos
-Al descargar archivos grandes, los desarrolladores proporcionan un hash SHA-256. Puedes verificar el archivo localmente para asegurarte de que no esté corrupto.
-
-### 3. Firmas Digitales y Blockchain
-Las redes blockchain usan hashes para vincular bloques de forma segura; alterar un bloque cambia su hash, lo que invalida todos los bloques posteriores.
-
----
-
-## Seguridad Total del Lado del Cliente
-
-Nuestro Generador de Hash Avanzado procesa todo 100% localmente dentro de tu navegador utilizando las API de Criptografía Web de JavaScript. **Cero Transmisión de Datos**: Tus archivos o texto nunca se envían a ningún servidor.
+Conviene respetar dos reglas esenciales. Primera, **el hashing no es cifrado**: es estrictamente unidireccional y no permite recuperar los datos originales. Segunda, **un hash rápido nunca debe proteger contraseñas directamente**: SHA-256 y SHA-3 se ejecutan a miles de millones de intentos por segundo en GPU, facilitando ataques de diccionario ante una filtración. Almacena credenciales siempre con funciones lentas y costosas en memoria como **Argon2id**, **scrypt** o **bcrypt** más una sal única, acompañadas de claves de alta entropía creadas con un [Generador de Contraseñas Seguras](/es/herramientas/strong-password-generator).
