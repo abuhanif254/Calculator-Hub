@@ -3,6 +3,9 @@ import { fetchPostsRest } from '@/lib/firebase-rest';
 import { featuredGuides } from '@/lib/data/guides';
 import { comparisons } from '@/lib/data/comparisons';
 
+// Cache RSS feed for 24h at Vercel Edge CDN to prevent dynamic Serverless CPU + Firestore queries on every poll
+export const revalidate = 86400;
+
 export async function GET() {
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net')
     .replace(/\/$/, '')
@@ -77,7 +80,8 @@ ${items}
   return new NextResponse(xml, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+      'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+      'Vercel-CDN-Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
       'X-Robots-Tag': 'noindex, follow',
     },
   });

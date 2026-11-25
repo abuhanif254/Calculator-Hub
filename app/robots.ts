@@ -2,9 +2,9 @@ import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
   // IMPORTANT: Canonical domain is www. Using non-www causes redirect chains.
-  // Googlebot & AI Search (GEO) optimization: Public calculators, tools, guides,
+  // Googlebot, AdSense & AI Search (GEO) optimization: Public calculators, tools, guides,
   // category pillars, comparisons, collections, and /llms.txt are 100% accessible.
-  // Private authenticated user areas, dashboard routes, and internal APIs are disallowed.
+  // Dynamic /opengraph-image endpoints are allowed for social preview bots only to conserve Vercel CPU.
   const baseUrl = 'https://www.nexuscalculator.net';
 
   const publicDisallow = [
@@ -44,6 +44,12 @@ export default function robots(): MetadataRoute.Robots {
     '/*/gemeinschaft/benutzer/*',
   ];
 
+  const nonSocialDisallow = [
+    ...publicDisallow,
+    '/*opengraph-image*',                 // Dynamic PNGs are for social cards only (already noindex in next.config)
+    '/*twitter-image*',
+  ];
+
   return {
     rules: [
       {
@@ -52,16 +58,30 @@ export default function robots(): MetadataRoute.Robots {
         allow: ['/'],
       },
       {
+        // Social link-preview bots explicitly allowed to render OpenGraph / Twitter cards
+        userAgent: [
+          'FacebookBot',
+          'facebookexternalhit',
+          'Twitterbot',
+          'LinkedInBot',
+          'WhatsApp',
+          'Discordbot',
+          'Slackbot',
+        ],
+        allow: ['/'],
+        disallow: publicDisallow,
+      },
+      {
         userAgent: '*',
         allow: [
           '/',
           '/llms.txt',
           '/api/users/',                  // Allow legacy documentation example path so 301 redirect in next.config.ts resolves in GSC
         ],
-        disallow: publicDisallow,
+        disallow: nonSocialDisallow,
       },
       {
-        // Explicitly allow AI Search & Answer Engine citation bots (GEO) + Social Preview crawlers
+        // Explicitly allow AI Search & Answer Engine citation bots (GEO)
         userAgent: [
           'GPTBot',
           'OAI-SearchBot',
@@ -72,24 +92,34 @@ export default function robots(): MetadataRoute.Robots {
           'Anthropic-ai',
           'PerplexityBot',
           'Applebot-Extended',
-          'FacebookBot',
-          'facebookexternalhit',
-          'Twitterbot',
-          'LinkedInBot',
         ],
         allow: ['/', '/llms.txt'],
-        disallow: publicDisallow,
+        disallow: nonSocialDisallow,
       },
       {
-        // Block aggressive commercial backlink scrapers & non-search crawlers that waste crawl budget
+        // Block aggressive commercial backlink scrapers & parasitic crawlers that waste Vercel ISR Reads & CPU
         userAgent: [
           'AhrefsBot',
           'SemrushBot',
+          'SemrushBot-OCOB',
           'DotBot',
           'MJ12bot',
+          'BLEXBot',
           'Omgili',
           'Omgilibot',
           'Bytespider',
+          'PetalBot',
+          'Amazonbot',
+          'CCBot',
+          'Meta-ExternalAgent',
+          'Meta-ExternalFetcher',
+          'ImagesiftBot',
+          'Diffbot',
+          'CriteoBot',
+          'Scrapy',
+          'YisouSpider',
+          'Sogou',
+          'SeznamBot',
           'TurnitinBot',
           'Barkrowler',
           'AwarioRssBot',
@@ -104,4 +134,3 @@ export default function robots(): MetadataRoute.Robots {
     host: baseUrl,
   };
 }
-

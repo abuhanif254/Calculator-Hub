@@ -13,7 +13,8 @@ import ReactMarkdown from "react-markdown";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { DirectAnswerCard } from "@/app/components/DirectAnswerCard";
-import { StaticCalculationMatrix } from "@/app/components/StaticCalculationMatrix";
+import { StaticCalculationMatrix, type ResolvedStaticMatrix } from "@/app/components/StaticCalculationMatrix";
+import { getMatrixForCalculator } from "@/lib/data/calculatorMatrices";
 import { getFormulaForCalculator, getFormulaFaq, getEduQuestionType } from "@/lib/data/calculatorFormulas";
 import { ToolVisitTracker } from "@/app/components/ToolVisitTracker";
 import { FavoriteButton } from "@/app/components/FavoriteButton";
@@ -1025,7 +1026,18 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           </div>
 
           <CalculatorMath slug={calc.slug} category={calc.category} locale={resolvedParams.locale} />
-          <StaticCalculationMatrix slug={calc.slug} title={pageTitle} locale={resolvedParams.locale} />
+          {(() => {
+            const rawMatrix = getMatrixForCalculator(calc.slug);
+            if (!rawMatrix) return null;
+            const locMeta = rawMatrix.translations?.[resolvedParams.locale];
+            const resolvedMatrix: ResolvedStaticMatrix = {
+              title: locMeta?.title || rawMatrix.title,
+              description: locMeta?.description || rawMatrix.description,
+              headers: locMeta?.headers || rawMatrix.headers,
+              rows: rawMatrix.rowsByLocale?.[resolvedParams.locale] || rawMatrix.rows,
+            };
+            return <StaticCalculationMatrix matrix={resolvedMatrix} locale={resolvedParams.locale} />;
+          })()}
 
 
           {/* Educational Guide & Math Deep-Dive Callout */}

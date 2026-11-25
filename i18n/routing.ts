@@ -5,6 +5,11 @@ import {createNavigation} from 'next-intl/navigation';
 export const routing = defineRouting({
   locales: ['en', 'es', 'fr', 'de'],
   defaultLocale: 'en',
+  // CRITICAL for Vercel Edge CDN caching: prevent next-intl syncCookie() from attaching
+  // `Set-Cookie: NEXT_LOCALE=...` on /de, /es, /fr requests (which forces Vercel CDN to
+  // bypass free regional cache and burn Durable ISR Read Units + Fast Origin Transfer).
+  localeCookie: false,
+  localeDetection: false,
   pathnames: {
     '/': '/',
     '/search': '/search',

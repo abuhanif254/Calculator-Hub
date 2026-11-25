@@ -242,7 +242,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let communityEntries: MetadataRoute.Sitemap = [];
   try {
     const { fetchPostsRest } = await import('../lib/firebase-rest');
-    const posts = await fetchPostsRest(undefined, 100);
+    // Pass forceStatic=true so fetch() uses cache:'force-cache' instead of revalidate:86400,
+    // preserving export const revalidate = false on /sitemap.xml to avoid daily 1.5MB ISR churn.
+    const posts = await fetchPostsRest(undefined, 100, true);
     const indexablePosts = posts.filter((post) => {
       if (!post.slug) return false;
       // Exclude redirected test/auto-generated slugs that 308 redirect in next.config.ts / page.tsx

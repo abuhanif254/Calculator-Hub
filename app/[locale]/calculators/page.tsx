@@ -262,7 +262,7 @@ export default async function AllCalculatorsPage({
                         <div>
                           <h3 className="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors flex items-center justify-between gap-2">
                             <span>{meta.title}</span>
-                            <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 transition-all shrink-0" />
+                            <span aria-hidden="true" className="text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 transition-all shrink-0">→</span>
                           </h3>
                           <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
                             {meta.description}

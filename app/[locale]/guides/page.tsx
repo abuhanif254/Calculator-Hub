@@ -132,16 +132,14 @@ function GuideCard({ guide, locale, readText, minReadText }: { guide: Guide; loc
       href={{ pathname: '/guides/[slug]', params: { slug: locGuide.slug } }}
       className="group block bg-white dark:bg-slate-800/60 border border-slate-200 dark:border-white/8 rounded-2xl p-6 hover:shadow-lg hover:shadow-slate-200/60 dark:hover:shadow-black/20 hover:border-[#518231]/30 dark:hover:border-[#518231]/30 hover:-translate-y-0.5 transition-all duration-300"
     >
-      {/* Category badge */}
+      {/* Category badge (text-only to avoid serializing 600+ duplicate SVG paths into HTML/RSC) */}
       <div className="flex items-center justify-between mb-4">
         <span
           className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full ${meta.bg} ${meta.color} border ${meta.border}`}
         >
-          <meta.Icon size={11} />
           {locGuide.category}
         </span>
-        <span className="flex items-center gap-1 text-xs text-slate-400 dark:text-slate-500">
-          <Clock size={11} />
+        <span className="text-xs text-slate-400 dark:text-slate-500">
           {locGuide.readingTime} {minReadText}
         </span>
       </div>
@@ -158,8 +156,7 @@ function GuideCard({ guide, locale, readText, minReadText }: { guide: Guide; loc
 
       {/* CTA */}
       <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#518231] dark:text-[#6fa844] group-hover:gap-2.5 transition-all duration-200">
-        {readText}
-        <ArrowRight size={14} />
+        {readText} <span aria-hidden="true">→</span>
       </span>
     </Link>
   );

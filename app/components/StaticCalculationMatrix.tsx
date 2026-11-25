@@ -2,11 +2,17 @@
 
 import React, { useState } from "react";
 import { Table, ArrowUpRight, Check, Sparkles } from "lucide-react";
-import { getMatrixForCalculator } from "@/lib/data/calculatorMatrices";
+import type { MatrixRow } from "@/lib/data/matrices/types";
+
+export interface ResolvedStaticMatrix {
+  title: string;
+  description: string;
+  headers: string[];
+  rows: MatrixRow[];
+}
 
 interface StaticCalculationMatrixProps {
-  slug: string;
-  title: string;
+  matrix: ResolvedStaticMatrix | null;
   locale?: string;
 }
 
@@ -57,29 +63,6 @@ const matrixTranslations: Record<string, {
   },
 };
 
-function localizeCellValue(val: string, locale: string): string {
-  if (locale === "en") return val;
-  if (locale === "es") {
-    return val
-      .replace(/\/ mo\b/g, "/ mes")
-      .replace(/\/ yr\b/g, "/ año")
-      .replace(/^Under\s+/i, "Menos de ");
-  }
-  if (locale === "fr") {
-    return val
-      .replace(/\/ mo\b/g, "/ mois")
-      .replace(/\/ yr\b/g, "/ an")
-      .replace(/^Under\s+/i, "Moins de ");
-  }
-  if (locale === "de") {
-    return val
-      .replace(/\/ mo\b/g, "/ Mon.")
-      .replace(/\/ yr\b/g, "/ Jahr")
-      .replace(/^Under\s+/i, "Unter ");
-  }
-  return val;
-}
-
 function toCamelCase(key: string): string {
   return key.replace(/_([a-z])/g, (_, ch: string) => ch.toUpperCase());
 }
@@ -98,22 +81,14 @@ const PARAM_KEY_ALIASES: Record<string, string[]> = {
 };
 
 export function StaticCalculationMatrix({
-  slug,
-  title: _title,
+  matrix,
   locale = "en",
 }: StaticCalculationMatrixProps) {
   const [activeRow, setActiveRow] = useState<number | null>(null);
-  const matrix = getMatrixForCalculator(slug);
 
   if (!matrix) return null;
 
   const t = matrixTranslations[locale] || matrixTranslations.en;
-  const localizedMeta = matrix.translations?.[locale];
-  const displayTitle = localizedMeta?.title || matrix.title;
-  const displayDesc = localizedMeta?.description || matrix.description;
-  const displayHeaders = localizedMeta?.headers || matrix.headers;
-  const displayRows = matrix.rowsByLocale?.[locale] || matrix.rows;
-  const usesNativeLocaleRows = Boolean(matrix.rowsByLocale?.[locale]);
 
   const handleLoadRow = (rowIndex: number, params: Record<string, string>) => {
     if (typeof window === "undefined") return;
@@ -128,7 +103,6 @@ export function StaticCalculationMatrix({
       "input, select, textarea"
     );
 
-    // Apply values to inputs via prototype setters to trigger React state recalculation
     Object.entries(params).forEach(([paramKey, paramValue]) => {
       const candidateKeys = [
         paramKey,
@@ -198,19 +172,17 @@ export function StaticCalculationMatrix({
       }
     });
 
-    // Update URL silently
     const searchParams = new URLSearchParams(window.location.search);
     Object.entries(params).forEach(([k, v]) => searchParams.set(k, v));
     const newUrl = `${window.location.pathname}?${searchParams.toString()}${window.location.hash}`;
     window.history.replaceState({ ...window.history.state }, "", newUrl);
 
-    // Smoothly scroll up to the calculator view so the user sees results
     container.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <section
-      aria-label={displayTitle}
+      aria-label={matrix.title}
       className="mt-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm print:hidden"
     >
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
@@ -223,7 +195,7 @@ export function StaticCalculationMatrix({
               {t.quickRef}
             </span>
             <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-              {displayTitle}
+              {matrix.title}
             </h3>
           </div>
         </div>
@@ -234,16 +206,16 @@ export function StaticCalculationMatrix({
       </div>
 
       <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-        {displayDesc}
+        {matrix.description}
       </p>
 
       {/* Semantic HTML Table for Search Engine Web Crawlers & Position-0 Featured Snippets */}
       <div className="table-scroll-wrapper overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40">
         <table className="w-full text-left border-collapse text-xs sm:text-sm">
-          <caption className="sr-only">{displayTitle}</caption>
+          <caption className="sr-only">{matrix.title}</caption>
           <thead>
             <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/60 text-slate-900 dark:text-slate-200 font-bold">
-              {displayHeaders.map((header, idx) => (
+              {matrix.headers.map((header, idx) => (
                 <th key={idx} scope="col" className="p-3 sm:p-4 font-semibold whitespace-nowrap">
                   {header}
                 </th>
@@ -254,7 +226,7 @@ export function StaticCalculationMatrix({
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-            {displayRows.map((row, rIdx) => {
+            {matrix.rows.map((row, rIdx) => {
               const isLoaded = activeRow === rIdx;
               return (
                 <tr
@@ -267,14 +239,14 @@ export function StaticCalculationMatrix({
                     scope="row"
                     className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white whitespace-nowrap group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors"
                   >
-                    {usesNativeLocaleRows ? row.label : localizeCellValue(row.label, locale)}
+                    {row.label}
                   </th>
                   {row.values.map((val, vIdx) => (
                     <td
                       key={vIdx}
                       className="p-3 sm:p-4 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap"
                     >
-                      {usesNativeLocaleRows ? val : localizeCellValue(val, locale)}
+                      {val}
                     </td>
                   ))}
                   <td className="p-3 sm:p-4 text-right whitespace-nowrap">

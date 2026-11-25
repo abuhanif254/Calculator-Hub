@@ -59,7 +59,11 @@ function parseFirestoreValue(value: any): any {
   return null;
 }
 
-export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: number = 20): Promise<RestPost[]> {
+export async function fetchPostsRest(
+  startAfterTimestamp?: number,
+  limitCount: number = 20,
+  forceStatic: boolean = false
+): Promise<RestPost[]> {
   try {
     const structuredQuery: any = {
       from: [{ collectionId: 'posts' }],
@@ -85,7 +89,7 @@ export async function fetchPostsRest(startAfterTimestamp?: number, limitCount: n
         } : {})
       },
       body: JSON.stringify({ structuredQuery }),
-      ...(isServer ? { next: { revalidate: 86400 } } : {})
+      ...(isServer ? (forceStatic ? { cache: 'force-cache' as const } : { next: { revalidate: 86400 } }) : {})
     });
 
     if (!response.ok) {

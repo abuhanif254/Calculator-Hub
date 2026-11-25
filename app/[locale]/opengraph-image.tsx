@@ -2,8 +2,14 @@ import { ImageResponse } from 'next/og';
 import { calculators } from '@/lib/data/calculators';
 import { allToolsConfig } from '@/lib/data/tools';
 
-// On-demand generation when shared (cached 1yr at CDN edge via next.config.ts headers)
-export const dynamic = 'force-dynamic';
+import { routing } from '@/i18n/routing';
+
+// Pre-rendered statically at build time (4 locales) — zero runtime Fluid Active CPU
+export const revalidate = false;
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export const alt = 'Nexus — Ultimate Calculators & Developer Tools Platform';
 export const size = {
@@ -198,6 +204,11 @@ export default async function Image() {
     ),
     {
       ...size,
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, s-maxage=31536000, immutable',
+        'CDN-Cache-Control': 'public, max-age=31536000, immutable',
+        'Vercel-CDN-Cache-Control': 'public, max-age=31536000, immutable',
+      },
     }
   );
 }

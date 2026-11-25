@@ -582,10 +582,26 @@ function getCanonicalPath(pathname: string): string | null {
 
 const SEARCH_CRAWLER_REGEX = /Googlebot|Google-InspectionTool|Storebot-Google|GoogleOther|Mediapartners-Google|AdsBot-Google|bingbot|AdIdxBot|DuckDuckBot|Applebot|Slurp|YandexBot|Baiduspider|facebookexternalhit|Twitterbot|LinkedInBot/i;
 
+// Aggressive commercial scrapers & non-SEO bots already disallowed in robots.ts that frequently ignore robots.txt
+// and burn Vercel ISR Reads / Origin Transfer. Returning a 10-byte 403 at Edge consumes ZERO ISR Reads & ZERO Fluid CPU.
+const PARASITIC_SCRAPER_REGEX = /Bytespider|PetalBot|AhrefsBot|SemrushBot|MJ12bot|DotBot|BLEXBot|DataForSeoBot|Barkrowler|ImagesiftBot|CCBot|Scrapy|Amazonbot|Diffbot|YisouSpider|Sogou|AwarioSmartBot|AwarioRssBot|Omgilibot/i;
+
 // ── Main middleware ────────────────────────────────────────────────────────────
 
 export default function middleware(request: NextRequest) {
   const { pathname, hostname, search } = request.nextUrl;
+  const userAgent = request.headers.get('user-agent') || '';
+
+  // -1. Immediately reject parasitic commercial scrapers at Edge before hitting ISR cache or origin functions
+  if (userAgent && PARASITIC_SCRAPER_REGEX.test(userAgent)) {
+    return new NextResponse('Forbidden', {
+      status: 403,
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600',
+      },
+    });
+  }
 
   // 0. Handle RSS feed and Next.js dynamic image metadata endpoints (/opengraph-image & /twitter-image)
   // Rewrite localized route prefixes (e.g. /es/guias/.../opengraph-image) to internal Next.js filesystem routes
@@ -637,7 +653,6 @@ export default function middleware(request: NextRequest) {
     });
   }
 
-  const userAgent = request.headers.get('user-agent') || '';
   const isSearchCrawler = SEARCH_CRAWLER_REGEX.test(userAgent);
 
   const isNonWww = hostname === 'nexuscalculator.net';

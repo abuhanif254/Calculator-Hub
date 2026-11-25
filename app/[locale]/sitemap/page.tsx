@@ -442,7 +442,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                           >
                             <span className="truncate">{label}</span>
-                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                            <span aria-hidden="true" className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2 text-xs">↗</span>
                           </Link>
                         </li>
                       );
@@ -474,7 +474,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                             className="group flex items-center justify-between text-[15px] font-medium text-slate-700 dark:text-slate-300 hover:text-[#518231] dark:hover:text-[#6fa844] py-1 transition-colors"
                           >
                             <span className="truncate">{label}</span>
-                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                            <span aria-hidden="true" className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2 text-xs">↗</span>
                           </Link>
                         </li>
                       );
@@ -517,7 +517,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                             title={item.desc}
                           >
                             <span className="truncate">{label}</span>
-                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                            <span aria-hidden="true" className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2 text-xs">↗</span>
                           </Link>
                         </li>
                       );
@@ -560,7 +560,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                             title={item.desc}
                           >
                             <span className="truncate">{label}</span>
-                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                            <span aria-hidden="true" className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2 text-xs">↗</span>
                           </Link>
                         </li>
                       );
@@ -603,7 +603,7 @@ export default async function SitemapPage({ params }: { params: Promise<{ locale
                             title={item.desc}
                           >
                             <span className="truncate">{label}</span>
-                            <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2" />
+                            <span aria-hidden="true" className="opacity-0 group-hover:opacity-100 transition-opacity shrink-0 ml-2 text-xs">↗</span>
                           </Link>
                         </li>
                       );

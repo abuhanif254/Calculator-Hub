@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { fetchPostsRest } from '@/lib/firebase-rest';
 
+// Cache community sitemap for 24h at Vercel Edge CDN to prevent dynamic Firestore scans on every bot hit
+export const revalidate = 86400;
+
 export async function GET() {
   const baseUrl = (process.env.APP_URL || 'https://www.nexuscalculator.net').replace(/\/$/, '');
   
@@ -39,7 +42,8 @@ ${urls}
   return new NextResponse(xml, {
     headers: {
       'Content-Type': 'application/xml',
-      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+      'Cache-Control': 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800',
+      'Vercel-CDN-Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=604800',
     },
   });
 }

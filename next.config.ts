@@ -106,19 +106,30 @@ const nextConfig: NextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=86400' },
         ],
       },
-      // ── OpenGraph images: generate on-demand when shared, cache 1yr at CDN edge, prevent standalone indexing ──
+      // ── OpenGraph images: cache 1yr immutably at Vercel Edge CDN, prevent standalone indexing ──
       {
         source: '/:path*/opengraph-image',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=31536000' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, s-maxage=31536000, immutable' },
+          { key: 'CDN-Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'Vercel-CDN-Cache-Control', value: 'public, max-age=31536000, immutable' },
           { key: 'X-Robots-Tag', value: 'noindex, noarchive' },
         ],
       },
       {
         source: '/:path*/twitter-image',
         headers: [
-          { key: 'Cache-Control', value: 'public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=31536000' },
+          { key: 'Cache-Control', value: 'public, max-age=31536000, s-maxage=31536000, immutable' },
+          { key: 'CDN-Cache-Control', value: 'public, max-age=31536000, immutable' },
+          { key: 'Vercel-CDN-Cache-Control', value: 'public, max-age=31536000, immutable' },
           { key: 'X-Robots-Tag', value: 'noindex, noarchive' },
+        ],
+      },
+      {
+        source: '/sitemap.xml',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Vercel-CDN-Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
         ],
       },
       {
