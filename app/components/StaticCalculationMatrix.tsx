@@ -62,20 +62,40 @@ function localizeCellValue(val: string, locale: string): string {
   if (locale === "es") {
     return val
       .replace(/\/ mo\b/g, "/ mes")
+      .replace(/\/ yr\b/g, "/ año")
       .replace(/^Under\s+/i, "Menos de ");
   }
   if (locale === "fr") {
     return val
       .replace(/\/ mo\b/g, "/ mois")
+      .replace(/\/ yr\b/g, "/ an")
       .replace(/^Under\s+/i, "Moins de ");
   }
   if (locale === "de") {
     return val
       .replace(/\/ mo\b/g, "/ Mon.")
+      .replace(/\/ yr\b/g, "/ Jahr")
       .replace(/^Under\s+/i, "Unter ");
   }
   return val;
 }
+
+function toCamelCase(key: string): string {
+  return key.replace(/_([a-z])/g, (_, ch: string) => ch.toUpperCase());
+}
+
+const PARAM_KEY_ALIASES: Record<string, string[]> = {
+  home_value: ["homePrice", "propertyPrice", "purchasePrice"],
+  down_payment: ["downPayment"],
+  loan_amount: ["loanAmount", "principal", "amount"],
+  interest_rate: ["interestRate", "rate", "apr"],
+  loan_term: ["loanTerm", "years", "term"],
+  loan_term_months: ["loanTermMonths", "months", "termMonths"],
+  initial_deposit: ["initialDeposit", "principal", "startingAmount"],
+  annual_addition: ["annualAddition", "annualContribution", "monthlyContribution"],
+  monthly_income: ["monthlyIncome", "grossMonthlyIncome", "income"],
+  monthly_debt: ["monthlyDebt", "totalMonthlyDebt", "debt"],
+};
 
 export function StaticCalculationMatrix({
   slug,
@@ -92,6 +112,8 @@ export function StaticCalculationMatrix({
   const displayTitle = localizedMeta?.title || matrix.title;
   const displayDesc = localizedMeta?.description || matrix.description;
   const displayHeaders = localizedMeta?.headers || matrix.headers;
+  const displayRows = matrix.rowsByLocale?.[locale] || matrix.rows;
+  const usesNativeLocaleRows = Boolean(matrix.rowsByLocale?.[locale]);
 
   const handleLoadRow = (rowIndex: number, params: Record<string, string>) => {
     if (typeof window === "undefined") return;
@@ -108,28 +130,37 @@ export function StaticCalculationMatrix({
 
     // Apply values to inputs via prototype setters to trigger React state recalculation
     Object.entries(params).forEach(([paramKey, paramValue]) => {
+      const candidateKeys = [
+        paramKey,
+        toCamelCase(paramKey),
+        ...(PARAM_KEY_ALIASES[paramKey] || []),
+      ];
+
       let matchedEl: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null = null;
 
-      try {
-        matchedEl = container.querySelector(`#${CSS.escape(paramKey)}`);
-      } catch {
-        matchedEl = null;
-      }
-
-      if (!matchedEl) {
+      for (const candidate of candidateKeys) {
+        if (matchedEl) break;
         try {
-          matchedEl = container.querySelector(`[name="${CSS.escape(paramKey)}"]`);
+          matchedEl = container.querySelector(`#${CSS.escape(candidate)}`);
         } catch {
           matchedEl = null;
+        }
+        if (!matchedEl) {
+          try {
+            matchedEl = container.querySelector(`[name="${CSS.escape(candidate)}"]`);
+          } catch {
+            matchedEl = null;
+          }
         }
       }
 
       if (!matchedEl) {
+        const lowerSet = new Set(candidateKeys.map((k) => k.toLowerCase()));
         for (let i = 0; i < elements.length; i++) {
           const el = elements[i];
           if (
-            (el.id && el.id.toLowerCase() === paramKey.toLowerCase()) ||
-            (el.name && el.name.toLowerCase() === paramKey.toLowerCase())
+            (el.id && lowerSet.has(el.id.toLowerCase())) ||
+            (el.name && lowerSet.has(el.name.toLowerCase()))
           ) {
             matchedEl = el;
             break;
@@ -206,9 +237,10 @@ export function StaticCalculationMatrix({
         {displayDesc}
       </p>
 
-      {/* Semantic HTML Table for Search Engine Web Crawlers */}
+      {/* Semantic HTML Table for Search Engine Web Crawlers & Position-0 Featured Snippets */}
       <div className="table-scroll-wrapper overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40">
         <table className="w-full text-left border-collapse text-xs sm:text-sm">
+          <caption className="sr-only">{displayTitle}</caption>
           <thead>
             <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-100/70 dark:bg-slate-800/60 text-slate-900 dark:text-slate-200 font-bold">
               {displayHeaders.map((header, idx) => (
@@ -222,7 +254,7 @@ export function StaticCalculationMatrix({
             </tr>
           </thead>
           <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-            {matrix.rows.map((row, rIdx) => {
+            {displayRows.map((row, rIdx) => {
               const isLoaded = activeRow === rIdx;
               return (
                 <tr
@@ -235,18 +267,19 @@ export function StaticCalculationMatrix({
                     scope="row"
                     className="p-3 sm:p-4 font-bold text-slate-900 dark:text-white whitespace-nowrap group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors"
                   >
-                    {localizeCellValue(row.label, locale)}
+                    {usesNativeLocaleRows ? row.label : localizeCellValue(row.label, locale)}
                   </th>
                   {row.values.map((val, vIdx) => (
                     <td
                       key={vIdx}
                       className="p-3 sm:p-4 text-slate-700 dark:text-slate-300 font-medium whitespace-nowrap"
                     >
-                      {localizeCellValue(val, locale)}
+                      {usesNativeLocaleRows ? val : localizeCellValue(val, locale)}
                     </td>
                   ))}
                   <td className="p-3 sm:p-4 text-right whitespace-nowrap">
                     <button
+                      type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleLoadRow(rIdx, row.params);

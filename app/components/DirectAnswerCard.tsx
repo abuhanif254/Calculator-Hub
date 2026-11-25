@@ -1,6 +1,6 @@
 import React from "react";
 import { Calculator, CheckCircle2, ChevronRight } from "lucide-react";
-import { getFormulaForCalculator } from "@/lib/data/calculatorFormulas";
+import { getFormulaForCalculator, getLocalizedFormula } from "@/lib/data/calculatorFormulas";
 import { StaticMathFormula } from "./StaticMathFormula";
 
 interface DirectAnswerCardProps {
@@ -61,7 +61,8 @@ export function DirectAnswerCard({
   if (!formulaDef) return null;
 
   const t = directAnswerTranslations[locale] || directAnswerTranslations.en;
-  const isEn = locale === "en";
+  const localized = getLocalizedFormula(formulaDef, locale);
+  const headingTitle = localized.name || title;
 
   return (
     <section
@@ -80,7 +81,7 @@ export function DirectAnswerCard({
               {t.badge}
             </span>
             <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight">
-              {isEn ? formulaDef.name : title}
+              {headingTitle}
             </h2>
           </div>
         </div>
@@ -91,7 +92,7 @@ export function DirectAnswerCard({
       </div>
 
       {/* Featured KaTeX Equation Box */}
-      <div className="bg-white dark:bg-slate-950/80 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-inner mb-4 flex items-center justify-center min-h-[64px]">
+      <div className="bg-white dark:bg-slate-950/80 rounded-2xl p-4 sm:p-5 border border-slate-200/80 dark:border-slate-800 shadow-inner mb-4 flex items-center justify-center min-h-[64px] overflow-x-auto">
         <StaticMathFormula
           latex={formulaDef.latex || formulaDef.formula}
           fallback={formulaDef.formula}
@@ -99,14 +100,14 @@ export function DirectAnswerCard({
         />
       </div>
 
-      {/* Variables Grid (English uses detailed variable definitions; non-EN avoids untranslated English bleed) */}
-      {isEn && formulaDef.variables.length > 0 && (
+      {/* Localized Variables Grid (Full native variable legend across EN / ES / FR / DE) */}
+      {localized.hasLocalizedCopy && localized.variables.length > 0 && (
         <div className="mb-4">
           <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
             {t.variablesTitle}
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-            {formulaDef.variables.map((v) => (
+            {localized.variables.map((v) => (
               <div
                 key={v.symbol}
                 className="flex items-start gap-2 p-2 rounded-xl bg-slate-100/70 dark:bg-slate-800/40 border border-slate-200/40 dark:border-slate-800"
@@ -126,14 +127,16 @@ export function DirectAnswerCard({
         </div>
       )}
 
-      {/* Step-by-Step Methodology Snippet */}
+      {/* Localized Step-by-Step Methodology Snippet */}
       <div className="text-xs text-slate-600 dark:text-slate-400 bg-emerald-50/50 dark:bg-[#518231]/5 p-3 rounded-xl border border-[#518231]/20 flex items-start gap-2">
         <ChevronRight className="w-4 h-4 text-[#518231] dark:text-[#6fa844] shrink-0 mt-0.5" />
         <span>
           <strong className="text-slate-900 dark:text-slate-200 font-semibold">
             {t.methodologyTitle}
           </strong>{" "}
-          {isEn && formulaDef.stepByStep ? formulaDef.stepByStep : t.localizedMethodologyNote(title)}
+          {localized.hasLocalizedCopy && localized.stepByStep
+            ? localized.stepByStep
+            : t.localizedMethodologyNote(title)}
         </span>
       </div>
     </section>

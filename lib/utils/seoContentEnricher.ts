@@ -1,5 +1,5 @@
 import type { CalculatorDef, CalculatorField } from '@/lib/types';
-import { getFormulaForCalculator } from '@/lib/data/calculatorFormulas';
+import { getFormulaForCalculator, getLocalizedFormula } from '@/lib/data/calculatorFormulas';
 import type { ToolConfig } from '@/lib/data/tools/types';
 
 function getFieldUnit(input: CalculatorField): string {
@@ -134,23 +134,31 @@ export function enrichCalculatorSeoContent(params: {
   }
 
   if (formulaDef?.formula) {
+    const locFormula = getLocalizedFormula(formulaDef, locale);
+    const displayFormulaName = locFormula.name || localizedTitle;
     const formulaHeading =
       locale === 'es'
-        ? `### Fórmula Matemática (${formulaDef.name || localizedTitle})`
+        ? `### Fórmula Matemática (${displayFormulaName})`
         : locale === 'fr'
-          ? `### Formule Mathématique (${formulaDef.name || localizedTitle})`
+          ? `### Formule Mathématique (${displayFormulaName})`
           : locale === 'de'
-            ? `### Mathematische Formel (${formulaDef.name || localizedTitle})`
-            : `### Mathematical Formula (${formulaDef.name || localizedTitle})`;
+            ? `### Mathematische Formel (${displayFormulaName})`
+            : `### Mathematical Formula (${displayFormulaName})`;
 
-    const varRows = (formulaDef.variables || [])
+    const varRows = (locFormula.hasLocalizedCopy ? locFormula.variables : [])
       .map((v) => `| \`${v.symbol}\` | **${v.name}** | ${v.description} |`)
       .join('\n');
 
-    const varTable =
-      locale === 'en' && varRows
-        ? `\n\n| Symbol | Variable | Definition |\n| :--- | :--- | :--- |\n${varRows}`
-        : '';
+    const varHeader =
+      locale === 'es'
+        ? '| Símbolo | Variable | Definición |'
+        : locale === 'fr'
+          ? '| Symbole | Variable | Définition |'
+          : locale === 'de'
+            ? '| Symbol | Variable | Definition |'
+            : '| Symbol | Variable | Definition |';
+
+    const varTable = varRows ? `\n\n${varHeader}\n| :--- | :--- | :--- |\n${varRows}` : '';
 
     sections.push(`${formulaHeading}\n\n\`\`\`\n${formulaDef.formula}\n\`\`\`${varTable}`);
   }

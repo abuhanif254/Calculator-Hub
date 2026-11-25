@@ -15,9 +15,9 @@ import { COMMUNITY_CATEGORIES } from '../lib/categories';
 // revalidate=false serves from CDN edge permanently, saving Vercel ISR quota.
 export const revalidate = false;
 
-// Architectural & SSR SEO Overhaul Baseline (Zero-Boilerplate + Full 4-Locale Language Purity & Cross-Locale Links)
+// Architectural & SSR SEO Overhaul Baseline (Phase 1A/1B + Phase 2 Localized Matrices & Formulas)
 // Ensures Googlebot sees that all canonical/hreflang/content-upgraded pages are newer than previous crawls.
-const OVERHAUL_BASELINE_MS = new Date('2026-11-19T12:00:00.000Z').getTime();
+const OVERHAUL_BASELINE_MS = new Date('2026-11-25T04:00:00.000Z').getTime();
 
 function resolveLatestContentMtime(relativePaths: string[], explicitDate?: string | Date): Date {
   let maxMs = OVERHAUL_BASELINE_MS;

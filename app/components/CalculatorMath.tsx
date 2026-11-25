@@ -1,5 +1,5 @@
 import React from "react";
-import { getFormulaForCalculator } from "@/lib/data/calculatorFormulas";
+import { getFormulaForCalculator, getLocalizedFormula } from "@/lib/data/calculatorFormulas";
 import { StaticMathFormula } from "./StaticMathFormula";
 
 const mathCopyByLocale: Record<
@@ -52,13 +52,27 @@ export function CalculatorMath({
   const getMathContent = () => {
     if (!isEn) {
       if (formulaDef) {
+        const loc = getLocalizedFormula(formulaDef, locale);
         return (
           <>
-            <p className="mb-4 text-slate-700 dark:text-slate-300">{t.basedOn}</p>
-            <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl mb-4 shadow-inner border border-slate-200 dark:border-slate-800 flex items-center justify-center">
+            <p className="mb-4 text-slate-700 dark:text-slate-300">
+              {t.basedOn}{loc.name ? <> <strong>{loc.name}</strong></> : null}
+            </p>
+            <div className="bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl mb-4 shadow-inner border border-slate-200 dark:border-slate-800 flex items-center justify-center overflow-x-auto">
               <StaticMathFormula latex={formulaDef.latex || formulaDef.formula} fallback={formulaDef.formula} />
             </div>
-            <p className="mt-4 text-xs text-slate-500 dark:text-slate-400 italic">{t.fallbackDesc}</p>
+            {loc.hasLocalizedCopy && loc.variables.length > 0 && (
+              <ul className="list-disc pl-6 space-y-2 text-slate-600 dark:text-slate-400">
+                {loc.variables.map((v) => (
+                  <li key={v.symbol}>
+                    <strong>{v.symbol}</strong> = {v.name} ({v.description})
+                  </li>
+                ))}
+              </ul>
+            )}
+            <p className="mt-4 text-xs text-slate-500 dark:text-slate-400 italic">
+              {loc.hasLocalizedCopy && loc.stepByStep ? loc.stepByStep : t.fallbackDesc}
+            </p>
           </>
         );
       }
