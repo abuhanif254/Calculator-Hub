@@ -627,6 +627,126 @@ export const routing = defineRouting({
       fr: '/calculatrices/calculateur-de-loi-de-charles',
       de: '/rechner/charles-gesetz-rechner'
     },
+    '/calculators/cm-to-inches': {
+      en: '/calculators/cm-to-inches',
+      es: '/calculadoras/cm-a-pulgadas',
+      fr: '/calculatrices/cm-en-pouces',
+      de: '/rechner/cm-in-zoll'
+    },
+    '/calculators/inches-to-cm': {
+      en: '/calculators/inches-to-cm',
+      es: '/calculadoras/pulgadas-a-cm',
+      fr: '/calculatrices/pouces-en-cm',
+      de: '/rechner/zoll-in-cm'
+    },
+    '/calculators/kg-to-lbs': {
+      en: '/calculators/kg-to-lbs',
+      es: '/calculadoras/kg-a-libras',
+      fr: '/calculatrices/kg-en-livres',
+      de: '/rechner/kg-in-pfund'
+    },
+    '/calculators/lbs-to-kg': {
+      en: '/calculators/lbs-to-kg',
+      es: '/calculadoras/libras-a-kg',
+      fr: '/calculatrices/livres-en-kg',
+      de: '/rechner/pfund-in-kg'
+    },
+    '/calculators/celsius-to-fahrenheit': {
+      en: '/calculators/celsius-to-fahrenheit',
+      es: '/calculadoras/celsius-a-fahrenheit',
+      fr: '/calculatrices/celsius-en-fahrenheit',
+      de: '/rechner/celsius-in-fahrenheit'
+    },
+    '/calculators/fahrenheit-to-celsius': {
+      en: '/calculators/fahrenheit-to-celsius',
+      es: '/calculadoras/fahrenheit-a-celsius',
+      fr: '/calculatrices/fahrenheit-en-celsius',
+      de: '/rechner/fahrenheit-in-celsius'
+    },
+    '/calculators/km-to-miles': {
+      en: '/calculators/km-to-miles',
+      es: '/calculadoras/km-a-millas',
+      fr: '/calculatrices/km-en-miles',
+      de: '/rechner/km-in-meilen'
+    },
+    '/calculators/miles-to-km': {
+      en: '/calculators/miles-to-km',
+      es: '/calculadoras/millas-a-km',
+      fr: '/calculatrices/miles-en-km',
+      de: '/rechner/meilen-in-km'
+    },
+    '/calculators/feet-to-meters': {
+      en: '/calculators/feet-to-meters',
+      es: '/calculadoras/pies-a-metros',
+      fr: '/calculatrices/pieds-en-metres',
+      de: '/rechner/fuss-in-meter'
+    },
+    '/calculators/meters-to-feet': {
+      en: '/calculators/meters-to-feet',
+      es: '/calculadoras/metros-a-pies',
+      fr: '/calculatrices/metres-en-pieds',
+      de: '/rechner/meter-in-fuss'
+    },
+    '/calculators/liters-to-gallons': {
+      en: '/calculators/liters-to-gallons',
+      es: '/calculadoras/litros-a-galones',
+      fr: '/calculatrices/litres-en-gallons',
+      de: '/rechner/liter-in-gallonen'
+    },
+    '/calculators/oz-to-grams': {
+      en: '/calculators/oz-to-grams',
+      es: '/calculadoras/onzas-a-gramos',
+      fr: '/calculatrices/onces-en-grammes',
+      de: '/rechner/unzen-in-gramm'
+    },
+    '/calculators/mb-to-gb': {
+      en: '/calculators/mb-to-gb',
+      es: '/calculadoras/mb-a-gb',
+      fr: '/calculatrices/mo-en-go',
+      de: '/rechner/mb-in-gb'
+    },
+    '/calculators/px-to-rem': {
+      en: '/calculators/px-to-rem',
+      es: '/calculadoras/px-a-rem',
+      fr: '/calculatrices/px-en-rem',
+      de: '/rechner/px-in-rem'
+    },
+    '/calculators/watts-to-amps': {
+      en: '/calculators/watts-to-amps',
+      es: '/calculadoras/watts-a-amperios',
+      fr: '/calculatrices/watts-en-amperes',
+      de: '/rechner/watt-in-ampere'
+    },
+    '/calculators/kwh-to-watts': {
+      en: '/calculators/kwh-to-watts',
+      es: '/calculadoras/kwh-a-watts',
+      fr: '/calculatrices/kwh-en-watts',
+      de: '/rechner/kwh-in-watt'
+    },
+    '/calculators/mph-to-kmh': {
+      en: '/calculators/mph-to-kmh',
+      es: '/calculadoras/mph-a-kmh',
+      fr: '/calculatrices/mph-en-kmh',
+      de: '/rechner/mph-in-kmh'
+    },
+    '/calculators/acres-to-square-feet': {
+      en: '/calculators/acres-to-square-feet',
+      es: '/calculadoras/acres-a-pies-cuadrados',
+      fr: '/calculatrices/acres-en-pieds-carres',
+      de: '/rechner/acres-in-quadratfuss'
+    },
+    '/calculators/cups-to-ml': {
+      en: '/calculators/cups-to-ml',
+      es: '/calculadoras/tazas-a-ml',
+      fr: '/calculatrices/tasses-en-ml',
+      de: '/rechner/cups-in-ml'
+    },
+    '/calculators/psi-to-bar': {
+      en: '/calculators/psi-to-bar',
+      es: '/calculadoras/psi-a-bar',
+      fr: '/calculatrices/psi-en-bar',
+      de: '/rechner/psi-in-bar'
+    },
           '/calculators/t-test-calculator': {
         en: '/calculators/t-test-calculator',
         es: '/calculadoras/calculadora-prueba-t',

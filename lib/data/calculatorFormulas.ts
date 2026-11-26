@@ -10,6 +10,7 @@ import type { CalculatorFormulaDef, FormulaLocaleTranslation, FormulaVariable } 
 import { financeFormulas } from './formulas/financeFormulas';
 import { healthMathStatsFormulas } from './formulas/healthMathStatsFormulas';
 import { physicsChemFormulas } from './formulas/physicsChemFormulas';
+import { unitConverterFormulas } from './formulas/unitConverterFormulas';
 
 export type { CalculatorFormulaDef, FormulaLocaleTranslation, FormulaVariable };
 
@@ -17,6 +18,7 @@ export const calculatorFormulas: CalculatorFormulaDef[] = [
   ...financeFormulas,
   ...healthMathStatsFormulas,
   ...physicsChemFormulas,
+  ...unitConverterFormulas,
 ];
 
 /**

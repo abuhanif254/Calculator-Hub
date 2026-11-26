@@ -10,6 +10,7 @@ import type { CalculatorMatrixDef, MatrixLocaleTranslation, MatrixRow } from './
 import { financeMatrices } from './matrices/financeMatrices';
 import { healthMatrices } from './matrices/healthMatrices';
 import { scienceMathMatrices } from './matrices/scienceMathMatrices';
+import { unitConverterMatrices } from './matrices/unitConverterMatrices';
 
 export type { CalculatorMatrixDef, MatrixLocaleTranslation, MatrixRow };
 
@@ -17,6 +18,7 @@ export const calculatorMatrices: CalculatorMatrixDef[] = [
   ...financeMatrices,
   ...healthMatrices,
   ...scienceMathMatrices,
+  ...unitConverterMatrices,
 ];
 
 /**

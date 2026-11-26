@@ -16,6 +16,13 @@ import type { CalculatorDef } from '@/lib/types';
 
 type CalcComponentProps = { calcDef?: CalculatorDef; locale?: string };
 
+// Shared dedicated unit pair converter view (handles 20 high-volume unit conversion routes)
+const UnitPairConverter = dynamic(() =>
+  import('@/app/components/UnitPairConverterView').then((m) => ({
+    default: m.UnitPairConverterView as ComponentType<CalcComponentProps>,
+  }))
+);
+
 const registry: Record<string, ComponentType<CalcComponentProps>> = {
   // ─── Financial ─────────────────────────────────
   'loan-calculator': dynamic(() => import('@/app/components/LoanCalculatorView').then(m => ({ default: m.LoanCalculatorView as ComponentType<CalcComponentProps> }))),
@@ -203,6 +210,28 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'subnet-calculator': dynamic(() => import('@/app/components/SubnetCalculatorView').then(m => ({ default: m.SubnetCalculatorView as ComponentType<CalcComponentProps> }))),
   'ip-subnet-calculator': dynamic(() => import('@/app/components/IpSubnetCalculatorView').then(m => ({ default: m.IpSubnetCalculatorView as ComponentType<CalcComponentProps> }))),
   'password-generator': dynamic(() => import('@/app/components/PasswordGeneratorView').then(m => ({ default: m.PasswordGeneratorView as ComponentType<CalcComponentProps> }))),
+
+  // ─── Dedicated Single-Intent Unit Converters (20 pairs) ─────
+  'cm-to-inches': UnitPairConverter,
+  'inches-to-cm': UnitPairConverter,
+  'kg-to-lbs': UnitPairConverter,
+  'lbs-to-kg': UnitPairConverter,
+  'celsius-to-fahrenheit': UnitPairConverter,
+  'fahrenheit-to-celsius': UnitPairConverter,
+  'km-to-miles': UnitPairConverter,
+  'miles-to-km': UnitPairConverter,
+  'feet-to-meters': UnitPairConverter,
+  'meters-to-feet': UnitPairConverter,
+  'liters-to-gallons': UnitPairConverter,
+  'oz-to-grams': UnitPairConverter,
+  'mb-to-gb': UnitPairConverter,
+  'px-to-rem': UnitPairConverter,
+  'watts-to-amps': UnitPairConverter,
+  'kwh-to-watts': UnitPairConverter,
+  'mph-to-kmh': UnitPairConverter,
+  'acres-to-square-feet': UnitPairConverter,
+  'cups-to-ml': UnitPairConverter,
+  'psi-to-bar': UnitPairConverter,
 };
 
 // Fallback generic calculator component

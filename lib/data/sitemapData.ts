@@ -54,7 +54,14 @@ export const sitemapCategories = [
     links: [
       "Age Calculator", "Date Calculator", "Time Calculator", "Hours Calculator",
       "GPA Calculator", "Grade Calculator", "Concrete Calculator", "Subnet Calculator",
-      "Conversion Calculator", "Height Calculator", "IP Subnet Calculator"]
+      "Conversion Calculator", "Height Calculator", "IP Subnet Calculator",
+      "CM to Inches Converter", "Inches to CM Converter", "KG to LBS Converter", "LBS to KG Converter",
+      "Celsius to Fahrenheit Converter", "Fahrenheit to Celsius Converter", "KM to Miles Converter",
+      "Miles to KM Converter", "Feet to Meters Converter", "Meters to Feet Converter",
+      "Liters to Gallons Converter", "Ounces to Grams Converter (oz to g)", "MB to GB Converter",
+      "PX to REM Converter (CSS)", "Watts to Amps Converter", "kWh to Watts Converter",
+      "MPH to KM/H Converter", "Acres to Square Feet Converter", "Cups to mL Converter (US Cups to Milliliters)",
+      "PSI to Bar Pressure Converter"]
   },
   {
     title: "Weather Calculators",
