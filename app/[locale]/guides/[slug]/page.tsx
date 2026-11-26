@@ -89,7 +89,12 @@ function slugifyHeading(text: string): string {
     .trim();
 }
 
-const guideMarkdownCache = new Map<string, string>();
+interface LoadedGuideMarkdown {
+  content: string;
+  faqs: { question: string; answer: string }[];
+}
+
+const guideMarkdownCache = new Map<string, LoadedGuideMarkdown>();
 
 function renderGuideMarkdownToHtml(markdownText: string, locale: string): string {
   const renderer = new marked.Renderer();
@@ -116,7 +121,7 @@ function renderGuideMarkdownToHtml(markdownText: string, locale: string): string
   );
 }
 
-function loadGuideRawMarkdown(guideSlug: string, locale: string, currentSlug: string, localizedSlug?: string): string | null {
+function loadGuideMarkdownData(guideSlug: string, locale: string, currentSlug: string, localizedSlug?: string): LoadedGuideMarkdown | null {
   // 1. Try currentSlug in locale folder
   let filePath = path.join(process.cwd(), 'content', locale, 'guides', `${currentSlug}.md`);
   if (!fs.existsSync(filePath) && localizedSlug) {
@@ -143,8 +148,25 @@ function loadGuideRawMarkdown(guideSlug: string, locale: string, currentSlug: st
   const raw = fs.readFileSync(filePath, 'utf-8');
   const parsed = matter(raw);
   const content = parsed.content.replace(/^\s*#\s+[^\r\n]+\r?\n*/, '').trim();
-  guideMarkdownCache.set(cacheKey, content);
-  return content;
+  const rawFaqs = Array.isArray(parsed.data?.faqs) ? parsed.data.faqs : [];
+  const faqs = rawFaqs
+    .filter(
+      (item: unknown): item is { question: string; answer: string } =>
+        Boolean(item) &&
+        typeof item === 'object' &&
+        typeof (item as { question?: unknown }).question === 'string' &&
+        typeof (item as { answer?: unknown }).answer === 'string' &&
+        (item as { question: string }).question.trim().length > 0 &&
+        (item as { answer: string }).answer.trim().length > 0
+    )
+    .map((item) => ({
+      question: item.question.trim(),
+      answer: item.answer.trim(),
+    }));
+
+  const result: LoadedGuideMarkdown = { content, faqs };
+  guideMarkdownCache.set(cacheKey, result);
+  return result;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -258,7 +280,9 @@ export default async function GuideArticlePage({
     : { title: guide.title, description: guide.description };
   const relatedItemTitle = relatedItemMeta.title;
 
-  const rawMdContent = loadGuideRawMarkdown(baseGuide.slug, locale, slug, localizedSlug) || '';
+  const loadedGuideMd = loadGuideMarkdownData(baseGuide.slug, locale, slug, localizedSlug);
+  const rawMdContent = loadedGuideMd?.content || '';
+  const frontmatterFaqs = loadedGuideMd?.faqs || [];
   const { enrichedContent, faqs: guideFaqs } = enrichGuideSeoContent({
     locale,
     guideTitle: guide.title,
@@ -268,7 +292,7 @@ export default async function GuideArticlePage({
     localizedCalcTitle: relatedItemMeta.title || guide.title,
     localizedCalcDesc: relatedItemMeta.description || guide.description,
     localizedInputs: localizedCalcInputs,
-    localizedCalcFaqs: [],
+    localizedCalcFaqs: frontmatterFaqs,
   });
 
   const htmlContent = enrichedContent
