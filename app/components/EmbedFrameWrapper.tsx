@@ -8,17 +8,27 @@ interface EmbedFrameWrapperProps {
   children: React.ReactNode;
   calcTitle: string;
   canonicalUrl: string;
+  locale?: string;
 }
+
+const FRAME_COPY: Record<string, { poweredBy: string; loading: string }> = {
+  en: { poweredBy: "Powered by NexusCalculator", loading: "Loading embed calculator..." },
+  es: { poweredBy: "Desarrollado por NexusCalculator", loading: "Cargando calculadora incrustada..." },
+  fr: { poweredBy: "Propulsé par NexusCalculator", loading: "Chargement de la calculatrice..." },
+  de: { poweredBy: "Bereitgestellt von NexusCalculator", loading: "Rechner-Widget wird geladen..." },
+};
 
 function EmbedFrameInner({
   children,
   calcTitle,
   canonicalUrl,
+  locale = "en",
 }: EmbedFrameWrapperProps) {
   const searchParams = useSearchParams();
   const theme = searchParams?.get("theme");
   const hideHeader = searchParams?.get("hideHeader") === "true";
   const isDarkMode = theme === "dark";
+  const t = FRAME_COPY[locale] || FRAME_COPY.en;
 
   return (
     <div
@@ -40,7 +50,7 @@ function EmbedFrameInner({
             rel="noopener"
             className="inline-flex items-center gap-1 text-xs font-semibold text-[#518231] dark:text-[#6fa844] hover:underline"
           >
-            <span>Powered by Nexus Calculator</span>
+            <span>{t.poweredBy}</span>
             <ExternalLink size={12} />
           </a>
         </div>
@@ -56,7 +66,7 @@ function EmbedFrameInner({
             rel="noopener"
             className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-[#518231] transition-colors"
           >
-            <span>Powered by Nexus Calculator</span>
+            <span>{t.poweredBy}</span>
             <ExternalLink size={10} />
           </a>
         </div>
@@ -66,13 +76,14 @@ function EmbedFrameInner({
 }
 
 export function EmbedFrameWrapper(props: EmbedFrameWrapperProps) {
+  const t = FRAME_COPY[props.locale || "en"] || FRAME_COPY.en;
   return (
     <Suspense
       fallback={
         <div className="w-full h-full min-h-screen bg-white dark:bg-slate-950 p-4">
           <div className="w-full h-[280px] sm:h-[400px] animate-pulse bg-slate-100 dark:bg-slate-800/30 rounded-2xl flex flex-col items-center justify-center gap-3">
             <div className="w-10 h-10 rounded-full border-4 border-[#518231]/20 border-t-[#518231] animate-spin" />
-            <span className="text-xs font-semibold text-slate-400">Loading embed calculator...</span>
+            <span className="text-xs font-semibold text-slate-400">{t.loading}</span>
           </div>
         </div>
       }

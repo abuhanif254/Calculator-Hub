@@ -44,6 +44,7 @@ export default async function EmbedCalculatorPage({
     <EmbedFrameWrapper
       calcTitle={calcTitle}
       canonicalUrl={canonicalUrl}
+      locale={resolvedParams.locale}
     >
       <NextIntlClientProvider locale={resolvedParams.locale} messages={calcMessages}>
         <CalculatorViewWrapper calcDef={clientCalc} locale={resolvedParams.locale} />

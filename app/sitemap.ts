@@ -170,6 +170,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...buildEntries('/tools', 'weekly', 0.9, undefined, baselineMod),
     ...buildEntries('/collections', 'weekly', 0.85, undefined, baselineMod),
     ...buildEntries('/compare', 'weekly', 0.85, undefined, baselineMod),
+    ...buildEntries('/embed-widgets', 'monthly', 0.85, undefined, resolveLatestContentMtime(['app/[locale]/embed-widgets/page.tsx'])),
     ...buildEntries('/pdf', 'weekly', 0.9, undefined, baselineMod),
     ...buildEntries('/image', 'weekly', 0.9, undefined, baselineMod),
     ...allGuides.flatMap((guide) => {

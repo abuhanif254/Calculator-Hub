@@ -44,9 +44,9 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      // ── Security headers for standard pages (exclude embed routes) ────────────
+      // ── Security headers for standard pages (exclude iframe /embed/ routes, keep /embed-widgets protected) ──
       {
-        source: '/((?!.*embed).*)',
+        source: '/((?!.*embed/).*)',
         headers: [
           { key: 'X-Content-Type-Options',   value: 'nosniff' },
           { key: 'X-Frame-Options',           value: 'SAMEORIGIN' },
@@ -129,6 +129,20 @@ const nextConfig: NextConfig = {
         source: '/sitemap.xml',
         headers: [
           { key: 'Cache-Control', value: 'public, max-age=3600, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Vercel-CDN-Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/llms.txt',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800' },
+          { key: 'Vercel-CDN-Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
+        ],
+      },
+      {
+        source: '/llms-full.txt',
+        headers: [
+          { key: 'Cache-Control', value: 'public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800' },
           { key: 'Vercel-CDN-Cache-Control', value: 'public, s-maxage=86400, stale-while-revalidate=604800' },
         ],
       },

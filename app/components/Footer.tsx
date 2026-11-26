@@ -17,6 +17,7 @@ const FOOTER_TRANSLATIONS: Record<
     devTools: string;
     comparisonsHub: string;
     collectionsHub: string;
+    embedWidgets: string;
     pdfTools: string;
     imageTools: string;
     community: string;
@@ -45,6 +46,7 @@ const FOOTER_TRANSLATIONS: Record<
     devTools: 'Developer Tools',
     comparisonsHub: 'Side-by-Side Comparisons',
     collectionsHub: 'Curated Workflow Toolkits',
+    embedWidgets: 'Embeddable Widgets',
     pdfTools: 'PDF Tools',
     imageTools: 'Image Tools',
     community: 'Community Forum',
@@ -77,6 +79,7 @@ const FOOTER_TRANSLATIONS: Record<
     devTools: 'Herramientas de Desarrollo',
     comparisonsHub: 'Comparativas Lado a Lado',
     collectionsHub: 'Kits y Colecciones',
+    embedWidgets: 'Widgets Incrustables',
     pdfTools: 'Herramientas PDF',
     imageTools: 'Herramientas de Imagen',
     community: 'Comunidad Técnica',
@@ -109,6 +112,7 @@ const FOOTER_TRANSLATIONS: Record<
     devTools: 'Outils Développeur',
     comparisonsHub: 'Comparatifs Côte à Côte',
     collectionsHub: 'Packs d’Outils Thématiques',
+    embedWidgets: 'Widgets à Intégrer',
     pdfTools: 'Outils PDF',
     imageTools: 'Outils Image',
     community: 'Communauté',
@@ -141,6 +145,7 @@ const FOOTER_TRANSLATIONS: Record<
     devTools: 'Entwickler-Tools',
     comparisonsHub: 'Direkte Systemvergleiche',
     collectionsHub: 'Kuratierte Toolkits',
+    embedWidgets: 'Rechner-Widgets',
     pdfTools: 'PDF-Werkzeuge',
     imageTools: 'Bild-Werkzeuge',
     community: 'Fach-Community',
@@ -309,6 +314,11 @@ export async function Footer() {
               <li>
                 <Link href={resolveIntlHref('/collections')} className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
                   {t.collectionsHub}
+                </Link>
+              </li>
+              <li>
+                <Link href="/embed-widgets" className="text-slate-600 dark:text-slate-400 hover:text-[#518231] dark:hover:text-white hover:translate-x-1 inline-block py-1 transition-all duration-300">
+                  {t.embedWidgets}
                 </Link>
               </li>
               <li>

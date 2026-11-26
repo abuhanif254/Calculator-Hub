@@ -276,6 +276,14 @@ const LOCALE_STATIC_REDIRECTS: Record<string, string> = {
   // guides hub cross-locale redirects
   '/es/guides': '/es/guias',
   '/de/guides': '/de/anleitungen',
+  // editorial-policy cross-locale redirects
+  '/es/editorial-policy': '/es/politica-editorial',
+  '/fr/editorial-policy': '/fr/politique-editoriale',
+  '/de/editorial-policy': '/de/redaktionsrichtlinien',
+  // embed-widgets cross-locale redirects
+  '/es/embed-widgets': '/es/incrustar-calculadoras',
+  '/fr/embed-widgets': '/fr/integrer-calculatrices',
+  '/de/embed-widgets': '/de/rechner-einbetten',
 };
 
 // Precompute the set of canonical English calculator & guide slugs directly from the redirect
@@ -564,6 +572,8 @@ function getCanonicalPath(pathname: string): string | null {
     pathname.startsWith('/compare/') ||
     pathname.startsWith('/database-privacy') ||
     pathname === '/about-us' ||
+    pathname === '/editorial-policy' ||
+    pathname === '/embed-widgets' ||
     pathname === '/contact-us' ||
     pathname === '/privacy-policy' ||
     pathname === '/terms-of-use' ||

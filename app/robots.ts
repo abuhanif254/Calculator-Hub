@@ -76,6 +76,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: [
           '/',
           '/llms.txt',
+          '/llms-full.txt',
           '/api/users/',                  // Allow legacy documentation example path so 301 redirect in next.config.ts resolves in GSC
         ],
         disallow: nonSocialDisallow,
@@ -93,7 +94,7 @@ export default function robots(): MetadataRoute.Robots {
           'PerplexityBot',
           'Applebot-Extended',
         ],
-        allow: ['/', '/llms.txt'],
+        allow: ['/', '/llms.txt', '/llms-full.txt'],
         disallow: nonSocialDisallow,
       },
       {

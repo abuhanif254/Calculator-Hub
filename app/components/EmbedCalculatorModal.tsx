@@ -13,6 +13,141 @@ interface EmbedCalculatorModalProps {
   isTool?: boolean;
 }
 
+const MODAL_COPY: Record<
+  string,
+  {
+    embedHeading: (title: string) => string;
+    subtitle: string;
+    closeAria: string;
+    themeLabel: string;
+    themeAuto: string;
+    themeLight: string;
+    themeDark: string;
+    heightLabel: string;
+    heightCompact: string;
+    heightStandard: string;
+    heightTall: string;
+    heightExtra: string;
+    headerStyleLabel: string;
+    headerHidden: string;
+    headerVisible: string;
+    htmlCodeLabel: string;
+    cmsHint: string;
+    livePreviewLabel: string;
+    openNewTab: string;
+    footerNote: string;
+    closeBtn: string;
+    copiedBtn: string;
+    copyBtn: string;
+    poweredBy: string;
+  }
+> = {
+  en: {
+    embedHeading: (t) => `Embed ${t}`,
+    subtitle: "Add this free, responsive calculator widget to your website or blog",
+    closeAria: "Close dialog",
+    themeLabel: "Theme",
+    themeAuto: "Auto",
+    themeLight: "Light",
+    themeDark: "Dark",
+    heightLabel: "Height",
+    heightCompact: "Compact (550px)",
+    heightStandard: "Standard (650px)",
+    heightTall: "Tall (800px)",
+    heightExtra: "Extra Tall (1000px)",
+    headerStyleLabel: "Header Style",
+    headerHidden: "Header: Hidden",
+    headerVisible: "Header: Visible",
+    htmlCodeLabel: "HTML Embed Code",
+    cmsHint: "Paste into WordPress, Webflow, Squarespace, Wix, or HTML",
+    livePreviewLabel: "Live Widget Preview",
+    openNewTab: "Open in new tab",
+    footerNote: "Includes free client-side calculation engine & automatic updates.",
+    closeBtn: "Close",
+    copiedBtn: "Code Copied!",
+    copyBtn: "Copy Embed Code",
+    poweredBy: "Powered by",
+  },
+  es: {
+    embedHeading: (t) => `Incrustar ${t}`,
+    subtitle: "Añade este widget gratuito y adaptable a tu sitio web o blog",
+    closeAria: "Cerrar ventana",
+    themeLabel: "Tema",
+    themeAuto: "Auto",
+    themeLight: "Claro",
+    themeDark: "Oscuro",
+    heightLabel: "Altura",
+    heightCompact: "Compacto (550px)",
+    heightStandard: "Estándar (650px)",
+    heightTall: "Alto (800px)",
+    heightExtra: "Extra Alto (1000px)",
+    headerStyleLabel: "Encabezado",
+    headerHidden: "Cabecera: Oculta",
+    headerVisible: "Cabecera: Visible",
+    htmlCodeLabel: "Código HTML para Incrustar",
+    cmsHint: "Pégalo en WordPress, Webflow, Squarespace, Wix o HTML",
+    livePreviewLabel: "Vista Previa en Vivo",
+    openNewTab: "Abrir en pestaña nueva",
+    footerNote: "Incluye motor de cálculo local gratuito y actualizaciones automáticas.",
+    closeBtn: "Cerrar",
+    copiedBtn: "¡Código Copiado!",
+    copyBtn: "Copiar Código",
+    poweredBy: "Desarrollado por",
+  },
+  fr: {
+    embedHeading: (t) => `Intégrer ${t}`,
+    subtitle: "Ajoutez ce widget gratuit et responsive à votre site web ou blog",
+    closeAria: "Fermer la fenêtre",
+    themeLabel: "Thème",
+    themeAuto: "Auto",
+    themeLight: "Clair",
+    themeDark: "Sombre",
+    heightLabel: "Hauteur",
+    heightCompact: "Compact (550px)",
+    heightStandard: "Standard (650px)",
+    heightTall: "Grand (800px)",
+    heightExtra: "Très Grand (1000px)",
+    headerStyleLabel: "En-tête",
+    headerHidden: "En-tête : Masqué",
+    headerVisible: "En-tête : Visible",
+    htmlCodeLabel: "Code HTML d’Intégration",
+    cmsHint: "Collez dans WordPress, Webflow, Squarespace, Wix ou HTML",
+    livePreviewLabel: "Aperçu en Direct",
+    openNewTab: "Ouvrir dans un nouvel onglet",
+    footerNote: "Moteur de calcul local gratuit avec mises à jour automatiques.",
+    closeBtn: "Fermer",
+    copiedBtn: "Code Copié !",
+    copyBtn: "Copier le Code",
+    poweredBy: "Propulsé par",
+  },
+  de: {
+    embedHeading: (t) => `${t} einbetten`,
+    subtitle: "Binden Sie dieses kostenlose, responsive Rechner-Widget auf Ihrer Website ein",
+    closeAria: "Dialog schließen",
+    themeLabel: "Design",
+    themeAuto: "Auto",
+    themeLight: "Hell",
+    themeDark: "Dunkel",
+    heightLabel: "Höhe",
+    heightCompact: "Kompakt (550px)",
+    heightStandard: "Standard (650px)",
+    heightTall: "Groß (800px)",
+    heightExtra: "Sehr Groß (1000px)",
+    headerStyleLabel: "Kopfzeile",
+    headerHidden: "Kopfzeile: Aus",
+    headerVisible: "Kopfzeile: Sichtbar",
+    htmlCodeLabel: "HTML-Einbettungscode",
+    cmsHint: "Direkt in WordPress, Webflow, Wix, TYPO3 oder HTML einfügen",
+    livePreviewLabel: "Live-Widget-Vorschau",
+    openNewTab: "In neuem Tab öffnen",
+    footerNote: "Kostenlose lokale Rechen-Engine inklusive automatischer Updates.",
+    closeBtn: "Schließen",
+    copiedBtn: "Code kopiert!",
+    copyBtn: "Code kopieren",
+    poweredBy: "Bereitgestellt von",
+  },
+};
+
 export function EmbedCalculatorModal({
   isOpen,
   onClose,
@@ -29,14 +164,14 @@ export function EmbedCalculatorModal({
 
   if (!isOpen) return null;
 
+  const t = MODAL_COPY[locale] || MODAL_COPY.en;
   const baseUrl = "https://www.nexuscalculator.net";
-  
-  // Construct embed URL with query params
+
   const embedParams = new URLSearchParams();
   if (theme !== "auto") embedParams.set("theme", theme);
   if (hideHeader) embedParams.set("hideHeader", "true");
   const queryStr = embedParams.toString() ? `?${embedParams.toString()}` : "";
-  
+
   const canonicalPageUrl =
     canonicalUrl ||
     `${baseUrl}/${locale}/${isTool ? "tools" : "calculators"}/${slug}`;
@@ -47,9 +182,9 @@ export function EmbedCalculatorModal({
     ? `${canonicalPageUrl.replace(baseUrl, "")}${queryStr}`
     : `/${locale}/embed/calculators/${slug}${queryStr}`;
 
-  // Generated iframe snippet with clean dofollow SEO attribution and keyword-rich anchor text
-  const embedSnippet = `<iframe src="${embedUrl}" width="100%" height="${height}" frameborder="0" style="border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1);" title="${title}"></iframe>
-<p style="font-size:11px;color:#64748b;margin-top:6px;text-align:right;">Powered by <a href="${canonicalPageUrl}" target="_blank" rel="noopener" style="color:#518231;font-weight:600;text-decoration:underline;">${title} — NexusCalculator</a></p>`;
+  const safeTitle = title.replace(/"/g, "&quot;");
+  const embedSnippet = `<iframe src="${embedUrl}" width="100%" height="${height}" loading="lazy" frameborder="0" style="border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1);" title="${safeTitle}"></iframe>
+<p style="font-size:11px;color:#64748b;margin-top:6px;text-align:right;">${t.poweredBy} <a href="${canonicalPageUrl}" target="_blank" rel="noopener" style="color:#518231;font-weight:600;text-decoration:underline;">${title} — NexusCalculator</a></p>`;
 
   const handleCopy = async () => {
     try {
@@ -62,11 +197,11 @@ export function EmbedCalculatorModal({
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4 animate-fade-in"
       onClick={onClose}
     >
-      <div 
+      <div
         className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-scale-up"
         onClick={(e) => e.stopPropagation()}
       >
@@ -78,33 +213,35 @@ export function EmbedCalculatorModal({
             </div>
             <div>
               <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-                Embed {title}
+                {t.embedHeading(title)}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-                Add this free, responsive calculator to your website or blog
+                {t.subtitle}
               </p>
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
             className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
-            aria-label="Close dialog"
+            aria-label={t.closeAria}
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Modal Body - Scrollable */}
+        {/* Modal Body */}
         <div className="p-5 sm:p-6 space-y-6 overflow-y-auto">
           {/* Customization Options */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Theme Toggle */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Theme
+                {t.themeLabel}
               </label>
               <div className="flex rounded-xl bg-slate-100 dark:bg-slate-800 p-1">
                 <button
+                  type="button"
                   onClick={() => setTheme("auto")}
                   className={`flex-1 py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-colors ${
                     theme === "auto"
@@ -113,9 +250,10 @@ export function EmbedCalculatorModal({
                   }`}
                 >
                   <Monitor className="w-3.5 h-3.5" />
-                  <span>Auto</span>
+                  <span>{t.themeAuto}</span>
                 </button>
                 <button
+                  type="button"
                   onClick={() => setTheme("light")}
                   className={`flex-1 py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-colors ${
                     theme === "light"
@@ -124,9 +262,10 @@ export function EmbedCalculatorModal({
                   }`}
                 >
                   <Sun className="w-3.5 h-3.5" />
-                  <span>Light</span>
+                  <span>{t.themeLight}</span>
                 </button>
                 <button
+                  type="button"
                   onClick={() => setTheme("dark")}
                   className={`flex-1 py-1.5 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 transition-colors ${
                     theme === "dark"
@@ -135,7 +274,7 @@ export function EmbedCalculatorModal({
                   }`}
                 >
                   <Moon className="w-3.5 h-3.5" />
-                  <span>Dark</span>
+                  <span>{t.themeDark}</span>
                 </button>
               </div>
             </div>
@@ -143,26 +282,27 @@ export function EmbedCalculatorModal({
             {/* Height Selector */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Height
+                {t.heightLabel}
               </label>
               <select
                 value={height}
                 onChange={(e) => setHeight(Number(e.target.value))}
                 className="w-full px-3 py-2 bg-slate-100 dark:bg-slate-800 border-0 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-[#518231]"
               >
-                <option value={550}>Compact (550px)</option>
-                <option value={650}>Standard (650px)</option>
-                <option value={800}>Tall (800px)</option>
-                <option value={1000}>Extra Tall (1000px)</option>
+                <option value={550}>{t.heightCompact}</option>
+                <option value={650}>{t.heightStandard}</option>
+                <option value={800}>{t.heightTall}</option>
+                <option value={1000}>{t.heightExtra}</option>
               </select>
             </div>
 
             {/* Header Display Toggle */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Header Style
+                {t.headerStyleLabel}
               </label>
               <button
+                type="button"
                 onClick={() => setHideHeader(!hideHeader)}
                 className={`w-full py-2 px-3 text-xs sm:text-sm font-semibold rounded-xl flex items-center justify-center gap-2 border transition-colors ${
                   hideHeader
@@ -171,19 +311,19 @@ export function EmbedCalculatorModal({
                 }`}
               >
                 <LayoutTemplate className="w-4 h-4" />
-                <span>{hideHeader ? "Header: Hidden" : "Header: Visible"}</span>
+                <span>{hideHeader ? t.headerHidden : t.headerVisible}</span>
               </button>
             </div>
           </div>
 
           {/* HTML Snippet Box */}
           <div className="space-y-2">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-wrap items-center justify-between gap-2">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                HTML Embed Code
+                {t.htmlCodeLabel}
               </label>
               <span className="text-[11px] text-slate-400 dark:text-slate-500">
-                Paste directly into WordPress, Webflow, Squarespace, or HTML
+                {t.cmsHint}
               </span>
             </div>
             <div className="relative">
@@ -200,7 +340,7 @@ export function EmbedCalculatorModal({
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                Live Widget Preview
+                {t.livePreviewLabel}
               </label>
               <a
                 href={previewUrl}
@@ -208,7 +348,7 @@ export function EmbedCalculatorModal({
                 rel="noopener"
                 className="text-xs font-semibold text-[#518231] dark:text-[#6fa844] hover:underline inline-flex items-center gap-1"
               >
-                Open in new tab
+                {t.openNewTab}
                 <ExternalLink className="w-3 h-3" />
               </a>
             </div>
@@ -217,8 +357,9 @@ export function EmbedCalculatorModal({
                 src={previewUrl}
                 width="100%"
                 height="320"
+                loading="lazy"
                 className="w-full bg-white dark:bg-slate-900 border-0"
-                title={`${title} Live Preview`}
+                title={`${title} — ${t.livePreviewLabel}`}
               />
             </div>
           </div>
@@ -227,16 +368,18 @@ export function EmbedCalculatorModal({
         {/* Modal Footer */}
         <div className="p-4 sm:p-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40 flex items-center justify-between gap-4 shrink-0">
           <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
-            Includes free calculation engine &amp; automatic updates.
+            {t.footerNote}
           </p>
           <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
             <button
+              type="button"
               onClick={onClose}
               className="px-4 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs sm:text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
             >
-              Close
+              {t.closeBtn}
             </button>
             <button
+              type="button"
               onClick={handleCopy}
               className={`flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-white transition-all shadow-md ${
                 copied
@@ -247,12 +390,12 @@ export function EmbedCalculatorModal({
               {copied ? (
                 <>
                   <Check className="w-4 h-4" />
-                  <span>Code Copied!</span>
+                  <span>{t.copiedBtn}</span>
                 </>
               ) : (
                 <>
                   <Copy className="w-4 h-4" />
-                  <span>Copy Embed Code</span>
+                  <span>{t.copyBtn}</span>
                 </>
               )}
             </button>

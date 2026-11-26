@@ -31,6 +31,12 @@ export const routing = defineRouting({
       fr: '/politique-editoriale',
       de: '/redaktionsrichtlinien'
     },
+    '/embed-widgets': {
+      en: '/embed-widgets',
+      es: '/incrustar-calculadoras',
+      fr: '/integrer-calculatrices',
+      de: '/rechner-einbetten'
+    },
     '/contact-us': {
       en: '/contact-us',
       es: '/contactenos',

@@ -26,6 +26,8 @@ const titleOverrides: Record<string, string> = {
   "Recently Added": "/tools",
   "Popular Among Developers": "/collections/developer-starter-pack",
   "Editor's Picks": "/sitemap",
+  "Free Embed Widgets": "/embed-widgets",
+  "Embeddable Widgets": "/embed-widgets",
 
   "Credit Cards Payoff Calculator": "/calculators/credit-cards-payoff",
   "Credit Cards Payoff": "/calculators/credit-cards-payoff",

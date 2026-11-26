@@ -161,6 +161,16 @@ export const sitemapCategories = [
     icon: Briefcase,
     description: "Embed our free, high-performance calculators directly into your own website or blog.",
     links: [
+      "Free Embed Widgets",
+      "Mortgage Calculator",
+      "BMI Calculator",
+      "Compound Interest Calculator",
+      "Auto Loan Calculator",
+      "Calorie Calculator",
+      "Electricity Cost Calculator",
+      "Concrete Calculator",
+      "Ohm's Law Calculator",
+      "Subnet Calculator"
     ]
   }
 ];
