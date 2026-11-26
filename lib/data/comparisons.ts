@@ -7,6 +7,8 @@
 // before using a calculator.
 // ═══════════════════════════════════════════════════════
 
+import { extendedComparisons } from './comparisons/extendedComparisons';
+
 export interface ComparisonTranslation {
   title: string;
   seoTitle: string;
@@ -451,7 +453,8 @@ export const comparisons: ComparisonDef[] = [
         ]
       }
     }
-  }
+  },
+  ...extendedComparisons
 ];
 
 export function getComparisonBySlug(slug: string): ComparisonDef | undefined {
@@ -463,12 +466,35 @@ export function getComparisonsForSlug(slug: string, category?: string, maxCount 
   if (direct.length >= maxCount) return direct.slice(0, maxCount);
 
   const catLower = (category || '').toLowerCase();
-  const isHealth = catLower.includes('health') || catLower.includes('fitness') || slug.includes('bmi') || slug.includes('calorie') || slug.includes('weight');
+  const isHealth =
+    catLower.includes('health') ||
+    catLower.includes('fitness') ||
+    slug.includes('bmi') ||
+    slug.includes('calorie') ||
+    slug.includes('weight') ||
+    slug.includes('macro') ||
+    slug.includes('pregnancy') ||
+    slug.includes('ovulation');
+  const isScience =
+    catLower.includes('math') ||
+    catLower.includes('stat') ||
+    catLower.includes('physic') ||
+    catLower.includes('chem');
+  const isDev =
+    catLower.includes('dev') ||
+    catLower.includes('pdf') ||
+    catLower.includes('image') ||
+    catLower.includes('security');
 
-  const pool = isHealth
+  const healthSlugs = new Set(['bmi-vs-body-fat', 'bmr-vs-daily-calories', 'macros-vs-calorie-counting', 'ideal-weight-vs-bmi', 'pregnancy-due-date-vs-ovulation']);
+  const scienceSlugs = new Set(['mean-vs-median', 'variance-vs-standard-deviation', 'z-score-vs-t-test', 'molarity-vs-molality', 'ph-vs-pka', 'voltage-vs-current-vs-resistance', 'electrical-power-vs-energy', 'ups-vs-inverter-backup', 'kinetic-vs-potential-energy']);
+  const devSlugs = new Set(['sha256-vs-md5-hashing', 'webp-vs-png-images', 'json-vs-yaml-format', 'base64-encode-vs-url-encode', 'compress-pdf-vs-flatten-pdf', 'protect-pdf-vs-redact-pdf', 'svg-to-png-vs-png-to-svg']);
+
+  const preferredSet = isHealth ? healthSlugs : isScience ? scienceSlugs : isDev ? devSlugs : null;
+  const pool = preferredSet
     ? [
-        ...comparisons.filter(c => c.slug === 'bmi-vs-body-fat'),
-        ...comparisons.filter(c => c.slug !== 'bmi-vs-body-fat'),
+        ...comparisons.filter(c => preferredSet.has(c.slug)),
+        ...comparisons.filter(c => !preferredSet.has(c.slug)),
       ]
     : comparisons;
 

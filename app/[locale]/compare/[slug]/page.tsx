@@ -52,6 +52,7 @@ const uiLabels: Record<string, {
   verdictTitle: string;
   features: string;
   openCalc: string;
+  openTool: string;
   moreComparisons: string;
   methodologyTitle: (titleA: string, titleB: string) => string;
   methodologyIntro: (titleA: string, titleB: string, descA: string, descB: string) => string;
@@ -69,6 +70,7 @@ const uiLabels: Record<string, {
     verdictTitle: "The Verdict",
     features: "Features",
     openCalc: "Open Calculator",
+    openTool: "Open Tool",
     moreComparisons: "More Side-by-Side Comparisons",
     methodologyTitle: (a, b) => `Analytical Methodology: ${a} vs. ${b}`,
     methodologyIntro: (a, b, descA, descB) =>
@@ -102,6 +104,7 @@ const uiLabels: Record<string, {
     verdictTitle: "El Veredicto",
     features: "Características",
     openCalc: "Abrir Calculadora",
+    openTool: "Abrir Herramienta",
     moreComparisons: "Más Comparativas Lado a Lado",
     methodologyTitle: (a, b) => `Metodología Analítica: ${a} vs. ${b}`,
     methodologyIntro: (a, b, descA, descB) =>
@@ -135,6 +138,7 @@ const uiLabels: Record<string, {
     verdictTitle: "Le Verdict",
     features: "Fonctionnalités",
     openCalc: "Ouvrir le Calculateur",
+    openTool: "Ouvrir l'Outil",
     moreComparisons: "Plus de Comparatifs Côte à Côte",
     methodologyTitle: (a, b) => `Méthodologie Analytique : ${a} vs ${b}`,
     methodologyIntro: (a, b, descA, descB) =>
@@ -168,6 +172,7 @@ const uiLabels: Record<string, {
     verdictTitle: "Das Fazit",
     features: "Eigenschaften",
     openCalc: "Rechner öffnen",
+    openTool: "Tool öffnen",
     moreComparisons: "Weitere Direktvergleiche",
     methodologyTitle: (a, b) => `Analytische Methodik: ${a} vs. ${b}`,
     methodologyIntro: (a, b, descA, descB) =>
@@ -232,7 +237,14 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
   const alternates = getCanonicalAndAlternates('/compare/[slug]', locale, comparison.slug);
   const compareHubUrl = getCanonicalUrl('/compare', locale);
 
-  const otherComparisons = comparisons.filter((c) => c.slug !== comparison.slug);
+  const remainingComparisons = comparisons.filter((c) => c.slug !== comparison.slug);
+  const currentIdx = Math.max(0, comparisons.findIndex((c) => c.slug === comparison.slug));
+  const otherComparisons: typeof remainingComparisons = [];
+  for (let i = 0; i < Math.min(9, remainingComparisons.length); i++) {
+    otherComparisons.push(remainingComparisons[(currentIdx + i) % remainingComparisons.length]);
+  }
+  const openLabelA = toolA.type === 'developer-tool' ? ui.openTool : ui.openCalc;
+  const openLabelB = toolB.type === 'developer-tool' ? ui.openTool : ui.openCalc;
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -319,13 +331,13 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               <div className="p-6 text-center">
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{toolA.localizedTitle}</h3>
                 <Link href={resolveIntlHref(toolA.href)} className="inline-flex items-center gap-1 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
-                  {ui.openCalc} <ArrowRight size={14} />
+                  {openLabelA} <ArrowRight size={14} />
                 </Link>
               </div>
               <div className="p-6 text-center">
                 <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">{toolB.localizedTitle}</h3>
                 <Link href={resolveIntlHref(toolB.href)} className="inline-flex items-center gap-1 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
-                  {ui.openCalc} <ArrowRight size={14} />
+                  {openLabelB} <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
@@ -370,7 +382,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               </ul>
             </div>
             <Link href={resolveIntlHref(toolA.href)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
-              {ui.openCalc}: {toolA.localizedTitle} <ArrowRight size={14} />
+              {openLabelA}: {toolA.localizedTitle} <ArrowRight size={14} />
             </Link>
           </div>
 
@@ -392,7 +404,7 @@ export default async function ComparePage({ params }: { params: Promise<{ locale
               </ul>
             </div>
             <Link href={resolveIntlHref(toolB.href)} className="inline-flex items-center gap-1.5 text-sm font-bold text-[#518231] hover:text-[#436a28] transition-colors">
-              {ui.openCalc}: {toolB.localizedTitle} <ArrowRight size={14} />
+              {openLabelB}: {toolB.localizedTitle} <ArrowRight size={14} />
             </Link>
           </div>
         </section>
