@@ -207,7 +207,13 @@ export const developerToolsMenu = [
       { name: "SQL Formatter", desc: "Format SQL queries" },
       { name: "YAML Formatter", desc: "Format YAML files" },
       { name: "CSV Viewer", desc: "View CSV data as table" },
-      { name: "Diff Checker", desc: "Compare text differences" }]
+      { name: "Diff Checker", desc: "Compare text differences" },
+      { name: "Regex Tester & Live Debugger", desc: "Test regular expressions with live capture groups", isNew: true, slug: "regex-tester" },
+      { name: "JSON to CSV Converter", desc: "Flatten JSON arrays to RFC-4180 CSV", isNew: true, slug: "json-to-csv" },
+      { name: "CSV to JSON Converter", desc: "Parse CSV/TSV files to typed JSON", isNew: true, slug: "csv-to-json" },
+      { name: "JSON to YAML Converter", desc: "Convert JSON configs into YAML 1.2", isNew: true, slug: "json-to-yaml" },
+      { name: "JSON to TypeScript Interface Generator", desc: "Generate TS interfaces from JSON API payloads", isNew: true, slug: "json-to-typescript" },
+      { name: "SQL INSERT to JSON Converter", desc: "Convert SQL INSERT statements to JSON arrays", isNew: true, slug: "sql-to-json" }]
   },
   {
     title: "Encoding & Security",
@@ -225,7 +231,8 @@ export const developerToolsMenu = [
       { name: "SHA256 Generator", desc: "Generate SHA256 hashes" },
       { name: "Password Generator", desc: "Generate secure passwords" },
       { name: "HMAC Generator", desc: "Generate HMAC codes" },
-      { name: "QR Code Studio", desc: "Create advanced custom QR codes" }]
+      { name: "QR Code Studio", desc: "Create advanced custom QR codes" },
+      { name: "Linux Chmod Permissions Calculator", desc: "Calculate octal & symbolic Unix file permissions", isNew: true, slug: "chmod-calculator" }]
   },
   {
     title: "Generators",
@@ -288,7 +295,12 @@ export const developerToolsMenu = [
       { name: "MIME Type Checker", desc: "Check MIME types" },
       { name: "Favicon Generator", desc: "Generate website icons and PWA manifests", isNew: true, slug: "favicon-generator" },
       { name: "SVG Optimizer", desc: "Optimize and minify SVG vector images", isNew: true, slug: "svg-optimizer" },
-      { name: "Database Dump Anonymizer", desc: "Mask PII in SQL/CSV dumps", isNew: true, slug: "database-anonymizer" }]
+      { name: "Database Dump Anonymizer", desc: "Mask PII in SQL/CSV dumps", isNew: true, slug: "database-anonymizer" },
+      { name: "LLM Token & API Cost Calculator", desc: "Count tokens & compare Gemini, OpenAI, Claude & DeepSeek API costs", isNew: true, slug: "llm-token-cost-calculator" },
+      { name: "Cron Expression Generator & Schedule Tester", desc: "Build 5-field cron schedules & preview next UTC runs", isNew: true, slug: "cron-expression-generator" },
+      { name: "Unix Timestamp & Epoch Converter", desc: "Convert Unix seconds/ms to ISO 8601 & UTC", isNew: true, slug: "unix-timestamp-converter" },
+      { name: "Number Base Converter (Binary, Octal, Decimal, Hex)", desc: "Exact BigInt Binary, Octal, Decimal & Hex converter", isNew: true, slug: "base-converter" },
+      { name: "cURL to JavaScript Fetch & Python Converter", desc: "Convert cURL commands to fetch() & Python requests", isNew: true, slug: "curl-to-fetch" }]
   }
 ];
 

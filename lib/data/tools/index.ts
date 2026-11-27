@@ -1,4 +1,5 @@
 import { ToolConfig } from './types';
+import { viralDevAiToolsConfig } from './viralDevAiTools';
 import { jsonFormatterConfig } from './json-formatter';
 import { diffCheckerConfig } from './diff-checker';
 import { htmlFormatterConfig } from './html-formatter';
@@ -276,6 +277,7 @@ export const allToolsConfig: Record<string, ToolConfig> = {
   [mortgageCalculatorUkConfig.slug]: mortgageCalculatorUkConfig,
   [databaseAnonymizerConfig.slug]: databaseAnonymizerConfig,
   [textToSpeechConfig.slug]: textToSpeechConfig,
+  ...viralDevAiToolsConfig,
 };
 
 export function getToolConfig(slug: string): ToolConfig | undefined {

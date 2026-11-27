@@ -147,6 +147,19 @@ const toolRegistry: Record<string, ComponentType<any>> = {
   'mortgage-calculator-uk': dynamic(() => import('@/app/components/tools/MortgageCalculatorUkTool').then(m => m.MortgageCalculatorUkTool)),
   'database-anonymizer': dynamic(() => import('@/app/components/platform/ui/DatabaseAnonymizerTool').then(m => m.DatabaseAnonymizerTool)),
   'text-to-speech': dynamic(() => import('@/app/components/tools/TextToSpeechTool').then(m => m.TextToSpeechTool)),
+  // ─── Viral Developer & AI Utilities (12) ─────────────────────────────────
+  'llm-token-cost-calculator': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsA').then(m => m.LlmTokenCostCalculatorTool)),
+  'regex-tester': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsA').then(m => m.RegexTesterTool)),
+  'cron-expression-generator': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsA').then(m => m.CronExpressionGeneratorTool)),
+  'unix-timestamp-converter': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsA').then(m => m.UnixTimestampConverterTool)),
+  'json-to-csv': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsB').then(m => m.JsonToCsvTool)),
+  'csv-to-json': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsB').then(m => m.CsvToJsonTool)),
+  'json-to-yaml': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsB').then(m => m.JsonToYamlTool)),
+  'json-to-typescript': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsB').then(m => m.JsonToTypescriptTool)),
+  'chmod-calculator': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsC').then(m => m.ChmodCalculatorTool)),
+  'base-converter': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsC').then(m => m.BaseConverterTool)),
+  'sql-to-json': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsC').then(m => m.SqlToJsonTool)),
+  'curl-to-fetch': dynamic(() => import('@/app/components/tools/DevAiInteractiveToolsC').then(m => m.CurlToFetchTool)),
 };
 
 export function getToolComponent(slug: string): ComponentType<any> | null {

@@ -10,7 +10,7 @@
 
 <br />
 
-**[NexusCalculator](https://www.nexuscalculator.net/en)** is a high-performance, 100% client-side quantitative engineering and browser-utility platform featuring **200+ peer-reviewed calculators**, **135+ browser-based developer, PDF, and image tools**, **190+ technical & financial guides**, and **26+ free embeddable website calculator widgets** across **4 languages** (`en`, `es`, `fr`, `de`).
+**[NexusCalculator](https://www.nexuscalculator.net/en)** is a high-performance, 100% client-side quantitative engineering and browser-utility platform featuring **232+ peer-reviewed calculators**, **147+ browser-based developer, AI, PDF, and image tools**, **190+ technical & financial guides**, **41+ side-by-side methodology comparisons**, and **26+ free embeddable website calculator widgets** across **4 languages** (`en`, `es`, `fr`, `de`).
 
 > **Live Platform:** [www.nexuscalculator.net](https://www.nexuscalculator.net/en) · **Embeddable Widgets:** [/en/embed-widgets](https://www.nexuscalculator.net/en/embed-widgets) · **Editorial Policy:** [/en/editorial-policy](https://www.nexuscalculator.net/en/editorial-policy) · **AI Citation Index:** [/llms.txt](https://www.nexuscalculator.net/llms.txt) & [/llms-full.txt](https://www.nexuscalculator.net/llms-full.txt)
 
@@ -18,9 +18,9 @@
 
 ## Why NexusCalculator?
 
-- **100% Zero-Cloud Client-Side Execution:** Financial inputs, clinical health measurements, JSON/JWT payloads, PDF documents, and images are processed exclusively inside your browser via IEEE 754 math, Web Crypto API, HTML5 Canvas, `pdf-lib`, and WebAssembly — zero user data is ever uploaded or stored on backend servers.
-- **Verified Mathematical Rigor (78 Localized Formula Models):** Every core calculator documents its exact formula, LaTeX notation, variable legend, and step-by-step derivation aligned with CFPB Regulation Z, WHO/NIH clinical equations, NIST/ISO 80000-2 SI physics & chemistry constants, and IRS 2026 statutory caps.
-- **63 Native 4-Language Featured Snippet Reference Matrices:** Instant pre-calculated lookup tables in native regional units (`$` / `€`, `lb` / `kg`, `kWh`, `m³`) covering 193 calculators across English, Spanish, French, and German.
+- **100% Zero-Cloud Client-Side Execution:** Financial inputs, clinical health measurements, LLM token/API cost prompts, regex/cron/JSON/SQL payloads, PDF documents, and images are processed exclusively inside your browser via IEEE 754 math, Web Crypto API, HTML5 Canvas, `pdf-lib`, and WebAssembly — zero user data is ever uploaded or stored on backend servers.
+- **Verified Mathematical Rigor (110 Localized Formula Models):** Every core calculator documents its exact formula, LaTeX notation, variable legend, and step-by-step derivation aligned with CFPB Regulation Z, WHO/NIH clinical equations, NIST/ISO 80000-2 SI physics & chemistry constants, and IRS 2026 statutory caps.
+- **95 Native 4-Language Featured Snippet Reference Matrices:** Instant pre-calculated lookup tables in native regional units (`$` / `€`, `lb` / `kg`, `kWh`, `m³`) spanning calculators, unit converters, and high-RPM finance/health suites across English, Spanish, French, and German.
 - **Free Embeddable Calculator Widgets:** Drop any interactive calculator into WordPress, Webflow, Squarespace, Shopify, or plain HTML via lazy-loaded `<iframe>` widgets with Light, Dark, and Auto theme support at [www.nexuscalculator.net/en/embed-widgets](https://www.nexuscalculator.net/en/embed-widgets).
 - **Edge-First Static Architecture & GEO Optimization:** Pure static generation (`revalidate = false`), cookieless `next-intl` Edge CDN caching, atomic 1-hop canonical 301 routing, bidirectional `hreflang` sitemaps, full JSON-LD (`SoftwareApplication`, `MathSolver`, `FAQPage`, `HowTo`, `BreadcrumbList`), and machine-readable `/llms.txt` + `/llms-full.txt` citation corpora.
 
@@ -30,12 +30,12 @@
 
 | Hub | English | Español | Français | Deutsch |
 | :--- | :--- | :--- | :--- | :--- |
-| **Calculators (200+)** | [/en/calculators](https://www.nexuscalculator.net/en/calculators) | [/es/calculadoras](https://www.nexuscalculator.net/es/calculadoras) | [/fr/calculatrices](https://www.nexuscalculator.net/fr/calculatrices) | [/de/rechner](https://www.nexuscalculator.net/de/rechner) |
-| **Browser Tools (135+)** | [/en/tools](https://www.nexuscalculator.net/en/tools) | [/es/herramientas](https://www.nexuscalculator.net/es/herramientas) | [/fr/outils](https://www.nexuscalculator.net/fr/outils) | [/de/werkzeuge](https://www.nexuscalculator.net/de/werkzeuge) |
+| **Calculators (232+)** | [/en/calculators](https://www.nexuscalculator.net/en/calculators) | [/es/calculadoras](https://www.nexuscalculator.net/es/calculadoras) | [/fr/calculatrices](https://www.nexuscalculator.net/fr/calculatrices) | [/de/rechner](https://www.nexuscalculator.net/de/rechner) |
+| **Browser Tools (147+)** | [/en/tools](https://www.nexuscalculator.net/en/tools) | [/es/herramientas](https://www.nexuscalculator.net/es/herramientas) | [/fr/outils](https://www.nexuscalculator.net/fr/outils) | [/de/werkzeuge](https://www.nexuscalculator.net/de/werkzeuge) |
 | **Embeddable Widgets** | [/en/embed-widgets](https://www.nexuscalculator.net/en/embed-widgets) | [/es/incrustar-calculadoras](https://www.nexuscalculator.net/es/incrustar-calculadoras) | [/fr/integrer-calculatrices](https://www.nexuscalculator.net/fr/integrer-calculatrices) | [/de/rechner-einbetten](https://www.nexuscalculator.net/de/rechner-einbetten) |
 | **Technical Guides (190+)** | [/en/guides](https://www.nexuscalculator.net/en/guides) | [/es/guias](https://www.nexuscalculator.net/es/guias) | [/fr/guides](https://www.nexuscalculator.net/fr/guides) | [/de/anleitungen](https://www.nexuscalculator.net/de/anleitungen) |
-| **Comparisons** | [/en/compare](https://www.nexuscalculator.net/en/compare) | [/es/comparar](https://www.nexuscalculator.net/es/comparar) | [/fr/comparer](https://www.nexuscalculator.net/fr/comparer) | [/de/vergleichen](https://www.nexuscalculator.net/de/vergleichen) |
-| **Workflow Toolkits** | [/en/collections](https://www.nexuscalculator.net/en/collections) | [/es/colecciones](https://www.nexuscalculator.net/es/colecciones) | [/fr/collections](https://www.nexuscalculator.net/fr/collections) | [/de/sammlungen](https://www.nexuscalculator.net/de/sammlungen) |
+| **Comparisons (41+)** | [/en/compare](https://www.nexuscalculator.net/en/compare) | [/es/comparar](https://www.nexuscalculator.net/es/comparar) | [/fr/comparer](https://www.nexuscalculator.net/fr/comparer) | [/de/vergleichen](https://www.nexuscalculator.net/de/vergleichen) |
+| **Workflow Toolkits (9)** | [/en/collections](https://www.nexuscalculator.net/en/collections) | [/es/colecciones](https://www.nexuscalculator.net/es/colecciones) | [/fr/collections](https://www.nexuscalculator.net/fr/collections) | [/de/sammlungen](https://www.nexuscalculator.net/de/sammlungen) |
 
 ---
 
@@ -87,10 +87,11 @@ Calculator-Hub/
 ├── i18n/                      # next-intl routing & localized pathname mappings
 ├── lib/
 │   ├── data/
-│   │   ├── formulas/          # 78 verified 4-language mathematical formula definitions
-│   │   ├── matrices/          # 63 localized 4-language Featured Snippet lookup matrices
-│   │   ├── calculators.ts     # 200+ calculator registry
-│   │   ├── tools/             # 135+ browser utility configs
+│   │   ├── formulas/          # 110 verified 4-language mathematical formula definitions
+│   │   ├── matrices/          # 95 localized 4-language Featured Snippet lookup matrices
+│   │   ├── calculators.ts     # 232+ calculator registry
+│   │   ├── tools/             # 147+ browser utility configs (dev, AI, PDF, image)
+│   │   ├── comparisons.ts     # 41+ side-by-side methodology comparisons
 │   │   └── guides.ts          # 190+ technical guide registry
 │   └── utils/                 # seoUtils.ts, toolLocalization.ts, linkResolver.ts
 ├── messages/                  # i18n UI dictionaries (en, es, fr, de)
