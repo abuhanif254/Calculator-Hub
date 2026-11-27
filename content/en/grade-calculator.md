@@ -1,4 +1,20 @@
-# Grade Calculator: Take Control of Your Final Average
+---
+title: "Grade Calculator"
+metaTitle: "Grade Calculator: Take Control of Your Final Average"
+description: "An essential academic utility designed to eliminate the anxiety of \"the unknown\" before finals week."
+metaDescription: "An essential academic utility designed to eliminate the anxiety of \"the unknown\" before finals week."
+faqs:
+  - question: "How does a weighted grading system work?"
+    answer: "In a weighted system, assignments are grouped into categories (e.g., Homework, Exams). Each category is assigned a percentage of your total grade. Therefore, a 100% on a homework assignment is mathematically worth much less than a 100% on a heavily weighted final exam."
+  - question: "How do I calculate what I need on my final exam?"
+    answer: "You must know your current grade, the weight of the final exam, and your target grade. The formula is: [Target Grade - (Current Grade × Current Weight)] ÷ Final Exam Weight. Our calculator handles this complex equation instantly."
+  - question: "Why does my current grade not match the school portal?"
+    answer: "Many online school portals (like Canvas or Blackboard) fail to properly normalize weighted grades until the end of the semester. They may count empty future assignments as 'zeros,' artificially deflating your current standing. Using a dedicated calculator provides a true real-time snapshot."
+  - question: "What is the difference between points and percentages?"
+    answer: "In a point-based system, earning 50 out of 100 points is simply 50 points added to your total. In a percentage system, a 50% on a test weighted at 20% of your grade permanently costs you 10% of your final class average."
+  - question: "Can I get an 'A' if I fail the midterm?"
+    answer: "It depends entirely on the syllabus. If the midterm is weighted at 40%, failing it makes an 'A' mathematically impossible. If the midterm is only weighted at 15%, and you ace all other heavily weighted categories, an 'A' may still be within reach."
+---
 
 Welcome to the **Grade Calculator**, an essential academic utility designed to eliminate the anxiety of "the unknown" before finals week. Every student knows the sinking feeling of staring at a syllabus midway through the semester, trying to figure out exactly what score they need on the final exam to pass the class or keep their scholarship. Without a solid grasp of how weighted grading categories interact, you are flying blind.
 
@@ -72,52 +88,3 @@ Conversely, if a professor curves a Midterm Exam (weighted at 30%) by 5 points, 
 Academic success is not purely about intelligence; it is about resource management. Your time and energy are finite resources, especially during finals week. 
 
 By utilizing the **Grade Calculator**, you remove the emotion and the guesswork from the end of the semester. You translate your syllabus into actionable data. You discover which classes are mathematically locked in, which classes require intense, focused triage, and exactly what score you need to cross the finish line. Calculate your standing, prioritize your efforts, and conquer your exams.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How does a weighted grading system work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In a weighted system, assignments are grouped into categories (e.g., Homework, Exams). Each category is assigned a percentage of your total grade. Therefore, a 100% on a homework assignment is mathematically worth much less than a 100% on a heavily weighted final exam."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I calculate what I need on my final exam?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You must know your current grade, the weight of the final exam, and your target grade. The formula is: [Target Grade - (Current Grade × Current Weight)] ÷ Final Exam Weight. Our calculator handles this complex equation instantly."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why does my current grade not match the school portal?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Many online school portals (like Canvas or Blackboard) fail to properly normalize weighted grades until the end of the semester. They may count empty future assignments as 'zeros,' artificially deflating your current standing. Using a dedicated calculator provides a true real-time snapshot."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between points and percentages?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In a point-based system, earning 50 out of 100 points is simply 50 points added to your total. In a percentage system, a 50% on a test weighted at 20% of your grade permanently costs you 10% of your final class average."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I get an 'A' if I fail the midterm?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It depends entirely on the syllabus. If the midterm is weighted at 40%, failing it makes an 'A' mathematically impossible. If the midterm is only weighted at 15%, and you ace all other heavily weighted categories, an 'A' may still be within reach."
-      }
-    }
-  ]
-}
-</script>

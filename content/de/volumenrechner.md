@@ -1,4 +1,9 @@
-# Volumenrechner (Berechnung von 3D-Körpern)
+---
+title: "Volumenrechner (Berechnung von 3D-Körpern)"
+metaTitle: "Volumenrechner (Berechnung von 3D-Körpern)"
+description: "Unser kostenloser Online-Volumenrechner ermöglicht die schnelle und präzise Berechnung des Volumens und Fassungsvermögens von 14 verschiedenen geometrischen."
+metaDescription: "Unser kostenloser Online-Volumenrechner ermöglicht die schnelle und präzise Berechnung des Volumens und Fassungsvermögens von 14 verschiedenen geometrischen."
+---
 
 Unser kostenloser Online-Volumenrechner ermöglicht die schnelle und präzise Berechnung des Volumens und Fassungsvermögens von 14 verschiedenen geometrischen 3D-Körpern. Dieses Tool eignet sich hervorragend für Schüler, Handwerker, Ingenieure und Architekten.
 

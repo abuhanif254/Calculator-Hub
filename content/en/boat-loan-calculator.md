@@ -1,4 +1,20 @@
-# Boat Loan Calculator: Chart Your Course to Boat Ownership
+---
+title: "Boat Loan Calculator"
+metaTitle: "Boat Loan Calculator: Chart Your Course to Boat Ownership"
+description: "Your compass for navigating the financial waters of buying a boat. Whether your dream is to purchase a small fishing skiff, a family pontoon, a luxury."
+metaDescription: "Your compass for navigating the financial waters of buying a boat. Whether your dream is to purchase a small fishing skiff, a family pontoon, a luxury."
+faqs:
+  - question: "How long can you finance a boat?"
+    answer: "Boat loan terms are typically much longer than car loans. Depending on the total loan amount, you can usually finance a boat for 5, 10, 15, or even 20 years. Larger, more expensive boats qualify for the longest repayment terms to keep monthly payments manageable."
+  - question: "What is a good down payment for a boat?"
+    answer: "The industry standard minimum down payment for a boat is 10%. However, a 'good' down payment is considered 20%. Putting down 20% will generally secure you a significantly lower interest rate and protect you from owing more than the boat is worth due to depreciation."
+  - question: "Are boat loan interest rates higher than car loans?"
+    answer: "Yes. Boats are considered luxury, discretionary assets by lenders, which makes them a higher default risk than a primary vehicle used for commuting. Consequently, boat loan interest rates are typically 1% to 3% higher than standard auto loan rates for borrowers with identical credit profiles."
+  - question: "Can you deduct boat loan interest on your taxes?"
+    answer: "In the United States, you may be able to deduct the interest on your boat loan if the boat qualifies as a 'second home.' To qualify, the boat must have a galley (kitchen), a head (bathroom), and sleeping quarters. You must itemize your deductions on your tax return to claim this benefit."
+  - question: "Is it better to finance through a boat dealer or a bank?"
+    answer: "You should always get pre-approved by a bank or credit union before visiting a dealer. While dealer financing is convenient, dealers often add a 'markup' percentage to the interest rate to generate extra profit. Having a pre-approval in hand forces the dealer to beat your rate if they want to earn your financing business."
+---
 
 Welcome to the ultimate **Boat Loan Calculator**, your compass for navigating the financial waters of buying a boat. Whether your dream is to purchase a small fishing skiff, a family pontoon, a luxury speedboat, or a majestic sailboat, understanding the financial commitment is your crucial first step. Financing a boat is very different from financing a car or a house. Boats are luxury items, and lenders treat them as such, which means interest rates, loan terms, and down payment requirements follow entirely different sets of rules.
 
@@ -84,53 +100,4 @@ Buying a boat is an incredibly emotional purchase. It represents freedom, family
 
 By utilizing our **Boat Loan Calculator**, you can strip away the dealership sales tactics and look strictly at the raw mathematics. Model different scenarios. Compare a 10-year term against a 15-year term. See how an extra $2,000 on your down payment changes your monthly obligation.
 
-Take control of your budget, account for all the hidden costs of ownership, and secure a loan that fits seamlessly into your lifestyle. When you know your finances are rock solid, the time you spend on the water will be infinitely more relaxing. 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How long can you finance a boat?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Boat loan terms are typically much longer than car loans. Depending on the total loan amount, you can usually finance a boat for 5, 10, 15, or even 20 years. Larger, more expensive boats qualify for the longest repayment terms to keep monthly payments manageable."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a good down payment for a boat?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The industry standard minimum down payment for a boat is 10%. However, a 'good' down payment is considered 20%. Putting down 20% will generally secure you a significantly lower interest rate and protect you from owing more than the boat is worth due to depreciation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are boat loan interest rates higher than car loans?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Boats are considered luxury, discretionary assets by lenders, which makes them a higher default risk than a primary vehicle used for commuting. Consequently, boat loan interest rates are typically 1% to 3% higher than standard auto loan rates for borrowers with identical credit profiles."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you deduct boat loan interest on your taxes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In the United States, you may be able to deduct the interest on your boat loan if the boat qualifies as a 'second home.' To qualify, the boat must have a galley (kitchen), a head (bathroom), and sleeping quarters. You must itemize your deductions on your tax return to claim this benefit."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is it better to finance through a boat dealer or a bank?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You should always get pre-approved by a bank or credit union before visiting a dealer. While dealer financing is convenient, dealers often add a 'markup' percentage to the interest rate to generate extra profit. Having a pre-approval in hand forces the dealer to beat your rate if they want to earn your financing business."
-      }
-    }
-  ]
-}
-</script>
+Take control of your budget, account for all the hidden costs of ownership, and secure a loan that fits seamlessly into your lifestyle. When you know your finances are rock solid, the time you spend on the water will be infinitely more relaxing.

@@ -1,4 +1,20 @@
-# Subnet Calculator: Architect Your Network Infrastructure
+---
+title: "Subnet Calculator"
+metaTitle: "Subnet Calculator: Architect Your Network Infrastructure"
+description: "An indispensable networking utility for IT professionals, system administrators, and cybersecurity architects."
+metaDescription: "An indispensable networking utility for IT professionals, system administrators, and cybersecurity architects."
+faqs:
+  - question: "What is a Subnet Mask?"
+    answer: "A Subnet Mask is a 32-bit number that masks an IP address, separating the IP into network and host addresses. It tells a computer or router exactly which part of an IP address identifies the network, and which part identifies the specific device."
+  - question: "What does the /24 mean at the end of an IP address?"
+    answer: "This is CIDR notation. A /24 means the first 24 bits of the subnet mask are 'turned on' (set to 1 in binary). This equates to a subnet mask of 255.255.255.0, which leaves exactly 254 usable IP addresses for devices on that network."
+  - question: "Why can't I assign the Network ID to a computer?"
+    answer: "The Network ID (the very first address in a subnet, like 192.168.1.0) is mathematically reserved. Routers use this specific address in their routing tables to represent the entire network block. If you assign it to a PC, the router will completely fail to deliver traffic."
+  - question: "What is a Broadcast Address?"
+    answer: "The Broadcast Address is the very last address in a subnet (e.g., 192.168.1.255). It is mathematically reserved for broadcasting. When a packet is sent to this address, the network switch replicates it and delivers it to every single device on that specific subnet."
+  - question: "Why do network engineers use a /30 subnet?"
+    answer: "A /30 subnet provides exactly 2 usable IP addresses. It is used specifically for 'Point-to-Point' connections—linking exactly two routers directly together. It provides absolute security (no other devices can join the subnet) and wastes zero IP addresses."
+---
 
 Welcome to the **Subnet Calculator**, an indispensable networking utility for IT professionals, system administrators, and cybersecurity architects. IP addressing is the foundational framework of the modern internet. Every computer, server, and smart device requires a unique IP address to communicate. However, deploying a single, massive, flat network across an entire organization leads to massive broadcast storms, severe security vulnerabilities, and immediate IP exhaustion. The solution is subnetting.
 
@@ -67,52 +83,3 @@ Subnetting allows you to build a logical map of your company. You can assign the
 Architecting a secure, scalable network requires mathematical precision. A single overlapping subnet mask can cause IP conflicts that bring down an entire corporate datacenter. 
 
 By utilizing the **Subnet Calculator**, you remove the massive risk of human error associated with binary conversion. Whether you are studying for your CCNA exam, configuring a complex AWS Virtual Private Cloud (VPC), or slicing up a /24 block to isolate a guest WiFi network, you need absolute clarity. Input your CIDR targets, extract your precise Network IDs and Broadcast Addresses, and build an infrastructure that is secure by design.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a Subnet Mask?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A Subnet Mask is a 32-bit number that masks an IP address, separating the IP into network and host addresses. It tells a computer or router exactly which part of an IP address identifies the network, and which part identifies the specific device."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does the /24 mean at the end of an IP address?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "This is CIDR notation. A /24 means the first 24 bits of the subnet mask are 'turned on' (set to 1 in binary). This equates to a subnet mask of 255.255.255.0, which leaves exactly 254 usable IP addresses for devices on that network."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why can't I assign the Network ID to a computer?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Network ID (the very first address in a subnet, like 192.168.1.0) is mathematically reserved. Routers use this specific address in their routing tables to represent the entire network block. If you assign it to a PC, the router will completely fail to deliver traffic."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a Broadcast Address?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Broadcast Address is the very last address in a subnet (e.g., 192.168.1.255). It is mathematically reserved for broadcasting. When a packet is sent to this address, the network switch replicates it and delivers it to every single device on that specific subnet."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do network engineers use a /30 subnet?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A /30 subnet provides exactly 2 usable IP addresses. It is used specifically for 'Point-to-Point' connections—linking exactly two routers directly together. It provides absolute security (no other devices can join the subnet) and wastes zero IP addresses."
-      }
-    }
-  ]
-}
-</script>

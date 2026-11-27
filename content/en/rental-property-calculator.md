@@ -1,4 +1,20 @@
-# Rental Property Calculator: Analyze Real Estate Investments Like a Pro
+---
+title: "Rental Property Calculator"
+metaTitle: "Rental Property Calculator"
+description: "The ultimate analytical engine for real estate investors. Investing in rental properties is one of the most proven paths to building generational wealth."
+metaDescription: "The ultimate analytical engine for real estate investors. Investing in rental properties is one of the most proven paths to building generational wealth."
+faqs:
+  - question: "What is a good Cash-on-Cash Return for a rental property?"
+    answer: "Most professional investors target a Cash-on-Cash (CoC) return of 8% to 12%. This provides a strong return that generally outpaces historical stock market averages while providing a buffer for unexpected expenses."
+  - question: "What is CapEx in real estate investing?"
+    answer: "CapEx stands for Capital Expenditures. It refers to massive, infrequent expenses required to maintain the property's useful life, such as replacing a roof, a driveway, or an HVAC system. Smart investors set aside a percentage of rent every month to fund a CapEx reserve account."
+  - question: "What is the 1% Rule in real estate?"
+    answer: "The 1% Rule is a quick mental math shortcut. It states that a property's gross monthly rent should equal at least 1% of its total purchase price. For example, a $200,000 house should rent for at least $2,000 a month. If it doesn't meet the 1% rule, it is very unlikely to generate positive cash flow."
+  - question: "Why is Cap Rate important?"
+    answer: "Cap Rate (Capitalization Rate) allows you to evaluate a property's raw profitability regardless of how you finance it. It is the best metric for comparing multiple properties in different neighborhoods to determine which asset yields the highest baseline return on investment."
+  - question: "Should I pay a property manager or self-manage?"
+    answer: "Self-managing saves you 8% to 10% of gross rent, significantly boosting cash flow, but requires you to handle midnight maintenance calls and tenant disputes. However, when using a calculator, you should ALWAYS factor in a 10% management fee. If the property doesn't cash flow with a manager, it is a bad deal, because you may eventually want to hire one as your portfolio scales."
+---
 
 Welcome to the **Rental Property Calculator**, the ultimate analytical engine for real estate investors. Investing in rental properties is one of the most proven paths to building generational wealth, offering a unique combination of monthly cash flow, property appreciation, and massive tax advantages. However, it is also incredibly unforgiving. If you buy a property based on "gut feeling" rather than hard mathematics, a seemingly great investment can quickly turn into a financial nightmare that drains your savings every month. 
 
@@ -87,53 +103,4 @@ Real estate investing is not about finding the perfect house; it is about findin
 
 By aggressively utilizing the **Rental Property Calculator**, you remove emotion and guesswork from the equation. Do not fall in love with a property with a beautiful kitchen if the Cash-on-Cash return is only 2%. Do not buy a cheap property if factoring in a realistic CapEx budget puts the Cash Flow into the negative. 
 
-Run the numbers on dozens of properties. Be ruthlessly conservative with your expense estimates. Wait patiently until the calculator proves that a property meets your strict investment criteria, and then strike with total confidence. 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a good Cash-on-Cash Return for a rental property?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most professional investors target a Cash-on-Cash (CoC) return of 8% to 12%. This provides a strong return that generally outpaces historical stock market averages while providing a buffer for unexpected expenses."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is CapEx in real estate investing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "CapEx stands for Capital Expenditures. It refers to massive, infrequent expenses required to maintain the property's useful life, such as replacing a roof, a driveway, or an HVAC system. Smart investors set aside a percentage of rent every month to fund a CapEx reserve account."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the 1% Rule in real estate?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The 1% Rule is a quick mental math shortcut. It states that a property's gross monthly rent should equal at least 1% of its total purchase price. For example, a $200,000 house should rent for at least $2,000 a month. If it doesn't meet the 1% rule, it is very unlikely to generate positive cash flow."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is Cap Rate important?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Cap Rate (Capitalization Rate) allows you to evaluate a property's raw profitability regardless of how you finance it. It is the best metric for comparing multiple properties in different neighborhoods to determine which asset yields the highest baseline return on investment."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Should I pay a property manager or self-manage?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Self-managing saves you 8% to 10% of gross rent, significantly boosting cash flow, but requires you to handle midnight maintenance calls and tenant disputes. However, when using a calculator, you should ALWAYS factor in a 10% management fee. If the property doesn't cash flow with a manager, it is a bad deal, because you may eventually want to hire one as your portfolio scales."
-      }
-    }
-  ]
-}
-</script>
+Run the numbers on dozens of properties. Be ruthlessly conservative with your expense estimates. Wait patiently until the calculator proves that a property meets your strict investment criteria, and then strike with total confidence.

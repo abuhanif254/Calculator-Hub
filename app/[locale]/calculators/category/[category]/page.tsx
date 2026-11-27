@@ -14,6 +14,10 @@ import { LocaleSiblingLinks } from '@/app/components/LocaleSiblingLinks';
 import { Link, resolveIntlHref } from '@/i18n/routing';
 import { ChevronRight, Calculator, ArrowRight, Star, BookOpen, Clock, GraduationCap, Wrench, Scale, Layers } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import 'katex/dist/katex.min.css';
+import { renderMarkdownMath } from '@/lib/utils/renderMarkdownMath';
 
 // ═══════════════════════════════════════════════════════
 // CATEGORY LANDING PAGE (SEO Pillar Page)
@@ -632,7 +636,18 @@ export default async function CategoryPage({
         <section className="mb-16">
           <div className="prose prose-slate dark:prose-invert max-w-none prose-headings:tracking-tight prose-h2:text-2xl prose-h3:text-xl prose-p:leading-relaxed prose-a:text-[#518231] prose-a:no-underline hover:prose-a:underline">
             <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
               components={{
+                table({ node, children, ...props }: any) {
+                  return (
+                    <div className="my-6 w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                      <table className="w-full text-sm border-collapse my-0" {...props}>
+                        {children}
+                      </table>
+                    </div>
+                  );
+                },
                 a({ node, href, children, ...props }: any) {
                   return (
                     <a href={canonicalizeInternalHref(href, locale)} {...props}>
@@ -642,7 +657,7 @@ export default async function CategoryPage({
                 },
               }}
             >
-              {cat.pillarContent}
+              {renderMarkdownMath(cat.pillarContent)}
             </ReactMarkdown>
           </div>
         </section>

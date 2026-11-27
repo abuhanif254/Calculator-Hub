@@ -1,4 +1,20 @@
-# Fraction Calculator: Simplify Complex Mathematics
+---
+title: "Fraction Calculator"
+metaTitle: "Fraction Calculator: Simplify Complex Mathematics"
+description: "The ultimate mathematical utility for students, carpenters, chefs, and engineers."
+metaDescription: "The ultimate mathematical utility for students, carpenters, chefs, and engineers."
+faqs:
+  - question: "What is a numerator and a denominator?"
+    answer: "The numerator is the top number of a fraction, representing how many parts you have. The denominator is the bottom number, representing how many equal parts the whole object is divided into."
+  - question: "Why do I need a common denominator to add fractions?"
+    answer: "You cannot add pieces of different sizes together. A common denominator forces both fractions to be sliced into the exact same sized pieces, allowing you to accurately count the total number of pieces (the numerators)."
+  - question: "What is an improper fraction?"
+    answer: "An improper fraction is one where the numerator (top) is equal to or larger than the denominator (bottom), such as 5/4. This indicates that the value of the fraction is greater than one whole."
+  - question: "How do you simplify a fraction?"
+    answer: "To simplify a fraction, you find the largest number that divides evenly into both the numerator and the denominator (the Greatest Common Divisor), and divide both by that number to reduce the fraction to its cleanest form (e.g., 4/8 becomes 1/2)."
+  - question: "How do you divide fractions?"
+    answer: "To divide fractions, use the 'Keep-Change-Flip' rule. Keep the first fraction the same, change the division sign to multiplication, flip the second fraction upside down (its reciprocal), and multiply straight across."
+---
 
 Welcome to the **Fraction Calculator**, the ultimate mathematical utility for students, carpenters, chefs, and engineers. While the modern world operates heavily on the decimal system, fractions remain deeply embedded in our daily lives. From reading a tape measure on a construction site to scaling a recipe in a bakery, fractions represent the raw, physical division of whole objects. However, adding, subtracting, and multiplying them manually is notoriously frustrating and error-prone.
 
@@ -76,52 +92,3 @@ Our Fraction Calculator automatically simplifies every single answer it produces
 Fractions represent the beautiful, physical geometry of division, but their rigid rules for common denominators make them tedious to manipulate manually. 
 
 By utilizing the **Fraction Calculator**, you eliminate the friction of manual arithmetic. Whether you are helping a student check their algebra homework, scaling up a complex sourdough recipe, or cutting crown molding on a dangerous chop saw, accuracy is paramount. Input your raw numbers, trust the algorithmic conversions, and get the perfectly simplified mathematical answer you need to finish the job.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a numerator and a denominator?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The numerator is the top number of a fraction, representing how many parts you have. The denominator is the bottom number, representing how many equal parts the whole object is divided into."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do I need a common denominator to add fractions?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You cannot add pieces of different sizes together. A common denominator forces both fractions to be sliced into the exact same sized pieces, allowing you to accurately count the total number of pieces (the numerators)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is an improper fraction?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "An improper fraction is one where the numerator (top) is equal to or larger than the denominator (bottom), such as 5/4. This indicates that the value of the fraction is greater than one whole."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you simplify a fraction?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To simplify a fraction, you find the largest number that divides evenly into both the numerator and the denominator (the Greatest Common Divisor), and divide both by that number to reduce the fraction to its cleanest form (e.g., 4/8 becomes 1/2)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you divide fractions?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To divide fractions, use the 'Keep-Change-Flip' rule. Keep the first fraction the same, change the division sign to multiplication, flip the second fraction upside down (its reciprocal), and multiply straight across."
-      }
-    }
-  ]
-}
-</script>

@@ -1,4 +1,20 @@
-# FHA Loan Calculator: Your Path to Accessible Homeownership
+---
+title: "FHA Loan Calculator"
+metaTitle: "FHA Loan Calculator: Your Path to Accessible Homeownership"
+description: "The ultimate tool designed to help you navigate one of the most popular and accessible mortgage programs in the United States."
+metaDescription: "The ultimate tool designed to help you navigate one of the most popular and accessible mortgage programs in the United States."
+faqs:
+  - question: "What credit score is required for an FHA loan?"
+    answer: "To qualify for the standard 3.5% down payment on an FHA loan, you need a minimum FICO credit score of 580. If your credit score is between 500 and 579, you can still theoretically qualify for an FHA loan, but the government requires you to put down a minimum of 10%."
+  - question: "How do I get rid of FHA mortgage insurance (MIP)?"
+    answer: "If you put down less than 10% when you originated the FHA loan, the monthly mortgage insurance premium (MIP) is permanent for the entire life of the 30-year loan. The only way to remove it is to refinance the home into a Conventional loan once you have built up at least 20% equity in the property."
+  - question: "Can I use an FHA loan to buy an investment property?"
+    answer: "No. FHA loans are strictly for primary residences. You must intend to move into the property within 60 days of closing and live there for at least one year. However, you can use an FHA loan to buy a multi-family property (up to 4 units) as long as you live in one of the units."
+  - question: "Are FHA interest rates higher than Conventional rates?"
+    answer: "Actually, FHA interest rates are frequently lower than Conventional rates. Because the federal government insures the loan, the lender takes on very little risk, allowing them to offer highly competitive baseline interest rates. However, the mandatory FHA insurance premiums increase the overall Annual Percentage Rate (APR)."
+  - question: "What are FHA minimum property standards?"
+    answer: "The FHA requires homes to be safe, secure, and structurally sound. An FHA appraiser will reject a home if it has peeling lead-based paint, a failing roof, exposed electrical wiring, or missing handrails. The seller must fix these specific safety hazards before the FHA will agree to insure the loan."
+---
 
 Welcome to the **FHA Loan Calculator**, the ultimate tool designed to help you navigate one of the most popular and accessible mortgage programs in the United States. If you are a first-time homebuyer, if you have a less-than-perfect credit score, or if you simply do not have tens of thousands of dollars saved up for a massive down payment, an FHA loan might be the exact financial lifeline you need to stop renting and start building equity.
 
@@ -86,52 +102,3 @@ The FHA loan program has helped tens of millions of Americans achieve the dream 
 Yes, the mandatory mortgage insurance is an extra expense. But if that insurance allows you to stop throwing $2,000 a month away on rent and allows you to start building hundreds of thousands of dollars in real estate equity over the next decade, it is an investment worth making.
 
 Use our **FHA Loan Calculator** to run your specific scenarios. See exactly what your monthly obligation will be, factor in the insurance premiums, and determine how much house you can truly afford. Empower yourself with the math, get pre-approved by an FHA lender, and start shopping for your new home today!
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What credit score is required for an FHA loan?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To qualify for the standard 3.5% down payment on an FHA loan, you need a minimum FICO credit score of 580. If your credit score is between 500 and 579, you can still theoretically qualify for an FHA loan, but the government requires you to put down a minimum of 10%."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I get rid of FHA mortgage insurance (MIP)?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If you put down less than 10% when you originated the FHA loan, the monthly mortgage insurance premium (MIP) is permanent for the entire life of the 30-year loan. The only way to remove it is to refinance the home into a Conventional loan once you have built up at least 20% equity in the property."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use an FHA loan to buy an investment property?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. FHA loans are strictly for primary residences. You must intend to move into the property within 60 days of closing and live there for at least one year. However, you can use an FHA loan to buy a multi-family property (up to 4 units) as long as you live in one of the units."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are FHA interest rates higher than Conventional rates?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Actually, FHA interest rates are frequently lower than Conventional rates. Because the federal government insures the loan, the lender takes on very little risk, allowing them to offer highly competitive baseline interest rates. However, the mandatory FHA insurance premiums increase the overall Annual Percentage Rate (APR)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What are FHA minimum property standards?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The FHA requires homes to be safe, secure, and structurally sound. An FHA appraiser will reject a home if it has peeling lead-based paint, a failing roof, exposed electrical wiring, or missing handrails. The seller must fix these specific safety hazards before the FHA will agree to insure the loan."
-      }
-    }
-  ]
-}
-</script>

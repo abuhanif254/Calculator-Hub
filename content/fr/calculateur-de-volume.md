@@ -1,4 +1,9 @@
-# Calculateur de Volume (Calcul de Formes 3D)
+---
+title: "Calculateur de Volume (Calcul de Formes 3D)"
+metaTitle: "Calculateur de Volume (Calcul de Formes 3D)"
+description: "Notre calculateur de volume en ligne gratuit permet de calculer rapidement et précisément le volume et la capacité de 14 formes géométriques."
+metaDescription: "Notre calculateur de volume en ligne gratuit permet de calculer rapidement et précisément le volume et la capacité de 14 formes géométriques."
+---
 
 Notre calculateur de volume en ligne gratuit permet de calculer rapidement et précisément le volume et la capacité de 14 formes géométriques tridimensionnelles. C'est un outil idéal pour les étudiants, les ingénieurs, les architectes et les professionnels du bâtiment.
 

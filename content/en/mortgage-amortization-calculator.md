@@ -1,4 +1,20 @@
-# Mortgage Amortization Calculator: Visualize Your Path to Debt-Free Homeownership
+---
+title: "Mortgage Amortization Calculator"
+metaTitle: "Mortgage Amortization Calculator"
+description: "The most powerful mathematical tool you can use to understand exactly how your home loan operates."
+metaDescription: "The most powerful mathematical tool you can use to understand exactly how your home loan operates."
+faqs:
+  - question: "Why is most of my mortgage payment going to interest?"
+    answer: "Mortgages are amortized loans. Interest is calculated based on your current outstanding principal balance. Because your balance is highest at the very beginning of the loan, the interest charge is also highest. Therefore, early payments are heavily 'front-loaded' with interest."
+  - question: "How can I pay off my 30-year mortgage in 15 years?"
+    answer: "You can turn a 30-year mortgage into a 15-year mortgage by using our amortization calculator to figure out the required 15-year payment, and then making that higher payment every month. Make sure to instruct your lender that the extra funds must be applied directly to the principal balance."
+  - question: "What is the benefit of bi-weekly mortgage payments?"
+    answer: "Paying half your mortgage every two weeks results in 26 half-payments a year, which equals 13 full payments instead of 12. That 'extra' payment is applied directly to the principal, seamlessly shaving 4 to 6 years off a typical 30-year mortgage without stressing your monthly budget."
+  - question: "Should I pay extra on my mortgage or invest the money?"
+    answer: "This is a classic financial debate. Mathematically, if your mortgage interest rate is 3% and you can earn 8% in the stock market, you should invest. However, if your mortgage rate is 7% or higher, paying down the mortgage offers a guaranteed, risk-free return of 7%, making it a highly attractive option."
+  - question: "Does an amortization schedule include taxes and insurance?"
+    answer: "No. A pure amortization schedule only calculates the loan principal and interest. Your actual monthly bill to the bank will likely be higher because it includes escrow payments for local property taxes and homeowners insurance (often referred to as PITI)."
+---
 
 Welcome to the **Mortgage Amortization Calculator**, the most powerful mathematical tool you can use to understand exactly how your home loan operates. For most people, a mortgage is the largest financial transaction of their lives. Yet, millions of homeowners sign 30-year contracts without ever looking at an amortization schedule, blindly trusting the bank's monthly payment quote. 
 
@@ -93,52 +109,3 @@ If you receive an annual bonus at work, a large tax refund, or an inheritance, y
 Amortization is not a scam, but it is a mathematical structure designed heavily in favor of the lender. Banks rely on the fact that most homeowners will sell their house or refinance within the first 7 to 10 years—meaning the bank collects the massive, front-loaded interest, and the homeowner walks away with very little equity.
 
 By utilizing the **Mortgage Amortization Calculator**, you can break that cycle. You can visualize exactly how your payments are being distributed. You can experiment with adding $100, $200, or $500 extra to your principal every month and watch the "Total Interest" number plummet in real-time. Understand the math, build an aggressive payoff strategy, and reclaim your hard-earned wealth from the bank.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Why is most of my mortgage payment going to interest?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mortgages are amortized loans. Interest is calculated based on your current outstanding principal balance. Because your balance is highest at the very beginning of the loan, the interest charge is also highest. Therefore, early payments are heavily 'front-loaded' with interest."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How can I pay off my 30-year mortgage in 15 years?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You can turn a 30-year mortgage into a 15-year mortgage by using our amortization calculator to figure out the required 15-year payment, and then making that higher payment every month. Make sure to instruct your lender that the extra funds must be applied directly to the principal balance."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the benefit of bi-weekly mortgage payments?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Paying half your mortgage every two weeks results in 26 half-payments a year, which equals 13 full payments instead of 12. That 'extra' payment is applied directly to the principal, seamlessly shaving 4 to 6 years off a typical 30-year mortgage without stressing your monthly budget."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Should I pay extra on my mortgage or invest the money?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "This is a classic financial debate. Mathematically, if your mortgage interest rate is 3% and you can earn 8% in the stock market, you should invest. However, if your mortgage rate is 7% or higher, paying down the mortgage offers a guaranteed, risk-free return of 7%, making it a highly attractive option."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does an amortization schedule include taxes and insurance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. A pure amortization schedule only calculates the loan principal and interest. Your actual monthly bill to the bank will likely be higher because it includes escrow payments for local property taxes and homeowners insurance (often referred to as PITI)."
-      }
-    }
-  ]
-}
-</script>

@@ -1,4 +1,20 @@
-# Standard Deviation Calculator: Measure the Chaos in Your Data
+---
+title: "Standard Deviation Calculator"
+metaTitle: "Standard Deviation Calculator"
+description: "An essential statistical tool for data scientists, financial analysts, and academic researchers."
+metaDescription: "An essential statistical tool for data scientists, financial analysts, and academic researchers."
+faqs:
+  - question: "What exactly does standard deviation measure?"
+    answer: "Standard deviation measures the 'spread' or volatility of a dataset. It calculates exactly how far, on average, each individual data point strays from the overall average (the mean). A low standard deviation means the data is tightly clustered; a high one means it is wildly scattered."
+  - question: "When should I use the 'Sample' setting instead of 'Population'?"
+    answer: "Use the 'Sample' setting when your data is only a small representative piece of a much larger group (e.g., polling 500 voters to guess a national election). The Sample formula uses 'N-1' (Bessel's Correction) to mathematically account for the uncertainty of incomplete data."
+  - question: "What is variance?"
+    answer: "Variance is the mathematical stepping stone to finding the standard deviation. It is the average of the squared differences from the Mean. The standard deviation is simply the square root of the variance."
+  - question: "What does 'Two Standard Deviations' mean?"
+    answer: "According to the Empirical Rule of a normal bell curve, 95% of all data will fall within Two Standard Deviations of the mean. If a data point is further away than that, it is statistically highly unusual (an outlier)."
+  - question: "Why is standard deviation important in finance?"
+    answer: "In finance, standard deviation is the absolute measurement of risk (volatility). A stock with a high standard deviation experiences wild swings in price, offering high potential reward but massive risk of loss, while a low standard deviation indicates a stable, predictable asset."
+---
 
 Welcome to the **Standard Deviation Calculator**, an essential statistical tool for data scientists, financial analysts, and academic researchers. When analyzing a massive dataset, calculating the "average" (the mean) is rarely enough to understand what is actually happening. You can have two completely different datasets that share the exact same average, but represent completely different realities. To truly understand your data, you must measure its volatility. 
 
@@ -76,52 +92,3 @@ By using the Standard Deviation Calculator to analyze historical stock returns, 
 Relying solely on an average to understand a dataset is like trying to understand a novel by reading a single page. It provides a focal point, but it completely obscures the surrounding context. 
 
 By utilizing the **Standard Deviation Calculator**, you pull back the curtain on the underlying chaos. You can instantly quantify the volatility of a financial asset, assess the consistency of a manufacturing pipeline, and mathematically verify the significance of a clinical trial. Input your arrays, apply the correct sample formulas, and let the algorithms reveal the true statistical shape of your world.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What exactly does standard deviation measure?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Standard deviation measures the 'spread' or volatility of a dataset. It calculates exactly how far, on average, each individual data point strays from the overall average (the mean). A low standard deviation means the data is tightly clustered; a high one means it is wildly scattered."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "When should I use the 'Sample' setting instead of 'Population'?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use the 'Sample' setting when your data is only a small representative piece of a much larger group (e.g., polling 500 voters to guess a national election). The Sample formula uses 'N-1' (Bessel's Correction) to mathematically account for the uncertainty of incomplete data."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is variance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Variance is the mathematical stepping stone to finding the standard deviation. It is the average of the squared differences from the Mean. The standard deviation is simply the square root of the variance."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does 'Two Standard Deviations' mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "According to the Empirical Rule of a normal bell curve, 95% of all data will fall within Two Standard Deviations of the mean. If a data point is further away than that, it is statistically highly unusual (an outlier)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is standard deviation important in finance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In finance, standard deviation is the absolute measurement of risk (volatility). A stock with a high standard deviation experiences wild swings in price, offering high potential reward but massive risk of loss, while a low standard deviation indicates a stable, predictable asset."
-      }
-    }
-  ]
-}
-</script>

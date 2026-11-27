@@ -1,4 +1,20 @@
-# Down Payment Calculator: The Foundation of Your Home Purchase
+---
+title: "Down Payment Calculator"
+metaTitle: "Down Payment Calculator"
+description: "Your essential starting point on the journey to homeownership. The down payment is the single largest upfront cost of buying a house."
+metaDescription: "Your essential starting point on the journey to homeownership. The down payment is the single largest upfront cost of buying a house."
+faqs:
+  - question: "Do I have to put 20% down to buy a house?"
+    answer: "No. The 20% rule is a myth in today's housing market. While putting 20% down allows you to avoid Private Mortgage Insurance (PMI), many first-time homebuyers secure conventional loans with as little as 3% down, or FHA loans with 3.5% down."
+  - question: "What is PMI and how do I avoid it?"
+    answer: "Private Mortgage Insurance (PMI) is an extra monthly fee charged by lenders if your down payment is less than 20%. It protects the bank in case you default. You can avoid it entirely by saving a 20% down payment, or if you qualify for a VA loan (which does not require PMI regardless of down payment size)."
+  - question: "Are closing costs included in the down payment?"
+    answer: "No. Closing costs are completely separate from your down payment. The down payment goes toward the equity of the home, while closing costs (which usually range from 2% to 5% of the purchase price) cover the administrative fees, taxes, and insurance required to process the loan."
+  - question: "Can I use gifted money for my down payment?"
+    answer: "Yes, lenders generally allow you to use money gifted from immediate family members. However, the family member must sign an official 'gift letter' stating that the money is legally a gift and there is no expectation of repayment. You cannot use undocumented loans from friends."
+  - question: "Can I get a mortgage with zero down payment?"
+    answer: "Yes, but only through very specific government-backed programs. VA loans offer 0% down for eligible military members and veterans. USDA loans offer 0% down for buyers purchasing in designated rural areas who meet specific income limitations."
+---
 
 Welcome to the **Down Payment Calculator**, your essential starting point on the journey to homeownership. The down payment is the single largest upfront cost of buying a house. It represents your initial equity in the property—the portion of the home you truly "own" on day one, while the bank owns the rest. Navigating down payment rules, percentages, and the subsequent impact on your monthly mortgage is notoriously complicated, especially for first-time homebuyers.
 
@@ -97,52 +113,3 @@ Acceptable sources for a down payment include:
 The down payment is the critical lever that controls the rest of your mortgage mathematics. A larger down payment drastically reduces your monthly liability, eliminates toxic PMI, and secures you the best interest rates on the market. 
 
 By utilizing our **Down Payment Calculator**, you can objectively model your financial readiness. Play with the percentages. Compare the monthly savings of a 10% down payment versus a 20% down payment, and weigh that against how many extra years it will take you to save the cash. Determine your target, build a strict household budget, and start stacking cash. Your future home awaits!
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Do I have to put 20% down to buy a house?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The 20% rule is a myth in today's housing market. While putting 20% down allows you to avoid Private Mortgage Insurance (PMI), many first-time homebuyers secure conventional loans with as little as 3% down, or FHA loans with 3.5% down."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is PMI and how do I avoid it?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Private Mortgage Insurance (PMI) is an extra monthly fee charged by lenders if your down payment is less than 20%. It protects the bank in case you default. You can avoid it entirely by saving a 20% down payment, or if you qualify for a VA loan (which does not require PMI regardless of down payment size)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are closing costs included in the down payment?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Closing costs are completely separate from your down payment. The down payment goes toward the equity of the home, while closing costs (which usually range from 2% to 5% of the purchase price) cover the administrative fees, taxes, and insurance required to process the loan."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use gifted money for my down payment?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, lenders generally allow you to use money gifted from immediate family members. However, the family member must sign an official 'gift letter' stating that the money is legally a gift and there is no expectation of repayment. You cannot use undocumented loans from friends."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I get a mortgage with zero down payment?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, but only through very specific government-backed programs. VA loans offer 0% down for eligible military members and veterans. USDA loans offer 0% down for buyers purchasing in designated rural areas who meet specific income limitations."
-      }
-    }
-  ]
-}
-</script>

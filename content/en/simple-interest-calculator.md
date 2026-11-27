@@ -1,4 +1,20 @@
-# Simple Interest Calculator: Understand the Basics of Borrowing
+---
+title: "Simple Interest Calculator"
+metaTitle: "Simple Interest Calculator"
+description: "Your essential tool for understanding the most straightforward form of financial mathematics."
+metaDescription: "Your essential tool for understanding the most straightforward form of financial mathematics."
+faqs:
+  - question: "What is the formula for simple interest?"
+    answer: "The formula for simple interest is I = P r t. 'I' stands for total interest, 'P' is the principal amount, 'r' is the annual interest rate expressed as a decimal, and 't' is the time expressed in years."
+  - question: "How is simple interest different from compound interest?"
+    answer: "Simple interest is calculated only on the original principal amount. The interest generated each year never earns its own interest. Compound interest, however, is calculated on the principal PLUS all accumulated interest from previous periods, causing the balance to grow exponentially faster."
+  - question: "Do credit cards use simple interest?"
+    answer: "No. Credit cards almost universally use compound interest, and they compound it daily. This is why credit card debt grows so rapidly; you are constantly being charged interest on yesterday's interest."
+  - question: "Are auto loans simple or compound interest?"
+    answer: "The vast majority of modern auto loans use simple interest. However, because you make monthly payments that reduce the principal balance, the simple interest calculation is run every month against a slightly smaller balance, causing your interest charge to decrease over time."
+  - question: "What is a precomputed interest loan?"
+    answer: "In a precomputed loan, the lender calculates the total simple interest for the entire life of the loan upfront and locks it into the contract. Even if you pay the loan off years early, you are still legally obligated to pay the entire predetermined interest amount."
+---
 
 Welcome to the **Simple Interest Calculator**, your essential tool for understanding the most straightforward form of financial mathematics. While the modern financial world is dominated by complex compounding algorithms and daily accrued rates, simple interest remains the bedrock of personal lending, short-term business loans, and basic fixed-income bonds. 
 
@@ -94,52 +110,3 @@ The greatest weapon against financial anxiety is mathematical clarity.
 By utilizing the **Simple Interest Calculator**, you strip away the confusion of lending and borrowing. Whether you are drafting a promissory note for a family member or double-checking the math on a dealership's auto loan proposal, this calculator provides the exact, undeniable numbers. 
 
 Understand the formula, recognize the critical difference between simple and compounding structures, beware of precomputed interest traps, and always demand total transparency before you sign on the dotted line.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the formula for simple interest?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The formula for simple interest is I = P * r * t. 'I' stands for total interest, 'P' is the principal amount, 'r' is the annual interest rate expressed as a decimal, and 't' is the time expressed in years."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is simple interest different from compound interest?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Simple interest is calculated only on the original principal amount. The interest generated each year never earns its own interest. Compound interest, however, is calculated on the principal PLUS all accumulated interest from previous periods, causing the balance to grow exponentially faster."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do credit cards use simple interest?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Credit cards almost universally use compound interest, and they compound it daily. This is why credit card debt grows so rapidly; you are constantly being charged interest on yesterday's interest."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are auto loans simple or compound interest?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The vast majority of modern auto loans use simple interest. However, because you make monthly payments that reduce the principal balance, the simple interest calculation is run every month against a slightly smaller balance, causing your interest charge to decrease over time."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a precomputed interest loan?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In a precomputed loan, the lender calculates the total simple interest for the entire life of the loan upfront and locks it into the contract. Even if you pay the loan off years early, you are still legally obligated to pay the entire predetermined interest amount."
-      }
-    }
-  ]
-}
-</script>

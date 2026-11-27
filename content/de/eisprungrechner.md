@@ -1,4 +1,9 @@
-# Eisprungrechner
+---
+title: "Eisprungrechner"
+metaTitle: "Eisprungrechner"
+description: "Unser kostenloser Online-Eisprungrechner hilft Ihnen, Ihre fruchtbarsten Tage im Monat zu ermitteln."
+metaDescription: "Unser kostenloser Online-Eisprungrechner hilft Ihnen, Ihre fruchtbarsten Tage im Monat zu ermitteln."
+---
 
 Unser kostenloser Online-Eisprungrechner hilft Ihnen, Ihre fruchtbarsten Tage im Monat zu ermitteln. Wenn Sie den ersten Tag Ihrer letzten Periode und Ihre durchschnittliche Zykluslänge eingeben, können wir Ihr genaues fruchtbares Fenster bestimmen, um Ihre Chancen auf eine Schwangerschaft zu maximieren.
 

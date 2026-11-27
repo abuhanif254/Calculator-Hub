@@ -35,7 +35,7 @@ const copyByLocale: Record<
     badge: "Complete Calculator Directory",
     h1: "All Free Online Calculators",
     subtitle:
-      "Explore our complete collection of over 175+ accurate, mathematically verified calculation tools. From mortgages and loans to physics, chemistry, and fitness — 100% free and private.",
+      "Explore our complete collection of over 230+ accurate, mathematically verified calculation tools. From mortgages and loans to physics, chemistry, and fitness — 100% free and private.",
     toolsBadge: (count) => `${count} tools`,
     viewCategory: "View Category Pillar",
   },
@@ -48,7 +48,7 @@ const copyByLocale: Record<
     badge: "Directorio Completo de Calculadoras",
     h1: "Todas las Calculadoras Gratuitas en Línea",
     subtitle:
-      "Explora nuestra colección completa de más de 175 herramientas de cálculo verificadas matemáticamente. Desde hipotecas y préstamos hasta física, química y salud — 100 % gratis y privadas.",
+      "Explora nuestra colección completa de más de 230 herramientas de cálculo verificadas matemáticamente. Desde hipotecas y préstamos hasta física, química y salud — 100 % gratis y privadas.",
     toolsBadge: (count) => `${count} herramientas`,
     viewCategory: "Ver Categoría Completa",
   },
@@ -61,7 +61,7 @@ const copyByLocale: Record<
     badge: "Répertoire Complet des Calculatrices",
     h1: "Toutes les Calculatrices Gratuites en Ligne",
     subtitle:
-      "Parcourez notre collection complète de plus de 175 outils de calcul vérifiés mathématiquement. Des prêts immobiliers à la physique, la chimie et la santé — 100 % gratuit et confidentiel.",
+      "Parcourez notre collection complète de plus de 230 outils de calcul vérifiés mathématiquement. Des prêts immobiliers à la physique, la chimie et la santé — 100 % gratuit et confidentiel.",
     toolsBadge: (count) => `${count} outils`,
     viewCategory: "Voir la Catégorie",
   },
@@ -74,7 +74,7 @@ const copyByLocale: Record<
     badge: "Komplettes Rechner-Verzeichnis",
     h1: "Alle Kostenlosen Online-Rechner",
     subtitle:
-      "Entdecken Sie unsere vollständige Sammlung von über 175 mathematisch geprüften Berechnungstools. Von Baufinanzierung und Krediten bis zu Physik, Chemie und Fitness — 100 % kostenlos im Browser.",
+      "Entdecken Sie unsere vollständige Sammlung von über 230 mathematisch geprüften Berechnungstools. Von Baufinanzierung und Krediten bis zu Physik, Chemie und Fitness — 100 % kostenlos im Browser.",
     toolsBadge: (count) => `${count} Tools`,
     viewCategory: "Kategorie ansehen",
   },

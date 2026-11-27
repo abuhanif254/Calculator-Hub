@@ -502,7 +502,11 @@ export function EmbeddedToolDiscussions({
     <section
       ref={sectionRef}
       id="community-discussions"
-      className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 transition-colors"
+      className={
+        discussions.length > 0
+          ? 'mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 transition-colors'
+          : 'mt-10 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 px-5 py-4 transition-colors'
+      }
       aria-label={`${ui.badge} — ${calcTitle}`}
     >
       {/* Schema.org Structured Data */}
@@ -513,248 +517,252 @@ export function EmbeddedToolDiscussions({
         />
       )}
 
-      {/* Header Section */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
-        <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#518231]/10 text-[#518231] dark:bg-[#518231]/20 dark:text-[#6fa844]">
-              <MessageCircleQuestion className="w-3.5 h-3.5" />
-              {ui.badge}
-            </span>
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-              {discussions.length} {discussions.length === 1 ? ui.threadSingular : ui.threadPlural}
-            </span>
+      {discussions.length === 0 ? (
+        /* Compact 1-row CTA when no threads exist yet — avoids repetitive empty-forum boilerplate across 928 pages */
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-9 h-9 rounded-xl bg-[#518231]/10 text-[#518231] dark:text-[#6fa844] flex items-center justify-center shrink-0">
+              <MessageCircleQuestion className="w-4 h-4" />
+            </div>
+            <div className="min-w-0">
+              <h2 className="text-sm font-bold text-slate-900 dark:text-white truncate">
+                {ui.h2}
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                {ui.subtitle}
+              </p>
+            </div>
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-            {ui.h2}
-          </h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-            {ui.subtitle}
-          </p>
-        </div>
-
-        <div className="flex items-center gap-3 shrink-0">
           <button
             type="button"
             onClick={() => setIsComposerOpen(true)}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#518231] hover:bg-[#436a28] text-white text-sm font-semibold rounded-xl shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
+            className="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-semibold rounded-xl shadow-sm transition-colors shrink-0"
           >
-            <HelpCircle className="w-4 h-4" />
+            <HelpCircle className="w-3.5 h-3.5" />
             <span>{ui.askBtn}</span>
           </button>
         </div>
-      </div>
-
-      {/* Feedback Toast */}
-      {feedback && (
-        <div
-          className={`mt-4 p-4 rounded-xl flex items-center gap-3 text-sm font-medium ${
-            feedback.type === 'success'
-              ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
-              : 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800'
-          }`}
-        >
-          {feedback.type === 'success' ? (
-            <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
-          ) : (
-            <X className="w-5 h-5 shrink-0 text-rose-600 dark:text-rose-400" />
-          )}
-          <span>{feedback.message}</span>
-        </div>
-      )}
-
-      {/* Contextual Question Starters (The UGC Trigger Engine) */}
-      <div className="mt-6 p-4 md:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800">
-        <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3">
-          <Sparkles className="w-4 h-4 text-[#518231] dark:text-[#6fa844]" />
-          <span>{ui.popularTopics}</span>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
-          {prompts.map((prompt, idx) => (
-            <button
-              key={idx}
-              type="button"
-              onClick={() => handlePromptClick(prompt)}
-              className="text-start p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/70 hover:border-[#518231] dark:hover:border-[#6fa844] hover:shadow-sm transition-all group"
-            >
-              <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] line-clamp-2 leading-snug">
-                  {prompt.title}
-                </p>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0 mt-0.5" />
+      ) : (
+        <>
+          {/* Header Section */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-800">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#518231]/10 text-[#518231] dark:bg-[#518231]/20 dark:text-[#6fa844]">
+                  <MessageCircleQuestion className="w-3.5 h-3.5" />
+                  {ui.badge}
+                </span>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
+                  {discussions.length} {discussions.length === 1 ? ui.threadSingular : ui.threadPlural}
+                </span>
               </div>
-              <span className="text-[11px] text-[#518231] dark:text-[#6fa844] font-medium mt-1 inline-block">
-                {ui.askThisQuestion}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                {ui.h2}
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
+                {ui.subtitle}
+              </p>
+            </div>
 
-      {/* Filter Tabs */}
-      {discussions.length > 0 && (
-        <div className="flex items-center justify-between mt-8 mb-4">
-          <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
-            <button
-              type="button"
-              onClick={() => setActiveFilter('top')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                activeFilter === 'top'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <Flame className="w-3.5 h-3.5 text-amber-500" />
-              {ui.topQuestions}
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter('latest')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                activeFilter === 'latest'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <Clock className="w-3.5 h-3.5 text-blue-500" />
-              {ui.latest}
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveFilter('unanswered')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                activeFilter === 'unanswered'
-                  ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <HelpCircle className="w-3.5 h-3.5 text-emerald-500" />
-              {ui.unanswered}
-            </button>
+            <div className="flex items-center gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={() => setIsComposerOpen(true)}
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-[#518231] hover:bg-[#436a28] text-white text-sm font-semibold rounded-xl shadow-sm transition-all hover:shadow-md hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <HelpCircle className="w-4 h-4" />
+                <span>{ui.askBtn}</span>
+              </button>
+            </div>
           </div>
 
-          <a
-            href={`/${locale}/${commSegment}/${catSegment}/${communityCategory}`}
-            className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center gap-1"
-          >
-            <span>{ui.allDiscussions}</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </a>
-        </div>
-      )}
+          {/* Feedback Toast */}
+          {feedback && (
+            <div
+              className={`mt-4 p-4 rounded-xl flex items-center gap-3 text-sm font-medium ${
+                feedback.type === 'success'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
+                  : 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border border-rose-200 dark:border-rose-800'
+              }`}
+            >
+              {feedback.type === 'success' ? (
+                <CheckCircle2 className="w-5 h-5 shrink-0 text-emerald-600 dark:text-emerald-400" />
+              ) : (
+                <X className="w-5 h-5 shrink-0 text-rose-600 dark:text-rose-400" />
+              )}
+              <span>{feedback.message}</span>
+            </div>
+          )}
 
-      {/* Discussion List */}
-      {filteredDiscussions.length > 0 ? (
-        <div className="space-y-3 mt-4">
-          {filteredDiscussions.map((post) => {
-            const currentLikes = likesMap[post.id] ?? post.upvotes;
-            const hasLiked = upvotedIds.has(post.id);
-
-            return (
-              <div
-                key={post.id}
-                className="group flex flex-col sm:flex-row items-start gap-4 p-4 md:p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-[#518231]/40 dark:hover:border-[#518231]/50 hover:shadow-sm transition-all"
-              >
-                {/* Upvote Widget */}
+          {/* Contextual Question Starters */}
+          <div className="mt-6 p-4 md:p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-800">
+            <div className="flex items-center gap-2 text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-3">
+              <Sparkles className="w-4 h-4 text-[#518231] dark:text-[#6fa844]" />
+              <span>{ui.popularTopics}</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5">
+              {prompts.map((prompt, idx) => (
                 <button
+                  key={idx}
                   type="button"
-                  onClick={(e) => handleUpvote(e, post)}
-                  title={hasLiked ? 'Upvoted' : 'Upvote this discussion'}
-                  className={`shrink-0 flex sm:flex-col items-center justify-center gap-1.5 px-3 py-1.5 sm:py-2.5 rounded-xl border transition-all ${
-                    hasLiked
-                      ? 'bg-[#518231]/15 text-[#518231] border-[#518231]/30 dark:bg-[#518231]/25 dark:text-[#6fa844] dark:border-[#518231]/40 font-bold'
-                      : 'bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-[#518231] hover:text-[#518231]'
-                  }`}
+                  onClick={() => handlePromptClick(prompt)}
+                  className="text-start p-3 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/70 hover:border-[#518231] dark:hover:border-[#6fa844] hover:shadow-sm transition-all group"
                 >
-                  <ThumbsUp className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
-                  <span className="text-xs font-bold">{currentLikes}</span>
-                </button>
-
-                {/* Content Section */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    {post.isToolSpecific ? (
-                      <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-[#518231]/10 text-[#518231] dark:bg-[#518231]/20 dark:text-[#6fa844]">
-                        #{calcSlug}
-                      </span>
-                    ) : post.category ? (
-                      <CategoryPill slug={post.category} />
-                    ) : null}
-
-                    {post.replyCount > 0 ? (
-                      <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
-                        {post.replyCount} {post.replyCount === 1 ? ui.answerSingular : ui.answerPlural}
-                      </span>
-                    ) : (
-                      <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300">
-                        {ui.awaitingAnswer}
-                      </span>
-                    )}
-                  </div>
-
-                  <a
-                    href={`/${locale}/${commSegment}/${post.slug}`}
-                    className="block group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors"
-                  >
-                    <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">
-                      {post.title}
-                    </h3>
-                  </a>
-
-                  {post.contentSnippet && (
-                    <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mt-1.5 leading-relaxed">
-                      {post.contentSnippet}
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="text-xs font-semibold text-slate-800 dark:text-slate-200 group-hover:text-[#518231] dark:group-hover:text-[#6fa844] line-clamp-2 leading-snug">
+                      {prompt.title}
                     </p>
-                  )}
+                    <ArrowUpRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#518231] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0 mt-0.5" />
+                  </div>
+                  <span className="text-[11px] text-[#518231] dark:text-[#6fa844] font-medium mt-1 inline-block">
+                    {ui.askThisQuestion}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
 
-                  <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800">
-                    <span className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300">
-                      <div className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-bold text-slate-600 dark:text-slate-300">
-                        {post.authorName ? post.authorName.charAt(0).toUpperCase() : 'U'}
-                      </div>
-                      {post.authorName}
-                    </span>
+          {/* Filter Tabs */}
+          <div className="flex items-center justify-between mt-8 mb-4">
+            <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+              <button
+                type="button"
+                onClick={() => setActiveFilter('top')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeFilter === 'top'
+                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <Flame className="w-3.5 h-3.5 text-amber-500" />
+                {ui.topQuestions}
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveFilter('latest')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeFilter === 'latest'
+                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <Clock className="w-3.5 h-3.5 text-blue-500" />
+                {ui.latest}
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveFilter('unanswered')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  activeFilter === 'unanswered'
+                    ? 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <HelpCircle className="w-3.5 h-3.5 text-emerald-500" />
+                {ui.unanswered}
+              </button>
+            </div>
 
-                    <span>•</span>
+            <a
+              href={`/${locale}/${commSegment}/${catSegment}/${communityCategory}`}
+              className="text-xs font-bold text-[#518231] hover:text-[#436a28] dark:text-[#6fa844] dark:hover:text-[#518231] hover:underline inline-flex items-center gap-1"
+            >
+              <span>{ui.allDiscussions}</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
 
-                    <span>{formatTimeAgo(post.createdAt)}</span>
+          {/* Discussion List */}
+          <div className="space-y-3 mt-4">
+            {filteredDiscussions.map((post) => {
+              const currentLikes = likesMap[post.id] ?? post.upvotes;
+              const hasLiked = upvotedIds.has(post.id);
 
-                    <span>•</span>
+              return (
+                <div
+                  key={post.id}
+                  className="group flex flex-col sm:flex-row items-start gap-4 p-4 md:p-5 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/90 hover:border-[#518231]/40 dark:hover:border-[#518231]/50 hover:shadow-sm transition-all"
+                >
+                  {/* Upvote Widget */}
+                  <button
+                    type="button"
+                    onClick={(e) => handleUpvote(e, post)}
+                    title={hasLiked ? 'Upvoted' : 'Upvote this discussion'}
+                    className={`shrink-0 flex sm:flex-col items-center justify-center gap-1.5 px-3 py-1.5 sm:py-2.5 rounded-xl border transition-all ${
+                      hasLiked
+                        ? 'bg-[#518231]/15 text-[#518231] border-[#518231]/30 dark:bg-[#518231]/25 dark:text-[#6fa844] dark:border-[#518231]/40 font-bold'
+                        : 'bg-slate-50 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700 hover:border-[#518231] hover:text-[#518231]'
+                    }`}
+                  >
+                    <ThumbsUp className={`w-4 h-4 ${hasLiked ? 'fill-current' : ''}`} />
+                    <span className="text-xs font-bold">{currentLikes}</span>
+                  </button>
+
+                  {/* Content Section */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                      {post.isToolSpecific ? (
+                        <span className="px-2 py-0.5 rounded text-[11px] font-bold bg-[#518231]/10 text-[#518231] dark:bg-[#518231]/20 dark:text-[#6fa844]">
+                          #{calcSlug}
+                        </span>
+                      ) : post.category ? (
+                        <CategoryPill slug={post.category} />
+                      ) : null}
+
+                      {post.replyCount > 0 ? (
+                        <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
+                          {post.replyCount} {post.replyCount === 1 ? ui.answerSingular : ui.answerPlural}
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-amber-50 text-amber-700 dark:bg-amber-950/50 dark:text-amber-300">
+                          {ui.awaitingAnswer}
+                        </span>
+                      )}
+                    </div>
 
                     <a
-                      href={`/${locale}/${commSegment}/${post.slug}#comments`}
-                      className="inline-flex items-center gap-1 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors ml-auto font-medium"
+                      href={`/${locale}/${commSegment}/${post.slug}`}
+                      className="block group-hover:text-[#518231] dark:group-hover:text-[#6fa844] transition-colors"
                     >
-                      <MessageSquare className="w-3.5 h-3.5" />
-                      <span>{post.replyCount} {ui.replies}</span>
+                      <h3 className="text-base font-bold text-slate-900 dark:text-white leading-snug">
+                        {post.title}
+                      </h3>
                     </a>
+
+                    {post.contentSnippet && (
+                      <p className="text-xs text-slate-600 dark:text-slate-400 line-clamp-2 mt-1.5 leading-relaxed">
+                        {post.contentSnippet}
+                      </p>
+                    )}
+
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800">
+                      <span className="flex items-center gap-1.5 font-medium text-slate-700 dark:text-slate-300">
+                        <div className="w-5 h-5 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-[10px] font-bold text-slate-600 dark:text-slate-300">
+                          {post.authorName ? post.authorName.charAt(0).toUpperCase() : 'U'}
+                        </div>
+                        {post.authorName}
+                      </span>
+
+                      <span>•</span>
+
+                      <span>{formatTimeAgo(post.createdAt)}</span>
+
+                      <span>•</span>
+
+                      <a
+                        href={`/${locale}/${commSegment}/${post.slug}#comments`}
+                        className="inline-flex items-center gap-1 hover:text-[#518231] dark:hover:text-[#6fa844] transition-colors ml-auto font-medium"
+                      >
+                        <MessageSquare className="w-3.5 h-3.5" />
+                        <span>{post.replyCount} {ui.replies}</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        /* Empty State: High-Converting Invitation */
-        <div className="text-center py-10 px-4 mt-4 rounded-xl border border-dashed border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30">
-          <div className="w-12 h-12 rounded-full bg-[#518231]/10 text-[#518231] dark:bg-[#518231]/20 dark:text-[#6fa844] flex items-center justify-center mx-auto mb-3">
-            <MessageSquare className="w-6 h-6" />
+              );
+            })}
           </div>
-          <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1">
-            {ui.emptyH3(calcTitle)}
-          </h3>
-          <p className="text-xs text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-5">
-            {ui.emptyP}
-          </p>
-          <button
-            type="button"
-            onClick={() => setIsComposerOpen(true)}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#518231] hover:bg-[#436a28] text-white text-xs font-bold rounded-xl shadow-sm hover:shadow transition-all"
-          >
-            <HelpCircle className="w-4 h-4" />
-            <span>{ui.askNowBtn}</span>
-          </button>
-        </div>
+        </>
       )}
 
       {/* Quick-Ask Modal / Drawer */}

@@ -1,4 +1,20 @@
-# Due Date Calculator: Map Your Financial and Biological Timelines
+---
+title: "Due Date Calculator"
+metaTitle: "Due Date Calculator"
+description: "A versatile chronological tool designed to track the most critical deadlines in your life."
+metaDescription: "A versatile chronological tool designed to track the most critical deadlines in your life."
+faqs:
+  - question: "How does a pregnancy due date calculator work?"
+    answer: "It uses Naegele's Rule, taking the first day of a woman's Last Menstrual Period (LMP), adding 7 days, and subtracting 3 months to project an estimated delivery date exactly 280 days (40 weeks) in the future."
+  - question: "What does Net 30 mean on an invoice due date?"
+    answer: "Net 30 means that the total amount of the invoice must be paid in full within exactly 30 calendar days of the date the invoice was generated, otherwise late fees may be applied."
+  - question: "What happens if a tax due date falls on a Sunday?"
+    answer: "In the United States, if a federal tax due date (like April 15th) falls on a Saturday, Sunday, or legal holiday, the official due date is legally pushed to the very next available business day."
+  - question: "How accurate is a biological due date?"
+    answer: "Biological due dates are statistical estimates. Only about 5% of babies are born on their exact calculated due date. It is perfectly normal to deliver anywhere between 37 and 42 weeks of gestation."
+  - question: "Can I change my credit card payment due date?"
+    answer: "Yes. Most major credit card issuers allow you to manually change your billing cycle and select a specific due date (e.g., the 1st of every month) to better align with your personal payroll schedule."
+---
 
 Welcome to the **Due Date Calculator**, a versatile chronological tool designed to track the most critical deadlines in your life. The term "Due Date" is universally recognized, but its application spans two entirely different, yet equally stressful, domains: tracking a human pregnancy, and tracking massive financial/legal obligations. Missing either of these dates requires serious preparation.
 
@@ -69,52 +85,3 @@ Modern life requires juggling a dozen different due dates simultaneously (mortga
 Whether you are waiting for a new life to begin or managing a complex corporate cash flow, the concept of the Due Date governs our anxiety and our scheduling.
 
 By utilizing the **Due Date Calculator**, you establish hard data points on your calendar. For expectant mothers, it provides a timeline to track vital fetal development and prepare the nursery. For financial planners, it provides the rigid boundaries needed to execute cash flow arbitrage without triggering penalties. Map your deadlines, set your alerts, and stay ahead of the clock.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How does a pregnancy due date calculator work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It uses Naegele's Rule, taking the first day of a woman's Last Menstrual Period (LMP), adding 7 days, and subtracting 3 months to project an estimated delivery date exactly 280 days (40 weeks) in the future."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does Net 30 mean on an invoice due date?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Net 30 means that the total amount of the invoice must be paid in full within exactly 30 calendar days of the date the invoice was generated, otherwise late fees may be applied."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What happens if a tax due date falls on a Sunday?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In the United States, if a federal tax due date (like April 15th) falls on a Saturday, Sunday, or legal holiday, the official due date is legally pushed to the very next available business day."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How accurate is a biological due date?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Biological due dates are statistical estimates. Only about 5% of babies are born on their exact calculated due date. It is perfectly normal to deliver anywhere between 37 and 42 weeks of gestation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I change my credit card payment due date?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Most major credit card issuers allow you to manually change your billing cycle and select a specific due date (e.g., the 1st of every month) to better align with your personal payroll schedule."
-      }
-    }
-  ]
-}
-</script>

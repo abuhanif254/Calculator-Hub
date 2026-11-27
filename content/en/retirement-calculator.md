@@ -1,4 +1,20 @@
-# Retirement Calculator: Engineer Your Financial Independence
+---
+title: "Retirement Calculator"
+metaTitle: "Retirement Calculator: Engineer Your Financial Independence"
+description: "The most critical forecasting tool you will use to design the final, most rewarding chapter of your life."
+metaDescription: "The most critical forecasting tool you will use to design the final, most rewarding chapter of your life."
+faqs:
+  - question: "What is the 4% Rule for retirement?"
+    answer: "The 4% Rule is a guideline based on historical market data stating that retirees can safely withdraw 4% of their initial retirement portfolio in the first year, and adjust that amount for inflation annually, with a high statistical probability that the money will last for at least 30 years."
+  - question: "How much money do I need to retire?"
+    answer: "To find your required retirement number, determine your desired annual retirement income and multiply it by 25 (the inverse of the 4% rule). If you want to live on $60,000 a year, you need a portfolio of $1.5 million. If you will receive $20,000 in Social Security, you only need your portfolio to generate $40,000, reducing your target number to $1 million."
+  - question: "What rate of return should I use in a retirement calculator?"
+    answer: "While the S&P 500 historically returns about 10% annually, you must account for inflation (typically 3%). Therefore, it is safest to use an inflation-adjusted 'real' rate of return of 6% to 7% for your calculations. This allows the calculator's outputs to be represented in today's purchasing power."
+  - question: "Does the calculator factor in Social Security?"
+    answer: "Yes, our calculator allows you to input 'Other Income,' which is where you should enter your estimated annual Social Security payout or any pension income. This greatly reduces the burden on your personal investment portfolio."
+  - question: "What should I do if the calculator says I will run out of money?"
+    answer: "If you are falling short, you must adjust one of the mathematical levers: increase your monthly savings rate immediately, plan to delay your retirement age by a few years, or significantly lower your expected annual spending during retirement."
+---
 
 Welcome to the **Retirement Calculator**, the most critical forecasting tool you will use to design the final, most rewarding chapter of your life. For decades, retirement planning was simple: you worked for 40 years, collected a guaranteed corporate pension, and relied on Social Security. Today, pensions are virtually extinct, and Social Security is facing immense structural challenges. The burden of funding your retirement now rests entirely on your shoulders.
 
@@ -77,52 +93,3 @@ If the Retirement Calculator indicates you are going to run out of money at age 
 No one cares about your retirement more than you do. The government cannot guarantee your lifestyle, and your employer is no longer responsible for your pension. 
 
 By utilizing the **Retirement Calculator**, you are taking absolute ownership of your financial destiny. You are replacing vague anxiety with actionable data. Run your numbers today. Be brutally honest with your current savings and your future spending habits. If the calculator says you are falling short, let that be the motivation you need to cut your budget and aggressively invest. Engineer your path to financial independence, and buy back the ultimate luxury: your time.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the 4% Rule for retirement?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The 4% Rule is a guideline based on historical market data stating that retirees can safely withdraw 4% of their initial retirement portfolio in the first year, and adjust that amount for inflation annually, with a high statistical probability that the money will last for at least 30 years."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much money do I need to retire?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To find your required retirement number, determine your desired annual retirement income and multiply it by 25 (the inverse of the 4% rule). If you want to live on $60,000 a year, you need a portfolio of $1.5 million. If you will receive $20,000 in Social Security, you only need your portfolio to generate $40,000, reducing your target number to $1 million."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What rate of return should I use in a retirement calculator?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "While the S&P 500 historically returns about 10% annually, you must account for inflation (typically 3%). Therefore, it is safest to use an inflation-adjusted 'real' rate of return of 6% to 7% for your calculations. This allows the calculator's outputs to be represented in today's purchasing power."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does the calculator factor in Social Security?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, our calculator allows you to input 'Other Income,' which is where you should enter your estimated annual Social Security payout or any pension income. This greatly reduces the burden on your personal investment portfolio."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What should I do if the calculator says I will run out of money?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If you are falling short, you must adjust one of the mathematical levers: increase your monthly savings rate immediately, plan to delay your retirement age by a few years, or significantly lower your expected annual spending during retirement."
-      }
-    }
-  ]
-}
-</script>

@@ -1,4 +1,20 @@
-# Date Calculator: Master the Mathematics of Time
+---
+title: "Date Calculator"
+metaTitle: "Date Calculator: Master the Mathematics of Time"
+description: "The ultimate utility for navigating the complexities of the Gregorian calendar. Time is a relentless, linear progression, but human scheduling is incredibly."
+metaDescription: "The ultimate utility for navigating the complexities of the Gregorian calendar. Time is a relentless, linear progression, but human scheduling is incredibly."
+faqs:
+  - question: "Does the calculator account for leap years?"
+    answer: "Yes. The calculator uses advanced algorithms to correctly identify leap years (including the 100-year and 400-year exception rules) to ensure the total raw day count is perfectly accurate across decades."
+  - question: "What is the difference between adding months and adding days?"
+    answer: "Adding '1 month' to January 15th lands you on February 15th (31 days). Adding '1 month' to February 15th lands you on March 15th (28 days). The raw day count fluctuates. Adding a specific number of 'days' provides a much more rigid and accurate timeline."
+  - question: "Why do legal contracts usually specify days instead of months?"
+    answer: "Because months vary in length, using '3 months' in a contract creates a legal ambiguity regarding the exact deadline. Specifying '90 days' creates a rigid, undeniable deadline that can be verified exactly using a date calculator."
+  - question: "How do I calculate business days?"
+    answer: "Standard date calculators count 'Calendar Days' (every day on the calendar). To calculate business days, you must project the calendar date and then manually subtract all Saturdays, Sundays, and national holidays that fall within that window."
+  - question: "Why is the Gregorian calendar so mathematically messy?"
+    answer: "The calendar is messy because it is tied to an astronomical event: the Earth's orbit around the sun. Because an orbit takes roughly 365.24 days, we are forced to use alternating month lengths and leap years to keep the calendar aligned with the physical seasons."
+---
 
 Welcome to the **Date Calculator**, the ultimate utility for navigating the complexities of the Gregorian calendar. Time is a relentless, linear progression, but human scheduling is incredibly complicated. We do not count time in base-10; we count it in an erratic combination of 60 seconds, 24 hours, 7-day weeks, and months that arbitrarily fluctuate between 28, 30, and 31 days. Trying to manually calculate timelines across leap years and changing months is a recipe for missed deadlines.
 
@@ -67,52 +83,3 @@ By using the Add/Subtract mode, the project manager can string these phases toge
 Time is your most valuable asset, and miscalculating it can lead to massive financial penalties, missed opportunities, and logistical chaos. 
 
 By utilizing the **Date Calculator**, you remove the inherent messiness of the Gregorian calendar from your planning process. Whether you are tracking a pregnancy, projecting a financial maturity date, mapping a corporate project, or simply figuring out exactly how many days you have been alive, our algorithms provide the flawless accuracy your schedule demands. Stop counting on your fingers and let the data drive your timeline.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Does the calculator account for leap years?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The calculator uses advanced algorithms to correctly identify leap years (including the 100-year and 400-year exception rules) to ensure the total raw day count is perfectly accurate across decades."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between adding months and adding days?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Adding '1 month' to January 15th lands you on February 15th (31 days). Adding '1 month' to February 15th lands you on March 15th (28 days). The raw day count fluctuates. Adding a specific number of 'days' provides a much more rigid and accurate timeline."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do legal contracts usually specify days instead of months?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Because months vary in length, using '3 months' in a contract creates a legal ambiguity regarding the exact deadline. Specifying '90 days' creates a rigid, undeniable deadline that can be verified exactly using a date calculator."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I calculate business days?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Standard date calculators count 'Calendar Days' (every day on the calendar). To calculate business days, you must project the calendar date and then manually subtract all Saturdays, Sundays, and national holidays that fall within that window."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is the Gregorian calendar so mathematically messy?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The calendar is messy because it is tied to an astronomical event: the Earth's orbit around the sun. Because an orbit takes roughly 365.24 days, we are forced to use alternating month lengths and leap years to keep the calendar aligned with the physical seasons."
-      }
-    }
-  ]
-}
-</script>

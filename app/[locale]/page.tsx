@@ -177,7 +177,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       bmiStatus: "Normal ✓",
       bmiRange: "Healthy range",
       speedLabel: "2ms execution",
-      toolsBadge: "302+ Tools",
+      toolsBadge: "379+ Tools",
     },
     es: {
       schemaDesc: "El ecosistema definitivo de calculadoras y herramientas para desarrolladores.",
@@ -192,7 +192,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       bmiStatus: "Normal ✓",
       bmiRange: "Rango saludable",
       speedLabel: "Ejecución en 2 ms",
-      toolsBadge: "302+ Herramientas",
+      toolsBadge: "379+ Herramientas",
     },
     fr: {
       schemaDesc: "L'écosystème ultime de calculatrices et d'outils pour développeurs.",
@@ -207,7 +207,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       bmiStatus: "Normal ✓",
       bmiRange: "Plage saine",
       speedLabel: "Exécution en 2 ms",
-      toolsBadge: "302+ Outils",
+      toolsBadge: "379+ Outils",
     },
     de: {
       schemaDesc: "Das umfassende Ökosystem für präzise Rechner und Entwickler-Tools.",
@@ -222,7 +222,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
       bmiStatus: "Normalgewicht ✓",
       bmiRange: "Gesunder Bereich",
       speedLabel: "2 ms Laufzeit",
-      toolsBadge: "302+ Tools",
+      toolsBadge: "379+ Tools",
     },
   };
   const heroPreview = heroPreviewByLocale[loc] || heroPreviewByLocale.en;

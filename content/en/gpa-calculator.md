@@ -1,4 +1,20 @@
-# GPA Calculator: Track Your Academic Trajectory
+---
+title: "GPA Calculator"
+metaTitle: "GPA Calculator: Track Your Academic Trajectory"
+description: "The definitive academic tool for high school and college students striving for academic excellence."
+metaDescription: "The definitive academic tool for high school and college students striving for academic excellence."
+faqs:
+  - question: "How do you calculate a GPA with credit hours?"
+    answer: "To calculate a true GPA, you multiply the numeric value of your letter grade (e.g., A=4.0) by the number of credit hours for that class to get your 'Quality Points.' Then, divide your total Quality Points by your total number of attempted credit hours."
+  - question: "What is a weighted GPA?"
+    answer: "A weighted GPA (often on a 5.0 scale) awards extra grade points for taking more difficult classes. For example, earning an 'A' in an Advanced Placement (AP) class might be worth 5.0 points instead of the standard 4.0 points."
+  - question: "What is a good college GPA?"
+    answer: "A 'good' GPA depends on your goals. Most grad schools and elite corporate employers look for a 3.5 or higher. A 3.0 (straight B average) is generally considered standard, while anything below a 2.0 usually results in academic probation."
+  - question: "Does a withdrawal (W) affect my GPA?"
+    answer: "No. A standard Withdrawal (W) shows up on your transcript to indicate you dropped the class, but it holds zero credit value and zero grade points, meaning it does not impact your GPA math whatsoever."
+  - question: "Why is it so hard to raise my GPA senior year?"
+    answer: "A GPA is a cumulative average. By senior year, you have amassed so many credit hours that a single semester's grades carry very little mathematical weight against the massive anchor of your past three years of grades."
+---
 
 Welcome to the **GPA Calculator**, the definitive academic tool for high school and college students striving for academic excellence. Your Grade Point Average (GPA) is a heavy, cumulative metric. It is the primary numeric filter used by university admissions boards, scholarship committees, and elite corporate recruiters. A strong GPA opens doors to Ivy League institutions and lucrative financial aid; a weak GPA can severely limit your post-graduate options.
 
@@ -70,52 +86,3 @@ If you are facing a low GPA, you must be strategic:
 Your GPA is not a reflection of your intelligence or your self-worth; it is simply a mathematical reflection of your academic consistency and time management. 
 
 By aggressively utilizing the **GPA Calculator**, you remove the anxiety of the unknown. You can run "What-If" scenarios before finals week to determine exactly what grade you need on your final exam to keep your scholarship. You can strategically plan your course load to maximize your weighted average. Track your progress, understand the algorithms, put in the study hours, and graduate with a transcript that opens doors.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do you calculate a GPA with credit hours?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To calculate a true GPA, you multiply the numeric value of your letter grade (e.g., A=4.0) by the number of credit hours for that class to get your 'Quality Points.' Then, divide your total Quality Points by your total number of attempted credit hours."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a weighted GPA?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A weighted GPA (often on a 5.0 scale) awards extra grade points for taking more difficult classes. For example, earning an 'A' in an Advanced Placement (AP) class might be worth 5.0 points instead of the standard 4.0 points."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a good college GPA?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A 'good' GPA depends on your goals. Most grad schools and elite corporate employers look for a 3.5 or higher. A 3.0 (straight B average) is generally considered standard, while anything below a 2.0 usually results in academic probation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does a withdrawal (W) affect my GPA?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. A standard Withdrawal (W) shows up on your transcript to indicate you dropped the class, but it holds zero credit value and zero grade points, meaning it does not impact your GPA math whatsoever."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is it so hard to raise my GPA senior year?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A GPA is a cumulative average. By senior year, you have amassed so many credit hours that a single semester's grades carry very little mathematical weight against the massive anchor of your past three years of grades."
-      }
-    }
-  ]
-}
-</script>

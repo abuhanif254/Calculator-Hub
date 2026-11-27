@@ -1,4 +1,20 @@
-# Debt Consolidation Calculator: Streamline Your Finances
+---
+title: "Debt Consolidation Calculator"
+metaTitle: "Debt Consolidation Calculator: Streamline Your Finances"
+description: "Your primary tool for exploring one of the most effective strategies to escape the crushing weight of multiple high-interest debts."
+metaDescription: "Your primary tool for exploring one of the most effective strategies to escape the crushing weight of multiple high-interest debts."
+faqs:
+  - question: "Does debt consolidation erase my debt?"
+    answer: "No. Debt consolidation does not erase or forgive your debt; it simply moves it. You are taking out a new loan to pay off your old lenders. You still owe the exact same amount of principal, but hopefully at a much lower interest rate and with a single monthly payment."
+  - question: "What credit score do I need for a consolidation loan?"
+    answer: "While there is no universal minimum, you generally need a 'fair' to 'good' credit score (650 or higher) to qualify for an unsecured personal loan with an interest rate low enough to make consolidation mathematically worthwhile. If your score is in the 500s, you will likely be denied or offered rates worse than your current credit cards."
+  - question: "Will consolidating debt hurt my credit score?"
+    answer: "In the short term, applying for a new loan causes a small dip in your score due to a hard inquiry. However, using that loan to pay off maxed-out credit cards drastically improves your credit utilization ratio, which usually results in a significant long-term increase in your overall credit score."
+  - question: "Should I close my credit cards after consolidating?"
+    answer: "It is generally better for your credit score to leave the accounts open with a zero balance, as closing them reduces your total available credit and credit age. However, if leaving them open tempts you to run up debt again, it is far safer to close them and take the temporary credit score hit."
+  - question: "Is a balance transfer card better than a personal loan?"
+    answer: "A 0% balance transfer card is mathematically superior because you pay zero interest. However, it is only better if you possess the intense discipline to pay off the entire balance before the promotional 0% period ends (usually 12-18 months). If you need 3 to 5 years to pay off the debt, a fixed-rate personal loan is the much safer option."
+---
 
 Welcome to the **Debt Consolidation Calculator**, your primary tool for exploring one of the most effective strategies to escape the crushing weight of multiple high-interest debts. If you are juggling three credit cards, a personal loan, and a medical bill—all with different interest rates and different due dates—your financial life can feel chaotic and overwhelming. 
 
@@ -92,52 +108,3 @@ Your credit score is heavily influenced by your "Credit Utilization Ratio" (how 
 Dealing with multiple creditors, scattered due dates, and varying interest rates is a recipe for missed payments and financial anxiety. By utilizing the **Debt Consolidation Calculator**, you can objectively determine if combining your debts makes mathematical sense. 
 
 If the calculator shows that you can save thousands of dollars in interest and shorten your payoff timeline, consolidation is likely the right move. However, you must approach this strategy with total self-awareness and ironclad discipline. Secure the lower interest rate, cut up the plastic, stick to your new single monthly payment, and watch your debt systematically disappear.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Does debt consolidation erase my debt?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Debt consolidation does not erase or forgive your debt; it simply moves it. You are taking out a new loan to pay off your old lenders. You still owe the exact same amount of principal, but hopefully at a much lower interest rate and with a single monthly payment."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What credit score do I need for a consolidation loan?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "While there is no universal minimum, you generally need a 'fair' to 'good' credit score (650 or higher) to qualify for an unsecured personal loan with an interest rate low enough to make consolidation mathematically worthwhile. If your score is in the 500s, you will likely be denied or offered rates worse than your current credit cards."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Will consolidating debt hurt my credit score?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "In the short term, applying for a new loan causes a small dip in your score due to a hard inquiry. However, using that loan to pay off maxed-out credit cards drastically improves your credit utilization ratio, which usually results in a significant long-term increase in your overall credit score."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Should I close my credit cards after consolidating?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It is generally better for your credit score to leave the accounts open with a zero balance, as closing them reduces your total available credit and credit age. However, if leaving them open tempts you to run up debt again, it is far safer to close them and take the temporary credit score hit."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is a balance transfer card better than a personal loan?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A 0% balance transfer card is mathematically superior because you pay zero interest. However, it is only better if you possess the intense discipline to pay off the entire balance before the promotional 0% period ends (usually 12-18 months). If you need 3 to 5 years to pay off the debt, a fixed-rate personal loan is the much safer option."
-      }
-    }
-  ]
-}
-</script>

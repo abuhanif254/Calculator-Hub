@@ -6,6 +6,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
+import 'katex/dist/katex.min.css';
+import { renderMarkdownMath } from '@/lib/utils/renderMarkdownMath';
 import {
   ChevronRight,
   Clock,
@@ -111,7 +113,7 @@ function renderGuideMarkdownToHtml(markdownText: string, locale: string): string
     return `<div class="table-wrapper overflow-x-auto">${tableHtml}</div>`;
   };
 
-  const rawHtml = marked(markdownText, { renderer }) as string;
+  const rawHtml = marked(renderMarkdownMath(markdownText), { renderer }) as string;
   return rawHtml.replace(
     /<a\s+([^>]*?)href=["']([^"']+)["']([^>]*)>/gi,
     (_match, before, href, after) => {

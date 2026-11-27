@@ -1,4 +1,20 @@
-# Canadian Mortgage Calculator: Navigate Semi-Annual Compounding
+---
+title: "Canadian Mortgage Calculator"
+metaTitle: "Canadian Mortgage Calculator"
+description: "A specialized financial tool built specifically to adhere to the unique laws and regulations of the Canadian housing market."
+metaDescription: "A specialized financial tool built specifically to adhere to the unique laws and regulations of the Canadian housing market."
+faqs:
+  - question: "Why are Canadian mortgages compounded semi-annually?"
+    answer: "It is a requirement under the Canadian federal Interest Act. The law dictates that fixed-rate mortgages cannot be compounded more frequently than twice a year (semi-annually). This results in a slightly lower effective interest rate compared to the monthly compounding system used in the United States."
+  - question: "What is the difference between a mortgage term and an amortization period in Canada?"
+    answer: "The amortization period is the total time it takes to pay off the entire loan (usually 25 years). The mortgage term is the length of your current contract with the lender (usually 5 years) where your interest rate is locked in. At the end of the term, you must renew the mortgage for the remaining amortization period at current market rates."
+  - question: "Do I have to pay CMHC insurance in Canada?"
+    answer: "You are legally required to purchase mortgage default insurance (CMHC insurance) if your down payment is less than 20% of the purchase price. If you put down 20% or more, you do not need this insurance. Additionally, homes purchased for $1,000,000 or more cannot be insured and require a strict 20% minimum down payment."
+  - question: "What is an accelerated bi-weekly mortgage payment?"
+    answer: "An accelerated bi-weekly payment takes your standard monthly payment and simply cuts it in half, which you then pay every two weeks. Because there are 26 two-week periods in a year, you end up making the equivalent of 13 monthly payments per year instead of 12. This extra payment goes directly to the principal, shaving years off your amortization."
+  - question: "What is the Interest Rate Differential (IRD) penalty?"
+    answer: "If you break a Canadian fixed-rate mortgage before the term is finished, the bank will charge you a penalty. The IRD is a calculation based on the amount you are prepaying and the difference between your original interest rate and the current interest rate the bank can charge today. It often results in penalties costing tens of thousands of dollars."
+---
 
 Welcome to the **Canadian Mortgage Calculator**, a specialized financial tool built specifically to adhere to the unique laws and regulations of the Canadian housing market. If you are buying a home in Toronto, Vancouver, Calgary, or anywhere else in Canada, you cannot use a standard American mortgage calculator. Using an American calculator will result in inaccurate monthly payment projections and significantly overestimate the amount of interest you will pay over the life of your loan. 
 
@@ -101,52 +117,3 @@ If you have a fixed-rate mortgage and you decide to break your contract early (e
 The Canadian mortgage market is unique, heavily regulated, and mathematically distinct from the rest of the world. By utilizing our **Canadian Mortgage Calculator**, you can ensure your budget projections are flawlessly accurate down to the cent. 
 
 Whether you are trying to calculate the impact of CMHC insurance, modeling the incredible savings of an accelerated bi-weekly payment plan, or preparing for your 5-year renewal, this tool is your ultimate guide. Run your numbers, optimize your payment schedule, and take the fastest possible route to living entirely mortgage-free in Canada.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Why are Canadian mortgages compounded semi-annually?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It is a requirement under the Canadian federal Interest Act. The law dictates that fixed-rate mortgages cannot be compounded more frequently than twice a year (semi-annually). This results in a slightly lower effective interest rate compared to the monthly compounding system used in the United States."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between a mortgage term and an amortization period in Canada?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The amortization period is the total time it takes to pay off the entire loan (usually 25 years). The mortgage term is the length of your current contract with the lender (usually 5 years) where your interest rate is locked in. At the end of the term, you must renew the mortgage for the remaining amortization period at current market rates."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I have to pay CMHC insurance in Canada?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You are legally required to purchase mortgage default insurance (CMHC insurance) if your down payment is less than 20% of the purchase price. If you put down 20% or more, you do not need this insurance. Additionally, homes purchased for $1,000,000 or more cannot be insured and require a strict 20% minimum down payment."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is an accelerated bi-weekly mortgage payment?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "An accelerated bi-weekly payment takes your standard monthly payment and simply cuts it in half, which you then pay every two weeks. Because there are 26 two-week periods in a year, you end up making the equivalent of 13 monthly payments per year instead of 12. This extra payment goes directly to the principal, shaving years off your amortization."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the Interest Rate Differential (IRD) penalty?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If you break a Canadian fixed-rate mortgage before the term is finished, the bank will charge you a penalty. The IRD is a calculation based on the amount you are prepaying and the difference between your original interest rate and the current interest rate the bank can charge today. It often results in penalties costing tens of thousands of dollars."
-      }
-    }
-  ]
-}
-</script>

@@ -10,6 +10,10 @@ import { getCollectionsForSlug } from "@/lib/data/collections";
 import { getLocalizedGuide } from "@/lib/utils/guideLocalization";
 import { CalculatorViewWrapper } from "@/app/components/CalculatorViewWrapper";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import "katex/dist/katex.min.css";
+import { renderMarkdownMath } from "@/lib/utils/renderMarkdownMath";
 import { ExportResultsPanel } from "@/app/components/ExportResultsPanel";
 import { CalculatorMath } from "@/app/components/CalculatorMath";
 import { DirectAnswerCard } from "@/app/components/DirectAnswerCard";
@@ -1083,9 +1087,41 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
           {seoContent && (
             <article className="mt-12 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-6 md:p-10 prose prose-slate dark:prose-invert max-w-none lg:prose-lg prose-headings:font-bold prose-headings:tracking-tight prose-a:text-[#518231] prose-img:rounded-xl">
               <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
                 components={{
                   h1({ node, children, ...props }: any) {
                     return <h2 {...props}>{children}</h2>;
+                  },
+                  table({ node, children, ...props }: any) {
+                    return (
+                      <div className="my-6 w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                        <table className="w-full text-sm border-collapse my-0" {...props}>
+                          {children}
+                        </table>
+                      </div>
+                    );
+                  },
+                  thead({ node, children, ...props }: any) {
+                    return (
+                      <thead className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700" {...props}>
+                        {children}
+                      </thead>
+                    );
+                  },
+                  th({ node, children, ...props }: any) {
+                    return (
+                      <th className="px-4 py-3 text-left font-bold text-slate-900 dark:text-white whitespace-nowrap" {...props}>
+                        {children}
+                      </th>
+                    );
+                  },
+                  td({ node, children, ...props }: any) {
+                    return (
+                      <td className="px-4 py-3 border-t border-slate-100 dark:border-slate-800 text-slate-700 dark:text-slate-300" {...props}>
+                        {children}
+                      </td>
+                    );
                   },
                   a({ node, href, children, ...props }: any) {
                     const resolvedHref = canonicalizeInternalHref(href, resolvedParams.locale);
@@ -1108,7 +1144,7 @@ export default async function CalculatorPage({ params }: { params: Promise<{ slu
                   }
                 }}
               >
-                {seoContent}
+                {renderMarkdownMath(seoContent)}
               </ReactMarkdown>
             </article>
           )}

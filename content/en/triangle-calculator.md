@@ -1,4 +1,20 @@
-# Triangle Calculator: Solve the Geometry of the Physical World
+---
+title: "Triangle Calculator"
+metaTitle: "Triangle Calculator"
+description: "The ultimate trigonometric engine for architects, engineers, carpenters, and mathematics students."
+metaDescription: "The ultimate trigonometric engine for architects, engineers, carpenters, and mathematics students."
+faqs:
+  - question: "How many values do I need to solve a triangle?"
+    answer: "To calculate every missing side and angle of a triangle, you must know exactly three values, and at least one of those values must be a side length. If you only know three angles (AAA), the calculator cannot solve it because the triangle could be infinitely large or small."
+  - question: "What is the sum of the angles in a triangle?"
+    answer: "The three interior angles of a standard, two-dimensional triangle will always add up to exactly 180 degrees. If you know two of the angles, you can always find the third by subtracting them from 180."
+  - question: "What is the Pythagorean Theorem?"
+    answer: "The Pythagorean Theorem (a² + b² = c²) is an equation that only applies to Right Triangles (triangles with a 90-degree corner). It proves that the square of the two shorter sides added together equals the square of the longest side (the hypotenuse)."
+  - question: "Can you build a triangle with any three side lengths?"
+    answer: "No. The Triangle Inequality Theorem dictates that the lengths of any two sides added together must be greater than the length of the third side. For example, you cannot have a triangle with sides measuring 2, 2, and 10."
+  - question: "What is Heron's Formula?"
+    answer: "Heron's Formula is an ancient mathematical equation that allows you to calculate the total area of a triangle using only the lengths of its three sides, eliminating the need to find the vertical height of the triangle first."
+---
 
 Welcome to the **Triangle Calculator**, the ultimate trigonometric engine for architects, engineers, carpenters, and mathematics students. The triangle is the most structurally stable and mathematically significant shape in the physical universe. From the trusses supporting the roof of your house to the digital rendering engines generating 3D video game graphics, everything relies on the unshakeable mathematical laws of triangles. However, navigating the complex web of sines, cosines, and the Pythagorean theorem manually can be incredibly tedious. 
 
@@ -56,52 +72,3 @@ Our calculator bypasses this problem by utilizing **Heron's Formula**, a brillia
 Triangles do not bend, they do not warp, and their mathematics do not lie. They are the strongest shape in the physical world because any force applied to a triangle is evenly distributed across all three rigid sides. 
 
 By utilizing the **Triangle Calculator**, you unlock the secrets of this geometric powerhouse. You bypass the grueling algebraic equations of the Law of Sines and Cosines. Whether you are a high school student checking your trigonometry homework, a software developer programming 3D physics collisions, or a carpenter pitching a complex roof truss, accuracy is not optional. Input your three known variables, let the algorithms resolve the geometry, and build your project on a foundation of flawless math.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How many values do I need to solve a triangle?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To calculate every missing side and angle of a triangle, you must know exactly three values, and at least one of those values must be a side length. If you only know three angles (AAA), the calculator cannot solve it because the triangle could be infinitely large or small."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the sum of the angles in a triangle?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The three interior angles of a standard, two-dimensional triangle will always add up to exactly 180 degrees. If you know two of the angles, you can always find the third by subtracting them from 180."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the Pythagorean Theorem?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The Pythagorean Theorem (a² + b² = c²) is an equation that only applies to Right Triangles (triangles with a 90-degree corner). It proves that the square of the two shorter sides added together equals the square of the longest side (the hypotenuse)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you build a triangle with any three side lengths?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. The Triangle Inequality Theorem dictates that the lengths of any two sides added together must be greater than the length of the third side. For example, you cannot have a triangle with sides measuring 2, 2, and 10."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is Heron's Formula?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Heron's Formula is an ancient mathematical equation that allows you to calculate the total area of a triangle using only the lengths of its three sides, eliminating the need to find the vertical height of the triangle first."
-      }
-    }
-  ]
-}
-</script>

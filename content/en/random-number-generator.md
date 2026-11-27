@@ -1,4 +1,20 @@
-# Random Number Generator: The Engine of Pure Chance
+---
+title: "Random Number Generator"
+metaTitle: "Random Number Generator: The Engine of Pure Chance"
+description: "A mathematically rigorous tool designed to inject pure, unbiased chance into your digital environment."
+metaDescription: "A mathematically rigorous tool designed to inject pure, unbiased chance into your digital environment."
+faqs:
+  - question: "How does a computer generate a random number?"
+    answer: "Most computers use a Pseudorandom Number Generator (PRNG). It takes a 'seed' number (usually the exact current time down to the microsecond) and runs it through a complex mathematical algorithm to spit out a number that is functionally unpredictable."
+  - question: "Is a Pseudorandom Number Generator truly random?"
+    answer: "Technically, no. Because it uses a mathematical formula, if a supercomputer knew the exact seed and the algorithm, it could predict the output. However, for all civilian uses (contests, gaming, research), a PRNG is statistically flat and perfectly fair."
+  - question: "Why did the generator give me the same number twice in a row?"
+    answer: "True randomness includes streaks. Because each click is an 'independent event' with no memory of the past, getting the same number twice is a normal, mathematically expected occurrence. Humans naturally expect randomness to alternate, but true chaos does not care about patterns."
+  - question: "What is a True Random Number Generator (TRNG)?"
+    answer: "A TRNG does not use math; it measures chaotic physical phenomena in the real world, like atmospheric radio static or radioactive decay, to generate a number. TRNGs are highly secure and used primarily for military cryptography and casino gambling servers."
+  - question: "Can I use this generator for an official contest or raffle?"
+    answer: "Yes. Using a digital RNG is the standard, legally defensible method for choosing contest winners. Simply assign every entrant a number (e.g., 1 to 500) and use the generator to pick the winning number, ensuring absolute unbiased fairness."
+---
 
 Welcome to the **Random Number Generator (RNG)**, a mathematically rigorous tool designed to inject pure, unbiased chance into your digital environment. While humanity loves patterns and predictability, there are countless scenarios—from conducting double-blind medical studies to running a fair social media giveaway—where absolute unpredictability is the only acceptable standard. The human brain is notoriously terrible at generating random numbers, constantly falling back on subconscious biases (like favoring the number 7). To achieve true fairness, you need an algorithmic engine.
 
@@ -63,52 +79,3 @@ Each generation of a random number is an **independent statistical event**. The 
 Whether you are deciding who has to buy lunch, generating seed values for a sprawling video game world, or conducting peer-reviewed sociological research, human intuition is your enemy. 
 
 By utilizing the **Random Number Generator**, you outsource the burden of fairness to cold, unfeeling mathematics. You eliminate subconscious bias, prevent statistical clustering, and ensure that every possible outcome has the exact same mathematical probability of occurring. Define your parameters, click the button, and trust the algorithm.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How does a computer generate a random number?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most computers use a Pseudorandom Number Generator (PRNG). It takes a 'seed' number (usually the exact current time down to the microsecond) and runs it through a complex mathematical algorithm to spit out a number that is functionally unpredictable."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is a Pseudorandom Number Generator truly random?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Technically, no. Because it uses a mathematical formula, if a supercomputer knew the exact seed and the algorithm, it could predict the output. However, for all civilian uses (contests, gaming, research), a PRNG is statistically flat and perfectly fair."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why did the generator give me the same number twice in a row?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "True randomness includes streaks. Because each click is an 'independent event' with no memory of the past, getting the same number twice is a normal, mathematically expected occurrence. Humans naturally expect randomness to alternate, but true chaos does not care about patterns."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a True Random Number Generator (TRNG)?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A TRNG does not use math; it measures chaotic physical phenomena in the real world, like atmospheric radio static or radioactive decay, to generate a number. TRNGs are highly secure and used primarily for military cryptography and casino gambling servers."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this generator for an official contest or raffle?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Using a digital RNG is the standard, legally defensible method for choosing contest winners. Simply assign every entrant a number (e.g., 1 to 500) and use the generator to pick the winning number, ensuring absolute unbiased fairness."
-      }
-    }
-  ]
-}
-</script>

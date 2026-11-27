@@ -8,16 +8,15 @@ import { comparisons } from '../lib/data/comparisons';
 import { routing } from '../i18n/routing';
 import { allToolsConfig } from '../lib/data/tools/index';
 import { allGuides, getGuideBySlug } from '../lib/data/guides';
-import { COMMUNITY_CATEGORIES } from '../lib/categories';
 
 // SSG: sitemap is built from static TypeScript data files.
 // No revalidation needed — only changes on new deployments.
 // revalidate=false serves from CDN edge permanently, saving Vercel ISR quota.
 export const revalidate = false;
 
-// Architectural & SSR SEO Overhaul Baseline (Phase 1A/1B + Phase 2 Localized Matrices & Formulas)
-// Ensures Googlebot sees that all canonical/hreflang/content-upgraded pages are newer than previous crawls.
-const OVERHAUL_BASELINE_MS = new Date('2026-11-25T04:00:00.000Z').getTime();
+// Architectural & SSR Rendering Repair Baseline (GFM Tables + SSR KaTeX + Tool SSR Preview + Frontmatter)
+// Signals to Googlebot that all calculator, tool, and guide pages have newly repaired rendered HTML.
+const OVERHAUL_BASELINE_MS = new Date('2026-11-27T09:00:00.000Z').getTime();
 
 function resolveLatestContentMtime(relativePaths: string[], explicitDate?: string | Date): Date {
   let maxMs = OVERHAUL_BASELINE_MS;
@@ -156,15 +155,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // ─── STATIC & CORE PAGES ──────────────
   const coreEntries: MetadataRoute.Sitemap = [
     ...buildEntries('/', 'daily', 1.0, undefined, baselineMod, [`${baseUrl}/icons/icon-512x512.png`]),
-    ...buildEntries('/sitemap', 'weekly', 0.8, undefined, baselineMod),
-    ...buildEntries('/community', 'daily', 0.7, undefined, baselineMod),
-    ...COMMUNITY_CATEGORIES.flatMap((cat) => buildEntries('/community/category/[slug]', 'weekly', 0.7, cat.slug, baselineMod)),
-    // REMOVED from sitemap.xml (still index,follow in Footer for AdSense compliance):
+    // REMOVED from XML sitemap to concentrate crawl budget on search-intent landing pages
+    // (ALL remain 100% index,follow and linked in Footer for AdSense E-E-A-T & users):
+    // /sitemap, /community, /community/category/*, /about-us, /editorial-policy, /contact-us,
     // /disclaimer, /privacy-policy, /terms-of-use, /community/hall-of-fame
-    // Keeping sitemap.xml focused exclusively on core calculators, tools, guides, hubs, comparisons & collections.
-    ...buildEntries('/about-us', 'monthly', 0.5, undefined, resolveLatestContentMtime(['app/[locale]/about-us/page.tsx'])),
-    ...buildEntries('/editorial-policy', 'monthly', 0.5, undefined, resolveLatestContentMtime(['app/[locale]/editorial-policy/page.tsx'])),
-    ...buildEntries('/contact-us', 'monthly', 0.5, undefined, baselineMod),
     ...buildEntries('/guides', 'weekly', 0.85, undefined, baselineMod),
     ...buildEntries('/calculators', 'weekly', 0.95, undefined, baselineMod),
     ...buildEntries('/tools', 'weekly', 0.9, undefined, baselineMod),

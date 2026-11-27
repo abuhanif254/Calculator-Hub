@@ -1,4 +1,20 @@
-# Pace Calculator: Dial in Your Running Metrics
+---
+title: "Pace Calculator"
+metaTitle: "Pace Calculator: Dial in Your Running Metrics"
+description: "The ultimate mathematical tool for runners, cyclists, and endurance athletes of all skill levels."
+metaDescription: "The ultimate mathematical tool for runners, cyclists, and endurance athletes of all skill levels."
+faqs:
+  - question: "How do I calculate my running pace?"
+    answer: "Pace is calculated by dividing your total running time by the total distance covered. For example, if you run 3 miles in 30 minutes, you divide 30 by 3 to get a pace of 10 minutes per mile (10:00/mi)."
+  - question: "What is a 'Negative Split' in running?"
+    answer: "A negative split is a pacing strategy where you complete the second half of a race faster than the first half. By starting slightly slower than your target pace, you conserve glycogen and delay fatigue, allowing for a strong, fast finish."
+  - question: "Why is my GPS watch pace different from my official race pace?"
+    answer: "GPS watches are notoriously inaccurate in cities with tall buildings (signal bouncing) and on heavily wooded trails. Furthermore, in a crowded race, you rarely run the exact tightest path (the tangents), meaning you will likely run further than the official race distance, throwing off the watch's average pace calculation."
+  - question: "What is an 'Easy Pace'?"
+    answer: "An easy pace is a strictly aerobic running speed where your heart rate remains relatively low, and you can comfortably hold a conversation without gasping for air. Physiologically, it is typically 60 to 90 seconds slower per mile than your target marathon or half-marathon race pace."
+  - question: "Why do I need to run slow to get faster?"
+    answer: "Running the vast majority of your miles at a slow, easy pace (the 80/20 rule) builds massive aerobic efficiency, increasing capillary density and mitochondrial function. This builds the massive aerobic 'engine' necessary to sustain faster speeds during race day without causing overtraining injuries."
+---
 
 Welcome to the **Pace Calculator**, the ultimate mathematical tool for runners, cyclists, and endurance athletes of all skill levels. Whether you are attempting to break a 20-minute 5K, aiming to qualify for the Boston Marathon, or simply trying to map out a new neighborhood jogging route, you cannot manage what you do not measure. In the world of endurance sports, "pace" is the absolute metric of performance. 
 
@@ -80,52 +96,3 @@ By calculating your exact paces for Easy, Tempo, and Interval runs, you train yo
 Running is inherently physical, but racing is highly mathematical. Whether you are toeing the line of your first 5K or aiming for a massive Marathon Personal Best, hope is not a strategy. 
 
 By aggressively utilizing the **Pace Calculator**, you take control of your performance. You establish a biologically sustainable speed limit for race day. You build customized training zones to optimize your cardiovascular adaptations. You protect yourself from the adrenaline-fueled mistakes of the starting line. Crunch the numbers, trust your training, lock into your target pace, and let the math carry you across the finish line.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I calculate my running pace?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Pace is calculated by dividing your total running time by the total distance covered. For example, if you run 3 miles in 30 minutes, you divide 30 by 3 to get a pace of 10 minutes per mile (10:00/mi)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a 'Negative Split' in running?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A negative split is a pacing strategy where you complete the second half of a race faster than the first half. By starting slightly slower than your target pace, you conserve glycogen and delay fatigue, allowing for a strong, fast finish."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is my GPS watch pace different from my official race pace?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "GPS watches are notoriously inaccurate in cities with tall buildings (signal bouncing) and on heavily wooded trails. Furthermore, in a crowded race, you rarely run the exact tightest path (the tangents), meaning you will likely run further than the official race distance, throwing off the watch's average pace calculation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is an 'Easy Pace'?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "An easy pace is a strictly aerobic running speed where your heart rate remains relatively low, and you can comfortably hold a conversation without gasping for air. Physiologically, it is typically 60 to 90 seconds slower per mile than your target marathon or half-marathon race pace."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do I need to run slow to get faster?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Running the vast majority of your miles at a slow, easy pace (the 80/20 rule) builds massive aerobic efficiency, increasing capillary density and mitochondrial function. This builds the massive aerobic 'engine' necessary to sustain faster speeds during race day without causing overtraining injuries."
-      }
-    }
-  ]
-}
-</script>

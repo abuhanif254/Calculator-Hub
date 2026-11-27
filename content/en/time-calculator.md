@@ -1,4 +1,20 @@
-# Time Calculator: Master the Base-60 Mathematics
+---
+title: "Time Calculator"
+metaTitle: "Time Calculator: Master the Base-60 Mathematics"
+description: "The ultimate chronological utility designed to solve the structural frustrations of base-60 arithmetic."
+metaDescription: "The ultimate chronological utility designed to solve the structural frustrations of base-60 arithmetic."
+faqs:
+  - question: "Why is adding time so difficult manually?"
+    answer: "Time uses a base-60 mathematical system (60 seconds = 1 minute, 60 minutes = 1 hour). When you add time manually, you cannot simply carry over at the 10-mark like you do in standard math; you must perform 'modulo 60' math, which is highly prone to human error."
+  - question: "How do you calculate hours worked from a start and end time?"
+    answer: "You must convert the End Time to a 24-hour military format (e.g., 5:00 PM becomes 17:00). Then, you subtract the Start Time from the End Time. If the minutes column goes negative, you must 'borrow' 60 minutes from the hours column before subtracting."
+  - question: "What is the decimal equivalent of 30 minutes for payroll?"
+    answer: "Because 30 minutes is exactly half of a 60-minute hour, the correct decimal conversion for payroll software is 0.50. Therefore, 8 hours and 30 minutes must be submitted as 8.50 hours."
+  - question: "Can the calculator handle AM and PM roll-overs?"
+    answer: "Yes. If you input a start time of 10:00 PM and add a duration of 5 hours, the calculator automatically understands that the time rolls past midnight, shifting the AM/PM marker and outputting 3:00 AM."
+  - question: "How can I use this to calculate athletic pace?"
+    answer: "You can use the calculator to divide a total time duration (like 3 hours and 30 minutes) by a standard integer (like 26 miles). The calculator will instantly perform the base-60 division and output the exact per-mile pace required to hit that goal."
+---
 
 Welcome to the **Time Calculator**, the ultimate chronological utility designed to solve the structural frustrations of base-60 arithmetic. Time is the most fundamental metric of human existence, yet the mathematics we use to track it are incredibly complex. We operate in a world heavily reliant on base-10 decimals (money, metrics, percentages), but our clocks are locked into an ancient sexagesimal system of 60 seconds, 60 minutes, and 24 hours. Attempting to manually add, subtract, or multiply time is a recipe for catastrophic scheduling errors.
 
@@ -68,52 +84,3 @@ If a runner wants to complete a marathon (26.2 miles) in exactly 3 hours and 30 
 Time is the one resource that cannot be replenished, scaled, or paused. When you miscalculate time, you create cascading logistical failures that impact your sleep, your income, and your professional reputation. 
 
 By utilizing the **Time Calculator**, you remove the inherent friction of base-60 mathematics from your daily life. Whether you are adding up a sprawling weekly timesheet, projecting the landing time of an international flight, or simply figuring out exactly when the turkey needs to go in the oven, our algorithms provide the flawless accuracy your schedule demands. Stop carrying the remainders in your head and let the data manage the clock.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Why is adding time so difficult manually?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Time uses a base-60 mathematical system (60 seconds = 1 minute, 60 minutes = 1 hour). When you add time manually, you cannot simply carry over at the 10-mark like you do in standard math; you must perform 'modulo 60' math, which is highly prone to human error."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do you calculate hours worked from a start and end time?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You must convert the End Time to a 24-hour military format (e.g., 5:00 PM becomes 17:00). Then, you subtract the Start Time from the End Time. If the minutes column goes negative, you must 'borrow' 60 minutes from the hours column before subtracting."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the decimal equivalent of 30 minutes for payroll?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Because 30 minutes is exactly half of a 60-minute hour, the correct decimal conversion for payroll software is 0.50. Therefore, 8 hours and 30 minutes must be submitted as 8.50 hours."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can the calculator handle AM and PM roll-overs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. If you input a start time of 10:00 PM and add a duration of 5 hours, the calculator automatically understands that the time rolls past midnight, shifting the AM/PM marker and outputting 3:00 AM."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How can I use this to calculate athletic pace?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You can use the calculator to divide a total time duration (like 3 hours and 30 minutes) by a standard integer (like 26 miles). The calculator will instantly perform the base-60 division and output the exact per-mile pace required to hit that goal."
-      }
-    }
-  ]
-}
-</script>

@@ -7,6 +7,10 @@ import { getToolConfig, allToolsConfig } from '../../../../lib/data/tools';
 import { ToolViewWrapper } from '../../../components/ToolViewWrapper';
 import { Link, routing, resolveIntlHref } from '../../../../i18n/routing';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import 'katex/dist/katex.min.css';
+import { renderMarkdownMath } from '@/lib/utils/renderMarkdownMath';
 import { ToolVisitTracker } from '../../../components/ToolVisitTracker';
 import { FavoriteButton } from '../../../components/FavoriteButton';
 import { ShareButton } from '../../../components/ShareButton';
@@ -482,6 +486,8 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                 title={pageTitle}
                 shortDesc={pageShortDesc}
                 locale={locale}
+                features={pageFeatures}
+                sampleExample={pageExamples[0]}
               />
             </ToastProvider>
           </NextIntlClientProvider>
@@ -527,9 +533,41 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
             {/* Explanation / SEO Article */}
             <section className="prose prose-slate dark:prose-invert max-w-none prose-headings:text-[#518231] prose-a:text-[#518231]">
               <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw]}
                 components={{
                   h1({ node, children, ...props }: any) {
                     return <h2 {...props}>{children}</h2>;
+                  },
+                  table({ node, children, ...props }: any) {
+                    return (
+                      <div className="my-6 w-full overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+                        <table className="w-full text-sm border-collapse my-0" {...props}>
+                          {children}
+                        </table>
+                      </div>
+                    );
+                  },
+                  thead({ node, children, ...props }: any) {
+                    return (
+                      <thead className="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700" {...props}>
+                        {children}
+                      </thead>
+                    );
+                  },
+                  th({ node, children, ...props }: any) {
+                    return (
+                      <th className="px-4 py-3 text-left font-bold text-slate-900 dark:text-white whitespace-nowrap" {...props}>
+                        {children}
+                      </th>
+                    );
+                  },
+                  td({ node, children, ...props }: any) {
+                    return (
+                      <td className="px-4 py-3 border-t border-slate-100 dark:border-slate-800 text-slate-700 dark:text-slate-300" {...props}>
+                        {children}
+                      </td>
+                    );
                   },
                   a({ node, href, children, ...props }: any) {
                     const resolvedHref = canonicalizeInternalHref(href, locale);
@@ -541,7 +579,7 @@ export default async function ToolPage({ params }: { params: Promise<{ locale: s
                   },
                 }}
               >
-                {pageLongDesc}
+                {renderMarkdownMath(pageLongDesc)}
               </ReactMarkdown>
             </section>
 

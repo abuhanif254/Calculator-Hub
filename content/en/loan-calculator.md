@@ -1,4 +1,20 @@
-# Loan Calculator: Master Your Debt and Amortization
+---
+title: "Loan Calculator"
+metaTitle: "Loan Calculator: Master Your Debt and Amortization"
+description: "The definitive financial tool for analyzing, structuring, and conquering any type of installment debt."
+metaDescription: "The definitive financial tool for analyzing, structuring, and conquering any type of installment debt."
+faqs:
+  - question: "What does loan amortization mean?"
+    answer: "Amortization is the process of paying off a debt over time through regular, equal installments. An amortization schedule shows exactly how each monthly payment is split between paying off the bank's interest and paying down your actual principal balance."
+  - question: "Why is my principal balance going down so slowly?"
+    answer: "Fixed-rate installment loans are 'front-loaded' with interest. Because interest is calculated on your current outstanding balance, the highest interest charges occur in the early years of the loan. Therefore, the vast majority of your early payments go toward interest profit for the bank, leaving very little to reduce your principal."
+  - question: "Are 84-month auto loans a bad idea?"
+    answer: "Yes, mathematically speaking, they are very dangerous. While a 7-year loan lowers your monthly payment, it drastically increases the total interest you pay. Furthermore, because cars depreciate quickly, an 84-month loan almost guarantees you will owe more on the car than it is worth (negative equity) for several years."
+  - question: "How much does making an extra principal payment help?"
+    answer: "Making extra payments specifically applied to the principal balance is incredibly powerful. It immediately reduces the balance upon which future interest is calculated. Even a small extra monthly payment can shave years off a 30-year mortgage and save you tens of thousands of dollars in interest."
+  - question: "When does it make sense to refinance a loan?"
+    answer: "It makes mathematical sense to refinance if you can secure a significantly lower interest rate (usually 1% or more lower) without extending the overall timeline of the loan. You must also factor in any 'closing costs' or origination fees associated with the new loan to ensure the interest savings outweigh the upfront costs."
+---
 
 Welcome to the **Loan Calculator**, the definitive financial tool for analyzing, structuring, and conquering any type of installment debt. Whether you are financing a new vehicle, taking out a personal loan to consolidate credit cards, or calculating the payments on a massive commercial equipment purchase, understanding exactly how your loan amortizes is critical to your financial survival. 
 
@@ -78,52 +94,3 @@ If you do this, you might actually end up paying *more* total interest despite t
 Borrowing money is an inherent part of the modern financial system. Very few people can buy a home or a reliable car in pure cash. However, there is a massive difference between strategically utilizing debt to acquire an appreciating asset and blindly signing loan documents without understanding the amortization math.
 
 By utilizing the **Loan Calculator**, you rip the blindfold off. You force the lender's hidden math into the light. Before you agree to any financing, run the numbers. Look past the monthly payment and focus intensely on the "Total Interest Paid." Understand how front-loaded interest works, never stretch a loan term just to make the payment fit your budget, and harness the incredible power of extra principal payments to accelerate your path to a debt-free life.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What does loan amortization mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Amortization is the process of paying off a debt over time through regular, equal installments. An amortization schedule shows exactly how each monthly payment is split between paying off the bank's interest and paying down your actual principal balance."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is my principal balance going down so slowly?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Fixed-rate installment loans are 'front-loaded' with interest. Because interest is calculated on your current outstanding balance, the highest interest charges occur in the early years of the loan. Therefore, the vast majority of your early payments go toward interest profit for the bank, leaving very little to reduce your principal."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are 84-month auto loans a bad idea?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, mathematically speaking, they are very dangerous. While a 7-year loan lowers your monthly payment, it drastically increases the total interest you pay. Furthermore, because cars depreciate quickly, an 84-month loan almost guarantees you will owe more on the car than it is worth (negative equity) for several years."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much does making an extra principal payment help?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Making extra payments specifically applied to the principal balance is incredibly powerful. It immediately reduces the balance upon which future interest is calculated. Even a small extra monthly payment can shave years off a 30-year mortgage and save you tens of thousands of dollars in interest."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "When does it make sense to refinance a loan?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It makes mathematical sense to refinance if you can secure a significantly lower interest rate (usually 1% or more lower) without extending the overall timeline of the loan. You must also factor in any 'closing costs' or origination fees associated with the new loan to ensure the interest savings outweigh the upfront costs."
-      }
-    }
-  ]
-}
-</script>

@@ -1,4 +1,20 @@
-# Hours Calculator: Manage Your Payroll and Productivity
+---
+title: "Hours Calculator"
+metaTitle: "Hours Calculator: Manage Your Payroll and Productivity"
+description: "The definitive chronological tool designed for freelancers, shift workers, human resource managers, and anyone tasked with tracking billable time."
+metaDescription: "The definitive chronological tool designed for freelancers, shift workers, human resource managers, and anyone tasked with tracking billable time."
+faqs:
+  - question: "How do you convert minutes to decimals for payroll?"
+    answer: "To convert base-60 minutes to a base-10 decimal, you simply divide the minutes by 60. For example, 45 minutes divided by 60 equals 0.75 hours. Therefore, 8 hours and 45 minutes becomes 8.75 billable hours."
+  - question: "Are unpaid lunch breaks automatically deducted?"
+    answer: "Yes, our calculator features a dedicated 'Break Deduction' field. If you took a 30-minute unpaid lunch, the calculator will automatically subtract those 30 minutes before generating your total billable hours for the day."
+  - question: "What is the 7-minute rounding rule in payroll?"
+    answer: "Many companies use federal guidelines to round time to the nearest 15 minutes. If you clock in within 7 minutes of the hour (e.g., 8:07), it rounds to 8:00. If you clock in 8 to 14 minutes after (e.g., 8:09), it rounds up to 8:15."
+  - question: "When does overtime pay legally start?"
+    answer: "Under US federal law (FLSA), overtime (1.5x pay) must be paid for any hours worked over 40 in a single workweek. Some states, like California, also require overtime for any hours worked over 8 in a single day."
+  - question: "Why shouldn't I just calculate my hours in my head?"
+    answer: "Mental math usually fails to correctly convert base-60 minutes into base-10 decimals, especially when carrying over remainders across multiple days. A small 15-minute miscalculation every day results in over an hour of unpaid wages by the end of the week."
+---
 
 Welcome to the **Hours Calculator**, the definitive chronological tool designed for freelancers, shift workers, human resource managers, and anyone tasked with tracking billable time. In the modern economy, time is literally money. Whether you are filling out a corporate timesheet, invoicing a freelance client, or calculating overtime for a team of employees, relying on mental math or manual timecard counting is guaranteed to result in lost wages or payroll errors.
 
@@ -73,52 +89,3 @@ Freelancers notoriously underbill. When a client calls for a "quick 15-minute ch
 Time tracking is tedious, but it is the foundational metric of a fair labor exchange. Whether you are grinding out overtime to save for a house or building a massive freelance design business, every single minute you work holds financial value.
 
 By utilizing the **Hours Calculator**, you replace error-prone mental math with flawless chronological algorithms. You ensure that your decimal conversions are perfect, your unpaid breaks are properly deducted, and your gross pay estimates are exact. Do not leave your paycheck to chance. Calculate your hours, submit your timecards with confidence, and get paid for exactly what you earned.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do you convert minutes to decimals for payroll?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "To convert base-60 minutes to a base-10 decimal, you simply divide the minutes by 60. For example, 45 minutes divided by 60 equals 0.75 hours. Therefore, 8 hours and 45 minutes becomes 8.75 billable hours."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are unpaid lunch breaks automatically deducted?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, our calculator features a dedicated 'Break Deduction' field. If you took a 30-minute unpaid lunch, the calculator will automatically subtract those 30 minutes before generating your total billable hours for the day."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the 7-minute rounding rule in payroll?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Many companies use federal guidelines to round time to the nearest 15 minutes. If you clock in within 7 minutes of the hour (e.g., 8:07), it rounds to 8:00. If you clock in 8 to 14 minutes after (e.g., 8:09), it rounds up to 8:15."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "When does overtime pay legally start?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Under US federal law (FLSA), overtime (1.5x pay) must be paid for any hours worked over 40 in a single workweek. Some states, like California, also require overtime for any hours worked over 8 in a single day."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why shouldn't I just calculate my hours in my head?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mental math usually fails to correctly convert base-60 minutes into base-10 decimals, especially when carrying over remainders across multiple days. A small 15-minute miscalculation every day results in over an hour of unpaid wages by the end of the week."
-      }
-    }
-  ]
-}
-</script>

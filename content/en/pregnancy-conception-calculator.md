@@ -1,4 +1,20 @@
-# Pregnancy Conception Calculator: Reverse Engineer Your Timeline
+---
+title: "Pregnancy Conception Calculator"
+metaTitle: "Pregnancy Conception Calculator"
+description: "A specialized biological tool designed to solve the ultimate retrospective mystery: \"When exactly did I get pregnant?\" While standard pregnancy calculators."
+metaDescription: "A specialized biological tool designed to solve the ultimate retrospective mystery: \"When exactly did I get pregnant?\" While standard pregnancy calculators."
+faqs:
+  - question: "What is the difference between fetal age and gestational age?"
+    answer: "Gestational age is calculated from the first day of your last period, meaning the first two weeks you aren't actually pregnant yet. Fetal age (or conceptional age) is the actual age of the baby starting from the moment of conception, making it exactly two weeks shorter than gestational age."
+  - question: "Can the conception calculator tell me the exact day I got pregnant?"
+    answer: "It can estimate the day of ovulation (when the egg was fertilized). However, because sperm can live inside the body for up to 5 days, the intercourse that led to the pregnancy could have occurred almost a week before the actual date of conception."
+  - question: "Why is early ultrasound data better than my last period date?"
+    answer: "Many women have irregular cycles or ovulate late. Calculating conception based on a period assumes a perfect 28-day cycle. An early ultrasound measures the exact physical size of the fetus (Crown-Rump Length), providing a biologically verified age that bypasses cycle irregularities."
+  - question: "How soon after conception does implantation happen?"
+    answer: "After the egg is fertilized in the fallopian tube, it takes about 6 to 10 days for the rapidly dividing cells (the blastocyst) to travel to the uterus and implant deeply into the uterine lining."
+  - question: "How soon after conception will a pregnancy test be positive?"
+    answer: "A pregnancy test detects the hormone hCG, which is only produced after successful implantation. Therefore, you will not test positive until roughly 10 to 14 days after the actual date of conception."
+---
 
 Welcome to the **Pregnancy Conception Calculator**, a specialized biological tool designed to solve the ultimate retrospective mystery: *"When exactly did I get pregnant?"* While standard pregnancy calculators look forward to predict a due date, this calculator runs the mathematical engine in reverse. 
 
@@ -65,52 +81,3 @@ By taking that ultrasound-verified gestational age and running it through our Co
 Human reproduction is not a mechanized, perfectly scheduled event; it is an organic, highly variable biological process. 
 
 By utilizing the **Pregnancy Conception Calculator**, you can cut through the confusion of the medical "40-week" dating system. Whether you are trying to verify paternity, track fetal age for genetic testing, or simply isolate the week your life changed forever, reverse-engineering your due date provides ultimate clarity. Input your ultrasound-verified data, account for the lifespan of the sperm, and map the incredible biological timeline of your baby's earliest days.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the difference between fetal age and gestational age?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Gestational age is calculated from the first day of your last period, meaning the first two weeks you aren't actually pregnant yet. Fetal age (or conceptional age) is the actual age of the baby starting from the moment of conception, making it exactly two weeks shorter than gestational age."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can the conception calculator tell me the exact day I got pregnant?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It can estimate the day of ovulation (when the egg was fertilized). However, because sperm can live inside the body for up to 5 days, the intercourse that led to the pregnancy could have occurred almost a week before the actual date of conception."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why is early ultrasound data better than my last period date?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Many women have irregular cycles or ovulate late. Calculating conception based on a period assumes a perfect 28-day cycle. An early ultrasound measures the exact physical size of the fetus (Crown-Rump Length), providing a biologically verified age that bypasses cycle irregularities."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How soon after conception does implantation happen?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "After the egg is fertilized in the fallopian tube, it takes about 6 to 10 days for the rapidly dividing cells (the blastocyst) to travel to the uterus and implant deeply into the uterine lining."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How soon after conception will a pregnancy test be positive?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A pregnancy test detects the hormone hCG, which is only produced after successful implantation. Therefore, you will not test positive until roughly 10 to 14 days after the actual date of conception."
-      }
-    }
-  ]
-}
-</script>

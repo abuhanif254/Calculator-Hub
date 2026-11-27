@@ -1,4 +1,20 @@
-# House Affordability Calculator: How Much House Can You Actually Afford?
+---
+title: "House Affordability Calculator"
+metaTitle: "House Affordability Calculator"
+description: "The most critical financial tool you will use before calling a real estate agent or falling in love with an open house."
+metaDescription: "The most critical financial tool you will use before calling a real estate agent or falling in love with an open house."
+faqs:
+  - question: "What is the 28/36 rule in real estate?"
+    answer: "The 28/36 rule is a financial standard used by lenders to determine housing affordability. It states that your maximum household expenses (mortgage, taxes, insurance) should not exceed 28% of your gross monthly income, and your total debt obligations (housing plus car loans, student loans, etc.) should not exceed 36% of your gross monthly income."
+  - question: "What does PITI stand for?"
+    answer: "PITI stands for Principal, Interest, Taxes, and Insurance. It represents the four components that make up your total monthly mortgage payment. Lenders use the PITI amount, not just the loan principal and interest, to calculate your debt-to-income ratio and determine your affordability."
+  - question: "Should I buy the maximum house the bank approves me for?"
+    answer: "No. Banks frequently approve borrowers for loans that push their debt-to-income ratio up to 45% or even 50%. If you spend 50% of your gross income on debt, you will likely end up 'house poor,' meaning you will not have enough disposable income left over for retirement savings, vacations, or emergencies after paying taxes."
+  - question: "How do auto loans affect how much house I can afford?"
+    answer: "Auto loans drastically reduce your housing affordability. Under the 36% rule, every dollar you spend on a car payment is a dollar you cannot spend on a mortgage. Paying off a $500/month auto loan before applying for a mortgage can often increase your maximum home purchase price by $70,000 to $80,000."
+  - question: "How much should I budget for home maintenance?"
+    answer: "A widely accepted financial rule of thumb is to budget 1% to 2% of the total purchase price of your home per year for maintenance and repairs. For a $400,000 home, you should expect to spend between $4,000 and $8,000 annually on upkeep, broken appliances, and routine repairs."
+---
 
 Welcome to the **House Affordability Calculator**, the most critical financial tool you will use before calling a real estate agent or falling in love with an open house. One of the most dangerous mistakes a prospective homebuyer can make is asking a bank, *"How much will you lend me?"* Banks are in the business of selling debt, and they will almost always approve you for a mortgage that pushes your monthly budget to its absolute breaking point. 
 
@@ -102,52 +118,3 @@ If the calculator gives you a maximum purchase price that is significantly lower
 Buying a home is arguably the most emotional financial decision you will ever make. It is incredibly easy to let the dream of a big backyard or a renovated kitchen cloud your financial judgment. 
 
 By utilizing the **House Affordability Calculator**, you anchor your emotions to cold, hard mathematics. You establish a definitive, uncrossable boundary before you ever step foot inside a model home. By respecting the 28/36 rule and leaving breathing room for maintenance and rising taxes, you ensure that your new home remains a place of joy, comfort, and financial security for decades to come.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the 28/36 rule in real estate?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The 28/36 rule is a financial standard used by lenders to determine housing affordability. It states that your maximum household expenses (mortgage, taxes, insurance) should not exceed 28% of your gross monthly income, and your total debt obligations (housing plus car loans, student loans, etc.) should not exceed 36% of your gross monthly income."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does PITI stand for?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "PITI stands for Principal, Interest, Taxes, and Insurance. It represents the four components that make up your total monthly mortgage payment. Lenders use the PITI amount, not just the loan principal and interest, to calculate your debt-to-income ratio and determine your affordability."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Should I buy the maximum house the bank approves me for?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "No. Banks frequently approve borrowers for loans that push their debt-to-income ratio up to 45% or even 50%. If you spend 50% of your gross income on debt, you will likely end up 'house poor,' meaning you will not have enough disposable income left over for retirement savings, vacations, or emergencies after paying taxes."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do auto loans affect how much house I can afford?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Auto loans drastically reduce your housing affordability. Under the 36% rule, every dollar you spend on a car payment is a dollar you cannot spend on a mortgage. Paying off a $500/month auto loan before applying for a mortgage can often increase your maximum home purchase price by $70,000 to $80,000."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How much should I budget for home maintenance?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A widely accepted financial rule of thumb is to budget 1% to 2% of the total purchase price of your home per year for maintenance and repairs. For a $400,000 home, you should expect to spend between $4,000 and $8,000 annually on upkeep, broken appliances, and routine repairs."
-      }
-    }
-  ]
-}
-</script>

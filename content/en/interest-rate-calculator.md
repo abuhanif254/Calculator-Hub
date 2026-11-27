@@ -1,4 +1,20 @@
-# Interest Rate Calculator: Uncover the True Cost of Debt
+---
+title: "Interest Rate Calculator"
+metaTitle: "Interest Rate Calculator: Uncover the True Cost of Debt"
+description: "An advanced financial tool designed to reverse-engineer loans and investments to reveal the underlying Annual Percentage Rate (APR)."
+metaDescription: "An advanced financial tool designed to reverse-engineer loans and investments to reveal the underlying Annual Percentage Rate (APR)."
+faqs:
+  - question: "How does the interest rate affect my monthly payment?"
+    answer: "The interest rate has a massive impact on your monthly payment. A higher interest rate means a larger portion of your monthly payment goes toward bank profits rather than paying down your principal balance, resulting in a significantly higher total monthly obligation."
+  - question: "Why do car dealerships focus on the monthly payment?"
+    answer: "Dealerships focus on the monthly payment to distract you from the total cost of the car and the true interest rate. By extending the loan term to 72 or 84 months, they can lower the monthly payment to an 'affordable' level while secretly charging you thousands of dollars in extra interest."
+  - question: "What is a good interest rate for a mortgage?"
+    answer: "Mortgage rates fluctuate daily based on the broader economy, inflation, and Federal Reserve policies. A 'good' rate is entirely relative to the current macroeconomic environment. However, securing the lowest possible rate always requires an excellent credit score (typically 740+) and a sizable down payment."
+  - question: "How do payday lenders hide their true interest rates?"
+    answer: "Payday lenders often charge 'flat fees' instead of quoting an Annual Percentage Rate (APR). Because the loan term is incredibly short (e.g., 14 days), a seemingly small $50 fee on a $300 loan actually equates to a devastating APR of 400% or more when mathematically annualized."
+  - question: "How can I lower the interest rate on my existing loans?"
+    answer: "The primary way to lower an existing interest rate is to refinance the loan. If your credit score has improved significantly since you originally took out the loan, or if macroeconomic interest rates have dropped nationwide, you can apply for a new loan at a lower rate and use it to pay off the old, expensive loan."
+---
 
 Welcome to the **Interest Rate Calculator**, an advanced financial tool designed to reverse-engineer loans and investments to reveal the underlying Annual Percentage Rate (APR). In the world of finance, transparency is often intentionally obscured. Car dealerships offer "low monthly payments," and payday lenders quote "flat fees," purposefully hiding the devastating interest rates embedded in the fine print. 
 
@@ -86,52 +102,3 @@ Interest rates are the lifeblood of the banking industry. Every fraction of a pe
 By utilizing the **Interest Rate Calculator**, you force transparency into every financial transaction. Do not accept a dealer's quoted monthly payment without reverse-engineering the math to expose the underlying APR. Do not take out a 30-year mortgage without calculating exactly how much that extra 15 years will cost you in pure interest. 
 
 Understand the math, aggressively protect and improve your credit score, and ensure that when you borrow money, you are doing so on the most mathematically favorable terms possible.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How does the interest rate affect my monthly payment?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The interest rate has a massive impact on your monthly payment. A higher interest rate means a larger portion of your monthly payment goes toward bank profits rather than paying down your principal balance, resulting in a significantly higher total monthly obligation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do car dealerships focus on the monthly payment?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Dealerships focus on the monthly payment to distract you from the total cost of the car and the true interest rate. By extending the loan term to 72 or 84 months, they can lower the monthly payment to an 'affordable' level while secretly charging you thousands of dollars in extra interest."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a good interest rate for a mortgage?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mortgage rates fluctuate daily based on the broader economy, inflation, and Federal Reserve policies. A 'good' rate is entirely relative to the current macroeconomic environment. However, securing the lowest possible rate always requires an excellent credit score (typically 740+) and a sizable down payment."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do payday lenders hide their true interest rates?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Payday lenders often charge 'flat fees' instead of quoting an Annual Percentage Rate (APR). Because the loan term is incredibly short (e.g., 14 days), a seemingly small $50 fee on a $300 loan actually equates to a devastating APR of 400% or more when mathematically annualized."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How can I lower the interest rate on my existing loans?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The primary way to lower an existing interest rate is to refinance the loan. If your credit score has improved significantly since you originally took out the loan, or if macroeconomic interest rates have dropped nationwide, you can apply for a new loan at a lower rate and use it to pay off the old, expensive loan."
-      }
-    }
-  ]
-}
-</script>

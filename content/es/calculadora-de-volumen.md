@@ -1,4 +1,9 @@
-# Calculadora de Volumen (Cálculo de Figuras 3D)
+---
+title: "Calculadora de Volumen (Cálculo de Figuras 3D)"
+metaTitle: "Calculadora de Volumen (Cálculo de Figuras 3D)"
+description: "Nuestra Calculadora de Volumen en línea gratuita facilita el cálculo del volumen y la capacidad de 14 figuras geométricas tridimensionales diferentes."
+metaDescription: "Nuestra Calculadora de Volumen en línea gratuita facilita el cálculo del volumen y la capacidad de 14 figuras geométricas tridimensionales diferentes."
+---
 
 Nuestra Calculadora de Volumen en línea gratuita facilita el cálculo del volumen y la capacidad de 14 figuras geométricas tridimensionales diferentes. Es una herramienta ideal para estudiantes, ingenieros, constructores y diseñadores 3D.
 

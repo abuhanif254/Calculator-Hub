@@ -1,4 +1,20 @@
-# Pregnancy Calculator: Track Your Baby's Developmental Journey
+---
+title: "Pregnancy Calculator"
+metaTitle: "Pregnancy Calculator"
+description: "The essential biological tracking tool designed to forecast the massive 40-week journey of human gestation."
+metaDescription: "The essential biological tracking tool designed to forecast the massive 40-week journey of human gestation."
+faqs:
+  - question: "How is a pregnancy due date calculated?"
+    answer: "The medical standard uses Naegele's Rule. It calculates the due date by taking the first day of your last menstrual period (LMP), adding 7 days, and then subtracting 3 months (which equates to exactly 280 days or 40 weeks)."
+  - question: "Why am I considered pregnant before I actually conceived?"
+    answer: "Because it is impossible to pinpoint the exact day of fertilization, doctors start counting the 40 weeks of pregnancy from the first day of your last period. Therefore, during weeks 1 and 2 of your 'pregnancy,' your body was actually just preparing to ovulate."
+  - question: "What percentage of babies are born on their due date?"
+    answer: "Statistically, only about 4% to 5% of babies are born on their exact calculated due date. A pregnancy is considered 'full term' anytime between 37 and 42 weeks, giving a massive, perfectly healthy window for delivery."
+  - question: "Which is more accurate: the LMP calculator or the ultrasound?"
+    answer: "An early dating ultrasound (performed between 8 and 12 weeks) is the most accurate method. If your ultrasound measurements differ from your LMP-calculated due date by more than a few days, your doctor will change your official due date to match the ultrasound."
+  - question: "How do I calculate my due date if I did IVF?"
+    answer: "If you conceived via In Vitro Fertilization (IVF), you do not use your last period. The due date is calculated based on the exact date of your embryo transfer and whether a Day-3 or Day-5 embryo was transferred."
+---
 
 Welcome to the **Pregnancy Calculator**, the essential biological tracking tool designed to forecast the massive 40-week journey of human gestation. Discovering you are pregnant initiates an immediate flurry of questions, but the most pressing is always: *"When is the baby due?"* Determining your Estimated Due Date (EDD) is not just about planning a baby shower; it is a critical medical baseline used by obstetricians to track fetal growth, schedule vital ultrasounds, and ensure the pregnancy is progressing safely.
 
@@ -70,52 +86,3 @@ Because early fetal growth is incredibly uniform across all humans, the CRL meas
 Pregnancy is the most profound biological transformation the human body can undergo. It is a 40-week marathon that requires patience, massive nutritional support, and intense medical monitoring.
 
 By utilizing the **Pregnancy Calculator**, you establish your baseline timeline. You give yourself a map for the journey ahead. Use the calculated milestones to educate yourself on fetal development, prepare your home for the baby's arrival, and communicate effectively with your medical team. Treat the due date as a flexible target rather than a strict deadline, and trust your body to manage the miraculous mathematics of creating new life.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How is a pregnancy due date calculated?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The medical standard uses Naegele's Rule. It calculates the due date by taking the first day of your last menstrual period (LMP), adding 7 days, and then subtracting 3 months (which equates to exactly 280 days or 40 weeks)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why am I considered pregnant before I actually conceived?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Because it is impossible to pinpoint the exact day of fertilization, doctors start counting the 40 weeks of pregnancy from the first day of your last period. Therefore, during weeks 1 and 2 of your 'pregnancy,' your body was actually just preparing to ovulate."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What percentage of babies are born on their due date?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Statistically, only about 4% to 5% of babies are born on their exact calculated due date. A pregnancy is considered 'full term' anytime between 37 and 42 weeks, giving a massive, perfectly healthy window for delivery."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which is more accurate: the LMP calculator or the ultrasound?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "An early dating ultrasound (performed between 8 and 12 weeks) is the most accurate method. If your ultrasound measurements differ from your LMP-calculated due date by more than a few days, your doctor will change your official due date to match the ultrasound."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I calculate my due date if I did IVF?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If you conceived via In Vitro Fertilization (IVF), you do not use your last period. The due date is calculated based on the exact date of your embryo transfer and whether a Day-3 or Day-5 embryo was transferred."
-      }
-    }
-  ]
-}
-</script>

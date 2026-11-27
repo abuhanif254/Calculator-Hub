@@ -1,4 +1,20 @@
-# Interest Calculator: Decode the True Cost of Borrowing and Earning
+---
+title: "Interest Calculator"
+metaTitle: "Interest Calculator"
+description: "The foundational tool for demystifying the core engine of the global financial system."
+metaDescription: "The foundational tool for demystifying the core engine of the global financial system."
+faqs:
+  - question: "What is the difference between simple and compound interest?"
+    answer: "Simple interest is calculated only on the original principal amount. Compound interest is calculated on the original principal PLUS any accumulated interest from previous periods. Compound interest grows much faster because you are earning 'interest on your interest.'"
+  - question: "Why do credit cards use daily compounding?"
+    answer: "The more frequently interest is compounded, the faster the balance grows. Credit card companies use daily compounding to mathematically maximize the amount of interest you owe them, causing your debt to grow exponentially if you don't pay off the balance in full every month."
+  - question: "What is the difference between APR and APY?"
+    answer: "APR (Annual Percentage Rate) is the stated, nominal interest rate that does not account for compounding. APY (Annual Percentage Yield) is the true, effective rate that includes the effect of compounding frequency. APY will always be slightly higher than APR if the compounding frequency is more than once a year."
+  - question: "Is a high interest rate always good?"
+    answer: "It depends on which side of the transaction you are on. If you are investing or saving money, a high interest rate is fantastic because it grows your wealth faster. If you are borrowing money (like a mortgage or credit card), a high interest rate is terrible because it drastically increases the cost of the loan."
+  - question: "How does inflation affect my interest earnings?"
+    answer: "Inflation erodes the purchasing power of your money. To find your 'Real Rate of Return,' you must subtract the inflation rate from your earned interest rate. If you earn 4% interest but inflation is 3%, your real, inflation-adjusted wealth only grew by 1%."
+---
 
 Welcome to the ultimate **Interest Calculator**, the foundational tool for demystifying the core engine of the global financial system. Whether you are depositing your life savings into a high-yield bank account, taking out a massive mortgage for your dream home, or carrying a balance on a high-rewards credit card, interest is the invisible force dictating your financial trajectory. It is the cost of borrowing money, and it is the reward for lending it. 
 
@@ -99,52 +115,3 @@ To build true wealth, you must invest your money in vehicles that generate an in
 Interest is entirely agnostic. It does not care about your age, your background, or your financial goals. It is a mathematical certainty that will either quietly build you a fortune over decades or slowly drain your wealth away to a bank's profit margins. 
 
 By utilizing the **Interest Calculator**, you take control of the math. Before you sign a loan document, run the numbers to see exactly how much you are paying for the privilege of borrowing that money. Before you leave a large sum of cash sitting in a checking account, run the numbers to see how much wealth you are sacrificing by missing out on compound interest. Understand the math, optimize your rates, and let the sheer power of interest work in your favor.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the difference between simple and compound interest?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Simple interest is calculated only on the original principal amount. Compound interest is calculated on the original principal PLUS any accumulated interest from previous periods. Compound interest grows much faster because you are earning 'interest on your interest.'"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do credit cards use daily compounding?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The more frequently interest is compounded, the faster the balance grows. Credit card companies use daily compounding to mathematically maximize the amount of interest you owe them, causing your debt to grow exponentially if you don't pay off the balance in full every month."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the difference between APR and APY?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "APR (Annual Percentage Rate) is the stated, nominal interest rate that does not account for compounding. APY (Annual Percentage Yield) is the true, effective rate that includes the effect of compounding frequency. APY will always be slightly higher than APR if the compounding frequency is more than once a year."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is a high interest rate always good?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It depends on which side of the transaction you are on. If you are investing or saving money, a high interest rate is fantastic because it grows your wealth faster. If you are borrowing money (like a mortgage or credit card), a high interest rate is terrible because it drastically increases the cost of the loan."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does inflation affect my interest earnings?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Inflation erodes the purchasing power of your money. To find your 'Real Rate of Return,' you must subtract the inflation rate from your earned interest rate. If you earn 4% interest but inflation is 3%, your real, inflation-adjusted wealth only grew by 1%."
-      }
-    }
-  ]
-}
-</script>

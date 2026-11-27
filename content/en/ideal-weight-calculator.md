@@ -1,4 +1,20 @@
-# Ideal Weight Calculator: Find Your Biological Baseline
+---
+title: "Ideal Weight Calculator"
+metaTitle: "Ideal Weight Calculator: Find Your Biological Baseline"
+description: "A comprehensive tool designed to cut through modern aesthetic trends and deliver mathematically established health baselines."
+metaDescription: "A comprehensive tool designed to cut through modern aesthetic trends and deliver mathematically established health baselines."
+faqs:
+  - question: "How is Ideal Weight different from BMI?"
+    answer: "BMI (Body Mass Index) categorizes you into broad ranges (Underweight, Normal, Overweight) based on a ratio of your height to weight. Ideal Weight equations calculate a specific, targeted number (or narrow range) in pounds or kilograms based on clinical dosing data."
+  - question: "Why does the calculator give me multiple different weights?"
+    answer: "Over the past 60 years, different medical researchers (like Devine, Robinson, and Miller) have created slightly different formulas based on different population datasets. Our calculator processes all of them to give you a comprehensive average and a realistic target range."
+  - question: "Does muscle mass affect my ideal weight?"
+    answer: "Yes, heavily. Standard ideal weight formulas do not account for muscle mass. Muscle is significantly denser than fat. If you are an athlete or lift weights regularly, you will likely weigh more than your calculated 'ideal' weight, but you will still be incredibly healthy."
+  - question: "Is it unhealthy to be below my ideal weight?"
+    answer: "Yes. Being chronically underweight carries severe medical risks, including osteoporosis (bone loss), a weakened immune system, anemia, chronic fatigue, and reproductive issues. It is just as important to address being underweight as it is to address being overweight."
+  - question: "How do frame size and bone structure affect my weight?"
+    answer: "Individuals with large, broad bone structures naturally weigh more than those with small, narrow frames, even at the exact same height and body fat percentage. Standard ideal weight formulas assume an 'average' frame size, which is why the output should be treated as a guideline, not an absolute law."
+---
 
 Welcome to the **Ideal Weight Calculator**, a comprehensive tool designed to cut through modern aesthetic trends and deliver mathematically established health baselines. In a world dominated by social media filters and extreme fitness influencers, our perception of a "normal" body weight has become deeply distorted. This calculator strips away the noise, utilizing decades of medical data to determine the optimal weight range for your unique skeletal structure and height.
 
@@ -82,53 +98,4 @@ If the calculator indicates you are significantly outside your ideal weight rang
 
 Your weight is a highly emotional metric, heavily influenced by societal pressures and media expectations. It is time to remove the emotion and look at the biological reality.
 
-By utilizing the **Ideal Weight Calculator**, you ground yourself in clinical data. Use these numbers as your initial compass heading. Aim for the healthy range, but always prioritize your actual body composition and how you feel over the raw number on the scale. Build muscle, lose excess body fat, and construct a physique that is optimized for longevity and daily performance. 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How is Ideal Weight different from BMI?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "BMI (Body Mass Index) categorizes you into broad ranges (Underweight, Normal, Overweight) based on a ratio of your height to weight. Ideal Weight equations calculate a specific, targeted number (or narrow range) in pounds or kilograms based on clinical dosing data."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why does the calculator give me multiple different weights?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Over the past 60 years, different medical researchers (like Devine, Robinson, and Miller) have created slightly different formulas based on different population datasets. Our calculator processes all of them to give you a comprehensive average and a realistic target range."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does muscle mass affect my ideal weight?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, heavily. Standard ideal weight formulas do not account for muscle mass. Muscle is significantly denser than fat. If you are an athlete or lift weights regularly, you will likely weigh more than your calculated 'ideal' weight, but you will still be incredibly healthy."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is it unhealthy to be below my ideal weight?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. Being chronically underweight carries severe medical risks, including osteoporosis (bone loss), a weakened immune system, anemia, chronic fatigue, and reproductive issues. It is just as important to address being underweight as it is to address being overweight."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do frame size and bone structure affect my weight?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Individuals with large, broad bone structures naturally weigh more than those with small, narrow frames, even at the exact same height and body fat percentage. Standard ideal weight formulas assume an 'average' frame size, which is why the output should be treated as a guideline, not an absolute law."
-      }
-    }
-  ]
-}
-</script>
+By utilizing the **Ideal Weight Calculator**, you ground yourself in clinical data. Use these numbers as your initial compass heading. Aim for the healthy range, but always prioritize your actual body composition and how you feel over the raw number on the scale. Build muscle, lose excess body fat, and construct a physique that is optimized for longevity and daily performance.

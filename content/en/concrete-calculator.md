@@ -1,4 +1,20 @@
-# Concrete Calculator: Estimate Your Pour with Precision
+---
+title: "Concrete Calculator"
+metaTitle: "Concrete Calculator: Estimate Your Pour with Precision"
+description: "The ultimate industrial and DIY mathematical tool for planning construction projects."
+metaDescription: "The ultimate industrial and DIY mathematical tool for planning construction projects."
+faqs:
+  - question: "How many 80lb bags of concrete make a cubic yard?"
+    answer: "It takes exactly 45 standard 80-pound bags of pre-mixed concrete to create one cubic yard. This is why buying bags for large projects like a driveway is highly inefficient and labor-intensive."
+  - question: "Why do I need to add 10% to my concrete order?"
+    answer: "The 10% 'Waste Factor' accounts for uneven ground (subgrade settling), the outward bowing of wooden forms under pressure, material lost in the pump truck hose, and general spillage. Ordering exactly the mathematical volume almost always leaves you short."
+  - question: "What is the standard thickness for a concrete driveway?"
+    answer: "A standard residential driveway should be poured at a minimum depth of 4 inches, but 5 to 6 inches is highly recommended to support the weight of heavy vehicles like SUVs or trucks without cracking."
+  - question: "What PSI concrete should I order for a patio?"
+    answer: "For a standard residential patio, 3,000 PSI concrete is the most common and cost-effective choice. If you live in an area with harsh winters (freeze/thaw cycles), upgrading to 3,500 or 4,000 PSI will increase the lifespan of the slab."
+  - question: "How is concrete volume calculated?"
+    answer: "Concrete volume is calculated by multiplying Length × Width × Depth. However, because depth is usually measured in inches and length/width in feet, the formula requires converting all measurements to feet, multiplying them to get cubic feet, and dividing by 27 to get cubic yards."
+---
 
 Welcome to the **Concrete Calculator**, the ultimate industrial and DIY mathematical tool for planning construction projects. Whether you are pouring a massive commercial foundation, laying a new residential driveway, or simply setting a few fence posts in your backyard, accuracy is everything. Concrete is heavy, highly time-sensitive, and extremely expensive. Ordering too much wastes your budget; ordering too little halts your project midway and compromises the structural integrity of the pour.
 
@@ -78,52 +94,3 @@ When you order concrete, the dispatcher will ask you what "PSI" (Pounds per Squa
 Concrete is permanent. Once the chemical reaction (hydration) begins, the clock is ticking. You cannot pause the pour to run to the store for more material, and breaking up a botched pour with a jackhammer is a nightmare no one wants to experience. 
 
 By utilizing the **Concrete Calculator**, you eliminate the guesswork. You translate raw site measurements into precise purchasing orders. Always double-check your depth measurements, properly compact your subgrade base, add your 10% waste factor, and let the math guarantee a successful, structural pour.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How many 80lb bags of concrete make a cubic yard?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It takes exactly 45 standard 80-pound bags of pre-mixed concrete to create one cubic yard. This is why buying bags for large projects like a driveway is highly inefficient and labor-intensive."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do I need to add 10% to my concrete order?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The 10% 'Waste Factor' accounts for uneven ground (subgrade settling), the outward bowing of wooden forms under pressure, material lost in the pump truck hose, and general spillage. Ordering exactly the mathematical volume almost always leaves you short."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is the standard thickness for a concrete driveway?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A standard residential driveway should be poured at a minimum depth of 4 inches, but 5 to 6 inches is highly recommended to support the weight of heavy vehicles like SUVs or trucks without cracking."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What PSI concrete should I order for a patio?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "For a standard residential patio, 3,000 PSI concrete is the most common and cost-effective choice. If you live in an area with harsh winters (freeze/thaw cycles), upgrading to 3,500 or 4,000 PSI will increase the lifespan of the slab."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is concrete volume calculated?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Concrete volume is calculated by multiplying Length × Width × Depth. However, because depth is usually measured in inches and length/width in feet, the formula requires converting all measurements to feet, multiplying them to get cubic feet, and dividing by 27 to get cubic yards."
-      }
-    }
-  ]
-}
-</script>

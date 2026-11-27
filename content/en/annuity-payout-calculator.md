@@ -1,4 +1,20 @@
-# Annuity Payout Calculator: Plan Your Retirement Income Streams
+---
+title: "Annuity Payout Calculator"
+metaTitle: "Annuity Payout Calculator"
+description: "An indispensable financial tool designed specifically to help you navigate the complex world of retirement planning."
+metaDescription: "An indispensable financial tool designed specifically to help you navigate the complex world of retirement planning."
+faqs:
+  - question: "What happens to my annuity if I die early?"
+    answer: "It depends entirely on the payout option you selected when signing the contract. If you chose a 'Life Only' option, the payments stop immediately upon your death and the insurance company keeps the remaining balance. If you chose 'Period Certain' or 'Life with Period Certain', your designated beneficiaries will continue to receive payments for the remainder of the guaranteed term."
+  - question: "Are annuity payouts guaranteed against stock market crashes?"
+    answer: "Fixed annuities are guaranteed by the claims-paying ability of the insurance company that issues them. They are not tied to the stock market, meaning your payouts will not decrease during an economic recession or market crash. However, variable annuities are tied to market performance and can fluctuate."
+  - question: "How is an annuity payout different from drawing down a savings account?"
+    answer: "When you draw down a savings account, you bear all the risk. If you withdraw too much or live too long, your account will hit zero and you will run out of money. A 'Life' annuity transfers that risk to an insurance company; they are legally obligated to keep paying you until you die, even if they end up paying out far more than your original investment."
+  - question: "Do I have to pay taxes on my annuity payouts?"
+    answer: "Yes, but the amount depends on how the annuity was funded. If funded with pre-tax retirement money (Qualified), the entire payout is taxable as ordinary income. If funded with after-tax money (Non-Qualified), only the portion of the payout that represents interest earnings is taxable."
+  - question: "Can I outlive a Period Certain annuity?"
+    answer: "Yes. If you choose a 20-Year Period Certain payout and you live for 25 years, the payments will completely stop after year 20. You will have no income from the annuity for the final 5 years of your life, which is why many retirees prefer a 'Life with Period Certain' hybrid option."
+---
 
 Welcome to the **Annuity Payout Calculator**, an indispensable financial tool designed specifically to help you navigate the complex world of retirement planning. Securing a steady, reliable stream of income after you stop working is the primary goal of any retirement strategy. An annuity is one of the most powerful financial instruments available to achieve this, offering guaranteed payouts that can last for a specific period or for the rest of your life. 
 
@@ -101,52 +117,3 @@ Navigating retirement income requires a delicate balance of maximizing your mont
 By utilizing our **Annuity Payout Calculator**, you strip away the sales pitches from insurance brokers and look strictly at the cold, hard mathematics of your financial future. You can model dozens of different scenarios—comparing 15-year terms against 20-year terms, analyzing the impact of a 4% return versus a 6% return, and determining exactly how much principal you need to achieve your dream retirement lifestyle.
 
 Take the time to experiment with the inputs. Bring these numbers to your fiduciary financial advisor. With the right data, you can build an unbreakable income stream that allows you to enjoy your golden years with total peace of mind.
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What happens to my annuity if I die early?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It depends entirely on the payout option you selected when signing the contract. If you chose a 'Life Only' option, the payments stop immediately upon your death and the insurance company keeps the remaining balance. If you chose 'Period Certain' or 'Life with Period Certain', your designated beneficiaries will continue to receive payments for the remainder of the guaranteed term."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Are annuity payouts guaranteed against stock market crashes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Fixed annuities are guaranteed by the claims-paying ability of the insurance company that issues them. They are not tied to the stock market, meaning your payouts will not decrease during an economic recession or market crash. However, variable annuities are tied to market performance and can fluctuate."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How is an annuity payout different from drawing down a savings account?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "When you draw down a savings account, you bear all the risk. If you withdraw too much or live too long, your account will hit zero and you will run out of money. A 'Life' annuity transfers that risk to an insurance company; they are legally obligated to keep paying you until you die, even if they end up paying out far more than your original investment."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do I have to pay taxes on my annuity payouts?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, but the amount depends on how the annuity was funded. If funded with pre-tax retirement money (Qualified), the entire payout is taxable as ordinary income. If funded with after-tax money (Non-Qualified), only the portion of the payout that represents interest earnings is taxable."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I outlive a Period Certain annuity?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. If you choose a 20-Year Period Certain payout and you live for 25 years, the payments will completely stop after year 20. You will have no income from the annuity for the final 5 years of your life, which is why many retirees prefer a 'Life with Period Certain' hybrid option."
-      }
-    }
-  ]
-}
-</script>

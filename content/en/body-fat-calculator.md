@@ -1,4 +1,20 @@
-# Body Fat Calculator: Move Beyond the Scale
+---
+title: "Body Fat Calculator"
+metaTitle: "Body Fat Calculator: Move Beyond the Scale"
+description: "The ultimate biometric tool for understanding your true physical composition. For decades, the health and fitness industry has been obsessed with the."
+metaDescription: "The ultimate biometric tool for understanding your true physical composition. For decades, the health and fitness industry has been obsessed with the."
+faqs:
+  - question: "What is a healthy body fat percentage?"
+    answer: "Healthy body fat percentages vary by gender. For men, a healthy 'fitness' range is typically between 14% and 17%. For women, who naturally carry more essential fat, a healthy range is typically between 21% and 24%."
+  - question: "Is the U.S. Navy body fat method accurate?"
+    answer: "The U.S. Navy method is highly accurate for a free, at-home test. While it may not perfectly match clinical DEXA scans, it is excellent for tracking progress over time. If the calculator says your body fat is dropping month over month, you are definitively losing fat."
+  - question: "What does it mean to be 'Skinny Fat'?"
+    answer: "'Skinny Fat' (Normal Weight Obesity) means a person has a normal, healthy weight on the scale, but their body composition is very poor. They have very little muscle mass and a surprisingly high body fat percentage, often putting them at risk for metabolic diseases."
+  - question: "Why do women have higher body fat percentages than men?"
+    answer: "Women biologically require a higher percentage of essential body fat to support reproductive health and hormonal balance. A man can survive at 5% body fat, but a woman's reproductive system will often shut down if she drops below 12% to 15%."
+  - question: "Can I lose fat and build muscle at the same time?"
+    answer: "Yes, this is called 'Body Recomposition.' It is highly possible for beginners, those returning to the gym after a long break, or those with high body fat. It requires eating at a very slight caloric deficit while maintaining a high protein intake and lifting heavy weights."
+---
 
 Welcome to the **Body Fat Calculator**, the ultimate biometric tool for understanding your true physical composition. For decades, the health and fitness industry has been obsessed with the bathroom scale. We have been conditioned to believe that the total gravitational pull of our body dictates our health. This is a fundamental flaw. The scale cannot differentiate between bone, water, muscle, and fat. 
 
@@ -79,53 +95,4 @@ Protein is the building block of muscle. When you are losing weight, keeping you
 
 The bathroom scale is a blunt instrument. It will frustrate you, lie to you, and derail your progress. If you start lifting weights and eating healthy, you might lose 5 pounds of fat and gain 5 pounds of muscle in your first month. The scale will say you lost zero pounds, making you feel like a failure. But your body fat percentage dropped significantly, and your waist got smaller! 
 
-By utilizing the **Body Fat Calculator** and a simple measuring tape, you upgrade from blunt instruments to precision tracking. Measure yourself every two weeks. Focus on building your Lean Body Mass and lowering your fat percentage. When you track the right metrics, you build the right body. 
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is a healthy body fat percentage?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Healthy body fat percentages vary by gender. For men, a healthy 'fitness' range is typically between 14% and 17%. For women, who naturally carry more essential fat, a healthy range is typically between 21% and 24%."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is the U.S. Navy body fat method accurate?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The U.S. Navy method is highly accurate for a free, at-home test. While it may not perfectly match clinical DEXA scans, it is excellent for tracking progress over time. If the calculator says your body fat is dropping month over month, you are definitively losing fat."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does it mean to be 'Skinny Fat'?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "'Skinny Fat' (Normal Weight Obesity) means a person has a normal, healthy weight on the scale, but their body composition is very poor. They have very little muscle mass and a surprisingly high body fat percentage, often putting them at risk for metabolic diseases."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do women have higher body fat percentages than men?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Women biologically require a higher percentage of essential body fat to support reproductive health and hormonal balance. A man can survive at 5% body fat, but a woman's reproductive system will often shut down if she drops below 12% to 15%."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I lose fat and build muscle at the same time?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, this is called 'Body Recomposition.' It is highly possible for beginners, those returning to the gym after a long break, or those with high body fat. It requires eating at a very slight caloric deficit while maintaining a high protein intake and lifting heavy weights."
-      }
-    }
-  ]
-}
-</script>
+By utilizing the **Body Fat Calculator** and a simple measuring tape, you upgrade from blunt instruments to precision tracking. Measure yourself every two weeks. Focus on building your Lean Body Mass and lowering your fat percentage. When you track the right metrics, you build the right body.
