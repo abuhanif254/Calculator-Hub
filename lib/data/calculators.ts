@@ -1,6 +1,7 @@
 import { CalculatorDef } from "../types";
 import { programmaticPresets } from "./programmaticPresets";
 import { unitConverterCalculators } from "./unitConverters";
+import { highRpmCalculators } from "./highRpmCalculators";
 
 const baseCalculators: CalculatorDef[] = [
   {
@@ -4484,6 +4485,7 @@ export const calculators: CalculatorDef[] = [
   ...baseCalculators,
   ...resolvedPresets,
   ...unitConverterCalculators,
+  ...highRpmCalculators,
 ];
 
 export const getCalculatorBySlug = (slug: string): CalculatorDef | undefined => {

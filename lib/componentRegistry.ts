@@ -23,6 +23,13 @@ const UnitPairConverter = dynamic(() =>
   }))
 );
 
+// Shared high-RPM finance, EU payroll & health calculator suite (12 calculators)
+const HighRpmCalculator = dynamic(() =>
+  import('@/app/components/HighRpmCalculatorView').then((m) => ({
+    default: m.HighRpmCalculatorView as ComponentType<CalcComponentProps>,
+  }))
+);
+
 const registry: Record<string, ComponentType<CalcComponentProps>> = {
   // ─── Financial ─────────────────────────────────
   'loan-calculator': dynamic(() => import('@/app/components/LoanCalculatorView').then(m => ({ default: m.LoanCalculatorView as ComponentType<CalcComponentProps> }))),
@@ -232,6 +239,20 @@ const registry: Record<string, ComponentType<CalcComponentProps>> = {
   'acres-to-square-feet': UnitPairConverter,
   'cups-to-ml': UnitPairConverter,
   'psi-to-bar': UnitPairConverter,
+
+  // ─── High-RPM Finance, EU Payroll & Fitness Calculators (12) ───
+  'roi-calculator': HighRpmCalculator,
+  'cagr-calculator': HighRpmCalculator,
+  'net-worth-calculator': HighRpmCalculator,
+  'break-even-calculator': HighRpmCalculator,
+  'mortgage-refinance-calculator': HighRpmCalculator,
+  'cap-rate-calculator': HighRpmCalculator,
+  'take-home-pay-calculator': HighRpmCalculator,
+  'overtime-pay-calculator': HighRpmCalculator,
+  'rule-of-72-calculator': HighRpmCalculator,
+  'tdee-calculator': HighRpmCalculator,
+  'one-rep-max-calculator': HighRpmCalculator,
+  'water-intake-calculator': HighRpmCalculator,
 };
 
 // Fallback generic calculator component

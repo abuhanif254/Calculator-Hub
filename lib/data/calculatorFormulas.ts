@@ -11,6 +11,7 @@ import { financeFormulas } from './formulas/financeFormulas';
 import { healthMathStatsFormulas } from './formulas/healthMathStatsFormulas';
 import { physicsChemFormulas } from './formulas/physicsChemFormulas';
 import { unitConverterFormulas } from './formulas/unitConverterFormulas';
+import { highRpmFormulas } from './formulas/highRpmFormulas';
 
 export type { CalculatorFormulaDef, FormulaLocaleTranslation, FormulaVariable };
 
@@ -19,6 +20,7 @@ export const calculatorFormulas: CalculatorFormulaDef[] = [
   ...healthMathStatsFormulas,
   ...physicsChemFormulas,
   ...unitConverterFormulas,
+  ...highRpmFormulas,
 ];
 
 /**

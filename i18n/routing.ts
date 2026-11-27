@@ -747,6 +747,78 @@ export const routing = defineRouting({
       fr: '/calculatrices/psi-en-bar',
       de: '/rechner/psi-in-bar'
     },
+    '/calculators/roi-calculator': {
+      en: '/calculators/roi-calculator',
+      es: '/calculadoras/calculadora-de-roi',
+      fr: '/calculatrices/calculateur-de-roi',
+      de: '/rechner/roi-rechner'
+    },
+    '/calculators/cagr-calculator': {
+      en: '/calculators/cagr-calculator',
+      es: '/calculadoras/calculadora-de-cagr',
+      fr: '/calculatrices/calculateur-de-cagr',
+      de: '/rechner/cagr-rechner'
+    },
+    '/calculators/net-worth-calculator': {
+      en: '/calculators/net-worth-calculator',
+      es: '/calculadoras/calculadora-de-patrimonio-neto',
+      fr: '/calculatrices/calculateur-de-patrimoine-net',
+      de: '/rechner/nettovermoegen-rechner'
+    },
+    '/calculators/break-even-calculator': {
+      en: '/calculators/break-even-calculator',
+      es: '/calculadoras/calculadora-de-punto-de-equilibrio',
+      fr: '/calculatrices/calculateur-de-seuil-de-rentabilite',
+      de: '/rechner/break-even-rechner'
+    },
+    '/calculators/mortgage-refinance-calculator': {
+      en: '/calculators/mortgage-refinance-calculator',
+      es: '/calculadoras/calculadora-de-refinanciamiento-hipotecario',
+      fr: '/calculatrices/calculateur-de-rachat-de-credit-immobilier',
+      de: '/rechner/hypothek-umschulden-rechner'
+    },
+    '/calculators/cap-rate-calculator': {
+      en: '/calculators/cap-rate-calculator',
+      es: '/calculadoras/calculadora-de-cap-rate',
+      fr: '/calculatrices/calculateur-de-taux-de-capitalisation',
+      de: '/rechner/mietrendite-rechner'
+    },
+    '/calculators/take-home-pay-calculator': {
+      en: '/calculators/take-home-pay-calculator',
+      es: '/calculadoras/calculadora-de-salario-neto',
+      fr: '/calculatrices/calculateur-salaire-brut-net',
+      de: '/rechner/brutto-netto-rechner'
+    },
+    '/calculators/overtime-pay-calculator': {
+      en: '/calculators/overtime-pay-calculator',
+      es: '/calculadoras/calculadora-de-horas-extras',
+      fr: '/calculatrices/calculateur-heures-supplementaires',
+      de: '/rechner/ueberstunden-rechner'
+    },
+    '/calculators/rule-of-72-calculator': {
+      en: '/calculators/rule-of-72-calculator',
+      es: '/calculadoras/calculadora-regla-del-72',
+      fr: '/calculatrices/calculateur-regle-des-72',
+      de: '/rechner/72er-regel-rechner'
+    },
+    '/calculators/tdee-calculator': {
+      en: '/calculators/tdee-calculator',
+      es: '/calculadoras/calculadora-tdee',
+      fr: '/calculatrices/calculateur-tdee',
+      de: '/rechner/tdee-kalorienverbrauch-rechner'
+    },
+    '/calculators/one-rep-max-calculator': {
+      en: '/calculators/one-rep-max-calculator',
+      es: '/calculadoras/calculadora-1rm',
+      fr: '/calculatrices/calculateur-1rm',
+      de: '/rechner/1rm-kraftrechner'
+    },
+    '/calculators/water-intake-calculator': {
+      en: '/calculators/water-intake-calculator',
+      es: '/calculadoras/calculadora-de-agua-diaria',
+      fr: '/calculatrices/calculateur-besoin-en-eau',
+      de: '/rechner/wasserbedarf-rechner'
+    },
           '/calculators/t-test-calculator': {
         en: '/calculators/t-test-calculator',
         es: '/calculadoras/calculadora-prueba-t',

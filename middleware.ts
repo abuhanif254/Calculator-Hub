@@ -149,7 +149,7 @@ const LEGACY_TOOL_REDIRECTS: Record<string, string> = {
 
 // Truly deprecated or renamed calculators → canonical English calculator slug or category id
 const DEPRECATED_CALC_TO_CANONICAL_SLUG: Record<string, { type: 'calc' | 'category'; target: string }> = {
-  'refinance-calculator': { type: 'calc', target: 'mortgage-calculator' },
+  'refinance-calculator': { type: 'calc', target: 'mortgage-refinance-calculator' },
   'number-sequence-calculator': { type: 'category', target: 'math' },
   'body-type-calculator': { type: 'calc', target: 'body-fat-calculator' },
   'electricity-calculator': { type: 'calc', target: 'electricity-cost-calculator' },
@@ -171,7 +171,6 @@ const DEPRECATED_CALC_TO_CANONICAL_SLUG: Record<string, { type: 'calc' | 'catego
   'bac-calculator': { type: 'calc', target: 'bmi-calculator' },
   'gfr-calculator': { type: 'calc', target: 'bmi-calculator' },
   'engine-horsepower-calculator': { type: 'calc', target: 'power-calculator' },
-  'tdee-calculator': { type: 'calc', target: 'calorie-calculator' },
   'sleep-calculator': { type: 'calc', target: 'advanced-sleep-cycle-calculator' },
   'tile-calculator': { type: 'calc', target: 'concrete-calculator' },
   'gas-mileage-calculator': { type: 'calc', target: 'conversion-calculator' },

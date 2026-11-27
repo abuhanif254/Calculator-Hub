@@ -22,7 +22,9 @@ export const sitemapCategories = [
       "Marriage Tax Calculator", "Annuity Calculator",
       "Debt Payoff Calculator", "College Cost Calculator", "CD Calculator",
       "Mutual Fund Calculator", "VAT Calculator",
-      "Average Return Calculator", "Debt-to-Income Ratio Calculator", "Boat Loan Calculator", "Rental Property Calculator", "FHA Loan Calculator", "Down Payment Calculator", "Future Value Calculator", "Mortgage Amortization Calculator"
+      "Average Return Calculator", "Debt-to-Income Ratio Calculator", "Boat Loan Calculator", "Rental Property Calculator", "FHA Loan Calculator", "Down Payment Calculator", "Future Value Calculator", "Mortgage Amortization Calculator",
+      "ROI Calculator (Return on Investment)", "CAGR Calculator (Compound Annual Growth Rate)", "Net Worth Calculator", "Break-Even Point Calculator",
+      "Mortgage Refinance Calculator", "Cap Rate Calculator (Real Estate)", "Take-Home Pay Calculator (Gross to Net Salary)", "Overtime Pay Calculator", "Rule of 72 Calculator (Doubling Time)"
     ]
   },
   {
@@ -33,7 +35,8 @@ export const sitemapCategories = [
     links: [
       "Advanced Sleep Cycle Calculator", "BMI Calculator", "Calorie Calculator", "Body Fat Calculator", "BMR Calculator",
       "Ideal Weight Calculator", "Pace Calculator", "Pregnancy Calculator", "Pregnancy Conception Calculator",
-      "Due Date Calculator", "Macro Calculator", "Carbohydrate Calculator", "Healthy Weight Calculator", "Ovulation Calculator"]
+      "Due Date Calculator", "Macro Calculator", "Carbohydrate Calculator", "Healthy Weight Calculator", "Ovulation Calculator",
+      "TDEE Calculator (Total Daily Energy Expenditure)", "One Rep Max (1RM) Calculator", "Daily Water Intake Calculator"]
   },
   {
     title: "Math Calculators",
