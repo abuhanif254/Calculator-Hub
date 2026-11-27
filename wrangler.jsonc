@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nexus-calculator",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "nexus-calculator"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "APP_URL": "https://www.nexuscalculator.net",
+    "NEXT_PUBLIC_ADSENSE_CLIENT_ID": "ca-pub-9824094207004107"
+  }
+}

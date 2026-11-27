@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import dns from 'dns/promises';
+import { queryDoh, lookupAllIps, reverseIp } from '@/lib/utils/dohLookup';
 
 // Simple memory-based rate limiter (30 requests per minute per IP)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -97,10 +97,10 @@ function isIpPrivateOrLoopback(ip: string): boolean {
 // Check hostname IP before querying other services to prevent SSRF
 async function validateHostname(hostname: string): Promise<void> {
   let resolvedIps: string[] = [];
-  
+
   try {
-    const lookupResult = await dns.lookup(hostname, { all: true });
-    resolvedIps = lookupResult.map(r => r.address);
+    resolvedIps = await lookupAllIps(hostname);
+    if (resolvedIps.length === 0) throw new Error('No DNS records');
   } catch (err) {
     throw new Error(`Failed to resolve DNS hostname: ${hostname}`);
   }
@@ -284,7 +284,7 @@ export async function POST(req: NextRequest) {
       }
 
       // Perform Reverse DNS (PTR) Lookup
-      const ptr = await safeResolve(() => dns.reverse(cleaned));
+      const ptr = await safeResolve(() => reverseIp(cleaned));
       
       return NextResponse.json({
         success: true,
@@ -312,42 +312,78 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: err.message || 'Host resolution failed' }, { status: 403 });
     }
 
-    // Run Resolutions in parallel
-    const [a, aaaa, cname, mx, txt, ns, soa, srv, caa, dmarc, dkimGoogle, dkimDefault, whois] = await Promise.all([
-      safeResolve(() => dns.resolve4(cleaned, { ttl: true })),
-      safeResolve(() => dns.resolve6(cleaned, { ttl: true })),
-      safeResolve(() => dns.resolveCname(cleaned)),
-      safeResolve(() => dns.resolveMx(cleaned)),
-      safeResolve(() => dns.resolveTxt(cleaned)),
-      safeResolve(() => dns.resolveNs(cleaned)),
-      safeResolve(() => dns.resolveSoa(cleaned)),
-      safeResolve(() => dns.resolveSrv(cleaned)),
-      safeResolve(() => dns.resolveCaa(cleaned)),
-      safeResolve(() => dns.resolveTxt(`_dmarc.${cleaned}`)),
-      safeResolve(() => dns.resolveTxt(`google._domainkey.${cleaned}`)),
-      safeResolve(() => dns.resolveTxt(`default._domainkey.${cleaned}`)),
+    // Run Resolutions in parallel via Cloudflare DNS-over-HTTPS
+    const [aAns, aaaaAns, cnameAns, mxAns, txtAns, nsAns, soaAns, srvAns, caaAns, dmarcAns, dkimGoogleAns, dkimDefaultAns, whois] = await Promise.all([
+      queryDoh(cleaned, 'A'),
+      queryDoh(cleaned, 'AAAA'),
+      queryDoh(cleaned, 'CNAME'),
+      queryDoh(cleaned, 'MX'),
+      queryDoh(cleaned, 'TXT'),
+      queryDoh(cleaned, 'NS'),
+      queryDoh(cleaned, 'SOA'),
+      queryDoh(cleaned, 'SRV'),
+      queryDoh(cleaned, 'CAA'),
+      queryDoh(`_dmarc.${cleaned}`, 'TXT'),
+      queryDoh(`google._domainkey.${cleaned}`, 'TXT'),
+      queryDoh(`default._domainkey.${cleaned}`, 'TXT'),
       fetchRdapInfo(cleaned),
     ]);
+
+    const a = aAns.filter((r) => r.type === 1).map((r) => ({ address: r.data.trim(), ttl: r.TTL }));
+    const aaaa = aaaaAns.filter((r) => r.type === 28).map((r) => ({ address: r.data.trim(), ttl: r.TTL }));
+    const cname = cnameAns.filter((r) => r.type === 5).map((r) => r.data.replace(/\.$/, ''));
+    const mx = mxAns.filter((r) => r.type === 15).map((r) => {
+      const [prio, ...rest] = r.data.trim().split(/\s+/);
+      return { priority: Number(prio) || 0, exchange: rest.join(' ').replace(/\.$/, '') };
+    });
+    const stripQuotes = (s: string) => s.replace(/^"|"$/g, '').replace(/"\s+"/g, '');
+    const txt = txtAns.filter((r) => r.type === 16).map((r) => [stripQuotes(r.data)]);
+    const ns = nsAns.filter((r) => r.type === 2).map((r) => r.data.replace(/\.$/, ''));
+    const soaRow = soaAns.find((r) => r.type === 6);
+    const soaParts = soaRow ? soaRow.data.trim().split(/\s+/) : null;
+    const soa = soaParts && soaParts.length >= 7 ? {
+      nsname: soaParts[0].replace(/\.$/, ''),
+      hostmaster: soaParts[1].replace(/\.$/, ''),
+      serial: Number(soaParts[2]) || 0,
+      refresh: Number(soaParts[3]) || 0,
+      retry: Number(soaParts[4]) || 0,
+      expire: Number(soaParts[5]) || 0,
+      minttl: Number(soaParts[6]) || 0,
+    } : null;
+    const srv = srvAns.filter((r) => r.type === 33).map((r) => {
+      const p = r.data.trim().split(/\s+/);
+      return { priority: Number(p[0]) || 0, weight: Number(p[1]) || 0, port: Number(p[2]) || 0, name: (p[3] || '').replace(/\.$/, '') };
+    });
+    const caa = caaAns.filter((r) => r.type === 257).map((r) => {
+      const m = r.data.match(/^(\d+)\s+(\S+)\s+"?([^"]*)"?$/);
+      if (m) {
+        return { critical: Number(m[1]) || 0, [m[2]]: m[3] };
+      }
+      return { critical: 0, issue: r.data };
+    });
+    const dmarc = dmarcAns.filter((r) => r.type === 16).map((r) => [stripQuotes(r.data)]);
+    const dkimGoogle = dkimGoogleAns.filter((r) => r.type === 16).map((r) => [stripQuotes(r.data)]);
+    const dkimDefault = dkimDefaultAns.filter((r) => r.type === 16).map((r) => [stripQuotes(r.data)]);
 
     // Format results
     const records: Record<string, any[]> = {};
 
-    if (a) {
+    if (a.length > 0) {
       records['A'] = a.map(r => ({ value: r.address, ttl: r.ttl }));
     }
-    if (aaaa) {
+    if (aaaa.length > 0) {
       records['AAAA'] = aaaa.map(r => ({ value: r.address, ttl: r.ttl }));
     }
-    if (cname) {
+    if (cname.length > 0) {
       records['CNAME'] = cname.map(val => ({ value: val }));
     }
-    if (mx) {
+    if (mx.length > 0) {
       records['MX'] = mx.map(r => ({ value: r.exchange, priority: r.priority }));
     }
-    if (txt) {
+    if (txt.length > 0) {
       records['TXT'] = txt.map(val => ({ value: val.join(' ') }));
     }
-    if (ns) {
+    if (ns.length > 0) {
       records['NS'] = ns.map(val => ({ value: val }));
     }
     if (soa) {
@@ -356,13 +392,13 @@ export async function POST(req: NextRequest) {
         details: soa
       }];
     }
-    if (srv) {
+    if (srv.length > 0) {
       records['SRV'] = srv.map(r => ({
         value: `${r.name}:${r.port} (Priority: ${r.priority}, Weight: ${r.weight})`,
         details: r
       }));
     }
-    if (caa) {
+    if (caa.length > 0) {
       records['CAA'] = caa.map(r => {
         let val = '';
         if ('issue' in r) val = `issue: ${r.issue}`;
@@ -377,7 +413,7 @@ export async function POST(req: NextRequest) {
     let firstA_Ip = a && a.length > 0 ? a[0].address : null;
     let ptrsForA: string[] | null = null;
     if (firstA_Ip) {
-      ptrsForA = await safeResolve(() => dns.reverse(firstA_Ip!));
+      ptrsForA = await safeResolve(() => reverseIp(firstA_Ip!));
     }
 
     // Detect Providers

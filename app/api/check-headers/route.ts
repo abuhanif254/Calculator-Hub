@@ -1,8 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import dns from 'dns';
-import { promisify } from 'util';
-
-const dnsLookup = promisify(dns.lookup);
+import { lookupAllIps } from '@/lib/utils/dohLookup';
 
 // Simple memory-based rate limiter (30 requests per minute per IP)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -188,8 +185,8 @@ export async function POST(req: NextRequest) {
       let resolvedIps: string[] = [];
       
       try {
-        const lookupResult = await dnsLookup(hostname, { all: true });
-        resolvedIps = lookupResult.map(r => r.address);
+        resolvedIps = await lookupAllIps(hostname);
+        if (resolvedIps.length === 0) throw new Error('No DNS records');
       } catch (err) {
         return NextResponse.json({ success: false, error: `Failed to resolve DNS hostname: ${hostname}` }, { status: 400 });
       }

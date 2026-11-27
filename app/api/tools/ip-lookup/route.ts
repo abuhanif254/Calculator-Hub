@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import dns from 'dns/promises';
-import { isIP } from 'net';
+import { reverseIp, isValidIpAddress } from '@/lib/utils/dohLookup';
 
 // Memory-based rate limiter (30 requests per minute per IP)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -249,7 +248,7 @@ export async function POST(req: NextRequest) {
     }
 
     // IP Format Validation
-    const ipVer = isIP(targetIp);
+    const ipVer = isValidIpAddress(targetIp);
     if (ipVer === 0) {
       return NextResponse.json({ success: false, error: 'Invalid IP address format. Please enter a valid IPv4 or IPv6 address.' }, { status: 400 });
     }
@@ -300,7 +299,7 @@ export async function POST(req: NextRequest) {
     // Run Geolocation Fetch and Reverse DNS concurrently
     const [geo, rDns] = await Promise.all([
       fetchGeolocation(targetIp),
-      dns.reverse(targetIp).catch(() => [] as string[])
+      reverseIp(targetIp).catch(() => [] as string[])
     ]);
 
     if (!geo) {
